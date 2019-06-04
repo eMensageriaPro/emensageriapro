@@ -15,7 +15,7 @@
     <label id="r2040_infoproc__r2040_recursosrep__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
     {% if not for_print %}
       {% if r2040_infoproc_form.r2040_recursosrep.value %}
-        <a id="r2040_infoproc__r2040_recursosrep__div_acessar" href="{% url 'r2040_recursosrep_salvar' hash='{}'|json_id:r2040_infoproc_form.r2040_recursosrep.value|json_print:0|base64_encode_me %}">
+        <a id="r2040_infoproc__r2040_recursosrep__div_acessar" href="{% url 'r2040_recursosrep_salvar' pk=r2040_infoproc_form.r2040_recursosrep.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

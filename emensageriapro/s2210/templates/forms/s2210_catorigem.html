@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2210_catorigem__s2210_evtcat__label">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito*</label>
     {% if not for_print %}{% if s2210_catorigem_form.s2210_evtcat.value %}
-        <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_return_page:'s2210_catorigem_salvar'|json_return_hash:hash|json_id:s2210_catorigem_form.s2210_evtcat.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2210_evtcat_salvar' pk=s2210_catorigem_form.s2210_evtcat.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

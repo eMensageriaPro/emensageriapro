@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s2205.models import *
 from emensageriapro.s2205.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2205(request, s2205_evtaltcadastral_id, versao=None):
+def gerar_xml_s2205(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s2205_evtaltcadastral_id:
+    if pk:
 
         s2205_evtaltcadastral = get_object_or_404(
             s2205evtAltCadastral,
-            excluido = False,
-            id = s2205_evtaltcadastral_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s2205_evtaltcadastral.versao
@@ -105,7 +103,8 @@ def gerar_xml_s2205(request, s2205_evtaltcadastral_id, versao=None):
             xmlns = ''
 
         s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects. \
-            filter(id=s2205_evtaltcadastral_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s2205_documentos_lista = s2205documentos.objects. \
             filter(s2205_evtaltcadastral_id__in=listar_ids(s2205_evtaltcadastral_lista)).all()
@@ -155,10 +154,8 @@ def gerar_xml_s2205(request, s2205_evtaltcadastral_id, versao=None):
             'versao': versao,
             'base': s2205_evtaltcadastral,
             's2205_evtaltcadastral_lista': s2205_evtaltcadastral_lista,
-            's2205_evtaltcadastral_id': int(s2205_evtaltcadastral_id),
+            'pk': int(pk),
             's2205_evtaltcadastral': s2205_evtaltcadastral,
-
-            
             's2205_documentos_lista': s2205_documentos_lista,
             's2205_ctps_lista': s2205_ctps_lista,
             's2205_ric_lista': s2205_ric_lista,
@@ -180,9 +177,7 @@ def gerar_xml_s2205(request, s2205_evtaltcadastral_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s2205_evtaltcadastral_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -190,14 +185,14 @@ def gerar_xml_assinado(request, s2205_evtaltcadastral_id):
 
     s2205_evtaltcadastral = get_object_or_404(
         s2205evtAltCadastral,
-        id=s2205_evtaltcadastral_id)
+        id=pk)
 
     if s2205_evtaltcadastral.arquivo_original:
     
         xml = ler_arquivo(s2205_evtaltcadastral.arquivo)
 
     else:
-        xml = gerar_xml_s2205(request, s2205_evtaltcadastral_id)
+        xml = gerar_xml_s2205(request, pk)
 
     if 'Signature' in xml:
     
@@ -213,20 +208,23 @@ def gerar_xml_assinado(request, s2205_evtaltcadastral_id):
             grupo = get_grupo(s2205evtAltCadastral)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s2205_evtaltcadastral.nrinsc,
-                                      s2205_evtaltcadastral.tpinsc)
+                grupo,
+                s2205_evtaltcadastral.nrinsc,
+                s2205_evtaltcadastral.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s2205evtAltCadastral,
-                                         s2205_evtaltcadastral)
+                grupo,
+                s2205evtAltCadastral,
+                s2205_evtaltcadastral)
         
         s2205_evtaltcadastral = get_object_or_404(
             s2205evtAltCadastral,
-            id=s2205_evtaltcadastral_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s2205_evtaltcadastral.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s2205_evtaltcadastral.transmissor_lote_esocial_id)
         
     if s2205_evtaltcadastral.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -235,29 +233,28 @@ def gerar_xml_assinado(request, s2205_evtaltcadastral_id):
         STATUS_EVENTO_GERADO):
 
         s2205evtAltCadastral.objects.\
-            filter(id=s2205_evtaltcadastral_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s2205_evtaltcadastral/%s.xml' % (s2205_evtaltcadastral.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2205_evtaltcadastral/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s2205_evtaltcadastral_id = int(dict_hash['id'])
+    if pk:
 
-    if s2205_evtaltcadastral_id:
-
-        xml_assinado = gerar_xml_assinado(request, s2205_evtaltcadastral_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

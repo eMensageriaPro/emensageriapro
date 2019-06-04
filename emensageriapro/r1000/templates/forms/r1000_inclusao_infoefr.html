@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r1000_inclusao_infoefr__r1000_inclusao__label">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR*</label>
     {% if not for_print %}{% if r1000_inclusao_infoefr_form.r1000_inclusao.value %}
-        <a href="{% url 'r1000_inclusao_salvar' hash='{}'|json_return_page:'r1000_inclusao_infoefr_salvar'|json_return_hash:hash|json_id:r1000_inclusao_infoefr_form.r1000_inclusao.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao_infoefr_form.r1000_inclusao.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

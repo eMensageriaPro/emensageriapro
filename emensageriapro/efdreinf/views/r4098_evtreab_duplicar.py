@@ -73,24 +73,21 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def duplicar(request, hash):
+def duplicar(request, pk):
 
     from emensageriapro.efdreinf.views.r4098_evtreab_importar import read_r4098_evtreab_string
     from emensageriapro.efdreinf.views.r4098_evtreab_gerar_xml import gerar_xml_r4098
     from emensageriapro.functions import identidade_evento
-
-    dict_hash = get_hash_url(hash)
-    r4098_evtreab_id = int(dict_hash['id'])
     
-    if request.user.has_perm('efdreinf.can_duplicate_event_r4098evtReab'):
+    if request.user.has_perm('efdreinf.can_duplicate_r4098evtReab'):
 
-        if r4098_evtreab_id:
+        if pk:
     
             r4098_evtreab = get_object_or_404(
                 r4098evtReab,
-                id=r4098_evtreab_id)
+                id=pk)
     
-            texto = gerar_xml_r4098(r4098_evtreab_id, versao="|")
+            texto = gerar_xml_r4098(request, pk, versao="|")
             dados = read_r4098_evtreab_string({}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r4098_evtreab)
     
@@ -103,15 +100,17 @@ def duplicar(request, hash):
                 'r4098_evtreab', dados['id'], request.user.id, 1)
     
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('r4098_evtreab_salvar', hash=url_hash)
+            return_pk = dados['id']
+            
+            return redirect('r4098_evtreab_salvar', pk=return_pk, tab='master')
     
         messages.error(request, 'Erro ao duplicar evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+        return redirect('r4098_evtreab_salvar', pk=pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('r4098_evtreab_salvar', pk=pk, tab='master')

@@ -66,7 +66,6 @@ class s1207evtBenPrRPList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1207evtBenPrRPDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1207evtBenPrRP.objects.all()

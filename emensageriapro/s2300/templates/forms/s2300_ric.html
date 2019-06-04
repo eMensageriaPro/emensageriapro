@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_ric__s2300_documentos__label">Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)*</label>
     {% if not for_print %}{% if s2300_ric_form.s2300_documentos.value %}
-        <a href="{% url 's2300_documentos_salvar' hash='{}'|json_return_page:'s2300_ric_salvar'|json_return_hash:hash|json_id:s2300_ric_form.s2300_documentos.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2300_documentos_salvar' pk=s2300_ric_form.s2300_documentos.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

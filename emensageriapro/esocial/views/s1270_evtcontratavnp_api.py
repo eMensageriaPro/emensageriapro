@@ -66,7 +66,6 @@ class s1270evtContratAvNPList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1270evtContratAvNPDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1270evtContratAvNP.objects.all()

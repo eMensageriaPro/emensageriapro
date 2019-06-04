@@ -15,7 +15,7 @@
     <label id="s2241_altinsalperic_fatrisco__s2241_altinsalperic_infoamb__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*</label>
     {% if not for_print %}
       {% if s2241_altinsalperic_fatrisco_form.s2241_altinsalperic_infoamb.value %}
-        <a id="s2241_altinsalperic_fatrisco__s2241_altinsalperic_infoamb__div_acessar" href="{% url 's2241_altinsalperic_infoamb_salvar' hash='{}'|json_id:s2241_altinsalperic_fatrisco_form.s2241_altinsalperic_infoamb.value|json_print:0|base64_encode_me %}">
+        <a id="s2241_altinsalperic_fatrisco__s2241_altinsalperic_infoamb__div_acessar" href="{% url 's2241_altinsalperic_infoamb_salvar' pk=s2241_altinsalperic_fatrisco_form.s2241_altinsalperic_infoamb.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

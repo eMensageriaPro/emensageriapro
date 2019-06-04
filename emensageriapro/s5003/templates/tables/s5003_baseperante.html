@@ -35,26 +35,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s5003.can_view_s5003basePerAntE %}
-                        <a href="{% url 's5003_baseperante_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s5003.add_s5003basePerAntE or perms.s5003.change_s5003basePerAntE %}
+                        {% if perms.s5003.change_s5003basePerAntE or perms.s5003.add_s5003basePerAntE %}
+                    
+                        <a href="{% url 's5003_baseperante_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s5003.change_s5003basePerAntE %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s5003.can_see_data_s5003basePerAntE %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s5003.delete_s5003basePerAntE %}
-                        <a href="{% url 's5003_baseperante_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s5003.delete_s5003basePerAntE %}
+                        <a href="{% url 's5003_baseperante_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

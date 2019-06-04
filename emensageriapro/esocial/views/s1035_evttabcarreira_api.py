@@ -66,7 +66,6 @@ class s1035evtTabCarreiraList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1035evtTabCarreiraDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1035evtTabCarreira.objects.all()

@@ -15,7 +15,7 @@
     <label id="r2010_nfs__r2010_evtservtom__label">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior*</label>
     {% if not for_print %}
       {% if r2010_nfs_form.r2010_evtservtom.value %}
-        <a id="r2010_nfs__r2010_evtservtom__div_acessar" href="{% url 'r2010_evtservtom_salvar' hash='{}'|json_id:r2010_nfs_form.r2010_evtservtom.value|json_print:0|base64_encode_me %}">
+        <a id="r2010_nfs__r2010_evtservtom__div_acessar" href="{% url 'r2010_evtservtom_salvar' pk=r2010_nfs_form.r2010_evtservtom.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -15,7 +15,7 @@
     <label id="s1200_infoperant_ideadc__s1200_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*</label>
     {% if not for_print %}
       {% if s1200_infoperant_ideadc_form.s1200_infoperant.value %}
-        <a id="s1200_infoperant_ideadc__s1200_infoperant__div_acessar" href="{% url 's1200_infoperant_salvar' hash='{}'|json_id:s1200_infoperant_ideadc_form.s1200_infoperant.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_infoperant_ideadc__s1200_infoperant__div_acessar" href="{% url 's1200_infoperant_salvar' pk=s1200_infoperant_ideadc_form.s1200_infoperant.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

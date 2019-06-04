@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2306_cargofuncao_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2306_cargofuncao_id:
+    if pk:
     
-        s2306_cargofuncao = get_object_or_404(s2306cargoFuncao, id=s2306_cargofuncao_id)
+        s2306_cargofuncao = get_object_or_404(s2306cargoFuncao, id=pk)
         dados_evento = s2306_cargofuncao.evento()
 
-    if request.user.has_perm('s2306.can_view_s2306cargoFuncao'):
+    if request.user.has_perm('s2306.can_see_s2306cargoFuncao'):
         
-        if s2306_cargofuncao_id:
+        if pk:
         
-            s2306_cargofuncao_form = form_s2306_cargofuncao(request.POST or None, 
-                                                          instance=s2306_cargofuncao,  
-                                                          initial={'excluido': False})
+            s2306_cargofuncao_form = form_s2306_cargofuncao(
+                request.POST or None, 
+                instance=s2306_cargofuncao)
                                          
         else:
         
-            s2306_cargofuncao_form = form_s2306_cargofuncao(request.POST or None, 
-                                         initial={'excluido': False})
+            s2306_cargofuncao_form = form_s2306_cargofuncao(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2306_cargofuncao_form.is_valid():
             
-                dados = s2306_cargofuncao_form.cleaned_data
                 obj = s2306_cargofuncao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2306_cargofuncao_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2306_cargofuncao', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2306_cargofuncao', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2306_cargofuncao), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2306_cargofuncao', s2306_cargofuncao_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2306_cargofuncao), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2306_cargofuncao', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2306_cargofuncao_apagar', 's2306_cargofuncao_salvar', 's2306_cargofuncao'):
+                if request.session['return_page'] not in (
+                    's2306_cargofuncao_apagar', 
+                    's2306_cargofuncao_salvar', 
+                    's2306_cargofuncao'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2306_cargofuncao_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2306_cargofuncao_salvar', hash=url_hash)
+                    return redirect(
+                        's2306_cargofuncao_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2306_cargofuncao_form = disabled_form_fields(s2306_cargofuncao_form, request.user.has_perm('s2306.change_s2306cargoFuncao'))
+        s2306_cargofuncao_form = disabled_form_fields(
+            s2306_cargofuncao_form, 
+            request.user.has_perm('s2306.change_s2306cargoFuncao'))
         
-        if s2306_cargofuncao_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #s2306_cargofuncao_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2306_cargofuncao_form = disabled_form_for_print(s2306_cargofuncao_form)
             
         
         
-        if s2306_cargofuncao_id:
+        if pk:
         
-            s2306_cargofuncao = get_object_or_404(s2306cargoFuncao, id=s2306_cargofuncao_id)
+            s2306_cargofuncao = get_object_or_404(s2306cargoFuncao, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2306_cargofuncao' in request.session['retorno_pagina']:
+        if tab or 's2306_cargofuncao' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2306_cargofuncao_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2306_cargofuncao_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2306_cargofuncao_id, tabela='s2306_cargofuncao').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2306_cargofuncao').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2306_cargofuncao': s2306_cargofuncao, 
             's2306_cargofuncao_form': s2306_cargofuncao_form, 
-            's2306_cargofuncao_id': int(s2306_cargofuncao_id),
-            'usuario': usuario, 
             'modulos': ['s2306', ],
             'paginas': ['s2306_cargofuncao', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2306_cargofuncao_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2306_cargofuncao_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2306_cargofuncao_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2306_cargofuncao_salvar.html', context)
             filename = "s2306_cargofuncao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2306_cargofuncao_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2306', ],
             'paginas': ['s2306_cargofuncao', ],
             'data': datetime.datetime.now(),

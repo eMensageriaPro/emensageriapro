@@ -66,7 +66,6 @@ class s2400evtCdBenefInList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2400evtCdBenefInDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2400evtCdBenefIn.objects.all()

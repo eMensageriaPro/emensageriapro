@@ -15,7 +15,7 @@
     <label id="s1000_alteracao_softwarehouse__s1000_alteracao__label">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.*</label>
     {% if not for_print %}
       {% if s1000_alteracao_softwarehouse_form.s1000_alteracao.value %}
-        <a id="s1000_alteracao_softwarehouse__s1000_alteracao__div_acessar" href="{% url 's1000_alteracao_salvar' hash='{}'|json_id:s1000_alteracao_softwarehouse_form.s1000_alteracao.value|json_print:0|base64_encode_me %}">
+        <a id="s1000_alteracao_softwarehouse__s1000_alteracao__div_acessar" href="{% url 's1000_alteracao_salvar' pk=s1000_alteracao_softwarehouse_form.s1000_alteracao.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

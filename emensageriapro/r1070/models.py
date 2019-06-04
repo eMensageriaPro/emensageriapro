@@ -104,8 +104,11 @@ class r1070alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070alteracao", "Can view R1070ALTERACAO"),
-            ("can_view_menu_r1070alteracao", "Can view menu R1070ALTERACAO"),)
+            ("can_see_list_r1070alteracao", u"Pode ver listagem do modelo R1070ALTERACAO"),
+            ("can_see_data_r1070alteracao", u"Pode visualizar o conteúdo do modelo R1070ALTERACAO"),
+            ("can_see_menu_r1070alteracao", u"Pode visualizar no menu o modelo R1070ALTERACAO"),
+            ("can_print_list_r1070alteracao", u"Pode imprimir listagem do modelo R1070ALTERACAO"),
+            ("can_print_data_r1070alteracao", u"Pode imprimir o conteúdo do modelo R1070ALTERACAO"), )
             
         ordering = [
             'r1070_evttabprocesso',
@@ -168,8 +171,11 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070alteracaodadosProcJud", "Can view R1070ALTERACAODADOSPROCJUD"),
-            ("can_view_menu_r1070alteracaodadosProcJud", "Can view menu R1070ALTERACAODADOSPROCJUD"),)
+            ("can_see_list_r1070alteracaodadosProcJud", u"Pode ver listagem do modelo R1070ALTERACAODADOSPROCJUD"),
+            ("can_see_data_r1070alteracaodadosProcJud", u"Pode visualizar o conteúdo do modelo R1070ALTERACAODADOSPROCJUD"),
+            ("can_see_menu_r1070alteracaodadosProcJud", u"Pode visualizar no menu o modelo R1070ALTERACAODADOSPROCJUD"),
+            ("can_print_list_r1070alteracaodadosProcJud", u"Pode imprimir listagem do modelo R1070ALTERACAODADOSPROCJUD"),
+            ("can_print_data_r1070alteracaodadosProcJud", u"Pode imprimir o conteúdo do modelo R1070ALTERACAODADOSPROCJUD"), )
             
         ordering = [
             'r1070_alteracao',
@@ -232,8 +238,11 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070alteracaoinfoSusp", "Can view R1070ALTERACAOINFOSUSP"),
-            ("can_view_menu_r1070alteracaoinfoSusp", "Can view menu R1070ALTERACAOINFOSUSP"),)
+            ("can_see_list_r1070alteracaoinfoSusp", u"Pode ver listagem do modelo R1070ALTERACAOINFOSUSP"),
+            ("can_see_data_r1070alteracaoinfoSusp", u"Pode visualizar o conteúdo do modelo R1070ALTERACAOINFOSUSP"),
+            ("can_see_menu_r1070alteracaoinfoSusp", u"Pode visualizar no menu o modelo R1070ALTERACAOINFOSUSP"),
+            ("can_print_list_r1070alteracaoinfoSusp", u"Pode imprimir listagem do modelo R1070ALTERACAOINFOSUSP"),
+            ("can_print_data_r1070alteracaoinfoSusp", u"Pode imprimir o conteúdo do modelo R1070ALTERACAOINFOSUSP"), )
             
         ordering = [
             'r1070_alteracao',
@@ -292,8 +301,11 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070alteracaonovaValidade", "Can view R1070ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_r1070alteracaonovaValidade", "Can view menu R1070ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_r1070alteracaonovaValidade", u"Pode ver listagem do modelo R1070ALTERACAONOVAVALIDADE"),
+            ("can_see_data_r1070alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo R1070ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_r1070alteracaonovaValidade", u"Pode visualizar no menu o modelo R1070ALTERACAONOVAVALIDADE"),
+            ("can_print_list_r1070alteracaonovaValidade", u"Pode imprimir listagem do modelo R1070ALTERACAONOVAVALIDADE"),
+            ("can_print_data_r1070alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo R1070ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             'r1070_alteracao',
@@ -354,8 +366,11 @@ class r1070exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070exclusao", "Can view R1070EXCLUSAO"),
-            ("can_view_menu_r1070exclusao", "Can view menu R1070EXCLUSAO"),)
+            ("can_see_list_r1070exclusao", u"Pode ver listagem do modelo R1070EXCLUSAO"),
+            ("can_see_data_r1070exclusao", u"Pode visualizar o conteúdo do modelo R1070EXCLUSAO"),
+            ("can_see_menu_r1070exclusao", u"Pode visualizar no menu o modelo R1070EXCLUSAO"),
+            ("can_print_list_r1070exclusao", u"Pode imprimir listagem do modelo R1070EXCLUSAO"),
+            ("can_print_data_r1070exclusao", u"Pode imprimir o conteúdo do modelo R1070EXCLUSAO"), )
             
         ordering = [
             'r1070_evttabprocesso',
@@ -420,8 +435,11 @@ class r1070inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070inclusao", "Can view R1070INCLUSAO"),
-            ("can_view_menu_r1070inclusao", "Can view menu R1070INCLUSAO"),)
+            ("can_see_list_r1070inclusao", u"Pode ver listagem do modelo R1070INCLUSAO"),
+            ("can_see_data_r1070inclusao", u"Pode visualizar o conteúdo do modelo R1070INCLUSAO"),
+            ("can_see_menu_r1070inclusao", u"Pode visualizar no menu o modelo R1070INCLUSAO"),
+            ("can_print_list_r1070inclusao", u"Pode imprimir listagem do modelo R1070INCLUSAO"),
+            ("can_print_data_r1070inclusao", u"Pode imprimir o conteúdo do modelo R1070INCLUSAO"), )
             
         ordering = [
             'r1070_evttabprocesso',
@@ -484,8 +502,11 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070inclusaodadosProcJud", "Can view R1070INCLUSAODADOSPROCJUD"),
-            ("can_view_menu_r1070inclusaodadosProcJud", "Can view menu R1070INCLUSAODADOSPROCJUD"),)
+            ("can_see_list_r1070inclusaodadosProcJud", u"Pode ver listagem do modelo R1070INCLUSAODADOSPROCJUD"),
+            ("can_see_data_r1070inclusaodadosProcJud", u"Pode visualizar o conteúdo do modelo R1070INCLUSAODADOSPROCJUD"),
+            ("can_see_menu_r1070inclusaodadosProcJud", u"Pode visualizar no menu o modelo R1070INCLUSAODADOSPROCJUD"),
+            ("can_print_list_r1070inclusaodadosProcJud", u"Pode imprimir listagem do modelo R1070INCLUSAODADOSPROCJUD"),
+            ("can_print_data_r1070inclusaodadosProcJud", u"Pode imprimir o conteúdo do modelo R1070INCLUSAODADOSPROCJUD"), )
             
         ordering = [
             'r1070_inclusao',
@@ -548,8 +569,11 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070inclusaoinfoSusp", "Can view R1070INCLUSAOINFOSUSP"),
-            ("can_view_menu_r1070inclusaoinfoSusp", "Can view menu R1070INCLUSAOINFOSUSP"),)
+            ("can_see_list_r1070inclusaoinfoSusp", u"Pode ver listagem do modelo R1070INCLUSAOINFOSUSP"),
+            ("can_see_data_r1070inclusaoinfoSusp", u"Pode visualizar o conteúdo do modelo R1070INCLUSAOINFOSUSP"),
+            ("can_see_menu_r1070inclusaoinfoSusp", u"Pode visualizar no menu o modelo R1070INCLUSAOINFOSUSP"),
+            ("can_print_list_r1070inclusaoinfoSusp", u"Pode imprimir listagem do modelo R1070INCLUSAOINFOSUSP"),
+            ("can_print_data_r1070inclusaoinfoSusp", u"Pode imprimir o conteúdo do modelo R1070INCLUSAOINFOSUSP"), )
             
         ordering = [
             'r1070_inclusao',

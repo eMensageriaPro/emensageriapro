@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1299_iderespinf__s1299_evtfechaevper__label">Responsável pelas informações*</label>
     {% if not for_print %}{% if s1299_iderespinf_form.s1299_evtfechaevper.value %}
-        <a href="{% url 's1299_evtfechaevper_salvar' hash='{}'|json_return_page:'s1299_iderespinf_salvar'|json_return_hash:hash|json_id:s1299_iderespinf_form.s1299_evtfechaevper.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1299_evtfechaevper_salvar' pk=s1299_iderespinf_form.s1299_evtfechaevper.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

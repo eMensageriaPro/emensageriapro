@@ -63,28 +63,14 @@ from emensageriapro.s2241.forms import form_s2241_aposentesp
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2241_evtinsapo_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s2241_evtinsapo_id:
-    
-        s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=s2241_evtinsapo_id)
+        s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
 
         if s2241_evtinsapo.status != STATUS_EVENTO_CADASTRADO:
         
@@ -92,9 +78,9 @@ def salvar(request, hash):
             dict_permissoes['s2241_evtinsapo_apagar'] = 0
             dict_permissoes['s2241_evtinsapo_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s2241evtInsApo'):
+    if request.user.has_perm('esocial.can_see_s2241evtInsApo'):
     
-        if s2241_evtinsapo_id:
+        if pk:
         
             s2241_evtinsapo_form = form_s2241_evtinsapo(request.POST or None, instance = s2241_evtinsapo, 
                                          initial={'excluido': False})
@@ -113,45 +99,61 @@ def salvar(request, hash):
         
             if s2241_evtinsapo_form.is_valid():
             
-                dados = s2241_evtinsapo_form.cleaned_data
                 obj = s2241_evtinsapo_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2241_evtinsapo_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2241_evtinsapo', obj.id, usuario_id, 1)
+                                 's2241_evtinsapo', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2241_evtinsapo), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2241_evtinsapo', s2241_evtinsapo_id, usuario_id, 2)
+                                     's2241_evtinsapo', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s2241_evtinsapo_apagar', 's2241_evtinsapo_salvar', 's2241_evtinsapo'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's2241_evtinsapo_apagar', 
+                    's2241_evtinsapo_salvar', 
+                    's2241_evtinsapo'):
                     
-                if s2241_evtinsapo_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2241_evtinsapo_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's2241_evtinsapo_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s2241_evtinsapo_form = disabled_form_fields(s2241_evtinsapo_form, request.user.has_perm('esocial.change_s2241evtInsApo'))
+        s2241_evtinsapo_form = disabled_form_fields(
+             s2241_evtinsapo_form, 
+             request.user.has_perm('esocial.change_s2241evtInsApo'))
         
-        if s2241_evtinsapo_id:
+        if pk:
+        
             if s2241_evtinsapo.status != 0:
+            
                 s2241_evtinsapo_form = disabled_form_fields(s2241_evtinsapo_form, False)
+                
         #s2241_evtinsapo_campos_multiple_passo3
 
         for field in s2241_evtinsapo_form.fields.keys():
+        
             s2241_evtinsapo_form.fields[field].widget.attrs['ng-model'] = 's2241_evtinsapo_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s2241_evtinsapo_form = disabled_form_for_print(s2241_evtinsapo_form)
 
         
@@ -160,9 +162,9 @@ def salvar(request, hash):
         s2241_aposentesp_lista = None 
         s2241_aposentesp_form = None 
         
-        if s2241_evtinsapo_id:
+        if pk:
         
-            s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id = s2241_evtinsapo_id)
+            s2241_evtinsapo = get_object_or_404(s2241evtInsApo, id=pk)
             
             s2241_insalperic_form = form_s2241_insalperic(
                 initial={ 's2241_evtinsapo': s2241_evtinsapo })
@@ -176,6 +178,7 @@ def salvar(request, hash):
                 filter(s2241_evtinsapo_id=s2241_evtinsapo.id).all()
                 
         else:
+        
             s2241_evtinsapo = None
             
         #s2241_evtinsapo_salvar_custom_variaveis#
@@ -184,23 +187,26 @@ def salvar(request, hash):
         
         if 's2241_evtinsapo'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's2241_evtinsapo' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2241_evtinsapo_salvar'
+        if tab or 's2241_evtinsapo' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2241_evtinsapo_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2241_evtinsapo_id, tabela='s2241_evtinsapo').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2241_evtinsapo').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2241_evtinsapo': s2241_evtinsapo, 
             's2241_evtinsapo_form': s2241_evtinsapo_form, 
-            's2241_evtinsapo_id': int(s2241_evtinsapo_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             's2241_insalperic_form': s2241_insalperic_form,
             's2241_insalperic_lista': s2241_insalperic_lista,
@@ -209,17 +215,13 @@ def salvar(request, hash):
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2241_evtinsapo', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2241_evtinsapo_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2241_evtinsapo_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -237,25 +239,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s2241_evtinsapo_salvar.html', context)
             filename = "s2241_evtinsapo.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2241_evtinsapo_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s2241_evtinsapo', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

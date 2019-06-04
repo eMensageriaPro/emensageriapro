@@ -106,8 +106,11 @@ class s1080alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080alteracao", "Can view S1080ALTERACAO"),
-            ("can_view_menu_s1080alteracao", "Can view menu S1080ALTERACAO"),)
+            ("can_see_list_s1080alteracao", u"Pode ver listagem do modelo S1080ALTERACAO"),
+            ("can_see_data_s1080alteracao", u"Pode visualizar o conteúdo do modelo S1080ALTERACAO"),
+            ("can_see_menu_s1080alteracao", u"Pode visualizar no menu o modelo S1080ALTERACAO"),
+            ("can_print_list_s1080alteracao", u"Pode imprimir listagem do modelo S1080ALTERACAO"),
+            ("can_print_data_s1080alteracao", u"Pode imprimir o conteúdo do modelo S1080ALTERACAO"), )
             
         ordering = [
             's1080_evttaboperport',
@@ -168,8 +171,11 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080alteracaonovaValidade", "Can view S1080ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1080alteracaonovaValidade", "Can view menu S1080ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1080alteracaonovaValidade", u"Pode ver listagem do modelo S1080ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1080alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1080ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1080alteracaonovaValidade", u"Pode visualizar no menu o modelo S1080ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1080alteracaonovaValidade", u"Pode imprimir listagem do modelo S1080ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1080alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1080ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1080_alteracao',
@@ -228,8 +234,11 @@ class s1080exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080exclusao", "Can view S1080EXCLUSAO"),
-            ("can_view_menu_s1080exclusao", "Can view menu S1080EXCLUSAO"),)
+            ("can_see_list_s1080exclusao", u"Pode ver listagem do modelo S1080EXCLUSAO"),
+            ("can_see_data_s1080exclusao", u"Pode visualizar o conteúdo do modelo S1080EXCLUSAO"),
+            ("can_see_menu_s1080exclusao", u"Pode visualizar no menu o modelo S1080EXCLUSAO"),
+            ("can_print_list_s1080exclusao", u"Pode imprimir listagem do modelo S1080EXCLUSAO"),
+            ("can_print_data_s1080exclusao", u"Pode imprimir o conteúdo do modelo S1080EXCLUSAO"), )
             
         ordering = [
             's1080_evttaboperport',
@@ -295,8 +304,11 @@ class s1080inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080inclusao", "Can view S1080INCLUSAO"),
-            ("can_view_menu_s1080inclusao", "Can view menu S1080INCLUSAO"),)
+            ("can_see_list_s1080inclusao", u"Pode ver listagem do modelo S1080INCLUSAO"),
+            ("can_see_data_s1080inclusao", u"Pode visualizar o conteúdo do modelo S1080INCLUSAO"),
+            ("can_see_menu_s1080inclusao", u"Pode visualizar no menu o modelo S1080INCLUSAO"),
+            ("can_print_list_s1080inclusao", u"Pode imprimir listagem do modelo S1080INCLUSAO"),
+            ("can_print_data_s1080inclusao", u"Pode imprimir o conteúdo do modelo S1080INCLUSAO"), )
             
         ordering = [
             's1080_evttaboperport',

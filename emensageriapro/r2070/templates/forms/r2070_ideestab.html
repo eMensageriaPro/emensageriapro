@@ -15,7 +15,7 @@
     <label id="r2070_ideestab__r2070_evtpgtosdivs__label">Identificação dos estabelecimentos da associação desportiva que receberam os recursos*</label>
     {% if not for_print %}
       {% if r2070_ideestab_form.r2070_evtpgtosdivs.value %}
-        <a id="r2070_ideestab__r2070_evtpgtosdivs__div_acessar" href="{% url 'r2070_evtpgtosdivs_salvar' hash='{}'|json_id:r2070_ideestab_form.r2070_evtpgtosdivs.value|json_print:0|base64_encode_me %}">
+        <a id="r2070_ideestab__r2070_evtpgtosdivs__div_acessar" href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_ideestab_form.r2070_evtpgtosdivs.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

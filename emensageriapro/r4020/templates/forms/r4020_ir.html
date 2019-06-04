@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4020_ir__r4020_infopgto__label">Informações relativas ao Imposto de Renda*</label>
     {% if not for_print %}{% if r4020_ir_form.r4020_infopgto.value %}
-        <a href="{% url 'r4020_infopgto_salvar' hash='{}'|json_return_page:'r4020_ir_salvar'|json_return_hash:hash|json_id:r4020_ir_form.r4020_infopgto.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r4020_infopgto_salvar' pk=r4020_ir_form.r4020_infopgto.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

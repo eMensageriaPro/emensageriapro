@@ -31,6 +31,11 @@ class CertificadosAdmin(AuditoriaAdmin):
     list_display = (
         'nome',
     )
+
+    exclude = (
+        'senha',
+        'certificado',
+    )
     
     def queryset(self, request, queryset):
         return queryset.filter(excluido=False)

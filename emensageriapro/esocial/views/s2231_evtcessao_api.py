@@ -66,7 +66,6 @@ class s2231evtCessaoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2231evtCessaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2231evtCessao.objects.all()

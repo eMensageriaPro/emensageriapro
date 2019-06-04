@@ -71,14 +71,6 @@ class Arquivos(SoftDeletionModel):
     data_criacao = models.DateField()
     permite_recuperacao = models.IntegerField(choices=SIM_NAO, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -100,8 +92,11 @@ class Arquivos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_Arquivos", "Can view ARQUIVOS"),
-            ("can_view_menu_Arquivos", "Can view menu ARQUIVOS"),)
+            ("can_see_list_Arquivos", u"Pode ver listagem do modelo ARQUIVOS"),
+            ("can_see_data_Arquivos", u"Pode visualizar o conteúdo do modelo ARQUIVOS"),
+            ("can_see_menu_Arquivos", u"Pode visualizar no menu o modelo ARQUIVOS"),
+            ("can_print_list_Arquivos", u"Pode imprimir listagem do modelo ARQUIVOS"),
+            ("can_print_data_Arquivos", u"Pode imprimir o conteúdo do modelo ARQUIVOS"), )
             
         ordering = []
 
@@ -131,14 +126,6 @@ class Certificados(SoftDeletionModel):
     fs_certificado = FileSystemStorage(location=BASE_DIR+'/certificado/')
     certificado = models.FileField(storage=fs_certificado)
     senha = models.CharField(max_length=300, blank=True, null=True, )
-    
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     
     def __unicode__(self):
         
@@ -198,14 +185,6 @@ class ImportacaoArquivos(SoftDeletionModel):
     quant_importado = models.IntegerField(blank=True, null=True, )
     quant_erros = models.IntegerField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -228,8 +207,11 @@ class ImportacaoArquivos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_ImportacaoArquivos", "Can view IMPORTACAOARQUIVOS"),
-            ("can_view_menu_ImportacaoArquivos", "Can view menu IMPORTACAOARQUIVOS"),)
+            ("can_see_list_ImportacaoArquivos", u"Pode ver listagem do modelo IMPORTACAOARQUIVOS"),
+            ("can_see_data_ImportacaoArquivos", u"Pode visualizar o conteúdo do modelo IMPORTACAOARQUIVOS"),
+            ("can_see_menu_ImportacaoArquivos", u"Pode visualizar no menu o modelo IMPORTACAOARQUIVOS"),
+            ("can_print_list_ImportacaoArquivos", u"Pode imprimir listagem do modelo IMPORTACAOARQUIVOS"),
+            ("can_print_data_ImportacaoArquivos", u"Pode imprimir o conteúdo do modelo IMPORTACAOARQUIVOS"), )
             
         ordering = [
             'arquivo',]
@@ -265,14 +247,6 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
     data_hora = models.DateTimeField(blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -300,8 +274,11 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_ImportacaoArquivosEventos", "Can view IMPORTACAOARQUIVOSEVENTOS"),
-            ("can_view_menu_ImportacaoArquivosEventos", "Can view menu IMPORTACAOARQUIVOSEVENTOS"),)
+            ("can_see_list_ImportacaoArquivosEventos", u"Pode ver listagem do modelo IMPORTACAOARQUIVOSEVENTOS"),
+            ("can_see_data_ImportacaoArquivosEventos", u"Pode visualizar o conteúdo do modelo IMPORTACAOARQUIVOSEVENTOS"),
+            ("can_see_menu_ImportacaoArquivosEventos", u"Pode visualizar no menu o modelo IMPORTACAOARQUIVOSEVENTOS"),
+            ("can_print_list_ImportacaoArquivosEventos", u"Pode imprimir listagem do modelo IMPORTACAOARQUIVOSEVENTOS"),
+            ("can_print_data_ImportacaoArquivosEventos", u"Pode imprimir o conteúdo do modelo IMPORTACAOARQUIVOSEVENTOS"), )
             
         ordering = [
             'importacao_arquivos',
@@ -348,14 +325,6 @@ class RegrasDeValidacao(SoftDeletionModel):
     validacoes_precedencia = models.TextField(blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -382,8 +351,11 @@ class RegrasDeValidacao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_RegrasDeValidacao", "Can view REGRASDEVALIDACAO"),
-            ("can_view_menu_RegrasDeValidacao", "Can view menu REGRASDEVALIDACAO"),)
+            ("can_see_list_RegrasDeValidacao", u"Pode ver listagem do modelo REGRASDEVALIDACAO"),
+            ("can_see_data_RegrasDeValidacao", u"Pode visualizar o conteúdo do modelo REGRASDEVALIDACAO"),
+            ("can_see_menu_RegrasDeValidacao", u"Pode visualizar no menu o modelo REGRASDEVALIDACAO"),
+            ("can_print_list_RegrasDeValidacao", u"Pode imprimir listagem do modelo REGRASDEVALIDACAO"),
+            ("can_print_data_RegrasDeValidacao", u"Pode imprimir o conteúdo do modelo REGRASDEVALIDACAO"), )
             
         ordering = []
 
@@ -411,14 +383,6 @@ class Relatorios(SoftDeletionModel):
     campos = models.CharField(max_length=500, )
     sql = models.TextField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -440,8 +404,11 @@ class Relatorios(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_Relatorios", "Can view RELATORIOS"),
-            ("can_view_menu_Relatorios", "Can view menu RELATORIOS"),)
+            ("can_see_list_Relatorios", u"Pode ver listagem do modelo RELATORIOS"),
+            ("can_see_data_Relatorios", u"Pode visualizar o conteúdo do modelo RELATORIOS"),
+            ("can_see_menu_Relatorios", u"Pode visualizar no menu o modelo RELATORIOS"),
+            ("can_print_list_Relatorios", u"Pode imprimir listagem do modelo RELATORIOS"),
+            ("can_print_data_Relatorios", u"Pode imprimir o conteúdo do modelo RELATORIOS"), )
             
         ordering = []
 
@@ -514,14 +481,6 @@ class RetornosEventos(SoftDeletionModel):
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True, )
     tmpparc = models.IntegerField(choices=CHOICES_TMPPARC, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -545,8 +504,11 @@ class RetornosEventos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_RetornosEventos", "Can view RETORNOSEVENTOS"),
-            ("can_view_menu_RetornosEventos", "Can view menu RETORNOSEVENTOS"),)
+            ("can_see_list_RetornosEventos", u"Pode ver listagem do modelo RETORNOSEVENTOS"),
+            ("can_see_data_RetornosEventos", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOS"),
+            ("can_see_menu_RetornosEventos", u"Pode visualizar no menu o modelo RETORNOSEVENTOS"),
+            ("can_print_list_RetornosEventos", u"Pode imprimir listagem do modelo RETORNOSEVENTOS"),
+            ("can_print_data_RetornosEventos", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOS"), )
             
         ordering = [
             'transmissor_lote_esocial',
@@ -581,14 +543,6 @@ class RetornosEventosHorarios(SoftDeletionModel):
     durjornada = models.IntegerField(blank=True, null=True, )
     perhorflexivel = models.CharField(choices=CHOICES_PERHORFLEXIVEL, max_length=50, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -610,8 +564,11 @@ class RetornosEventosHorarios(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_RetornosEventosHorarios", "Can view RETORNOSEVENTOSHORARIOS"),
-            ("can_view_menu_RetornosEventosHorarios", "Can view menu RETORNOSEVENTOSHORARIOS"),)
+            ("can_see_list_RetornosEventosHorarios", u"Pode ver listagem do modelo RETORNOSEVENTOSHORARIOS"),
+            ("can_see_data_RetornosEventosHorarios", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSHORARIOS"),
+            ("can_see_menu_RetornosEventosHorarios", u"Pode visualizar no menu o modelo RETORNOSEVENTOSHORARIOS"),
+            ("can_print_list_RetornosEventosHorarios", u"Pode imprimir listagem do modelo RETORNOSEVENTOSHORARIOS"),
+            ("can_print_data_RetornosEventosHorarios", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSHORARIOS"), )
             
         ordering = []
 
@@ -642,14 +599,6 @@ class RetornosEventosIntervalos(SoftDeletionModel):
     iniinterv = models.CharField(max_length=50, blank=True, null=True, )
     terminterv = models.CharField(max_length=50, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -671,8 +620,11 @@ class RetornosEventosIntervalos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_RetornosEventosIntervalos", "Can view RETORNOSEVENTOSINTERVALOS"),
-            ("can_view_menu_RetornosEventosIntervalos", "Can view menu RETORNOSEVENTOSINTERVALOS"),)
+            ("can_see_list_RetornosEventosIntervalos", u"Pode ver listagem do modelo RETORNOSEVENTOSINTERVALOS"),
+            ("can_see_data_RetornosEventosIntervalos", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSINTERVALOS"),
+            ("can_see_menu_RetornosEventosIntervalos", u"Pode visualizar no menu o modelo RETORNOSEVENTOSINTERVALOS"),
+            ("can_print_list_RetornosEventosIntervalos", u"Pode imprimir listagem do modelo RETORNOSEVENTOSINTERVALOS"),
+            ("can_print_data_RetornosEventosIntervalos", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSINTERVALOS"), )
             
         ordering = []
 
@@ -703,14 +655,6 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
     descricao = models.TextField(blank=True, )
     localizacao = models.TextField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -732,8 +676,11 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_RetornosEventosOcorrencias", "Can view RETORNOSEVENTOSOCORRENCIAS"),
-            ("can_view_menu_RetornosEventosOcorrencias", "Can view menu RETORNOSEVENTOSOCORRENCIAS"),)
+            ("can_see_list_RetornosEventosOcorrencias", u"Pode ver listagem do modelo RETORNOSEVENTOSOCORRENCIAS"),
+            ("can_see_data_RetornosEventosOcorrencias", u"Pode visualizar o conteúdo do modelo RETORNOSEVENTOSOCORRENCIAS"),
+            ("can_see_menu_RetornosEventosOcorrencias", u"Pode visualizar no menu o modelo RETORNOSEVENTOSOCORRENCIAS"),
+            ("can_print_list_RetornosEventosOcorrencias", u"Pode imprimir listagem do modelo RETORNOSEVENTOSOCORRENCIAS"),
+            ("can_print_data_RetornosEventosOcorrencias", u"Pode imprimir o conteúdo do modelo RETORNOSEVENTOSOCORRENCIAS"), )
             
         ordering = []
 
@@ -787,14 +734,6 @@ class TransmissorLote(SoftDeletionModel):
         related_name='%(class)s_efdreinf_certificado', blank=True, null=True, )
     efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -821,8 +760,11 @@ class TransmissorLote(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_TransmissorLote", "Can view TRANSMISSORLOTE"),
-            ("can_view_menu_TransmissorLote", "Can view menu TRANSMISSORLOTE"),)
+            ("can_see_list_TransmissorLote", u"Pode ver listagem do modelo TRANSMISSORLOTE"),
+            ("can_see_data_TransmissorLote", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTE"),
+            ("can_see_menu_TransmissorLote", u"Pode visualizar no menu o modelo TRANSMISSORLOTE"),
+            ("can_print_list_TransmissorLote", u"Pode imprimir listagem do modelo TRANSMISSORLOTE"),
+            ("can_print_data_TransmissorLote", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTE"), )
             
         ordering = []
 
@@ -865,14 +807,6 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     arquivo_request = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -900,8 +834,11 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_TransmissorLoteEfdreinf", "Can view TRANSMISSORLOTEEFDREINF"),
-            ("can_view_menu_TransmissorLoteEfdreinf", "Can view menu TRANSMISSORLOTEEFDREINF"),)
+            ("can_see_list_TransmissorLoteEfdreinf", u"Pode ver listagem do modelo TRANSMISSORLOTEEFDREINF"),
+            ("can_see_data_TransmissorLoteEfdreinf", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEEFDREINF"),
+            ("can_see_menu_TransmissorLoteEfdreinf", u"Pode visualizar no menu o modelo TRANSMISSORLOTEEFDREINF"),
+            ("can_print_list_TransmissorLoteEfdreinf", u"Pode imprimir listagem do modelo TRANSMISSORLOTEEFDREINF"),
+            ("can_print_data_TransmissorLoteEfdreinf", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEEFDREINF"), )
             
         ordering = []
 
@@ -932,14 +869,6 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO_EFDREINF, )
     localizacao = models.CharField(max_length=50, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -961,8 +890,11 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_TransmissorLoteEfdreinfOcorrencias", "Can view TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
-            ("can_view_menu_TransmissorLoteEfdreinfOcorrencias", "Can view menu TRANSMISSORLOTEEFDREINFOCORRENCIAS"),)
+            ("can_see_list_TransmissorLoteEfdreinfOcorrencias", u"Pode ver listagem do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
+            ("can_see_data_TransmissorLoteEfdreinfOcorrencias", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
+            ("can_see_menu_TransmissorLoteEfdreinfOcorrencias", u"Pode visualizar no menu o modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
+            ("can_print_list_TransmissorLoteEfdreinfOcorrencias", u"Pode imprimir listagem do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
+            ("can_print_data_TransmissorLoteEfdreinfOcorrencias", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEEFDREINFOCORRENCIAS"), )
             
         ordering = []
 
@@ -1003,14 +935,6 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     arquivo_request = models.CharField(max_length=200, blank=True, null=True, )
     arquivo_response = models.CharField(max_length=200, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1037,8 +961,11 @@ class TransmissorLoteEsocial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_TransmissorLoteEsocial", "Can view TRANSMISSORLOTEESOCIAL"),
-            ("can_view_menu_TransmissorLoteEsocial", "Can view menu TRANSMISSORLOTEESOCIAL"),)
+            ("can_see_list_TransmissorLoteEsocial", u"Pode ver listagem do modelo TRANSMISSORLOTEESOCIAL"),
+            ("can_see_data_TransmissorLoteEsocial", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEESOCIAL"),
+            ("can_see_menu_TransmissorLoteEsocial", u"Pode visualizar no menu o modelo TRANSMISSORLOTEESOCIAL"),
+            ("can_print_list_TransmissorLoteEsocial", u"Pode imprimir listagem do modelo TRANSMISSORLOTEESOCIAL"),
+            ("can_print_data_TransmissorLoteEsocial", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEESOCIAL"), )
             
         ordering = []
 
@@ -1069,14 +996,6 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
     tipo = models.IntegerField(choices=EVENTOS_OCORRENCIAS_TIPO, )
     localizacao = models.CharField(max_length=50, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = []
@@ -1098,8 +1017,11 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_TransmissorLoteEsocialOcorrencias", "Can view TRANSMISSORLOTEESOCIALOCORRENCIAS"),
-            ("can_view_menu_TransmissorLoteEsocialOcorrencias", "Can view menu TRANSMISSORLOTEESOCIALOCORRENCIAS"),)
+            ("can_see_list_TransmissorLoteEsocialOcorrencias", u"Pode ver listagem do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
+            ("can_see_data_TransmissorLoteEsocialOcorrencias", u"Pode visualizar o conteúdo do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
+            ("can_see_menu_TransmissorLoteEsocialOcorrencias", u"Pode visualizar no menu o modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
+            ("can_print_list_TransmissorLoteEsocialOcorrencias", u"Pode imprimir listagem do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"),
+            ("can_print_data_TransmissorLoteEsocialOcorrencias", u"Pode imprimir o conteúdo do modelo TRANSMISSORLOTEESOCIALOCORRENCIAS"), )
             
         ordering = []
 
@@ -1160,6 +1082,12 @@ class TransmissorEventosEsocial(models.Model):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
 
+    def tabela_validar_api(self):
+        return self.tabela + '_validar_evento_api'
+
+    def tabela_validar(self):
+        return self.tabela + '_validar_evento'
+
     def tabela_verificar(self):
         return self.tabela + '_verificar'
 
@@ -1214,6 +1142,12 @@ class TransmissorEventosEfdreinf(models.Model):
     modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.BooleanField(blank=True)
+
+    def tabela_validar_api(self):
+        return self.tabela + '_validar_evento_api'
+
+    def tabela_validar(self):
+        return self.tabela + '_validar_evento'
 
     def tabela_verificar(self):
         return self.tabela + '_verificar'

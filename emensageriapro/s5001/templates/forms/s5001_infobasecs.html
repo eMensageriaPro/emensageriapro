@@ -15,7 +15,7 @@
     <label id="s5001_infobasecs__s5001_infocategincid__label">Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).*</label>
     {% if not for_print %}
       {% if s5001_infobasecs_form.s5001_infocategincid.value %}
-        <a id="s5001_infobasecs__s5001_infocategincid__div_acessar" href="{% url 's5001_infocategincid_salvar' hash='{}'|json_id:s5001_infobasecs_form.s5001_infocategincid.value|json_print:0|base64_encode_me %}">
+        <a id="s5001_infobasecs__s5001_infocategincid__div_acessar" href="{% url 's5001_infocategincid_salvar' pk=s5001_infobasecs_form.s5001_infocategincid.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

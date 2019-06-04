@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2230_inforetif__s2230_evtafasttemp__label">Informações de retificação do Afastamento Temporário*</label>
     {% if not for_print %}{% if s2230_inforetif_form.s2230_evtafasttemp.value %}
-        <a href="{% url 's2230_evtafasttemp_salvar' hash='{}'|json_return_page:'s2230_inforetif_salvar'|json_return_hash:hash|json_id:s2230_inforetif_form.s2230_evtafasttemp.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2230_evtafasttemp_salvar' pk=s2230_inforetif_form.s2230_evtafasttemp.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

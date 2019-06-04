@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r2070evtPgtosDivs'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2070_evtpgtosdivs_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r2070evtPgtosDivs'):
-        r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs, id=r2070_evtpgtosdivs_id)
-        r2070_evtpgtosdivs_lista = r2070evtPgtosDivs.objects.filter(id=r2070_evtpgtosdivs_id).all()
+        r2070_evtpgtosdivs = get_object_or_404(r2070evtPgtosDivs, id=pk)
+        r2070_evtpgtosdivs_lista = r2070evtPgtosDivs.objects.filter(id=pk).all()
 
         
         r2070_inforesidext_lista = r2070infoResidExt.objects.filter(r2070_evtpgtosdivs_id__in = listar_ids(r2070_evtpgtosdivs_lista) ).all()
@@ -117,15 +103,14 @@ def verificar(request, hash):
         r2070_pgtopj_origemrecursos_lista = r2070pgtoPJorigemRecursos.objects.filter(r2070_pgtopj_infoprocjud_id__in = listar_ids(r2070_pgtopj_infoprocjud_lista) ).all()
         r2070_pgtoresidext_lista = r2070pgtoResidExt.objects.filter(r2070_ideestab_id__in = listar_ids(r2070_ideestab_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r2070_evtpgtosdivs'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r2070_evtpgtosdivs'
 
         context = {
             'r2070_evtpgtosdivs_lista': r2070_evtpgtosdivs_lista,
-            'r2070_evtpgtosdivs_id': r2070_evtpgtosdivs_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r2070_evtpgtosdivs': r2070_evtpgtosdivs,
-            
-            
             'r2070_inforesidext_lista': r2070_inforesidext_lista,
             'r2070_infomolestia_lista': r2070_infomolestia_lista,
             'r2070_ideestab_lista': r2070_ideestab_lista,
@@ -149,45 +134,42 @@ def verificar(request, hash):
             'r2070_pgtopj_ideadvogado_lista': r2070_pgtopj_ideadvogado_lista,
             'r2070_pgtopj_origemrecursos_lista': r2070_pgtopj_origemrecursos_lista,
             'r2070_pgtoresidext_lista': r2070_pgtoresidext_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r2070_evtpgtosdivs', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r2070_evtpgtosdivs_verificar.html',
-                                           filename="r2070_evtpgtosdivs.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r2070_evtpgtosdivs_verificar.html',
+                filename="r2070_evtpgtosdivs.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r2070_evtpgtosdivs_verificar.html', context)
             filename = "%s.xls" % r2070_evtpgtosdivs.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r2070_evtpgtosdivs_verificar.html', context)
             filename = "%s.csv" % r2070_evtpgtosdivs.identidade
@@ -202,7 +184,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r2070_evtpgtosdivs', ],
             'data': datetime.now(),

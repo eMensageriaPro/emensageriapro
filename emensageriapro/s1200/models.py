@@ -99,8 +99,11 @@ class s1200dmDev(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200dmDev", "Can view S1200DMDEV"),
-            ("can_view_menu_s1200dmDev", "Can view menu S1200DMDEV"),)
+            ("can_see_list_s1200dmDev", u"Pode ver listagem do modelo S1200DMDEV"),
+            ("can_see_data_s1200dmDev", u"Pode visualizar o conteúdo do modelo S1200DMDEV"),
+            ("can_see_menu_s1200dmDev", u"Pode visualizar no menu o modelo S1200DMDEV"),
+            ("can_print_list_s1200dmDev", u"Pode imprimir listagem do modelo S1200DMDEV"),
+            ("can_print_data_s1200dmDev", u"Pode imprimir o conteúdo do modelo S1200DMDEV"), )
             
         ordering = [
             's1200_evtremun',
@@ -159,8 +162,11 @@ class s1200infoComplem(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoComplem", "Can view S1200INFOCOMPLEM"),
-            ("can_view_menu_s1200infoComplem", "Can view menu S1200INFOCOMPLEM"),)
+            ("can_see_list_s1200infoComplem", u"Pode ver listagem do modelo S1200INFOCOMPLEM"),
+            ("can_see_data_s1200infoComplem", u"Pode visualizar o conteúdo do modelo S1200INFOCOMPLEM"),
+            ("can_see_menu_s1200infoComplem", u"Pode visualizar no menu o modelo S1200INFOCOMPLEM"),
+            ("can_print_list_s1200infoComplem", u"Pode imprimir listagem do modelo S1200INFOCOMPLEM"),
+            ("can_print_data_s1200infoComplem", u"Pode imprimir o conteúdo do modelo S1200INFOCOMPLEM"), )
             
         ordering = [
             's1200_evtremun',
@@ -217,8 +223,11 @@ class s1200infoInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoInterm", "Can view S1200INFOINTERM"),
-            ("can_view_menu_s1200infoInterm", "Can view menu S1200INFOINTERM"),)
+            ("can_see_list_s1200infoInterm", u"Pode ver listagem do modelo S1200INFOINTERM"),
+            ("can_see_data_s1200infoInterm", u"Pode visualizar o conteúdo do modelo S1200INFOINTERM"),
+            ("can_see_menu_s1200infoInterm", u"Pode visualizar no menu o modelo S1200INFOINTERM"),
+            ("can_print_list_s1200infoInterm", u"Pode imprimir listagem do modelo S1200INFOINTERM"),
+            ("can_print_data_s1200infoInterm", u"Pode imprimir o conteúdo do modelo S1200INFOINTERM"), )
             
         ordering = [
             's1200_evtremun',
@@ -274,8 +283,11 @@ class s1200infoMV(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoMV", "Can view S1200INFOMV"),
-            ("can_view_menu_s1200infoMV", "Can view menu S1200INFOMV"),)
+            ("can_see_list_s1200infoMV", u"Pode ver listagem do modelo S1200INFOMV"),
+            ("can_see_data_s1200infoMV", u"Pode visualizar o conteúdo do modelo S1200INFOMV"),
+            ("can_see_menu_s1200infoMV", u"Pode visualizar no menu o modelo S1200INFOMV"),
+            ("can_print_list_s1200infoMV", u"Pode imprimir listagem do modelo S1200INFOMV"),
+            ("can_print_data_s1200infoMV", u"Pode imprimir o conteúdo do modelo S1200INFOMV"), )
             
         ordering = [
             's1200_evtremun',
@@ -329,8 +341,11 @@ class s1200infoPerAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAnt", "Can view S1200INFOPERANT"),
-            ("can_view_menu_s1200infoPerAnt", "Can view menu S1200INFOPERANT"),)
+            ("can_see_list_s1200infoPerAnt", u"Pode ver listagem do modelo S1200INFOPERANT"),
+            ("can_see_data_s1200infoPerAnt", u"Pode visualizar o conteúdo do modelo S1200INFOPERANT"),
+            ("can_see_menu_s1200infoPerAnt", u"Pode visualizar no menu o modelo S1200INFOPERANT"),
+            ("can_print_list_s1200infoPerAnt", u"Pode imprimir listagem do modelo S1200INFOPERANT"),
+            ("can_print_data_s1200infoPerAnt", u"Pode imprimir o conteúdo do modelo S1200INFOPERANT"), )
             
         ordering = [
             's1200_dmdev',]
@@ -392,8 +407,11 @@ class s1200infoPerAntideADC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntideADC", "Can view S1200INFOPERANTIDEADC"),
-            ("can_view_menu_s1200infoPerAntideADC", "Can view menu S1200INFOPERANTIDEADC"),)
+            ("can_see_list_s1200infoPerAntideADC", u"Pode ver listagem do modelo S1200INFOPERANTIDEADC"),
+            ("can_see_data_s1200infoPerAntideADC", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTIDEADC"),
+            ("can_see_menu_s1200infoPerAntideADC", u"Pode visualizar no menu o modelo S1200INFOPERANTIDEADC"),
+            ("can_print_list_s1200infoPerAntideADC", u"Pode imprimir listagem do modelo S1200INFOPERANTIDEADC"),
+            ("can_print_data_s1200infoPerAntideADC", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTIDEADC"), )
             
         ordering = [
             's1200_infoperant',
@@ -455,8 +473,11 @@ class s1200infoPerAntideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntideEstabLot", "Can view S1200INFOPERANTIDEESTABLOT"),
-            ("can_view_menu_s1200infoPerAntideEstabLot", "Can view menu S1200INFOPERANTIDEESTABLOT"),)
+            ("can_see_list_s1200infoPerAntideEstabLot", u"Pode ver listagem do modelo S1200INFOPERANTIDEESTABLOT"),
+            ("can_see_data_s1200infoPerAntideEstabLot", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTIDEESTABLOT"),
+            ("can_see_menu_s1200infoPerAntideEstabLot", u"Pode visualizar no menu o modelo S1200INFOPERANTIDEESTABLOT"),
+            ("can_print_list_s1200infoPerAntideEstabLot", u"Pode imprimir listagem do modelo S1200INFOPERANTIDEESTABLOT"),
+            ("can_print_data_s1200infoPerAntideEstabLot", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTIDEESTABLOT"), )
             
         ordering = [
             's1200_infoperant_ideperiodo',
@@ -514,8 +535,11 @@ class s1200infoPerAntidePeriodo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntidePeriodo", "Can view S1200INFOPERANTIDEPERIODO"),
-            ("can_view_menu_s1200infoPerAntidePeriodo", "Can view menu S1200INFOPERANTIDEPERIODO"),)
+            ("can_see_list_s1200infoPerAntidePeriodo", u"Pode ver listagem do modelo S1200INFOPERANTIDEPERIODO"),
+            ("can_see_data_s1200infoPerAntidePeriodo", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTIDEPERIODO"),
+            ("can_see_menu_s1200infoPerAntidePeriodo", u"Pode visualizar no menu o modelo S1200INFOPERANTIDEPERIODO"),
+            ("can_print_list_s1200infoPerAntidePeriodo", u"Pode imprimir listagem do modelo S1200INFOPERANTIDEPERIODO"),
+            ("can_print_data_s1200infoPerAntidePeriodo", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTIDEPERIODO"), )
             
         ordering = [
             's1200_infoperant_ideadc',
@@ -571,8 +595,11 @@ class s1200infoPerAntinfoAgNocivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntinfoAgNocivo", "Can view S1200INFOPERANTINFOAGNOCIVO"),
-            ("can_view_menu_s1200infoPerAntinfoAgNocivo", "Can view menu S1200INFOPERANTINFOAGNOCIVO"),)
+            ("can_see_list_s1200infoPerAntinfoAgNocivo", u"Pode ver listagem do modelo S1200INFOPERANTINFOAGNOCIVO"),
+            ("can_see_data_s1200infoPerAntinfoAgNocivo", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTINFOAGNOCIVO"),
+            ("can_see_menu_s1200infoPerAntinfoAgNocivo", u"Pode visualizar no menu o modelo S1200INFOPERANTINFOAGNOCIVO"),
+            ("can_print_list_s1200infoPerAntinfoAgNocivo", u"Pode imprimir listagem do modelo S1200INFOPERANTINFOAGNOCIVO"),
+            ("can_print_data_s1200infoPerAntinfoAgNocivo", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTINFOAGNOCIVO"), )
             
         ordering = [
             's1200_infoperant_remunperant',
@@ -630,8 +657,11 @@ class s1200infoPerAntinfoComplCont(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntinfoComplCont", "Can view S1200INFOPERANTINFOCOMPLCONT"),
-            ("can_view_menu_s1200infoPerAntinfoComplCont", "Can view menu S1200INFOPERANTINFOCOMPLCONT"),)
+            ("can_see_list_s1200infoPerAntinfoComplCont", u"Pode ver listagem do modelo S1200INFOPERANTINFOCOMPLCONT"),
+            ("can_see_data_s1200infoPerAntinfoComplCont", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTINFOCOMPLCONT"),
+            ("can_see_menu_s1200infoPerAntinfoComplCont", u"Pode visualizar no menu o modelo S1200INFOPERANTINFOCOMPLCONT"),
+            ("can_print_list_s1200infoPerAntinfoComplCont", u"Pode imprimir listagem do modelo S1200INFOPERANTINFOCOMPLCONT"),
+            ("can_print_data_s1200infoPerAntinfoComplCont", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTINFOCOMPLCONT"), )
             
         ordering = [
             's1200_dmdev',
@@ -687,8 +717,11 @@ class s1200infoPerAntinfoTrabInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntinfoTrabInterm", "Can view S1200INFOPERANTINFOTRABINTERM"),
-            ("can_view_menu_s1200infoPerAntinfoTrabInterm", "Can view menu S1200INFOPERANTINFOTRABINTERM"),)
+            ("can_see_list_s1200infoPerAntinfoTrabInterm", u"Pode ver listagem do modelo S1200INFOPERANTINFOTRABINTERM"),
+            ("can_see_data_s1200infoPerAntinfoTrabInterm", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTINFOTRABINTERM"),
+            ("can_see_menu_s1200infoPerAntinfoTrabInterm", u"Pode visualizar no menu o modelo S1200INFOPERANTINFOTRABINTERM"),
+            ("can_print_list_s1200infoPerAntinfoTrabInterm", u"Pode imprimir listagem do modelo S1200INFOPERANTINFOTRABINTERM"),
+            ("can_print_data_s1200infoPerAntinfoTrabInterm", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTINFOTRABINTERM"), )
             
         ordering = [
             's1200_infoperant_remunperant',
@@ -751,8 +784,11 @@ class s1200infoPerAntitensRemun(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntitensRemun", "Can view S1200INFOPERANTITENSREMUN"),
-            ("can_view_menu_s1200infoPerAntitensRemun", "Can view menu S1200INFOPERANTITENSREMUN"),)
+            ("can_see_list_s1200infoPerAntitensRemun", u"Pode ver listagem do modelo S1200INFOPERANTITENSREMUN"),
+            ("can_see_data_s1200infoPerAntitensRemun", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTITENSREMUN"),
+            ("can_see_menu_s1200infoPerAntitensRemun", u"Pode visualizar no menu o modelo S1200INFOPERANTITENSREMUN"),
+            ("can_print_list_s1200infoPerAntitensRemun", u"Pode imprimir listagem do modelo S1200INFOPERANTITENSREMUN"),
+            ("can_print_data_s1200infoPerAntitensRemun", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTITENSREMUN"), )
             
         ordering = [
             's1200_infoperant_remunperant',
@@ -810,8 +846,11 @@ class s1200infoPerAntremunPerAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerAntremunPerAnt", "Can view S1200INFOPERANTREMUNPERANT"),
-            ("can_view_menu_s1200infoPerAntremunPerAnt", "Can view menu S1200INFOPERANTREMUNPERANT"),)
+            ("can_see_list_s1200infoPerAntremunPerAnt", u"Pode ver listagem do modelo S1200INFOPERANTREMUNPERANT"),
+            ("can_see_data_s1200infoPerAntremunPerAnt", u"Pode visualizar o conteúdo do modelo S1200INFOPERANTREMUNPERANT"),
+            ("can_see_menu_s1200infoPerAntremunPerAnt", u"Pode visualizar no menu o modelo S1200INFOPERANTREMUNPERANT"),
+            ("can_print_list_s1200infoPerAntremunPerAnt", u"Pode imprimir listagem do modelo S1200INFOPERANTREMUNPERANT"),
+            ("can_print_data_s1200infoPerAntremunPerAnt", u"Pode imprimir o conteúdo do modelo S1200INFOPERANTREMUNPERANT"), )
             
         ordering = [
             's1200_infoperant_ideestablot',]
@@ -864,8 +903,11 @@ class s1200infoPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApur", "Can view S1200INFOPERAPUR"),
-            ("can_view_menu_s1200infoPerApur", "Can view menu S1200INFOPERAPUR"),)
+            ("can_see_list_s1200infoPerApur", u"Pode ver listagem do modelo S1200INFOPERAPUR"),
+            ("can_see_data_s1200infoPerApur", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPUR"),
+            ("can_see_menu_s1200infoPerApur", u"Pode visualizar no menu o modelo S1200INFOPERAPUR"),
+            ("can_print_list_s1200infoPerApur", u"Pode imprimir listagem do modelo S1200INFOPERAPUR"),
+            ("can_print_data_s1200infoPerApur", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPUR"), )
             
         ordering = [
             's1200_dmdev',]
@@ -924,8 +966,11 @@ class s1200infoPerApurdetOper(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurdetOper", "Can view S1200INFOPERAPURDETOPER"),
-            ("can_view_menu_s1200infoPerApurdetOper", "Can view menu S1200INFOPERAPURDETOPER"),)
+            ("can_see_list_s1200infoPerApurdetOper", u"Pode ver listagem do modelo S1200INFOPERAPURDETOPER"),
+            ("can_see_data_s1200infoPerApurdetOper", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURDETOPER"),
+            ("can_see_menu_s1200infoPerApurdetOper", u"Pode visualizar no menu o modelo S1200INFOPERAPURDETOPER"),
+            ("can_print_list_s1200infoPerApurdetOper", u"Pode imprimir listagem do modelo S1200INFOPERAPURDETOPER"),
+            ("can_print_data_s1200infoPerApurdetOper", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURDETOPER"), )
             
         ordering = [
             's1200_infoperapur_infosaudecolet',
@@ -990,8 +1035,11 @@ class s1200infoPerApurdetPlano(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurdetPlano", "Can view S1200INFOPERAPURDETPLANO"),
-            ("can_view_menu_s1200infoPerApurdetPlano", "Can view menu S1200INFOPERAPURDETPLANO"),)
+            ("can_see_list_s1200infoPerApurdetPlano", u"Pode ver listagem do modelo S1200INFOPERAPURDETPLANO"),
+            ("can_see_data_s1200infoPerApurdetPlano", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURDETPLANO"),
+            ("can_see_menu_s1200infoPerApurdetPlano", u"Pode visualizar no menu o modelo S1200INFOPERAPURDETPLANO"),
+            ("can_print_list_s1200infoPerApurdetPlano", u"Pode imprimir listagem do modelo S1200INFOPERAPURDETPLANO"),
+            ("can_print_data_s1200infoPerApurdetPlano", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURDETPLANO"), )
             
         ordering = [
             's1200_infoperapur_detoper',
@@ -1055,8 +1103,11 @@ class s1200infoPerApurideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurideEstabLot", "Can view S1200INFOPERAPURIDEESTABLOT"),
-            ("can_view_menu_s1200infoPerApurideEstabLot", "Can view menu S1200INFOPERAPURIDEESTABLOT"),)
+            ("can_see_list_s1200infoPerApurideEstabLot", u"Pode ver listagem do modelo S1200INFOPERAPURIDEESTABLOT"),
+            ("can_see_data_s1200infoPerApurideEstabLot", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURIDEESTABLOT"),
+            ("can_see_menu_s1200infoPerApurideEstabLot", u"Pode visualizar no menu o modelo S1200INFOPERAPURIDEESTABLOT"),
+            ("can_print_list_s1200infoPerApurideEstabLot", u"Pode imprimir listagem do modelo S1200INFOPERAPURIDEESTABLOT"),
+            ("can_print_data_s1200infoPerApurideEstabLot", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURIDEESTABLOT"), )
             
         ordering = [
             's1200_infoperapur',
@@ -1114,8 +1165,11 @@ class s1200infoPerApurinfoAgNocivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurinfoAgNocivo", "Can view S1200INFOPERAPURINFOAGNOCIVO"),
-            ("can_view_menu_s1200infoPerApurinfoAgNocivo", "Can view menu S1200INFOPERAPURINFOAGNOCIVO"),)
+            ("can_see_list_s1200infoPerApurinfoAgNocivo", u"Pode ver listagem do modelo S1200INFOPERAPURINFOAGNOCIVO"),
+            ("can_see_data_s1200infoPerApurinfoAgNocivo", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURINFOAGNOCIVO"),
+            ("can_see_menu_s1200infoPerApurinfoAgNocivo", u"Pode visualizar no menu o modelo S1200INFOPERAPURINFOAGNOCIVO"),
+            ("can_print_list_s1200infoPerApurinfoAgNocivo", u"Pode imprimir listagem do modelo S1200INFOPERAPURINFOAGNOCIVO"),
+            ("can_print_data_s1200infoPerApurinfoAgNocivo", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURINFOAGNOCIVO"), )
             
         ordering = [
             's1200_infoperapur_remunperapur',
@@ -1169,8 +1223,11 @@ class s1200infoPerApurinfoSaudeColet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurinfoSaudeColet", "Can view S1200INFOPERAPURINFOSAUDECOLET"),
-            ("can_view_menu_s1200infoPerApurinfoSaudeColet", "Can view menu S1200INFOPERAPURINFOSAUDECOLET"),)
+            ("can_see_list_s1200infoPerApurinfoSaudeColet", u"Pode ver listagem do modelo S1200INFOPERAPURINFOSAUDECOLET"),
+            ("can_see_data_s1200infoPerApurinfoSaudeColet", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURINFOSAUDECOLET"),
+            ("can_see_menu_s1200infoPerApurinfoSaudeColet", u"Pode visualizar no menu o modelo S1200INFOPERAPURINFOSAUDECOLET"),
+            ("can_print_list_s1200infoPerApurinfoSaudeColet", u"Pode imprimir listagem do modelo S1200INFOPERAPURINFOSAUDECOLET"),
+            ("can_print_data_s1200infoPerApurinfoSaudeColet", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURINFOSAUDECOLET"), )
             
         ordering = [
             's1200_infoperapur_remunperapur',]
@@ -1225,8 +1282,11 @@ class s1200infoPerApurinfoTrabInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurinfoTrabInterm", "Can view S1200INFOPERAPURINFOTRABINTERM"),
-            ("can_view_menu_s1200infoPerApurinfoTrabInterm", "Can view menu S1200INFOPERAPURINFOTRABINTERM"),)
+            ("can_see_list_s1200infoPerApurinfoTrabInterm", u"Pode ver listagem do modelo S1200INFOPERAPURINFOTRABINTERM"),
+            ("can_see_data_s1200infoPerApurinfoTrabInterm", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURINFOTRABINTERM"),
+            ("can_see_menu_s1200infoPerApurinfoTrabInterm", u"Pode visualizar no menu o modelo S1200INFOPERAPURINFOTRABINTERM"),
+            ("can_print_list_s1200infoPerApurinfoTrabInterm", u"Pode imprimir listagem do modelo S1200INFOPERAPURINFOTRABINTERM"),
+            ("can_print_data_s1200infoPerApurinfoTrabInterm", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURINFOTRABINTERM"), )
             
         ordering = [
             's1200_infoperapur_remunperapur',
@@ -1289,8 +1349,11 @@ class s1200infoPerApuritensRemun(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApuritensRemun", "Can view S1200INFOPERAPURITENSREMUN"),
-            ("can_view_menu_s1200infoPerApuritensRemun", "Can view menu S1200INFOPERAPURITENSREMUN"),)
+            ("can_see_list_s1200infoPerApuritensRemun", u"Pode ver listagem do modelo S1200INFOPERAPURITENSREMUN"),
+            ("can_see_data_s1200infoPerApuritensRemun", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURITENSREMUN"),
+            ("can_see_menu_s1200infoPerApuritensRemun", u"Pode visualizar no menu o modelo S1200INFOPERAPURITENSREMUN"),
+            ("can_print_list_s1200infoPerApuritensRemun", u"Pode imprimir listagem do modelo S1200INFOPERAPURITENSREMUN"),
+            ("can_print_data_s1200infoPerApuritensRemun", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURITENSREMUN"), )
             
         ordering = [
             's1200_infoperapur_remunperapur',
@@ -1348,8 +1411,11 @@ class s1200infoPerApurremunPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200infoPerApurremunPerApur", "Can view S1200INFOPERAPURREMUNPERAPUR"),
-            ("can_view_menu_s1200infoPerApurremunPerApur", "Can view menu S1200INFOPERAPURREMUNPERAPUR"),)
+            ("can_see_list_s1200infoPerApurremunPerApur", u"Pode ver listagem do modelo S1200INFOPERAPURREMUNPERAPUR"),
+            ("can_see_data_s1200infoPerApurremunPerApur", u"Pode visualizar o conteúdo do modelo S1200INFOPERAPURREMUNPERAPUR"),
+            ("can_see_menu_s1200infoPerApurremunPerApur", u"Pode visualizar no menu o modelo S1200INFOPERAPURREMUNPERAPUR"),
+            ("can_print_list_s1200infoPerApurremunPerApur", u"Pode imprimir listagem do modelo S1200INFOPERAPURREMUNPERAPUR"),
+            ("can_print_data_s1200infoPerApurremunPerApur", u"Pode imprimir o conteúdo do modelo S1200INFOPERAPURREMUNPERAPUR"), )
             
         ordering = [
             's1200_infoperapur_ideestablot',]
@@ -1407,8 +1473,11 @@ class s1200procJudTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200procJudTrab", "Can view S1200PROCJUDTRAB"),
-            ("can_view_menu_s1200procJudTrab", "Can view menu S1200PROCJUDTRAB"),)
+            ("can_see_list_s1200procJudTrab", u"Pode ver listagem do modelo S1200PROCJUDTRAB"),
+            ("can_see_data_s1200procJudTrab", u"Pode visualizar o conteúdo do modelo S1200PROCJUDTRAB"),
+            ("can_see_menu_s1200procJudTrab", u"Pode visualizar no menu o modelo S1200PROCJUDTRAB"),
+            ("can_print_list_s1200procJudTrab", u"Pode imprimir listagem do modelo S1200PROCJUDTRAB"),
+            ("can_print_data_s1200procJudTrab", u"Pode imprimir o conteúdo do modelo S1200PROCJUDTRAB"), )
             
         ordering = [
             's1200_evtremun',
@@ -1471,8 +1540,11 @@ class s1200remunOutrEmpr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200remunOutrEmpr", "Can view S1200REMUNOUTREMPR"),
-            ("can_view_menu_s1200remunOutrEmpr", "Can view menu S1200REMUNOUTREMPR"),)
+            ("can_see_list_s1200remunOutrEmpr", u"Pode ver listagem do modelo S1200REMUNOUTREMPR"),
+            ("can_see_data_s1200remunOutrEmpr", u"Pode visualizar o conteúdo do modelo S1200REMUNOUTREMPR"),
+            ("can_see_menu_s1200remunOutrEmpr", u"Pode visualizar no menu o modelo S1200REMUNOUTREMPR"),
+            ("can_print_list_s1200remunOutrEmpr", u"Pode imprimir listagem do modelo S1200REMUNOUTREMPR"),
+            ("can_print_data_s1200remunOutrEmpr", u"Pode imprimir o conteúdo do modelo S1200REMUNOUTREMPR"), )
             
         ordering = [
             's1200_infomv',
@@ -1537,8 +1609,11 @@ class s1200sucessaoVinc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200sucessaoVinc", "Can view S1200SUCESSAOVINC"),
-            ("can_view_menu_s1200sucessaoVinc", "Can view menu S1200SUCESSAOVINC"),)
+            ("can_see_list_s1200sucessaoVinc", u"Pode ver listagem do modelo S1200SUCESSAOVINC"),
+            ("can_see_data_s1200sucessaoVinc", u"Pode visualizar o conteúdo do modelo S1200SUCESSAOVINC"),
+            ("can_see_menu_s1200sucessaoVinc", u"Pode visualizar no menu o modelo S1200SUCESSAOVINC"),
+            ("can_print_list_s1200sucessaoVinc", u"Pode imprimir listagem do modelo S1200SUCESSAOVINC"),
+            ("can_print_data_s1200sucessaoVinc", u"Pode imprimir o conteúdo do modelo S1200SUCESSAOVINC"), )
             
         ordering = [
             's1200_infocomplem',

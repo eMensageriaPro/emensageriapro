@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1035_alteracao__s1035_evttabcarreira__label">Alteração das informações*</label>
     {% if not for_print %}{% if s1035_alteracao_form.s1035_evttabcarreira.value %}
-        <a href="{% url 's1035_evttabcarreira_salvar' hash='{}'|json_return_page:'s1035_alteracao_salvar'|json_return_hash:hash|json_id:s1035_alteracao_form.s1035_evttabcarreira.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1035_evttabcarreira_salvar' pk=s1035_alteracao_form.s1035_evttabcarreira.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

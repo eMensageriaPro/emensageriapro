@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r3010evtEspDesportivo'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r3010_evtespdesportivo_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r3010evtEspDesportivo'):
-        r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=r3010_evtespdesportivo_id)
-        r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects.filter(id=r3010_evtespdesportivo_id).all()
+        r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
+        r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects.filter(id=pk).all()
 
         
         r3010_boletim_lista = r3010boletim.objects.filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).all()
@@ -98,58 +84,54 @@ def verificar(request, hash):
         r3010_outrasreceitas_lista = r3010outrasReceitas.objects.filter(r3010_boletim_id__in = listar_ids(r3010_boletim_lista) ).all()
         r3010_infoproc_lista = r3010infoProc.objects.filter(r3010_evtespdesportivo_id__in = listar_ids(r3010_evtespdesportivo_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r3010_evtespdesportivo'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r3010_evtespdesportivo'
 
         context = {
             'r3010_evtespdesportivo_lista': r3010_evtespdesportivo_lista,
-            'r3010_evtespdesportivo_id': r3010_evtespdesportivo_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r3010_evtespdesportivo': r3010_evtespdesportivo,
-            
-            
             'r3010_boletim_lista': r3010_boletim_lista,
             'r3010_receitaingressos_lista': r3010_receitaingressos_lista,
             'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista,
             'r3010_infoproc_lista': r3010_infoproc_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r3010_evtespdesportivo', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r3010_evtespdesportivo_verificar.html',
-                                           filename="r3010_evtespdesportivo.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r3010_evtespdesportivo_verificar.html',
+                filename="r3010_evtespdesportivo.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r3010_evtespdesportivo_verificar.html', context)
             filename = "%s.xls" % r3010_evtespdesportivo.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r3010_evtespdesportivo_verificar.html', context)
             filename = "%s.csv" % r3010_evtespdesportivo.identidade
@@ -164,7 +146,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r3010_evtespdesportivo', ],
             'data': datetime.now(),

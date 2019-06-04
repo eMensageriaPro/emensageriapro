@@ -66,7 +66,6 @@ class s2206evtAltContratualList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2206evtAltContratualDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2206evtAltContratual.objects.all()

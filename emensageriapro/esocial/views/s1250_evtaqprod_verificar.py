@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1250evtAqProd'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1250_evtaqprod_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1250evtAqProd'):
-        s1250_evtaqprod = get_object_or_404(s1250evtAqProd, id=s1250_evtaqprod_id)
-        s1250_evtaqprod_lista = s1250evtAqProd.objects.filter(id=s1250_evtaqprod_id).all()
+        s1250_evtaqprod = get_object_or_404(s1250evtAqProd, id=pk)
+        s1250_evtaqprod_lista = s1250evtAqProd.objects.filter(id=pk).all()
 
         
         s1250_tpaquis_lista = s1250tpAquis.objects.filter(s1250_evtaqprod_id__in = listar_ids(s1250_evtaqprod_lista) ).all()
@@ -99,59 +85,55 @@ def verificar(request, hash):
         s1250_infoprocjud_lista = s1250infoProcJud.objects.filter(s1250_ideprodutor_id__in = listar_ids(s1250_ideprodutor_lista) ).all()
         s1250_infoprocj_lista = s1250infoProcJ.objects.filter(s1250_tpaquis_id__in = listar_ids(s1250_tpaquis_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1250_evtaqprod'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1250_evtaqprod'
 
         context = {
             's1250_evtaqprod_lista': s1250_evtaqprod_lista,
-            's1250_evtaqprod_id': s1250_evtaqprod_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1250_evtaqprod': s1250_evtaqprod,
-            
-            
             's1250_tpaquis_lista': s1250_tpaquis_lista,
             's1250_ideprodutor_lista': s1250_ideprodutor_lista,
             's1250_nfs_lista': s1250_nfs_lista,
             's1250_infoprocjud_lista': s1250_infoprocjud_lista,
             's1250_infoprocj_lista': s1250_infoprocj_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1250_evtaqprod', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1250_evtaqprod_verificar.html',
-                                           filename="s1250_evtaqprod.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1250_evtaqprod_verificar.html',
+                filename="s1250_evtaqprod.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1250_evtaqprod_verificar.html', context)
             filename = "%s.xls" % s1250_evtaqprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1250_evtaqprod_verificar.html', context)
             filename = "%s.csv" % s1250_evtaqprod.identidade
@@ -166,7 +148,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1250_evtaqprod', ],
             'data': datetime.now(),

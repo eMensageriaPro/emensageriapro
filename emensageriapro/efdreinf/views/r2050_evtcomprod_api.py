@@ -66,7 +66,6 @@ class r2050evtComProdList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r2050evtComProdDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2050evtComProd.objects.all()

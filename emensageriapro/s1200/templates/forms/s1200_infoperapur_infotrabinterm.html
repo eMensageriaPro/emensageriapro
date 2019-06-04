@@ -15,7 +15,7 @@
     <label id="s1200_infoperapur_infotrabinterm__s1200_infoperapur_remunperapur__label">Informações da(s) convocação(ões) de trabalho intermitente*</label>
     {% if not for_print %}
       {% if s1200_infoperapur_infotrabinterm_form.s1200_infoperapur_remunperapur.value %}
-        <a id="s1200_infoperapur_infotrabinterm__s1200_infoperapur_remunperapur__div_acessar" href="{% url 's1200_infoperapur_remunperapur_salvar' hash='{}'|json_id:s1200_infoperapur_infotrabinterm_form.s1200_infoperapur_remunperapur.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_infoperapur_infotrabinterm__s1200_infoperapur_remunperapur__div_acessar" href="{% url 's1200_infoperapur_remunperapur_salvar' pk=s1200_infoperapur_infotrabinterm_form.s1200_infoperapur_remunperapur.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

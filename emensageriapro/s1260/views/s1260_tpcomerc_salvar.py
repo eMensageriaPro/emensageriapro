@@ -64,83 +64,93 @@ from emensageriapro.s1260.forms import form_s1260_infoprocjud
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s1260_tpcomerc_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s1260_tpcomerc_id:
+    if pk:
     
-        s1260_tpcomerc = get_object_or_404(s1260tpComerc, id=s1260_tpcomerc_id)
+        s1260_tpcomerc = get_object_or_404(s1260tpComerc, id=pk)
         dados_evento = s1260_tpcomerc.evento()
 
-    if request.user.has_perm('s1260.can_view_s1260tpComerc'):
+    if request.user.has_perm('s1260.can_see_s1260tpComerc'):
         
-        if s1260_tpcomerc_id:
+        if pk:
         
-            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None, 
-                                                          instance=s1260_tpcomerc,  
-                                                          initial={'excluido': False})
+            s1260_tpcomerc_form = form_s1260_tpcomerc(
+                request.POST or None, 
+                instance=s1260_tpcomerc)
                                          
         else:
         
-            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None, 
-                                         initial={'excluido': False})
+            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s1260_tpcomerc_form.is_valid():
             
-                dados = s1260_tpcomerc_form.cleaned_data
                 obj = s1260_tpcomerc_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s1260_tpcomerc_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1260_tpcomerc', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1260_tpcomerc', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s1260_tpcomerc), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1260_tpcomerc', s1260_tpcomerc_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s1260_tpcomerc), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1260_tpcomerc', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s1260_tpcomerc_apagar', 's1260_tpcomerc_salvar', 's1260_tpcomerc'):
+                if request.session['return_page'] not in (
+                    's1260_tpcomerc_apagar', 
+                    's1260_tpcomerc_salvar', 
+                    's1260_tpcomerc'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s1260_tpcomerc_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s1260_tpcomerc_salvar', hash=url_hash)
+                    return redirect(
+                        's1260_tpcomerc_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s1260_tpcomerc_form = disabled_form_fields(s1260_tpcomerc_form, request.user.has_perm('s1260.change_s1260tpComerc'))
+        s1260_tpcomerc_form = disabled_form_fields(
+            s1260_tpcomerc_form, 
+            request.user.has_perm('s1260.change_s1260tpComerc'))
         
-        if s1260_tpcomerc_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -148,7 +158,7 @@ def salvar(request, hash):
                 
         #s1260_tpcomerc_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s1260_tpcomerc_form = disabled_form_for_print(s1260_tpcomerc_form)
             
@@ -158,20 +168,22 @@ def salvar(request, hash):
         s1260_infoprocjud_lista = None 
         s1260_infoprocjud_form = None 
         
-        if s1260_tpcomerc_id:
+        if pk:
         
-            s1260_tpcomerc = get_object_or_404(s1260tpComerc, id=s1260_tpcomerc_id)
+            s1260_tpcomerc = get_object_or_404(s1260tpComerc, id=pk)
             
             s1260_ideadquir_form = form_s1260_ideadquir(
                 initial={ 's1260_tpcomerc': s1260_tpcomerc })
             s1260_ideadquir_form.fields['s1260_tpcomerc'].widget.attrs['readonly'] = True
             s1260_ideadquir_lista = s1260ideAdquir.objects.\
                 filter(s1260_tpcomerc_id=s1260_tpcomerc.id).all()
+                
             s1260_infoprocjud_form = form_s1260_infoprocjud(
                 initial={ 's1260_tpcomerc': s1260_tpcomerc })
             s1260_infoprocjud_form.fields['s1260_tpcomerc'].widget.attrs['readonly'] = True
             s1260_infoprocjud_lista = s1260infoProcJud.objects.\
                 filter(s1260_tpcomerc_id=s1260_tpcomerc.id).all()
+                
                 
         else:
         
@@ -181,14 +193,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's1260_tpcomerc' in request.session['retorno_pagina']:
+        if tab or 's1260_tpcomerc' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's1260_tpcomerc_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's1260_tpcomerc_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s1260_tpcomerc_id, tabela='s1260_tpcomerc').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1260_tpcomerc').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -197,30 +213,22 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's1260_tpcomerc': s1260_tpcomerc, 
             's1260_tpcomerc_form': s1260_tpcomerc_form, 
-            's1260_tpcomerc_id': int(s1260_tpcomerc_id),
-            'usuario': usuario, 
             'modulos': ['s1260', ],
             'paginas': ['s1260_tpcomerc', ],
-            'hash': hash, 
-            
             's1260_ideadquir_form': s1260_ideadquir_form,
             's1260_ideadquir_lista': s1260_ideadquir_lista,
             's1260_infoprocjud_form': s1260_infoprocjud_form,
             's1260_infoprocjud_lista': s1260_infoprocjud_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s1260_tpcomerc_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's1260_tpcomerc_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s1260_tpcomerc_salvar.html',
@@ -237,23 +245,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s1260_tpcomerc_salvar.html', context)
             filename = "s1260_tpcomerc.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's1260_tpcomerc_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s1260', ],
             'paginas': ['s1260_tpcomerc', ],
             'data': datetime.datetime.now(),

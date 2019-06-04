@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r4020evtRetPJ'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r4020_evtretpj_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r4020evtRetPJ'):
-        r4020_evtretpj = get_object_or_404(r4020evtRetPJ, id=r4020_evtretpj_id)
-        r4020_evtretpj_lista = r4020evtRetPJ.objects.filter(id=r4020_evtretpj_id).all()
+        r4020_evtretpj = get_object_or_404(r4020evtRetPJ, id=pk)
+        r4020_evtretpj_lista = r4020evtRetPJ.objects.filter(id=pk).all()
 
         
         r4020_idepgto_lista = r4020idePgto.objects.filter(r4020_evtretpj_id__in = listar_ids(r4020_evtretpj_lista) ).all()
@@ -108,15 +94,14 @@ def verificar(request, hash):
         r4020_origemrec_lista = r4020origemRec.objects.filter(r4020_infoprocjud_id__in = listar_ids(r4020_infoprocjud_lista) ).all()
         r4020_infopgtoext_lista = r4020infoPgtoExt.objects.filter(r4020_idepgto_id__in = listar_ids(r4020_idepgto_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r4020_evtretpj'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r4020_evtretpj'
 
         context = {
             'r4020_evtretpj_lista': r4020_evtretpj_lista,
-            'r4020_evtretpj_id': r4020_evtretpj_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r4020_evtretpj': r4020_evtretpj,
-            
-            
             'r4020_idepgto_lista': r4020_idepgto_lista,
             'r4020_infopgto_lista': r4020_infopgto_lista,
             'r4020_ir_lista': r4020_ir_lista,
@@ -131,45 +116,42 @@ def verificar(request, hash):
             'r4020_ideadv_lista': r4020_ideadv_lista,
             'r4020_origemrec_lista': r4020_origemrec_lista,
             'r4020_infopgtoext_lista': r4020_infopgtoext_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r4020_evtretpj', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r4020_evtretpj_verificar.html',
-                                           filename="r4020_evtretpj.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r4020_evtretpj_verificar.html',
+                filename="r4020_evtretpj.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r4020_evtretpj_verificar.html', context)
             filename = "%s.xls" % r4020_evtretpj.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r4020_evtretpj_verificar.html', context)
             filename = "%s.csv" % r4020_evtretpj.identidade
@@ -184,7 +166,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r4020_evtretpj', ],
             'data': datetime.now(),

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1005_inclusao_infopcd__s1005_inclusao__label">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.*</label>
     {% if not for_print %}{% if s1005_inclusao_infopcd_form.s1005_inclusao.value %}
-        <a href="{% url 's1005_inclusao_salvar' hash='{}'|json_return_page:'s1005_inclusao_infopcd_salvar'|json_return_hash:hash|json_id:s1005_inclusao_infopcd_form.s1005_inclusao.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao_infopcd_form.s1005_inclusao.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

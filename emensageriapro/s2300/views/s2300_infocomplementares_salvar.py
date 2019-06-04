@@ -72,83 +72,93 @@ from emensageriapro.s2300.forms import form_s2300_infoestagiario
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2300_infocomplementares_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2300_infocomplementares_id:
+    if pk:
     
-        s2300_infocomplementares = get_object_or_404(s2300infoComplementares, id=s2300_infocomplementares_id)
+        s2300_infocomplementares = get_object_or_404(s2300infoComplementares, id=pk)
         dados_evento = s2300_infocomplementares.evento()
 
-    if request.user.has_perm('s2300.can_view_s2300infoComplementares'):
+    if request.user.has_perm('s2300.can_see_s2300infoComplementares'):
         
-        if s2300_infocomplementares_id:
+        if pk:
         
-            s2300_infocomplementares_form = form_s2300_infocomplementares(request.POST or None, 
-                                                          instance=s2300_infocomplementares,  
-                                                          initial={'excluido': False})
+            s2300_infocomplementares_form = form_s2300_infocomplementares(
+                request.POST or None, 
+                instance=s2300_infocomplementares)
                                          
         else:
         
-            s2300_infocomplementares_form = form_s2300_infocomplementares(request.POST or None, 
-                                         initial={'excluido': False})
+            s2300_infocomplementares_form = form_s2300_infocomplementares(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2300_infocomplementares_form.is_valid():
             
-                dados = s2300_infocomplementares_form.cleaned_data
                 obj = s2300_infocomplementares_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2300_infocomplementares_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2300_infocomplementares', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2300_infocomplementares', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2300_infocomplementares), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2300_infocomplementares', s2300_infocomplementares_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2300_infocomplementares), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2300_infocomplementares', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2300_infocomplementares_apagar', 's2300_infocomplementares_salvar', 's2300_infocomplementares'):
+                if request.session['return_page'] not in (
+                    's2300_infocomplementares_apagar', 
+                    's2300_infocomplementares_salvar', 
+                    's2300_infocomplementares'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2300_infocomplementares_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2300_infocomplementares_salvar', hash=url_hash)
+                    return redirect(
+                        's2300_infocomplementares_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2300_infocomplementares_form = disabled_form_fields(s2300_infocomplementares_form, request.user.has_perm('s2300.change_s2300infoComplementares'))
+        s2300_infocomplementares_form = disabled_form_fields(
+            s2300_infocomplementares_form, 
+            request.user.has_perm('s2300.change_s2300infoComplementares'))
         
-        if s2300_infocomplementares_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -156,7 +166,7 @@ def salvar(request, hash):
                 
         #s2300_infocomplementares_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2300_infocomplementares_form = disabled_form_for_print(s2300_infocomplementares_form)
             
@@ -174,40 +184,46 @@ def salvar(request, hash):
         s2300_infoestagiario_lista = None 
         s2300_infoestagiario_form = None 
         
-        if s2300_infocomplementares_id:
+        if pk:
         
-            s2300_infocomplementares = get_object_or_404(s2300infoComplementares, id=s2300_infocomplementares_id)
+            s2300_infocomplementares = get_object_or_404(s2300infoComplementares, id=pk)
             
             s2300_cargofuncao_form = form_s2300_cargofuncao(
                 initial={ 's2300_infocomplementares': s2300_infocomplementares })
             s2300_cargofuncao_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_cargofuncao_lista = s2300cargoFuncao.objects.\
                 filter(s2300_infocomplementares_id=s2300_infocomplementares.id).all()
+                
             s2300_remuneracao_form = form_s2300_remuneracao(
                 initial={ 's2300_infocomplementares': s2300_infocomplementares })
             s2300_remuneracao_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_remuneracao_lista = s2300remuneracao.objects.\
                 filter(s2300_infocomplementares_id=s2300_infocomplementares.id).all()
+                
             s2300_fgts_form = form_s2300_fgts(
                 initial={ 's2300_infocomplementares': s2300_infocomplementares })
             s2300_fgts_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_fgts_lista = s2300fgts.objects.\
                 filter(s2300_infocomplementares_id=s2300_infocomplementares.id).all()
+                
             s2300_infodirigentesindical_form = form_s2300_infodirigentesindical(
                 initial={ 's2300_infocomplementares': s2300_infocomplementares })
             s2300_infodirigentesindical_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_infodirigentesindical_lista = s2300infoDirigenteSindical.objects.\
                 filter(s2300_infocomplementares_id=s2300_infocomplementares.id).all()
+                
             s2300_infotrabcedido_form = form_s2300_infotrabcedido(
                 initial={ 's2300_infocomplementares': s2300_infocomplementares })
             s2300_infotrabcedido_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_infotrabcedido_lista = s2300infoTrabCedido.objects.\
                 filter(s2300_infocomplementares_id=s2300_infocomplementares.id).all()
+                
             s2300_infoestagiario_form = form_s2300_infoestagiario(
                 initial={ 's2300_infocomplementares': s2300_infocomplementares })
             s2300_infoestagiario_form.fields['s2300_infocomplementares'].widget.attrs['readonly'] = True
             s2300_infoestagiario_lista = s2300infoEstagiario.objects.\
                 filter(s2300_infocomplementares_id=s2300_infocomplementares.id).all()
+                
                 
         else:
         
@@ -217,14 +233,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2300_infocomplementares' in request.session['retorno_pagina']:
+        if tab or 's2300_infocomplementares' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2300_infocomplementares_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2300_infocomplementares_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2300_infocomplementares_id, tabela='s2300_infocomplementares').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2300_infocomplementares').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -233,12 +253,8 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2300_infocomplementares': s2300_infocomplementares, 
             's2300_infocomplementares_form': s2300_infocomplementares_form, 
-            's2300_infocomplementares_id': int(s2300_infocomplementares_id),
-            'usuario': usuario, 
             'modulos': ['s2300', ],
             'paginas': ['s2300_infocomplementares', ],
-            'hash': hash, 
-            
             's2300_cargofuncao_form': s2300_cargofuncao_form,
             's2300_cargofuncao_lista': s2300_cargofuncao_lista,
             's2300_remuneracao_form': s2300_remuneracao_form,
@@ -252,19 +268,15 @@ def salvar(request, hash):
             's2300_infoestagiario_form': s2300_infoestagiario_form,
             's2300_infoestagiario_lista': s2300_infoestagiario_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2300_infocomplementares_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2300_infocomplementares_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2300_infocomplementares_salvar.html',
@@ -281,23 +293,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2300_infocomplementares_salvar.html', context)
             filename = "s2300_infocomplementares.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2300_infocomplementares_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2300', ],
             'paginas': ['s2300_infocomplementares', ],
             'data': datetime.datetime.now(),

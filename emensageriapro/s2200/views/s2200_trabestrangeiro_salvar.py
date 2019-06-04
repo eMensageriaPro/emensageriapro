@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2200_trabestrangeiro_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2200_trabestrangeiro_id:
+    if pk:
     
-        s2200_trabestrangeiro = get_object_or_404(s2200trabEstrangeiro, id=s2200_trabestrangeiro_id)
+        s2200_trabestrangeiro = get_object_or_404(s2200trabEstrangeiro, id=pk)
         dados_evento = s2200_trabestrangeiro.evento()
 
-    if request.user.has_perm('s2200.can_view_s2200trabEstrangeiro'):
+    if request.user.has_perm('s2200.can_see_s2200trabEstrangeiro'):
         
-        if s2200_trabestrangeiro_id:
+        if pk:
         
-            s2200_trabestrangeiro_form = form_s2200_trabestrangeiro(request.POST or None, 
-                                                          instance=s2200_trabestrangeiro,  
-                                                          initial={'excluido': False})
+            s2200_trabestrangeiro_form = form_s2200_trabestrangeiro(
+                request.POST or None, 
+                instance=s2200_trabestrangeiro)
                                          
         else:
         
-            s2200_trabestrangeiro_form = form_s2200_trabestrangeiro(request.POST or None, 
-                                         initial={'excluido': False})
+            s2200_trabestrangeiro_form = form_s2200_trabestrangeiro(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2200_trabestrangeiro_form.is_valid():
             
-                dados = s2200_trabestrangeiro_form.cleaned_data
                 obj = s2200_trabestrangeiro_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2200_trabestrangeiro_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2200_trabestrangeiro', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2200_trabestrangeiro', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2200_trabestrangeiro), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2200_trabestrangeiro', s2200_trabestrangeiro_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2200_trabestrangeiro), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2200_trabestrangeiro', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2200_trabestrangeiro_apagar', 's2200_trabestrangeiro_salvar', 's2200_trabestrangeiro'):
+                if request.session['return_page'] not in (
+                    's2200_trabestrangeiro_apagar', 
+                    's2200_trabestrangeiro_salvar', 
+                    's2200_trabestrangeiro'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2200_trabestrangeiro_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2200_trabestrangeiro_salvar', hash=url_hash)
+                    return redirect(
+                        's2200_trabestrangeiro_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2200_trabestrangeiro_form = disabled_form_fields(s2200_trabestrangeiro_form, request.user.has_perm('s2200.change_s2200trabEstrangeiro'))
+        s2200_trabestrangeiro_form = disabled_form_fields(
+            s2200_trabestrangeiro_form, 
+            request.user.has_perm('s2200.change_s2200trabEstrangeiro'))
         
-        if s2200_trabestrangeiro_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #s2200_trabestrangeiro_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2200_trabestrangeiro_form = disabled_form_for_print(s2200_trabestrangeiro_form)
             
         
         
-        if s2200_trabestrangeiro_id:
+        if pk:
         
-            s2200_trabestrangeiro = get_object_or_404(s2200trabEstrangeiro, id=s2200_trabestrangeiro_id)
+            s2200_trabestrangeiro = get_object_or_404(s2200trabEstrangeiro, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2200_trabestrangeiro' in request.session['retorno_pagina']:
+        if tab or 's2200_trabestrangeiro' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2200_trabestrangeiro_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2200_trabestrangeiro_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2200_trabestrangeiro_id, tabela='s2200_trabestrangeiro').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2200_trabestrangeiro').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2200_trabestrangeiro': s2200_trabestrangeiro, 
             's2200_trabestrangeiro_form': s2200_trabestrangeiro_form, 
-            's2200_trabestrangeiro_id': int(s2200_trabestrangeiro_id),
-            'usuario': usuario, 
             'modulos': ['s2200', ],
             'paginas': ['s2200_trabestrangeiro', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2200_trabestrangeiro_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2200_trabestrangeiro_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2200_trabestrangeiro_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2200_trabestrangeiro_salvar.html', context)
             filename = "s2200_trabestrangeiro.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2200_trabestrangeiro_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2200', ],
             'paginas': ['s2200_trabestrangeiro', ],
             'data': datetime.datetime.now(),

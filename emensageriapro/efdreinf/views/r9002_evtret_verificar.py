@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r9002evtRet'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r9002_evtret_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r9002evtRet'):
-        r9002_evtret = get_object_or_404(r9002evtRet, id=r9002_evtret_id)
-        r9002_evtret_lista = r9002evtRet.objects.filter(id=r9002_evtret_id).all()
+        r9002_evtret = get_object_or_404(r9002evtRet, id=pk)
+        r9002_evtret_lista = r9002evtRet.objects.filter(id=pk).all()
 
         
         r9002_regocorrs_lista = r9002regOcorrs.objects.filter(r9002_evtret_id__in = listar_ids(r9002_evtret_lista) ).all()
@@ -102,15 +88,14 @@ def verificar(request, hash):
         r9002_totapurdia_lista = r9002totApurDia.objects.filter(r9002_infototal_id__in = listar_ids(r9002_infototal_lista) ).all()
         r9002_evtret_lista = r9002evtRet.objects.filter(retornos_r9002_id__in = listar_ids(r9002_evtret_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r9002_evtret'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r9002_evtret'
 
         context = {
             'r9002_evtret_lista': r9002_evtret_lista,
-            'r9002_evtret_id': r9002_evtret_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r9002_evtret': r9002_evtret,
-            
-            
             'r9002_regocorrs_lista': r9002_regocorrs_lista,
             'r9002_infototal_lista': r9002_infototal_lista,
             'r9002_totapurmen_lista': r9002_totapurmen_lista,
@@ -119,45 +104,42 @@ def verificar(request, hash):
             'r9002_totapursem_lista': r9002_totapursem_lista,
             'r9002_totapurdia_lista': r9002_totapurdia_lista,
             'r9002_evtret_lista': r9002_evtret_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r9002_evtret', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r9002_evtret_verificar.html',
-                                           filename="r9002_evtret.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r9002_evtret_verificar.html',
+                filename="r9002_evtret.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r9002_evtret_verificar.html', context)
             filename = "%s.xls" % r9002_evtret.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r9002_evtret_verificar.html', context)
             filename = "%s.csv" % r9002_evtret.identidade
@@ -172,7 +154,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r9002_evtret', ],
             'data': datetime.now(),

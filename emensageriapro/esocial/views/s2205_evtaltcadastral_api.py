@@ -66,7 +66,6 @@ class s2205evtAltCadastralList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2205evtAltCadastralDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205evtAltCadastral.objects.all()

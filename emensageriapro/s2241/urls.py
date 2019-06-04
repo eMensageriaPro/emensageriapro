@@ -116,7 +116,7 @@ from emensageriapro.s2241.views import s2241_fimaposentesp_infoamb_api as s2241_
 urlpatterns = [
 
 
-    url(r'^s2241-insalperic/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-insalperic/apagar/(?P<pk>[0-9]+)/$', 
         s2241_insalperic_apagar_views.apagar, 
         name='s2241_insalperic_apagar'),
 
@@ -126,15 +126,27 @@ urlpatterns = [
     url(r'^s2241-insalperic/api/(?P<pk>[0-9]+)/$',
         s2241_insalperic_api_views.s2241insalPericDetail.as_view() ),
 
-    url(r'^s2241-insalperic/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-insalperic/$', 
         s2241_insalperic_listar_views.listar, 
         name='s2241_insalperic'),
 
-    url(r'^s2241-insalperic/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-insalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_insalperic_salvar_views.salvar, 
         name='s2241_insalperic_salvar'),
+        
+    url(r'^s2241-insalperic/cadastrar/$', 
+        s2241_insalperic_salvar_views.salvar, 
+        name='s2241_insalperic_cadastrar'),
 
-    url(r'^s2241-iniinsalperic/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-insalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_insalperic_salvar_views.salvar, 
+        name='s2241_insalperic_salvar_output'),
+        
+    url(r'^s2241-insalperic/(?P<output>[\w-]+)/$', 
+        s2241_insalperic_listar_views.listar, 
+        name='s2241_insalperic_output'),
+
+    url(r'^s2241-iniinsalperic/apagar/(?P<pk>[0-9]+)/$', 
         s2241_iniinsalperic_apagar_views.apagar, 
         name='s2241_iniinsalperic_apagar'),
 
@@ -144,15 +156,27 @@ urlpatterns = [
     url(r'^s2241-iniinsalperic/api/(?P<pk>[0-9]+)/$',
         s2241_iniinsalperic_api_views.s2241iniInsalPericDetail.as_view() ),
 
-    url(r'^s2241-iniinsalperic/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic/$', 
         s2241_iniinsalperic_listar_views.listar, 
         name='s2241_iniinsalperic'),
 
-    url(r'^s2241-iniinsalperic/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_iniinsalperic_salvar_views.salvar, 
         name='s2241_iniinsalperic_salvar'),
+        
+    url(r'^s2241-iniinsalperic/cadastrar/$', 
+        s2241_iniinsalperic_salvar_views.salvar, 
+        name='s2241_iniinsalperic_cadastrar'),
 
-    url(r'^s2241-iniinsalperic-infoamb/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_iniinsalperic_salvar_views.salvar, 
+        name='s2241_iniinsalperic_salvar_output'),
+        
+    url(r'^s2241-iniinsalperic/(?P<output>[\w-]+)/$', 
+        s2241_iniinsalperic_listar_views.listar, 
+        name='s2241_iniinsalperic_output'),
+
+    url(r'^s2241-iniinsalperic-infoamb/apagar/(?P<pk>[0-9]+)/$', 
         s2241_iniinsalperic_infoamb_apagar_views.apagar, 
         name='s2241_iniinsalperic_infoamb_apagar'),
 
@@ -162,15 +186,27 @@ urlpatterns = [
     url(r'^s2241-iniinsalperic-infoamb/api/(?P<pk>[0-9]+)/$',
         s2241_iniinsalperic_infoamb_api_views.s2241iniInsalPericinfoAmbDetail.as_view() ),
 
-    url(r'^s2241-iniinsalperic-infoamb/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic-infoamb/$', 
         s2241_iniinsalperic_infoamb_listar_views.listar, 
         name='s2241_iniinsalperic_infoamb'),
 
-    url(r'^s2241-iniinsalperic-infoamb/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_iniinsalperic_infoamb_salvar_views.salvar, 
         name='s2241_iniinsalperic_infoamb_salvar'),
+        
+    url(r'^s2241-iniinsalperic-infoamb/cadastrar/$', 
+        s2241_iniinsalperic_infoamb_salvar_views.salvar, 
+        name='s2241_iniinsalperic_infoamb_cadastrar'),
 
-    url(r'^s2241-iniinsalperic-fatrisco/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_iniinsalperic_infoamb_salvar_views.salvar, 
+        name='s2241_iniinsalperic_infoamb_salvar_output'),
+        
+    url(r'^s2241-iniinsalperic-infoamb/(?P<output>[\w-]+)/$', 
+        s2241_iniinsalperic_infoamb_listar_views.listar, 
+        name='s2241_iniinsalperic_infoamb_output'),
+
+    url(r'^s2241-iniinsalperic-fatrisco/apagar/(?P<pk>[0-9]+)/$', 
         s2241_iniinsalperic_fatrisco_apagar_views.apagar, 
         name='s2241_iniinsalperic_fatrisco_apagar'),
 
@@ -180,15 +216,27 @@ urlpatterns = [
     url(r'^s2241-iniinsalperic-fatrisco/api/(?P<pk>[0-9]+)/$',
         s2241_iniinsalperic_fatrisco_api_views.s2241iniInsalPericfatRiscoDetail.as_view() ),
 
-    url(r'^s2241-iniinsalperic-fatrisco/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic-fatrisco/$', 
         s2241_iniinsalperic_fatrisco_listar_views.listar, 
         name='s2241_iniinsalperic_fatrisco'),
 
-    url(r'^s2241-iniinsalperic-fatrisco/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_iniinsalperic_fatrisco_salvar_views.salvar, 
         name='s2241_iniinsalperic_fatrisco_salvar'),
+        
+    url(r'^s2241-iniinsalperic-fatrisco/cadastrar/$', 
+        s2241_iniinsalperic_fatrisco_salvar_views.salvar, 
+        name='s2241_iniinsalperic_fatrisco_cadastrar'),
 
-    url(r'^s2241-altinsalperic/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniinsalperic-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_iniinsalperic_fatrisco_salvar_views.salvar, 
+        name='s2241_iniinsalperic_fatrisco_salvar_output'),
+        
+    url(r'^s2241-iniinsalperic-fatrisco/(?P<output>[\w-]+)/$', 
+        s2241_iniinsalperic_fatrisco_listar_views.listar, 
+        name='s2241_iniinsalperic_fatrisco_output'),
+
+    url(r'^s2241-altinsalperic/apagar/(?P<pk>[0-9]+)/$', 
         s2241_altinsalperic_apagar_views.apagar, 
         name='s2241_altinsalperic_apagar'),
 
@@ -198,15 +246,27 @@ urlpatterns = [
     url(r'^s2241-altinsalperic/api/(?P<pk>[0-9]+)/$',
         s2241_altinsalperic_api_views.s2241altInsalPericDetail.as_view() ),
 
-    url(r'^s2241-altinsalperic/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic/$', 
         s2241_altinsalperic_listar_views.listar, 
         name='s2241_altinsalperic'),
 
-    url(r'^s2241-altinsalperic/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_altinsalperic_salvar_views.salvar, 
         name='s2241_altinsalperic_salvar'),
+        
+    url(r'^s2241-altinsalperic/cadastrar/$', 
+        s2241_altinsalperic_salvar_views.salvar, 
+        name='s2241_altinsalperic_cadastrar'),
 
-    url(r'^s2241-altinsalperic-infoamb/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_altinsalperic_salvar_views.salvar, 
+        name='s2241_altinsalperic_salvar_output'),
+        
+    url(r'^s2241-altinsalperic/(?P<output>[\w-]+)/$', 
+        s2241_altinsalperic_listar_views.listar, 
+        name='s2241_altinsalperic_output'),
+
+    url(r'^s2241-altinsalperic-infoamb/apagar/(?P<pk>[0-9]+)/$', 
         s2241_altinsalperic_infoamb_apagar_views.apagar, 
         name='s2241_altinsalperic_infoamb_apagar'),
 
@@ -216,15 +276,27 @@ urlpatterns = [
     url(r'^s2241-altinsalperic-infoamb/api/(?P<pk>[0-9]+)/$',
         s2241_altinsalperic_infoamb_api_views.s2241altInsalPericinfoambDetail.as_view() ),
 
-    url(r'^s2241-altinsalperic-infoamb/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic-infoamb/$', 
         s2241_altinsalperic_infoamb_listar_views.listar, 
         name='s2241_altinsalperic_infoamb'),
 
-    url(r'^s2241-altinsalperic-infoamb/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_altinsalperic_infoamb_salvar_views.salvar, 
         name='s2241_altinsalperic_infoamb_salvar'),
+        
+    url(r'^s2241-altinsalperic-infoamb/cadastrar/$', 
+        s2241_altinsalperic_infoamb_salvar_views.salvar, 
+        name='s2241_altinsalperic_infoamb_cadastrar'),
 
-    url(r'^s2241-altinsalperic-fatrisco/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_altinsalperic_infoamb_salvar_views.salvar, 
+        name='s2241_altinsalperic_infoamb_salvar_output'),
+        
+    url(r'^s2241-altinsalperic-infoamb/(?P<output>[\w-]+)/$', 
+        s2241_altinsalperic_infoamb_listar_views.listar, 
+        name='s2241_altinsalperic_infoamb_output'),
+
+    url(r'^s2241-altinsalperic-fatrisco/apagar/(?P<pk>[0-9]+)/$', 
         s2241_altinsalperic_fatrisco_apagar_views.apagar, 
         name='s2241_altinsalperic_fatrisco_apagar'),
 
@@ -234,15 +306,27 @@ urlpatterns = [
     url(r'^s2241-altinsalperic-fatrisco/api/(?P<pk>[0-9]+)/$',
         s2241_altinsalperic_fatrisco_api_views.s2241altInsalPericfatRiscoDetail.as_view() ),
 
-    url(r'^s2241-altinsalperic-fatrisco/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic-fatrisco/$', 
         s2241_altinsalperic_fatrisco_listar_views.listar, 
         name='s2241_altinsalperic_fatrisco'),
 
-    url(r'^s2241-altinsalperic-fatrisco/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_altinsalperic_fatrisco_salvar_views.salvar, 
         name='s2241_altinsalperic_fatrisco_salvar'),
+        
+    url(r'^s2241-altinsalperic-fatrisco/cadastrar/$', 
+        s2241_altinsalperic_fatrisco_salvar_views.salvar, 
+        name='s2241_altinsalperic_fatrisco_cadastrar'),
 
-    url(r'^s2241-fiminsalperic/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-altinsalperic-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_altinsalperic_fatrisco_salvar_views.salvar, 
+        name='s2241_altinsalperic_fatrisco_salvar_output'),
+        
+    url(r'^s2241-altinsalperic-fatrisco/(?P<output>[\w-]+)/$', 
+        s2241_altinsalperic_fatrisco_listar_views.listar, 
+        name='s2241_altinsalperic_fatrisco_output'),
+
+    url(r'^s2241-fiminsalperic/apagar/(?P<pk>[0-9]+)/$', 
         s2241_fiminsalperic_apagar_views.apagar, 
         name='s2241_fiminsalperic_apagar'),
 
@@ -252,15 +336,27 @@ urlpatterns = [
     url(r'^s2241-fiminsalperic/api/(?P<pk>[0-9]+)/$',
         s2241_fiminsalperic_api_views.s2241fimInsalPericDetail.as_view() ),
 
-    url(r'^s2241-fiminsalperic/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-fiminsalperic/$', 
         s2241_fiminsalperic_listar_views.listar, 
         name='s2241_fiminsalperic'),
 
-    url(r'^s2241-fiminsalperic/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-fiminsalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_fiminsalperic_salvar_views.salvar, 
         name='s2241_fiminsalperic_salvar'),
+        
+    url(r'^s2241-fiminsalperic/cadastrar/$', 
+        s2241_fiminsalperic_salvar_views.salvar, 
+        name='s2241_fiminsalperic_cadastrar'),
 
-    url(r'^s2241-fiminsalperic-infoamb/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-fiminsalperic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_fiminsalperic_salvar_views.salvar, 
+        name='s2241_fiminsalperic_salvar_output'),
+        
+    url(r'^s2241-fiminsalperic/(?P<output>[\w-]+)/$', 
+        s2241_fiminsalperic_listar_views.listar, 
+        name='s2241_fiminsalperic_output'),
+
+    url(r'^s2241-fiminsalperic-infoamb/apagar/(?P<pk>[0-9]+)/$', 
         s2241_fiminsalperic_infoamb_apagar_views.apagar, 
         name='s2241_fiminsalperic_infoamb_apagar'),
 
@@ -270,15 +366,27 @@ urlpatterns = [
     url(r'^s2241-fiminsalperic-infoamb/api/(?P<pk>[0-9]+)/$',
         s2241_fiminsalperic_infoamb_api_views.s2241fimInsalPericinfoAmbDetail.as_view() ),
 
-    url(r'^s2241-fiminsalperic-infoamb/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-fiminsalperic-infoamb/$', 
         s2241_fiminsalperic_infoamb_listar_views.listar, 
         name='s2241_fiminsalperic_infoamb'),
 
-    url(r'^s2241-fiminsalperic-infoamb/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-fiminsalperic-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_fiminsalperic_infoamb_salvar_views.salvar, 
         name='s2241_fiminsalperic_infoamb_salvar'),
+        
+    url(r'^s2241-fiminsalperic-infoamb/cadastrar/$', 
+        s2241_fiminsalperic_infoamb_salvar_views.salvar, 
+        name='s2241_fiminsalperic_infoamb_cadastrar'),
 
-    url(r'^s2241-aposentesp/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-fiminsalperic-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_fiminsalperic_infoamb_salvar_views.salvar, 
+        name='s2241_fiminsalperic_infoamb_salvar_output'),
+        
+    url(r'^s2241-fiminsalperic-infoamb/(?P<output>[\w-]+)/$', 
+        s2241_fiminsalperic_infoamb_listar_views.listar, 
+        name='s2241_fiminsalperic_infoamb_output'),
+
+    url(r'^s2241-aposentesp/apagar/(?P<pk>[0-9]+)/$', 
         s2241_aposentesp_apagar_views.apagar, 
         name='s2241_aposentesp_apagar'),
 
@@ -288,15 +396,27 @@ urlpatterns = [
     url(r'^s2241-aposentesp/api/(?P<pk>[0-9]+)/$',
         s2241_aposentesp_api_views.s2241aposentEspDetail.as_view() ),
 
-    url(r'^s2241-aposentesp/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-aposentesp/$', 
         s2241_aposentesp_listar_views.listar, 
         name='s2241_aposentesp'),
 
-    url(r'^s2241-aposentesp/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-aposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_aposentesp_salvar_views.salvar, 
         name='s2241_aposentesp_salvar'),
+        
+    url(r'^s2241-aposentesp/cadastrar/$', 
+        s2241_aposentesp_salvar_views.salvar, 
+        name='s2241_aposentesp_cadastrar'),
 
-    url(r'^s2241-iniaposentesp/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-aposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_aposentesp_salvar_views.salvar, 
+        name='s2241_aposentesp_salvar_output'),
+        
+    url(r'^s2241-aposentesp/(?P<output>[\w-]+)/$', 
+        s2241_aposentesp_listar_views.listar, 
+        name='s2241_aposentesp_output'),
+
+    url(r'^s2241-iniaposentesp/apagar/(?P<pk>[0-9]+)/$', 
         s2241_iniaposentesp_apagar_views.apagar, 
         name='s2241_iniaposentesp_apagar'),
 
@@ -306,15 +426,27 @@ urlpatterns = [
     url(r'^s2241-iniaposentesp/api/(?P<pk>[0-9]+)/$',
         s2241_iniaposentesp_api_views.s2241iniAposentEspDetail.as_view() ),
 
-    url(r'^s2241-iniaposentesp/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp/$', 
         s2241_iniaposentesp_listar_views.listar, 
         name='s2241_iniaposentesp'),
 
-    url(r'^s2241-iniaposentesp/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_iniaposentesp_salvar_views.salvar, 
         name='s2241_iniaposentesp_salvar'),
+        
+    url(r'^s2241-iniaposentesp/cadastrar/$', 
+        s2241_iniaposentesp_salvar_views.salvar, 
+        name='s2241_iniaposentesp_cadastrar'),
 
-    url(r'^s2241-iniaposentesp-infoamb/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_iniaposentesp_salvar_views.salvar, 
+        name='s2241_iniaposentesp_salvar_output'),
+        
+    url(r'^s2241-iniaposentesp/(?P<output>[\w-]+)/$', 
+        s2241_iniaposentesp_listar_views.listar, 
+        name='s2241_iniaposentesp_output'),
+
+    url(r'^s2241-iniaposentesp-infoamb/apagar/(?P<pk>[0-9]+)/$', 
         s2241_iniaposentesp_infoamb_apagar_views.apagar, 
         name='s2241_iniaposentesp_infoamb_apagar'),
 
@@ -324,15 +456,27 @@ urlpatterns = [
     url(r'^s2241-iniaposentesp-infoamb/api/(?P<pk>[0-9]+)/$',
         s2241_iniaposentesp_infoamb_api_views.s2241iniAposentEspinfoAmbDetail.as_view() ),
 
-    url(r'^s2241-iniaposentesp-infoamb/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp-infoamb/$', 
         s2241_iniaposentesp_infoamb_listar_views.listar, 
         name='s2241_iniaposentesp_infoamb'),
 
-    url(r'^s2241-iniaposentesp-infoamb/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_iniaposentesp_infoamb_salvar_views.salvar, 
         name='s2241_iniaposentesp_infoamb_salvar'),
+        
+    url(r'^s2241-iniaposentesp-infoamb/cadastrar/$', 
+        s2241_iniaposentesp_infoamb_salvar_views.salvar, 
+        name='s2241_iniaposentesp_infoamb_cadastrar'),
 
-    url(r'^s2241-iniaposentesp-fatrisco/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_iniaposentesp_infoamb_salvar_views.salvar, 
+        name='s2241_iniaposentesp_infoamb_salvar_output'),
+        
+    url(r'^s2241-iniaposentesp-infoamb/(?P<output>[\w-]+)/$', 
+        s2241_iniaposentesp_infoamb_listar_views.listar, 
+        name='s2241_iniaposentesp_infoamb_output'),
+
+    url(r'^s2241-iniaposentesp-fatrisco/apagar/(?P<pk>[0-9]+)/$', 
         s2241_iniaposentesp_fatrisco_apagar_views.apagar, 
         name='s2241_iniaposentesp_fatrisco_apagar'),
 
@@ -342,15 +486,27 @@ urlpatterns = [
     url(r'^s2241-iniaposentesp-fatrisco/api/(?P<pk>[0-9]+)/$',
         s2241_iniaposentesp_fatrisco_api_views.s2241iniAposentEspfatRiscoDetail.as_view() ),
 
-    url(r'^s2241-iniaposentesp-fatrisco/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp-fatrisco/$', 
         s2241_iniaposentesp_fatrisco_listar_views.listar, 
         name='s2241_iniaposentesp_fatrisco'),
 
-    url(r'^s2241-iniaposentesp-fatrisco/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_iniaposentesp_fatrisco_salvar_views.salvar, 
         name='s2241_iniaposentesp_fatrisco_salvar'),
+        
+    url(r'^s2241-iniaposentesp-fatrisco/cadastrar/$', 
+        s2241_iniaposentesp_fatrisco_salvar_views.salvar, 
+        name='s2241_iniaposentesp_fatrisco_cadastrar'),
 
-    url(r'^s2241-altaposentesp/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-iniaposentesp-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_iniaposentesp_fatrisco_salvar_views.salvar, 
+        name='s2241_iniaposentesp_fatrisco_salvar_output'),
+        
+    url(r'^s2241-iniaposentesp-fatrisco/(?P<output>[\w-]+)/$', 
+        s2241_iniaposentesp_fatrisco_listar_views.listar, 
+        name='s2241_iniaposentesp_fatrisco_output'),
+
+    url(r'^s2241-altaposentesp/apagar/(?P<pk>[0-9]+)/$', 
         s2241_altaposentesp_apagar_views.apagar, 
         name='s2241_altaposentesp_apagar'),
 
@@ -360,15 +516,27 @@ urlpatterns = [
     url(r'^s2241-altaposentesp/api/(?P<pk>[0-9]+)/$',
         s2241_altaposentesp_api_views.s2241altAposentEspDetail.as_view() ),
 
-    url(r'^s2241-altaposentesp/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp/$', 
         s2241_altaposentesp_listar_views.listar, 
         name='s2241_altaposentesp'),
 
-    url(r'^s2241-altaposentesp/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_altaposentesp_salvar_views.salvar, 
         name='s2241_altaposentesp_salvar'),
+        
+    url(r'^s2241-altaposentesp/cadastrar/$', 
+        s2241_altaposentesp_salvar_views.salvar, 
+        name='s2241_altaposentesp_cadastrar'),
 
-    url(r'^s2241-altaposentesp-infoamb/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_altaposentesp_salvar_views.salvar, 
+        name='s2241_altaposentesp_salvar_output'),
+        
+    url(r'^s2241-altaposentesp/(?P<output>[\w-]+)/$', 
+        s2241_altaposentesp_listar_views.listar, 
+        name='s2241_altaposentesp_output'),
+
+    url(r'^s2241-altaposentesp-infoamb/apagar/(?P<pk>[0-9]+)/$', 
         s2241_altaposentesp_infoamb_apagar_views.apagar, 
         name='s2241_altaposentesp_infoamb_apagar'),
 
@@ -378,15 +546,27 @@ urlpatterns = [
     url(r'^s2241-altaposentesp-infoamb/api/(?P<pk>[0-9]+)/$',
         s2241_altaposentesp_infoamb_api_views.s2241altAposentEspinfoambDetail.as_view() ),
 
-    url(r'^s2241-altaposentesp-infoamb/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp-infoamb/$', 
         s2241_altaposentesp_infoamb_listar_views.listar, 
         name='s2241_altaposentesp_infoamb'),
 
-    url(r'^s2241-altaposentesp-infoamb/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_altaposentesp_infoamb_salvar_views.salvar, 
         name='s2241_altaposentesp_infoamb_salvar'),
+        
+    url(r'^s2241-altaposentesp-infoamb/cadastrar/$', 
+        s2241_altaposentesp_infoamb_salvar_views.salvar, 
+        name='s2241_altaposentesp_infoamb_cadastrar'),
 
-    url(r'^s2241-altaposentesp-fatrisco/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_altaposentesp_infoamb_salvar_views.salvar, 
+        name='s2241_altaposentesp_infoamb_salvar_output'),
+        
+    url(r'^s2241-altaposentesp-infoamb/(?P<output>[\w-]+)/$', 
+        s2241_altaposentesp_infoamb_listar_views.listar, 
+        name='s2241_altaposentesp_infoamb_output'),
+
+    url(r'^s2241-altaposentesp-fatrisco/apagar/(?P<pk>[0-9]+)/$', 
         s2241_altaposentesp_fatrisco_apagar_views.apagar, 
         name='s2241_altaposentesp_fatrisco_apagar'),
 
@@ -396,15 +576,27 @@ urlpatterns = [
     url(r'^s2241-altaposentesp-fatrisco/api/(?P<pk>[0-9]+)/$',
         s2241_altaposentesp_fatrisco_api_views.s2241altAposentEspfatRiscoDetail.as_view() ),
 
-    url(r'^s2241-altaposentesp-fatrisco/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp-fatrisco/$', 
         s2241_altaposentesp_fatrisco_listar_views.listar, 
         name='s2241_altaposentesp_fatrisco'),
 
-    url(r'^s2241-altaposentesp-fatrisco/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_altaposentesp_fatrisco_salvar_views.salvar, 
         name='s2241_altaposentesp_fatrisco_salvar'),
+        
+    url(r'^s2241-altaposentesp-fatrisco/cadastrar/$', 
+        s2241_altaposentesp_fatrisco_salvar_views.salvar, 
+        name='s2241_altaposentesp_fatrisco_cadastrar'),
 
-    url(r'^s2241-fimaposentesp/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-altaposentesp-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_altaposentesp_fatrisco_salvar_views.salvar, 
+        name='s2241_altaposentesp_fatrisco_salvar_output'),
+        
+    url(r'^s2241-altaposentesp-fatrisco/(?P<output>[\w-]+)/$', 
+        s2241_altaposentesp_fatrisco_listar_views.listar, 
+        name='s2241_altaposentesp_fatrisco_output'),
+
+    url(r'^s2241-fimaposentesp/apagar/(?P<pk>[0-9]+)/$', 
         s2241_fimaposentesp_apagar_views.apagar, 
         name='s2241_fimaposentesp_apagar'),
 
@@ -414,15 +606,27 @@ urlpatterns = [
     url(r'^s2241-fimaposentesp/api/(?P<pk>[0-9]+)/$',
         s2241_fimaposentesp_api_views.s2241fimAposentEspDetail.as_view() ),
 
-    url(r'^s2241-fimaposentesp/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-fimaposentesp/$', 
         s2241_fimaposentesp_listar_views.listar, 
         name='s2241_fimaposentesp'),
 
-    url(r'^s2241-fimaposentesp/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-fimaposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_fimaposentesp_salvar_views.salvar, 
         name='s2241_fimaposentesp_salvar'),
+        
+    url(r'^s2241-fimaposentesp/cadastrar/$', 
+        s2241_fimaposentesp_salvar_views.salvar, 
+        name='s2241_fimaposentesp_cadastrar'),
 
-    url(r'^s2241-fimaposentesp-infoamb/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-fimaposentesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_fimaposentesp_salvar_views.salvar, 
+        name='s2241_fimaposentesp_salvar_output'),
+        
+    url(r'^s2241-fimaposentesp/(?P<output>[\w-]+)/$', 
+        s2241_fimaposentesp_listar_views.listar, 
+        name='s2241_fimaposentesp_output'),
+
+    url(r'^s2241-fimaposentesp-infoamb/apagar/(?P<pk>[0-9]+)/$', 
         s2241_fimaposentesp_infoamb_apagar_views.apagar, 
         name='s2241_fimaposentesp_infoamb_apagar'),
 
@@ -432,13 +636,25 @@ urlpatterns = [
     url(r'^s2241-fimaposentesp-infoamb/api/(?P<pk>[0-9]+)/$',
         s2241_fimaposentesp_infoamb_api_views.s2241fimAposentEspinfoAmbDetail.as_view() ),
 
-    url(r'^s2241-fimaposentesp-infoamb/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-fimaposentesp-infoamb/$', 
         s2241_fimaposentesp_infoamb_listar_views.listar, 
         name='s2241_fimaposentesp_infoamb'),
 
-    url(r'^s2241-fimaposentesp-infoamb/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-fimaposentesp-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_fimaposentesp_infoamb_salvar_views.salvar, 
         name='s2241_fimaposentesp_infoamb_salvar'),
+        
+    url(r'^s2241-fimaposentesp-infoamb/cadastrar/$', 
+        s2241_fimaposentesp_infoamb_salvar_views.salvar, 
+        name='s2241_fimaposentesp_infoamb_cadastrar'),
+
+    url(r'^s2241-fimaposentesp-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_fimaposentesp_infoamb_salvar_views.salvar, 
+        name='s2241_fimaposentesp_infoamb_salvar_output'),
+        
+    url(r'^s2241-fimaposentesp-infoamb/(?P<output>[\w-]+)/$', 
+        s2241_fimaposentesp_infoamb_listar_views.listar, 
+        name='s2241_fimaposentesp_infoamb_output'),
 
 
 ]

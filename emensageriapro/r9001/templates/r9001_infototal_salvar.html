@@ -34,72 +34,69 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        r9001infoTotal
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">r9001infoTotal</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações relativas a totalizadores de bases e tributos
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações relativas a totalizadores de bases e tributos</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.r9001.can_view_r9001infoTotal %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_return_page:'r9001_infototal_salvar'|json_return_hash:hash|json_id:r9001_infototal_id|json_print:0|base64_encode_me %}">
-                            Informações relativas a totalizadores de bases e tributos
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if r9001_infototal_id %}
+                    {% if pk %}
+                        {% if perms.r9001.can_see_r9001infoTotal %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 'r9001_infototal_salvar' pk=pk tab='master' %}">
+                                Informações relativas a totalizadores de bases e tributos</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.r9001.can_view_r9001_rtom %}
+                            {% if perms.r9001.can_see_r9001RTom %}
                                 <li {% if tab == 'r9001_rtom' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:0|json_tab:'r9001_rtom'|base64_encode_me %}">
+                                    <a href="{% url 'r9001_infototal_salvar' pk=pk tab='r9001_rtom' %}">
                                     Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9001.can_view_r9001_rprest %}
+                            {% if perms.r9001.can_see_r9001RPrest %}
                                 <li {% if tab == 'r9001_rprest' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:0|json_tab:'r9001_rprest'|base64_encode_me %}">
+                                    <a href="{% url 'r9001_infototal_salvar' pk=pk tab='r9001_rprest' %}">
                                     Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9001.can_view_r9001_rrecrepad %}
+                            {% if perms.r9001.can_see_r9001RRecRepAD %}
                                 <li {% if tab == 'r9001_rrecrepad' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:0|json_tab:'r9001_rrecrepad'|base64_encode_me %}">
+                                    <a href="{% url 'r9001_infototal_salvar' pk=pk tab='r9001_rrecrepad' %}">
                                     Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9001.can_view_r9001_rcoml %}
+                            {% if perms.r9001.can_see_r9001RComl %}
                                 <li {% if tab == 'r9001_rcoml' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:0|json_tab:'r9001_rcoml'|base64_encode_me %}">
+                                    <a href="{% url 'r9001_infototal_salvar' pk=pk tab='r9001_rcoml' %}">
                                     Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9001.can_view_r9001_rcprb %}
+                            {% if perms.r9001.can_see_r9001RCPRB %}
                                 <li {% if tab == 'r9001_rcprb' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:0|json_tab:'r9001_rcprb'|base64_encode_me %}">
+                                    <a href="{% url 'r9001_infototal_salvar' pk=pk tab='r9001_rcprb' %}">
                                     Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9001.can_view_r9001_rrecespetdesp %}
+                            {% if perms.r9001.can_see_r9001RRecEspetDesp %}
                                 <li {% if tab == 'r9001_rrecespetdesp' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:0|json_tab:'r9001_rrecespetdesp'|base64_encode_me %}">
+                                    <a href="{% url 'r9001_infototal_salvar' pk=pk tab='r9001_rrecespetdesp' %}">
                                     Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</a>
                                 </li>
                             {% endif %}
@@ -109,275 +106,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if r9001_infototal_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in r9001_infototal_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if r9001_infototal_id %}
-   {% if r9001_infototal.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ r9001_infototal.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r9001_infototal.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r9001_infototal.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not r9001_infototal.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r9001_infototal.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ r9001_infototal.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações relativas a totalizadores de bases e tributos</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if r9001_infototal.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ r9001_infototal.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.r9001.change_r9001_infototal or perms.r9001.add_r9001_infototal %}
-                <form action="#" id="id_form_r9001_infototal" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if r9001_infototal.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r9001_infototal.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not r9001_infototal.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/r9001_infototal.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if r9001_infototal_id %}
-
-                                {% if perms.r9001.add_r9001infoTotal %}
-                                    <a href="{% url 'r9001_infototal_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.r9001.can_view_r9001_infototal or perms.r9001.can_view_r9001_infototal %}
-                                <a href="{% url 'r9001_infototal'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r9001.can_view_r9001_infototal and r9001_infototal_id %}
-                                <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.r9001.can_view_r9001_infototal and r9001_infototal_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_infototal_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r9001.change_r9001_infototal or perms.r9001.add_r9001_infototal %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.r9001.delete_r9001_infototal and r9001_infototal_id %}
-
-                            <a href="{% url 'r9001_infototal_apagar' hash='{}'|json_id:r9001_infototal_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if r9001_infototal.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r9001_infototal.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.r9001.change_r9001_infototal or perms.r9001.add_r9001_infototal %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if r9001_infototal_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações relativas a totalizadores de bases e tributos</h3>
+                    </div>
+
+                    {% if perms.r9001.change_r9001infoTotal or perms.r9001.add_r9001infoTotal %}
+                        {% if r9001_infototal_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_r9001_infototal" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/r9001_infototal.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.r9001.add_r9001infoTotal %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9001_infototal_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r9001.can_see_list_r9001infoTotal %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9001_infototal' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r9001.can_print_data_r9001infoTotal %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9001_infototal_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.r9001.change_r9001infoTotal %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r9001.delete_r9001infoTotal %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9001_infototal_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.r9001.add_r9001infoTotal %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.r9001.add_r9001infoTotal or perms.r9001.change_r9001infoTotal %}
+
+                        {% if r9001_infototal_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_r9001_rtom -->
+        <!-- begin_r9001_rtom -->
 
-            {% if tab == 'r9001_rtom' or for_print %} 
+            {% if tab == 'r9001_rtom' %} 
 
-                {% if perms.r9001.can_view_r9001_rtom %} 
+                {% if perms.r9001.can_see_data_r9001RTom %}
 
-                    {% if perms.r9001.change_r9001_rtom or perms.r9001.add_r9001RTom %}
+                    {% if perms.r9001.add_r9001RTom or perms.r9001.change_r9001RTom %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -386,95 +391,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9001.change_r9001_rtom or perms.r9001.add_r9001RTom %}
+                                    {% if perms.r9001.add_r9001RTom or perms.r9001.can_see_list_r9001RTom  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9001.add_r9001RTom %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9001.add_r9001RTom %}            
+
                                     <!-- begin_form_r9001_rtom --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9001_rtom" action="{% url 'r9001_rtom_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9001_rtom" 
+                                              action="{% url 'r9001_rtom_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9001_rtom.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9001_rtom -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9001_rtom -->
+                                {% endif %} 
+
+                                {% if perms.r9001.can_see_r9001RTom %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9001_rtom --> 
 
-                                    {% include 'tables/r9001_rtom.html' %}
-                                        
-                                    <!-- end_table_r9001_rtom --> 
-
+                                        {% include 'tables/r9001_rtom.html' %}
+                                        <!-- end_table_r9001_rtom --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9001_rtom -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9001_rprest -->
+        <!-- begin_r9001_rprest -->
 
-            {% if tab == 'r9001_rprest' or for_print %} 
+            {% if tab == 'r9001_rprest' %} 
 
-                {% if perms.r9001.can_view_r9001_rprest %} 
+                {% if perms.r9001.can_see_data_r9001RPrest %}
 
-                    {% if perms.r9001.change_r9001_rprest or perms.r9001.add_r9001RPrest %}
+                    {% if perms.r9001.add_r9001RPrest or perms.r9001.change_r9001RPrest %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -483,95 +500,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9001.change_r9001_rprest or perms.r9001.add_r9001RPrest %}
+                                    {% if perms.r9001.add_r9001RPrest or perms.r9001.can_see_list_r9001RPrest  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9001.add_r9001RPrest %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9001.add_r9001RPrest %}            
+
                                     <!-- begin_form_r9001_rprest --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9001_rprest" action="{% url 'r9001_rprest_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9001_rprest" 
+                                              action="{% url 'r9001_rprest_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9001_rprest.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9001_rprest -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9001_rprest -->
+                                {% endif %} 
+
+                                {% if perms.r9001.can_see_r9001RPrest %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9001_rprest --> 
 
-                                    {% include 'tables/r9001_rprest.html' %}
-                                        
-                                    <!-- end_table_r9001_rprest --> 
-
+                                        {% include 'tables/r9001_rprest.html' %}
+                                        <!-- end_table_r9001_rprest --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9001_rprest -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9001_rrecrepad -->
+        <!-- begin_r9001_rrecrepad -->
 
-            {% if tab == 'r9001_rrecrepad' or for_print %} 
+            {% if tab == 'r9001_rrecrepad' %} 
 
-                {% if perms.r9001.can_view_r9001_rrecrepad %} 
+                {% if perms.r9001.can_see_data_r9001RRecRepAD %}
 
-                    {% if perms.r9001.change_r9001_rrecrepad or perms.r9001.add_r9001RRecRepAD %}
+                    {% if perms.r9001.add_r9001RRecRepAD or perms.r9001.change_r9001RRecRepAD %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -580,95 +609,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9001.change_r9001_rrecrepad or perms.r9001.add_r9001RRecRepAD %}
+                                    {% if perms.r9001.add_r9001RRecRepAD or perms.r9001.can_see_list_r9001RRecRepAD  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9001.add_r9001RRecRepAD %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9001.add_r9001RRecRepAD %}            
+
                                     <!-- begin_form_r9001_rrecrepad --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9001_rrecrepad" action="{% url 'r9001_rrecrepad_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9001_rrecrepad" 
+                                              action="{% url 'r9001_rrecrepad_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9001_rrecrepad.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9001_rrecrepad -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9001_rrecrepad -->
+                                {% endif %} 
+
+                                {% if perms.r9001.can_see_r9001RRecRepAD %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9001_rrecrepad --> 
 
-                                    {% include 'tables/r9001_rrecrepad.html' %}
-                                        
-                                    <!-- end_table_r9001_rrecrepad --> 
-
+                                        {% include 'tables/r9001_rrecrepad.html' %}
+                                        <!-- end_table_r9001_rrecrepad --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9001_rrecrepad -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9001_rcoml -->
+        <!-- begin_r9001_rcoml -->
 
-            {% if tab == 'r9001_rcoml' or for_print %} 
+            {% if tab == 'r9001_rcoml' %} 
 
-                {% if perms.r9001.can_view_r9001_rcoml %} 
+                {% if perms.r9001.can_see_data_r9001RComl %}
 
-                    {% if perms.r9001.change_r9001_rcoml or perms.r9001.add_r9001RComl %}
+                    {% if perms.r9001.add_r9001RComl or perms.r9001.change_r9001RComl %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -677,95 +718,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9001.change_r9001_rcoml or perms.r9001.add_r9001RComl %}
+                                    {% if perms.r9001.add_r9001RComl or perms.r9001.can_see_list_r9001RComl  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9001.add_r9001RComl %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9001.add_r9001RComl %}            
+
                                     <!-- begin_form_r9001_rcoml --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9001_rcoml" action="{% url 'r9001_rcoml_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9001_rcoml" 
+                                              action="{% url 'r9001_rcoml_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9001_rcoml.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9001_rcoml -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9001_rcoml -->
+                                {% endif %} 
+
+                                {% if perms.r9001.can_see_r9001RComl %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9001_rcoml --> 
 
-                                    {% include 'tables/r9001_rcoml.html' %}
-                                        
-                                    <!-- end_table_r9001_rcoml --> 
-
+                                        {% include 'tables/r9001_rcoml.html' %}
+                                        <!-- end_table_r9001_rcoml --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9001_rcoml -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9001_rcprb -->
+        <!-- begin_r9001_rcprb -->
 
-            {% if tab == 'r9001_rcprb' or for_print %} 
+            {% if tab == 'r9001_rcprb' %} 
 
-                {% if perms.r9001.can_view_r9001_rcprb %} 
+                {% if perms.r9001.can_see_data_r9001RCPRB %}
 
-                    {% if perms.r9001.change_r9001_rcprb or perms.r9001.add_r9001RCPRB %}
+                    {% if perms.r9001.add_r9001RCPRB or perms.r9001.change_r9001RCPRB %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -774,95 +827,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9001.change_r9001_rcprb or perms.r9001.add_r9001RCPRB %}
+                                    {% if perms.r9001.add_r9001RCPRB or perms.r9001.can_see_list_r9001RCPRB  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9001.add_r9001RCPRB %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9001.add_r9001RCPRB %}            
+
                                     <!-- begin_form_r9001_rcprb --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9001_rcprb" action="{% url 'r9001_rcprb_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9001_rcprb" 
+                                              action="{% url 'r9001_rcprb_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9001_rcprb.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9001_rcprb -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9001_rcprb -->
+                                {% endif %} 
+
+                                {% if perms.r9001.can_see_r9001RCPRB %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9001_rcprb --> 
 
-                                    {% include 'tables/r9001_rcprb.html' %}
-                                        
-                                    <!-- end_table_r9001_rcprb --> 
-
+                                        {% include 'tables/r9001_rcprb.html' %}
+                                        <!-- end_table_r9001_rcprb --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9001_rcprb -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9001_rrecespetdesp -->
+        <!-- begin_r9001_rrecespetdesp -->
 
-            {% if tab == 'r9001_rrecespetdesp' or for_print %} 
+            {% if tab == 'r9001_rrecespetdesp' %} 
 
-                {% if perms.r9001.can_view_r9001_rrecespetdesp %} 
+                {% if perms.r9001.can_see_data_r9001RRecEspetDesp %}
 
-                    {% if perms.r9001.change_r9001_rrecespetdesp or perms.r9001.add_r9001RRecEspetDesp %}
+                    {% if perms.r9001.add_r9001RRecEspetDesp or perms.r9001.change_r9001RRecEspetDesp %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -871,75 +936,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9001.change_r9001_rrecespetdesp or perms.r9001.add_r9001RRecEspetDesp %}
+                                    {% if perms.r9001.add_r9001RRecEspetDesp or perms.r9001.can_see_list_r9001RRecEspetDesp  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9001.add_r9001RRecEspetDesp %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9001.add_r9001RRecEspetDesp %}            
+
                                     <!-- begin_form_r9001_rrecespetdesp --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9001_rrecespetdesp" action="{% url 'r9001_rrecespetdesp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9001_rrecespetdesp" 
+                                              action="{% url 'r9001_rrecespetdesp_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9001_rrecespetdesp.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9001_rrecespetdesp -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9001_rrecespetdesp -->
+                                {% endif %} 
+
+                                {% if perms.r9001.can_see_r9001RRecEspetDesp %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9001_rrecespetdesp --> 
 
-                                    {% include 'tables/r9001_rrecespetdesp.html' %}
-                                        
-                                    <!-- end_table_r9001_rrecespetdesp --> 
-
+                                        {% include 'tables/r9001_rrecespetdesp.html' %}
+                                        <!-- end_table_r9001_rrecespetdesp --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9001_rrecespetdesp -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

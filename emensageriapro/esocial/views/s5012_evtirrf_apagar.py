@@ -54,67 +54,51 @@ from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.s1000.models import s1000inclusao
-from emensageriapro.s1000.models import s1000alteracao
-from emensageriapro.s1000.models import s1000exclusao
-from emensageriapro.s1000.forms import form_s1000_inclusao
-from emensageriapro.s1000.forms import form_s1000_alteracao
-from emensageriapro.s1000.forms import form_s1000_exclusao
 
 
 @login_required
-def apagar(request, hash):
-
+def apagar(request, pk):
+        
+    import json
+    from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5012_evtirrf_id = int(dict_hash['id'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    
-    s5012_evtirrf = get_object_or_404(s5012evtIrrf, id=s5012_evtirrf_id)
+    s5012_evtirrf = get_object_or_404(s5012evtIrrf, id=pk)
     
     if request.method == 'POST':
     
         if s5012_evtirrf.status == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s5012_evtirrf), indent=4, sort_keys=True, default=str)
-            obj = s5012evtIrrf.objects.get(id = s5012_evtirrf_id)
+            obj = s5012evtIrrf.objects.get(id=pk)
             obj.delete(request=request)
             #s5012_evtirrf_apagar_custom
             #s5012_evtirrf_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's5012_evtirrf', s5012_evtirrf_id, usuario_id, 3)
-        else:
-            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
-        if request.session['retorno_pagina']== 's5012_evtirrf_salvar':
-        
-            return redirect('s5012_evtirrf', 
-                            hash=request.session['retorno_hash'])
-            
+                             's5012_evtirrf', pk, request.user.id, 3)
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+                                        possível apagar os eventos com status "Cadastrado"!''')
+            
+        if 's5012_evtirrf' in request.session['return_page']:
+        
+            return redirect('s5012_evtirrf')
+            
+        else:
+        
+            return redirect(request.session['return_page'], 
+                            pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk, 
         's5012_evtirrf': s5012_evtirrf, 
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s5012_evtirrf', ],
-        'hash': hash,
     }
     
     return render(request, 's5012_evtirrf_apagar.html', context)

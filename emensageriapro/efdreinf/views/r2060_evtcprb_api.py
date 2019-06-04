@@ -66,7 +66,6 @@ class r2060evtCPRBList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r2060evtCPRBDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2060evtCPRB.objects.all()

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4010_infopgtoext__r4010_idepgto__label">Informações complementares relativas a pagamentos a residente fiscal no Exterior*</label>
     {% if not for_print %}{% if r4010_infopgtoext_form.r4010_idepgto.value %}
-        <a href="{% url 'r4010_idepgto_salvar' hash='{}'|json_return_page:'r4010_infopgtoext_salvar'|json_return_hash:hash|json_id:r4010_infopgtoext_form.r4010_idepgto.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r4010_idepgto_salvar' pk=r4010_infopgtoext_form.r4010_idepgto.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

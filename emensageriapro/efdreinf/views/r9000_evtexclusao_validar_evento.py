@@ -72,7 +72,7 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 
-def validar_evento_funcao(request, r9000_evtexclusao_id):
+def validar_evento_funcao(request, pk):
 
     from emensageriapro.padrao import executar_sql
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
@@ -82,7 +82,7 @@ def validar_evento_funcao(request, r9000_evtexclusao_id):
     from emensageriapro.efdreinf.views.r9000_evtexclusao_gerar_xml import gerar_xml_assinado
     
     lista_validacoes = []
-    r9000_evtexclusao = get_object_or_404(r9000evtExclusao, id=r9000_evtexclusao_id)
+    r9000_evtexclusao = get_object_or_404(r9000evtExclusao, id=pk)
 
     #
     # Validações internas
@@ -95,11 +95,12 @@ def validar_evento_funcao(request, r9000_evtexclusao_id):
     
     if not os.path.exists(BASE_DIR + '/' + arquivo):
     
-        gerar_xml_assinado(request, r9000_evtexclusao_id)
+        gerar_xml_assinado(request, pk)
         
     if os.path.exists(BASE_DIR + '/' + arquivo):
     
         from emensageriapro.efdreinf.views.r9000_evtexclusao_validar import validacoes_r9000_evtexclusao
+        
         texto_xml = ler_arquivo(arquivo).replace("s:", "")
         versao = get_versao_evento(texto_xml)
         lista = validacoes_r9000_evtexclusao(arquivo)
@@ -132,7 +133,7 @@ def validar_evento_funcao(request, r9000_evtexclusao_id):
         validacoes = '<br>'.join(lista_validacoes).replace("'", "''")
         
         r9000evtExclusao.objects.\
-            filter(id=r9000_evtexclusao_id, excluido = False).\
+            filter(id=pk).\
             update(validacoes=validacoes,
                    status=STATUS_EVENTO_VALIDADO_ERRO)
 
@@ -140,59 +141,63 @@ def validar_evento_funcao(request, r9000_evtexclusao_id):
 
         if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
 
-            quant = validar_precedencia('efdreinf', 'r9000_evtexclusao', r9000_evtexclusao_id)
+            quant = validar_precedencia('efdreinf', 'r9000_evtexclusao', pk)
 
             if quant <= 0:
             
                 r9000evtExclusao.objects.\
-                    filter(id=r9000_evtexclusao_id, excluido = False).\
+                    filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
             else:
             
                 r9000evtExclusao.objects.\
-                    filter(id=r9000_evtexclusao_id, excluido = False).\
+                    filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_ENVIO)
 
         else:
 
             r9000evtExclusao.objects. \
-                filter(id=r9000_evtexclusao_id, excluido=False).\
+                filter(id=pk).\
                 update(validacoes=None,
                        status=STATUS_EVENTO_AGUARD_ENVIO)
 
     return lista_validacoes
 
 
-
 @login_required
-def validar_evento(request, hash):
+def validar_evento(request, pk):
 
     from emensageriapro.settings import VERSOES_EFDREINF, VERIFICAR_PREDECESSAO_ANTES_ENVIO
 
-    dict_hash = get_hash_url(hash)
-    r9000_evtexclusao_id = int(dict_hash['id'])
+    STATUS_VALIDACAO = (
+        STATUS_EVENTO_CADASTRADO,
+        STATUS_EVENTO_IMPORTADO,
+        STATUS_EVENTO_DUPLICADO,
+        STATUS_EVENTO_GERADO,
+        STATUS_EVENTO_ASSINADO,
+        STATUS_EVENTO_VALIDADO_ERRO,
+    )
 
-    if r9000_evtexclusao_id:
+    r9000_evtexclusao = get_object_or_404(
+        r9000evtExclusao,
+        id=pk)
 
-        r9000_evtexclusao = get_object_or_404(
-            r9000evtExclusao,
-            excluido=False,
-            id=r9000_evtexclusao_id)
+    if r9000_evtexclusao.status in STATUS_VALIDACAO:
 
         if r9000_evtexclusao.versao in VERSOES_EFDREINF:
         
-            validar_evento_funcao(request, r9000_evtexclusao_id)
+            validar_evento_funcao(request, pk)
             
             if r9000_evtexclusao.transmissor_lote_efdreinf and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
                 r9000evtExclusao.objects.\
-                    filter(id=r9000_evtexclusao_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
+                    filter(id=pk).update(status=STATUS_EVENTO_AGUARD_ENVIO)
 
             elif r9000_evtexclusao.transmissor_lote_efdreinf and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
                 r9000evtExclusao.objects.\
-                    filter(id=r9000_evtexclusao_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+                    filter(id=pk).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
             messages.success(request, 
                 u'Validações processadas com sucesso!')
@@ -206,6 +211,7 @@ def validar_evento(request, hash):
     
         messages.error(request, 
             u'''Não foi possível validar o 
-                evento pois o mesmo não foi identificado!''')
+                evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado, 
+                Importado, Duplicado, Gerado, Assinado ou com Erro de Validação!''')
 
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    return redirect('r9000_evtexclusao_salvar', pk=pk, tab='master')

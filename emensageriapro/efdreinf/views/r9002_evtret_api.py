@@ -66,7 +66,6 @@ class r9002evtRetList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r9002evtRetDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9002evtRet.objects.all()

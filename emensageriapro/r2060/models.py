@@ -102,8 +102,11 @@ class r2060infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060infoProc", "Can view R2060INFOPROC"),
-            ("can_view_menu_r2060infoProc", "Can view menu R2060INFOPROC"),)
+            ("can_see_list_r2060infoProc", u"Pode ver listagem do modelo R2060INFOPROC"),
+            ("can_see_data_r2060infoProc", u"Pode visualizar o conteúdo do modelo R2060INFOPROC"),
+            ("can_see_menu_r2060infoProc", u"Pode visualizar no menu o modelo R2060INFOPROC"),
+            ("can_print_list_r2060infoProc", u"Pode imprimir listagem do modelo R2060INFOPROC"),
+            ("can_print_data_r2060infoProc", u"Pode imprimir o conteúdo do modelo R2060INFOPROC"), )
             
         ordering = [
             'r2060_tipocod',
@@ -169,8 +172,11 @@ class r2060tipoAjuste(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060tipoAjuste", "Can view R2060TIPOAJUSTE"),
-            ("can_view_menu_r2060tipoAjuste", "Can view menu R2060TIPOAJUSTE"),)
+            ("can_see_list_r2060tipoAjuste", u"Pode ver listagem do modelo R2060TIPOAJUSTE"),
+            ("can_see_data_r2060tipoAjuste", u"Pode visualizar o conteúdo do modelo R2060TIPOAJUSTE"),
+            ("can_see_menu_r2060tipoAjuste", u"Pode visualizar no menu o modelo R2060TIPOAJUSTE"),
+            ("can_print_list_r2060tipoAjuste", u"Pode imprimir listagem do modelo R2060TIPOAJUSTE"),
+            ("can_print_data_r2060tipoAjuste", u"Pode imprimir o conteúdo do modelo R2060TIPOAJUSTE"), )
             
         ordering = [
             'r2060_tipocod',
@@ -240,8 +246,11 @@ class r2060tipoCod(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060tipoCod", "Can view R2060TIPOCOD"),
-            ("can_view_menu_r2060tipoCod", "Can view menu R2060TIPOCOD"),)
+            ("can_see_list_r2060tipoCod", u"Pode ver listagem do modelo R2060TIPOCOD"),
+            ("can_see_data_r2060tipoCod", u"Pode visualizar o conteúdo do modelo R2060TIPOCOD"),
+            ("can_see_menu_r2060tipoCod", u"Pode visualizar no menu o modelo R2060TIPOCOD"),
+            ("can_print_list_r2060tipoCod", u"Pode imprimir listagem do modelo R2060TIPOCOD"),
+            ("can_print_data_r2060tipoCod", u"Pode imprimir o conteúdo do modelo R2060TIPOCOD"), )
             
         ordering = [
             'r2060_evtcprb',

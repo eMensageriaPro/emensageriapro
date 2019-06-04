@@ -100,8 +100,11 @@ class s2250cancAvPrevio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2250cancAvPrevio", "Can view S2250CANCAVPREVIO"),
-            ("can_view_menu_s2250cancAvPrevio", "Can view menu S2250CANCAVPREVIO"),)
+            ("can_see_list_s2250cancAvPrevio", u"Pode ver listagem do modelo S2250CANCAVPREVIO"),
+            ("can_see_data_s2250cancAvPrevio", u"Pode visualizar o conteúdo do modelo S2250CANCAVPREVIO"),
+            ("can_see_menu_s2250cancAvPrevio", u"Pode visualizar no menu o modelo S2250CANCAVPREVIO"),
+            ("can_print_list_s2250cancAvPrevio", u"Pode imprimir listagem do modelo S2250CANCAVPREVIO"),
+            ("can_print_data_s2250cancAvPrevio", u"Pode imprimir o conteúdo do modelo S2250CANCAVPREVIO"), )
             
         ordering = [
             's2250_evtavprevio',
@@ -163,8 +166,11 @@ class s2250detAvPrevio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2250detAvPrevio", "Can view S2250DETAVPREVIO"),
-            ("can_view_menu_s2250detAvPrevio", "Can view menu S2250DETAVPREVIO"),)
+            ("can_see_list_s2250detAvPrevio", u"Pode ver listagem do modelo S2250DETAVPREVIO"),
+            ("can_see_data_s2250detAvPrevio", u"Pode visualizar o conteúdo do modelo S2250DETAVPREVIO"),
+            ("can_see_menu_s2250detAvPrevio", u"Pode visualizar no menu o modelo S2250DETAVPREVIO"),
+            ("can_print_list_s2250detAvPrevio", u"Pode imprimir listagem do modelo S2250DETAVPREVIO"),
+            ("can_print_data_s2250detAvPrevio", u"Pode imprimir o conteúdo do modelo S2250DETAVPREVIO"), )
             
         ordering = [
             's2250_evtavprevio',

@@ -1,4 +1,6 @@
 #coding:utf-8
+
+
 """
 
     eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
@@ -31,6 +33,8 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 """
+
+
 import xmltodict
 import pprint
 import json
@@ -39,8 +43,10 @@ from emensageriapro.padrao import ler_arquivo
 
 
 def validacoes_s1299_evtfechaevper(arquivo):
+
     from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_campo
     import untangle
+    
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
     validacoes_lista = []

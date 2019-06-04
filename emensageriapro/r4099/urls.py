@@ -48,7 +48,7 @@ from emensageriapro.r4099.views import r4099_iderespinf_api as r4099_iderespinf_
 urlpatterns = [
 
 
-    url(r'^r4099-iderespinf/apagar/(?P<hash>.*)/$', 
+    url(r'^r4099-iderespinf/apagar/(?P<pk>[0-9]+)/$', 
         r4099_iderespinf_apagar_views.apagar, 
         name='r4099_iderespinf_apagar'),
 
@@ -58,13 +58,25 @@ urlpatterns = [
     url(r'^r4099-iderespinf/api/(?P<pk>[0-9]+)/$',
         r4099_iderespinf_api_views.r4099ideRespInfDetail.as_view() ),
 
-    url(r'^r4099-iderespinf/listar/(?P<hash>.*)/$', 
+    url(r'^r4099-iderespinf/$', 
         r4099_iderespinf_listar_views.listar, 
         name='r4099_iderespinf'),
 
-    url(r'^r4099-iderespinf/salvar/(?P<hash>.*)/$', 
+    url(r'^r4099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4099_iderespinf_salvar_views.salvar, 
         name='r4099_iderespinf_salvar'),
+        
+    url(r'^r4099-iderespinf/cadastrar/$', 
+        r4099_iderespinf_salvar_views.salvar, 
+        name='r4099_iderespinf_cadastrar'),
+
+    url(r'^r4099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r4099_iderespinf_salvar_views.salvar, 
+        name='r4099_iderespinf_salvar_output'),
+        
+    url(r'^r4099-iderespinf/(?P<output>[\w-]+)/$', 
+        r4099_iderespinf_listar_views.listar, 
+        name='r4099_iderespinf_output'),
 
 
 ]

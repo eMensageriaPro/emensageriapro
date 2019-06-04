@@ -62,83 +62,93 @@ from emensageriapro.s2299.forms import form_s2299_infotrabinterm_remunoutrempr
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2299_infotrabinterm_infomv_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2299_infotrabinterm_infomv_id:
+    if pk:
     
-        s2299_infotrabinterm_infomv = get_object_or_404(s2299infoTrabInterminfoMV, id=s2299_infotrabinterm_infomv_id)
+        s2299_infotrabinterm_infomv = get_object_or_404(s2299infoTrabInterminfoMV, id=pk)
         dados_evento = s2299_infotrabinterm_infomv.evento()
 
-    if request.user.has_perm('s2299.can_view_s2299infoTrabInterminfoMV'):
+    if request.user.has_perm('s2299.can_see_s2299infoTrabInterminfoMV'):
         
-        if s2299_infotrabinterm_infomv_id:
+        if pk:
         
-            s2299_infotrabinterm_infomv_form = form_s2299_infotrabinterm_infomv(request.POST or None, 
-                                                          instance=s2299_infotrabinterm_infomv,  
-                                                          initial={'excluido': False})
+            s2299_infotrabinterm_infomv_form = form_s2299_infotrabinterm_infomv(
+                request.POST or None, 
+                instance=s2299_infotrabinterm_infomv)
                                          
         else:
         
-            s2299_infotrabinterm_infomv_form = form_s2299_infotrabinterm_infomv(request.POST or None, 
-                                         initial={'excluido': False})
+            s2299_infotrabinterm_infomv_form = form_s2299_infotrabinterm_infomv(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2299_infotrabinterm_infomv_form.is_valid():
             
-                dados = s2299_infotrabinterm_infomv_form.cleaned_data
                 obj = s2299_infotrabinterm_infomv_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2299_infotrabinterm_infomv_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2299_infotrabinterm_infomv', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2299_infotrabinterm_infomv', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2299_infotrabinterm_infomv), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2299_infotrabinterm_infomv', s2299_infotrabinterm_infomv_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2299_infotrabinterm_infomv), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2299_infotrabinterm_infomv', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2299_infotrabinterm_infomv_apagar', 's2299_infotrabinterm_infomv_salvar', 's2299_infotrabinterm_infomv'):
+                if request.session['return_page'] not in (
+                    's2299_infotrabinterm_infomv_apagar', 
+                    's2299_infotrabinterm_infomv_salvar', 
+                    's2299_infotrabinterm_infomv'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2299_infotrabinterm_infomv_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2299_infotrabinterm_infomv_salvar', hash=url_hash)
+                    return redirect(
+                        's2299_infotrabinterm_infomv_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2299_infotrabinterm_infomv_form = disabled_form_fields(s2299_infotrabinterm_infomv_form, request.user.has_perm('s2299.change_s2299infoTrabInterminfoMV'))
+        s2299_infotrabinterm_infomv_form = disabled_form_fields(
+            s2299_infotrabinterm_infomv_form, 
+            request.user.has_perm('s2299.change_s2299infoTrabInterminfoMV'))
         
-        if s2299_infotrabinterm_infomv_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -146,7 +156,7 @@ def salvar(request, hash):
                 
         #s2299_infotrabinterm_infomv_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2299_infotrabinterm_infomv_form = disabled_form_for_print(s2299_infotrabinterm_infomv_form)
             
@@ -154,15 +164,16 @@ def salvar(request, hash):
         s2299_infotrabinterm_remunoutrempr_lista = None 
         s2299_infotrabinterm_remunoutrempr_form = None 
         
-        if s2299_infotrabinterm_infomv_id:
+        if pk:
         
-            s2299_infotrabinterm_infomv = get_object_or_404(s2299infoTrabInterminfoMV, id=s2299_infotrabinterm_infomv_id)
+            s2299_infotrabinterm_infomv = get_object_or_404(s2299infoTrabInterminfoMV, id=pk)
             
             s2299_infotrabinterm_remunoutrempr_form = form_s2299_infotrabinterm_remunoutrempr(
                 initial={ 's2299_infotrabinterm_infomv': s2299_infotrabinterm_infomv })
             s2299_infotrabinterm_remunoutrempr_form.fields['s2299_infotrabinterm_infomv'].widget.attrs['readonly'] = True
             s2299_infotrabinterm_remunoutrempr_lista = s2299infoTrabIntermremunOutrEmpr.objects.\
                 filter(s2299_infotrabinterm_infomv_id=s2299_infotrabinterm_infomv.id).all()
+                
                 
         else:
         
@@ -172,14 +183,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2299_infotrabinterm_infomv' in request.session['retorno_pagina']:
+        if tab or 's2299_infotrabinterm_infomv' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2299_infotrabinterm_infomv_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2299_infotrabinterm_infomv_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2299_infotrabinterm_infomv_id, tabela='s2299_infotrabinterm_infomv').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2299_infotrabinterm_infomv').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -188,28 +203,20 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2299_infotrabinterm_infomv': s2299_infotrabinterm_infomv, 
             's2299_infotrabinterm_infomv_form': s2299_infotrabinterm_infomv_form, 
-            's2299_infotrabinterm_infomv_id': int(s2299_infotrabinterm_infomv_id),
-            'usuario': usuario, 
             'modulos': ['s2299', ],
             'paginas': ['s2299_infotrabinterm_infomv', ],
-            'hash': hash, 
-            
             's2299_infotrabinterm_remunoutrempr_form': s2299_infotrabinterm_remunoutrempr_form,
             's2299_infotrabinterm_remunoutrempr_lista': s2299_infotrabinterm_remunoutrempr_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2299_infotrabinterm_infomv_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2299_infotrabinterm_infomv_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2299_infotrabinterm_infomv_salvar.html',
@@ -226,23 +233,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2299_infotrabinterm_infomv_salvar.html', context)
             filename = "s2299_infotrabinterm_infomv.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2299_infotrabinterm_infomv_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2299', ],
             'paginas': ['s2299_infotrabinterm_infomv', ],
             'data': datetime.datetime.now(),

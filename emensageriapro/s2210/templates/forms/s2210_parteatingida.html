@@ -15,7 +15,7 @@
     <label id="s2210_parteatingida__s2210_evtcat__label">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.*</label>
     {% if not for_print %}
       {% if s2210_parteatingida_form.s2210_evtcat.value %}
-        <a id="s2210_parteatingida__s2210_evtcat__div_acessar" href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:s2210_parteatingida_form.s2210_evtcat.value|json_print:0|base64_encode_me %}">
+        <a id="s2210_parteatingida__s2210_evtcat__div_acessar" href="{% url 's2210_evtcat_salvar' pk=s2210_parteatingida_form.s2210_evtcat.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

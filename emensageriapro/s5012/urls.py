@@ -48,7 +48,7 @@ from emensageriapro.s5012.views import s5012_infocrcontrib_api as s5012_infocrco
 urlpatterns = [
 
 
-    url(r'^s5012-infocrcontrib/apagar/(?P<hash>.*)/$', 
+    url(r'^s5012-infocrcontrib/apagar/(?P<pk>[0-9]+)/$', 
         s5012_infocrcontrib_apagar_views.apagar, 
         name='s5012_infocrcontrib_apagar'),
 
@@ -58,13 +58,25 @@ urlpatterns = [
     url(r'^s5012-infocrcontrib/api/(?P<pk>[0-9]+)/$',
         s5012_infocrcontrib_api_views.s5012infoCRContribDetail.as_view() ),
 
-    url(r'^s5012-infocrcontrib/listar/(?P<hash>.*)/$', 
+    url(r'^s5012-infocrcontrib/$', 
         s5012_infocrcontrib_listar_views.listar, 
         name='s5012_infocrcontrib'),
 
-    url(r'^s5012-infocrcontrib/salvar/(?P<hash>.*)/$', 
+    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5012_infocrcontrib_salvar_views.salvar, 
         name='s5012_infocrcontrib_salvar'),
+        
+    url(r'^s5012-infocrcontrib/cadastrar/$', 
+        s5012_infocrcontrib_salvar_views.salvar, 
+        name='s5012_infocrcontrib_cadastrar'),
+
+    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5012_infocrcontrib_salvar_views.salvar, 
+        name='s5012_infocrcontrib_salvar_output'),
+        
+    url(r'^s5012-infocrcontrib/(?P<output>[\w-]+)/$', 
+        s5012_infocrcontrib_listar_views.listar, 
+        name='s5012_infocrcontrib_output'),
 
 
 ]

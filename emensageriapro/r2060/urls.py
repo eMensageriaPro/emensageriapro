@@ -56,7 +56,7 @@ from emensageriapro.r2060.views import r2060_infoproc_api as r2060_infoproc_api_
 urlpatterns = [
 
 
-    url(r'^r2060-tipocod/apagar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipocod/apagar/(?P<pk>[0-9]+)/$', 
         r2060_tipocod_apagar_views.apagar, 
         name='r2060_tipocod_apagar'),
 
@@ -66,15 +66,27 @@ urlpatterns = [
     url(r'^r2060-tipocod/api/(?P<pk>[0-9]+)/$',
         r2060_tipocod_api_views.r2060tipoCodDetail.as_view() ),
 
-    url(r'^r2060-tipocod/listar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipocod/$', 
         r2060_tipocod_listar_views.listar, 
         name='r2060_tipocod'),
 
-    url(r'^r2060-tipocod/salvar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipocod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2060_tipocod_salvar_views.salvar, 
         name='r2060_tipocod_salvar'),
+        
+    url(r'^r2060-tipocod/cadastrar/$', 
+        r2060_tipocod_salvar_views.salvar, 
+        name='r2060_tipocod_cadastrar'),
 
-    url(r'^r2060-tipoajuste/apagar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipocod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2060_tipocod_salvar_views.salvar, 
+        name='r2060_tipocod_salvar_output'),
+        
+    url(r'^r2060-tipocod/(?P<output>[\w-]+)/$', 
+        r2060_tipocod_listar_views.listar, 
+        name='r2060_tipocod_output'),
+
+    url(r'^r2060-tipoajuste/apagar/(?P<pk>[0-9]+)/$', 
         r2060_tipoajuste_apagar_views.apagar, 
         name='r2060_tipoajuste_apagar'),
 
@@ -84,15 +96,27 @@ urlpatterns = [
     url(r'^r2060-tipoajuste/api/(?P<pk>[0-9]+)/$',
         r2060_tipoajuste_api_views.r2060tipoAjusteDetail.as_view() ),
 
-    url(r'^r2060-tipoajuste/listar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipoajuste/$', 
         r2060_tipoajuste_listar_views.listar, 
         name='r2060_tipoajuste'),
 
-    url(r'^r2060-tipoajuste/salvar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipoajuste/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2060_tipoajuste_salvar_views.salvar, 
         name='r2060_tipoajuste_salvar'),
+        
+    url(r'^r2060-tipoajuste/cadastrar/$', 
+        r2060_tipoajuste_salvar_views.salvar, 
+        name='r2060_tipoajuste_cadastrar'),
 
-    url(r'^r2060-infoproc/apagar/(?P<hash>.*)/$', 
+    url(r'^r2060-tipoajuste/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2060_tipoajuste_salvar_views.salvar, 
+        name='r2060_tipoajuste_salvar_output'),
+        
+    url(r'^r2060-tipoajuste/(?P<output>[\w-]+)/$', 
+        r2060_tipoajuste_listar_views.listar, 
+        name='r2060_tipoajuste_output'),
+
+    url(r'^r2060-infoproc/apagar/(?P<pk>[0-9]+)/$', 
         r2060_infoproc_apagar_views.apagar, 
         name='r2060_infoproc_apagar'),
 
@@ -102,13 +126,25 @@ urlpatterns = [
     url(r'^r2060-infoproc/api/(?P<pk>[0-9]+)/$',
         r2060_infoproc_api_views.r2060infoProcDetail.as_view() ),
 
-    url(r'^r2060-infoproc/listar/(?P<hash>.*)/$', 
+    url(r'^r2060-infoproc/$', 
         r2060_infoproc_listar_views.listar, 
         name='r2060_infoproc'),
 
-    url(r'^r2060-infoproc/salvar/(?P<hash>.*)/$', 
+    url(r'^r2060-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2060_infoproc_salvar_views.salvar, 
         name='r2060_infoproc_salvar'),
+        
+    url(r'^r2060-infoproc/cadastrar/$', 
+        r2060_infoproc_salvar_views.salvar, 
+        name='r2060_infoproc_cadastrar'),
+
+    url(r'^r2060-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2060_infoproc_salvar_views.salvar, 
+        name='r2060_infoproc_salvar_output'),
+        
+    url(r'^r2060-infoproc/(?P<output>[\w-]+)/$', 
+        r2060_infoproc_listar_views.listar, 
+        name='r2060_infoproc_output'),
 
 
 ]

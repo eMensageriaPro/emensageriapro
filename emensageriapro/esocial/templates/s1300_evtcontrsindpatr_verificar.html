@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1300 - Contribuição Sindical Patronal<br>Identidade: {{ s1300_evtcontrsindpatr.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1300_evtcontrsindpatr_verificar' hash='{}'|json_id:s1300_evtcontrsindpatr_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1300_evtcontrsindpatr_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1300_evtcontrsindpatr_verificar' hash='{}'|json_id:s1300_evtcontrsindpatr_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1300_evtcontrsindpatr_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1300_evtcontrsindpatr_verificar' hash='{}'|json_id:s1300_evtcontrsindpatr_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1300_evtcontrsindpatr_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1300_evtcontrsindpatr_verificar' hash='{}'|json_id:s1300_evtcontrsindpatr_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.indretif or s1300_evtcontrsindpatr.indretif == 0 %}{{ s1300_evtcontrsindpatr.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.nrrecibo or s1300_evtcontrsindpatr.nrrecibo == 0 %}{{ s1300_evtcontrsindpatr.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">indApuracao</td>
             <td width="500px">Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.indapuracao or s1300_evtcontrsindpatr.indapuracao == 0 %}{{ s1300_evtcontrsindpatr.indapuracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, igual ou posterior à implementação do eSocial.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.perapur or s1300_evtcontrsindpatr.perapur == 0 %}{{ s1300_evtcontrsindpatr.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.tpamb or s1300_evtcontrsindpatr.tpamb == 0 %}{{ s1300_evtcontrsindpatr.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -226,11 +223,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.procemi or s1300_evtcontrsindpatr.procemi == 0 %}{{ s1300_evtcontrsindpatr.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -245,11 +242,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.verproc or s1300_evtcontrsindpatr.verproc == 0 %}{{ s1300_evtcontrsindpatr.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -269,11 +266,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.tpinsc or s1300_evtcontrsindpatr.tpinsc == 0 %}{{ s1300_evtcontrsindpatr.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -288,11 +285,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1300_evtcontrsindpatr.nrinsc or s1300_evtcontrsindpatr.nrinsc == 0 %}{{ s1300_evtcontrsindpatr.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_evtcontrsindpatr_visualizar' %}
-                <a href="{% url 's1300_evtcontrsindpatr_salvar'  hash='{}'|json_id:s1300_evtcontrsindpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300evtContrSindPatr or perms.esocial.can_see_s1300evtContrSindPatr %}
+                <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_evtcontrsindpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -313,11 +310,11 @@
             <td width="130px">cnpjSindic</td>
             <td width="500px">CNPJ da entidade Sindical Beneficiária, ou caso não haja, o CNPJ do órgão responsável pela administração da Conta Especial Emprego e Salário. <validacao> Deve ser um CNPJ válido.</td>
             <td width="200px"><b>{% if s1300_contribsind.cnpjsindic or s1300_contribsind.cnpjsindic == 0 %}{{ s1300_contribsind.cnpjsindic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_contribsind_visualizar' %}
-                <a href="{% url 's1300_contribsind_salvar'  hash='{}'|json_id:s1300_contribsind.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300contribSind or perms.esocial.can_see_s1300contribSind %}
+                <a href="{% url 's1300_contribsind_salvar' pk=s1300_contribsind.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -332,11 +329,11 @@
             <td width="130px">tpContribSind</td>
             <td width="500px">Tipo de contribuição sindical, conforme opções a seguir<opcoes>1 - Contribuição Sindical Compulsória; 2 - Contribuição Associativa; 3 - Contribuição Assistencial; 4 - Contribuição Confederativa. <valores_validos> 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s1300_contribsind.tpcontribsind or s1300_contribsind.tpcontribsind == 0 %}{{ s1300_contribsind.tpcontribsind }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_contribsind_visualizar' %}
-                <a href="{% url 's1300_contribsind_salvar'  hash='{}'|json_id:s1300_contribsind.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300contribSind or perms.esocial.can_see_s1300contribSind %}
+                <a href="{% url 's1300_contribsind_salvar' pk=s1300_contribsind.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -351,11 +348,11 @@
             <td width="130px">vlrContribSind</td>
             <td width="500px">Informar o valor da contribuição sindical a ser paga. <validacao> Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if s1300_contribsind.vlrcontribsind or s1300_contribsind.vlrcontribsind == 0 %}{{ s1300_contribsind.vlrcontribsind }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1300_contribsind_visualizar' %}
-                <a href="{% url 's1300_contribsind_salvar'  hash='{}'|json_id:s1300_contribsind.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1300.can_see_s1300contribSind or perms.esocial.can_see_s1300contribSind %}
+                <a href="{% url 's1300_contribsind_salvar' pk=s1300_contribsind.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

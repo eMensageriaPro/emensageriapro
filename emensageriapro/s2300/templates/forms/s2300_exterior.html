@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_exterior__s2300_evttsvinicio__label">Preenchido em caso de trabalhador residente no exterior.*</label>
     {% if not for_print %}{% if s2300_exterior_form.s2300_evttsvinicio.value %}
-        <a href="{% url 's2300_evttsvinicio_salvar' hash='{}'|json_return_page:'s2300_exterior_salvar'|json_return_hash:hash|json_id:s2300_exterior_form.s2300_evttsvinicio.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_exterior_form.s2300_evttsvinicio.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

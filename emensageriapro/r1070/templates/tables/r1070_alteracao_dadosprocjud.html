@@ -41,26 +41,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.r1070.can_view_r1070alteracaodadosProcJud %}
-                        <a href="{% url 'r1070_alteracao_dadosprocjud_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.r1070.add_r1070alteracaodadosProcJud or perms.r1070.change_r1070alteracaodadosProcJud %}
+                        {% if perms.r1070.change_r1070alteracaodadosProcJud or perms.r1070.add_r1070alteracaodadosProcJud %}
+                    
+                        <a href="{% url 'r1070_alteracao_dadosprocjud_salvar' pk=a.id tab='master' %}">
+                            {% if perms.r1070.change_r1070alteracaodadosProcJud %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.r1070.can_see_data_r1070alteracaodadosProcJud %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.r1070.delete_r1070alteracaodadosProcJud %}
-                        <a href="{% url 'r1070_alteracao_dadosprocjud_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.r1070.delete_r1070alteracaodadosProcJud %}
+                        <a href="{% url 'r1070_alteracao_dadosprocjud_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

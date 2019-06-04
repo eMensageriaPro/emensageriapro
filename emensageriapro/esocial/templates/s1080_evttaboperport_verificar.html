@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1080 - Tabela de Operadores Portuários<br>Identidade: {{ s1080_evttaboperport.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1080_evttaboperport_verificar' hash='{}'|json_id:s1080_evttaboperport_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1080_evttaboperport_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1080_evttaboperport_verificar' hash='{}'|json_id:s1080_evttaboperport_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1080_evttaboperport_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1080_evttaboperport_verificar' hash='{}'|json_id:s1080_evttaboperport_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1080_evttaboperport_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1080_evttaboperport_verificar' hash='{}'|json_id:s1080_evttaboperport_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1080_evttaboperport.tpamb or s1080_evttaboperport.tpamb == 0 %}{{ s1080_evttaboperport.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_evttaboperport_visualizar' %}
-                <a href="{% url 's1080_evttaboperport_salvar'  hash='{}'|json_id:s1080_evttaboperport.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1080_evttaboperport.procemi or s1080_evttaboperport.procemi == 0 %}{{ s1080_evttaboperport.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_evttaboperport_visualizar' %}
-                <a href="{% url 's1080_evttaboperport_salvar'  hash='{}'|json_id:s1080_evttaboperport.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1080_evttaboperport.verproc or s1080_evttaboperport.verproc == 0 %}{{ s1080_evttaboperport.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_evttaboperport_visualizar' %}
-                <a href="{% url 's1080_evttaboperport_salvar'  hash='{}'|json_id:s1080_evttaboperport.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1080_evttaboperport.tpinsc or s1080_evttaboperport.tpinsc == 0 %}{{ s1080_evttaboperport.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_evttaboperport_visualizar' %}
-                <a href="{% url 's1080_evttaboperport_salvar'  hash='{}'|json_id:s1080_evttaboperport.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1080_evttaboperport.nrinsc or s1080_evttaboperport.nrinsc == 0 %}{{ s1080_evttaboperport.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_evttaboperport_visualizar' %}
-                <a href="{% url 's1080_evttaboperport_salvar'  hash='{}'|json_id:s1080_evttaboperport.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">cnpjOpPortuario</td>
             <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
             <td width="200px"><b>{% if s1080_inclusao.cnpjopportuario or s1080_inclusao.cnpjopportuario == 0 %}{{ s1080_inclusao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_inclusao_visualizar' %}
-                <a href="{% url 's1080_inclusao_salvar'  hash='{}'|json_id:s1080_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_inclusao.inivalid or s1080_inclusao.inivalid == 0 %}{{ s1080_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_inclusao_visualizar' %}
-                <a href="{% url 's1080_inclusao_salvar'  hash='{}'|json_id:s1080_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_inclusao.fimvalid or s1080_inclusao.fimvalid == 0 %}{{ s1080_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_inclusao_visualizar' %}
-                <a href="{% url 's1080_inclusao_salvar'  hash='{}'|json_id:s1080_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -309,11 +306,11 @@
             <td width="130px">aliqRat</td>
             <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3.</td>
             <td width="200px"><b>{% if s1080_inclusao.aliqrat or s1080_inclusao.aliqrat == 0 %}{{ s1080_inclusao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_inclusao_visualizar' %}
-                <a href="{% url 's1080_inclusao_salvar'  hash='{}'|json_id:s1080_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">fap</td>
             <td width="500px">Fator Acidentário de Prevenção - FAP. <validacao> Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
             <td width="200px"><b>{% if s1080_inclusao.fap or s1080_inclusao.fap == 0 %}{{ s1080_inclusao.fap }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_inclusao_visualizar' %}
-                <a href="{% url 's1080_inclusao_salvar'  hash='{}'|json_id:s1080_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">aliqRatAjust</td>
             <td width="500px">Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
             <td width="200px"><b>{% if s1080_inclusao.aliqratajust or s1080_inclusao.aliqratajust == 0 %}{{ s1080_inclusao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_inclusao_visualizar' %}
-                <a href="{% url 's1080_inclusao_salvar'  hash='{}'|json_id:s1080_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -377,11 +374,11 @@
             <td width="130px">cnpjOpPortuario</td>
             <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
             <td width="200px"><b>{% if s1080_alteracao.cnpjopportuario or s1080_alteracao.cnpjopportuario == 0 %}{{ s1080_alteracao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_visualizar' %}
-                <a href="{% url 's1080_alteracao_salvar'  hash='{}'|json_id:s1080_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -396,11 +393,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_alteracao.inivalid or s1080_alteracao.inivalid == 0 %}{{ s1080_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_visualizar' %}
-                <a href="{% url 's1080_alteracao_salvar'  hash='{}'|json_id:s1080_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -415,11 +412,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_alteracao.fimvalid or s1080_alteracao.fimvalid == 0 %}{{ s1080_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_visualizar' %}
-                <a href="{% url 's1080_alteracao_salvar'  hash='{}'|json_id:s1080_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -439,11 +436,11 @@
             <td width="130px">aliqRat</td>
             <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3.</td>
             <td width="200px"><b>{% if s1080_alteracao.aliqrat or s1080_alteracao.aliqrat == 0 %}{{ s1080_alteracao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_visualizar' %}
-                <a href="{% url 's1080_alteracao_salvar'  hash='{}'|json_id:s1080_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -458,11 +455,11 @@
             <td width="130px">fap</td>
             <td width="500px">Fator Acidentário de Prevenção - FAP. <validacao> Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
             <td width="200px"><b>{% if s1080_alteracao.fap or s1080_alteracao.fap == 0 %}{{ s1080_alteracao.fap }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_visualizar' %}
-                <a href="{% url 's1080_alteracao_salvar'  hash='{}'|json_id:s1080_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -477,11 +474,11 @@
             <td width="130px">aliqRatAjust</td>
             <td width="500px">Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
             <td width="200px"><b>{% if s1080_alteracao.aliqratajust or s1080_alteracao.aliqratajust == 0 %}{{ s1080_alteracao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_visualizar' %}
-                <a href="{% url 's1080_alteracao_salvar'  hash='{}'|json_id:s1080_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -502,11 +499,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_alteracao_novavalidade.inivalid or s1080_alteracao_novavalidade.inivalid == 0 %}{{ s1080_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1080_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1080_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracaonovaValidade or perms.esocial.can_see_s1080alteracaonovaValidade %}
+                <a href="{% url 's1080_alteracao_novavalidade_salvar' pk=s1080_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -521,11 +518,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_alteracao_novavalidade.fimvalid or s1080_alteracao_novavalidade.fimvalid == 0 %}{{ s1080_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1080_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1080_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080alteracaonovaValidade or perms.esocial.can_see_s1080alteracaonovaValidade %}
+                <a href="{% url 's1080_alteracao_novavalidade_salvar' pk=s1080_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -551,11 +548,11 @@
             <td width="130px">cnpjOpPortuario</td>
             <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
             <td width="200px"><b>{% if s1080_exclusao.cnpjopportuario or s1080_exclusao.cnpjopportuario == 0 %}{{ s1080_exclusao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_exclusao_visualizar' %}
-                <a href="{% url 's1080_exclusao_salvar'  hash='{}'|json_id:s1080_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080exclusao or perms.esocial.can_see_s1080exclusao %}
+                <a href="{% url 's1080_exclusao_salvar' pk=s1080_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -570,11 +567,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_exclusao.inivalid or s1080_exclusao.inivalid == 0 %}{{ s1080_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_exclusao_visualizar' %}
-                <a href="{% url 's1080_exclusao_salvar'  hash='{}'|json_id:s1080_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080exclusao or perms.esocial.can_see_s1080exclusao %}
+                <a href="{% url 's1080_exclusao_salvar' pk=s1080_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -589,11 +586,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_exclusao.fimvalid or s1080_exclusao.fimvalid == 0 %}{{ s1080_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1080_exclusao_visualizar' %}
-                <a href="{% url 's1080_exclusao_salvar'  hash='{}'|json_id:s1080_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1080.can_see_s1080exclusao or perms.esocial.can_see_s1080exclusao %}
+                <a href="{% url 's1080_exclusao_salvar' pk=s1080_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

@@ -64,7 +64,7 @@ from emensageriapro.s1250.views import s1250_infoprocj_api as s1250_infoprocj_ap
 urlpatterns = [
 
 
-    url(r'^s1250-tpaquis/apagar/(?P<hash>.*)/$', 
+    url(r'^s1250-tpaquis/apagar/(?P<pk>[0-9]+)/$', 
         s1250_tpaquis_apagar_views.apagar, 
         name='s1250_tpaquis_apagar'),
 
@@ -74,15 +74,27 @@ urlpatterns = [
     url(r'^s1250-tpaquis/api/(?P<pk>[0-9]+)/$',
         s1250_tpaquis_api_views.s1250tpAquisDetail.as_view() ),
 
-    url(r'^s1250-tpaquis/listar/(?P<hash>.*)/$', 
+    url(r'^s1250-tpaquis/$', 
         s1250_tpaquis_listar_views.listar, 
         name='s1250_tpaquis'),
 
-    url(r'^s1250-tpaquis/salvar/(?P<hash>.*)/$', 
+    url(r'^s1250-tpaquis/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1250_tpaquis_salvar_views.salvar, 
         name='s1250_tpaquis_salvar'),
+        
+    url(r'^s1250-tpaquis/cadastrar/$', 
+        s1250_tpaquis_salvar_views.salvar, 
+        name='s1250_tpaquis_cadastrar'),
 
-    url(r'^s1250-ideprodutor/apagar/(?P<hash>.*)/$', 
+    url(r'^s1250-tpaquis/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1250_tpaquis_salvar_views.salvar, 
+        name='s1250_tpaquis_salvar_output'),
+        
+    url(r'^s1250-tpaquis/(?P<output>[\w-]+)/$', 
+        s1250_tpaquis_listar_views.listar, 
+        name='s1250_tpaquis_output'),
+
+    url(r'^s1250-ideprodutor/apagar/(?P<pk>[0-9]+)/$', 
         s1250_ideprodutor_apagar_views.apagar, 
         name='s1250_ideprodutor_apagar'),
 
@@ -92,15 +104,27 @@ urlpatterns = [
     url(r'^s1250-ideprodutor/api/(?P<pk>[0-9]+)/$',
         s1250_ideprodutor_api_views.s1250ideProdutorDetail.as_view() ),
 
-    url(r'^s1250-ideprodutor/listar/(?P<hash>.*)/$', 
+    url(r'^s1250-ideprodutor/$', 
         s1250_ideprodutor_listar_views.listar, 
         name='s1250_ideprodutor'),
 
-    url(r'^s1250-ideprodutor/salvar/(?P<hash>.*)/$', 
+    url(r'^s1250-ideprodutor/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1250_ideprodutor_salvar_views.salvar, 
         name='s1250_ideprodutor_salvar'),
+        
+    url(r'^s1250-ideprodutor/cadastrar/$', 
+        s1250_ideprodutor_salvar_views.salvar, 
+        name='s1250_ideprodutor_cadastrar'),
 
-    url(r'^s1250-nfs/apagar/(?P<hash>.*)/$', 
+    url(r'^s1250-ideprodutor/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1250_ideprodutor_salvar_views.salvar, 
+        name='s1250_ideprodutor_salvar_output'),
+        
+    url(r'^s1250-ideprodutor/(?P<output>[\w-]+)/$', 
+        s1250_ideprodutor_listar_views.listar, 
+        name='s1250_ideprodutor_output'),
+
+    url(r'^s1250-nfs/apagar/(?P<pk>[0-9]+)/$', 
         s1250_nfs_apagar_views.apagar, 
         name='s1250_nfs_apagar'),
 
@@ -110,15 +134,27 @@ urlpatterns = [
     url(r'^s1250-nfs/api/(?P<pk>[0-9]+)/$',
         s1250_nfs_api_views.s1250nfsDetail.as_view() ),
 
-    url(r'^s1250-nfs/listar/(?P<hash>.*)/$', 
+    url(r'^s1250-nfs/$', 
         s1250_nfs_listar_views.listar, 
         name='s1250_nfs'),
 
-    url(r'^s1250-nfs/salvar/(?P<hash>.*)/$', 
+    url(r'^s1250-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1250_nfs_salvar_views.salvar, 
         name='s1250_nfs_salvar'),
+        
+    url(r'^s1250-nfs/cadastrar/$', 
+        s1250_nfs_salvar_views.salvar, 
+        name='s1250_nfs_cadastrar'),
 
-    url(r'^s1250-infoprocjud/apagar/(?P<hash>.*)/$', 
+    url(r'^s1250-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1250_nfs_salvar_views.salvar, 
+        name='s1250_nfs_salvar_output'),
+        
+    url(r'^s1250-nfs/(?P<output>[\w-]+)/$', 
+        s1250_nfs_listar_views.listar, 
+        name='s1250_nfs_output'),
+
+    url(r'^s1250-infoprocjud/apagar/(?P<pk>[0-9]+)/$', 
         s1250_infoprocjud_apagar_views.apagar, 
         name='s1250_infoprocjud_apagar'),
 
@@ -128,15 +164,27 @@ urlpatterns = [
     url(r'^s1250-infoprocjud/api/(?P<pk>[0-9]+)/$',
         s1250_infoprocjud_api_views.s1250infoProcJudDetail.as_view() ),
 
-    url(r'^s1250-infoprocjud/listar/(?P<hash>.*)/$', 
+    url(r'^s1250-infoprocjud/$', 
         s1250_infoprocjud_listar_views.listar, 
         name='s1250_infoprocjud'),
 
-    url(r'^s1250-infoprocjud/salvar/(?P<hash>.*)/$', 
+    url(r'^s1250-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1250_infoprocjud_salvar_views.salvar, 
         name='s1250_infoprocjud_salvar'),
+        
+    url(r'^s1250-infoprocjud/cadastrar/$', 
+        s1250_infoprocjud_salvar_views.salvar, 
+        name='s1250_infoprocjud_cadastrar'),
 
-    url(r'^s1250-infoprocj/apagar/(?P<hash>.*)/$', 
+    url(r'^s1250-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1250_infoprocjud_salvar_views.salvar, 
+        name='s1250_infoprocjud_salvar_output'),
+        
+    url(r'^s1250-infoprocjud/(?P<output>[\w-]+)/$', 
+        s1250_infoprocjud_listar_views.listar, 
+        name='s1250_infoprocjud_output'),
+
+    url(r'^s1250-infoprocj/apagar/(?P<pk>[0-9]+)/$', 
         s1250_infoprocj_apagar_views.apagar, 
         name='s1250_infoprocj_apagar'),
 
@@ -146,13 +194,25 @@ urlpatterns = [
     url(r'^s1250-infoprocj/api/(?P<pk>[0-9]+)/$',
         s1250_infoprocj_api_views.s1250infoProcJDetail.as_view() ),
 
-    url(r'^s1250-infoprocj/listar/(?P<hash>.*)/$', 
+    url(r'^s1250-infoprocj/$', 
         s1250_infoprocj_listar_views.listar, 
         name='s1250_infoprocj'),
 
-    url(r'^s1250-infoprocj/salvar/(?P<hash>.*)/$', 
+    url(r'^s1250-infoprocj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1250_infoprocj_salvar_views.salvar, 
         name='s1250_infoprocj_salvar'),
+        
+    url(r'^s1250-infoprocj/cadastrar/$', 
+        s1250_infoprocj_salvar_views.salvar, 
+        name='s1250_infoprocj_cadastrar'),
+
+    url(r'^s1250-infoprocj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1250_infoprocj_salvar_views.salvar, 
+        name='s1250_infoprocj_salvar_output'),
+        
+    url(r'^s1250-infoprocj/(?P<output>[\w-]+)/$', 
+        s1250_infoprocj_listar_views.listar, 
+        name='s1250_infoprocj_output'),
 
 
 ]

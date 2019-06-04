@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r2070_compjud__r2070_pgtopf__label">Compensação Judicial*</label>
     {% if not for_print %}{% if r2070_compjud_form.r2070_pgtopf.value %}
-        <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_return_page:'r2070_compjud_salvar'|json_return_hash:hash|json_id:r2070_compjud_form.r2070_pgtopf.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_compjud_form.r2070_pgtopf.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

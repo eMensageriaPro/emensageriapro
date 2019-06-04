@@ -53,26 +53,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s1000.can_view_s1000alteracaoinfoEnte %}
-                        <a href="{% url 's1000_alteracao_infoente_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s1000.add_s1000alteracaoinfoEnte or perms.s1000.change_s1000alteracaoinfoEnte %}
+                        {% if perms.s1000.change_s1000alteracaoinfoEnte or perms.s1000.add_s1000alteracaoinfoEnte %}
+                    
+                        <a href="{% url 's1000_alteracao_infoente_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s1000.change_s1000alteracaoinfoEnte %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s1000.can_see_data_s1000alteracaoinfoEnte %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s1000.delete_s1000alteracaoinfoEnte %}
-                        <a href="{% url 's1000_alteracao_infoente_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s1000.delete_s1000alteracaoinfoEnte %}
+                        <a href="{% url 's1000_alteracao_infoente_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

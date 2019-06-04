@@ -72,83 +72,93 @@ from emensageriapro.s2300.forms import form_s2300_cnh
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2300_documentos_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2300_documentos_id:
+    if pk:
     
-        s2300_documentos = get_object_or_404(s2300documentos, id=s2300_documentos_id)
+        s2300_documentos = get_object_or_404(s2300documentos, id=pk)
         dados_evento = s2300_documentos.evento()
 
-    if request.user.has_perm('s2300.can_view_s2300documentos'):
+    if request.user.has_perm('s2300.can_see_s2300documentos'):
         
-        if s2300_documentos_id:
+        if pk:
         
-            s2300_documentos_form = form_s2300_documentos(request.POST or None, 
-                                                          instance=s2300_documentos,  
-                                                          initial={'excluido': False})
+            s2300_documentos_form = form_s2300_documentos(
+                request.POST or None, 
+                instance=s2300_documentos)
                                          
         else:
         
-            s2300_documentos_form = form_s2300_documentos(request.POST or None, 
-                                         initial={'excluido': False})
+            s2300_documentos_form = form_s2300_documentos(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2300_documentos_form.is_valid():
             
-                dados = s2300_documentos_form.cleaned_data
                 obj = s2300_documentos_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2300_documentos_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2300_documentos', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2300_documentos', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2300_documentos), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2300_documentos', s2300_documentos_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2300_documentos), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2300_documentos', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2300_documentos_apagar', 's2300_documentos_salvar', 's2300_documentos'):
+                if request.session['return_page'] not in (
+                    's2300_documentos_apagar', 
+                    's2300_documentos_salvar', 
+                    's2300_documentos'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2300_documentos_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2300_documentos_salvar', hash=url_hash)
+                    return redirect(
+                        's2300_documentos_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2300_documentos_form = disabled_form_fields(s2300_documentos_form, request.user.has_perm('s2300.change_s2300documentos'))
+        s2300_documentos_form = disabled_form_fields(
+            s2300_documentos_form, 
+            request.user.has_perm('s2300.change_s2300documentos'))
         
-        if s2300_documentos_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -156,7 +166,7 @@ def salvar(request, hash):
                 
         #s2300_documentos_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2300_documentos_form = disabled_form_for_print(s2300_documentos_form)
             
@@ -174,40 +184,46 @@ def salvar(request, hash):
         s2300_cnh_lista = None 
         s2300_cnh_form = None 
         
-        if s2300_documentos_id:
+        if pk:
         
-            s2300_documentos = get_object_or_404(s2300documentos, id=s2300_documentos_id)
+            s2300_documentos = get_object_or_404(s2300documentos, id=pk)
             
             s2300_ctps_form = form_s2300_ctps(
                 initial={ 's2300_documentos': s2300_documentos })
             s2300_ctps_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_ctps_lista = s2300CTPS.objects.\
                 filter(s2300_documentos_id=s2300_documentos.id).all()
+                
             s2300_ric_form = form_s2300_ric(
                 initial={ 's2300_documentos': s2300_documentos })
             s2300_ric_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_ric_lista = s2300RIC.objects.\
                 filter(s2300_documentos_id=s2300_documentos.id).all()
+                
             s2300_rg_form = form_s2300_rg(
                 initial={ 's2300_documentos': s2300_documentos })
             s2300_rg_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_rg_lista = s2300RG.objects.\
                 filter(s2300_documentos_id=s2300_documentos.id).all()
+                
             s2300_rne_form = form_s2300_rne(
                 initial={ 's2300_documentos': s2300_documentos })
             s2300_rne_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_rne_lista = s2300RNE.objects.\
                 filter(s2300_documentos_id=s2300_documentos.id).all()
+                
             s2300_oc_form = form_s2300_oc(
                 initial={ 's2300_documentos': s2300_documentos })
             s2300_oc_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_oc_lista = s2300OC.objects.\
                 filter(s2300_documentos_id=s2300_documentos.id).all()
+                
             s2300_cnh_form = form_s2300_cnh(
                 initial={ 's2300_documentos': s2300_documentos })
             s2300_cnh_form.fields['s2300_documentos'].widget.attrs['readonly'] = True
             s2300_cnh_lista = s2300CNH.objects.\
                 filter(s2300_documentos_id=s2300_documentos.id).all()
+                
                 
         else:
         
@@ -217,14 +233,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2300_documentos' in request.session['retorno_pagina']:
+        if tab or 's2300_documentos' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2300_documentos_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2300_documentos_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2300_documentos_id, tabela='s2300_documentos').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2300_documentos').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -233,12 +253,8 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2300_documentos': s2300_documentos, 
             's2300_documentos_form': s2300_documentos_form, 
-            's2300_documentos_id': int(s2300_documentos_id),
-            'usuario': usuario, 
             'modulos': ['s2300', ],
             'paginas': ['s2300_documentos', ],
-            'hash': hash, 
-            
             's2300_ctps_form': s2300_ctps_form,
             's2300_ctps_lista': s2300_ctps_lista,
             's2300_ric_form': s2300_ric_form,
@@ -252,19 +268,15 @@ def salvar(request, hash):
             's2300_cnh_form': s2300_cnh_form,
             's2300_cnh_lista': s2300_cnh_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2300_documentos_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2300_documentos_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2300_documentos_salvar.html',
@@ -281,23 +293,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2300_documentos_salvar.html', context)
             filename = "s2300_documentos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2300_documentos_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2300', ],
             'paginas': ['s2300_documentos', ],
             'data': datetime.datetime.now(),

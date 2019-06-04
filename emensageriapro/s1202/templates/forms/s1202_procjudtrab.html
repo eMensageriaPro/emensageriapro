@@ -15,7 +15,7 @@
     <label id="s1202_procjudtrab__s1202_evtrmnrpps__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*</label>
     {% if not for_print %}
       {% if s1202_procjudtrab_form.s1202_evtrmnrpps.value %}
-        <a id="s1202_procjudtrab__s1202_evtrmnrpps__div_acessar" href="{% url 's1202_evtrmnrpps_salvar' hash='{}'|json_id:s1202_procjudtrab_form.s1202_evtrmnrpps.value|json_print:0|base64_encode_me %}">
+        <a id="s1202_procjudtrab__s1202_evtrmnrpps__div_acessar" href="{% url 's1202_evtrmnrpps_salvar' pk=s1202_procjudtrab_form.s1202_evtrmnrpps.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

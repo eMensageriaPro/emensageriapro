@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1070_alteracao_dadosprocjud__s1070_alteracao__label">Informações Complementares do Processo Judicial*</label>
     {% if not for_print %}{% if s1070_alteracao_dadosprocjud_form.s1070_alteracao.value %}
-        <a href="{% url 's1070_alteracao_salvar' hash='{}'|json_return_page:'s1070_alteracao_dadosprocjud_salvar'|json_return_hash:hash|json_id:s1070_alteracao_dadosprocjud_form.s1070_alteracao.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1070_alteracao_salvar' pk=s1070_alteracao_dadosprocjud_form.s1070_alteracao.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

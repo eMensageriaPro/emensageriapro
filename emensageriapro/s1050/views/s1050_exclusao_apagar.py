@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s1050_exclusao_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s1050_exclusao = get_object_or_404(s1050exclusao, id=s1050_exclusao_id)
+    s1050_exclusao = get_object_or_404(s1050exclusao, id=pk)
     
     dados_evento = {}
-    
-    if s1050_exclusao_id:
-    
-        dados_evento = s1050_exclusao.evento()
+    dados_evento = s1050_exclusao.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s1050_exclusao), indent=4, sort_keys=True, default=str)
-            obj = s1050exclusao.objects.get(id = s1050_exclusao_id)
+            obj = s1050exclusao.objects.get(id=pk)
             obj.delete(request=request)
             #s1050_exclusao_apagar_custom
             #s1050_exclusao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's1050_exclusao', s1050_exclusao_id, usuario_id, 3)
+                             's1050_exclusao', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's1050_exclusao_salvar':
+        if 's1050_exclusao' in request.session['return_page']:
         
-            return redirect('s1050_exclusao', hash=request.session['retorno_hash'])
+            return redirect('s1050_exclusao')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s1050', ],
         'paginas': ['s1050_exclusao', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

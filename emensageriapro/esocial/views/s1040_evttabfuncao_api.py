@@ -66,7 +66,6 @@ class s1040evtTabFuncaoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1040evtTabFuncaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1040evtTabFuncao.objects.all()

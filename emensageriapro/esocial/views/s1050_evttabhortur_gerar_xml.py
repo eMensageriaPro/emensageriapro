@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s1050.models import *
 from emensageriapro.s1050.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1050(request, s1050_evttabhortur_id, versao=None):
+def gerar_xml_s1050(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s1050_evttabhortur_id:
+    if pk:
 
         s1050_evttabhortur = get_object_or_404(
             s1050evtTabHorTur,
-            excluido = False,
-            id = s1050_evttabhortur_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s1050_evttabhortur.versao
@@ -105,7 +103,8 @@ def gerar_xml_s1050(request, s1050_evttabhortur_id, versao=None):
             xmlns = ''
 
         s1050_evttabhortur_lista = s1050evtTabHorTur.objects. \
-            filter(id=s1050_evttabhortur_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s1050_inclusao_lista = s1050inclusao.objects. \
             filter(s1050_evttabhortur_id__in=listar_ids(s1050_evttabhortur_lista)).all()
@@ -131,10 +130,8 @@ def gerar_xml_s1050(request, s1050_evttabhortur_id, versao=None):
             'versao': versao,
             'base': s1050_evttabhortur,
             's1050_evttabhortur_lista': s1050_evttabhortur_lista,
-            's1050_evttabhortur_id': int(s1050_evttabhortur_id),
+            'pk': int(pk),
             's1050_evttabhortur': s1050_evttabhortur,
-
-            
             's1050_inclusao_lista': s1050_inclusao_lista,
             's1050_inclusao_horariointervalo_lista': s1050_inclusao_horariointervalo_lista,
             's1050_alteracao_lista': s1050_alteracao_lista,
@@ -148,9 +145,7 @@ def gerar_xml_s1050(request, s1050_evttabhortur_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s1050_evttabhortur_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -158,14 +153,14 @@ def gerar_xml_assinado(request, s1050_evttabhortur_id):
 
     s1050_evttabhortur = get_object_or_404(
         s1050evtTabHorTur,
-        id=s1050_evttabhortur_id)
+        id=pk)
 
     if s1050_evttabhortur.arquivo_original:
     
         xml = ler_arquivo(s1050_evttabhortur.arquivo)
 
     else:
-        xml = gerar_xml_s1050(request, s1050_evttabhortur_id)
+        xml = gerar_xml_s1050(request, pk)
 
     if 'Signature' in xml:
     
@@ -181,20 +176,23 @@ def gerar_xml_assinado(request, s1050_evttabhortur_id):
             grupo = get_grupo(s1050evtTabHorTur)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s1050_evttabhortur.nrinsc,
-                                      s1050_evttabhortur.tpinsc)
+                grupo,
+                s1050_evttabhortur.nrinsc,
+                s1050_evttabhortur.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s1050evtTabHorTur,
-                                         s1050_evttabhortur)
+                grupo,
+                s1050evtTabHorTur,
+                s1050_evttabhortur)
         
         s1050_evttabhortur = get_object_or_404(
             s1050evtTabHorTur,
-            id=s1050_evttabhortur_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s1050_evttabhortur.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s1050_evttabhortur.transmissor_lote_esocial_id)
         
     if s1050_evttabhortur.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -203,29 +201,28 @@ def gerar_xml_assinado(request, s1050_evttabhortur_id):
         STATUS_EVENTO_GERADO):
 
         s1050evtTabHorTur.objects.\
-            filter(id=s1050_evttabhortur_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s1050_evttabhortur/%s.xml' % (s1050_evttabhortur.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1050_evttabhortur/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s1050_evttabhortur_id = int(dict_hash['id'])
+    if pk:
 
-    if s1050_evttabhortur_id:
-
-        xml_assinado = gerar_xml_assinado(request, s1050_evttabhortur_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

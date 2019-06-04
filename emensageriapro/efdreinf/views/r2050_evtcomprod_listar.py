@@ -59,19 +59,9 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def listar(request, hash):
-    
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-    
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
+def listar(request, output=None):
 
-    if request.user.has_perm('efdreinf.can_view_r2050evtComProd'):
+    if request.user.has_perm('efdreinf.can_see_r2050evtComProd'):
     
         filtrar = False
         dict_fields = {}
@@ -203,32 +193,24 @@ def listar(request, hash):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2050_evtcomprod_listar_custom
         
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r2050_evtcomprod'
-        
         context = {
-            'r2050_evtcomprod_lista': r2050_evtcomprod_lista, 
-            
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
+            'r2050_evtcomprod_lista': r2050_evtcomprod_lista,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r2050_evtcomprod', ],
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
         
-        if for_print in (0,1):
-        
-            return render(request, 'r2050_evtcomprod_listar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r2050_evtcomprod_listar.html',
@@ -249,26 +231,32 @@ def listar(request, hash):
             )
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('r2050_evtcomprod_listar.html', context)
             filename = "r2050_evtcomprod.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
             
-        elif for_print == 4:
+        elif output == 'csv':
         
             response = render_to_response('csv/r2050_evtcomprod.csv', context)
             filename = "r2050_evtcomprod.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r2050_evtcomprod_listar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r2050_evtcomprod', ],

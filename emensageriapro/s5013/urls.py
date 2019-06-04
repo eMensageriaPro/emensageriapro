@@ -76,7 +76,7 @@ from emensageriapro.s5013.views import s5013_dpsperante_api as s5013_dpsperante_
 urlpatterns = [
 
 
-    url(r'^s5013-infobasefgts/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobasefgts/apagar/(?P<pk>[0-9]+)/$', 
         s5013_infobasefgts_apagar_views.apagar, 
         name='s5013_infobasefgts_apagar'),
 
@@ -86,15 +86,27 @@ urlpatterns = [
     url(r'^s5013-infobasefgts/api/(?P<pk>[0-9]+)/$',
         s5013_infobasefgts_api_views.s5013infoBaseFGTSDetail.as_view() ),
 
-    url(r'^s5013-infobasefgts/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobasefgts/$', 
         s5013_infobasefgts_listar_views.listar, 
         name='s5013_infobasefgts'),
 
-    url(r'^s5013-infobasefgts/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobasefgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_infobasefgts_salvar_views.salvar, 
         name='s5013_infobasefgts_salvar'),
+        
+    url(r'^s5013-infobasefgts/cadastrar/$', 
+        s5013_infobasefgts_salvar_views.salvar, 
+        name='s5013_infobasefgts_cadastrar'),
 
-    url(r'^s5013-baseperapur/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobasefgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_infobasefgts_salvar_views.salvar, 
+        name='s5013_infobasefgts_salvar_output'),
+        
+    url(r'^s5013-infobasefgts/(?P<output>[\w-]+)/$', 
+        s5013_infobasefgts_listar_views.listar, 
+        name='s5013_infobasefgts_output'),
+
+    url(r'^s5013-baseperapur/apagar/(?P<pk>[0-9]+)/$', 
         s5013_baseperapur_apagar_views.apagar, 
         name='s5013_baseperapur_apagar'),
 
@@ -104,15 +116,27 @@ urlpatterns = [
     url(r'^s5013-baseperapur/api/(?P<pk>[0-9]+)/$',
         s5013_baseperapur_api_views.s5013basePerApurDetail.as_view() ),
 
-    url(r'^s5013-baseperapur/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-baseperapur/$', 
         s5013_baseperapur_listar_views.listar, 
         name='s5013_baseperapur'),
 
-    url(r'^s5013-baseperapur/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-baseperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_baseperapur_salvar_views.salvar, 
         name='s5013_baseperapur_salvar'),
+        
+    url(r'^s5013-baseperapur/cadastrar/$', 
+        s5013_baseperapur_salvar_views.salvar, 
+        name='s5013_baseperapur_cadastrar'),
 
-    url(r'^s5013-infobaseperante/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-baseperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_baseperapur_salvar_views.salvar, 
+        name='s5013_baseperapur_salvar_output'),
+        
+    url(r'^s5013-baseperapur/(?P<output>[\w-]+)/$', 
+        s5013_baseperapur_listar_views.listar, 
+        name='s5013_baseperapur_output'),
+
+    url(r'^s5013-infobaseperante/apagar/(?P<pk>[0-9]+)/$', 
         s5013_infobaseperante_apagar_views.apagar, 
         name='s5013_infobaseperante_apagar'),
 
@@ -122,15 +146,27 @@ urlpatterns = [
     url(r'^s5013-infobaseperante/api/(?P<pk>[0-9]+)/$',
         s5013_infobaseperante_api_views.s5013infoBasePerAntEDetail.as_view() ),
 
-    url(r'^s5013-infobaseperante/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobaseperante/$', 
         s5013_infobaseperante_listar_views.listar, 
         name='s5013_infobaseperante'),
 
-    url(r'^s5013-infobaseperante/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobaseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_infobaseperante_salvar_views.salvar, 
         name='s5013_infobaseperante_salvar'),
+        
+    url(r'^s5013-infobaseperante/cadastrar/$', 
+        s5013_infobaseperante_salvar_views.salvar, 
+        name='s5013_infobaseperante_cadastrar'),
 
-    url(r'^s5013-baseperante/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-infobaseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_infobaseperante_salvar_views.salvar, 
+        name='s5013_infobaseperante_salvar_output'),
+        
+    url(r'^s5013-infobaseperante/(?P<output>[\w-]+)/$', 
+        s5013_infobaseperante_listar_views.listar, 
+        name='s5013_infobaseperante_output'),
+
+    url(r'^s5013-baseperante/apagar/(?P<pk>[0-9]+)/$', 
         s5013_baseperante_apagar_views.apagar, 
         name='s5013_baseperante_apagar'),
 
@@ -140,15 +176,27 @@ urlpatterns = [
     url(r'^s5013-baseperante/api/(?P<pk>[0-9]+)/$',
         s5013_baseperante_api_views.s5013basePerAntEDetail.as_view() ),
 
-    url(r'^s5013-baseperante/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-baseperante/$', 
         s5013_baseperante_listar_views.listar, 
         name='s5013_baseperante'),
 
-    url(r'^s5013-baseperante/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-baseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_baseperante_salvar_views.salvar, 
         name='s5013_baseperante_salvar'),
+        
+    url(r'^s5013-baseperante/cadastrar/$', 
+        s5013_baseperante_salvar_views.salvar, 
+        name='s5013_baseperante_cadastrar'),
 
-    url(r'^s5013-infodpsfgts/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-baseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_baseperante_salvar_views.salvar, 
+        name='s5013_baseperante_salvar_output'),
+        
+    url(r'^s5013-baseperante/(?P<output>[\w-]+)/$', 
+        s5013_baseperante_listar_views.listar, 
+        name='s5013_baseperante_output'),
+
+    url(r'^s5013-infodpsfgts/apagar/(?P<pk>[0-9]+)/$', 
         s5013_infodpsfgts_apagar_views.apagar, 
         name='s5013_infodpsfgts_apagar'),
 
@@ -158,15 +206,27 @@ urlpatterns = [
     url(r'^s5013-infodpsfgts/api/(?P<pk>[0-9]+)/$',
         s5013_infodpsfgts_api_views.s5013infoDpsFGTSDetail.as_view() ),
 
-    url(r'^s5013-infodpsfgts/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-infodpsfgts/$', 
         s5013_infodpsfgts_listar_views.listar, 
         name='s5013_infodpsfgts'),
 
-    url(r'^s5013-infodpsfgts/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-infodpsfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_infodpsfgts_salvar_views.salvar, 
         name='s5013_infodpsfgts_salvar'),
+        
+    url(r'^s5013-infodpsfgts/cadastrar/$', 
+        s5013_infodpsfgts_salvar_views.salvar, 
+        name='s5013_infodpsfgts_cadastrar'),
 
-    url(r'^s5013-dpsperapur/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-infodpsfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_infodpsfgts_salvar_views.salvar, 
+        name='s5013_infodpsfgts_salvar_output'),
+        
+    url(r'^s5013-infodpsfgts/(?P<output>[\w-]+)/$', 
+        s5013_infodpsfgts_listar_views.listar, 
+        name='s5013_infodpsfgts_output'),
+
+    url(r'^s5013-dpsperapur/apagar/(?P<pk>[0-9]+)/$', 
         s5013_dpsperapur_apagar_views.apagar, 
         name='s5013_dpsperapur_apagar'),
 
@@ -176,15 +236,27 @@ urlpatterns = [
     url(r'^s5013-dpsperapur/api/(?P<pk>[0-9]+)/$',
         s5013_dpsperapur_api_views.s5013dpsPerApurDetail.as_view() ),
 
-    url(r'^s5013-dpsperapur/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-dpsperapur/$', 
         s5013_dpsperapur_listar_views.listar, 
         name='s5013_dpsperapur'),
 
-    url(r'^s5013-dpsperapur/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-dpsperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_dpsperapur_salvar_views.salvar, 
         name='s5013_dpsperapur_salvar'),
+        
+    url(r'^s5013-dpsperapur/cadastrar/$', 
+        s5013_dpsperapur_salvar_views.salvar, 
+        name='s5013_dpsperapur_cadastrar'),
 
-    url(r'^s5013-infodpsperante/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-dpsperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_dpsperapur_salvar_views.salvar, 
+        name='s5013_dpsperapur_salvar_output'),
+        
+    url(r'^s5013-dpsperapur/(?P<output>[\w-]+)/$', 
+        s5013_dpsperapur_listar_views.listar, 
+        name='s5013_dpsperapur_output'),
+
+    url(r'^s5013-infodpsperante/apagar/(?P<pk>[0-9]+)/$', 
         s5013_infodpsperante_apagar_views.apagar, 
         name='s5013_infodpsperante_apagar'),
 
@@ -194,15 +266,27 @@ urlpatterns = [
     url(r'^s5013-infodpsperante/api/(?P<pk>[0-9]+)/$',
         s5013_infodpsperante_api_views.s5013infoDpsPerAntEDetail.as_view() ),
 
-    url(r'^s5013-infodpsperante/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-infodpsperante/$', 
         s5013_infodpsperante_listar_views.listar, 
         name='s5013_infodpsperante'),
 
-    url(r'^s5013-infodpsperante/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-infodpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_infodpsperante_salvar_views.salvar, 
         name='s5013_infodpsperante_salvar'),
+        
+    url(r'^s5013-infodpsperante/cadastrar/$', 
+        s5013_infodpsperante_salvar_views.salvar, 
+        name='s5013_infodpsperante_cadastrar'),
 
-    url(r'^s5013-dpsperante/apagar/(?P<hash>.*)/$', 
+    url(r'^s5013-infodpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_infodpsperante_salvar_views.salvar, 
+        name='s5013_infodpsperante_salvar_output'),
+        
+    url(r'^s5013-infodpsperante/(?P<output>[\w-]+)/$', 
+        s5013_infodpsperante_listar_views.listar, 
+        name='s5013_infodpsperante_output'),
+
+    url(r'^s5013-dpsperante/apagar/(?P<pk>[0-9]+)/$', 
         s5013_dpsperante_apagar_views.apagar, 
         name='s5013_dpsperante_apagar'),
 
@@ -212,13 +296,25 @@ urlpatterns = [
     url(r'^s5013-dpsperante/api/(?P<pk>[0-9]+)/$',
         s5013_dpsperante_api_views.s5013dpsPerAntEDetail.as_view() ),
 
-    url(r'^s5013-dpsperante/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-dpsperante/$', 
         s5013_dpsperante_listar_views.listar, 
         name='s5013_dpsperante'),
 
-    url(r'^s5013-dpsperante/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-dpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_dpsperante_salvar_views.salvar, 
         name='s5013_dpsperante_salvar'),
+        
+    url(r'^s5013-dpsperante/cadastrar/$', 
+        s5013_dpsperante_salvar_views.salvar, 
+        name='s5013_dpsperante_cadastrar'),
+
+    url(r'^s5013-dpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_dpsperante_salvar_views.salvar, 
+        name='s5013_dpsperante_salvar_output'),
+        
+    url(r'^s5013-dpsperante/(?P<output>[\w-]+)/$', 
+        s5013_dpsperante_listar_views.listar, 
+        name='s5013_dpsperante_output'),
 
 
 ]

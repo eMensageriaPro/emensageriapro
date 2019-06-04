@@ -59,28 +59,14 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2221_evttoxic_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s2221_evttoxic_id:
-    
-        s2221_evttoxic = get_object_or_404(s2221evtToxic, id=s2221_evttoxic_id)
+        s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
 
         if s2221_evttoxic.status != STATUS_EVENTO_CADASTRADO:
         
@@ -88,9 +74,9 @@ def salvar(request, hash):
             dict_permissoes['s2221_evttoxic_apagar'] = 0
             dict_permissoes['s2221_evttoxic_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s2221evtToxic'):
+    if request.user.has_perm('esocial.can_see_s2221evtToxic'):
     
-        if s2221_evttoxic_id:
+        if pk:
         
             s2221_evttoxic_form = form_s2221_evttoxic(request.POST or None, instance = s2221_evttoxic, 
                                          initial={'excluido': False})
@@ -109,55 +95,72 @@ def salvar(request, hash):
         
             if s2221_evttoxic_form.is_valid():
             
-                dados = s2221_evttoxic_form.cleaned_data
                 obj = s2221_evttoxic_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2221_evttoxic_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2221_evttoxic', obj.id, usuario_id, 1)
+                                 's2221_evttoxic', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2221_evttoxic), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2221_evttoxic', s2221_evttoxic_id, usuario_id, 2)
+                                     's2221_evttoxic', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s2221_evttoxic_apagar', 's2221_evttoxic_salvar', 's2221_evttoxic'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's2221_evttoxic_apagar', 
+                    's2221_evttoxic_salvar', 
+                    's2221_evttoxic'):
                     
-                if s2221_evttoxic_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2221_evttoxic_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's2221_evttoxic_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s2221_evttoxic_form = disabled_form_fields(s2221_evttoxic_form, request.user.has_perm('esocial.change_s2221evtToxic'))
+        s2221_evttoxic_form = disabled_form_fields(
+             s2221_evttoxic_form, 
+             request.user.has_perm('esocial.change_s2221evtToxic'))
         
-        if s2221_evttoxic_id:
+        if pk:
+        
             if s2221_evttoxic.status != 0:
+            
                 s2221_evttoxic_form = disabled_form_fields(s2221_evttoxic_form, False)
+                
         #s2221_evttoxic_campos_multiple_passo3
 
         for field in s2221_evttoxic_form.fields.keys():
+        
             s2221_evttoxic_form.fields[field].widget.attrs['ng-model'] = 's2221_evttoxic_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s2221_evttoxic_form = disabled_form_for_print(s2221_evttoxic_form)
 
         
         
-        if s2221_evttoxic_id:
+        if pk:
         
-            s2221_evttoxic = get_object_or_404(s2221evtToxic, id = s2221_evttoxic_id)
+            s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
             
                 
         else:
+        
             s2221_evttoxic = None
             
         #s2221_evttoxic_salvar_custom_variaveis#
@@ -166,38 +169,37 @@ def salvar(request, hash):
         
         if 's2221_evttoxic'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's2221_evttoxic' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2221_evttoxic_salvar'
+        if tab or 's2221_evttoxic' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2221_evttoxic_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2221_evttoxic_id, tabela='s2221_evttoxic').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2221_evttoxic').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2221_evttoxic': s2221_evttoxic, 
             's2221_evttoxic_form': s2221_evttoxic_form, 
-            's2221_evttoxic_id': int(s2221_evttoxic_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2221_evttoxic', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2221_evttoxic_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2221_evttoxic_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -215,25 +217,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s2221_evttoxic_salvar.html', context)
             filename = "s2221_evttoxic.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2221_evttoxic_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s2221_evttoxic', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

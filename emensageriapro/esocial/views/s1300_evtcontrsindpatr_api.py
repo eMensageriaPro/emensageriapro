@@ -66,7 +66,6 @@ class s1300evtContrSindPatrList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1300evtContrSindPatrDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1300evtContrSindPatr.objects.all()

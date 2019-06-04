@@ -72,46 +72,41 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def criar_alteracao(request, hash):
+def criar_alteracao(request, pk):
 
     from emensageriapro.esocial.views.s1030_evttabcargo_importar import read_s1030_evttabcargo_string
     from emensageriapro.esocial.views.s1030_evttabcargo_gerar_xml import gerar_xml_s1030
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('esocial.can_create_change_s1030evtTabCargo'):
 
-    dict_hash = get_hash_url(hash)
-    s1030_evttabcargo_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('esocial.can_create_change_event_s1030evtTabCargo'):
+        s1030_evttabcargo = get_object_or_404(
+            s1030evtTabCargo,
+            id=pk)
 
-        if s1030_evttabcargo_id:
-    
-            s1030_evttabcargo = get_object_or_404(
-                s1030evtTabCargo,
-                id=s1030_evttabcargo_id)
-    
-            texto = gerar_xml_s1030(s1030_evttabcargo_id, versao="|")
-            texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-            dados = read_s1030_evttabcargo_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1030_evttabcargo)
-    
-            s1030evtTabCargo.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1030_evttabcargo.identidade),
-                's1030_evttabcargo', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de alteração criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s1030_evttabcargo_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de alteração!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        texto = gerar_xml_s1030(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        dados = read_s1030_evttabcargo_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(s1030_evttabcargo)
+
+        s1030evtTabCargo.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1030_evttabcargo.identidade),
+            's1030_evttabcargo', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de alteração criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('s1030_evttabcargo_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+        return redirect('s1030_evttabcargo_salvar', pk=pk, tab='master')

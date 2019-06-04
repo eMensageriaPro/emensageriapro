@@ -64,83 +64,93 @@ from emensageriapro.r2040.forms import form_r2040_infoproc
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        r2040_recursosrep_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if r2040_recursosrep_id:
+    if pk:
     
-        r2040_recursosrep = get_object_or_404(r2040recursosRep, id=r2040_recursosrep_id)
+        r2040_recursosrep = get_object_or_404(r2040recursosRep, id=pk)
         dados_evento = r2040_recursosrep.evento()
 
-    if request.user.has_perm('r2040.can_view_r2040recursosRep'):
+    if request.user.has_perm('r2040.can_see_r2040recursosRep'):
         
-        if r2040_recursosrep_id:
+        if pk:
         
-            r2040_recursosrep_form = form_r2040_recursosrep(request.POST or None, 
-                                                          instance=r2040_recursosrep,  
-                                                          initial={'excluido': False})
+            r2040_recursosrep_form = form_r2040_recursosrep(
+                request.POST or None, 
+                instance=r2040_recursosrep)
                                          
         else:
         
-            r2040_recursosrep_form = form_r2040_recursosrep(request.POST or None, 
-                                         initial={'excluido': False})
+            r2040_recursosrep_form = form_r2040_recursosrep(request.POST or None)
                                          
         if request.method == 'POST':
         
             if r2040_recursosrep_form.is_valid():
             
-                dados = r2040_recursosrep_form.cleaned_data
                 obj = r2040_recursosrep_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r2040_recursosrep_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r2040_recursosrep', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r2040_recursosrep', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(r2040_recursosrep), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r2040_recursosrep', r2040_recursosrep_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(r2040_recursosrep), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r2040_recursosrep', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('r2040_recursosrep_apagar', 'r2040_recursosrep_salvar', 'r2040_recursosrep'):
+                if request.session['return_page'] not in (
+                    'r2040_recursosrep_apagar', 
+                    'r2040_recursosrep_salvar', 
+                    'r2040_recursosrep'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if r2040_recursosrep_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r2040_recursosrep_salvar', hash=url_hash)
+                    return redirect(
+                        'r2040_recursosrep_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        r2040_recursosrep_form = disabled_form_fields(r2040_recursosrep_form, request.user.has_perm('r2040.change_r2040recursosRep'))
+        r2040_recursosrep_form = disabled_form_fields(
+            r2040_recursosrep_form, 
+            request.user.has_perm('r2040.change_r2040recursosRep'))
         
-        if r2040_recursosrep_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -148,7 +158,7 @@ def salvar(request, hash):
                 
         #r2040_recursosrep_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             r2040_recursosrep_form = disabled_form_for_print(r2040_recursosrep_form)
             
@@ -158,20 +168,22 @@ def salvar(request, hash):
         r2040_infoproc_lista = None 
         r2040_infoproc_form = None 
         
-        if r2040_recursosrep_id:
+        if pk:
         
-            r2040_recursosrep = get_object_or_404(r2040recursosRep, id=r2040_recursosrep_id)
+            r2040_recursosrep = get_object_or_404(r2040recursosRep, id=pk)
             
             r2040_inforecurso_form = form_r2040_inforecurso(
                 initial={ 'r2040_recursosrep': r2040_recursosrep })
             r2040_inforecurso_form.fields['r2040_recursosrep'].widget.attrs['readonly'] = True
             r2040_inforecurso_lista = r2040infoRecurso.objects.\
                 filter(r2040_recursosrep_id=r2040_recursosrep.id).all()
+                
             r2040_infoproc_form = form_r2040_infoproc(
                 initial={ 'r2040_recursosrep': r2040_recursosrep })
             r2040_infoproc_form.fields['r2040_recursosrep'].widget.attrs['readonly'] = True
             r2040_infoproc_lista = r2040infoProc.objects.\
                 filter(r2040_recursosrep_id=r2040_recursosrep.id).all()
+                
                 
         else:
         
@@ -181,14 +193,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'r2040_recursosrep' in request.session['retorno_pagina']:
+        if tab or 'r2040_recursosrep' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r2040_recursosrep_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r2040_recursosrep_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r2040_recursosrep_id, tabela='r2040_recursosrep').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2040_recursosrep').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -197,30 +213,22 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             'r2040_recursosrep': r2040_recursosrep, 
             'r2040_recursosrep_form': r2040_recursosrep_form, 
-            'r2040_recursosrep_id': int(r2040_recursosrep_id),
-            'usuario': usuario, 
             'modulos': ['r2040', ],
             'paginas': ['r2040_recursosrep', ],
-            'hash': hash, 
-            
             'r2040_inforecurso_form': r2040_inforecurso_form,
             'r2040_inforecurso_lista': r2040_inforecurso_lista,
             'r2040_infoproc_form': r2040_infoproc_form,
             'r2040_infoproc_lista': r2040_infoproc_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r2040_recursosrep_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r2040_recursosrep_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r2040_recursosrep_salvar.html',
@@ -237,23 +245,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('r2040_recursosrep_salvar.html', context)
             filename = "r2040_recursosrep.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r2040_recursosrep_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['r2040', ],
             'paginas': ['r2040_recursosrep', ],
             'data': datetime.datetime.now(),

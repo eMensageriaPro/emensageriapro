@@ -15,7 +15,7 @@
     <label id="r2060_tipocod__r2060_evtcprb__label">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.*</label>
     {% if not for_print %}
       {% if r2060_tipocod_form.r2060_evtcprb.value %}
-        <a id="r2060_tipocod__r2060_evtcprb__div_acessar" href="{% url 'r2060_evtcprb_salvar' hash='{}'|json_id:r2060_tipocod_form.r2060_evtcprb.value|json_print:0|base64_encode_me %}">
+        <a id="r2060_tipocod__r2060_evtcprb__div_acessar" href="{% url 'r2060_evtcprb_salvar' pk=r2060_tipocod_form.r2060_evtcprb.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

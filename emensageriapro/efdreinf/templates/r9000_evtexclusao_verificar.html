@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-9000 - Exclusão de Eventos<br>Identidade: {{ r9000_evtexclusao.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 'r9000_evtexclusao_verificar' hash='{}'|json_id:r9000_evtexclusao_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 'r9000_evtexclusao_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 'r9000_evtexclusao_verificar' hash='{}'|json_id:r9000_evtexclusao_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 'r9000_evtexclusao_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 'r9000_evtexclusao_verificar' hash='{}'|json_id:r9000_evtexclusao_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 'r9000_evtexclusao_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 'r9000_evtexclusao_verificar' hash='{}'|json_id:r9000_evtexclusao_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.tpamb or r9000_evtexclusao.tpamb == 0 %}{{ r9000_evtexclusao.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.procemi or r9000_evtexclusao.procemi == 0 %}{{ r9000_evtexclusao.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.verproc or r9000_evtexclusao.verproc == 0 %}{{ r9000_evtexclusao.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.tpinsc or r9000_evtexclusao.tpinsc == 0 %}{{ r9000_evtexclusao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.nrinsc or r9000_evtexclusao.nrinsc == 0 %}{{ r9000_evtexclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -236,11 +233,11 @@
             <td width="130px">tpEvento</td>
             <td width="500px">Preencher com o tipo de evento, conforme tabela 10. <validacao> Deve existir na tabela 10. Deve ser um dos eventos: R-2010 a R-2060, R-3010 e R-4010 a R-4040.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.tpevento or r9000_evtexclusao.tpevento == 0 %}{{ r9000_evtexclusao.tpevento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -255,11 +252,11 @@
             <td width="130px">nrRecEvt</td>
             <td width="500px">Preencher com o número do recibo do evento que será excluído. <validacao> O recibo deve ser relativo ao mesmo tipo de evento indicado em {tpEvento} e o respectivo evento não deve constar como excluído ou retificado.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.nrrecevt or r9000_evtexclusao.nrrecevt == 0 %}{{ r9000_evtexclusao.nrrecevt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -274,11 +271,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o período de referência das informações no formato AAAA-MM, exceto se {tpEvento} = [R-3010], situação em que deve ser informado no formato AAAA-MM-DD. <validacao> Deve ser um ano/mês válido em conformidade com o evento identificado em {nrRecEvt}.</td>
             <td width="200px"><b>{% if r9000_evtexclusao.perapur or r9000_evtexclusao.perapur == 0 %}{{ r9000_evtexclusao.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
-                <a href="{% url 'r9000_evtexclusao_salvar'  hash='{}'|json_id:r9000_evtexclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9000.can_see_r9000evtExclusao or perms.efdreinf.can_see_r9000evtExclusao %}
+                <a href="{% url 'r9000_evtexclusao_salvar' pk=r9000_evtexclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

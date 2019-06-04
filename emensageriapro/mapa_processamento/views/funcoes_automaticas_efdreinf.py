@@ -41,6 +41,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 import datetime
 from django.contrib import messages
+from django.http import HttpResponseNotFound
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
@@ -115,7 +116,7 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
 
             if hash:
                 messages.error(request, txt)
-                return redirect('mapa_efdreinf', hash=request.session['retorno_hash'])
+                return redirect('mapa_efdreinf', tab=request.session['retorno_hash'])
             else:
                 data = {'response': txt}
                 return Response(data, status=HTTP_200_OK)
@@ -125,7 +126,7 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
 
             if hash:
                 messages.error(request, txt)
-                return redirect('mapa_efdreinf', hash=request.session['retorno_hash'])
+                return redirect('mapa_efdreinf', tab=request.session['retorno_hash'])
             else:
                 data = {'response': txt}
                 return Response(data, status=HTTP_200_OK)
@@ -166,19 +167,9 @@ def vincular_transmissor_efdreinf(request, grupo, model, a):
 
 @csrf_exempt
 @api_view(["GET"])
-def validar(request, hash=None):
+def validar(request, tab=None):
 
     texto = 'Validações processadas com sucesso!'
-
-    if hash:
-
-        try:
-            usuario_id = request.user.id
-
-        except:
-            return redirect('login')
-
-        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     from django.apps import apps
 
@@ -196,15 +187,20 @@ def validar(request, hash=None):
 
             a.validar()
 
-    if hash:
+    if not tab:
 
         messages.success(request, texto)
-        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
+        return redirect(request.session['return_page'])
 
-    else:
+    elif tab == 'json':
 
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    else:
+
+        data = {'response': u'Página não existe!'}
+        return Response(data, status=HTTP_404_NOT_FOUND)
 
 
 
@@ -212,25 +208,13 @@ def validar(request, hash=None):
 
 @csrf_exempt
 @api_view(["GET"])
-def enviar(request, hash=None):
+def enviar(request, tab=None):
 
     from emensageriapro.mensageiro.views.transmissor_lote_efdreinf_comunicacao import send_xml
     from django.apps import apps
     from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEfdreinf, TransmissorEventosEfdreinf
 
     texto = ''
-
-    db_slug = 'default'
-
-    if hash:
-
-        try:
-            usuario_id = request.user.id
-
-        except:
-            return redirect('login')
-
-        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     app_models = apps.get_app_config('efdreinf').get_models()
 
@@ -278,46 +262,58 @@ def enviar(request, hash=None):
 
     texto = '%s transmissores enviaram eventos para o EFD-Reinf' % n
 
-    if hash:
+    if not tab:
 
         messages.success(request, texto)
-        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
+        return redirect(request.session['return_page'])
 
-    else:
+    elif tab == 'mapa':
+
+        messages.success(request, texto)
+        return redirect('mapa_efdreinf', tab='master')
+
+    elif tab == 'json':
+
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    else:
+
+        data = {'response': u'Página não existe!'}
+        return Response(data, status=HTTP_404_NOT_FOUND)
 
 
 
 
 @csrf_exempt
 @api_view(["GET"])
-def consultar(request, hash=None):
+def consultar(request, tab=None):
     from emensageriapro.mensageiro.views.transmissor_lote_efdreinf_comunicacao import send_xml
     from emensageriapro.mensageiro.models import TransmissorLoteEfdreinf
 
     texto = 'Eventos consultados com sucesso!'
-
-    if hash:
-
-        try:
-            usuario_id = request.user.id
-
-        except:
-            return redirect('login')
-
-        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     lista_transmissores = TransmissorLoteEfdreinf.objects.filter(status=1).all()
 
     for a in lista_transmissores:
         send_xml(request, a.id, 'ConsultasReinf')
 
-    if hash:
+    if not tab:
 
         messages.success(request, texto)
-        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
+        return redirect(request.session['return_page'])
 
-    else:
+    elif tab == 'mapa':
+
+        messages.success(request, texto)
+        return redirect('mapa_esocial', tab='master')
+
+    elif tab == 'json':
+
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    else:
+
+        data = {'response': u'Página não existe!'}
+        return Response(data, status=HTTP_404_NOT_FOUND)

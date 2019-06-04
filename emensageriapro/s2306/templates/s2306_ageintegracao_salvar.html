@@ -34,288 +34,291 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s2306ageIntegracao
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s2306ageIntegracao</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Agente de Integração
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Agente de Integração</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s2306.can_view_s2306ageIntegracao %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's2306_ageintegracao_salvar' hash='{}'|json_return_page:'s2306_ageintegracao_salvar'|json_return_hash:hash|json_id:s2306_ageintegracao_id|json_print:0|base64_encode_me %}">
-                            Agente de Integração
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s2306_ageintegracao_id %}
+                    {% if pk %}
+                        {% if perms.s2306.can_see_s2306ageIntegracao %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2306_ageintegracao_salvar' pk=pk tab='master' %}">
+                                Agente de Integração</a>
+                            </li>
+                        {% endif %}
                         
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s2306_ageintegracao_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s2306_ageintegracao_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s2306_ageintegracao_id %}
-   {% if s2306_ageintegracao.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2306_ageintegracao.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2306_ageintegracao.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2306_ageintegracao.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2306_ageintegracao.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2306_ageintegracao.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2306_ageintegracao.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Agente de Integração</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s2306_ageintegracao.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2306_ageintegracao.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s2306.change_s2306_ageintegracao or perms.s2306.add_s2306_ageintegracao %}
-                <form action="#" id="id_form_s2306_ageintegracao" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s2306_ageintegracao.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2306_ageintegracao.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2306_ageintegracao.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s2306_ageintegracao.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s2306_ageintegracao_id %}
-
-                                {% if perms.s2306.add_s2306ageIntegracao %}
-                                    <a href="{% url 's2306_ageintegracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s2306.can_view_s2306_ageintegracao or perms.s2306.can_view_s2306_ageintegracao %}
-                                <a href="{% url 's2306_ageintegracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2306.can_view_s2306_ageintegracao and s2306_ageintegracao_id %}
-                                <a href="{% url 's2306_ageintegracao_salvar' hash='{}'|json_id:s2306_ageintegracao_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s2306.can_view_s2306_ageintegracao and s2306_ageintegracao_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's2306_ageintegracao_salvar' hash='{}'|json_id:s2306_ageintegracao_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2306.change_s2306_ageintegracao or perms.s2306.add_s2306_ageintegracao %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s2306.delete_s2306_ageintegracao and s2306_ageintegracao_id %}
-
-                            <a href="{% url 's2306_ageintegracao_apagar' hash='{}'|json_id:s2306_ageintegracao_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s2306_ageintegracao.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2306_ageintegracao.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s2306.change_s2306_ageintegracao or perms.s2306.add_s2306_ageintegracao %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s2306_ageintegracao_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Agente de Integração</h3>
+                    </div>
+
+                    {% if perms.s2306.change_s2306ageIntegracao or perms.s2306.add_s2306ageIntegracao %}
+                        {% if s2306_ageintegracao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2306_ageintegracao" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2306_ageintegracao.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s2306.add_s2306ageIntegracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2306_ageintegracao_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2306.can_see_list_s2306ageIntegracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2306_ageintegracao' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2306.can_print_data_s2306ageIntegracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2306_ageintegracao_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s2306.change_s2306ageIntegracao %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2306.delete_s2306ageIntegracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2306_ageintegracao_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s2306.add_s2306ageIntegracao %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s2306.add_s2306ageIntegracao or perms.s2306.change_s2306ageIntegracao %}
+
+                        {% if s2306_ageintegracao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

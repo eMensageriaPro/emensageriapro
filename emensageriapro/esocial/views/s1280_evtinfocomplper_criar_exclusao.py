@@ -73,49 +73,42 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def criar_exclusao(request, hash):
+def criar_exclusao(request, pk):
 
     from emensageriapro.esocial.views.s1280_evtinfocomplper_importar import read_s1280_evtinfocomplper_string
     from emensageriapro.esocial.views.s1280_evtinfocomplper_gerar_xml import gerar_xml_s1280
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('esocial.can_create_delete_s1280evtInfoComplPer'):
+    
+        s1280_evtinfocomplper = get_object_or_404(
+            s1280evtInfoComplPer,
+            id=pk)
 
-    dict_hash = get_hash_url(hash)
-    s1280_evtinfocomplper_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('esocial.can_create_delete_event_s1280evtInfoComplPer'):
+        texto = gerar_xml_s1280(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
+        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
+        dados = read_s1280_evtinfocomplper_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(s1280_evtinfocomplper)
 
-        if s1280_evtinfocomplper_id:
-    
-            s1280_evtinfocomplper = get_object_or_404(
-                s1280evtInfoComplPer,
-                excluido=False,
-                id=s1280_evtinfocomplper_id)
-    
-            texto = gerar_xml_s1280(s1280_evtinfocomplper_id, versao="|")
-            texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-            texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-            dados = read_s1280_evtinfocomplper_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s1280_evtinfocomplper)
-    
-            s1280evtInfoComplPer.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1280_evtinfocomplper.identidade),
-                's1280_evtinfocomplper', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de exclusão criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s1280_evtinfocomplper_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de exclusão!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        s1280evtInfoComplPer.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1280_evtinfocomplper.identidade),
+            's1280_evtinfocomplper', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de exclusão criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('s1280_evtinfocomplper_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('s1280_evtinfocomplper_salvar', pk=pk, tab='master')

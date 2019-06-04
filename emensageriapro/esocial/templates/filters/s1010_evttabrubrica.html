@@ -146,20 +146,20 @@
     <div class="input-group" style="width: 100%;">
       <select name="status" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
-        <option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio</option>
-        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio de precedência</option>
-        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Assinado</option>
         <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option>
-        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Duplicado</option>
-        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option>
-        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Assinatura</option>
-        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Geração</option>
-        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na validação</option>
-        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no Envio/Consulta</option>
-        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Gerado</option>
         <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Importado</option>
+        <option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio</option>
+        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option>
+        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no Envio/Consulta</option>
         <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processado</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Duplicado</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Gerado</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Geração</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Assinado</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Assinatura</option>
         <option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Validado</option>
+        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na validação</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio de precedência</option>
       </select>
     </div>
   </div>
@@ -173,9 +173,9 @@
     <div class="input-group" style="width: 100%;">
       <select name="operacao" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'operacao' %}selected="selected"{% endifequal %} >Incluir</option>
         <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'operacao' %}selected="selected"{% endifequal %} >Alterar</option>
         <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'operacao' %}selected="selected"{% endifequal %} >Excluir</option>
-        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'operacao' %}selected="selected"{% endifequal %} >Incluir</option>
       </select>
     </div>
   </div>

@@ -15,7 +15,7 @@
     <label id="r5001_regocorrs__r5001_evttotal__label">Informações de ocorrências registradas*</label>
     {% if not for_print %}
       {% if r5001_regocorrs_form.r5001_evttotal.value %}
-        <a id="r5001_regocorrs__r5001_evttotal__div_acessar" href="{% url 'r5001_evttotal_salvar' hash='{}'|json_id:r5001_regocorrs_form.r5001_evttotal.value|json_print:0|base64_encode_me %}">
+        <a id="r5001_regocorrs__r5001_evttotal__div_acessar" href="{% url 'r5001_evttotal_salvar' pk=r5001_regocorrs_form.r5001_evttotal.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

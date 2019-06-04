@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1210evtPgtos'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1210_evtpgtos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1210evtPgtos'):
-        s1210_evtpgtos = get_object_or_404(s1210evtPgtos, id=s1210_evtpgtos_id)
-        s1210_evtpgtos_lista = s1210evtPgtos.objects.filter(id=s1210_evtpgtos_id).all()
+        s1210_evtpgtos = get_object_or_404(s1210evtPgtos, id=pk)
+        s1210_evtpgtos_lista = s1210evtPgtos.objects.filter(id=pk).all()
 
         
         s1210_deps_lista = s1210deps.objects.filter(s1210_evtpgtos_id__in = listar_ids(s1210_evtpgtos_lista) ).all()
@@ -109,15 +95,14 @@ def verificar(request, hash):
         s1210_detpgtoant_infopgtoant_lista = s1210detPgtoAntinfoPgtoAnt.objects.filter(s1210_detpgtoant_id__in = listar_ids(s1210_detpgtoant_lista) ).all()
         s1210_idepgtoext_lista = s1210idePgtoExt.objects.filter(s1210_infopgto_id__in = listar_ids(s1210_infopgto_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1210_evtpgtos'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1210_evtpgtos'
 
         context = {
             's1210_evtpgtos_lista': s1210_evtpgtos_lista,
-            's1210_evtpgtos_id': s1210_evtpgtos_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1210_evtpgtos': s1210_evtpgtos,
-            
-            
             's1210_deps_lista': s1210_deps_lista,
             's1210_infopgto_lista': s1210_infopgto_lista,
             's1210_detpgtofl_lista': s1210_detpgtofl_lista,
@@ -133,45 +118,42 @@ def verificar(request, hash):
             's1210_detpgtoant_lista': s1210_detpgtoant_lista,
             's1210_detpgtoant_infopgtoant_lista': s1210_detpgtoant_infopgtoant_lista,
             's1210_idepgtoext_lista': s1210_idepgtoext_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1210_evtpgtos', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1210_evtpgtos_verificar.html',
-                                           filename="s1210_evtpgtos.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1210_evtpgtos_verificar.html',
+                filename="s1210_evtpgtos.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1210_evtpgtos_verificar.html', context)
             filename = "%s.xls" % s1210_evtpgtos.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1210_evtpgtos_verificar.html', context)
             filename = "%s.csv" % s1210_evtpgtos.identidade
@@ -186,7 +168,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1210_evtpgtos', ],
             'data': datetime.now(),

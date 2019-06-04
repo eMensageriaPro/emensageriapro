@@ -52,7 +52,7 @@ from emensageriapro.s2250.views import s2250_cancavprevio_api as s2250_cancavpre
 urlpatterns = [
 
 
-    url(r'^s2250-detavprevio/apagar/(?P<hash>.*)/$', 
+    url(r'^s2250-detavprevio/apagar/(?P<pk>[0-9]+)/$', 
         s2250_detavprevio_apagar_views.apagar, 
         name='s2250_detavprevio_apagar'),
 
@@ -62,15 +62,27 @@ urlpatterns = [
     url(r'^s2250-detavprevio/api/(?P<pk>[0-9]+)/$',
         s2250_detavprevio_api_views.s2250detAvPrevioDetail.as_view() ),
 
-    url(r'^s2250-detavprevio/listar/(?P<hash>.*)/$', 
+    url(r'^s2250-detavprevio/$', 
         s2250_detavprevio_listar_views.listar, 
         name='s2250_detavprevio'),
 
-    url(r'^s2250-detavprevio/salvar/(?P<hash>.*)/$', 
+    url(r'^s2250-detavprevio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2250_detavprevio_salvar_views.salvar, 
         name='s2250_detavprevio_salvar'),
+        
+    url(r'^s2250-detavprevio/cadastrar/$', 
+        s2250_detavprevio_salvar_views.salvar, 
+        name='s2250_detavprevio_cadastrar'),
 
-    url(r'^s2250-cancavprevio/apagar/(?P<hash>.*)/$', 
+    url(r'^s2250-detavprevio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2250_detavprevio_salvar_views.salvar, 
+        name='s2250_detavprevio_salvar_output'),
+        
+    url(r'^s2250-detavprevio/(?P<output>[\w-]+)/$', 
+        s2250_detavprevio_listar_views.listar, 
+        name='s2250_detavprevio_output'),
+
+    url(r'^s2250-cancavprevio/apagar/(?P<pk>[0-9]+)/$', 
         s2250_cancavprevio_apagar_views.apagar, 
         name='s2250_cancavprevio_apagar'),
 
@@ -80,13 +92,25 @@ urlpatterns = [
     url(r'^s2250-cancavprevio/api/(?P<pk>[0-9]+)/$',
         s2250_cancavprevio_api_views.s2250cancAvPrevioDetail.as_view() ),
 
-    url(r'^s2250-cancavprevio/listar/(?P<hash>.*)/$', 
+    url(r'^s2250-cancavprevio/$', 
         s2250_cancavprevio_listar_views.listar, 
         name='s2250_cancavprevio'),
 
-    url(r'^s2250-cancavprevio/salvar/(?P<hash>.*)/$', 
+    url(r'^s2250-cancavprevio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2250_cancavprevio_salvar_views.salvar, 
         name='s2250_cancavprevio_salvar'),
+        
+    url(r'^s2250-cancavprevio/cadastrar/$', 
+        s2250_cancavprevio_salvar_views.salvar, 
+        name='s2250_cancavprevio_cadastrar'),
+
+    url(r'^s2250-cancavprevio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2250_cancavprevio_salvar_views.salvar, 
+        name='s2250_cancavprevio_salvar_output'),
+        
+    url(r'^s2250-cancavprevio/(?P<output>[\w-]+)/$', 
+        s2250_cancavprevio_listar_views.listar, 
+        name='s2250_cancavprevio_output'),
 
 
 ]

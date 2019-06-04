@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2300evtTSVInicio'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2300_evttsvinicio_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2300evtTSVInicio'):
-        s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=s2300_evttsvinicio_id)
-        s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.filter(id=s2300_evttsvinicio_id).all()
+        s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
+        s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.filter(id=pk).all()
 
         
         s2300_documentos_lista = s2300documentos.objects.filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).all()
@@ -119,15 +105,14 @@ def verificar(request, hash):
         s2300_afastamento_lista = s2300afastamento.objects.filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).all()
         s2300_termino_lista = s2300termino.objects.filter(s2300_evttsvinicio_id__in = listar_ids(s2300_evttsvinicio_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2300_evttsvinicio'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2300_evttsvinicio'
 
         context = {
             's2300_evttsvinicio_lista': s2300_evttsvinicio_lista,
-            's2300_evttsvinicio_id': s2300_evttsvinicio_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2300_evttsvinicio': s2300_evttsvinicio,
-            
-            
             's2300_documentos_lista': s2300_documentos_lista,
             's2300_ctps_lista': s2300_ctps_lista,
             's2300_ric_lista': s2300_ric_lista,
@@ -153,45 +138,42 @@ def verificar(request, hash):
             's2300_mudancacpf_lista': s2300_mudancacpf_lista,
             's2300_afastamento_lista': s2300_afastamento_lista,
             's2300_termino_lista': s2300_termino_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2300_evttsvinicio', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2300_evttsvinicio_verificar.html',
-                                           filename="s2300_evttsvinicio.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2300_evttsvinicio_verificar.html',
+                filename="s2300_evttsvinicio.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2300_evttsvinicio_verificar.html', context)
             filename = "%s.xls" % s2300_evttsvinicio.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2300_evttsvinicio_verificar.html', context)
             filename = "%s.csv" % s2300_evttsvinicio.identidade
@@ -206,7 +188,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2300_evttsvinicio', ],
             'data': datetime.now(),

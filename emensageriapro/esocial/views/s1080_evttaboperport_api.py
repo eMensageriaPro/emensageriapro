@@ -66,7 +66,6 @@ class s1080evtTabOperPortList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1080evtTabOperPortDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1080evtTabOperPort.objects.all()

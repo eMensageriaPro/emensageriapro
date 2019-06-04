@@ -66,7 +66,6 @@ class s2200evtAdmissaoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2200evtAdmissaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2200evtAdmissao.objects.all()

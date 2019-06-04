@@ -66,7 +66,6 @@ class s2210evtCATList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2210evtCATDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2210evtCAT.objects.all()

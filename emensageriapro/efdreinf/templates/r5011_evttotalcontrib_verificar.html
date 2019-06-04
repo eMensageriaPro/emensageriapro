@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-5011 - Informações de bases e tributos consolidadas por período de apuração<br>Identidade: {{ r5011_evttotalcontrib.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 'r5011_evttotalcontrib_verificar' hash='{}'|json_id:r5011_evttotalcontrib_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 'r5011_evttotalcontrib_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 'r5011_evttotalcontrib_verificar' hash='{}'|json_id:r5011_evttotalcontrib_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 'r5011_evttotalcontrib_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 'r5011_evttotalcontrib_verificar' hash='{}'|json_id:r5011_evttotalcontrib_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 'r5011_evttotalcontrib_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 'r5011_evttotalcontrib_verificar' hash='{}'|json_id:r5011_evttotalcontrib_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o ano/mês no formato AAAA-MM de referência das informações. <validacao> Deve ser um ano/mês, igual ou posterior a implementação da EFD-Reinf, no formato AAAA-MM. Não pode ser maior que o ano/mês corrente.</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.perapur or r5011_evttotalcontrib.perapur == 0 %}{{ r5011_evttotalcontrib.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -155,11 +152,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF) <valores_validos> 1, 2</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.tpinsc or r5011_evttotalcontrib.tpinsc == 0 %}{{ r5011_evttotalcontrib.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -174,11 +171,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.nrinsc or r5011_evttotalcontrib.nrinsc == 0 %}{{ r5011_evttotalcontrib.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -203,11 +200,11 @@
             <td width="130px">cdRetorno</td>
             <td width="500px">Código do Retorno 0 - Sucesso 1 - Erro 2 - Em processamento</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.cdretorno or r5011_evttotalcontrib.cdretorno == 0 %}{{ r5011_evttotalcontrib.cdretorno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -222,11 +219,11 @@
             <td width="130px">descRetorno</td>
             <td width="500px">Descrição do retorno</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.descretorno or r5011_evttotalcontrib.descretorno == 0 %}{{ r5011_evttotalcontrib.descretorno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">tpOcorr</td>
             <td width="500px">Tipo da ocorrência<opcoes>1 - Erro;2 - Aviso</td>
             <td width="200px"><b>{% if r5011_regocorrs.tpocorr or r5011_regocorrs.tpocorr == 0 %}{{ r5011_regocorrs.tpocorr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_regocorrs_visualizar' %}
-                <a href="{% url 'r5011_regocorrs_salvar'  hash='{}'|json_id:r5011_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011regOcorrs or perms.efdreinf.can_see_r5011regOcorrs %}
+                <a href="{% url 'r5011_regocorrs_salvar' pk=r5011_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">localErroAviso</td>
             <td width="500px">Campo que originou o erro ou aviso</td>
             <td width="200px"><b>{% if r5011_regocorrs.localerroaviso or r5011_regocorrs.localerroaviso == 0 %}{{ r5011_regocorrs.localerroaviso }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_regocorrs_visualizar' %}
-                <a href="{% url 'r5011_regocorrs_salvar'  hash='{}'|json_id:r5011_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011regOcorrs or perms.efdreinf.can_see_r5011regOcorrs %}
+                <a href="{% url 'r5011_regocorrs_salvar' pk=r5011_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">codResp</td>
             <td width="500px">Código do status da resposta do processamento da consulta</td>
             <td width="200px"><b>{% if r5011_regocorrs.codresp or r5011_regocorrs.codresp == 0 %}{{ r5011_regocorrs.codresp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_regocorrs_visualizar' %}
-                <a href="{% url 'r5011_regocorrs_salvar'  hash='{}'|json_id:r5011_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011regOcorrs or perms.efdreinf.can_see_r5011regOcorrs %}
+                <a href="{% url 'r5011_regocorrs_salvar' pk=r5011_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -304,11 +301,11 @@
             <td width="130px">dscResp</td>
             <td width="500px">Descrição literal da resposta do processamento da consulta</td>
             <td width="200px"><b>{% if r5011_regocorrs.dscresp or r5011_regocorrs.dscresp == 0 %}{{ r5011_regocorrs.dscresp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_regocorrs_visualizar' %}
-                <a href="{% url 'r5011_regocorrs_salvar'  hash='{}'|json_id:r5011_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011regOcorrs or perms.efdreinf.can_see_r5011regOcorrs %}
+                <a href="{% url 'r5011_regocorrs_salvar' pk=r5011_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">nrProtEntr</td>
             <td width="500px">Número do protocolo de entrega do evento</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.nrprotentr or r5011_evttotalcontrib.nrprotentr == 0 %}{{ r5011_evttotalcontrib.nrprotentr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">dhProcess</td>
             <td width="500px">Data e hora do início do processamento da consulta</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.dhprocess or r5011_evttotalcontrib.dhprocess == 0 %}{{ r5011_evttotalcontrib.dhprocess|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -366,11 +363,11 @@
             <td width="130px">tpEv</td>
             <td width="500px">Tipo do Evento</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.tpev or r5011_evttotalcontrib.tpev == 0 %}{{ r5011_evttotalcontrib.tpev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -385,11 +382,11 @@
             <td width="130px">idEv</td>
             <td width="500px">ID do Evento</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.idev or r5011_evttotalcontrib.idev == 0 %}{{ r5011_evttotalcontrib.idev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -404,11 +401,11 @@
             <td width="130px">hash</td>
             <td width="500px">Hash do arquivo processado</td>
             <td width="200px"><b>{% if r5011_evttotalcontrib.hash or r5011_evttotalcontrib.hash == 0 %}{{ r5011_evttotalcontrib.hash }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
-                <a href="{% url 'r5011_evttotalcontrib_salvar'  hash='{}'|json_id:r5011_evttotalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011evtTotalContrib or perms.efdreinf.can_see_r5011evtTotalContrib %}
+                <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_evttotalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -429,11 +426,11 @@
             <td width="130px">nrRecArqBase</td>
             <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem à presente solicitação (R-2099).</td>
             <td width="200px"><b>{% if r5011_infototalcontrib.nrrecarqbase or r5011_infototalcontrib.nrrecarqbase == 0 %}{{ r5011_infototalcontrib.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_infototalcontrib_visualizar' %}
-                <a href="{% url 'r5011_infototalcontrib_salvar'  hash='{}'|json_id:r5011_infototalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011infoTotalContrib or perms.efdreinf.can_see_r5011infoTotalContrib %}
+                <a href="{% url 'r5011_infototalcontrib_salvar' pk=r5011_infototalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -448,11 +445,11 @@
             <td width="130px">indExistInfo</td>
             <td width="500px">Indicativo de existência de valores de bases ou de tributos, conforme opções a seguir<opcoes>1 - Há informações de bases e/ou de tributos; 2 - Há movimento, porém não há informações de bases ou de tributos; 3 - Não há movimento na competência. <valores_validos> 1,2,3.</td>
             <td width="200px"><b>{% if r5011_infototalcontrib.indexistinfo or r5011_infototalcontrib.indexistinfo == 0 %}{{ r5011_infototalcontrib.indexistinfo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_infototalcontrib_visualizar' %}
-                <a href="{% url 'r5011_infototalcontrib_salvar'  hash='{}'|json_id:r5011_infototalcontrib.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011infoTotalContrib or perms.efdreinf.can_see_r5011infoTotalContrib %}
+                <a href="{% url 'r5011_infototalcontrib_salvar' pk=r5011_infototalcontrib.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -473,11 +470,11 @@
             <td width="130px">cnpjPrestador</td>
             <td width="500px">CNPJ do Prestador de Serviços. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rtom.cnpjprestador or r5011_rtom.cnpjprestador == 0 %}{{ r5011_rtom.cnpjprestador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rtom_visualizar' %}
-                <a href="{% url 'r5011_rtom_salvar'  hash='{}'|json_id:r5011_rtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RTom or perms.efdreinf.can_see_r5011RTom %}
+                <a href="{% url 'r5011_rtom_salvar' pk=r5011_rtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -492,11 +489,11 @@
             <td width="130px">cno</td>
             <td width="500px">Número de inscrição no Cadastro Nacional de Obras - CNO. Origem: R-5001</td>
             <td width="200px"><b>{% if r5011_rtom.cno or r5011_rtom.cno == 0 %}{{ r5011_rtom.cno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rtom_visualizar' %}
-                <a href="{% url 'r5011_rtom_salvar'  hash='{}'|json_id:r5011_rtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RTom or perms.efdreinf.can_see_r5011RTom %}
+                <a href="{% url 'r5011_rtom_salvar' pk=r5011_rtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -511,11 +508,11 @@
             <td width="130px">vlrTotalBaseRet</td>
             <td width="500px">Base de cálculo da retenção da contribuição previdenciária. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rtom.vlrtotalbaseret or r5011_rtom.vlrtotalbaseret == 0 %}{{ r5011_rtom.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rtom_visualizar' %}
-                <a href="{% url 'r5011_rtom_salvar'  hash='{}'|json_id:r5011_rtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RTom or perms.efdreinf.can_see_r5011RTom %}
+                <a href="{% url 'r5011_rtom_salvar' pk=r5011_rtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -536,11 +533,11 @@
             <td width="130px">CRTom</td>
             <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. Origem: R-5001. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos <valores_validos> 1141-06, 1162-01</td>
             <td width="200px"><b>{% if r5011_infocrtom.crtom or r5011_infocrtom.crtom == 0 %}{{ r5011_infocrtom.crtom }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_infocrtom_visualizar' %}
-                <a href="{% url 'r5011_infocrtom_salvar'  hash='{}'|json_id:r5011_infocrtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011infoCRTom or perms.efdreinf.can_see_r5011infoCRTom %}
+                <a href="{% url 'r5011_infocrtom_salvar' pk=r5011_infocrtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -555,11 +552,11 @@
             <td width="130px">vlrCRTom</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. Origem: 5001. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if r5011_infocrtom.vlrcrtom or r5011_infocrtom.vlrcrtom == 0 %}{{ r5011_infocrtom.vlrcrtom }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_infocrtom_visualizar' %}
-                <a href="{% url 'r5011_infocrtom_salvar'  hash='{}'|json_id:r5011_infocrtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011infoCRTom or perms.efdreinf.can_see_r5011infoCRTom %}
+                <a href="{% url 'r5011_infocrtom_salvar' pk=r5011_infocrtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -574,11 +571,11 @@
             <td width="130px">vlrCRTomSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. Origem: R-5001. <validacao> Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if r5011_infocrtom.vlrcrtomsusp or r5011_infocrtom.vlrcrtomsusp == 0 %}{{ r5011_infocrtom.vlrcrtomsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_infocrtom_visualizar' %}
-                <a href="{% url 'r5011_infocrtom_salvar'  hash='{}'|json_id:r5011_infocrtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011infoCRTom or perms.efdreinf.can_see_r5011infoCRTom %}
+                <a href="{% url 'r5011_infocrtom_salvar' pk=r5011_infocrtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -599,11 +596,11 @@
             <td width="130px">tpInscTomador</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Origem: R-5001. <valores_validos> 1,4</td>
             <td width="200px"><b>{% if r5011_rprest.tpinsctomador or r5011_rprest.tpinsctomador == 0 %}{{ r5011_rprest.tpinsctomador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -618,11 +615,11 @@
             <td width="130px">nrInscTomador</td>
             <td width="500px">Número de inscrição do Tomador de Serviços, de acordo com o tipo de inscrição informado em {tpInscTomador}. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rprest.nrinsctomador or r5011_rprest.nrinsctomador == 0 %}{{ r5011_rprest.nrinsctomador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -637,11 +634,11 @@
             <td width="130px">vlrTotalBaseRet</td>
             <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rprest.vlrtotalbaseret or r5011_rprest.vlrtotalbaseret == 0 %}{{ r5011_rprest.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -656,11 +653,11 @@
             <td width="130px">vlrTotalRetPrinc</td>
             <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rprest.vlrtotalretprinc or r5011_rprest.vlrtotalretprinc == 0 %}{{ r5011_rprest.vlrtotalretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -675,11 +672,11 @@
             <td width="130px">vlrTotalRetAdic</td>
             <td width="500px">Soma do valor do adicional de retenção das notas fiscais. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rprest.vlrtotalretadic or r5011_rprest.vlrtotalretadic == 0 %}{{ r5011_rprest.vlrtotalretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -694,11 +691,11 @@
             <td width="130px">vlrTotalNRetPrinc</td>
             <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rprest.vlrtotalnretprinc or r5011_rprest.vlrtotalnretprinc == 0 %}{{ r5011_rprest.vlrtotalnretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -713,11 +710,11 @@
             <td width="130px">vlrTotalNRetAdic</td>
             <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rprest.vlrtotalnretadic or r5011_rprest.vlrtotalnretadic == 0 %}{{ r5011_rprest.vlrtotalnretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rprest_visualizar' %}
-                <a href="{% url 'r5011_rprest_salvar'  hash='{}'|json_id:r5011_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RPrest or perms.efdreinf.can_see_r5011RPrest %}
+                <a href="{% url 'r5011_rprest_salvar' pk=r5011_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -738,11 +735,11 @@
             <td width="130px">cnpjAssocDesp</td>
             <td width="500px">CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. Origem: R- 5001.</td>
             <td width="200px"><b>{% if r5011_rrecrepad.cnpjassocdesp or r5011_rrecrepad.cnpjassocdesp == 0 %}{{ r5011_rrecrepad.cnpjassocdesp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rrecrepad_visualizar' %}
-                <a href="{% url 'r5011_rrecrepad_salvar'  hash='{}'|json_id:r5011_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RRecRepAD or perms.efdreinf.can_see_r5011RRecRepAD %}
+                <a href="{% url 'r5011_rrecrepad_salvar' pk=r5011_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -757,11 +754,11 @@
             <td width="130px">vlrTotalRep</td>
             <td width="500px">Valor bruto dos recursos repassados. Origem: R- 5001.</td>
             <td width="200px"><b>{% if r5011_rrecrepad.vlrtotalrep or r5011_rrecrepad.vlrtotalrep == 0 %}{{ r5011_rrecrepad.vlrtotalrep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rrecrepad_visualizar' %}
-                <a href="{% url 'r5011_rrecrepad_salvar'  hash='{}'|json_id:r5011_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RRecRepAD or perms.efdreinf.can_see_r5011RRecRepAD %}
+                <a href="{% url 'r5011_rrecrepad_salvar' pk=r5011_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -776,11 +773,11 @@
             <td width="130px">CRRecRepAD</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. Origem: R-5001. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). <valores_validos> 1151-02</td>
             <td width="200px"><b>{% if r5011_rrecrepad.crrecrepad or r5011_rrecrepad.crrecrepad == 0 %}{{ r5011_rrecrepad.crrecrepad }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rrecrepad_visualizar' %}
-                <a href="{% url 'r5011_rrecrepad_salvar'  hash='{}'|json_id:r5011_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RRecRepAD or perms.efdreinf.can_see_r5011RRecRepAD %}
+                <a href="{% url 'r5011_rrecrepad_salvar' pk=r5011_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -795,11 +792,11 @@
             <td width="130px">vlrCRRecRepAD</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-5001 <validacao> Deve ser apurado de acordo com a legislação em vigor na competência.</td>
             <td width="200px"><b>{% if r5011_rrecrepad.vlrcrrecrepad or r5011_rrecrepad.vlrcrrecrepad == 0 %}{{ r5011_rrecrepad.vlrcrrecrepad }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rrecrepad_visualizar' %}
-                <a href="{% url 'r5011_rrecrepad_salvar'  hash='{}'|json_id:r5011_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RRecRepAD or perms.efdreinf.can_see_r5011RRecRepAD %}
+                <a href="{% url 'r5011_rrecrepad_salvar' pk=r5011_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -814,11 +811,11 @@
             <td width="130px">vlrCRRecRepADSusp</td>
             <td width="500px">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorrência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-5001</td>
             <td width="200px"><b>{% if r5011_rrecrepad.vlrcrrecrepadsusp or r5011_rrecrepad.vlrcrrecrepadsusp == 0 %}{{ r5011_rrecrepad.vlrcrrecrepadsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rrecrepad_visualizar' %}
-                <a href="{% url 'r5011_rrecrepad_salvar'  hash='{}'|json_id:r5011_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RRecRepAD or perms.efdreinf.can_see_r5011RRecRepAD %}
+                <a href="{% url 'r5011_rrecrepad_salvar' pk=r5011_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -839,11 +836,11 @@
             <td width="130px">CRComl</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} = [7] b) 1657-02 se {classTrib} <> [7], c) 1646-05 se {classTrib} = [7], d) 1646-06 se {classTrib} <> [7], e) 1213-02 se {classTrib} = [7], f) 1213-04 se {classTrib} <> [7]. <valores_validos> 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
             <td width="200px"><b>{% if r5011_rcoml.crcoml or r5011_rcoml.crcoml == 0 %}{{ r5011_rcoml.crcoml }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rcoml_visualizar' %}
-                <a href="{% url 'r5011_rcoml_salvar'  hash='{}'|json_id:r5011_rcoml.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RComl or perms.efdreinf.can_see_r5011RComl %}
+                <a href="{% url 'r5011_rcoml_salvar' pk=r5011_rcoml.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -858,11 +855,11 @@
             <td width="130px">vlrCRComl</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-5001. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência.</td>
             <td width="200px"><b>{% if r5011_rcoml.vlrcrcoml or r5011_rcoml.vlrcrcoml == 0 %}{{ r5011_rcoml.vlrcrcoml }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rcoml_visualizar' %}
-                <a href="{% url 'r5011_rcoml_salvar'  hash='{}'|json_id:r5011_rcoml.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RComl or perms.efdreinf.can_see_r5011RComl %}
+                <a href="{% url 'r5011_rcoml_salvar' pk=r5011_rcoml.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -877,11 +874,11 @@
             <td width="130px">vlrCRComlSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-5001</td>
             <td width="200px"><b>{% if r5011_rcoml.vlrcrcomlsusp or r5011_rcoml.vlrcrcomlsusp == 0 %}{{ r5011_rcoml.vlrcrcomlsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rcoml_visualizar' %}
-                <a href="{% url 'r5011_rcoml_salvar'  hash='{}'|json_id:r5011_rcoml.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RComl or perms.efdreinf.can_see_r5011RComl %}
+                <a href="{% url 'r5011_rcoml_salvar' pk=r5011_rcoml.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -902,11 +899,11 @@
             <td width="130px">CRCPRB</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. <valores_validos> 2991-01, 2985-01, 2985-04, 2985-06 (sem os hífens).</td>
             <td width="200px"><b>{% if r5011_rcprb.crcprb or r5011_rcprb.crcprb == 0 %}{{ r5011_rcprb.crcprb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rcprb_visualizar' %}
-                <a href="{% url 'r5011_rcprb_salvar'  hash='{}'|json_id:r5011_rcprb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RCPRB or perms.efdreinf.can_see_r5011RCPRB %}
+                <a href="{% url 'r5011_rcprb_salvar' pk=r5011_rcprb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -921,11 +918,11 @@
             <td width="130px">vlrCRCPRB</td>
             <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rcprb.vlrcrcprb or r5011_rcprb.vlrcrcprb == 0 %}{{ r5011_rcprb.vlrcrcprb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rcprb_visualizar' %}
-                <a href="{% url 'r5011_rcprb_salvar'  hash='{}'|json_id:r5011_rcprb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RCPRB or perms.efdreinf.can_see_r5011RCPRB %}
+                <a href="{% url 'r5011_rcprb_salvar' pk=r5011_rcprb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -940,11 +937,11 @@
             <td width="130px">vlrCRCPRBSusp</td>
             <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-5001.</td>
             <td width="200px"><b>{% if r5011_rcprb.vlrcrcprbsusp or r5011_rcprb.vlrcrcprbsusp == 0 %}{{ r5011_rcprb.vlrcrcprbsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r5011_rcprb_visualizar' %}
-                <a href="{% url 'r5011_rcprb_salvar'  hash='{}'|json_id:r5011_rcprb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r5011.can_see_r5011RCPRB or perms.efdreinf.can_see_r5011RCPRB %}
+                <a href="{% url 'r5011_rcprb_salvar' pk=r5011_rcprb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

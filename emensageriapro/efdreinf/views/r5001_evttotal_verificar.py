@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r5001evtTotal'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r5001_evttotal_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r5001evtTotal'):
-        r5001_evttotal = get_object_or_404(r5001evtTotal, id=r5001_evttotal_id)
-        r5001_evttotal_lista = r5001evtTotal.objects.filter(id=r5001_evttotal_id).all()
+        r5001_evttotal = get_object_or_404(r5001evtTotal, id=pk)
+        r5001_evttotal_lista = r5001evtTotal.objects.filter(id=pk).all()
 
         
         r5001_regocorrs_lista = r5001regOcorrs.objects.filter(r5001_evttotal_id__in = listar_ids(r5001_evttotal_lista) ).all()
@@ -104,15 +90,14 @@ def verificar(request, hash):
         r5001_rrecespetdesp_lista = r5001RRecEspetDesp.objects.filter(r5001_infototal_id__in = listar_ids(r5001_infototal_lista) ).all()
         r5001_evttotal_lista = r5001evtTotal.objects.filter(retornos_r5001_id__in = listar_ids(r5001_evttotal_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r5001_evttotal'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r5001_evttotal'
 
         context = {
             'r5001_evttotal_lista': r5001_evttotal_lista,
-            'r5001_evttotal_id': r5001_evttotal_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r5001_evttotal': r5001_evttotal,
-            
-            
             'r5001_regocorrs_lista': r5001_regocorrs_lista,
             'r5001_infototal_lista': r5001_infototal_lista,
             'r5001_rtom_lista': r5001_rtom_lista,
@@ -123,45 +108,42 @@ def verificar(request, hash):
             'r5001_rcprb_lista': r5001_rcprb_lista,
             'r5001_rrecespetdesp_lista': r5001_rrecespetdesp_lista,
             'r5001_evttotal_lista': r5001_evttotal_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r5001_evttotal', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r5001_evttotal_verificar.html',
-                                           filename="r5001_evttotal.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r5001_evttotal_verificar.html',
+                filename="r5001_evttotal.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r5001_evttotal_verificar.html', context)
             filename = "%s.xls" % r5001_evttotal.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r5001_evttotal_verificar.html', context)
             filename = "%s.csv" % r5001_evttotal.identidade
@@ -176,7 +158,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r5001_evttotal', ],
             'data': datetime.now(),

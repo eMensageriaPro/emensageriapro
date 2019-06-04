@@ -66,7 +66,6 @@ class ImportacaoArquivosList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class ImportacaoArquivosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = ImportacaoArquivos.objects.all()

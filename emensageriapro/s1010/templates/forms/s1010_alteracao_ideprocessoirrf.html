@@ -15,7 +15,7 @@
     <label id="s1010_alteracao_ideprocessoirrf__s1010_alteracao__label">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*</label>
     {% if not for_print %}
       {% if s1010_alteracao_ideprocessoirrf_form.s1010_alteracao.value %}
-        <a id="s1010_alteracao_ideprocessoirrf__s1010_alteracao__div_acessar" href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_ideprocessoirrf_form.s1010_alteracao.value|json_print:0|base64_encode_me %}">
+        <a id="s1010_alteracao_ideprocessoirrf__s1010_alteracao__div_acessar" href="{% url 's1010_alteracao_salvar' pk=s1010_alteracao_ideprocessoirrf_form.s1010_alteracao.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

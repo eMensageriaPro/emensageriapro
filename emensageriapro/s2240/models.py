@@ -97,8 +97,11 @@ class s2240altExpRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240altExpRisco", "Can view S2240ALTEXPRISCO"),
-            ("can_view_menu_s2240altExpRisco", "Can view menu S2240ALTEXPRISCO"),)
+            ("can_see_list_s2240altExpRisco", u"Pode ver listagem do modelo S2240ALTEXPRISCO"),
+            ("can_see_data_s2240altExpRisco", u"Pode visualizar o conteúdo do modelo S2240ALTEXPRISCO"),
+            ("can_see_menu_s2240altExpRisco", u"Pode visualizar no menu o modelo S2240ALTEXPRISCO"),
+            ("can_print_list_s2240altExpRisco", u"Pode imprimir listagem do modelo S2240ALTEXPRISCO"),
+            ("can_print_data_s2240altExpRisco", u"Pode imprimir o conteúdo do modelo S2240ALTEXPRISCO"), )
             
         ordering = [
             's2240_evtexprisco',
@@ -155,8 +158,11 @@ class s2240altExpRiscoepc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240altExpRiscoepc", "Can view S2240ALTEXPRISCOEPC"),
-            ("can_view_menu_s2240altExpRiscoepc", "Can view menu S2240ALTEXPRISCOEPC"),)
+            ("can_see_list_s2240altExpRiscoepc", u"Pode ver listagem do modelo S2240ALTEXPRISCOEPC"),
+            ("can_see_data_s2240altExpRiscoepc", u"Pode visualizar o conteúdo do modelo S2240ALTEXPRISCOEPC"),
+            ("can_see_menu_s2240altExpRiscoepc", u"Pode visualizar no menu o modelo S2240ALTEXPRISCOEPC"),
+            ("can_print_list_s2240altExpRiscoepc", u"Pode imprimir listagem do modelo S2240ALTEXPRISCOEPC"),
+            ("can_print_data_s2240altExpRiscoepc", u"Pode imprimir o conteúdo do modelo S2240ALTEXPRISCOEPC"), )
             
         ordering = [
             's2240_altexprisco_fatrisco',
@@ -223,8 +229,11 @@ class s2240altExpRiscoepi(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240altExpRiscoepi", "Can view S2240ALTEXPRISCOEPI"),
-            ("can_view_menu_s2240altExpRiscoepi", "Can view menu S2240ALTEXPRISCOEPI"),)
+            ("can_see_list_s2240altExpRiscoepi", u"Pode ver listagem do modelo S2240ALTEXPRISCOEPI"),
+            ("can_see_data_s2240altExpRiscoepi", u"Pode visualizar o conteúdo do modelo S2240ALTEXPRISCOEPI"),
+            ("can_see_menu_s2240altExpRiscoepi", u"Pode visualizar no menu o modelo S2240ALTEXPRISCOEPI"),
+            ("can_print_list_s2240altExpRiscoepi", u"Pode imprimir listagem do modelo S2240ALTEXPRISCOEPI"),
+            ("can_print_data_s2240altExpRiscoepi", u"Pode imprimir o conteúdo do modelo S2240ALTEXPRISCOEPI"), )
             
         ordering = [
             's2240_altexprisco_fatrisco',
@@ -291,8 +300,11 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240altExpRiscofatRisco", "Can view S2240ALTEXPRISCOFATRISCO"),
-            ("can_view_menu_s2240altExpRiscofatRisco", "Can view menu S2240ALTEXPRISCOFATRISCO"),)
+            ("can_see_list_s2240altExpRiscofatRisco", u"Pode ver listagem do modelo S2240ALTEXPRISCOFATRISCO"),
+            ("can_see_data_s2240altExpRiscofatRisco", u"Pode visualizar o conteúdo do modelo S2240ALTEXPRISCOFATRISCO"),
+            ("can_see_menu_s2240altExpRiscofatRisco", u"Pode visualizar no menu o modelo S2240ALTEXPRISCOFATRISCO"),
+            ("can_print_list_s2240altExpRiscofatRisco", u"Pode imprimir listagem do modelo S2240ALTEXPRISCOFATRISCO"),
+            ("can_print_data_s2240altExpRiscofatRisco", u"Pode imprimir o conteúdo do modelo S2240ALTEXPRISCOFATRISCO"), )
             
         ordering = [
             's2240_altexprisco_infoamb',
@@ -352,8 +364,11 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240altExpRiscoinfoAmb", "Can view S2240ALTEXPRISCOINFOAMB"),
-            ("can_view_menu_s2240altExpRiscoinfoAmb", "Can view menu S2240ALTEXPRISCOINFOAMB"),)
+            ("can_see_list_s2240altExpRiscoinfoAmb", u"Pode ver listagem do modelo S2240ALTEXPRISCOINFOAMB"),
+            ("can_see_data_s2240altExpRiscoinfoAmb", u"Pode visualizar o conteúdo do modelo S2240ALTEXPRISCOINFOAMB"),
+            ("can_see_menu_s2240altExpRiscoinfoAmb", u"Pode visualizar no menu o modelo S2240ALTEXPRISCOINFOAMB"),
+            ("can_print_list_s2240altExpRiscoinfoAmb", u"Pode imprimir listagem do modelo S2240ALTEXPRISCOINFOAMB"),
+            ("can_print_data_s2240altExpRiscoinfoAmb", u"Pode imprimir o conteúdo do modelo S2240ALTEXPRISCOINFOAMB"), )
             
         ordering = [
             's2240_altexprisco',
@@ -410,8 +425,11 @@ class s2240fimExpRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240fimExpRisco", "Can view S2240FIMEXPRISCO"),
-            ("can_view_menu_s2240fimExpRisco", "Can view menu S2240FIMEXPRISCO"),)
+            ("can_see_list_s2240fimExpRisco", u"Pode ver listagem do modelo S2240FIMEXPRISCO"),
+            ("can_see_data_s2240fimExpRisco", u"Pode visualizar o conteúdo do modelo S2240FIMEXPRISCO"),
+            ("can_see_menu_s2240fimExpRisco", u"Pode visualizar no menu o modelo S2240FIMEXPRISCO"),
+            ("can_print_list_s2240fimExpRisco", u"Pode imprimir listagem do modelo S2240FIMEXPRISCO"),
+            ("can_print_data_s2240fimExpRisco", u"Pode imprimir o conteúdo do modelo S2240FIMEXPRISCO"), )
             
         ordering = [
             's2240_evtexprisco',
@@ -467,8 +485,11 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240fimExpRiscoinfoAmb", "Can view S2240FIMEXPRISCOINFOAMB"),
-            ("can_view_menu_s2240fimExpRiscoinfoAmb", "Can view menu S2240FIMEXPRISCOINFOAMB"),)
+            ("can_see_list_s2240fimExpRiscoinfoAmb", u"Pode ver listagem do modelo S2240FIMEXPRISCOINFOAMB"),
+            ("can_see_data_s2240fimExpRiscoinfoAmb", u"Pode visualizar o conteúdo do modelo S2240FIMEXPRISCOINFOAMB"),
+            ("can_see_menu_s2240fimExpRiscoinfoAmb", u"Pode visualizar no menu o modelo S2240FIMEXPRISCOINFOAMB"),
+            ("can_print_list_s2240fimExpRiscoinfoAmb", u"Pode imprimir listagem do modelo S2240FIMEXPRISCOINFOAMB"),
+            ("can_print_data_s2240fimExpRiscoinfoAmb", u"Pode imprimir o conteúdo do modelo S2240FIMEXPRISCOINFOAMB"), )
             
         ordering = [
             's2240_fimexprisco',
@@ -530,8 +551,11 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240fimExpRiscorespReg", "Can view S2240FIMEXPRISCORESPREG"),
-            ("can_view_menu_s2240fimExpRiscorespReg", "Can view menu S2240FIMEXPRISCORESPREG"),)
+            ("can_see_list_s2240fimExpRiscorespReg", u"Pode ver listagem do modelo S2240FIMEXPRISCORESPREG"),
+            ("can_see_data_s2240fimExpRiscorespReg", u"Pode visualizar o conteúdo do modelo S2240FIMEXPRISCORESPREG"),
+            ("can_see_menu_s2240fimExpRiscorespReg", u"Pode visualizar no menu o modelo S2240FIMEXPRISCORESPREG"),
+            ("can_print_list_s2240fimExpRiscorespReg", u"Pode imprimir listagem do modelo S2240FIMEXPRISCORESPREG"),
+            ("can_print_data_s2240fimExpRiscorespReg", u"Pode imprimir o conteúdo do modelo S2240FIMEXPRISCORESPREG"), )
             
         ordering = [
             's2240_evtexprisco',
@@ -589,8 +613,11 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscoativPericInsal", "Can view S2240INIEXPRISCOATIVPERICINSAL"),
-            ("can_view_menu_s2240iniExpRiscoativPericInsal", "Can view menu S2240INIEXPRISCOATIVPERICINSAL"),)
+            ("can_see_list_s2240iniExpRiscoativPericInsal", u"Pode ver listagem do modelo S2240INIEXPRISCOATIVPERICINSAL"),
+            ("can_see_data_s2240iniExpRiscoativPericInsal", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCOATIVPERICINSAL"),
+            ("can_see_menu_s2240iniExpRiscoativPericInsal", u"Pode visualizar no menu o modelo S2240INIEXPRISCOATIVPERICINSAL"),
+            ("can_print_list_s2240iniExpRiscoativPericInsal", u"Pode imprimir listagem do modelo S2240INIEXPRISCOATIVPERICINSAL"),
+            ("can_print_data_s2240iniExpRiscoativPericInsal", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCOATIVPERICINSAL"), )
             
         ordering = [
             's2240_evtexprisco',
@@ -649,8 +676,11 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscoepc", "Can view S2240INIEXPRISCOEPC"),
-            ("can_view_menu_s2240iniExpRiscoepc", "Can view menu S2240INIEXPRISCOEPC"),)
+            ("can_see_list_s2240iniExpRiscoepc", u"Pode ver listagem do modelo S2240INIEXPRISCOEPC"),
+            ("can_see_data_s2240iniExpRiscoepc", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCOEPC"),
+            ("can_see_menu_s2240iniExpRiscoepc", u"Pode visualizar no menu o modelo S2240INIEXPRISCOEPC"),
+            ("can_print_list_s2240iniExpRiscoepc", u"Pode imprimir listagem do modelo S2240INIEXPRISCOEPC"),
+            ("can_print_data_s2240iniExpRiscoepc", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCOEPC"), )
             
         ordering = [
             's2240_iniexprisco_fatrisco',
@@ -721,8 +751,11 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscoepi", "Can view S2240INIEXPRISCOEPI"),
-            ("can_view_menu_s2240iniExpRiscoepi", "Can view menu S2240INIEXPRISCOEPI"),)
+            ("can_see_list_s2240iniExpRiscoepi", u"Pode ver listagem do modelo S2240INIEXPRISCOEPI"),
+            ("can_see_data_s2240iniExpRiscoepi", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCOEPI"),
+            ("can_see_menu_s2240iniExpRiscoepi", u"Pode visualizar no menu o modelo S2240INIEXPRISCOEPI"),
+            ("can_print_list_s2240iniExpRiscoepi", u"Pode imprimir listagem do modelo S2240INIEXPRISCOEPI"),
+            ("can_print_data_s2240iniExpRiscoepi", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCOEPI"), )
             
         ordering = [
             's2240_iniexprisco_fatrisco',
@@ -799,8 +832,11 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscofatRisco", "Can view S2240INIEXPRISCOFATRISCO"),
-            ("can_view_menu_s2240iniExpRiscofatRisco", "Can view menu S2240INIEXPRISCOFATRISCO"),)
+            ("can_see_list_s2240iniExpRiscofatRisco", u"Pode ver listagem do modelo S2240INIEXPRISCOFATRISCO"),
+            ("can_see_data_s2240iniExpRiscofatRisco", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCOFATRISCO"),
+            ("can_see_menu_s2240iniExpRiscofatRisco", u"Pode visualizar no menu o modelo S2240INIEXPRISCOFATRISCO"),
+            ("can_print_list_s2240iniExpRiscofatRisco", u"Pode imprimir listagem do modelo S2240INIEXPRISCOFATRISCO"),
+            ("can_print_data_s2240iniExpRiscofatRisco", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCOFATRISCO"), )
             
         ordering = [
             's2240_evtexprisco',
@@ -859,8 +895,11 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscoinfoAmb", "Can view S2240INIEXPRISCOINFOAMB"),
-            ("can_view_menu_s2240iniExpRiscoinfoAmb", "Can view menu S2240INIEXPRISCOINFOAMB"),)
+            ("can_see_list_s2240iniExpRiscoinfoAmb", u"Pode ver listagem do modelo S2240INIEXPRISCOINFOAMB"),
+            ("can_see_data_s2240iniExpRiscoinfoAmb", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCOINFOAMB"),
+            ("can_see_menu_s2240iniExpRiscoinfoAmb", u"Pode visualizar no menu o modelo S2240INIEXPRISCOINFOAMB"),
+            ("can_print_list_s2240iniExpRiscoinfoAmb", u"Pode imprimir listagem do modelo S2240INIEXPRISCOINFOAMB"),
+            ("can_print_data_s2240iniExpRiscoinfoAmb", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCOINFOAMB"), )
             
         ordering = [
             's2240_evtexprisco',
@@ -917,8 +956,11 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscoobs", "Can view S2240INIEXPRISCOOBS"),
-            ("can_view_menu_s2240iniExpRiscoobs", "Can view menu S2240INIEXPRISCOOBS"),)
+            ("can_see_list_s2240iniExpRiscoobs", u"Pode ver listagem do modelo S2240INIEXPRISCOOBS"),
+            ("can_see_data_s2240iniExpRiscoobs", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCOOBS"),
+            ("can_see_menu_s2240iniExpRiscoobs", u"Pode visualizar no menu o modelo S2240INIEXPRISCOOBS"),
+            ("can_print_list_s2240iniExpRiscoobs", u"Pode imprimir listagem do modelo S2240INIEXPRISCOOBS"),
+            ("can_print_data_s2240iniExpRiscoobs", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCOOBS"), )
             
         ordering = [
             's2240_evtexprisco',]
@@ -984,8 +1026,11 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240iniExpRiscorespReg", "Can view S2240INIEXPRISCORESPREG"),
-            ("can_view_menu_s2240iniExpRiscorespReg", "Can view menu S2240INIEXPRISCORESPREG"),)
+            ("can_see_list_s2240iniExpRiscorespReg", u"Pode ver listagem do modelo S2240INIEXPRISCORESPREG"),
+            ("can_see_data_s2240iniExpRiscorespReg", u"Pode visualizar o conteúdo do modelo S2240INIEXPRISCORESPREG"),
+            ("can_see_menu_s2240iniExpRiscorespReg", u"Pode visualizar no menu o modelo S2240INIEXPRISCORESPREG"),
+            ("can_print_list_s2240iniExpRiscorespReg", u"Pode imprimir listagem do modelo S2240INIEXPRISCORESPREG"),
+            ("can_print_data_s2240iniExpRiscorespReg", u"Pode imprimir o conteúdo do modelo S2240INIEXPRISCORESPREG"), )
             
         ordering = [
             's2240_evtexprisco',

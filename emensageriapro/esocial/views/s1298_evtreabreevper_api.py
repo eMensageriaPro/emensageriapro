@@ -66,7 +66,6 @@ class s1298evtReabreEvPerList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1298evtReabreEvPerDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1298evtReabreEvPer.objects.all()

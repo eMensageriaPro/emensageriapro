@@ -97,8 +97,11 @@ class r4040ideNat(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4040ideNat", "Can view R4040IDENAT"),
-            ("can_view_menu_r4040ideNat", "Can view menu R4040IDENAT"),)
+            ("can_see_list_r4040ideNat", u"Pode ver listagem do modelo R4040IDENAT"),
+            ("can_see_data_r4040ideNat", u"Pode visualizar o conteúdo do modelo R4040IDENAT"),
+            ("can_see_menu_r4040ideNat", u"Pode visualizar no menu o modelo R4040IDENAT"),
+            ("can_print_list_r4040ideNat", u"Pode imprimir listagem do modelo R4040IDENAT"),
+            ("can_print_data_r4040ideNat", u"Pode imprimir o conteúdo do modelo R4040IDENAT"), )
             
         ordering = [
             'r4040_evtbenefnid',
@@ -162,8 +165,11 @@ class r4040infoPgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4040infoPgto", "Can view R4040INFOPGTO"),
-            ("can_view_menu_r4040infoPgto", "Can view menu R4040INFOPGTO"),)
+            ("can_see_list_r4040infoPgto", u"Pode ver listagem do modelo R4040INFOPGTO"),
+            ("can_see_data_r4040infoPgto", u"Pode visualizar o conteúdo do modelo R4040INFOPGTO"),
+            ("can_see_menu_r4040infoPgto", u"Pode visualizar no menu o modelo R4040INFOPGTO"),
+            ("can_print_list_r4040infoPgto", u"Pode imprimir listagem do modelo R4040INFOPGTO"),
+            ("can_print_data_r4040infoPgto", u"Pode imprimir o conteúdo do modelo R4040INFOPGTO"), )
             
         ordering = [
             'r4040_idenat',

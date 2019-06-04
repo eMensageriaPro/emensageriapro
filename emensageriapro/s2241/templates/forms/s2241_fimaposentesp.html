@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2241_fimaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Término*</label>
     {% if not for_print %}{% if s2241_fimaposentesp_form.s2241_aposentesp.value %}
-        <a href="{% url 's2241_aposentesp_salvar' hash='{}'|json_return_page:'s2241_fimaposentesp_salvar'|json_return_hash:hash|json_id:s2241_fimaposentesp_form.s2241_aposentesp.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2241_aposentesp_salvar' pk=s2241_fimaposentesp_form.s2241_aposentesp.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

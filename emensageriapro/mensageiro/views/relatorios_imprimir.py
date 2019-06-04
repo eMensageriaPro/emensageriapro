@@ -20,26 +20,13 @@ import base64
 
 
 @login_required
-def imprimir(request, hash):
+def imprimir(request, pk, output):
 
     from django.db import connections
 
-    for_print = 0
-
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        relatorios_id = int(dict_hash['id'])
-        for_print = 1
-    except:
-        usuario_id = False
-        return redirect('login', slug=slug)
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
     if True:
         
-        relatorio = get_object_or_404(Relatorios, id=relatorios_id)
+        relatorio = get_object_or_404(Relatorios, id=pk)
 
         cabecalho = '<th>%s</th>' % relatorio.campos
         cabecalho = cabecalho.replace(",", "</th><th>")
@@ -49,16 +36,15 @@ def imprimir(request, hash):
         listagem = ''
 
         for a in row:
+
             listagem_temp = '</td><td>'.join(a)
             listagem_temp = '<tr><td>%s</td></tr>' % listagem_temp
             listagem += listagem_temp
 
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'relatorio': relatorio,
-            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
             'cabecalho': cabecalho,
             'listagem': listagem,
         }
@@ -68,7 +54,7 @@ def imprimir(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
         }
 

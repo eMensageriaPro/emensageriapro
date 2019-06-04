@@ -15,7 +15,7 @@
     <label id="s5003_dpsperante__s5003_infodpsperante__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].*</label>
     {% if not for_print %}
       {% if s5003_dpsperante_form.s5003_infodpsperante.value %}
-        <a id="s5003_dpsperante__s5003_infodpsperante__div_acessar" href="{% url 's5003_infodpsperante_salvar' hash='{}'|json_id:s5003_dpsperante_form.s5003_infodpsperante.value|json_print:0|base64_encode_me %}">
+        <a id="s5003_dpsperante__s5003_infodpsperante__div_acessar" href="{% url 's5003_infodpsperante_salvar' pk=s5003_dpsperante_form.s5003_infodpsperante.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.r4040.models import *
 from emensageriapro.r4040.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r4040(request, r4040_evtbenefnid_id, versao=None):
+def gerar_xml_r4040(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if r4040_evtbenefnid_id:
+    if pk:
 
         r4040_evtbenefnid = get_object_or_404(
             r4040evtBenefNId,
-            excluido = False,
-            id = r4040_evtbenefnid_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = r4040_evtbenefnid.versao
@@ -105,7 +103,8 @@ def gerar_xml_r4040(request, r4040_evtbenefnid_id, versao=None):
             xmlns = ''
 
         r4040_evtbenefnid_lista = r4040evtBenefNId.objects. \
-            filter(id=r4040_evtbenefnid_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         r4040_idenat_lista = r4040ideNat.objects. \
             filter(r4040_evtbenefnid_id__in=listar_ids(r4040_evtbenefnid_lista)).all()
@@ -119,10 +118,8 @@ def gerar_xml_r4040(request, r4040_evtbenefnid_id, versao=None):
             'versao': versao,
             'base': r4040_evtbenefnid,
             'r4040_evtbenefnid_lista': r4040_evtbenefnid_lista,
-            'r4040_evtbenefnid_id': int(r4040_evtbenefnid_id),
+            'pk': int(pk),
             'r4040_evtbenefnid': r4040_evtbenefnid,
-
-            
             'r4040_idenat_lista': r4040_idenat_lista,
             'r4040_infopgto_lista': r4040_infopgto_lista,
         }
@@ -132,9 +129,7 @@ def gerar_xml_r4040(request, r4040_evtbenefnid_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, r4040_evtbenefnid_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
@@ -142,14 +137,14 @@ def gerar_xml_assinado(request, r4040_evtbenefnid_id):
 
     r4040_evtbenefnid = get_object_or_404(
         r4040evtBenefNId,
-        id=r4040_evtbenefnid_id)
+        id=pk)
 
     if r4040_evtbenefnid.arquivo_original:
     
         xml = ler_arquivo(r4040_evtbenefnid.arquivo)
 
     else:
-        xml = gerar_xml_r4040(request, r4040_evtbenefnid_id)
+        xml = gerar_xml_r4040(request, pk)
 
     if 'Signature' in xml:
     
@@ -165,20 +160,23 @@ def gerar_xml_assinado(request, r4040_evtbenefnid_id):
             grupo = get_grupo(r4040evtBenefNId)
 
             criar_transmissor_efdreinf(request,
-                                      grupo,
-                                      r4040_evtbenefnid.nrinsc,
-                                      r4040_evtbenefnid.tpinsc)
+                grupo,
+                r4040_evtbenefnid.nrinsc,
+                r4040_evtbenefnid.tpinsc)
 
             vincular_transmissor_efdreinf(request,
-                                         grupo,
-                                         r4040evtBenefNId,
-                                         r4040_evtbenefnid)
+                grupo,
+                r4040evtBenefNId,
+                r4040_evtbenefnid)
         
         r4040_evtbenefnid = get_object_or_404(
             r4040evtBenefNId,
-            id=r4040_evtbenefnid_id)
+            id=pk)
         
-        xml_assinado = assinar_efdreinf(request, xml, r4040_evtbenefnid.transmissor_lote_efdreinf_id)
+        xml_assinado = assinar_efdreinf(
+            request, 
+            xml, 
+            r4040_evtbenefnid.transmissor_lote_efdreinf_id)
         
     if r4040_evtbenefnid.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -187,29 +185,28 @@ def gerar_xml_assinado(request, r4040_evtbenefnid_id):
         STATUS_EVENTO_GERADO):
 
         r4040evtBenefNId.objects.\
-            filter(id=r4040_evtbenefnid_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r4040_evtbenefnid/%s.xml' % (r4040_evtbenefnid.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r4040_evtbenefnid/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    r4040_evtbenefnid_id = int(dict_hash['id'])
+    if pk:
 
-    if r4040_evtbenefnid_id:
-
-        xml_assinado = gerar_xml_assinado(request, r4040_evtbenefnid_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

@@ -102,8 +102,11 @@ class r2020infoProcRetAd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2020infoProcRetAd", "Can view R2020INFOPROCRETAD"),
-            ("can_view_menu_r2020infoProcRetAd", "Can view menu R2020INFOPROCRETAD"),)
+            ("can_see_list_r2020infoProcRetAd", u"Pode ver listagem do modelo R2020INFOPROCRETAD"),
+            ("can_see_data_r2020infoProcRetAd", u"Pode visualizar o conteúdo do modelo R2020INFOPROCRETAD"),
+            ("can_see_menu_r2020infoProcRetAd", u"Pode visualizar no menu o modelo R2020INFOPROCRETAD"),
+            ("can_print_list_r2020infoProcRetAd", u"Pode imprimir listagem do modelo R2020INFOPROCRETAD"),
+            ("can_print_data_r2020infoProcRetAd", u"Pode imprimir o conteúdo do modelo R2020INFOPROCRETAD"), )
             
         ordering = [
             'r2020_evtservprest',
@@ -166,8 +169,11 @@ class r2020infoProcRetPr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2020infoProcRetPr", "Can view R2020INFOPROCRETPR"),
-            ("can_view_menu_r2020infoProcRetPr", "Can view menu R2020INFOPROCRETPR"),)
+            ("can_see_list_r2020infoProcRetPr", u"Pode ver listagem do modelo R2020INFOPROCRETPR"),
+            ("can_see_data_r2020infoProcRetPr", u"Pode visualizar o conteúdo do modelo R2020INFOPROCRETPR"),
+            ("can_see_menu_r2020infoProcRetPr", u"Pode visualizar no menu o modelo R2020INFOPROCRETPR"),
+            ("can_print_list_r2020infoProcRetPr", u"Pode imprimir listagem do modelo R2020INFOPROCRETPR"),
+            ("can_print_data_r2020infoProcRetPr", u"Pode imprimir o conteúdo do modelo R2020INFOPROCRETPR"), )
             
         ordering = [
             'r2020_evtservprest',
@@ -236,8 +242,11 @@ class r2020infoTpServ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2020infoTpServ", "Can view R2020INFOTPSERV"),
-            ("can_view_menu_r2020infoTpServ", "Can view menu R2020INFOTPSERV"),)
+            ("can_see_list_r2020infoTpServ", u"Pode ver listagem do modelo R2020INFOTPSERV"),
+            ("can_see_data_r2020infoTpServ", u"Pode visualizar o conteúdo do modelo R2020INFOTPSERV"),
+            ("can_see_menu_r2020infoTpServ", u"Pode visualizar no menu o modelo R2020INFOTPSERV"),
+            ("can_print_list_r2020infoTpServ", u"Pode imprimir listagem do modelo R2020INFOTPSERV"),
+            ("can_print_data_r2020infoTpServ", u"Pode imprimir o conteúdo do modelo R2020INFOTPSERV"), )
             
         ordering = [
             'r2020_nfs',
@@ -302,8 +311,11 @@ class r2020nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2020nfs", "Can view R2020NFS"),
-            ("can_view_menu_r2020nfs", "Can view menu R2020NFS"),)
+            ("can_see_list_r2020nfs", u"Pode ver listagem do modelo R2020NFS"),
+            ("can_see_data_r2020nfs", u"Pode visualizar o conteúdo do modelo R2020NFS"),
+            ("can_see_menu_r2020nfs", u"Pode visualizar no menu o modelo R2020NFS"),
+            ("can_print_list_r2020nfs", u"Pode imprimir listagem do modelo R2020NFS"),
+            ("can_print_data_r2020nfs", u"Pode imprimir o conteúdo do modelo R2020NFS"), )
             
         ordering = [
             'r2020_evtservprest',

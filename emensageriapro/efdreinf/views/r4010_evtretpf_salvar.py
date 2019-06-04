@@ -63,28 +63,14 @@ from emensageriapro.r4010.forms import form_r4010_ideopsaude
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r4010_evtretpf_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if r4010_evtretpf_id:
-    
-        r4010_evtretpf = get_object_or_404(r4010evtRetPF, id=r4010_evtretpf_id)
+        r4010_evtretpf = get_object_or_404(r4010evtRetPF, id=pk)
 
         if r4010_evtretpf.status != STATUS_EVENTO_CADASTRADO:
         
@@ -92,9 +78,9 @@ def salvar(request, hash):
             dict_permissoes['r4010_evtretpf_apagar'] = 0
             dict_permissoes['r4010_evtretpf_editar'] = 0
             
-    if request.user.has_perm('efdreinf.can_view_r4010evtRetPF'):
+    if request.user.has_perm('efdreinf.can_see_r4010evtRetPF'):
     
-        if r4010_evtretpf_id:
+        if pk:
         
             r4010_evtretpf_form = form_r4010_evtretpf(request.POST or None, instance = r4010_evtretpf, 
                                          initial={'excluido': False})
@@ -113,45 +99,61 @@ def salvar(request, hash):
         
             if r4010_evtretpf_form.is_valid():
             
-                dados = r4010_evtretpf_form.cleaned_data
                 obj = r4010_evtretpf_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r4010_evtretpf_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4010_evtretpf', obj.id, usuario_id, 1)
+                                 'r4010_evtretpf', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r4010_evtretpf), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4010_evtretpf', r4010_evtretpf_id, usuario_id, 2)
+                                     'r4010_evtretpf', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('r4010_evtretpf_apagar', 'r4010_evtretpf_salvar', 'r4010_evtretpf'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'r4010_evtretpf_apagar', 
+                    'r4010_evtretpf_salvar', 
+                    'r4010_evtretpf'):
                     
-                if r4010_evtretpf_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r4010_evtretpf_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'r4010_evtretpf_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        r4010_evtretpf_form = disabled_form_fields(r4010_evtretpf_form, request.user.has_perm('efdreinf.change_r4010evtRetPF'))
+        r4010_evtretpf_form = disabled_form_fields(
+             r4010_evtretpf_form, 
+             request.user.has_perm('efdreinf.change_r4010evtRetPF'))
         
-        if r4010_evtretpf_id:
+        if pk:
+        
             if r4010_evtretpf.status != 0:
+            
                 r4010_evtretpf_form = disabled_form_fields(r4010_evtretpf_form, False)
+                
         #r4010_evtretpf_campos_multiple_passo3
 
         for field in r4010_evtretpf_form.fields.keys():
+        
             r4010_evtretpf_form.fields[field].widget.attrs['ng-model'] = 'r4010_evtretpf_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             r4010_evtretpf_form = disabled_form_for_print(r4010_evtretpf_form)
 
         
@@ -160,9 +162,9 @@ def salvar(request, hash):
         r4010_ideopsaude_lista = None 
         r4010_ideopsaude_form = None 
         
-        if r4010_evtretpf_id:
+        if pk:
         
-            r4010_evtretpf = get_object_or_404(r4010evtRetPF, id = r4010_evtretpf_id)
+            r4010_evtretpf = get_object_or_404(r4010evtRetPF, id=pk)
             
             r4010_idepgto_form = form_r4010_idepgto(
                 initial={ 'r4010_evtretpf': r4010_evtretpf })
@@ -176,6 +178,7 @@ def salvar(request, hash):
                 filter(r4010_evtretpf_id=r4010_evtretpf.id).all()
                 
         else:
+        
             r4010_evtretpf = None
             
         #r4010_evtretpf_salvar_custom_variaveis#
@@ -184,23 +187,26 @@ def salvar(request, hash):
         
         if 'r4010_evtretpf'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 'r4010_evtretpf' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r4010_evtretpf_salvar'
+        if tab or 'r4010_evtretpf' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r4010_evtretpf_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r4010_evtretpf_id, tabela='r4010_evtretpf').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4010_evtretpf').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r4010_evtretpf': r4010_evtretpf, 
             'r4010_evtretpf_form': r4010_evtretpf_form, 
-            'r4010_evtretpf_id': int(r4010_evtretpf_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             'r4010_idepgto_form': r4010_idepgto_form,
             'r4010_idepgto_lista': r4010_idepgto_lista,
@@ -209,17 +215,13 @@ def salvar(request, hash):
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r4010_evtretpf', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r4010_evtretpf_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r4010_evtretpf_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -237,25 +239,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('r4010_evtretpf_salvar.html', context)
             filename = "r4010_evtretpf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r4010_evtretpf_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['efdreinf', ],
             'paginas': ['r4010_evtretpf', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

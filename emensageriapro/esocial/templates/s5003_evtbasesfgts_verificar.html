@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-5003 - Informações do FGTS por Trabalhador<br>Identidade: {{ s5003_evtbasesfgts.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's5003_evtbasesfgts_verificar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's5003_evtbasesfgts_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's5003_evtbasesfgts_verificar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's5003_evtbasesfgts_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's5003_evtbasesfgts_verificar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's5003_evtbasesfgts_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's5003_evtbasesfgts_verificar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">nrRecArqBase</td>
             <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1200, S-2299 ou S-2399).</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.nrrecarqbase or s5003_evtbasesfgts.nrrecarqbase == 0 %}{{ s5003_evtbasesfgts.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações.</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.perapur or s5003_evtbasesfgts.perapur == 0 %}{{ s5003_evtbasesfgts.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -174,11 +171,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.tpinsc or s5003_evtbasesfgts.tpinsc == 0 %}{{ s5003_evtbasesfgts.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.nrinsc or s5003_evtbasesfgts.nrinsc == 0 %}{{ s5003_evtbasesfgts.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -217,11 +214,11 @@
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.cpftrab or s5003_evtbasesfgts.cpftrab == 0 %}{{ s5003_evtbasesfgts.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -236,11 +233,11 @@
             <td width="130px">nisTrab</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.nistrab or s5003_evtbasesfgts.nistrab == 0 %}{{ s5003_evtbasesfgts.nistrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -260,11 +257,11 @@
             <td width="130px">dtVenc</td>
             <td width="500px">Data de vencimento do FGTS mensal. <validacao> Preencher somente em uma das situações abaixo: a) Caso tenha origem no evento S-2299 e {mtvDeslig} = [02, 03, 05, 06, 14, 17, 26, 27, 33]; ou b) Caso tenha origem no evento S-2399, {codCateg} = [721] e {mtvDesligTSV} = [01, 02, 04, 06]. Se informada, deve corresponder ao dia 7 (sete) do mês subsequente ao indicado em {perApur}, se esse dia for útil. Caso não seja, deve corresponder ao dia útil imediatamente anterior. Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil.</td>
             <td width="200px"><b>{% if s5003_evtbasesfgts.dtvenc or s5003_evtbasesfgts.dtvenc == 0 %}{{ s5003_evtbasesfgts.dtvenc|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_evtbasesfgts_visualizar' %}
-                <a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003evtBasesFGTS or perms.esocial.can_see_s5003evtBasesFGTS %}
+                <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_evtbasesfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Evento de origem: S-1200, S-2299 ou S-2399. <validacao> Para empregador PJ, preencher com [1,4]. Para empregador PF, preencher com [3,4], exceto empregador doméstico que deve ser preenchido com [2]. <valores_validos> 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if s5003_ideestablot.tpinsc or s5003_ideestablot.tpinsc == 0 %}{{ s5003_ideestablot.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_ideestablot_visualizar' %}
-                <a href="{% url 's5003_ideestablot_salvar'  hash='{}'|json_id:s5003_ideestablot.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003ideEstabLot or perms.esocial.can_see_s5003ideEstabLot %}
+                <a href="{% url 's5003_ideestablot_salvar' pk=s5003_ideestablot.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -304,11 +301,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Para o empregador doméstico, informar o CPF. Evento de origem: S-1200, S-2299 ou S-2399. <validacao> Deve estar coerente com o indicado em {tpInsc} e constar no evento S-1200/S-2299/S-2399 correspondente.</td>
             <td width="200px"><b>{% if s5003_ideestablot.nrinsc or s5003_ideestablot.nrinsc == 0 %}{{ s5003_ideestablot.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_ideestablot_visualizar' %}
-                <a href="{% url 's5003_ideestablot_salvar'  hash='{}'|json_id:s5003_ideestablot.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003ideEstabLot or perms.esocial.can_see_s5003ideEstabLot %}
+                <a href="{% url 's5003_ideestablot_salvar' pk=s5003_ideestablot.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -323,11 +320,11 @@
             <td width="130px">codLotacao</td>
             <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Evento de origem: S-1200, S-2299, S-2399. <validacao> Deve estar coerente com o informado pelo contribuinte nos eventos S-1200/S-2299/S-2399.</td>
             <td width="200px"><b>{% if s5003_ideestablot.codlotacao or s5003_ideestablot.codlotacao == 0 %}{{ s5003_ideestablot.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_ideestablot_visualizar' %}
-                <a href="{% url 's5003_ideestablot_salvar'  hash='{}'|json_id:s5003_ideestablot.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003ideEstabLot or perms.esocial.can_see_s5003ideEstabLot %}
+                <a href="{% url 's5003_ideestablot_salvar' pk=s5003_ideestablot.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -348,11 +345,11 @@
             <td width="130px">matricula</td>
             <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula constante no evento S-1200/S- 2299, caso tenha sido informada (sendo, nesse caso, informação obrigatória). Não preencher nos demais casos.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.matricula or s5003_infotrabfgts.matricula == 0 %}{{ s5003_infotrabfgts.matricula }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -367,11 +364,11 @@
             <td width="130px">codCateg</td>
             <td width="500px">Preencher com o código da categoria do trabalhador, conforme tabela 1. Evento de origem: S-1200, S-2299 ou S-2399. <validacao> Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.codcateg or s5003_infotrabfgts.codcateg == 0 %}{{ s5003_infotrabfgts.codcateg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -386,11 +383,11 @@
             <td width="130px">dtAdm</td>
             <td width="500px">Preencher com a data de admissão do trabalhador. <validacao> Deve corresponder à data de admissão constante no RET. Não preencher nos demais casos.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.dtadm or s5003_infotrabfgts.dtadm == 0 %}{{ s5003_infotrabfgts.dtadm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -405,11 +402,11 @@
             <td width="130px">dtDeslig</td>
             <td width="500px">Data do último dia trabalhado para o respectivo vínculo. Evento de origem: S-2299. <validacao> Deve corresponder à data do desligamento informada no evento S- 2299. Não preencher nos demais casos.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.dtdeslig or s5003_infotrabfgts.dtdeslig == 0 %}{{ s5003_infotrabfgts.dtdeslig|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -424,11 +421,11 @@
             <td width="130px">dtInicio</td>
             <td width="500px">Preencher com a data de início do TSVE. <validacao> Deve corresponder à data de início constante no RET. Não preencher nos demais casos.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.dtinicio or s5003_infotrabfgts.dtinicio == 0 %}{{ s5003_infotrabfgts.dtinicio|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -443,11 +440,11 @@
             <td width="130px">mtvDeslig</td>
             <td width="500px">Código de Motivo do Desligamento, conforme tabela 19. <validacao> Deve corresponder ao motivo do desligamento informado no evento S-2299. Não preencher nos demais casos.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.mtvdeslig or s5003_infotrabfgts.mtvdeslig == 0 %}{{ s5003_infotrabfgts.mtvdeslig }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -462,11 +459,11 @@
             <td width="130px">dtTerm</td>
             <td width="500px">Data do término. Evento de origem: S-2399. <validacao> Deve corresponder à data do término informada no evento S-2399. Não preencher nos demais casos.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.dtterm or s5003_infotrabfgts.dtterm == 0 %}{{ s5003_infotrabfgts.dtterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -481,11 +478,11 @@
             <td width="130px">mtvDesligTSV</td>
             <td width="500px">Código de motivo do desligamento do diretor não empregado (Evento de origem: S-2399)<opcoes>01; 02; 03; 04; 05; 06; 07; 99 <validacao> Deve corresponder ao motivo do desligamento informado no evento S-2399. Não preencher nos demais casos. <valores_validos> 01, 02, 03, 04, 05, 06, 07, 99.</td>
             <td width="200px"><b>{% if s5003_infotrabfgts.mtvdesligtsv or s5003_infotrabfgts.mtvdesligtsv == 0 %}{{ s5003_infotrabfgts.mtvdesligtsv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabfgts_visualizar' %}
-                <a href="{% url 's5003_infotrabfgts_salvar'  hash='{}'|json_id:s5003_infotrabfgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabFGTS or perms.esocial.can_see_s5003infoTrabFGTS %}
+                <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infotrabfgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -512,11 +509,11 @@
             <td width="130px">tpValor</td>
             <td width="500px">Tipo de valor que influi na apuração do FGTS<opcoes>11 - Base de Cálculo do FGTS; 12 - Base de Cálculo do FGTS 13° Salário; 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 15 - Base de Cálculo do FGTS - Aprendiz; 16 - Base de Cálculo do FGTS 13° Salário - Aprendiz; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 21 - Base de Cálculo do FGTS Rescisório; 22 - Base de Cálculo do FGTS Rescisório - 13° Salário; 23 - Base de Cálculo do FGTS Rescisório - Aviso Prévio; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 27 - Base de Cálculo do FGTS Rescisório - Aprendiz; 28 - Base de Cálculo do FGTS Rescisório - 13° Salário Aprendiz; 29 - Base de Cálculo do FGTS Rescisório - Aviso Prévio Aprendiz; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. <validacao> Deve ser um código válido, conforme opções acima.</td>
             <td width="200px"><b>{% if s5003_baseperapur.tpvalor or s5003_baseperapur.tpvalor == 0 %}{{ s5003_baseperapur.tpvalor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_baseperapur_visualizar' %}
-                <a href="{% url 's5003_baseperapur_salvar'  hash='{}'|json_id:s5003_baseperapur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003basePerApur or perms.esocial.can_see_s5003basePerApur %}
+                <a href="{% url 's5003_baseperapur_salvar' pk=s5003_baseperapur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -531,11 +528,11 @@
             <td width="130px">remFGTS</td>
             <td width="500px">Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValor}. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, nos grupos {infoPerApur} ou {infoPerAnt}, quando {tpAcConv} <> [E], e também em S-2399, obedecendo ao que segue: Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4], observando a tabela de relacionamento abaixo: I - {tpValor} = [11]: se {codCateg} <> [103] e uma das condições a seguir: a) {codIncFGTS} = [11] e origem for {infoPerApur} do S-1200; ou b) {codIncFGTS} = [11,21], origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; ou d) {codIncFGTS} = [11,21], origem for S-2399, {codCateg} = [721] e {mtvDesligTSV} <> [01,02,04,06]; ou e) {codIncFGTS} = [11], origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for posterior a {dtVenc}; ou f) {codIncFGTS} = [11,21], origem for S-2399 e {codCateg} <> [721]; II - {tpValor} = [12]: se {codIncFGTS} = [12], {codCateg} <> [103] e uma das condições a seguir: a) Origem for {infoPerApur} do S-1200; ou b) Origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; ou d) Origem for S-2399, {codCateg} = [721] e {mtvDesligTSV} <> [01,02,04,06]; ou e) Origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for posterior a {dtVenc}; ou f) Origem for S-2399 e {codCateg} <> [721]; III - {tpValor} = [13]: se {codCateg} <> [103] e uma das condições a seguir: a) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-1200 e {tpAcConv} = [A,B,C,D,F]; ou b) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D] e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; IV - {tpValor} = [14]: se {codIncFGTS} = [12], {codCateg} <> [103] e uma das condições a seguir: a) Origem for {infoPerAnt} do S-1200 e {tpAcConv} = [A,B,C,D,F]; ou b) Origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D] e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) Origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; V - {tpValor} = [15]: se {codCateg} = [103] e uma das condições a seguir: a) {codIncFGTS} = [11] e origem for {infoPerApur} do S-1200; ou b) {codIncFGTS} = [11,21], origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; VI - {tpValor} = [16]: se {codIncFGTS} = [12], {codCateg} = [103] e uma das condições a seguir: a) Origem for {infoPerApur} do S-1200; ou b) Origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; VII - {tpValor} = [17]: se {codCateg} = [103] e uma das condições a seguir: a) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-1200 e {tpAcConv} = [A,B,C,D,F]; ou b) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D] e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; VIII - {tpValor} = [18]: se {codIncFGTS} = [12], {codCateg} = [103] e uma das condições a seguir: a) Origem for {infoPerAnt} do S-1200 e {tpAcConv} = [A,B,C,D,F]; ou b) Origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D] e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) Origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; IX - {tpValor} = [21]: se {codIncFGTS} = [11], {codCateg} <> [103] e uma das condições a seguir: a) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; ou b) Origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for igual ou anterior a {dtVenc}; X - {tpValor} = [22]: se {codIncFGTS} = [12], {codCateg} <> [103] e uma das condições a seguir: a) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; ou b) Origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for igual ou anterior a {dtVenc}; XI - {tpValor} = [23]: se {codIncFGTS} = [21], {codCateg} <> [103] e uma das condições a seguir: a) Origem for {infoPerApur} do S-2299 e {mtvDeslig} = [02,03,05,06,14,17,26,27,33]; ou b) Origem for S-2399, {codCateg} = [721] e {mtvDesligTSV} = [01,02,04,06]; XII - {tpValor} = [24]: se {codIncFGTS} = [11], {codCateg} <> [103], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XIII - {tpValor} = [25]: se {codIncFGTS} = [12], {codCateg} <> [103], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XIV - {tpValor} = [26]: se {codIncFGTS} = [21], {codCateg} <> [103], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D] e {mtvDeslig} = [02,03,05,06,14,17,26,27,33]; XV - {tpValor} = [27]: se {codIncFGTS} = [11], {codCateg} = [103], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XVI - {tpValor} = [28]: se {codIncFGTS} = [12], {codCateg} = [103], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XVII - {tpValor} = [29]: se {codIncFGTS} = [21], {codCateg} = [103], origem for {infoPerApur} do S-2299 e {mtvDeslig} = [02,03,05,06,14,17,26,27,33]; XVIII - {tpValor} = [30]: se {codIncFGTS} = [11], {codCateg} = [103], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XIX - {tpValor} = [31]: se {codIncFGTS} = [12], {codCateg} = [103], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D], {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XX - {tpValor} = [32]: se {codIncFGTS} = [21], {codCateg} = [103], origem for {infoPerAnt} do S-2299, {tpAcConv} = [A,B,C,D] e {mtvDeslig} = [02,03,05,06,14,17,26,27,33]; XXI - {tpValor} = [91]: se {codIncFGTS} = [91].</td>
             <td width="200px"><b>{% if s5003_baseperapur.remfgts or s5003_baseperapur.remfgts == 0 %}{{ s5003_baseperapur.remfgts }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_baseperapur_visualizar' %}
-                <a href="{% url 's5003_baseperapur_salvar'  hash='{}'|json_id:s5003_baseperapur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003basePerApur or perms.esocial.can_see_s5003basePerApur %}
+                <a href="{% url 's5003_baseperapur_salvar' pk=s5003_baseperapur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -556,11 +553,11 @@
             <td width="130px">perRef</td>
             <td width="500px">Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Evento de origem: S-1200 ou S-2299. <validacao> Deve corresponder ao período informado no evento de origem.</td>
             <td width="200px"><b>{% if s5003_infobaseperante.perref or s5003_infobaseperante.perref == 0 %}{{ s5003_infobaseperante.perref }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infobaseperante_visualizar' %}
-                <a href="{% url 's5003_infobaseperante_salvar'  hash='{}'|json_id:s5003_infobaseperante.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoBasePerAntE or perms.esocial.can_see_s5003infoBasePerAntE %}
+                <a href="{% url 's5003_infobaseperante_salvar' pk=s5003_infobaseperante.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -581,11 +578,11 @@
             <td width="130px">tpValorE</td>
             <td width="500px">Tipo de valor que influi na apuração do FGTS<opcoes>13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. <validacao> Deve ser um código válido, conforme opções acima.</td>
             <td width="200px"><b>{% if s5003_baseperante.tpvalore or s5003_baseperante.tpvalore == 0 %}{{ s5003_baseperante.tpvalore }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_baseperante_visualizar' %}
-                <a href="{% url 's5003_baseperante_salvar'  hash='{}'|json_id:s5003_baseperante.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003basePerAntE or perms.esocial.can_see_s5003basePerAntE %}
+                <a href="{% url 's5003_baseperante_salvar' pk=s5003_baseperante.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -600,11 +597,11 @@
             <td width="130px">remFGTSE</td>
             <td width="500px">Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValorE}. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, no grupo {infoPerAnt}, quando {tpAcConv} = [E]), obedecendo ao que segue: Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4], observando a tabela de relacionamento abaixo: I - {tpValorE} = [13]: se {codCateg} <> [103] e uma das condições a seguir: a) {codIncFGTS} = [11,21] e origem for S-1200; ou b) {codIncFGTS} = [11,21], origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) {codIncFGTS} = [11], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; II - {tpValorE} = [14]: se {codIncFGTS} = [12], {codCateg} <> [103] e uma das condições a seguir: a) Origem for S-1200; ou b) Origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) Origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; III - {tpValorE} = [17]: se {codCateg} = [103] e uma das condições a seguir: a) {codIncFGTS} = [11,21] e origem for S-1200; ou b) {codIncFGTS} = [11,21], origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) {codIncFGTS} = [11], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; IV - {tpValorE} = [18]: se {codIncFGTS} = [12], {codCateg} = [103] e uma das condições a seguir: a) Origem for S-1200; ou b) Origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,26,27,33]; ou c) Origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; V - {tpValorE} = [24]: se {codIncFGTS} = [11], {codCateg} <> [103], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; VI - {tpValorE} = [25]: se {codIncFGTS} = [12], {codCateg} <> [103], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; VII - {tpValorE} = [26]: se {codIncFGTS} = [21], {codCateg} <> [103], origem for S-2299 e {mtvDeslig} = [02,03,05,06,14,17,26,27,33]; VIII - {tpValorE} = [30]: se {codIncFGTS} = [11], {codCateg} = [103], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; IX - {tpValorE} = [31]: se {codIncFGTS} = [12], {codCateg} = [103], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; X - {tpValorE} = [32]: se {codIncFGTS} = [21], {codCateg} = [103], origem for S-2299 e {mtvDeslig} = [02,03,05,06,14,17,26,27,33]; XI - {tpValorE} = [91]: se {codIncFGTS} = [91].</td>
             <td width="200px"><b>{% if s5003_baseperante.remfgtse or s5003_baseperante.remfgtse == 0 %}{{ s5003_baseperante.remfgtse }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_baseperante_visualizar' %}
-                <a href="{% url 's5003_baseperante_salvar'  hash='{}'|json_id:s5003_baseperante.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003basePerAntE or perms.esocial.can_see_s5003basePerAntE %}
+                <a href="{% url 's5003_baseperante_salvar' pk=s5003_baseperante.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -631,11 +628,11 @@
             <td width="130px">matricula</td>
             <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão, conforme definido no campo {infoTrabFGTS/matricula}.</td>
             <td width="200px"><b>{% if s5003_infotrabdps.matricula or s5003_infotrabdps.matricula == 0 %}{{ s5003_infotrabdps.matricula }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabdps_visualizar' %}
-                <a href="{% url 's5003_infotrabdps_salvar'  hash='{}'|json_id:s5003_infotrabdps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabDps or perms.esocial.can_see_s5003infoTrabDps %}
+                <a href="{% url 's5003_infotrabdps_salvar' pk=s5003_infotrabdps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -650,11 +647,11 @@
             <td width="130px">codCateg</td>
             <td width="500px">Preencher com o código da categoria do trabalhador, conforme definido no campo {infoTrabFGTS/codCateg}.</td>
             <td width="200px"><b>{% if s5003_infotrabdps.codcateg or s5003_infotrabdps.codcateg == 0 %}{{ s5003_infotrabdps.codcateg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infotrabdps_visualizar' %}
-                <a href="{% url 's5003_infotrabdps_salvar'  hash='{}'|json_id:s5003_infotrabdps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoTrabDps or perms.esocial.can_see_s5003infoTrabDps %}
+                <a href="{% url 's5003_infotrabdps_salvar' pk=s5003_infotrabdps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -675,11 +672,11 @@
             <td width="130px">tpDps</td>
             <td width="500px">Tipo de depósito<opcoes>51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz; 56 - Depósito do FGTS 13° Salário - Aprendiz; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório - 13° Salário; 63 - Depósito do FGTS Rescisório - Aviso Prévio; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz; 68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz; 69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. <validacao> Deve ser um código válido, conforme opções acima.</td>
             <td width="200px"><b>{% if s5003_dpsperapur.tpdps or s5003_dpsperapur.tpdps == 0 %}{{ s5003_dpsperapur.tpdps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_dpsperapur_visualizar' %}
-                <a href="{% url 's5003_dpsperapur_salvar'  hash='{}'|json_id:s5003_dpsperapur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003dpsPerApur or perms.esocial.can_see_s5003dpsPerApur %}
+                <a href="{% url 's5003_dpsperapur_salvar' pk=s5003_dpsperapur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -694,11 +691,11 @@
             <td width="130px">dpsFGTS</td>
             <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDps}. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTS}. Em seguida, aplicar a alíquota indicada, conforme a tabela de relacionamento abaixo: {tpDps} = [51]: se {tpValor} = [11], e aplicar a alíquota de 8%; {tpDps} = [52]: se {tpValor} = [12], e aplicar a alíquota de 8%; {tpDps} = [53]: se {tpValor} = [13], e aplicar a alíquota de 8%; {tpDps} = [54]: se {tpValor} = [14], e aplicar a alíquota de 8%; {tpDps} = [55]: se {tpValor} = [15], e aplicar a alíquota de 2%; {tpDps} = [56]: se {tpValor} = [16], e aplicar a alíquota de 2%; {tpDps} = [57]: se {tpValor} = [17], e aplicar a alíquota de 2%; {tpDps} = [58]: se {tpValor} = [18], e aplicar a alíquota de 2%; {tpDps} = [61]: se {tpValor} = [21], e aplicar a alíquota de 8%; {tpDps} = [62]: se {tpValor} = [22], e aplicar a alíquota de 8%; {tpDps} = [63]: se {tpValor} = [23], e aplicar a alíquota de 8%; {tpDps} = [64]: se {tpValor} = [24], e aplicar a alíquota de 8%; {tpDps} = [65]: se {tpValor} = [25], e aplicar a alíquota de 8%; {tpDps} = [66]: se {tpValor} = [26], e aplicar a alíquota de 8%; {tpDps} = [67]: se {tpValor} = [27], e aplicar a alíquota de 2%; {tpDps} = [68]: se {tpValor} = [28], e aplicar a alíquota de 2%; {tpDps} = [69]: se {tpValor} = [29], e aplicar a alíquota de 2%; {tpDps} = [70]: se {tpValor} = [30], e aplicar a alíquota de 2%; {tpDps} = [71]: se {tpValor} = [31], e aplicar a alíquota de 2%; {tpDps} = [72]: se {tpValor} = [32], e aplicar a alíquota de 2%.</td>
             <td width="200px"><b>{% if s5003_dpsperapur.dpsfgts or s5003_dpsperapur.dpsfgts == 0 %}{{ s5003_dpsperapur.dpsfgts }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_dpsperapur_visualizar' %}
-                <a href="{% url 's5003_dpsperapur_salvar'  hash='{}'|json_id:s5003_dpsperapur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003dpsPerApur or perms.esocial.can_see_s5003dpsPerApur %}
+                <a href="{% url 's5003_dpsperapur_salvar' pk=s5003_dpsperapur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -719,11 +716,11 @@
             <td width="130px">perRef</td>
             <td width="500px">Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Evento de origem: S-1200 ou S-2299. <validacao> Deve corresponder ao período informado no evento de origem.</td>
             <td width="200px"><b>{% if s5003_infodpsperante.perref or s5003_infodpsperante.perref == 0 %}{{ s5003_infodpsperante.perref }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_infodpsperante_visualizar' %}
-                <a href="{% url 's5003_infodpsperante_salvar'  hash='{}'|json_id:s5003_infodpsperante.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003infoDpsPerAntE or perms.esocial.can_see_s5003infoDpsPerAntE %}
+                <a href="{% url 's5003_infodpsperante_salvar' pk=s5003_infodpsperante.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -744,11 +741,11 @@
             <td width="130px">tpDpsE</td>
             <td width="500px">Tipo de depósito<opcoes>53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. <validacao> Deve ser um código válido, conforme opções acima.</td>
             <td width="200px"><b>{% if s5003_dpsperante.tpdpse or s5003_dpsperante.tpdpse == 0 %}{{ s5003_dpsperante.tpdpse }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_dpsperante_visualizar' %}
-                <a href="{% url 's5003_dpsperante_salvar'  hash='{}'|json_id:s5003_dpsperante.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003dpsPerAntE or perms.esocial.can_see_s5003dpsPerAntE %}
+                <a href="{% url 's5003_dpsperante_salvar' pk=s5003_dpsperante.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -763,11 +760,11 @@
             <td width="130px">dpsFGTSE</td>
             <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTSE}. Em seguida, aplicar a alíquota indicada, conforme a tabela de relacionamento abaixo: {tpDpsE} = [53]: se {tpValorE} = [13], e aplicar a alíquota de 8%; {tpDpsE} = [54]: se {tpValorE} = [14], e aplicar a alíquota de 8%; {tpDpsE} = [57]: se {tpValorE} = [17], e aplicar a alíquota de 2%; {tpDpsE} = [58]: se {tpValorE} = [18], e aplicar a alíquota de 2%; {tpDpsE} = [64]: se {tpValorE} = [24], e aplicar a alíquota de 8%; {tpDpsE} = [65]: se {tpValorE} = [25], e aplicar a alíquota de 8%; {tpDpsE} = [66]: se {tpValorE} = [26], e aplicar a alíquota de 8%; {tpDpsE} = [70]: se {tpValorE} = [30], e aplicar a alíquota de 2%; {tpDpsE} = [71]: se {tpValorE} = [31], e aplicar a alíquota de 2%; {tpDpsE} = [72]: se {tpValorE} = [32], e aplicar a alíquota de 2%.</td>
             <td width="200px"><b>{% if s5003_dpsperante.dpsfgtse or s5003_dpsperante.dpsfgtse == 0 %}{{ s5003_dpsperante.dpsfgtse }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s5003_dpsperante_visualizar' %}
-                <a href="{% url 's5003_dpsperante_salvar'  hash='{}'|json_id:s5003_dpsperante.id|json_print:0|base64_encode_me %}">
+                {% if perms.s5003.can_see_s5003dpsPerAntE or perms.esocial.can_see_s5003dpsPerAntE %}
+                <a href="{% url 's5003_dpsperante_salvar' pk=s5003_dpsperante.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

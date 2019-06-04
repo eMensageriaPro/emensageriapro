@@ -66,7 +66,6 @@ class TransmissorLoteEfdreinfOcorrenciasList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class TransmissorLoteEfdreinfOcorrenciasDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = TransmissorLoteEfdreinfOcorrencias.objects.all()

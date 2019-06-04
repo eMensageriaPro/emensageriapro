@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2205evtAltCadastral'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2205_evtaltcadastral_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2205evtAltCadastral'):
-        s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral, id=s2205_evtaltcadastral_id)
-        s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects.filter(id=s2205_evtaltcadastral_id).all()
+        s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral, id=pk)
+        s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects.filter(id=pk).all()
 
         
         s2205_documentos_lista = s2205documentos.objects.filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).all()
@@ -108,15 +94,14 @@ def verificar(request, hash):
         s2205_aposentadoria_lista = s2205aposentadoria.objects.filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).all()
         s2205_contato_lista = s2205contato.objects.filter(s2205_evtaltcadastral_id__in = listar_ids(s2205_evtaltcadastral_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2205_evtaltcadastral'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2205_evtaltcadastral'
 
         context = {
             's2205_evtaltcadastral_lista': s2205_evtaltcadastral_lista,
-            's2205_evtaltcadastral_id': s2205_evtaltcadastral_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2205_evtaltcadastral': s2205_evtaltcadastral,
-            
-            
             's2205_documentos_lista': s2205_documentos_lista,
             's2205_ctps_lista': s2205_ctps_lista,
             's2205_ric_lista': s2205_ric_lista,
@@ -131,45 +116,42 @@ def verificar(request, hash):
             's2205_dependente_lista': s2205_dependente_lista,
             's2205_aposentadoria_lista': s2205_aposentadoria_lista,
             's2205_contato_lista': s2205_contato_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2205_evtaltcadastral', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2205_evtaltcadastral_verificar.html',
-                                           filename="s2205_evtaltcadastral.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2205_evtaltcadastral_verificar.html',
+                filename="s2205_evtaltcadastral.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2205_evtaltcadastral_verificar.html', context)
             filename = "%s.xls" % s2205_evtaltcadastral.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2205_evtaltcadastral_verificar.html', context)
             filename = "%s.csv" % s2205_evtaltcadastral.identidade
@@ -184,7 +166,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2205_evtaltcadastral', ],
             'data': datetime.now(),

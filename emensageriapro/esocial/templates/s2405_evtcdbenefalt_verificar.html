@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração<br>Identidade: {{ s2405_evtcdbenefalt.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's2405_evtcdbenefalt_verificar' hash='{}'|json_id:s2405_evtcdbenefalt_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's2405_evtcdbenefalt_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's2405_evtcdbenefalt_verificar' hash='{}'|json_id:s2405_evtcdbenefalt_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's2405_evtcdbenefalt_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's2405_evtcdbenefalt_verificar' hash='{}'|json_id:s2405_evtcdbenefalt_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's2405_evtcdbenefalt_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's2405_evtcdbenefalt_verificar' hash='{}'|json_id:s2405_evtcdbenefalt_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.indretif or s2405_evtcdbenefalt.indretif == 0 %}{{ s2405_evtcdbenefalt.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.nrrecibo or s2405_evtcdbenefalt.nrrecibo == 0 %}{{ s2405_evtcdbenefalt.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.tpamb or s2405_evtcdbenefalt.tpamb == 0 %}{{ s2405_evtcdbenefalt.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.procemi or s2405_evtcdbenefalt.procemi == 0 %}{{ s2405_evtcdbenefalt.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.verproc or s2405_evtcdbenefalt.verproc == 0 %}{{ s2405_evtcdbenefalt.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -231,11 +228,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ). <valores_validos> 1.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.tpinsc or s2405_evtcdbenefalt.tpinsc == 0 %}{{ s2405_evtcdbenefalt.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -250,11 +247,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.nrinsc or s2405_evtcdbenefalt.nrinsc == 0 %}{{ s2405_evtcdbenefalt.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -274,11 +271,11 @@
             <td width="130px">cpfBenef</td>
             <td width="500px">Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido e cadastrado pelo órgão público declarante por meio do evento S-2400.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.cpfbenef or s2405_evtcdbenefalt.cpfbenef == 0 %}{{ s2405_evtcdbenefalt.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -298,11 +295,11 @@
             <td width="130px">dtAlteracao</td>
             <td width="500px">Preencher com a data de alteração. <validacao> Deve ser uma data válida, posterior à data de início informada no evento S-2400 e igual ou anterior à data atual.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.dtalteracao or s2405_evtcdbenefalt.dtalteracao == 0 %}{{ s2405_evtcdbenefalt.dtalteracao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -322,11 +319,11 @@
             <td width="130px">nisBenef</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> Deve ser um NIS válido e pertencente ao beneficiário.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.nisbenef or s2405_evtcdbenefalt.nisbenef == 0 %}{{ s2405_evtcdbenefalt.nisbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -341,11 +338,11 @@
             <td width="130px">nmBenefic</td>
             <td width="500px">Nome do Beneficiário</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.nmbenefic or s2405_evtcdbenefalt.nmbenefic == 0 %}{{ s2405_evtcdbenefalt.nmbenefic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -360,11 +357,11 @@
             <td width="130px">sexo</td>
             <td width="500px">Sexo do beneficiário<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.sexo or s2405_evtcdbenefalt.sexo == 0 %}{{ s2405_evtcdbenefalt.sexo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -379,11 +376,11 @@
             <td width="130px">racaCor</td>
             <td width="500px">Raça e cor do beneficiário, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.racacor or s2405_evtcdbenefalt.racacor == 0 %}{{ s2405_evtcdbenefalt.racacor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -398,11 +395,11 @@
             <td width="130px">estCiv</td>
             <td width="500px">Estado civil do beneficiário, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.estciv or s2405_evtcdbenefalt.estciv == 0 %}{{ s2405_evtcdbenefalt.estciv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -417,11 +414,11 @@
             <td width="130px">incFisMen</td>
             <td width="500px">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.incfismen or s2405_evtcdbenefalt.incfismen == 0 %}{{ s2405_evtcdbenefalt.incfismen }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -436,11 +433,11 @@
             <td width="130px">dtIncFisMen</td>
             <td width="500px">Preencher com a data do reconhecimento da incapacidade. <validacao> Preenchimento obrigatório se {incFisMen} = S. Não preencher nos demais casos. Se informada, deve ser uma data válida.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.dtincfismen or s2405_evtcdbenefalt.dtincfismen == 0 %}{{ s2405_evtcdbenefalt.dtincfismen|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -460,11 +457,11 @@
             <td width="130px">paisNac</td>
             <td width="500px">Preencher com o código do país de nacionalidade do beneficiário, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.paisnac or s2405_evtcdbenefalt.paisnac == 0 %}{{ s2405_evtcdbenefalt.paisnac }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -479,11 +476,11 @@
             <td width="130px">nmMae</td>
             <td width="500px">Nome da mãe do beneficiário.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.nmmae or s2405_evtcdbenefalt.nmmae == 0 %}{{ s2405_evtcdbenefalt.nmmae }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -498,11 +495,11 @@
             <td width="130px">nmPai</td>
             <td width="500px">Nome do pai do beneficiário.</td>
             <td width="200px"><b>{% if s2405_evtcdbenefalt.nmpai or s2405_evtcdbenefalt.nmpai == 0 %}{{ s2405_evtcdbenefalt.nmpai }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                <a href="{% url 's2405_evtcdbenefalt_salvar'  hash='{}'|json_id:s2405_evtcdbenefalt.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405evtCdBenefAlt or perms.esocial.can_see_s2405evtCdBenefAlt %}
+                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=s2405_evtcdbenefalt.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -529,11 +526,11 @@
             <td width="130px">tpLograd</td>
             <td width="500px">Tipo de Logradouro, conforme tabela 20. <validacao> Deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2405_brasil.tplograd or s2405_brasil.tplograd == 0 %}{{ s2405_brasil.tplograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -548,11 +545,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro</td>
             <td width="200px"><b>{% if s2405_brasil.dsclograd or s2405_brasil.dsclograd == 0 %}{{ s2405_brasil.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -567,11 +564,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'</td>
             <td width="200px"><b>{% if s2405_brasil.nrlograd or s2405_brasil.nrlograd == 0 %}{{ s2405_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -586,11 +583,11 @@
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2405_brasil.complemento or s2405_brasil.complemento == 0 %}{{ s2405_brasil.complemento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -605,11 +602,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito</td>
             <td width="200px"><b>{% if s2405_brasil.bairro or s2405_brasil.bairro == 0 %}{{ s2405_brasil.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -624,11 +621,11 @@
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2405_brasil.cep or s2405_brasil.cep == 0 %}{{ s2405_brasil.cep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -643,11 +640,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE <validacao> Deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2405_brasil.codmunic or s2405_brasil.codmunic == 0 %}{{ s2405_brasil.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -662,11 +659,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2405_brasil.uf or s2405_brasil.uf == 0 %}{{ s2405_brasil.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
-                <a href="{% url 's2405_brasil_salvar'  hash='{}'|json_id:s2405_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405brasil or perms.esocial.can_see_s2405brasil %}
+                <a href="{% url 's2405_brasil_salvar' pk=s2405_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -687,11 +684,11 @@
             <td width="130px">paisResid</td>
             <td width="500px">Preencher com o código do país, conforme tabela 6. <validacao> Deve ser um código existente na tabela</td>
             <td width="200px"><b>{% if s2405_exterior.paisresid or s2405_exterior.paisresid == 0 %}{{ s2405_exterior.paisresid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -706,11 +703,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro</td>
             <td width="200px"><b>{% if s2405_exterior.dsclograd or s2405_exterior.dsclograd == 0 %}{{ s2405_exterior.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -725,11 +722,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'</td>
             <td width="200px"><b>{% if s2405_exterior.nrlograd or s2405_exterior.nrlograd == 0 %}{{ s2405_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -744,11 +741,11 @@
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2405_exterior.complemento or s2405_exterior.complemento == 0 %}{{ s2405_exterior.complemento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -763,11 +760,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito</td>
             <td width="200px"><b>{% if s2405_exterior.bairro or s2405_exterior.bairro == 0 %}{{ s2405_exterior.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -782,11 +779,11 @@
             <td width="130px">nmCid</td>
             <td width="500px">Nome da Cidade</td>
             <td width="200px"><b>{% if s2405_exterior.nmcid or s2405_exterior.nmcid == 0 %}{{ s2405_exterior.nmcid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -801,11 +798,11 @@
             <td width="130px">codPostal</td>
             <td width="500px">Código de Endereçamento Postal</td>
             <td width="200px"><b>{% if s2405_exterior.codpostal or s2405_exterior.codpostal == 0 %}{{ s2405_exterior.codpostal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
-                <a href="{% url 's2405_exterior_salvar'  hash='{}'|json_id:s2405_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405exterior or perms.esocial.can_see_s2405exterior %}
+                <a href="{% url 's2405_exterior_salvar' pk=s2405_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -826,11 +823,11 @@
             <td width="130px">tpDep</td>
             <td width="500px">Tipo de dependente conforme tabela 7. <validacao> Deve ser um código existente na tabela 7.</td>
             <td width="200px"><b>{% if s2405_dependente.tpdep or s2405_dependente.tpdep == 0 %}{{ s2405_dependente.tpdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -845,11 +842,11 @@
             <td width="130px">nmDep</td>
             <td width="500px">Nome do dependente.</td>
             <td width="200px"><b>{% if s2405_dependente.nmdep or s2405_dependente.nmdep == 0 %}{{ s2405_dependente.nmdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -864,11 +861,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento. <validacao> Deve ser uma data válida, maior que 01/01/1900 e menor que a data atual.</td>
             <td width="200px"><b>{% if s2405_dependente.dtnascto or s2405_dependente.dtnascto == 0 %}{{ s2405_dependente.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -883,11 +880,11 @@
             <td width="130px">cpfDep</td>
             <td width="500px">Número de Inscrição no CPF. <validacao> Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório para maior ou igual a 12 (doze) anos e {depIRRF} = [S]; b) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
             <td width="200px"><b>{% if s2405_dependente.cpfdep or s2405_dependente.cpfdep == 0 %}{{ s2405_dependente.cpfdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -902,11 +899,11 @@
             <td width="130px">sexoDep</td>
             <td width="500px">Sexo do dependente<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F.</td>
             <td width="200px"><b>{% if s2405_dependente.sexodep or s2405_dependente.sexodep == 0 %}{{ s2405_dependente.sexodep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -921,11 +918,11 @@
             <td width="130px">depIRRF</td>
             <td width="500px">Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2405_dependente.depirrf or s2405_dependente.depirrf == 0 %}{{ s2405_dependente.depirrf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -940,11 +937,11 @@
             <td width="130px">incFisMen</td>
             <td width="500px">Informar se o dependente é pessoa com doença incapacitante, na forma da lei<opcoes>S - Sim; N - Não. <valores_validos> S, N</td>
             <td width="200px"><b>{% if s2405_dependente.incfismen or s2405_dependente.incfismen == 0 %}{{ s2405_dependente.incfismen }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -959,11 +956,11 @@
             <td width="130px">depFinsPrev</td>
             <td width="500px">Informar se é dependente para fins previdenciários<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2405_dependente.depfinsprev or s2405_dependente.depfinsprev == 0 %}{{ s2405_dependente.depfinsprev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2405_dependente_visualizar' %}
-                <a href="{% url 's2405_dependente_salvar'  hash='{}'|json_id:s2405_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2405.can_see_s2405dependente or perms.esocial.can_see_s2405dependente %}
+                <a href="{% url 's2405_dependente_salvar' pk=s2405_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

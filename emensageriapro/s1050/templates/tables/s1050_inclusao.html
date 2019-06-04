@@ -59,26 +59,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s1050.can_view_s1050inclusao %}
-                        <a href="{% url 's1050_inclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s1050.add_s1050inclusao or perms.s1050.change_s1050inclusao %}
+                        {% if perms.s1050.change_s1050inclusao or perms.s1050.add_s1050inclusao %}
+                    
+                        <a href="{% url 's1050_inclusao_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s1050.change_s1050inclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s1050.can_see_data_s1050inclusao %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s1050.delete_s1050inclusao %}
-                        <a href="{% url 's1050_inclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s1050.delete_s1050inclusao %}
+                        <a href="{% url 's1050_inclusao_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

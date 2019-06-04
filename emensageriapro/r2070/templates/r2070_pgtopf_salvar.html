@@ -34,79 +34,76 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        r2070pgtoPF
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">r2070pgtoPF</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Beneficiário Pessoa Física - Residente no Brasil
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Beneficiário Pessoa Física - Residente no Brasil</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.r2070.can_view_r2070pgtoPF %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_return_page:'r2070_pgtopf_salvar'|json_return_hash:hash|json_id:r2070_pgtopf_id|json_print:0|base64_encode_me %}">
-                            Beneficiário Pessoa Física - Residente no Brasil
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if r2070_pgtopf_id %}
+                    {% if pk %}
+                        {% if perms.r2070.can_see_r2070pgtoPF %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='master' %}">
+                                Beneficiário Pessoa Física - Residente no Brasil</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_detdeducao %}
+                            {% if perms.r2070.can_see_r2070detDeducao %}
                                 <li {% if tab == 'r2070_detdeducao' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_detdeducao'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_detdeducao' %}">
                                     Detalhamento das Deduções</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_rendisento %}
+                            {% if perms.r2070.can_see_r2070rendIsento %}
                                 <li {% if tab == 'r2070_rendisento' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_rendisento'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_rendisento' %}">
                                     Rendimentos Isentos/Não Tributáveis</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_detcompet %}
+                            {% if perms.r2070.can_see_r2070detCompet %}
                                 <li {% if tab == 'r2070_detcompet' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_detcompet'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_detcompet' %}">
                                     Detalhamento das Competências</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_compjud %}
+                            {% if perms.r2070.can_see_r2070compJud %}
                                 <li {% if tab == 'r2070_compjud' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_compjud'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_compjud' %}">
                                     Compensação Judicial</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_inforra %}
+                            {% if perms.r2070.can_see_r2070infoRRA %}
                                 <li {% if tab == 'r2070_inforra' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_inforra'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_inforra' %}">
                                     Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_infoprocjud %}
+                            {% if perms.r2070.can_see_r2070infoProcJud %}
                                 <li {% if tab == 'r2070_infoprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_infoprocjud'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2070.can_view_r2070_depjudicial %}
+                            {% if perms.r2070.can_see_r2070depJudicial %}
                                 <li {% if tab == 'r2070_depjudicial' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|json_tab:'r2070_depjudicial'|base64_encode_me %}">
+                                    <a href="{% url 'r2070_pgtopf_salvar' pk=pk tab='r2070_depjudicial' %}">
                                     Depósito Judicial</a>
                                 </li>
                             {% endif %}
@@ -116,275 +113,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if r2070_pgtopf_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in r2070_pgtopf_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if r2070_pgtopf_id %}
-   {% if r2070_pgtopf.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ r2070_pgtopf.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r2070_pgtopf.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r2070_pgtopf.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not r2070_pgtopf.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r2070_pgtopf.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ r2070_pgtopf.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Beneficiário Pessoa Física - Residente no Brasil</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if r2070_pgtopf.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ r2070_pgtopf.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.r2070.change_r2070_pgtopf or perms.r2070.add_r2070_pgtopf %}
-                <form action="#" id="id_form_r2070_pgtopf" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if r2070_pgtopf.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r2070_pgtopf.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not r2070_pgtopf.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/r2070_pgtopf.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if r2070_pgtopf_id %}
-
-                                {% if perms.r2070.add_r2070pgtoPF %}
-                                    <a href="{% url 'r2070_pgtopf_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.r2070.can_view_r2070_pgtopf or perms.r2070.can_view_r2070_pgtopf %}
-                                <a href="{% url 'r2070_pgtopf'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r2070.can_view_r2070_pgtopf and r2070_pgtopf_id %}
-                                <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.r2070.can_view_r2070_pgtopf and r2070_pgtopf_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_pgtopf_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r2070.change_r2070_pgtopf or perms.r2070.add_r2070_pgtopf %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.r2070.delete_r2070_pgtopf and r2070_pgtopf_id %}
-
-                            <a href="{% url 'r2070_pgtopf_apagar' hash='{}'|json_id:r2070_pgtopf_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if r2070_pgtopf.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r2070_pgtopf.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.r2070.change_r2070_pgtopf or perms.r2070.add_r2070_pgtopf %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if r2070_pgtopf_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Beneficiário Pessoa Física - Residente no Brasil</h3>
+                    </div>
+
+                    {% if perms.r2070.change_r2070pgtoPF or perms.r2070.add_r2070pgtoPF %}
+                        {% if r2070_pgtopf_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_r2070_pgtopf" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/r2070_pgtopf.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.r2070.add_r2070pgtoPF %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2070_pgtopf_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r2070.can_see_list_r2070pgtoPF %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2070_pgtopf' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r2070.can_print_data_r2070pgtoPF %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2070_pgtopf_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.r2070.change_r2070pgtoPF %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r2070.delete_r2070pgtoPF %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2070_pgtopf_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.r2070.add_r2070pgtoPF %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.r2070.add_r2070pgtoPF or perms.r2070.change_r2070pgtoPF %}
+
+                        {% if r2070_pgtopf_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_r2070_detdeducao -->
+        <!-- begin_r2070_detdeducao -->
 
-            {% if tab == 'r2070_detdeducao' or for_print %} 
+            {% if tab == 'r2070_detdeducao' %} 
 
-                {% if perms.r2070.can_view_r2070_detdeducao %} 
+                {% if perms.r2070.can_see_data_r2070detDeducao %}
 
-                    {% if perms.r2070.change_r2070_detdeducao or perms.r2070.add_r2070detDeducao %}
+                    {% if perms.r2070.add_r2070detDeducao or perms.r2070.change_r2070detDeducao %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -393,95 +398,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento das Deduções</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_detdeducao or perms.r2070.add_r2070detDeducao %}
+                                    {% if perms.r2070.add_r2070detDeducao or perms.r2070.can_see_list_r2070detDeducao  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070detDeducao %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070detDeducao %}            
+
                                     <!-- begin_form_r2070_detdeducao --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_detdeducao" action="{% url 'r2070_detdeducao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_detdeducao" 
+                                              action="{% url 'r2070_detdeducao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_detdeducao.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_detdeducao -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_detdeducao -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070detDeducao %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_detdeducao --> 
 
-                                    {% include 'tables/r2070_detdeducao.html' %}
-                                        
-                                    <!-- end_table_r2070_detdeducao --> 
-
+                                        {% include 'tables/r2070_detdeducao.html' %}
+                                        <!-- end_table_r2070_detdeducao --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_detdeducao -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2070_rendisento -->
+        <!-- begin_r2070_rendisento -->
 
-            {% if tab == 'r2070_rendisento' or for_print %} 
+            {% if tab == 'r2070_rendisento' %} 
 
-                {% if perms.r2070.can_view_r2070_rendisento %} 
+                {% if perms.r2070.can_see_data_r2070rendIsento %}
 
-                    {% if perms.r2070.change_r2070_rendisento or perms.r2070.add_r2070rendIsento %}
+                    {% if perms.r2070.add_r2070rendIsento or perms.r2070.change_r2070rendIsento %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -490,95 +507,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Rendimentos Isentos/Não Tributáveis</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_rendisento or perms.r2070.add_r2070rendIsento %}
+                                    {% if perms.r2070.add_r2070rendIsento or perms.r2070.can_see_list_r2070rendIsento  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070rendIsento %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070rendIsento %}            
+
                                     <!-- begin_form_r2070_rendisento --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_rendisento" action="{% url 'r2070_rendisento_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_rendisento" 
+                                              action="{% url 'r2070_rendisento_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_rendisento.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_rendisento -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_rendisento -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070rendIsento %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_rendisento --> 
 
-                                    {% include 'tables/r2070_rendisento.html' %}
-                                        
-                                    <!-- end_table_r2070_rendisento --> 
-
+                                        {% include 'tables/r2070_rendisento.html' %}
+                                        <!-- end_table_r2070_rendisento --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_rendisento -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2070_detcompet -->
+        <!-- begin_r2070_detcompet -->
 
-            {% if tab == 'r2070_detcompet' or for_print %} 
+            {% if tab == 'r2070_detcompet' %} 
 
-                {% if perms.r2070.can_view_r2070_detcompet %} 
+                {% if perms.r2070.can_see_data_r2070detCompet %}
 
-                    {% if perms.r2070.change_r2070_detcompet or perms.r2070.add_r2070detCompet %}
+                    {% if perms.r2070.add_r2070detCompet or perms.r2070.change_r2070detCompet %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -587,95 +616,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento das Competências</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_detcompet or perms.r2070.add_r2070detCompet %}
+                                    {% if perms.r2070.add_r2070detCompet or perms.r2070.can_see_list_r2070detCompet  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070detCompet %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070detCompet %}            
+
                                     <!-- begin_form_r2070_detcompet --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_detcompet" action="{% url 'r2070_detcompet_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_detcompet" 
+                                              action="{% url 'r2070_detcompet_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_detcompet.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_detcompet -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_detcompet -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070detCompet %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_detcompet --> 
 
-                                    {% include 'tables/r2070_detcompet.html' %}
-                                        
-                                    <!-- end_table_r2070_detcompet --> 
-
+                                        {% include 'tables/r2070_detcompet.html' %}
+                                        <!-- end_table_r2070_detcompet --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_detcompet -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2070_compjud -->
+        <!-- begin_r2070_compjud -->
 
-            {% if tab == 'r2070_compjud' or for_print %} 
+            {% if tab == 'r2070_compjud' %} 
 
-                {% if perms.r2070.can_view_r2070_compjud %} 
+                {% if perms.r2070.can_see_data_r2070compJud %}
 
-                    {% if perms.r2070.change_r2070_compjud or perms.r2070.add_r2070compJud %}
+                    {% if perms.r2070.add_r2070compJud or perms.r2070.change_r2070compJud %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -684,95 +725,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Compensação Judicial</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_compjud or perms.r2070.add_r2070compJud %}
+                                    {% if perms.r2070.add_r2070compJud or perms.r2070.can_see_list_r2070compJud  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070compJud %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070compJud %}            
+
                                     <!-- begin_form_r2070_compjud --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_compjud" action="{% url 'r2070_compjud_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_compjud" 
+                                              action="{% url 'r2070_compjud_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_compjud.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_compjud -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_compjud -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070compJud %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_compjud --> 
 
-                                    {% include 'tables/r2070_compjud.html' %}
-                                        
-                                    <!-- end_table_r2070_compjud --> 
-
+                                        {% include 'tables/r2070_compjud.html' %}
+                                        <!-- end_table_r2070_compjud --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_compjud -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2070_inforra -->
+        <!-- begin_r2070_inforra -->
 
-            {% if tab == 'r2070_inforra' or for_print %} 
+            {% if tab == 'r2070_inforra' %} 
 
-                {% if perms.r2070.can_view_r2070_inforra %} 
+                {% if perms.r2070.can_see_data_r2070infoRRA %}
 
-                    {% if perms.r2070.change_r2070_inforra or perms.r2070.add_r2070infoRRA %}
+                    {% if perms.r2070.add_r2070infoRRA or perms.r2070.change_r2070infoRRA %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -781,95 +834,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações Complementares - Rendimentos Recebidos Acumuladamente</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_inforra or perms.r2070.add_r2070infoRRA %}
+                                    {% if perms.r2070.add_r2070infoRRA or perms.r2070.can_see_list_r2070infoRRA  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070infoRRA %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070infoRRA %}            
+
                                     <!-- begin_form_r2070_inforra --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_inforra" action="{% url 'r2070_inforra_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_inforra" 
+                                              action="{% url 'r2070_inforra_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_inforra.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_inforra -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_inforra -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070infoRRA %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_inforra --> 
 
-                                    {% include 'tables/r2070_inforra.html' %}
-                                        
-                                    <!-- end_table_r2070_inforra --> 
-
+                                        {% include 'tables/r2070_inforra.html' %}
+                                        <!-- end_table_r2070_inforra --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_inforra -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2070_infoprocjud -->
+        <!-- begin_r2070_infoprocjud -->
 
-            {% if tab == 'r2070_infoprocjud' or for_print %} 
+            {% if tab == 'r2070_infoprocjud' %} 
 
-                {% if perms.r2070.can_view_r2070_infoprocjud %} 
+                {% if perms.r2070.can_see_data_r2070infoProcJud %}
 
-                    {% if perms.r2070.change_r2070_infoprocjud or perms.r2070.add_r2070infoProcJud %}
+                    {% if perms.r2070.add_r2070infoProcJud or perms.r2070.change_r2070infoProcJud %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -878,95 +943,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_infoprocjud or perms.r2070.add_r2070infoProcJud %}
+                                    {% if perms.r2070.add_r2070infoProcJud or perms.r2070.can_see_list_r2070infoProcJud  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070infoProcJud %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070infoProcJud %}            
+
                                     <!-- begin_form_r2070_infoprocjud --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_infoprocjud" action="{% url 'r2070_infoprocjud_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_infoprocjud" 
+                                              action="{% url 'r2070_infoprocjud_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_infoprocjud.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_infoprocjud -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_infoprocjud -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070infoProcJud %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_infoprocjud --> 
 
-                                    {% include 'tables/r2070_infoprocjud.html' %}
-                                        
-                                    <!-- end_table_r2070_infoprocjud --> 
-
+                                        {% include 'tables/r2070_infoprocjud.html' %}
+                                        <!-- end_table_r2070_infoprocjud --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_infoprocjud -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2070_depjudicial -->
+        <!-- begin_r2070_depjudicial -->
 
-            {% if tab == 'r2070_depjudicial' or for_print %} 
+            {% if tab == 'r2070_depjudicial' %} 
 
-                {% if perms.r2070.can_view_r2070_depjudicial %} 
+                {% if perms.r2070.can_see_data_r2070depJudicial %}
 
-                    {% if perms.r2070.change_r2070_depjudicial or perms.r2070.add_r2070depJudicial %}
+                    {% if perms.r2070.add_r2070depJudicial or perms.r2070.change_r2070depJudicial %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -975,75 +1052,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Depósito Judicial</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2070.change_r2070_depjudicial or perms.r2070.add_r2070depJudicial %}
+                                    {% if perms.r2070.add_r2070depJudicial or perms.r2070.can_see_list_r2070depJudicial  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2070.add_r2070depJudicial %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2070.add_r2070depJudicial %}            
+
                                     <!-- begin_form_r2070_depjudicial --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2070_depjudicial" action="{% url 'r2070_depjudicial_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2070_depjudicial" 
+                                              action="{% url 'r2070_depjudicial_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2070_depjudicial.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2070_depjudicial -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2070_depjudicial -->
+                                {% endif %} 
+
+                                {% if perms.r2070.can_see_r2070depJudicial %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2070_depjudicial --> 
 
-                                    {% include 'tables/r2070_depjudicial.html' %}
-                                        
-                                    <!-- end_table_r2070_depjudicial --> 
-
+                                        {% include 'tables/r2070_depjudicial.html' %}
+                                        <!-- end_table_r2070_depjudicial --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2070_depjudicial -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

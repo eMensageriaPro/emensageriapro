@@ -71,81 +71,63 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r4040evtBenefNId'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r4040_evtbenefnid_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r4040evtBenefNId'):
-        r4040_evtbenefnid = get_object_or_404(r4040evtBenefNId, id=r4040_evtbenefnid_id)
-        r4040_evtbenefnid_lista = r4040evtBenefNId.objects.filter(id=r4040_evtbenefnid_id).all()
+        r4040_evtbenefnid = get_object_or_404(r4040evtBenefNId, id=pk)
+        r4040_evtbenefnid_lista = r4040evtBenefNId.objects.filter(id=pk).all()
 
         
         r4040_idenat_lista = r4040ideNat.objects.filter(r4040_evtbenefnid_id__in = listar_ids(r4040_evtbenefnid_lista) ).all()
         r4040_infopgto_lista = r4040infoPgto.objects.filter(r4040_idenat_id__in = listar_ids(r4040_idenat_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r4040_evtbenefnid'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r4040_evtbenefnid'
 
         context = {
             'r4040_evtbenefnid_lista': r4040_evtbenefnid_lista,
-            'r4040_evtbenefnid_id': r4040_evtbenefnid_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r4040_evtbenefnid': r4040_evtbenefnid,
-            
-            
             'r4040_idenat_lista': r4040_idenat_lista,
             'r4040_infopgto_lista': r4040_infopgto_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r4040_evtbenefnid', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r4040_evtbenefnid_verificar.html',
-                                           filename="r4040_evtbenefnid.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r4040_evtbenefnid_verificar.html',
+                filename="r4040_evtbenefnid.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r4040_evtbenefnid_verificar.html', context)
             filename = "%s.xls" % r4040_evtbenefnid.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r4040_evtbenefnid_verificar.html', context)
             filename = "%s.csv" % r4040_evtbenefnid.identidade
@@ -160,7 +142,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r4040_evtbenefnid', ],
             'data': datetime.now(),

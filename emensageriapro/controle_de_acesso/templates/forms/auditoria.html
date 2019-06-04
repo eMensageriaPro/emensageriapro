@@ -63,14 +63,22 @@
 </div>
 <!-- fim__auditoria__situacao_posterior -->
 <!-- inicio__auditoria__operador -->
-<script type="text/javascript">$(document).ready(function(){$('#id_operador').change(function(){document.getElementById("auditoria__operador__div_acessar").style.display = 'none';});});</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_operador').change(function(){
+            document.getElementById("auditoria__operador__div_acessar").style.display = 'none';
+        });
+    });
+</script>
+
 <div class="col-md-12" id="auditoria__operador__div">
 <div class="form-group">
   <label id="auditoria__operador__label">Operador</label>
   
-  {% if not for_print %}
+  {% if not output %}
     {% if auditoria_form.operador.value %}
-    <a id="auditoria__operador__div_acessar" href="{% url 'usuarios_salvar' hash='{}'|json_id:auditoria_form.operador.value|json_print:0|base64_encode_me %}">
+    <a id="auditoria__operador__div_acessar" href="{% url 'usuarios_salvar' pk=auditoria_form.operador.value tab='master' %}">
      [Acessar]
     </a>
     {% endif %} 

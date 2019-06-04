@@ -15,7 +15,7 @@
     <label id="s1200_infoperapur_ideestablot__s1200_infoperapur__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*</label>
     {% if not for_print %}
       {% if s1200_infoperapur_ideestablot_form.s1200_infoperapur.value %}
-        <a id="s1200_infoperapur_ideestablot__s1200_infoperapur__div_acessar" href="{% url 's1200_infoperapur_salvar' hash='{}'|json_id:s1200_infoperapur_ideestablot_form.s1200_infoperapur.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_infoperapur_ideestablot__s1200_infoperapur__div_acessar" href="{% url 's1200_infoperapur_salvar' pk=s1200_infoperapur_ideestablot_form.s1200_infoperapur.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

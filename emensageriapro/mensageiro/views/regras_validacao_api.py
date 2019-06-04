@@ -66,7 +66,6 @@ class RegrasDeValidacaoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class RegrasDeValidacaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = RegrasDeValidacao.objects.all()

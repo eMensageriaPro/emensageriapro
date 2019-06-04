@@ -47,30 +47,49 @@
             <td>
                 <div>
                     {% comment %}<div style="width: 150px;height: 40px;">{% endcomment %}
-    {% if a.status == 0 or a.status == 2 %}<a href="{% url 'transmissor_lote_esocial_enviar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-primary" title="Enviar Lote"><i class="fa fa-fw fa-feed"></i></span></a>&nbsp;{% endif %}
-    {% if a.status == 1 or a.status == 3 or a.status == 4 %}<a href="{% url 'transmissor_lote_esocial_consultar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-primary" title="Consultar Lote"><i class="fa fa-fw fa-search"></i></span></a>&nbsp;{% endif %}
-    {% if a.status == 2 or a.status == 3 or a.status == 4 %}<a href="{% url 'transmissor_lote_esocial_recibo' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary" title="Imprimir Recibo do Lote"><i class="fa fa-fw fa-print"></i></span></a>{% endif %}
+    {% if a.status == 0 or a.status == 2 %}
+    <a href="{% url 'transmissor_lote_esocial_enviar' pk=a.id %}">
+        <span class="btn btn-primary" title="Enviar Lote">
+            <i class="fa fa-fw fa-feed"></i>
+            </span>
+    </a>&nbsp;
+    {% endif %}
+    {% if a.status == 1 or a.status == 3 or a.status == 4 %}
+    <a href="{% url 'transmissor_lote_esocial_consultar' pk=a.id %}">
+        <span class="btn btn-primary" title="Consultar Lote">
+            <i class="fa fa-fw fa-search"></i>
+        </span>
+        </a>&nbsp;
+    {% endif %}
+    {% if a.status == 2 or a.status == 3 or a.status == 4 %}
+    <a href="{% url 'transmissor_lote_esocial_recibo' pk=a.id %}" target="_blank">
+        <span class="btn btn-primary" title="Imprimir Recibo do Lote">
+            <i class="fa fa-fw fa-print"></i>
+        </span>
+    </a>
+    {% endif %}
 {% comment %}</div>{% endcomment %}
-                    {% if perms.mensageiro.can_view_TransmissorLoteEsocial %}
-                        <a href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.mensageiro.add_TransmissorLoteEsocial or perms.mensageiro.change_TransmissorLoteEsocial %}
+                        {% if perms.mensageiro.change_TransmissorLoteEsocial or perms.mensageiro.add_TransmissorLoteEsocial %}
+                    
+                        <a href="{% url 'transmissor_lote_esocial_salvar' pk=a.id tab='master' %}">
+                            {% if perms.mensageiro.change_TransmissorLoteEsocial %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.mensageiro.can_see_data_TransmissorLoteEsocial %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.mensageiro.delete_TransmissorLoteEsocial %}
-                        <a href="{% url 'transmissor_lote_esocial_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.mensageiro.delete_TransmissorLoteEsocial %}
+                        <a href="{% url 'transmissor_lote_esocial_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

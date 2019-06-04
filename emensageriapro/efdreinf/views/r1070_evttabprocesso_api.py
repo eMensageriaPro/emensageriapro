@@ -66,7 +66,6 @@ class r1070evtTabProcessoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r1070evtTabProcessoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1070evtTabProcesso.objects.all()

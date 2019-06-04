@@ -66,7 +66,6 @@ class ArquivosList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class ArquivosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Arquivos.objects.all()

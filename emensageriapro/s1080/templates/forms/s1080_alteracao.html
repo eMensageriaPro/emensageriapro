@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1080_alteracao__s1080_evttaboperport__label">Alteração das informações*</label>
     {% if not for_print %}{% if s1080_alteracao_form.s1080_evttaboperport.value %}
-        <a href="{% url 's1080_evttaboperport_salvar' hash='{}'|json_return_page:'s1080_alteracao_salvar'|json_return_hash:hash|json_id:s1080_alteracao_form.s1080_evttaboperport.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_alteracao_form.s1080_evttaboperport.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

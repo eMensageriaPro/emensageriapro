@@ -59,52 +59,36 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        relatorios_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
+def apagar(request, pk):
 
-    relatorios = get_object_or_404(Relatorios, id=relatorios_id)
+    relatorios = get_object_or_404(Relatorios, id=pk)
     
     if request.method == 'POST':
     
-        obj = Relatorios.objects.get(id=relatorios_id)
+        obj = Relatorios.objects.get(id=pk)
         obj.delete(request=request)
         #relatorios_apagar_custom
         #relatorios_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
         
-        if request.session['retorno_pagina'] == 'relatorios_salvar':
+        if 'relatorios' in request.session['return_page']:
         
-            return redirect('relatorios', 
-                            hash=request.session['retorno_hash'])
+            return redirect('relatorios')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
-    
-        'usuario': usuario, 
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'data': datetime.datetime.now(),
         'modulos': ['mensageiro', ],
         'paginas': ['relatorios', ],
-        'hash': hash,
-        
     }
     
     return render(request, 
-                  'relatorios_apagar.html', 
-                  context)
+        'relatorios_apagar.html', 
+        context)

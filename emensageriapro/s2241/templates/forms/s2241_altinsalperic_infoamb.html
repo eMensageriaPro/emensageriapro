@@ -15,7 +15,7 @@
     <label id="s2241_altinsalperic_infoamb__s2241_altinsalperic__label">Informações sobre as condições de trabalho insalubre/periculoso.*</label>
     {% if not for_print %}
       {% if s2241_altinsalperic_infoamb_form.s2241_altinsalperic.value %}
-        <a id="s2241_altinsalperic_infoamb__s2241_altinsalperic__div_acessar" href="{% url 's2241_altinsalperic_salvar' hash='{}'|json_id:s2241_altinsalperic_infoamb_form.s2241_altinsalperic.value|json_print:0|base64_encode_me %}">
+        <a id="s2241_altinsalperic_infoamb__s2241_altinsalperic__div_acessar" href="{% url 's2241_altinsalperic_salvar' pk=s2241_altinsalperic_infoamb_form.s2241_altinsalperic.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s1050_exclusao_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s1050_exclusao_id:
+    if pk:
     
-        s1050_exclusao = get_object_or_404(s1050exclusao, id=s1050_exclusao_id)
+        s1050_exclusao = get_object_or_404(s1050exclusao, id=pk)
         dados_evento = s1050_exclusao.evento()
 
-    if request.user.has_perm('s1050.can_view_s1050exclusao'):
+    if request.user.has_perm('s1050.can_see_s1050exclusao'):
         
-        if s1050_exclusao_id:
+        if pk:
         
-            s1050_exclusao_form = form_s1050_exclusao(request.POST or None, 
-                                                          instance=s1050_exclusao,  
-                                                          initial={'excluido': False})
+            s1050_exclusao_form = form_s1050_exclusao(
+                request.POST or None, 
+                instance=s1050_exclusao)
                                          
         else:
         
-            s1050_exclusao_form = form_s1050_exclusao(request.POST or None, 
-                                         initial={'excluido': False})
+            s1050_exclusao_form = form_s1050_exclusao(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s1050_exclusao_form.is_valid():
             
-                dados = s1050_exclusao_form.cleaned_data
                 obj = s1050_exclusao_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s1050_exclusao_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1050_exclusao', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1050_exclusao', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s1050_exclusao), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1050_exclusao', s1050_exclusao_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s1050_exclusao), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1050_exclusao', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s1050_exclusao_apagar', 's1050_exclusao_salvar', 's1050_exclusao'):
+                if request.session['return_page'] not in (
+                    's1050_exclusao_apagar', 
+                    's1050_exclusao_salvar', 
+                    's1050_exclusao'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s1050_exclusao_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s1050_exclusao_salvar', hash=url_hash)
+                    return redirect(
+                        's1050_exclusao_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s1050_exclusao_form = disabled_form_fields(s1050_exclusao_form, request.user.has_perm('s1050.change_s1050exclusao'))
+        s1050_exclusao_form = disabled_form_fields(
+            s1050_exclusao_form, 
+            request.user.has_perm('s1050.change_s1050exclusao'))
         
-        if s1050_exclusao_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #s1050_exclusao_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s1050_exclusao_form = disabled_form_for_print(s1050_exclusao_form)
             
         
         
-        if s1050_exclusao_id:
+        if pk:
         
-            s1050_exclusao = get_object_or_404(s1050exclusao, id=s1050_exclusao_id)
+            s1050_exclusao = get_object_or_404(s1050exclusao, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's1050_exclusao' in request.session['retorno_pagina']:
+        if tab or 's1050_exclusao' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's1050_exclusao_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's1050_exclusao_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s1050_exclusao_id, tabela='s1050_exclusao').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1050_exclusao').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's1050_exclusao': s1050_exclusao, 
             's1050_exclusao_form': s1050_exclusao_form, 
-            's1050_exclusao_id': int(s1050_exclusao_id),
-            'usuario': usuario, 
             'modulos': ['s1050', ],
             'paginas': ['s1050_exclusao', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s1050_exclusao_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's1050_exclusao_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s1050_exclusao_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s1050_exclusao_salvar.html', context)
             filename = "s1050_exclusao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's1050_exclusao_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s1050', ],
             'paginas': ['s1050_exclusao', ],
             'data': datetime.datetime.now(),

@@ -121,8 +121,11 @@ class s1000alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracao", "Can view S1000ALTERACAO"),
-            ("can_view_menu_s1000alteracao", "Can view menu S1000ALTERACAO"),)
+            ("can_see_list_s1000alteracao", u"Pode ver listagem do modelo S1000ALTERACAO"),
+            ("can_see_data_s1000alteracao", u"Pode visualizar o conteúdo do modelo S1000ALTERACAO"),
+            ("can_see_menu_s1000alteracao", u"Pode visualizar no menu o modelo S1000ALTERACAO"),
+            ("can_print_list_s1000alteracao", u"Pode imprimir listagem do modelo S1000ALTERACAO"),
+            ("can_print_data_s1000alteracao", u"Pode imprimir o conteúdo do modelo S1000ALTERACAO"), )
             
         ordering = [
             's1000_evtinfoempregador',
@@ -195,8 +198,11 @@ class s1000alteracaodadosIsencao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaodadosIsencao", "Can view S1000ALTERACAODADOSISENCAO"),
-            ("can_view_menu_s1000alteracaodadosIsencao", "Can view menu S1000ALTERACAODADOSISENCAO"),)
+            ("can_see_list_s1000alteracaodadosIsencao", u"Pode ver listagem do modelo S1000ALTERACAODADOSISENCAO"),
+            ("can_see_data_s1000alteracaodadosIsencao", u"Pode visualizar o conteúdo do modelo S1000ALTERACAODADOSISENCAO"),
+            ("can_see_menu_s1000alteracaodadosIsencao", u"Pode visualizar no menu o modelo S1000ALTERACAODADOSISENCAO"),
+            ("can_print_list_s1000alteracaodadosIsencao", u"Pode imprimir listagem do modelo S1000ALTERACAODADOSISENCAO"),
+            ("can_print_data_s1000alteracaodadosIsencao", u"Pode imprimir o conteúdo do modelo S1000ALTERACAODADOSISENCAO"), )
             
         ordering = [
             's1000_alteracao',
@@ -260,8 +266,11 @@ class s1000alteracaoinfoEFR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaoinfoEFR", "Can view S1000ALTERACAOINFOEFR"),
-            ("can_view_menu_s1000alteracaoinfoEFR", "Can view menu S1000ALTERACAOINFOEFR"),)
+            ("can_see_list_s1000alteracaoinfoEFR", u"Pode ver listagem do modelo S1000ALTERACAOINFOEFR"),
+            ("can_see_data_s1000alteracaoinfoEFR", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOINFOEFR"),
+            ("can_see_menu_s1000alteracaoinfoEFR", u"Pode visualizar no menu o modelo S1000ALTERACAOINFOEFR"),
+            ("can_print_list_s1000alteracaoinfoEFR", u"Pode imprimir listagem do modelo S1000ALTERACAOINFOEFR"),
+            ("can_print_data_s1000alteracaoinfoEFR", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOINFOEFR"), )
             
         ordering = [
             's1000_alteracao_infoop',
@@ -328,8 +337,11 @@ class s1000alteracaoinfoEnte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaoinfoEnte", "Can view S1000ALTERACAOINFOENTE"),
-            ("can_view_menu_s1000alteracaoinfoEnte", "Can view menu S1000ALTERACAOINFOENTE"),)
+            ("can_see_list_s1000alteracaoinfoEnte", u"Pode ver listagem do modelo S1000ALTERACAOINFOENTE"),
+            ("can_see_data_s1000alteracaoinfoEnte", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOINFOENTE"),
+            ("can_see_menu_s1000alteracaoinfoEnte", u"Pode visualizar no menu o modelo S1000ALTERACAOINFOENTE"),
+            ("can_print_list_s1000alteracaoinfoEnte", u"Pode imprimir listagem do modelo S1000ALTERACAOINFOENTE"),
+            ("can_print_data_s1000alteracaoinfoEnte", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOINFOENTE"), )
             
         ordering = [
             's1000_alteracao_infoop',
@@ -399,8 +411,11 @@ class s1000alteracaoinfoOP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaoinfoOP", "Can view S1000ALTERACAOINFOOP"),
-            ("can_view_menu_s1000alteracaoinfoOP", "Can view menu S1000ALTERACAOINFOOP"),)
+            ("can_see_list_s1000alteracaoinfoOP", u"Pode ver listagem do modelo S1000ALTERACAOINFOOP"),
+            ("can_see_data_s1000alteracaoinfoOP", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOINFOOP"),
+            ("can_see_menu_s1000alteracaoinfoOP", u"Pode visualizar no menu o modelo S1000ALTERACAOINFOOP"),
+            ("can_print_list_s1000alteracaoinfoOP", u"Pode imprimir listagem do modelo S1000ALTERACAOINFOOP"),
+            ("can_print_data_s1000alteracaoinfoOP", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOINFOOP"), )
             
         ordering = [
             's1000_alteracao',
@@ -460,8 +475,11 @@ class s1000alteracaoinfoOrgInternacional(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaoinfoOrgInternacional", "Can view S1000ALTERACAOINFOORGINTERNACIONAL"),
-            ("can_view_menu_s1000alteracaoinfoOrgInternacional", "Can view menu S1000ALTERACAOINFOORGINTERNACIONAL"),)
+            ("can_see_list_s1000alteracaoinfoOrgInternacional", u"Pode ver listagem do modelo S1000ALTERACAOINFOORGINTERNACIONAL"),
+            ("can_see_data_s1000alteracaoinfoOrgInternacional", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOINFOORGINTERNACIONAL"),
+            ("can_see_menu_s1000alteracaoinfoOrgInternacional", u"Pode visualizar no menu o modelo S1000ALTERACAOINFOORGINTERNACIONAL"),
+            ("can_print_list_s1000alteracaoinfoOrgInternacional", u"Pode imprimir listagem do modelo S1000ALTERACAOINFOORGINTERNACIONAL"),
+            ("can_print_data_s1000alteracaoinfoOrgInternacional", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOINFOORGINTERNACIONAL"), )
             
         ordering = [
             's1000_alteracao',
@@ -518,8 +536,11 @@ class s1000alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaonovaValidade", "Can view S1000ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1000alteracaonovaValidade", "Can view menu S1000ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1000alteracaonovaValidade", u"Pode ver listagem do modelo S1000ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1000alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1000ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1000alteracaonovaValidade", u"Pode visualizar no menu o modelo S1000ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1000alteracaonovaValidade", u"Pode imprimir listagem do modelo S1000ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1000alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1000ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1000_alteracao',
@@ -575,8 +596,11 @@ class s1000alteracaosituacaoPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaosituacaoPF", "Can view S1000ALTERACAOSITUACAOPF"),
-            ("can_view_menu_s1000alteracaosituacaoPF", "Can view menu S1000ALTERACAOSITUACAOPF"),)
+            ("can_see_list_s1000alteracaosituacaoPF", u"Pode ver listagem do modelo S1000ALTERACAOSITUACAOPF"),
+            ("can_see_data_s1000alteracaosituacaoPF", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOSITUACAOPF"),
+            ("can_see_menu_s1000alteracaosituacaoPF", u"Pode visualizar no menu o modelo S1000ALTERACAOSITUACAOPF"),
+            ("can_print_list_s1000alteracaosituacaoPF", u"Pode imprimir listagem do modelo S1000ALTERACAOSITUACAOPF"),
+            ("can_print_data_s1000alteracaosituacaoPF", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOSITUACAOPF"), )
             
         ordering = [
             's1000_alteracao',
@@ -632,8 +656,11 @@ class s1000alteracaosituacaoPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaosituacaoPJ", "Can view S1000ALTERACAOSITUACAOPJ"),
-            ("can_view_menu_s1000alteracaosituacaoPJ", "Can view menu S1000ALTERACAOSITUACAOPJ"),)
+            ("can_see_list_s1000alteracaosituacaoPJ", u"Pode ver listagem do modelo S1000ALTERACAOSITUACAOPJ"),
+            ("can_see_data_s1000alteracaosituacaoPJ", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOSITUACAOPJ"),
+            ("can_see_menu_s1000alteracaosituacaoPJ", u"Pode visualizar no menu o modelo S1000ALTERACAOSITUACAOPJ"),
+            ("can_print_list_s1000alteracaosituacaoPJ", u"Pode imprimir listagem do modelo S1000ALTERACAOSITUACAOPJ"),
+            ("can_print_data_s1000alteracaosituacaoPJ", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOSITUACAOPJ"), )
             
         ordering = [
             's1000_alteracao',
@@ -696,8 +723,11 @@ class s1000alteracaosoftwareHouse(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000alteracaosoftwareHouse", "Can view S1000ALTERACAOSOFTWAREHOUSE"),
-            ("can_view_menu_s1000alteracaosoftwareHouse", "Can view menu S1000ALTERACAOSOFTWAREHOUSE"),)
+            ("can_see_list_s1000alteracaosoftwareHouse", u"Pode ver listagem do modelo S1000ALTERACAOSOFTWAREHOUSE"),
+            ("can_see_data_s1000alteracaosoftwareHouse", u"Pode visualizar o conteúdo do modelo S1000ALTERACAOSOFTWAREHOUSE"),
+            ("can_see_menu_s1000alteracaosoftwareHouse", u"Pode visualizar no menu o modelo S1000ALTERACAOSOFTWAREHOUSE"),
+            ("can_print_list_s1000alteracaosoftwareHouse", u"Pode imprimir listagem do modelo S1000ALTERACAOSOFTWAREHOUSE"),
+            ("can_print_data_s1000alteracaosoftwareHouse", u"Pode imprimir o conteúdo do modelo S1000ALTERACAOSOFTWAREHOUSE"), )
             
         ordering = [
             's1000_alteracao',
@@ -757,8 +787,11 @@ class s1000exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000exclusao", "Can view S1000EXCLUSAO"),
-            ("can_view_menu_s1000exclusao", "Can view menu S1000EXCLUSAO"),)
+            ("can_see_list_s1000exclusao", u"Pode ver listagem do modelo S1000EXCLUSAO"),
+            ("can_see_data_s1000exclusao", u"Pode visualizar o conteúdo do modelo S1000EXCLUSAO"),
+            ("can_see_menu_s1000exclusao", u"Pode visualizar no menu o modelo S1000EXCLUSAO"),
+            ("can_print_list_s1000exclusao", u"Pode imprimir listagem do modelo S1000EXCLUSAO"),
+            ("can_print_data_s1000exclusao", u"Pode imprimir o conteúdo do modelo S1000EXCLUSAO"), )
             
         ordering = [
             's1000_evtinfoempregador',
@@ -838,8 +871,11 @@ class s1000inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusao", "Can view S1000INCLUSAO"),
-            ("can_view_menu_s1000inclusao", "Can view menu S1000INCLUSAO"),)
+            ("can_see_list_s1000inclusao", u"Pode ver listagem do modelo S1000INCLUSAO"),
+            ("can_see_data_s1000inclusao", u"Pode visualizar o conteúdo do modelo S1000INCLUSAO"),
+            ("can_see_menu_s1000inclusao", u"Pode visualizar no menu o modelo S1000INCLUSAO"),
+            ("can_print_list_s1000inclusao", u"Pode imprimir listagem do modelo S1000INCLUSAO"),
+            ("can_print_data_s1000inclusao", u"Pode imprimir o conteúdo do modelo S1000INCLUSAO"), )
             
         ordering = [
             's1000_evtinfoempregador',
@@ -912,8 +948,11 @@ class s1000inclusaodadosIsencao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaodadosIsencao", "Can view S1000INCLUSAODADOSISENCAO"),
-            ("can_view_menu_s1000inclusaodadosIsencao", "Can view menu S1000INCLUSAODADOSISENCAO"),)
+            ("can_see_list_s1000inclusaodadosIsencao", u"Pode ver listagem do modelo S1000INCLUSAODADOSISENCAO"),
+            ("can_see_data_s1000inclusaodadosIsencao", u"Pode visualizar o conteúdo do modelo S1000INCLUSAODADOSISENCAO"),
+            ("can_see_menu_s1000inclusaodadosIsencao", u"Pode visualizar no menu o modelo S1000INCLUSAODADOSISENCAO"),
+            ("can_print_list_s1000inclusaodadosIsencao", u"Pode imprimir listagem do modelo S1000INCLUSAODADOSISENCAO"),
+            ("can_print_data_s1000inclusaodadosIsencao", u"Pode imprimir o conteúdo do modelo S1000INCLUSAODADOSISENCAO"), )
             
         ordering = [
             's1000_inclusao',
@@ -977,8 +1016,11 @@ class s1000inclusaoinfoEFR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaoinfoEFR", "Can view S1000INCLUSAOINFOEFR"),
-            ("can_view_menu_s1000inclusaoinfoEFR", "Can view menu S1000INCLUSAOINFOEFR"),)
+            ("can_see_list_s1000inclusaoinfoEFR", u"Pode ver listagem do modelo S1000INCLUSAOINFOEFR"),
+            ("can_see_data_s1000inclusaoinfoEFR", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOINFOEFR"),
+            ("can_see_menu_s1000inclusaoinfoEFR", u"Pode visualizar no menu o modelo S1000INCLUSAOINFOEFR"),
+            ("can_print_list_s1000inclusaoinfoEFR", u"Pode imprimir listagem do modelo S1000INCLUSAOINFOEFR"),
+            ("can_print_data_s1000inclusaoinfoEFR", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOINFOEFR"), )
             
         ordering = [
             's1000_inclusao_infoop',
@@ -1045,8 +1087,11 @@ class s1000inclusaoinfoEnte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaoinfoEnte", "Can view S1000INCLUSAOINFOENTE"),
-            ("can_view_menu_s1000inclusaoinfoEnte", "Can view menu S1000INCLUSAOINFOENTE"),)
+            ("can_see_list_s1000inclusaoinfoEnte", u"Pode ver listagem do modelo S1000INCLUSAOINFOENTE"),
+            ("can_see_data_s1000inclusaoinfoEnte", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOINFOENTE"),
+            ("can_see_menu_s1000inclusaoinfoEnte", u"Pode visualizar no menu o modelo S1000INCLUSAOINFOENTE"),
+            ("can_print_list_s1000inclusaoinfoEnte", u"Pode imprimir listagem do modelo S1000INCLUSAOINFOENTE"),
+            ("can_print_data_s1000inclusaoinfoEnte", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOINFOENTE"), )
             
         ordering = [
             's1000_inclusao_infoop',
@@ -1116,8 +1161,11 @@ class s1000inclusaoinfoOP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaoinfoOP", "Can view S1000INCLUSAOINFOOP"),
-            ("can_view_menu_s1000inclusaoinfoOP", "Can view menu S1000INCLUSAOINFOOP"),)
+            ("can_see_list_s1000inclusaoinfoOP", u"Pode ver listagem do modelo S1000INCLUSAOINFOOP"),
+            ("can_see_data_s1000inclusaoinfoOP", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOINFOOP"),
+            ("can_see_menu_s1000inclusaoinfoOP", u"Pode visualizar no menu o modelo S1000INCLUSAOINFOOP"),
+            ("can_print_list_s1000inclusaoinfoOP", u"Pode imprimir listagem do modelo S1000INCLUSAOINFOOP"),
+            ("can_print_data_s1000inclusaoinfoOP", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOINFOOP"), )
             
         ordering = [
             's1000_inclusao',
@@ -1177,8 +1225,11 @@ class s1000inclusaoinfoOrgInternacional(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaoinfoOrgInternacional", "Can view S1000INCLUSAOINFOORGINTERNACIONAL"),
-            ("can_view_menu_s1000inclusaoinfoOrgInternacional", "Can view menu S1000INCLUSAOINFOORGINTERNACIONAL"),)
+            ("can_see_list_s1000inclusaoinfoOrgInternacional", u"Pode ver listagem do modelo S1000INCLUSAOINFOORGINTERNACIONAL"),
+            ("can_see_data_s1000inclusaoinfoOrgInternacional", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOINFOORGINTERNACIONAL"),
+            ("can_see_menu_s1000inclusaoinfoOrgInternacional", u"Pode visualizar no menu o modelo S1000INCLUSAOINFOORGINTERNACIONAL"),
+            ("can_print_list_s1000inclusaoinfoOrgInternacional", u"Pode imprimir listagem do modelo S1000INCLUSAOINFOORGINTERNACIONAL"),
+            ("can_print_data_s1000inclusaoinfoOrgInternacional", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOINFOORGINTERNACIONAL"), )
             
         ordering = [
             's1000_inclusao',
@@ -1234,8 +1285,11 @@ class s1000inclusaosituacaoPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaosituacaoPF", "Can view S1000INCLUSAOSITUACAOPF"),
-            ("can_view_menu_s1000inclusaosituacaoPF", "Can view menu S1000INCLUSAOSITUACAOPF"),)
+            ("can_see_list_s1000inclusaosituacaoPF", u"Pode ver listagem do modelo S1000INCLUSAOSITUACAOPF"),
+            ("can_see_data_s1000inclusaosituacaoPF", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOSITUACAOPF"),
+            ("can_see_menu_s1000inclusaosituacaoPF", u"Pode visualizar no menu o modelo S1000INCLUSAOSITUACAOPF"),
+            ("can_print_list_s1000inclusaosituacaoPF", u"Pode imprimir listagem do modelo S1000INCLUSAOSITUACAOPF"),
+            ("can_print_data_s1000inclusaosituacaoPF", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOSITUACAOPF"), )
             
         ordering = [
             's1000_inclusao',
@@ -1291,8 +1345,11 @@ class s1000inclusaosituacaoPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaosituacaoPJ", "Can view S1000INCLUSAOSITUACAOPJ"),
-            ("can_view_menu_s1000inclusaosituacaoPJ", "Can view menu S1000INCLUSAOSITUACAOPJ"),)
+            ("can_see_list_s1000inclusaosituacaoPJ", u"Pode ver listagem do modelo S1000INCLUSAOSITUACAOPJ"),
+            ("can_see_data_s1000inclusaosituacaoPJ", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOSITUACAOPJ"),
+            ("can_see_menu_s1000inclusaosituacaoPJ", u"Pode visualizar no menu o modelo S1000INCLUSAOSITUACAOPJ"),
+            ("can_print_list_s1000inclusaosituacaoPJ", u"Pode imprimir listagem do modelo S1000INCLUSAOSITUACAOPJ"),
+            ("can_print_data_s1000inclusaosituacaoPJ", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOSITUACAOPJ"), )
             
         ordering = [
             's1000_inclusao',
@@ -1355,8 +1412,11 @@ class s1000inclusaosoftwareHouse(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000inclusaosoftwareHouse", "Can view S1000INCLUSAOSOFTWAREHOUSE"),
-            ("can_view_menu_s1000inclusaosoftwareHouse", "Can view menu S1000INCLUSAOSOFTWAREHOUSE"),)
+            ("can_see_list_s1000inclusaosoftwareHouse", u"Pode ver listagem do modelo S1000INCLUSAOSOFTWAREHOUSE"),
+            ("can_see_data_s1000inclusaosoftwareHouse", u"Pode visualizar o conteúdo do modelo S1000INCLUSAOSOFTWAREHOUSE"),
+            ("can_see_menu_s1000inclusaosoftwareHouse", u"Pode visualizar no menu o modelo S1000INCLUSAOSOFTWAREHOUSE"),
+            ("can_print_list_s1000inclusaosoftwareHouse", u"Pode imprimir listagem do modelo S1000INCLUSAOSOFTWAREHOUSE"),
+            ("can_print_data_s1000inclusaosoftwareHouse", u"Pode imprimir o conteúdo do modelo S1000INCLUSAOSOFTWAREHOUSE"), )
             
         ordering = [
             's1000_inclusao',

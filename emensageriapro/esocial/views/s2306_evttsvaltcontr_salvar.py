@@ -61,28 +61,14 @@ from emensageriapro.s2306.forms import form_s2306_infocomplementares
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2306_evttsvaltcontr_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s2306_evttsvaltcontr_id:
-    
-        s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id=s2306_evttsvaltcontr_id)
+        s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id=pk)
 
         if s2306_evttsvaltcontr.status != STATUS_EVENTO_CADASTRADO:
         
@@ -90,9 +76,9 @@ def salvar(request, hash):
             dict_permissoes['s2306_evttsvaltcontr_apagar'] = 0
             dict_permissoes['s2306_evttsvaltcontr_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s2306evtTSVAltContr'):
+    if request.user.has_perm('esocial.can_see_s2306evtTSVAltContr'):
     
-        if s2306_evttsvaltcontr_id:
+        if pk:
         
             s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None, instance = s2306_evttsvaltcontr, 
                                          initial={'excluido': False})
@@ -111,54 +97,70 @@ def salvar(request, hash):
         
             if s2306_evttsvaltcontr_form.is_valid():
             
-                dados = s2306_evttsvaltcontr_form.cleaned_data
                 obj = s2306_evttsvaltcontr_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2306_evttsvaltcontr_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2306_evttsvaltcontr', obj.id, usuario_id, 1)
+                                 's2306_evttsvaltcontr', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2306_evttsvaltcontr), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2306_evttsvaltcontr', s2306_evttsvaltcontr_id, usuario_id, 2)
+                                     's2306_evttsvaltcontr', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s2306_evttsvaltcontr_apagar', 's2306_evttsvaltcontr_salvar', 's2306_evttsvaltcontr'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's2306_evttsvaltcontr_apagar', 
+                    's2306_evttsvaltcontr_salvar', 
+                    's2306_evttsvaltcontr'):
                     
-                if s2306_evttsvaltcontr_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2306_evttsvaltcontr_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's2306_evttsvaltcontr_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s2306_evttsvaltcontr_form = disabled_form_fields(s2306_evttsvaltcontr_form, request.user.has_perm('esocial.change_s2306evtTSVAltContr'))
+        s2306_evttsvaltcontr_form = disabled_form_fields(
+             s2306_evttsvaltcontr_form, 
+             request.user.has_perm('esocial.change_s2306evtTSVAltContr'))
         
-        if s2306_evttsvaltcontr_id:
+        if pk:
+        
             if s2306_evttsvaltcontr.status != 0:
+            
                 s2306_evttsvaltcontr_form = disabled_form_fields(s2306_evttsvaltcontr_form, False)
+                
         #s2306_evttsvaltcontr_campos_multiple_passo3
 
         for field in s2306_evttsvaltcontr_form.fields.keys():
+        
             s2306_evttsvaltcontr_form.fields[field].widget.attrs['ng-model'] = 's2306_evttsvaltcontr_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s2306_evttsvaltcontr_form = disabled_form_for_print(s2306_evttsvaltcontr_form)
 
         
         s2306_infocomplementares_lista = None 
         s2306_infocomplementares_form = None 
         
-        if s2306_evttsvaltcontr_id:
+        if pk:
         
-            s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id = s2306_evttsvaltcontr_id)
+            s2306_evttsvaltcontr = get_object_or_404(s2306evtTSVAltContr, id=pk)
             
             s2306_infocomplementares_form = form_s2306_infocomplementares(
                 initial={ 's2306_evttsvaltcontr': s2306_evttsvaltcontr })
@@ -167,6 +169,7 @@ def salvar(request, hash):
                 filter(s2306_evttsvaltcontr_id=s2306_evttsvaltcontr.id).all()
                 
         else:
+        
             s2306_evttsvaltcontr = None
             
         #s2306_evttsvaltcontr_salvar_custom_variaveis#
@@ -175,40 +178,39 @@ def salvar(request, hash):
         
         if 's2306_evttsvaltcontr'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's2306_evttsvaltcontr' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2306_evttsvaltcontr_salvar'
+        if tab or 's2306_evttsvaltcontr' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2306_evttsvaltcontr_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2306_evttsvaltcontr_id, tabela='s2306_evttsvaltcontr').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2306_evttsvaltcontr').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2306_evttsvaltcontr': s2306_evttsvaltcontr, 
             's2306_evttsvaltcontr_form': s2306_evttsvaltcontr_form, 
-            's2306_evttsvaltcontr_id': int(s2306_evttsvaltcontr_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             's2306_infocomplementares_form': s2306_infocomplementares_form,
             's2306_infocomplementares_lista': s2306_infocomplementares_lista,
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2306_evttsvaltcontr', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2306_evttsvaltcontr_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2306_evttsvaltcontr_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -226,25 +228,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s2306_evttsvaltcontr_salvar.html', context)
             filename = "s2306_evttsvaltcontr.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2306_evttsvaltcontr_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s2306_evttsvaltcontr', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

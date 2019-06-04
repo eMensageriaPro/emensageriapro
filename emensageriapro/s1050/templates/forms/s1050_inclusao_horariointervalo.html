@@ -15,7 +15,7 @@
     <label id="s1050_inclusao_horariointervalo__s1050_inclusao__label">Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.*</label>
     {% if not for_print %}
       {% if s1050_inclusao_horariointervalo_form.s1050_inclusao.value %}
-        <a id="s1050_inclusao_horariointervalo__s1050_inclusao__div_acessar" href="{% url 's1050_inclusao_salvar' hash='{}'|json_id:s1050_inclusao_horariointervalo_form.s1050_inclusao.value|json_print:0|base64_encode_me %}">
+        <a id="s1050_inclusao_horariointervalo__s1050_inclusao__div_acessar" href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao_horariointervalo_form.s1050_inclusao.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -71,81 +71,63 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s3000evtExclusao'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s3000_evtexclusao_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s3000evtExclusao'):
-        s3000_evtexclusao = get_object_or_404(s3000evtExclusao, id=s3000_evtexclusao_id)
-        s3000_evtexclusao_lista = s3000evtExclusao.objects.filter(id=s3000_evtexclusao_id).all()
+        s3000_evtexclusao = get_object_or_404(s3000evtExclusao, id=pk)
+        s3000_evtexclusao_lista = s3000evtExclusao.objects.filter(id=pk).all()
 
         
         s3000_idetrabalhador_lista = s3000ideTrabalhador.objects.filter(s3000_evtexclusao_id__in = listar_ids(s3000_evtexclusao_lista) ).all()
         s3000_idefolhapagto_lista = s3000ideFolhaPagto.objects.filter(s3000_evtexclusao_id__in = listar_ids(s3000_evtexclusao_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's3000_evtexclusao'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's3000_evtexclusao'
 
         context = {
             's3000_evtexclusao_lista': s3000_evtexclusao_lista,
-            's3000_evtexclusao_id': s3000_evtexclusao_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's3000_evtexclusao': s3000_evtexclusao,
-            
-            
             's3000_idetrabalhador_lista': s3000_idetrabalhador_lista,
             's3000_idefolhapagto_lista': s3000_idefolhapagto_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s3000_evtexclusao', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s3000_evtexclusao_verificar.html',
-                                           filename="s3000_evtexclusao.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s3000_evtexclusao_verificar.html',
+                filename="s3000_evtexclusao.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s3000_evtexclusao_verificar.html', context)
             filename = "%s.xls" % s3000_evtexclusao.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s3000_evtexclusao_verificar.html', context)
             filename = "%s.csv" % s3000_evtexclusao.identidade
@@ -160,7 +142,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s3000_evtexclusao', ],
             'data': datetime.now(),

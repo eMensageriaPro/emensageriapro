@@ -66,7 +66,6 @@ class s2245evtTreiCapList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2245evtTreiCapDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2245evtTreiCap.objects.all()

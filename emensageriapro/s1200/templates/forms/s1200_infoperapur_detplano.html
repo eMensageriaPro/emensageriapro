@@ -15,7 +15,7 @@
     <label id="s1200_infoperapur_detplano__s1200_infoperapur_detoper__label">Informações do dependente do plano privado de saúde.*</label>
     {% if not for_print %}
       {% if s1200_infoperapur_detplano_form.s1200_infoperapur_detoper.value %}
-        <a id="s1200_infoperapur_detplano__s1200_infoperapur_detoper__div_acessar" href="{% url 's1200_infoperapur_detoper_salvar' hash='{}'|json_id:s1200_infoperapur_detplano_form.s1200_infoperapur_detoper.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_infoperapur_detplano__s1200_infoperapur_detoper__div_acessar" href="{% url 's1200_infoperapur_detoper_salvar' pk=s1200_infoperapur_detplano_form.s1200_infoperapur_detoper.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

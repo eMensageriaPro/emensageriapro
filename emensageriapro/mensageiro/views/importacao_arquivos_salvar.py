@@ -44,6 +44,7 @@ import json
 import base64
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -61,57 +62,57 @@ from emensageriapro.mensageiro.forms import form_importacao_arquivos_eventos
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
     
-    try: 
+    if pk:
     
-        usuario_id = request.user.id  
-        dict_hash = get_hash_url( hash )
-        importacao_arquivos_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
+        importacao_arquivos = get_object_or_404(ImportacaoArquivos, id=pk)
         
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
+    if request.user.has_perm('mensageiro.can_see_ImportacaoArquivos'):
         
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if importacao_arquivos_id:
-    
-        importacao_arquivos = get_object_or_404(ImportacaoArquivos, id=importacao_arquivos_id)
+        if pk:
         
-    if request.user.has_perm('mensageiro.can_view_ImportacaoArquivos'):
-        
-        if importacao_arquivos_id:
             importacao_arquivos_form = form_importacao_arquivos(request.POST or None, instance=importacao_arquivos)
             
         else:
+        
             importacao_arquivos_form = form_importacao_arquivos(request.POST or None)
             
         if request.method == 'POST':
+        
             if importacao_arquivos_form.is_valid():
+            
                 #importacao_arquivos_campos_multiple_passo1
+                
                 obj = importacao_arquivos_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #importacao_arquivos_campos_multiple_passo2
                 
-                if request.session['retorno_pagina'] not in ('importacao_arquivos_apagar', 'importacao_arquivos_salvar', 'importacao_arquivos'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'importacao_arquivos_apagar', 
+                    'importacao_arquivos_salvar', 
+                    'importacao_arquivos'):
                     
-                if importacao_arquivos_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('importacao_arquivos_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'importacao_arquivos_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
+            
                 messages.error(request, 'Erro ao salvar!')
                 
         importacao_arquivos_form = disabled_form_fields(importacao_arquivos_form, request.user.has_perm('mensageiro.change_ImportacaoArquivos'))
         #importacao_arquivos_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             importacao_arquivos_form = disabled_form_for_print(importacao_arquivos_form)
         
@@ -119,15 +120,16 @@ def salvar(request, hash):
         importacao_arquivos_eventos_lista = None 
         importacao_arquivos_eventos_form = None 
         
-        if importacao_arquivos_id:
+        if pk:
         
-            importacao_arquivos = get_object_or_404(ImportacaoArquivos, id = importacao_arquivos_id)
+            importacao_arquivos = get_object_or_404(ImportacaoArquivos, id=pk)
             
             importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(
                 initial={ 'importacao_arquivos': importacao_arquivos })
             importacao_arquivos_eventos_form.fields['importacao_arquivos'].widget.attrs['readonly'] = True
             importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.\
                 filter(importacao_arquivos_id=importacao_arquivos.id).all()
+                
                 
         else:
         
@@ -137,36 +139,32 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'importacao_arquivos' in request.session['retorno_pagina']:
+        if tab or 'importacao_arquivos' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'importacao_arquivos_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'importacao_arquivos_salvar'
             
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'importacao_arquivos': importacao_arquivos, 
             'importacao_arquivos_form': importacao_arquivos_form, 
-            'importacao_arquivos_id': int(importacao_arquivos_id),
-            'usuario': usuario, 
-            'hash': hash, 
-            
             'importacao_arquivos_eventos_form': importacao_arquivos_eventos_form,
             'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['importacao_arquivos', ],
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
             #importacao_arquivos_salvar_custom_variaveis_context#
         }
-        
-        if for_print in (0, 1):
-        
-            return render(request, 'importacao_arquivos_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='importacao_arquivos_salvar.html',
@@ -183,29 +181,37 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True})
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('importacao_arquivos_salvar.html', context)
             filename = "importacao_arquivos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+        
+        else:
+        
+            return render(request, 'importacao_arquivos_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['mensageiro', ],
             'paginas': ['importacao_arquivos', ],
             'data': datetime.datetime.now(),
-            'dict_permissoes': dict_permissoes,
         }
         
         return render(request, 
-                      'permissao_negada.html', 
-                      context)
+            'permissao_negada.html', 
+            context)

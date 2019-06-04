@@ -66,7 +66,6 @@ class s2190evtAdmPrelimList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2190evtAdmPrelimDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2190evtAdmPrelim.objects.all()

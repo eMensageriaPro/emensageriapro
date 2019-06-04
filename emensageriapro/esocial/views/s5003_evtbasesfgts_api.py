@@ -66,7 +66,6 @@ class s5003evtBasesFGTSList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s5003evtBasesFGTSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5003evtBasesFGTS.objects.all()

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5011_infocomplobra__s5011_infoestab__label">Informações complementares relativas a obras de construção civil*</label>
     {% if not for_print %}{% if s5011_infocomplobra_form.s5011_infoestab.value %}
-        <a href="{% url 's5011_infoestab_salvar' hash='{}'|json_return_page:'s5011_infocomplobra_salvar'|json_return_hash:hash|json_id:s5011_infocomplobra_form.s5011_infoestab.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's5011_infoestab_salvar' pk=s5011_infocomplobra_form.s5011_infoestab.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

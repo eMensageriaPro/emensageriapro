@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        r2040_infoproc_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    r2040_infoproc = get_object_or_404(r2040infoProc, id=r2040_infoproc_id)
+    r2040_infoproc = get_object_or_404(r2040infoProc, id=pk)
     
     dados_evento = {}
-    
-    if r2040_infoproc_id:
-    
-        dados_evento = r2040_infoproc.evento()
+    dados_evento = r2040_infoproc.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(r2040_infoproc), indent=4, sort_keys=True, default=str)
-            obj = r2040infoProc.objects.get(id = r2040_infoproc_id)
+            obj = r2040infoProc.objects.get(id=pk)
             obj.delete(request=request)
             #r2040_infoproc_apagar_custom
             #r2040_infoproc_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             'r2040_infoproc', r2040_infoproc_id, usuario_id, 3)
+                             'r2040_infoproc', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 'r2040_infoproc_salvar':
+        if 'r2040_infoproc' in request.session['return_page']:
         
-            return redirect('r2040_infoproc', hash=request.session['retorno_hash'])
+            return redirect('r2040_infoproc')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['r2040', ],
         'paginas': ['r2040_infoproc', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

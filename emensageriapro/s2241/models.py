@@ -97,8 +97,11 @@ class s2241altAposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241altAposentEsp", "Can view S2241ALTAPOSENTESP"),
-            ("can_view_menu_s2241altAposentEsp", "Can view menu S2241ALTAPOSENTESP"),)
+            ("can_see_list_s2241altAposentEsp", u"Pode ver listagem do modelo S2241ALTAPOSENTESP"),
+            ("can_see_data_s2241altAposentEsp", u"Pode visualizar o conteúdo do modelo S2241ALTAPOSENTESP"),
+            ("can_see_menu_s2241altAposentEsp", u"Pode visualizar no menu o modelo S2241ALTAPOSENTESP"),
+            ("can_print_list_s2241altAposentEsp", u"Pode imprimir listagem do modelo S2241ALTAPOSENTESP"),
+            ("can_print_data_s2241altAposentEsp", u"Pode imprimir o conteúdo do modelo S2241ALTAPOSENTESP"), )
             
         ordering = [
             's2241_aposentesp',
@@ -154,8 +157,11 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241altAposentEspfatRisco", "Can view S2241ALTAPOSENTESPFATRISCO"),
-            ("can_view_menu_s2241altAposentEspfatRisco", "Can view menu S2241ALTAPOSENTESPFATRISCO"),)
+            ("can_see_list_s2241altAposentEspfatRisco", u"Pode ver listagem do modelo S2241ALTAPOSENTESPFATRISCO"),
+            ("can_see_data_s2241altAposentEspfatRisco", u"Pode visualizar o conteúdo do modelo S2241ALTAPOSENTESPFATRISCO"),
+            ("can_see_menu_s2241altAposentEspfatRisco", u"Pode visualizar no menu o modelo S2241ALTAPOSENTESPFATRISCO"),
+            ("can_print_list_s2241altAposentEspfatRisco", u"Pode imprimir listagem do modelo S2241ALTAPOSENTESPFATRISCO"),
+            ("can_print_data_s2241altAposentEspfatRisco", u"Pode imprimir o conteúdo do modelo S2241ALTAPOSENTESPFATRISCO"), )
             
         ordering = [
             's2241_altaposentesp_infoamb',
@@ -211,8 +217,11 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241altAposentEspinfoamb", "Can view S2241ALTAPOSENTESPINFOAMB"),
-            ("can_view_menu_s2241altAposentEspinfoamb", "Can view menu S2241ALTAPOSENTESPINFOAMB"),)
+            ("can_see_list_s2241altAposentEspinfoamb", u"Pode ver listagem do modelo S2241ALTAPOSENTESPINFOAMB"),
+            ("can_see_data_s2241altAposentEspinfoamb", u"Pode visualizar o conteúdo do modelo S2241ALTAPOSENTESPINFOAMB"),
+            ("can_see_menu_s2241altAposentEspinfoamb", u"Pode visualizar no menu o modelo S2241ALTAPOSENTESPINFOAMB"),
+            ("can_print_list_s2241altAposentEspinfoamb", u"Pode imprimir listagem do modelo S2241ALTAPOSENTESPINFOAMB"),
+            ("can_print_data_s2241altAposentEspinfoamb", u"Pode imprimir o conteúdo do modelo S2241ALTAPOSENTESPINFOAMB"), )
             
         ordering = [
             's2241_altaposentesp',
@@ -268,8 +277,11 @@ class s2241altInsalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241altInsalPeric", "Can view S2241ALTINSALPERIC"),
-            ("can_view_menu_s2241altInsalPeric", "Can view menu S2241ALTINSALPERIC"),)
+            ("can_see_list_s2241altInsalPeric", u"Pode ver listagem do modelo S2241ALTINSALPERIC"),
+            ("can_see_data_s2241altInsalPeric", u"Pode visualizar o conteúdo do modelo S2241ALTINSALPERIC"),
+            ("can_see_menu_s2241altInsalPeric", u"Pode visualizar no menu o modelo S2241ALTINSALPERIC"),
+            ("can_print_list_s2241altInsalPeric", u"Pode imprimir listagem do modelo S2241ALTINSALPERIC"),
+            ("can_print_data_s2241altInsalPeric", u"Pode imprimir o conteúdo do modelo S2241ALTINSALPERIC"), )
             
         ordering = [
             's2241_insalperic',
@@ -325,8 +337,11 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241altInsalPericfatRisco", "Can view S2241ALTINSALPERICFATRISCO"),
-            ("can_view_menu_s2241altInsalPericfatRisco", "Can view menu S2241ALTINSALPERICFATRISCO"),)
+            ("can_see_list_s2241altInsalPericfatRisco", u"Pode ver listagem do modelo S2241ALTINSALPERICFATRISCO"),
+            ("can_see_data_s2241altInsalPericfatRisco", u"Pode visualizar o conteúdo do modelo S2241ALTINSALPERICFATRISCO"),
+            ("can_see_menu_s2241altInsalPericfatRisco", u"Pode visualizar no menu o modelo S2241ALTINSALPERICFATRISCO"),
+            ("can_print_list_s2241altInsalPericfatRisco", u"Pode imprimir listagem do modelo S2241ALTINSALPERICFATRISCO"),
+            ("can_print_data_s2241altInsalPericfatRisco", u"Pode imprimir o conteúdo do modelo S2241ALTINSALPERICFATRISCO"), )
             
         ordering = [
             's2241_altinsalperic_infoamb',
@@ -382,8 +397,11 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241altInsalPericinfoamb", "Can view S2241ALTINSALPERICINFOAMB"),
-            ("can_view_menu_s2241altInsalPericinfoamb", "Can view menu S2241ALTINSALPERICINFOAMB"),)
+            ("can_see_list_s2241altInsalPericinfoamb", u"Pode ver listagem do modelo S2241ALTINSALPERICINFOAMB"),
+            ("can_see_data_s2241altInsalPericinfoamb", u"Pode visualizar o conteúdo do modelo S2241ALTINSALPERICINFOAMB"),
+            ("can_see_menu_s2241altInsalPericinfoamb", u"Pode visualizar no menu o modelo S2241ALTINSALPERICINFOAMB"),
+            ("can_print_list_s2241altInsalPericinfoamb", u"Pode imprimir listagem do modelo S2241ALTINSALPERICINFOAMB"),
+            ("can_print_data_s2241altInsalPericinfoamb", u"Pode imprimir o conteúdo do modelo S2241ALTINSALPERICINFOAMB"), )
             
         ordering = [
             's2241_altinsalperic',
@@ -437,8 +455,11 @@ class s2241aposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241aposentEsp", "Can view S2241APOSENTESP"),
-            ("can_view_menu_s2241aposentEsp", "Can view menu S2241APOSENTESP"),)
+            ("can_see_list_s2241aposentEsp", u"Pode ver listagem do modelo S2241APOSENTESP"),
+            ("can_see_data_s2241aposentEsp", u"Pode visualizar o conteúdo do modelo S2241APOSENTESP"),
+            ("can_see_menu_s2241aposentEsp", u"Pode visualizar no menu o modelo S2241APOSENTESP"),
+            ("can_print_list_s2241aposentEsp", u"Pode imprimir listagem do modelo S2241APOSENTESP"),
+            ("can_print_data_s2241aposentEsp", u"Pode imprimir o conteúdo do modelo S2241APOSENTESP"), )
             
         ordering = [
             's2241_evtinsapo',]
@@ -493,8 +514,11 @@ class s2241fimAposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241fimAposentEsp", "Can view S2241FIMAPOSENTESP"),
-            ("can_view_menu_s2241fimAposentEsp", "Can view menu S2241FIMAPOSENTESP"),)
+            ("can_see_list_s2241fimAposentEsp", u"Pode ver listagem do modelo S2241FIMAPOSENTESP"),
+            ("can_see_data_s2241fimAposentEsp", u"Pode visualizar o conteúdo do modelo S2241FIMAPOSENTESP"),
+            ("can_see_menu_s2241fimAposentEsp", u"Pode visualizar no menu o modelo S2241FIMAPOSENTESP"),
+            ("can_print_list_s2241fimAposentEsp", u"Pode imprimir listagem do modelo S2241FIMAPOSENTESP"),
+            ("can_print_data_s2241fimAposentEsp", u"Pode imprimir o conteúdo do modelo S2241FIMAPOSENTESP"), )
             
         ordering = [
             's2241_aposentesp',
@@ -550,8 +574,11 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241fimAposentEspinfoAmb", "Can view S2241FIMAPOSENTESPINFOAMB"),
-            ("can_view_menu_s2241fimAposentEspinfoAmb", "Can view menu S2241FIMAPOSENTESPINFOAMB"),)
+            ("can_see_list_s2241fimAposentEspinfoAmb", u"Pode ver listagem do modelo S2241FIMAPOSENTESPINFOAMB"),
+            ("can_see_data_s2241fimAposentEspinfoAmb", u"Pode visualizar o conteúdo do modelo S2241FIMAPOSENTESPINFOAMB"),
+            ("can_see_menu_s2241fimAposentEspinfoAmb", u"Pode visualizar no menu o modelo S2241FIMAPOSENTESPINFOAMB"),
+            ("can_print_list_s2241fimAposentEspinfoAmb", u"Pode imprimir listagem do modelo S2241FIMAPOSENTESPINFOAMB"),
+            ("can_print_data_s2241fimAposentEspinfoAmb", u"Pode imprimir o conteúdo do modelo S2241FIMAPOSENTESPINFOAMB"), )
             
         ordering = [
             's2241_fimaposentesp',
@@ -607,8 +634,11 @@ class s2241fimInsalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241fimInsalPeric", "Can view S2241FIMINSALPERIC"),
-            ("can_view_menu_s2241fimInsalPeric", "Can view menu S2241FIMINSALPERIC"),)
+            ("can_see_list_s2241fimInsalPeric", u"Pode ver listagem do modelo S2241FIMINSALPERIC"),
+            ("can_see_data_s2241fimInsalPeric", u"Pode visualizar o conteúdo do modelo S2241FIMINSALPERIC"),
+            ("can_see_menu_s2241fimInsalPeric", u"Pode visualizar no menu o modelo S2241FIMINSALPERIC"),
+            ("can_print_list_s2241fimInsalPeric", u"Pode imprimir listagem do modelo S2241FIMINSALPERIC"),
+            ("can_print_data_s2241fimInsalPeric", u"Pode imprimir o conteúdo do modelo S2241FIMINSALPERIC"), )
             
         ordering = [
             's2241_insalperic',
@@ -664,8 +694,11 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241fimInsalPericinfoAmb", "Can view S2241FIMINSALPERICINFOAMB"),
-            ("can_view_menu_s2241fimInsalPericinfoAmb", "Can view menu S2241FIMINSALPERICINFOAMB"),)
+            ("can_see_list_s2241fimInsalPericinfoAmb", u"Pode ver listagem do modelo S2241FIMINSALPERICINFOAMB"),
+            ("can_see_data_s2241fimInsalPericinfoAmb", u"Pode visualizar o conteúdo do modelo S2241FIMINSALPERICINFOAMB"),
+            ("can_see_menu_s2241fimInsalPericinfoAmb", u"Pode visualizar no menu o modelo S2241FIMINSALPERICINFOAMB"),
+            ("can_print_list_s2241fimInsalPericinfoAmb", u"Pode imprimir listagem do modelo S2241FIMINSALPERICINFOAMB"),
+            ("can_print_data_s2241fimInsalPericinfoAmb", u"Pode imprimir o conteúdo do modelo S2241FIMINSALPERICINFOAMB"), )
             
         ordering = [
             's2241_fiminsalperic',
@@ -721,8 +754,11 @@ class s2241iniAposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241iniAposentEsp", "Can view S2241INIAPOSENTESP"),
-            ("can_view_menu_s2241iniAposentEsp", "Can view menu S2241INIAPOSENTESP"),)
+            ("can_see_list_s2241iniAposentEsp", u"Pode ver listagem do modelo S2241INIAPOSENTESP"),
+            ("can_see_data_s2241iniAposentEsp", u"Pode visualizar o conteúdo do modelo S2241INIAPOSENTESP"),
+            ("can_see_menu_s2241iniAposentEsp", u"Pode visualizar no menu o modelo S2241INIAPOSENTESP"),
+            ("can_print_list_s2241iniAposentEsp", u"Pode imprimir listagem do modelo S2241INIAPOSENTESP"),
+            ("can_print_data_s2241iniAposentEsp", u"Pode imprimir o conteúdo do modelo S2241INIAPOSENTESP"), )
             
         ordering = [
             's2241_aposentesp',
@@ -778,8 +814,11 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241iniAposentEspfatRisco", "Can view S2241INIAPOSENTESPFATRISCO"),
-            ("can_view_menu_s2241iniAposentEspfatRisco", "Can view menu S2241INIAPOSENTESPFATRISCO"),)
+            ("can_see_list_s2241iniAposentEspfatRisco", u"Pode ver listagem do modelo S2241INIAPOSENTESPFATRISCO"),
+            ("can_see_data_s2241iniAposentEspfatRisco", u"Pode visualizar o conteúdo do modelo S2241INIAPOSENTESPFATRISCO"),
+            ("can_see_menu_s2241iniAposentEspfatRisco", u"Pode visualizar no menu o modelo S2241INIAPOSENTESPFATRISCO"),
+            ("can_print_list_s2241iniAposentEspfatRisco", u"Pode imprimir listagem do modelo S2241INIAPOSENTESPFATRISCO"),
+            ("can_print_data_s2241iniAposentEspfatRisco", u"Pode imprimir o conteúdo do modelo S2241INIAPOSENTESPFATRISCO"), )
             
         ordering = [
             's2241_iniaposentesp_infoamb',
@@ -835,8 +874,11 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241iniAposentEspinfoAmb", "Can view S2241INIAPOSENTESPINFOAMB"),
-            ("can_view_menu_s2241iniAposentEspinfoAmb", "Can view menu S2241INIAPOSENTESPINFOAMB"),)
+            ("can_see_list_s2241iniAposentEspinfoAmb", u"Pode ver listagem do modelo S2241INIAPOSENTESPINFOAMB"),
+            ("can_see_data_s2241iniAposentEspinfoAmb", u"Pode visualizar o conteúdo do modelo S2241INIAPOSENTESPINFOAMB"),
+            ("can_see_menu_s2241iniAposentEspinfoAmb", u"Pode visualizar no menu o modelo S2241INIAPOSENTESPINFOAMB"),
+            ("can_print_list_s2241iniAposentEspinfoAmb", u"Pode imprimir listagem do modelo S2241INIAPOSENTESPINFOAMB"),
+            ("can_print_data_s2241iniAposentEspinfoAmb", u"Pode imprimir o conteúdo do modelo S2241INIAPOSENTESPINFOAMB"), )
             
         ordering = [
             's2241_iniaposentesp',
@@ -892,8 +934,11 @@ class s2241iniInsalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241iniInsalPeric", "Can view S2241INIINSALPERIC"),
-            ("can_view_menu_s2241iniInsalPeric", "Can view menu S2241INIINSALPERIC"),)
+            ("can_see_list_s2241iniInsalPeric", u"Pode ver listagem do modelo S2241INIINSALPERIC"),
+            ("can_see_data_s2241iniInsalPeric", u"Pode visualizar o conteúdo do modelo S2241INIINSALPERIC"),
+            ("can_see_menu_s2241iniInsalPeric", u"Pode visualizar no menu o modelo S2241INIINSALPERIC"),
+            ("can_print_list_s2241iniInsalPeric", u"Pode imprimir listagem do modelo S2241INIINSALPERIC"),
+            ("can_print_data_s2241iniInsalPeric", u"Pode imprimir o conteúdo do modelo S2241INIINSALPERIC"), )
             
         ordering = [
             's2241_insalperic',
@@ -949,8 +994,11 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241iniInsalPericfatRisco", "Can view S2241INIINSALPERICFATRISCO"),
-            ("can_view_menu_s2241iniInsalPericfatRisco", "Can view menu S2241INIINSALPERICFATRISCO"),)
+            ("can_see_list_s2241iniInsalPericfatRisco", u"Pode ver listagem do modelo S2241INIINSALPERICFATRISCO"),
+            ("can_see_data_s2241iniInsalPericfatRisco", u"Pode visualizar o conteúdo do modelo S2241INIINSALPERICFATRISCO"),
+            ("can_see_menu_s2241iniInsalPericfatRisco", u"Pode visualizar no menu o modelo S2241INIINSALPERICFATRISCO"),
+            ("can_print_list_s2241iniInsalPericfatRisco", u"Pode imprimir listagem do modelo S2241INIINSALPERICFATRISCO"),
+            ("can_print_data_s2241iniInsalPericfatRisco", u"Pode imprimir o conteúdo do modelo S2241INIINSALPERICFATRISCO"), )
             
         ordering = [
             's2241_iniinsalperic_infoamb',
@@ -1006,8 +1054,11 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241iniInsalPericinfoAmb", "Can view S2241INIINSALPERICINFOAMB"),
-            ("can_view_menu_s2241iniInsalPericinfoAmb", "Can view menu S2241INIINSALPERICINFOAMB"),)
+            ("can_see_list_s2241iniInsalPericinfoAmb", u"Pode ver listagem do modelo S2241INIINSALPERICINFOAMB"),
+            ("can_see_data_s2241iniInsalPericinfoAmb", u"Pode visualizar o conteúdo do modelo S2241INIINSALPERICINFOAMB"),
+            ("can_see_menu_s2241iniInsalPericinfoAmb", u"Pode visualizar no menu o modelo S2241INIINSALPERICINFOAMB"),
+            ("can_print_list_s2241iniInsalPericinfoAmb", u"Pode imprimir listagem do modelo S2241INIINSALPERICINFOAMB"),
+            ("can_print_data_s2241iniInsalPericinfoAmb", u"Pode imprimir o conteúdo do modelo S2241INIINSALPERICINFOAMB"), )
             
         ordering = [
             's2241_iniinsalperic',
@@ -1061,8 +1112,11 @@ class s2241insalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241insalPeric", "Can view S2241INSALPERIC"),
-            ("can_view_menu_s2241insalPeric", "Can view menu S2241INSALPERIC"),)
+            ("can_see_list_s2241insalPeric", u"Pode ver listagem do modelo S2241INSALPERIC"),
+            ("can_see_data_s2241insalPeric", u"Pode visualizar o conteúdo do modelo S2241INSALPERIC"),
+            ("can_see_menu_s2241insalPeric", u"Pode visualizar no menu o modelo S2241INSALPERIC"),
+            ("can_print_list_s2241insalPeric", u"Pode imprimir listagem do modelo S2241INSALPERIC"),
+            ("can_print_data_s2241insalPeric", u"Pode imprimir o conteúdo do modelo S2241INSALPERIC"), )
             
         ordering = [
             's2241_evtinsapo',]

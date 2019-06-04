@@ -102,8 +102,11 @@ class r2030infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2030infoProc", "Can view R2030INFOPROC"),
-            ("can_view_menu_r2030infoProc", "Can view menu R2030INFOPROC"),)
+            ("can_see_list_r2030infoProc", u"Pode ver listagem do modelo R2030INFOPROC"),
+            ("can_see_data_r2030infoProc", u"Pode visualizar o conteúdo do modelo R2030INFOPROC"),
+            ("can_see_menu_r2030infoProc", u"Pode visualizar no menu o modelo R2030INFOPROC"),
+            ("can_print_list_r2030infoProc", u"Pode imprimir listagem do modelo R2030INFOPROC"),
+            ("can_print_data_r2030infoProc", u"Pode imprimir o conteúdo do modelo R2030INFOPROC"), )
             
         ordering = [
             'r2030_recursosrec',
@@ -167,8 +170,11 @@ class r2030infoRecurso(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2030infoRecurso", "Can view R2030INFORECURSO"),
-            ("can_view_menu_r2030infoRecurso", "Can view menu R2030INFORECURSO"),)
+            ("can_see_list_r2030infoRecurso", u"Pode ver listagem do modelo R2030INFORECURSO"),
+            ("can_see_data_r2030infoRecurso", u"Pode visualizar o conteúdo do modelo R2030INFORECURSO"),
+            ("can_see_menu_r2030infoRecurso", u"Pode visualizar no menu o modelo R2030INFORECURSO"),
+            ("can_print_list_r2030infoRecurso", u"Pode imprimir listagem do modelo R2030INFORECURSO"),
+            ("can_print_data_r2030infoRecurso", u"Pode imprimir o conteúdo do modelo R2030INFORECURSO"), )
             
         ordering = [
             'r2030_recursosrec',
@@ -232,8 +238,11 @@ class r2030recursosRec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2030recursosRec", "Can view R2030RECURSOSREC"),
-            ("can_view_menu_r2030recursosRec", "Can view menu R2030RECURSOSREC"),)
+            ("can_see_list_r2030recursosRec", u"Pode ver listagem do modelo R2030RECURSOSREC"),
+            ("can_see_data_r2030recursosRec", u"Pode visualizar o conteúdo do modelo R2030RECURSOSREC"),
+            ("can_see_menu_r2030recursosRec", u"Pode visualizar no menu o modelo R2030RECURSOSREC"),
+            ("can_print_list_r2030recursosRec", u"Pode imprimir listagem do modelo R2030RECURSOSREC"),
+            ("can_print_data_r2030recursosRec", u"Pode imprimir o conteúdo do modelo R2030RECURSOSREC"), )
             
         ordering = [
             'r2030_evtassocdesprec',

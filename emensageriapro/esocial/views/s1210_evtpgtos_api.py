@@ -66,7 +66,6 @@ class s1210evtPgtosList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1210evtPgtosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1210evtPgtos.objects.all()

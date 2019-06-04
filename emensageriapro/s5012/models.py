@@ -99,8 +99,11 @@ class s5012infoCRContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5012infoCRContrib", "Can view S5012INFOCRCONTRIB"),
-            ("can_view_menu_s5012infoCRContrib", "Can view menu S5012INFOCRCONTRIB"),)
+            ("can_see_list_s5012infoCRContrib", u"Pode ver listagem do modelo S5012INFOCRCONTRIB"),
+            ("can_see_data_s5012infoCRContrib", u"Pode visualizar o conteúdo do modelo S5012INFOCRCONTRIB"),
+            ("can_see_menu_s5012infoCRContrib", u"Pode visualizar no menu o modelo S5012INFOCRCONTRIB"),
+            ("can_print_list_s5012infoCRContrib", u"Pode imprimir listagem do modelo S5012INFOCRCONTRIB"),
+            ("can_print_data_s5012infoCRContrib", u"Pode imprimir o conteúdo do modelo S5012INFOCRCONTRIB"), )
             
         ordering = [
             's5012_evtirrf',

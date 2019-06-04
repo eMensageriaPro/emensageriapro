@@ -66,7 +66,6 @@ class r9000evtExclusaoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r9000evtExclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9000evtExclusao.objects.all()

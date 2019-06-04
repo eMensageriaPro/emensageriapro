@@ -108,8 +108,11 @@ class s1050alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050alteracao", "Can view S1050ALTERACAO"),
-            ("can_view_menu_s1050alteracao", "Can view menu S1050ALTERACAO"),)
+            ("can_see_list_s1050alteracao", u"Pode ver listagem do modelo S1050ALTERACAO"),
+            ("can_see_data_s1050alteracao", u"Pode visualizar o conteúdo do modelo S1050ALTERACAO"),
+            ("can_see_menu_s1050alteracao", u"Pode visualizar no menu o modelo S1050ALTERACAO"),
+            ("can_print_list_s1050alteracao", u"Pode imprimir listagem do modelo S1050ALTERACAO"),
+            ("can_print_data_s1050alteracao", u"Pode imprimir o conteúdo do modelo S1050ALTERACAO"), )
             
         ordering = [
             's1050_evttabhortur',
@@ -174,8 +177,11 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050alteracaohorarioIntervalo", "Can view S1050ALTERACAOHORARIOINTERVALO"),
-            ("can_view_menu_s1050alteracaohorarioIntervalo", "Can view menu S1050ALTERACAOHORARIOINTERVALO"),)
+            ("can_see_list_s1050alteracaohorarioIntervalo", u"Pode ver listagem do modelo S1050ALTERACAOHORARIOINTERVALO"),
+            ("can_see_data_s1050alteracaohorarioIntervalo", u"Pode visualizar o conteúdo do modelo S1050ALTERACAOHORARIOINTERVALO"),
+            ("can_see_menu_s1050alteracaohorarioIntervalo", u"Pode visualizar no menu o modelo S1050ALTERACAOHORARIOINTERVALO"),
+            ("can_print_list_s1050alteracaohorarioIntervalo", u"Pode imprimir listagem do modelo S1050ALTERACAOHORARIOINTERVALO"),
+            ("can_print_data_s1050alteracaohorarioIntervalo", u"Pode imprimir o conteúdo do modelo S1050ALTERACAOHORARIOINTERVALO"), )
             
         ordering = [
             's1050_alteracao',
@@ -233,8 +239,11 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050alteracaonovaValidade", "Can view S1050ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1050alteracaonovaValidade", "Can view menu S1050ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1050alteracaonovaValidade", u"Pode ver listagem do modelo S1050ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1050alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1050ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1050alteracaonovaValidade", u"Pode visualizar no menu o modelo S1050ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1050alteracaonovaValidade", u"Pode imprimir listagem do modelo S1050ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1050alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1050ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1050_alteracao',
@@ -293,8 +302,11 @@ class s1050exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050exclusao", "Can view S1050EXCLUSAO"),
-            ("can_view_menu_s1050exclusao", "Can view menu S1050EXCLUSAO"),)
+            ("can_see_list_s1050exclusao", u"Pode ver listagem do modelo S1050EXCLUSAO"),
+            ("can_see_data_s1050exclusao", u"Pode visualizar o conteúdo do modelo S1050EXCLUSAO"),
+            ("can_see_menu_s1050exclusao", u"Pode visualizar no menu o modelo S1050EXCLUSAO"),
+            ("can_print_list_s1050exclusao", u"Pode imprimir listagem do modelo S1050EXCLUSAO"),
+            ("can_print_data_s1050exclusao", u"Pode imprimir o conteúdo do modelo S1050EXCLUSAO"), )
             
         ordering = [
             's1050_evttabhortur',
@@ -362,8 +374,11 @@ class s1050inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050inclusao", "Can view S1050INCLUSAO"),
-            ("can_view_menu_s1050inclusao", "Can view menu S1050INCLUSAO"),)
+            ("can_see_list_s1050inclusao", u"Pode ver listagem do modelo S1050INCLUSAO"),
+            ("can_see_data_s1050inclusao", u"Pode visualizar o conteúdo do modelo S1050INCLUSAO"),
+            ("can_see_menu_s1050inclusao", u"Pode visualizar no menu o modelo S1050INCLUSAO"),
+            ("can_print_list_s1050inclusao", u"Pode imprimir listagem do modelo S1050INCLUSAO"),
+            ("can_print_data_s1050inclusao", u"Pode imprimir o conteúdo do modelo S1050INCLUSAO"), )
             
         ordering = [
             's1050_evttabhortur',
@@ -428,8 +443,11 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050inclusaohorarioIntervalo", "Can view S1050INCLUSAOHORARIOINTERVALO"),
-            ("can_view_menu_s1050inclusaohorarioIntervalo", "Can view menu S1050INCLUSAOHORARIOINTERVALO"),)
+            ("can_see_list_s1050inclusaohorarioIntervalo", u"Pode ver listagem do modelo S1050INCLUSAOHORARIOINTERVALO"),
+            ("can_see_data_s1050inclusaohorarioIntervalo", u"Pode visualizar o conteúdo do modelo S1050INCLUSAOHORARIOINTERVALO"),
+            ("can_see_menu_s1050inclusaohorarioIntervalo", u"Pode visualizar no menu o modelo S1050INCLUSAOHORARIOINTERVALO"),
+            ("can_print_list_s1050inclusaohorarioIntervalo", u"Pode imprimir listagem do modelo S1050INCLUSAOHORARIOINTERVALO"),
+            ("can_print_data_s1050inclusaohorarioIntervalo", u"Pode imprimir o conteúdo do modelo S1050INCLUSAOHORARIOINTERVALO"), )
             
         ordering = [
             's1050_inclusao',

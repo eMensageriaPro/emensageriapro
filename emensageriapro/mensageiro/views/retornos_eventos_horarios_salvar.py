@@ -44,6 +44,7 @@ import json
 import base64
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -59,65 +60,65 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
     
-    try: 
+    if pk:
     
-        usuario_id = request.user.id  
-        dict_hash = get_hash_url( hash )
-        retornos_eventos_horarios_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
+        retornos_eventos_horarios = get_object_or_404(RetornosEventosHorarios, id=pk)
         
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
+    if request.user.has_perm('mensageiro.can_see_RetornosEventosHorarios'):
         
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if retornos_eventos_horarios_id:
-    
-        retornos_eventos_horarios = get_object_or_404(RetornosEventosHorarios, id=retornos_eventos_horarios_id)
+        if pk:
         
-    if request.user.has_perm('mensageiro.can_view_RetornosEventosHorarios'):
-        
-        if retornos_eventos_horarios_id:
             retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None, instance=retornos_eventos_horarios)
             
         else:
+        
             retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None)
             
         if request.method == 'POST':
+        
             if retornos_eventos_horarios_form.is_valid():
+            
                 #retornos_eventos_horarios_campos_multiple_passo1
+                
                 obj = retornos_eventos_horarios_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #retornos_eventos_horarios_campos_multiple_passo2
                 
-                if request.session['retorno_pagina'] not in ('retornos_eventos_horarios_apagar', 'retornos_eventos_horarios_salvar', 'retornos_eventos_horarios'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'retornos_eventos_horarios_apagar', 
+                    'retornos_eventos_horarios_salvar', 
+                    'retornos_eventos_horarios'):
                     
-                if retornos_eventos_horarios_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('retornos_eventos_horarios_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'retornos_eventos_horarios_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
+            
                 messages.error(request, 'Erro ao salvar!')
                 
         retornos_eventos_horarios_form = disabled_form_fields(retornos_eventos_horarios_form, request.user.has_perm('mensageiro.change_RetornosEventosHorarios'))
         #retornos_eventos_horarios_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             retornos_eventos_horarios_form = disabled_form_for_print(retornos_eventos_horarios_form)
         
         
         
-        if retornos_eventos_horarios_id:
+        if pk:
         
-            retornos_eventos_horarios = get_object_or_404(RetornosEventosHorarios, id = retornos_eventos_horarios_id)
+            retornos_eventos_horarios = get_object_or_404(RetornosEventosHorarios, id=pk)
             
                 
         else:
@@ -128,34 +129,30 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'retornos_eventos_horarios' in request.session['retorno_pagina']:
+        if tab or 'retornos_eventos_horarios' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'retornos_eventos_horarios_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'retornos_eventos_horarios_salvar'
             
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'retornos_eventos_horarios': retornos_eventos_horarios, 
             'retornos_eventos_horarios_form': retornos_eventos_horarios_form, 
-            'retornos_eventos_horarios_id': int(retornos_eventos_horarios_id),
-            'usuario': usuario, 
-            'hash': hash, 
-            
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos_horarios', ],
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
             #retornos_eventos_horarios_salvar_custom_variaveis_context#
         }
-        
-        if for_print in (0, 1):
-        
-            return render(request, 'retornos_eventos_horarios_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='retornos_eventos_horarios_salvar.html',
@@ -172,29 +169,37 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True})
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('retornos_eventos_horarios_salvar.html', context)
             filename = "retornos_eventos_horarios.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+        
+        else:
+        
+            return render(request, 'retornos_eventos_horarios_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos_horarios', ],
             'data': datetime.datetime.now(),
-            'dict_permissoes': dict_permissoes,
         }
         
         return render(request, 
-                      'permissao_negada.html', 
-                      context)
+            'permissao_negada.html', 
+            context)

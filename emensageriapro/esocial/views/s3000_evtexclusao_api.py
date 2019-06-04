@@ -66,7 +66,6 @@ class s3000evtExclusaoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s3000evtExclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s3000evtExclusao.objects.all()

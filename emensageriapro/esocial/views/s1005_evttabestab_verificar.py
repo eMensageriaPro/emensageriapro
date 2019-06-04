@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1005evtTabEstab'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1005_evttabestab_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1005evtTabEstab'):
-        s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=s1005_evttabestab_id)
-        s1005_evttabestab_lista = s1005evtTabEstab.objects.filter(id=s1005_evttabestab_id).all()
+        s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=pk)
+        s1005_evttabestab_lista = s1005evtTabEstab.objects.filter(id=pk).all()
 
         
         s1005_inclusao_lista = s1005inclusao.objects.filter(s1005_evttabestab_id__in = listar_ids(s1005_evttabestab_lista) ).all()
@@ -110,15 +96,14 @@ def verificar(request, hash):
         s1005_alteracao_novavalidade_lista = s1005alteracaonovaValidade.objects.filter(s1005_alteracao_id__in = listar_ids(s1005_alteracao_lista) ).all()
         s1005_exclusao_lista = s1005exclusao.objects.filter(s1005_evttabestab_id__in = listar_ids(s1005_evttabestab_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1005_evttabestab'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1005_evttabestab'
 
         context = {
             's1005_evttabestab_lista': s1005_evttabestab_lista,
-            's1005_evttabestab_id': s1005_evttabestab_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1005_evttabestab': s1005_evttabestab,
-            
-            
             's1005_inclusao_lista': s1005_inclusao_lista,
             's1005_inclusao_procadmjudrat_lista': s1005_inclusao_procadmjudrat_lista,
             's1005_inclusao_procadmjudfap_lista': s1005_inclusao_procadmjudfap_lista,
@@ -135,45 +120,42 @@ def verificar(request, hash):
             's1005_alteracao_infopcd_lista': s1005_alteracao_infopcd_lista,
             's1005_alteracao_novavalidade_lista': s1005_alteracao_novavalidade_lista,
             's1005_exclusao_lista': s1005_exclusao_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1005_evttabestab', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1005_evttabestab_verificar.html',
-                                           filename="s1005_evttabestab.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1005_evttabestab_verificar.html',
+                filename="s1005_evttabestab.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1005_evttabestab_verificar.html', context)
             filename = "%s.xls" % s1005_evttabestab.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1005_evttabestab_verificar.html', context)
             filename = "%s.csv" % s1005_evttabestab.identidade
@@ -188,7 +170,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1005_evttabestab', ],
             'data': datetime.now(),

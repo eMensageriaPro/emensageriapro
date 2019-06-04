@@ -66,7 +66,6 @@ class UsuariosList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class UsuariosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Usuarios.objects.all()

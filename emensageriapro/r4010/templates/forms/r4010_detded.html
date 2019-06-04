@@ -15,7 +15,7 @@
     <label id="r4010_detded__r4010_infopgto__label">Detalhamento das deduções*</label>
     {% if not for_print %}
       {% if r4010_detded_form.r4010_infopgto.value %}
-        <a id="r4010_detded__r4010_infopgto__div_acessar" href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_detded_form.r4010_infopgto.value|json_print:0|base64_encode_me %}">
+        <a id="r4010_detded__r4010_infopgto__div_acessar" href="{% url 'r4010_infopgto_salvar' pk=r4010_detded_form.r4010_infopgto.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

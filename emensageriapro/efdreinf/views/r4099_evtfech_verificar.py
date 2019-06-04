@@ -71,79 +71,61 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r4099evtFech'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r4099_evtfech_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r4099evtFech'):
-        r4099_evtfech = get_object_or_404(r4099evtFech, id=r4099_evtfech_id)
-        r4099_evtfech_lista = r4099evtFech.objects.filter(id=r4099_evtfech_id).all()
+        r4099_evtfech = get_object_or_404(r4099evtFech, id=pk)
+        r4099_evtfech_lista = r4099evtFech.objects.filter(id=pk).all()
 
         
         r4099_iderespinf_lista = r4099ideRespInf.objects.filter(r4099_evtfech_id__in = listar_ids(r4099_evtfech_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r4099_evtfech'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r4099_evtfech'
 
         context = {
             'r4099_evtfech_lista': r4099_evtfech_lista,
-            'r4099_evtfech_id': r4099_evtfech_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r4099_evtfech': r4099_evtfech,
-            
-            
             'r4099_iderespinf_lista': r4099_iderespinf_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r4099_evtfech', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r4099_evtfech_verificar.html',
-                                           filename="r4099_evtfech.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r4099_evtfech_verificar.html',
+                filename="r4099_evtfech.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r4099_evtfech_verificar.html', context)
             filename = "%s.xls" % r4099_evtfech.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r4099_evtfech_verificar.html', context)
             filename = "%s.csv" % r4099_evtfech.identidade
@@ -158,7 +140,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r4099_evtfech', ],
             'data': datetime.now(),

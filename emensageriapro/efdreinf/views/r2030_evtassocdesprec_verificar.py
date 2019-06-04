@@ -71,83 +71,65 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r2030evtAssocDespRec'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2030_evtassocdesprec_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r2030evtAssocDespRec'):
-        r2030_evtassocdesprec = get_object_or_404(r2030evtAssocDespRec, id=r2030_evtassocdesprec_id)
-        r2030_evtassocdesprec_lista = r2030evtAssocDespRec.objects.filter(id=r2030_evtassocdesprec_id).all()
+        r2030_evtassocdesprec = get_object_or_404(r2030evtAssocDespRec, id=pk)
+        r2030_evtassocdesprec_lista = r2030evtAssocDespRec.objects.filter(id=pk).all()
 
         
         r2030_recursosrec_lista = r2030recursosRec.objects.filter(r2030_evtassocdesprec_id__in = listar_ids(r2030_evtassocdesprec_lista) ).all()
         r2030_inforecurso_lista = r2030infoRecurso.objects.filter(r2030_recursosrec_id__in = listar_ids(r2030_recursosrec_lista) ).all()
         r2030_infoproc_lista = r2030infoProc.objects.filter(r2030_recursosrec_id__in = listar_ids(r2030_recursosrec_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r2030_evtassocdesprec'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r2030_evtassocdesprec'
 
         context = {
             'r2030_evtassocdesprec_lista': r2030_evtassocdesprec_lista,
-            'r2030_evtassocdesprec_id': r2030_evtassocdesprec_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r2030_evtassocdesprec': r2030_evtassocdesprec,
-            
-            
             'r2030_recursosrec_lista': r2030_recursosrec_lista,
             'r2030_inforecurso_lista': r2030_inforecurso_lista,
             'r2030_infoproc_lista': r2030_infoproc_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r2030_evtassocdesprec', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r2030_evtassocdesprec_verificar.html',
-                                           filename="r2030_evtassocdesprec.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r2030_evtassocdesprec_verificar.html',
+                filename="r2030_evtassocdesprec.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r2030_evtassocdesprec_verificar.html', context)
             filename = "%s.xls" % r2030_evtassocdesprec.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r2030_evtassocdesprec_verificar.html', context)
             filename = "%s.csv" % r2030_evtassocdesprec.identidade
@@ -162,7 +144,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r2030_evtassocdesprec', ],
             'data': datetime.now(),

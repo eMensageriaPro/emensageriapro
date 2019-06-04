@@ -101,8 +101,11 @@ class s5001calcTerc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001calcTerc", "Can view S5001CALCTERC"),
-            ("can_view_menu_s5001calcTerc", "Can view menu S5001CALCTERC"),)
+            ("can_see_list_s5001calcTerc", u"Pode ver listagem do modelo S5001CALCTERC"),
+            ("can_see_data_s5001calcTerc", u"Pode visualizar o conteúdo do modelo S5001CALCTERC"),
+            ("can_see_menu_s5001calcTerc", u"Pode visualizar no menu o modelo S5001CALCTERC"),
+            ("can_print_list_s5001calcTerc", u"Pode imprimir listagem do modelo S5001CALCTERC"),
+            ("can_print_data_s5001calcTerc", u"Pode imprimir o conteúdo do modelo S5001CALCTERC"), )
             
         ordering = [
             's5001_infocategincid',
@@ -164,8 +167,11 @@ class s5001ideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001ideEstabLot", "Can view S5001IDEESTABLOT"),
-            ("can_view_menu_s5001ideEstabLot", "Can view menu S5001IDEESTABLOT"),)
+            ("can_see_list_s5001ideEstabLot", u"Pode ver listagem do modelo S5001IDEESTABLOT"),
+            ("can_see_data_s5001ideEstabLot", u"Pode visualizar o conteúdo do modelo S5001IDEESTABLOT"),
+            ("can_see_menu_s5001ideEstabLot", u"Pode visualizar no menu o modelo S5001IDEESTABLOT"),
+            ("can_print_list_s5001ideEstabLot", u"Pode imprimir listagem do modelo S5001IDEESTABLOT"),
+            ("can_print_data_s5001ideEstabLot", u"Pode imprimir o conteúdo do modelo S5001IDEESTABLOT"), )
             
         ordering = [
             's5001_infocp',
@@ -227,8 +233,11 @@ class s5001infoBaseCS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001infoBaseCS", "Can view S5001INFOBASECS"),
-            ("can_view_menu_s5001infoBaseCS", "Can view menu S5001INFOBASECS"),)
+            ("can_see_list_s5001infoBaseCS", u"Pode ver listagem do modelo S5001INFOBASECS"),
+            ("can_see_data_s5001infoBaseCS", u"Pode visualizar o conteúdo do modelo S5001INFOBASECS"),
+            ("can_see_menu_s5001infoBaseCS", u"Pode visualizar no menu o modelo S5001INFOBASECS"),
+            ("can_print_list_s5001infoBaseCS", u"Pode imprimir listagem do modelo S5001INFOBASECS"),
+            ("can_print_data_s5001infoBaseCS", u"Pode imprimir o conteúdo do modelo S5001INFOBASECS"), )
             
         ordering = [
             's5001_infocategincid',
@@ -288,8 +297,11 @@ class s5001infoCategIncid(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001infoCategIncid", "Can view S5001INFOCATEGINCID"),
-            ("can_view_menu_s5001infoCategIncid", "Can view menu S5001INFOCATEGINCID"),)
+            ("can_see_list_s5001infoCategIncid", u"Pode ver listagem do modelo S5001INFOCATEGINCID"),
+            ("can_see_data_s5001infoCategIncid", u"Pode visualizar o conteúdo do modelo S5001INFOCATEGINCID"),
+            ("can_see_menu_s5001infoCategIncid", u"Pode visualizar no menu o modelo S5001INFOCATEGINCID"),
+            ("can_print_list_s5001infoCategIncid", u"Pode imprimir listagem do modelo S5001INFOCATEGINCID"),
+            ("can_print_data_s5001infoCategIncid", u"Pode imprimir o conteúdo do modelo S5001INFOCATEGINCID"), )
             
         ordering = [
             's5001_ideestablot',
@@ -343,8 +355,11 @@ class s5001infoCp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001infoCp", "Can view S5001INFOCP"),
-            ("can_view_menu_s5001infoCp", "Can view menu S5001INFOCP"),)
+            ("can_see_list_s5001infoCp", u"Pode ver listagem do modelo S5001INFOCP"),
+            ("can_see_data_s5001infoCp", u"Pode visualizar o conteúdo do modelo S5001INFOCP"),
+            ("can_see_menu_s5001infoCp", u"Pode visualizar no menu o modelo S5001INFOCP"),
+            ("can_print_list_s5001infoCp", u"Pode imprimir listagem do modelo S5001INFOCP"),
+            ("can_print_data_s5001infoCp", u"Pode imprimir o conteúdo do modelo S5001INFOCP"), )
             
         ordering = [
             's5001_evtbasestrab',]
@@ -403,8 +418,11 @@ class s5001infoCpCalc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001infoCpCalc", "Can view S5001INFOCPCALC"),
-            ("can_view_menu_s5001infoCpCalc", "Can view menu S5001INFOCPCALC"),)
+            ("can_see_list_s5001infoCpCalc", u"Pode ver listagem do modelo S5001INFOCPCALC"),
+            ("can_see_data_s5001infoCpCalc", u"Pode visualizar o conteúdo do modelo S5001INFOCPCALC"),
+            ("can_see_menu_s5001infoCpCalc", u"Pode visualizar no menu o modelo S5001INFOCPCALC"),
+            ("can_print_list_s5001infoCpCalc", u"Pode imprimir listagem do modelo S5001INFOCPCALC"),
+            ("can_print_data_s5001infoCpCalc", u"Pode imprimir o conteúdo do modelo S5001INFOCPCALC"), )
             
         ordering = [
             's5001_evtbasestrab',
@@ -464,8 +482,11 @@ class s5001procJudTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001procJudTrab", "Can view S5001PROCJUDTRAB"),
-            ("can_view_menu_s5001procJudTrab", "Can view menu S5001PROCJUDTRAB"),)
+            ("can_see_list_s5001procJudTrab", u"Pode ver listagem do modelo S5001PROCJUDTRAB"),
+            ("can_see_data_s5001procJudTrab", u"Pode visualizar o conteúdo do modelo S5001PROCJUDTRAB"),
+            ("can_see_menu_s5001procJudTrab", u"Pode visualizar no menu o modelo S5001PROCJUDTRAB"),
+            ("can_print_list_s5001procJudTrab", u"Pode imprimir listagem do modelo S5001PROCJUDTRAB"),
+            ("can_print_data_s5001procJudTrab", u"Pode imprimir o conteúdo do modelo S5001PROCJUDTRAB"), )
             
         ordering = [
             's5001_evtbasestrab',

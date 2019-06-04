@@ -72,46 +72,41 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def criar_alteracao(request, hash):
+def criar_alteracao(request, pk):
 
     from emensageriapro.efdreinf.views.r2050_evtcomprod_importar import read_r2050_evtcomprod_string
     from emensageriapro.efdreinf.views.r2050_evtcomprod_gerar_xml import gerar_xml_r2050
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('efdreinf.can_create_change_r2050evtComProd'):
 
-    dict_hash = get_hash_url(hash)
-    r2050_evtcomprod_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('efdreinf.can_create_change_event_r2050evtComProd'):
+        r2050_evtcomprod = get_object_or_404(
+            r2050evtComProd,
+            id=pk)
 
-        if r2050_evtcomprod_id:
-    
-            r2050_evtcomprod = get_object_or_404(
-                r2050evtComProd,
-                id=r2050_evtcomprod_id)
-    
-            texto = gerar_xml_r2050(r2050_evtcomprod_id, versao="|")
-            texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-            dados = read_r2050_evtcomprod_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r2050_evtcomprod)
-    
-            r2050evtComProd.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2050_evtcomprod.identidade),
-                'r2050_evtcomprod', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de alteração criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('r2050_evtcomprod_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de alteração!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        texto = gerar_xml_r2050(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        dados = read_r2050_evtcomprod_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(r2050_evtcomprod)
+
+        r2050evtComProd.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2050_evtcomprod.identidade),
+            'r2050_evtcomprod', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de alteração criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('r2050_evtcomprod_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+        return redirect('r2050_evtcomprod_salvar', pk=pk, tab='master')

@@ -101,8 +101,11 @@ class r4099ideRespInf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4099ideRespInf", "Can view R4099IDERESPINF"),
-            ("can_view_menu_r4099ideRespInf", "Can view menu R4099IDERESPINF"),)
+            ("can_see_list_r4099ideRespInf", u"Pode ver listagem do modelo R4099IDERESPINF"),
+            ("can_see_data_r4099ideRespInf", u"Pode visualizar o conteúdo do modelo R4099IDERESPINF"),
+            ("can_see_menu_r4099ideRespInf", u"Pode visualizar no menu o modelo R4099IDERESPINF"),
+            ("can_print_list_r4099ideRespInf", u"Pode imprimir listagem do modelo R4099IDERESPINF"),
+            ("can_print_data_r4099ideRespInf", u"Pode imprimir o conteúdo do modelo R4099IDERESPINF"), )
             
         ordering = [
             'r4099_evtfech',

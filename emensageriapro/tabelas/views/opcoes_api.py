@@ -76,7 +76,7 @@ class OpcoesDetail(generics.RetrieveUpdateDestroyAPIView):
     
 
 @login_required
-def json_search(request, opcoes_id, search):
+def json_search(request, pk, search):
 
     from django.http import JsonResponse
     import operator
@@ -91,20 +91,24 @@ def json_search(request, opcoes_id, search):
     
         try:
             query = reduce(operator.and_, ((Q(titulo__icontains=item) | Q(codigo__icontains=item)) for item in lista))
-            lista = Opcoes.objects.filter(opcoes_id=opcoes_id).filter(query).all()
+            lista = Opcoes.objects.filter(opcoes_id=pk).filter(query).all()
             
         except:
             query = reduce(operator.and_, ((Q(descricao__icontains=item) | Q(codigo__icontains=item)) for item in lista))
-            lista = Opcoes.objects.filter(opcoes_id=opcoes_id).filter(query).all()
+            lista = Opcoes.objects.filter(opcoes_id=pk).filter(query).all()
             
     else:
-        lista = Opcoes.objects.filter(opcoes_id=opcoes_id).all()
+        lista = Opcoes.objects.filter(opcoes_id=pk).all()
 
     lista_opcoes = []
+    
     for a in lista:
+    
         dic = {}
         dic['key'] = a.codigo
         dic['value'] = '%s - %s' % (a.codigo, a.titulo)
         lista_opcoes.append(dic)
+        
     dicionario['opcoes'] = lista_opcoes
+    
     return JsonResponse(dicionario)

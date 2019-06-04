@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r5001_rrecespetdesp__r5001_infototal__label">Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.*</label>
     {% if not for_print %}{% if r5001_rrecespetdesp_form.r5001_infototal.value %}
-        <a href="{% url 'r5001_infototal_salvar' hash='{}'|json_return_page:'r5001_rrecespetdesp_salvar'|json_return_hash:hash|json_id:r5001_rrecespetdesp_form.r5001_infototal.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r5001_infototal_salvar' pk=r5001_rrecespetdesp_form.r5001_infototal.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

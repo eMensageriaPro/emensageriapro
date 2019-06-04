@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.r4098.models import *
 from emensageriapro.r4098.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r4098(request, r4098_evtreab_id, versao=None):
+def gerar_xml_r4098(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if r4098_evtreab_id:
+    if pk:
 
         r4098_evtreab = get_object_or_404(
             r4098evtReab,
-            excluido = False,
-            id = r4098_evtreab_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = r4098_evtreab.versao
@@ -105,7 +103,8 @@ def gerar_xml_r4098(request, r4098_evtreab_id, versao=None):
             xmlns = ''
 
         r4098_evtreab_lista = r4098evtReab.objects. \
-            filter(id=r4098_evtreab_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
 
         context = {
@@ -113,10 +112,8 @@ def gerar_xml_r4098(request, r4098_evtreab_id, versao=None):
             'versao': versao,
             'base': r4098_evtreab,
             'r4098_evtreab_lista': r4098_evtreab_lista,
-            'r4098_evtreab_id': int(r4098_evtreab_id),
+            'pk': int(pk),
             'r4098_evtreab': r4098_evtreab,
-
-            
         }
 
         t = get_template('r4098_evtreab.xml')
@@ -124,9 +121,7 @@ def gerar_xml_r4098(request, r4098_evtreab_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, r4098_evtreab_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
@@ -134,14 +129,14 @@ def gerar_xml_assinado(request, r4098_evtreab_id):
 
     r4098_evtreab = get_object_or_404(
         r4098evtReab,
-        id=r4098_evtreab_id)
+        id=pk)
 
     if r4098_evtreab.arquivo_original:
     
         xml = ler_arquivo(r4098_evtreab.arquivo)
 
     else:
-        xml = gerar_xml_r4098(request, r4098_evtreab_id)
+        xml = gerar_xml_r4098(request, pk)
 
     if 'Signature' in xml:
     
@@ -157,20 +152,23 @@ def gerar_xml_assinado(request, r4098_evtreab_id):
             grupo = get_grupo(r4098evtReab)
 
             criar_transmissor_efdreinf(request,
-                                      grupo,
-                                      r4098_evtreab.nrinsc,
-                                      r4098_evtreab.tpinsc)
+                grupo,
+                r4098_evtreab.nrinsc,
+                r4098_evtreab.tpinsc)
 
             vincular_transmissor_efdreinf(request,
-                                         grupo,
-                                         r4098evtReab,
-                                         r4098_evtreab)
+                grupo,
+                r4098evtReab,
+                r4098_evtreab)
         
         r4098_evtreab = get_object_or_404(
             r4098evtReab,
-            id=r4098_evtreab_id)
+            id=pk)
         
-        xml_assinado = assinar_efdreinf(request, xml, r4098_evtreab.transmissor_lote_efdreinf_id)
+        xml_assinado = assinar_efdreinf(
+            request, 
+            xml, 
+            r4098_evtreab.transmissor_lote_efdreinf_id)
         
     if r4098_evtreab.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -179,29 +177,28 @@ def gerar_xml_assinado(request, r4098_evtreab_id):
         STATUS_EVENTO_GERADO):
 
         r4098evtReab.objects.\
-            filter(id=r4098_evtreab_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r4098_evtreab/%s.xml' % (r4098_evtreab.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r4098_evtreab/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    r4098_evtreab_id = int(dict_hash['id'])
+    if pk:
 
-    if r4098_evtreab_id:
-
-        xml_assinado = gerar_xml_assinado(request, r4098_evtreab_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

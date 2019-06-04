@@ -63,28 +63,14 @@ from emensageriapro.s2400.forms import form_s2400_dependente
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2400_evtcdbenefin_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s2400_evtcdbenefin_id:
-    
-        s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn, id=s2400_evtcdbenefin_id)
+        s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn, id=pk)
 
         if s2400_evtcdbenefin.status != STATUS_EVENTO_CADASTRADO:
         
@@ -92,9 +78,9 @@ def salvar(request, hash):
             dict_permissoes['s2400_evtcdbenefin_apagar'] = 0
             dict_permissoes['s2400_evtcdbenefin_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s2400evtCdBenefIn'):
+    if request.user.has_perm('esocial.can_see_s2400evtCdBenefIn'):
     
-        if s2400_evtcdbenefin_id:
+        if pk:
         
             s2400_evtcdbenefin_form = form_s2400_evtcdbenefin(request.POST or None, instance = s2400_evtcdbenefin, 
                                          initial={'excluido': False})
@@ -113,45 +99,61 @@ def salvar(request, hash):
         
             if s2400_evtcdbenefin_form.is_valid():
             
-                dados = s2400_evtcdbenefin_form.cleaned_data
                 obj = s2400_evtcdbenefin_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2400_evtcdbenefin_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2400_evtcdbenefin', obj.id, usuario_id, 1)
+                                 's2400_evtcdbenefin', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2400_evtcdbenefin), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2400_evtcdbenefin', s2400_evtcdbenefin_id, usuario_id, 2)
+                                     's2400_evtcdbenefin', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s2400_evtcdbenefin_apagar', 's2400_evtcdbenefin_salvar', 's2400_evtcdbenefin'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's2400_evtcdbenefin_apagar', 
+                    's2400_evtcdbenefin_salvar', 
+                    's2400_evtcdbenefin'):
                     
-                if s2400_evtcdbenefin_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2400_evtcdbenefin_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's2400_evtcdbenefin_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s2400_evtcdbenefin_form = disabled_form_fields(s2400_evtcdbenefin_form, request.user.has_perm('esocial.change_s2400evtCdBenefIn'))
+        s2400_evtcdbenefin_form = disabled_form_fields(
+             s2400_evtcdbenefin_form, 
+             request.user.has_perm('esocial.change_s2400evtCdBenefIn'))
         
-        if s2400_evtcdbenefin_id:
+        if pk:
+        
             if s2400_evtcdbenefin.status != 0:
+            
                 s2400_evtcdbenefin_form = disabled_form_fields(s2400_evtcdbenefin_form, False)
+                
         #s2400_evtcdbenefin_campos_multiple_passo3
 
         for field in s2400_evtcdbenefin_form.fields.keys():
+        
             s2400_evtcdbenefin_form.fields[field].widget.attrs['ng-model'] = 's2400_evtcdbenefin_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s2400_evtcdbenefin_form = disabled_form_for_print(s2400_evtcdbenefin_form)
 
         
@@ -160,9 +162,9 @@ def salvar(request, hash):
         s2400_dependente_lista = None 
         s2400_dependente_form = None 
         
-        if s2400_evtcdbenefin_id:
+        if pk:
         
-            s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn, id = s2400_evtcdbenefin_id)
+            s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn, id=pk)
             
             s2400_endereco_form = form_s2400_endereco(
                 initial={ 's2400_evtcdbenefin': s2400_evtcdbenefin })
@@ -176,6 +178,7 @@ def salvar(request, hash):
                 filter(s2400_evtcdbenefin_id=s2400_evtcdbenefin.id).all()
                 
         else:
+        
             s2400_evtcdbenefin = None
             
         #s2400_evtcdbenefin_salvar_custom_variaveis#
@@ -184,23 +187,26 @@ def salvar(request, hash):
         
         if 's2400_evtcdbenefin'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's2400_evtcdbenefin' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2400_evtcdbenefin_salvar'
+        if tab or 's2400_evtcdbenefin' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2400_evtcdbenefin_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2400_evtcdbenefin_id, tabela='s2400_evtcdbenefin').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2400_evtcdbenefin').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2400_evtcdbenefin': s2400_evtcdbenefin, 
             's2400_evtcdbenefin_form': s2400_evtcdbenefin_form, 
-            's2400_evtcdbenefin_id': int(s2400_evtcdbenefin_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             's2400_endereco_form': s2400_endereco_form,
             's2400_endereco_lista': s2400_endereco_lista,
@@ -209,17 +215,13 @@ def salvar(request, hash):
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2400_evtcdbenefin', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2400_evtcdbenefin_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2400_evtcdbenefin_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -237,25 +239,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s2400_evtcdbenefin_salvar.html', context)
             filename = "s2400_evtcdbenefin.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2400_evtcdbenefin_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s2400_evtcdbenefin', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

@@ -117,8 +117,11 @@ class s5011basesAquis(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011basesAquis", "Can view S5011BASESAQUIS"),
-            ("can_view_menu_s5011basesAquis", "Can view menu S5011BASESAQUIS"),)
+            ("can_see_list_s5011basesAquis", u"Pode ver listagem do modelo S5011BASESAQUIS"),
+            ("can_see_data_s5011basesAquis", u"Pode visualizar o conteúdo do modelo S5011BASESAQUIS"),
+            ("can_see_menu_s5011basesAquis", u"Pode visualizar no menu o modelo S5011BASESAQUIS"),
+            ("can_print_list_s5011basesAquis", u"Pode imprimir listagem do modelo S5011BASESAQUIS"),
+            ("can_print_data_s5011basesAquis", u"Pode imprimir o conteúdo do modelo S5011BASESAQUIS"), )
             
         ordering = [
             's5011_ideestab',
@@ -196,8 +199,11 @@ class s5011basesAvNPort(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011basesAvNPort", "Can view S5011BASESAVNPORT"),
-            ("can_view_menu_s5011basesAvNPort", "Can view menu S5011BASESAVNPORT"),)
+            ("can_see_list_s5011basesAvNPort", u"Pode ver listagem do modelo S5011BASESAVNPORT"),
+            ("can_see_data_s5011basesAvNPort", u"Pode visualizar o conteúdo do modelo S5011BASESAVNPORT"),
+            ("can_see_menu_s5011basesAvNPort", u"Pode visualizar no menu o modelo S5011BASESAVNPORT"),
+            ("can_print_list_s5011basesAvNPort", u"Pode imprimir listagem do modelo S5011BASESAVNPORT"),
+            ("can_print_data_s5011basesAvNPort", u"Pode imprimir o conteúdo do modelo S5011BASESAVNPORT"), )
             
         ordering = [
             's5011_idelotacao',
@@ -264,8 +270,11 @@ class s5011basesComerc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011basesComerc", "Can view S5011BASESCOMERC"),
-            ("can_view_menu_s5011basesComerc", "Can view menu S5011BASESCOMERC"),)
+            ("can_see_list_s5011basesComerc", u"Pode ver listagem do modelo S5011BASESCOMERC"),
+            ("can_see_data_s5011basesComerc", u"Pode visualizar o conteúdo do modelo S5011BASESCOMERC"),
+            ("can_see_menu_s5011basesComerc", u"Pode visualizar no menu o modelo S5011BASESCOMERC"),
+            ("can_print_list_s5011basesComerc", u"Pode imprimir listagem do modelo S5011BASESCOMERC"),
+            ("can_print_data_s5011basesComerc", u"Pode imprimir o conteúdo do modelo S5011BASESCOMERC"), )
             
         ordering = [
             's5011_ideestab',
@@ -352,8 +361,11 @@ class s5011basesRemun(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011basesRemun", "Can view S5011BASESREMUN"),
-            ("can_view_menu_s5011basesRemun", "Can view menu S5011BASESREMUN"),)
+            ("can_see_list_s5011basesRemun", u"Pode ver listagem do modelo S5011BASESREMUN"),
+            ("can_see_data_s5011basesRemun", u"Pode visualizar o conteúdo do modelo S5011BASESREMUN"),
+            ("can_see_menu_s5011basesRemun", u"Pode visualizar no menu o modelo S5011BASESREMUN"),
+            ("can_print_list_s5011basesRemun", u"Pode imprimir listagem do modelo S5011BASESREMUN"),
+            ("can_print_data_s5011basesRemun", u"Pode imprimir o conteúdo do modelo S5011BASESREMUN"), )
             
         ordering = [
             's5011_idelotacao',
@@ -430,8 +442,11 @@ class s5011dadosOpPort(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011dadosOpPort", "Can view S5011DADOSOPPORT"),
-            ("can_view_menu_s5011dadosOpPort", "Can view menu S5011DADOSOPPORT"),)
+            ("can_see_list_s5011dadosOpPort", u"Pode ver listagem do modelo S5011DADOSOPPORT"),
+            ("can_see_data_s5011dadosOpPort", u"Pode visualizar o conteúdo do modelo S5011DADOSOPPORT"),
+            ("can_see_menu_s5011dadosOpPort", u"Pode visualizar no menu o modelo S5011DADOSOPPORT"),
+            ("can_print_list_s5011dadosOpPort", u"Pode imprimir listagem do modelo S5011DADOSOPPORT"),
+            ("can_print_data_s5011dadosOpPort", u"Pode imprimir o conteúdo do modelo S5011DADOSOPPORT"), )
             
         ordering = [
             's5011_idelotacao',
@@ -492,8 +507,11 @@ class s5011ideEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011ideEstab", "Can view S5011IDEESTAB"),
-            ("can_view_menu_s5011ideEstab", "Can view menu S5011IDEESTAB"),)
+            ("can_see_list_s5011ideEstab", u"Pode ver listagem do modelo S5011IDEESTAB"),
+            ("can_see_data_s5011ideEstab", u"Pode visualizar o conteúdo do modelo S5011IDEESTAB"),
+            ("can_see_menu_s5011ideEstab", u"Pode visualizar no menu o modelo S5011IDEESTAB"),
+            ("can_print_list_s5011ideEstab", u"Pode imprimir listagem do modelo S5011IDEESTAB"),
+            ("can_print_data_s5011ideEstab", u"Pode imprimir o conteúdo do modelo S5011IDEESTAB"), )
             
         ordering = [
             's5011_evtcs',
@@ -555,8 +573,11 @@ class s5011ideLotacao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011ideLotacao", "Can view S5011IDELOTACAO"),
-            ("can_view_menu_s5011ideLotacao", "Can view menu S5011IDELOTACAO"),)
+            ("can_see_list_s5011ideLotacao", u"Pode ver listagem do modelo S5011IDELOTACAO"),
+            ("can_see_data_s5011ideLotacao", u"Pode visualizar o conteúdo do modelo S5011IDELOTACAO"),
+            ("can_see_menu_s5011ideLotacao", u"Pode visualizar no menu o modelo S5011IDELOTACAO"),
+            ("can_print_list_s5011ideLotacao", u"Pode imprimir listagem do modelo S5011IDELOTACAO"),
+            ("can_print_data_s5011ideLotacao", u"Pode imprimir o conteúdo do modelo S5011IDELOTACAO"), )
             
         ordering = [
             's5011_ideestab',
@@ -616,8 +637,11 @@ class s5011infoAtConc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoAtConc", "Can view S5011INFOATCONC"),
-            ("can_view_menu_s5011infoAtConc", "Can view menu S5011INFOATCONC"),)
+            ("can_see_list_s5011infoAtConc", u"Pode ver listagem do modelo S5011INFOATCONC"),
+            ("can_see_data_s5011infoAtConc", u"Pode visualizar o conteúdo do modelo S5011INFOATCONC"),
+            ("can_see_menu_s5011infoAtConc", u"Pode visualizar no menu o modelo S5011INFOATCONC"),
+            ("can_print_list_s5011infoAtConc", u"Pode imprimir listagem do modelo S5011INFOATCONC"),
+            ("can_print_data_s5011infoAtConc", u"Pode imprimir o conteúdo do modelo S5011INFOATCONC"), )
             
         ordering = [
             's5011_infopj',
@@ -676,8 +700,11 @@ class s5011infoCPSeg(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoCPSeg", "Can view S5011INFOCPSEG"),
-            ("can_view_menu_s5011infoCPSeg", "Can view menu S5011INFOCPSEG"),)
+            ("can_see_list_s5011infoCPSeg", u"Pode ver listagem do modelo S5011INFOCPSEG"),
+            ("can_see_data_s5011infoCPSeg", u"Pode visualizar o conteúdo do modelo S5011INFOCPSEG"),
+            ("can_see_menu_s5011infoCPSeg", u"Pode visualizar no menu o modelo S5011INFOCPSEG"),
+            ("can_print_list_s5011infoCPSeg", u"Pode imprimir listagem do modelo S5011INFOCPSEG"),
+            ("can_print_data_s5011infoCPSeg", u"Pode imprimir o conteúdo do modelo S5011INFOCPSEG"), )
             
         ordering = [
             's5011_evtcs',
@@ -737,8 +764,11 @@ class s5011infoCRContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoCRContrib", "Can view S5011INFOCRCONTRIB"),
-            ("can_view_menu_s5011infoCRContrib", "Can view menu S5011INFOCRCONTRIB"),)
+            ("can_see_list_s5011infoCRContrib", u"Pode ver listagem do modelo S5011INFOCRCONTRIB"),
+            ("can_see_data_s5011infoCRContrib", u"Pode visualizar o conteúdo do modelo S5011INFOCRCONTRIB"),
+            ("can_see_menu_s5011infoCRContrib", u"Pode visualizar no menu o modelo S5011INFOCRCONTRIB"),
+            ("can_print_list_s5011infoCRContrib", u"Pode imprimir listagem do modelo S5011INFOCRCONTRIB"),
+            ("can_print_data_s5011infoCRContrib", u"Pode imprimir o conteúdo do modelo S5011INFOCRCONTRIB"), )
             
         ordering = [
             's5011_evtcs',
@@ -798,8 +828,11 @@ class s5011infoCREstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoCREstab", "Can view S5011INFOCRESTAB"),
-            ("can_view_menu_s5011infoCREstab", "Can view menu S5011INFOCRESTAB"),)
+            ("can_see_list_s5011infoCREstab", u"Pode ver listagem do modelo S5011INFOCRESTAB"),
+            ("can_see_data_s5011infoCREstab", u"Pode visualizar o conteúdo do modelo S5011INFOCRESTAB"),
+            ("can_see_menu_s5011infoCREstab", u"Pode visualizar no menu o modelo S5011INFOCRESTAB"),
+            ("can_print_list_s5011infoCREstab", u"Pode imprimir listagem do modelo S5011INFOCRESTAB"),
+            ("can_print_data_s5011infoCREstab", u"Pode imprimir o conteúdo do modelo S5011INFOCRESTAB"), )
             
         ordering = [
             's5011_ideestab',
@@ -856,8 +889,11 @@ class s5011infoComplObra(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoComplObra", "Can view S5011INFOCOMPLOBRA"),
-            ("can_view_menu_s5011infoComplObra", "Can view menu S5011INFOCOMPLOBRA"),)
+            ("can_see_list_s5011infoComplObra", u"Pode ver listagem do modelo S5011INFOCOMPLOBRA"),
+            ("can_see_data_s5011infoComplObra", u"Pode visualizar o conteúdo do modelo S5011INFOCOMPLOBRA"),
+            ("can_see_menu_s5011infoComplObra", u"Pode visualizar no menu o modelo S5011INFOCOMPLOBRA"),
+            ("can_print_list_s5011infoComplObra", u"Pode imprimir listagem do modelo S5011INFOCOMPLOBRA"),
+            ("can_print_data_s5011infoComplObra", u"Pode imprimir o conteúdo do modelo S5011INFOCOMPLOBRA"), )
             
         ordering = [
             's5011_infoestab',
@@ -921,8 +957,11 @@ class s5011infoEmprParcial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoEmprParcial", "Can view S5011INFOEMPRPARCIAL"),
-            ("can_view_menu_s5011infoEmprParcial", "Can view menu S5011INFOEMPRPARCIAL"),)
+            ("can_see_list_s5011infoEmprParcial", u"Pode ver listagem do modelo S5011INFOEMPRPARCIAL"),
+            ("can_see_data_s5011infoEmprParcial", u"Pode visualizar o conteúdo do modelo S5011INFOEMPRPARCIAL"),
+            ("can_see_menu_s5011infoEmprParcial", u"Pode visualizar no menu o modelo S5011INFOEMPRPARCIAL"),
+            ("can_print_list_s5011infoEmprParcial", u"Pode imprimir listagem do modelo S5011INFOEMPRPARCIAL"),
+            ("can_print_data_s5011infoEmprParcial", u"Pode imprimir o conteúdo do modelo S5011INFOEMPRPARCIAL"), )
             
         ordering = [
             's5011_idelotacao',
@@ -988,8 +1027,11 @@ class s5011infoEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoEstab", "Can view S5011INFOESTAB"),
-            ("can_view_menu_s5011infoEstab", "Can view menu S5011INFOESTAB"),)
+            ("can_see_list_s5011infoEstab", u"Pode ver listagem do modelo S5011INFOESTAB"),
+            ("can_see_data_s5011infoEstab", u"Pode visualizar o conteúdo do modelo S5011INFOESTAB"),
+            ("can_see_menu_s5011infoEstab", u"Pode visualizar no menu o modelo S5011INFOESTAB"),
+            ("can_print_list_s5011infoEstab", u"Pode imprimir listagem do modelo S5011INFOESTAB"),
+            ("can_print_data_s5011infoEstab", u"Pode imprimir o conteúdo do modelo S5011INFOESTAB"), )
             
         ordering = [
             's5011_ideestab',
@@ -1051,8 +1093,11 @@ class s5011infoPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoPJ", "Can view S5011INFOPJ"),
-            ("can_view_menu_s5011infoPJ", "Can view menu S5011INFOPJ"),)
+            ("can_see_list_s5011infoPJ", u"Pode ver listagem do modelo S5011INFOPJ"),
+            ("can_see_data_s5011infoPJ", u"Pode visualizar o conteúdo do modelo S5011INFOPJ"),
+            ("can_see_menu_s5011infoPJ", u"Pode visualizar no menu o modelo S5011INFOPJ"),
+            ("can_print_list_s5011infoPJ", u"Pode imprimir listagem do modelo S5011INFOPJ"),
+            ("can_print_data_s5011infoPJ", u"Pode imprimir o conteúdo do modelo S5011INFOPJ"), )
             
         ordering = [
             's5011_evtcs',
@@ -1108,8 +1153,11 @@ class s5011infoSubstPatrOpPort(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoSubstPatrOpPort", "Can view S5011INFOSUBSTPATROPPORT"),
-            ("can_view_menu_s5011infoSubstPatrOpPort", "Can view menu S5011INFOSUBSTPATROPPORT"),)
+            ("can_see_list_s5011infoSubstPatrOpPort", u"Pode ver listagem do modelo S5011INFOSUBSTPATROPPORT"),
+            ("can_see_data_s5011infoSubstPatrOpPort", u"Pode visualizar o conteúdo do modelo S5011INFOSUBSTPATROPPORT"),
+            ("can_see_menu_s5011infoSubstPatrOpPort", u"Pode visualizar no menu o modelo S5011INFOSUBSTPATROPPORT"),
+            ("can_print_list_s5011infoSubstPatrOpPort", u"Pode imprimir listagem do modelo S5011INFOSUBSTPATROPPORT"),
+            ("can_print_data_s5011infoSubstPatrOpPort", u"Pode imprimir o conteúdo do modelo S5011INFOSUBSTPATROPPORT"), )
             
         ordering = [
             's5011_idelotacao',
@@ -1165,8 +1213,11 @@ class s5011infoTercSusp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011infoTercSusp", "Can view S5011INFOTERCSUSP"),
-            ("can_view_menu_s5011infoTercSusp", "Can view menu S5011INFOTERCSUSP"),)
+            ("can_see_list_s5011infoTercSusp", u"Pode ver listagem do modelo S5011INFOTERCSUSP"),
+            ("can_see_data_s5011infoTercSusp", u"Pode visualizar o conteúdo do modelo S5011INFOTERCSUSP"),
+            ("can_see_menu_s5011infoTercSusp", u"Pode visualizar no menu o modelo S5011INFOTERCSUSP"),
+            ("can_print_list_s5011infoTercSusp", u"Pode imprimir listagem do modelo S5011INFOTERCSUSP"),
+            ("can_print_data_s5011infoTercSusp", u"Pode imprimir o conteúdo do modelo S5011INFOTERCSUSP"), )
             
         ordering = [
             's5011_idelotacao',

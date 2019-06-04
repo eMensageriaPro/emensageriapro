@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2200_afastamento__s2200_evtadmissao__label">Informações de afastamento do trabalhador*</label>
     {% if not for_print %}{% if s2200_afastamento_form.s2200_evtadmissao.value %}
-        <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_return_page:'s2200_afastamento_salvar'|json_return_hash:hash|json_id:s2200_afastamento_form.s2200_evtadmissao.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_afastamento_form.s2200_evtadmissao.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -34,44 +34,41 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        r2060tipoCod
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">r2060tipoCod</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Registro que apresenta o valor total da receita por tipo de código de atividade econômica.
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.r2060.can_view_r2060tipoCod %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 'r2060_tipocod_salvar' hash='{}'|json_return_page:'r2060_tipocod_salvar'|json_return_hash:hash|json_id:r2060_tipocod_id|json_print:0|base64_encode_me %}">
-                            Registro que apresenta o valor total da receita por tipo de código de atividade econômica.
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if r2060_tipocod_id %}
+                    {% if pk %}
+                        {% if perms.r2060.can_see_r2060tipoCod %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 'r2060_tipocod_salvar' pk=pk tab='master' %}">
+                                Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.r2060.can_view_r2060_tipoajuste %}
+                            {% if perms.r2060.can_see_r2060tipoAjuste %}
                                 <li {% if tab == 'r2060_tipoajuste' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2060_tipocod_salvar' hash='{}'|json_id:r2060_tipocod_id|json_print:0|json_tab:'r2060_tipoajuste'|base64_encode_me %}">
+                                    <a href="{% url 'r2060_tipocod_salvar' pk=pk tab='r2060_tipoajuste' %}">
                                     Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r2060.can_view_r2060_infoproc %}
+                            {% if perms.r2060.can_see_r2060infoProc %}
                                 <li {% if tab == 'r2060_infoproc' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2060_tipocod_salvar' hash='{}'|json_id:r2060_tipocod_id|json_print:0|json_tab:'r2060_infoproc'|base64_encode_me %}">
+                                    <a href="{% url 'r2060_tipocod_salvar' pk=pk tab='r2060_infoproc' %}">
                                     Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                 </li>
                             {% endif %}
@@ -81,275 +78,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if r2060_tipocod_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in r2060_tipocod_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if r2060_tipocod_id %}
-   {% if r2060_tipocod.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ r2060_tipocod.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r2060_tipocod.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r2060_tipocod.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not r2060_tipocod.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r2060_tipocod.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ r2060_tipocod.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if r2060_tipocod.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ r2060_tipocod.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.r2060.change_r2060_tipocod or perms.r2060.add_r2060_tipocod %}
-                <form action="#" id="id_form_r2060_tipocod" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if r2060_tipocod.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r2060_tipocod.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not r2060_tipocod.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/r2060_tipocod.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if r2060_tipocod_id %}
-
-                                {% if perms.r2060.add_r2060tipoCod %}
-                                    <a href="{% url 'r2060_tipocod_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.r2060.can_view_r2060_tipocod or perms.r2060.can_view_r2060_tipocod %}
-                                <a href="{% url 'r2060_tipocod'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r2060.can_view_r2060_tipocod and r2060_tipocod_id %}
-                                <a href="{% url 'r2060_tipocod_salvar' hash='{}'|json_id:r2060_tipocod_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.r2060.can_view_r2060_tipocod and r2060_tipocod_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 'r2060_tipocod_salvar' hash='{}'|json_id:r2060_tipocod_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r2060.change_r2060_tipocod or perms.r2060.add_r2060_tipocod %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.r2060.delete_r2060_tipocod and r2060_tipocod_id %}
-
-                            <a href="{% url 'r2060_tipocod_apagar' hash='{}'|json_id:r2060_tipocod_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if r2060_tipocod.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r2060_tipocod.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.r2060.change_r2060_tipocod or perms.r2060.add_r2060_tipocod %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if r2060_tipocod_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</h3>
+                    </div>
+
+                    {% if perms.r2060.change_r2060tipoCod or perms.r2060.add_r2060tipoCod %}
+                        {% if r2060_tipocod_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_r2060_tipocod" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/r2060_tipocod.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.r2060.add_r2060tipoCod %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2060_tipocod_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r2060.can_see_list_r2060tipoCod %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2060_tipocod' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r2060.can_print_data_r2060tipoCod %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2060_tipocod_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.r2060.change_r2060tipoCod %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r2060.delete_r2060tipoCod %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r2060_tipocod_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.r2060.add_r2060tipoCod %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.r2060.add_r2060tipoCod or perms.r2060.change_r2060tipoCod %}
+
+                        {% if r2060_tipocod_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_r2060_tipoajuste -->
+        <!-- begin_r2060_tipoajuste -->
 
-            {% if tab == 'r2060_tipoajuste' or for_print %} 
+            {% if tab == 'r2060_tipoajuste' %} 
 
-                {% if perms.r2060.can_view_r2060_tipoajuste %} 
+                {% if perms.r2060.can_see_data_r2060tipoAjuste %}
 
-                    {% if perms.r2060.change_r2060_tipoajuste or perms.r2060.add_r2060tipoAjuste %}
+                    {% if perms.r2060.add_r2060tipoAjuste or perms.r2060.change_r2060tipoAjuste %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -358,95 +363,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2060.change_r2060_tipoajuste or perms.r2060.add_r2060tipoAjuste %}
+                                    {% if perms.r2060.add_r2060tipoAjuste or perms.r2060.can_see_list_r2060tipoAjuste  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2060.add_r2060tipoAjuste %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2060.add_r2060tipoAjuste %}            
+
                                     <!-- begin_form_r2060_tipoajuste --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2060_tipoajuste" action="{% url 'r2060_tipoajuste_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2060_tipoajuste" 
+                                              action="{% url 'r2060_tipoajuste_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2060_tipoajuste.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2060_tipoajuste -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2060_tipoajuste -->
+                                {% endif %} 
+
+                                {% if perms.r2060.can_see_r2060tipoAjuste %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2060_tipoajuste --> 
 
-                                    {% include 'tables/r2060_tipoajuste.html' %}
-                                        
-                                    <!-- end_table_r2060_tipoajuste --> 
-
+                                        {% include 'tables/r2060_tipoajuste.html' %}
+                                        <!-- end_table_r2060_tipoajuste --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2060_tipoajuste -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r2060_infoproc -->
+        <!-- begin_r2060_infoproc -->
 
-            {% if tab == 'r2060_infoproc' or for_print %} 
+            {% if tab == 'r2060_infoproc' %} 
 
-                {% if perms.r2060.can_view_r2060_infoproc %} 
+                {% if perms.r2060.can_see_data_r2060infoProc %}
 
-                    {% if perms.r2060.change_r2060_infoproc or perms.r2060.add_r2060infoProc %}
+                    {% if perms.r2060.add_r2060infoProc or perms.r2060.change_r2060infoProc %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -455,75 +472,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r2060.change_r2060_infoproc or perms.r2060.add_r2060infoProc %}
+                                    {% if perms.r2060.add_r2060infoProc or perms.r2060.can_see_list_r2060infoProc  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r2060.add_r2060infoProc %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r2060.add_r2060infoProc %}            
+
                                     <!-- begin_form_r2060_infoproc --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r2060_infoproc" action="{% url 'r2060_infoproc_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r2060_infoproc" 
+                                              action="{% url 'r2060_infoproc_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r2060_infoproc.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r2060_infoproc -->
-                                    {% endif %} 
+
+                                <!-- end_form_r2060_infoproc -->
+                                {% endif %} 
+
+                                {% if perms.r2060.can_see_r2060infoProc %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r2060_infoproc --> 
 
-                                    {% include 'tables/r2060_infoproc.html' %}
-                                        
-                                    <!-- end_table_r2060_infoproc --> 
-
+                                        {% include 'tables/r2060_infoproc.html' %}
+                                        <!-- end_table_r2060_infoproc --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r2060_infoproc -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s2240_iniexprisco_fatrisco_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s2240_iniexprisco_fatrisco = get_object_or_404(s2240iniExpRiscofatRisco, id=s2240_iniexprisco_fatrisco_id)
+    s2240_iniexprisco_fatrisco = get_object_or_404(s2240iniExpRiscofatRisco, id=pk)
     
     dados_evento = {}
-    
-    if s2240_iniexprisco_fatrisco_id:
-    
-        dados_evento = s2240_iniexprisco_fatrisco.evento()
+    dados_evento = s2240_iniexprisco_fatrisco.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s2240_iniexprisco_fatrisco), indent=4, sort_keys=True, default=str)
-            obj = s2240iniExpRiscofatRisco.objects.get(id = s2240_iniexprisco_fatrisco_id)
+            obj = s2240iniExpRiscofatRisco.objects.get(id=pk)
             obj.delete(request=request)
             #s2240_iniexprisco_fatrisco_apagar_custom
             #s2240_iniexprisco_fatrisco_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's2240_iniexprisco_fatrisco', s2240_iniexprisco_fatrisco_id, usuario_id, 3)
+                             's2240_iniexprisco_fatrisco', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's2240_iniexprisco_fatrisco_salvar':
+        if 's2240_iniexprisco_fatrisco' in request.session['return_page']:
         
-            return redirect('s2240_iniexprisco_fatrisco', hash=request.session['retorno_hash'])
+            return redirect('s2240_iniexprisco_fatrisco')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s2240', ],
         'paginas': ['s2240_iniexprisco_fatrisco', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

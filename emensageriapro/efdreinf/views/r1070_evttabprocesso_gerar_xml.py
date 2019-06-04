@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.r1070.models import *
 from emensageriapro.r1070.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r1070(request, r1070_evttabprocesso_id, versao=None):
+def gerar_xml_r1070(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if r1070_evttabprocesso_id:
+    if pk:
 
         r1070_evttabprocesso = get_object_or_404(
             r1070evtTabProcesso,
-            excluido = False,
-            id = r1070_evttabprocesso_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = r1070_evttabprocesso.versao
@@ -105,7 +103,8 @@ def gerar_xml_r1070(request, r1070_evttabprocesso_id, versao=None):
             xmlns = ''
 
         r1070_evttabprocesso_lista = r1070evtTabProcesso.objects. \
-            filter(id=r1070_evttabprocesso_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         r1070_inclusao_lista = r1070inclusao.objects. \
             filter(r1070_evttabprocesso_id__in=listar_ids(r1070_evttabprocesso_lista)).all()
@@ -137,10 +136,8 @@ def gerar_xml_r1070(request, r1070_evttabprocesso_id, versao=None):
             'versao': versao,
             'base': r1070_evttabprocesso,
             'r1070_evttabprocesso_lista': r1070_evttabprocesso_lista,
-            'r1070_evttabprocesso_id': int(r1070_evttabprocesso_id),
+            'pk': int(pk),
             'r1070_evttabprocesso': r1070_evttabprocesso,
-
-            
             'r1070_inclusao_lista': r1070_inclusao_lista,
             'r1070_inclusao_infosusp_lista': r1070_inclusao_infosusp_lista,
             'r1070_inclusao_dadosprocjud_lista': r1070_inclusao_dadosprocjud_lista,
@@ -156,9 +153,7 @@ def gerar_xml_r1070(request, r1070_evttabprocesso_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, r1070_evttabprocesso_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
@@ -166,14 +161,14 @@ def gerar_xml_assinado(request, r1070_evttabprocesso_id):
 
     r1070_evttabprocesso = get_object_or_404(
         r1070evtTabProcesso,
-        id=r1070_evttabprocesso_id)
+        id=pk)
 
     if r1070_evttabprocesso.arquivo_original:
     
         xml = ler_arquivo(r1070_evttabprocesso.arquivo)
 
     else:
-        xml = gerar_xml_r1070(request, r1070_evttabprocesso_id)
+        xml = gerar_xml_r1070(request, pk)
 
     if 'Signature' in xml:
     
@@ -189,20 +184,23 @@ def gerar_xml_assinado(request, r1070_evttabprocesso_id):
             grupo = get_grupo(r1070evtTabProcesso)
 
             criar_transmissor_efdreinf(request,
-                                      grupo,
-                                      r1070_evttabprocesso.nrinsc,
-                                      r1070_evttabprocesso.tpinsc)
+                grupo,
+                r1070_evttabprocesso.nrinsc,
+                r1070_evttabprocesso.tpinsc)
 
             vincular_transmissor_efdreinf(request,
-                                         grupo,
-                                         r1070evtTabProcesso,
-                                         r1070_evttabprocesso)
+                grupo,
+                r1070evtTabProcesso,
+                r1070_evttabprocesso)
         
         r1070_evttabprocesso = get_object_or_404(
             r1070evtTabProcesso,
-            id=r1070_evttabprocesso_id)
+            id=pk)
         
-        xml_assinado = assinar_efdreinf(request, xml, r1070_evttabprocesso.transmissor_lote_efdreinf_id)
+        xml_assinado = assinar_efdreinf(
+            request, 
+            xml, 
+            r1070_evttabprocesso.transmissor_lote_efdreinf_id)
         
     if r1070_evttabprocesso.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -211,29 +209,28 @@ def gerar_xml_assinado(request, r1070_evttabprocesso_id):
         STATUS_EVENTO_GERADO):
 
         r1070evtTabProcesso.objects.\
-            filter(id=r1070_evttabprocesso_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r1070_evttabprocesso/%s.xml' % (r1070_evttabprocesso.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r1070_evttabprocesso/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    r1070_evttabprocesso_id = int(dict_hash['id'])
+    if pk:
 
-    if r1070_evttabprocesso_id:
-
-        xml_assinado = gerar_xml_assinado(request, r1070_evttabprocesso_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

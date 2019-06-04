@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r5011_infototalcontrib__r5011_evttotalcontrib__label">Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos*</label>
     {% if not for_print %}{% if r5011_infototalcontrib_form.r5011_evttotalcontrib.value %}
-        <a href="{% url 'r5011_evttotalcontrib_salvar' hash='{}'|json_return_page:'r5011_infototalcontrib_salvar'|json_return_hash:hash|json_id:r5011_infototalcontrib_form.r5011_evttotalcontrib.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_infototalcontrib_form.r5011_evttotalcontrib.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

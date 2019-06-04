@@ -66,7 +66,6 @@ class s1030evtTabCargoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1030evtTabCargoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1030evtTabCargo.objects.all()

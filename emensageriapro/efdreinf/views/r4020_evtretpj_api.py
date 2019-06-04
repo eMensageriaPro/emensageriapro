@@ -66,7 +66,6 @@ class r4020evtRetPJList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r4020evtRetPJDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4020evtRetPJ.objects.all()

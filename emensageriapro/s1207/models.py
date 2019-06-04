@@ -101,8 +101,11 @@ class s1207dmDev(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207dmDev", "Can view S1207DMDEV"),
-            ("can_view_menu_s1207dmDev", "Can view menu S1207DMDEV"),)
+            ("can_see_list_s1207dmDev", u"Pode ver listagem do modelo S1207DMDEV"),
+            ("can_see_data_s1207dmDev", u"Pode visualizar o conteúdo do modelo S1207DMDEV"),
+            ("can_see_menu_s1207dmDev", u"Pode visualizar no menu o modelo S1207DMDEV"),
+            ("can_print_list_s1207dmDev", u"Pode imprimir listagem do modelo S1207DMDEV"),
+            ("can_print_data_s1207dmDev", u"Pode imprimir o conteúdo do modelo S1207DMDEV"), )
             
         ordering = [
             's1207_evtbenprrp',
@@ -158,8 +161,11 @@ class s1207infoPerAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerAnt", "Can view S1207INFOPERANT"),
-            ("can_view_menu_s1207infoPerAnt", "Can view menu S1207INFOPERANT"),)
+            ("can_see_list_s1207infoPerAnt", u"Pode ver listagem do modelo S1207INFOPERANT"),
+            ("can_see_data_s1207infoPerAnt", u"Pode visualizar o conteúdo do modelo S1207INFOPERANT"),
+            ("can_see_menu_s1207infoPerAnt", u"Pode visualizar no menu o modelo S1207INFOPERANT"),
+            ("can_print_list_s1207infoPerAnt", u"Pode imprimir listagem do modelo S1207INFOPERANT"),
+            ("can_print_data_s1207infoPerAnt", u"Pode imprimir o conteúdo do modelo S1207INFOPERANT"), )
             
         ordering = [
             's1207_dmdev',]
@@ -219,8 +225,11 @@ class s1207infoPerAntideADC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerAntideADC", "Can view S1207INFOPERANTIDEADC"),
-            ("can_view_menu_s1207infoPerAntideADC", "Can view menu S1207INFOPERANTIDEADC"),)
+            ("can_see_list_s1207infoPerAntideADC", u"Pode ver listagem do modelo S1207INFOPERANTIDEADC"),
+            ("can_see_data_s1207infoPerAntideADC", u"Pode visualizar o conteúdo do modelo S1207INFOPERANTIDEADC"),
+            ("can_see_menu_s1207infoPerAntideADC", u"Pode visualizar no menu o modelo S1207INFOPERANTIDEADC"),
+            ("can_print_list_s1207infoPerAntideADC", u"Pode imprimir listagem do modelo S1207INFOPERANTIDEADC"),
+            ("can_print_data_s1207infoPerAntideADC", u"Pode imprimir o conteúdo do modelo S1207INFOPERANTIDEADC"), )
             
         ordering = [
             's1207_infoperant',
@@ -279,8 +288,11 @@ class s1207infoPerAntideEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerAntideEstab", "Can view S1207INFOPERANTIDEESTAB"),
-            ("can_view_menu_s1207infoPerAntideEstab", "Can view menu S1207INFOPERANTIDEESTAB"),)
+            ("can_see_list_s1207infoPerAntideEstab", u"Pode ver listagem do modelo S1207INFOPERANTIDEESTAB"),
+            ("can_see_data_s1207infoPerAntideEstab", u"Pode visualizar o conteúdo do modelo S1207INFOPERANTIDEESTAB"),
+            ("can_see_menu_s1207infoPerAntideEstab", u"Pode visualizar no menu o modelo S1207INFOPERANTIDEESTAB"),
+            ("can_print_list_s1207infoPerAntideEstab", u"Pode imprimir listagem do modelo S1207INFOPERANTIDEESTAB"),
+            ("can_print_data_s1207infoPerAntideEstab", u"Pode imprimir o conteúdo do modelo S1207INFOPERANTIDEESTAB"), )
             
         ordering = [
             's1207_infoperant_ideperiodo',
@@ -337,8 +349,11 @@ class s1207infoPerAntidePeriodo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerAntidePeriodo", "Can view S1207INFOPERANTIDEPERIODO"),
-            ("can_view_menu_s1207infoPerAntidePeriodo", "Can view menu S1207INFOPERANTIDEPERIODO"),)
+            ("can_see_list_s1207infoPerAntidePeriodo", u"Pode ver listagem do modelo S1207INFOPERANTIDEPERIODO"),
+            ("can_see_data_s1207infoPerAntidePeriodo", u"Pode visualizar o conteúdo do modelo S1207INFOPERANTIDEPERIODO"),
+            ("can_see_menu_s1207infoPerAntidePeriodo", u"Pode visualizar no menu o modelo S1207INFOPERANTIDEPERIODO"),
+            ("can_print_list_s1207infoPerAntidePeriodo", u"Pode imprimir listagem do modelo S1207INFOPERANTIDEPERIODO"),
+            ("can_print_data_s1207infoPerAntidePeriodo", u"Pode imprimir o conteúdo do modelo S1207INFOPERANTIDEPERIODO"), )
             
         ordering = [
             's1207_infoperant_ideadc',
@@ -401,8 +416,11 @@ class s1207infoPerAntitensRemun(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerAntitensRemun", "Can view S1207INFOPERANTITENSREMUN"),
-            ("can_view_menu_s1207infoPerAntitensRemun", "Can view menu S1207INFOPERANTITENSREMUN"),)
+            ("can_see_list_s1207infoPerAntitensRemun", u"Pode ver listagem do modelo S1207INFOPERANTITENSREMUN"),
+            ("can_see_data_s1207infoPerAntitensRemun", u"Pode visualizar o conteúdo do modelo S1207INFOPERANTITENSREMUN"),
+            ("can_see_menu_s1207infoPerAntitensRemun", u"Pode visualizar no menu o modelo S1207INFOPERANTITENSREMUN"),
+            ("can_print_list_s1207infoPerAntitensRemun", u"Pode imprimir listagem do modelo S1207INFOPERANTITENSREMUN"),
+            ("can_print_data_s1207infoPerAntitensRemun", u"Pode imprimir o conteúdo do modelo S1207INFOPERANTITENSREMUN"), )
             
         ordering = [
             's1207_infoperant_remunperant',
@@ -458,8 +476,11 @@ class s1207infoPerAntremunPerAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerAntremunPerAnt", "Can view S1207INFOPERANTREMUNPERANT"),
-            ("can_view_menu_s1207infoPerAntremunPerAnt", "Can view menu S1207INFOPERANTREMUNPERANT"),)
+            ("can_see_list_s1207infoPerAntremunPerAnt", u"Pode ver listagem do modelo S1207INFOPERANTREMUNPERANT"),
+            ("can_see_data_s1207infoPerAntremunPerAnt", u"Pode visualizar o conteúdo do modelo S1207INFOPERANTREMUNPERANT"),
+            ("can_see_menu_s1207infoPerAntremunPerAnt", u"Pode visualizar no menu o modelo S1207INFOPERANTREMUNPERANT"),
+            ("can_print_list_s1207infoPerAntremunPerAnt", u"Pode imprimir listagem do modelo S1207INFOPERANTREMUNPERANT"),
+            ("can_print_data_s1207infoPerAntremunPerAnt", u"Pode imprimir o conteúdo do modelo S1207INFOPERANTREMUNPERANT"), )
             
         ordering = [
             's1207_infoperant_ideestab',]
@@ -512,8 +533,11 @@ class s1207infoPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerApur", "Can view S1207INFOPERAPUR"),
-            ("can_view_menu_s1207infoPerApur", "Can view menu S1207INFOPERAPUR"),)
+            ("can_see_list_s1207infoPerApur", u"Pode ver listagem do modelo S1207INFOPERAPUR"),
+            ("can_see_data_s1207infoPerApur", u"Pode visualizar o conteúdo do modelo S1207INFOPERAPUR"),
+            ("can_see_menu_s1207infoPerApur", u"Pode visualizar no menu o modelo S1207INFOPERAPUR"),
+            ("can_print_list_s1207infoPerApur", u"Pode imprimir listagem do modelo S1207INFOPERAPUR"),
+            ("can_print_data_s1207infoPerApur", u"Pode imprimir o conteúdo do modelo S1207INFOPERAPUR"), )
             
         ordering = [
             's1207_dmdev',]
@@ -570,8 +594,11 @@ class s1207infoPerApurideEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerApurideEstab", "Can view S1207INFOPERAPURIDEESTAB"),
-            ("can_view_menu_s1207infoPerApurideEstab", "Can view menu S1207INFOPERAPURIDEESTAB"),)
+            ("can_see_list_s1207infoPerApurideEstab", u"Pode ver listagem do modelo S1207INFOPERAPURIDEESTAB"),
+            ("can_see_data_s1207infoPerApurideEstab", u"Pode visualizar o conteúdo do modelo S1207INFOPERAPURIDEESTAB"),
+            ("can_see_menu_s1207infoPerApurideEstab", u"Pode visualizar no menu o modelo S1207INFOPERAPURIDEESTAB"),
+            ("can_print_list_s1207infoPerApurideEstab", u"Pode imprimir listagem do modelo S1207INFOPERAPURIDEESTAB"),
+            ("can_print_data_s1207infoPerApurideEstab", u"Pode imprimir o conteúdo do modelo S1207INFOPERAPURIDEESTAB"), )
             
         ordering = [
             's1207_infoperapur',
@@ -635,8 +662,11 @@ class s1207infoPerApuritensRemun(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerApuritensRemun", "Can view S1207INFOPERAPURITENSREMUN"),
-            ("can_view_menu_s1207infoPerApuritensRemun", "Can view menu S1207INFOPERAPURITENSREMUN"),)
+            ("can_see_list_s1207infoPerApuritensRemun", u"Pode ver listagem do modelo S1207INFOPERAPURITENSREMUN"),
+            ("can_see_data_s1207infoPerApuritensRemun", u"Pode visualizar o conteúdo do modelo S1207INFOPERAPURITENSREMUN"),
+            ("can_see_menu_s1207infoPerApuritensRemun", u"Pode visualizar no menu o modelo S1207INFOPERAPURITENSREMUN"),
+            ("can_print_list_s1207infoPerApuritensRemun", u"Pode imprimir listagem do modelo S1207INFOPERAPURITENSREMUN"),
+            ("can_print_data_s1207infoPerApuritensRemun", u"Pode imprimir o conteúdo do modelo S1207INFOPERAPURITENSREMUN"), )
             
         ordering = [
             's1207_infoperapur_remunperapur',
@@ -692,8 +722,11 @@ class s1207infoPerApurremunPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207infoPerApurremunPerApur", "Can view S1207INFOPERAPURREMUNPERAPUR"),
-            ("can_view_menu_s1207infoPerApurremunPerApur", "Can view menu S1207INFOPERAPURREMUNPERAPUR"),)
+            ("can_see_list_s1207infoPerApurremunPerApur", u"Pode ver listagem do modelo S1207INFOPERAPURREMUNPERAPUR"),
+            ("can_see_data_s1207infoPerApurremunPerApur", u"Pode visualizar o conteúdo do modelo S1207INFOPERAPURREMUNPERAPUR"),
+            ("can_see_menu_s1207infoPerApurremunPerApur", u"Pode visualizar no menu o modelo S1207INFOPERAPURREMUNPERAPUR"),
+            ("can_print_list_s1207infoPerApurremunPerApur", u"Pode imprimir listagem do modelo S1207INFOPERAPURREMUNPERAPUR"),
+            ("can_print_data_s1207infoPerApurremunPerApur", u"Pode imprimir o conteúdo do modelo S1207INFOPERAPURREMUNPERAPUR"), )
             
         ordering = [
             's1207_infoperapur_ideestab',]
@@ -752,8 +785,11 @@ class s1207itens(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207itens", "Can view S1207ITENS"),
-            ("can_view_menu_s1207itens", "Can view menu S1207ITENS"),)
+            ("can_see_list_s1207itens", u"Pode ver listagem do modelo S1207ITENS"),
+            ("can_see_data_s1207itens", u"Pode visualizar o conteúdo do modelo S1207ITENS"),
+            ("can_see_menu_s1207itens", u"Pode visualizar no menu o modelo S1207ITENS"),
+            ("can_print_list_s1207itens", u"Pode imprimir listagem do modelo S1207ITENS"),
+            ("can_print_data_s1207itens", u"Pode imprimir o conteúdo do modelo S1207ITENS"), )
             
         ordering = [
             's1207_dmdev',
@@ -814,8 +850,11 @@ class s1207procJudTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207procJudTrab", "Can view S1207PROCJUDTRAB"),
-            ("can_view_menu_s1207procJudTrab", "Can view menu S1207PROCJUDTRAB"),)
+            ("can_see_list_s1207procJudTrab", u"Pode ver listagem do modelo S1207PROCJUDTRAB"),
+            ("can_see_data_s1207procJudTrab", u"Pode visualizar o conteúdo do modelo S1207PROCJUDTRAB"),
+            ("can_see_menu_s1207procJudTrab", u"Pode visualizar no menu o modelo S1207PROCJUDTRAB"),
+            ("can_print_list_s1207procJudTrab", u"Pode imprimir listagem do modelo S1207PROCJUDTRAB"),
+            ("can_print_data_s1207procJudTrab", u"Pode imprimir o conteúdo do modelo S1207PROCJUDTRAB"), )
             
         ordering = [
             's1207_evtbenprrp',

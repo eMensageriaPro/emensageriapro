@@ -64,7 +64,7 @@ from emensageriapro.s2210.views import s2210_catorigem_api as s2210_catorigem_ap
 urlpatterns = [
 
 
-    url(r'^s2210-idelocalacid/apagar/(?P<hash>.*)/$', 
+    url(r'^s2210-idelocalacid/apagar/(?P<pk>[0-9]+)/$', 
         s2210_idelocalacid_apagar_views.apagar, 
         name='s2210_idelocalacid_apagar'),
 
@@ -74,15 +74,27 @@ urlpatterns = [
     url(r'^s2210-idelocalacid/api/(?P<pk>[0-9]+)/$',
         s2210_idelocalacid_api_views.s2210ideLocalAcidDetail.as_view() ),
 
-    url(r'^s2210-idelocalacid/listar/(?P<hash>.*)/$', 
+    url(r'^s2210-idelocalacid/$', 
         s2210_idelocalacid_listar_views.listar, 
         name='s2210_idelocalacid'),
 
-    url(r'^s2210-idelocalacid/salvar/(?P<hash>.*)/$', 
+    url(r'^s2210-idelocalacid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2210_idelocalacid_salvar_views.salvar, 
         name='s2210_idelocalacid_salvar'),
+        
+    url(r'^s2210-idelocalacid/cadastrar/$', 
+        s2210_idelocalacid_salvar_views.salvar, 
+        name='s2210_idelocalacid_cadastrar'),
 
-    url(r'^s2210-parteatingida/apagar/(?P<hash>.*)/$', 
+    url(r'^s2210-idelocalacid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2210_idelocalacid_salvar_views.salvar, 
+        name='s2210_idelocalacid_salvar_output'),
+        
+    url(r'^s2210-idelocalacid/(?P<output>[\w-]+)/$', 
+        s2210_idelocalacid_listar_views.listar, 
+        name='s2210_idelocalacid_output'),
+
+    url(r'^s2210-parteatingida/apagar/(?P<pk>[0-9]+)/$', 
         s2210_parteatingida_apagar_views.apagar, 
         name='s2210_parteatingida_apagar'),
 
@@ -92,15 +104,27 @@ urlpatterns = [
     url(r'^s2210-parteatingida/api/(?P<pk>[0-9]+)/$',
         s2210_parteatingida_api_views.s2210parteAtingidaDetail.as_view() ),
 
-    url(r'^s2210-parteatingida/listar/(?P<hash>.*)/$', 
+    url(r'^s2210-parteatingida/$', 
         s2210_parteatingida_listar_views.listar, 
         name='s2210_parteatingida'),
 
-    url(r'^s2210-parteatingida/salvar/(?P<hash>.*)/$', 
+    url(r'^s2210-parteatingida/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2210_parteatingida_salvar_views.salvar, 
         name='s2210_parteatingida_salvar'),
+        
+    url(r'^s2210-parteatingida/cadastrar/$', 
+        s2210_parteatingida_salvar_views.salvar, 
+        name='s2210_parteatingida_cadastrar'),
 
-    url(r'^s2210-agentecausador/apagar/(?P<hash>.*)/$', 
+    url(r'^s2210-parteatingida/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2210_parteatingida_salvar_views.salvar, 
+        name='s2210_parteatingida_salvar_output'),
+        
+    url(r'^s2210-parteatingida/(?P<output>[\w-]+)/$', 
+        s2210_parteatingida_listar_views.listar, 
+        name='s2210_parteatingida_output'),
+
+    url(r'^s2210-agentecausador/apagar/(?P<pk>[0-9]+)/$', 
         s2210_agentecausador_apagar_views.apagar, 
         name='s2210_agentecausador_apagar'),
 
@@ -110,15 +134,27 @@ urlpatterns = [
     url(r'^s2210-agentecausador/api/(?P<pk>[0-9]+)/$',
         s2210_agentecausador_api_views.s2210agenteCausadorDetail.as_view() ),
 
-    url(r'^s2210-agentecausador/listar/(?P<hash>.*)/$', 
+    url(r'^s2210-agentecausador/$', 
         s2210_agentecausador_listar_views.listar, 
         name='s2210_agentecausador'),
 
-    url(r'^s2210-agentecausador/salvar/(?P<hash>.*)/$', 
+    url(r'^s2210-agentecausador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2210_agentecausador_salvar_views.salvar, 
         name='s2210_agentecausador_salvar'),
+        
+    url(r'^s2210-agentecausador/cadastrar/$', 
+        s2210_agentecausador_salvar_views.salvar, 
+        name='s2210_agentecausador_cadastrar'),
 
-    url(r'^s2210-atestado/apagar/(?P<hash>.*)/$', 
+    url(r'^s2210-agentecausador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2210_agentecausador_salvar_views.salvar, 
+        name='s2210_agentecausador_salvar_output'),
+        
+    url(r'^s2210-agentecausador/(?P<output>[\w-]+)/$', 
+        s2210_agentecausador_listar_views.listar, 
+        name='s2210_agentecausador_output'),
+
+    url(r'^s2210-atestado/apagar/(?P<pk>[0-9]+)/$', 
         s2210_atestado_apagar_views.apagar, 
         name='s2210_atestado_apagar'),
 
@@ -128,15 +164,27 @@ urlpatterns = [
     url(r'^s2210-atestado/api/(?P<pk>[0-9]+)/$',
         s2210_atestado_api_views.s2210atestadoDetail.as_view() ),
 
-    url(r'^s2210-atestado/listar/(?P<hash>.*)/$', 
+    url(r'^s2210-atestado/$', 
         s2210_atestado_listar_views.listar, 
         name='s2210_atestado'),
 
-    url(r'^s2210-atestado/salvar/(?P<hash>.*)/$', 
+    url(r'^s2210-atestado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2210_atestado_salvar_views.salvar, 
         name='s2210_atestado_salvar'),
+        
+    url(r'^s2210-atestado/cadastrar/$', 
+        s2210_atestado_salvar_views.salvar, 
+        name='s2210_atestado_cadastrar'),
 
-    url(r'^s2210-catorigem/apagar/(?P<hash>.*)/$', 
+    url(r'^s2210-atestado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2210_atestado_salvar_views.salvar, 
+        name='s2210_atestado_salvar_output'),
+        
+    url(r'^s2210-atestado/(?P<output>[\w-]+)/$', 
+        s2210_atestado_listar_views.listar, 
+        name='s2210_atestado_output'),
+
+    url(r'^s2210-catorigem/apagar/(?P<pk>[0-9]+)/$', 
         s2210_catorigem_apagar_views.apagar, 
         name='s2210_catorigem_apagar'),
 
@@ -146,13 +194,25 @@ urlpatterns = [
     url(r'^s2210-catorigem/api/(?P<pk>[0-9]+)/$',
         s2210_catorigem_api_views.s2210catOrigemDetail.as_view() ),
 
-    url(r'^s2210-catorigem/listar/(?P<hash>.*)/$', 
+    url(r'^s2210-catorigem/$', 
         s2210_catorigem_listar_views.listar, 
         name='s2210_catorigem'),
 
-    url(r'^s2210-catorigem/salvar/(?P<hash>.*)/$', 
+    url(r'^s2210-catorigem/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2210_catorigem_salvar_views.salvar, 
         name='s2210_catorigem_salvar'),
+        
+    url(r'^s2210-catorigem/cadastrar/$', 
+        s2210_catorigem_salvar_views.salvar, 
+        name='s2210_catorigem_cadastrar'),
+
+    url(r'^s2210-catorigem/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2210_catorigem_salvar_views.salvar, 
+        name='s2210_catorigem_salvar_output'),
+        
+    url(r'^s2210-catorigem/(?P<output>[\w-]+)/$', 
+        s2210_catorigem_listar_views.listar, 
+        name='s2210_catorigem_output'),
 
 
 ]

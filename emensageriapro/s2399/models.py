@@ -101,8 +101,11 @@ class s2399detOper(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399detOper", "Can view S2399DETOPER"),
-            ("can_view_menu_s2399detOper", "Can view menu S2399DETOPER"),)
+            ("can_see_list_s2399detOper", u"Pode ver listagem do modelo S2399DETOPER"),
+            ("can_see_data_s2399detOper", u"Pode visualizar o conteúdo do modelo S2399DETOPER"),
+            ("can_see_menu_s2399detOper", u"Pode visualizar no menu o modelo S2399DETOPER"),
+            ("can_print_list_s2399detOper", u"Pode imprimir listagem do modelo S2399DETOPER"),
+            ("can_print_data_s2399detOper", u"Pode imprimir o conteúdo do modelo S2399DETOPER"), )
             
         ordering = [
             's2399_infosaudecolet',
@@ -167,8 +170,11 @@ class s2399detPlano(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399detPlano", "Can view S2399DETPLANO"),
-            ("can_view_menu_s2399detPlano", "Can view menu S2399DETPLANO"),)
+            ("can_see_list_s2399detPlano", u"Pode ver listagem do modelo S2399DETPLANO"),
+            ("can_see_data_s2399detPlano", u"Pode visualizar o conteúdo do modelo S2399DETPLANO"),
+            ("can_see_menu_s2399detPlano", u"Pode visualizar no menu o modelo S2399DETPLANO"),
+            ("can_print_list_s2399detPlano", u"Pode imprimir listagem do modelo S2399DETPLANO"),
+            ("can_print_data_s2399detPlano", u"Pode imprimir o conteúdo do modelo S2399DETPLANO"), )
             
         ordering = [
             's2399_detoper',
@@ -234,8 +240,11 @@ class s2399detVerbas(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399detVerbas", "Can view S2399DETVERBAS"),
-            ("can_view_menu_s2399detVerbas", "Can view menu S2399DETVERBAS"),)
+            ("can_see_list_s2399detVerbas", u"Pode ver listagem do modelo S2399DETVERBAS"),
+            ("can_see_data_s2399detVerbas", u"Pode visualizar o conteúdo do modelo S2399DETVERBAS"),
+            ("can_see_menu_s2399detVerbas", u"Pode visualizar no menu o modelo S2399DETVERBAS"),
+            ("can_print_list_s2399detVerbas", u"Pode imprimir listagem do modelo S2399DETVERBAS"),
+            ("can_print_data_s2399detVerbas", u"Pode imprimir o conteúdo do modelo S2399DETVERBAS"), )
             
         ordering = [
             's2399_ideestablot',
@@ -293,8 +302,11 @@ class s2399dmDev(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399dmDev", "Can view S2399DMDEV"),
-            ("can_view_menu_s2399dmDev", "Can view menu S2399DMDEV"),)
+            ("can_see_list_s2399dmDev", u"Pode ver listagem do modelo S2399DMDEV"),
+            ("can_see_data_s2399dmDev", u"Pode visualizar o conteúdo do modelo S2399DMDEV"),
+            ("can_see_menu_s2399dmDev", u"Pode visualizar no menu o modelo S2399DMDEV"),
+            ("can_print_list_s2399dmDev", u"Pode imprimir listagem do modelo S2399DMDEV"),
+            ("can_print_data_s2399dmDev", u"Pode imprimir o conteúdo do modelo S2399DMDEV"), )
             
         ordering = [
             's2399_verbasresc',
@@ -354,8 +366,11 @@ class s2399ideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399ideEstabLot", "Can view S2399IDEESTABLOT"),
-            ("can_view_menu_s2399ideEstabLot", "Can view menu S2399IDEESTABLOT"),)
+            ("can_see_list_s2399ideEstabLot", u"Pode ver listagem do modelo S2399IDEESTABLOT"),
+            ("can_see_data_s2399ideEstabLot", u"Pode visualizar o conteúdo do modelo S2399IDEESTABLOT"),
+            ("can_see_menu_s2399ideEstabLot", u"Pode visualizar no menu o modelo S2399IDEESTABLOT"),
+            ("can_print_list_s2399ideEstabLot", u"Pode imprimir listagem do modelo S2399IDEESTABLOT"),
+            ("can_print_data_s2399ideEstabLot", u"Pode imprimir o conteúdo do modelo S2399IDEESTABLOT"), )
             
         ordering = [
             's2399_dmdev',
@@ -413,8 +428,11 @@ class s2399infoAgNocivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399infoAgNocivo", "Can view S2399INFOAGNOCIVO"),
-            ("can_view_menu_s2399infoAgNocivo", "Can view menu S2399INFOAGNOCIVO"),)
+            ("can_see_list_s2399infoAgNocivo", u"Pode ver listagem do modelo S2399INFOAGNOCIVO"),
+            ("can_see_data_s2399infoAgNocivo", u"Pode visualizar o conteúdo do modelo S2399INFOAGNOCIVO"),
+            ("can_see_menu_s2399infoAgNocivo", u"Pode visualizar no menu o modelo S2399INFOAGNOCIVO"),
+            ("can_print_list_s2399infoAgNocivo", u"Pode imprimir listagem do modelo S2399INFOAGNOCIVO"),
+            ("can_print_data_s2399infoAgNocivo", u"Pode imprimir o conteúdo do modelo S2399INFOAGNOCIVO"), )
             
         ordering = [
             's2399_ideestablot',
@@ -470,8 +488,11 @@ class s2399infoMV(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399infoMV", "Can view S2399INFOMV"),
-            ("can_view_menu_s2399infoMV", "Can view menu S2399INFOMV"),)
+            ("can_see_list_s2399infoMV", u"Pode ver listagem do modelo S2399INFOMV"),
+            ("can_see_data_s2399infoMV", u"Pode visualizar o conteúdo do modelo S2399INFOMV"),
+            ("can_see_menu_s2399infoMV", u"Pode visualizar no menu o modelo S2399INFOMV"),
+            ("can_print_list_s2399infoMV", u"Pode imprimir listagem do modelo S2399INFOMV"),
+            ("can_print_data_s2399infoMV", u"Pode imprimir o conteúdo do modelo S2399INFOMV"), )
             
         ordering = [
             's2399_verbasresc',
@@ -525,8 +546,11 @@ class s2399infoSaudeColet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399infoSaudeColet", "Can view S2399INFOSAUDECOLET"),
-            ("can_view_menu_s2399infoSaudeColet", "Can view menu S2399INFOSAUDECOLET"),)
+            ("can_see_list_s2399infoSaudeColet", u"Pode ver listagem do modelo S2399INFOSAUDECOLET"),
+            ("can_see_data_s2399infoSaudeColet", u"Pode visualizar o conteúdo do modelo S2399INFOSAUDECOLET"),
+            ("can_see_menu_s2399infoSaudeColet", u"Pode visualizar no menu o modelo S2399INFOSAUDECOLET"),
+            ("can_print_list_s2399infoSaudeColet", u"Pode imprimir listagem do modelo S2399INFOSAUDECOLET"),
+            ("can_print_data_s2399infoSaudeColet", u"Pode imprimir o conteúdo do modelo S2399INFOSAUDECOLET"), )
             
         ordering = [
             's2399_ideestablot',]
@@ -581,8 +605,11 @@ class s2399infoSimples(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399infoSimples", "Can view S2399INFOSIMPLES"),
-            ("can_view_menu_s2399infoSimples", "Can view menu S2399INFOSIMPLES"),)
+            ("can_see_list_s2399infoSimples", u"Pode ver listagem do modelo S2399INFOSIMPLES"),
+            ("can_see_data_s2399infoSimples", u"Pode visualizar o conteúdo do modelo S2399INFOSIMPLES"),
+            ("can_see_menu_s2399infoSimples", u"Pode visualizar no menu o modelo S2399INFOSIMPLES"),
+            ("can_print_list_s2399infoSimples", u"Pode imprimir listagem do modelo S2399INFOSIMPLES"),
+            ("can_print_data_s2399infoSimples", u"Pode imprimir o conteúdo do modelo S2399INFOSIMPLES"), )
             
         ordering = [
             's2399_ideestablot',
@@ -638,8 +665,11 @@ class s2399mudancaCPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399mudancaCPF", "Can view S2399MUDANCACPF"),
-            ("can_view_menu_s2399mudancaCPF", "Can view menu S2399MUDANCACPF"),)
+            ("can_see_list_s2399mudancaCPF", u"Pode ver listagem do modelo S2399MUDANCACPF"),
+            ("can_see_data_s2399mudancaCPF", u"Pode visualizar o conteúdo do modelo S2399MUDANCACPF"),
+            ("can_see_menu_s2399mudancaCPF", u"Pode visualizar no menu o modelo S2399MUDANCACPF"),
+            ("can_print_list_s2399mudancaCPF", u"Pode imprimir listagem do modelo S2399MUDANCACPF"),
+            ("can_print_data_s2399mudancaCPF", u"Pode imprimir o conteúdo do modelo S2399MUDANCACPF"), )
             
         ordering = [
             's2399_evttsvtermino',
@@ -698,8 +728,11 @@ class s2399procJudTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399procJudTrab", "Can view S2399PROCJUDTRAB"),
-            ("can_view_menu_s2399procJudTrab", "Can view menu S2399PROCJUDTRAB"),)
+            ("can_see_list_s2399procJudTrab", u"Pode ver listagem do modelo S2399PROCJUDTRAB"),
+            ("can_see_data_s2399procJudTrab", u"Pode visualizar o conteúdo do modelo S2399PROCJUDTRAB"),
+            ("can_see_menu_s2399procJudTrab", u"Pode visualizar no menu o modelo S2399PROCJUDTRAB"),
+            ("can_print_list_s2399procJudTrab", u"Pode imprimir listagem do modelo S2399PROCJUDTRAB"),
+            ("can_print_data_s2399procJudTrab", u"Pode imprimir o conteúdo do modelo S2399PROCJUDTRAB"), )
             
         ordering = [
             's2399_verbasresc',
@@ -756,8 +789,11 @@ class s2399quarentena(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399quarentena", "Can view S2399QUARENTENA"),
-            ("can_view_menu_s2399quarentena", "Can view menu S2399QUARENTENA"),)
+            ("can_see_list_s2399quarentena", u"Pode ver listagem do modelo S2399QUARENTENA"),
+            ("can_see_data_s2399quarentena", u"Pode visualizar o conteúdo do modelo S2399QUARENTENA"),
+            ("can_see_menu_s2399quarentena", u"Pode visualizar no menu o modelo S2399QUARENTENA"),
+            ("can_print_list_s2399quarentena", u"Pode imprimir listagem do modelo S2399QUARENTENA"),
+            ("can_print_data_s2399quarentena", u"Pode imprimir o conteúdo do modelo S2399QUARENTENA"), )
             
         ordering = [
             's2399_evttsvtermino',
@@ -819,8 +855,11 @@ class s2399remunOutrEmpr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399remunOutrEmpr", "Can view S2399REMUNOUTREMPR"),
-            ("can_view_menu_s2399remunOutrEmpr", "Can view menu S2399REMUNOUTREMPR"),)
+            ("can_see_list_s2399remunOutrEmpr", u"Pode ver listagem do modelo S2399REMUNOUTREMPR"),
+            ("can_see_data_s2399remunOutrEmpr", u"Pode visualizar o conteúdo do modelo S2399REMUNOUTREMPR"),
+            ("can_see_menu_s2399remunOutrEmpr", u"Pode visualizar no menu o modelo S2399REMUNOUTREMPR"),
+            ("can_print_list_s2399remunOutrEmpr", u"Pode imprimir listagem do modelo S2399REMUNOUTREMPR"),
+            ("can_print_data_s2399remunOutrEmpr", u"Pode imprimir o conteúdo do modelo S2399REMUNOUTREMPR"), )
             
         ordering = [
             's2399_infomv',
@@ -877,8 +916,11 @@ class s2399verbasResc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399verbasResc", "Can view S2399VERBASRESC"),
-            ("can_view_menu_s2399verbasResc", "Can view menu S2399VERBASRESC"),)
+            ("can_see_list_s2399verbasResc", u"Pode ver listagem do modelo S2399VERBASRESC"),
+            ("can_see_data_s2399verbasResc", u"Pode visualizar o conteúdo do modelo S2399VERBASRESC"),
+            ("can_see_menu_s2399verbasResc", u"Pode visualizar no menu o modelo S2399VERBASRESC"),
+            ("can_print_list_s2399verbasResc", u"Pode imprimir listagem do modelo S2399VERBASRESC"),
+            ("can_print_data_s2399verbasResc", u"Pode imprimir o conteúdo do modelo S2399VERBASRESC"), )
             
         ordering = [
             's2399_evttsvtermino',]

@@ -56,7 +56,7 @@ from emensageriapro.r2030.views import r2030_infoproc_api as r2030_infoproc_api_
 urlpatterns = [
 
 
-    url(r'^r2030-recursosrec/apagar/(?P<hash>.*)/$', 
+    url(r'^r2030-recursosrec/apagar/(?P<pk>[0-9]+)/$', 
         r2030_recursosrec_apagar_views.apagar, 
         name='r2030_recursosrec_apagar'),
 
@@ -66,15 +66,27 @@ urlpatterns = [
     url(r'^r2030-recursosrec/api/(?P<pk>[0-9]+)/$',
         r2030_recursosrec_api_views.r2030recursosRecDetail.as_view() ),
 
-    url(r'^r2030-recursosrec/listar/(?P<hash>.*)/$', 
+    url(r'^r2030-recursosrec/$', 
         r2030_recursosrec_listar_views.listar, 
         name='r2030_recursosrec'),
 
-    url(r'^r2030-recursosrec/salvar/(?P<hash>.*)/$', 
+    url(r'^r2030-recursosrec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2030_recursosrec_salvar_views.salvar, 
         name='r2030_recursosrec_salvar'),
+        
+    url(r'^r2030-recursosrec/cadastrar/$', 
+        r2030_recursosrec_salvar_views.salvar, 
+        name='r2030_recursosrec_cadastrar'),
 
-    url(r'^r2030-inforecurso/apagar/(?P<hash>.*)/$', 
+    url(r'^r2030-recursosrec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2030_recursosrec_salvar_views.salvar, 
+        name='r2030_recursosrec_salvar_output'),
+        
+    url(r'^r2030-recursosrec/(?P<output>[\w-]+)/$', 
+        r2030_recursosrec_listar_views.listar, 
+        name='r2030_recursosrec_output'),
+
+    url(r'^r2030-inforecurso/apagar/(?P<pk>[0-9]+)/$', 
         r2030_inforecurso_apagar_views.apagar, 
         name='r2030_inforecurso_apagar'),
 
@@ -84,15 +96,27 @@ urlpatterns = [
     url(r'^r2030-inforecurso/api/(?P<pk>[0-9]+)/$',
         r2030_inforecurso_api_views.r2030infoRecursoDetail.as_view() ),
 
-    url(r'^r2030-inforecurso/listar/(?P<hash>.*)/$', 
+    url(r'^r2030-inforecurso/$', 
         r2030_inforecurso_listar_views.listar, 
         name='r2030_inforecurso'),
 
-    url(r'^r2030-inforecurso/salvar/(?P<hash>.*)/$', 
+    url(r'^r2030-inforecurso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2030_inforecurso_salvar_views.salvar, 
         name='r2030_inforecurso_salvar'),
+        
+    url(r'^r2030-inforecurso/cadastrar/$', 
+        r2030_inforecurso_salvar_views.salvar, 
+        name='r2030_inforecurso_cadastrar'),
 
-    url(r'^r2030-infoproc/apagar/(?P<hash>.*)/$', 
+    url(r'^r2030-inforecurso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2030_inforecurso_salvar_views.salvar, 
+        name='r2030_inforecurso_salvar_output'),
+        
+    url(r'^r2030-inforecurso/(?P<output>[\w-]+)/$', 
+        r2030_inforecurso_listar_views.listar, 
+        name='r2030_inforecurso_output'),
+
+    url(r'^r2030-infoproc/apagar/(?P<pk>[0-9]+)/$', 
         r2030_infoproc_apagar_views.apagar, 
         name='r2030_infoproc_apagar'),
 
@@ -102,13 +126,25 @@ urlpatterns = [
     url(r'^r2030-infoproc/api/(?P<pk>[0-9]+)/$',
         r2030_infoproc_api_views.r2030infoProcDetail.as_view() ),
 
-    url(r'^r2030-infoproc/listar/(?P<hash>.*)/$', 
+    url(r'^r2030-infoproc/$', 
         r2030_infoproc_listar_views.listar, 
         name='r2030_infoproc'),
 
-    url(r'^r2030-infoproc/salvar/(?P<hash>.*)/$', 
+    url(r'^r2030-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2030_infoproc_salvar_views.salvar, 
         name='r2030_infoproc_salvar'),
+        
+    url(r'^r2030-infoproc/cadastrar/$', 
+        r2030_infoproc_salvar_views.salvar, 
+        name='r2030_infoproc_cadastrar'),
+
+    url(r'^r2030-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2030_infoproc_salvar_views.salvar, 
+        name='r2030_infoproc_salvar_output'),
+        
+    url(r'^r2030-infoproc/(?P<output>[\w-]+)/$', 
+        r2030_infoproc_listar_views.listar, 
+        name='r2030_infoproc_output'),
 
 
 ]

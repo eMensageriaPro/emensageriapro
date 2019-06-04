@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r2070_inforesidext__r2070_evtpgtosdivs__label">Informações complementares de beneficiário residente ou domiciliado no exterior*</label>
     {% if not for_print %}{% if r2070_inforesidext_form.r2070_evtpgtosdivs.value %}
-        <a href="{% url 'r2070_evtpgtosdivs_salvar' hash='{}'|json_return_page:'r2070_inforesidext_salvar'|json_return_hash:hash|json_id:r2070_inforesidext_form.r2070_evtpgtosdivs.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_inforesidext_form.r2070_evtpgtosdivs.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

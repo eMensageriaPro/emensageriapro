@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1280 - Informações Complementares aos Eventos Periódicos<br>Identidade: {{ s1280_evtinfocomplper.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1280_evtinfocomplper_verificar' hash='{}'|json_id:s1280_evtinfocomplper_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1280_evtinfocomplper_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1280_evtinfocomplper_verificar' hash='{}'|json_id:s1280_evtinfocomplper_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1280_evtinfocomplper_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1280_evtinfocomplper_verificar' hash='{}'|json_id:s1280_evtinfocomplper_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1280_evtinfocomplper_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1280_evtinfocomplper_verificar' hash='{}'|json_id:s1280_evtinfocomplper_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.indretif or s1280_evtinfocomplper.indretif == 0 %}{{ s1280_evtinfocomplper.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.nrrecibo or s1280_evtinfocomplper.nrrecibo == 0 %}{{ s1280_evtinfocomplper.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">indApuracao</td>
             <td width="500px">Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual (13° salário). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.indapuracao or s1280_evtinfocomplper.indapuracao == 0 %}{{ s1280_evtinfocomplper.indapuracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, igual ou posterior a implementação do eSocial.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.perapur or s1280_evtinfocomplper.perapur == 0 %}{{ s1280_evtinfocomplper.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.tpamb or s1280_evtinfocomplper.tpamb == 0 %}{{ s1280_evtinfocomplper.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -226,11 +223,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.procemi or s1280_evtinfocomplper.procemi == 0 %}{{ s1280_evtinfocomplper.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -245,11 +242,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.verproc or s1280_evtinfocomplper.verproc == 0 %}{{ s1280_evtinfocomplper.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -269,11 +266,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.tpinsc or s1280_evtinfocomplper.tpinsc == 0 %}{{ s1280_evtinfocomplper.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -288,11 +285,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1280_evtinfocomplper.nrinsc or s1280_evtinfocomplper.nrinsc == 0 %}{{ s1280_evtinfocomplper.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_evtinfocomplper_visualizar' %}
-                <a href="{% url 's1280_evtinfocomplper_salvar'  hash='{}'|json_id:s1280_evtinfocomplper.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280evtInfoComplPer or perms.esocial.can_see_s1280evtInfoComplPer %}
+                <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_evtinfocomplper.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -313,11 +310,11 @@
             <td width="130px">indSubstPatr</td>
             <td width="500px">Indicativo de substituição da contribuição previdenciária patronal<opcoes>1 - Integralmente substituída; 2 - Parcialmente substituída. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1280_infosubstpatr.indsubstpatr or s1280_infosubstpatr.indsubstpatr == 0 %}{{ s1280_infosubstpatr.indsubstpatr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_infosubstpatr_visualizar' %}
-                <a href="{% url 's1280_infosubstpatr_salvar'  hash='{}'|json_id:s1280_infosubstpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280infoSubstPatr or perms.esocial.can_see_s1280infoSubstPatr %}
+                <a href="{% url 's1280_infosubstpatr_salvar' pk=s1280_infosubstpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -332,11 +329,11 @@
             <td width="130px">percRedContrib</td>
             <td width="500px">Percentual não substituído pela contribuição prevista na lei 12.546/2011. Informar 0 (zero) se {indSubstPatr} = 1. Caso contrário, preencher com o percentual correspondente a razão entre a receita de atividades não relacionadas nos artigos 7º e 8º da Lei 12.546/2011 e a receita bruta total.</td>
             <td width="200px"><b>{% if s1280_infosubstpatr.percredcontrib or s1280_infosubstpatr.percredcontrib == 0 %}{{ s1280_infosubstpatr.percredcontrib }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_infosubstpatr_visualizar' %}
-                <a href="{% url 's1280_infosubstpatr_salvar'  hash='{}'|json_id:s1280_infosubstpatr.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280infoSubstPatr or perms.esocial.can_see_s1280infoSubstPatr %}
+                <a href="{% url 's1280_infosubstpatr_salvar' pk=s1280_infosubstpatr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -357,11 +354,11 @@
             <td width="130px">cnpjOpPortuario</td>
             <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, constante na tabela de operadores portuários (S-1080).</td>
             <td width="200px"><b>{% if s1280_infosubstpatropport.cnpjopportuario or s1280_infosubstpatropport.cnpjopportuario == 0 %}{{ s1280_infosubstpatropport.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_visualizar' %}
-                <a href="{% url 's1280_infosubstpatropport_salvar'  hash='{}'|json_id:s1280_infosubstpatropport.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280infoSubstPatrOpPort or perms.esocial.can_see_s1280infoSubstPatrOpPort %}
+                <a href="{% url 's1280_infosubstpatropport_salvar' pk=s1280_infosubstpatropport.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -382,11 +379,11 @@
             <td width="130px">fatorMes</td>
             <td width="500px">Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006.</td>
             <td width="200px"><b>{% if s1280_infoativconcom.fatormes or s1280_infoativconcom.fatormes == 0 %}{{ s1280_infoativconcom.fatormes }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_infoativconcom_visualizar' %}
-                <a href="{% url 's1280_infoativconcom_salvar'  hash='{}'|json_id:s1280_infoativconcom.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280infoAtivConcom or perms.esocial.can_see_s1280infoAtivConcom %}
+                <a href="{% url 's1280_infoativconcom_salvar' pk=s1280_infoativconcom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -401,11 +398,11 @@
             <td width="130px">fator13</td>
             <td width="500px">Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006.</td>
             <td width="200px"><b>{% if s1280_infoativconcom.fator13 or s1280_infoativconcom.fator13 == 0 %}{{ s1280_infoativconcom.fator13 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1280_infoativconcom_visualizar' %}
-                <a href="{% url 's1280_infoativconcom_salvar'  hash='{}'|json_id:s1280_infoativconcom.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1280.can_see_s1280infoAtivConcom or perms.esocial.can_see_s1280infoAtivConcom %}
+                <a href="{% url 's1280_infoativconcom_salvar' pk=s1280_infoativconcom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

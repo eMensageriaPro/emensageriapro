@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2240_iniexprisco_epi_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2240_iniexprisco_epi_id:
+    if pk:
     
-        s2240_iniexprisco_epi = get_object_or_404(s2240iniExpRiscoepi, id=s2240_iniexprisco_epi_id)
+        s2240_iniexprisco_epi = get_object_or_404(s2240iniExpRiscoepi, id=pk)
         dados_evento = s2240_iniexprisco_epi.evento()
 
-    if request.user.has_perm('s2240.can_view_s2240iniExpRiscoepi'):
+    if request.user.has_perm('s2240.can_see_s2240iniExpRiscoepi'):
         
-        if s2240_iniexprisco_epi_id:
+        if pk:
         
-            s2240_iniexprisco_epi_form = form_s2240_iniexprisco_epi(request.POST or None, 
-                                                          instance=s2240_iniexprisco_epi,  
-                                                          initial={'excluido': False})
+            s2240_iniexprisco_epi_form = form_s2240_iniexprisco_epi(
+                request.POST or None, 
+                instance=s2240_iniexprisco_epi)
                                          
         else:
         
-            s2240_iniexprisco_epi_form = form_s2240_iniexprisco_epi(request.POST or None, 
-                                         initial={'excluido': False})
+            s2240_iniexprisco_epi_form = form_s2240_iniexprisco_epi(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2240_iniexprisco_epi_form.is_valid():
             
-                dados = s2240_iniexprisco_epi_form.cleaned_data
                 obj = s2240_iniexprisco_epi_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2240_iniexprisco_epi_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2240_iniexprisco_epi', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2240_iniexprisco_epi', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2240_iniexprisco_epi), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2240_iniexprisco_epi', s2240_iniexprisco_epi_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2240_iniexprisco_epi), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2240_iniexprisco_epi', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2240_iniexprisco_epi_apagar', 's2240_iniexprisco_epi_salvar', 's2240_iniexprisco_epi'):
+                if request.session['return_page'] not in (
+                    's2240_iniexprisco_epi_apagar', 
+                    's2240_iniexprisco_epi_salvar', 
+                    's2240_iniexprisco_epi'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2240_iniexprisco_epi_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2240_iniexprisco_epi_salvar', hash=url_hash)
+                    return redirect(
+                        's2240_iniexprisco_epi_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2240_iniexprisco_epi_form = disabled_form_fields(s2240_iniexprisco_epi_form, request.user.has_perm('s2240.change_s2240iniExpRiscoepi'))
+        s2240_iniexprisco_epi_form = disabled_form_fields(
+            s2240_iniexprisco_epi_form, 
+            request.user.has_perm('s2240.change_s2240iniExpRiscoepi'))
         
-        if s2240_iniexprisco_epi_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #s2240_iniexprisco_epi_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2240_iniexprisco_epi_form = disabled_form_for_print(s2240_iniexprisco_epi_form)
             
         
         
-        if s2240_iniexprisco_epi_id:
+        if pk:
         
-            s2240_iniexprisco_epi = get_object_or_404(s2240iniExpRiscoepi, id=s2240_iniexprisco_epi_id)
+            s2240_iniexprisco_epi = get_object_or_404(s2240iniExpRiscoepi, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2240_iniexprisco_epi' in request.session['retorno_pagina']:
+        if tab or 's2240_iniexprisco_epi' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2240_iniexprisco_epi_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2240_iniexprisco_epi_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2240_iniexprisco_epi_id, tabela='s2240_iniexprisco_epi').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2240_iniexprisco_epi').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2240_iniexprisco_epi': s2240_iniexprisco_epi, 
             's2240_iniexprisco_epi_form': s2240_iniexprisco_epi_form, 
-            's2240_iniexprisco_epi_id': int(s2240_iniexprisco_epi_id),
-            'usuario': usuario, 
             'modulos': ['s2240', ],
             'paginas': ['s2240_iniexprisco_epi', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2240_iniexprisco_epi_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2240_iniexprisco_epi_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2240_iniexprisco_epi_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2240_iniexprisco_epi_salvar.html', context)
             filename = "s2240_iniexprisco_epi.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2240_iniexprisco_epi_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2240', ],
             'paginas': ['s2240_iniexprisco_epi', ],
             'data': datetime.datetime.now(),

@@ -66,7 +66,6 @@ class s1200evtRemunList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1200evtRemunDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1200evtRemun.objects.all()

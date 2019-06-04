@@ -15,7 +15,7 @@
     <label id="s2241_iniaposentesp_infoamb__s2241_iniaposentesp__label">Informações relativas ao ambiente de trabalho*</label>
     {% if not for_print %}
       {% if s2241_iniaposentesp_infoamb_form.s2241_iniaposentesp.value %}
-        <a id="s2241_iniaposentesp_infoamb__s2241_iniaposentesp__div_acessar" href="{% url 's2241_iniaposentesp_salvar' hash='{}'|json_id:s2241_iniaposentesp_infoamb_form.s2241_iniaposentesp.value|json_print:0|base64_encode_me %}">
+        <a id="s2241_iniaposentesp_infoamb__s2241_iniaposentesp__div_acessar" href="{% url 's2241_iniaposentesp_salvar' pk=s2241_iniaposentesp_infoamb_form.s2241_iniaposentesp.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

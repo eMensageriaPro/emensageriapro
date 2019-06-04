@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.r1000.models import *
 from emensageriapro.r1000.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r1000(request, r1000_evtinfocontri_id, versao=None):
+def gerar_xml_r1000(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if r1000_evtinfocontri_id:
+    if pk:
 
         r1000_evtinfocontri = get_object_or_404(
             r1000evtInfoContri,
-            excluido = False,
-            id = r1000_evtinfocontri_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = r1000_evtinfocontri.versao
@@ -105,7 +103,8 @@ def gerar_xml_r1000(request, r1000_evtinfocontri_id, versao=None):
             xmlns = ''
 
         r1000_evtinfocontri_lista = r1000evtInfoContri.objects. \
-            filter(id=r1000_evtinfocontri_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         r1000_inclusao_lista = r1000inclusao.objects. \
             filter(r1000_evtinfocontri_id__in=listar_ids(r1000_evtinfocontri_lista)).all()
@@ -137,10 +136,8 @@ def gerar_xml_r1000(request, r1000_evtinfocontri_id, versao=None):
             'versao': versao,
             'base': r1000_evtinfocontri,
             'r1000_evtinfocontri_lista': r1000_evtinfocontri_lista,
-            'r1000_evtinfocontri_id': int(r1000_evtinfocontri_id),
+            'pk': int(pk),
             'r1000_evtinfocontri': r1000_evtinfocontri,
-
-            
             'r1000_inclusao_lista': r1000_inclusao_lista,
             'r1000_inclusao_softhouse_lista': r1000_inclusao_softhouse_lista,
             'r1000_inclusao_infoefr_lista': r1000_inclusao_infoefr_lista,
@@ -156,9 +153,7 @@ def gerar_xml_r1000(request, r1000_evtinfocontri_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, r1000_evtinfocontri_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
@@ -166,14 +161,14 @@ def gerar_xml_assinado(request, r1000_evtinfocontri_id):
 
     r1000_evtinfocontri = get_object_or_404(
         r1000evtInfoContri,
-        id=r1000_evtinfocontri_id)
+        id=pk)
 
     if r1000_evtinfocontri.arquivo_original:
     
         xml = ler_arquivo(r1000_evtinfocontri.arquivo)
 
     else:
-        xml = gerar_xml_r1000(request, r1000_evtinfocontri_id)
+        xml = gerar_xml_r1000(request, pk)
 
     if 'Signature' in xml:
     
@@ -189,20 +184,23 @@ def gerar_xml_assinado(request, r1000_evtinfocontri_id):
             grupo = get_grupo(r1000evtInfoContri)
 
             criar_transmissor_efdreinf(request,
-                                      grupo,
-                                      r1000_evtinfocontri.nrinsc,
-                                      r1000_evtinfocontri.tpinsc)
+                grupo,
+                r1000_evtinfocontri.nrinsc,
+                r1000_evtinfocontri.tpinsc)
 
             vincular_transmissor_efdreinf(request,
-                                         grupo,
-                                         r1000evtInfoContri,
-                                         r1000_evtinfocontri)
+                grupo,
+                r1000evtInfoContri,
+                r1000_evtinfocontri)
         
         r1000_evtinfocontri = get_object_or_404(
             r1000evtInfoContri,
-            id=r1000_evtinfocontri_id)
+            id=pk)
         
-        xml_assinado = assinar_efdreinf(request, xml, r1000_evtinfocontri.transmissor_lote_efdreinf_id)
+        xml_assinado = assinar_efdreinf(
+            request, 
+            xml, 
+            r1000_evtinfocontri.transmissor_lote_efdreinf_id)
         
     if r1000_evtinfocontri.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -211,29 +209,28 @@ def gerar_xml_assinado(request, r1000_evtinfocontri_id):
         STATUS_EVENTO_GERADO):
 
         r1000evtInfoContri.objects.\
-            filter(id=r1000_evtinfocontri_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r1000_evtinfocontri/%s.xml' % (r1000_evtinfocontri.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r1000_evtinfocontri/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    r1000_evtinfocontri_id = int(dict_hash['id'])
+    if pk:
 
-    if r1000_evtinfocontri_id:
-
-        xml_assinado = gerar_xml_assinado(request, r1000_evtinfocontri_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

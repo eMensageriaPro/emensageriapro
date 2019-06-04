@@ -115,8 +115,11 @@ class s1270remunAvNP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1270remunAvNP", "Can view S1270REMUNAVNP"),
-            ("can_view_menu_s1270remunAvNP", "Can view menu S1270REMUNAVNP"),)
+            ("can_see_list_s1270remunAvNP", u"Pode ver listagem do modelo S1270REMUNAVNP"),
+            ("can_see_data_s1270remunAvNP", u"Pode visualizar o conteúdo do modelo S1270REMUNAVNP"),
+            ("can_see_menu_s1270remunAvNP", u"Pode visualizar no menu o modelo S1270REMUNAVNP"),
+            ("can_print_list_s1270remunAvNP", u"Pode imprimir listagem do modelo S1270REMUNAVNP"),
+            ("can_print_data_s1270remunAvNP", u"Pode imprimir o conteúdo do modelo S1270REMUNAVNP"), )
             
         ordering = [
             's1270_evtcontratavnp',

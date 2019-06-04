@@ -17,26 +17,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.mapa_processamento.can_view_MapaImportações %}
-                        <a href="{% url 'mapa_importacoes_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.mapa_processamento.add_MapaImportações or perms.mapa_processamento.change_MapaImportações %}
+                        {% if perms.mapa_processamento.change_MapaImportações or perms.mapa_processamento.add_MapaImportações %}
+                    
+                        <a href="{% url 'mapa_importacoes_salvar' pk=a.id tab='master' %}">
+                            {% if perms.mapa_processamento.change_MapaImportações %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.mapa_processamento.can_see_data_MapaImportações %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.mapa_processamento.delete_MapaImportações %}
-                        <a href="{% url 'mapa_importacoes_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.mapa_processamento.delete_MapaImportações %}
+                        <a href="{% url 'mapa_importacoes_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

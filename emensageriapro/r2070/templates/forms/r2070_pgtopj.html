@@ -15,7 +15,7 @@
     <label id="r2070_pgtopj__r2070_pgtoresidbr__label">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil*</label>
     {% if not for_print %}
       {% if r2070_pgtopj_form.r2070_pgtoresidbr.value %}
-        <a id="r2070_pgtopj__r2070_pgtoresidbr__div_acessar" href="{% url 'r2070_pgtoresidbr_salvar' hash='{}'|json_id:r2070_pgtopj_form.r2070_pgtoresidbr.value|json_print:0|base64_encode_me %}">
+        <a id="r2070_pgtopj__r2070_pgtoresidbr__div_acessar" href="{% url 'r2070_pgtoresidbr_salvar' pk=r2070_pgtopj_form.r2070_pgtoresidbr.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

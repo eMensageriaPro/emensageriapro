@@ -44,6 +44,7 @@ import json
 import base64
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -63,57 +64,57 @@ from emensageriapro.mensageiro.forms import form_transmissor_lote_efdreinf
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
     
-    try: 
+    if pk:
     
-        usuario_id = request.user.id  
-        dict_hash = get_hash_url( hash )
-        transmissores_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
+        transmissores = get_object_or_404(TransmissorLote, id=pk)
         
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
+    if request.user.has_perm('mensageiro.can_see_TransmissorLote'):
         
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if transmissores_id:
-    
-        transmissores = get_object_or_404(TransmissorLote, id=transmissores_id)
+        if pk:
         
-    if request.user.has_perm('mensageiro.can_view_TransmissorLote'):
-        
-        if transmissores_id:
             transmissores_form = form_transmissores(request.POST or None, instance=transmissores)
             
         else:
+        
             transmissores_form = form_transmissores(request.POST or None)
             
         if request.method == 'POST':
+        
             if transmissores_form.is_valid():
+            
                 #transmissores_campos_multiple_passo1
+                
                 obj = transmissores_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #transmissores_campos_multiple_passo2
                 
-                if request.session['retorno_pagina'] not in ('transmissores_apagar', 'transmissores_salvar', 'transmissores'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'transmissores_apagar', 
+                    'transmissores_salvar', 
+                    'transmissores'):
                     
-                if transmissores_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('transmissores_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'transmissores_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
+            
                 messages.error(request, 'Erro ao salvar!')
                 
         transmissores_form = disabled_form_fields(transmissores_form, request.user.has_perm('mensageiro.change_TransmissorLote'))
         #transmissores_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             transmissores_form = disabled_form_for_print(transmissores_form)
         
@@ -123,20 +124,22 @@ def salvar(request, hash):
         transmissor_lote_efdreinf_lista = None 
         transmissor_lote_efdreinf_form = None 
         
-        if transmissores_id:
+        if pk:
         
-            transmissores = get_object_or_404(TransmissorLote, id = transmissores_id)
+            transmissores = get_object_or_404(TransmissorLote, id=pk)
             
             transmissor_lote_esocial_form = form_transmissor_lote_esocial(
                 initial={ 'transmissor': transmissores })
             transmissor_lote_esocial_form.fields['transmissor'].widget.attrs['readonly'] = True
             transmissor_lote_esocial_lista = TransmissorLoteEsocial.objects.\
                 filter(transmissor_id=transmissores.id).all()
+                
             transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(
                 initial={ 'transmissor': transmissores })
             transmissor_lote_efdreinf_form.fields['transmissor'].widget.attrs['readonly'] = True
             transmissor_lote_efdreinf_lista = TransmissorLoteEfdreinf.objects.\
                 filter(transmissor_id=transmissores.id).all()
+                
                 
         else:
         
@@ -146,18 +149,19 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'transmissores' in request.session['retorno_pagina']:
+        if tab or 'transmissores' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'transmissores_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'transmissores_salvar'
             
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'transmissores': transmissores, 
             'transmissores_form': transmissores_form, 
-            'transmissores_id': int(transmissores_id),
-            'usuario': usuario, 
-            'hash': hash, 
-            
             'transmissor_lote_esocial_form': transmissor_lote_esocial_form,
             'transmissor_lote_esocial_lista': transmissor_lote_esocial_lista,
             'transmissor_lote_efdreinf_form': transmissor_lote_efdreinf_form,
@@ -165,19 +169,14 @@ def salvar(request, hash):
             'modulos': ['mensageiro', ],
             'paginas': ['transmissores', ],
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
             #transmissores_salvar_custom_variaveis_context#
         }
-        
-        if for_print in (0, 1):
-        
-            return render(request, 'transmissores_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='transmissores_salvar.html',
@@ -194,29 +193,37 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True})
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('transmissores_salvar.html', context)
             filename = "transmissores.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+        
+        else:
+        
+            return render(request, 'transmissores_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['mensageiro', ],
             'paginas': ['transmissores', ],
             'data': datetime.datetime.now(),
-            'dict_permissoes': dict_permissoes,
         }
         
         return render(request, 
-                      'permissao_negada.html', 
-                      context)
+            'permissao_negada.html', 
+            context)

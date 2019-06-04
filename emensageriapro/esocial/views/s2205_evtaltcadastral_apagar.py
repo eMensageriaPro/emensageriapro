@@ -54,67 +54,51 @@ from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.s1000.models import s1000inclusao
-from emensageriapro.s1000.models import s1000alteracao
-from emensageriapro.s1000.models import s1000exclusao
-from emensageriapro.s1000.forms import form_s1000_inclusao
-from emensageriapro.s1000.forms import form_s1000_alteracao
-from emensageriapro.s1000.forms import form_s1000_exclusao
 
 
 @login_required
-def apagar(request, hash):
-
+def apagar(request, pk):
+        
+    import json
+    from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2205_evtaltcadastral_id = int(dict_hash['id'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    
-    s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral, id=s2205_evtaltcadastral_id)
+    s2205_evtaltcadastral = get_object_or_404(s2205evtAltCadastral, id=pk)
     
     if request.method == 'POST':
     
         if s2205_evtaltcadastral.status == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s2205_evtaltcadastral), indent=4, sort_keys=True, default=str)
-            obj = s2205evtAltCadastral.objects.get(id = s2205_evtaltcadastral_id)
+            obj = s2205evtAltCadastral.objects.get(id=pk)
             obj.delete(request=request)
             #s2205_evtaltcadastral_apagar_custom
             #s2205_evtaltcadastral_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's2205_evtaltcadastral', s2205_evtaltcadastral_id, usuario_id, 3)
-        else:
-            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
-        if request.session['retorno_pagina']== 's2205_evtaltcadastral_salvar':
-        
-            return redirect('s2205_evtaltcadastral', 
-                            hash=request.session['retorno_hash'])
-            
+                             's2205_evtaltcadastral', pk, request.user.id, 3)
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+                                        possível apagar os eventos com status "Cadastrado"!''')
+            
+        if 's2205_evtaltcadastral' in request.session['return_page']:
+        
+            return redirect('s2205_evtaltcadastral')
+            
+        else:
+        
+            return redirect(request.session['return_page'], 
+                            pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk, 
         's2205_evtaltcadastral': s2205_evtaltcadastral, 
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s2205_evtaltcadastral', ],
-        'hash': hash,
     }
     
     return render(request, 's2205_evtaltcadastral_apagar.html', context)

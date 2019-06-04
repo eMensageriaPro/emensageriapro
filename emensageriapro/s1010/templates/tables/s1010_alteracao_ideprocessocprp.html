@@ -41,26 +41,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s1010.can_view_s1010alteracaoideProcessoCPRP %}
-                        <a href="{% url 's1010_alteracao_ideprocessocprp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s1010.add_s1010alteracaoideProcessoCPRP or perms.s1010.change_s1010alteracaoideProcessoCPRP %}
+                        {% if perms.s1010.change_s1010alteracaoideProcessoCPRP or perms.s1010.add_s1010alteracaoideProcessoCPRP %}
+                    
+                        <a href="{% url 's1010_alteracao_ideprocessocprp_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s1010.change_s1010alteracaoideProcessoCPRP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s1010.can_see_data_s1010alteracaoideProcessoCPRP %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s1010.delete_s1010alteracaoideProcessoCPRP %}
-                        <a href="{% url 's1010_alteracao_ideprocessocprp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s1010.delete_s1010alteracaoideProcessoCPRP %}
+                        <a href="{% url 's1010_alteracao_ideprocessocprp_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

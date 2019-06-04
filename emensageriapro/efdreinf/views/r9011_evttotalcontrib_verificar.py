@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r9011evtTotalContrib'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r9011_evttotalcontrib_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r9011evtTotalContrib'):
-        r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib, id=r9011_evttotalcontrib_id)
-        r9011_evttotalcontrib_lista = r9011evtTotalContrib.objects.filter(id=r9011_evttotalcontrib_id).all()
+        r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib, id=pk)
+        r9011_evttotalcontrib_lista = r9011evtTotalContrib.objects.filter(id=pk).all()
 
         
         r9011_regocorrs_lista = r9011regOcorrs.objects.filter(r9011_evttotalcontrib_id__in = listar_ids(r9011_evttotalcontrib_lista) ).all()
@@ -103,15 +89,14 @@ def verificar(request, hash):
         r9011_rcprb_lista = r9011RCPRB.objects.filter(r9011_infototalcontrib_id__in = listar_ids(r9011_infototalcontrib_lista) ).all()
         r9011_evttotalcontrib_lista = r9011evtTotalContrib.objects.filter(retornos_r9011_id__in = listar_ids(r9011_evttotalcontrib_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r9011_evttotalcontrib'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r9011_evttotalcontrib'
 
         context = {
             'r9011_evttotalcontrib_lista': r9011_evttotalcontrib_lista,
-            'r9011_evttotalcontrib_id': r9011_evttotalcontrib_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r9011_evttotalcontrib': r9011_evttotalcontrib,
-            
-            
             'r9011_regocorrs_lista': r9011_regocorrs_lista,
             'r9011_infototalcontrib_lista': r9011_infototalcontrib_lista,
             'r9011_rtom_lista': r9011_rtom_lista,
@@ -121,45 +106,42 @@ def verificar(request, hash):
             'r9011_rcoml_lista': r9011_rcoml_lista,
             'r9011_rcprb_lista': r9011_rcprb_lista,
             'r9011_evttotalcontrib_lista': r9011_evttotalcontrib_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r9011_evttotalcontrib', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r9011_evttotalcontrib_verificar.html',
-                                           filename="r9011_evttotalcontrib.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r9011_evttotalcontrib_verificar.html',
+                filename="r9011_evttotalcontrib.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r9011_evttotalcontrib_verificar.html', context)
             filename = "%s.xls" % r9011_evttotalcontrib.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r9011_evttotalcontrib_verificar.html', context)
             filename = "%s.csv" % r9011_evttotalcontrib.identidade
@@ -174,7 +156,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r9011_evttotalcontrib', ],
             'data': datetime.now(),

@@ -71,26 +71,12 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r9012evtRetCons'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r9012_evtretcons_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r9012evtRetCons'):
-        r9012_evtretcons = get_object_or_404(r9012evtRetCons, id=r9012_evtretcons_id)
-        r9012_evtretcons_lista = r9012evtRetCons.objects.filter(id=r9012_evtretcons_id).all()
+        r9012_evtretcons = get_object_or_404(r9012evtRetCons, id=pk)
+        r9012_evtretcons_lista = r9012evtRetCons.objects.filter(id=pk).all()
 
         
         r9012_regocorrs_lista = r9012regOcorrs.objects.filter(r9012_evtretcons_id__in = listar_ids(r9012_evtretcons_lista) ).all()
@@ -102,15 +88,14 @@ def verificar(request, hash):
         r9012_totapurdia_lista = r9012totApurDia.objects.filter(r9012_infototalcontrib_id__in = listar_ids(r9012_infototalcontrib_lista) ).all()
         r9012_evtretcons_lista = r9012evtRetCons.objects.filter(retornos_r9012_id__in = listar_ids(r9012_evtretcons_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r9012_evtretcons'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r9012_evtretcons'
 
         context = {
             'r9012_evtretcons_lista': r9012_evtretcons_lista,
-            'r9012_evtretcons_id': r9012_evtretcons_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r9012_evtretcons': r9012_evtretcons,
-            
-            
             'r9012_regocorrs_lista': r9012_regocorrs_lista,
             'r9012_infototalcontrib_lista': r9012_infototalcontrib_lista,
             'r9012_totapurmen_lista': r9012_totapurmen_lista,
@@ -119,45 +104,42 @@ def verificar(request, hash):
             'r9012_totapursem_lista': r9012_totapursem_lista,
             'r9012_totapurdia_lista': r9012_totapurdia_lista,
             'r9012_evtretcons_lista': r9012_evtretcons_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r9012_evtretcons', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r9012_evtretcons_verificar.html',
-                                           filename="r9012_evtretcons.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r9012_evtretcons_verificar.html',
+                filename="r9012_evtretcons.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r9012_evtretcons_verificar.html', context)
             filename = "%s.xls" % r9012_evtretcons.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r9012_evtretcons_verificar.html', context)
             filename = "%s.csv" % r9012_evtretcons.identidade
@@ -172,7 +154,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r9012_evtretcons', ],
             'data': datetime.now(),

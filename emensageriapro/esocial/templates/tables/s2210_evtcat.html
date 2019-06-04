@@ -143,26 +143,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.esocial.can_view_s2210evtCAT %}
-                        <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.esocial.add_s2210evtCAT or perms.esocial.change_s2210evtCAT %}
+                        {% if perms.esocial.change_s2210evtCAT or perms.esocial.add_s2210evtCAT %}
+                    
+                        <a href="{% url 's2210_evtcat_salvar' pk=a.id tab='master' %}">
+                            {% if perms.esocial.change_s2210evtCAT %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.esocial.can_see_data_s2210evtCAT %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.esocial.delete_s2210evtCAT %}
-                        <a href="{% url 's2210_evtcat_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.esocial.delete_s2210evtCAT %}
+                        <a href="{% url 's2210_evtcat_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

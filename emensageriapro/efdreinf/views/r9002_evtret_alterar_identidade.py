@@ -72,47 +72,35 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def alterar_identidade(request, hash):
+def alterar_identidade(request, pk):
 
     from emensageriapro.functions import identidade_evento
     
-    dict_hash = get_hash_url(hash)
-    r9002_evtret_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('efdreinf.can_change_identity_event_r9002evtRet'):
+    if request.user.has_perm('efdreinf.can_change_identity_r9002evtRet'):
 
-        if r9002_evtret_id:
-    
-            r9002_evtret = get_object_or_404(
-                r9002evtRet,
-                excluido=False,
-                id=r9002_evtret_id)
-    
-            if r9002_evtret.status == STATUS_EVENTO_CADASTRADO:
-    
-                nova_identidade = identidade_evento(r9002_evtret)
-                messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
-                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r9002_evtret_id )
-    
-                gravar_auditoria(u'{}',
-                    u'{"funcao": "Identidade do evento foi alterada"}',
-                    'r9002_evtret', r9002_evtret_id, request.user.id, 1)
-    
-                return redirect('r9002_evtret_salvar', hash=url_hash)
-    
-            else:
-    
-                messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
-                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    
-        messages.error(request, u'Erro ao alterar identidade do evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        r9002_evtret = get_object_or_404(
+            r9002evtRet,
+            id=pk)
+
+        if r9002_evtret.status == STATUS_EVENTO_CADASTRADO:
+
+            nova_identidade = identidade_evento(r9002_evtret)
+            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
+            return_pk = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % pk )
+
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Identidade do evento foi alterada"}',
+                'r9002_evtret', pk, request.user.id, 1)
+
+        else:
+
+            messages.error(request, u'''Não foi possível alterar a identidade do evento! 
+                                        Somente é possível alterar o status de eventos que estão 
+                                        abertos para edição (status: Cadastrado)!''')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para alterar a identidade do evento.
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    
-        
-        
+                                    
+    return redirect('r9002_evtret_salvar', pk=pk, tab='master')

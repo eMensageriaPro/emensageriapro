@@ -66,7 +66,6 @@ class s1299evtFechaEvPerList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1299evtFechaEvPerDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1299evtFechaEvPer.objects.all()

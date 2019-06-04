@@ -15,7 +15,7 @@
     <label id="s2230_infoatestado__s2230_iniafastamento__label">Informações complementares relativas ao atestado médico*</label>
     {% if not for_print %}
       {% if s2230_infoatestado_form.s2230_iniafastamento.value %}
-        <a id="s2230_infoatestado__s2230_iniafastamento__div_acessar" href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_id:s2230_infoatestado_form.s2230_iniafastamento.value|json_print:0|base64_encode_me %}">
+        <a id="s2230_infoatestado__s2230_iniafastamento__div_acessar" href="{% url 's2230_iniafastamento_salvar' pk=s2230_infoatestado_form.s2230_iniafastamento.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

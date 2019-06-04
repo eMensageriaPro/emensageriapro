@@ -3,14 +3,22 @@
 
 
 <!-- inicio__retornos_eventos_ocorrencias__retornos_eventos -->
-<script type="text/javascript">$(document).ready(function(){$('#id_retornos_eventos').change(function(){document.getElementById("retornos_eventos_ocorrencias__retornos_eventos__div_acessar").style.display = 'none';});});</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_retornos_eventos').change(function(){
+            document.getElementById("retornos_eventos_ocorrencias__retornos_eventos__div_acessar").style.display = 'none';
+        });
+    });
+</script>
+
 <div class="col-md-12" id="retornos_eventos_ocorrencias__retornos_eventos__div">
 <div class="form-group">
   <label id="retornos_eventos_ocorrencias__retornos_eventos__label">Retorno</label>
   
-  {% if not for_print %}
+  {% if not output %}
     {% if retornos_eventos_ocorrencias_form.retornos_eventos.value %}
-    <a id="retornos_eventos_ocorrencias__retornos_eventos__div_acessar" href="{% url 'retornos_eventos_salvar' hash='{}'|json_id:retornos_eventos_ocorrencias_form.retornos_eventos.value|json_print:0|base64_encode_me %}">
+    <a id="retornos_eventos_ocorrencias__retornos_eventos__div_acessar" href="{% url 'retornos_eventos_salvar' pk=retornos_eventos_ocorrencias_form.retornos_eventos.value tab='master' %}">
      [Acessar]
     </a>
     {% endif %} 

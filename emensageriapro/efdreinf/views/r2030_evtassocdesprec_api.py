@@ -66,7 +66,6 @@ class r2030evtAssocDespRecList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r2030evtAssocDespRecDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2030evtAssocDespRec.objects.all()

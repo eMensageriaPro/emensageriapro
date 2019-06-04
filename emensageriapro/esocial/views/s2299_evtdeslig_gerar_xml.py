@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s2299.models import *
 from emensageriapro.s2299.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2299(request, s2299_evtdeslig_id, versao=None):
+def gerar_xml_s2299(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s2299_evtdeslig_id:
+    if pk:
 
         s2299_evtdeslig = get_object_or_404(
             s2299evtDeslig,
-            excluido = False,
-            id = s2299_evtdeslig_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s2299_evtdeslig.versao
@@ -105,7 +103,8 @@ def gerar_xml_s2299(request, s2299_evtdeslig_id, versao=None):
             xmlns = ''
 
         s2299_evtdeslig_lista = s2299evtDeslig.objects. \
-            filter(id=s2299_evtdeslig_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s2299_observacoes_lista = s2299observacoes.objects. \
             filter(s2299_evtdeslig_id__in=listar_ids(s2299_evtdeslig_lista)).all()
@@ -197,10 +196,8 @@ def gerar_xml_s2299(request, s2299_evtdeslig_id, versao=None):
             'versao': versao,
             'base': s2299_evtdeslig,
             's2299_evtdeslig_lista': s2299_evtdeslig_lista,
-            's2299_evtdeslig_id': int(s2299_evtdeslig_id),
+            'pk': int(pk),
             's2299_evtdeslig': s2299_evtdeslig,
-
-            
             's2299_observacoes_lista': s2299_observacoes_lista,
             's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
             's2299_transftit_lista': s2299_transftit_lista,
@@ -236,9 +233,7 @@ def gerar_xml_s2299(request, s2299_evtdeslig_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s2299_evtdeslig_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -246,14 +241,14 @@ def gerar_xml_assinado(request, s2299_evtdeslig_id):
 
     s2299_evtdeslig = get_object_or_404(
         s2299evtDeslig,
-        id=s2299_evtdeslig_id)
+        id=pk)
 
     if s2299_evtdeslig.arquivo_original:
     
         xml = ler_arquivo(s2299_evtdeslig.arquivo)
 
     else:
-        xml = gerar_xml_s2299(request, s2299_evtdeslig_id)
+        xml = gerar_xml_s2299(request, pk)
 
     if 'Signature' in xml:
     
@@ -269,20 +264,23 @@ def gerar_xml_assinado(request, s2299_evtdeslig_id):
             grupo = get_grupo(s2299evtDeslig)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s2299_evtdeslig.nrinsc,
-                                      s2299_evtdeslig.tpinsc)
+                grupo,
+                s2299_evtdeslig.nrinsc,
+                s2299_evtdeslig.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s2299evtDeslig,
-                                         s2299_evtdeslig)
+                grupo,
+                s2299evtDeslig,
+                s2299_evtdeslig)
         
         s2299_evtdeslig = get_object_or_404(
             s2299evtDeslig,
-            id=s2299_evtdeslig_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s2299_evtdeslig.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s2299_evtdeslig.transmissor_lote_esocial_id)
         
     if s2299_evtdeslig.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -291,29 +289,28 @@ def gerar_xml_assinado(request, s2299_evtdeslig_id):
         STATUS_EVENTO_GERADO):
 
         s2299evtDeslig.objects.\
-            filter(id=s2299_evtdeslig_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s2299_evtdeslig/%s.xml' % (s2299_evtdeslig.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2299_evtdeslig/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s2299_evtdeslig_id = int(dict_hash['id'])
+    if pk:
 
-    if s2299_evtdeslig_id:
-
-        xml_assinado = gerar_xml_assinado(request, s2299_evtdeslig_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

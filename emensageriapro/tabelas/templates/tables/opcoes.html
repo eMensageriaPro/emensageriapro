@@ -59,26 +59,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.tabelas.can_view_Opcoes %}
-                        <a href="{% url 'opcoes_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.tabelas.add_Opcoes or perms.tabelas.change_Opcoes %}
+                        {% if perms.tabelas.change_Opcoes or perms.tabelas.add_Opcoes %}
+                    
+                        <a href="{% url 'opcoes_salvar' pk=a.id tab='master' %}">
+                            {% if perms.tabelas.change_Opcoes %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.tabelas.can_see_data_Opcoes %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.tabelas.delete_Opcoes %}
-                        <a href="{% url 'opcoes_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.tabelas.delete_Opcoes %}
+                        <a href="{% url 'opcoes_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

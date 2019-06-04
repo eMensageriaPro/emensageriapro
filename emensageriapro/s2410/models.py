@@ -99,8 +99,11 @@ class s2410homologTC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410homologTC", "Can view S2410HOMOLOGTC"),
-            ("can_view_menu_s2410homologTC", "Can view menu S2410HOMOLOGTC"),)
+            ("can_see_list_s2410homologTC", u"Pode ver listagem do modelo S2410HOMOLOGTC"),
+            ("can_see_data_s2410homologTC", u"Pode visualizar o conteúdo do modelo S2410HOMOLOGTC"),
+            ("can_see_menu_s2410homologTC", u"Pode visualizar no menu o modelo S2410HOMOLOGTC"),
+            ("can_print_list_s2410homologTC", u"Pode imprimir listagem do modelo S2410HOMOLOGTC"),
+            ("can_print_data_s2410homologTC", u"Pode imprimir o conteúdo do modelo S2410HOMOLOGTC"), )
             
         ordering = [
             's2410_evtcdbenin',
@@ -157,8 +160,11 @@ class s2410infoPenMorte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410infoPenMorte", "Can view S2410INFOPENMORTE"),
-            ("can_view_menu_s2410infoPenMorte", "Can view menu S2410INFOPENMORTE"),)
+            ("can_see_list_s2410infoPenMorte", u"Pode ver listagem do modelo S2410INFOPENMORTE"),
+            ("can_see_data_s2410infoPenMorte", u"Pode visualizar o conteúdo do modelo S2410INFOPENMORTE"),
+            ("can_see_menu_s2410infoPenMorte", u"Pode visualizar no menu o modelo S2410INFOPENMORTE"),
+            ("can_print_list_s2410infoPenMorte", u"Pode imprimir listagem do modelo S2410INFOPENMORTE"),
+            ("can_print_data_s2410infoPenMorte", u"Pode imprimir o conteúdo do modelo S2410INFOPENMORTE"), )
             
         ordering = [
             's2410_evtcdbenin',
@@ -218,8 +224,11 @@ class s2410instPenMorte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410instPenMorte", "Can view S2410INSTPENMORTE"),
-            ("can_view_menu_s2410instPenMorte", "Can view menu S2410INSTPENMORTE"),)
+            ("can_see_list_s2410instPenMorte", u"Pode ver listagem do modelo S2410INSTPENMORTE"),
+            ("can_see_data_s2410instPenMorte", u"Pode visualizar o conteúdo do modelo S2410INSTPENMORTE"),
+            ("can_see_menu_s2410instPenMorte", u"Pode visualizar no menu o modelo S2410INSTPENMORTE"),
+            ("can_print_list_s2410instPenMorte", u"Pode imprimir listagem do modelo S2410INSTPENMORTE"),
+            ("can_print_data_s2410instPenMorte", u"Pode imprimir o conteúdo do modelo S2410INSTPENMORTE"), )
             
         ordering = [
             's2410_infopenmorte',

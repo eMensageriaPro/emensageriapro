@@ -15,7 +15,7 @@
     <label id="r2060_tipoajuste__r2060_tipocod__label">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.*</label>
     {% if not for_print %}
       {% if r2060_tipoajuste_form.r2060_tipocod.value %}
-        <a id="r2060_tipoajuste__r2060_tipocod__div_acessar" href="{% url 'r2060_tipocod_salvar' hash='{}'|json_id:r2060_tipoajuste_form.r2060_tipocod.value|json_print:0|base64_encode_me %}">
+        <a id="r2060_tipoajuste__r2060_tipocod__div_acessar" href="{% url 'r2060_tipocod_salvar' pk=r2060_tipoajuste_form.r2060_tipocod.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

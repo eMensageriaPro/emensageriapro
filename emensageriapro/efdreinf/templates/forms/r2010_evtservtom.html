@@ -420,14 +420,22 @@
 </div>
 <!-- fim__r2010_evtservtom__versao -->
 <!-- inicio__r2010_evtservtom__transmissor_lote_efdreinf -->
-<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_efdreinf').change(function(){document.getElementById("r2010_evtservtom__transmissor_lote_efdreinf__div_acessar").style.display = 'none';});});</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_transmissor_lote_efdreinf').change(function(){
+            document.getElementById("r2010_evtservtom__transmissor_lote_efdreinf__div_acessar").style.display = 'none';
+        });
+    });
+</script>
+
 <div class="col-md-3" id="r2010_evtservtom__transmissor_lote_efdreinf__div">
 <div class="form-group">
   <label id="r2010_evtservtom__transmissor_lote_efdreinf__label">Transmissor</label>
   
-  {% if not for_print %}
+  {% if not output %}
     {% if r2010_evtservtom_form.transmissor_lote_efdreinf.value %}
-    <a id="r2010_evtservtom__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:r2010_evtservtom_form.transmissor_lote_efdreinf.value|json_print:0|base64_encode_me %}">
+    <a id="r2010_evtservtom__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' pk=r2010_evtservtom_form.transmissor_lote_efdreinf.value tab='master' %}">
      [Acessar]
     </a>
     {% endif %} 

@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        r4020_infopgto_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    r4020_infopgto = get_object_or_404(r4020infoPgto, id=r4020_infopgto_id)
+    r4020_infopgto = get_object_or_404(r4020infoPgto, id=pk)
     
     dados_evento = {}
-    
-    if r4020_infopgto_id:
-    
-        dados_evento = r4020_infopgto.evento()
+    dados_evento = r4020_infopgto.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(r4020_infopgto), indent=4, sort_keys=True, default=str)
-            obj = r4020infoPgto.objects.get(id = r4020_infopgto_id)
+            obj = r4020infoPgto.objects.get(id=pk)
             obj.delete(request=request)
             #r4020_infopgto_apagar_custom
             #r4020_infopgto_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             'r4020_infopgto', r4020_infopgto_id, usuario_id, 3)
+                             'r4020_infopgto', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 'r4020_infopgto_salvar':
+        if 'r4020_infopgto' in request.session['return_page']:
         
-            return redirect('r4020_infopgto', hash=request.session['retorno_hash'])
+            return redirect('r4020_infopgto')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['r4020', ],
         'paginas': ['r4020_infopgto', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

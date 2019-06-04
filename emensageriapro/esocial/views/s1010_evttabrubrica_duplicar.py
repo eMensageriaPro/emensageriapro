@@ -73,24 +73,21 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def duplicar(request, hash):
+def duplicar(request, pk):
 
     from emensageriapro.esocial.views.s1010_evttabrubrica_importar import read_s1010_evttabrubrica_string
     from emensageriapro.esocial.views.s1010_evttabrubrica_gerar_xml import gerar_xml_s1010
     from emensageriapro.functions import identidade_evento
-
-    dict_hash = get_hash_url(hash)
-    s1010_evttabrubrica_id = int(dict_hash['id'])
     
-    if request.user.has_perm('esocial.can_duplicate_event_s1010evtTabRubrica'):
+    if request.user.has_perm('esocial.can_duplicate_s1010evtTabRubrica'):
 
-        if s1010_evttabrubrica_id:
+        if pk:
     
             s1010_evttabrubrica = get_object_or_404(
                 s1010evtTabRubrica,
-                id=s1010_evttabrubrica_id)
+                id=pk)
     
-            texto = gerar_xml_s1010(s1010_evttabrubrica_id, versao="|")
+            texto = gerar_xml_s1010(request, pk, versao="|")
             dados = read_s1010_evttabrubrica_string({}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1010_evttabrubrica)
     
@@ -103,15 +100,17 @@ def duplicar(request, hash):
                 's1010_evttabrubrica', dados['id'], request.user.id, 1)
     
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s1010_evttabrubrica_salvar', hash=url_hash)
+            return_pk = dados['id']
+            
+            return redirect('s1010_evttabrubrica_salvar', pk=return_pk, tab='master')
     
         messages.error(request, 'Erro ao duplicar evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+        return redirect('s1010_evttabrubrica_salvar', pk=pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('s1010_evttabrubrica_salvar', pk=pk, tab='master')

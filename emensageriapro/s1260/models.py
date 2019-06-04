@@ -101,8 +101,11 @@ class s1260ideAdquir(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260ideAdquir", "Can view S1260IDEADQUIR"),
-            ("can_view_menu_s1260ideAdquir", "Can view menu S1260IDEADQUIR"),)
+            ("can_see_list_s1260ideAdquir", u"Pode ver listagem do modelo S1260IDEADQUIR"),
+            ("can_see_data_s1260ideAdquir", u"Pode visualizar o conteúdo do modelo S1260IDEADQUIR"),
+            ("can_see_menu_s1260ideAdquir", u"Pode visualizar no menu o modelo S1260IDEADQUIR"),
+            ("can_print_list_s1260ideAdquir", u"Pode imprimir listagem do modelo S1260IDEADQUIR"),
+            ("can_print_data_s1260ideAdquir", u"Pode imprimir o conteúdo do modelo S1260IDEADQUIR"), )
             
         ordering = [
             's1260_tpcomerc',
@@ -167,8 +170,11 @@ class s1260infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260infoProcJud", "Can view S1260INFOPROCJUD"),
-            ("can_view_menu_s1260infoProcJud", "Can view menu S1260INFOPROCJUD"),)
+            ("can_see_list_s1260infoProcJud", u"Pode ver listagem do modelo S1260INFOPROCJUD"),
+            ("can_see_data_s1260infoProcJud", u"Pode visualizar o conteúdo do modelo S1260INFOPROCJUD"),
+            ("can_see_menu_s1260infoProcJud", u"Pode visualizar no menu o modelo S1260INFOPROCJUD"),
+            ("can_print_list_s1260infoProcJud", u"Pode imprimir listagem do modelo S1260INFOPROCJUD"),
+            ("can_print_data_s1260infoProcJud", u"Pode imprimir o conteúdo do modelo S1260INFOPROCJUD"), )
             
         ordering = [
             's1260_tpcomerc',
@@ -237,8 +243,11 @@ class s1260nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260nfs", "Can view S1260NFS"),
-            ("can_view_menu_s1260nfs", "Can view menu S1260NFS"),)
+            ("can_see_list_s1260nfs", u"Pode ver listagem do modelo S1260NFS"),
+            ("can_see_data_s1260nfs", u"Pode visualizar o conteúdo do modelo S1260NFS"),
+            ("can_see_menu_s1260nfs", u"Pode visualizar no menu o modelo S1260NFS"),
+            ("can_print_list_s1260nfs", u"Pode imprimir listagem do modelo S1260NFS"),
+            ("can_print_data_s1260nfs", u"Pode imprimir o conteúdo do modelo S1260NFS"), )
             
         ordering = [
             's1260_ideadquir',
@@ -301,8 +310,11 @@ class s1260tpComerc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260tpComerc", "Can view S1260TPCOMERC"),
-            ("can_view_menu_s1260tpComerc", "Can view menu S1260TPCOMERC"),)
+            ("can_see_list_s1260tpComerc", u"Pode ver listagem do modelo S1260TPCOMERC"),
+            ("can_see_data_s1260tpComerc", u"Pode visualizar o conteúdo do modelo S1260TPCOMERC"),
+            ("can_see_menu_s1260tpComerc", u"Pode visualizar no menu o modelo S1260TPCOMERC"),
+            ("can_print_list_s1260tpComerc", u"Pode imprimir listagem do modelo S1260TPCOMERC"),
+            ("can_print_data_s1260tpComerc", u"Pode imprimir o conteúdo do modelo S1260TPCOMERC"), )
             
         ordering = [
             's1260_evtcomprod',

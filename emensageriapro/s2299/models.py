@@ -97,8 +97,11 @@ class s2299dmDev(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299dmDev", "Can view S2299DMDEV"),
-            ("can_view_menu_s2299dmDev", "Can view menu S2299DMDEV"),)
+            ("can_see_list_s2299dmDev", u"Pode ver listagem do modelo S2299DMDEV"),
+            ("can_see_data_s2299dmDev", u"Pode visualizar o conteúdo do modelo S2299DMDEV"),
+            ("can_see_menu_s2299dmDev", u"Pode visualizar no menu o modelo S2299DMDEV"),
+            ("can_print_list_s2299dmDev", u"Pode imprimir listagem do modelo S2299DMDEV"),
+            ("can_print_data_s2299dmDev", u"Pode imprimir o conteúdo do modelo S2299DMDEV"), )
             
         ordering = [
             's2299_verbasresc',
@@ -152,8 +155,11 @@ class s2299infoPerAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAnt", "Can view S2299INFOPERANT"),
-            ("can_view_menu_s2299infoPerAnt", "Can view menu S2299INFOPERANT"),)
+            ("can_see_list_s2299infoPerAnt", u"Pode ver listagem do modelo S2299INFOPERANT"),
+            ("can_see_data_s2299infoPerAnt", u"Pode visualizar o conteúdo do modelo S2299INFOPERANT"),
+            ("can_see_menu_s2299infoPerAnt", u"Pode visualizar no menu o modelo S2299INFOPERANT"),
+            ("can_print_list_s2299infoPerAnt", u"Pode imprimir listagem do modelo S2299INFOPERANT"),
+            ("can_print_data_s2299infoPerAnt", u"Pode imprimir o conteúdo do modelo S2299INFOPERANT"), )
             
         ordering = [
             's2299_dmdev',]
@@ -215,8 +221,11 @@ class s2299infoPerAntdetVerbas(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAntdetVerbas", "Can view S2299INFOPERANTDETVERBAS"),
-            ("can_view_menu_s2299infoPerAntdetVerbas", "Can view menu S2299INFOPERANTDETVERBAS"),)
+            ("can_see_list_s2299infoPerAntdetVerbas", u"Pode ver listagem do modelo S2299INFOPERANTDETVERBAS"),
+            ("can_see_data_s2299infoPerAntdetVerbas", u"Pode visualizar o conteúdo do modelo S2299INFOPERANTDETVERBAS"),
+            ("can_see_menu_s2299infoPerAntdetVerbas", u"Pode visualizar no menu o modelo S2299INFOPERANTDETVERBAS"),
+            ("can_print_list_s2299infoPerAntdetVerbas", u"Pode imprimir listagem do modelo S2299INFOPERANTDETVERBAS"),
+            ("can_print_data_s2299infoPerAntdetVerbas", u"Pode imprimir o conteúdo do modelo S2299INFOPERANTDETVERBAS"), )
             
         ordering = [
             's2299_infoperant_ideestablot',
@@ -281,8 +290,11 @@ class s2299infoPerAntideADC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAntideADC", "Can view S2299INFOPERANTIDEADC"),
-            ("can_view_menu_s2299infoPerAntideADC", "Can view menu S2299INFOPERANTIDEADC"),)
+            ("can_see_list_s2299infoPerAntideADC", u"Pode ver listagem do modelo S2299INFOPERANTIDEADC"),
+            ("can_see_data_s2299infoPerAntideADC", u"Pode visualizar o conteúdo do modelo S2299INFOPERANTIDEADC"),
+            ("can_see_menu_s2299infoPerAntideADC", u"Pode visualizar no menu o modelo S2299INFOPERANTIDEADC"),
+            ("can_print_list_s2299infoPerAntideADC", u"Pode imprimir listagem do modelo S2299INFOPERANTIDEADC"),
+            ("can_print_data_s2299infoPerAntideADC", u"Pode imprimir o conteúdo do modelo S2299INFOPERANTIDEADC"), )
             
         ordering = [
             's2299_infoperant',
@@ -345,8 +357,11 @@ class s2299infoPerAntideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAntideEstabLot", "Can view S2299INFOPERANTIDEESTABLOT"),
-            ("can_view_menu_s2299infoPerAntideEstabLot", "Can view menu S2299INFOPERANTIDEESTABLOT"),)
+            ("can_see_list_s2299infoPerAntideEstabLot", u"Pode ver listagem do modelo S2299INFOPERANTIDEESTABLOT"),
+            ("can_see_data_s2299infoPerAntideEstabLot", u"Pode visualizar o conteúdo do modelo S2299INFOPERANTIDEESTABLOT"),
+            ("can_see_menu_s2299infoPerAntideEstabLot", u"Pode visualizar no menu o modelo S2299INFOPERANTIDEESTABLOT"),
+            ("can_print_list_s2299infoPerAntideEstabLot", u"Pode imprimir listagem do modelo S2299INFOPERANTIDEESTABLOT"),
+            ("can_print_data_s2299infoPerAntideEstabLot", u"Pode imprimir o conteúdo do modelo S2299INFOPERANTIDEESTABLOT"), )
             
         ordering = [
             's2299_infoperant_ideperiodo',
@@ -404,8 +419,11 @@ class s2299infoPerAntidePeriodo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAntidePeriodo", "Can view S2299INFOPERANTIDEPERIODO"),
-            ("can_view_menu_s2299infoPerAntidePeriodo", "Can view menu S2299INFOPERANTIDEPERIODO"),)
+            ("can_see_list_s2299infoPerAntidePeriodo", u"Pode ver listagem do modelo S2299INFOPERANTIDEPERIODO"),
+            ("can_see_data_s2299infoPerAntidePeriodo", u"Pode visualizar o conteúdo do modelo S2299INFOPERANTIDEPERIODO"),
+            ("can_see_menu_s2299infoPerAntidePeriodo", u"Pode visualizar no menu o modelo S2299INFOPERANTIDEPERIODO"),
+            ("can_print_list_s2299infoPerAntidePeriodo", u"Pode imprimir listagem do modelo S2299INFOPERANTIDEPERIODO"),
+            ("can_print_data_s2299infoPerAntidePeriodo", u"Pode imprimir o conteúdo do modelo S2299INFOPERANTIDEPERIODO"), )
             
         ordering = [
             's2299_infoperant_ideadc',
@@ -461,8 +479,11 @@ class s2299infoPerAntinfoAgNocivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAntinfoAgNocivo", "Can view S2299INFOPERANTINFOAGNOCIVO"),
-            ("can_view_menu_s2299infoPerAntinfoAgNocivo", "Can view menu S2299INFOPERANTINFOAGNOCIVO"),)
+            ("can_see_list_s2299infoPerAntinfoAgNocivo", u"Pode ver listagem do modelo S2299INFOPERANTINFOAGNOCIVO"),
+            ("can_see_data_s2299infoPerAntinfoAgNocivo", u"Pode visualizar o conteúdo do modelo S2299INFOPERANTINFOAGNOCIVO"),
+            ("can_see_menu_s2299infoPerAntinfoAgNocivo", u"Pode visualizar no menu o modelo S2299INFOPERANTINFOAGNOCIVO"),
+            ("can_print_list_s2299infoPerAntinfoAgNocivo", u"Pode imprimir listagem do modelo S2299INFOPERANTINFOAGNOCIVO"),
+            ("can_print_data_s2299infoPerAntinfoAgNocivo", u"Pode imprimir o conteúdo do modelo S2299INFOPERANTINFOAGNOCIVO"), )
             
         ordering = [
             's2299_infoperant_ideestablot',
@@ -518,8 +539,11 @@ class s2299infoPerAntinfoSimples(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerAntinfoSimples", "Can view S2299INFOPERANTINFOSIMPLES"),
-            ("can_view_menu_s2299infoPerAntinfoSimples", "Can view menu S2299INFOPERANTINFOSIMPLES"),)
+            ("can_see_list_s2299infoPerAntinfoSimples", u"Pode ver listagem do modelo S2299INFOPERANTINFOSIMPLES"),
+            ("can_see_data_s2299infoPerAntinfoSimples", u"Pode visualizar o conteúdo do modelo S2299INFOPERANTINFOSIMPLES"),
+            ("can_see_menu_s2299infoPerAntinfoSimples", u"Pode visualizar no menu o modelo S2299INFOPERANTINFOSIMPLES"),
+            ("can_print_list_s2299infoPerAntinfoSimples", u"Pode imprimir listagem do modelo S2299INFOPERANTINFOSIMPLES"),
+            ("can_print_data_s2299infoPerAntinfoSimples", u"Pode imprimir o conteúdo do modelo S2299INFOPERANTINFOSIMPLES"), )
             
         ordering = [
             's2299_infoperant_ideestablot',
@@ -573,8 +597,11 @@ class s2299infoPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApur", "Can view S2299INFOPERAPUR"),
-            ("can_view_menu_s2299infoPerApur", "Can view menu S2299INFOPERAPUR"),)
+            ("can_see_list_s2299infoPerApur", u"Pode ver listagem do modelo S2299INFOPERAPUR"),
+            ("can_see_data_s2299infoPerApur", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPUR"),
+            ("can_see_menu_s2299infoPerApur", u"Pode visualizar no menu o modelo S2299INFOPERAPUR"),
+            ("can_print_list_s2299infoPerApur", u"Pode imprimir listagem do modelo S2299INFOPERAPUR"),
+            ("can_print_data_s2299infoPerApur", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPUR"), )
             
         ordering = [
             's2299_dmdev',]
@@ -633,8 +660,11 @@ class s2299infoPerApurdetOper(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurdetOper", "Can view S2299INFOPERAPURDETOPER"),
-            ("can_view_menu_s2299infoPerApurdetOper", "Can view menu S2299INFOPERAPURDETOPER"),)
+            ("can_see_list_s2299infoPerApurdetOper", u"Pode ver listagem do modelo S2299INFOPERAPURDETOPER"),
+            ("can_see_data_s2299infoPerApurdetOper", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURDETOPER"),
+            ("can_see_menu_s2299infoPerApurdetOper", u"Pode visualizar no menu o modelo S2299INFOPERAPURDETOPER"),
+            ("can_print_list_s2299infoPerApurdetOper", u"Pode imprimir listagem do modelo S2299INFOPERAPURDETOPER"),
+            ("can_print_data_s2299infoPerApurdetOper", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURDETOPER"), )
             
         ordering = [
             's2299_infoperapur_infosaudecolet',
@@ -699,8 +729,11 @@ class s2299infoPerApurdetPlano(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurdetPlano", "Can view S2299INFOPERAPURDETPLANO"),
-            ("can_view_menu_s2299infoPerApurdetPlano", "Can view menu S2299INFOPERAPURDETPLANO"),)
+            ("can_see_list_s2299infoPerApurdetPlano", u"Pode ver listagem do modelo S2299INFOPERAPURDETPLANO"),
+            ("can_see_data_s2299infoPerApurdetPlano", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURDETPLANO"),
+            ("can_see_menu_s2299infoPerApurdetPlano", u"Pode visualizar no menu o modelo S2299INFOPERAPURDETPLANO"),
+            ("can_print_list_s2299infoPerApurdetPlano", u"Pode imprimir listagem do modelo S2299INFOPERAPURDETPLANO"),
+            ("can_print_data_s2299infoPerApurdetPlano", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURDETPLANO"), )
             
         ordering = [
             's2299_infoperapur_detoper',
@@ -766,8 +799,11 @@ class s2299infoPerApurdetVerbas(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurdetVerbas", "Can view S2299INFOPERAPURDETVERBAS"),
-            ("can_view_menu_s2299infoPerApurdetVerbas", "Can view menu S2299INFOPERAPURDETVERBAS"),)
+            ("can_see_list_s2299infoPerApurdetVerbas", u"Pode ver listagem do modelo S2299INFOPERAPURDETVERBAS"),
+            ("can_see_data_s2299infoPerApurdetVerbas", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURDETVERBAS"),
+            ("can_see_menu_s2299infoPerApurdetVerbas", u"Pode visualizar no menu o modelo S2299INFOPERAPURDETVERBAS"),
+            ("can_print_list_s2299infoPerApurdetVerbas", u"Pode imprimir listagem do modelo S2299INFOPERAPURDETVERBAS"),
+            ("can_print_data_s2299infoPerApurdetVerbas", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURDETVERBAS"), )
             
         ordering = [
             's2299_infoperapur_ideestablot',
@@ -829,8 +865,11 @@ class s2299infoPerApurideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurideEstabLot", "Can view S2299INFOPERAPURIDEESTABLOT"),
-            ("can_view_menu_s2299infoPerApurideEstabLot", "Can view menu S2299INFOPERAPURIDEESTABLOT"),)
+            ("can_see_list_s2299infoPerApurideEstabLot", u"Pode ver listagem do modelo S2299INFOPERAPURIDEESTABLOT"),
+            ("can_see_data_s2299infoPerApurideEstabLot", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURIDEESTABLOT"),
+            ("can_see_menu_s2299infoPerApurideEstabLot", u"Pode visualizar no menu o modelo S2299INFOPERAPURIDEESTABLOT"),
+            ("can_print_list_s2299infoPerApurideEstabLot", u"Pode imprimir listagem do modelo S2299INFOPERAPURIDEESTABLOT"),
+            ("can_print_data_s2299infoPerApurideEstabLot", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURIDEESTABLOT"), )
             
         ordering = [
             's2299_infoperapur',
@@ -888,8 +927,11 @@ class s2299infoPerApurinfoAgNocivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurinfoAgNocivo", "Can view S2299INFOPERAPURINFOAGNOCIVO"),
-            ("can_view_menu_s2299infoPerApurinfoAgNocivo", "Can view menu S2299INFOPERAPURINFOAGNOCIVO"),)
+            ("can_see_list_s2299infoPerApurinfoAgNocivo", u"Pode ver listagem do modelo S2299INFOPERAPURINFOAGNOCIVO"),
+            ("can_see_data_s2299infoPerApurinfoAgNocivo", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURINFOAGNOCIVO"),
+            ("can_see_menu_s2299infoPerApurinfoAgNocivo", u"Pode visualizar no menu o modelo S2299INFOPERAPURINFOAGNOCIVO"),
+            ("can_print_list_s2299infoPerApurinfoAgNocivo", u"Pode imprimir listagem do modelo S2299INFOPERAPURINFOAGNOCIVO"),
+            ("can_print_data_s2299infoPerApurinfoAgNocivo", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURINFOAGNOCIVO"), )
             
         ordering = [
             's2299_infoperapur_ideestablot',
@@ -943,8 +985,11 @@ class s2299infoPerApurinfoSaudeColet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurinfoSaudeColet", "Can view S2299INFOPERAPURINFOSAUDECOLET"),
-            ("can_view_menu_s2299infoPerApurinfoSaudeColet", "Can view menu S2299INFOPERAPURINFOSAUDECOLET"),)
+            ("can_see_list_s2299infoPerApurinfoSaudeColet", u"Pode ver listagem do modelo S2299INFOPERAPURINFOSAUDECOLET"),
+            ("can_see_data_s2299infoPerApurinfoSaudeColet", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURINFOSAUDECOLET"),
+            ("can_see_menu_s2299infoPerApurinfoSaudeColet", u"Pode visualizar no menu o modelo S2299INFOPERAPURINFOSAUDECOLET"),
+            ("can_print_list_s2299infoPerApurinfoSaudeColet", u"Pode imprimir listagem do modelo S2299INFOPERAPURINFOSAUDECOLET"),
+            ("can_print_data_s2299infoPerApurinfoSaudeColet", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURINFOSAUDECOLET"), )
             
         ordering = [
             's2299_infoperapur_ideestablot',]
@@ -999,8 +1044,11 @@ class s2299infoPerApurinfoSimples(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoPerApurinfoSimples", "Can view S2299INFOPERAPURINFOSIMPLES"),
-            ("can_view_menu_s2299infoPerApurinfoSimples", "Can view menu S2299INFOPERAPURINFOSIMPLES"),)
+            ("can_see_list_s2299infoPerApurinfoSimples", u"Pode ver listagem do modelo S2299INFOPERAPURINFOSIMPLES"),
+            ("can_see_data_s2299infoPerApurinfoSimples", u"Pode visualizar o conteúdo do modelo S2299INFOPERAPURINFOSIMPLES"),
+            ("can_see_menu_s2299infoPerApurinfoSimples", u"Pode visualizar no menu o modelo S2299INFOPERAPURINFOSIMPLES"),
+            ("can_print_list_s2299infoPerApurinfoSimples", u"Pode imprimir listagem do modelo S2299INFOPERAPURINFOSIMPLES"),
+            ("can_print_data_s2299infoPerApurinfoSimples", u"Pode imprimir o conteúdo do modelo S2299INFOPERAPURINFOSIMPLES"), )
             
         ordering = [
             's2299_infoperapur_ideestablot',
@@ -1056,8 +1104,11 @@ class s2299infoTrabInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabInterm", "Can view S2299INFOTRABINTERM"),
-            ("can_view_menu_s2299infoTrabInterm", "Can view menu S2299INFOTRABINTERM"),)
+            ("can_see_list_s2299infoTrabInterm", u"Pode ver listagem do modelo S2299INFOTRABINTERM"),
+            ("can_see_data_s2299infoTrabInterm", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERM"),
+            ("can_see_menu_s2299infoTrabInterm", u"Pode visualizar no menu o modelo S2299INFOTRABINTERM"),
+            ("can_print_list_s2299infoTrabInterm", u"Pode imprimir listagem do modelo S2299INFOTRABINTERM"),
+            ("can_print_data_s2299infoTrabInterm", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERM"), )
             
         ordering = [
             's2299_dmdev',
@@ -1115,8 +1166,11 @@ class s2299infoTrabIntermconsigFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabIntermconsigFGTS", "Can view S2299INFOTRABINTERMCONSIGFGTS"),
-            ("can_view_menu_s2299infoTrabIntermconsigFGTS", "Can view menu S2299INFOTRABINTERMCONSIGFGTS"),)
+            ("can_see_list_s2299infoTrabIntermconsigFGTS", u"Pode ver listagem do modelo S2299INFOTRABINTERMCONSIGFGTS"),
+            ("can_see_data_s2299infoTrabIntermconsigFGTS", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERMCONSIGFGTS"),
+            ("can_see_menu_s2299infoTrabIntermconsigFGTS", u"Pode visualizar no menu o modelo S2299INFOTRABINTERMCONSIGFGTS"),
+            ("can_print_list_s2299infoTrabIntermconsigFGTS", u"Pode imprimir listagem do modelo S2299INFOTRABINTERMCONSIGFGTS"),
+            ("can_print_data_s2299infoTrabIntermconsigFGTS", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERMCONSIGFGTS"), )
             
         ordering = [
             's2299_evtdeslig',
@@ -1173,8 +1227,11 @@ class s2299infoTrabInterminfoMV(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabInterminfoMV", "Can view S2299INFOTRABINTERMINFOMV"),
-            ("can_view_menu_s2299infoTrabInterminfoMV", "Can view menu S2299INFOTRABINTERMINFOMV"),)
+            ("can_see_list_s2299infoTrabInterminfoMV", u"Pode ver listagem do modelo S2299INFOTRABINTERMINFOMV"),
+            ("can_see_data_s2299infoTrabInterminfoMV", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERMINFOMV"),
+            ("can_see_menu_s2299infoTrabInterminfoMV", u"Pode visualizar no menu o modelo S2299INFOTRABINTERMINFOMV"),
+            ("can_print_list_s2299infoTrabInterminfoMV", u"Pode imprimir listagem do modelo S2299INFOTRABINTERMINFOMV"),
+            ("can_print_data_s2299infoTrabInterminfoMV", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERMINFOMV"), )
             
         ordering = [
             's2299_verbasresc',
@@ -1230,8 +1287,11 @@ class s2299infoTrabIntermprocCS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabIntermprocCS", "Can view S2299INFOTRABINTERMPROCCS"),
-            ("can_view_menu_s2299infoTrabIntermprocCS", "Can view menu S2299INFOTRABINTERMPROCCS"),)
+            ("can_see_list_s2299infoTrabIntermprocCS", u"Pode ver listagem do modelo S2299INFOTRABINTERMPROCCS"),
+            ("can_see_data_s2299infoTrabIntermprocCS", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERMPROCCS"),
+            ("can_see_menu_s2299infoTrabIntermprocCS", u"Pode visualizar no menu o modelo S2299INFOTRABINTERMPROCCS"),
+            ("can_print_list_s2299infoTrabIntermprocCS", u"Pode imprimir listagem do modelo S2299INFOTRABINTERMPROCCS"),
+            ("can_print_data_s2299infoTrabIntermprocCS", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERMPROCCS"), )
             
         ordering = [
             's2299_verbasresc',
@@ -1290,8 +1350,11 @@ class s2299infoTrabIntermprocJudTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabIntermprocJudTrab", "Can view S2299INFOTRABINTERMPROCJUDTRAB"),
-            ("can_view_menu_s2299infoTrabIntermprocJudTrab", "Can view menu S2299INFOTRABINTERMPROCJUDTRAB"),)
+            ("can_see_list_s2299infoTrabIntermprocJudTrab", u"Pode ver listagem do modelo S2299INFOTRABINTERMPROCJUDTRAB"),
+            ("can_see_data_s2299infoTrabIntermprocJudTrab", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERMPROCJUDTRAB"),
+            ("can_see_menu_s2299infoTrabIntermprocJudTrab", u"Pode visualizar no menu o modelo S2299INFOTRABINTERMPROCJUDTRAB"),
+            ("can_print_list_s2299infoTrabIntermprocJudTrab", u"Pode imprimir listagem do modelo S2299INFOTRABINTERMPROCJUDTRAB"),
+            ("can_print_data_s2299infoTrabIntermprocJudTrab", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERMPROCJUDTRAB"), )
             
         ordering = [
             's2299_verbasresc',
@@ -1348,8 +1411,11 @@ class s2299infoTrabIntermquarentena(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabIntermquarentena", "Can view S2299INFOTRABINTERMQUARENTENA"),
-            ("can_view_menu_s2299infoTrabIntermquarentena", "Can view menu S2299INFOTRABINTERMQUARENTENA"),)
+            ("can_see_list_s2299infoTrabIntermquarentena", u"Pode ver listagem do modelo S2299INFOTRABINTERMQUARENTENA"),
+            ("can_see_data_s2299infoTrabIntermquarentena", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERMQUARENTENA"),
+            ("can_see_menu_s2299infoTrabIntermquarentena", u"Pode visualizar no menu o modelo S2299INFOTRABINTERMQUARENTENA"),
+            ("can_print_list_s2299infoTrabIntermquarentena", u"Pode imprimir listagem do modelo S2299INFOTRABINTERMQUARENTENA"),
+            ("can_print_data_s2299infoTrabIntermquarentena", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERMQUARENTENA"), )
             
         ordering = [
             's2299_evtdeslig',
@@ -1411,8 +1477,11 @@ class s2299infoTrabIntermremunOutrEmpr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299infoTrabIntermremunOutrEmpr", "Can view S2299INFOTRABINTERMREMUNOUTREMPR"),
-            ("can_view_menu_s2299infoTrabIntermremunOutrEmpr", "Can view menu S2299INFOTRABINTERMREMUNOUTREMPR"),)
+            ("can_see_list_s2299infoTrabIntermremunOutrEmpr", u"Pode ver listagem do modelo S2299INFOTRABINTERMREMUNOUTREMPR"),
+            ("can_see_data_s2299infoTrabIntermremunOutrEmpr", u"Pode visualizar o conteúdo do modelo S2299INFOTRABINTERMREMUNOUTREMPR"),
+            ("can_see_menu_s2299infoTrabIntermremunOutrEmpr", u"Pode visualizar no menu o modelo S2299INFOTRABINTERMREMUNOUTREMPR"),
+            ("can_print_list_s2299infoTrabIntermremunOutrEmpr", u"Pode imprimir listagem do modelo S2299INFOTRABINTERMREMUNOUTREMPR"),
+            ("can_print_data_s2299infoTrabIntermremunOutrEmpr", u"Pode imprimir o conteúdo do modelo S2299INFOTRABINTERMREMUNOUTREMPR"), )
             
         ordering = [
             's2299_infotrabinterm_infomv',
@@ -1471,8 +1540,11 @@ class s2299mudancaCPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299mudancaCPF", "Can view S2299MUDANCACPF"),
-            ("can_view_menu_s2299mudancaCPF", "Can view menu S2299MUDANCACPF"),)
+            ("can_see_list_s2299mudancaCPF", u"Pode ver listagem do modelo S2299MUDANCACPF"),
+            ("can_see_data_s2299mudancaCPF", u"Pode visualizar o conteúdo do modelo S2299MUDANCACPF"),
+            ("can_see_menu_s2299mudancaCPF", u"Pode visualizar no menu o modelo S2299MUDANCACPF"),
+            ("can_print_list_s2299mudancaCPF", u"Pode imprimir listagem do modelo S2299MUDANCACPF"),
+            ("can_print_data_s2299mudancaCPF", u"Pode imprimir o conteúdo do modelo S2299MUDANCACPF"), )
             
         ordering = [
             's2299_evtdeslig',
@@ -1528,8 +1600,11 @@ class s2299observacoes(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299observacoes", "Can view S2299OBSERVACOES"),
-            ("can_view_menu_s2299observacoes", "Can view menu S2299OBSERVACOES"),)
+            ("can_see_list_s2299observacoes", u"Pode ver listagem do modelo S2299OBSERVACOES"),
+            ("can_see_data_s2299observacoes", u"Pode visualizar o conteúdo do modelo S2299OBSERVACOES"),
+            ("can_see_menu_s2299observacoes", u"Pode visualizar no menu o modelo S2299OBSERVACOES"),
+            ("can_print_list_s2299observacoes", u"Pode imprimir listagem do modelo S2299OBSERVACOES"),
+            ("can_print_data_s2299observacoes", u"Pode imprimir o conteúdo do modelo S2299OBSERVACOES"), )
             
         ordering = [
             's2299_evtdeslig',
@@ -1587,8 +1662,11 @@ class s2299sucessaoVinc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299sucessaoVinc", "Can view S2299SUCESSAOVINC"),
-            ("can_view_menu_s2299sucessaoVinc", "Can view menu S2299SUCESSAOVINC"),)
+            ("can_see_list_s2299sucessaoVinc", u"Pode ver listagem do modelo S2299SUCESSAOVINC"),
+            ("can_see_data_s2299sucessaoVinc", u"Pode visualizar o conteúdo do modelo S2299SUCESSAOVINC"),
+            ("can_see_menu_s2299sucessaoVinc", u"Pode visualizar no menu o modelo S2299SUCESSAOVINC"),
+            ("can_print_list_s2299sucessaoVinc", u"Pode imprimir listagem do modelo S2299SUCESSAOVINC"),
+            ("can_print_data_s2299sucessaoVinc", u"Pode imprimir o conteúdo do modelo S2299SUCESSAOVINC"), )
             
         ordering = [
             's2299_evtdeslig',
@@ -1647,8 +1725,11 @@ class s2299transfTit(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299transfTit", "Can view S2299TRANSFTIT"),
-            ("can_view_menu_s2299transfTit", "Can view menu S2299TRANSFTIT"),)
+            ("can_see_list_s2299transfTit", u"Pode ver listagem do modelo S2299TRANSFTIT"),
+            ("can_see_data_s2299transfTit", u"Pode visualizar o conteúdo do modelo S2299TRANSFTIT"),
+            ("can_see_menu_s2299transfTit", u"Pode visualizar no menu o modelo S2299TRANSFTIT"),
+            ("can_print_list_s2299transfTit", u"Pode imprimir listagem do modelo S2299TRANSFTIT"),
+            ("can_print_data_s2299transfTit", u"Pode imprimir o conteúdo do modelo S2299TRANSFTIT"), )
             
         ordering = [
             's2299_evtdeslig',
@@ -1703,8 +1784,11 @@ class s2299verbasResc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299verbasResc", "Can view S2299VERBASRESC"),
-            ("can_view_menu_s2299verbasResc", "Can view menu S2299VERBASRESC"),)
+            ("can_see_list_s2299verbasResc", u"Pode ver listagem do modelo S2299VERBASRESC"),
+            ("can_see_data_s2299verbasResc", u"Pode visualizar o conteúdo do modelo S2299VERBASRESC"),
+            ("can_see_menu_s2299verbasResc", u"Pode visualizar no menu o modelo S2299VERBASRESC"),
+            ("can_print_list_s2299verbasResc", u"Pode imprimir listagem do modelo S2299VERBASRESC"),
+            ("can_print_data_s2299verbasResc", u"Pode imprimir o conteúdo do modelo S2299VERBASRESC"), )
             
         ordering = [
             's2299_evtdeslig',]

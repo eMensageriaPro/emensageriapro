@@ -66,7 +66,6 @@ class RetornosEventosHorariosList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class RetornosEventosHorariosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = RetornosEventosHorarios.objects.all()

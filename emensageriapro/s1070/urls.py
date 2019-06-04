@@ -76,7 +76,7 @@ from emensageriapro.s1070.views import s1070_exclusao_api as s1070_exclusao_api_
 urlpatterns = [
 
 
-    url(r'^s1070-inclusao/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao/apagar/(?P<pk>[0-9]+)/$', 
         s1070_inclusao_apagar_views.apagar, 
         name='s1070_inclusao_apagar'),
 
@@ -86,15 +86,27 @@ urlpatterns = [
     url(r'^s1070-inclusao/api/(?P<pk>[0-9]+)/$',
         s1070_inclusao_api_views.s1070inclusaoDetail.as_view() ),
 
-    url(r'^s1070-inclusao/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao/$', 
         s1070_inclusao_listar_views.listar, 
         name='s1070_inclusao'),
 
-    url(r'^s1070-inclusao/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_inclusao_salvar_views.salvar, 
         name='s1070_inclusao_salvar'),
+        
+    url(r'^s1070-inclusao/cadastrar/$', 
+        s1070_inclusao_salvar_views.salvar, 
+        name='s1070_inclusao_cadastrar'),
 
-    url(r'^s1070-inclusao-dadosprocjud/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_inclusao_salvar_views.salvar, 
+        name='s1070_inclusao_salvar_output'),
+        
+    url(r'^s1070-inclusao/(?P<output>[\w-]+)/$', 
+        s1070_inclusao_listar_views.listar, 
+        name='s1070_inclusao_output'),
+
+    url(r'^s1070-inclusao-dadosprocjud/apagar/(?P<pk>[0-9]+)/$', 
         s1070_inclusao_dadosprocjud_apagar_views.apagar, 
         name='s1070_inclusao_dadosprocjud_apagar'),
 
@@ -104,15 +116,27 @@ urlpatterns = [
     url(r'^s1070-inclusao-dadosprocjud/api/(?P<pk>[0-9]+)/$',
         s1070_inclusao_dadosprocjud_api_views.s1070inclusaodadosProcJudDetail.as_view() ),
 
-    url(r'^s1070-inclusao-dadosprocjud/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao-dadosprocjud/$', 
         s1070_inclusao_dadosprocjud_listar_views.listar, 
         name='s1070_inclusao_dadosprocjud'),
 
-    url(r'^s1070-inclusao-dadosprocjud/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_inclusao_dadosprocjud_salvar_views.salvar, 
         name='s1070_inclusao_dadosprocjud_salvar'),
+        
+    url(r'^s1070-inclusao-dadosprocjud/cadastrar/$', 
+        s1070_inclusao_dadosprocjud_salvar_views.salvar, 
+        name='s1070_inclusao_dadosprocjud_cadastrar'),
 
-    url(r'^s1070-inclusao-infosusp/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_inclusao_dadosprocjud_salvar_views.salvar, 
+        name='s1070_inclusao_dadosprocjud_salvar_output'),
+        
+    url(r'^s1070-inclusao-dadosprocjud/(?P<output>[\w-]+)/$', 
+        s1070_inclusao_dadosprocjud_listar_views.listar, 
+        name='s1070_inclusao_dadosprocjud_output'),
+
+    url(r'^s1070-inclusao-infosusp/apagar/(?P<pk>[0-9]+)/$', 
         s1070_inclusao_infosusp_apagar_views.apagar, 
         name='s1070_inclusao_infosusp_apagar'),
 
@@ -122,15 +146,27 @@ urlpatterns = [
     url(r'^s1070-inclusao-infosusp/api/(?P<pk>[0-9]+)/$',
         s1070_inclusao_infosusp_api_views.s1070inclusaoinfoSuspDetail.as_view() ),
 
-    url(r'^s1070-inclusao-infosusp/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao-infosusp/$', 
         s1070_inclusao_infosusp_listar_views.listar, 
         name='s1070_inclusao_infosusp'),
 
-    url(r'^s1070-inclusao-infosusp/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_inclusao_infosusp_salvar_views.salvar, 
         name='s1070_inclusao_infosusp_salvar'),
+        
+    url(r'^s1070-inclusao-infosusp/cadastrar/$', 
+        s1070_inclusao_infosusp_salvar_views.salvar, 
+        name='s1070_inclusao_infosusp_cadastrar'),
 
-    url(r'^s1070-alteracao/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-inclusao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_inclusao_infosusp_salvar_views.salvar, 
+        name='s1070_inclusao_infosusp_salvar_output'),
+        
+    url(r'^s1070-inclusao-infosusp/(?P<output>[\w-]+)/$', 
+        s1070_inclusao_infosusp_listar_views.listar, 
+        name='s1070_inclusao_infosusp_output'),
+
+    url(r'^s1070-alteracao/apagar/(?P<pk>[0-9]+)/$', 
         s1070_alteracao_apagar_views.apagar, 
         name='s1070_alteracao_apagar'),
 
@@ -140,15 +176,27 @@ urlpatterns = [
     url(r'^s1070-alteracao/api/(?P<pk>[0-9]+)/$',
         s1070_alteracao_api_views.s1070alteracaoDetail.as_view() ),
 
-    url(r'^s1070-alteracao/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao/$', 
         s1070_alteracao_listar_views.listar, 
         name='s1070_alteracao'),
 
-    url(r'^s1070-alteracao/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_alteracao_salvar_views.salvar, 
         name='s1070_alteracao_salvar'),
+        
+    url(r'^s1070-alteracao/cadastrar/$', 
+        s1070_alteracao_salvar_views.salvar, 
+        name='s1070_alteracao_cadastrar'),
 
-    url(r'^s1070-alteracao-dadosprocjud/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_salvar_views.salvar, 
+        name='s1070_alteracao_salvar_output'),
+        
+    url(r'^s1070-alteracao/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_listar_views.listar, 
+        name='s1070_alteracao_output'),
+
+    url(r'^s1070-alteracao-dadosprocjud/apagar/(?P<pk>[0-9]+)/$', 
         s1070_alteracao_dadosprocjud_apagar_views.apagar, 
         name='s1070_alteracao_dadosprocjud_apagar'),
 
@@ -158,15 +206,27 @@ urlpatterns = [
     url(r'^s1070-alteracao-dadosprocjud/api/(?P<pk>[0-9]+)/$',
         s1070_alteracao_dadosprocjud_api_views.s1070alteracaodadosProcJudDetail.as_view() ),
 
-    url(r'^s1070-alteracao-dadosprocjud/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-dadosprocjud/$', 
         s1070_alteracao_dadosprocjud_listar_views.listar, 
         name='s1070_alteracao_dadosprocjud'),
 
-    url(r'^s1070-alteracao-dadosprocjud/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_alteracao_dadosprocjud_salvar_views.salvar, 
         name='s1070_alteracao_dadosprocjud_salvar'),
+        
+    url(r'^s1070-alteracao-dadosprocjud/cadastrar/$', 
+        s1070_alteracao_dadosprocjud_salvar_views.salvar, 
+        name='s1070_alteracao_dadosprocjud_cadastrar'),
 
-    url(r'^s1070-alteracao-infosusp/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_dadosprocjud_salvar_views.salvar, 
+        name='s1070_alteracao_dadosprocjud_salvar_output'),
+        
+    url(r'^s1070-alteracao-dadosprocjud/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_dadosprocjud_listar_views.listar, 
+        name='s1070_alteracao_dadosprocjud_output'),
+
+    url(r'^s1070-alteracao-infosusp/apagar/(?P<pk>[0-9]+)/$', 
         s1070_alteracao_infosusp_apagar_views.apagar, 
         name='s1070_alteracao_infosusp_apagar'),
 
@@ -176,15 +236,27 @@ urlpatterns = [
     url(r'^s1070-alteracao-infosusp/api/(?P<pk>[0-9]+)/$',
         s1070_alteracao_infosusp_api_views.s1070alteracaoinfoSuspDetail.as_view() ),
 
-    url(r'^s1070-alteracao-infosusp/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-infosusp/$', 
         s1070_alteracao_infosusp_listar_views.listar, 
         name='s1070_alteracao_infosusp'),
 
-    url(r'^s1070-alteracao-infosusp/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_alteracao_infosusp_salvar_views.salvar, 
         name='s1070_alteracao_infosusp_salvar'),
+        
+    url(r'^s1070-alteracao-infosusp/cadastrar/$', 
+        s1070_alteracao_infosusp_salvar_views.salvar, 
+        name='s1070_alteracao_infosusp_cadastrar'),
 
-    url(r'^s1070-alteracao-novavalidade/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_infosusp_salvar_views.salvar, 
+        name='s1070_alteracao_infosusp_salvar_output'),
+        
+    url(r'^s1070-alteracao-infosusp/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_infosusp_listar_views.listar, 
+        name='s1070_alteracao_infosusp_output'),
+
+    url(r'^s1070-alteracao-novavalidade/apagar/(?P<pk>[0-9]+)/$', 
         s1070_alteracao_novavalidade_apagar_views.apagar, 
         name='s1070_alteracao_novavalidade_apagar'),
 
@@ -194,15 +266,27 @@ urlpatterns = [
     url(r'^s1070-alteracao-novavalidade/api/(?P<pk>[0-9]+)/$',
         s1070_alteracao_novavalidade_api_views.s1070alteracaonovaValidadeDetail.as_view() ),
 
-    url(r'^s1070-alteracao-novavalidade/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-novavalidade/$', 
         s1070_alteracao_novavalidade_listar_views.listar, 
         name='s1070_alteracao_novavalidade'),
 
-    url(r'^s1070-alteracao-novavalidade/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_alteracao_novavalidade_salvar_views.salvar, 
         name='s1070_alteracao_novavalidade_salvar'),
+        
+    url(r'^s1070-alteracao-novavalidade/cadastrar/$', 
+        s1070_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1070_alteracao_novavalidade_cadastrar'),
 
-    url(r'^s1070-exclusao/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1070_alteracao_novavalidade_salvar_output'),
+        
+    url(r'^s1070-alteracao-novavalidade/(?P<output>[\w-]+)/$', 
+        s1070_alteracao_novavalidade_listar_views.listar, 
+        name='s1070_alteracao_novavalidade_output'),
+
+    url(r'^s1070-exclusao/apagar/(?P<pk>[0-9]+)/$', 
         s1070_exclusao_apagar_views.apagar, 
         name='s1070_exclusao_apagar'),
 
@@ -212,13 +296,25 @@ urlpatterns = [
     url(r'^s1070-exclusao/api/(?P<pk>[0-9]+)/$',
         s1070_exclusao_api_views.s1070exclusaoDetail.as_view() ),
 
-    url(r'^s1070-exclusao/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-exclusao/$', 
         s1070_exclusao_listar_views.listar, 
         name='s1070_exclusao'),
 
-    url(r'^s1070-exclusao/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_exclusao_salvar_views.salvar, 
         name='s1070_exclusao_salvar'),
+        
+    url(r'^s1070-exclusao/cadastrar/$', 
+        s1070_exclusao_salvar_views.salvar, 
+        name='s1070_exclusao_cadastrar'),
+
+    url(r'^s1070-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_exclusao_salvar_views.salvar, 
+        name='s1070_exclusao_salvar_output'),
+        
+    url(r'^s1070-exclusao/(?P<output>[\w-]+)/$', 
+        s1070_exclusao_listar_views.listar, 
+        name='s1070_exclusao_output'),
 
 
 ]

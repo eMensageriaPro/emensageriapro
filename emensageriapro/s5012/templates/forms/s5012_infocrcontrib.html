@@ -15,7 +15,7 @@
     <label id="s5012_infocrcontrib__s5012_evtirrf__label">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.*</label>
     {% if not for_print %}
       {% if s5012_infocrcontrib_form.s5012_evtirrf.value %}
-        <a id="s5012_infocrcontrib__s5012_evtirrf__div_acessar" href="{% url 's5012_evtirrf_salvar' hash='{}'|json_id:s5012_infocrcontrib_form.s5012_evtirrf.value|json_print:0|base64_encode_me %}">
+        <a id="s5012_infocrcontrib__s5012_evtirrf__div_acessar" href="{% url 's5012_evtirrf_salvar' pk=s5012_infocrcontrib_form.s5012_evtirrf.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -15,7 +15,7 @@
     <label id="s1200_remunoutrempr__s1200_infomv__label">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual*</label>
     {% if not for_print %}
       {% if s1200_remunoutrempr_form.s1200_infomv.value %}
-        <a id="s1200_remunoutrempr__s1200_infomv__div_acessar" href="{% url 's1200_infomv_salvar' hash='{}'|json_id:s1200_remunoutrempr_form.s1200_infomv.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_remunoutrempr__s1200_infomv__div_acessar" href="{% url 's1200_infomv_salvar' pk=s1200_remunoutrempr_form.s1200_infomv.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -15,7 +15,7 @@
     <label id="s1200_infoperant_ideperiodo__s1200_infoperant_ideadc__label">Período de validade das informações incluídas*</label>
     {% if not for_print %}
       {% if s1200_infoperant_ideperiodo_form.s1200_infoperant_ideadc.value %}
-        <a id="s1200_infoperant_ideperiodo__s1200_infoperant_ideadc__div_acessar" href="{% url 's1200_infoperant_ideadc_salvar' hash='{}'|json_id:s1200_infoperant_ideperiodo_form.s1200_infoperant_ideadc.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_infoperant_ideperiodo__s1200_infoperant_ideadc__div_acessar" href="{% url 's1200_infoperant_ideadc_salvar' pk=s1200_infoperant_ideperiodo_form.s1200_infoperant_ideadc.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

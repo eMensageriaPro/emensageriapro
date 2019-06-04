@@ -15,7 +15,7 @@
     <label id="r2070_rendisento__r2070_pgtopf__label">Rendimentos Isentos/Não Tributáveis*</label>
     {% if not for_print %}
       {% if r2070_rendisento_form.r2070_pgtopf.value %}
-        <a id="r2070_rendisento__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' hash='{}'|json_id:r2070_rendisento_form.r2070_pgtopf.value|json_print:0|base64_encode_me %}">
+        <a id="r2070_rendisento__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_rendisento_form.r2070_pgtopf.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -66,7 +66,6 @@ class s5011evtCSList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s5011evtCSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011evtCS.objects.all()

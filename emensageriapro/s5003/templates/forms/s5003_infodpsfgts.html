@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5003_infodpsfgts__s5003_evtbasesfgts__label">Informações sobre valores de FGTS.*</label>
     {% if not for_print %}{% if s5003_infodpsfgts_form.s5003_evtbasesfgts.value %}
-        <a href="{% url 's5003_evtbasesfgts_salvar' hash='{}'|json_return_page:'s5003_infodpsfgts_salvar'|json_return_hash:hash|json_id:s5003_infodpsfgts_form.s5003_evtbasesfgts.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_infodpsfgts_form.s5003_evtbasesfgts.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

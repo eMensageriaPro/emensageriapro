@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,6 @@ from emensageriapro.s1202.models import *
 from emensageriapro.s1202.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -72,31 +72,16 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def recibo(request, hash, tipo):
+def recibo(request, pk, output=None):
 
     from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
         RetornosEventosIntervalos, RetornosEventosOcorrencias
-            
-    for_print = 0
-    
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1202_evtrmnrpps_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
 
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1202evtRmnRPPS'):
+    if request.user.has_perm('esocial.can_see_s1202evtRmnRPPS'):
 
         s1202_evtrmnrpps = get_object_or_404(
             s1202evtRmnRPPS,
-            id=s1202_evtrmnrpps_id)
+            id=pk)
 
         retorno = get_object_or_404(RetornosEventos,
             id=s1202_evtrmnrpps.retornos_eventos_id)
@@ -111,32 +96,31 @@ def recibo(request, hash, tipo):
             filter(retornos_eventos_id=retorno.id).all()
 
         context = {
-            's1202_evtrmnrpps_id': s1202_evtrmnrpps_id,
+            'pk': pk,
             's1202_evtrmnrpps': s1202_evtrmnrpps,
             'retorno': retorno,
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-            'usuario': usuario,
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
         }
 
-        if tipo == 'XLS':
+        if output == 'xls':
         
             response =  render_to_response('s1202_evtrmnrpps_recibo_pdf.html', context)
             filename = "%s.xls" % s1202_evtrmnrpps.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif tipo == 'CSV':
+        elif output == 'csv':
         
             response =  render_to_response('s1202_evtrmnrpps_recibo_csv.html', context)
             filename = "%s.csv" % s1202_evtrmnrpps.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
+            
             return response
 
         else:
@@ -146,7 +130,7 @@ def recibo(request, hash, tipo):
     else:
 
         context = {
-            'usuario': usuario,
             'data': datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

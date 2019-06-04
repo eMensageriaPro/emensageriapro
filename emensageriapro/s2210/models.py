@@ -97,8 +97,11 @@ class s2210agenteCausador(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210agenteCausador", "Can view S2210AGENTECAUSADOR"),
-            ("can_view_menu_s2210agenteCausador", "Can view menu S2210AGENTECAUSADOR"),)
+            ("can_see_list_s2210agenteCausador", u"Pode ver listagem do modelo S2210AGENTECAUSADOR"),
+            ("can_see_data_s2210agenteCausador", u"Pode visualizar o conteúdo do modelo S2210AGENTECAUSADOR"),
+            ("can_see_menu_s2210agenteCausador", u"Pode visualizar no menu o modelo S2210AGENTECAUSADOR"),
+            ("can_print_list_s2210agenteCausador", u"Pode imprimir listagem do modelo S2210AGENTECAUSADOR"),
+            ("can_print_data_s2210agenteCausador", u"Pode imprimir o conteúdo do modelo S2210AGENTECAUSADOR"), )
             
         ordering = [
             's2210_evtcat',
@@ -177,8 +180,11 @@ class s2210atestado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210atestado", "Can view S2210ATESTADO"),
-            ("can_view_menu_s2210atestado", "Can view menu S2210ATESTADO"),)
+            ("can_see_list_s2210atestado", u"Pode ver listagem do modelo S2210ATESTADO"),
+            ("can_see_data_s2210atestado", u"Pode visualizar o conteúdo do modelo S2210ATESTADO"),
+            ("can_see_menu_s2210atestado", u"Pode visualizar no menu o modelo S2210ATESTADO"),
+            ("can_print_list_s2210atestado", u"Pode imprimir listagem do modelo S2210ATESTADO"),
+            ("can_print_data_s2210atestado", u"Pode imprimir o conteúdo do modelo S2210ATESTADO"), )
             
         ordering = [
             's2210_evtcat',
@@ -245,8 +251,11 @@ class s2210catOrigem(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210catOrigem", "Can view S2210CATORIGEM"),
-            ("can_view_menu_s2210catOrigem", "Can view menu S2210CATORIGEM"),)
+            ("can_see_list_s2210catOrigem", u"Pode ver listagem do modelo S2210CATORIGEM"),
+            ("can_see_data_s2210catOrigem", u"Pode visualizar o conteúdo do modelo S2210CATORIGEM"),
+            ("can_see_menu_s2210catOrigem", u"Pode visualizar no menu o modelo S2210CATORIGEM"),
+            ("can_print_list_s2210catOrigem", u"Pode imprimir listagem do modelo S2210CATORIGEM"),
+            ("can_print_data_s2210catOrigem", u"Pode imprimir o conteúdo do modelo S2210CATORIGEM"), )
             
         ordering = [
             's2210_evtcat',
@@ -305,8 +314,11 @@ class s2210ideLocalAcid(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210ideLocalAcid", "Can view S2210IDELOCALACID"),
-            ("can_view_menu_s2210ideLocalAcid", "Can view menu S2210IDELOCALACID"),)
+            ("can_see_list_s2210ideLocalAcid", u"Pode ver listagem do modelo S2210IDELOCALACID"),
+            ("can_see_data_s2210ideLocalAcid", u"Pode visualizar o conteúdo do modelo S2210IDELOCALACID"),
+            ("can_see_menu_s2210ideLocalAcid", u"Pode visualizar no menu o modelo S2210IDELOCALACID"),
+            ("can_print_list_s2210ideLocalAcid", u"Pode imprimir listagem do modelo S2210IDELOCALACID"),
+            ("can_print_data_s2210ideLocalAcid", u"Pode imprimir o conteúdo do modelo S2210IDELOCALACID"), )
             
         ordering = [
             's2210_evtcat',
@@ -365,8 +377,11 @@ class s2210parteAtingida(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210parteAtingida", "Can view S2210PARTEATINGIDA"),
-            ("can_view_menu_s2210parteAtingida", "Can view menu S2210PARTEATINGIDA"),)
+            ("can_see_list_s2210parteAtingida", u"Pode ver listagem do modelo S2210PARTEATINGIDA"),
+            ("can_see_data_s2210parteAtingida", u"Pode visualizar o conteúdo do modelo S2210PARTEATINGIDA"),
+            ("can_see_menu_s2210parteAtingida", u"Pode visualizar no menu o modelo S2210PARTEATINGIDA"),
+            ("can_print_list_s2210parteAtingida", u"Pode imprimir listagem do modelo S2210PARTEATINGIDA"),
+            ("can_print_data_s2210parteAtingida", u"Pode imprimir o conteúdo do modelo S2210PARTEATINGIDA"), )
             
         ordering = [
             's2210_evtcat',

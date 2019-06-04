@@ -66,7 +66,6 @@ class r2020evtServPrestList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r2020evtServPrestDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2020evtServPrest.objects.all()

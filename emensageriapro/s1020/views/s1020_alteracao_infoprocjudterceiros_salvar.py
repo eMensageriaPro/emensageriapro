@@ -62,83 +62,93 @@ from emensageriapro.s1020.forms import form_s1020_alteracao_procjudterceiro
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s1020_alteracao_infoprocjudterceiros_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s1020_alteracao_infoprocjudterceiros_id:
+    if pk:
     
-        s1020_alteracao_infoprocjudterceiros = get_object_or_404(s1020alteracaoinfoProcJudTerceiros, id=s1020_alteracao_infoprocjudterceiros_id)
+        s1020_alteracao_infoprocjudterceiros = get_object_or_404(s1020alteracaoinfoProcJudTerceiros, id=pk)
         dados_evento = s1020_alteracao_infoprocjudterceiros.evento()
 
-    if request.user.has_perm('s1020.can_view_s1020alteracaoinfoProcJudTerceiros'):
+    if request.user.has_perm('s1020.can_see_s1020alteracaoinfoProcJudTerceiros'):
         
-        if s1020_alteracao_infoprocjudterceiros_id:
+        if pk:
         
-            s1020_alteracao_infoprocjudterceiros_form = form_s1020_alteracao_infoprocjudterceiros(request.POST or None, 
-                                                          instance=s1020_alteracao_infoprocjudterceiros,  
-                                                          initial={'excluido': False})
+            s1020_alteracao_infoprocjudterceiros_form = form_s1020_alteracao_infoprocjudterceiros(
+                request.POST or None, 
+                instance=s1020_alteracao_infoprocjudterceiros)
                                          
         else:
         
-            s1020_alteracao_infoprocjudterceiros_form = form_s1020_alteracao_infoprocjudterceiros(request.POST or None, 
-                                         initial={'excluido': False})
+            s1020_alteracao_infoprocjudterceiros_form = form_s1020_alteracao_infoprocjudterceiros(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s1020_alteracao_infoprocjudterceiros_form.is_valid():
             
-                dados = s1020_alteracao_infoprocjudterceiros_form.cleaned_data
                 obj = s1020_alteracao_infoprocjudterceiros_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s1020_alteracao_infoprocjudterceiros_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1020_alteracao_infoprocjudterceiros', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1020_alteracao_infoprocjudterceiros', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s1020_alteracao_infoprocjudterceiros), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1020_alteracao_infoprocjudterceiros', s1020_alteracao_infoprocjudterceiros_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s1020_alteracao_infoprocjudterceiros), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1020_alteracao_infoprocjudterceiros', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s1020_alteracao_infoprocjudterceiros_apagar', 's1020_alteracao_infoprocjudterceiros_salvar', 's1020_alteracao_infoprocjudterceiros'):
+                if request.session['return_page'] not in (
+                    's1020_alteracao_infoprocjudterceiros_apagar', 
+                    's1020_alteracao_infoprocjudterceiros_salvar', 
+                    's1020_alteracao_infoprocjudterceiros'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s1020_alteracao_infoprocjudterceiros_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s1020_alteracao_infoprocjudterceiros_salvar', hash=url_hash)
+                    return redirect(
+                        's1020_alteracao_infoprocjudterceiros_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s1020_alteracao_infoprocjudterceiros_form = disabled_form_fields(s1020_alteracao_infoprocjudterceiros_form, request.user.has_perm('s1020.change_s1020alteracaoinfoProcJudTerceiros'))
+        s1020_alteracao_infoprocjudterceiros_form = disabled_form_fields(
+            s1020_alteracao_infoprocjudterceiros_form, 
+            request.user.has_perm('s1020.change_s1020alteracaoinfoProcJudTerceiros'))
         
-        if s1020_alteracao_infoprocjudterceiros_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -146,7 +156,7 @@ def salvar(request, hash):
                 
         #s1020_alteracao_infoprocjudterceiros_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s1020_alteracao_infoprocjudterceiros_form = disabled_form_for_print(s1020_alteracao_infoprocjudterceiros_form)
             
@@ -154,15 +164,16 @@ def salvar(request, hash):
         s1020_alteracao_procjudterceiro_lista = None 
         s1020_alteracao_procjudterceiro_form = None 
         
-        if s1020_alteracao_infoprocjudterceiros_id:
+        if pk:
         
-            s1020_alteracao_infoprocjudterceiros = get_object_or_404(s1020alteracaoinfoProcJudTerceiros, id=s1020_alteracao_infoprocjudterceiros_id)
+            s1020_alteracao_infoprocjudterceiros = get_object_or_404(s1020alteracaoinfoProcJudTerceiros, id=pk)
             
             s1020_alteracao_procjudterceiro_form = form_s1020_alteracao_procjudterceiro(
                 initial={ 's1020_alteracao_infoprocjudterceiros': s1020_alteracao_infoprocjudterceiros })
             s1020_alteracao_procjudterceiro_form.fields['s1020_alteracao_infoprocjudterceiros'].widget.attrs['readonly'] = True
             s1020_alteracao_procjudterceiro_lista = s1020alteracaoprocJudTerceiro.objects.\
                 filter(s1020_alteracao_infoprocjudterceiros_id=s1020_alteracao_infoprocjudterceiros.id).all()
+                
                 
         else:
         
@@ -172,14 +183,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's1020_alteracao_infoprocjudterceiros' in request.session['retorno_pagina']:
+        if tab or 's1020_alteracao_infoprocjudterceiros' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's1020_alteracao_infoprocjudterceiros_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's1020_alteracao_infoprocjudterceiros_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s1020_alteracao_infoprocjudterceiros_id, tabela='s1020_alteracao_infoprocjudterceiros').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1020_alteracao_infoprocjudterceiros').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -188,28 +203,20 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's1020_alteracao_infoprocjudterceiros': s1020_alteracao_infoprocjudterceiros, 
             's1020_alteracao_infoprocjudterceiros_form': s1020_alteracao_infoprocjudterceiros_form, 
-            's1020_alteracao_infoprocjudterceiros_id': int(s1020_alteracao_infoprocjudterceiros_id),
-            'usuario': usuario, 
             'modulos': ['s1020', ],
             'paginas': ['s1020_alteracao_infoprocjudterceiros', ],
-            'hash': hash, 
-            
             's1020_alteracao_procjudterceiro_form': s1020_alteracao_procjudterceiro_form,
             's1020_alteracao_procjudterceiro_lista': s1020_alteracao_procjudterceiro_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s1020_alteracao_infoprocjudterceiros_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's1020_alteracao_infoprocjudterceiros_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s1020_alteracao_infoprocjudterceiros_salvar.html',
@@ -226,23 +233,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s1020_alteracao_infoprocjudterceiros_salvar.html', context)
             filename = "s1020_alteracao_infoprocjudterceiros.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's1020_alteracao_infoprocjudterceiros_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s1020', ],
             'paginas': ['s1020_alteracao_infoprocjudterceiros', ],
             'data': datetime.datetime.now(),

@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        r4010_infopgtoext_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if r4010_infopgtoext_id:
+    if pk:
     
-        r4010_infopgtoext = get_object_or_404(r4010infoPgtoExt, id=r4010_infopgtoext_id)
+        r4010_infopgtoext = get_object_or_404(r4010infoPgtoExt, id=pk)
         dados_evento = r4010_infopgtoext.evento()
 
-    if request.user.has_perm('r4010.can_view_r4010infoPgtoExt'):
+    if request.user.has_perm('r4010.can_see_r4010infoPgtoExt'):
         
-        if r4010_infopgtoext_id:
+        if pk:
         
-            r4010_infopgtoext_form = form_r4010_infopgtoext(request.POST or None, 
-                                                          instance=r4010_infopgtoext,  
-                                                          initial={'excluido': False})
+            r4010_infopgtoext_form = form_r4010_infopgtoext(
+                request.POST or None, 
+                instance=r4010_infopgtoext)
                                          
         else:
         
-            r4010_infopgtoext_form = form_r4010_infopgtoext(request.POST or None, 
-                                         initial={'excluido': False})
+            r4010_infopgtoext_form = form_r4010_infopgtoext(request.POST or None)
                                          
         if request.method == 'POST':
         
             if r4010_infopgtoext_form.is_valid():
             
-                dados = r4010_infopgtoext_form.cleaned_data
                 obj = r4010_infopgtoext_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r4010_infopgtoext_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4010_infopgtoext', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r4010_infopgtoext', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(r4010_infopgtoext), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4010_infopgtoext', r4010_infopgtoext_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(r4010_infopgtoext), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r4010_infopgtoext', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('r4010_infopgtoext_apagar', 'r4010_infopgtoext_salvar', 'r4010_infopgtoext'):
+                if request.session['return_page'] not in (
+                    'r4010_infopgtoext_apagar', 
+                    'r4010_infopgtoext_salvar', 
+                    'r4010_infopgtoext'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if r4010_infopgtoext_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r4010_infopgtoext_salvar', hash=url_hash)
+                    return redirect(
+                        'r4010_infopgtoext_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        r4010_infopgtoext_form = disabled_form_fields(r4010_infopgtoext_form, request.user.has_perm('r4010.change_r4010infoPgtoExt'))
+        r4010_infopgtoext_form = disabled_form_fields(
+            r4010_infopgtoext_form, 
+            request.user.has_perm('r4010.change_r4010infoPgtoExt'))
         
-        if r4010_infopgtoext_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #r4010_infopgtoext_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             r4010_infopgtoext_form = disabled_form_for_print(r4010_infopgtoext_form)
             
         
         
-        if r4010_infopgtoext_id:
+        if pk:
         
-            r4010_infopgtoext = get_object_or_404(r4010infoPgtoExt, id=r4010_infopgtoext_id)
+            r4010_infopgtoext = get_object_or_404(r4010infoPgtoExt, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'r4010_infopgtoext' in request.session['retorno_pagina']:
+        if tab or 'r4010_infopgtoext' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r4010_infopgtoext_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r4010_infopgtoext_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r4010_infopgtoext_id, tabela='r4010_infopgtoext').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4010_infopgtoext').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             'r4010_infopgtoext': r4010_infopgtoext, 
             'r4010_infopgtoext_form': r4010_infopgtoext_form, 
-            'r4010_infopgtoext_id': int(r4010_infopgtoext_id),
-            'usuario': usuario, 
             'modulos': ['r4010', ],
             'paginas': ['r4010_infopgtoext', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r4010_infopgtoext_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r4010_infopgtoext_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_infopgtoext_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('r4010_infopgtoext_salvar.html', context)
             filename = "r4010_infopgtoext.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r4010_infopgtoext_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['r4010', ],
             'paginas': ['r4010_infopgtoext', ],
             'data': datetime.datetime.now(),

@@ -32,1075 +32,1394 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       S-2240 - Condições Ambientais do Trabalho - Fatores de Risco
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.esocial.can_view_s2240evtExpRisco %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_return_page:'s2240_evtexprisco_salvar'|json_return_hash:hash|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}">
-                    S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</a>
-                </li>
-                {% endif %}
-                {% if s2240_evtexprisco_id %}
-                    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.esocial.can_see_s2240evtExpRisco %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='master' %}">
+                                S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.esocial.can_view_s2240_iniexprisco_infoamb %}
-                                <li {% if tab == 's2240_iniexprisco_infoamb' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_iniexprisco_infoamb'|base64_encode_me %}">
-                                    Informações relativas ao ambiente de trabalho</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240iniExpRiscoinfoAmb %}
+                                    <li {% if tab == 's2240_iniexprisco_infoamb' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_iniexprisco_infoamb' %}">
+                                        Informações relativas ao ambiente de trabalho</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240iniExpRiscoativPericInsal %}
+                                    <li {% if tab == 's2240_iniexprisco_ativpericinsal' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_iniexprisco_ativpericinsal' %}">
+                                        Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %}
+                                    <li {% if tab == 's2240_iniexprisco_fatrisco' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_iniexprisco_fatrisco' %}">
+                                        Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240iniExpRiscorespReg %}
+                                    <li {% if tab == 's2240_iniexprisco_respreg' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_iniexprisco_respreg' %}">
+                                        Informações relativas ao responsável pelos registros ambientais</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240iniExpRiscoobs %}
+                                    <li {% if tab == 's2240_iniexprisco_obs' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_iniexprisco_obs' %}">
+                                        Observações relativas a registros ambientais</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240altExpRisco %}
+                                    <li {% if tab == 's2240_altexprisco' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_altexprisco' %}">
+                                        Condições ambientais do trabalho - Alteração</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240fimExpRisco %}
+                                    <li {% if tab == 's2240_fimexprisco' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_fimexprisco' %}">
+                                        Condições ambientais do trabalho - Fim</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2240.can_see_s2240fimExpRiscorespReg %}
+                                    <li {% if tab == 's2240_fimexprisco_respreg' %} class="active"{% endif %} >
+                                        <a href="{% url 's2240_evtexprisco_salvar' pk=pk tab='s2240_fimexprisco_respreg' %}">
+                                        Informações relativas ao responsável pelos registros ambientais</a>
+                                    </li>
+                                {% endif %}
+                            
                         
-                            {% if perms.esocial.can_view_s2240_iniexprisco_ativpericinsal %}
-                                <li {% if tab == 's2240_iniexprisco_ativpericinsal' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_iniexprisco_ativpericinsal'|base64_encode_me %}">
-                                    Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2240_iniexprisco_fatrisco %}
-                                <li {% if tab == 's2240_iniexprisco_fatrisco' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_iniexprisco_fatrisco'|base64_encode_me %}">
-                                    Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2240_iniexprisco_respreg %}
-                                <li {% if tab == 's2240_iniexprisco_respreg' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_iniexprisco_respreg'|base64_encode_me %}">
-                                    Informações relativas ao responsável pelos registros ambientais</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2240_iniexprisco_obs %}
-                                <li {% if tab == 's2240_iniexprisco_obs' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_iniexprisco_obs'|base64_encode_me %}">
-                                    Observações relativas a registros ambientais</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2240_altexprisco %}
-                                <li {% if tab == 's2240_altexprisco' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_altexprisco'|base64_encode_me %}">
-                                    Condições ambientais do trabalho - Alteração</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2240_fimexprisco %}
-                                <li {% if tab == 's2240_fimexprisco' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_fimexprisco'|base64_encode_me %}">
-                                    Condições ambientais do trabalho - Fim</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2240_fimexprisco_respreg %}
-                                <li {% if tab == 's2240_fimexprisco_respreg' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_evtexprisco_salvar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|json_tab:'s2240_fimexprisco_respreg'|base64_encode_me %}">
-                                    Informações relativas ao responsável pelos registros ambientais</a>
-                                </li>
-                            {% endif %}
-                        
-                    
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABS -->
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if s2240_evtexprisco_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in s2240_evtexprisco_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if s2240_evtexprisco_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in s2240_evtexprisco_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if s2240_evtexprisco_id %}
-   {% if s2240_evtexprisco.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2240_evtexprisco.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2240_evtexprisco.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2240_evtexprisco.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2240_evtexprisco.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2240_evtexprisco.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2240_evtexprisco.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</h3>
-            </div>
-            {% else %}
+    {% if s2240_evtexprisco_id %}
+        {% if s2240_evtexprisco.ocorrencias %}
             <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.esocial.change_s2240_evtexprisco or perms.esocial.add_s2240_evtexprisco %}
-               {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2240_evtexprisco" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/s2240_evtexprisco.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2240_evtexprisco.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if s2240_evtexprisco_id %}
-                           {% if perms.esocial.add_s2240evtExpRisco %}<a href="{% url 's2240_evtexprisco_verificar'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.add_s2240evtExpRisco %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_recibo'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_recibo'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_recibo'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s2240evtExpRisco %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_duplicar' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if s2240_evtexprisco.operacao == 1 and s2240_inclusao_lista or s2240_evtexprisco.operacao == 2 and s2240_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_criar_alteracao' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_criar_exclusao' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_alterar_identidade' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 's2240_evtexprisco_abrir_evento_para_edicao' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s2240evtExpRisco %}<a href="{% url 's2240_evtexprisco_xml'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO or s2240_evtexprisco.status == STATUS_EVENTO_IMPORTADO or s2240_evtexprisco.status == STATUS_EVENTO_DUPLICADO or s2240_evtexprisco.status == STATUS_EVENTO_GERADO or s2240_evtexprisco.status == STATUS_EVENTO_ASSINADO or s2240_evtexprisco.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.esocial.add_s2240evtExpRisco %}
-                           <a href="{% url 's2240_evtexprisco_validar_evento' hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.esocial.add_s2240evtExpRisco %}<a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.can_view_s2240_evtexprisco or perms.esocial.can_view_s2240_evtexprisco %}<a href="{% url 's2240_evtexprisco'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.can_view_s2240_evtexprisco and s2240_evtexprisco_id %}<a href="{% url 's2240_evtexprisco_salvar'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.change_s2240_evtexprisco or perms.esocial.add_s2240_evtexprisco %}
-                           {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.delete_s2240_evtexprisco and s2240_evtexprisco_id %}<a href="{% url 's2240_evtexprisco_apagar'  hash='{}'|json_id:s2240_evtexprisco_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
-                        </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.esocial.change_s2240_evtexprisco or perms.esocial.add_s2240_evtexprisco %}
-               {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+                </div>
             </div>
-            {% if s2240_evtexprisco_id %}
+        {% endif %}
+        {% if s2240_evtexprisco.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2240_evtexprisco.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2240_evtexprisco.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if s2240_evtexprisco.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ s2240_evtexprisco.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</h3>
+                    </div>
+
+                    {% if perms.esocial.change_s2240evtExpRisco or perms.esocial.add_s2240evtExpRisco %}
+                        {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2240_evtexprisco" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2240_evtexprisco.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if s2240_evtexprisco.operacao == 1 and s2240_inclusao_lista or s2240_evtexprisco.operacao == 2 and s2240_alteracao_lista %}
+
+
+                                    {% if perms.esocial.can_create_change_s2240evtExpRisco %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's2240_evtexprisco_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.esocial.can_create_delete_s2240evtExpRisco %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's2240_evtexprisco_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.esocial.can_duplicate_s2240evtExpRisco %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2240_evtexprisco_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_change_identity_s2240evtExpRisco %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2240_evtexprisco_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.esocial.can_open_s2240evtExpRisco %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2240_evtexprisco_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_layout_s2240evtExpRisco %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2240_evtexprisco_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.esocial.can_see_xml_s2240evtExpRisco %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2240_evtexprisco_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.esocial.can_validate_s2240evtExpRisco %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2240_evtexprisco_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_receipt_s2240evtExpRisco %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's2240_evtexprisco_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's2240_evtexprisco_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's2240_evtexprisco_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.esocial.add_s2240evtExpRisco %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2240_evtexprisco_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_see_list_s2240evtExpRisco %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2240_evtexprisco' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_print_data_s2240evtExpRisco %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2240_evtexprisco_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.esocial.change_s2240evtExpRisco %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.delete_s2240evtExpRisco %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2240_evtexprisco_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.esocial.add_s2240evtExpRisco %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.esocial.add_s2240evtExpRisco or perms.esocial.change_s2240evtExpRisco %}
+    
+                        {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if s2240_evtexprisco_id %}
 
-<!-- begin_s2240_iniexprisco_infoamb -->
+        <!-- fim controle de alterações -->
+        {% endif %}
 
-{% if tab == 's2240_iniexprisco_infoamb' or for_print %} 
-
-{% if perms.esocial.can_view_s2240_iniexprisco_infoamb %} 
-
-{% if perms.esocial.change_s2240_iniexprisco_infoamb or perms.s2240.add_s2240iniExpRiscoinfoAmb %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_iniexprisco_infoamb or perms.s2240.add_s2240iniExpRiscoinfoAmb %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240iniExpRiscoinfoAmb %}            
+    {% endif %}
 
 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-        <!-- begin_form_s2240_iniexprisco_infoamb --> 
-        <div id="cadastrar" style="display:none">
 
-              <form id="id_form_s2240_iniexprisco_infoamb" action="{% url 's2240_iniexprisco_infoamb_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_iniexprisco_infoamb.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+        
+        <!-- begin_s2240_iniexprisco_infoamb -->
+
+            {% if tab == 's2240_iniexprisco_infoamb' %} 
+
+                {% if perms.s2240.can_see_data_s2240iniExpRiscoinfoAmb %}
+
+                    {% if perms.s2240.add_s2240iniExpRiscoinfoAmb or perms.s2240.change_s2240iniExpRiscoinfoAmb %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240iniExpRiscoinfoAmb or perms.s2240.can_see_list_s2240iniExpRiscoinfoAmb %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2240.add_s2240iniExpRiscoinfoAmb %}            
+
+                                    <!-- begin_form_s2240_iniexprisco_infoamb --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2240_iniexprisco_infoamb" 
+                                              action="{% url 's2240_iniexprisco_infoamb_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_iniexprisco_infoamb.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2240_iniexprisco_infoamb -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240iniExpRiscoinfoAmb %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_iniexprisco_infoamb --> 
+
+                                        {% include 'tables/s2240_iniexprisco_infoamb.html' %}
+                                        <!-- end_table_s2240_iniexprisco_infoamb --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2240_iniexprisco_ativpericinsal -->
+
+            {% if tab == 's2240_iniexprisco_ativpericinsal' %} 
+
+                {% if perms.s2240.can_see_data_s2240iniExpRiscoativPericInsal %}
+
+                    {% if perms.s2240.add_s2240iniExpRiscoativPericInsal or perms.s2240.change_s2240iniExpRiscoativPericInsal %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240iniExpRiscoativPericInsal or perms.s2240.can_see_list_s2240iniExpRiscoativPericInsal %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2240.add_s2240iniExpRiscoativPericInsal %}            
+
+                                    <!-- begin_form_s2240_iniexprisco_ativpericinsal --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2240_iniexprisco_ativpericinsal" 
+                                              action="{% url 's2240_iniexprisco_ativpericinsal_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_iniexprisco_ativpericinsal.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2240_iniexprisco_ativpericinsal -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240iniExpRiscoativPericInsal %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_iniexprisco_ativpericinsal --> 
+
+                                        {% include 'tables/s2240_iniexprisco_ativpericinsal.html' %}
+                                        <!-- end_table_s2240_iniexprisco_ativpericinsal --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_iniexprisco_infoamb -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_iniexprisco_infoamb --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2240_iniexprisco_infoamb.html' %}
-        <!-- end_table_s2240_iniexprisco_infoamb --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2240_iniexprisco_fatrisco -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2240_iniexprisco_fatrisco' %} 
 
+                {% if perms.s2240.can_see_data_s2240iniExpRiscofatRisco %}
 
-{% endif %} 
+                    {% if perms.s2240.add_s2240iniExpRiscofatRisco or perms.s2240.change_s2240iniExpRiscofatRisco %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2240_iniexprisco_infoamb -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2240_iniexprisco_ativpericinsal -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2240_iniexprisco_ativpericinsal' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2240_iniexprisco_ativpericinsal %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240iniExpRiscofatRisco or perms.s2240.can_see_list_s2240iniExpRiscofatRisco %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2240_iniexprisco_ativpericinsal or perms.s2240.add_s2240iniExpRiscoativPericInsal %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2240.add_s2240iniExpRiscofatRisco %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2240_iniexprisco_fatrisco --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_iniexprisco_ativpericinsal or perms.s2240.add_s2240iniExpRiscoativPericInsal %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240iniExpRiscoativPericInsal %}            
+                                        <form id="id_form_s2240_iniexprisco_fatrisco" 
+                                              action="{% url 's2240_iniexprisco_fatrisco_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_iniexprisco_fatrisco.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2240_iniexprisco_ativpericinsal --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2240_iniexprisco_ativpericinsal" action="{% url 's2240_iniexprisco_ativpericinsal_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_iniexprisco_ativpericinsal.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2240_iniexprisco_fatrisco -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_iniexprisco_fatrisco --> 
+
+                                        {% include 'tables/s2240_iniexprisco_fatrisco.html' %}
+                                        <!-- end_table_s2240_iniexprisco_fatrisco --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2240_iniexprisco_respreg -->
+
+            {% if tab == 's2240_iniexprisco_respreg' %} 
+
+                {% if perms.s2240.can_see_data_s2240iniExpRiscorespReg %}
+
+                    {% if perms.s2240.add_s2240iniExpRiscorespReg or perms.s2240.change_s2240iniExpRiscorespReg %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240iniExpRiscorespReg or perms.s2240.can_see_list_s2240iniExpRiscorespReg %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2240.add_s2240iniExpRiscorespReg %}            
+
+                                    <!-- begin_form_s2240_iniexprisco_respreg --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2240_iniexprisco_respreg" 
+                                              action="{% url 's2240_iniexprisco_respreg_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_iniexprisco_respreg.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2240_iniexprisco_respreg -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240iniExpRiscorespReg %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_iniexprisco_respreg --> 
+
+                                        {% include 'tables/s2240_iniexprisco_respreg.html' %}
+                                        <!-- end_table_s2240_iniexprisco_respreg --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_iniexprisco_ativpericinsal -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_iniexprisco_ativpericinsal --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2240_iniexprisco_ativpericinsal.html' %}
-        <!-- end_table_s2240_iniexprisco_ativpericinsal --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2240_iniexprisco_obs -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2240_iniexprisco_obs' %} 
 
+                {% if perms.s2240.can_see_data_s2240iniExpRiscoobs %}
 
-{% endif %} 
+                    {% if perms.s2240.add_s2240iniExpRiscoobs or perms.s2240.change_s2240iniExpRiscoobs %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2240_iniexprisco_ativpericinsal -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2240_iniexprisco_fatrisco -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2240_iniexprisco_fatrisco' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2240_iniexprisco_fatrisco %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Observações relativas a registros ambientais</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240iniExpRiscoobs or perms.s2240.can_see_list_s2240iniExpRiscoobs %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2240_iniexprisco_fatrisco or perms.s2240.add_s2240iniExpRiscofatRisco %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2240.add_s2240iniExpRiscoobs %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2240_iniexprisco_obs --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_iniexprisco_fatrisco or perms.s2240.add_s2240iniExpRiscofatRisco %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240iniExpRiscofatRisco %}            
+                                        <form id="id_form_s2240_iniexprisco_obs" 
+                                              action="{% url 's2240_iniexprisco_obs_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_iniexprisco_obs.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2240_iniexprisco_fatrisco --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2240_iniexprisco_fatrisco" action="{% url 's2240_iniexprisco_fatrisco_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_iniexprisco_fatrisco.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2240_iniexprisco_obs -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240iniExpRiscoobs %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_iniexprisco_obs --> 
+
+                                        {% include 'tables/s2240_iniexprisco_obs.html' %}
+                                        <!-- end_table_s2240_iniexprisco_obs --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2240_altexprisco -->
+
+            {% if tab == 's2240_altexprisco' %} 
+
+                {% if perms.s2240.can_see_data_s2240altExpRisco %}
+
+                    {% if perms.s2240.add_s2240altExpRisco or perms.s2240.change_s2240altExpRisco %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Condições ambientais do trabalho - Alteração</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240altExpRisco or perms.s2240.can_see_list_s2240altExpRisco %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2240.add_s2240altExpRisco %}            
+
+                                    <!-- begin_form_s2240_altexprisco --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2240_altexprisco" 
+                                              action="{% url 's2240_altexprisco_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_altexprisco.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2240_altexprisco -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240altExpRisco %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_altexprisco --> 
+
+                                        {% include 'tables/s2240_altexprisco.html' %}
+                                        <!-- end_table_s2240_altexprisco --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_iniexprisco_fatrisco -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_iniexprisco_fatrisco --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2240_iniexprisco_fatrisco.html' %}
-        <!-- end_table_s2240_iniexprisco_fatrisco --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2240_fimexprisco -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2240_fimexprisco' %} 
 
+                {% if perms.s2240.can_see_data_s2240fimExpRisco %}
 
-{% endif %} 
+                    {% if perms.s2240.add_s2240fimExpRisco or perms.s2240.change_s2240fimExpRisco %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2240_iniexprisco_fatrisco -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2240_iniexprisco_respreg -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2240_iniexprisco_respreg' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2240_iniexprisco_respreg %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Condições ambientais do trabalho - Fim</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240fimExpRisco or perms.s2240.can_see_list_s2240fimExpRisco %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2240_iniexprisco_respreg or perms.s2240.add_s2240iniExpRiscorespReg %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2240.add_s2240fimExpRisco %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2240_fimexprisco --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_iniexprisco_respreg or perms.s2240.add_s2240iniExpRiscorespReg %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240iniExpRiscorespReg %}            
+                                        <form id="id_form_s2240_fimexprisco" 
+                                              action="{% url 's2240_fimexprisco_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_fimexprisco.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2240_iniexprisco_respreg --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2240_iniexprisco_respreg" action="{% url 's2240_iniexprisco_respreg_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_iniexprisco_respreg.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2240_fimexprisco -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240fimExpRisco %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_fimexprisco --> 
+
+                                        {% include 'tables/s2240_fimexprisco.html' %}
+                                        <!-- end_table_s2240_fimexprisco --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2240_fimexprisco_respreg -->
+
+            {% if tab == 's2240_fimexprisco_respreg' %} 
+
+                {% if perms.s2240.can_see_data_s2240fimExpRiscorespReg %}
+
+                    {% if perms.s2240.add_s2240fimExpRiscorespReg or perms.s2240.change_s2240fimExpRiscorespReg %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2240.add_s2240fimExpRiscorespReg or perms.s2240.can_see_list_s2240fimExpRiscorespReg %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2240.add_s2240fimExpRiscorespReg %}            
+
+                                    <!-- begin_form_s2240_fimexprisco_respreg --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2240_fimexprisco_respreg" 
+                                              action="{% url 's2240_fimexprisco_respreg_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2240_fimexprisco_respreg.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2240_fimexprisco_respreg -->
+                                {% endif %} 
+
+                                {% if perms.s2240.can_see_s2240fimExpRiscorespReg %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2240_fimexprisco_respreg --> 
+
+                                        {% include 'tables/s2240_fimexprisco_respreg.html' %}
+                                        <!-- end_table_s2240_fimexprisco_respreg --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_iniexprisco_respreg -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_iniexprisco_respreg --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2240_iniexprisco_respreg.html' %}
-        <!-- end_table_s2240_iniexprisco_respreg --> 
+            {% endif %} 
 
+        
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    {% endif %} 
 
 
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2240_iniexprisco_respreg -->
-
-<!-- begin_s2240_iniexprisco_obs -->
-
-{% if tab == 's2240_iniexprisco_obs' or for_print %} 
-
-{% if perms.esocial.can_view_s2240_iniexprisco_obs %} 
-
-{% if perms.esocial.change_s2240_iniexprisco_obs or perms.s2240.add_s2240iniExpRiscoobs %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Observações relativas a registros ambientais</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_iniexprisco_obs or perms.s2240.add_s2240iniExpRiscoobs %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240iniExpRiscoobs %}            
-
-
-
-        <!-- begin_form_s2240_iniexprisco_obs --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2240_iniexprisco_obs" action="{% url 's2240_iniexprisco_obs_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_iniexprisco_obs.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_iniexprisco_obs -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_iniexprisco_obs --> 
-  
-
-
-        {% include 'tables/s2240_iniexprisco_obs.html' %}
-        <!-- end_table_s2240_iniexprisco_obs --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2240_iniexprisco_obs -->
-
-<!-- begin_s2240_altexprisco -->
-
-{% if tab == 's2240_altexprisco' or for_print %} 
-
-{% if perms.esocial.can_view_s2240_altexprisco %} 
-
-{% if perms.esocial.change_s2240_altexprisco or perms.s2240.add_s2240altExpRisco %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Condições ambientais do trabalho - Alteração</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_altexprisco or perms.s2240.add_s2240altExpRisco %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240altExpRisco %}            
-
-
-
-        <!-- begin_form_s2240_altexprisco --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2240_altexprisco" action="{% url 's2240_altexprisco_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_altexprisco.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_altexprisco -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_altexprisco --> 
-  
-
-
-        {% include 'tables/s2240_altexprisco.html' %}
-        <!-- end_table_s2240_altexprisco --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2240_altexprisco -->
-
-<!-- begin_s2240_fimexprisco -->
-
-{% if tab == 's2240_fimexprisco' or for_print %} 
-
-{% if perms.esocial.can_view_s2240_fimexprisco %} 
-
-{% if perms.esocial.change_s2240_fimexprisco or perms.s2240.add_s2240fimExpRisco %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Condições ambientais do trabalho - Fim</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_fimexprisco or perms.s2240.add_s2240fimExpRisco %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240fimExpRisco %}            
-
-
-
-        <!-- begin_form_s2240_fimexprisco --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2240_fimexprisco" action="{% url 's2240_fimexprisco_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_fimexprisco.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_fimexprisco -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_fimexprisco --> 
-  
-
-
-        {% include 'tables/s2240_fimexprisco.html' %}
-        <!-- end_table_s2240_fimexprisco --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2240_fimexprisco -->
-
-<!-- begin_s2240_fimexprisco_respreg -->
-
-{% if tab == 's2240_fimexprisco_respreg' or for_print %} 
-
-{% if perms.esocial.can_view_s2240_fimexprisco_respreg %} 
-
-{% if perms.esocial.change_s2240_fimexprisco_respreg or perms.s2240.add_s2240fimExpRiscorespReg %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2240_fimexprisco_respreg or perms.s2240.add_s2240fimExpRiscorespReg %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2240.add_s2240fimExpRiscorespReg %}            
-
-
-
-        <!-- begin_form_s2240_fimexprisco_respreg --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2240_fimexprisco_respreg" action="{% url 's2240_fimexprisco_respreg_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2240_fimexprisco_respreg.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2240_fimexprisco_respreg -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2240_fimexprisco_respreg --> 
-  
-
-
-        {% include 'tables/s2240_fimexprisco_respreg.html' %}
-        <!-- end_table_s2240_fimexprisco_respreg --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2240_fimexprisco_respreg -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

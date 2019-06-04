@@ -76,83 +76,93 @@ from emensageriapro.r4020.forms import form_r4020_infoprocjud
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        r4020_infopgto_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if r4020_infopgto_id:
+    if pk:
     
-        r4020_infopgto = get_object_or_404(r4020infoPgto, id=r4020_infopgto_id)
+        r4020_infopgto = get_object_or_404(r4020infoPgto, id=pk)
         dados_evento = r4020_infopgto.evento()
 
-    if request.user.has_perm('r4020.can_view_r4020infoPgto'):
+    if request.user.has_perm('r4020.can_see_r4020infoPgto'):
         
-        if r4020_infopgto_id:
+        if pk:
         
-            r4020_infopgto_form = form_r4020_infopgto(request.POST or None, 
-                                                          instance=r4020_infopgto,  
-                                                          initial={'excluido': False})
+            r4020_infopgto_form = form_r4020_infopgto(
+                request.POST or None, 
+                instance=r4020_infopgto)
                                          
         else:
         
-            r4020_infopgto_form = form_r4020_infopgto(request.POST or None, 
-                                         initial={'excluido': False})
+            r4020_infopgto_form = form_r4020_infopgto(request.POST or None)
                                          
         if request.method == 'POST':
         
             if r4020_infopgto_form.is_valid():
             
-                dados = r4020_infopgto_form.cleaned_data
                 obj = r4020_infopgto_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r4020_infopgto_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4020_infopgto', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r4020_infopgto', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(r4020_infopgto), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4020_infopgto', r4020_infopgto_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(r4020_infopgto), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r4020_infopgto', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('r4020_infopgto_apagar', 'r4020_infopgto_salvar', 'r4020_infopgto'):
+                if request.session['return_page'] not in (
+                    'r4020_infopgto_apagar', 
+                    'r4020_infopgto_salvar', 
+                    'r4020_infopgto'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if r4020_infopgto_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r4020_infopgto_salvar', hash=url_hash)
+                    return redirect(
+                        'r4020_infopgto_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        r4020_infopgto_form = disabled_form_fields(r4020_infopgto_form, request.user.has_perm('r4020.change_r4020infoPgto'))
+        r4020_infopgto_form = disabled_form_fields(
+            r4020_infopgto_form, 
+            request.user.has_perm('r4020.change_r4020infoPgto'))
         
-        if r4020_infopgto_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -160,7 +170,7 @@ def salvar(request, hash):
                 
         #r4020_infopgto_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             r4020_infopgto_form = disabled_form_for_print(r4020_infopgto_form)
             
@@ -182,50 +192,58 @@ def salvar(request, hash):
         r4020_infoprocjud_lista = None 
         r4020_infoprocjud_form = None 
         
-        if r4020_infopgto_id:
+        if pk:
         
-            r4020_infopgto = get_object_or_404(r4020infoPgto, id=r4020_infopgto_id)
+            r4020_infopgto = get_object_or_404(r4020infoPgto, id=pk)
             
             r4020_ir_form = form_r4020_ir(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_ir_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_ir_lista = r4020IR.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_csll_form = form_r4020_csll(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_csll_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_csll_lista = r4020CSLL.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_cofins_form = form_r4020_cofins(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_cofins_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_cofins_lista = r4020Cofins.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_pp_form = form_r4020_pp(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_pp_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_pp_lista = r4020PP.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_fci_form = form_r4020_fci(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_fci_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_fci_lista = r4020FCI.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_scp_form = form_r4020_scp(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_scp_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_scp_lista = r4020SCP.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_infoprocret_form = form_r4020_infoprocret(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_infoprocret_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_infoprocret_lista = r4020infoProcRet.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
             r4020_infoprocjud_form = form_r4020_infoprocjud(
                 initial={ 'r4020_infopgto': r4020_infopgto })
             r4020_infoprocjud_form.fields['r4020_infopgto'].widget.attrs['readonly'] = True
             r4020_infoprocjud_lista = r4020infoProcJud.objects.\
                 filter(r4020_infopgto_id=r4020_infopgto.id).all()
+                
                 
         else:
         
@@ -235,14 +253,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'r4020_infopgto' in request.session['retorno_pagina']:
+        if tab or 'r4020_infopgto' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r4020_infopgto_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r4020_infopgto_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r4020_infopgto_id, tabela='r4020_infopgto').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4020_infopgto').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -251,12 +273,8 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             'r4020_infopgto': r4020_infopgto, 
             'r4020_infopgto_form': r4020_infopgto_form, 
-            'r4020_infopgto_id': int(r4020_infopgto_id),
-            'usuario': usuario, 
             'modulos': ['r4020', ],
             'paginas': ['r4020_infopgto', ],
-            'hash': hash, 
-            
             'r4020_ir_form': r4020_ir_form,
             'r4020_ir_lista': r4020_ir_lista,
             'r4020_csll_form': r4020_csll_form,
@@ -274,19 +292,15 @@ def salvar(request, hash):
             'r4020_infoprocjud_form': r4020_infoprocjud_form,
             'r4020_infoprocjud_lista': r4020_infoprocjud_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r4020_infopgto_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r4020_infopgto_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r4020_infopgto_salvar.html',
@@ -303,23 +317,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('r4020_infopgto_salvar.html', context)
             filename = "r4020_infopgto.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r4020_infopgto_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['r4020', ],
             'paginas': ['r4020_infopgto', ],
             'data': datetime.datetime.now(),

@@ -15,7 +15,7 @@
     <label id="s2399_detplano__s2399_detoper__label">Informações do dependente do plano privado de saúde.*</label>
     {% if not for_print %}
       {% if s2399_detplano_form.s2399_detoper.value %}
-        <a id="s2399_detplano__s2399_detoper__div_acessar" href="{% url 's2399_detoper_salvar' hash='{}'|json_id:s2399_detplano_form.s2399_detoper.value|json_print:0|base64_encode_me %}">
+        <a id="s2399_detplano__s2399_detoper__div_acessar" href="{% url 's2399_detoper_salvar' pk=s2399_detplano_form.s2399_detoper.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -71,83 +71,65 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1280evtInfoComplPer'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1280_evtinfocomplper_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1280evtInfoComplPer'):
-        s1280_evtinfocomplper = get_object_or_404(s1280evtInfoComplPer, id=s1280_evtinfocomplper_id)
-        s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects.filter(id=s1280_evtinfocomplper_id).all()
+        s1280_evtinfocomplper = get_object_or_404(s1280evtInfoComplPer, id=pk)
+        s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects.filter(id=pk).all()
 
         
         s1280_infosubstpatr_lista = s1280infoSubstPatr.objects.filter(s1280_evtinfocomplper_id__in = listar_ids(s1280_evtinfocomplper_lista) ).all()
         s1280_infosubstpatropport_lista = s1280infoSubstPatrOpPort.objects.filter(s1280_evtinfocomplper_id__in = listar_ids(s1280_evtinfocomplper_lista) ).all()
         s1280_infoativconcom_lista = s1280infoAtivConcom.objects.filter(s1280_evtinfocomplper_id__in = listar_ids(s1280_evtinfocomplper_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1280_evtinfocomplper'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1280_evtinfocomplper'
 
         context = {
             's1280_evtinfocomplper_lista': s1280_evtinfocomplper_lista,
-            's1280_evtinfocomplper_id': s1280_evtinfocomplper_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1280_evtinfocomplper': s1280_evtinfocomplper,
-            
-            
             's1280_infosubstpatr_lista': s1280_infosubstpatr_lista,
             's1280_infosubstpatropport_lista': s1280_infosubstpatropport_lista,
             's1280_infoativconcom_lista': s1280_infoativconcom_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1280_evtinfocomplper', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1280_evtinfocomplper_verificar.html',
-                                           filename="s1280_evtinfocomplper.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1280_evtinfocomplper_verificar.html',
+                filename="s1280_evtinfocomplper.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1280_evtinfocomplper_verificar.html', context)
             filename = "%s.xls" % s1280_evtinfocomplper.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1280_evtinfocomplper_verificar.html', context)
             filename = "%s.csv" % s1280_evtinfocomplper.identidade
@@ -162,7 +144,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1280_evtinfocomplper', ],
             'data': datetime.now(),

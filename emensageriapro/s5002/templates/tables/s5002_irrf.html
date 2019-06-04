@@ -35,26 +35,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s5002.can_view_s5002irrf %}
-                        <a href="{% url 's5002_irrf_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s5002.add_s5002irrf or perms.s5002.change_s5002irrf %}
+                        {% if perms.s5002.change_s5002irrf or perms.s5002.add_s5002irrf %}
+                    
+                        <a href="{% url 's5002_irrf_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s5002.change_s5002irrf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s5002.can_see_data_s5002irrf %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s5002.delete_s5002irrf %}
-                        <a href="{% url 's5002_irrf_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s5002.delete_s5002irrf %}
+                        <a href="{% url 's5002_irrf_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

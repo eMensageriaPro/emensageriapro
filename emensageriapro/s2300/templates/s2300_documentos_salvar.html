@@ -34,72 +34,69 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s2300documentos
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s2300documentos</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações dos documentos pessoais do trabalhador
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações dos documentos pessoais do trabalhador</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s2300.can_view_s2300documentos %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's2300_documentos_salvar' hash='{}'|json_return_page:'s2300_documentos_salvar'|json_return_hash:hash|json_id:s2300_documentos_id|json_print:0|base64_encode_me %}">
-                            Informações dos documentos pessoais do trabalhador
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s2300_documentos_id %}
+                    {% if pk %}
+                        {% if perms.s2300.can_see_s2300documentos %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2300_documentos_salvar' pk=pk tab='master' %}">
+                                Informações dos documentos pessoais do trabalhador</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_ctps %}
+                            {% if perms.s2300.can_see_s2300CTPS %}
                                 <li {% if tab == 's2300_ctps' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:0|json_tab:'s2300_ctps'|base64_encode_me %}">
+                                    <a href="{% url 's2300_documentos_salvar' pk=pk tab='s2300_ctps' %}">
                                     Informações da Carteira de Trabalho e Previdência Social</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_ric %}
+                            {% if perms.s2300.can_see_s2300RIC %}
                                 <li {% if tab == 's2300_ric' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:0|json_tab:'s2300_ric'|base64_encode_me %}">
+                                    <a href="{% url 's2300_documentos_salvar' pk=pk tab='s2300_ric' %}">
                                     Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_rg %}
+                            {% if perms.s2300.can_see_s2300RG %}
                                 <li {% if tab == 's2300_rg' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:0|json_tab:'s2300_rg'|base64_encode_me %}">
+                                    <a href="{% url 's2300_documentos_salvar' pk=pk tab='s2300_rg' %}">
                                     Informações do Registro Geral (RG)</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_rne %}
+                            {% if perms.s2300.can_see_s2300RNE %}
                                 <li {% if tab == 's2300_rne' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:0|json_tab:'s2300_rne'|base64_encode_me %}">
+                                    <a href="{% url 's2300_documentos_salvar' pk=pk tab='s2300_rne' %}">
                                     Informações do Registro Nacional de Estrangeiro</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_oc %}
+                            {% if perms.s2300.can_see_s2300OC %}
                                 <li {% if tab == 's2300_oc' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:0|json_tab:'s2300_oc'|base64_encode_me %}">
+                                    <a href="{% url 's2300_documentos_salvar' pk=pk tab='s2300_oc' %}">
                                     Informações do número de registro em Órgão de Classe (OC)</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_cnh %}
+                            {% if perms.s2300.can_see_s2300CNH %}
                                 <li {% if tab == 's2300_cnh' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:0|json_tab:'s2300_cnh'|base64_encode_me %}">
+                                    <a href="{% url 's2300_documentos_salvar' pk=pk tab='s2300_cnh' %}">
                                     Informações da Carteira Nacional de Habilitação (CNH)</a>
                                 </li>
                             {% endif %}
@@ -109,275 +106,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s2300_documentos_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s2300_documentos_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s2300_documentos_id %}
-   {% if s2300_documentos.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2300_documentos.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2300_documentos.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2300_documentos.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2300_documentos.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2300_documentos.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2300_documentos.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s2300_documentos.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2300_documentos.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s2300.change_s2300_documentos or perms.s2300.add_s2300_documentos %}
-                <form action="#" id="id_form_s2300_documentos" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s2300_documentos.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2300_documentos.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2300_documentos.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s2300_documentos.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s2300_documentos_id %}
-
-                                {% if perms.s2300.add_s2300documentos %}
-                                    <a href="{% url 's2300_documentos_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s2300.can_view_s2300_documentos or perms.s2300.can_view_s2300_documentos %}
-                                <a href="{% url 's2300_documentos'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2300.can_view_s2300_documentos and s2300_documentos_id %}
-                                <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s2300.can_view_s2300_documentos and s2300_documentos_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's2300_documentos_salvar' hash='{}'|json_id:s2300_documentos_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2300.change_s2300_documentos or perms.s2300.add_s2300_documentos %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s2300.delete_s2300_documentos and s2300_documentos_id %}
-
-                            <a href="{% url 's2300_documentos_apagar' hash='{}'|json_id:s2300_documentos_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s2300_documentos.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2300_documentos.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s2300.change_s2300_documentos or perms.s2300.add_s2300_documentos %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s2300_documentos_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>
+                    </div>
+
+                    {% if perms.s2300.change_s2300documentos or perms.s2300.add_s2300documentos %}
+                        {% if s2300_documentos_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2300_documentos" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2300_documentos.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s2300.add_s2300documentos %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_documentos_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2300.can_see_list_s2300documentos %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_documentos' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2300.can_print_data_s2300documentos %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_documentos_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s2300.change_s2300documentos %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2300.delete_s2300documentos %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_documentos_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s2300.add_s2300documentos %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s2300.add_s2300documentos or perms.s2300.change_s2300documentos %}
+
+                        {% if s2300_documentos_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s2300_ctps -->
+        <!-- begin_s2300_ctps -->
 
-            {% if tab == 's2300_ctps' or for_print %} 
+            {% if tab == 's2300_ctps' %} 
 
-                {% if perms.s2300.can_view_s2300_ctps %} 
+                {% if perms.s2300.can_see_data_s2300CTPS %}
 
-                    {% if perms.s2300.change_s2300_ctps or perms.s2300.add_s2300CTPS %}
+                    {% if perms.s2300.add_s2300CTPS or perms.s2300.change_s2300CTPS %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -386,95 +391,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações da Carteira de Trabalho e Previdência Social</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_ctps or perms.s2300.add_s2300CTPS %}
+                                    {% if perms.s2300.add_s2300CTPS or perms.s2300.can_see_list_s2300CTPS  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300CTPS %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300CTPS %}            
+
                                     <!-- begin_form_s2300_ctps --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_ctps" action="{% url 's2300_ctps_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_ctps" 
+                                              action="{% url 's2300_ctps_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_ctps.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_ctps -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_ctps -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300CTPS %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_ctps --> 
 
-                                    {% include 'tables/s2300_ctps.html' %}
-                                        
-                                    <!-- end_table_s2300_ctps --> 
-
+                                        {% include 'tables/s2300_ctps.html' %}
+                                        <!-- end_table_s2300_ctps --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_ctps -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_ric -->
+        <!-- begin_s2300_ric -->
 
-            {% if tab == 's2300_ric' or for_print %} 
+            {% if tab == 's2300_ric' %} 
 
-                {% if perms.s2300.can_view_s2300_ric %} 
+                {% if perms.s2300.can_see_data_s2300RIC %}
 
-                    {% if perms.s2300.change_s2300_ric or perms.s2300.add_s2300RIC %}
+                    {% if perms.s2300.add_s2300RIC or perms.s2300.change_s2300RIC %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -483,95 +500,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_ric or perms.s2300.add_s2300RIC %}
+                                    {% if perms.s2300.add_s2300RIC or perms.s2300.can_see_list_s2300RIC  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300RIC %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300RIC %}            
+
                                     <!-- begin_form_s2300_ric --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_ric" action="{% url 's2300_ric_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_ric" 
+                                              action="{% url 's2300_ric_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_ric.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_ric -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_ric -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300RIC %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_ric --> 
 
-                                    {% include 'tables/s2300_ric.html' %}
-                                        
-                                    <!-- end_table_s2300_ric --> 
-
+                                        {% include 'tables/s2300_ric.html' %}
+                                        <!-- end_table_s2300_ric --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_ric -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_rg -->
+        <!-- begin_s2300_rg -->
 
-            {% if tab == 's2300_rg' or for_print %} 
+            {% if tab == 's2300_rg' %} 
 
-                {% if perms.s2300.can_view_s2300_rg %} 
+                {% if perms.s2300.can_see_data_s2300RG %}
 
-                    {% if perms.s2300.change_s2300_rg or perms.s2300.add_s2300RG %}
+                    {% if perms.s2300.add_s2300RG or perms.s2300.change_s2300RG %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -580,95 +609,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do Registro Geral (RG)</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_rg or perms.s2300.add_s2300RG %}
+                                    {% if perms.s2300.add_s2300RG or perms.s2300.can_see_list_s2300RG  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300RG %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300RG %}            
+
                                     <!-- begin_form_s2300_rg --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_rg" action="{% url 's2300_rg_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_rg" 
+                                              action="{% url 's2300_rg_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_rg.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_rg -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_rg -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300RG %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_rg --> 
 
-                                    {% include 'tables/s2300_rg.html' %}
-                                        
-                                    <!-- end_table_s2300_rg --> 
-
+                                        {% include 'tables/s2300_rg.html' %}
+                                        <!-- end_table_s2300_rg --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_rg -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_rne -->
+        <!-- begin_s2300_rne -->
 
-            {% if tab == 's2300_rne' or for_print %} 
+            {% if tab == 's2300_rne' %} 
 
-                {% if perms.s2300.can_view_s2300_rne %} 
+                {% if perms.s2300.can_see_data_s2300RNE %}
 
-                    {% if perms.s2300.change_s2300_rne or perms.s2300.add_s2300RNE %}
+                    {% if perms.s2300.add_s2300RNE or perms.s2300.change_s2300RNE %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -677,95 +718,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do Registro Nacional de Estrangeiro</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_rne or perms.s2300.add_s2300RNE %}
+                                    {% if perms.s2300.add_s2300RNE or perms.s2300.can_see_list_s2300RNE  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300RNE %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300RNE %}            
+
                                     <!-- begin_form_s2300_rne --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_rne" action="{% url 's2300_rne_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_rne" 
+                                              action="{% url 's2300_rne_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_rne.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_rne -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_rne -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300RNE %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_rne --> 
 
-                                    {% include 'tables/s2300_rne.html' %}
-                                        
-                                    <!-- end_table_s2300_rne --> 
-
+                                        {% include 'tables/s2300_rne.html' %}
+                                        <!-- end_table_s2300_rne --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_rne -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_oc -->
+        <!-- begin_s2300_oc -->
 
-            {% if tab == 's2300_oc' or for_print %} 
+            {% if tab == 's2300_oc' %} 
 
-                {% if perms.s2300.can_view_s2300_oc %} 
+                {% if perms.s2300.can_see_data_s2300OC %}
 
-                    {% if perms.s2300.change_s2300_oc or perms.s2300.add_s2300OC %}
+                    {% if perms.s2300.add_s2300OC or perms.s2300.change_s2300OC %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -774,95 +827,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do número de registro em Órgão de Classe (OC)</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_oc or perms.s2300.add_s2300OC %}
+                                    {% if perms.s2300.add_s2300OC or perms.s2300.can_see_list_s2300OC  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300OC %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300OC %}            
+
                                     <!-- begin_form_s2300_oc --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_oc" action="{% url 's2300_oc_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_oc" 
+                                              action="{% url 's2300_oc_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_oc.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_oc -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_oc -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300OC %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_oc --> 
 
-                                    {% include 'tables/s2300_oc.html' %}
-                                        
-                                    <!-- end_table_s2300_oc --> 
-
+                                        {% include 'tables/s2300_oc.html' %}
+                                        <!-- end_table_s2300_oc --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_oc -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_cnh -->
+        <!-- begin_s2300_cnh -->
 
-            {% if tab == 's2300_cnh' or for_print %} 
+            {% if tab == 's2300_cnh' %} 
 
-                {% if perms.s2300.can_view_s2300_cnh %} 
+                {% if perms.s2300.can_see_data_s2300CNH %}
 
-                    {% if perms.s2300.change_s2300_cnh or perms.s2300.add_s2300CNH %}
+                    {% if perms.s2300.add_s2300CNH or perms.s2300.change_s2300CNH %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -871,75 +936,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações da Carteira Nacional de Habilitação (CNH)</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_cnh or perms.s2300.add_s2300CNH %}
+                                    {% if perms.s2300.add_s2300CNH or perms.s2300.can_see_list_s2300CNH  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300CNH %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300CNH %}            
+
                                     <!-- begin_form_s2300_cnh --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_cnh" action="{% url 's2300_cnh_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_cnh" 
+                                              action="{% url 's2300_cnh_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_cnh.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_cnh -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_cnh -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300CNH %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_cnh --> 
 
-                                    {% include 'tables/s2300_cnh.html' %}
-                                        
-                                    <!-- end_table_s2300_cnh --> 
-
+                                        {% include 'tables/s2300_cnh.html' %}
+                                        <!-- end_table_s2300_cnh --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_cnh -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

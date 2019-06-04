@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início<br>Identidade: {{ s2300_evttsvinicio.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's2300_evttsvinicio_verificar' hash='{}'|json_id:s2300_evttsvinicio_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's2300_evttsvinicio_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's2300_evttsvinicio_verificar' hash='{}'|json_id:s2300_evttsvinicio_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's2300_evttsvinicio_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's2300_evttsvinicio_verificar' hash='{}'|json_id:s2300_evttsvinicio_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's2300_evttsvinicio_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's2300_evttsvinicio_verificar' hash='{}'|json_id:s2300_evttsvinicio_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.indretif or s2300_evttsvinicio.indretif == 0 %}{{ s2300_evttsvinicio.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nrrecibo or s2300_evttsvinicio.nrrecibo == 0 %}{{ s2300_evttsvinicio.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.tpamb or s2300_evttsvinicio.tpamb == 0 %}{{ s2300_evttsvinicio.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.procemi or s2300_evttsvinicio.procemi == 0 %}{{ s2300_evttsvinicio.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.verproc or s2300_evttsvinicio.verproc == 0 %}{{ s2300_evttsvinicio.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -231,11 +228,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.tpinsc or s2300_evttsvinicio.tpinsc == 0 %}{{ s2300_evttsvinicio.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -250,11 +247,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nrinsc or s2300_evttsvinicio.nrinsc == 0 %}{{ s2300_evttsvinicio.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -274,11 +271,11 @@
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.cpftrab or s2300_evttsvinicio.cpftrab == 0 %}{{ s2300_evttsvinicio.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -293,11 +290,11 @@
             <td width="130px">nisTrab</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nistrab or s2300_evttsvinicio.nistrab == 0 %}{{ s2300_evttsvinicio.nistrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -312,11 +309,11 @@
             <td width="130px">nmTrab</td>
             <td width="500px">Nome do Trabalhador.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmtrab or s2300_evttsvinicio.nmtrab == 0 %}{{ s2300_evttsvinicio.nmtrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -331,11 +328,11 @@
             <td width="130px">sexo</td>
             <td width="500px">Sexo do Trabalhador<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.sexo or s2300_evttsvinicio.sexo == 0 %}{{ s2300_evttsvinicio.sexo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -350,11 +347,11 @@
             <td width="130px">racaCor</td>
             <td width="500px">Raça e cor do trabalhador, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.racacor or s2300_evttsvinicio.racacor == 0 %}{{ s2300_evttsvinicio.racacor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -369,11 +366,11 @@
             <td width="130px">estCiv</td>
             <td width="500px">Estado civil do trabalhador, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.estciv or s2300_evttsvinicio.estciv == 0 %}{{ s2300_evttsvinicio.estciv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -388,11 +385,11 @@
             <td width="130px">grauInstr</td>
             <td width="500px">Grau de instrução do trabalhador, conforme opções abaixo<opcoes> 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou; 02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular; 03 - 5º ano completo do Ensino Fundamental; 04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série); 05 - Ensino Fundamental Completo; 06 - Ensino Médio incompleto; 07 - Ensino Médio completo; 08 - Educação Superior incompleta; 09 - Educação Superior completa; 10 - Pós-Graduação completa; 11 - Mestrado completo; 12 - Doutorado completo. <valores_validos> 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.grauinstr or s2300_evttsvinicio.grauinstr == 0 %}{{ s2300_evttsvinicio.grauinstr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -407,11 +404,11 @@
             <td width="130px">nmSoc</td>
             <td width="500px">Nome social para travesti ou transexual.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmsoc or s2300_evttsvinicio.nmsoc == 0 %}{{ s2300_evttsvinicio.nmsoc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -431,11 +428,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.dtnascto or s2300_evttsvinicio.dtnascto == 0 %}{{ s2300_evttsvinicio.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -450,11 +447,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.codmunic or s2300_evttsvinicio.codmunic == 0 %}{{ s2300_evttsvinicio.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -469,11 +466,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.uf or s2300_evttsvinicio.uf == 0 %}{{ s2300_evttsvinicio.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -488,11 +485,11 @@
             <td width="130px">paisNascto</td>
             <td width="500px">Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.paisnascto or s2300_evttsvinicio.paisnascto == 0 %}{{ s2300_evttsvinicio.paisnascto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -507,11 +504,11 @@
             <td width="130px">paisNac</td>
             <td width="500px">Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.paisnac or s2300_evttsvinicio.paisnac == 0 %}{{ s2300_evttsvinicio.paisnac }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -526,11 +523,11 @@
             <td width="130px">nmMae</td>
             <td width="500px">Nome da mãe.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmmae or s2300_evttsvinicio.nmmae == 0 %}{{ s2300_evttsvinicio.nmmae }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -545,11 +542,11 @@
             <td width="130px">nmPai</td>
             <td width="500px">Nome do pai do trabalhador.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.nmpai or s2300_evttsvinicio.nmpai == 0 %}{{ s2300_evttsvinicio.nmpai }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -576,11 +573,11 @@
             <td width="130px">nrCtps</td>
             <td width="500px">CTPS.</td>
             <td width="200px"><b>{% if s2300_ctps.nrctps or s2300_ctps.nrctps == 0 %}{{ s2300_ctps.nrctps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ctps_visualizar' %}
-                <a href="{% url 's2300_ctps_salvar'  hash='{}'|json_id:s2300_ctps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CTPS or perms.esocial.can_see_s2300CTPS %}
+                <a href="{% url 's2300_ctps_salvar' pk=s2300_ctps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -595,11 +592,11 @@
             <td width="130px">serieCtps</td>
             <td width="500px">Número de série da CTPS.</td>
             <td width="200px"><b>{% if s2300_ctps.seriectps or s2300_ctps.seriectps == 0 %}{{ s2300_ctps.seriectps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ctps_visualizar' %}
-                <a href="{% url 's2300_ctps_salvar'  hash='{}'|json_id:s2300_ctps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CTPS or perms.esocial.can_see_s2300CTPS %}
+                <a href="{% url 's2300_ctps_salvar' pk=s2300_ctps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -614,11 +611,11 @@
             <td width="130px">ufCtps</td>
             <td width="500px">UF da expedição da CTPS. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_ctps.ufctps or s2300_ctps.ufctps == 0 %}{{ s2300_ctps.ufctps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ctps_visualizar' %}
-                <a href="{% url 's2300_ctps_salvar'  hash='{}'|json_id:s2300_ctps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CTPS or perms.esocial.can_see_s2300CTPS %}
+                <a href="{% url 's2300_ctps_salvar' pk=s2300_ctps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -639,11 +636,11 @@
             <td width="130px">nrRic</td>
             <td width="500px">Número do Documento Nacional de Identidade - DNI.</td>
             <td width="200px"><b>{% if s2300_ric.nrric or s2300_ric.nrric == 0 %}{{ s2300_ric.nrric }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ric_visualizar' %}
-                <a href="{% url 's2300_ric_salvar'  hash='{}'|json_id:s2300_ric.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RIC or perms.esocial.can_see_s2300RIC %}
+                <a href="{% url 's2300_ric_salvar' pk=s2300_ric.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -658,11 +655,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2300_ric.orgaoemissor or s2300_ric.orgaoemissor == 0 %}{{ s2300_ric.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ric_visualizar' %}
-                <a href="{% url 's2300_ric_salvar'  hash='{}'|json_id:s2300_ric.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RIC or perms.esocial.can_see_s2300RIC %}
+                <a href="{% url 's2300_ric_salvar' pk=s2300_ric.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -677,11 +674,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2300_ric.dtexped or s2300_ric.dtexped == 0 %}{{ s2300_ric.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ric_visualizar' %}
-                <a href="{% url 's2300_ric_salvar'  hash='{}'|json_id:s2300_ric.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RIC or perms.esocial.can_see_s2300RIC %}
+                <a href="{% url 's2300_ric_salvar' pk=s2300_ric.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -702,11 +699,11 @@
             <td width="130px">nrRg</td>
             <td width="500px">RG.</td>
             <td width="200px"><b>{% if s2300_rg.nrrg or s2300_rg.nrrg == 0 %}{{ s2300_rg.nrrg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_rg_visualizar' %}
-                <a href="{% url 's2300_rg_salvar'  hash='{}'|json_id:s2300_rg.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RG or perms.esocial.can_see_s2300RG %}
+                <a href="{% url 's2300_rg_salvar' pk=s2300_rg.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -721,11 +718,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2300_rg.orgaoemissor or s2300_rg.orgaoemissor == 0 %}{{ s2300_rg.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_rg_visualizar' %}
-                <a href="{% url 's2300_rg_salvar'  hash='{}'|json_id:s2300_rg.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RG or perms.esocial.can_see_s2300RG %}
+                <a href="{% url 's2300_rg_salvar' pk=s2300_rg.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -740,11 +737,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2300_rg.dtexped or s2300_rg.dtexped == 0 %}{{ s2300_rg.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_rg_visualizar' %}
-                <a href="{% url 's2300_rg_salvar'  hash='{}'|json_id:s2300_rg.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RG or perms.esocial.can_see_s2300RG %}
+                <a href="{% url 's2300_rg_salvar' pk=s2300_rg.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -765,11 +762,11 @@
             <td width="130px">nrRne</td>
             <td width="500px">Número de inscrição no Registro Nacional de Estrangeiros.</td>
             <td width="200px"><b>{% if s2300_rne.nrrne or s2300_rne.nrrne == 0 %}{{ s2300_rne.nrrne }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_rne_visualizar' %}
-                <a href="{% url 's2300_rne_salvar'  hash='{}'|json_id:s2300_rne.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RNE or perms.esocial.can_see_s2300RNE %}
+                <a href="{% url 's2300_rne_salvar' pk=s2300_rne.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -784,11 +781,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2300_rne.orgaoemissor or s2300_rne.orgaoemissor == 0 %}{{ s2300_rne.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_rne_visualizar' %}
-                <a href="{% url 's2300_rne_salvar'  hash='{}'|json_id:s2300_rne.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RNE or perms.esocial.can_see_s2300RNE %}
+                <a href="{% url 's2300_rne_salvar' pk=s2300_rne.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -803,11 +800,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2300_rne.dtexped or s2300_rne.dtexped == 0 %}{{ s2300_rne.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_rne_visualizar' %}
-                <a href="{% url 's2300_rne_salvar'  hash='{}'|json_id:s2300_rne.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300RNE or perms.esocial.can_see_s2300RNE %}
+                <a href="{% url 's2300_rne_salvar' pk=s2300_rne.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -828,11 +825,11 @@
             <td width="130px">nrOc</td>
             <td width="500px">Número de inscrição no órgão de classe.</td>
             <td width="200px"><b>{% if s2300_oc.nroc or s2300_oc.nroc == 0 %}{{ s2300_oc.nroc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_oc_visualizar' %}
-                <a href="{% url 's2300_oc_salvar'  hash='{}'|json_id:s2300_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300OC or perms.esocial.can_see_s2300OC %}
+                <a href="{% url 's2300_oc_salvar' pk=s2300_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -847,11 +844,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2300_oc.orgaoemissor or s2300_oc.orgaoemissor == 0 %}{{ s2300_oc.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_oc_visualizar' %}
-                <a href="{% url 's2300_oc_salvar'  hash='{}'|json_id:s2300_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300OC or perms.esocial.can_see_s2300OC %}
+                <a href="{% url 's2300_oc_salvar' pk=s2300_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -866,11 +863,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2300_oc.dtexped or s2300_oc.dtexped == 0 %}{{ s2300_oc.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_oc_visualizar' %}
-                <a href="{% url 's2300_oc_salvar'  hash='{}'|json_id:s2300_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300OC or perms.esocial.can_see_s2300OC %}
+                <a href="{% url 's2300_oc_salvar' pk=s2300_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -885,11 +882,11 @@
             <td width="130px">dtValid</td>
             <td width="500px">Preencher com a data de validade. <validacao> Deve ser posterior a data de expedição ({dtExped}), se esta for informada.</td>
             <td width="200px"><b>{% if s2300_oc.dtvalid or s2300_oc.dtvalid == 0 %}{{ s2300_oc.dtvalid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_oc_visualizar' %}
-                <a href="{% url 's2300_oc_salvar'  hash='{}'|json_id:s2300_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300OC or perms.esocial.can_see_s2300OC %}
+                <a href="{% url 's2300_oc_salvar' pk=s2300_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -910,11 +907,11 @@
             <td width="130px">nrRegCnh</td>
             <td width="500px">Número do Registro da Carteira Nacional de Habilitação - CNH.</td>
             <td width="200px"><b>{% if s2300_cnh.nrregcnh or s2300_cnh.nrregcnh == 0 %}{{ s2300_cnh.nrregcnh }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cnh_visualizar' %}
-                <a href="{% url 's2300_cnh_salvar'  hash='{}'|json_id:s2300_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CNH or perms.esocial.can_see_s2300CNH %}
+                <a href="{% url 's2300_cnh_salvar' pk=s2300_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -929,11 +926,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2300_cnh.dtexped or s2300_cnh.dtexped == 0 %}{{ s2300_cnh.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cnh_visualizar' %}
-                <a href="{% url 's2300_cnh_salvar'  hash='{}'|json_id:s2300_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CNH or perms.esocial.can_see_s2300CNH %}
+                <a href="{% url 's2300_cnh_salvar' pk=s2300_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -948,11 +945,11 @@
             <td width="130px">ufCnh</td>
             <td width="500px">Estado da Federação emissor da CNH. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_cnh.ufcnh or s2300_cnh.ufcnh == 0 %}{{ s2300_cnh.ufcnh }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cnh_visualizar' %}
-                <a href="{% url 's2300_cnh_salvar'  hash='{}'|json_id:s2300_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CNH or perms.esocial.can_see_s2300CNH %}
+                <a href="{% url 's2300_cnh_salvar' pk=s2300_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -967,11 +964,11 @@
             <td width="130px">dtValid</td>
             <td width="500px">Preencher com a data de validade. <validacao> Deve ser posterior a data de expedição ({dtExped}), se esta for informada.</td>
             <td width="200px"><b>{% if s2300_cnh.dtvalid or s2300_cnh.dtvalid == 0 %}{{ s2300_cnh.dtvalid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cnh_visualizar' %}
-                <a href="{% url 's2300_cnh_salvar'  hash='{}'|json_id:s2300_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CNH or perms.esocial.can_see_s2300CNH %}
+                <a href="{% url 's2300_cnh_salvar' pk=s2300_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -986,11 +983,11 @@
             <td width="130px">dtPriHab</td>
             <td width="500px">Data da primeira habilitação.</td>
             <td width="200px"><b>{% if s2300_cnh.dtprihab or s2300_cnh.dtprihab == 0 %}{{ s2300_cnh.dtprihab|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cnh_visualizar' %}
-                <a href="{% url 's2300_cnh_salvar'  hash='{}'|json_id:s2300_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CNH or perms.esocial.can_see_s2300CNH %}
+                <a href="{% url 's2300_cnh_salvar' pk=s2300_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1005,11 +1002,11 @@
             <td width="130px">categoriaCnh</td>
             <td width="500px">Categoria da CNH<opcoes>A; B; C; D; E; AB; AC; AD; AE<valores_validos> A, B, C, D, E, AB, AC, AD, AE.</td>
             <td width="200px"><b>{% if s2300_cnh.categoriacnh or s2300_cnh.categoriacnh == 0 %}{{ s2300_cnh.categoriacnh }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cnh_visualizar' %}
-                <a href="{% url 's2300_cnh_salvar'  hash='{}'|json_id:s2300_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300CNH or perms.esocial.can_see_s2300CNH %}
+                <a href="{% url 's2300_cnh_salvar' pk=s2300_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1035,11 +1032,11 @@
             <td width="130px">tpLograd</td>
             <td width="500px">Tipo de Logradouro, conforme tabela 20. <validacao> Deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2300_brasil.tplograd or s2300_brasil.tplograd == 0 %}{{ s2300_brasil.tplograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1054,11 +1051,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2300_brasil.dsclograd or s2300_brasil.dsclograd == 0 %}{{ s2300_brasil.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1073,11 +1070,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
             <td width="200px"><b>{% if s2300_brasil.nrlograd or s2300_brasil.nrlograd == 0 %}{{ s2300_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1092,11 +1089,11 @@
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2300_brasil.complemento or s2300_brasil.complemento == 0 %}{{ s2300_brasil.complemento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1111,11 +1108,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2300_brasil.bairro or s2300_brasil.bairro == 0 %}{{ s2300_brasil.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1130,11 +1127,11 @@
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2300_brasil.cep or s2300_brasil.cep == 0 %}{{ s2300_brasil.cep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1149,11 +1146,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2300_brasil.codmunic or s2300_brasil.codmunic == 0 %}{{ s2300_brasil.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1168,11 +1165,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_brasil.uf or s2300_brasil.uf == 0 %}{{ s2300_brasil.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_brasil_visualizar' %}
-                <a href="{% url 's2300_brasil_salvar'  hash='{}'|json_id:s2300_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300brasil or perms.esocial.can_see_s2300brasil %}
+                <a href="{% url 's2300_brasil_salvar' pk=s2300_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1193,11 +1190,11 @@
             <td width="130px">paisResid</td>
             <td width="500px">Preencher com o código do país, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2300_exterior.paisresid or s2300_exterior.paisresid == 0 %}{{ s2300_exterior.paisresid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1212,11 +1209,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2300_exterior.dsclograd or s2300_exterior.dsclograd == 0 %}{{ s2300_exterior.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1231,11 +1228,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
             <td width="200px"><b>{% if s2300_exterior.nrlograd or s2300_exterior.nrlograd == 0 %}{{ s2300_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1250,11 +1247,11 @@
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2300_exterior.complemento or s2300_exterior.complemento == 0 %}{{ s2300_exterior.complemento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1269,11 +1266,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2300_exterior.bairro or s2300_exterior.bairro == 0 %}{{ s2300_exterior.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1288,11 +1285,11 @@
             <td width="130px">nmCid</td>
             <td width="500px">Nome da Cidade.</td>
             <td width="200px"><b>{% if s2300_exterior.nmcid or s2300_exterior.nmcid == 0 %}{{ s2300_exterior.nmcid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1307,11 +1304,11 @@
             <td width="130px">codPostal</td>
             <td width="500px">Código de Endereçamento Postal.</td>
             <td width="200px"><b>{% if s2300_exterior.codpostal or s2300_exterior.codpostal == 0 %}{{ s2300_exterior.codpostal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
-                <a href="{% url 's2300_exterior_salvar'  hash='{}'|json_id:s2300_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300exterior or perms.esocial.can_see_s2300exterior %}
+                <a href="{% url 's2300_exterior_salvar' pk=s2300_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1332,11 +1329,11 @@
             <td width="130px">dtChegada</td>
             <td width="500px">Data de chegada do trabalhador ao Brasil, em caso de estrangeiro. <validacao> Preenchimento obrigatório se {classTrabEstrang} <> [6].</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.dtchegada or s2300_trabestrangeiro.dtchegada == 0 %}{{ s2300_trabestrangeiro.dtchegada|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2300_trabestrangeiro_salvar'  hash='{}'|json_id:s2300_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300trabEstrangeiro or perms.esocial.can_see_s2300trabEstrangeiro %}
+                <a href="{% url 's2300_trabestrangeiro_salvar' pk=s2300_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1351,11 +1348,11 @@
             <td width="130px">classTrabEstrang</td>
             <td width="500px">Classificação da condição de ingresso do trabalhador estrangeiro no Brasil<opcoes>1 - Visto permanente; 2 - Visto temporário; 3 - Asilado; 4 - Refugiado; 5 - Solicitante de Refúgio; 6 - Residente fora do Brasil; 7 - Deficiente físico e com mais de 51 anos; 8 - Com residência provisória e anistiado, em situação irregular; 9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros; 10 - Beneficiado pelo acordo entre países do Mercosul; 11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil; 12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.classtrabestrang or s2300_trabestrangeiro.classtrabestrang == 0 %}{{ s2300_trabestrangeiro.classtrabestrang }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2300_trabestrangeiro_salvar'  hash='{}'|json_id:s2300_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300trabEstrangeiro or perms.esocial.can_see_s2300trabEstrangeiro %}
+                <a href="{% url 's2300_trabestrangeiro_salvar' pk=s2300_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1370,11 +1367,11 @@
             <td width="130px">casadoBr</td>
             <td width="500px">Casado com brasileiro(a)<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.casadobr or s2300_trabestrangeiro.casadobr == 0 %}{{ s2300_trabestrangeiro.casadobr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2300_trabestrangeiro_salvar'  hash='{}'|json_id:s2300_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300trabEstrangeiro or perms.esocial.can_see_s2300trabEstrangeiro %}
+                <a href="{% url 's2300_trabestrangeiro_salvar' pk=s2300_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1389,11 +1386,11 @@
             <td width="130px">filhosBr</td>
             <td width="500px">Indicar se o trabalhador estrangeiro tem filhos brasileiros<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_trabestrangeiro.filhosbr or s2300_trabestrangeiro.filhosbr == 0 %}{{ s2300_trabestrangeiro.filhosbr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2300_trabestrangeiro_salvar'  hash='{}'|json_id:s2300_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300trabEstrangeiro or perms.esocial.can_see_s2300trabEstrangeiro %}
+                <a href="{% url 's2300_trabestrangeiro_salvar' pk=s2300_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1414,11 +1411,11 @@
             <td width="130px">defFisica</td>
             <td width="500px">Deficiência Física<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.deffisica or s2300_infodeficiencia.deffisica == 0 %}{{ s2300_infodeficiencia.deffisica }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1433,11 +1430,11 @@
             <td width="130px">defVisual</td>
             <td width="500px">Deficiência visual<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defvisual or s2300_infodeficiencia.defvisual == 0 %}{{ s2300_infodeficiencia.defvisual }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1452,11 +1449,11 @@
             <td width="130px">defAuditiva</td>
             <td width="500px">Deficiência auditiva<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defauditiva or s2300_infodeficiencia.defauditiva == 0 %}{{ s2300_infodeficiencia.defauditiva }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1471,11 +1468,11 @@
             <td width="130px">defMental</td>
             <td width="500px">Deficiência Mental<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defmental or s2300_infodeficiencia.defmental == 0 %}{{ s2300_infodeficiencia.defmental }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1490,11 +1487,11 @@
             <td width="130px">defIntelectual</td>
             <td width="500px">Deficiência Intelectual<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.defintelectual or s2300_infodeficiencia.defintelectual == 0 %}{{ s2300_infodeficiencia.defintelectual }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1509,11 +1506,11 @@
             <td width="130px">reabReadap</td>
             <td width="500px">Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar). Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu Programa de Reabilitação Profissional no INSS, recebendo certificado, sendo proporcionado os meios indicados para participar do mercado de trabalho. Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.reabreadap or s2300_infodeficiencia.reabreadap == 0 %}{{ s2300_infodeficiencia.reabreadap }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1528,11 +1525,11 @@
             <td width="130px">observacao</td>
             <td width="500px">Observações.</td>
             <td width="200px"><b>{% if s2300_infodeficiencia.observacao or s2300_infodeficiencia.observacao == 0 %}{{ s2300_infodeficiencia.observacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodeficiencia_visualizar' %}
-                <a href="{% url 's2300_infodeficiencia_salvar'  hash='{}'|json_id:s2300_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDeficiencia or perms.esocial.can_see_s2300infoDeficiencia %}
+                <a href="{% url 's2300_infodeficiencia_salvar' pk=s2300_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1553,11 +1550,11 @@
             <td width="130px">tpDep</td>
             <td width="500px">Tipo de dependente conforme tabela 7. <validacao> Deve ser um código existente na tabela 7.</td>
             <td width="200px"><b>{% if s2300_dependente.tpdep or s2300_dependente.tpdep == 0 %}{{ s2300_dependente.tpdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1572,11 +1569,11 @@
             <td width="130px">nmDep</td>
             <td width="500px">Nome do dependente.</td>
             <td width="200px"><b>{% if s2300_dependente.nmdep or s2300_dependente.nmdep == 0 %}{{ s2300_dependente.nmdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1591,11 +1588,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento. <validacao> Deve ser maior ou igual que 01/01/1890 e menor que a data atual.</td>
             <td width="200px"><b>{% if s2300_dependente.dtnascto or s2300_dependente.dtnascto == 0 %}{{ s2300_dependente.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1610,11 +1607,11 @@
             <td width="130px">cpfDep</td>
             <td width="500px">Número de Inscrição no CPF. <validacao> Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório se {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
             <td width="200px"><b>{% if s2300_dependente.cpfdep or s2300_dependente.cpfdep == 0 %}{{ s2300_dependente.cpfdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1629,11 +1626,11 @@
             <td width="130px">sexoDep</td>
             <td width="500px">Sexo do dependente<opcoes> M - Masculino; F - Feminino. <validacao> Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS e {cadIni} = [N]. <valores_validos> M, F.</td>
             <td width="200px"><b>{% if s2300_dependente.sexodep or s2300_dependente.sexodep == 0 %}{{ s2300_dependente.sexodep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1648,11 +1645,11 @@
             <td width="130px">depIRRF</td>
             <td width="500px">Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_dependente.depirrf or s2300_dependente.depirrf == 0 %}{{ s2300_dependente.depirrf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1667,11 +1664,11 @@
             <td width="130px">depSF</td>
             <td width="500px">Informar se é dependente para fins de recebimento do benefício de salário- família<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_dependente.depsf or s2300_dependente.depsf == 0 %}{{ s2300_dependente.depsf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1686,11 +1683,11 @@
             <td width="130px">incTrab</td>
             <td width="500px">Informar se o dependente tem incapacidade física ou mental para o trabalho<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_dependente.inctrab or s2300_dependente.inctrab == 0 %}{{ s2300_dependente.inctrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1705,11 +1702,11 @@
             <td width="130px">depFinsPrev</td>
             <td width="500px">Informar se é dependente para fins previdenciários<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS. Não preencher nos demais casos. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_dependente.depfinsprev or s2300_dependente.depfinsprev == 0 %}{{ s2300_dependente.depfinsprev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_dependente_visualizar' %}
-                <a href="{% url 's2300_dependente_salvar'  hash='{}'|json_id:s2300_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300dependente or perms.esocial.can_see_s2300dependente %}
+                <a href="{% url 's2300_dependente_salvar' pk=s2300_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1730,11 +1727,11 @@
             <td width="130px">fonePrinc</td>
             <td width="500px">Número de telefone do trabalhador, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s2300_contato.foneprinc or s2300_contato.foneprinc == 0 %}{{ s2300_contato.foneprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_contato_visualizar' %}
-                <a href="{% url 's2300_contato_salvar'  hash='{}'|json_id:s2300_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300contato or perms.esocial.can_see_s2300contato %}
+                <a href="{% url 's2300_contato_salvar' pk=s2300_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1749,11 +1746,11 @@
             <td width="130px">foneAlternat</td>
             <td width="500px">Número de telefone alternativo do trabalhador, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s2300_contato.fonealternat or s2300_contato.fonealternat == 0 %}{{ s2300_contato.fonealternat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_contato_visualizar' %}
-                <a href="{% url 's2300_contato_salvar'  hash='{}'|json_id:s2300_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300contato or perms.esocial.can_see_s2300contato %}
+                <a href="{% url 's2300_contato_salvar' pk=s2300_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1768,11 +1765,11 @@
             <td width="130px">emailPrinc</td>
             <td width="500px">Endereço eletrônico. <validacao> O e-mail deve ser possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2300_contato.emailprinc or s2300_contato.emailprinc == 0 %}{{ s2300_contato.emailprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_contato_visualizar' %}
-                <a href="{% url 's2300_contato_salvar'  hash='{}'|json_id:s2300_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300contato or perms.esocial.can_see_s2300contato %}
+                <a href="{% url 's2300_contato_salvar' pk=s2300_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1787,11 +1784,11 @@
             <td width="130px">emailAlternat</td>
             <td width="500px">Endereço eletrônico alternativo. <validacao> O e-mail deve ser possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2300_contato.emailalternat or s2300_contato.emailalternat == 0 %}{{ s2300_contato.emailalternat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_contato_visualizar' %}
-                <a href="{% url 's2300_contato_salvar'  hash='{}'|json_id:s2300_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300contato or perms.esocial.can_see_s2300contato %}
+                <a href="{% url 's2300_contato_salvar' pk=s2300_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1811,11 +1808,11 @@
             <td width="130px">cadIni</td>
             <td width="500px">Indicar se o evento se refere a cadastramento inicial (o ingresso do trabalhador no empregador declarante é anterior à data de início da obrigatoriedade de envio de seus eventos não periódicos) ou se refere a um início de TSVE (o ingresso do trabalhador no empregador declarante é igual ou posterior à data de início da obrigatoriedade de envio de seus eventos não periódicos)<opcoes>S - Sim (Cadastramento Inicial); N - Não (Início de TSVE). <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.cadini or s2300_evttsvinicio.cadini == 0 %}{{ s2300_evttsvinicio.cadini }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1830,11 +1827,11 @@
             <td width="130px">codCateg</td>
             <td width="500px">Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1).</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.codcateg or s2300_evttsvinicio.codcateg == 0 %}{{ s2300_evttsvinicio.codcateg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1849,11 +1846,11 @@
             <td width="130px">dtInicio</td>
             <td width="500px">Data de início, que pode ser: a) Para o Cooperado, a data de ingresso na cooperativa; b) Para o Diretor Não Empregado, a data de posse no cargo; c) Para o Dirigente Sindical, a data de início do mandato no sindicato; d) Para o Estagiário, a data de início do estágio; e) Para o trabalhador avulso, a data de ingresso no ogmo ou no Sindicato; f) Para os demais trabalhadores, a data de início das atividades no empregador. <validacao> Devem ser observadas as seguintes regras: a) Deve ser posterior à data de nascimento do trabalhador. b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial; c) Se {cadIni} = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.dtinicio or s2300_evttsvinicio.dtinicio == 0 %}{{ s2300_evttsvinicio.dtinicio|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1868,11 +1865,11 @@
             <td width="130px">natAtividade</td>
             <td width="500px">Natureza da atividade, conforme opções abaixo<opcoes>1 - Trabalho Urbano; 2 - Trabalho Rural. <validacao> Preenchimento obrigatório para as categorias de avulso, cooperado e dirigente sindical. Não deve ser preenchido para as categorias Diretor não empregado, servidor público indicado a conselho, membro de conselho tutelar e estagiário. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2300_evttsvinicio.natatividade or s2300_evttsvinicio.natatividade == 0 %}{{ s2300_evttsvinicio.natatividade }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_evttsvinicio_visualizar' %}
-                <a href="{% url 's2300_evttsvinicio_salvar'  hash='{}'|json_id:s2300_evttsvinicio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300evtTSVInicio or perms.esocial.can_see_s2300evtTSVInicio %}
+                <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_evttsvinicio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1899,11 +1896,11 @@
             <td width="130px">codCargo</td>
             <td width="500px">Preencher com o código do cargo. <validacao> Deve ser um cargo existente na tabela de Cargos e Empregos Públicos - S-1030.</td>
             <td width="200px"><b>{% if s2300_cargofuncao.codcargo or s2300_cargofuncao.codcargo == 0 %}{{ s2300_cargofuncao.codcargo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cargofuncao_visualizar' %}
-                <a href="{% url 's2300_cargofuncao_salvar'  hash='{}'|json_id:s2300_cargofuncao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300cargoFuncao or perms.esocial.can_see_s2300cargoFuncao %}
+                <a href="{% url 's2300_cargofuncao_salvar' pk=s2300_cargofuncao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1918,11 +1915,11 @@
             <td width="130px">codFuncao</td>
             <td width="500px">Preencher com o código da função, se utilizado pelo empregador. <validacao> Se informada, deve ser uma função existente na tabela de Funções/Cargos em Comissão - S-1040.</td>
             <td width="200px"><b>{% if s2300_cargofuncao.codfuncao or s2300_cargofuncao.codfuncao == 0 %}{{ s2300_cargofuncao.codfuncao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_cargofuncao_visualizar' %}
-                <a href="{% url 's2300_cargofuncao_salvar'  hash='{}'|json_id:s2300_cargofuncao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300cargoFuncao or perms.esocial.can_see_s2300cargoFuncao %}
+                <a href="{% url 's2300_cargofuncao_salvar' pk=s2300_cargofuncao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1943,11 +1940,11 @@
             <td width="130px">vrSalFx</td>
             <td width="500px">Salário base do trabalhador, correspondente à parte fixa da remuneração. <validacao> Se {undSalFixo} for igual a [7], preencher com 0 (zero).</td>
             <td width="200px"><b>{% if s2300_remuneracao.vrsalfx or s2300_remuneracao.vrsalfx == 0 %}{{ s2300_remuneracao.vrsalfx }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_remuneracao_visualizar' %}
-                <a href="{% url 's2300_remuneracao_salvar'  hash='{}'|json_id:s2300_remuneracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300remuneracao or perms.esocial.can_see_s2300remuneracao %}
+                <a href="{% url 's2300_remuneracao_salvar' pk=s2300_remuneracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1962,11 +1959,11 @@
             <td width="130px">undSalFixo</td>
             <td width="500px">Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo<opcoes>1 - Por Hora; 2 - Por Dia; 3 - Por Semana; 4 - Por Quinzena; 5 - Por Mês; 6 - Por Tarefa; 7 - Não aplicável - salário exclusivamente variável. <valores_validos> 1, 2, 3, 4, 5, 6, 7.</td>
             <td width="200px"><b>{% if s2300_remuneracao.undsalfixo or s2300_remuneracao.undsalfixo == 0 %}{{ s2300_remuneracao.undsalfixo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_remuneracao_visualizar' %}
-                <a href="{% url 's2300_remuneracao_salvar'  hash='{}'|json_id:s2300_remuneracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300remuneracao or perms.esocial.can_see_s2300remuneracao %}
+                <a href="{% url 's2300_remuneracao_salvar' pk=s2300_remuneracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1981,11 +1978,11 @@
             <td width="130px">dscSalVar</td>
             <td width="500px">Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas. <validacao> Preenchimento obrigatório se {undSalFixo} for igual a [6, 7].</td>
             <td width="200px"><b>{% if s2300_remuneracao.dscsalvar or s2300_remuneracao.dscsalvar == 0 %}{{ s2300_remuneracao.dscsalvar }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_remuneracao_visualizar' %}
-                <a href="{% url 's2300_remuneracao_salvar'  hash='{}'|json_id:s2300_remuneracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300remuneracao or perms.esocial.can_see_s2300remuneracao %}
+                <a href="{% url 's2300_remuneracao_salvar' pk=s2300_remuneracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2006,11 +2003,11 @@
             <td width="130px">opcFGTS</td>
             <td width="500px">Opção pelo FGTS<opcoes>1 - Optante; 2 - Não Optante. <validacao> Para trabalhador admitido após 04/10/1988, o campo deve ser preenchido com [1] (Optante). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2300_fgts.opcfgts or s2300_fgts.opcfgts == 0 %}{{ s2300_fgts.opcfgts }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_fgts_visualizar' %}
-                <a href="{% url 's2300_fgts_salvar'  hash='{}'|json_id:s2300_fgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300fgts or perms.esocial.can_see_s2300fgts %}
+                <a href="{% url 's2300_fgts_salvar' pk=s2300_fgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2025,11 +2022,11 @@
             <td width="130px">dtOpcFGTS</td>
             <td width="500px">Informar a data de opção do trabalhador pelo FGTS. <validacao> Preenchimento obrigatório em caso de trabalhador optante pelo FGTS.</td>
             <td width="200px"><b>{% if s2300_fgts.dtopcfgts or s2300_fgts.dtopcfgts == 0 %}{{ s2300_fgts.dtopcfgts|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_fgts_visualizar' %}
-                <a href="{% url 's2300_fgts_salvar'  hash='{}'|json_id:s2300_fgts.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300fgts or perms.esocial.can_see_s2300fgts %}
+                <a href="{% url 's2300_fgts_salvar' pk=s2300_fgts.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2050,11 +2047,11 @@
             <td width="130px">categOrig</td>
             <td width="500px">Preencher com o código correspondente à categoria de origem do dirigente sindical. <validacao> Deve ser uma categoria diferente de 'Dirigente Sindical'.</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.categorig or s2300_infodirigentesindical.categorig == 0 %}{{ s2300_infodirigentesindical.categorig }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodirigentesindical_visualizar' %}
-                <a href="{% url 's2300_infodirigentesindical_salvar'  hash='{}'|json_id:s2300_infodirigentesindical.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDirigenteSindical or perms.esocial.can_see_s2300infoDirigenteSindical %}
+                <a href="{% url 's2300_infodirigentesindical_salvar' pk=s2300_infodirigentesindical.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2069,11 +2066,11 @@
             <td width="130px">cnpjOrigem</td>
             <td width="500px">Preencher com o CNPJ da empresa de origem do dirigente sindical. <validacao> O preenchimento é obrigatório se a categoria de origem do trabalhador corresponder a 'empregado' ou 'avulso'.</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.cnpjorigem or s2300_infodirigentesindical.cnpjorigem == 0 %}{{ s2300_infodirigentesindical.cnpjorigem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodirigentesindical_visualizar' %}
-                <a href="{% url 's2300_infodirigentesindical_salvar'  hash='{}'|json_id:s2300_infodirigentesindical.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDirigenteSindical or perms.esocial.can_see_s2300infoDirigenteSindical %}
+                <a href="{% url 's2300_infodirigentesindical_salvar' pk=s2300_infodirigentesindical.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2088,11 +2085,11 @@
             <td width="130px">dtAdmOrig</td>
             <td width="500px">Preencher com a data de admissão ou data de início do dirigente sindical na empresa de origem. <validacao> O preenchimento é obrigatório se a categoria de origem do trabalhador corresponder a 'empregado' ou 'avulso'.</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.dtadmorig or s2300_infodirigentesindical.dtadmorig == 0 %}{{ s2300_infodirigentesindical.dtadmorig|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodirigentesindical_visualizar' %}
-                <a href="{% url 's2300_infodirigentesindical_salvar'  hash='{}'|json_id:s2300_infodirigentesindical.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDirigenteSindical or perms.esocial.can_see_s2300infoDirigenteSindical %}
+                <a href="{% url 's2300_infodirigentesindical_salvar' pk=s2300_infodirigentesindical.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2107,11 +2104,11 @@
             <td width="130px">matricOrig</td>
             <td width="500px">Preencher com a matrícula do trabalhador na empresa de origem. <validacao> Preenchimento obrigatório se a categoria de origem do trabalhador corresponder a 'empregado'.</td>
             <td width="200px"><b>{% if s2300_infodirigentesindical.matricorig or s2300_infodirigentesindical.matricorig == 0 %}{{ s2300_infodirigentesindical.matricorig }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infodirigentesindical_visualizar' %}
-                <a href="{% url 's2300_infodirigentesindical_salvar'  hash='{}'|json_id:s2300_infodirigentesindical.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoDirigenteSindical or perms.esocial.can_see_s2300infoDirigenteSindical %}
+                <a href="{% url 's2300_infodirigentesindical_salvar' pk=s2300_infodirigentesindical.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2132,11 +2129,11 @@
             <td width="130px">categOrig</td>
             <td width="500px">Preencher com o código correspondente à categoria de origem do trabalhador cedido.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.categorig or s2300_infotrabcedido.categorig == 0 %}{{ s2300_infotrabcedido.categorig }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2151,11 +2148,11 @@
             <td width="130px">cnpjCednt</td>
             <td width="500px">Informar o CNPJ da empresa cedente. <validacao> Deve ser um CNPJ válido, com raiz diferente da empresa declarante. <regras_validacao> REGRA_VALIDA_CNPJ</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.cnpjcednt or s2300_infotrabcedido.cnpjcednt == 0 %}{{ s2300_infotrabcedido.cnpjcednt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2170,11 +2167,11 @@
             <td width="130px">matricCed</td>
             <td width="500px">Preencher com a matrícula do trabalhador no empregador de origem (Cedente).</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.matricced or s2300_infotrabcedido.matricced == 0 %}{{ s2300_infotrabcedido.matricced }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2189,11 +2186,11 @@
             <td width="130px">dtAdmCed</td>
             <td width="500px">Preencher com a data de admissão do trabalhador no empregador de origem (Cedente). <validacao> Deve ser uma data anterior a data de início informada no evento.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.dtadmced or s2300_infotrabcedido.dtadmced == 0 %}{{ s2300_infotrabcedido.dtadmced|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2208,11 +2205,11 @@
             <td width="130px">tpRegTrab</td>
             <td width="500px">Tipo de regime trabalhista<opcoes>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas; 2 - Estatutário. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.tpregtrab or s2300_infotrabcedido.tpregtrab == 0 %}{{ s2300_infotrabcedido.tpregtrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2227,11 +2224,11 @@
             <td width="130px">tpRegPrev</td>
             <td width="500px">Tipo de regime previdenciário conforme opções abaixo<opcoes>1 - Regime Geral da Previdência Social - RGPS; 2 - Regime Próprio de Previdência Social - RPPS; 3 - Regime de Previdência Social no Exterior. <validacao> Se {categOrig} for relativa a Empregado, não pode ser preenchido com [2]. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.tpregprev or s2300_infotrabcedido.tpregprev == 0 %}{{ s2300_infotrabcedido.tpregprev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2246,11 +2243,11 @@
             <td width="130px">infOnus</td>
             <td width="500px">Ônus da cessão/requisição<opcoes>1 - Ônus do Cedente; 2 - Ônus do Cessionário; 3 - Ônus do Cedente e Cessionário. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.infonus or s2300_infotrabcedido.infonus == 0 %}{{ s2300_infotrabcedido.infonus }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2265,11 +2262,11 @@
             <td width="130px">indRemunCargo</td>
             <td width="500px">Indicar se o servidor optou pela remuneração do cargo efetivo<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório se {codCateg} = [304]. Não preencher nos demais casos. Valores válidos: S, N.</td>
             <td width="200px"><b>{% if s2300_infotrabcedido.indremuncargo or s2300_infotrabcedido.indremuncargo == 0 %}{{ s2300_infotrabcedido.indremuncargo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infotrabcedido_visualizar' %}
-                <a href="{% url 's2300_infotrabcedido_salvar'  hash='{}'|json_id:s2300_infotrabcedido.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoTrabCedido or perms.esocial.can_see_s2300infoTrabCedido %}
+                <a href="{% url 's2300_infotrabcedido_salvar' pk=s2300_infotrabcedido.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2290,11 +2287,11 @@
             <td width="130px">natEstagio</td>
             <td width="500px">Natureza do Estágio<opcoes> O - Obrigatório; N - Não Obrigatório. <valores_validos> O, N.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.natestagio or s2300_infoestagiario.natestagio == 0 %}{{ s2300_infoestagiario.natestagio }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2309,11 +2306,11 @@
             <td width="130px">nivEstagio</td>
             <td width="500px">Informar o nível do estágio<opcoes>1 - Fundamental; 2 - Médio; 3 - Formação Profissional; 4 - Superior; 8 - Especial; 9 - Mãe social. (Lei 7644, de 1987). <valores_validos> 1, 2, 3, 4, 8, 9.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nivestagio or s2300_infoestagiario.nivestagio == 0 %}{{ s2300_infoestagiario.nivestagio }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2328,11 +2325,11 @@
             <td width="130px">areaAtuacao</td>
             <td width="500px">Área de atuação do estagiário.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.areaatuacao or s2300_infoestagiario.areaatuacao == 0 %}{{ s2300_infoestagiario.areaatuacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2347,11 +2344,11 @@
             <td width="130px">nrApol</td>
             <td width="500px">Nr. Apólice de Seguro.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nrapol or s2300_infoestagiario.nrapol == 0 %}{{ s2300_infoestagiario.nrapol }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2366,11 +2363,11 @@
             <td width="130px">vlrBolsa</td>
             <td width="500px">Preencher com o valor da bolsa, se o estágio for remunerado.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.vlrbolsa or s2300_infoestagiario.vlrbolsa == 0 %}{{ s2300_infoestagiario.vlrbolsa }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2385,11 +2382,11 @@
             <td width="130px">dtPrevTerm</td>
             <td width="500px">Data prevista para o término do estágio. <validacao> Deve ser uma data posterior à data de início do estágio.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.dtprevterm or s2300_infoestagiario.dtprevterm == 0 %}{{ s2300_infoestagiario.dtprevterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2409,11 +2406,11 @@
             <td width="130px">cnpjInstEnsino</td>
             <td width="500px">Preencher com o cnpj da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.cnpjinstensino or s2300_infoestagiario.cnpjinstensino == 0 %}{{ s2300_infoestagiario.cnpjinstensino }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2428,11 +2425,11 @@
             <td width="130px">nmRazao</td>
             <td width="500px">Informar a razão social.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nmrazao or s2300_infoestagiario.nmrazao == 0 %}{{ s2300_infoestagiario.nmrazao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2447,11 +2444,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.dsclograd or s2300_infoestagiario.dsclograd == 0 %}{{ s2300_infoestagiario.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2466,11 +2463,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.nrlograd or s2300_infoestagiario.nrlograd == 0 %}{{ s2300_infoestagiario.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2485,11 +2482,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.bairro or s2300_infoestagiario.bairro == 0 %}{{ s2300_infoestagiario.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2504,11 +2501,11 @@
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.cep or s2300_infoestagiario.cep == 0 %}{{ s2300_infoestagiario.cep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2523,11 +2520,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.codmunic or s2300_infoestagiario.codmunic == 0 %}{{ s2300_infoestagiario.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2542,11 +2539,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_infoestagiario.uf or s2300_infoestagiario.uf == 0 %}{{ s2300_infoestagiario.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_infoestagiario_visualizar' %}
-                <a href="{% url 's2300_infoestagiario_salvar'  hash='{}'|json_id:s2300_infoestagiario.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300infoEstagiario or perms.esocial.can_see_s2300infoEstagiario %}
+                <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_infoestagiario.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2567,11 +2564,11 @@
             <td width="130px">cnpjAgntInteg</td>
             <td width="500px">CNPJ do agente de integração. <validacao> Deve ser um CNPJ válido. <regras_validacao> REGRA_VALIDA_CNPJ</td>
             <td width="200px"><b>{% if s2300_ageintegracao.cnpjagntinteg or s2300_ageintegracao.cnpjagntinteg == 0 %}{{ s2300_ageintegracao.cnpjagntinteg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2586,11 +2583,11 @@
             <td width="130px">nmRazao</td>
             <td width="500px">Informar a razão social.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.nmrazao or s2300_ageintegracao.nmrazao == 0 %}{{ s2300_ageintegracao.nmrazao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2605,11 +2602,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.dsclograd or s2300_ageintegracao.dsclograd == 0 %}{{ s2300_ageintegracao.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2624,11 +2621,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.nrlograd or s2300_ageintegracao.nrlograd == 0 %}{{ s2300_ageintegracao.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2643,11 +2640,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.bairro or s2300_ageintegracao.bairro == 0 %}{{ s2300_ageintegracao.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2662,11 +2659,11 @@
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.cep or s2300_ageintegracao.cep == 0 %}{{ s2300_ageintegracao.cep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2681,11 +2678,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.codmunic or s2300_ageintegracao.codmunic == 0 %}{{ s2300_ageintegracao.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2700,11 +2697,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2300_ageintegracao.uf or s2300_ageintegracao.uf == 0 %}{{ s2300_ageintegracao.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_ageintegracao_visualizar' %}
-                <a href="{% url 's2300_ageintegracao_salvar'  hash='{}'|json_id:s2300_ageintegracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300ageIntegracao or perms.esocial.can_see_s2300ageIntegracao %}
+                <a href="{% url 's2300_ageintegracao_salvar' pk=s2300_ageintegracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2725,11 +2722,11 @@
             <td width="130px">cpfSupervisor</td>
             <td width="500px">CPF do responsável pela supervisão do estagiário. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2300_supervisorestagio.cpfsupervisor or s2300_supervisorestagio.cpfsupervisor == 0 %}{{ s2300_supervisorestagio.cpfsupervisor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_supervisorestagio_visualizar' %}
-                <a href="{% url 's2300_supervisorestagio_salvar'  hash='{}'|json_id:s2300_supervisorestagio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300supervisorEstagio or perms.esocial.can_see_s2300supervisorEstagio %}
+                <a href="{% url 's2300_supervisorestagio_salvar' pk=s2300_supervisorestagio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2744,11 +2741,11 @@
             <td width="130px">nmSuperv</td>
             <td width="500px">Nome do Supervisor do Estágio.</td>
             <td width="200px"><b>{% if s2300_supervisorestagio.nmsuperv or s2300_supervisorestagio.nmsuperv == 0 %}{{ s2300_supervisorestagio.nmsuperv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_supervisorestagio_visualizar' %}
-                <a href="{% url 's2300_supervisorestagio_salvar'  hash='{}'|json_id:s2300_supervisorestagio.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300supervisorEstagio or perms.esocial.can_see_s2300supervisorEstagio %}
+                <a href="{% url 's2300_supervisorestagio_salvar' pk=s2300_supervisorestagio.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2769,11 +2766,11 @@
             <td width="130px">cpfAnt</td>
             <td width="500px">Preencher com o número do CPF antigo do trabalhador.</td>
             <td width="200px"><b>{% if s2300_mudancacpf.cpfant or s2300_mudancacpf.cpfant == 0 %}{{ s2300_mudancacpf.cpfant }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_mudancacpf_visualizar' %}
-                <a href="{% url 's2300_mudancacpf_salvar'  hash='{}'|json_id:s2300_mudancacpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300mudancaCPF or perms.esocial.can_see_s2300mudancaCPF %}
+                <a href="{% url 's2300_mudancacpf_salvar' pk=s2300_mudancacpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2788,11 +2785,11 @@
             <td width="130px">dtAltCPF</td>
             <td width="500px">Data de alteração do CPF.</td>
             <td width="200px"><b>{% if s2300_mudancacpf.dtaltcpf or s2300_mudancacpf.dtaltcpf == 0 %}{{ s2300_mudancacpf.dtaltcpf|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_mudancacpf_visualizar' %}
-                <a href="{% url 's2300_mudancacpf_salvar'  hash='{}'|json_id:s2300_mudancacpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300mudancaCPF or perms.esocial.can_see_s2300mudancaCPF %}
+                <a href="{% url 's2300_mudancacpf_salvar' pk=s2300_mudancacpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2807,11 +2804,11 @@
             <td width="130px">observacao</td>
             <td width="500px">Observação.</td>
             <td width="200px"><b>{% if s2300_mudancacpf.observacao or s2300_mudancacpf.observacao == 0 %}{{ s2300_mudancacpf.observacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_mudancacpf_visualizar' %}
-                <a href="{% url 's2300_mudancacpf_salvar'  hash='{}'|json_id:s2300_mudancacpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300mudancaCPF or perms.esocial.can_see_s2300mudancaCPF %}
+                <a href="{% url 's2300_mudancacpf_salvar' pk=s2300_mudancacpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2832,11 +2829,11 @@
             <td width="130px">dtIniAfast</td>
             <td width="500px">Data de início do afastamento. <validacao> Devem ser observadas as seguintes regras: a) Deve ser igual ou posterior à data de início do TSVE; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador; c) Se {cadIni} = [N], deve ser anterior à data de alteração do CPF do trabalhador ({mudancaCPF/dtAltCPF}).</td>
             <td width="200px"><b>{% if s2300_afastamento.dtiniafast or s2300_afastamento.dtiniafast == 0 %}{{ s2300_afastamento.dtiniafast|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_afastamento_visualizar' %}
-                <a href="{% url 's2300_afastamento_salvar'  hash='{}'|json_id:s2300_afastamento.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300afastamento or perms.esocial.can_see_s2300afastamento %}
+                <a href="{% url 's2300_afastamento_salvar' pk=s2300_afastamento.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2851,11 +2848,11 @@
             <td width="130px">codMotAfast</td>
             <td width="500px">Preencher com o código do motivo de afastamento temporário, conforme tabela 18. <validacao> Deve ser um código existente na tabela 18.</td>
             <td width="200px"><b>{% if s2300_afastamento.codmotafast or s2300_afastamento.codmotafast == 0 %}{{ s2300_afastamento.codmotafast }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_afastamento_visualizar' %}
-                <a href="{% url 's2300_afastamento_salvar'  hash='{}'|json_id:s2300_afastamento.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300afastamento or perms.esocial.can_see_s2300afastamento %}
+                <a href="{% url 's2300_afastamento_salvar' pk=s2300_afastamento.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2876,11 +2873,11 @@
             <td width="130px">dtTerm</td>
             <td width="500px">Preencher com a data do término. <validacao> Devem ser observadas as seguintes regras: a) Deve ser igual ou posterior à data de início do TSVE; b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador.</td>
             <td width="200px"><b>{% if s2300_termino.dtterm or s2300_termino.dtterm == 0 %}{{ s2300_termino.dtterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2300_termino_visualizar' %}
-                <a href="{% url 's2300_termino_salvar'  hash='{}'|json_id:s2300_termino.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2300.can_see_s2300termino or perms.esocial.can_see_s2300termino %}
+                <a href="{% url 's2300_termino_salvar' pk=s2300_termino.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

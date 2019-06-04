@@ -25,7 +25,7 @@ import base64
 
 
 @login_required
-def listar(request, hash):
+def listar(request):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
         STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
@@ -34,23 +34,6 @@ def listar(request, hash):
         STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
         STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
         STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
-    for_print = 0
-
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     if True:
 
@@ -116,7 +99,6 @@ def listar(request, hash):
         efdreinf_processados = TransmissorEventosEfdreinf.objects. \
             filter(status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
 
-        request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'visao_geral'
 
         efdreinf_quant_cadastrados = len(efdreinf_cadastrados) or 0
@@ -128,7 +110,6 @@ def listar(request, hash):
         efdreinf_quant_processados = len(efdreinf_processados) or 0
 
         context = {
-            'tab': dict_hash['tab'],
             'esocial_quant_cadastrados': esocial_quant_cadastrados,
             'esocial_quant_importados': esocial_quant_importados,
             'esocial_quant_validados': esocial_quant_validados,
@@ -141,10 +122,7 @@ def listar(request, hash):
             'efdreinf_quant_erros': efdreinf_quant_erros,
             'efdreinf_quant_enviados': efdreinf_quant_enviados,
             'efdreinf_quant_processados': efdreinf_quant_processados,
-            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
         }
 
         return render(request, 'visao_geral.html', context)

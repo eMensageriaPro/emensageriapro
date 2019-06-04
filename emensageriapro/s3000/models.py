@@ -99,8 +99,11 @@ class s3000ideFolhaPagto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s3000ideFolhaPagto", "Can view S3000IDEFOLHAPAGTO"),
-            ("can_view_menu_s3000ideFolhaPagto", "Can view menu S3000IDEFOLHAPAGTO"),)
+            ("can_see_list_s3000ideFolhaPagto", u"Pode ver listagem do modelo S3000IDEFOLHAPAGTO"),
+            ("can_see_data_s3000ideFolhaPagto", u"Pode visualizar o conteúdo do modelo S3000IDEFOLHAPAGTO"),
+            ("can_see_menu_s3000ideFolhaPagto", u"Pode visualizar no menu o modelo S3000IDEFOLHAPAGTO"),
+            ("can_print_list_s3000ideFolhaPagto", u"Pode imprimir listagem do modelo S3000IDEFOLHAPAGTO"),
+            ("can_print_data_s3000ideFolhaPagto", u"Pode imprimir o conteúdo do modelo S3000IDEFOLHAPAGTO"), )
             
         ordering = [
             's3000_evtexclusao',
@@ -158,8 +161,11 @@ class s3000ideTrabalhador(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s3000ideTrabalhador", "Can view S3000IDETRABALHADOR"),
-            ("can_view_menu_s3000ideTrabalhador", "Can view menu S3000IDETRABALHADOR"),)
+            ("can_see_list_s3000ideTrabalhador", u"Pode ver listagem do modelo S3000IDETRABALHADOR"),
+            ("can_see_data_s3000ideTrabalhador", u"Pode visualizar o conteúdo do modelo S3000IDETRABALHADOR"),
+            ("can_see_menu_s3000ideTrabalhador", u"Pode visualizar no menu o modelo S3000IDETRABALHADOR"),
+            ("can_print_list_s3000ideTrabalhador", u"Pode imprimir listagem do modelo S3000IDETRABALHADOR"),
+            ("can_print_data_s3000ideTrabalhador", u"Pode imprimir o conteúdo do modelo S3000IDETRABALHADOR"), )
             
         ordering = [
             's3000_evtexclusao',

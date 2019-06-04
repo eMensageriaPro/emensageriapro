@@ -66,7 +66,6 @@ class s2250evtAvPrevioList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2250evtAvPrevioDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2250evtAvPrevio.objects.all()

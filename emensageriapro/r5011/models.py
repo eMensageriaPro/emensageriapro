@@ -100,8 +100,11 @@ class r5011RCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011RCPRB", "Can view R5011RCPRB"),
-            ("can_view_menu_r5011RCPRB", "Can view menu R5011RCPRB"),)
+            ("can_see_list_r5011RCPRB", u"Pode ver listagem do modelo R5011RCPRB"),
+            ("can_see_data_r5011RCPRB", u"Pode visualizar o conteúdo do modelo R5011RCPRB"),
+            ("can_see_menu_r5011RCPRB", u"Pode visualizar no menu o modelo R5011RCPRB"),
+            ("can_print_list_r5011RCPRB", u"Pode imprimir listagem do modelo R5011RCPRB"),
+            ("can_print_data_r5011RCPRB", u"Pode imprimir o conteúdo do modelo R5011RCPRB"), )
             
         ordering = [
             'r5011_infototalcontrib',
@@ -161,8 +164,11 @@ class r5011RComl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011RComl", "Can view R5011RCOML"),
-            ("can_view_menu_r5011RComl", "Can view menu R5011RCOML"),)
+            ("can_see_list_r5011RComl", u"Pode ver listagem do modelo R5011RCOML"),
+            ("can_see_data_r5011RComl", u"Pode visualizar o conteúdo do modelo R5011RCOML"),
+            ("can_see_menu_r5011RComl", u"Pode visualizar no menu o modelo R5011RCOML"),
+            ("can_print_list_r5011RComl", u"Pode imprimir listagem do modelo R5011RCOML"),
+            ("can_print_data_r5011RComl", u"Pode imprimir o conteúdo do modelo R5011RCOML"), )
             
         ordering = [
             'r5011_infototalcontrib',
@@ -228,8 +234,11 @@ class r5011RPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011RPrest", "Can view R5011RPREST"),
-            ("can_view_menu_r5011RPrest", "Can view menu R5011RPREST"),)
+            ("can_see_list_r5011RPrest", u"Pode ver listagem do modelo R5011RPREST"),
+            ("can_see_data_r5011RPrest", u"Pode visualizar o conteúdo do modelo R5011RPREST"),
+            ("can_see_menu_r5011RPrest", u"Pode visualizar no menu o modelo R5011RPREST"),
+            ("can_print_list_r5011RPrest", u"Pode imprimir listagem do modelo R5011RPREST"),
+            ("can_print_data_r5011RPrest", u"Pode imprimir o conteúdo do modelo R5011RPREST"), )
             
         ordering = [
             'r5011_infototalcontrib',
@@ -295,8 +304,11 @@ class r5011RRecRepAD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011RRecRepAD", "Can view R5011RRECREPAD"),
-            ("can_view_menu_r5011RRecRepAD", "Can view menu R5011RRECREPAD"),)
+            ("can_see_list_r5011RRecRepAD", u"Pode ver listagem do modelo R5011RRECREPAD"),
+            ("can_see_data_r5011RRecRepAD", u"Pode visualizar o conteúdo do modelo R5011RRECREPAD"),
+            ("can_see_menu_r5011RRecRepAD", u"Pode visualizar no menu o modelo R5011RRECREPAD"),
+            ("can_print_list_r5011RRecRepAD", u"Pode imprimir listagem do modelo R5011RRECREPAD"),
+            ("can_print_data_r5011RRecRepAD", u"Pode imprimir o conteúdo do modelo R5011RRECREPAD"), )
             
         ordering = [
             'r5011_infototalcontrib',
@@ -358,8 +370,11 @@ class r5011RTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011RTom", "Can view R5011RTOM"),
-            ("can_view_menu_r5011RTom", "Can view menu R5011RTOM"),)
+            ("can_see_list_r5011RTom", u"Pode ver listagem do modelo R5011RTOM"),
+            ("can_see_data_r5011RTom", u"Pode visualizar o conteúdo do modelo R5011RTOM"),
+            ("can_see_menu_r5011RTom", u"Pode visualizar no menu o modelo R5011RTOM"),
+            ("can_print_list_r5011RTom", u"Pode imprimir listagem do modelo R5011RTOM"),
+            ("can_print_data_r5011RTom", u"Pode imprimir o conteúdo do modelo R5011RTOM"), )
             
         ordering = [
             'r5011_infototalcontrib',
@@ -418,8 +433,11 @@ class r5011infoCRTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011infoCRTom", "Can view R5011INFOCRTOM"),
-            ("can_view_menu_r5011infoCRTom", "Can view menu R5011INFOCRTOM"),)
+            ("can_see_list_r5011infoCRTom", u"Pode ver listagem do modelo R5011INFOCRTOM"),
+            ("can_see_data_r5011infoCRTom", u"Pode visualizar o conteúdo do modelo R5011INFOCRTOM"),
+            ("can_see_menu_r5011infoCRTom", u"Pode visualizar no menu o modelo R5011INFOCRTOM"),
+            ("can_print_list_r5011infoCRTom", u"Pode imprimir listagem do modelo R5011INFOCRTOM"),
+            ("can_print_data_r5011infoCRTom", u"Pode imprimir o conteúdo do modelo R5011INFOCRTOM"), )
             
         ordering = [
             'r5011_rtom',
@@ -476,8 +494,11 @@ class r5011infoTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011infoTotalContrib", "Can view R5011INFOTOTALCONTRIB"),
-            ("can_view_menu_r5011infoTotalContrib", "Can view menu R5011INFOTOTALCONTRIB"),)
+            ("can_see_list_r5011infoTotalContrib", u"Pode ver listagem do modelo R5011INFOTOTALCONTRIB"),
+            ("can_see_data_r5011infoTotalContrib", u"Pode visualizar o conteúdo do modelo R5011INFOTOTALCONTRIB"),
+            ("can_see_menu_r5011infoTotalContrib", u"Pode visualizar no menu o modelo R5011INFOTOTALCONTRIB"),
+            ("can_print_list_r5011infoTotalContrib", u"Pode imprimir listagem do modelo R5011INFOTOTALCONTRIB"),
+            ("can_print_data_r5011infoTotalContrib", u"Pode imprimir o conteúdo do modelo R5011INFOTOTALCONTRIB"), )
             
         ordering = [
             'r5011_evttotalcontrib',
@@ -539,8 +560,11 @@ class r5011regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011regOcorrs", "Can view R5011REGOCORRS"),
-            ("can_view_menu_r5011regOcorrs", "Can view menu R5011REGOCORRS"),)
+            ("can_see_list_r5011regOcorrs", u"Pode ver listagem do modelo R5011REGOCORRS"),
+            ("can_see_data_r5011regOcorrs", u"Pode visualizar o conteúdo do modelo R5011REGOCORRS"),
+            ("can_see_menu_r5011regOcorrs", u"Pode visualizar no menu o modelo R5011REGOCORRS"),
+            ("can_print_list_r5011regOcorrs", u"Pode imprimir listagem do modelo R5011REGOCORRS"),
+            ("can_print_data_r5011regOcorrs", u"Pode imprimir o conteúdo do modelo R5011REGOCORRS"), )
             
         ordering = [
             'r5011_evttotalcontrib',

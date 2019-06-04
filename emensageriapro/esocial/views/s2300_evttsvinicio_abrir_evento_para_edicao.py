@@ -72,70 +72,64 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def abrir_evento_para_edicao(request, hash):
+def abrir_evento_para_edicao(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
 
-    dict_hash = get_hash_url(hash)
-    s2300_evttsvinicio_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('esocial.can_open_event_s2300evtTSVInicio'):
+    if request.user.has_perm('esocial.can_open_s2300evtTSVInicio'):
 
-        if s2300_evttsvinicio_id:
-            s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, excluido=False, id=s2300_evttsvinicio_id)
-    
-            status_list = [
-                STATUS_EVENTO_CADASTRADO,
-                STATUS_EVENTO_IMPORTADO,
-                STATUS_EVENTO_DUPLICADO,
-                STATUS_EVENTO_GERADO,
-                STATUS_EVENTO_GERADO_ERRO,
-                STATUS_EVENTO_ASSINADO,
-                STATUS_EVENTO_ASSINADO_ERRO,
-                STATUS_EVENTO_VALIDADO,
-                STATUS_EVENTO_VALIDADO_ERRO,
-                STATUS_EVENTO_AGUARD_PRECEDENCIA,
-                STATUS_EVENTO_AGUARD_ENVIO,
-                STATUS_EVENTO_ENVIADO_ERRO
-            ]
-    
-            if s2300_evttsvinicio.status in status_list:
-                s2300evtTSVInicio.objects.filter(id=s2300_evttsvinicio_id).update(status=STATUS_EVENTO_CADASTRADO,
-                                                                              arquivo_original=0)
-                arquivo = 'arquivos/Eventos/s2300_evttsvinicio/%s.xml' % (s2300_evttsvinicio.identidade)
-    
-                if os.path.exists(BASE_DIR + '/' + arquivo):
-    
-                    data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
-                    dad = (BASE_DIR, s2300_evttsvinicio.identidade, BASE_DIR, s2300_evttsvinicio.identidade, data_hora_atual)
-                    os.system('mv %s/arquivos/Eventos/s2300_evttsvinicio/%s.xml %s/arquivos/Eventos/s2300_evttsvinicio/%s_backup_%s.xml' % dad)
-                    gravar_nome_arquivo('/arquivos/Eventos/s2300_evttsvinicio/%s_backup_%s.xml' % (s2300_evttsvinicio.identidade, data_hora_atual),
-                        1)
-    
-                messages.success(request, 'Evento aberto para edição!')
-                usuario_id = request.user.id
-                gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                    's2300_evttsvinicio', s2300_evttsvinicio_id, usuario_id, 1)
-    
-                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2300_evttsvinicio_id )
-                return redirect('s2300_evttsvinicio_salvar', hash=url_hash)
-                
-            else:
-            
-                messages.error(request, u'''
-                    Não foi possível abrir o evento para edição! Somente é possível
-                    abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-                    "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-                     ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-                     "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
-                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    
-        messages.error(request, 'Erro ao abrir evento para edição!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=pk)
+
+        status_list = [
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO,
+            STATUS_EVENTO_GERADO,
+            STATUS_EVENTO_GERADO_ERRO,
+            STATUS_EVENTO_ASSINADO,
+            STATUS_EVENTO_ASSINADO_ERRO,
+            STATUS_EVENTO_VALIDADO,
+            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_AGUARD_PRECEDENCIA,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_ENVIADO_ERRO
+        ]
+
+        if s2300_evttsvinicio.status in status_list:
         
+            s2300evtTSVInicio.objects.filter(id=pk).update(
+                status=STATUS_EVENTO_CADASTRADO,
+                arquivo_original=0)
+                                                                          
+            arquivo = 'arquivos/Eventos/s2300_evttsvinicio/%s.xml' % (s2300_evttsvinicio.identidade)
+
+            if os.path.exists(BASE_DIR + '/' + arquivo):
+
+                data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
+                dad = (BASE_DIR, s2300_evttsvinicio.identidade, BASE_DIR, s2300_evttsvinicio.identidade, data_hora_atual)
+                os.system('mv %s/arquivos/Eventos/s2300_evttsvinicio/%s.xml %s/arquivos/Eventos/s2300_evttsvinicio/%s_backup_%s.xml' % dad)
+                gravar_nome_arquivo('/arquivos/Eventos/s2300_evttsvinicio/%s_backup_%s.xml' % (s2300_evttsvinicio.identidade, data_hora_atual),
+                    1)
+
+            messages.success(request, 'Evento aberto para edição!')
+            request.user.id = request.user.id
+            
+            gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
+                's2300_evttsvinicio', pk, request.user.id, 1)
+            
+        else:
+        
+            messages.error(request, u'''
+                Não foi possível abrir o evento para edição! Somente é possível
+                abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
+                "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
+                 ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
+                 "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
+
     else:
     
         messages.error(request, u'''Você não possui permissão para abrir evento para edição. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+    return redirect('s2300_evttsvinicio_salvar', pk=pk, tab='master')

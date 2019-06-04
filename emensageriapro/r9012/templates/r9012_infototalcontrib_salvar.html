@@ -34,65 +34,62 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        r9012infoTotalContrib
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">r9012infoTotalContrib</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.r9012.can_view_r9012infoTotalContrib %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_return_page:'r9012_infototalcontrib_salvar'|json_return_hash:hash|json_id:r9012_infototalcontrib_id|json_print:0|base64_encode_me %}">
-                            Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if r9012_infototalcontrib_id %}
+                    {% if pk %}
+                        {% if perms.r9012.can_see_r9012infoTotalContrib %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='master' %}">
+                                Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.r9012.can_view_r9012_totapurmen %}
+                            {% if perms.r9012.can_see_r9012totApurMen %}
                                 <li {% if tab == 'r9012_totapurmen' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:0|json_tab:'r9012_totapurmen'|base64_encode_me %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurmen' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9012.can_view_r9012_totapurqui %}
+                            {% if perms.r9012.can_see_r9012totApurQui %}
                                 <li {% if tab == 'r9012_totapurqui' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:0|json_tab:'r9012_totapurqui'|base64_encode_me %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurqui' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9012.can_view_r9012_totapurdec %}
+                            {% if perms.r9012.can_see_r9012totApurDec %}
                                 <li {% if tab == 'r9012_totapurdec' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:0|json_tab:'r9012_totapurdec'|base64_encode_me %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurdec' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9012.can_view_r9012_totapursem %}
+                            {% if perms.r9012.can_see_r9012totApurSem %}
                                 <li {% if tab == 'r9012_totapursem' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:0|json_tab:'r9012_totapursem'|base64_encode_me %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapursem' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r9012.can_view_r9012_totapurdia %}
+                            {% if perms.r9012.can_see_r9012totApurDia %}
                                 <li {% if tab == 'r9012_totapurdia' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:0|json_tab:'r9012_totapurdia'|base64_encode_me %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurdia' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</a>
                                 </li>
                             {% endif %}
@@ -102,275 +99,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if r9012_infototalcontrib_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in r9012_infototalcontrib_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if r9012_infototalcontrib_id %}
-   {% if r9012_infototalcontrib.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ r9012_infototalcontrib.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r9012_infototalcontrib.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r9012_infototalcontrib.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not r9012_infototalcontrib.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r9012_infototalcontrib.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ r9012_infototalcontrib.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if r9012_infototalcontrib.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ r9012_infototalcontrib.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.r9012.change_r9012_infototalcontrib or perms.r9012.add_r9012_infototalcontrib %}
-                <form action="#" id="id_form_r9012_infototalcontrib" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if r9012_infototalcontrib.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r9012_infototalcontrib.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not r9012_infototalcontrib.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/r9012_infototalcontrib.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if r9012_infototalcontrib_id %}
-
-                                {% if perms.r9012.add_r9012infoTotalContrib %}
-                                    <a href="{% url 'r9012_infototalcontrib_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.r9012.can_view_r9012_infototalcontrib or perms.r9012.can_view_r9012_infototalcontrib %}
-                                <a href="{% url 'r9012_infototalcontrib'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r9012.can_view_r9012_infototalcontrib and r9012_infototalcontrib_id %}
-                                <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.r9012.can_view_r9012_infototalcontrib and r9012_infototalcontrib_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r9012.change_r9012_infototalcontrib or perms.r9012.add_r9012_infototalcontrib %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.r9012.delete_r9012_infototalcontrib and r9012_infototalcontrib_id %}
-
-                            <a href="{% url 'r9012_infototalcontrib_apagar' hash='{}'|json_id:r9012_infototalcontrib_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if r9012_infototalcontrib.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r9012_infototalcontrib.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.r9012.change_r9012_infototalcontrib or perms.r9012.add_r9012_infototalcontrib %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if r9012_infototalcontrib_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</h3>
+                    </div>
+
+                    {% if perms.r9012.change_r9012infoTotalContrib or perms.r9012.add_r9012infoTotalContrib %}
+                        {% if r9012_infototalcontrib_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_r9012_infototalcontrib" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/r9012_infototalcontrib.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.r9012.add_r9012infoTotalContrib %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9012_infototalcontrib_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r9012.can_see_list_r9012infoTotalContrib %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9012_infototalcontrib' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r9012.can_print_data_r9012infoTotalContrib %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9012_infototalcontrib_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.r9012.change_r9012infoTotalContrib %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r9012.delete_r9012infoTotalContrib %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r9012_infototalcontrib_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.r9012.add_r9012infoTotalContrib %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.r9012.add_r9012infoTotalContrib or perms.r9012.change_r9012infoTotalContrib %}
+
+                        {% if r9012_infototalcontrib_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_r9012_totapurmen -->
+        <!-- begin_r9012_totapurmen -->
 
-            {% if tab == 'r9012_totapurmen' or for_print %} 
+            {% if tab == 'r9012_totapurmen' %} 
 
-                {% if perms.r9012.can_view_r9012_totapurmen %} 
+                {% if perms.r9012.can_see_data_r9012totApurMen %}
 
-                    {% if perms.r9012.change_r9012_totapurmen or perms.r9012.add_r9012totApurMen %}
+                    {% if perms.r9012.add_r9012totApurMen or perms.r9012.change_r9012totApurMen %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -379,95 +384,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9012.change_r9012_totapurmen or perms.r9012.add_r9012totApurMen %}
+                                    {% if perms.r9012.add_r9012totApurMen or perms.r9012.can_see_list_r9012totApurMen  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9012.add_r9012totApurMen %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9012.add_r9012totApurMen %}            
+
                                     <!-- begin_form_r9012_totapurmen --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9012_totapurmen" action="{% url 'r9012_totapurmen_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9012_totapurmen" 
+                                              action="{% url 'r9012_totapurmen_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9012_totapurmen.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9012_totapurmen -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9012_totapurmen -->
+                                {% endif %} 
+
+                                {% if perms.r9012.can_see_r9012totApurMen %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9012_totapurmen --> 
 
-                                    {% include 'tables/r9012_totapurmen.html' %}
-                                        
-                                    <!-- end_table_r9012_totapurmen --> 
-
+                                        {% include 'tables/r9012_totapurmen.html' %}
+                                        <!-- end_table_r9012_totapurmen --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9012_totapurmen -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9012_totapurqui -->
+        <!-- begin_r9012_totapurqui -->
 
-            {% if tab == 'r9012_totapurqui' or for_print %} 
+            {% if tab == 'r9012_totapurqui' %} 
 
-                {% if perms.r9012.can_view_r9012_totapurqui %} 
+                {% if perms.r9012.can_see_data_r9012totApurQui %}
 
-                    {% if perms.r9012.change_r9012_totapurqui or perms.r9012.add_r9012totApurQui %}
+                    {% if perms.r9012.add_r9012totApurQui or perms.r9012.change_r9012totApurQui %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -476,95 +493,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9012.change_r9012_totapurqui or perms.r9012.add_r9012totApurQui %}
+                                    {% if perms.r9012.add_r9012totApurQui or perms.r9012.can_see_list_r9012totApurQui  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9012.add_r9012totApurQui %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9012.add_r9012totApurQui %}            
+
                                     <!-- begin_form_r9012_totapurqui --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9012_totapurqui" action="{% url 'r9012_totapurqui_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9012_totapurqui" 
+                                              action="{% url 'r9012_totapurqui_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9012_totapurqui.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9012_totapurqui -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9012_totapurqui -->
+                                {% endif %} 
+
+                                {% if perms.r9012.can_see_r9012totApurQui %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9012_totapurqui --> 
 
-                                    {% include 'tables/r9012_totapurqui.html' %}
-                                        
-                                    <!-- end_table_r9012_totapurqui --> 
-
+                                        {% include 'tables/r9012_totapurqui.html' %}
+                                        <!-- end_table_r9012_totapurqui --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9012_totapurqui -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9012_totapurdec -->
+        <!-- begin_r9012_totapurdec -->
 
-            {% if tab == 'r9012_totapurdec' or for_print %} 
+            {% if tab == 'r9012_totapurdec' %} 
 
-                {% if perms.r9012.can_view_r9012_totapurdec %} 
+                {% if perms.r9012.can_see_data_r9012totApurDec %}
 
-                    {% if perms.r9012.change_r9012_totapurdec or perms.r9012.add_r9012totApurDec %}
+                    {% if perms.r9012.add_r9012totApurDec or perms.r9012.change_r9012totApurDec %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -573,95 +602,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9012.change_r9012_totapurdec or perms.r9012.add_r9012totApurDec %}
+                                    {% if perms.r9012.add_r9012totApurDec or perms.r9012.can_see_list_r9012totApurDec  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9012.add_r9012totApurDec %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9012.add_r9012totApurDec %}            
+
                                     <!-- begin_form_r9012_totapurdec --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9012_totapurdec" action="{% url 'r9012_totapurdec_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9012_totapurdec" 
+                                              action="{% url 'r9012_totapurdec_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9012_totapurdec.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9012_totapurdec -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9012_totapurdec -->
+                                {% endif %} 
+
+                                {% if perms.r9012.can_see_r9012totApurDec %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9012_totapurdec --> 
 
-                                    {% include 'tables/r9012_totapurdec.html' %}
-                                        
-                                    <!-- end_table_r9012_totapurdec --> 
-
+                                        {% include 'tables/r9012_totapurdec.html' %}
+                                        <!-- end_table_r9012_totapurdec --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9012_totapurdec -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9012_totapursem -->
+        <!-- begin_r9012_totapursem -->
 
-            {% if tab == 'r9012_totapursem' or for_print %} 
+            {% if tab == 'r9012_totapursem' %} 
 
-                {% if perms.r9012.can_view_r9012_totapursem %} 
+                {% if perms.r9012.can_see_data_r9012totApurSem %}
 
-                    {% if perms.r9012.change_r9012_totapursem or perms.r9012.add_r9012totApurSem %}
+                    {% if perms.r9012.add_r9012totApurSem or perms.r9012.change_r9012totApurSem %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -670,95 +711,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9012.change_r9012_totapursem or perms.r9012.add_r9012totApurSem %}
+                                    {% if perms.r9012.add_r9012totApurSem or perms.r9012.can_see_list_r9012totApurSem  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9012.add_r9012totApurSem %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9012.add_r9012totApurSem %}            
+
                                     <!-- begin_form_r9012_totapursem --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9012_totapursem" action="{% url 'r9012_totapursem_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9012_totapursem" 
+                                              action="{% url 'r9012_totapursem_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9012_totapursem.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9012_totapursem -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9012_totapursem -->
+                                {% endif %} 
+
+                                {% if perms.r9012.can_see_r9012totApurSem %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9012_totapursem --> 
 
-                                    {% include 'tables/r9012_totapursem.html' %}
-                                        
-                                    <!-- end_table_r9012_totapursem --> 
-
+                                        {% include 'tables/r9012_totapursem.html' %}
+                                        <!-- end_table_r9012_totapursem --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9012_totapursem -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r9012_totapurdia -->
+        <!-- begin_r9012_totapurdia -->
 
-            {% if tab == 'r9012_totapurdia' or for_print %} 
+            {% if tab == 'r9012_totapurdia' %} 
 
-                {% if perms.r9012.can_view_r9012_totapurdia %} 
+                {% if perms.r9012.can_see_data_r9012totApurDia %}
 
-                    {% if perms.r9012.change_r9012_totapurdia or perms.r9012.add_r9012totApurDia %}
+                    {% if perms.r9012.add_r9012totApurDia or perms.r9012.change_r9012totApurDia %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -767,75 +820,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r9012.change_r9012_totapurdia or perms.r9012.add_r9012totApurDia %}
+                                    {% if perms.r9012.add_r9012totApurDia or perms.r9012.can_see_list_r9012totApurDia  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r9012.add_r9012totApurDia %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r9012.add_r9012totApurDia %}            
+
                                     <!-- begin_form_r9012_totapurdia --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r9012_totapurdia" action="{% url 'r9012_totapurdia_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r9012_totapurdia" 
+                                              action="{% url 'r9012_totapurdia_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r9012_totapurdia.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r9012_totapurdia -->
-                                    {% endif %} 
+
+                                <!-- end_form_r9012_totapurdia -->
+                                {% endif %} 
+
+                                {% if perms.r9012.can_see_r9012totApurDia %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r9012_totapurdia --> 
 
-                                    {% include 'tables/r9012_totapurdia.html' %}
-                                        
-                                    <!-- end_table_r9012_totapurdia --> 
-
+                                        {% include 'tables/r9012_totapurdia.html' %}
+                                        <!-- end_table_r9012_totapurdia --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r9012_totapurdia -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

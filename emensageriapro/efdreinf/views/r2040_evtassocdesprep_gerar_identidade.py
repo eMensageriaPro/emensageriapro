@@ -56,16 +56,13 @@ from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
-
+from emensageriapro.functions import identidade_evento
 
 
 @login_required
-def gerar_identidade(request, chave, evento_id):
-    from emensageriapro.functions import identidade_evento
+def gerar_identidade(request, pk):
         
-    obj = get_object_or_404(r2040evtAssocDespRep, id = evento_id)
+    obj = get_object_or_404(r2040evtAssocDespRep, id=pk)
     ident = identidade_evento(obj)
-    mensagem = ident
     
-    return HttpResponse(mensagem)
-
+    return HttpResponse(ident)

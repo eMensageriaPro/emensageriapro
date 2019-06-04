@@ -66,7 +66,6 @@ class s2260evtConvIntermList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2260evtConvIntermDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2260evtConvInterm.objects.all()

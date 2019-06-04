@@ -71,83 +71,65 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('efdreinf.can_see_r2040evtAssocDespRep'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2040_evtassocdesprep_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('efdreinf.can_view_r2040evtAssocDespRep'):
-        r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=r2040_evtassocdesprep_id)
-        r2040_evtassocdesprep_lista = r2040evtAssocDespRep.objects.filter(id=r2040_evtassocdesprep_id).all()
+        r2040_evtassocdesprep = get_object_or_404(r2040evtAssocDespRep, id=pk)
+        r2040_evtassocdesprep_lista = r2040evtAssocDespRep.objects.filter(id=pk).all()
 
         
         r2040_recursosrep_lista = r2040recursosRep.objects.filter(r2040_evtassocdesprep_id__in = listar_ids(r2040_evtassocdesprep_lista) ).all()
         r2040_inforecurso_lista = r2040infoRecurso.objects.filter(r2040_recursosrep_id__in = listar_ids(r2040_recursosrep_lista) ).all()
         r2040_infoproc_lista = r2040infoProc.objects.filter(r2040_recursosrep_id__in = listar_ids(r2040_recursosrep_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r2040_evtassocdesprep'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 'r2040_evtassocdesprep'
 
         context = {
             'r2040_evtassocdesprep_lista': r2040_evtassocdesprep_lista,
-            'r2040_evtassocdesprep_id': r2040_evtassocdesprep_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             'r2040_evtassocdesprep': r2040_evtassocdesprep,
-            
-            
             'r2040_recursosrep_lista': r2040_recursosrep_lista,
             'r2040_inforecurso_lista': r2040_inforecurso_lista,
             'r2040_infoproc_lista': r2040_infoproc_lista,
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r2040_evtassocdesprep', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='r2040_evtassocdesprep_verificar.html',
-                                           filename="r2040_evtassocdesprep.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='r2040_evtassocdesprep_verificar.html',
+                filename="r2040_evtassocdesprep.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('r2040_evtassocdesprep_verificar.html', context)
             filename = "%s.xls" % r2040_evtassocdesprep.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('r2040_evtassocdesprep_verificar.html', context)
             filename = "%s.csv" % r2040_evtassocdesprep.identidade
@@ -162,7 +144,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['efdreinf', ],
             'paginas': ['r2040_evtassocdesprep', ],
             'data': datetime.now(),

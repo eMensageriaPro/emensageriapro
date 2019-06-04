@@ -15,7 +15,7 @@
     <label id="s5003_ideestablot__s5003_evtbasesfgts__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*</label>
     {% if not for_print %}
       {% if s5003_ideestablot_form.s5003_evtbasesfgts.value %}
-        <a id="s5003_ideestablot__s5003_evtbasesfgts__div_acessar" href="{% url 's5003_evtbasesfgts_salvar' hash='{}'|json_id:s5003_ideestablot_form.s5003_evtbasesfgts.value|json_print:0|base64_encode_me %}">
+        <a id="s5003_ideestablot__s5003_evtbasesfgts__div_acessar" href="{% url 's5003_evtbasesfgts_salvar' pk=s5003_ideestablot_form.s5003_evtbasesfgts.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

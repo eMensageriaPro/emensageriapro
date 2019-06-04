@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2240evtExpRisco'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2240_evtexprisco_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2240evtExpRisco'):
-        s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id=s2240_evtexprisco_id)
-        s2240_evtexprisco_lista = s2240evtExpRisco.objects.filter(id=s2240_evtexprisco_id).all()
+        s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id=pk)
+        s2240_evtexprisco_lista = s2240evtExpRisco.objects.filter(id=pk).all()
 
         
         s2240_iniexprisco_infoamb_lista = s2240iniExpRiscoinfoAmb.objects.filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).all()
@@ -109,15 +95,14 @@ def verificar(request, hash):
         s2240_fimexprisco_infoamb_lista = s2240fimExpRiscoinfoAmb.objects.filter(s2240_fimexprisco_id__in = listar_ids(s2240_fimexprisco_lista) ).all()
         s2240_fimexprisco_respreg_lista = s2240fimExpRiscorespReg.objects.filter(s2240_evtexprisco_id__in = listar_ids(s2240_evtexprisco_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2240_evtexprisco'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2240_evtexprisco'
 
         context = {
             's2240_evtexprisco_lista': s2240_evtexprisco_lista,
-            's2240_evtexprisco_id': s2240_evtexprisco_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2240_evtexprisco': s2240_evtexprisco,
-            
-            
             's2240_iniexprisco_infoamb_lista': s2240_iniexprisco_infoamb_lista,
             's2240_iniexprisco_ativpericinsal_lista': s2240_iniexprisco_ativpericinsal_lista,
             's2240_iniexprisco_fatrisco_lista': s2240_iniexprisco_fatrisco_lista,
@@ -133,45 +118,42 @@ def verificar(request, hash):
             's2240_fimexprisco_lista': s2240_fimexprisco_lista,
             's2240_fimexprisco_infoamb_lista': s2240_fimexprisco_infoamb_lista,
             's2240_fimexprisco_respreg_lista': s2240_fimexprisco_respreg_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2240_evtexprisco', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2240_evtexprisco_verificar.html',
-                                           filename="s2240_evtexprisco.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2240_evtexprisco_verificar.html',
+                filename="s2240_evtexprisco.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2240_evtexprisco_verificar.html', context)
             filename = "%s.xls" % s2240_evtexprisco.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2240_evtexprisco_verificar.html', context)
             filename = "%s.csv" % s2240_evtexprisco.identidade
@@ -186,7 +168,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2240_evtexprisco', ],
             'data': datetime.now(),

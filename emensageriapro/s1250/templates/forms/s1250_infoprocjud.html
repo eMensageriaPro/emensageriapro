@@ -15,7 +15,7 @@
     <label id="s1250_infoprocjud__s1250_ideprodutor__label">Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.*</label>
     {% if not for_print %}
       {% if s1250_infoprocjud_form.s1250_ideprodutor.value %}
-        <a id="s1250_infoprocjud__s1250_ideprodutor__div_acessar" href="{% url 's1250_ideprodutor_salvar' hash='{}'|json_id:s1250_infoprocjud_form.s1250_ideprodutor.value|json_print:0|base64_encode_me %}">
+        <a id="s1250_infoprocjud__s1250_ideprodutor__div_acessar" href="{% url 's1250_ideprodutor_salvar' pk=s1250_infoprocjud_form.s1250_ideprodutor.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

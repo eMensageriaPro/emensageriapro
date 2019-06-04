@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s5013_baseperapur_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s5013_baseperapur = get_object_or_404(s5013basePerApur, id=s5013_baseperapur_id)
+    s5013_baseperapur = get_object_or_404(s5013basePerApur, id=pk)
     
     dados_evento = {}
-    
-    if s5013_baseperapur_id:
-    
-        dados_evento = s5013_baseperapur.evento()
+    dados_evento = s5013_baseperapur.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s5013_baseperapur), indent=4, sort_keys=True, default=str)
-            obj = s5013basePerApur.objects.get(id = s5013_baseperapur_id)
+            obj = s5013basePerApur.objects.get(id=pk)
             obj.delete(request=request)
             #s5013_baseperapur_apagar_custom
             #s5013_baseperapur_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's5013_baseperapur', s5013_baseperapur_id, usuario_id, 3)
+                             's5013_baseperapur', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's5013_baseperapur_salvar':
+        if 's5013_baseperapur' in request.session['return_page']:
         
-            return redirect('s5013_baseperapur', hash=request.session['retorno_hash'])
+            return redirect('s5013_baseperapur')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s5013', ],
         'paginas': ['s5013_baseperapur', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

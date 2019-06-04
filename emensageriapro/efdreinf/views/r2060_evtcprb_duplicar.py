@@ -73,24 +73,21 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def duplicar(request, hash):
+def duplicar(request, pk):
 
     from emensageriapro.efdreinf.views.r2060_evtcprb_importar import read_r2060_evtcprb_string
     from emensageriapro.efdreinf.views.r2060_evtcprb_gerar_xml import gerar_xml_r2060
     from emensageriapro.functions import identidade_evento
-
-    dict_hash = get_hash_url(hash)
-    r2060_evtcprb_id = int(dict_hash['id'])
     
-    if request.user.has_perm('efdreinf.can_duplicate_event_r2060evtCPRB'):
+    if request.user.has_perm('efdreinf.can_duplicate_r2060evtCPRB'):
 
-        if r2060_evtcprb_id:
+        if pk:
     
             r2060_evtcprb = get_object_or_404(
                 r2060evtCPRB,
-                id=r2060_evtcprb_id)
+                id=pk)
     
-            texto = gerar_xml_r2060(r2060_evtcprb_id, versao="|")
+            texto = gerar_xml_r2060(request, pk, versao="|")
             dados = read_r2060_evtcprb_string({}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r2060_evtcprb)
     
@@ -103,15 +100,17 @@ def duplicar(request, hash):
                 'r2060_evtcprb', dados['id'], request.user.id, 1)
     
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('r2060_evtcprb_salvar', hash=url_hash)
+            return_pk = dados['id']
+            
+            return redirect('r2060_evtcprb_salvar', pk=return_pk, tab='master')
     
         messages.error(request, 'Erro ao duplicar evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+        return redirect('r2060_evtcprb_salvar', pk=pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('r2060_evtcprb_salvar', pk=pk, tab='master')

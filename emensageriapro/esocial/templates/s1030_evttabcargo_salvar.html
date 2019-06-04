@@ -32,565 +32,819 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       S-1030 - Tabela de Cargos/Empregos Públicos
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">S-1030 - Tabela de Cargos/Empregos Públicos</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.esocial.can_view_s1030evtTabCargo %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 's1030_evttabcargo_salvar' hash='{}'|json_return_page:'s1030_evttabcargo_salvar'|json_return_hash:hash|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}">
-                    S-1030 - Tabela de Cargos/Empregos Públicos</a>
-                </li>
-                {% endif %}
-                {% if s1030_evttabcargo_id %}
-                    
-                    {% if s1030_evttabcargo.operacao == 1 %}
-                        {% if perms.esocial.can_view_s1030inclusao %}
-                            <li {% if tab == 's1030_inclusao' %} class="active"{% endif %} >
-                                <a href="{% url 's1030_evttabcargo_salvar' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|json_tab:'s1030_inclusao'|base64_encode_me %}">
-                                Inclusão de novas informações</a>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.esocial.can_see_s1030evtTabCargo %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's1030_evttabcargo_salvar' pk=pk tab='master' %}">
+                                S-1030 - Tabela de Cargos/Empregos Públicos</a>
                             </li>
                         {% endif %}
-                    {% elif s1030_evttabcargo.operacao == 2 %}
-                        {% if perms.esocial.can_view_s1030alteracao %}
-                            <li {% if tab == 's1030_alteracao' %}class="active"{% endif %}>
-                                <a href="{% url 's1030_evttabcargo_salvar' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|json_tab:'s1030_alteracao'|base64_encode_me %}">
-                                Alteração das informações</a>
-                            </li>
-                        {% endif %}
-                    {% elif s1030_evttabcargo.operacao == 3 %}
-                        {% if perms.esocial.can_view_s1030exclusao %}
-                            <li {% if tab == 's1030_exclusao' %}class="active"{% endif %} >
-                                <a href="{% url 's1030_evttabcargo_salvar' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|json_tab:'s1030_exclusao'|base64_encode_me %}">
-                                Exclusão das informações</a>
-                            </li>
+                        
+                            {% if s1030_evttabcargo.operacao == 1 %}
+                                {% if perms.esocial.can_see_s1030inclusao %}
+                                    <li {% if tab == 's1030_inclusao' %} class="active"{% endif %} >
+                                        <a href="{% url 's1030_evttabcargo_salvar' pk=pk tab='s1030_inclusao' %}">
+                                        Inclusão de novas informações</a>
+                                    </li>
+                                {% endif %}
+                            {% elif s1030_evttabcargo.operacao == 2 %}
+                                {% if perms.esocial.can_see_s1030alteracao %}
+                                    <li {% if tab == 's1030_alteracao' %}class="active"{% endif %}>
+                                        <a href="{% url 's1030_evttabcargo_salvar' pk=pk tab='s1030_alteracao' %}">
+                                        Alteração das informações</a>
+                                    </li>
+                                {% endif %}
+                            {% elif s1030_evttabcargo.operacao == 3 %}
+                                {% if perms.esocial.can_see_s1030exclusao %}
+                                    <li {% if tab == 's1030_exclusao' %}class="active"{% endif %} >
+                                        <a href="{% url 's1030_evttabcargo_salvar' pk=pk tab='s1030_exclusao' %}">
+                                        Exclusão das informações</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if s1030_evttabcargo_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in s1030_evttabcargo_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if s1030_evttabcargo_id %}
+        {% if s1030_evttabcargo.ocorrencias %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s1030_evttabcargo.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if s1030_evttabcargo.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1030_evttabcargo.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s1030_evttabcargo.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if s1030_evttabcargo.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ s1030_evttabcargo.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">S-1030 - Tabela de Cargos/Empregos Públicos</h3>
+                    </div>
+
+                    {% if perms.esocial.change_s1030evtTabCargo or perms.esocial.add_s1030evtTabCargo %}
+                        {% if s1030_evttabcargo_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s1030_evttabcargo" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
                         {% endif %}
                     {% endif %}
-                    
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- TABS -->
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if s1030_evttabcargo_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in s1030_evttabcargo_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if s1030_evttabcargo_id %}
-   {% if s1030_evttabcargo.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s1030_evttabcargo.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s1030_evttabcargo.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1030_evttabcargo.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s1030_evttabcargo.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s1030_evttabcargo.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s1030_evttabcargo.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">S-1030 - Tabela de Cargos/Empregos Públicos</h3>
-            </div>
-            {% else %}
-            <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.esocial.change_s1030_evttabcargo or perms.esocial.add_s1030_evttabcargo %}
-               {% if s1030_evttabcargo_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s1030_evttabcargo" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/s1030_evttabcargo.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s1030_evttabcargo.html' %}
+
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if s1030_evttabcargo_id %}
-                           {% if perms.esocial.add_s1030evtTabCargo %}<a href="{% url 's1030_evttabcargo_verificar'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.add_s1030evtTabCargo %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_recibo'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_recibo'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_recibo'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s1030evtTabCargo %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_duplicar' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if s1030_evttabcargo.operacao == 1 and s1030_inclusao_lista or s1030_evttabcargo.operacao == 2 and s1030_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_criar_alteracao' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_criar_exclusao' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_alterar_identidade' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 's1030_evttabcargo_abrir_evento_para_edicao' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s1030evtTabCargo %}<a href="{% url 's1030_evttabcargo_xml'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if s1030_evttabcargo.status == STATUS_EVENTO_CADASTRADO or s1030_evttabcargo.status == STATUS_EVENTO_IMPORTADO or s1030_evttabcargo.status == STATUS_EVENTO_DUPLICADO or s1030_evttabcargo.status == STATUS_EVENTO_GERADO or s1030_evttabcargo.status == STATUS_EVENTO_ASSINADO or s1030_evttabcargo.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.esocial.add_s1030evtTabCargo %}
-                           <a href="{% url 's1030_evttabcargo_validar_evento' hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.esocial.add_s1030evtTabCargo %}<a href="{% url 's1030_evttabcargo_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.can_view_s1030_evttabcargo or perms.esocial.can_view_s1030_evttabcargo %}<a href="{% url 's1030_evttabcargo'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.can_view_s1030_evttabcargo and s1030_evttabcargo_id %}<a href="{% url 's1030_evttabcargo_salvar'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.change_s1030_evttabcargo or perms.esocial.add_s1030_evttabcargo %}
-                           {% if s1030_evttabcargo_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.delete_s1030_evttabcargo and s1030_evttabcargo_id %}<a href="{% url 's1030_evttabcargo_apagar'  hash='{}'|json_id:s1030_evttabcargo_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.esocial.change_s1030_evttabcargo or perms.esocial.add_s1030_evttabcargo %}
-               {% if s1030_evttabcargo_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if s1030_evttabcargo.operacao == 1 and s1030_inclusao_lista or s1030_evttabcargo.operacao == 2 and s1030_alteracao_lista %}
+
+
+                                    {% if perms.esocial.can_create_change_s1030evtTabCargo %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's1030_evttabcargo_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.esocial.can_create_delete_s1030evtTabCargo %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's1030_evttabcargo_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.esocial.can_duplicate_s1030evtTabCargo %}
+                            <div class="col-md-4">
+                                <a href="{% url 's1030_evttabcargo_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_change_identity_s1030evtTabCargo %}
+                            <div class="col-md-4">
+                                <a href="{% url 's1030_evttabcargo_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.esocial.can_open_s1030evtTabCargo %}
+                            <div class="col-md-4">
+                                <a href="{% url 's1030_evttabcargo_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_layout_s1030evtTabCargo %}
+                            <div class="col-md-3">
+                                <a href="{% url 's1030_evttabcargo_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.esocial.can_see_xml_s1030evtTabCargo %}
+                            <div class="col-md-3">
+                                <a href="{% url 's1030_evttabcargo_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.esocial.can_validate_s1030evtTabCargo %}
+                            <div class="col-md-3">
+                                <a href="{% url 's1030_evttabcargo_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_receipt_s1030evtTabCargo %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's1030_evttabcargo_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's1030_evttabcargo_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's1030_evttabcargo_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.esocial.add_s1030evtTabCargo %}
+                        <div class="col-md-2">
+                            <a href="{% url 's1030_evttabcargo_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_see_list_s1030evtTabCargo %}
+                        <div class="col-md-2">
+                            <a href="{% url 's1030_evttabcargo' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_print_data_s1030evtTabCargo %}
+                        <div class="col-md-2">
+                            <a href="{% url 's1030_evttabcargo_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if s1030_evttabcargo_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.esocial.change_s1030evtTabCargo %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.delete_s1030evtTabCargo %}
+                            <div class="col-md-2">
+                                <a href="{% url 's1030_evttabcargo_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.esocial.add_s1030evtTabCargo %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.esocial.add_s1030evtTabCargo or perms.esocial.change_s1030evtTabCargo %}
+    
+                        {% if s1030_evttabcargo_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
             </div>
-            {% if s1030_evttabcargo_id %}
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if s1030_evttabcargo_id %}
 
-<!-- begin_s1030_inclusao -->
+        <!-- fim controle de alterações -->
+        {% endif %}
 
-{% if tab == 's1030_inclusao' or for_print %} 
-
-{% if perms.esocial.can_view_s1030_inclusao %} 
-
-{% if perms.esocial.change_s1030_inclusao or perms.s1030.add_s1030inclusao %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Inclusão de novas informações</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1030_inclusao or perms.s1030.add_s1030inclusao %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1030.add_s1030inclusao %}            
+    {% endif %}
 
 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-        <!-- begin_form_s1030_inclusao --> 
-        <div id="cadastrar" style="display:none">
 
-              <form id="id_form_s1030_inclusao" action="{% url 's1030_inclusao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1030_inclusao.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+        
+        <!-- begin_s1030_inclusao -->
+
+            {% if tab == 's1030_inclusao' %} 
+
+                {% if perms.s1030.can_see_data_s1030inclusao %}
+
+                    {% if perms.s1030.add_s1030inclusao or perms.s1030.change_s1030inclusao %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Inclusão de novas informações</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1030.add_s1030inclusao or perms.s1030.can_see_list_s1030inclusao %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1030.add_s1030inclusao %}            
+
+                                    <!-- begin_form_s1030_inclusao --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s1030_inclusao" 
+                                              action="{% url 's1030_inclusao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1030_inclusao.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s1030_inclusao -->
+                                {% endif %} 
+
+                                {% if perms.s1030.can_see_s1030inclusao %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1030_inclusao --> 
+
+                                        {% include 'tables/s1030_inclusao.html' %}
+                                        <!-- end_table_s1030_inclusao --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s1030_alteracao -->
+
+            {% if tab == 's1030_alteracao' %} 
+
+                {% if perms.s1030.can_see_data_s1030alteracao %}
+
+                    {% if perms.s1030.add_s1030alteracao or perms.s1030.change_s1030alteracao %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Alteração das informações</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1030.add_s1030alteracao or perms.s1030.can_see_list_s1030alteracao %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1030.add_s1030alteracao %}            
+
+                                    <!-- begin_form_s1030_alteracao --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s1030_alteracao" 
+                                              action="{% url 's1030_alteracao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1030_alteracao.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s1030_alteracao -->
+                                {% endif %} 
+
+                                {% if perms.s1030.can_see_s1030alteracao %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1030_alteracao --> 
+
+                                        {% include 'tables/s1030_alteracao.html' %}
+                                        <!-- end_table_s1030_alteracao --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1030_inclusao -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1030_inclusao --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s1030_inclusao.html' %}
-        <!-- end_table_s1030_inclusao --> 
+            {% endif %} 
 
+        
+        <!-- begin_s1030_exclusao -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's1030_exclusao' %} 
 
+                {% if perms.s1030.can_see_data_s1030exclusao %}
 
-{% endif %} 
+                    {% if perms.s1030.add_s1030exclusao or perms.s1030.change_s1030exclusao %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s1030_inclusao -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s1030_alteracao -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's1030_alteracao' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s1030_alteracao %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Exclusão das informações</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1030.add_s1030exclusao or perms.s1030.can_see_list_s1030exclusao %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s1030_alteracao or perms.s1030.add_s1030alteracao %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s1030.add_s1030exclusao %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s1030_exclusao --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Alteração das informações</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1030_alteracao or perms.s1030.add_s1030alteracao %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1030.add_s1030alteracao %}            
+                                        <form id="id_form_s1030_exclusao" 
+                                              action="{% url 's1030_exclusao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1030_exclusao.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s1030_alteracao --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s1030_alteracao" action="{% url 's1030_alteracao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1030_alteracao.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s1030_exclusao -->
+                                {% endif %} 
+
+                                {% if perms.s1030.can_see_s1030exclusao %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1030_exclusao --> 
+
+                                        {% include 'tables/s1030_exclusao.html' %}
+                                        <!-- end_table_s1030_exclusao --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1030_alteracao -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1030_alteracao --> 
-  
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+
+    {% endif %} 
 
 
-        {% include 'tables/s1030_alteracao.html' %}
-        <!-- end_table_s1030_alteracao --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s1030_alteracao -->
-
-<!-- begin_s1030_exclusao -->
-
-{% if tab == 's1030_exclusao' or for_print %} 
-
-{% if perms.esocial.can_view_s1030_exclusao %} 
-
-{% if perms.esocial.change_s1030_exclusao or perms.s1030.add_s1030exclusao %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Exclusão das informações</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1030_exclusao or perms.s1030.add_s1030exclusao %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1030.add_s1030exclusao %}            
-
-
-
-        <!-- begin_form_s1030_exclusao --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s1030_exclusao" action="{% url 's1030_exclusao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1030_exclusao.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1030_exclusao -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1030_exclusao --> 
-  
-
-
-        {% include 'tables/s1030_exclusao.html' %}
-        <!-- end_table_s1030_exclusao --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s1030_exclusao -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

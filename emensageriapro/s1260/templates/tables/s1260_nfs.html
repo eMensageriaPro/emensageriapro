@@ -59,26 +59,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s1260.can_view_s1260nfs %}
-                        <a href="{% url 's1260_nfs_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s1260.add_s1260nfs or perms.s1260.change_s1260nfs %}
+                        {% if perms.s1260.change_s1260nfs or perms.s1260.add_s1260nfs %}
+                    
+                        <a href="{% url 's1260_nfs_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s1260.change_s1260nfs %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s1260.can_see_data_s1260nfs %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s1260.delete_s1260nfs %}
-                        <a href="{% url 's1260_nfs_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s1260.delete_s1260nfs %}
+                        <a href="{% url 's1260_nfs_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

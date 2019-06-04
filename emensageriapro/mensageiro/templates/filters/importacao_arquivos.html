@@ -21,14 +21,14 @@
       <select name="status" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
         <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processando</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processado com sucesso</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Processamento</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Outros</option>
         <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Arquivo Inválido</option>
         <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Identidade já existente</option>
-        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Outros</option>
-        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Processamento</option>
-        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Validação de Leiaute</option>
         <option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Versão de leiaute incompatível</option>
-        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processado com sucesso</option>
-        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processando</option>
+        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro - Validação de Leiaute</option>
       </select>
     </div>
   </div>

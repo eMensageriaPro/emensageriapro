@@ -15,7 +15,7 @@
     <label id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__label">Equipamentos de Proteção Individual - EPI*</label>
     {% if not for_print %}
       {% if s2240_iniexprisco_epi_form.s2240_iniexprisco_fatrisco.value %}
-        <a id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__div_acessar" href="{% url 's2240_iniexprisco_fatrisco_salvar' hash='{}'|json_id:s2240_iniexprisco_epi_form.s2240_iniexprisco_fatrisco.value|json_print:0|base64_encode_me %}">
+        <a id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__div_acessar" href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=s2240_iniexprisco_epi_form.s2240_iniexprisco_fatrisco.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

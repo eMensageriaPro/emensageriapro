@@ -66,7 +66,6 @@ class s1050evtTabHorTurList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1050evtTabHorTurDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1050evtTabHorTur.objects.all()

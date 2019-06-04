@@ -72,46 +72,41 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def criar_alteracao(request, hash):
+def criar_alteracao(request, pk):
 
     from emensageriapro.esocial.views.s2220_evtmonit_importar import read_s2220_evtmonit_string
     from emensageriapro.esocial.views.s2220_evtmonit_gerar_xml import gerar_xml_s2220
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('esocial.can_create_change_s2220evtMonit'):
 
-    dict_hash = get_hash_url(hash)
-    s2220_evtmonit_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('esocial.can_create_change_event_s2220evtMonit'):
+        s2220_evtmonit = get_object_or_404(
+            s2220evtMonit,
+            id=pk)
 
-        if s2220_evtmonit_id:
-    
-            s2220_evtmonit = get_object_or_404(
-                s2220evtMonit,
-                id=s2220_evtmonit_id)
-    
-            texto = gerar_xml_s2220(s2220_evtmonit_id, versao="|")
-            texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-            dados = read_s2220_evtmonit_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2220_evtmonit)
-    
-            s2220evtMonit.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2220_evtmonit.identidade),
-                's2220_evtmonit', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de alteração criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s2220_evtmonit_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de alteração!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        texto = gerar_xml_s2220(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        dados = read_s2220_evtmonit_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(s2220_evtmonit)
+
+        s2220evtMonit.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2220_evtmonit.identidade),
+            's2220_evtmonit', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de alteração criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('s2220_evtmonit_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+        return redirect('s2220_evtmonit_salvar', pk=pk, tab='master')

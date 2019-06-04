@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2405evtCdBenefAlt'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2405_evtcdbenefalt_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2405evtCdBenefAlt'):
-        s2405_evtcdbenefalt = get_object_or_404(s2405evtCdBenefAlt, id=s2405_evtcdbenefalt_id)
-        s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects.filter(id=s2405_evtcdbenefalt_id).all()
+        s2405_evtcdbenefalt = get_object_or_404(s2405evtCdBenefAlt, id=pk)
+        s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects.filter(id=pk).all()
 
         
         s2405_endereco_lista = s2405endereco.objects.filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).all()
@@ -98,58 +84,54 @@ def verificar(request, hash):
         s2405_exterior_lista = s2405exterior.objects.filter(s2405_endereco_id__in = listar_ids(s2405_endereco_lista) ).all()
         s2405_dependente_lista = s2405dependente.objects.filter(s2405_evtcdbenefalt_id__in = listar_ids(s2405_evtcdbenefalt_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2405_evtcdbenefalt'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2405_evtcdbenefalt'
 
         context = {
             's2405_evtcdbenefalt_lista': s2405_evtcdbenefalt_lista,
-            's2405_evtcdbenefalt_id': s2405_evtcdbenefalt_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2405_evtcdbenefalt': s2405_evtcdbenefalt,
-            
-            
             's2405_endereco_lista': s2405_endereco_lista,
             's2405_brasil_lista': s2405_brasil_lista,
             's2405_exterior_lista': s2405_exterior_lista,
             's2405_dependente_lista': s2405_dependente_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2405_evtcdbenefalt', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2405_evtcdbenefalt_verificar.html',
-                                           filename="s2405_evtcdbenefalt.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2405_evtcdbenefalt_verificar.html',
+                filename="s2405_evtcdbenefalt.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2405_evtcdbenefalt_verificar.html', context)
             filename = "%s.xls" % s2405_evtcdbenefalt.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2405_evtcdbenefalt_verificar.html', context)
             filename = "%s.csv" % s2405_evtcdbenefalt.identidade
@@ -164,7 +146,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2405_evtcdbenefalt', ],
             'data': datetime.now(),

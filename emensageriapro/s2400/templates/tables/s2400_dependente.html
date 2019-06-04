@@ -65,26 +65,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s2400.can_view_s2400dependente %}
-                        <a href="{% url 's2400_dependente_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s2400.add_s2400dependente or perms.s2400.change_s2400dependente %}
+                        {% if perms.s2400.change_s2400dependente or perms.s2400.add_s2400dependente %}
+                    
+                        <a href="{% url 's2400_dependente_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s2400.change_s2400dependente %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s2400.can_see_data_s2400dependente %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s2400.delete_s2400dependente %}
-                        <a href="{% url 's2400_dependente_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s2400.delete_s2400dependente %}
+                        <a href="{% url 's2400_dependente_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

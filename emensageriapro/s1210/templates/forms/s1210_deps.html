@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1210_deps__s1210_evtpgtos__label">Informações de dependentes do beneficiário do pagamento*</label>
     {% if not for_print %}{% if s1210_deps_form.s1210_evtpgtos.value %}
-        <a href="{% url 's1210_evtpgtos_salvar' hash='{}'|json_return_page:'s1210_deps_salvar'|json_return_hash:hash|json_id:s1210_deps_form.s1210_evtpgtos.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1210_evtpgtos_salvar' pk=s1210_deps_form.s1210_evtpgtos.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

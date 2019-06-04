@@ -15,7 +15,7 @@
     <label id="s5002_infoirrf__s5002_evtirrfbenef__label">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo*</label>
     {% if not for_print %}
       {% if s5002_infoirrf_form.s5002_evtirrfbenef.value %}
-        <a id="s5002_infoirrf__s5002_evtirrfbenef__div_acessar" href="{% url 's5002_evtirrfbenef_salvar' hash='{}'|json_id:s5002_infoirrf_form.s5002_evtirrfbenef.value|json_print:0|base64_encode_me %}">
+        <a id="s5002_infoirrf__s5002_evtirrfbenef__div_acessar" href="{% url 's5002_evtirrfbenef_salvar' pk=s5002_infoirrf_form.s5002_evtirrfbenef.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

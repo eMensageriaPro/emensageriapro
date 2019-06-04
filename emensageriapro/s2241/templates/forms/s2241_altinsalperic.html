@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2241_altinsalperic__s2241_insalperic__label">Condições do ambiente de trabalho insalubre/periculoso - Alteração*</label>
     {% if not for_print %}{% if s2241_altinsalperic_form.s2241_insalperic.value %}
-        <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_return_page:'s2241_altinsalperic_salvar'|json_return_hash:hash|json_id:s2241_altinsalperic_form.s2241_insalperic.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2241_insalperic_salvar' pk=s2241_altinsalperic_form.s2241_insalperic.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

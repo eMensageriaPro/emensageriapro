@@ -15,7 +15,7 @@
     <label id="r9011_infocrtom__r9011_rtom__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados*</label>
     {% if not for_print %}
       {% if r9011_infocrtom_form.r9011_rtom.value %}
-        <a id="r9011_infocrtom__r9011_rtom__div_acessar" href="{% url 'r9011_rtom_salvar' hash='{}'|json_id:r9011_infocrtom_form.r9011_rtom.value|json_print:0|base64_encode_me %}">
+        <a id="r9011_infocrtom__r9011_rtom__div_acessar" href="{% url 'r9011_rtom_salvar' pk=r9011_infocrtom_form.r9011_rtom.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

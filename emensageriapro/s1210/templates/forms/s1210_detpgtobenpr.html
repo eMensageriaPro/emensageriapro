@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1210_detpgtobenpr__s1210_infopgto__label">Detalhamento de pagamentos relativos a benefícios previdenciários*</label>
     {% if not for_print %}{% if s1210_detpgtobenpr_form.s1210_infopgto.value %}
-        <a href="{% url 's1210_infopgto_salvar' hash='{}'|json_return_page:'s1210_detpgtobenpr_salvar'|json_return_hash:hash|json_id:s1210_detpgtobenpr_form.s1210_infopgto.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtobenpr_form.s1210_infopgto.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -59,24 +59,9 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def listar(request, hash):
+def listar(request, output=None):
 
-    for_print = 0
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('s2299.can_view_s2299observacoes'):
+    if request.user.has_perm('s2299.can_see_s2299observacoes'):
     
         filtrar = False
         
@@ -123,30 +108,23 @@ def listar(request, hash):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2299_observacoes_listar_custom
         
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2299_observacoes'
-        
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             's2299_observacoes_lista': s2299_observacoes_lista, 
-            'usuario': usuario,
             'modulos': ['s2299', ],
             'paginas': ['s2299_observacoes', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
-        if for_print in (0,1):
-        
-            return render(request, 's2299_observacoes_listar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2299_observacoes_listar.html',
@@ -163,11 +141,11 @@ def listar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
             response = render_to_response('s2299_observacoes_listar.html', context)
@@ -176,7 +154,7 @@ def listar(request, hash):
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
             
-        elif for_print == 4:
+        elif output == 'csv':
         
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2299_observacoes.csv', context)
@@ -184,11 +162,16 @@ def listar(request, hash):
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+        
+        else:
+        
+            return render(request, 's2299_observacoes_listar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             'data': datetime.datetime.now(),
             'modulos': ['s2299', ],
             'paginas': ['s2299_observacoes', ],

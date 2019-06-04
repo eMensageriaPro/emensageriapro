@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s1280_infosubstpatr_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s1280_infosubstpatr = get_object_or_404(s1280infoSubstPatr, id=s1280_infosubstpatr_id)
+    s1280_infosubstpatr = get_object_or_404(s1280infoSubstPatr, id=pk)
     
     dados_evento = {}
-    
-    if s1280_infosubstpatr_id:
-    
-        dados_evento = s1280_infosubstpatr.evento()
+    dados_evento = s1280_infosubstpatr.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s1280_infosubstpatr), indent=4, sort_keys=True, default=str)
-            obj = s1280infoSubstPatr.objects.get(id = s1280_infosubstpatr_id)
+            obj = s1280infoSubstPatr.objects.get(id=pk)
             obj.delete(request=request)
             #s1280_infosubstpatr_apagar_custom
             #s1280_infosubstpatr_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's1280_infosubstpatr', s1280_infosubstpatr_id, usuario_id, 3)
+                             's1280_infosubstpatr', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's1280_infosubstpatr_salvar':
+        if 's1280_infosubstpatr' in request.session['return_page']:
         
-            return redirect('s1280_infosubstpatr', hash=request.session['retorno_hash'])
+            return redirect('s1280_infosubstpatr')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s1280', ],
         'paginas': ['s1280_infosubstpatr', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

@@ -143,17 +143,20 @@ class r1000evtInfoContri(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000evtInfoContri", u"Pode visualizar o conteúdo do evento R1000EVTINFOCONTRI"),
-            ("can_view_menu_r1000evtInfoContri", u"Pode visualizar no menu o evento R1000EVTINFOCONTRI"),
-            ("can_open_event_r1000evtInfoContri", u"Pode abrir o evento R1000EVTINFOCONTRI para edição"),
-            ("can_duplicate_event_r1000evtInfoContri", u"Pode duplicar o evento R1000EVTINFOCONTRI"),
-            ("can_create_change_event_r1000evtInfoContri", u"Pode criar evento de alteração do evento R1000EVTINFOCONTRI com base em evento existente"),
-            ("can_create_delete_event_r1000evtInfoContri", u"Pode criar evento de exclusão do evento R1000EVTINFOCONTRI com base em evento existente"), 
-            ("can_validate_event_r1000evtInfoContri", u"Pode validar o evento R1000EVTINFOCONTRI"),
-            ("can_print_event_r1000evtInfoContri", u"Pode imprimir recibo do evento R1000EVTINFOCONTRI"),
-            ("can_change_identity_event_r1000evtInfoContri", u"Pode alterar identidade do evento R1000EVTINFOCONTRI"),
-            ("can_view_layout_event_r1000evtInfoContri", u"Pode ver layout do evento R1000EVTINFOCONTRI"),
-            ("can_view_xml_event_r1000evtInfoContri", u"Pode ver xml do evento R1000EVTINFOCONTRI"),)
+            ("can_see_list_r1000evtInfoContri", u"Pode ver listagem do modelo R1000EVTINFOCONTRI"),
+            ("can_see_data_r1000evtInfoContri", u"Pode visualizar o conteúdo do modelo R1000EVTINFOCONTRI"),
+            ("can_see_menu_r1000evtInfoContri", u"Pode visualizar no menu o modelo R1000EVTINFOCONTRI"),
+            ("can_print_list_r1000evtInfoContri", u"Pode imprimir listagem do modelo R1000EVTINFOCONTRI"),
+            ("can_print_data_r1000evtInfoContri", u"Pode imprimir o conteúdo do modelo R1000EVTINFOCONTRI"),
+            ("can_open_r1000evtInfoContri", u"Pode abrir o evento R1000EVTINFOCONTRI para edição"),
+            ("can_duplicate_r1000evtInfoContri", u"Pode duplicar o evento R1000EVTINFOCONTRI"),
+            ("can_create_change_r1000evtInfoContri", u"Pode criar evento de alteração do evento R1000EVTINFOCONTRI com base em evento existente"),
+            ("can_create_delete_r1000evtInfoContri", u"Pode criar evento de exclusão do evento R1000EVTINFOCONTRI com base em evento existente"), 
+            ("can_validate_r1000evtInfoContri", u"Pode validar o evento R1000EVTINFOCONTRI"),
+            ("can_change_identity_r1000evtInfoContri", u"Pode alterar identidade do evento R1000EVTINFOCONTRI"),
+            ("can_see_layout_r1000evtInfoContri", u"Pode ver layout do evento R1000EVTINFOCONTRI"),
+            ("can_see_receipt_r1000evtInfoContri", u"Pode ver recibo do evento R1000EVTINFOCONTRI"),
+            ("can_see_xml_r1000evtInfoContri", u"Pode ver xml do evento R1000EVTINFOCONTRI"),)
             
         ordering = [
             'identidade',
@@ -251,17 +254,20 @@ class r1070evtTabProcesso(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070evtTabProcesso", u"Pode visualizar o conteúdo do evento R1070EVTTABPROCESSO"),
-            ("can_view_menu_r1070evtTabProcesso", u"Pode visualizar no menu o evento R1070EVTTABPROCESSO"),
-            ("can_open_event_r1070evtTabProcesso", u"Pode abrir o evento R1070EVTTABPROCESSO para edição"),
-            ("can_duplicate_event_r1070evtTabProcesso", u"Pode duplicar o evento R1070EVTTABPROCESSO"),
-            ("can_create_change_event_r1070evtTabProcesso", u"Pode criar evento de alteração do evento R1070EVTTABPROCESSO com base em evento existente"),
-            ("can_create_delete_event_r1070evtTabProcesso", u"Pode criar evento de exclusão do evento R1070EVTTABPROCESSO com base em evento existente"), 
-            ("can_validate_event_r1070evtTabProcesso", u"Pode validar o evento R1070EVTTABPROCESSO"),
-            ("can_print_event_r1070evtTabProcesso", u"Pode imprimir recibo do evento R1070EVTTABPROCESSO"),
-            ("can_change_identity_event_r1070evtTabProcesso", u"Pode alterar identidade do evento R1070EVTTABPROCESSO"),
-            ("can_view_layout_event_r1070evtTabProcesso", u"Pode ver layout do evento R1070EVTTABPROCESSO"),
-            ("can_view_xml_event_r1070evtTabProcesso", u"Pode ver xml do evento R1070EVTTABPROCESSO"),)
+            ("can_see_list_r1070evtTabProcesso", u"Pode ver listagem do modelo R1070EVTTABPROCESSO"),
+            ("can_see_data_r1070evtTabProcesso", u"Pode visualizar o conteúdo do modelo R1070EVTTABPROCESSO"),
+            ("can_see_menu_r1070evtTabProcesso", u"Pode visualizar no menu o modelo R1070EVTTABPROCESSO"),
+            ("can_print_list_r1070evtTabProcesso", u"Pode imprimir listagem do modelo R1070EVTTABPROCESSO"),
+            ("can_print_data_r1070evtTabProcesso", u"Pode imprimir o conteúdo do modelo R1070EVTTABPROCESSO"),
+            ("can_open_r1070evtTabProcesso", u"Pode abrir o evento R1070EVTTABPROCESSO para edição"),
+            ("can_duplicate_r1070evtTabProcesso", u"Pode duplicar o evento R1070EVTTABPROCESSO"),
+            ("can_create_change_r1070evtTabProcesso", u"Pode criar evento de alteração do evento R1070EVTTABPROCESSO com base em evento existente"),
+            ("can_create_delete_r1070evtTabProcesso", u"Pode criar evento de exclusão do evento R1070EVTTABPROCESSO com base em evento existente"), 
+            ("can_validate_r1070evtTabProcesso", u"Pode validar o evento R1070EVTTABPROCESSO"),
+            ("can_change_identity_r1070evtTabProcesso", u"Pode alterar identidade do evento R1070EVTTABPROCESSO"),
+            ("can_see_layout_r1070evtTabProcesso", u"Pode ver layout do evento R1070EVTTABPROCESSO"),
+            ("can_see_receipt_r1070evtTabProcesso", u"Pode ver recibo do evento R1070EVTTABPROCESSO"),
+            ("can_see_xml_r1070evtTabProcesso", u"Pode ver xml do evento R1070EVTTABPROCESSO"),)
             
         ordering = [
             'identidade',
@@ -382,15 +388,18 @@ class r2010evtServTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010evtServTom", u"Pode visualizar o conteúdo do evento R2010EVTSERVTOM"),
-            ("can_view_menu_r2010evtServTom", u"Pode visualizar no menu o evento R2010EVTSERVTOM"),
-            ("can_open_event_r2010evtServTom", u"Pode abrir o evento R2010EVTSERVTOM para edição"),
-            ("can_duplicate_event_r2010evtServTom", u"Pode duplicar o evento R2010EVTSERVTOM"),
-            ("can_validate_event_r2010evtServTom", u"Pode validar o evento R2010EVTSERVTOM"),
-            ("can_print_event_r2010evtServTom", u"Pode imprimir recibo do evento R2010EVTSERVTOM"),
-            ("can_change_identity_event_r2010evtServTom", u"Pode alterar identidade do evento R2010EVTSERVTOM"),
-            ("can_view_layout_event_r2010evtServTom", u"Pode ver layout do evento R2010EVTSERVTOM"),
-            ("can_view_xml_event_r2010evtServTom", u"Pode ver xml do evento R2010EVTSERVTOM"),)
+            ("can_see_list_r2010evtServTom", u"Pode ver listagem do modelo R2010EVTSERVTOM"),
+            ("can_see_data_r2010evtServTom", u"Pode visualizar o conteúdo do modelo R2010EVTSERVTOM"),
+            ("can_see_menu_r2010evtServTom", u"Pode visualizar no menu o modelo R2010EVTSERVTOM"),
+            ("can_print_list_r2010evtServTom", u"Pode imprimir listagem do modelo R2010EVTSERVTOM"),
+            ("can_print_data_r2010evtServTom", u"Pode imprimir o conteúdo do modelo R2010EVTSERVTOM"),
+            ("can_open_r2010evtServTom", u"Pode abrir o evento R2010EVTSERVTOM para edição"),
+            ("can_duplicate_r2010evtServTom", u"Pode duplicar o evento R2010EVTSERVTOM"),
+            ("can_validate_r2010evtServTom", u"Pode validar o evento R2010EVTSERVTOM"),
+            ("can_change_identity_r2010evtServTom", u"Pode alterar identidade do evento R2010EVTSERVTOM"),
+            ("can_see_layout_r2010evtServTom", u"Pode ver layout do evento R2010EVTSERVTOM"),
+            ("can_see_receipt_r2010evtServTom", u"Pode ver recibo do evento R2010EVTSERVTOM"),
+            ("can_see_xml_r2010evtServTom", u"Pode ver xml do evento R2010EVTSERVTOM"),)
             
         ordering = [
             'identidade',
@@ -521,15 +530,18 @@ class r2020evtServPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2020evtServPrest", u"Pode visualizar o conteúdo do evento R2020EVTSERVPREST"),
-            ("can_view_menu_r2020evtServPrest", u"Pode visualizar no menu o evento R2020EVTSERVPREST"),
-            ("can_open_event_r2020evtServPrest", u"Pode abrir o evento R2020EVTSERVPREST para edição"),
-            ("can_duplicate_event_r2020evtServPrest", u"Pode duplicar o evento R2020EVTSERVPREST"),
-            ("can_validate_event_r2020evtServPrest", u"Pode validar o evento R2020EVTSERVPREST"),
-            ("can_print_event_r2020evtServPrest", u"Pode imprimir recibo do evento R2020EVTSERVPREST"),
-            ("can_change_identity_event_r2020evtServPrest", u"Pode alterar identidade do evento R2020EVTSERVPREST"),
-            ("can_view_layout_event_r2020evtServPrest", u"Pode ver layout do evento R2020EVTSERVPREST"),
-            ("can_view_xml_event_r2020evtServPrest", u"Pode ver xml do evento R2020EVTSERVPREST"),)
+            ("can_see_list_r2020evtServPrest", u"Pode ver listagem do modelo R2020EVTSERVPREST"),
+            ("can_see_data_r2020evtServPrest", u"Pode visualizar o conteúdo do modelo R2020EVTSERVPREST"),
+            ("can_see_menu_r2020evtServPrest", u"Pode visualizar no menu o modelo R2020EVTSERVPREST"),
+            ("can_print_list_r2020evtServPrest", u"Pode imprimir listagem do modelo R2020EVTSERVPREST"),
+            ("can_print_data_r2020evtServPrest", u"Pode imprimir o conteúdo do modelo R2020EVTSERVPREST"),
+            ("can_open_r2020evtServPrest", u"Pode abrir o evento R2020EVTSERVPREST para edição"),
+            ("can_duplicate_r2020evtServPrest", u"Pode duplicar o evento R2020EVTSERVPREST"),
+            ("can_validate_r2020evtServPrest", u"Pode validar o evento R2020EVTSERVPREST"),
+            ("can_change_identity_r2020evtServPrest", u"Pode alterar identidade do evento R2020EVTSERVPREST"),
+            ("can_see_layout_r2020evtServPrest", u"Pode ver layout do evento R2020EVTSERVPREST"),
+            ("can_see_receipt_r2020evtServPrest", u"Pode ver recibo do evento R2020EVTSERVPREST"),
+            ("can_see_xml_r2020evtServPrest", u"Pode ver xml do evento R2020EVTSERVPREST"),)
             
         ordering = [
             'identidade',
@@ -645,15 +657,18 @@ class r2030evtAssocDespRec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2030evtAssocDespRec", u"Pode visualizar o conteúdo do evento R2030EVTASSOCDESPREC"),
-            ("can_view_menu_r2030evtAssocDespRec", u"Pode visualizar no menu o evento R2030EVTASSOCDESPREC"),
-            ("can_open_event_r2030evtAssocDespRec", u"Pode abrir o evento R2030EVTASSOCDESPREC para edição"),
-            ("can_duplicate_event_r2030evtAssocDespRec", u"Pode duplicar o evento R2030EVTASSOCDESPREC"),
-            ("can_validate_event_r2030evtAssocDespRec", u"Pode validar o evento R2030EVTASSOCDESPREC"),
-            ("can_print_event_r2030evtAssocDespRec", u"Pode imprimir recibo do evento R2030EVTASSOCDESPREC"),
-            ("can_change_identity_event_r2030evtAssocDespRec", u"Pode alterar identidade do evento R2030EVTASSOCDESPREC"),
-            ("can_view_layout_event_r2030evtAssocDespRec", u"Pode ver layout do evento R2030EVTASSOCDESPREC"),
-            ("can_view_xml_event_r2030evtAssocDespRec", u"Pode ver xml do evento R2030EVTASSOCDESPREC"),)
+            ("can_see_list_r2030evtAssocDespRec", u"Pode ver listagem do modelo R2030EVTASSOCDESPREC"),
+            ("can_see_data_r2030evtAssocDespRec", u"Pode visualizar o conteúdo do modelo R2030EVTASSOCDESPREC"),
+            ("can_see_menu_r2030evtAssocDespRec", u"Pode visualizar no menu o modelo R2030EVTASSOCDESPREC"),
+            ("can_print_list_r2030evtAssocDespRec", u"Pode imprimir listagem do modelo R2030EVTASSOCDESPREC"),
+            ("can_print_data_r2030evtAssocDespRec", u"Pode imprimir o conteúdo do modelo R2030EVTASSOCDESPREC"),
+            ("can_open_r2030evtAssocDespRec", u"Pode abrir o evento R2030EVTASSOCDESPREC para edição"),
+            ("can_duplicate_r2030evtAssocDespRec", u"Pode duplicar o evento R2030EVTASSOCDESPREC"),
+            ("can_validate_r2030evtAssocDespRec", u"Pode validar o evento R2030EVTASSOCDESPREC"),
+            ("can_change_identity_r2030evtAssocDespRec", u"Pode alterar identidade do evento R2030EVTASSOCDESPREC"),
+            ("can_see_layout_r2030evtAssocDespRec", u"Pode ver layout do evento R2030EVTASSOCDESPREC"),
+            ("can_see_receipt_r2030evtAssocDespRec", u"Pode ver recibo do evento R2030EVTASSOCDESPREC"),
+            ("can_see_xml_r2030evtAssocDespRec", u"Pode ver xml do evento R2030EVTASSOCDESPREC"),)
             
         ordering = [
             'identidade',
@@ -763,15 +778,18 @@ class r2040evtAssocDespRep(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2040evtAssocDespRep", u"Pode visualizar o conteúdo do evento R2040EVTASSOCDESPREP"),
-            ("can_view_menu_r2040evtAssocDespRep", u"Pode visualizar no menu o evento R2040EVTASSOCDESPREP"),
-            ("can_open_event_r2040evtAssocDespRep", u"Pode abrir o evento R2040EVTASSOCDESPREP para edição"),
-            ("can_duplicate_event_r2040evtAssocDespRep", u"Pode duplicar o evento R2040EVTASSOCDESPREP"),
-            ("can_validate_event_r2040evtAssocDespRep", u"Pode validar o evento R2040EVTASSOCDESPREP"),
-            ("can_print_event_r2040evtAssocDespRep", u"Pode imprimir recibo do evento R2040EVTASSOCDESPREP"),
-            ("can_change_identity_event_r2040evtAssocDespRep", u"Pode alterar identidade do evento R2040EVTASSOCDESPREP"),
-            ("can_view_layout_event_r2040evtAssocDespRep", u"Pode ver layout do evento R2040EVTASSOCDESPREP"),
-            ("can_view_xml_event_r2040evtAssocDespRep", u"Pode ver xml do evento R2040EVTASSOCDESPREP"),)
+            ("can_see_list_r2040evtAssocDespRep", u"Pode ver listagem do modelo R2040EVTASSOCDESPREP"),
+            ("can_see_data_r2040evtAssocDespRep", u"Pode visualizar o conteúdo do modelo R2040EVTASSOCDESPREP"),
+            ("can_see_menu_r2040evtAssocDespRep", u"Pode visualizar no menu o modelo R2040EVTASSOCDESPREP"),
+            ("can_print_list_r2040evtAssocDespRep", u"Pode imprimir listagem do modelo R2040EVTASSOCDESPREP"),
+            ("can_print_data_r2040evtAssocDespRep", u"Pode imprimir o conteúdo do modelo R2040EVTASSOCDESPREP"),
+            ("can_open_r2040evtAssocDespRep", u"Pode abrir o evento R2040EVTASSOCDESPREP para edição"),
+            ("can_duplicate_r2040evtAssocDespRep", u"Pode duplicar o evento R2040EVTASSOCDESPREP"),
+            ("can_validate_r2040evtAssocDespRep", u"Pode validar o evento R2040EVTASSOCDESPREP"),
+            ("can_change_identity_r2040evtAssocDespRep", u"Pode alterar identidade do evento R2040EVTASSOCDESPREP"),
+            ("can_see_layout_r2040evtAssocDespRep", u"Pode ver layout do evento R2040EVTASSOCDESPREP"),
+            ("can_see_receipt_r2040evtAssocDespRep", u"Pode ver recibo do evento R2040EVTASSOCDESPREP"),
+            ("can_see_xml_r2040evtAssocDespRep", u"Pode ver xml do evento R2040EVTASSOCDESPREP"),)
             
         ordering = [
             'identidade',
@@ -892,15 +910,18 @@ class r2050evtComProd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2050evtComProd", u"Pode visualizar o conteúdo do evento R2050EVTCOMPROD"),
-            ("can_view_menu_r2050evtComProd", u"Pode visualizar no menu o evento R2050EVTCOMPROD"),
-            ("can_open_event_r2050evtComProd", u"Pode abrir o evento R2050EVTCOMPROD para edição"),
-            ("can_duplicate_event_r2050evtComProd", u"Pode duplicar o evento R2050EVTCOMPROD"),
-            ("can_validate_event_r2050evtComProd", u"Pode validar o evento R2050EVTCOMPROD"),
-            ("can_print_event_r2050evtComProd", u"Pode imprimir recibo do evento R2050EVTCOMPROD"),
-            ("can_change_identity_event_r2050evtComProd", u"Pode alterar identidade do evento R2050EVTCOMPROD"),
-            ("can_view_layout_event_r2050evtComProd", u"Pode ver layout do evento R2050EVTCOMPROD"),
-            ("can_view_xml_event_r2050evtComProd", u"Pode ver xml do evento R2050EVTCOMPROD"),)
+            ("can_see_list_r2050evtComProd", u"Pode ver listagem do modelo R2050EVTCOMPROD"),
+            ("can_see_data_r2050evtComProd", u"Pode visualizar o conteúdo do modelo R2050EVTCOMPROD"),
+            ("can_see_menu_r2050evtComProd", u"Pode visualizar no menu o modelo R2050EVTCOMPROD"),
+            ("can_print_list_r2050evtComProd", u"Pode imprimir listagem do modelo R2050EVTCOMPROD"),
+            ("can_print_data_r2050evtComProd", u"Pode imprimir o conteúdo do modelo R2050EVTCOMPROD"),
+            ("can_open_r2050evtComProd", u"Pode abrir o evento R2050EVTCOMPROD para edição"),
+            ("can_duplicate_r2050evtComProd", u"Pode duplicar o evento R2050EVTCOMPROD"),
+            ("can_validate_r2050evtComProd", u"Pode validar o evento R2050EVTCOMPROD"),
+            ("can_change_identity_r2050evtComProd", u"Pode alterar identidade do evento R2050EVTCOMPROD"),
+            ("can_see_layout_r2050evtComProd", u"Pode ver layout do evento R2050EVTCOMPROD"),
+            ("can_see_receipt_r2050evtComProd", u"Pode ver recibo do evento R2050EVTCOMPROD"),
+            ("can_see_xml_r2050evtComProd", u"Pode ver xml do evento R2050EVTCOMPROD"),)
             
         ordering = [
             'identidade',
@@ -1019,15 +1040,18 @@ class r2060evtCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060evtCPRB", u"Pode visualizar o conteúdo do evento R2060EVTCPRB"),
-            ("can_view_menu_r2060evtCPRB", u"Pode visualizar no menu o evento R2060EVTCPRB"),
-            ("can_open_event_r2060evtCPRB", u"Pode abrir o evento R2060EVTCPRB para edição"),
-            ("can_duplicate_event_r2060evtCPRB", u"Pode duplicar o evento R2060EVTCPRB"),
-            ("can_validate_event_r2060evtCPRB", u"Pode validar o evento R2060EVTCPRB"),
-            ("can_print_event_r2060evtCPRB", u"Pode imprimir recibo do evento R2060EVTCPRB"),
-            ("can_change_identity_event_r2060evtCPRB", u"Pode alterar identidade do evento R2060EVTCPRB"),
-            ("can_view_layout_event_r2060evtCPRB", u"Pode ver layout do evento R2060EVTCPRB"),
-            ("can_view_xml_event_r2060evtCPRB", u"Pode ver xml do evento R2060EVTCPRB"),)
+            ("can_see_list_r2060evtCPRB", u"Pode ver listagem do modelo R2060EVTCPRB"),
+            ("can_see_data_r2060evtCPRB", u"Pode visualizar o conteúdo do modelo R2060EVTCPRB"),
+            ("can_see_menu_r2060evtCPRB", u"Pode visualizar no menu o modelo R2060EVTCPRB"),
+            ("can_print_list_r2060evtCPRB", u"Pode imprimir listagem do modelo R2060EVTCPRB"),
+            ("can_print_data_r2060evtCPRB", u"Pode imprimir o conteúdo do modelo R2060EVTCPRB"),
+            ("can_open_r2060evtCPRB", u"Pode abrir o evento R2060EVTCPRB para edição"),
+            ("can_duplicate_r2060evtCPRB", u"Pode duplicar o evento R2060EVTCPRB"),
+            ("can_validate_r2060evtCPRB", u"Pode validar o evento R2060EVTCPRB"),
+            ("can_change_identity_r2060evtCPRB", u"Pode alterar identidade do evento R2060EVTCPRB"),
+            ("can_see_layout_r2060evtCPRB", u"Pode ver layout do evento R2060EVTCPRB"),
+            ("can_see_receipt_r2060evtCPRB", u"Pode ver recibo do evento R2060EVTCPRB"),
+            ("can_see_xml_r2060evtCPRB", u"Pode ver xml do evento R2060EVTCPRB"),)
             
         ordering = [
             'identidade',
@@ -1141,15 +1165,18 @@ class r2070evtPgtosDivs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070evtPgtosDivs", u"Pode visualizar o conteúdo do evento R2070EVTPGTOSDIVS"),
-            ("can_view_menu_r2070evtPgtosDivs", u"Pode visualizar no menu o evento R2070EVTPGTOSDIVS"),
-            ("can_open_event_r2070evtPgtosDivs", u"Pode abrir o evento R2070EVTPGTOSDIVS para edição"),
-            ("can_duplicate_event_r2070evtPgtosDivs", u"Pode duplicar o evento R2070EVTPGTOSDIVS"),
-            ("can_validate_event_r2070evtPgtosDivs", u"Pode validar o evento R2070EVTPGTOSDIVS"),
-            ("can_print_event_r2070evtPgtosDivs", u"Pode imprimir recibo do evento R2070EVTPGTOSDIVS"),
-            ("can_change_identity_event_r2070evtPgtosDivs", u"Pode alterar identidade do evento R2070EVTPGTOSDIVS"),
-            ("can_view_layout_event_r2070evtPgtosDivs", u"Pode ver layout do evento R2070EVTPGTOSDIVS"),
-            ("can_view_xml_event_r2070evtPgtosDivs", u"Pode ver xml do evento R2070EVTPGTOSDIVS"),)
+            ("can_see_list_r2070evtPgtosDivs", u"Pode ver listagem do modelo R2070EVTPGTOSDIVS"),
+            ("can_see_data_r2070evtPgtosDivs", u"Pode visualizar o conteúdo do modelo R2070EVTPGTOSDIVS"),
+            ("can_see_menu_r2070evtPgtosDivs", u"Pode visualizar no menu o modelo R2070EVTPGTOSDIVS"),
+            ("can_print_list_r2070evtPgtosDivs", u"Pode imprimir listagem do modelo R2070EVTPGTOSDIVS"),
+            ("can_print_data_r2070evtPgtosDivs", u"Pode imprimir o conteúdo do modelo R2070EVTPGTOSDIVS"),
+            ("can_open_r2070evtPgtosDivs", u"Pode abrir o evento R2070EVTPGTOSDIVS para edição"),
+            ("can_duplicate_r2070evtPgtosDivs", u"Pode duplicar o evento R2070EVTPGTOSDIVS"),
+            ("can_validate_r2070evtPgtosDivs", u"Pode validar o evento R2070EVTPGTOSDIVS"),
+            ("can_change_identity_r2070evtPgtosDivs", u"Pode alterar identidade do evento R2070EVTPGTOSDIVS"),
+            ("can_see_layout_r2070evtPgtosDivs", u"Pode ver layout do evento R2070EVTPGTOSDIVS"),
+            ("can_see_receipt_r2070evtPgtosDivs", u"Pode ver recibo do evento R2070EVTPGTOSDIVS"),
+            ("can_see_xml_r2070evtPgtosDivs", u"Pode ver xml do evento R2070EVTPGTOSDIVS"),)
             
         ordering = [
             'identidade',
@@ -1252,15 +1279,18 @@ class r2098evtReabreEvPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2098evtReabreEvPer", u"Pode visualizar o conteúdo do evento R2098EVTREABREEVPER"),
-            ("can_view_menu_r2098evtReabreEvPer", u"Pode visualizar no menu o evento R2098EVTREABREEVPER"),
-            ("can_open_event_r2098evtReabreEvPer", u"Pode abrir o evento R2098EVTREABREEVPER para edição"),
-            ("can_duplicate_event_r2098evtReabreEvPer", u"Pode duplicar o evento R2098EVTREABREEVPER"),
-            ("can_validate_event_r2098evtReabreEvPer", u"Pode validar o evento R2098EVTREABREEVPER"),
-            ("can_print_event_r2098evtReabreEvPer", u"Pode imprimir recibo do evento R2098EVTREABREEVPER"),
-            ("can_change_identity_event_r2098evtReabreEvPer", u"Pode alterar identidade do evento R2098EVTREABREEVPER"),
-            ("can_view_layout_event_r2098evtReabreEvPer", u"Pode ver layout do evento R2098EVTREABREEVPER"),
-            ("can_view_xml_event_r2098evtReabreEvPer", u"Pode ver xml do evento R2098EVTREABREEVPER"),)
+            ("can_see_list_r2098evtReabreEvPer", u"Pode ver listagem do modelo R2098EVTREABREEVPER"),
+            ("can_see_data_r2098evtReabreEvPer", u"Pode visualizar o conteúdo do modelo R2098EVTREABREEVPER"),
+            ("can_see_menu_r2098evtReabreEvPer", u"Pode visualizar no menu o modelo R2098EVTREABREEVPER"),
+            ("can_print_list_r2098evtReabreEvPer", u"Pode imprimir listagem do modelo R2098EVTREABREEVPER"),
+            ("can_print_data_r2098evtReabreEvPer", u"Pode imprimir o conteúdo do modelo R2098EVTREABREEVPER"),
+            ("can_open_r2098evtReabreEvPer", u"Pode abrir o evento R2098EVTREABREEVPER para edição"),
+            ("can_duplicate_r2098evtReabreEvPer", u"Pode duplicar o evento R2098EVTREABREEVPER"),
+            ("can_validate_r2098evtReabreEvPer", u"Pode validar o evento R2098EVTREABREEVPER"),
+            ("can_change_identity_r2098evtReabreEvPer", u"Pode alterar identidade do evento R2098EVTREABREEVPER"),
+            ("can_see_layout_r2098evtReabreEvPer", u"Pode ver layout do evento R2098EVTREABREEVPER"),
+            ("can_see_receipt_r2098evtReabreEvPer", u"Pode ver recibo do evento R2098EVTREABREEVPER"),
+            ("can_see_xml_r2098evtReabreEvPer", u"Pode ver xml do evento R2098EVTREABREEVPER"),)
             
         ordering = [
             'identidade',
@@ -1374,15 +1404,18 @@ class r2099evtFechaEvPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2099evtFechaEvPer", u"Pode visualizar o conteúdo do evento R2099EVTFECHAEVPER"),
-            ("can_view_menu_r2099evtFechaEvPer", u"Pode visualizar no menu o evento R2099EVTFECHAEVPER"),
-            ("can_open_event_r2099evtFechaEvPer", u"Pode abrir o evento R2099EVTFECHAEVPER para edição"),
-            ("can_duplicate_event_r2099evtFechaEvPer", u"Pode duplicar o evento R2099EVTFECHAEVPER"),
-            ("can_validate_event_r2099evtFechaEvPer", u"Pode validar o evento R2099EVTFECHAEVPER"),
-            ("can_print_event_r2099evtFechaEvPer", u"Pode imprimir recibo do evento R2099EVTFECHAEVPER"),
-            ("can_change_identity_event_r2099evtFechaEvPer", u"Pode alterar identidade do evento R2099EVTFECHAEVPER"),
-            ("can_view_layout_event_r2099evtFechaEvPer", u"Pode ver layout do evento R2099EVTFECHAEVPER"),
-            ("can_view_xml_event_r2099evtFechaEvPer", u"Pode ver xml do evento R2099EVTFECHAEVPER"),)
+            ("can_see_list_r2099evtFechaEvPer", u"Pode ver listagem do modelo R2099EVTFECHAEVPER"),
+            ("can_see_data_r2099evtFechaEvPer", u"Pode visualizar o conteúdo do modelo R2099EVTFECHAEVPER"),
+            ("can_see_menu_r2099evtFechaEvPer", u"Pode visualizar no menu o modelo R2099EVTFECHAEVPER"),
+            ("can_print_list_r2099evtFechaEvPer", u"Pode imprimir listagem do modelo R2099EVTFECHAEVPER"),
+            ("can_print_data_r2099evtFechaEvPer", u"Pode imprimir o conteúdo do modelo R2099EVTFECHAEVPER"),
+            ("can_open_r2099evtFechaEvPer", u"Pode abrir o evento R2099EVTFECHAEVPER para edição"),
+            ("can_duplicate_r2099evtFechaEvPer", u"Pode duplicar o evento R2099EVTFECHAEVPER"),
+            ("can_validate_r2099evtFechaEvPer", u"Pode validar o evento R2099EVTFECHAEVPER"),
+            ("can_change_identity_r2099evtFechaEvPer", u"Pode alterar identidade do evento R2099EVTFECHAEVPER"),
+            ("can_see_layout_r2099evtFechaEvPer", u"Pode ver layout do evento R2099EVTFECHAEVPER"),
+            ("can_see_receipt_r2099evtFechaEvPer", u"Pode ver recibo do evento R2099EVTFECHAEVPER"),
+            ("can_see_xml_r2099evtFechaEvPer", u"Pode ver xml do evento R2099EVTFECHAEVPER"),)
             
         ordering = [
             'identidade',
@@ -1504,15 +1537,18 @@ class r3010evtEspDesportivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010evtEspDesportivo", u"Pode visualizar o conteúdo do evento R3010EVTESPDESPORTIVO"),
-            ("can_view_menu_r3010evtEspDesportivo", u"Pode visualizar no menu o evento R3010EVTESPDESPORTIVO"),
-            ("can_open_event_r3010evtEspDesportivo", u"Pode abrir o evento R3010EVTESPDESPORTIVO para edição"),
-            ("can_duplicate_event_r3010evtEspDesportivo", u"Pode duplicar o evento R3010EVTESPDESPORTIVO"),
-            ("can_validate_event_r3010evtEspDesportivo", u"Pode validar o evento R3010EVTESPDESPORTIVO"),
-            ("can_print_event_r3010evtEspDesportivo", u"Pode imprimir recibo do evento R3010EVTESPDESPORTIVO"),
-            ("can_change_identity_event_r3010evtEspDesportivo", u"Pode alterar identidade do evento R3010EVTESPDESPORTIVO"),
-            ("can_view_layout_event_r3010evtEspDesportivo", u"Pode ver layout do evento R3010EVTESPDESPORTIVO"),
-            ("can_view_xml_event_r3010evtEspDesportivo", u"Pode ver xml do evento R3010EVTESPDESPORTIVO"),)
+            ("can_see_list_r3010evtEspDesportivo", u"Pode ver listagem do modelo R3010EVTESPDESPORTIVO"),
+            ("can_see_data_r3010evtEspDesportivo", u"Pode visualizar o conteúdo do modelo R3010EVTESPDESPORTIVO"),
+            ("can_see_menu_r3010evtEspDesportivo", u"Pode visualizar no menu o modelo R3010EVTESPDESPORTIVO"),
+            ("can_print_list_r3010evtEspDesportivo", u"Pode imprimir listagem do modelo R3010EVTESPDESPORTIVO"),
+            ("can_print_data_r3010evtEspDesportivo", u"Pode imprimir o conteúdo do modelo R3010EVTESPDESPORTIVO"),
+            ("can_open_r3010evtEspDesportivo", u"Pode abrir o evento R3010EVTESPDESPORTIVO para edição"),
+            ("can_duplicate_r3010evtEspDesportivo", u"Pode duplicar o evento R3010EVTESPDESPORTIVO"),
+            ("can_validate_r3010evtEspDesportivo", u"Pode validar o evento R3010EVTESPDESPORTIVO"),
+            ("can_change_identity_r3010evtEspDesportivo", u"Pode alterar identidade do evento R3010EVTESPDESPORTIVO"),
+            ("can_see_layout_r3010evtEspDesportivo", u"Pode ver layout do evento R3010EVTESPDESPORTIVO"),
+            ("can_see_receipt_r3010evtEspDesportivo", u"Pode ver recibo do evento R3010EVTESPDESPORTIVO"),
+            ("can_see_xml_r3010evtEspDesportivo", u"Pode ver xml do evento R3010EVTESPDESPORTIVO"),)
             
         ordering = [
             'identidade',
@@ -1628,15 +1664,18 @@ class r4010evtRetPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4010evtRetPF", u"Pode visualizar o conteúdo do evento R4010EVTRETPF"),
-            ("can_view_menu_r4010evtRetPF", u"Pode visualizar no menu o evento R4010EVTRETPF"),
-            ("can_open_event_r4010evtRetPF", u"Pode abrir o evento R4010EVTRETPF para edição"),
-            ("can_duplicate_event_r4010evtRetPF", u"Pode duplicar o evento R4010EVTRETPF"),
-            ("can_validate_event_r4010evtRetPF", u"Pode validar o evento R4010EVTRETPF"),
-            ("can_print_event_r4010evtRetPF", u"Pode imprimir recibo do evento R4010EVTRETPF"),
-            ("can_change_identity_event_r4010evtRetPF", u"Pode alterar identidade do evento R4010EVTRETPF"),
-            ("can_view_layout_event_r4010evtRetPF", u"Pode ver layout do evento R4010EVTRETPF"),
-            ("can_view_xml_event_r4010evtRetPF", u"Pode ver xml do evento R4010EVTRETPF"),)
+            ("can_see_list_r4010evtRetPF", u"Pode ver listagem do modelo R4010EVTRETPF"),
+            ("can_see_data_r4010evtRetPF", u"Pode visualizar o conteúdo do modelo R4010EVTRETPF"),
+            ("can_see_menu_r4010evtRetPF", u"Pode visualizar no menu o modelo R4010EVTRETPF"),
+            ("can_print_list_r4010evtRetPF", u"Pode imprimir listagem do modelo R4010EVTRETPF"),
+            ("can_print_data_r4010evtRetPF", u"Pode imprimir o conteúdo do modelo R4010EVTRETPF"),
+            ("can_open_r4010evtRetPF", u"Pode abrir o evento R4010EVTRETPF para edição"),
+            ("can_duplicate_r4010evtRetPF", u"Pode duplicar o evento R4010EVTRETPF"),
+            ("can_validate_r4010evtRetPF", u"Pode validar o evento R4010EVTRETPF"),
+            ("can_change_identity_r4010evtRetPF", u"Pode alterar identidade do evento R4010EVTRETPF"),
+            ("can_see_layout_r4010evtRetPF", u"Pode ver layout do evento R4010EVTRETPF"),
+            ("can_see_receipt_r4010evtRetPF", u"Pode ver recibo do evento R4010EVTRETPF"),
+            ("can_see_xml_r4010evtRetPF", u"Pode ver xml do evento R4010EVTRETPF"),)
             
         ordering = [
             'identidade',
@@ -1750,15 +1789,18 @@ class r4020evtRetPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020evtRetPJ", u"Pode visualizar o conteúdo do evento R4020EVTRETPJ"),
-            ("can_view_menu_r4020evtRetPJ", u"Pode visualizar no menu o evento R4020EVTRETPJ"),
-            ("can_open_event_r4020evtRetPJ", u"Pode abrir o evento R4020EVTRETPJ para edição"),
-            ("can_duplicate_event_r4020evtRetPJ", u"Pode duplicar o evento R4020EVTRETPJ"),
-            ("can_validate_event_r4020evtRetPJ", u"Pode validar o evento R4020EVTRETPJ"),
-            ("can_print_event_r4020evtRetPJ", u"Pode imprimir recibo do evento R4020EVTRETPJ"),
-            ("can_change_identity_event_r4020evtRetPJ", u"Pode alterar identidade do evento R4020EVTRETPJ"),
-            ("can_view_layout_event_r4020evtRetPJ", u"Pode ver layout do evento R4020EVTRETPJ"),
-            ("can_view_xml_event_r4020evtRetPJ", u"Pode ver xml do evento R4020EVTRETPJ"),)
+            ("can_see_list_r4020evtRetPJ", u"Pode ver listagem do modelo R4020EVTRETPJ"),
+            ("can_see_data_r4020evtRetPJ", u"Pode visualizar o conteúdo do modelo R4020EVTRETPJ"),
+            ("can_see_menu_r4020evtRetPJ", u"Pode visualizar no menu o modelo R4020EVTRETPJ"),
+            ("can_print_list_r4020evtRetPJ", u"Pode imprimir listagem do modelo R4020EVTRETPJ"),
+            ("can_print_data_r4020evtRetPJ", u"Pode imprimir o conteúdo do modelo R4020EVTRETPJ"),
+            ("can_open_r4020evtRetPJ", u"Pode abrir o evento R4020EVTRETPJ para edição"),
+            ("can_duplicate_r4020evtRetPJ", u"Pode duplicar o evento R4020EVTRETPJ"),
+            ("can_validate_r4020evtRetPJ", u"Pode validar o evento R4020EVTRETPJ"),
+            ("can_change_identity_r4020evtRetPJ", u"Pode alterar identidade do evento R4020EVTRETPJ"),
+            ("can_see_layout_r4020evtRetPJ", u"Pode ver layout do evento R4020EVTRETPJ"),
+            ("can_see_receipt_r4020evtRetPJ", u"Pode ver recibo do evento R4020EVTRETPJ"),
+            ("can_see_xml_r4020evtRetPJ", u"Pode ver xml do evento R4020EVTRETPJ"),)
             
         ordering = [
             'identidade',
@@ -1869,15 +1911,18 @@ class r4040evtBenefNId(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4040evtBenefNId", u"Pode visualizar o conteúdo do evento R4040EVTBENEFNID"),
-            ("can_view_menu_r4040evtBenefNId", u"Pode visualizar no menu o evento R4040EVTBENEFNID"),
-            ("can_open_event_r4040evtBenefNId", u"Pode abrir o evento R4040EVTBENEFNID para edição"),
-            ("can_duplicate_event_r4040evtBenefNId", u"Pode duplicar o evento R4040EVTBENEFNID"),
-            ("can_validate_event_r4040evtBenefNId", u"Pode validar o evento R4040EVTBENEFNID"),
-            ("can_print_event_r4040evtBenefNId", u"Pode imprimir recibo do evento R4040EVTBENEFNID"),
-            ("can_change_identity_event_r4040evtBenefNId", u"Pode alterar identidade do evento R4040EVTBENEFNID"),
-            ("can_view_layout_event_r4040evtBenefNId", u"Pode ver layout do evento R4040EVTBENEFNID"),
-            ("can_view_xml_event_r4040evtBenefNId", u"Pode ver xml do evento R4040EVTBENEFNID"),)
+            ("can_see_list_r4040evtBenefNId", u"Pode ver listagem do modelo R4040EVTBENEFNID"),
+            ("can_see_data_r4040evtBenefNId", u"Pode visualizar o conteúdo do modelo R4040EVTBENEFNID"),
+            ("can_see_menu_r4040evtBenefNId", u"Pode visualizar no menu o modelo R4040EVTBENEFNID"),
+            ("can_print_list_r4040evtBenefNId", u"Pode imprimir listagem do modelo R4040EVTBENEFNID"),
+            ("can_print_data_r4040evtBenefNId", u"Pode imprimir o conteúdo do modelo R4040EVTBENEFNID"),
+            ("can_open_r4040evtBenefNId", u"Pode abrir o evento R4040EVTBENEFNID para edição"),
+            ("can_duplicate_r4040evtBenefNId", u"Pode duplicar o evento R4040EVTBENEFNID"),
+            ("can_validate_r4040evtBenefNId", u"Pode validar o evento R4040EVTBENEFNID"),
+            ("can_change_identity_r4040evtBenefNId", u"Pode alterar identidade do evento R4040EVTBENEFNID"),
+            ("can_see_layout_r4040evtBenefNId", u"Pode ver layout do evento R4040EVTBENEFNID"),
+            ("can_see_receipt_r4040evtBenefNId", u"Pode ver recibo do evento R4040EVTBENEFNID"),
+            ("can_see_xml_r4040evtBenefNId", u"Pode ver xml do evento R4040EVTBENEFNID"),)
             
         ordering = [
             'identidade',
@@ -1980,15 +2025,18 @@ class r4098evtReab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4098evtReab", u"Pode visualizar o conteúdo do evento R4098EVTREAB"),
-            ("can_view_menu_r4098evtReab", u"Pode visualizar no menu o evento R4098EVTREAB"),
-            ("can_open_event_r4098evtReab", u"Pode abrir o evento R4098EVTREAB para edição"),
-            ("can_duplicate_event_r4098evtReab", u"Pode duplicar o evento R4098EVTREAB"),
-            ("can_validate_event_r4098evtReab", u"Pode validar o evento R4098EVTREAB"),
-            ("can_print_event_r4098evtReab", u"Pode imprimir recibo do evento R4098EVTREAB"),
-            ("can_change_identity_event_r4098evtReab", u"Pode alterar identidade do evento R4098EVTREAB"),
-            ("can_view_layout_event_r4098evtReab", u"Pode ver layout do evento R4098EVTREAB"),
-            ("can_view_xml_event_r4098evtReab", u"Pode ver xml do evento R4098EVTREAB"),)
+            ("can_see_list_r4098evtReab", u"Pode ver listagem do modelo R4098EVTREAB"),
+            ("can_see_data_r4098evtReab", u"Pode visualizar o conteúdo do modelo R4098EVTREAB"),
+            ("can_see_menu_r4098evtReab", u"Pode visualizar no menu o modelo R4098EVTREAB"),
+            ("can_print_list_r4098evtReab", u"Pode imprimir listagem do modelo R4098EVTREAB"),
+            ("can_print_data_r4098evtReab", u"Pode imprimir o conteúdo do modelo R4098EVTREAB"),
+            ("can_open_r4098evtReab", u"Pode abrir o evento R4098EVTREAB para edição"),
+            ("can_duplicate_r4098evtReab", u"Pode duplicar o evento R4098EVTREAB"),
+            ("can_validate_r4098evtReab", u"Pode validar o evento R4098EVTREAB"),
+            ("can_change_identity_r4098evtReab", u"Pode alterar identidade do evento R4098EVTREAB"),
+            ("can_see_layout_r4098evtReab", u"Pode ver layout do evento R4098EVTREAB"),
+            ("can_see_receipt_r4098evtReab", u"Pode ver recibo do evento R4098EVTREAB"),
+            ("can_see_xml_r4098evtReab", u"Pode ver xml do evento R4098EVTREAB"),)
             
         ordering = [
             'identidade',
@@ -2091,15 +2139,18 @@ class r4099evtFech(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4099evtFech", u"Pode visualizar o conteúdo do evento R4099EVTFECH"),
-            ("can_view_menu_r4099evtFech", u"Pode visualizar no menu o evento R4099EVTFECH"),
-            ("can_open_event_r4099evtFech", u"Pode abrir o evento R4099EVTFECH para edição"),
-            ("can_duplicate_event_r4099evtFech", u"Pode duplicar o evento R4099EVTFECH"),
-            ("can_validate_event_r4099evtFech", u"Pode validar o evento R4099EVTFECH"),
-            ("can_print_event_r4099evtFech", u"Pode imprimir recibo do evento R4099EVTFECH"),
-            ("can_change_identity_event_r4099evtFech", u"Pode alterar identidade do evento R4099EVTFECH"),
-            ("can_view_layout_event_r4099evtFech", u"Pode ver layout do evento R4099EVTFECH"),
-            ("can_view_xml_event_r4099evtFech", u"Pode ver xml do evento R4099EVTFECH"),)
+            ("can_see_list_r4099evtFech", u"Pode ver listagem do modelo R4099EVTFECH"),
+            ("can_see_data_r4099evtFech", u"Pode visualizar o conteúdo do modelo R4099EVTFECH"),
+            ("can_see_menu_r4099evtFech", u"Pode visualizar no menu o modelo R4099EVTFECH"),
+            ("can_print_list_r4099evtFech", u"Pode imprimir listagem do modelo R4099EVTFECH"),
+            ("can_print_data_r4099evtFech", u"Pode imprimir o conteúdo do modelo R4099EVTFECH"),
+            ("can_open_r4099evtFech", u"Pode abrir o evento R4099EVTFECH para edição"),
+            ("can_duplicate_r4099evtFech", u"Pode duplicar o evento R4099EVTFECH"),
+            ("can_validate_r4099evtFech", u"Pode validar o evento R4099EVTFECH"),
+            ("can_change_identity_r4099evtFech", u"Pode alterar identidade do evento R4099EVTFECH"),
+            ("can_see_layout_r4099evtFech", u"Pode ver layout do evento R4099EVTFECH"),
+            ("can_see_receipt_r4099evtFech", u"Pode ver recibo do evento R4099EVTFECH"),
+            ("can_see_xml_r4099evtFech", u"Pode ver xml do evento R4099EVTFECH"),)
             
         ordering = [
             'identidade',
@@ -2206,15 +2257,18 @@ class r5001evtTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001evtTotal", u"Pode visualizar o conteúdo do evento R5001EVTTOTAL"),
-            ("can_view_menu_r5001evtTotal", u"Pode visualizar no menu o evento R5001EVTTOTAL"),
-            ("can_open_event_r5001evtTotal", u"Pode abrir o evento R5001EVTTOTAL para edição"),
-            ("can_duplicate_event_r5001evtTotal", u"Pode duplicar o evento R5001EVTTOTAL"),
-            ("can_validate_event_r5001evtTotal", u"Pode validar o evento R5001EVTTOTAL"),
-            ("can_print_event_r5001evtTotal", u"Pode imprimir recibo do evento R5001EVTTOTAL"),
-            ("can_change_identity_event_r5001evtTotal", u"Pode alterar identidade do evento R5001EVTTOTAL"),
-            ("can_view_layout_event_r5001evtTotal", u"Pode ver layout do evento R5001EVTTOTAL"),
-            ("can_view_xml_event_r5001evtTotal", u"Pode ver xml do evento R5001EVTTOTAL"),)
+            ("can_see_list_r5001evtTotal", u"Pode ver listagem do modelo R5001EVTTOTAL"),
+            ("can_see_data_r5001evtTotal", u"Pode visualizar o conteúdo do modelo R5001EVTTOTAL"),
+            ("can_see_menu_r5001evtTotal", u"Pode visualizar no menu o modelo R5001EVTTOTAL"),
+            ("can_print_list_r5001evtTotal", u"Pode imprimir listagem do modelo R5001EVTTOTAL"),
+            ("can_print_data_r5001evtTotal", u"Pode imprimir o conteúdo do modelo R5001EVTTOTAL"),
+            ("can_open_r5001evtTotal", u"Pode abrir o evento R5001EVTTOTAL para edição"),
+            ("can_duplicate_r5001evtTotal", u"Pode duplicar o evento R5001EVTTOTAL"),
+            ("can_validate_r5001evtTotal", u"Pode validar o evento R5001EVTTOTAL"),
+            ("can_change_identity_r5001evtTotal", u"Pode alterar identidade do evento R5001EVTTOTAL"),
+            ("can_see_layout_r5001evtTotal", u"Pode ver layout do evento R5001EVTTOTAL"),
+            ("can_see_receipt_r5001evtTotal", u"Pode ver recibo do evento R5001EVTTOTAL"),
+            ("can_see_xml_r5001evtTotal", u"Pode ver xml do evento R5001EVTTOTAL"),)
             
         ordering = [
             'identidade',
@@ -2325,15 +2379,18 @@ class r5011evtTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011evtTotalContrib", u"Pode visualizar o conteúdo do evento R5011EVTTOTALCONTRIB"),
-            ("can_view_menu_r5011evtTotalContrib", u"Pode visualizar no menu o evento R5011EVTTOTALCONTRIB"),
-            ("can_open_event_r5011evtTotalContrib", u"Pode abrir o evento R5011EVTTOTALCONTRIB para edição"),
-            ("can_duplicate_event_r5011evtTotalContrib", u"Pode duplicar o evento R5011EVTTOTALCONTRIB"),
-            ("can_validate_event_r5011evtTotalContrib", u"Pode validar o evento R5011EVTTOTALCONTRIB"),
-            ("can_print_event_r5011evtTotalContrib", u"Pode imprimir recibo do evento R5011EVTTOTALCONTRIB"),
-            ("can_change_identity_event_r5011evtTotalContrib", u"Pode alterar identidade do evento R5011EVTTOTALCONTRIB"),
-            ("can_view_layout_event_r5011evtTotalContrib", u"Pode ver layout do evento R5011EVTTOTALCONTRIB"),
-            ("can_view_xml_event_r5011evtTotalContrib", u"Pode ver xml do evento R5011EVTTOTALCONTRIB"),)
+            ("can_see_list_r5011evtTotalContrib", u"Pode ver listagem do modelo R5011EVTTOTALCONTRIB"),
+            ("can_see_data_r5011evtTotalContrib", u"Pode visualizar o conteúdo do modelo R5011EVTTOTALCONTRIB"),
+            ("can_see_menu_r5011evtTotalContrib", u"Pode visualizar no menu o modelo R5011EVTTOTALCONTRIB"),
+            ("can_print_list_r5011evtTotalContrib", u"Pode imprimir listagem do modelo R5011EVTTOTALCONTRIB"),
+            ("can_print_data_r5011evtTotalContrib", u"Pode imprimir o conteúdo do modelo R5011EVTTOTALCONTRIB"),
+            ("can_open_r5011evtTotalContrib", u"Pode abrir o evento R5011EVTTOTALCONTRIB para edição"),
+            ("can_duplicate_r5011evtTotalContrib", u"Pode duplicar o evento R5011EVTTOTALCONTRIB"),
+            ("can_validate_r5011evtTotalContrib", u"Pode validar o evento R5011EVTTOTALCONTRIB"),
+            ("can_change_identity_r5011evtTotalContrib", u"Pode alterar identidade do evento R5011EVTTOTALCONTRIB"),
+            ("can_see_layout_r5011evtTotalContrib", u"Pode ver layout do evento R5011EVTTOTALCONTRIB"),
+            ("can_see_receipt_r5011evtTotalContrib", u"Pode ver recibo do evento R5011EVTTOTALCONTRIB"),
+            ("can_see_xml_r5011evtTotalContrib", u"Pode ver xml do evento R5011EVTTOTALCONTRIB"),)
             
         ordering = [
             'identidade',
@@ -2441,15 +2498,18 @@ class r9000evtExclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9000evtExclusao", u"Pode visualizar o conteúdo do evento R9000EVTEXCLUSAO"),
-            ("can_view_menu_r9000evtExclusao", u"Pode visualizar no menu o evento R9000EVTEXCLUSAO"),
-            ("can_open_event_r9000evtExclusao", u"Pode abrir o evento R9000EVTEXCLUSAO para edição"),
-            ("can_duplicate_event_r9000evtExclusao", u"Pode duplicar o evento R9000EVTEXCLUSAO"),
-            ("can_validate_event_r9000evtExclusao", u"Pode validar o evento R9000EVTEXCLUSAO"),
-            ("can_print_event_r9000evtExclusao", u"Pode imprimir recibo do evento R9000EVTEXCLUSAO"),
-            ("can_change_identity_event_r9000evtExclusao", u"Pode alterar identidade do evento R9000EVTEXCLUSAO"),
-            ("can_view_layout_event_r9000evtExclusao", u"Pode ver layout do evento R9000EVTEXCLUSAO"),
-            ("can_view_xml_event_r9000evtExclusao", u"Pode ver xml do evento R9000EVTEXCLUSAO"),)
+            ("can_see_list_r9000evtExclusao", u"Pode ver listagem do modelo R9000EVTEXCLUSAO"),
+            ("can_see_data_r9000evtExclusao", u"Pode visualizar o conteúdo do modelo R9000EVTEXCLUSAO"),
+            ("can_see_menu_r9000evtExclusao", u"Pode visualizar no menu o modelo R9000EVTEXCLUSAO"),
+            ("can_print_list_r9000evtExclusao", u"Pode imprimir listagem do modelo R9000EVTEXCLUSAO"),
+            ("can_print_data_r9000evtExclusao", u"Pode imprimir o conteúdo do modelo R9000EVTEXCLUSAO"),
+            ("can_open_r9000evtExclusao", u"Pode abrir o evento R9000EVTEXCLUSAO para edição"),
+            ("can_duplicate_r9000evtExclusao", u"Pode duplicar o evento R9000EVTEXCLUSAO"),
+            ("can_validate_r9000evtExclusao", u"Pode validar o evento R9000EVTEXCLUSAO"),
+            ("can_change_identity_r9000evtExclusao", u"Pode alterar identidade do evento R9000EVTEXCLUSAO"),
+            ("can_see_layout_r9000evtExclusao", u"Pode ver layout do evento R9000EVTEXCLUSAO"),
+            ("can_see_receipt_r9000evtExclusao", u"Pode ver recibo do evento R9000EVTEXCLUSAO"),
+            ("can_see_xml_r9000evtExclusao", u"Pode ver xml do evento R9000EVTEXCLUSAO"),)
             
         ordering = [
             'identidade',
@@ -2558,15 +2618,18 @@ class r9001evtTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001evtTotal", u"Pode visualizar o conteúdo do evento R9001EVTTOTAL"),
-            ("can_view_menu_r9001evtTotal", u"Pode visualizar no menu o evento R9001EVTTOTAL"),
-            ("can_open_event_r9001evtTotal", u"Pode abrir o evento R9001EVTTOTAL para edição"),
-            ("can_duplicate_event_r9001evtTotal", u"Pode duplicar o evento R9001EVTTOTAL"),
-            ("can_validate_event_r9001evtTotal", u"Pode validar o evento R9001EVTTOTAL"),
-            ("can_print_event_r9001evtTotal", u"Pode imprimir recibo do evento R9001EVTTOTAL"),
-            ("can_change_identity_event_r9001evtTotal", u"Pode alterar identidade do evento R9001EVTTOTAL"),
-            ("can_view_layout_event_r9001evtTotal", u"Pode ver layout do evento R9001EVTTOTAL"),
-            ("can_view_xml_event_r9001evtTotal", u"Pode ver xml do evento R9001EVTTOTAL"),)
+            ("can_see_list_r9001evtTotal", u"Pode ver listagem do modelo R9001EVTTOTAL"),
+            ("can_see_data_r9001evtTotal", u"Pode visualizar o conteúdo do modelo R9001EVTTOTAL"),
+            ("can_see_menu_r9001evtTotal", u"Pode visualizar no menu o modelo R9001EVTTOTAL"),
+            ("can_print_list_r9001evtTotal", u"Pode imprimir listagem do modelo R9001EVTTOTAL"),
+            ("can_print_data_r9001evtTotal", u"Pode imprimir o conteúdo do modelo R9001EVTTOTAL"),
+            ("can_open_r9001evtTotal", u"Pode abrir o evento R9001EVTTOTAL para edição"),
+            ("can_duplicate_r9001evtTotal", u"Pode duplicar o evento R9001EVTTOTAL"),
+            ("can_validate_r9001evtTotal", u"Pode validar o evento R9001EVTTOTAL"),
+            ("can_change_identity_r9001evtTotal", u"Pode alterar identidade do evento R9001EVTTOTAL"),
+            ("can_see_layout_r9001evtTotal", u"Pode ver layout do evento R9001EVTTOTAL"),
+            ("can_see_receipt_r9001evtTotal", u"Pode ver recibo do evento R9001EVTTOTAL"),
+            ("can_see_xml_r9001evtTotal", u"Pode ver xml do evento R9001EVTTOTAL"),)
             
         ordering = [
             'identidade',
@@ -2676,15 +2739,18 @@ class r9002evtRet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002evtRet", u"Pode visualizar o conteúdo do evento R9002EVTRET"),
-            ("can_view_menu_r9002evtRet", u"Pode visualizar no menu o evento R9002EVTRET"),
-            ("can_open_event_r9002evtRet", u"Pode abrir o evento R9002EVTRET para edição"),
-            ("can_duplicate_event_r9002evtRet", u"Pode duplicar o evento R9002EVTRET"),
-            ("can_validate_event_r9002evtRet", u"Pode validar o evento R9002EVTRET"),
-            ("can_print_event_r9002evtRet", u"Pode imprimir recibo do evento R9002EVTRET"),
-            ("can_change_identity_event_r9002evtRet", u"Pode alterar identidade do evento R9002EVTRET"),
-            ("can_view_layout_event_r9002evtRet", u"Pode ver layout do evento R9002EVTRET"),
-            ("can_view_xml_event_r9002evtRet", u"Pode ver xml do evento R9002EVTRET"),)
+            ("can_see_list_r9002evtRet", u"Pode ver listagem do modelo R9002EVTRET"),
+            ("can_see_data_r9002evtRet", u"Pode visualizar o conteúdo do modelo R9002EVTRET"),
+            ("can_see_menu_r9002evtRet", u"Pode visualizar no menu o modelo R9002EVTRET"),
+            ("can_print_list_r9002evtRet", u"Pode imprimir listagem do modelo R9002EVTRET"),
+            ("can_print_data_r9002evtRet", u"Pode imprimir o conteúdo do modelo R9002EVTRET"),
+            ("can_open_r9002evtRet", u"Pode abrir o evento R9002EVTRET para edição"),
+            ("can_duplicate_r9002evtRet", u"Pode duplicar o evento R9002EVTRET"),
+            ("can_validate_r9002evtRet", u"Pode validar o evento R9002EVTRET"),
+            ("can_change_identity_r9002evtRet", u"Pode alterar identidade do evento R9002EVTRET"),
+            ("can_see_layout_r9002evtRet", u"Pode ver layout do evento R9002EVTRET"),
+            ("can_see_receipt_r9002evtRet", u"Pode ver recibo do evento R9002EVTRET"),
+            ("can_see_xml_r9002evtRet", u"Pode ver xml do evento R9002EVTRET"),)
             
         ordering = [
             'identidade',
@@ -2795,15 +2861,18 @@ class r9011evtTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9011evtTotalContrib", u"Pode visualizar o conteúdo do evento R9011EVTTOTALCONTRIB"),
-            ("can_view_menu_r9011evtTotalContrib", u"Pode visualizar no menu o evento R9011EVTTOTALCONTRIB"),
-            ("can_open_event_r9011evtTotalContrib", u"Pode abrir o evento R9011EVTTOTALCONTRIB para edição"),
-            ("can_duplicate_event_r9011evtTotalContrib", u"Pode duplicar o evento R9011EVTTOTALCONTRIB"),
-            ("can_validate_event_r9011evtTotalContrib", u"Pode validar o evento R9011EVTTOTALCONTRIB"),
-            ("can_print_event_r9011evtTotalContrib", u"Pode imprimir recibo do evento R9011EVTTOTALCONTRIB"),
-            ("can_change_identity_event_r9011evtTotalContrib", u"Pode alterar identidade do evento R9011EVTTOTALCONTRIB"),
-            ("can_view_layout_event_r9011evtTotalContrib", u"Pode ver layout do evento R9011EVTTOTALCONTRIB"),
-            ("can_view_xml_event_r9011evtTotalContrib", u"Pode ver xml do evento R9011EVTTOTALCONTRIB"),)
+            ("can_see_list_r9011evtTotalContrib", u"Pode ver listagem do modelo R9011EVTTOTALCONTRIB"),
+            ("can_see_data_r9011evtTotalContrib", u"Pode visualizar o conteúdo do modelo R9011EVTTOTALCONTRIB"),
+            ("can_see_menu_r9011evtTotalContrib", u"Pode visualizar no menu o modelo R9011EVTTOTALCONTRIB"),
+            ("can_print_list_r9011evtTotalContrib", u"Pode imprimir listagem do modelo R9011EVTTOTALCONTRIB"),
+            ("can_print_data_r9011evtTotalContrib", u"Pode imprimir o conteúdo do modelo R9011EVTTOTALCONTRIB"),
+            ("can_open_r9011evtTotalContrib", u"Pode abrir o evento R9011EVTTOTALCONTRIB para edição"),
+            ("can_duplicate_r9011evtTotalContrib", u"Pode duplicar o evento R9011EVTTOTALCONTRIB"),
+            ("can_validate_r9011evtTotalContrib", u"Pode validar o evento R9011EVTTOTALCONTRIB"),
+            ("can_change_identity_r9011evtTotalContrib", u"Pode alterar identidade do evento R9011EVTTOTALCONTRIB"),
+            ("can_see_layout_r9011evtTotalContrib", u"Pode ver layout do evento R9011EVTTOTALCONTRIB"),
+            ("can_see_receipt_r9011evtTotalContrib", u"Pode ver recibo do evento R9011EVTTOTALCONTRIB"),
+            ("can_see_xml_r9011evtTotalContrib", u"Pode ver xml do evento R9011EVTTOTALCONTRIB"),)
             
         ordering = [
             'identidade',
@@ -2915,15 +2984,18 @@ class r9012evtRetCons(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012evtRetCons", u"Pode visualizar o conteúdo do evento R9012EVTRETCONS"),
-            ("can_view_menu_r9012evtRetCons", u"Pode visualizar no menu o evento R9012EVTRETCONS"),
-            ("can_open_event_r9012evtRetCons", u"Pode abrir o evento R9012EVTRETCONS para edição"),
-            ("can_duplicate_event_r9012evtRetCons", u"Pode duplicar o evento R9012EVTRETCONS"),
-            ("can_validate_event_r9012evtRetCons", u"Pode validar o evento R9012EVTRETCONS"),
-            ("can_print_event_r9012evtRetCons", u"Pode imprimir recibo do evento R9012EVTRETCONS"),
-            ("can_change_identity_event_r9012evtRetCons", u"Pode alterar identidade do evento R9012EVTRETCONS"),
-            ("can_view_layout_event_r9012evtRetCons", u"Pode ver layout do evento R9012EVTRETCONS"),
-            ("can_view_xml_event_r9012evtRetCons", u"Pode ver xml do evento R9012EVTRETCONS"),)
+            ("can_see_list_r9012evtRetCons", u"Pode ver listagem do modelo R9012EVTRETCONS"),
+            ("can_see_data_r9012evtRetCons", u"Pode visualizar o conteúdo do modelo R9012EVTRETCONS"),
+            ("can_see_menu_r9012evtRetCons", u"Pode visualizar no menu o modelo R9012EVTRETCONS"),
+            ("can_print_list_r9012evtRetCons", u"Pode imprimir listagem do modelo R9012EVTRETCONS"),
+            ("can_print_data_r9012evtRetCons", u"Pode imprimir o conteúdo do modelo R9012EVTRETCONS"),
+            ("can_open_r9012evtRetCons", u"Pode abrir o evento R9012EVTRETCONS para edição"),
+            ("can_duplicate_r9012evtRetCons", u"Pode duplicar o evento R9012EVTRETCONS"),
+            ("can_validate_r9012evtRetCons", u"Pode validar o evento R9012EVTRETCONS"),
+            ("can_change_identity_r9012evtRetCons", u"Pode alterar identidade do evento R9012EVTRETCONS"),
+            ("can_see_layout_r9012evtRetCons", u"Pode ver layout do evento R9012EVTRETCONS"),
+            ("can_see_receipt_r9012evtRetCons", u"Pode ver recibo do evento R9012EVTRETCONS"),
+            ("can_see_xml_r9012evtRetCons", u"Pode ver xml do evento R9012EVTRETCONS"),)
             
         ordering = [
             'identidade',

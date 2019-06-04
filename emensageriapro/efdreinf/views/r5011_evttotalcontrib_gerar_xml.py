@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.r5011.models import *
 from emensageriapro.r5011.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r5011(request, r5011_evttotalcontrib_id, versao=None):
+def gerar_xml_r5011(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if r5011_evttotalcontrib_id:
+    if pk:
 
         r5011_evttotalcontrib = get_object_or_404(
             r5011evtTotalContrib,
-            excluido = False,
-            id = r5011_evttotalcontrib_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = r5011_evttotalcontrib.versao
@@ -105,7 +103,8 @@ def gerar_xml_r5011(request, r5011_evttotalcontrib_id, versao=None):
             xmlns = ''
 
         r5011_evttotalcontrib_lista = r5011evtTotalContrib.objects. \
-            filter(id=r5011_evttotalcontrib_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         r5011_regocorrs_lista = r5011regOcorrs.objects. \
             filter(r5011_evttotalcontrib_id__in=listar_ids(r5011_evttotalcontrib_lista)).all()
@@ -140,10 +139,8 @@ def gerar_xml_r5011(request, r5011_evttotalcontrib_id, versao=None):
             'versao': versao,
             'base': r5011_evttotalcontrib,
             'r5011_evttotalcontrib_lista': r5011_evttotalcontrib_lista,
-            'r5011_evttotalcontrib_id': int(r5011_evttotalcontrib_id),
+            'pk': int(pk),
             'r5011_evttotalcontrib': r5011_evttotalcontrib,
-
-            
             'r5011_regocorrs_lista': r5011_regocorrs_lista,
             'r5011_infototalcontrib_lista': r5011_infototalcontrib_lista,
             'r5011_rtom_lista': r5011_rtom_lista,
@@ -160,9 +157,7 @@ def gerar_xml_r5011(request, r5011_evttotalcontrib_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, r5011_evttotalcontrib_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
@@ -170,14 +165,14 @@ def gerar_xml_assinado(request, r5011_evttotalcontrib_id):
 
     r5011_evttotalcontrib = get_object_or_404(
         r5011evtTotalContrib,
-        id=r5011_evttotalcontrib_id)
+        id=pk)
 
     if r5011_evttotalcontrib.arquivo_original:
     
         xml = ler_arquivo(r5011_evttotalcontrib.arquivo)
 
     else:
-        xml = gerar_xml_r5011(request, r5011_evttotalcontrib_id)
+        xml = gerar_xml_r5011(request, pk)
 
     if 'Signature' in xml:
     
@@ -193,20 +188,23 @@ def gerar_xml_assinado(request, r5011_evttotalcontrib_id):
             grupo = get_grupo(r5011evtTotalContrib)
 
             criar_transmissor_efdreinf(request,
-                                      grupo,
-                                      r5011_evttotalcontrib.nrinsc,
-                                      r5011_evttotalcontrib.tpinsc)
+                grupo,
+                r5011_evttotalcontrib.nrinsc,
+                r5011_evttotalcontrib.tpinsc)
 
             vincular_transmissor_efdreinf(request,
-                                         grupo,
-                                         r5011evtTotalContrib,
-                                         r5011_evttotalcontrib)
+                grupo,
+                r5011evtTotalContrib,
+                r5011_evttotalcontrib)
         
         r5011_evttotalcontrib = get_object_or_404(
             r5011evtTotalContrib,
-            id=r5011_evttotalcontrib_id)
+            id=pk)
         
-        xml_assinado = assinar_efdreinf(request, xml, r5011_evttotalcontrib.transmissor_lote_efdreinf_id)
+        xml_assinado = assinar_efdreinf(
+            request, 
+            xml, 
+            r5011_evttotalcontrib.transmissor_lote_efdreinf_id)
         
     if r5011_evttotalcontrib.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -215,29 +213,28 @@ def gerar_xml_assinado(request, r5011_evttotalcontrib_id):
         STATUS_EVENTO_GERADO):
 
         r5011evtTotalContrib.objects.\
-            filter(id=r5011_evttotalcontrib_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r5011_evttotalcontrib/%s.xml' % (r5011_evttotalcontrib.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r5011_evttotalcontrib/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    r5011_evttotalcontrib_id = int(dict_hash['id'])
+    if pk:
 
-    if r5011_evttotalcontrib_id:
-
-        xml_assinado = gerar_xml_assinado(request, r5011_evttotalcontrib_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-9002 - Informações de bases e tributos por evento - Retenções na fonte<br>Identidade: {{ r9002_evtret.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 'r9002_evtret_verificar' hash='{}'|json_id:r9002_evtret_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 'r9002_evtret_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 'r9002_evtret_verificar' hash='{}'|json_id:r9002_evtret_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 'r9002_evtret_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 'r9002_evtret_verificar' hash='{}'|json_id:r9002_evtret_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 'r9002_evtret_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 'r9002_evtret_verificar' hash='{}'|json_id:r9002_evtret_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">perRef</td>
             <td width="500px">Informar o ano/mês no formato AAAA-MM de referência das informações. <validacao> Deve ser uma data igual ou posterior à implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente.</td>
             <td width="200px"><b>{% if r9002_evtret.perref or r9002_evtret.perref == 0 %}{{ r9002_evtret.perref }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -155,11 +152,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9002_evtret.tpinsc or r9002_evtret.tpinsc == 0 %}{{ r9002_evtret.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -174,11 +171,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r9002_evtret.nrinsc or r9002_evtret.nrinsc == 0 %}{{ r9002_evtret.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -203,11 +200,11 @@
             <td width="130px">cdRetorno</td>
             <td width="500px">Código do Retorno<opcoes>0 - Sucesso; 1 - Erro; 2 - Em processamento. <valores_validos> 0, 1, 2.</td>
             <td width="200px"><b>{% if r9002_evtret.cdretorno or r9002_evtret.cdretorno == 0 %}{{ r9002_evtret.cdretorno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -222,11 +219,11 @@
             <td width="130px">descRetorno</td>
             <td width="500px">Descrição do retorno.</td>
             <td width="200px"><b>{% if r9002_evtret.descretorno or r9002_evtret.descretorno == 0 %}{{ r9002_evtret.descretorno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">tpOcorr</td>
             <td width="500px">Tipo da ocorrência<opcoes>1 - Erro; 2 - Aviso.</td>
             <td width="200px"><b>{% if r9002_regocorrs.tpocorr or r9002_regocorrs.tpocorr == 0 %}{{ r9002_regocorrs.tpocorr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_regocorrs_visualizar' %}
-                <a href="{% url 'r9002_regocorrs_salvar'  hash='{}'|json_id:r9002_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002regOcorrs or perms.efdreinf.can_see_r9002regOcorrs %}
+                <a href="{% url 'r9002_regocorrs_salvar' pk=r9002_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">localErroAviso</td>
             <td width="500px">Campo que originou o erro ou aviso.</td>
             <td width="200px"><b>{% if r9002_regocorrs.localerroaviso or r9002_regocorrs.localerroaviso == 0 %}{{ r9002_regocorrs.localerroaviso }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_regocorrs_visualizar' %}
-                <a href="{% url 'r9002_regocorrs_salvar'  hash='{}'|json_id:r9002_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002regOcorrs or perms.efdreinf.can_see_r9002regOcorrs %}
+                <a href="{% url 'r9002_regocorrs_salvar' pk=r9002_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">codResp</td>
             <td width="500px">Código do status da resposta do processamento da consulta.</td>
             <td width="200px"><b>{% if r9002_regocorrs.codresp or r9002_regocorrs.codresp == 0 %}{{ r9002_regocorrs.codresp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_regocorrs_visualizar' %}
-                <a href="{% url 'r9002_regocorrs_salvar'  hash='{}'|json_id:r9002_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002regOcorrs or perms.efdreinf.can_see_r9002regOcorrs %}
+                <a href="{% url 'r9002_regocorrs_salvar' pk=r9002_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -304,11 +301,11 @@
             <td width="130px">dscResp</td>
             <td width="500px">Descrição literal da resposta do processamento da consulta.</td>
             <td width="200px"><b>{% if r9002_regocorrs.dscresp or r9002_regocorrs.dscresp == 0 %}{{ r9002_regocorrs.dscresp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_regocorrs_visualizar' %}
-                <a href="{% url 'r9002_regocorrs_salvar'  hash='{}'|json_id:r9002_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002regOcorrs or perms.efdreinf.can_see_r9002regOcorrs %}
+                <a href="{% url 'r9002_regocorrs_salvar' pk=r9002_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">nrProtEntr</td>
             <td width="500px">Número do protocolo de entrega do evento.</td>
             <td width="200px"><b>{% if r9002_evtret.nrprotentr or r9002_evtret.nrprotentr == 0 %}{{ r9002_evtret.nrprotentr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">dhProcess</td>
             <td width="500px">Data e hora do início do processamento da consulta.</td>
             <td width="200px"><b>{% if r9002_evtret.dhprocess or r9002_evtret.dhprocess == 0 %}{{ r9002_evtret.dhprocess|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -366,11 +363,11 @@
             <td width="130px">tpEv</td>
             <td width="500px">Tipo do Evento.</td>
             <td width="200px"><b>{% if r9002_evtret.tpev or r9002_evtret.tpev == 0 %}{{ r9002_evtret.tpev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -385,11 +382,11 @@
             <td width="130px">idEv</td>
             <td width="500px">ID do Evento.</td>
             <td width="200px"><b>{% if r9002_evtret.idev or r9002_evtret.idev == 0 %}{{ r9002_evtret.idev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -404,11 +401,11 @@
             <td width="130px">hash</td>
             <td width="500px">Hash do arquivo processado.</td>
             <td width="200px"><b>{% if r9002_evtret.hash or r9002_evtret.hash == 0 %}{{ r9002_evtret.hash }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
-                <a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002evtRet or perms.efdreinf.can_see_r9002evtRet %}
+                <a href="{% url 'r9002_evtret_salvar' pk=r9002_evtret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -429,11 +426,11 @@
             <td width="130px">nrRecArqBase</td>
             <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem a este arquivo totalizador.</td>
             <td width="200px"><b>{% if r9002_infototal.nrrecarqbase or r9002_infototal.nrrecarqbase == 0 %}{{ r9002_infototal.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' %}
-                <a href="{% url 'r9002_infototal_salvar'  hash='{}'|json_id:r9002_infototal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002infoTotal or perms.efdreinf.can_see_r9002infoTotal %}
+                <a href="{% url 'r9002_infototal_salvar' pk=r9002_infototal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -453,11 +450,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9002_infototal.tpinsc or r9002_infototal.tpinsc == 0 %}{{ r9002_infototal.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' %}
-                <a href="{% url 'r9002_infototal_salvar'  hash='{}'|json_id:r9002_infototal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002infoTotal or perms.efdreinf.can_see_r9002infoTotal %}
+                <a href="{% url 'r9002_infototal_salvar' pk=r9002_infototal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -472,11 +469,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> O número de inscrição informado deve ser válido e compatível com {tpInsc}.</td>
             <td width="200px"><b>{% if r9002_infototal.nrinsc or r9002_infototal.nrinsc == 0 %}{{ r9002_infototal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' %}
-                <a href="{% url 'r9002_infototal_salvar'  hash='{}'|json_id:r9002_infototal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002infoTotal or perms.efdreinf.can_see_r9002infoTotal %}
+                <a href="{% url 'r9002_infototal_salvar' pk=r9002_infototal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -497,11 +494,11 @@
             <td width="130px">CRMen</td>
             <td width="500px">Código de Receita - CR relativo ao tributo que possui período de apuração mensal. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [0561, 0588, 5200, 5936, 1889, 3533, 3562, 3223, 3540, 3556, 5565, 3579, 3208, 3277, 8045, 3280, 1708, 5944, 5204, 6891, 5928, 1895, 5952, 5987, 5960, 5979, 6147, 9060, 8739, 8767, 6175, 8850, 8863, 6188, 6190].</td>
             <td width="200px"><b>{% if r9002_totapurmen.crmen or r9002_totapurmen.crmen == 0 %}{{ r9002_totapurmen.crmen }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
-                <a href="{% url 'r9002_totapurmen_salvar'  hash='{}'|json_id:r9002_totapurmen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurMen or perms.efdreinf.can_see_r9002totApurMen %}
+                <a href="{% url 'r9002_totapurmen_salvar' pk=r9002_totapurmen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -516,11 +513,11 @@
             <td width="130px">vlrBaseCRMen</td>
             <td width="500px">Valor da base do tributo com período de apuração mensal. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurmen.vlrbasecrmen or r9002_totapurmen.vlrbasecrmen == 0 %}{{ r9002_totapurmen.vlrbasecrmen }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
-                <a href="{% url 'r9002_totapurmen_salvar'  hash='{}'|json_id:r9002_totapurmen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurMen or perms.efdreinf.can_see_r9002totApurMen %}
+                <a href="{% url 'r9002_totapurmen_salvar' pk=r9002_totapurmen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -535,11 +532,11 @@
             <td width="130px">vlrCRMen</td>
             <td width="500px">Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurmen.vlrcrmen or r9002_totapurmen.vlrcrmen == 0 %}{{ r9002_totapurmen.vlrcrmen }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
-                <a href="{% url 'r9002_totapurmen_salvar'  hash='{}'|json_id:r9002_totapurmen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurMen or perms.efdreinf.can_see_r9002totApurMen %}
+                <a href="{% url 'r9002_totapurmen_salvar' pk=r9002_totapurmen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -554,11 +551,11 @@
             <td width="130px">vlrBaseCRMenSusp</td>
             <td width="500px">Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurmen.vlrbasecrmensusp or r9002_totapurmen.vlrbasecrmensusp == 0 %}{{ r9002_totapurmen.vlrbasecrmensusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
-                <a href="{% url 'r9002_totapurmen_salvar'  hash='{}'|json_id:r9002_totapurmen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurMen or perms.efdreinf.can_see_r9002totApurMen %}
+                <a href="{% url 'r9002_totapurmen_salvar' pk=r9002_totapurmen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -573,11 +570,11 @@
             <td width="130px">vlrCRMenSusp</td>
             <td width="500px">Valor do tributo com período de apuração mensal, que deixou de ser retido. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurmen.vlrcrmensusp or r9002_totapurmen.vlrcrmensusp == 0 %}{{ r9002_totapurmen.vlrcrmensusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
-                <a href="{% url 'r9002_totapurmen_salvar'  hash='{}'|json_id:r9002_totapurmen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurMen or perms.efdreinf.can_see_r9002totApurMen %}
+                <a href="{% url 'r9002_totapurmen_salvar' pk=r9002_totapurmen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -598,11 +595,11 @@
             <td width="130px">perApurQui</td>
             <td width="500px">Período de apuração quinzenal do Código de Receita - CR. Origem: R-4020. <opcoes>1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 15; 2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 16 a 31. <validacao> Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 1 a 15, deve ser igual a [1]. Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 16 a 31, deve ser igual a [2]. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9002_totapurqui.perapurqui or r9002_totapurqui.perapurqui == 0 %}{{ r9002_totapurqui.perapurqui }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
-                <a href="{% url 'r9002_totapurqui_salvar'  hash='{}'|json_id:r9002_totapurqui.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurQui or perms.efdreinf.can_see_r9002totApurQui %}
+                <a href="{% url 'r9002_totapurqui_salvar' pk=r9002_totapurqui.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -617,11 +614,11 @@
             <td width="130px">CRQui</td>
             <td width="500px">Código de Receita - CR relativo a tributo que possui período de apuração quinzenal. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [3746, 3770].</td>
             <td width="200px"><b>{% if r9002_totapurqui.crqui or r9002_totapurqui.crqui == 0 %}{{ r9002_totapurqui.crqui }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
-                <a href="{% url 'r9002_totapurqui_salvar'  hash='{}'|json_id:r9002_totapurqui.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurQui or perms.efdreinf.can_see_r9002totApurQui %}
+                <a href="{% url 'r9002_totapurqui_salvar' pk=r9002_totapurqui.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -636,11 +633,11 @@
             <td width="130px">vlrBaseCRQui</td>
             <td width="500px">Valor da base do tributo com período de apuração quinzenal. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurqui.vlrbasecrqui or r9002_totapurqui.vlrbasecrqui == 0 %}{{ r9002_totapurqui.vlrbasecrqui }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
-                <a href="{% url 'r9002_totapurqui_salvar'  hash='{}'|json_id:r9002_totapurqui.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurQui or perms.efdreinf.can_see_r9002totApurQui %}
+                <a href="{% url 'r9002_totapurqui_salvar' pk=r9002_totapurqui.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -655,11 +652,11 @@
             <td width="130px">vlrCRQui</td>
             <td width="500px">Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurqui.vlrcrqui or r9002_totapurqui.vlrcrqui == 0 %}{{ r9002_totapurqui.vlrcrqui }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
-                <a href="{% url 'r9002_totapurqui_salvar'  hash='{}'|json_id:r9002_totapurqui.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurQui or perms.efdreinf.can_see_r9002totApurQui %}
+                <a href="{% url 'r9002_totapurqui_salvar' pk=r9002_totapurqui.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -674,11 +671,11 @@
             <td width="130px">vlrBaseCRQuiSusp</td>
             <td width="500px">Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurqui.vlrbasecrquisusp or r9002_totapurqui.vlrbasecrquisusp == 0 %}{{ r9002_totapurqui.vlrbasecrquisusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
-                <a href="{% url 'r9002_totapurqui_salvar'  hash='{}'|json_id:r9002_totapurqui.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurQui or perms.efdreinf.can_see_r9002totApurQui %}
+                <a href="{% url 'r9002_totapurqui_salvar' pk=r9002_totapurqui.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -693,11 +690,11 @@
             <td width="130px">vlrCRQuiSusp</td>
             <td width="500px">Valor do tributo com período de apuração quinzenal, que deixou de ser retido. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurqui.vlrcrquisusp or r9002_totapurqui.vlrcrquisusp == 0 %}{{ r9002_totapurqui.vlrcrquisusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
-                <a href="{% url 'r9002_totapurqui_salvar'  hash='{}'|json_id:r9002_totapurqui.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurQui or perms.efdreinf.can_see_r9002totApurQui %}
+                <a href="{% url 'r9002_totapurqui_salvar' pk=r9002_totapurqui.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -718,11 +715,11 @@
             <td width="130px">perApurDec</td>
             <td width="500px">Período de apuração decenal do Código de Receita - CR. Origem: R-4010 e R-4020. <opcoes>1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 10; 2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 11 a 20; 3 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 21 a 31. <validacao> Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 1 a 10, deve ser igual a [1]. Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 11 a 20, deve ser igual a [2]; Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 21 a 31, deve ser igual a [3]. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if r9002_totapurdec.perapurdec or r9002_totapurdec.perapurdec == 0 %}{{ r9002_totapurdec.perapurdec }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
-                <a href="{% url 'r9002_totapurdec_salvar'  hash='{}'|json_id:r9002_totapurdec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDec or perms.efdreinf.can_see_r9002totApurDec %}
+                <a href="{% url 'r9002_totapurdec_salvar' pk=r9002_totapurdec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -737,11 +734,11 @@
             <td width="130px">CRDec</td>
             <td width="500px">Código de Receita - CR relativo a tributo que possui período de apuração decendial. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [5706, 3426, 8053, 6800, 6813, 0924, 5029, 5035, 5273, 8468, 5557, 0916, 8673, 9385, 0490, 9453, 5232, 5286].</td>
             <td width="200px"><b>{% if r9002_totapurdec.crdec or r9002_totapurdec.crdec == 0 %}{{ r9002_totapurdec.crdec }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
-                <a href="{% url 'r9002_totapurdec_salvar'  hash='{}'|json_id:r9002_totapurdec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDec or perms.efdreinf.can_see_r9002totApurDec %}
+                <a href="{% url 'r9002_totapurdec_salvar' pk=r9002_totapurdec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -756,11 +753,11 @@
             <td width="130px">vlrBaseCRDec</td>
             <td width="500px">Valor da base do tributo com período de apuração decendial. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurdec.vlrbasecrdec or r9002_totapurdec.vlrbasecrdec == 0 %}{{ r9002_totapurdec.vlrbasecrdec }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
-                <a href="{% url 'r9002_totapurdec_salvar'  hash='{}'|json_id:r9002_totapurdec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDec or perms.efdreinf.can_see_r9002totApurDec %}
+                <a href="{% url 'r9002_totapurdec_salvar' pk=r9002_totapurdec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -775,11 +772,11 @@
             <td width="130px">vlrCRDec</td>
             <td width="500px">Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurdec.vlrcrdec or r9002_totapurdec.vlrcrdec == 0 %}{{ r9002_totapurdec.vlrcrdec }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
-                <a href="{% url 'r9002_totapurdec_salvar'  hash='{}'|json_id:r9002_totapurdec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDec or perms.efdreinf.can_see_r9002totApurDec %}
+                <a href="{% url 'r9002_totapurdec_salvar' pk=r9002_totapurdec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -794,11 +791,11 @@
             <td width="130px">vlrBaseCRDecSusp</td>
             <td width="500px">Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurdec.vlrbasecrdecsusp or r9002_totapurdec.vlrbasecrdecsusp == 0 %}{{ r9002_totapurdec.vlrbasecrdecsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
-                <a href="{% url 'r9002_totapurdec_salvar'  hash='{}'|json_id:r9002_totapurdec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDec or perms.efdreinf.can_see_r9002totApurDec %}
+                <a href="{% url 'r9002_totapurdec_salvar' pk=r9002_totapurdec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -813,11 +810,11 @@
             <td width="130px">vlrCRDecSusp</td>
             <td width="500px">Valor do tributo com período de apuração decendial, que deixou de ser retido. Origem: R-4010, R-4020.</td>
             <td width="200px"><b>{% if r9002_totapurdec.vlrcrdecsusp or r9002_totapurdec.vlrcrdecsusp == 0 %}{{ r9002_totapurdec.vlrcrdecsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
-                <a href="{% url 'r9002_totapurdec_salvar'  hash='{}'|json_id:r9002_totapurdec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDec or perms.efdreinf.can_see_r9002totApurDec %}
+                <a href="{% url 'r9002_totapurdec_salvar' pk=r9002_totapurdec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -838,11 +835,11 @@
             <td width="130px">perApurSem</td>
             <td width="500px">Período de apuração semanal do Código de Receita - CR. Origem: R-4020. <valores_validos> 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if r9002_totapursem.perapursem or r9002_totapursem.perapursem == 0 %}{{ r9002_totapursem.perapursem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
-                <a href="{% url 'r9002_totapursem_salvar'  hash='{}'|json_id:r9002_totapursem.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurSem or perms.efdreinf.can_see_r9002totApurSem %}
+                <a href="{% url 'r9002_totapursem_salvar' pk=r9002_totapursem.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -857,11 +854,11 @@
             <td width="130px">CRSem</td>
             <td width="500px">Código de Receita - CR relativo a tributo que possui período de apuração semanal. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [6147, 9060, 8739, 8767, 6175, 8850, 8863, 6188, 6190].</td>
             <td width="200px"><b>{% if r9002_totapursem.crsem or r9002_totapursem.crsem == 0 %}{{ r9002_totapursem.crsem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
-                <a href="{% url 'r9002_totapursem_salvar'  hash='{}'|json_id:r9002_totapursem.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurSem or perms.efdreinf.can_see_r9002totApurSem %}
+                <a href="{% url 'r9002_totapursem_salvar' pk=r9002_totapursem.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -876,11 +873,11 @@
             <td width="130px">vlrBaseCRSem</td>
             <td width="500px">Valor da base do tributo com período de apuração semanal. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapursem.vlrbasecrsem or r9002_totapursem.vlrbasecrsem == 0 %}{{ r9002_totapursem.vlrbasecrsem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
-                <a href="{% url 'r9002_totapursem_salvar'  hash='{}'|json_id:r9002_totapursem.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurSem or perms.efdreinf.can_see_r9002totApurSem %}
+                <a href="{% url 'r9002_totapursem_salvar' pk=r9002_totapursem.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -895,11 +892,11 @@
             <td width="130px">vlrCRSem</td>
             <td width="500px">Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapursem.vlrcrsem or r9002_totapursem.vlrcrsem == 0 %}{{ r9002_totapursem.vlrcrsem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
-                <a href="{% url 'r9002_totapursem_salvar'  hash='{}'|json_id:r9002_totapursem.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurSem or perms.efdreinf.can_see_r9002totApurSem %}
+                <a href="{% url 'r9002_totapursem_salvar' pk=r9002_totapursem.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -914,11 +911,11 @@
             <td width="130px">vlrBaseCRSemSusp</td>
             <td width="500px">Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapursem.vlrbasecrsemsusp or r9002_totapursem.vlrbasecrsemsusp == 0 %}{{ r9002_totapursem.vlrbasecrsemsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
-                <a href="{% url 'r9002_totapursem_salvar'  hash='{}'|json_id:r9002_totapursem.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurSem or perms.efdreinf.can_see_r9002totApurSem %}
+                <a href="{% url 'r9002_totapursem_salvar' pk=r9002_totapursem.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -933,11 +930,11 @@
             <td width="130px">vlrCRSemSusp</td>
             <td width="500px">Valor do tributo com período de apuração semanal, que deixou de ser retido. Origem: R-4020.</td>
             <td width="200px"><b>{% if r9002_totapursem.vlrcrsemsusp or r9002_totapursem.vlrcrsemsusp == 0 %}{{ r9002_totapursem.vlrcrsemsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
-                <a href="{% url 'r9002_totapursem_salvar'  hash='{}'|json_id:r9002_totapursem.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurSem or perms.efdreinf.can_see_r9002totApurSem %}
+                <a href="{% url 'r9002_totapursem_salvar' pk=r9002_totapursem.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -958,11 +955,11 @@
             <td width="130px">perApurDia</td>
             <td width="500px">Período de apuração diário do Código de Receita - CR. Origem: R-4010, R-4020 e R-4040. <validacao> Deve ser um número que representa o dia do mês, no intervalo entre [1] e [31], inclusive. Deve ser igual ao dia ("DD") da data informada em {dtFG} no evento de origem.</td>
             <td width="200px"><b>{% if r9002_totapurdia.perapurdia or r9002_totapurdia.perapurdia == 0 %}{{ r9002_totapurdia.perapurdia }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
-                <a href="{% url 'r9002_totapurdia_salvar'  hash='{}'|json_id:r9002_totapurdia.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDia or perms.efdreinf.can_see_r9002totApurDia %}
+                <a href="{% url 'r9002_totapurdia_salvar' pk=r9002_totapurdia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -977,11 +974,11 @@
             <td width="130px">CRDia</td>
             <td width="500px">Código de Receita - CR relativo a tributo que possui período de apuração diário. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [0473, 2063, 0422, 0481, 9478, 9472, 9466, 9427, 5192, 5286, 5217, 2063].</td>
             <td width="200px"><b>{% if r9002_totapurdia.crdia or r9002_totapurdia.crdia == 0 %}{{ r9002_totapurdia.crdia }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
-                <a href="{% url 'r9002_totapurdia_salvar'  hash='{}'|json_id:r9002_totapurdia.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDia or perms.efdreinf.can_see_r9002totApurDia %}
+                <a href="{% url 'r9002_totapurdia_salvar' pk=r9002_totapurdia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -996,11 +993,11 @@
             <td width="130px">vlrBaseCRDia</td>
             <td width="500px">Valor da base do tributo com período de apuração diário. Origem: R-4010, R-4020, R-4040.</td>
             <td width="200px"><b>{% if r9002_totapurdia.vlrbasecrdia or r9002_totapurdia.vlrbasecrdia == 0 %}{{ r9002_totapurdia.vlrbasecrdia }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
-                <a href="{% url 'r9002_totapurdia_salvar'  hash='{}'|json_id:r9002_totapurdia.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDia or perms.efdreinf.can_see_r9002totApurDia %}
+                <a href="{% url 'r9002_totapurdia_salvar' pk=r9002_totapurdia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1015,11 +1012,11 @@
             <td width="130px">vlrCRDia</td>
             <td width="500px">Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020, R-4040.</td>
             <td width="200px"><b>{% if r9002_totapurdia.vlrcrdia or r9002_totapurdia.vlrcrdia == 0 %}{{ r9002_totapurdia.vlrcrdia }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
-                <a href="{% url 'r9002_totapurdia_salvar'  hash='{}'|json_id:r9002_totapurdia.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDia or perms.efdreinf.can_see_r9002totApurDia %}
+                <a href="{% url 'r9002_totapurdia_salvar' pk=r9002_totapurdia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1034,11 +1031,11 @@
             <td width="130px">vlrBaseCRDiaSusp</td>
             <td width="500px">Valor da base do tributo com período de apuração diário, com exigibilidade suspensa. Origem: R-4010, R-4020, R-4040.</td>
             <td width="200px"><b>{% if r9002_totapurdia.vlrbasecrdiasusp or r9002_totapurdia.vlrbasecrdiasusp == 0 %}{{ r9002_totapurdia.vlrbasecrdiasusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
-                <a href="{% url 'r9002_totapurdia_salvar'  hash='{}'|json_id:r9002_totapurdia.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDia or perms.efdreinf.can_see_r9002totApurDia %}
+                <a href="{% url 'r9002_totapurdia_salvar' pk=r9002_totapurdia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1053,11 +1050,11 @@
             <td width="130px">vlrCRDiaSusp</td>
             <td width="500px">Valor do tributo com período de apuração diário, que deixou de ser retido. Origem: R-4010, R-4020, R-4040.</td>
             <td width="200px"><b>{% if r9002_totapurdia.vlrcrdiasusp or r9002_totapurdia.vlrcrdiasusp == 0 %}{{ r9002_totapurdia.vlrcrdiasusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
-                <a href="{% url 'r9002_totapurdia_salvar'  hash='{}'|json_id:r9002_totapurdia.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9002.can_see_r9002totApurDia or perms.efdreinf.can_see_r9002totApurDia %}
+                <a href="{% url 'r9002_totapurdia_salvar' pk=r9002_totapurdia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

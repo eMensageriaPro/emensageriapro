@@ -48,7 +48,7 @@ from emensageriapro.s2260.views import s2260_localtrabinterm_api as s2260_localt
 urlpatterns = [
 
 
-    url(r'^s2260-localtrabinterm/apagar/(?P<hash>.*)/$', 
+    url(r'^s2260-localtrabinterm/apagar/(?P<pk>[0-9]+)/$', 
         s2260_localtrabinterm_apagar_views.apagar, 
         name='s2260_localtrabinterm_apagar'),
 
@@ -58,13 +58,25 @@ urlpatterns = [
     url(r'^s2260-localtrabinterm/api/(?P<pk>[0-9]+)/$',
         s2260_localtrabinterm_api_views.s2260localTrabIntermDetail.as_view() ),
 
-    url(r'^s2260-localtrabinterm/listar/(?P<hash>.*)/$', 
+    url(r'^s2260-localtrabinterm/$', 
         s2260_localtrabinterm_listar_views.listar, 
         name='s2260_localtrabinterm'),
 
-    url(r'^s2260-localtrabinterm/salvar/(?P<hash>.*)/$', 
+    url(r'^s2260-localtrabinterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2260_localtrabinterm_salvar_views.salvar, 
         name='s2260_localtrabinterm_salvar'),
+        
+    url(r'^s2260-localtrabinterm/cadastrar/$', 
+        s2260_localtrabinterm_salvar_views.salvar, 
+        name='s2260_localtrabinterm_cadastrar'),
+
+    url(r'^s2260-localtrabinterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2260_localtrabinterm_salvar_views.salvar, 
+        name='s2260_localtrabinterm_salvar_output'),
+        
+    url(r'^s2260-localtrabinterm/(?P<output>[\w-]+)/$', 
+        s2260_localtrabinterm_listar_views.listar, 
+        name='s2260_localtrabinterm_output'),
 
 
 ]

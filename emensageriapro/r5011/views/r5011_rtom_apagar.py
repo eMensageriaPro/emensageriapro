@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        r5011_rtom_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    r5011_rtom = get_object_or_404(r5011RTom, id=r5011_rtom_id)
+    r5011_rtom = get_object_or_404(r5011RTom, id=pk)
     
     dados_evento = {}
-    
-    if r5011_rtom_id:
-    
-        dados_evento = r5011_rtom.evento()
+    dados_evento = r5011_rtom.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(r5011_rtom), indent=4, sort_keys=True, default=str)
-            obj = r5011RTom.objects.get(id = r5011_rtom_id)
+            obj = r5011RTom.objects.get(id=pk)
             obj.delete(request=request)
             #r5011_rtom_apagar_custom
             #r5011_rtom_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             'r5011_rtom', r5011_rtom_id, usuario_id, 3)
+                             'r5011_rtom', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 'r5011_rtom_salvar':
+        if 'r5011_rtom' in request.session['return_page']:
         
-            return redirect('r5011_rtom', hash=request.session['retorno_hash'])
+            return redirect('r5011_rtom')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['r5011', ],
         'paginas': ['r5011_rtom', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

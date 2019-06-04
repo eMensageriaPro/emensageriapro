@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2299_verbasresc__s2299_evtdeslig__label">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.*</label>
     {% if not for_print %}{% if s2299_verbasresc_form.s2299_evtdeslig.value %}
-        <a href="{% url 's2299_evtdeslig_salvar' hash='{}'|json_return_page:'s2299_verbasresc_salvar'|json_return_hash:hash|json_id:s2299_verbasresc_form.s2299_evtdeslig.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2299_evtdeslig_salvar' pk=s2299_verbasresc_form.s2299_evtdeslig.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -64,83 +64,93 @@ from emensageriapro.s1210.forms import form_s1210_detpgtofl_infopgtoparc
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s1210_detpgtofl_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s1210_detpgtofl_id:
+    if pk:
     
-        s1210_detpgtofl = get_object_or_404(s1210detPgtoFl, id=s1210_detpgtofl_id)
+        s1210_detpgtofl = get_object_or_404(s1210detPgtoFl, id=pk)
         dados_evento = s1210_detpgtofl.evento()
 
-    if request.user.has_perm('s1210.can_view_s1210detPgtoFl'):
+    if request.user.has_perm('s1210.can_see_s1210detPgtoFl'):
         
-        if s1210_detpgtofl_id:
+        if pk:
         
-            s1210_detpgtofl_form = form_s1210_detpgtofl(request.POST or None, 
-                                                          instance=s1210_detpgtofl,  
-                                                          initial={'excluido': False})
+            s1210_detpgtofl_form = form_s1210_detpgtofl(
+                request.POST or None, 
+                instance=s1210_detpgtofl)
                                          
         else:
         
-            s1210_detpgtofl_form = form_s1210_detpgtofl(request.POST or None, 
-                                         initial={'excluido': False})
+            s1210_detpgtofl_form = form_s1210_detpgtofl(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s1210_detpgtofl_form.is_valid():
             
-                dados = s1210_detpgtofl_form.cleaned_data
                 obj = s1210_detpgtofl_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s1210_detpgtofl_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1210_detpgtofl', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1210_detpgtofl', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s1210_detpgtofl), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1210_detpgtofl', s1210_detpgtofl_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s1210_detpgtofl), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's1210_detpgtofl', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s1210_detpgtofl_apagar', 's1210_detpgtofl_salvar', 's1210_detpgtofl'):
+                if request.session['return_page'] not in (
+                    's1210_detpgtofl_apagar', 
+                    's1210_detpgtofl_salvar', 
+                    's1210_detpgtofl'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s1210_detpgtofl_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s1210_detpgtofl_salvar', hash=url_hash)
+                    return redirect(
+                        's1210_detpgtofl_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s1210_detpgtofl_form = disabled_form_fields(s1210_detpgtofl_form, request.user.has_perm('s1210.change_s1210detPgtoFl'))
+        s1210_detpgtofl_form = disabled_form_fields(
+            s1210_detpgtofl_form, 
+            request.user.has_perm('s1210.change_s1210detPgtoFl'))
         
-        if s1210_detpgtofl_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -148,7 +158,7 @@ def salvar(request, hash):
                 
         #s1210_detpgtofl_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s1210_detpgtofl_form = disabled_form_for_print(s1210_detpgtofl_form)
             
@@ -158,20 +168,22 @@ def salvar(request, hash):
         s1210_detpgtofl_infopgtoparc_lista = None 
         s1210_detpgtofl_infopgtoparc_form = None 
         
-        if s1210_detpgtofl_id:
+        if pk:
         
-            s1210_detpgtofl = get_object_or_404(s1210detPgtoFl, id=s1210_detpgtofl_id)
+            s1210_detpgtofl = get_object_or_404(s1210detPgtoFl, id=pk)
             
             s1210_detpgtofl_retpgtotot_form = form_s1210_detpgtofl_retpgtotot(
                 initial={ 's1210_detpgtofl': s1210_detpgtofl })
             s1210_detpgtofl_retpgtotot_form.fields['s1210_detpgtofl'].widget.attrs['readonly'] = True
             s1210_detpgtofl_retpgtotot_lista = s1210detPgtoFlretPgtoTot.objects.\
                 filter(s1210_detpgtofl_id=s1210_detpgtofl.id).all()
+                
             s1210_detpgtofl_infopgtoparc_form = form_s1210_detpgtofl_infopgtoparc(
                 initial={ 's1210_detpgtofl': s1210_detpgtofl })
             s1210_detpgtofl_infopgtoparc_form.fields['s1210_detpgtofl'].widget.attrs['readonly'] = True
             s1210_detpgtofl_infopgtoparc_lista = s1210detPgtoFlinfoPgtoParc.objects.\
                 filter(s1210_detpgtofl_id=s1210_detpgtofl.id).all()
+                
                 
         else:
         
@@ -181,14 +193,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's1210_detpgtofl' in request.session['retorno_pagina']:
+        if tab or 's1210_detpgtofl' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's1210_detpgtofl_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's1210_detpgtofl_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s1210_detpgtofl_id, tabela='s1210_detpgtofl').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1210_detpgtofl').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -197,30 +213,22 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's1210_detpgtofl': s1210_detpgtofl, 
             's1210_detpgtofl_form': s1210_detpgtofl_form, 
-            's1210_detpgtofl_id': int(s1210_detpgtofl_id),
-            'usuario': usuario, 
             'modulos': ['s1210', ],
             'paginas': ['s1210_detpgtofl', ],
-            'hash': hash, 
-            
             's1210_detpgtofl_retpgtotot_form': s1210_detpgtofl_retpgtotot_form,
             's1210_detpgtofl_retpgtotot_lista': s1210_detpgtofl_retpgtotot_lista,
             's1210_detpgtofl_infopgtoparc_form': s1210_detpgtofl_infopgtoparc_form,
             's1210_detpgtofl_infopgtoparc_lista': s1210_detpgtofl_infopgtoparc_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s1210_detpgtofl_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's1210_detpgtofl_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s1210_detpgtofl_salvar.html',
@@ -237,23 +245,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s1210_detpgtofl_salvar.html', context)
             filename = "s1210_detpgtofl.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's1210_detpgtofl_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s1210', ],
             'paginas': ['s1210_detpgtofl', ],
             'data': datetime.datetime.now(),

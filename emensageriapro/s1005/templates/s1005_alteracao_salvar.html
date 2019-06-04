@@ -34,79 +34,76 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s1005alteracao
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s1005alteracao</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Alteração das informações
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Alteração das informações</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s1005.can_view_s1005alteracao %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_return_page:'s1005_alteracao_salvar'|json_return_hash:hash|json_id:s1005_alteracao_id|json_print:0|base64_encode_me %}">
-                            Alteração das informações
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s1005_alteracao_id %}
+                    {% if pk %}
+                        {% if perms.s1005.can_see_s1005alteracao %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's1005_alteracao_salvar' pk=pk tab='master' %}">
+                                Alteração das informações</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_procadmjudrat %}
+                            {% if perms.s1005.can_see_s1005alteracaoprocAdmJudRat %}
                                 <li {% if tab == 's1005_alteracao_procadmjudrat' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_procadmjudrat'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_procadmjudrat' %}">
                                     Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_procadmjudfap %}
+                            {% if perms.s1005.can_see_s1005alteracaoprocAdmJudFap %}
                                 <li {% if tab == 's1005_alteracao_procadmjudfap' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_procadmjudfap'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_procadmjudfap' %}">
                                     Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_infocaepf %}
+                            {% if perms.s1005.can_see_s1005alteracaoinfoCaepf %}
                                 <li {% if tab == 's1005_alteracao_infocaepf' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infocaepf'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_infocaepf' %}">
                                     Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_infoobra %}
+                            {% if perms.s1005.can_see_s1005alteracaoinfoObra %}
                                 <li {% if tab == 's1005_alteracao_infoobra' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infoobra'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_infoobra' %}">
                                     Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_infoenteduc %}
+                            {% if perms.s1005.can_see_s1005alteracaoinfoEntEduc %}
                                 <li {% if tab == 's1005_alteracao_infoenteduc' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infoenteduc'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_infoenteduc' %}">
                                     Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_infopcd %}
+                            {% if perms.s1005.can_see_s1005alteracaoinfoPCD %}
                                 <li {% if tab == 's1005_alteracao_infopcd' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infopcd'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_infopcd' %}">
                                     Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s1005.can_view_s1005_alteracao_novavalidade %}
+                            {% if perms.s1005.can_see_s1005alteracaonovaValidade %}
                                 <li {% if tab == 's1005_alteracao_novavalidade' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_novavalidade'|base64_encode_me %}">
+                                    <a href="{% url 's1005_alteracao_salvar' pk=pk tab='s1005_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}
@@ -116,275 +113,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s1005_alteracao_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s1005_alteracao_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s1005_alteracao_id %}
-   {% if s1005_alteracao.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s1005_alteracao.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s1005_alteracao.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1005_alteracao.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s1005_alteracao.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s1005_alteracao.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s1005_alteracao.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Alteração das informações</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s1005_alteracao.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s1005_alteracao.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s1005.change_s1005_alteracao or perms.s1005.add_s1005_alteracao %}
-                <form action="#" id="id_form_s1005_alteracao" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s1005_alteracao.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1005_alteracao.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s1005_alteracao.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s1005_alteracao.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s1005_alteracao_id %}
-
-                                {% if perms.s1005.add_s1005alteracao %}
-                                    <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s1005.can_view_s1005_alteracao or perms.s1005.can_view_s1005_alteracao %}
-                                <a href="{% url 's1005_alteracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s1005.can_view_s1005_alteracao and s1005_alteracao_id %}
-                                <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s1005.can_view_s1005_alteracao and s1005_alteracao_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s1005.change_s1005_alteracao or perms.s1005.add_s1005_alteracao %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s1005.delete_s1005_alteracao and s1005_alteracao_id %}
-
-                            <a href="{% url 's1005_alteracao_apagar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s1005_alteracao.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s1005_alteracao.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s1005.change_s1005_alteracao or perms.s1005.add_s1005_alteracao %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s1005_alteracao_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Alteração das informações</h3>
+                    </div>
+
+                    {% if perms.s1005.change_s1005alteracao or perms.s1005.add_s1005alteracao %}
+                        {% if s1005_alteracao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s1005_alteracao" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s1005_alteracao.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s1005.add_s1005alteracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's1005_alteracao_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s1005.can_see_list_s1005alteracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's1005_alteracao' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s1005.can_print_data_s1005alteracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's1005_alteracao_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s1005.change_s1005alteracao %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s1005.delete_s1005alteracao %}
+                            <div class="col-md-2">
+                                <a href="{% url 's1005_alteracao_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s1005.add_s1005alteracao %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s1005.add_s1005alteracao or perms.s1005.change_s1005alteracao %}
+
+                        {% if s1005_alteracao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s1005_alteracao_procadmjudrat -->
+        <!-- begin_s1005_alteracao_procadmjudrat -->
 
-            {% if tab == 's1005_alteracao_procadmjudrat' or for_print %} 
+            {% if tab == 's1005_alteracao_procadmjudrat' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_procadmjudrat %} 
+                {% if perms.s1005.can_see_data_s1005alteracaoprocAdmJudRat %}
 
-                    {% if perms.s1005.change_s1005_alteracao_procadmjudrat or perms.s1005.add_s1005alteracaoprocAdmJudRat %}
+                    {% if perms.s1005.add_s1005alteracaoprocAdmJudRat or perms.s1005.change_s1005alteracaoprocAdmJudRat %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -393,95 +398,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_procadmjudrat or perms.s1005.add_s1005alteracaoprocAdmJudRat %}
+                                    {% if perms.s1005.add_s1005alteracaoprocAdmJudRat or perms.s1005.can_see_list_s1005alteracaoprocAdmJudRat  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaoprocAdmJudRat %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaoprocAdmJudRat %}            
+
                                     <!-- begin_form_s1005_alteracao_procadmjudrat --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_procadmjudrat" action="{% url 's1005_alteracao_procadmjudrat_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_procadmjudrat" 
+                                              action="{% url 's1005_alteracao_procadmjudrat_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_procadmjudrat.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_procadmjudrat -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_procadmjudrat -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudRat %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_procadmjudrat --> 
 
-                                    {% include 'tables/s1005_alteracao_procadmjudrat.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_procadmjudrat --> 
-
+                                        {% include 'tables/s1005_alteracao_procadmjudrat.html' %}
+                                        <!-- end_table_s1005_alteracao_procadmjudrat --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_procadmjudrat -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s1005_alteracao_procadmjudfap -->
+        <!-- begin_s1005_alteracao_procadmjudfap -->
 
-            {% if tab == 's1005_alteracao_procadmjudfap' or for_print %} 
+            {% if tab == 's1005_alteracao_procadmjudfap' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_procadmjudfap %} 
+                {% if perms.s1005.can_see_data_s1005alteracaoprocAdmJudFap %}
 
-                    {% if perms.s1005.change_s1005_alteracao_procadmjudfap or perms.s1005.add_s1005alteracaoprocAdmJudFap %}
+                    {% if perms.s1005.add_s1005alteracaoprocAdmJudFap or perms.s1005.change_s1005alteracaoprocAdmJudFap %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -490,95 +507,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_procadmjudfap or perms.s1005.add_s1005alteracaoprocAdmJudFap %}
+                                    {% if perms.s1005.add_s1005alteracaoprocAdmJudFap or perms.s1005.can_see_list_s1005alteracaoprocAdmJudFap  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaoprocAdmJudFap %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaoprocAdmJudFap %}            
+
                                     <!-- begin_form_s1005_alteracao_procadmjudfap --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_procadmjudfap" action="{% url 's1005_alteracao_procadmjudfap_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_procadmjudfap" 
+                                              action="{% url 's1005_alteracao_procadmjudfap_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_procadmjudfap.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_procadmjudfap -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_procadmjudfap -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudFap %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_procadmjudfap --> 
 
-                                    {% include 'tables/s1005_alteracao_procadmjudfap.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_procadmjudfap --> 
-
+                                        {% include 'tables/s1005_alteracao_procadmjudfap.html' %}
+                                        <!-- end_table_s1005_alteracao_procadmjudfap --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_procadmjudfap -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s1005_alteracao_infocaepf -->
+        <!-- begin_s1005_alteracao_infocaepf -->
 
-            {% if tab == 's1005_alteracao_infocaepf' or for_print %} 
+            {% if tab == 's1005_alteracao_infocaepf' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_infocaepf %} 
+                {% if perms.s1005.can_see_data_s1005alteracaoinfoCaepf %}
 
-                    {% if perms.s1005.change_s1005_alteracao_infocaepf or perms.s1005.add_s1005alteracaoinfoCaepf %}
+                    {% if perms.s1005.add_s1005alteracaoinfoCaepf or perms.s1005.change_s1005alteracaoinfoCaepf %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -587,95 +616,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_infocaepf or perms.s1005.add_s1005alteracaoinfoCaepf %}
+                                    {% if perms.s1005.add_s1005alteracaoinfoCaepf or perms.s1005.can_see_list_s1005alteracaoinfoCaepf  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaoinfoCaepf %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaoinfoCaepf %}            
+
                                     <!-- begin_form_s1005_alteracao_infocaepf --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_infocaepf" action="{% url 's1005_alteracao_infocaepf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_infocaepf" 
+                                              action="{% url 's1005_alteracao_infocaepf_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_infocaepf.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_infocaepf -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_infocaepf -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaoinfoCaepf %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_infocaepf --> 
 
-                                    {% include 'tables/s1005_alteracao_infocaepf.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_infocaepf --> 
-
+                                        {% include 'tables/s1005_alteracao_infocaepf.html' %}
+                                        <!-- end_table_s1005_alteracao_infocaepf --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_infocaepf -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s1005_alteracao_infoobra -->
+        <!-- begin_s1005_alteracao_infoobra -->
 
-            {% if tab == 's1005_alteracao_infoobra' or for_print %} 
+            {% if tab == 's1005_alteracao_infoobra' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_infoobra %} 
+                {% if perms.s1005.can_see_data_s1005alteracaoinfoObra %}
 
-                    {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005alteracaoinfoObra %}
+                    {% if perms.s1005.add_s1005alteracaoinfoObra or perms.s1005.change_s1005alteracaoinfoObra %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -684,95 +725,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005alteracaoinfoObra %}
+                                    {% if perms.s1005.add_s1005alteracaoinfoObra or perms.s1005.can_see_list_s1005alteracaoinfoObra  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaoinfoObra %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaoinfoObra %}            
+
                                     <!-- begin_form_s1005_alteracao_infoobra --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_infoobra" action="{% url 's1005_alteracao_infoobra_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_infoobra" 
+                                              action="{% url 's1005_alteracao_infoobra_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_infoobra.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_infoobra -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_infoobra -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaoinfoObra %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_infoobra --> 
 
-                                    {% include 'tables/s1005_alteracao_infoobra.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_infoobra --> 
-
+                                        {% include 'tables/s1005_alteracao_infoobra.html' %}
+                                        <!-- end_table_s1005_alteracao_infoobra --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_infoobra -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s1005_alteracao_infoenteduc -->
+        <!-- begin_s1005_alteracao_infoenteduc -->
 
-            {% if tab == 's1005_alteracao_infoenteduc' or for_print %} 
+            {% if tab == 's1005_alteracao_infoenteduc' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_infoenteduc %} 
+                {% if perms.s1005.can_see_data_s1005alteracaoinfoEntEduc %}
 
-                    {% if perms.s1005.change_s1005_alteracao_infoenteduc or perms.s1005.add_s1005alteracaoinfoEntEduc %}
+                    {% if perms.s1005.add_s1005alteracaoinfoEntEduc or perms.s1005.change_s1005alteracaoinfoEntEduc %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -781,95 +834,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_infoenteduc or perms.s1005.add_s1005alteracaoinfoEntEduc %}
+                                    {% if perms.s1005.add_s1005alteracaoinfoEntEduc or perms.s1005.can_see_list_s1005alteracaoinfoEntEduc  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaoinfoEntEduc %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaoinfoEntEduc %}            
+
                                     <!-- begin_form_s1005_alteracao_infoenteduc --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_infoenteduc" action="{% url 's1005_alteracao_infoenteduc_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_infoenteduc" 
+                                              action="{% url 's1005_alteracao_infoenteduc_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_infoenteduc.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_infoenteduc -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_infoenteduc -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaoinfoEntEduc %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_infoenteduc --> 
 
-                                    {% include 'tables/s1005_alteracao_infoenteduc.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_infoenteduc --> 
-
+                                        {% include 'tables/s1005_alteracao_infoenteduc.html' %}
+                                        <!-- end_table_s1005_alteracao_infoenteduc --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_infoenteduc -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s1005_alteracao_infopcd -->
+        <!-- begin_s1005_alteracao_infopcd -->
 
-            {% if tab == 's1005_alteracao_infopcd' or for_print %} 
+            {% if tab == 's1005_alteracao_infopcd' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_infopcd %} 
+                {% if perms.s1005.can_see_data_s1005alteracaoinfoPCD %}
 
-                    {% if perms.s1005.change_s1005_alteracao_infopcd or perms.s1005.add_s1005alteracaoinfoPCD %}
+                    {% if perms.s1005.add_s1005alteracaoinfoPCD or perms.s1005.change_s1005alteracaoinfoPCD %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -878,95 +943,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_infopcd or perms.s1005.add_s1005alteracaoinfoPCD %}
+                                    {% if perms.s1005.add_s1005alteracaoinfoPCD or perms.s1005.can_see_list_s1005alteracaoinfoPCD  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaoinfoPCD %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaoinfoPCD %}            
+
                                     <!-- begin_form_s1005_alteracao_infopcd --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_infopcd" action="{% url 's1005_alteracao_infopcd_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_infopcd" 
+                                              action="{% url 's1005_alteracao_infopcd_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_infopcd.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_infopcd -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_infopcd -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaoinfoPCD %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_infopcd --> 
 
-                                    {% include 'tables/s1005_alteracao_infopcd.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_infopcd --> 
-
+                                        {% include 'tables/s1005_alteracao_infopcd.html' %}
+                                        <!-- end_table_s1005_alteracao_infopcd --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_infopcd -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s1005_alteracao_novavalidade -->
+        <!-- begin_s1005_alteracao_novavalidade -->
 
-            {% if tab == 's1005_alteracao_novavalidade' or for_print %} 
+            {% if tab == 's1005_alteracao_novavalidade' %} 
 
-                {% if perms.s1005.can_view_s1005_alteracao_novavalidade %} 
+                {% if perms.s1005.can_see_data_s1005alteracaonovaValidade %}
 
-                    {% if perms.s1005.change_s1005_alteracao_novavalidade or perms.s1005.add_s1005alteracaonovaValidade %}
+                    {% if perms.s1005.add_s1005alteracaonovaValidade or perms.s1005.change_s1005alteracaonovaValidade %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -975,75 +1052,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s1005.change_s1005_alteracao_novavalidade or perms.s1005.add_s1005alteracaonovaValidade %}
+                                    {% if perms.s1005.add_s1005alteracaonovaValidade or perms.s1005.can_see_list_s1005alteracaonovaValidade  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s1005.add_s1005alteracaonovaValidade %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1005.add_s1005alteracaonovaValidade %}            
+
                                     <!-- begin_form_s1005_alteracao_novavalidade --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s1005_alteracao_novavalidade" action="{% url 's1005_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s1005_alteracao_novavalidade" 
+                                              action="{% url 's1005_alteracao_novavalidade_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s1005_alteracao_novavalidade.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s1005_alteracao_novavalidade -->
-                                    {% endif %} 
+
+                                <!-- end_form_s1005_alteracao_novavalidade -->
+                                {% endif %} 
+
+                                {% if perms.s1005.can_see_s1005alteracaonovaValidade %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s1005_alteracao_novavalidade --> 
 
-                                    {% include 'tables/s1005_alteracao_novavalidade.html' %}
-                                        
-                                    <!-- end_table_s1005_alteracao_novavalidade --> 
-
+                                        {% include 'tables/s1005_alteracao_novavalidade.html' %}
+                                        <!-- end_table_s1005_alteracao_novavalidade --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s1005_alteracao_novavalidade -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

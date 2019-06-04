@@ -72,7 +72,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 
-def validar_evento_funcao(request, s5012_evtirrf_id):
+def validar_evento_funcao(request, pk):
 
     from emensageriapro.padrao import executar_sql
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
@@ -82,7 +82,7 @@ def validar_evento_funcao(request, s5012_evtirrf_id):
     from emensageriapro.esocial.views.s5012_evtirrf_gerar_xml import gerar_xml_assinado
     
     lista_validacoes = []
-    s5012_evtirrf = get_object_or_404(s5012evtIrrf, id=s5012_evtirrf_id)
+    s5012_evtirrf = get_object_or_404(s5012evtIrrf, id=pk)
 
     #
     # Validações internas
@@ -95,11 +95,12 @@ def validar_evento_funcao(request, s5012_evtirrf_id):
     
     if not os.path.exists(BASE_DIR + '/' + arquivo):
     
-        gerar_xml_assinado(request, s5012_evtirrf_id)
+        gerar_xml_assinado(request, pk)
         
     if os.path.exists(BASE_DIR + '/' + arquivo):
     
         from emensageriapro.esocial.views.s5012_evtirrf_validar import validacoes_s5012_evtirrf
+        
         texto_xml = ler_arquivo(arquivo).replace("s:", "")
         versao = get_versao_evento(texto_xml)
         lista = validacoes_s5012_evtirrf(arquivo)
@@ -132,7 +133,7 @@ def validar_evento_funcao(request, s5012_evtirrf_id):
         validacoes = '<br>'.join(lista_validacoes).replace("'", "''")
         
         s5012evtIrrf.objects.\
-            filter(id=s5012_evtirrf_id, excluido = False).\
+            filter(id=pk).\
             update(validacoes=validacoes,
                    status=STATUS_EVENTO_VALIDADO_ERRO)
 
@@ -140,59 +141,63 @@ def validar_evento_funcao(request, s5012_evtirrf_id):
 
         if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
 
-            quant = validar_precedencia('esocial', 's5012_evtirrf', s5012_evtirrf_id)
+            quant = validar_precedencia('esocial', 's5012_evtirrf', pk)
 
             if quant <= 0:
             
                 s5012evtIrrf.objects.\
-                    filter(id=s5012_evtirrf_id, excluido = False).\
+                    filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
             else:
             
                 s5012evtIrrf.objects.\
-                    filter(id=s5012_evtirrf_id, excluido = False).\
+                    filter(id=pk).\
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_ENVIO)
 
         else:
 
             s5012evtIrrf.objects. \
-                filter(id=s5012_evtirrf_id, excluido=False).\
+                filter(id=pk).\
                 update(validacoes=None,
                        status=STATUS_EVENTO_AGUARD_ENVIO)
 
     return lista_validacoes
 
 
-
 @login_required
-def validar_evento(request, hash):
+def validar_evento(request, pk):
 
     from emensageriapro.settings import VERSOES_ESOCIAL, VERIFICAR_PREDECESSAO_ANTES_ENVIO
 
-    dict_hash = get_hash_url(hash)
-    s5012_evtirrf_id = int(dict_hash['id'])
+    STATUS_VALIDACAO = (
+        STATUS_EVENTO_CADASTRADO,
+        STATUS_EVENTO_IMPORTADO,
+        STATUS_EVENTO_DUPLICADO,
+        STATUS_EVENTO_GERADO,
+        STATUS_EVENTO_ASSINADO,
+        STATUS_EVENTO_VALIDADO_ERRO,
+    )
 
-    if s5012_evtirrf_id:
+    s5012_evtirrf = get_object_or_404(
+        s5012evtIrrf,
+        id=pk)
 
-        s5012_evtirrf = get_object_or_404(
-            s5012evtIrrf,
-            excluido=False,
-            id=s5012_evtirrf_id)
+    if s5012_evtirrf.status in STATUS_VALIDACAO:
 
         if s5012_evtirrf.versao in VERSOES_ESOCIAL:
         
-            validar_evento_funcao(request, s5012_evtirrf_id)
+            validar_evento_funcao(request, pk)
             
             if s5012_evtirrf.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
                 s5012evtIrrf.objects.\
-                    filter(id=s5012_evtirrf_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
+                    filter(id=pk).update(status=STATUS_EVENTO_AGUARD_ENVIO)
 
             elif s5012_evtirrf.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
                 s5012evtIrrf.objects.\
-                    filter(id=s5012_evtirrf_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
+                    filter(id=pk).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
             messages.success(request, 
                 u'Validações processadas com sucesso!')
@@ -206,6 +211,7 @@ def validar_evento(request, hash):
     
         messages.error(request, 
             u'''Não foi possível validar o 
-                evento pois o mesmo não foi identificado!''')
+                evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado, 
+                Importado, Duplicado, Gerado, Assinado ou com Erro de Validação!''')
 
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    return redirect('s5012_evtirrf_salvar', pk=pk, tab='master')

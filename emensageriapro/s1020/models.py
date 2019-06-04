@@ -109,8 +109,11 @@ class s1020alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020alteracao", "Can view S1020ALTERACAO"),
-            ("can_view_menu_s1020alteracao", "Can view menu S1020ALTERACAO"),)
+            ("can_see_list_s1020alteracao", u"Pode ver listagem do modelo S1020ALTERACAO"),
+            ("can_see_data_s1020alteracao", u"Pode visualizar o conteúdo do modelo S1020ALTERACAO"),
+            ("can_see_menu_s1020alteracao", u"Pode visualizar no menu o modelo S1020ALTERACAO"),
+            ("can_print_list_s1020alteracao", u"Pode imprimir listagem do modelo S1020ALTERACAO"),
+            ("can_print_data_s1020alteracao", u"Pode imprimir o conteúdo do modelo S1020ALTERACAO"), )
             
         ordering = [
             's1020_evttablotacao',
@@ -176,8 +179,11 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020alteracaoinfoEmprParcial", "Can view S1020ALTERACAOINFOEMPRPARCIAL"),
-            ("can_view_menu_s1020alteracaoinfoEmprParcial", "Can view menu S1020ALTERACAOINFOEMPRPARCIAL"),)
+            ("can_see_list_s1020alteracaoinfoEmprParcial", u"Pode ver listagem do modelo S1020ALTERACAOINFOEMPRPARCIAL"),
+            ("can_see_data_s1020alteracaoinfoEmprParcial", u"Pode visualizar o conteúdo do modelo S1020ALTERACAOINFOEMPRPARCIAL"),
+            ("can_see_menu_s1020alteracaoinfoEmprParcial", u"Pode visualizar no menu o modelo S1020ALTERACAOINFOEMPRPARCIAL"),
+            ("can_print_list_s1020alteracaoinfoEmprParcial", u"Pode imprimir listagem do modelo S1020ALTERACAOINFOEMPRPARCIAL"),
+            ("can_print_data_s1020alteracaoinfoEmprParcial", u"Pode imprimir o conteúdo do modelo S1020ALTERACAOINFOEMPRPARCIAL"), )
             
         ordering = [
             's1020_alteracao',
@@ -234,8 +240,11 @@ class s1020alteracaoinfoProcJudTerceiros(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020alteracaoinfoProcJudTerceiros", "Can view S1020ALTERACAOINFOPROCJUDTERCEIROS"),
-            ("can_view_menu_s1020alteracaoinfoProcJudTerceiros", "Can view menu S1020ALTERACAOINFOPROCJUDTERCEIROS"),)
+            ("can_see_list_s1020alteracaoinfoProcJudTerceiros", u"Pode ver listagem do modelo S1020ALTERACAOINFOPROCJUDTERCEIROS"),
+            ("can_see_data_s1020alteracaoinfoProcJudTerceiros", u"Pode visualizar o conteúdo do modelo S1020ALTERACAOINFOPROCJUDTERCEIROS"),
+            ("can_see_menu_s1020alteracaoinfoProcJudTerceiros", u"Pode visualizar no menu o modelo S1020ALTERACAOINFOPROCJUDTERCEIROS"),
+            ("can_print_list_s1020alteracaoinfoProcJudTerceiros", u"Pode imprimir listagem do modelo S1020ALTERACAOINFOPROCJUDTERCEIROS"),
+            ("can_print_data_s1020alteracaoinfoProcJudTerceiros", u"Pode imprimir o conteúdo do modelo S1020ALTERACAOINFOPROCJUDTERCEIROS"), )
             
         ordering = [
             's1020_alteracao',]
@@ -291,8 +300,11 @@ class s1020alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020alteracaonovaValidade", "Can view S1020ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1020alteracaonovaValidade", "Can view menu S1020ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1020alteracaonovaValidade", u"Pode ver listagem do modelo S1020ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1020alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1020ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1020alteracaonovaValidade", u"Pode visualizar no menu o modelo S1020ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1020alteracaonovaValidade", u"Pode imprimir listagem do modelo S1020ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1020alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1020ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1020_alteracao',
@@ -352,8 +364,11 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020alteracaoprocJudTerceiro", "Can view S1020ALTERACAOPROCJUDTERCEIRO"),
-            ("can_view_menu_s1020alteracaoprocJudTerceiro", "Can view menu S1020ALTERACAOPROCJUDTERCEIRO"),)
+            ("can_see_list_s1020alteracaoprocJudTerceiro", u"Pode ver listagem do modelo S1020ALTERACAOPROCJUDTERCEIRO"),
+            ("can_see_data_s1020alteracaoprocJudTerceiro", u"Pode visualizar o conteúdo do modelo S1020ALTERACAOPROCJUDTERCEIRO"),
+            ("can_see_menu_s1020alteracaoprocJudTerceiro", u"Pode visualizar no menu o modelo S1020ALTERACAOPROCJUDTERCEIRO"),
+            ("can_print_list_s1020alteracaoprocJudTerceiro", u"Pode imprimir listagem do modelo S1020ALTERACAOPROCJUDTERCEIRO"),
+            ("can_print_data_s1020alteracaoprocJudTerceiro", u"Pode imprimir o conteúdo do modelo S1020ALTERACAOPROCJUDTERCEIRO"), )
             
         ordering = [
             's1020_alteracao_infoprocjudterceiros',
@@ -414,8 +429,11 @@ class s1020exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020exclusao", "Can view S1020EXCLUSAO"),
-            ("can_view_menu_s1020exclusao", "Can view menu S1020EXCLUSAO"),)
+            ("can_see_list_s1020exclusao", u"Pode ver listagem do modelo S1020EXCLUSAO"),
+            ("can_see_data_s1020exclusao", u"Pode visualizar o conteúdo do modelo S1020EXCLUSAO"),
+            ("can_see_menu_s1020exclusao", u"Pode visualizar no menu o modelo S1020EXCLUSAO"),
+            ("can_print_list_s1020exclusao", u"Pode imprimir listagem do modelo S1020EXCLUSAO"),
+            ("can_print_data_s1020exclusao", u"Pode imprimir o conteúdo do modelo S1020EXCLUSAO"), )
             
         ordering = [
             's1020_evttablotacao',
@@ -484,8 +502,11 @@ class s1020inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020inclusao", "Can view S1020INCLUSAO"),
-            ("can_view_menu_s1020inclusao", "Can view menu S1020INCLUSAO"),)
+            ("can_see_list_s1020inclusao", u"Pode ver listagem do modelo S1020INCLUSAO"),
+            ("can_see_data_s1020inclusao", u"Pode visualizar o conteúdo do modelo S1020INCLUSAO"),
+            ("can_see_menu_s1020inclusao", u"Pode visualizar no menu o modelo S1020INCLUSAO"),
+            ("can_print_list_s1020inclusao", u"Pode imprimir listagem do modelo S1020INCLUSAO"),
+            ("can_print_data_s1020inclusao", u"Pode imprimir o conteúdo do modelo S1020INCLUSAO"), )
             
         ordering = [
             's1020_evttablotacao',
@@ -551,8 +572,11 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020inclusaoinfoEmprParcial", "Can view S1020INCLUSAOINFOEMPRPARCIAL"),
-            ("can_view_menu_s1020inclusaoinfoEmprParcial", "Can view menu S1020INCLUSAOINFOEMPRPARCIAL"),)
+            ("can_see_list_s1020inclusaoinfoEmprParcial", u"Pode ver listagem do modelo S1020INCLUSAOINFOEMPRPARCIAL"),
+            ("can_see_data_s1020inclusaoinfoEmprParcial", u"Pode visualizar o conteúdo do modelo S1020INCLUSAOINFOEMPRPARCIAL"),
+            ("can_see_menu_s1020inclusaoinfoEmprParcial", u"Pode visualizar no menu o modelo S1020INCLUSAOINFOEMPRPARCIAL"),
+            ("can_print_list_s1020inclusaoinfoEmprParcial", u"Pode imprimir listagem do modelo S1020INCLUSAOINFOEMPRPARCIAL"),
+            ("can_print_data_s1020inclusaoinfoEmprParcial", u"Pode imprimir o conteúdo do modelo S1020INCLUSAOINFOEMPRPARCIAL"), )
             
         ordering = [
             's1020_inclusao',
@@ -609,8 +633,11 @@ class s1020inclusaoinfoProcJudTerceiros(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020inclusaoinfoProcJudTerceiros", "Can view S1020INCLUSAOINFOPROCJUDTERCEIROS"),
-            ("can_view_menu_s1020inclusaoinfoProcJudTerceiros", "Can view menu S1020INCLUSAOINFOPROCJUDTERCEIROS"),)
+            ("can_see_list_s1020inclusaoinfoProcJudTerceiros", u"Pode ver listagem do modelo S1020INCLUSAOINFOPROCJUDTERCEIROS"),
+            ("can_see_data_s1020inclusaoinfoProcJudTerceiros", u"Pode visualizar o conteúdo do modelo S1020INCLUSAOINFOPROCJUDTERCEIROS"),
+            ("can_see_menu_s1020inclusaoinfoProcJudTerceiros", u"Pode visualizar no menu o modelo S1020INCLUSAOINFOPROCJUDTERCEIROS"),
+            ("can_print_list_s1020inclusaoinfoProcJudTerceiros", u"Pode imprimir listagem do modelo S1020INCLUSAOINFOPROCJUDTERCEIROS"),
+            ("can_print_data_s1020inclusaoinfoProcJudTerceiros", u"Pode imprimir o conteúdo do modelo S1020INCLUSAOINFOPROCJUDTERCEIROS"), )
             
         ordering = [
             's1020_inclusao',]
@@ -669,8 +696,11 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020inclusaoprocJudTerceiro", "Can view S1020INCLUSAOPROCJUDTERCEIRO"),
-            ("can_view_menu_s1020inclusaoprocJudTerceiro", "Can view menu S1020INCLUSAOPROCJUDTERCEIRO"),)
+            ("can_see_list_s1020inclusaoprocJudTerceiro", u"Pode ver listagem do modelo S1020INCLUSAOPROCJUDTERCEIRO"),
+            ("can_see_data_s1020inclusaoprocJudTerceiro", u"Pode visualizar o conteúdo do modelo S1020INCLUSAOPROCJUDTERCEIRO"),
+            ("can_see_menu_s1020inclusaoprocJudTerceiro", u"Pode visualizar no menu o modelo S1020INCLUSAOPROCJUDTERCEIRO"),
+            ("can_print_list_s1020inclusaoprocJudTerceiro", u"Pode imprimir listagem do modelo S1020INCLUSAOPROCJUDTERCEIRO"),
+            ("can_print_data_s1020inclusaoprocJudTerceiro", u"Pode imprimir o conteúdo do modelo S1020INCLUSAOPROCJUDTERCEIRO"), )
             
         ordering = [
             's1020_inclusao_infoprocjudterceiros',

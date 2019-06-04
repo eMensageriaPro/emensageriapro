@@ -72,7 +72,7 @@ from emensageriapro.s5001.views import s5001_calcterc_api as s5001_calcterc_api_
 urlpatterns = [
 
 
-    url(r'^s5001-procjudtrab/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-procjudtrab/apagar/(?P<pk>[0-9]+)/$', 
         s5001_procjudtrab_apagar_views.apagar, 
         name='s5001_procjudtrab_apagar'),
 
@@ -82,15 +82,27 @@ urlpatterns = [
     url(r'^s5001-procjudtrab/api/(?P<pk>[0-9]+)/$',
         s5001_procjudtrab_api_views.s5001procJudTrabDetail.as_view() ),
 
-    url(r'^s5001-procjudtrab/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-procjudtrab/$', 
         s5001_procjudtrab_listar_views.listar, 
         name='s5001_procjudtrab'),
 
-    url(r'^s5001-procjudtrab/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_procjudtrab_salvar_views.salvar, 
         name='s5001_procjudtrab_salvar'),
+        
+    url(r'^s5001-procjudtrab/cadastrar/$', 
+        s5001_procjudtrab_salvar_views.salvar, 
+        name='s5001_procjudtrab_cadastrar'),
 
-    url(r'^s5001-infocpcalc/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_procjudtrab_salvar_views.salvar, 
+        name='s5001_procjudtrab_salvar_output'),
+        
+    url(r'^s5001-procjudtrab/(?P<output>[\w-]+)/$', 
+        s5001_procjudtrab_listar_views.listar, 
+        name='s5001_procjudtrab_output'),
+
+    url(r'^s5001-infocpcalc/apagar/(?P<pk>[0-9]+)/$', 
         s5001_infocpcalc_apagar_views.apagar, 
         name='s5001_infocpcalc_apagar'),
 
@@ -100,15 +112,27 @@ urlpatterns = [
     url(r'^s5001-infocpcalc/api/(?P<pk>[0-9]+)/$',
         s5001_infocpcalc_api_views.s5001infoCpCalcDetail.as_view() ),
 
-    url(r'^s5001-infocpcalc/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocpcalc/$', 
         s5001_infocpcalc_listar_views.listar, 
         name='s5001_infocpcalc'),
 
-    url(r'^s5001-infocpcalc/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocpcalc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_infocpcalc_salvar_views.salvar, 
         name='s5001_infocpcalc_salvar'),
+        
+    url(r'^s5001-infocpcalc/cadastrar/$', 
+        s5001_infocpcalc_salvar_views.salvar, 
+        name='s5001_infocpcalc_cadastrar'),
 
-    url(r'^s5001-infocp/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocpcalc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_infocpcalc_salvar_views.salvar, 
+        name='s5001_infocpcalc_salvar_output'),
+        
+    url(r'^s5001-infocpcalc/(?P<output>[\w-]+)/$', 
+        s5001_infocpcalc_listar_views.listar, 
+        name='s5001_infocpcalc_output'),
+
+    url(r'^s5001-infocp/apagar/(?P<pk>[0-9]+)/$', 
         s5001_infocp_apagar_views.apagar, 
         name='s5001_infocp_apagar'),
 
@@ -118,15 +142,27 @@ urlpatterns = [
     url(r'^s5001-infocp/api/(?P<pk>[0-9]+)/$',
         s5001_infocp_api_views.s5001infoCpDetail.as_view() ),
 
-    url(r'^s5001-infocp/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocp/$', 
         s5001_infocp_listar_views.listar, 
         name='s5001_infocp'),
 
-    url(r'^s5001-infocp/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_infocp_salvar_views.salvar, 
         name='s5001_infocp_salvar'),
+        
+    url(r'^s5001-infocp/cadastrar/$', 
+        s5001_infocp_salvar_views.salvar, 
+        name='s5001_infocp_cadastrar'),
 
-    url(r'^s5001-ideestablot/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_infocp_salvar_views.salvar, 
+        name='s5001_infocp_salvar_output'),
+        
+    url(r'^s5001-infocp/(?P<output>[\w-]+)/$', 
+        s5001_infocp_listar_views.listar, 
+        name='s5001_infocp_output'),
+
+    url(r'^s5001-ideestablot/apagar/(?P<pk>[0-9]+)/$', 
         s5001_ideestablot_apagar_views.apagar, 
         name='s5001_ideestablot_apagar'),
 
@@ -136,15 +172,27 @@ urlpatterns = [
     url(r'^s5001-ideestablot/api/(?P<pk>[0-9]+)/$',
         s5001_ideestablot_api_views.s5001ideEstabLotDetail.as_view() ),
 
-    url(r'^s5001-ideestablot/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-ideestablot/$', 
         s5001_ideestablot_listar_views.listar, 
         name='s5001_ideestablot'),
 
-    url(r'^s5001-ideestablot/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_ideestablot_salvar_views.salvar, 
         name='s5001_ideestablot_salvar'),
+        
+    url(r'^s5001-ideestablot/cadastrar/$', 
+        s5001_ideestablot_salvar_views.salvar, 
+        name='s5001_ideestablot_cadastrar'),
 
-    url(r'^s5001-infocategincid/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_ideestablot_salvar_views.salvar, 
+        name='s5001_ideestablot_salvar_output'),
+        
+    url(r'^s5001-ideestablot/(?P<output>[\w-]+)/$', 
+        s5001_ideestablot_listar_views.listar, 
+        name='s5001_ideestablot_output'),
+
+    url(r'^s5001-infocategincid/apagar/(?P<pk>[0-9]+)/$', 
         s5001_infocategincid_apagar_views.apagar, 
         name='s5001_infocategincid_apagar'),
 
@@ -154,15 +202,27 @@ urlpatterns = [
     url(r'^s5001-infocategincid/api/(?P<pk>[0-9]+)/$',
         s5001_infocategincid_api_views.s5001infoCategIncidDetail.as_view() ),
 
-    url(r'^s5001-infocategincid/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocategincid/$', 
         s5001_infocategincid_listar_views.listar, 
         name='s5001_infocategincid'),
 
-    url(r'^s5001-infocategincid/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocategincid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_infocategincid_salvar_views.salvar, 
         name='s5001_infocategincid_salvar'),
+        
+    url(r'^s5001-infocategincid/cadastrar/$', 
+        s5001_infocategincid_salvar_views.salvar, 
+        name='s5001_infocategincid_cadastrar'),
 
-    url(r'^s5001-infobasecs/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-infocategincid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_infocategincid_salvar_views.salvar, 
+        name='s5001_infocategincid_salvar_output'),
+        
+    url(r'^s5001-infocategincid/(?P<output>[\w-]+)/$', 
+        s5001_infocategincid_listar_views.listar, 
+        name='s5001_infocategincid_output'),
+
+    url(r'^s5001-infobasecs/apagar/(?P<pk>[0-9]+)/$', 
         s5001_infobasecs_apagar_views.apagar, 
         name='s5001_infobasecs_apagar'),
 
@@ -172,15 +232,27 @@ urlpatterns = [
     url(r'^s5001-infobasecs/api/(?P<pk>[0-9]+)/$',
         s5001_infobasecs_api_views.s5001infoBaseCSDetail.as_view() ),
 
-    url(r'^s5001-infobasecs/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-infobasecs/$', 
         s5001_infobasecs_listar_views.listar, 
         name='s5001_infobasecs'),
 
-    url(r'^s5001-infobasecs/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-infobasecs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_infobasecs_salvar_views.salvar, 
         name='s5001_infobasecs_salvar'),
+        
+    url(r'^s5001-infobasecs/cadastrar/$', 
+        s5001_infobasecs_salvar_views.salvar, 
+        name='s5001_infobasecs_cadastrar'),
 
-    url(r'^s5001-calcterc/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-infobasecs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_infobasecs_salvar_views.salvar, 
+        name='s5001_infobasecs_salvar_output'),
+        
+    url(r'^s5001-infobasecs/(?P<output>[\w-]+)/$', 
+        s5001_infobasecs_listar_views.listar, 
+        name='s5001_infobasecs_output'),
+
+    url(r'^s5001-calcterc/apagar/(?P<pk>[0-9]+)/$', 
         s5001_calcterc_apagar_views.apagar, 
         name='s5001_calcterc_apagar'),
 
@@ -190,13 +262,25 @@ urlpatterns = [
     url(r'^s5001-calcterc/api/(?P<pk>[0-9]+)/$',
         s5001_calcterc_api_views.s5001calcTercDetail.as_view() ),
 
-    url(r'^s5001-calcterc/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-calcterc/$', 
         s5001_calcterc_listar_views.listar, 
         name='s5001_calcterc'),
 
-    url(r'^s5001-calcterc/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-calcterc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_calcterc_salvar_views.salvar, 
         name='s5001_calcterc_salvar'),
+        
+    url(r'^s5001-calcterc/cadastrar/$', 
+        s5001_calcterc_salvar_views.salvar, 
+        name='s5001_calcterc_cadastrar'),
+
+    url(r'^s5001-calcterc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_calcterc_salvar_views.salvar, 
+        name='s5001_calcterc_salvar_output'),
+        
+    url(r'^s5001-calcterc/(?P<output>[\w-]+)/$', 
+        s5001_calcterc_listar_views.listar, 
+        name='s5001_calcterc_output'),
 
 
 ]

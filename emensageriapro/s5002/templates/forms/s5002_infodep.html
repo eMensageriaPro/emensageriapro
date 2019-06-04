@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5002_infodep__s5002_evtirrfbenef__label">Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}*</label>
     {% if not for_print %}{% if s5002_infodep_form.s5002_evtirrfbenef.value %}
-        <a href="{% url 's5002_evtirrfbenef_salvar' hash='{}'|json_return_page:'s5002_infodep_salvar'|json_return_hash:hash|json_id:s5002_infodep_form.s5002_evtirrfbenef.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's5002_evtirrfbenef_salvar' pk=s5002_infodep_form.s5002_evtirrfbenef.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

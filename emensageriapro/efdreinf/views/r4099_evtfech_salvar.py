@@ -61,28 +61,14 @@ from emensageriapro.r4099.forms import form_r4099_iderespinf
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r4099_evtfech_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if r4099_evtfech_id:
-    
-        r4099_evtfech = get_object_or_404(r4099evtFech, id=r4099_evtfech_id)
+        r4099_evtfech = get_object_or_404(r4099evtFech, id=pk)
 
         if r4099_evtfech.status != STATUS_EVENTO_CADASTRADO:
         
@@ -90,9 +76,9 @@ def salvar(request, hash):
             dict_permissoes['r4099_evtfech_apagar'] = 0
             dict_permissoes['r4099_evtfech_editar'] = 0
             
-    if request.user.has_perm('efdreinf.can_view_r4099evtFech'):
+    if request.user.has_perm('efdreinf.can_see_r4099evtFech'):
     
-        if r4099_evtfech_id:
+        if pk:
         
             r4099_evtfech_form = form_r4099_evtfech(request.POST or None, instance = r4099_evtfech, 
                                          initial={'excluido': False})
@@ -111,54 +97,70 @@ def salvar(request, hash):
         
             if r4099_evtfech_form.is_valid():
             
-                dados = r4099_evtfech_form.cleaned_data
                 obj = r4099_evtfech_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r4099_evtfech_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4099_evtfech', obj.id, usuario_id, 1)
+                                 'r4099_evtfech', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r4099_evtfech), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4099_evtfech', r4099_evtfech_id, usuario_id, 2)
+                                     'r4099_evtfech', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('r4099_evtfech_apagar', 'r4099_evtfech_salvar', 'r4099_evtfech'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'r4099_evtfech_apagar', 
+                    'r4099_evtfech_salvar', 
+                    'r4099_evtfech'):
                     
-                if r4099_evtfech_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r4099_evtfech_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'r4099_evtfech_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        r4099_evtfech_form = disabled_form_fields(r4099_evtfech_form, request.user.has_perm('efdreinf.change_r4099evtFech'))
+        r4099_evtfech_form = disabled_form_fields(
+             r4099_evtfech_form, 
+             request.user.has_perm('efdreinf.change_r4099evtFech'))
         
-        if r4099_evtfech_id:
+        if pk:
+        
             if r4099_evtfech.status != 0:
+            
                 r4099_evtfech_form = disabled_form_fields(r4099_evtfech_form, False)
+                
         #r4099_evtfech_campos_multiple_passo3
 
         for field in r4099_evtfech_form.fields.keys():
+        
             r4099_evtfech_form.fields[field].widget.attrs['ng-model'] = 'r4099_evtfech_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             r4099_evtfech_form = disabled_form_for_print(r4099_evtfech_form)
 
         
         r4099_iderespinf_lista = None 
         r4099_iderespinf_form = None 
         
-        if r4099_evtfech_id:
+        if pk:
         
-            r4099_evtfech = get_object_or_404(r4099evtFech, id = r4099_evtfech_id)
+            r4099_evtfech = get_object_or_404(r4099evtFech, id=pk)
             
             r4099_iderespinf_form = form_r4099_iderespinf(
                 initial={ 'r4099_evtfech': r4099_evtfech })
@@ -167,6 +169,7 @@ def salvar(request, hash):
                 filter(r4099_evtfech_id=r4099_evtfech.id).all()
                 
         else:
+        
             r4099_evtfech = None
             
         #r4099_evtfech_salvar_custom_variaveis#
@@ -175,40 +178,39 @@ def salvar(request, hash):
         
         if 'r4099_evtfech'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 'r4099_evtfech' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r4099_evtfech_salvar'
+        if tab or 'r4099_evtfech' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r4099_evtfech_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r4099_evtfech_id, tabela='r4099_evtfech').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4099_evtfech').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r4099_evtfech': r4099_evtfech, 
             'r4099_evtfech_form': r4099_evtfech_form, 
-            'r4099_evtfech_id': int(r4099_evtfech_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             'r4099_iderespinf_form': r4099_iderespinf_form,
             'r4099_iderespinf_lista': r4099_iderespinf_lista,
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r4099_evtfech', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r4099_evtfech_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r4099_evtfech_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -226,25 +228,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('r4099_evtfech_salvar.html', context)
             filename = "r4099_evtfech.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r4099_evtfech_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['efdreinf', ],
             'paginas': ['r4099_evtfech', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

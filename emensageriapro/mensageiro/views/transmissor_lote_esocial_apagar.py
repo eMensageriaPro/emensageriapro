@@ -59,52 +59,36 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        transmissor_lote_esocial_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
+def apagar(request, pk):
 
-    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=transmissor_lote_esocial_id)
+    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
     
     if request.method == 'POST':
     
-        obj = TransmissorLoteEsocial.objects.get(id=transmissor_lote_esocial_id)
+        obj = TransmissorLoteEsocial.objects.get(id=pk)
         obj.delete(request=request)
         #transmissor_lote_esocial_apagar_custom
         #transmissor_lote_esocial_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
         
-        if request.session['retorno_pagina'] == 'transmissor_lote_esocial_salvar':
+        if 'transmissor_lote_esocial' in request.session['return_page']:
         
-            return redirect('transmissor_lote_esocial', 
-                            hash=request.session['retorno_hash'])
+            return redirect('transmissor_lote_esocial')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
-    
-        'usuario': usuario, 
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'data': datetime.datetime.now(),
         'modulos': ['mensageiro', ],
         'paginas': ['transmissor_lote_esocial', ],
-        'hash': hash,
-        
     }
     
     return render(request, 
-                  'transmissor_lote_esocial_apagar.html', 
-                  context)
+        'transmissor_lote_esocial_apagar.html', 
+        context)

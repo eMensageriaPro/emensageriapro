@@ -34,51 +34,48 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s2230iniAfastamento
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s2230iniAfastamento</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações do Afastamento Temporário - Início
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações do Afastamento Temporário - Início</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s2230.can_view_s2230iniAfastamento %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_return_page:'s2230_iniafastamento_salvar'|json_return_hash:hash|json_id:s2230_iniafastamento_id|json_print:0|base64_encode_me %}">
-                            Informações do Afastamento Temporário - Início
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s2230_iniafastamento_id %}
+                    {% if pk %}
+                        {% if perms.s2230.can_see_s2230iniAfastamento %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2230_iniafastamento_salvar' pk=pk tab='master' %}">
+                                Informações do Afastamento Temporário - Início</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s2230.can_view_s2230_infoatestado %}
+                            {% if perms.s2230.can_see_s2230infoAtestado %}
                                 <li {% if tab == 's2230_infoatestado' %} class="active"{% endif %} >
-                                    <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_id:s2230_iniafastamento_id|json_print:0|json_tab:'s2230_infoatestado'|base64_encode_me %}">
+                                    <a href="{% url 's2230_iniafastamento_salvar' pk=pk tab='s2230_infoatestado' %}">
                                     Informações complementares relativas ao atestado médico</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2230.can_view_s2230_infocessao %}
+                            {% if perms.s2230.can_see_s2230infoCessao %}
                                 <li {% if tab == 's2230_infocessao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_id:s2230_iniafastamento_id|json_print:0|json_tab:'s2230_infocessao'|base64_encode_me %}">
+                                    <a href="{% url 's2230_iniafastamento_salvar' pk=pk tab='s2230_infocessao' %}">
                                     Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2230.can_view_s2230_infomandsind %}
+                            {% if perms.s2230.can_see_s2230infoMandSind %}
                                 <li {% if tab == 's2230_infomandsind' %} class="active"{% endif %} >
-                                    <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_id:s2230_iniafastamento_id|json_print:0|json_tab:'s2230_infomandsind'|base64_encode_me %}">
+                                    <a href="{% url 's2230_iniafastamento_salvar' pk=pk tab='s2230_infomandsind' %}">
                                     Informações Complementares - afastamento para exercício de mandato sindical</a>
                                 </li>
                             {% endif %}
@@ -88,275 +85,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s2230_iniafastamento_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s2230_iniafastamento_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s2230_iniafastamento_id %}
-   {% if s2230_iniafastamento.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2230_iniafastamento.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2230_iniafastamento.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2230_iniafastamento.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2230_iniafastamento.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2230_iniafastamento.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2230_iniafastamento.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações do Afastamento Temporário - Início</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s2230_iniafastamento.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2230_iniafastamento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s2230.change_s2230_iniafastamento or perms.s2230.add_s2230_iniafastamento %}
-                <form action="#" id="id_form_s2230_iniafastamento" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s2230_iniafastamento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2230_iniafastamento.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2230_iniafastamento.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s2230_iniafastamento.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s2230_iniafastamento_id %}
-
-                                {% if perms.s2230.add_s2230iniAfastamento %}
-                                    <a href="{% url 's2230_iniafastamento_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s2230.can_view_s2230_iniafastamento or perms.s2230.can_view_s2230_iniafastamento %}
-                                <a href="{% url 's2230_iniafastamento'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2230.can_view_s2230_iniafastamento and s2230_iniafastamento_id %}
-                                <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_id:s2230_iniafastamento_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s2230.can_view_s2230_iniafastamento and s2230_iniafastamento_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_id:s2230_iniafastamento_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2230.change_s2230_iniafastamento or perms.s2230.add_s2230_iniafastamento %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s2230.delete_s2230_iniafastamento and s2230_iniafastamento_id %}
-
-                            <a href="{% url 's2230_iniafastamento_apagar' hash='{}'|json_id:s2230_iniafastamento_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s2230_iniafastamento.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2230_iniafastamento.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s2230.change_s2230_iniafastamento or perms.s2230.add_s2230_iniafastamento %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s2230_iniafastamento_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações do Afastamento Temporário - Início</h3>
+                    </div>
+
+                    {% if perms.s2230.change_s2230iniAfastamento or perms.s2230.add_s2230iniAfastamento %}
+                        {% if s2230_iniafastamento_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2230_iniafastamento" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2230_iniafastamento.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s2230.add_s2230iniAfastamento %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2230_iniafastamento_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2230.can_see_list_s2230iniAfastamento %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2230_iniafastamento' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2230.can_print_data_s2230iniAfastamento %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2230_iniafastamento_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s2230.change_s2230iniAfastamento %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2230.delete_s2230iniAfastamento %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2230_iniafastamento_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s2230.add_s2230iniAfastamento %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s2230.add_s2230iniAfastamento or perms.s2230.change_s2230iniAfastamento %}
+
+                        {% if s2230_iniafastamento_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s2230_infoatestado -->
+        <!-- begin_s2230_infoatestado -->
 
-            {% if tab == 's2230_infoatestado' or for_print %} 
+            {% if tab == 's2230_infoatestado' %} 
 
-                {% if perms.s2230.can_view_s2230_infoatestado %} 
+                {% if perms.s2230.can_see_data_s2230infoAtestado %}
 
-                    {% if perms.s2230.change_s2230_infoatestado or perms.s2230.add_s2230infoAtestado %}
+                    {% if perms.s2230.add_s2230infoAtestado or perms.s2230.change_s2230infoAtestado %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -365,95 +370,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações complementares relativas ao atestado médico</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2230.change_s2230_infoatestado or perms.s2230.add_s2230infoAtestado %}
+                                    {% if perms.s2230.add_s2230infoAtestado or perms.s2230.can_see_list_s2230infoAtestado  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2230.add_s2230infoAtestado %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2230.add_s2230infoAtestado %}            
+
                                     <!-- begin_form_s2230_infoatestado --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2230_infoatestado" action="{% url 's2230_infoatestado_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2230_infoatestado" 
+                                              action="{% url 's2230_infoatestado_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2230_infoatestado.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2230_infoatestado -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2230_infoatestado -->
+                                {% endif %} 
+
+                                {% if perms.s2230.can_see_s2230infoAtestado %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2230_infoatestado --> 
 
-                                    {% include 'tables/s2230_infoatestado.html' %}
-                                        
-                                    <!-- end_table_s2230_infoatestado --> 
-
+                                        {% include 'tables/s2230_infoatestado.html' %}
+                                        <!-- end_table_s2230_infoatestado --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2230_infoatestado -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2230_infocessao -->
+        <!-- begin_s2230_infocessao -->
 
-            {% if tab == 's2230_infocessao' or for_print %} 
+            {% if tab == 's2230_infocessao' %} 
 
-                {% if perms.s2230.can_view_s2230_infocessao %} 
+                {% if perms.s2230.can_see_data_s2230infoCessao %}
 
-                    {% if perms.s2230.change_s2230_infocessao or perms.s2230.add_s2230infoCessao %}
+                    {% if perms.s2230.add_s2230infoCessao or perms.s2230.change_s2230infoCessao %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -462,95 +479,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2230.change_s2230_infocessao or perms.s2230.add_s2230infoCessao %}
+                                    {% if perms.s2230.add_s2230infoCessao or perms.s2230.can_see_list_s2230infoCessao  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2230.add_s2230infoCessao %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2230.add_s2230infoCessao %}            
+
                                     <!-- begin_form_s2230_infocessao --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2230_infocessao" action="{% url 's2230_infocessao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2230_infocessao" 
+                                              action="{% url 's2230_infocessao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2230_infocessao.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2230_infocessao -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2230_infocessao -->
+                                {% endif %} 
+
+                                {% if perms.s2230.can_see_s2230infoCessao %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2230_infocessao --> 
 
-                                    {% include 'tables/s2230_infocessao.html' %}
-                                        
-                                    <!-- end_table_s2230_infocessao --> 
-
+                                        {% include 'tables/s2230_infocessao.html' %}
+                                        <!-- end_table_s2230_infocessao --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2230_infocessao -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2230_infomandsind -->
+        <!-- begin_s2230_infomandsind -->
 
-            {% if tab == 's2230_infomandsind' or for_print %} 
+            {% if tab == 's2230_infomandsind' %} 
 
-                {% if perms.s2230.can_view_s2230_infomandsind %} 
+                {% if perms.s2230.can_see_data_s2230infoMandSind %}
 
-                    {% if perms.s2230.change_s2230_infomandsind or perms.s2230.add_s2230infoMandSind %}
+                    {% if perms.s2230.add_s2230infoMandSind or perms.s2230.change_s2230infoMandSind %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -559,75 +588,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações Complementares - afastamento para exercício de mandato sindical</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2230.change_s2230_infomandsind or perms.s2230.add_s2230infoMandSind %}
+                                    {% if perms.s2230.add_s2230infoMandSind or perms.s2230.can_see_list_s2230infoMandSind  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2230.add_s2230infoMandSind %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2230.add_s2230infoMandSind %}            
+
                                     <!-- begin_form_s2230_infomandsind --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2230_infomandsind" action="{% url 's2230_infomandsind_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2230_infomandsind" 
+                                              action="{% url 's2230_infomandsind_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2230_infomandsind.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2230_infomandsind -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2230_infomandsind -->
+                                {% endif %} 
+
+                                {% if perms.s2230.can_see_s2230infoMandSind %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2230_infomandsind --> 
 
-                                    {% include 'tables/s2230_infomandsind.html' %}
-                                        
-                                    <!-- end_table_s2230_infomandsind --> 
-
+                                        {% include 'tables/s2230_infomandsind.html' %}
+                                        <!-- end_table_s2230_infomandsind --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2230_infomandsind -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

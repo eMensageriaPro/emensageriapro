@@ -15,7 +15,7 @@
     <label id="s5011_infocrestab__s5011_ideestab__label">Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.*</label>
     {% if not for_print %}
       {% if s5011_infocrestab_form.s5011_ideestab.value %}
-        <a id="s5011_infocrestab__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' hash='{}'|json_id:s5011_infocrestab_form.s5011_ideestab.value|json_print:0|base64_encode_me %}">
+        <a id="s5011_infocrestab__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' pk=s5011_infocrestab_form.s5011_ideestab.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

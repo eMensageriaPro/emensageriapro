@@ -15,7 +15,7 @@
     <label id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__label">Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração*</label>
     {% if not for_print %}
       {% if s1202_infoperant_remunperant_form.s1202_infoperant_ideestab.value %}
-        <a id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__div_acessar" href="{% url 's1202_infoperant_ideestab_salvar' hash='{}'|json_id:s1202_infoperant_remunperant_form.s1202_infoperant_ideestab.value|json_print:0|base64_encode_me %}">
+        <a id="s1202_infoperant_remunperant__s1202_infoperant_ideestab__div_acessar" href="{% url 's1202_infoperant_ideestab_salvar' pk=s1202_infoperant_remunperant_form.s1202_infoperant_ideestab.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

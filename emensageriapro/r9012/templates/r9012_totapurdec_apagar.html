@@ -48,18 +48,28 @@
                                 Confirma a remoção do registro? Esta ação é irreversível e apagará todos os dados relacionados a este registro!
                             </div>
                             <div class="form-group col-md-2 text-right">
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Apagar</button>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-remove"></i> Apagar
+                            </button>
                             </div>
                         </form>
                         <div class="form-group col-md-2 text-right">
-                            <a href="javascript:history.back()"><button type="submit" class="btn btn-primary"><i class="fa fa-rotate-left"></i> Não Apagar</button></a>
+                            <a href="javascript:history.back()">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-rotate-left"></i> Não Apagar
+                                </button>
+                            </a>
                         </div>
                         {% else %}
                         <div class="form-group col-md-10">
                             Você não possui permissão para apagar este registro, entre em contato com o administrador do sistema!
                         </div>
                         <div class="form-group col-md-2 text-right">
-                            <a href="javascript:history.back()"><button type="submit" class="btn btn-primary"><i class="fa fa-rotate-left"></i> Retornar</button></a>
+                            <a href="javascript:history.back()">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-rotate-left"></i> Retornar
+                                </button>
+                            </a>
                         </div>
                         {% endif %}
                     </div>

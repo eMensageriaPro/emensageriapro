@@ -102,8 +102,11 @@ class s1295ideRespInf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1295ideRespInf", "Can view S1295IDERESPINF"),
-            ("can_view_menu_s1295ideRespInf", "Can view menu S1295IDERESPINF"),)
+            ("can_see_list_s1295ideRespInf", u"Pode ver listagem do modelo S1295IDERESPINF"),
+            ("can_see_data_s1295ideRespInf", u"Pode visualizar o conteúdo do modelo S1295IDERESPINF"),
+            ("can_see_menu_s1295ideRespInf", u"Pode visualizar no menu o modelo S1295IDERESPINF"),
+            ("can_print_list_s1295ideRespInf", u"Pode imprimir listagem do modelo S1295IDERESPINF"),
+            ("can_print_data_s1295ideRespInf", u"Pode imprimir o conteúdo do modelo S1295IDERESPINF"), )
             
         ordering = [
             's1295_evttotconting',

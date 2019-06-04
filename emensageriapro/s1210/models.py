@@ -97,8 +97,11 @@ class s1210deps(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210deps", "Can view S1210DEPS"),
-            ("can_view_menu_s1210deps", "Can view menu S1210DEPS"),)
+            ("can_see_list_s1210deps", u"Pode ver listagem do modelo S1210DEPS"),
+            ("can_see_data_s1210deps", u"Pode visualizar o conteúdo do modelo S1210DEPS"),
+            ("can_see_menu_s1210deps", u"Pode visualizar no menu o modelo S1210DEPS"),
+            ("can_print_list_s1210deps", u"Pode imprimir listagem do modelo S1210DEPS"),
+            ("can_print_data_s1210deps", u"Pode imprimir o conteúdo do modelo S1210DEPS"), )
             
         ordering = [
             's1210_evtpgtos',
@@ -154,8 +157,11 @@ class s1210detPgtoAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoAnt", "Can view S1210DETPGTOANT"),
-            ("can_view_menu_s1210detPgtoAnt", "Can view menu S1210DETPGTOANT"),)
+            ("can_see_list_s1210detPgtoAnt", u"Pode ver listagem do modelo S1210DETPGTOANT"),
+            ("can_see_data_s1210detPgtoAnt", u"Pode visualizar o conteúdo do modelo S1210DETPGTOANT"),
+            ("can_see_menu_s1210detPgtoAnt", u"Pode visualizar no menu o modelo S1210DETPGTOANT"),
+            ("can_print_list_s1210detPgtoAnt", u"Pode imprimir listagem do modelo S1210DETPGTOANT"),
+            ("can_print_data_s1210detPgtoAnt", u"Pode imprimir o conteúdo do modelo S1210DETPGTOANT"), )
             
         ordering = [
             's1210_infopgto',
@@ -213,8 +219,11 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoAntinfoPgtoAnt", "Can view S1210DETPGTOANTINFOPGTOANT"),
-            ("can_view_menu_s1210detPgtoAntinfoPgtoAnt", "Can view menu S1210DETPGTOANTINFOPGTOANT"),)
+            ("can_see_list_s1210detPgtoAntinfoPgtoAnt", u"Pode ver listagem do modelo S1210DETPGTOANTINFOPGTOANT"),
+            ("can_see_data_s1210detPgtoAntinfoPgtoAnt", u"Pode visualizar o conteúdo do modelo S1210DETPGTOANTINFOPGTOANT"),
+            ("can_see_menu_s1210detPgtoAntinfoPgtoAnt", u"Pode visualizar no menu o modelo S1210DETPGTOANTINFOPGTOANT"),
+            ("can_print_list_s1210detPgtoAntinfoPgtoAnt", u"Pode imprimir listagem do modelo S1210DETPGTOANTINFOPGTOANT"),
+            ("can_print_data_s1210detPgtoAntinfoPgtoAnt", u"Pode imprimir o conteúdo do modelo S1210DETPGTOANTINFOPGTOANT"), )
             
         ordering = [
             's1210_detpgtoant',
@@ -277,8 +286,11 @@ class s1210detPgtoBenPr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoBenPr", "Can view S1210DETPGTOBENPR"),
-            ("can_view_menu_s1210detPgtoBenPr", "Can view menu S1210DETPGTOBENPR"),)
+            ("can_see_list_s1210detPgtoBenPr", u"Pode ver listagem do modelo S1210DETPGTOBENPR"),
+            ("can_see_data_s1210detPgtoBenPr", u"Pode visualizar o conteúdo do modelo S1210DETPGTOBENPR"),
+            ("can_see_menu_s1210detPgtoBenPr", u"Pode visualizar no menu o modelo S1210DETPGTOBENPR"),
+            ("can_print_list_s1210detPgtoBenPr", u"Pode imprimir listagem do modelo S1210DETPGTOBENPR"),
+            ("can_print_data_s1210detPgtoBenPr", u"Pode imprimir o conteúdo do modelo S1210DETPGTOBENPR"), )
             
         ordering = [
             's1210_infopgto',
@@ -344,8 +356,11 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoBenPrinfoPgtoParc", "Can view S1210DETPGTOBENPRINFOPGTOPARC"),
-            ("can_view_menu_s1210detPgtoBenPrinfoPgtoParc", "Can view menu S1210DETPGTOBENPRINFOPGTOPARC"),)
+            ("can_see_list_s1210detPgtoBenPrinfoPgtoParc", u"Pode ver listagem do modelo S1210DETPGTOBENPRINFOPGTOPARC"),
+            ("can_see_data_s1210detPgtoBenPrinfoPgtoParc", u"Pode visualizar o conteúdo do modelo S1210DETPGTOBENPRINFOPGTOPARC"),
+            ("can_see_menu_s1210detPgtoBenPrinfoPgtoParc", u"Pode visualizar no menu o modelo S1210DETPGTOBENPRINFOPGTOPARC"),
+            ("can_print_list_s1210detPgtoBenPrinfoPgtoParc", u"Pode imprimir listagem do modelo S1210DETPGTOBENPRINFOPGTOPARC"),
+            ("can_print_data_s1210detPgtoBenPrinfoPgtoParc", u"Pode imprimir o conteúdo do modelo S1210DETPGTOBENPRINFOPGTOPARC"), )
             
         ordering = [
             's1210_detpgtobenpr',
@@ -410,8 +425,11 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoBenPrretPgtoTot", "Can view S1210DETPGTOBENPRRETPGTOTOT"),
-            ("can_view_menu_s1210detPgtoBenPrretPgtoTot", "Can view menu S1210DETPGTOBENPRRETPGTOTOT"),)
+            ("can_see_list_s1210detPgtoBenPrretPgtoTot", u"Pode ver listagem do modelo S1210DETPGTOBENPRRETPGTOTOT"),
+            ("can_see_data_s1210detPgtoBenPrretPgtoTot", u"Pode visualizar o conteúdo do modelo S1210DETPGTOBENPRRETPGTOTOT"),
+            ("can_see_menu_s1210detPgtoBenPrretPgtoTot", u"Pode visualizar no menu o modelo S1210DETPGTOBENPRRETPGTOTOT"),
+            ("can_print_list_s1210detPgtoBenPrretPgtoTot", u"Pode imprimir listagem do modelo S1210DETPGTOBENPRRETPGTOTOT"),
+            ("can_print_data_s1210detPgtoBenPrretPgtoTot", u"Pode imprimir o conteúdo do modelo S1210DETPGTOBENPRRETPGTOTOT"), )
             
         ordering = [
             's1210_detpgtobenpr',
@@ -476,8 +494,11 @@ class s1210detPgtoFer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFer", "Can view S1210DETPGTOFER"),
-            ("can_view_menu_s1210detPgtoFer", "Can view menu S1210DETPGTOFER"),)
+            ("can_see_list_s1210detPgtoFer", u"Pode ver listagem do modelo S1210DETPGTOFER"),
+            ("can_see_data_s1210detPgtoFer", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFER"),
+            ("can_see_menu_s1210detPgtoFer", u"Pode visualizar no menu o modelo S1210DETPGTOFER"),
+            ("can_print_list_s1210detPgtoFer", u"Pode imprimir listagem do modelo S1210DETPGTOFER"),
+            ("can_print_data_s1210detPgtoFer", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFER"), )
             
         ordering = [
             's1210_infopgto',
@@ -543,8 +564,11 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFerdetRubrFer", "Can view S1210DETPGTOFERDETRUBRFER"),
-            ("can_view_menu_s1210detPgtoFerdetRubrFer", "Can view menu S1210DETPGTOFERDETRUBRFER"),)
+            ("can_see_list_s1210detPgtoFerdetRubrFer", u"Pode ver listagem do modelo S1210DETPGTOFERDETRUBRFER"),
+            ("can_see_data_s1210detPgtoFerdetRubrFer", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFERDETRUBRFER"),
+            ("can_see_menu_s1210detPgtoFerdetRubrFer", u"Pode visualizar no menu o modelo S1210DETPGTOFERDETRUBRFER"),
+            ("can_print_list_s1210detPgtoFerdetRubrFer", u"Pode imprimir listagem do modelo S1210DETPGTOFERDETRUBRFER"),
+            ("can_print_data_s1210detPgtoFerdetRubrFer", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFERDETRUBRFER"), )
             
         ordering = [
             's1210_detpgtofer',
@@ -607,8 +631,11 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFerpenAlim", "Can view S1210DETPGTOFERPENALIM"),
-            ("can_view_menu_s1210detPgtoFerpenAlim", "Can view menu S1210DETPGTOFERPENALIM"),)
+            ("can_see_list_s1210detPgtoFerpenAlim", u"Pode ver listagem do modelo S1210DETPGTOFERPENALIM"),
+            ("can_see_data_s1210detPgtoFerpenAlim", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFERPENALIM"),
+            ("can_see_menu_s1210detPgtoFerpenAlim", u"Pode visualizar no menu o modelo S1210DETPGTOFERPENALIM"),
+            ("can_print_list_s1210detPgtoFerpenAlim", u"Pode imprimir listagem do modelo S1210DETPGTOFERPENALIM"),
+            ("can_print_data_s1210detPgtoFerpenAlim", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFERPENALIM"), )
             
         ordering = [
             's1210_detpgtofer_detrubrfer',
@@ -672,8 +699,11 @@ class s1210detPgtoFl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFl", "Can view S1210DETPGTOFL"),
-            ("can_view_menu_s1210detPgtoFl", "Can view menu S1210DETPGTOFL"),)
+            ("can_see_list_s1210detPgtoFl", u"Pode ver listagem do modelo S1210DETPGTOFL"),
+            ("can_see_data_s1210detPgtoFl", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFL"),
+            ("can_see_menu_s1210detPgtoFl", u"Pode visualizar no menu o modelo S1210DETPGTOFL"),
+            ("can_print_list_s1210detPgtoFl", u"Pode imprimir listagem do modelo S1210DETPGTOFL"),
+            ("can_print_data_s1210detPgtoFl", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFL"), )
             
         ordering = [
             's1210_infopgto',
@@ -739,8 +769,11 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFlinfoPgtoParc", "Can view S1210DETPGTOFLINFOPGTOPARC"),
-            ("can_view_menu_s1210detPgtoFlinfoPgtoParc", "Can view menu S1210DETPGTOFLINFOPGTOPARC"),)
+            ("can_see_list_s1210detPgtoFlinfoPgtoParc", u"Pode ver listagem do modelo S1210DETPGTOFLINFOPGTOPARC"),
+            ("can_see_data_s1210detPgtoFlinfoPgtoParc", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFLINFOPGTOPARC"),
+            ("can_see_menu_s1210detPgtoFlinfoPgtoParc", u"Pode visualizar no menu o modelo S1210DETPGTOFLINFOPGTOPARC"),
+            ("can_print_list_s1210detPgtoFlinfoPgtoParc", u"Pode imprimir listagem do modelo S1210DETPGTOFLINFOPGTOPARC"),
+            ("can_print_data_s1210detPgtoFlinfoPgtoParc", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFLINFOPGTOPARC"), )
             
         ordering = [
             's1210_detpgtofl',
@@ -803,8 +836,11 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFlpenAlim", "Can view S1210DETPGTOFLPENALIM"),
-            ("can_view_menu_s1210detPgtoFlpenAlim", "Can view menu S1210DETPGTOFLPENALIM"),)
+            ("can_see_list_s1210detPgtoFlpenAlim", u"Pode ver listagem do modelo S1210DETPGTOFLPENALIM"),
+            ("can_see_data_s1210detPgtoFlpenAlim", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFLPENALIM"),
+            ("can_see_menu_s1210detPgtoFlpenAlim", u"Pode visualizar no menu o modelo S1210DETPGTOFLPENALIM"),
+            ("can_print_list_s1210detPgtoFlpenAlim", u"Pode imprimir listagem do modelo S1210DETPGTOFLPENALIM"),
+            ("can_print_data_s1210detPgtoFlpenAlim", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFLPENALIM"), )
             
         ordering = [
             's1210_detpgtofl_retpgtotot',
@@ -869,8 +905,11 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210detPgtoFlretPgtoTot", "Can view S1210DETPGTOFLRETPGTOTOT"),
-            ("can_view_menu_s1210detPgtoFlretPgtoTot", "Can view menu S1210DETPGTOFLRETPGTOTOT"),)
+            ("can_see_list_s1210detPgtoFlretPgtoTot", u"Pode ver listagem do modelo S1210DETPGTOFLRETPGTOTOT"),
+            ("can_see_data_s1210detPgtoFlretPgtoTot", u"Pode visualizar o conteúdo do modelo S1210DETPGTOFLRETPGTOTOT"),
+            ("can_see_menu_s1210detPgtoFlretPgtoTot", u"Pode visualizar no menu o modelo S1210DETPGTOFLRETPGTOTOT"),
+            ("can_print_list_s1210detPgtoFlretPgtoTot", u"Pode imprimir listagem do modelo S1210DETPGTOFLRETPGTOTOT"),
+            ("can_print_data_s1210detPgtoFlretPgtoTot", u"Pode imprimir o conteúdo do modelo S1210DETPGTOFLRETPGTOTOT"), )
             
         ordering = [
             's1210_detpgtofl',
@@ -939,8 +978,11 @@ class s1210idePgtoExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210idePgtoExt", "Can view S1210IDEPGTOEXT"),
-            ("can_view_menu_s1210idePgtoExt", "Can view menu S1210IDEPGTOEXT"),)
+            ("can_see_list_s1210idePgtoExt", u"Pode ver listagem do modelo S1210IDEPGTOEXT"),
+            ("can_see_data_s1210idePgtoExt", u"Pode visualizar o conteúdo do modelo S1210IDEPGTOEXT"),
+            ("can_see_menu_s1210idePgtoExt", u"Pode visualizar no menu o modelo S1210IDEPGTOEXT"),
+            ("can_print_list_s1210idePgtoExt", u"Pode imprimir listagem do modelo S1210IDEPGTOEXT"),
+            ("can_print_data_s1210idePgtoExt", u"Pode imprimir o conteúdo do modelo S1210IDEPGTOEXT"), )
             
         ordering = [
             's1210_infopgto',
@@ -1003,8 +1045,11 @@ class s1210infoPgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210infoPgto", "Can view S1210INFOPGTO"),
-            ("can_view_menu_s1210infoPgto", "Can view menu S1210INFOPGTO"),)
+            ("can_see_list_s1210infoPgto", u"Pode ver listagem do modelo S1210INFOPGTO"),
+            ("can_see_data_s1210infoPgto", u"Pode visualizar o conteúdo do modelo S1210INFOPGTO"),
+            ("can_see_menu_s1210infoPgto", u"Pode visualizar no menu o modelo S1210INFOPGTO"),
+            ("can_print_list_s1210infoPgto", u"Pode imprimir listagem do modelo S1210INFOPGTO"),
+            ("can_print_data_s1210infoPgto", u"Pode imprimir o conteúdo do modelo S1210INFOPGTO"), )
             
         ordering = [
             's1210_evtpgtos',

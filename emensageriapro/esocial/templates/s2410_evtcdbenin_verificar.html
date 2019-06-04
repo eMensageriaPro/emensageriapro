@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-2410 - Cadastro de Benefícios - Entes Públicos - Início<br>Identidade: {{ s2410_evtcdbenin.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's2410_evtcdbenin_verificar' hash='{}'|json_id:s2410_evtcdbenin_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's2410_evtcdbenin_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's2410_evtcdbenin_verificar' hash='{}'|json_id:s2410_evtcdbenin_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's2410_evtcdbenin_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's2410_evtcdbenin_verificar' hash='{}'|json_id:s2410_evtcdbenin_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's2410_evtcdbenin_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's2410_evtcdbenin_verificar' hash='{}'|json_id:s2410_evtcdbenin_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.indretif or s2410_evtcdbenin.indretif == 0 %}{{ s2410_evtcdbenin.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.nrrecibo or s2410_evtcdbenin.nrrecibo == 0 %}{{ s2410_evtcdbenin.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.tpamb or s2410_evtcdbenin.tpamb == 0 %}{{ s2410_evtcdbenin.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.procemi or s2410_evtcdbenin.procemi == 0 %}{{ s2410_evtcdbenin.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.verproc or s2410_evtcdbenin.verproc == 0 %}{{ s2410_evtcdbenin.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -231,11 +228,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ). <valores_validos> 1.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.tpinsc or s2410_evtcdbenin.tpinsc == 0 %}{{ s2410_evtcdbenin.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -250,11 +247,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.nrinsc or s2410_evtcdbenin.nrinsc == 0 %}{{ s2410_evtcdbenin.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -274,11 +271,11 @@
             <td width="130px">cpfBenef</td>
             <td width="500px">Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido e observar o que segue: a) Se {cadIni} = [S], deve estar cadastrado no evento S-2400 com data de início posterior a {dtIniBenef}; b) Se {cadIni} = [N], deve estar cadastrado no evento S-2400 com data de início igual ou anterior a {dtIniBenef}.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.cpfbenef or s2410_evtcdbenin.cpfbenef == 0 %}{{ s2410_evtcdbenin.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -293,11 +290,11 @@
             <td width="130px">matricula</td>
             <td width="500px">Matrícula do servidor/militar constante no Sistema de Administração de Recursos Humanos do órgão cujo vínculo deu ensejo ao benefício. No caso de pensão por morte, informar a matrícula do instituidor da pensão. <validacao> Informação obrigatória se {cadIni} = [N] e {tpBeneficio} pertencer ao grupo [01, 02, 03, 04, 05, 06, 07, 12] da tabela 25.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.matricula or s2410_evtcdbenin.matricula == 0 %}{{ s2410_evtcdbenin.matricula }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -312,11 +309,11 @@
             <td width="130px">cnpjOrigem</td>
             <td width="500px">Preencher com o CNPJ do órgão público responsável pela matrícula do servidor/militar. <validacao> Deve ser um CNPJ válido. Preenchimento obrigatório quando a matrícula não se referir ao órgão público declarante.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.cnpjorigem or s2410_evtcdbenin.cnpjorigem == 0 %}{{ s2410_evtcdbenin.cnpjorigem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -336,11 +333,11 @@
             <td width="130px">cadIni</td>
             <td width="500px">Indicar se a data de início do benefício é anterior à obrigatoriedade dos eventos não periódicos para entes públicos no eSocial<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.cadini or s2410_evtcdbenin.cadini == 0 %}{{ s2410_evtcdbenin.cadini }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -355,11 +352,11 @@
             <td width="130px">nrBeneficio</td>
             <td width="500px">Número do benefício.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.nrbeneficio or s2410_evtcdbenin.nrbeneficio == 0 %}{{ s2410_evtcdbenin.nrbeneficio }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -374,11 +371,11 @@
             <td width="130px">dtIniBeneficio</td>
             <td width="500px">Data de início do benefício. <validacao> Deve ser uma data válida e observar o que segue: a) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos no eSocial; b) Se {cadIni} = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos no eSocial e igual ou anterior à data atual.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.dtinibeneficio or s2410_evtcdbenin.dtinibeneficio == 0 %}{{ s2410_evtcdbenin.dtinibeneficio|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -398,11 +395,11 @@
             <td width="130px">tpBeneficio</td>
             <td width="500px">Tipo de benefício, conforme tabela 25. <validacao> Deve ser um código existente na tabela 25. Se {cadIni} = [N], não é permitido utilizar código do grupo [09] dessa tabela.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.tpbeneficio or s2410_evtcdbenin.tpbeneficio == 0 %}{{ s2410_evtcdbenin.tpbeneficio }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -417,11 +414,11 @@
             <td width="130px">vrBeneficio</td>
             <td width="500px">Valor inicial do benefício.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.vrbeneficio or s2410_evtcdbenin.vrbeneficio == 0 %}{{ s2410_evtcdbenin.vrbeneficio }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -436,11 +433,11 @@
             <td width="130px">tpPlanRP</td>
             <td width="500px">Tipo de plano de segregação da massa<opcoes>0 - Sem segregação da massa; 1 - Fundo em capitalização; 2 - Fundo em repartição; 3 - Mantido pelo Tesouro. <valores_validos> 0, 1, 2, 3.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.tpplanrp or s2410_evtcdbenin.tpplanrp == 0 %}{{ s2410_evtcdbenin.tpplanrp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -455,11 +452,11 @@
             <td width="130px">dsc</td>
             <td width="500px">Descrição do instrumento ou situação que originou o pagamento do benefício. <validacao> Preenchimento obrigatório se {tpBeneficio} pertencer ao grupo [10, 11] da tabela 25.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.dsc or s2410_evtcdbenin.dsc == 0 %}{{ s2410_evtcdbenin.dsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -474,11 +471,11 @@
             <td width="130px">indDecJud</td>
             <td width="500px">Informar se o benefício foi concedido por determinação judicial<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.inddecjud or s2410_evtcdbenin.inddecjud == 0 %}{{ s2410_evtcdbenin.inddecjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -493,11 +490,11 @@
             <td width="130px">indHomologTC</td>
             <td width="500px">Indicativo de homologação do benefício pelo Tribunal de Contas<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2410_evtcdbenin.indhomologtc or s2410_evtcdbenin.indhomologtc == 0 %}{{ s2410_evtcdbenin.indhomologtc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_evtcdbenin_visualizar' %}
-                <a href="{% url 's2410_evtcdbenin_salvar'  hash='{}'|json_id:s2410_evtcdbenin.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410evtCdBenIn or perms.esocial.can_see_s2410evtCdBenIn %}
+                <a href="{% url 's2410_evtcdbenin_salvar' pk=s2410_evtcdbenin.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -518,11 +515,11 @@
             <td width="130px">tpPenMorte</td>
             <td width="500px">Tipo de pensão por morte<opcoes>1 - Vitalícia; 2 - Temporária. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2410_infopenmorte.tppenmorte or s2410_infopenmorte.tppenmorte == 0 %}{{ s2410_infopenmorte.tppenmorte }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_infopenmorte_visualizar' %}
-                <a href="{% url 's2410_infopenmorte_salvar'  hash='{}'|json_id:s2410_infopenmorte.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410infoPenMorte or perms.esocial.can_see_s2410infoPenMorte %}
+                <a href="{% url 's2410_infopenmorte_salvar' pk=s2410_infopenmorte.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -543,11 +540,11 @@
             <td width="130px">cpfInst</td>
             <td width="500px">Preencher com o CPF do instituidor da pensão por morte. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2410_instpenmorte.cpfinst or s2410_instpenmorte.cpfinst == 0 %}{{ s2410_instpenmorte.cpfinst }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_instpenmorte_visualizar' %}
-                <a href="{% url 's2410_instpenmorte_salvar'  hash='{}'|json_id:s2410_instpenmorte.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410instPenMorte or perms.esocial.can_see_s2410instPenMorte %}
+                <a href="{% url 's2410_instpenmorte_salvar' pk=s2410_instpenmorte.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -562,11 +559,11 @@
             <td width="130px">dtInst</td>
             <td width="500px">Data de óbito do instituidor da pensão por morte.</td>
             <td width="200px"><b>{% if s2410_instpenmorte.dtinst or s2410_instpenmorte.dtinst == 0 %}{{ s2410_instpenmorte.dtinst|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_instpenmorte_visualizar' %}
-                <a href="{% url 's2410_instpenmorte_salvar'  hash='{}'|json_id:s2410_instpenmorte.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410instPenMorte or perms.esocial.can_see_s2410instPenMorte %}
+                <a href="{% url 's2410_instpenmorte_salvar' pk=s2410_instpenmorte.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -581,11 +578,11 @@
             <td width="130px">intAposentado</td>
             <td width="500px">Informar se o instituidor da pensão por morte era aposentado<opcoes>S - Sim; N - Não.</td>
             <td width="200px"><b>{% if s2410_instpenmorte.intaposentado or s2410_instpenmorte.intaposentado == 0 %}{{ s2410_instpenmorte.intaposentado }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_instpenmorte_visualizar' %}
-                <a href="{% url 's2410_instpenmorte_salvar'  hash='{}'|json_id:s2410_instpenmorte.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410instPenMorte or perms.esocial.can_see_s2410instPenMorte %}
+                <a href="{% url 's2410_instpenmorte_salvar' pk=s2410_instpenmorte.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -606,11 +603,11 @@
             <td width="130px">dtHomol</td>
             <td width="500px">Data da homologação do benefício pelo Tribunal de Contas. <validacao> Deve ser uma data válida, igual ou posterior à data de início do benefício.</td>
             <td width="200px"><b>{% if s2410_homologtc.dthomol or s2410_homologtc.dthomol == 0 %}{{ s2410_homologtc.dthomol|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_homologtc_visualizar' %}
-                <a href="{% url 's2410_homologtc_salvar'  hash='{}'|json_id:s2410_homologtc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410homologTC or perms.esocial.can_see_s2410homologTC %}
+                <a href="{% url 's2410_homologtc_salvar' pk=s2410_homologtc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -625,11 +622,11 @@
             <td width="130px">nrAtoLegal</td>
             <td width="500px">Informar o número do ato legal de registro ou homologação do Tribunal de Contas.</td>
             <td width="200px"><b>{% if s2410_homologtc.nratolegal or s2410_homologtc.nratolegal == 0 %}{{ s2410_homologtc.nratolegal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2410_homologtc_visualizar' %}
-                <a href="{% url 's2410_homologtc_salvar'  hash='{}'|json_id:s2410_homologtc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2410.can_see_s2410homologTC or perms.esocial.can_see_s2410homologTC %}
+                <a href="{% url 's2410_homologtc_salvar' pk=s2410_homologtc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

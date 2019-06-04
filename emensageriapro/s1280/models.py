@@ -99,8 +99,11 @@ class s1280infoAtivConcom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280infoAtivConcom", "Can view S1280INFOATIVCONCOM"),
-            ("can_view_menu_s1280infoAtivConcom", "Can view menu S1280INFOATIVCONCOM"),)
+            ("can_see_list_s1280infoAtivConcom", u"Pode ver listagem do modelo S1280INFOATIVCONCOM"),
+            ("can_see_data_s1280infoAtivConcom", u"Pode visualizar o conteúdo do modelo S1280INFOATIVCONCOM"),
+            ("can_see_menu_s1280infoAtivConcom", u"Pode visualizar no menu o modelo S1280INFOATIVCONCOM"),
+            ("can_print_list_s1280infoAtivConcom", u"Pode imprimir listagem do modelo S1280INFOATIVCONCOM"),
+            ("can_print_data_s1280infoAtivConcom", u"Pode imprimir o conteúdo do modelo S1280INFOATIVCONCOM"), )
             
         ordering = [
             's1280_evtinfocomplper',
@@ -159,8 +162,11 @@ class s1280infoSubstPatr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280infoSubstPatr", "Can view S1280INFOSUBSTPATR"),
-            ("can_view_menu_s1280infoSubstPatr", "Can view menu S1280INFOSUBSTPATR"),)
+            ("can_see_list_s1280infoSubstPatr", u"Pode ver listagem do modelo S1280INFOSUBSTPATR"),
+            ("can_see_data_s1280infoSubstPatr", u"Pode visualizar o conteúdo do modelo S1280INFOSUBSTPATR"),
+            ("can_see_menu_s1280infoSubstPatr", u"Pode visualizar no menu o modelo S1280INFOSUBSTPATR"),
+            ("can_print_list_s1280infoSubstPatr", u"Pode imprimir listagem do modelo S1280INFOSUBSTPATR"),
+            ("can_print_data_s1280infoSubstPatr", u"Pode imprimir o conteúdo do modelo S1280INFOSUBSTPATR"), )
             
         ordering = [
             's1280_evtinfocomplper',
@@ -217,8 +223,11 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280infoSubstPatrOpPort", "Can view S1280INFOSUBSTPATROPPORT"),
-            ("can_view_menu_s1280infoSubstPatrOpPort", "Can view menu S1280INFOSUBSTPATROPPORT"),)
+            ("can_see_list_s1280infoSubstPatrOpPort", u"Pode ver listagem do modelo S1280INFOSUBSTPATROPPORT"),
+            ("can_see_data_s1280infoSubstPatrOpPort", u"Pode visualizar o conteúdo do modelo S1280INFOSUBSTPATROPPORT"),
+            ("can_see_menu_s1280infoSubstPatrOpPort", u"Pode visualizar no menu o modelo S1280INFOSUBSTPATROPPORT"),
+            ("can_print_list_s1280infoSubstPatrOpPort", u"Pode imprimir listagem do modelo S1280INFOSUBSTPATROPPORT"),
+            ("can_print_data_s1280infoSubstPatrOpPort", u"Pode imprimir o conteúdo do modelo S1280INFOSUBSTPATROPPORT"), )
             
         ordering = [
             's1280_evtinfocomplper',

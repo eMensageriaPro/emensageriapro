@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-4010 - Retenções na Fonte - Pessoa Física<br>Identidade: {{ r4010_evtretpf.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 'r4010_evtretpf_verificar' hash='{}'|json_id:r4010_evtretpf_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 'r4010_evtretpf_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 'r4010_evtretpf_verificar' hash='{}'|json_id:r4010_evtretpf_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 'r4010_evtretpf_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 'r4010_evtretpf_verificar' hash='{}'|json_id:r4010_evtretpf_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 'r4010_evtretpf_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 'r4010_evtretpf_verificar' hash='{}'|json_id:r4010_evtretpf_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_evtretpf.indretif or r4010_evtretpf.indretif == 0 %}{{ r4010_evtretpf.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
             <td width="200px"><b>{% if r4010_evtretpf.nrrecibo or r4010_evtretpf.nrrecibo == 0 %}{{ r4010_evtretpf.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
             <td width="200px"><b>{% if r4010_evtretpf.perapur or r4010_evtretpf.perapur == 0 %}{{ r4010_evtretpf.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_evtretpf.tpamb or r4010_evtretpf.tpamb == 0 %}{{ r4010_evtretpf.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_evtretpf.procemi or r4010_evtretpf.procemi == 0 %}{{ r4010_evtretpf.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -226,11 +223,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if r4010_evtretpf.verproc or r4010_evtretpf.verproc == 0 %}{{ r4010_evtretpf.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -250,11 +247,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_evtretpf.tpinsc or r4010_evtretpf.tpinsc == 0 %}{{ r4010_evtretpf.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -269,11 +266,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r4010_evtretpf.nrinsc or r4010_evtretpf.nrinsc == 0 %}{{ r4010_evtretpf.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -293,11 +290,11 @@
             <td width="130px">tpInscEstab</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição<opcoes>1 - CNPJ; 2 - CPF; 3 - CAEPF. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if r4010_evtretpf.tpinscestab or r4010_evtretpf.tpinscestab == 0 %}{{ r4010_evtretpf.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -312,11 +309,11 @@
             <td width="130px">nrInscEstab</td>
             <td width="500px">Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. <validacao> A inscrição informada deve ser compatível com o {tpInscEstab}. Se {tpInscEstab} = [2], deve ser igual a {ideContri/nrInsc}.</td>
             <td width="200px"><b>{% if r4010_evtretpf.nrinscestab or r4010_evtretpf.nrinscestab == 0 %}{{ r4010_evtretpf.nrinscestab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -336,11 +333,11 @@
             <td width="130px">cpfBenef</td>
             <td width="500px">Informar o número de inscrição no Cadastro da Pessoa Física - CPF do beneficiário do pagamento. <validacao> Informação obrigatória se houver ao menos um registro {infoPgto} cujo {paisResid} = [105]. Não pode haver mais de um registro {ideBenef} com um mesmo número de CPF, para o mesmo estabelecimento no mesmo período de apuração. Em arquivo gerado por declarante Pessoa Física, não pode ser igual ao CPF do declarante. Se informado, deve ser um número de inscrição no CPF válido.</td>
             <td width="200px"><b>{% if r4010_evtretpf.cpfbenef or r4010_evtretpf.cpfbenef == 0 %}{{ r4010_evtretpf.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -355,11 +352,11 @@
             <td width="130px">nmBenef</td>
             <td width="500px">Nome do beneficiário. <validacao> Informação obrigatória se {cpfBenef} não for informado.</td>
             <td width="200px"><b>{% if r4010_evtretpf.nmbenef or r4010_evtretpf.nmbenef == 0 %}{{ r4010_evtretpf.nmbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
-                <a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010evtRetPF or perms.efdreinf.can_see_r4010evtRetPF %}
+                <a href="{% url 'r4010_evtretpf_salvar' pk=r4010_evtretpf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -380,11 +377,11 @@
             <td width="130px">natRend</td>
             <td width="500px">Código da natureza do rendimento, conforme tabela 1. <validacao> Deve ser um código válido, existente na tabela 1.</td>
             <td width="200px"><b>{% if r4010_idepgto.natrend or r4010_idepgto.natrend == 0 %}{{ r4010_idepgto.natrend }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_idepgto_visualizar' %}
-                <a href="{% url 'r4010_idepgto_salvar'  hash='{}'|json_id:r4010_idepgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010idePgto or perms.efdreinf.can_see_r4010idePgto %}
+                <a href="{% url 'r4010_idepgto_salvar' pk=r4010_idepgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -399,11 +396,11 @@
             <td width="130px">paisResid</td>
             <td width="500px">Preencher com o código do país de residência fiscal, conforme tabela 7. <validacao> Deve ser um código existente na tabela 7. Deve estar de acordo com as regras de validação da tabela 1 para a natureza de rendimento informada em {natRend}.</td>
             <td width="200px"><b>{% if r4010_idepgto.paisresid or r4010_idepgto.paisresid == 0 %}{{ r4010_idepgto.paisresid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_idepgto_visualizar' %}
-                <a href="{% url 'r4010_idepgto_salvar'  hash='{}'|json_id:r4010_idepgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010idePgto or perms.efdreinf.can_see_r4010idePgto %}
+                <a href="{% url 'r4010_idepgto_salvar' pk=r4010_idepgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -418,11 +415,11 @@
             <td width="130px">observ</td>
             <td width="500px">Observações.</td>
             <td width="200px"><b>{% if r4010_idepgto.observ or r4010_idepgto.observ == 0 %}{{ r4010_idepgto.observ }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_idepgto_visualizar' %}
-                <a href="{% url 'r4010_idepgto_salvar'  hash='{}'|json_id:r4010_idepgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010idePgto or perms.efdreinf.can_see_r4010idePgto %}
+                <a href="{% url 'r4010_idepgto_salvar' pk=r4010_idepgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -443,11 +440,11 @@
             <td width="130px">dtFG</td>
             <td width="500px">Informar a data do fato gerador ou pagamento/crédito. <validacao> A data informada deve estar compreendida no período de apuração ao qual se refere o arquivo, conforme informado em (perApur}.</td>
             <td width="200px"><b>{% if r4010_infopgto.dtfg or r4010_infopgto.dtfg == 0 %}{{ r4010_infopgto.dtfg|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -462,11 +459,11 @@
             <td width="130px">indDecTerc</td>
             <td width="500px">Indicativo de décimo terceiro salário<opcoes>S - Sim; N - Não. <validacao> Deve estar de acordo com as regras estabelecidas na tabela 1, na coluna 13° Salário. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r4010_infopgto.inddecterc or r4010_infopgto.inddecterc == 0 %}{{ r4010_infopgto.inddecterc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -481,11 +478,11 @@
             <td width="130px">vlrRendBruto</td>
             <td width="500px">Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos.</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrrendbruto or r4010_infopgto.vlrrendbruto == 0 %}{{ r4010_infopgto.vlrrendbruto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -500,11 +497,11 @@
             <td width="130px">vlrRendTrib</td>
             <td width="500px">Valor do rendimento tributável, conforme previsto na legislação. <validacao> Só pode ser informado se, para a natureza de rendimento informada em {natRend}, a coluna "TRIBUTO" da tabela 1 for igual a "IR".</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrrendtrib or r4010_infopgto.vlrrendtrib == 0 %}{{ r4010_infopgto.vlrrendtrib }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -519,11 +516,11 @@
             <td width="130px">vlrIR</td>
             <td width="500px">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação. <validacao> Só pode ser informado se, para a natureza de rendimento informada em {natRend}, a coluna "TRIBUTO" da tabela 1 for igual a "IR".</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrir or r4010_infopgto.vlrir == 0 %}{{ r4010_infopgto.vlrir }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -538,11 +535,11 @@
             <td width="130px">vlrRendSusp</td>
             <td width="500px">Valor do rendimento com exigibilidade suspensa. <validacao> Não pode ser maior que {vlrRendTrib}.</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrrendsusp or r4010_infopgto.vlrrendsusp == 0 %}{{ r4010_infopgto.vlrrendsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -557,11 +554,11 @@
             <td width="130px">vlrNIR</td>
             <td width="500px">Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte. <validacao> O somatório de {vlrNIR} + {vlrDeposito} não pode ser maior que {vlrIR}.</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrnir or r4010_infopgto.vlrnir == 0 %}{{ r4010_infopgto.vlrnir }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -576,11 +573,11 @@
             <td width="130px">vlrDeposito</td>
             <td width="500px">Valor do depósito judicial. <validacao> O somatório de {vlrNIR} + {vlrDeposito} não pode ser maior que {vlrIR}.</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrdeposito or r4010_infopgto.vlrdeposito == 0 %}{{ r4010_infopgto.vlrdeposito }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -595,11 +592,11 @@
             <td width="130px">vlrCompAnoCalend</td>
             <td width="500px">Compensação Judicial relativa ao ano calendário. <validacao> Deve estar de acordo com a tabela 1, na coluna "Compensação do Imposto por Decisão Judicial". Informação obrigatória e exclusiva se {paisResid} = [105] (Brasil).</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrcompanocalend or r4010_infopgto.vlrcompanocalend == 0 %}{{ r4010_infopgto.vlrcompanocalend }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -614,11 +611,11 @@
             <td width="130px">vlrCompAnoAnt</td>
             <td width="500px">Compensação Judicial relativa a anos anteriores ao ano calendário. <validacao> Deve estar de acordo com a tabela 1, na coluna "Compensação do Imposto por Decisão Judicial". Informação obrigatória e exclusiva se {paisResid} = [105] (Brasil).</td>
             <td width="200px"><b>{% if r4010_infopgto.vlrcompanoant or r4010_infopgto.vlrcompanoant == 0 %}{{ r4010_infopgto.vlrcompanoant }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
-                <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:r4010_infopgto.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgto or perms.efdreinf.can_see_r4010infoPgto %}
+                <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infopgto.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -639,11 +636,11 @@
             <td width="130px">nrInscFCI</td>
             <td width="500px">Número de inscrição no CNPJ do fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante. <validacao> Deve ser um CNPJ válido. Observar as regras de preenchimento estabelecidas na tabela 1.</td>
             <td width="200px"><b>{% if r4010_fci.nrinscfci or r4010_fci.nrinscfci == 0 %}{{ r4010_fci.nrinscfci }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_fci_visualizar' %}
-                <a href="{% url 'r4010_fci_salvar'  hash='{}'|json_id:r4010_fci.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010FCI or perms.efdreinf.can_see_r4010FCI %}
+                <a href="{% url 'r4010_fci_salvar' pk=r4010_fci.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -664,11 +661,11 @@
             <td width="130px">nrInscSCP</td>
             <td width="500px">Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo. <validacao> Deve ser um CNPJ válido.</td>
             <td width="200px"><b>{% if r4010_scp.nrinscscp or r4010_scp.nrinscscp == 0 %}{{ r4010_scp.nrinscscp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_scp_visualizar' %}
-                <a href="{% url 'r4010_scp_salvar'  hash='{}'|json_id:r4010_scp.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010SCP or perms.efdreinf.can_see_r4010SCP %}
+                <a href="{% url 'r4010_scp_salvar' pk=r4010_scp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -683,11 +680,11 @@
             <td width="130px">percSCP</td>
             <td width="500px">Percentual que o beneficiário possui na Sociedade em Conta de Participação.</td>
             <td width="200px"><b>{% if r4010_scp.percscp or r4010_scp.percscp == 0 %}{{ r4010_scp.percscp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_scp_visualizar' %}
-                <a href="{% url 'r4010_scp_salvar'  hash='{}'|json_id:r4010_scp.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010SCP or perms.efdreinf.can_see_r4010SCP %}
+                <a href="{% url 'r4010_scp_salvar' pk=r4010_scp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -708,11 +705,11 @@
             <td width="130px">indTpDeducao</td>
             <td width="500px">Indicativo do Tipo de Dedução<opcoes>1 - Previdência Oficial; 2 - Previdência Privada; 3 - Fapi; 4 - Funpresp; 5 - Pensão Alimentícia; 6 - Contribuição do ente público patrocinador; 7 - Dependentes. <valores_validos> 1, 2, 3, 4, 5, 6, 7.</td>
             <td width="200px"><b>{% if r4010_detded.indtpdeducao or r4010_detded.indtpdeducao == 0 %}{{ r4010_detded.indtpdeducao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_detded_visualizar' %}
-                <a href="{% url 'r4010_detded_salvar'  hash='{}'|json_id:r4010_detded.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010detDed or perms.efdreinf.can_see_r4010detDed %}
+                <a href="{% url 'r4010_detded_salvar' pk=r4010_detded.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -727,11 +724,11 @@
             <td width="130px">vlrDeducao</td>
             <td width="500px">Preencher com o valor da dedução da base de cálculo.</td>
             <td width="200px"><b>{% if r4010_detded.vlrdeducao or r4010_detded.vlrdeducao == 0 %}{{ r4010_detded.vlrdeducao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_detded_visualizar' %}
-                <a href="{% url 'r4010_detded_salvar'  hash='{}'|json_id:r4010_detded.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010detDed or perms.efdreinf.can_see_r4010detDed %}
+                <a href="{% url 'r4010_detded_salvar' pk=r4010_detded.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -746,11 +743,11 @@
             <td width="130px">vlrDedSusp</td>
             <td width="500px">Valor da dedução da base de cálculo do Imposto de Renda, com exigibilidade suspensa. <validacao> Informação permitida apenas se {vlrRendSusp} > 0.</td>
             <td width="200px"><b>{% if r4010_detded.vlrdedsusp or r4010_detded.vlrdedsusp == 0 %}{{ r4010_detded.vlrdedsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_detded_visualizar' %}
-                <a href="{% url 'r4010_detded_salvar'  hash='{}'|json_id:r4010_detded.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010detDed or perms.efdreinf.can_see_r4010detDed %}
+                <a href="{% url 'r4010_detded_salvar' pk=r4010_detded.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -765,11 +762,11 @@
             <td width="130px">nrInscPrevComp</td>
             <td width="500px">Número de inscrição da entidade de previdência complementar. <validacao> Informação obrigatória e exclusiva se {indTpDeducao} = [2, 3, 4]}.</td>
             <td width="200px"><b>{% if r4010_detded.nrinscprevcomp or r4010_detded.nrinscprevcomp == 0 %}{{ r4010_detded.nrinscprevcomp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_detded_visualizar' %}
-                <a href="{% url 'r4010_detded_salvar'  hash='{}'|json_id:r4010_detded.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010detDed or perms.efdreinf.can_see_r4010detDed %}
+                <a href="{% url 'r4010_detded_salvar' pk=r4010_detded.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -790,11 +787,11 @@
             <td width="130px">cpf</td>
             <td width="500px">Número do CPF do dependente. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r4010_benefpen.cpf or r4010_benefpen.cpf == 0 %}{{ r4010_benefpen.cpf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_benefpen_visualizar' %}
-                <a href="{% url 'r4010_benefpen_salvar'  hash='{}'|json_id:r4010_benefpen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010benefPen or perms.efdreinf.can_see_r4010benefPen %}
+                <a href="{% url 'r4010_benefpen_salvar' pk=r4010_benefpen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -809,11 +806,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Informar a data de nascimento do dependente.</td>
             <td width="200px"><b>{% if r4010_benefpen.dtnascto or r4010_benefpen.dtnascto == 0 %}{{ r4010_benefpen.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_benefpen_visualizar' %}
-                <a href="{% url 'r4010_benefpen_salvar'  hash='{}'|json_id:r4010_benefpen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010benefPen or perms.efdreinf.can_see_r4010benefPen %}
+                <a href="{% url 'r4010_benefpen_salvar' pk=r4010_benefpen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -828,11 +825,11 @@
             <td width="130px">nome</td>
             <td width="500px">Nome do dependente.</td>
             <td width="200px"><b>{% if r4010_benefpen.nome or r4010_benefpen.nome == 0 %}{{ r4010_benefpen.nome }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_benefpen_visualizar' %}
-                <a href="{% url 'r4010_benefpen_salvar'  hash='{}'|json_id:r4010_benefpen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010benefPen or perms.efdreinf.can_see_r4010benefPen %}
+                <a href="{% url 'r4010_benefpen_salvar' pk=r4010_benefpen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -847,11 +844,11 @@
             <td width="130px">relDep</td>
             <td width="500px">Relação de dependência, conforme opções a seguir<opcoes>1 - Neto, bisneto; 2 - Irmão; 3 - Cônjuge/companheiro; 4 - Filho; 5 - Pais, avós e bisavós; 6 - Enteado; 7 - Sogro; 99 - Agregado/Outros. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 99.</td>
             <td width="200px"><b>{% if r4010_benefpen.reldep or r4010_benefpen.reldep == 0 %}{{ r4010_benefpen.reldep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_benefpen_visualizar' %}
-                <a href="{% url 'r4010_benefpen_salvar'  hash='{}'|json_id:r4010_benefpen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010benefPen or perms.efdreinf.can_see_r4010benefPen %}
+                <a href="{% url 'r4010_benefpen_salvar' pk=r4010_benefpen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -866,11 +863,11 @@
             <td width="130px">descrDep</td>
             <td width="500px">Informar a descrição da dependência.</td>
             <td width="200px"><b>{% if r4010_benefpen.descrdep or r4010_benefpen.descrdep == 0 %}{{ r4010_benefpen.descrdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_benefpen_visualizar' %}
-                <a href="{% url 'r4010_benefpen_salvar'  hash='{}'|json_id:r4010_benefpen.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010benefPen or perms.efdreinf.can_see_r4010benefPen %}
+                <a href="{% url 'r4010_benefpen_salvar' pk=r4010_benefpen.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -891,11 +888,11 @@
             <td width="130px">tpIsencao</td>
             <td width="500px">Tipo de Isenção<opcoes>1 - Parcela Isenta 65 anos; 2 - Diária de viagem; 3 - Indenização e rescisão de contrato, inclusive a título de PDV; 4 - Abono pecuniário; 5 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 6 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço; 7 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995; 8 - Ajuda de custo; 99 - Outros (especificar). <validacao> Vide regras na tabela 1 - Regras para Utilização dos Tipos de Isenção, na coluna "Rendimentos Isentos". <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 99.</td>
             <td width="200px"><b>{% if r4010_rendisento.tpisencao or r4010_rendisento.tpisencao == 0 %}{{ r4010_rendisento.tpisencao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_rendisento_visualizar' %}
-                <a href="{% url 'r4010_rendisento_salvar'  hash='{}'|json_id:r4010_rendisento.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010rendIsento or perms.efdreinf.can_see_r4010rendIsento %}
+                <a href="{% url 'r4010_rendisento_salvar' pk=r4010_rendisento.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -910,11 +907,11 @@
             <td width="130px">vlrIsento</td>
             <td width="500px">Valor da parcela isenta. <validacao> Não pode ser maior que {vlrRendBruto}.</td>
             <td width="200px"><b>{% if r4010_rendisento.vlrisento or r4010_rendisento.vlrisento == 0 %}{{ r4010_rendisento.vlrisento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_rendisento_visualizar' %}
-                <a href="{% url 'r4010_rendisento_salvar'  hash='{}'|json_id:r4010_rendisento.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010rendIsento or perms.efdreinf.can_see_r4010rendIsento %}
+                <a href="{% url 'r4010_rendisento_salvar' pk=r4010_rendisento.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -929,11 +926,11 @@
             <td width="130px">descRendimento</td>
             <td width="500px">Descrição do rendimento isento/Não tributável. <validacao> Informação obrigatória e exclusiva se {tpIsencao} = [99]).</td>
             <td width="200px"><b>{% if r4010_rendisento.descrendimento or r4010_rendisento.descrendimento == 0 %}{{ r4010_rendisento.descrendimento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_rendisento_visualizar' %}
-                <a href="{% url 'r4010_rendisento_salvar'  hash='{}'|json_id:r4010_rendisento.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010rendIsento or perms.efdreinf.can_see_r4010rendIsento %}
+                <a href="{% url 'r4010_rendisento_salvar' pk=r4010_rendisento.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -948,11 +945,11 @@
             <td width="130px">dtLaudo</td>
             <td width="500px">Data da moléstia grave atribuída pelo laudo. <validacao> Informação obrigatória e exclusiva se {tpIsencao} = [8]. Se informada, a data deve ser anterior ou igual ao período de apuração ao qual se refere o arquivo.</td>
             <td width="200px"><b>{% if r4010_rendisento.dtlaudo or r4010_rendisento.dtlaudo == 0 %}{{ r4010_rendisento.dtlaudo|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_rendisento_visualizar' %}
-                <a href="{% url 'r4010_rendisento_salvar'  hash='{}'|json_id:r4010_rendisento.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010rendIsento or perms.efdreinf.can_see_r4010rendIsento %}
+                <a href="{% url 'r4010_rendisento_salvar' pk=r4010_rendisento.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -973,11 +970,11 @@
             <td width="130px">tpProcRet</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_infoprocret.tpprocret or r4010_infoprocret.tpprocret == 0 %}{{ r4010_infoprocret.tpprocret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocret_visualizar' %}
-                <a href="{% url 'r4010_infoprocret_salvar'  hash='{}'|json_id:r4010_infoprocret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcRet or perms.efdreinf.can_see_r4010infoProcRet %}
+                <a href="{% url 'r4010_infoprocret_salvar' pk=r4010_infoprocret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -992,11 +989,11 @@
             <td width="130px">nrProcRet</td>
             <td width="500px">Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de processos (R-1070).</td>
             <td width="200px"><b>{% if r4010_infoprocret.nrprocret or r4010_infoprocret.nrprocret == 0 %}{{ r4010_infoprocret.nrprocret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocret_visualizar' %}
-                <a href="{% url 'r4010_infoprocret_salvar'  hash='{}'|json_id:r4010_infoprocret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcRet or perms.efdreinf.can_see_r4010infoProcRet %}
+                <a href="{% url 'r4010_infoprocret_salvar' pk=r4010_infoprocret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1011,11 +1008,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070), campo {codSusp}, vinculado ao número do processo informado em {nrProcRet}.</td>
             <td width="200px"><b>{% if r4010_infoprocret.codsusp or r4010_infoprocret.codsusp == 0 %}{{ r4010_infoprocret.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocret_visualizar' %}
-                <a href="{% url 'r4010_infoprocret_salvar'  hash='{}'|json_id:r4010_infoprocret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcRet or perms.efdreinf.can_see_r4010infoProcRet %}
+                <a href="{% url 'r4010_infoprocret_salvar' pk=r4010_infoprocret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1030,11 +1027,11 @@
             <td width="130px">vlrNRetido</td>
             <td width="500px">Valor da retenção que deixou de ser efetuada em função de processo administrativo ou judicial. <validacao> Informação obrigatória e exclusiva se {indDeposito} em R-1070 = [N].</td>
             <td width="200px"><b>{% if r4010_infoprocret.vlrnretido or r4010_infoprocret.vlrnretido == 0 %}{{ r4010_infoprocret.vlrnretido }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocret_visualizar' %}
-                <a href="{% url 'r4010_infoprocret_salvar'  hash='{}'|json_id:r4010_infoprocret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcRet or perms.efdreinf.can_see_r4010infoProcRet %}
+                <a href="{% url 'r4010_infoprocret_salvar' pk=r4010_infoprocret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1049,11 +1046,11 @@
             <td width="130px">vlrDep</td>
             <td width="500px">Valor do depósito judicial em função de processo administrativo ou judicial. <validacao> Informação obrigatória e exclusiva se {indDeposito} relativo ao processo {nrProcRet}, informado R-1070 = [S].</td>
             <td width="200px"><b>{% if r4010_infoprocret.vlrdep or r4010_infoprocret.vlrdep == 0 %}{{ r4010_infoprocret.vlrdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocret_visualizar' %}
-                <a href="{% url 'r4010_infoprocret_salvar'  hash='{}'|json_id:r4010_infoprocret.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcRet or perms.efdreinf.can_see_r4010infoProcRet %}
+                <a href="{% url 'r4010_infoprocret_salvar' pk=r4010_infoprocret.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1074,11 +1071,11 @@
             <td width="130px">tpProcRRA</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_inforra.tpprocrra or r4010_inforra.tpprocrra == 0 %}{{ r4010_inforra.tpprocrra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_visualizar' %}
-                <a href="{% url 'r4010_inforra_salvar'  hash='{}'|json_id:r4010_inforra.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRA or perms.efdreinf.can_see_r4010infoRRA %}
+                <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1093,11 +1090,11 @@
             <td width="130px">nrProcRRA</td>
             <td width="500px">Informar o número do processo/requerimento administrativo/judicial. <validacao> Informação obrigatória se {tpProcRRA} = [2]. Deve ser número de processo válido de acordo com o tipo.</td>
             <td width="200px"><b>{% if r4010_inforra.nrprocrra or r4010_inforra.nrprocrra == 0 %}{{ r4010_inforra.nrprocrra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_visualizar' %}
-                <a href="{% url 'r4010_inforra_salvar'  hash='{}'|json_id:r4010_inforra.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRA or perms.efdreinf.can_see_r4010infoRRA %}
+                <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1112,11 +1109,11 @@
             <td width="130px">indOrigRec</td>
             <td width="500px">Indicativo da origem dos recursos<opcoes>1 - Recursos do próprio declarante; 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. <validacao> Se {tpProcRRA} = [1], deve ser = [1]. Se {natRend} = 000000001, deve ser = [2]. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_inforra.indorigrec or r4010_inforra.indorigrec == 0 %}{{ r4010_inforra.indorigrec }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_visualizar' %}
-                <a href="{% url 'r4010_inforra_salvar'  hash='{}'|json_id:r4010_inforra.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRA or perms.efdreinf.can_see_r4010infoRRA %}
+                <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1131,11 +1128,11 @@
             <td width="130px">descRRA</td>
             <td width="500px">Descrição dos Rendimentos Recebidos Acumuladamente - RRA.</td>
             <td width="200px"><b>{% if r4010_inforra.descrra or r4010_inforra.descrra == 0 %}{{ r4010_inforra.descrra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_visualizar' %}
-                <a href="{% url 'r4010_inforra_salvar'  hash='{}'|json_id:r4010_inforra.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRA or perms.efdreinf.can_see_r4010infoRRA %}
+                <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1150,11 +1147,11 @@
             <td width="130px">qtdMesesRRA</td>
             <td width="500px">Número de meses relativo aos Rendimentos Recebidos Acumuladamente - RRA.</td>
             <td width="200px"><b>{% if r4010_inforra.qtdmesesrra or r4010_inforra.qtdmesesrra == 0 %}{{ r4010_inforra.qtdmesesrra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_visualizar' %}
-                <a href="{% url 'r4010_inforra_salvar'  hash='{}'|json_id:r4010_inforra.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRA or perms.efdreinf.can_see_r4010infoRRA %}
+                <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1175,11 +1172,11 @@
             <td width="130px">vlrDespCustas</td>
             <td width="500px">Preencher com o valor da despesa com custas judiciais.</td>
             <td width="200px"><b>{% if r4010_inforra_despprocjud.vlrdespcustas or r4010_inforra_despprocjud.vlrdespcustas == 0 %}{{ r4010_inforra_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_despprocjud_visualizar' %}
-                <a href="{% url 'r4010_inforra_despprocjud_salvar'  hash='{}'|json_id:r4010_inforra_despprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRAdespProcJud or perms.efdreinf.can_see_r4010infoRRAdespProcJud %}
+                <a href="{% url 'r4010_inforra_despprocjud_salvar' pk=r4010_inforra_despprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1194,11 +1191,11 @@
             <td width="130px">vlrDespAdvogados</td>
             <td width="500px">Preencher com o valor da despesa com advogado(s).</td>
             <td width="200px"><b>{% if r4010_inforra_despprocjud.vlrdespadvogados or r4010_inforra_despprocjud.vlrdespadvogados == 0 %}{{ r4010_inforra_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_despprocjud_visualizar' %}
-                <a href="{% url 'r4010_inforra_despprocjud_salvar'  hash='{}'|json_id:r4010_inforra_despprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRAdespProcJud or perms.efdreinf.can_see_r4010infoRRAdespProcJud %}
+                <a href="{% url 'r4010_inforra_despprocjud_salvar' pk=r4010_inforra_despprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1219,11 +1216,11 @@
             <td width="130px">tpInscAdv</td>
             <td width="500px">Tipo de inscrição do advogado<opcoes>1 - Pessoa Física; 2 - Pessoa Jurídica. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_inforra_ideadv.tpinscadv or r4010_inforra_ideadv.tpinscadv == 0 %}{{ r4010_inforra_ideadv.tpinscadv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_ideadv_visualizar' %}
-                <a href="{% url 'r4010_inforra_ideadv_salvar'  hash='{}'|json_id:r4010_inforra_ideadv.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRAideAdv or perms.efdreinf.can_see_r4010infoRRAideAdv %}
+                <a href="{% url 'r4010_inforra_ideadv_salvar' pk=r4010_inforra_ideadv.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1238,11 +1235,11 @@
             <td width="130px">nrInscAdv</td>
             <td width="500px">Informar o número de inscrição do advogado. <validacao> Deve ser um CNPJ ou CPF válido, de acordo com o tipo de inscrição indicado em {tpInscAdv}.</td>
             <td width="200px"><b>{% if r4010_inforra_ideadv.nrinscadv or r4010_inforra_ideadv.nrinscadv == 0 %}{{ r4010_inforra_ideadv.nrinscadv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_ideadv_visualizar' %}
-                <a href="{% url 'r4010_inforra_ideadv_salvar'  hash='{}'|json_id:r4010_inforra_ideadv.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRAideAdv or perms.efdreinf.can_see_r4010infoRRAideAdv %}
+                <a href="{% url 'r4010_inforra_ideadv_salvar' pk=r4010_inforra_ideadv.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1257,11 +1254,11 @@
             <td width="130px">vlrAdv</td>
             <td width="500px">Valor da despesa com o advogado.</td>
             <td width="200px"><b>{% if r4010_inforra_ideadv.vlradv or r4010_inforra_ideadv.vlradv == 0 %}{{ r4010_inforra_ideadv.vlradv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_ideadv_visualizar' %}
-                <a href="{% url 'r4010_inforra_ideadv_salvar'  hash='{}'|json_id:r4010_inforra_ideadv.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRAideAdv or perms.efdreinf.can_see_r4010infoRRAideAdv %}
+                <a href="{% url 'r4010_inforra_ideadv_salvar' pk=r4010_inforra_ideadv.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1282,11 +1279,11 @@
             <td width="130px">cnpjOrigRecurso</td>
             <td width="500px">Preencher com o CNPJ da empresa que repassou recursos. <validacao> Informação obrigatória se {indOrigRec} = [2].</td>
             <td width="200px"><b>{% if r4010_inforra_origemrec.cnpjorigrecurso or r4010_inforra_origemrec.cnpjorigrecurso == 0 %}{{ r4010_inforra_origemrec.cnpjorigrecurso }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforra_origemrec_visualizar' %}
-                <a href="{% url 'r4010_inforra_origemrec_salvar'  hash='{}'|json_id:r4010_inforra_origemrec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoRRAorigemRec or perms.efdreinf.can_see_r4010infoRRAorigemRec %}
+                <a href="{% url 'r4010_inforra_origemrec_salvar' pk=r4010_inforra_origemrec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1307,11 +1304,11 @@
             <td width="130px">nrProc</td>
             <td width="500px">Informar o número do processo judicial. <validacao> Deve ser número de processo válido de acordo com o tipo.</td>
             <td width="200px"><b>{% if r4010_infoprocjud.nrproc or r4010_infoprocjud.nrproc == 0 %}{{ r4010_infoprocjud.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_salvar'  hash='{}'|json_id:r4010_infoprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJud or perms.efdreinf.can_see_r4010infoProcJud %}
+                <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1326,11 +1323,11 @@
             <td width="130px">indOrigRec</td>
             <td width="500px">Indicativo da origem dos recursos<opcoes>1 - Recursos do próprio declarante; 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_infoprocjud.indorigrec or r4010_infoprocjud.indorigrec == 0 %}{{ r4010_infoprocjud.indorigrec }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_salvar'  hash='{}'|json_id:r4010_infoprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJud or perms.efdreinf.can_see_r4010infoProcJud %}
+                <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1345,11 +1342,11 @@
             <td width="130px">desc</td>
             <td width="500px">Descrição.</td>
             <td width="200px"><b>{% if r4010_infoprocjud.desc or r4010_infoprocjud.desc == 0 %}{{ r4010_infoprocjud.desc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_salvar'  hash='{}'|json_id:r4010_infoprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJud or perms.efdreinf.can_see_r4010infoProcJud %}
+                <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1370,11 +1367,11 @@
             <td width="130px">vlrDespCustas</td>
             <td width="500px">Preencher com o valor da despesa com custas judiciais.</td>
             <td width="200px"><b>{% if r4010_infoprocjud_despprocjud.vlrdespcustas or r4010_infoprocjud_despprocjud.vlrdespcustas == 0 %}{{ r4010_infoprocjud_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_despprocjud_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_despprocjud_salvar'  hash='{}'|json_id:r4010_infoprocjud_despprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJuddespProcJud or perms.efdreinf.can_see_r4010infoProcJuddespProcJud %}
+                <a href="{% url 'r4010_infoprocjud_despprocjud_salvar' pk=r4010_infoprocjud_despprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1389,11 +1386,11 @@
             <td width="130px">vlrDespAdvogados</td>
             <td width="500px">Preencher com o valor da despesa com advogado(s).</td>
             <td width="200px"><b>{% if r4010_infoprocjud_despprocjud.vlrdespadvogados or r4010_infoprocjud_despprocjud.vlrdespadvogados == 0 %}{{ r4010_infoprocjud_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_despprocjud_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_despprocjud_salvar'  hash='{}'|json_id:r4010_infoprocjud_despprocjud.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJuddespProcJud or perms.efdreinf.can_see_r4010infoProcJuddespProcJud %}
+                <a href="{% url 'r4010_infoprocjud_despprocjud_salvar' pk=r4010_infoprocjud_despprocjud.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1414,11 +1411,11 @@
             <td width="130px">tpInscAdv</td>
             <td width="500px">Tipo de inscrição do advogado<opcoes>1 - Pessoa Física; 2 - Pessoa Jurídica. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_infoprocjud_ideadv.tpinscadv or r4010_infoprocjud_ideadv.tpinscadv == 0 %}{{ r4010_infoprocjud_ideadv.tpinscadv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_ideadv_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_ideadv_salvar'  hash='{}'|json_id:r4010_infoprocjud_ideadv.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJudideAdv or perms.efdreinf.can_see_r4010infoProcJudideAdv %}
+                <a href="{% url 'r4010_infoprocjud_ideadv_salvar' pk=r4010_infoprocjud_ideadv.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1433,11 +1430,11 @@
             <td width="130px">nrInscAdv</td>
             <td width="500px">Informar o número de inscrição do advogado. <validacao> Deve ser um CNPJ ou CPF válido, de acordo com o tipo de inscrição indicado em {tpInscAdv}.</td>
             <td width="200px"><b>{% if r4010_infoprocjud_ideadv.nrinscadv or r4010_infoprocjud_ideadv.nrinscadv == 0 %}{{ r4010_infoprocjud_ideadv.nrinscadv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_ideadv_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_ideadv_salvar'  hash='{}'|json_id:r4010_infoprocjud_ideadv.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJudideAdv or perms.efdreinf.can_see_r4010infoProcJudideAdv %}
+                <a href="{% url 'r4010_infoprocjud_ideadv_salvar' pk=r4010_infoprocjud_ideadv.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1452,11 +1449,11 @@
             <td width="130px">vlrAdv</td>
             <td width="500px">Valor da despesa com o advogado.</td>
             <td width="200px"><b>{% if r4010_infoprocjud_ideadv.vlradv or r4010_infoprocjud_ideadv.vlradv == 0 %}{{ r4010_infoprocjud_ideadv.vlradv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_ideadv_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_ideadv_salvar'  hash='{}'|json_id:r4010_infoprocjud_ideadv.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJudideAdv or perms.efdreinf.can_see_r4010infoProcJudideAdv %}
+                <a href="{% url 'r4010_infoprocjud_ideadv_salvar' pk=r4010_infoprocjud_ideadv.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1477,11 +1474,11 @@
             <td width="130px">cnpjOrigRecurso</td>
             <td width="500px">Preencher com o CNPJ da empresa que repassou recursos. <validacao> Informação obrigatória se {indOrigRec} = [2].</td>
             <td width="200px"><b>{% if r4010_infoprocjud_origemrec.cnpjorigrecurso or r4010_infoprocjud_origemrec.cnpjorigrecurso == 0 %}{{ r4010_infoprocjud_origemrec.cnpjorigrecurso }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infoprocjud_origemrec_visualizar' %}
-                <a href="{% url 'r4010_infoprocjud_origemrec_salvar'  hash='{}'|json_id:r4010_infoprocjud_origemrec.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoProcJudorigemRec or perms.efdreinf.can_see_r4010infoProcJudorigemRec %}
+                <a href="{% url 'r4010_infoprocjud_origemrec_salvar' pk=r4010_infoprocjud_origemrec.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1507,11 +1504,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.dsclograd or r4010_infopgtoext.dsclograd == 0 %}{{ r4010_infopgtoext.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1526,11 +1523,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.nrlograd or r4010_infopgtoext.nrlograd == 0 %}{{ r4010_infopgtoext.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1545,11 +1542,11 @@
             <td width="130px">complem</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.complem or r4010_infopgtoext.complem == 0 %}{{ r4010_infopgtoext.complem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1564,11 +1561,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.bairro or r4010_infopgtoext.bairro == 0 %}{{ r4010_infopgtoext.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1583,11 +1580,11 @@
             <td width="130px">cidade</td>
             <td width="500px">Nome da cidade.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.cidade or r4010_infopgtoext.cidade == 0 %}{{ r4010_infopgtoext.cidade }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1602,11 +1599,11 @@
             <td width="130px">estado</td>
             <td width="500px">Nome da província/estado.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.estado or r4010_infopgtoext.estado == 0 %}{{ r4010_infopgtoext.estado }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1621,11 +1618,11 @@
             <td width="130px">codPostal</td>
             <td width="500px">Código de Endereçamento Postal.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.codpostal or r4010_infopgtoext.codpostal == 0 %}{{ r4010_infopgtoext.codpostal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1640,11 +1637,11 @@
             <td width="130px">telef</td>
             <td width="500px">Número do telefone.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.telef or r4010_infopgtoext.telef == 0 %}{{ r4010_infopgtoext.telef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1664,11 +1661,11 @@
             <td width="130px">indNIF</td>
             <td width="500px">Indicativo do Número de Identificação Fiscal<opcoes>1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.indnif or r4010_infopgtoext.indnif == 0 %}{{ r4010_infopgtoext.indnif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1683,11 +1680,11 @@
             <td width="130px">nifBenef</td>
             <td width="500px">Número de Identificação Fiscal - NIF. <validacao> Obrigatório se {indNIF} = [1].</td>
             <td width="200px"><b>{% if r4010_infopgtoext.nifbenef or r4010_infopgtoext.nifbenef == 0 %}{{ r4010_infopgtoext.nifbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1702,11 +1699,11 @@
             <td width="130px">frmTribut</td>
             <td width="500px">Forma de tributação, conforme tabela de informações sobre os rendimentos constante na tabela 2. <validacao> Deve ser um código existente na tabela 2.</td>
             <td width="200px"><b>{% if r4010_infopgtoext.frmtribut or r4010_infopgtoext.frmtribut == 0 %}{{ r4010_infopgtoext.frmtribut }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infopgtoext_visualizar' %}
-                <a href="{% url 'r4010_infopgtoext_salvar'  hash='{}'|json_id:r4010_infopgtoext.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoPgtoExt or perms.efdreinf.can_see_r4010infoPgtoExt %}
+                <a href="{% url 'r4010_infopgtoext_salvar' pk=r4010_infopgtoext.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1727,11 +1724,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número do CNPJ da operadora de plano privado coletivo empresarial de assistência à saúde. <validacao> Deve ser um CNPJ válido.</td>
             <td width="200px"><b>{% if r4010_ideopsaude.nrinsc or r4010_ideopsaude.nrinsc == 0 %}{{ r4010_ideopsaude.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_ideopsaude_visualizar' %}
-                <a href="{% url 'r4010_ideopsaude_salvar'  hash='{}'|json_id:r4010_ideopsaude.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010ideOpSaude or perms.efdreinf.can_see_r4010ideOpSaude %}
+                <a href="{% url 'r4010_ideopsaude_salvar' pk=r4010_ideopsaude.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1746,11 +1743,11 @@
             <td width="130px">regANS</td>
             <td width="500px">Registro na Agência Nacional de Saúde - ANS.</td>
             <td width="200px"><b>{% if r4010_ideopsaude.regans or r4010_ideopsaude.regans == 0 %}{{ r4010_ideopsaude.regans }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_ideopsaude_visualizar' %}
-                <a href="{% url 'r4010_ideopsaude_salvar'  hash='{}'|json_id:r4010_ideopsaude.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010ideOpSaude or perms.efdreinf.can_see_r4010ideOpSaude %}
+                <a href="{% url 'r4010_ideopsaude_salvar' pk=r4010_ideopsaude.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1765,11 +1762,11 @@
             <td width="130px">vlrSaude</td>
             <td width="500px">Valor pago ao plano de saúde.</td>
             <td width="200px"><b>{% if r4010_ideopsaude.vlrsaude or r4010_ideopsaude.vlrsaude == 0 %}{{ r4010_ideopsaude.vlrsaude }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_ideopsaude_visualizar' %}
-                <a href="{% url 'r4010_ideopsaude_salvar'  hash='{}'|json_id:r4010_ideopsaude.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010ideOpSaude or perms.efdreinf.can_see_r4010ideOpSaude %}
+                <a href="{% url 'r4010_ideopsaude_salvar' pk=r4010_ideopsaude.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1790,11 +1787,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição<opcoes>1 - Pessoa Jurídica; 2 - Pessoa Física. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_inforeemb.tpinsc or r4010_inforeemb.tpinsc == 0 %}{{ r4010_inforeemb.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeemb_visualizar' %}
-                <a href="{% url 'r4010_inforeemb_salvar'  hash='{}'|json_id:r4010_inforeemb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReemb or perms.efdreinf.can_see_r4010infoReemb %}
+                <a href="{% url 'r4010_inforeemb_salvar' pk=r4010_inforeemb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1809,11 +1806,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do prestador de serviços de assistência médica. <validacao> Deve ser um CNPJ ou CPF válido, conforme tipo de inscrição indicado em {tpInsc}.</td>
             <td width="200px"><b>{% if r4010_inforeemb.nrinsc or r4010_inforeemb.nrinsc == 0 %}{{ r4010_inforeemb.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeemb_visualizar' %}
-                <a href="{% url 'r4010_inforeemb_salvar'  hash='{}'|json_id:r4010_inforeemb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReemb or perms.efdreinf.can_see_r4010infoReemb %}
+                <a href="{% url 'r4010_inforeemb_salvar' pk=r4010_inforeemb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1828,11 +1825,11 @@
             <td width="130px">vlrReemb</td>
             <td width="500px">Valor do reembolso relativo ao período indicado em {perApur}.</td>
             <td width="200px"><b>{% if r4010_inforeemb.vlrreemb or r4010_inforeemb.vlrreemb == 0 %}{{ r4010_inforeemb.vlrreemb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeemb_visualizar' %}
-                <a href="{% url 'r4010_inforeemb_salvar'  hash='{}'|json_id:r4010_inforeemb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReemb or perms.efdreinf.can_see_r4010infoReemb %}
+                <a href="{% url 'r4010_inforeemb_salvar' pk=r4010_inforeemb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1847,11 +1844,11 @@
             <td width="130px">vlrReembAnt</td>
             <td width="500px">Valor do reembolso relativo a anos anteriores.</td>
             <td width="200px"><b>{% if r4010_inforeemb.vlrreembant or r4010_inforeemb.vlrreembant == 0 %}{{ r4010_inforeemb.vlrreembant }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeemb_visualizar' %}
-                <a href="{% url 'r4010_inforeemb_salvar'  hash='{}'|json_id:r4010_inforeemb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReemb or perms.efdreinf.can_see_r4010infoReemb %}
+                <a href="{% url 'r4010_inforeemb_salvar' pk=r4010_inforeemb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1872,11 +1869,11 @@
             <td width="130px">cpf</td>
             <td width="500px">Número do CPF do dependente. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r4010_infodependpl.cpf or r4010_infodependpl.cpf == 0 %}{{ r4010_infodependpl.cpf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infodependpl_visualizar' %}
-                <a href="{% url 'r4010_infodependpl_salvar'  hash='{}'|json_id:r4010_infodependpl.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoDependPl or perms.efdreinf.can_see_r4010infoDependPl %}
+                <a href="{% url 'r4010_infodependpl_salvar' pk=r4010_infodependpl.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1891,11 +1888,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Informar a data de nascimento do dependente.</td>
             <td width="200px"><b>{% if r4010_infodependpl.dtnascto or r4010_infodependpl.dtnascto == 0 %}{{ r4010_infodependpl.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infodependpl_visualizar' %}
-                <a href="{% url 'r4010_infodependpl_salvar'  hash='{}'|json_id:r4010_infodependpl.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoDependPl or perms.efdreinf.can_see_r4010infoDependPl %}
+                <a href="{% url 'r4010_infodependpl_salvar' pk=r4010_infodependpl.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1910,11 +1907,11 @@
             <td width="130px">nome</td>
             <td width="500px">Nome do dependente.</td>
             <td width="200px"><b>{% if r4010_infodependpl.nome or r4010_infodependpl.nome == 0 %}{{ r4010_infodependpl.nome }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infodependpl_visualizar' %}
-                <a href="{% url 'r4010_infodependpl_salvar'  hash='{}'|json_id:r4010_infodependpl.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoDependPl or perms.efdreinf.can_see_r4010infoDependPl %}
+                <a href="{% url 'r4010_infodependpl_salvar' pk=r4010_infodependpl.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1929,11 +1926,11 @@
             <td width="130px">relDep</td>
             <td width="500px">Relação de dependência, conforme opções a seguir<opcoes>1 - Neto, bisneto; 2 - Irmão; 3 - Cônjuge/companheiro; 4 - Filho; 5 - Pais, avós e bisavós; 6 - Enteado; 7 - Sogro; 99 - Agregado/Outros. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 99.</td>
             <td width="200px"><b>{% if r4010_infodependpl.reldep or r4010_infodependpl.reldep == 0 %}{{ r4010_infodependpl.reldep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infodependpl_visualizar' %}
-                <a href="{% url 'r4010_infodependpl_salvar'  hash='{}'|json_id:r4010_infodependpl.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoDependPl or perms.efdreinf.can_see_r4010infoDependPl %}
+                <a href="{% url 'r4010_infodependpl_salvar' pk=r4010_infodependpl.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1948,11 +1945,11 @@
             <td width="130px">vlrSaude</td>
             <td width="500px">Valor pago ao plano de saúde.</td>
             <td width="200px"><b>{% if r4010_infodependpl.vlrsaude or r4010_infodependpl.vlrsaude == 0 %}{{ r4010_infodependpl.vlrsaude }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_infodependpl_visualizar' %}
-                <a href="{% url 'r4010_infodependpl_salvar'  hash='{}'|json_id:r4010_infodependpl.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoDependPl or perms.efdreinf.can_see_r4010infoDependPl %}
+                <a href="{% url 'r4010_infodependpl_salvar' pk=r4010_infodependpl.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1973,11 +1970,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Informar o tipo de inscrição do prestador de serviços<opcoes>1 - Pessoa Jurídica; 2 - Pessoa Física. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r4010_inforeembdep.tpinsc or r4010_inforeembdep.tpinsc == 0 %}{{ r4010_inforeembdep.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeembdep_visualizar' %}
-                <a href="{% url 'r4010_inforeembdep_salvar'  hash='{}'|json_id:r4010_inforeembdep.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReembDep or perms.efdreinf.can_see_r4010infoReembDep %}
+                <a href="{% url 'r4010_inforeembdep_salvar' pk=r4010_inforeembdep.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1992,11 +1989,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o tipo de inscrição do prestador de serviços de assistência médica, de acordo com o tipo de inscrição indicado em {tpInsc}. <validacao> Deve ser um CNPJ ou CPF válido, de acordo com o tipo de inscrição indicado em {tpInsc}.</td>
             <td width="200px"><b>{% if r4010_inforeembdep.nrinsc or r4010_inforeembdep.nrinsc == 0 %}{{ r4010_inforeembdep.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeembdep_visualizar' %}
-                <a href="{% url 'r4010_inforeembdep_salvar'  hash='{}'|json_id:r4010_inforeembdep.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReembDep or perms.efdreinf.can_see_r4010infoReembDep %}
+                <a href="{% url 'r4010_inforeembdep_salvar' pk=r4010_inforeembdep.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2011,11 +2008,11 @@
             <td width="130px">vlrReemb</td>
             <td width="500px">Valor do reembolso relativo ao período indicado em {perApur}.</td>
             <td width="200px"><b>{% if r4010_inforeembdep.vlrreemb or r4010_inforeembdep.vlrreemb == 0 %}{{ r4010_inforeembdep.vlrreemb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeembdep_visualizar' %}
-                <a href="{% url 'r4010_inforeembdep_salvar'  hash='{}'|json_id:r4010_inforeembdep.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReembDep or perms.efdreinf.can_see_r4010infoReembDep %}
+                <a href="{% url 'r4010_inforeembdep_salvar' pk=r4010_inforeembdep.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -2030,11 +2027,11 @@
             <td width="130px">vlrReembAnt</td>
             <td width="500px">Valor do reembolso relativo a anos anteriores.</td>
             <td width="200px"><b>{% if r4010_inforeembdep.vlrreembant or r4010_inforeembdep.vlrreembant == 0 %}{{ r4010_inforeembdep.vlrreembant }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r4010_inforeembdep_visualizar' %}
-                <a href="{% url 'r4010_inforeembdep_salvar'  hash='{}'|json_id:r4010_inforeembdep.id|json_print:0|base64_encode_me %}">
+                {% if perms.r4010.can_see_r4010infoReembDep or perms.efdreinf.can_see_r4010infoReembDep %}
+                <a href="{% url 'r4010_inforeembdep_salvar' pk=r4010_inforeembdep.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

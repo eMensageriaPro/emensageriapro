@@ -61,28 +61,14 @@ from emensageriapro.r2050.forms import form_r2050_tipocom
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2050_evtcomprod_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if r2050_evtcomprod_id:
-    
-        r2050_evtcomprod = get_object_or_404(r2050evtComProd, id=r2050_evtcomprod_id)
+        r2050_evtcomprod = get_object_or_404(r2050evtComProd, id=pk)
 
         if r2050_evtcomprod.status != STATUS_EVENTO_CADASTRADO:
         
@@ -90,9 +76,9 @@ def salvar(request, hash):
             dict_permissoes['r2050_evtcomprod_apagar'] = 0
             dict_permissoes['r2050_evtcomprod_editar'] = 0
             
-    if request.user.has_perm('efdreinf.can_view_r2050evtComProd'):
+    if request.user.has_perm('efdreinf.can_see_r2050evtComProd'):
     
-        if r2050_evtcomprod_id:
+        if pk:
         
             r2050_evtcomprod_form = form_r2050_evtcomprod(request.POST or None, instance = r2050_evtcomprod, 
                                          initial={'excluido': False})
@@ -111,54 +97,70 @@ def salvar(request, hash):
         
             if r2050_evtcomprod_form.is_valid():
             
-                dados = r2050_evtcomprod_form.cleaned_data
                 obj = r2050_evtcomprod_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r2050_evtcomprod_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r2050_evtcomprod', obj.id, usuario_id, 1)
+                                 'r2050_evtcomprod', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r2050_evtcomprod), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r2050_evtcomprod', r2050_evtcomprod_id, usuario_id, 2)
+                                     'r2050_evtcomprod', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('r2050_evtcomprod_apagar', 'r2050_evtcomprod_salvar', 'r2050_evtcomprod'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'r2050_evtcomprod_apagar', 
+                    'r2050_evtcomprod_salvar', 
+                    'r2050_evtcomprod'):
                     
-                if r2050_evtcomprod_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r2050_evtcomprod_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'r2050_evtcomprod_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        r2050_evtcomprod_form = disabled_form_fields(r2050_evtcomprod_form, request.user.has_perm('efdreinf.change_r2050evtComProd'))
+        r2050_evtcomprod_form = disabled_form_fields(
+             r2050_evtcomprod_form, 
+             request.user.has_perm('efdreinf.change_r2050evtComProd'))
         
-        if r2050_evtcomprod_id:
+        if pk:
+        
             if r2050_evtcomprod.status != 0:
+            
                 r2050_evtcomprod_form = disabled_form_fields(r2050_evtcomprod_form, False)
+                
         #r2050_evtcomprod_campos_multiple_passo3
 
         for field in r2050_evtcomprod_form.fields.keys():
+        
             r2050_evtcomprod_form.fields[field].widget.attrs['ng-model'] = 'r2050_evtcomprod_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             r2050_evtcomprod_form = disabled_form_for_print(r2050_evtcomprod_form)
 
         
         r2050_tipocom_lista = None 
         r2050_tipocom_form = None 
         
-        if r2050_evtcomprod_id:
+        if pk:
         
-            r2050_evtcomprod = get_object_or_404(r2050evtComProd, id = r2050_evtcomprod_id)
+            r2050_evtcomprod = get_object_or_404(r2050evtComProd, id=pk)
             
             r2050_tipocom_form = form_r2050_tipocom(
                 initial={ 'r2050_evtcomprod': r2050_evtcomprod })
@@ -167,6 +169,7 @@ def salvar(request, hash):
                 filter(r2050_evtcomprod_id=r2050_evtcomprod.id).all()
                 
         else:
+        
             r2050_evtcomprod = None
             
         #r2050_evtcomprod_salvar_custom_variaveis#
@@ -175,40 +178,39 @@ def salvar(request, hash):
         
         if 'r2050_evtcomprod'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 'r2050_evtcomprod' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r2050_evtcomprod_salvar'
+        if tab or 'r2050_evtcomprod' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r2050_evtcomprod_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r2050_evtcomprod_id, tabela='r2050_evtcomprod').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2050_evtcomprod').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r2050_evtcomprod': r2050_evtcomprod, 
             'r2050_evtcomprod_form': r2050_evtcomprod_form, 
-            'r2050_evtcomprod_id': int(r2050_evtcomprod_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             'r2050_tipocom_form': r2050_tipocom_form,
             'r2050_tipocom_lista': r2050_tipocom_lista,
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r2050_evtcomprod', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r2050_evtcomprod_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r2050_evtcomprod_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -226,25 +228,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('r2050_evtcomprod_salvar.html', context)
             filename = "r2050_evtcomprod.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r2050_evtcomprod_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['efdreinf', ],
             'paginas': ['r2050_evtcomprod', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

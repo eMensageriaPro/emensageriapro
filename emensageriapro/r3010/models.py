@@ -118,8 +118,11 @@ class r3010boletim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010boletim", "Can view R3010BOLETIM"),
-            ("can_view_menu_r3010boletim", "Can view menu R3010BOLETIM"),)
+            ("can_see_list_r3010boletim", u"Pode ver listagem do modelo R3010BOLETIM"),
+            ("can_see_data_r3010boletim", u"Pode visualizar o conteúdo do modelo R3010BOLETIM"),
+            ("can_see_menu_r3010boletim", u"Pode visualizar no menu o modelo R3010BOLETIM"),
+            ("can_print_list_r3010boletim", u"Pode imprimir listagem do modelo R3010BOLETIM"),
+            ("can_print_data_r3010boletim", u"Pode imprimir o conteúdo do modelo R3010BOLETIM"), )
             
         ordering = [
             'r3010_evtespdesportivo',
@@ -189,8 +192,11 @@ class r3010infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010infoProc", "Can view R3010INFOPROC"),
-            ("can_view_menu_r3010infoProc", "Can view menu R3010INFOPROC"),)
+            ("can_see_list_r3010infoProc", u"Pode ver listagem do modelo R3010INFOPROC"),
+            ("can_see_data_r3010infoProc", u"Pode visualizar o conteúdo do modelo R3010INFOPROC"),
+            ("can_see_menu_r3010infoProc", u"Pode visualizar no menu o modelo R3010INFOPROC"),
+            ("can_print_list_r3010infoProc", u"Pode imprimir listagem do modelo R3010INFOPROC"),
+            ("can_print_data_r3010infoProc", u"Pode imprimir o conteúdo do modelo R3010INFOPROC"), )
             
         ordering = [
             'r3010_evtespdesportivo',
@@ -252,8 +258,11 @@ class r3010outrasReceitas(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010outrasReceitas", "Can view R3010OUTRASRECEITAS"),
-            ("can_view_menu_r3010outrasReceitas", "Can view menu R3010OUTRASRECEITAS"),)
+            ("can_see_list_r3010outrasReceitas", u"Pode ver listagem do modelo R3010OUTRASRECEITAS"),
+            ("can_see_data_r3010outrasReceitas", u"Pode visualizar o conteúdo do modelo R3010OUTRASRECEITAS"),
+            ("can_see_menu_r3010outrasReceitas", u"Pode visualizar no menu o modelo R3010OUTRASRECEITAS"),
+            ("can_print_list_r3010outrasReceitas", u"Pode imprimir listagem do modelo R3010OUTRASRECEITAS"),
+            ("can_print_data_r3010outrasReceitas", u"Pode imprimir o conteúdo do modelo R3010OUTRASRECEITAS"), )
             
         ordering = [
             'r3010_boletim',
@@ -323,8 +332,11 @@ class r3010receitaIngressos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010receitaIngressos", "Can view R3010RECEITAINGRESSOS"),
-            ("can_view_menu_r3010receitaIngressos", "Can view menu R3010RECEITAINGRESSOS"),)
+            ("can_see_list_r3010receitaIngressos", u"Pode ver listagem do modelo R3010RECEITAINGRESSOS"),
+            ("can_see_data_r3010receitaIngressos", u"Pode visualizar o conteúdo do modelo R3010RECEITAINGRESSOS"),
+            ("can_see_menu_r3010receitaIngressos", u"Pode visualizar no menu o modelo R3010RECEITAINGRESSOS"),
+            ("can_print_list_r3010receitaIngressos", u"Pode imprimir listagem do modelo R3010RECEITAINGRESSOS"),
+            ("can_print_data_r3010receitaIngressos", u"Pode imprimir o conteúdo do modelo R3010RECEITAINGRESSOS"), )
             
         ordering = [
             'r3010_boletim',

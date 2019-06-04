@@ -66,7 +66,6 @@ class r2070evtPgtosDivsList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r2070evtPgtosDivsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2070evtPgtosDivs.objects.all()

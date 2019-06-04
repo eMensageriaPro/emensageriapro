@@ -109,8 +109,11 @@ class s2260localTrabInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2260localTrabInterm", "Can view S2260LOCALTRABINTERM"),
-            ("can_view_menu_s2260localTrabInterm", "Can view menu S2260LOCALTRABINTERM"),)
+            ("can_see_list_s2260localTrabInterm", u"Pode ver listagem do modelo S2260LOCALTRABINTERM"),
+            ("can_see_data_s2260localTrabInterm", u"Pode visualizar o conteúdo do modelo S2260LOCALTRABINTERM"),
+            ("can_see_menu_s2260localTrabInterm", u"Pode visualizar no menu o modelo S2260LOCALTRABINTERM"),
+            ("can_print_list_s2260localTrabInterm", u"Pode imprimir listagem do modelo S2260LOCALTRABINTERM"),
+            ("can_print_data_s2260localTrabInterm", u"Pode imprimir o conteúdo do modelo S2260LOCALTRABINTERM"), )
             
         ordering = [
             's2260_evtconvinterm',

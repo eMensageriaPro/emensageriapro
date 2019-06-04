@@ -59,19 +59,9 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def listar(request, hash):
-    
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-    
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
+def listar(request, output=None):
 
-    if request.user.has_perm('esocial.can_view_s2221evtToxic'):
+    if request.user.has_perm('esocial.can_see_s2221evtToxic'):
     
         filtrar = False
         dict_fields = {}
@@ -196,32 +186,24 @@ def listar(request, hash):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2221_evttoxic_listar_custom
         
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2221_evttoxic'
-        
         context = {
-            's2221_evttoxic_lista': s2221_evttoxic_lista, 
-            
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
+            's2221_evttoxic_lista': s2221_evttoxic_lista,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2221_evttoxic', ],
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
         
-        if for_print in (0,1):
-        
-            return render(request, 's2221_evttoxic_listar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2221_evttoxic_listar.html',
@@ -242,26 +224,32 @@ def listar(request, hash):
             )
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s2221_evttoxic_listar.html', context)
             filename = "s2221_evttoxic.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
             
-        elif for_print == 4:
+        elif output == 'csv':
         
             response = render_to_response('csv/s2221_evttoxic.csv', context)
             filename = "s2221_evttoxic.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2221_evttoxic_listar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2221_evttoxic', ],

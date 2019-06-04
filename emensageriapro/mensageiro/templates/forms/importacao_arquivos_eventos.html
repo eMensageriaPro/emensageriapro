@@ -3,14 +3,22 @@
 
 
 <!-- inicio__importacao_arquivos_eventos__importacao_arquivos -->
-<script type="text/javascript">$(document).ready(function(){$('#id_importacao_arquivos').change(function(){document.getElementById("importacao_arquivos_eventos__importacao_arquivos__div_acessar").style.display = 'none';});});</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_importacao_arquivos').change(function(){
+            document.getElementById("importacao_arquivos_eventos__importacao_arquivos__div_acessar").style.display = 'none';
+        });
+    });
+</script>
+
 <div class="col-md-12" id="importacao_arquivos_eventos__importacao_arquivos__div">
 <div class="form-group">
   <label id="importacao_arquivos_eventos__importacao_arquivos__label">Arquivo de Importação</label>
   
-  {% if not for_print %}
+  {% if not output %}
     {% if importacao_arquivos_eventos_form.importacao_arquivos.value %}
-    <a id="importacao_arquivos_eventos__importacao_arquivos__div_acessar" href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:importacao_arquivos_eventos_form.importacao_arquivos.value|json_print:0|base64_encode_me %}">
+    <a id="importacao_arquivos_eventos__importacao_arquivos__div_acessar" href="{% url 'importacao_arquivos_salvar' pk=importacao_arquivos_eventos_form.importacao_arquivos.value tab='master' %}">
      [Acessar]
     </a>
     {% endif %} 

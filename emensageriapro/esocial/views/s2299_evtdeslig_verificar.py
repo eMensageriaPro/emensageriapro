@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2299evtDeslig'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2299_evtdeslig_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2299evtDeslig'):
-        s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=s2299_evtdeslig_id)
-        s2299_evtdeslig_lista = s2299evtDeslig.objects.filter(id=s2299_evtdeslig_id).all()
+        s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id=pk)
+        s2299_evtdeslig_lista = s2299evtDeslig.objects.filter(id=pk).all()
 
         
         s2299_observacoes_lista = s2299observacoes.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
@@ -122,15 +108,14 @@ def verificar(request, hash):
         s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
         s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2299_evtdeslig'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2299_evtdeslig'
 
         context = {
             's2299_evtdeslig_lista': s2299_evtdeslig_lista,
-            's2299_evtdeslig_id': s2299_evtdeslig_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2299_evtdeslig': s2299_evtdeslig,
-            
-            
             's2299_observacoes_lista': s2299_observacoes_lista,
             's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
             's2299_transftit_lista': s2299_transftit_lista,
@@ -159,45 +144,42 @@ def verificar(request, hash):
             's2299_infotrabinterm_proccs_lista': s2299_infotrabinterm_proccs_lista,
             's2299_infotrabinterm_quarentena_lista': s2299_infotrabinterm_quarentena_lista,
             's2299_infotrabinterm_consigfgts_lista': s2299_infotrabinterm_consigfgts_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2299_evtdeslig', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2299_evtdeslig_verificar.html',
-                                           filename="s2299_evtdeslig.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2299_evtdeslig_verificar.html',
+                filename="s2299_evtdeslig.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2299_evtdeslig_verificar.html', context)
             filename = "%s.xls" % s2299_evtdeslig.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2299_evtdeslig_verificar.html', context)
             filename = "%s.csv" % s2299_evtdeslig.identidade
@@ -212,7 +194,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2299_evtdeslig', ],
             'data': datetime.now(),

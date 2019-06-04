@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1202evtRmnRPPS'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1202_evtrmnrpps_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1202evtRmnRPPS'):
-        s1202_evtrmnrpps = get_object_or_404(s1202evtRmnRPPS, id=s1202_evtrmnrpps_id)
-        s1202_evtrmnrpps_lista = s1202evtRmnRPPS.objects.filter(id=s1202_evtrmnrpps_id).all()
+        s1202_evtrmnrpps = get_object_or_404(s1202evtRmnRPPS, id=pk)
+        s1202_evtrmnrpps_lista = s1202evtRmnRPPS.objects.filter(id=pk).all()
 
         
         s1202_procjudtrab_lista = s1202procJudTrab.objects.filter(s1202_evtrmnrpps_id__in = listar_ids(s1202_evtrmnrpps_lista) ).all()
@@ -109,15 +95,14 @@ def verificar(request, hash):
         s1202_infoperant_remunperant_lista = s1202infoPerAntremunPerAnt.objects.filter(s1202_infoperant_ideestab_id__in = listar_ids(s1202_infoperant_ideestab_lista) ).all()
         s1202_infoperant_itensremun_lista = s1202infoPerAntitensRemun.objects.filter(s1202_infoperant_remunperant_id__in = listar_ids(s1202_infoperant_remunperant_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1202_evtrmnrpps'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1202_evtrmnrpps'
 
         context = {
             's1202_evtrmnrpps_lista': s1202_evtrmnrpps_lista,
-            's1202_evtrmnrpps_id': s1202_evtrmnrpps_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1202_evtrmnrpps': s1202_evtrmnrpps,
-            
-            
             's1202_procjudtrab_lista': s1202_procjudtrab_lista,
             's1202_dmdev_lista': s1202_dmdev_lista,
             's1202_infoperapur_lista': s1202_infoperapur_lista,
@@ -133,45 +118,42 @@ def verificar(request, hash):
             's1202_infoperant_ideestab_lista': s1202_infoperant_ideestab_lista,
             's1202_infoperant_remunperant_lista': s1202_infoperant_remunperant_lista,
             's1202_infoperant_itensremun_lista': s1202_infoperant_itensremun_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1202_evtrmnrpps', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1202_evtrmnrpps_verificar.html',
-                                           filename="s1202_evtrmnrpps.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1202_evtrmnrpps_verificar.html',
+                filename="s1202_evtrmnrpps.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1202_evtrmnrpps_verificar.html', context)
             filename = "%s.xls" % s1202_evtrmnrpps.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1202_evtrmnrpps_verificar.html', context)
             filename = "%s.csv" % s1202_evtrmnrpps.identidade
@@ -186,7 +168,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1202_evtrmnrpps', ],
             'data': datetime.now(),

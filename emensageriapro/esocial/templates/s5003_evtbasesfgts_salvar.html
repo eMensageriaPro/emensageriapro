@@ -32,463 +32,704 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       S-5003 - Informações do FGTS por Trabalhador
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">S-5003 - Informações do FGTS por Trabalhador</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.esocial.can_view_s5003evtBasesFGTS %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 's5003_evtbasesfgts_salvar' hash='{}'|json_return_page:'s5003_evtbasesfgts_salvar'|json_return_hash:hash|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}">
-                    S-5003 - Informações do FGTS por Trabalhador</a>
-                </li>
-                {% endif %}
-                {% if s5003_evtbasesfgts_id %}
-                    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.esocial.can_see_s5003evtBasesFGTS %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's5003_evtbasesfgts_salvar' pk=pk tab='master' %}">
+                                S-5003 - Informações do FGTS por Trabalhador</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.esocial.can_view_s5003_ideestablot %}
-                                <li {% if tab == 's5003_ideestablot' %} class="active"{% endif %} >
-                                    <a href="{% url 's5003_evtbasesfgts_salvar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|json_tab:'s5003_ideestablot'|base64_encode_me %}">
-                                    Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.s5003.can_see_s5003ideEstabLot %}
+                                    <li {% if tab == 's5003_ideestablot' %} class="active"{% endif %} >
+                                        <a href="{% url 's5003_evtbasesfgts_salvar' pk=pk tab='s5003_ideestablot' %}">
+                                        Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s5003.can_see_s5003infoDpsFGTS %}
+                                    <li {% if tab == 's5003_infodpsfgts' %} class="active"{% endif %} >
+                                        <a href="{% url 's5003_evtbasesfgts_salvar' pk=pk tab='s5003_infodpsfgts' %}">
+                                        Informações sobre valores de FGTS.</a>
+                                    </li>
+                                {% endif %}
+                            
                         
-                            {% if perms.esocial.can_view_s5003_infodpsfgts %}
-                                <li {% if tab == 's5003_infodpsfgts' %} class="active"{% endif %} >
-                                    <a href="{% url 's5003_evtbasesfgts_salvar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|json_tab:'s5003_infodpsfgts'|base64_encode_me %}">
-                                    Informações sobre valores de FGTS.</a>
-                                </li>
-                            {% endif %}
-                        
-                    
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABS -->
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if s5003_evtbasesfgts_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in s5003_evtbasesfgts_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if s5003_evtbasesfgts_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in s5003_evtbasesfgts_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if s5003_evtbasesfgts_id %}
-   {% if s5003_evtbasesfgts.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s5003_evtbasesfgts.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s5003_evtbasesfgts.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5003_evtbasesfgts.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s5003_evtbasesfgts.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s5003_evtbasesfgts.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s5003_evtbasesfgts.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">S-5003 - Informações do FGTS por Trabalhador</h3>
-            </div>
-            {% else %}
+    {% if s5003_evtbasesfgts_id %}
+        {% if s5003_evtbasesfgts.ocorrencias %}
             <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.esocial.change_s5003_evtbasesfgts or perms.esocial.add_s5003_evtbasesfgts %}
-               {% if s5003_evtbasesfgts_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s5003_evtbasesfgts" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/s5003_evtbasesfgts.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s5003_evtbasesfgts.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if s5003_evtbasesfgts_id %}
-                           {% if perms.esocial.add_s5003evtBasesFGTS %}<a href="{% url 's5003_evtbasesfgts_verificar'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.add_s5003evtBasesFGTS %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_recibo'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_recibo'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_recibo'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s5003evtBasesFGTS %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_duplicar' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if s5003_evtbasesfgts.operacao == 1 and s5003_inclusao_lista or s5003_evtbasesfgts.operacao == 2 and s5003_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_criar_alteracao' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_criar_exclusao' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_alterar_identidade' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 's5003_evtbasesfgts_abrir_evento_para_edicao' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s5003evtBasesFGTS %}<a href="{% url 's5003_evtbasesfgts_xml'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if s5003_evtbasesfgts.status == STATUS_EVENTO_CADASTRADO or s5003_evtbasesfgts.status == STATUS_EVENTO_IMPORTADO or s5003_evtbasesfgts.status == STATUS_EVENTO_DUPLICADO or s5003_evtbasesfgts.status == STATUS_EVENTO_GERADO or s5003_evtbasesfgts.status == STATUS_EVENTO_ASSINADO or s5003_evtbasesfgts.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.esocial.add_s5003evtBasesFGTS %}
-                           <a href="{% url 's5003_evtbasesfgts_validar_evento' hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.esocial.add_s5003evtBasesFGTS %}<a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.can_view_s5003_evtbasesfgts or perms.esocial.can_view_s5003_evtbasesfgts %}<a href="{% url 's5003_evtbasesfgts'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.can_view_s5003_evtbasesfgts and s5003_evtbasesfgts_id %}<a href="{% url 's5003_evtbasesfgts_salvar'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.change_s5003_evtbasesfgts or perms.esocial.add_s5003_evtbasesfgts %}
-                           {% if s5003_evtbasesfgts_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.delete_s5003_evtbasesfgts and s5003_evtbasesfgts_id %}<a href="{% url 's5003_evtbasesfgts_apagar'  hash='{}'|json_id:s5003_evtbasesfgts_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
-                        </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.esocial.change_s5003_evtbasesfgts or perms.esocial.add_s5003_evtbasesfgts %}
-               {% if s5003_evtbasesfgts_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+                </div>
             </div>
-            {% if s5003_evtbasesfgts_id %}
+        {% endif %}
+        {% if s5003_evtbasesfgts.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5003_evtbasesfgts.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s5003_evtbasesfgts.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if s5003_evtbasesfgts.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ s5003_evtbasesfgts.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">S-5003 - Informações do FGTS por Trabalhador</h3>
+                    </div>
+
+                    {% if perms.esocial.change_s5003evtBasesFGTS or perms.esocial.add_s5003evtBasesFGTS %}
+                        {% if s5003_evtbasesfgts_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s5003_evtbasesfgts" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s5003_evtbasesfgts.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if s5003_evtbasesfgts.operacao == 1 and s5003_inclusao_lista or s5003_evtbasesfgts.operacao == 2 and s5003_alteracao_lista %}
+
+
+                                    {% if perms.esocial.can_create_change_s5003evtBasesFGTS %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's5003_evtbasesfgts_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.esocial.can_create_delete_s5003evtBasesFGTS %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's5003_evtbasesfgts_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.esocial.can_duplicate_s5003evtBasesFGTS %}
+                            <div class="col-md-4">
+                                <a href="{% url 's5003_evtbasesfgts_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_change_identity_s5003evtBasesFGTS %}
+                            <div class="col-md-4">
+                                <a href="{% url 's5003_evtbasesfgts_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.esocial.can_open_s5003evtBasesFGTS %}
+                            <div class="col-md-4">
+                                <a href="{% url 's5003_evtbasesfgts_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_layout_s5003evtBasesFGTS %}
+                            <div class="col-md-3">
+                                <a href="{% url 's5003_evtbasesfgts_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.esocial.can_see_xml_s5003evtBasesFGTS %}
+                            <div class="col-md-3">
+                                <a href="{% url 's5003_evtbasesfgts_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.esocial.can_validate_s5003evtBasesFGTS %}
+                            <div class="col-md-3">
+                                <a href="{% url 's5003_evtbasesfgts_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_receipt_s5003evtBasesFGTS %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's5003_evtbasesfgts_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's5003_evtbasesfgts_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's5003_evtbasesfgts_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.esocial.add_s5003evtBasesFGTS %}
+                        <div class="col-md-2">
+                            <a href="{% url 's5003_evtbasesfgts_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_see_list_s5003evtBasesFGTS %}
+                        <div class="col-md-2">
+                            <a href="{% url 's5003_evtbasesfgts' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_print_data_s5003evtBasesFGTS %}
+                        <div class="col-md-2">
+                            <a href="{% url 's5003_evtbasesfgts_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if s5003_evtbasesfgts_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.esocial.change_s5003evtBasesFGTS %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.delete_s5003evtBasesFGTS %}
+                            <div class="col-md-2">
+                                <a href="{% url 's5003_evtbasesfgts_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.esocial.add_s5003evtBasesFGTS %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.esocial.add_s5003evtBasesFGTS or perms.esocial.change_s5003evtBasesFGTS %}
+    
+                        {% if s5003_evtbasesfgts_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if s5003_evtbasesfgts_id %}
 
-<!-- begin_s5003_ideestablot -->
+        <!-- fim controle de alterações -->
+        {% endif %}
 
-{% if tab == 's5003_ideestablot' or for_print %} 
-
-{% if perms.esocial.can_view_s5003_ideestablot %} 
-
-{% if perms.esocial.change_s5003_ideestablot or perms.s5003.add_s5003ideEstabLot %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s5003_ideestablot or perms.s5003.add_s5003ideEstabLot %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s5003.add_s5003ideEstabLot %}            
+    {% endif %}
 
 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-        <!-- begin_form_s5003_ideestablot --> 
-        <div id="cadastrar" style="display:none">
 
-              <form id="id_form_s5003_ideestablot" action="{% url 's5003_ideestablot_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s5003_ideestablot.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+        
+        <!-- begin_s5003_ideestablot -->
+
+            {% if tab == 's5003_ideestablot' %} 
+
+                {% if perms.s5003.can_see_data_s5003ideEstabLot %}
+
+                    {% if perms.s5003.add_s5003ideEstabLot or perms.s5003.change_s5003ideEstabLot %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s5003.add_s5003ideEstabLot or perms.s5003.can_see_list_s5003ideEstabLot %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s5003.add_s5003ideEstabLot %}            
+
+                                    <!-- begin_form_s5003_ideestablot --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s5003_ideestablot" 
+                                              action="{% url 's5003_ideestablot_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5003_ideestablot.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s5003_ideestablot -->
+                                {% endif %} 
+
+                                {% if perms.s5003.can_see_s5003ideEstabLot %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5003_ideestablot --> 
+
+                                        {% include 'tables/s5003_ideestablot.html' %}
+                                        <!-- end_table_s5003_ideestablot --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s5003_infodpsfgts -->
+
+            {% if tab == 's5003_infodpsfgts' %} 
+
+                {% if perms.s5003.can_see_data_s5003infoDpsFGTS %}
+
+                    {% if perms.s5003.add_s5003infoDpsFGTS or perms.s5003.change_s5003infoDpsFGTS %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações sobre valores de FGTS.</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s5003.add_s5003infoDpsFGTS or perms.s5003.can_see_list_s5003infoDpsFGTS %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s5003.add_s5003infoDpsFGTS %}            
+
+                                    <!-- begin_form_s5003_infodpsfgts --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s5003_infodpsfgts" 
+                                              action="{% url 's5003_infodpsfgts_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5003_infodpsfgts.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s5003_infodpsfgts -->
+                                {% endif %} 
+
+                                {% if perms.s5003.can_see_s5003infoDpsFGTS %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5003_infodpsfgts --> 
+
+                                        {% include 'tables/s5003_infodpsfgts.html' %}
+                                        <!-- end_table_s5003_infodpsfgts --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s5003_ideestablot -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s5003_ideestablot --> 
-  
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+
+    {% endif %} 
 
 
-        {% include 'tables/s5003_ideestablot.html' %}
-        <!-- end_table_s5003_ideestablot --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s5003_ideestablot -->
-
-<!-- begin_s5003_infodpsfgts -->
-
-{% if tab == 's5003_infodpsfgts' or for_print %} 
-
-{% if perms.esocial.can_view_s5003_infodpsfgts %} 
-
-{% if perms.esocial.change_s5003_infodpsfgts or perms.s5003.add_s5003infoDpsFGTS %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações sobre valores de FGTS.</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s5003_infodpsfgts or perms.s5003.add_s5003infoDpsFGTS %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s5003.add_s5003infoDpsFGTS %}            
-
-
-
-        <!-- begin_form_s5003_infodpsfgts --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s5003_infodpsfgts" action="{% url 's5003_infodpsfgts_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s5003_infodpsfgts.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s5003_infodpsfgts -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s5003_infodpsfgts --> 
-  
-
-
-        {% include 'tables/s5003_infodpsfgts.html' %}
-        <!-- end_table_s5003_infodpsfgts --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s5003_infodpsfgts -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

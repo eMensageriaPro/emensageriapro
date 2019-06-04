@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1070evtTabProcesso'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1070_evttabprocesso_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1070evtTabProcesso'):
-        s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso, id=s1070_evttabprocesso_id)
-        s1070_evttabprocesso_lista = s1070evtTabProcesso.objects.filter(id=s1070_evttabprocesso_id).all()
+        s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso, id=pk)
+        s1070_evttabprocesso_lista = s1070evtTabProcesso.objects.filter(id=pk).all()
 
         
         s1070_inclusao_lista = s1070inclusao.objects.filter(s1070_evttabprocesso_id__in = listar_ids(s1070_evttabprocesso_lista) ).all()
@@ -102,15 +88,14 @@ def verificar(request, hash):
         s1070_alteracao_novavalidade_lista = s1070alteracaonovaValidade.objects.filter(s1070_alteracao_id__in = listar_ids(s1070_alteracao_lista) ).all()
         s1070_exclusao_lista = s1070exclusao.objects.filter(s1070_evttabprocesso_id__in = listar_ids(s1070_evttabprocesso_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1070_evttabprocesso'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1070_evttabprocesso'
 
         context = {
             's1070_evttabprocesso_lista': s1070_evttabprocesso_lista,
-            's1070_evttabprocesso_id': s1070_evttabprocesso_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1070_evttabprocesso': s1070_evttabprocesso,
-            
-            
             's1070_inclusao_lista': s1070_inclusao_lista,
             's1070_inclusao_dadosprocjud_lista': s1070_inclusao_dadosprocjud_lista,
             's1070_inclusao_infosusp_lista': s1070_inclusao_infosusp_lista,
@@ -119,45 +104,42 @@ def verificar(request, hash):
             's1070_alteracao_infosusp_lista': s1070_alteracao_infosusp_lista,
             's1070_alteracao_novavalidade_lista': s1070_alteracao_novavalidade_lista,
             's1070_exclusao_lista': s1070_exclusao_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1070_evttabprocesso', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1070_evttabprocesso_verificar.html',
-                                           filename="s1070_evttabprocesso.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1070_evttabprocesso_verificar.html',
+                filename="s1070_evttabprocesso.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1070_evttabprocesso_verificar.html', context)
             filename = "%s.xls" % s1070_evttabprocesso.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1070_evttabprocesso_verificar.html', context)
             filename = "%s.csv" % s1070_evttabprocesso.identidade
@@ -172,7 +154,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1070_evttabprocesso', ],
             'data': datetime.now(),

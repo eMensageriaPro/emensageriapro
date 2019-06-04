@@ -99,8 +99,11 @@ class s5003basePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003basePerAntE", "Can view S5003BASEPERANTE"),
-            ("can_view_menu_s5003basePerAntE", "Can view menu S5003BASEPERANTE"),)
+            ("can_see_list_s5003basePerAntE", u"Pode ver listagem do modelo S5003BASEPERANTE"),
+            ("can_see_data_s5003basePerAntE", u"Pode visualizar o conteúdo do modelo S5003BASEPERANTE"),
+            ("can_see_menu_s5003basePerAntE", u"Pode visualizar no menu o modelo S5003BASEPERANTE"),
+            ("can_print_list_s5003basePerAntE", u"Pode imprimir listagem do modelo S5003BASEPERANTE"),
+            ("can_print_data_s5003basePerAntE", u"Pode imprimir o conteúdo do modelo S5003BASEPERANTE"), )
             
         ordering = [
             's5003_infobaseperante',
@@ -159,8 +162,11 @@ class s5003basePerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003basePerApur", "Can view S5003BASEPERAPUR"),
-            ("can_view_menu_s5003basePerApur", "Can view menu S5003BASEPERAPUR"),)
+            ("can_see_list_s5003basePerApur", u"Pode ver listagem do modelo S5003BASEPERAPUR"),
+            ("can_see_data_s5003basePerApur", u"Pode visualizar o conteúdo do modelo S5003BASEPERAPUR"),
+            ("can_see_menu_s5003basePerApur", u"Pode visualizar no menu o modelo S5003BASEPERAPUR"),
+            ("can_print_list_s5003basePerApur", u"Pode imprimir listagem do modelo S5003BASEPERAPUR"),
+            ("can_print_data_s5003basePerApur", u"Pode imprimir o conteúdo do modelo S5003BASEPERAPUR"), )
             
         ordering = [
             's5003_infobasefgts',
@@ -219,8 +225,11 @@ class s5003dpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003dpsPerAntE", "Can view S5003DPSPERANTE"),
-            ("can_view_menu_s5003dpsPerAntE", "Can view menu S5003DPSPERANTE"),)
+            ("can_see_list_s5003dpsPerAntE", u"Pode ver listagem do modelo S5003DPSPERANTE"),
+            ("can_see_data_s5003dpsPerAntE", u"Pode visualizar o conteúdo do modelo S5003DPSPERANTE"),
+            ("can_see_menu_s5003dpsPerAntE", u"Pode visualizar no menu o modelo S5003DPSPERANTE"),
+            ("can_print_list_s5003dpsPerAntE", u"Pode imprimir listagem do modelo S5003DPSPERANTE"),
+            ("can_print_data_s5003dpsPerAntE", u"Pode imprimir o conteúdo do modelo S5003DPSPERANTE"), )
             
         ordering = [
             's5003_infodpsperante',
@@ -279,8 +288,11 @@ class s5003dpsPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003dpsPerApur", "Can view S5003DPSPERAPUR"),
-            ("can_view_menu_s5003dpsPerApur", "Can view menu S5003DPSPERAPUR"),)
+            ("can_see_list_s5003dpsPerApur", u"Pode ver listagem do modelo S5003DPSPERAPUR"),
+            ("can_see_data_s5003dpsPerApur", u"Pode visualizar o conteúdo do modelo S5003DPSPERAPUR"),
+            ("can_see_menu_s5003dpsPerApur", u"Pode visualizar no menu o modelo S5003DPSPERAPUR"),
+            ("can_print_list_s5003dpsPerApur", u"Pode imprimir listagem do modelo S5003DPSPERAPUR"),
+            ("can_print_data_s5003dpsPerApur", u"Pode imprimir o conteúdo do modelo S5003DPSPERAPUR"), )
             
         ordering = [
             's5003_infotrabdps',
@@ -341,8 +353,11 @@ class s5003ideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003ideEstabLot", "Can view S5003IDEESTABLOT"),
-            ("can_view_menu_s5003ideEstabLot", "Can view menu S5003IDEESTABLOT"),)
+            ("can_see_list_s5003ideEstabLot", u"Pode ver listagem do modelo S5003IDEESTABLOT"),
+            ("can_see_data_s5003ideEstabLot", u"Pode visualizar o conteúdo do modelo S5003IDEESTABLOT"),
+            ("can_see_menu_s5003ideEstabLot", u"Pode visualizar no menu o modelo S5003IDEESTABLOT"),
+            ("can_print_list_s5003ideEstabLot", u"Pode imprimir listagem do modelo S5003IDEESTABLOT"),
+            ("can_print_data_s5003ideEstabLot", u"Pode imprimir o conteúdo do modelo S5003IDEESTABLOT"), )
             
         ordering = [
             's5003_evtbasesfgts',
@@ -398,8 +413,11 @@ class s5003infoBaseFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003infoBaseFGTS", "Can view S5003INFOBASEFGTS"),
-            ("can_view_menu_s5003infoBaseFGTS", "Can view menu S5003INFOBASEFGTS"),)
+            ("can_see_list_s5003infoBaseFGTS", u"Pode ver listagem do modelo S5003INFOBASEFGTS"),
+            ("can_see_data_s5003infoBaseFGTS", u"Pode visualizar o conteúdo do modelo S5003INFOBASEFGTS"),
+            ("can_see_menu_s5003infoBaseFGTS", u"Pode visualizar no menu o modelo S5003INFOBASEFGTS"),
+            ("can_print_list_s5003infoBaseFGTS", u"Pode imprimir listagem do modelo S5003INFOBASEFGTS"),
+            ("can_print_data_s5003infoBaseFGTS", u"Pode imprimir o conteúdo do modelo S5003INFOBASEFGTS"), )
             
         ordering = [
             's5003_infotrabfgts',]
@@ -454,8 +472,11 @@ class s5003infoBasePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003infoBasePerAntE", "Can view S5003INFOBASEPERANTE"),
-            ("can_view_menu_s5003infoBasePerAntE", "Can view menu S5003INFOBASEPERANTE"),)
+            ("can_see_list_s5003infoBasePerAntE", u"Pode ver listagem do modelo S5003INFOBASEPERANTE"),
+            ("can_see_data_s5003infoBasePerAntE", u"Pode visualizar o conteúdo do modelo S5003INFOBASEPERANTE"),
+            ("can_see_menu_s5003infoBasePerAntE", u"Pode visualizar no menu o modelo S5003INFOBASEPERANTE"),
+            ("can_print_list_s5003infoBasePerAntE", u"Pode imprimir listagem do modelo S5003INFOBASEPERANTE"),
+            ("can_print_data_s5003infoBasePerAntE", u"Pode imprimir o conteúdo do modelo S5003INFOBASEPERANTE"), )
             
         ordering = [
             's5003_infobasefgts',
@@ -509,8 +530,11 @@ class s5003infoDpsFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003infoDpsFGTS", "Can view S5003INFODPSFGTS"),
-            ("can_view_menu_s5003infoDpsFGTS", "Can view menu S5003INFODPSFGTS"),)
+            ("can_see_list_s5003infoDpsFGTS", u"Pode ver listagem do modelo S5003INFODPSFGTS"),
+            ("can_see_data_s5003infoDpsFGTS", u"Pode visualizar o conteúdo do modelo S5003INFODPSFGTS"),
+            ("can_see_menu_s5003infoDpsFGTS", u"Pode visualizar no menu o modelo S5003INFODPSFGTS"),
+            ("can_print_list_s5003infoDpsFGTS", u"Pode imprimir listagem do modelo S5003INFODPSFGTS"),
+            ("can_print_data_s5003infoDpsFGTS", u"Pode imprimir o conteúdo do modelo S5003INFODPSFGTS"), )
             
         ordering = [
             's5003_evtbasesfgts',]
@@ -565,8 +589,11 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003infoDpsPerAntE", "Can view S5003INFODPSPERANTE"),
-            ("can_view_menu_s5003infoDpsPerAntE", "Can view menu S5003INFODPSPERANTE"),)
+            ("can_see_list_s5003infoDpsPerAntE", u"Pode ver listagem do modelo S5003INFODPSPERANTE"),
+            ("can_see_data_s5003infoDpsPerAntE", u"Pode visualizar o conteúdo do modelo S5003INFODPSPERANTE"),
+            ("can_see_menu_s5003infoDpsPerAntE", u"Pode visualizar no menu o modelo S5003INFODPSPERANTE"),
+            ("can_print_list_s5003infoDpsPerAntE", u"Pode imprimir listagem do modelo S5003INFODPSPERANTE"),
+            ("can_print_data_s5003infoDpsPerAntE", u"Pode imprimir o conteúdo do modelo S5003INFODPSPERANTE"), )
             
         ordering = [
             's5003_infotrabdps',
@@ -623,8 +650,11 @@ class s5003infoTrabDps(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003infoTrabDps", "Can view S5003INFOTRABDPS"),
-            ("can_view_menu_s5003infoTrabDps", "Can view menu S5003INFOTRABDPS"),)
+            ("can_see_list_s5003infoTrabDps", u"Pode ver listagem do modelo S5003INFOTRABDPS"),
+            ("can_see_data_s5003infoTrabDps", u"Pode visualizar o conteúdo do modelo S5003INFOTRABDPS"),
+            ("can_see_menu_s5003infoTrabDps", u"Pode visualizar no menu o modelo S5003INFOTRABDPS"),
+            ("can_print_list_s5003infoTrabDps", u"Pode imprimir listagem do modelo S5003INFOTRABDPS"),
+            ("can_print_data_s5003infoTrabDps", u"Pode imprimir o conteúdo do modelo S5003INFOTRABDPS"), )
             
         ordering = [
             's5003_infodpsfgts',
@@ -687,8 +717,11 @@ class s5003infoTrabFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003infoTrabFGTS", "Can view S5003INFOTRABFGTS"),
-            ("can_view_menu_s5003infoTrabFGTS", "Can view menu S5003INFOTRABFGTS"),)
+            ("can_see_list_s5003infoTrabFGTS", u"Pode ver listagem do modelo S5003INFOTRABFGTS"),
+            ("can_see_data_s5003infoTrabFGTS", u"Pode visualizar o conteúdo do modelo S5003INFOTRABFGTS"),
+            ("can_see_menu_s5003infoTrabFGTS", u"Pode visualizar no menu o modelo S5003INFOTRABFGTS"),
+            ("can_print_list_s5003infoTrabFGTS", u"Pode imprimir listagem do modelo S5003INFOTRABFGTS"),
+            ("can_print_data_s5003infoTrabFGTS", u"Pode imprimir o conteúdo do modelo S5003INFOTRABFGTS"), )
             
         ordering = [
             's5003_ideestablot',

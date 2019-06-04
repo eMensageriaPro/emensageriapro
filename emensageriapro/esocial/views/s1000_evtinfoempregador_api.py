@@ -66,7 +66,6 @@ class s1000evtInfoEmpregadorList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1000evtInfoEmpregadorDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1000evtInfoEmpregador.objects.all()

@@ -62,7 +62,7 @@ urlpatterns = [
     url(r'^api-token-auth/', 
         views.obtain_auth_token),
 
-    url(r'^usuarios/criar-token/(?P<hash>.*)/$', 
+    url(r'^usuarios/criar-token/$', 
         usuarios_create_token_views.create_token, 
         name='usuarios_create_token'),
 
@@ -74,7 +74,7 @@ urlpatterns = [
 
     
 
-    url(r'^usuarios/apagar/(?P<hash>.*)/$', 
+    url(r'^usuarios/apagar/(?P<pk>[0-9]+)/$', 
         usuarios_apagar_views.apagar, 
         name='usuarios_apagar'),
 
@@ -84,13 +84,25 @@ urlpatterns = [
     url(r'^usuarios/api/(?P<pk>[0-9]+)/$',
         usuarios_api_views.UsuariosDetail.as_view() ),
 
-    url(r'^usuarios/listar/(?P<hash>.*)/$', 
+    url(r'^usuarios/$', 
         usuarios_listar_views.listar, 
         name='usuarios'),
 
-    url(r'^usuarios/salvar/(?P<hash>.*)/$', 
+    url(r'^usuarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         usuarios_salvar_views.salvar, 
         name='usuarios_salvar'),
+        
+    url(r'^usuarios/cadastrar/$', 
+        usuarios_salvar_views.salvar, 
+        name='usuarios_cadastrar'),
+
+    url(r'^usuarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        usuarios_salvar_views.salvar, 
+        name='usuarios_salvar_output'),
+        
+    url(r'^usuarios/(?P<output>[\w-]+)/$', 
+        usuarios_listar_views.listar, 
+        name='usuarios_output'),
 
     
 

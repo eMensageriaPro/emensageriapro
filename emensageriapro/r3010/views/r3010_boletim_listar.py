@@ -59,24 +59,9 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def listar(request, hash):
+def listar(request, output=None):
 
-    for_print = 0
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('r3010.can_view_r3010boletim'):
+    if request.user.has_perm('r3010.can_see_r3010boletim'):
     
         filtrar = False
         
@@ -159,30 +144,23 @@ def listar(request, hash):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r3010_boletim_listar_custom
         
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r3010_boletim'
-        
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             'r3010_boletim_lista': r3010_boletim_lista, 
-            'usuario': usuario,
             'modulos': ['r3010', ],
             'paginas': ['r3010_boletim', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
-        if for_print in (0,1):
-        
-            return render(request, 'r3010_boletim_listar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r3010_boletim_listar.html',
@@ -199,11 +177,11 @@ def listar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
             response = render_to_response('r3010_boletim_listar.html', context)
@@ -212,7 +190,7 @@ def listar(request, hash):
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
             
-        elif for_print == 4:
+        elif output == 'csv':
         
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r3010_boletim.csv', context)
@@ -220,11 +198,16 @@ def listar(request, hash):
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+        
+        else:
+        
+            return render(request, 'r3010_boletim_listar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             'data': datetime.datetime.now(),
             'modulos': ['r3010', ],
             'paginas': ['r3010_boletim', ],

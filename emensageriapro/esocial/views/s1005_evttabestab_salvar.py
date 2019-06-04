@@ -65,28 +65,14 @@ from emensageriapro.s1005.forms import form_s1005_exclusao
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1005_evttabestab_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s1005_evttabestab_id:
-    
-        s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=s1005_evttabestab_id)
+        s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=pk)
 
         if s1005_evttabestab.status != STATUS_EVENTO_CADASTRADO:
         
@@ -94,9 +80,9 @@ def salvar(request, hash):
             dict_permissoes['s1005_evttabestab_apagar'] = 0
             dict_permissoes['s1005_evttabestab_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s1005evtTabEstab'):
+    if request.user.has_perm('esocial.can_see_s1005evtTabEstab'):
     
-        if s1005_evttabestab_id:
+        if pk:
         
             s1005_evttabestab_form = form_s1005_evttabestab(request.POST or None, instance = s1005_evttabestab, 
                                          initial={'excluido': False})
@@ -115,45 +101,61 @@ def salvar(request, hash):
         
             if s1005_evttabestab_form.is_valid():
             
-                dados = s1005_evttabestab_form.cleaned_data
                 obj = s1005_evttabestab_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s1005_evttabestab_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1005_evttabestab', obj.id, usuario_id, 1)
+                                 's1005_evttabestab', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s1005_evttabestab), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1005_evttabestab', s1005_evttabestab_id, usuario_id, 2)
+                                     's1005_evttabestab', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s1005_evttabestab_apagar', 's1005_evttabestab_salvar', 's1005_evttabestab'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's1005_evttabestab_apagar', 
+                    's1005_evttabestab_salvar', 
+                    's1005_evttabestab'):
                     
-                if s1005_evttabestab_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s1005_evttabestab_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's1005_evttabestab_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s1005_evttabestab_form = disabled_form_fields(s1005_evttabestab_form, request.user.has_perm('esocial.change_s1005evtTabEstab'))
+        s1005_evttabestab_form = disabled_form_fields(
+             s1005_evttabestab_form, 
+             request.user.has_perm('esocial.change_s1005evtTabEstab'))
         
-        if s1005_evttabestab_id:
+        if pk:
+        
             if s1005_evttabestab.status != 0:
+            
                 s1005_evttabestab_form = disabled_form_fields(s1005_evttabestab_form, False)
+                
         #s1005_evttabestab_campos_multiple_passo3
 
         for field in s1005_evttabestab_form.fields.keys():
+        
             s1005_evttabestab_form.fields[field].widget.attrs['ng-model'] = 's1005_evttabestab_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s1005_evttabestab_form = disabled_form_for_print(s1005_evttabestab_form)
 
         
@@ -164,9 +166,9 @@ def salvar(request, hash):
         s1005_exclusao_lista = None 
         s1005_exclusao_form = None 
         
-        if s1005_evttabestab_id:
+        if pk:
         
-            s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id = s1005_evttabestab_id)
+            s1005_evttabestab = get_object_or_404(s1005evtTabEstab, id=pk)
             
             s1005_inclusao_form = form_s1005_inclusao(
                 initial={ 's1005_evttabestab': s1005_evttabestab })
@@ -185,6 +187,7 @@ def salvar(request, hash):
                 filter(s1005_evttabestab_id=s1005_evttabestab.id).all()
                 
         else:
+        
             s1005_evttabestab = None
             
         #s1005_evttabestab_salvar_custom_variaveis#
@@ -193,23 +196,26 @@ def salvar(request, hash):
         
         if 's1005_evttabestab'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's1005_evttabestab' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's1005_evttabestab_salvar'
+        if tab or 's1005_evttabestab' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's1005_evttabestab_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s1005_evttabestab_id, tabela='s1005_evttabestab').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1005_evttabestab').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's1005_evttabestab': s1005_evttabestab, 
             's1005_evttabestab_form': s1005_evttabestab_form, 
-            's1005_evttabestab_id': int(s1005_evttabestab_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             's1005_inclusao_form': s1005_inclusao_form,
             's1005_inclusao_lista': s1005_inclusao_lista,
@@ -220,17 +226,13 @@ def salvar(request, hash):
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s1005_evttabestab', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s1005_evttabestab_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's1005_evttabestab_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -248,25 +250,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s1005_evttabestab_salvar.html', context)
             filename = "s1005_evttabestab.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's1005_evttabestab_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s1005_evttabestab', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.r3010.models import *
 from emensageriapro.r3010.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_r3010(request, r3010_evtespdesportivo_id, versao=None):
+def gerar_xml_r3010(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if r3010_evtespdesportivo_id:
+    if pk:
 
         r3010_evtespdesportivo = get_object_or_404(
             r3010evtEspDesportivo,
-            excluido = False,
-            id = r3010_evtespdesportivo_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = r3010_evtespdesportivo.versao
@@ -105,7 +103,8 @@ def gerar_xml_r3010(request, r3010_evtespdesportivo_id, versao=None):
             xmlns = ''
 
         r3010_evtespdesportivo_lista = r3010evtEspDesportivo.objects. \
-            filter(id=r3010_evtespdesportivo_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         r3010_boletim_lista = r3010boletim.objects. \
             filter(r3010_evtespdesportivo_id__in=listar_ids(r3010_evtespdesportivo_lista)).all()
@@ -125,10 +124,8 @@ def gerar_xml_r3010(request, r3010_evtespdesportivo_id, versao=None):
             'versao': versao,
             'base': r3010_evtespdesportivo,
             'r3010_evtespdesportivo_lista': r3010_evtespdesportivo_lista,
-            'r3010_evtespdesportivo_id': int(r3010_evtespdesportivo_id),
+            'pk': int(pk),
             'r3010_evtespdesportivo': r3010_evtespdesportivo,
-
-            
             'r3010_boletim_lista': r3010_boletim_lista,
             'r3010_receitaingressos_lista': r3010_receitaingressos_lista,
             'r3010_outrasreceitas_lista': r3010_outrasreceitas_lista,
@@ -140,9 +137,7 @@ def gerar_xml_r3010(request, r3010_evtespdesportivo_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, r3010_evtespdesportivo_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import salvar_arquivo_efdreinf
@@ -150,14 +145,14 @@ def gerar_xml_assinado(request, r3010_evtespdesportivo_id):
 
     r3010_evtespdesportivo = get_object_or_404(
         r3010evtEspDesportivo,
-        id=r3010_evtespdesportivo_id)
+        id=pk)
 
     if r3010_evtespdesportivo.arquivo_original:
     
         xml = ler_arquivo(r3010_evtespdesportivo.arquivo)
 
     else:
-        xml = gerar_xml_r3010(request, r3010_evtespdesportivo_id)
+        xml = gerar_xml_r3010(request, pk)
 
     if 'Signature' in xml:
     
@@ -173,20 +168,23 @@ def gerar_xml_assinado(request, r3010_evtespdesportivo_id):
             grupo = get_grupo(r3010evtEspDesportivo)
 
             criar_transmissor_efdreinf(request,
-                                      grupo,
-                                      r3010_evtespdesportivo.nrinsc,
-                                      r3010_evtespdesportivo.tpinsc)
+                grupo,
+                r3010_evtespdesportivo.nrinsc,
+                r3010_evtespdesportivo.tpinsc)
 
             vincular_transmissor_efdreinf(request,
-                                         grupo,
-                                         r3010evtEspDesportivo,
-                                         r3010_evtespdesportivo)
+                grupo,
+                r3010evtEspDesportivo,
+                r3010_evtespdesportivo)
         
         r3010_evtespdesportivo = get_object_or_404(
             r3010evtEspDesportivo,
-            id=r3010_evtespdesportivo_id)
+            id=pk)
         
-        xml_assinado = assinar_efdreinf(request, xml, r3010_evtespdesportivo.transmissor_lote_efdreinf_id)
+        xml_assinado = assinar_efdreinf(
+            request, 
+            xml, 
+            r3010_evtespdesportivo.transmissor_lote_efdreinf_id)
         
     if r3010_evtespdesportivo.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -195,29 +193,28 @@ def gerar_xml_assinado(request, r3010_evtespdesportivo_id):
         STATUS_EVENTO_GERADO):
 
         r3010evtEspDesportivo.objects.\
-            filter(id=r3010_evtespdesportivo_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/r3010_evtespdesportivo/%s.xml' % (r3010_evtespdesportivo.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/r3010_evtespdesportivo/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_efdreinf(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    r3010_evtespdesportivo_id = int(dict_hash['id'])
+    if pk:
 
-    if r3010_evtespdesportivo_id:
-
-        xml_assinado = gerar_xml_assinado(request, r3010_evtespdesportivo_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

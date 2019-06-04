@@ -66,7 +66,6 @@ class s1260evtComProdList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1260evtComProdDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1260evtComProd.objects.all()

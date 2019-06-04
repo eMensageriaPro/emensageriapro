@@ -66,7 +66,6 @@ class s5002evtIrrfBenefList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s5002evtIrrfBenefDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5002evtIrrfBenef.objects.all()

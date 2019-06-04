@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2399_infosaudecolet__s2399_ideestablot__label">Informações de plano privado coletivo empresarial de assistência à saúde*</label>
     {% if not for_print %}{% if s2399_infosaudecolet_form.s2399_ideestablot.value %}
-        <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_return_page:'s2399_infosaudecolet_salvar'|json_return_hash:hash|json_id:s2399_infosaudecolet_form.s2399_ideestablot.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2399_ideestablot_salvar' pk=s2399_infosaudecolet_form.s2399_ideestablot.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

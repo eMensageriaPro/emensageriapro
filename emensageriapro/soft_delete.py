@@ -65,7 +65,6 @@ class SoftDeletionModel(models.Model):
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
             self.modificado_por_id = request.user.id
-
         self.modificado_em = timezone.now()
         self.excluido = None
         self.save()
@@ -77,9 +76,12 @@ class SoftDeletionModel(models.Model):
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
             if not self.criado_em:
-                self.criado_em = timezone.now()
                 self.criado_por_id = request.user.id
-            self.modificado_por_id = request.user.id
+            else:
+                self.modificado_por_id = request.user.id
+        if not self.criado_em:
+            self.criado_em = timezone.now()
+        else:
             self.modificado_em = timezone.now()
         super(SoftDeletionModel, self).save(**kwargs)
 

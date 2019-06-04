@@ -71,81 +71,63 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2250evtAvPrevio'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2250_evtavprevio_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2250evtAvPrevio'):
-        s2250_evtavprevio = get_object_or_404(s2250evtAvPrevio, id=s2250_evtavprevio_id)
-        s2250_evtavprevio_lista = s2250evtAvPrevio.objects.filter(id=s2250_evtavprevio_id).all()
+        s2250_evtavprevio = get_object_or_404(s2250evtAvPrevio, id=pk)
+        s2250_evtavprevio_lista = s2250evtAvPrevio.objects.filter(id=pk).all()
 
         
         s2250_detavprevio_lista = s2250detAvPrevio.objects.filter(s2250_evtavprevio_id__in = listar_ids(s2250_evtavprevio_lista) ).all()
         s2250_cancavprevio_lista = s2250cancAvPrevio.objects.filter(s2250_evtavprevio_id__in = listar_ids(s2250_evtavprevio_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2250_evtavprevio'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2250_evtavprevio'
 
         context = {
             's2250_evtavprevio_lista': s2250_evtavprevio_lista,
-            's2250_evtavprevio_id': s2250_evtavprevio_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2250_evtavprevio': s2250_evtavprevio,
-            
-            
             's2250_detavprevio_lista': s2250_detavprevio_lista,
             's2250_cancavprevio_lista': s2250_cancavprevio_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2250_evtavprevio', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2250_evtavprevio_verificar.html',
-                                           filename="s2250_evtavprevio.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2250_evtavprevio_verificar.html',
+                filename="s2250_evtavprevio.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2250_evtavprevio_verificar.html', context)
             filename = "%s.xls" % s2250_evtavprevio.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2250_evtavprevio_verificar.html', context)
             filename = "%s.csv" % s2250_evtavprevio.identidade
@@ -160,7 +142,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2250_evtavprevio', ],
             'data': datetime.now(),

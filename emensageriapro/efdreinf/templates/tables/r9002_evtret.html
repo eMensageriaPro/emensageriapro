@@ -89,26 +89,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.efdreinf.can_view_r9002evtRet %}
-                        <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.efdreinf.add_r9002evtRet or perms.efdreinf.change_r9002evtRet %}
+                        {% if perms.efdreinf.change_r9002evtRet or perms.efdreinf.add_r9002evtRet %}
+                    
+                        <a href="{% url 'r9002_evtret_salvar' pk=a.id tab='master' %}">
+                            {% if perms.efdreinf.change_r9002evtRet %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.efdreinf.can_see_data_r9002evtRet %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.efdreinf.delete_r9002evtRet %}
-                        <a href="{% url 'r9002_evtret_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.efdreinf.delete_r9002evtRet %}
+                        <a href="{% url 'r9002_evtret_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

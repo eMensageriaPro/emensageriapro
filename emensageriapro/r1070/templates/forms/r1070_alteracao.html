@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r1070_alteracao__r1070_evttabprocesso__label">Alteração das informações*</label>
     {% if not for_print %}{% if r1070_alteracao_form.r1070_evttabprocesso.value %}
-        <a href="{% url 'r1070_evttabprocesso_salvar' hash='{}'|json_return_page:'r1070_alteracao_salvar'|json_return_hash:hash|json_id:r1070_alteracao_form.r1070_evttabprocesso.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r1070_evttabprocesso_salvar' pk=r1070_alteracao_form.r1070_evttabprocesso.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -59,24 +59,9 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def listar(request, hash):
+def listar(request, output=None):
 
-    for_print = 0
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('r9002.can_view_r9002totApurDia'):
+    if request.user.has_perm('r9002.can_see_r9002totApurDia'):
     
         filtrar = False
         
@@ -138,30 +123,23 @@ def listar(request, hash):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r9002_totapurdia_listar_custom
         
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'r9002_totapurdia'
-        
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             'r9002_totapurdia_lista': r9002_totapurdia_lista, 
-            'usuario': usuario,
             'modulos': ['r9002', ],
             'paginas': ['r9002_totapurdia', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
-        if for_print in (0,1):
-        
-            return render(request, 'r9002_totapurdia_listar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r9002_totapurdia_listar.html',
@@ -178,11 +156,11 @@ def listar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
             response = render_to_response('r9002_totapurdia_listar.html', context)
@@ -191,7 +169,7 @@ def listar(request, hash):
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
             
-        elif for_print == 4:
+        elif output == 'csv':
         
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r9002_totapurdia.csv', context)
@@ -199,11 +177,16 @@ def listar(request, hash):
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+        
+        else:
+        
+            return render(request, 'r9002_totapurdia_listar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             'data': datetime.datetime.now(),
             'modulos': ['r9002', ],
             'paginas': ['r9002_totapurdia', ],

@@ -22,30 +22,47 @@
             {% if not for_print %}
             <td>
                 <div>
-                    <a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:1|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-fw fa-print"></i></span></a>
-<a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:2|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-file-pdf-o"></i></span></a>
-<a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:3|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-file-excel-o"></i></span></a>
-<a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:4|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-file-text-o"></i></span></a>
-                    {% if perms.mensageiro.can_view_Relatorios %}
-                        <a href="{% url 'relatorios_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.mensageiro.add_Relatorios or perms.mensageiro.change_Relatorios %}
+                    <a href="{% url 'relatorios_imprimir' pk=a.id output='html' %}">
+    <span class="btn btn-primary">
+        <i class="fa fa-fw fa-print"></i>
+    </span>
+</a>
+<a href="{% url 'relatorios_imprimir' pk=a.id output='pdf' %}">
+    <span class="btn btn-primary">
+        <i class="fa fa-file-pdf-o"></i>
+    </span>
+</a>
+<a href="{% url 'relatorios_imprimir' pk=a.id output='xls' %}">
+    <span class="btn btn-primary">
+        <i class="fa fa-file-excel-o"></i>
+    </span>
+</a>
+<a href="{% url 'relatorios_imprimir' pk=a.id output='txt' %}">
+    <span class="btn btn-primary">
+        <i class="fa fa-file-text-o"></i>
+    </span>
+</a>
+                        {% if perms.mensageiro.change_Relatorios or perms.mensageiro.add_Relatorios %}
+                    
+                        <a href="{% url 'relatorios_salvar' pk=a.id tab='master' %}">
+                            {% if perms.mensageiro.change_Relatorios %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.mensageiro.can_see_data_Relatorios %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.mensageiro.delete_Relatorios %}
-                        <a href="{% url 'relatorios_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.mensageiro.delete_Relatorios %}
+                        <a href="{% url 'relatorios_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

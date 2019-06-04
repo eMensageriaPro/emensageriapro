@@ -99,8 +99,11 @@ class s5013basePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013basePerAntE", "Can view S5013BASEPERANTE"),
-            ("can_view_menu_s5013basePerAntE", "Can view menu S5013BASEPERANTE"),)
+            ("can_see_list_s5013basePerAntE", u"Pode ver listagem do modelo S5013BASEPERANTE"),
+            ("can_see_data_s5013basePerAntE", u"Pode visualizar o conteúdo do modelo S5013BASEPERANTE"),
+            ("can_see_menu_s5013basePerAntE", u"Pode visualizar no menu o modelo S5013BASEPERANTE"),
+            ("can_print_list_s5013basePerAntE", u"Pode imprimir listagem do modelo S5013BASEPERANTE"),
+            ("can_print_data_s5013basePerAntE", u"Pode imprimir o conteúdo do modelo S5013BASEPERANTE"), )
             
         ordering = [
             's5013_infobaseperante',
@@ -159,8 +162,11 @@ class s5013basePerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013basePerApur", "Can view S5013BASEPERAPUR"),
-            ("can_view_menu_s5013basePerApur", "Can view menu S5013BASEPERAPUR"),)
+            ("can_see_list_s5013basePerApur", u"Pode ver listagem do modelo S5013BASEPERAPUR"),
+            ("can_see_data_s5013basePerApur", u"Pode visualizar o conteúdo do modelo S5013BASEPERAPUR"),
+            ("can_see_menu_s5013basePerApur", u"Pode visualizar no menu o modelo S5013BASEPERAPUR"),
+            ("can_print_list_s5013basePerApur", u"Pode imprimir listagem do modelo S5013BASEPERAPUR"),
+            ("can_print_data_s5013basePerApur", u"Pode imprimir o conteúdo do modelo S5013BASEPERAPUR"), )
             
         ordering = [
             's5013_infobasefgts',
@@ -219,8 +225,11 @@ class s5013dpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013dpsPerAntE", "Can view S5013DPSPERANTE"),
-            ("can_view_menu_s5013dpsPerAntE", "Can view menu S5013DPSPERANTE"),)
+            ("can_see_list_s5013dpsPerAntE", u"Pode ver listagem do modelo S5013DPSPERANTE"),
+            ("can_see_data_s5013dpsPerAntE", u"Pode visualizar o conteúdo do modelo S5013DPSPERANTE"),
+            ("can_see_menu_s5013dpsPerAntE", u"Pode visualizar no menu o modelo S5013DPSPERANTE"),
+            ("can_print_list_s5013dpsPerAntE", u"Pode imprimir listagem do modelo S5013DPSPERANTE"),
+            ("can_print_data_s5013dpsPerAntE", u"Pode imprimir o conteúdo do modelo S5013DPSPERANTE"), )
             
         ordering = [
             's5013_infodpsperante',
@@ -279,8 +288,11 @@ class s5013dpsPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013dpsPerApur", "Can view S5013DPSPERAPUR"),
-            ("can_view_menu_s5013dpsPerApur", "Can view menu S5013DPSPERAPUR"),)
+            ("can_see_list_s5013dpsPerApur", u"Pode ver listagem do modelo S5013DPSPERAPUR"),
+            ("can_see_data_s5013dpsPerApur", u"Pode visualizar o conteúdo do modelo S5013DPSPERAPUR"),
+            ("can_see_menu_s5013dpsPerApur", u"Pode visualizar no menu o modelo S5013DPSPERAPUR"),
+            ("can_print_list_s5013dpsPerApur", u"Pode imprimir listagem do modelo S5013DPSPERAPUR"),
+            ("can_print_data_s5013dpsPerApur", u"Pode imprimir o conteúdo do modelo S5013DPSPERAPUR"), )
             
         ordering = [
             's5013_infodpsfgts',
@@ -335,8 +347,11 @@ class s5013infoBaseFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013infoBaseFGTS", "Can view S5013INFOBASEFGTS"),
-            ("can_view_menu_s5013infoBaseFGTS", "Can view menu S5013INFOBASEFGTS"),)
+            ("can_see_list_s5013infoBaseFGTS", u"Pode ver listagem do modelo S5013INFOBASEFGTS"),
+            ("can_see_data_s5013infoBaseFGTS", u"Pode visualizar o conteúdo do modelo S5013INFOBASEFGTS"),
+            ("can_see_menu_s5013infoBaseFGTS", u"Pode visualizar no menu o modelo S5013INFOBASEFGTS"),
+            ("can_print_list_s5013infoBaseFGTS", u"Pode imprimir listagem do modelo S5013INFOBASEFGTS"),
+            ("can_print_data_s5013infoBaseFGTS", u"Pode imprimir o conteúdo do modelo S5013INFOBASEFGTS"), )
             
         ordering = [
             's5013_evtfgts',]
@@ -391,8 +406,11 @@ class s5013infoBasePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013infoBasePerAntE", "Can view S5013INFOBASEPERANTE"),
-            ("can_view_menu_s5013infoBasePerAntE", "Can view menu S5013INFOBASEPERANTE"),)
+            ("can_see_list_s5013infoBasePerAntE", u"Pode ver listagem do modelo S5013INFOBASEPERANTE"),
+            ("can_see_data_s5013infoBasePerAntE", u"Pode visualizar o conteúdo do modelo S5013INFOBASEPERANTE"),
+            ("can_see_menu_s5013infoBasePerAntE", u"Pode visualizar no menu o modelo S5013INFOBASEPERANTE"),
+            ("can_print_list_s5013infoBasePerAntE", u"Pode imprimir listagem do modelo S5013INFOBASEPERANTE"),
+            ("can_print_data_s5013infoBasePerAntE", u"Pode imprimir o conteúdo do modelo S5013INFOBASEPERANTE"), )
             
         ordering = [
             's5013_infobasefgts',
@@ -446,8 +464,11 @@ class s5013infoDpsFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013infoDpsFGTS", "Can view S5013INFODPSFGTS"),
-            ("can_view_menu_s5013infoDpsFGTS", "Can view menu S5013INFODPSFGTS"),)
+            ("can_see_list_s5013infoDpsFGTS", u"Pode ver listagem do modelo S5013INFODPSFGTS"),
+            ("can_see_data_s5013infoDpsFGTS", u"Pode visualizar o conteúdo do modelo S5013INFODPSFGTS"),
+            ("can_see_menu_s5013infoDpsFGTS", u"Pode visualizar no menu o modelo S5013INFODPSFGTS"),
+            ("can_print_list_s5013infoDpsFGTS", u"Pode imprimir listagem do modelo S5013INFODPSFGTS"),
+            ("can_print_data_s5013infoDpsFGTS", u"Pode imprimir o conteúdo do modelo S5013INFODPSFGTS"), )
             
         ordering = [
             's5013_evtfgts',]
@@ -502,8 +523,11 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013infoDpsPerAntE", "Can view S5013INFODPSPERANTE"),
-            ("can_view_menu_s5013infoDpsPerAntE", "Can view menu S5013INFODPSPERANTE"),)
+            ("can_see_list_s5013infoDpsPerAntE", u"Pode ver listagem do modelo S5013INFODPSPERANTE"),
+            ("can_see_data_s5013infoDpsPerAntE", u"Pode visualizar o conteúdo do modelo S5013INFODPSPERANTE"),
+            ("can_see_menu_s5013infoDpsPerAntE", u"Pode visualizar no menu o modelo S5013INFODPSPERANTE"),
+            ("can_print_list_s5013infoDpsPerAntE", u"Pode imprimir listagem do modelo S5013INFODPSPERANTE"),
+            ("can_print_data_s5013infoDpsPerAntE", u"Pode imprimir o conteúdo do modelo S5013INFODPSPERANTE"), )
             
         ordering = [
             's5013_infodpsfgts',

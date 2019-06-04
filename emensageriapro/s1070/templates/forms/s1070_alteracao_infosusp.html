@@ -15,7 +15,7 @@
     <label id="s1070_alteracao_infosusp__s1070_alteracao__label">Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.*</label>
     {% if not for_print %}
       {% if s1070_alteracao_infosusp_form.s1070_alteracao.value %}
-        <a id="s1070_alteracao_infosusp__s1070_alteracao__div_acessar" href="{% url 's1070_alteracao_salvar' hash='{}'|json_id:s1070_alteracao_infosusp_form.s1070_alteracao.value|json_print:0|base64_encode_me %}">
+        <a id="s1070_alteracao_infosusp__s1070_alteracao__div_acessar" href="{% url 's1070_alteracao_salvar' pk=s1070_alteracao_infosusp_form.s1070_alteracao.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

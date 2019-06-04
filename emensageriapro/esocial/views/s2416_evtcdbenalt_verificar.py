@@ -71,83 +71,65 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2416evtCdBenAlt'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2416_evtcdbenalt_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2416evtCdBenAlt'):
-        s2416_evtcdbenalt = get_object_or_404(s2416evtCdBenAlt, id=s2416_evtcdbenalt_id)
-        s2416_evtcdbenalt_lista = s2416evtCdBenAlt.objects.filter(id=s2416_evtcdbenalt_id).all()
+        s2416_evtcdbenalt = get_object_or_404(s2416evtCdBenAlt, id=pk)
+        s2416_evtcdbenalt_lista = s2416evtCdBenAlt.objects.filter(id=pk).all()
 
         
         s2416_infopenmorte_lista = s2416infoPenMorte.objects.filter(s2416_evtcdbenalt_id__in = listar_ids(s2416_evtcdbenalt_lista) ).all()
         s2416_homologtc_lista = s2416homologTC.objects.filter(s2416_evtcdbenalt_id__in = listar_ids(s2416_evtcdbenalt_lista) ).all()
         s2416_suspensao_lista = s2416suspensao.objects.filter(s2416_evtcdbenalt_id__in = listar_ids(s2416_evtcdbenalt_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2416_evtcdbenalt'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2416_evtcdbenalt'
 
         context = {
             's2416_evtcdbenalt_lista': s2416_evtcdbenalt_lista,
-            's2416_evtcdbenalt_id': s2416_evtcdbenalt_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2416_evtcdbenalt': s2416_evtcdbenalt,
-            
-            
             's2416_infopenmorte_lista': s2416_infopenmorte_lista,
             's2416_homologtc_lista': s2416_homologtc_lista,
             's2416_suspensao_lista': s2416_suspensao_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2416_evtcdbenalt', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2416_evtcdbenalt_verificar.html',
-                                           filename="s2416_evtcdbenalt.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2416_evtcdbenalt_verificar.html',
+                filename="s2416_evtcdbenalt.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2416_evtcdbenalt_verificar.html', context)
             filename = "%s.xls" % s2416_evtcdbenalt.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2416_evtcdbenalt_verificar.html', context)
             filename = "%s.csv" % s2416_evtcdbenalt.identidade
@@ -162,7 +144,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2416_evtcdbenalt', ],
             'data': datetime.now(),

@@ -66,7 +66,6 @@ class s2230evtAfastTempList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2230evtAfastTempDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2230evtAfastTemp.objects.all()

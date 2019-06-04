@@ -103,8 +103,11 @@ class r2050infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2050infoProc", "Can view R2050INFOPROC"),
-            ("can_view_menu_r2050infoProc", "Can view menu R2050INFOPROC"),)
+            ("can_see_list_r2050infoProc", u"Pode ver listagem do modelo R2050INFOPROC"),
+            ("can_see_data_r2050infoProc", u"Pode visualizar o conteúdo do modelo R2050INFOPROC"),
+            ("can_see_menu_r2050infoProc", u"Pode visualizar no menu o modelo R2050INFOPROC"),
+            ("can_print_list_r2050infoProc", u"Pode imprimir listagem do modelo R2050INFOPROC"),
+            ("can_print_data_r2050infoProc", u"Pode imprimir o conteúdo do modelo R2050INFOPROC"), )
             
         ordering = [
             'r2050_tipocom',
@@ -163,8 +166,11 @@ class r2050tipoCom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2050tipoCom", "Can view R2050TIPOCOM"),
-            ("can_view_menu_r2050tipoCom", "Can view menu R2050TIPOCOM"),)
+            ("can_see_list_r2050tipoCom", u"Pode ver listagem do modelo R2050TIPOCOM"),
+            ("can_see_data_r2050tipoCom", u"Pode visualizar o conteúdo do modelo R2050TIPOCOM"),
+            ("can_see_menu_r2050tipoCom", u"Pode visualizar no menu o modelo R2050TIPOCOM"),
+            ("can_print_list_r2050tipoCom", u"Pode imprimir listagem do modelo R2050TIPOCOM"),
+            ("can_print_data_r2050tipoCom", u"Pode imprimir o conteúdo do modelo R2050TIPOCOM"), )
             
         ordering = [
             'r2050_evtcomprod',

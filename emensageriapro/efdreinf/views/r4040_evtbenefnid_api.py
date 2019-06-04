@@ -66,7 +66,6 @@ class r4040evtBenefNIdList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r4040evtBenefNIdDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4040evtBenefNId.objects.all()

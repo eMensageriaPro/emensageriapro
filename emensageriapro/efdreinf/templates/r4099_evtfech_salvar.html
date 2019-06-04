@@ -32,361 +32,589 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       R-4099 - Fechamento dos Eventos Periódicos Série R-4000
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.efdreinf.can_view_r4099evtFech %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 'r4099_evtfech_salvar' hash='{}'|json_return_page:'r4099_evtfech_salvar'|json_return_hash:hash|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}">
-                    R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a>
-                </li>
-                {% endif %}
-                {% if r4099_evtfech_id %}
-                    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.efdreinf.can_see_r4099evtFech %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 'r4099_evtfech_salvar' pk=pk tab='master' %}">
+                                R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.efdreinf.can_view_r4099_iderespinf %}
-                                <li {% if tab == 'r4099_iderespinf' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4099_evtfech_salvar' hash='{}'|json_id:r4099_evtfech_id|json_print:0|json_tab:'r4099_iderespinf'|base64_encode_me %}">
-                                    Responsável pelas informações</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.r4099.can_see_r4099ideRespInf %}
+                                    <li {% if tab == 'r4099_iderespinf' %} class="active"{% endif %} >
+                                        <a href="{% url 'r4099_evtfech_salvar' pk=pk tab='r4099_iderespinf' %}">
+                                        Responsável pelas informações</a>
+                                    </li>
+                                {% endif %}
+                            
                         
-                    
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABS -->
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if r4099_evtfech_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in r4099_evtfech_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if r4099_evtfech_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in r4099_evtfech_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if r4099_evtfech_id %}
-   {% if r4099_evtfech.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ r4099_evtfech.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r4099_evtfech.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r4099_evtfech.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not r4099_evtfech.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r4099_evtfech.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ r4099_evtfech.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">R-4099 - Fechamento dos Eventos Periódicos Série R-4000</h3>
-            </div>
-            {% else %}
+    {% if r4099_evtfech_id %}
+        {% if r4099_evtfech.ocorrencias %}
             <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.efdreinf.change_r4099_evtfech or perms.efdreinf.add_r4099_evtfech %}
-               {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_r4099_evtfech" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/r4099_evtfech.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ r4099_evtfech.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if r4099_evtfech_id %}
-                           {% if perms.efdreinf.add_r4099evtFech %}<a href="{% url 'r4099_evtfech_verificar'  hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.efdreinf.add_r4099evtFech %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_recibo'  hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_recibo'  hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_recibo'  hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.efdreinf.add_r4099evtFech %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_duplicar' hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if r4099_evtfech.operacao == 1 and r4099_inclusao_lista or r4099_evtfech.operacao == 2 and r4099_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_criar_alteracao' hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_criar_exclusao' hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_alterar_identidade' hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 'r4099_evtfech_abrir_evento_para_edicao' hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.efdreinf.add_r4099evtFech %}<a href="{% url 'r4099_evtfech_xml'  hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if r4099_evtfech.status == STATUS_EVENTO_CADASTRADO or r4099_evtfech.status == STATUS_EVENTO_IMPORTADO or r4099_evtfech.status == STATUS_EVENTO_DUPLICADO or r4099_evtfech.status == STATUS_EVENTO_GERADO or r4099_evtfech.status == STATUS_EVENTO_ASSINADO or r4099_evtfech.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.efdreinf.add_r4099evtFech %}
-                           <a href="{% url 'r4099_evtfech_validar_evento' hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.efdreinf.add_r4099evtFech %}<a href="{% url 'r4099_evtfech_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.efdreinf.can_view_r4099_evtfech or perms.efdreinf.can_view_r4099_evtfech %}<a href="{% url 'r4099_evtfech'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.efdreinf.can_view_r4099_evtfech and r4099_evtfech_id %}<a href="{% url 'r4099_evtfech_salvar'  hash='{}'|json_id:r4099_evtfech_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.efdreinf.change_r4099_evtfech or perms.efdreinf.add_r4099_evtfech %}
-                           {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.efdreinf.delete_r4099_evtfech and r4099_evtfech_id %}<a href="{% url 'r4099_evtfech_apagar'  hash='{}'|json_id:r4099_evtfech_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
-                        </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.efdreinf.change_r4099_evtfech or perms.efdreinf.add_r4099_evtfech %}
-               {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+                </div>
             </div>
-            {% if r4099_evtfech_id %}
+        {% endif %}
+        {% if r4099_evtfech.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r4099_evtfech.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not r4099_evtfech.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if r4099_evtfech.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ r4099_evtfech.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">R-4099 - Fechamento dos Eventos Periódicos Série R-4000</h3>
+                    </div>
+
+                    {% if perms.efdreinf.change_r4099evtFech or perms.efdreinf.add_r4099evtFech %}
+                        {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_r4099_evtfech" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/r4099_evtfech.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if r4099_evtfech.operacao == 1 and r4099_inclusao_lista or r4099_evtfech.operacao == 2 and r4099_alteracao_lista %}
+
+
+                                    {% if perms.efdreinf.can_create_change_r4099evtFech %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 'r4099_evtfech_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.efdreinf.can_create_delete_r4099evtFech %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 'r4099_evtfech_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.efdreinf.can_duplicate_r4099evtFech %}
+                            <div class="col-md-4">
+                                <a href="{% url 'r4099_evtfech_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.efdreinf.can_change_identity_r4099evtFech %}
+                            <div class="col-md-4">
+                                <a href="{% url 'r4099_evtfech_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.efdreinf.can_open_r4099evtFech %}
+                            <div class="col-md-4">
+                                <a href="{% url 'r4099_evtfech_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.efdreinf.can_see_layout_r4099evtFech %}
+                            <div class="col-md-3">
+                                <a href="{% url 'r4099_evtfech_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.efdreinf.can_see_xml_r4099evtFech %}
+                            <div class="col-md-3">
+                                <a href="{% url 'r4099_evtfech_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.efdreinf.can_validate_r4099evtFech %}
+                            <div class="col-md-3">
+                                <a href="{% url 'r4099_evtfech_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.efdreinf.can_see_receipt_r4099evtFech %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 'r4099_evtfech_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 'r4099_evtfech_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 'r4099_evtfech_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.efdreinf.add_r4099evtFech %}
+                        <div class="col-md-2">
+                            <a href="{% url 'r4099_evtfech_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.efdreinf.can_see_list_r4099evtFech %}
+                        <div class="col-md-2">
+                            <a href="{% url 'r4099_evtfech' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.efdreinf.can_print_data_r4099evtFech %}
+                        <div class="col-md-2">
+                            <a href="{% url 'r4099_evtfech_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.efdreinf.change_r4099evtFech %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.efdreinf.delete_r4099evtFech %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r4099_evtfech_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.efdreinf.add_r4099evtFech %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.efdreinf.add_r4099evtFech or perms.efdreinf.change_r4099evtFech %}
+    
+                        {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if r4099_evtfech_id %}
-
-<!-- begin_r4099_iderespinf -->
-
-{% if tab == 'r4099_iderespinf' or for_print %} 
-
-{% if perms.efdreinf.can_view_r4099_iderespinf %} 
-
-{% if perms.efdreinf.change_r4099_iderespinf or perms.r4099.add_r4099ideRespInf %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Responsável pelas informações</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.efdreinf.change_r4099_iderespinf or perms.r4099.add_r4099ideRespInf %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.r4099.add_r4099ideRespInf %}            
-
-
-
-        <!-- begin_form_r4099_iderespinf --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_r4099_iderespinf" action="{% url 'r4099_iderespinf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/r4099_iderespinf.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
+                </div>
             </div>
-        <!-- end_form_r4099_iderespinf -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_r4099_iderespinf --> 
-  
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+
+    {% endif %}
 
 
-        {% include 'tables/r4099_iderespinf.html' %}
-        <!-- end_table_r4099_iderespinf --> 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        
+        <!-- begin_r4099_iderespinf -->
+
+            {% if tab == 'r4099_iderespinf' %} 
+
+                {% if perms.r4099.can_see_data_r4099ideRespInf %}
+
+                    {% if perms.r4099.add_r4099ideRespInf or perms.r4099.change_r4099ideRespInf %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Responsável pelas informações</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.r4099.add_r4099ideRespInf or perms.r4099.can_see_list_r4099ideRespInf %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4099.add_r4099ideRespInf %}            
+
+                                    <!-- begin_form_r4099_iderespinf --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_r4099_iderespinf" 
+                                              action="{% url 'r4099_iderespinf_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/r4099_iderespinf.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_r4099_iderespinf -->
+                                {% endif %} 
+
+                                {% if perms.r4099.can_see_r4099ideRespInf %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_r4099_iderespinf --> 
+
+                                        {% include 'tables/r4099_iderespinf.html' %}
+                                        <!-- end_table_r4099_iderespinf --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+
+    {% endif %} 
 
 
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_r4099_iderespinf -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

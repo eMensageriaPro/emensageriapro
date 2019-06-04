@@ -15,7 +15,7 @@
     <label id="s2200_observacoes__s2200_evtadmissao__label">Observações do contrato de trabalho*</label>
     {% if not for_print %}
       {% if s2200_observacoes_form.s2200_evtadmissao.value %}
-        <a id="s2200_observacoes__s2200_evtadmissao__div_acessar" href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_observacoes_form.s2200_evtadmissao.value|json_print:0|base64_encode_me %}">
+        <a id="s2200_observacoes__s2200_evtadmissao__div_acessar" href="{% url 's2200_evtadmissao_salvar' pk=s2200_observacoes_form.s2200_evtadmissao.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

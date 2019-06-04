@@ -66,7 +66,6 @@ class s2306evtTSVAltContrList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2306evtTSVAltContrDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2306evtTSVAltContr.objects.all()

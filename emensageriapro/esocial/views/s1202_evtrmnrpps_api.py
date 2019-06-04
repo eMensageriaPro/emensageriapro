@@ -66,7 +66,6 @@ class s1202evtRmnRPPSList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1202evtRmnRPPSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202evtRmnRPPS.objects.all()

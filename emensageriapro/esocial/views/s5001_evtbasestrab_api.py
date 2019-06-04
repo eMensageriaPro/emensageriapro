@@ -66,7 +66,6 @@ class s5001evtBasesTrabList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s5001evtBasesTrabDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5001evtBasesTrab.objects.all()

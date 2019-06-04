@@ -54,67 +54,51 @@ from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.s1000.models import s1000inclusao
-from emensageriapro.s1000.models import s1000alteracao
-from emensageriapro.s1000.models import s1000exclusao
-from emensageriapro.s1000.forms import form_s1000_inclusao
-from emensageriapro.s1000.forms import form_s1000_alteracao
-from emensageriapro.s1000.forms import form_s1000_exclusao
 
 
 @login_required
-def apagar(request, hash):
-
+def apagar(request, pk):
+        
+    import json
+    from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1070_evttabprocesso_id = int(dict_hash['id'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    
-    s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso, id=s1070_evttabprocesso_id)
+    s1070_evttabprocesso = get_object_or_404(s1070evtTabProcesso, id=pk)
     
     if request.method == 'POST':
     
         if s1070_evttabprocesso.status == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s1070_evttabprocesso), indent=4, sort_keys=True, default=str)
-            obj = s1070evtTabProcesso.objects.get(id = s1070_evttabprocesso_id)
+            obj = s1070evtTabProcesso.objects.get(id=pk)
             obj.delete(request=request)
             #s1070_evttabprocesso_apagar_custom
             #s1070_evttabprocesso_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's1070_evttabprocesso', s1070_evttabprocesso_id, usuario_id, 3)
-        else:
-            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
-        if request.session['retorno_pagina']== 's1070_evttabprocesso_salvar':
-        
-            return redirect('s1070_evttabprocesso', 
-                            hash=request.session['retorno_hash'])
-            
+                             's1070_evttabprocesso', pk, request.user.id, 3)
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+                                        possível apagar os eventos com status "Cadastrado"!''')
+            
+        if 's1070_evttabprocesso' in request.session['return_page']:
+        
+            return redirect('s1070_evttabprocesso')
+            
+        else:
+        
+            return redirect(request.session['return_page'], 
+                            pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk, 
         's1070_evttabprocesso': s1070_evttabprocesso, 
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s1070_evttabprocesso', ],
-        'hash': hash,
     }
     
     return render(request, 's1070_evttabprocesso_apagar.html', context)

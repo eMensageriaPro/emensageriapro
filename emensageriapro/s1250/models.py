@@ -109,8 +109,11 @@ class s1250ideProdutor(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250ideProdutor", "Can view S1250IDEPRODUTOR"),
-            ("can_view_menu_s1250ideProdutor", "Can view menu S1250IDEPRODUTOR"),)
+            ("can_see_list_s1250ideProdutor", u"Pode ver listagem do modelo S1250IDEPRODUTOR"),
+            ("can_see_data_s1250ideProdutor", u"Pode visualizar o conteúdo do modelo S1250IDEPRODUTOR"),
+            ("can_see_menu_s1250ideProdutor", u"Pode visualizar no menu o modelo S1250IDEPRODUTOR"),
+            ("can_print_list_s1250ideProdutor", u"Pode imprimir listagem do modelo S1250IDEPRODUTOR"),
+            ("can_print_data_s1250ideProdutor", u"Pode imprimir o conteúdo do modelo S1250IDEPRODUTOR"), )
             
         ordering = [
             's1250_tpaquis',
@@ -180,8 +183,11 @@ class s1250infoProcJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250infoProcJ", "Can view S1250INFOPROCJ"),
-            ("can_view_menu_s1250infoProcJ", "Can view menu S1250INFOPROCJ"),)
+            ("can_see_list_s1250infoProcJ", u"Pode ver listagem do modelo S1250INFOPROCJ"),
+            ("can_see_data_s1250infoProcJ", u"Pode visualizar o conteúdo do modelo S1250INFOPROCJ"),
+            ("can_see_menu_s1250infoProcJ", u"Pode visualizar no menu o modelo S1250INFOPROCJ"),
+            ("can_print_list_s1250infoProcJ", u"Pode imprimir listagem do modelo S1250INFOPROCJ"),
+            ("can_print_data_s1250infoProcJ", u"Pode imprimir o conteúdo do modelo S1250INFOPROCJ"), )
             
         ordering = [
             's1250_tpaquis',
@@ -249,8 +255,11 @@ class s1250infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250infoProcJud", "Can view S1250INFOPROCJUD"),
-            ("can_view_menu_s1250infoProcJud", "Can view menu S1250INFOPROCJUD"),)
+            ("can_see_list_s1250infoProcJud", u"Pode ver listagem do modelo S1250INFOPROCJUD"),
+            ("can_see_data_s1250infoProcJud", u"Pode visualizar o conteúdo do modelo S1250INFOPROCJUD"),
+            ("can_see_menu_s1250infoProcJud", u"Pode visualizar no menu o modelo S1250INFOPROCJUD"),
+            ("can_print_list_s1250infoProcJud", u"Pode imprimir listagem do modelo S1250INFOPROCJUD"),
+            ("can_print_data_s1250infoProcJud", u"Pode imprimir o conteúdo do modelo S1250INFOPROCJUD"), )
             
         ordering = [
             's1250_ideprodutor',
@@ -321,8 +330,11 @@ class s1250nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250nfs", "Can view S1250NFS"),
-            ("can_view_menu_s1250nfs", "Can view menu S1250NFS"),)
+            ("can_see_list_s1250nfs", u"Pode ver listagem do modelo S1250NFS"),
+            ("can_see_data_s1250nfs", u"Pode visualizar o conteúdo do modelo S1250NFS"),
+            ("can_see_menu_s1250nfs", u"Pode visualizar no menu o modelo S1250NFS"),
+            ("can_print_list_s1250nfs", u"Pode imprimir listagem do modelo S1250NFS"),
+            ("can_print_data_s1250nfs", u"Pode imprimir o conteúdo do modelo S1250NFS"), )
             
         ordering = [
             's1250_ideprodutor',
@@ -385,8 +397,11 @@ class s1250tpAquis(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250tpAquis", "Can view S1250TPAQUIS"),
-            ("can_view_menu_s1250tpAquis", "Can view menu S1250TPAQUIS"),)
+            ("can_see_list_s1250tpAquis", u"Pode ver listagem do modelo S1250TPAQUIS"),
+            ("can_see_data_s1250tpAquis", u"Pode visualizar o conteúdo do modelo S1250TPAQUIS"),
+            ("can_see_menu_s1250tpAquis", u"Pode visualizar no menu o modelo S1250TPAQUIS"),
+            ("can_print_list_s1250tpAquis", u"Pode imprimir listagem do modelo S1250TPAQUIS"),
+            ("can_print_data_s1250tpAquis", u"Pode imprimir o conteúdo do modelo S1250TPAQUIS"), )
             
         ordering = [
             's1250_evtaqprod',

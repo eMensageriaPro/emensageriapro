@@ -48,7 +48,7 @@ from emensageriapro.s1270.views import s1270_remunavnp_api as s1270_remunavnp_ap
 urlpatterns = [
 
 
-    url(r'^s1270-remunavnp/apagar/(?P<hash>.*)/$', 
+    url(r'^s1270-remunavnp/apagar/(?P<pk>[0-9]+)/$', 
         s1270_remunavnp_apagar_views.apagar, 
         name='s1270_remunavnp_apagar'),
 
@@ -58,13 +58,25 @@ urlpatterns = [
     url(r'^s1270-remunavnp/api/(?P<pk>[0-9]+)/$',
         s1270_remunavnp_api_views.s1270remunAvNPDetail.as_view() ),
 
-    url(r'^s1270-remunavnp/listar/(?P<hash>.*)/$', 
+    url(r'^s1270-remunavnp/$', 
         s1270_remunavnp_listar_views.listar, 
         name='s1270_remunavnp'),
 
-    url(r'^s1270-remunavnp/salvar/(?P<hash>.*)/$', 
+    url(r'^s1270-remunavnp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1270_remunavnp_salvar_views.salvar, 
         name='s1270_remunavnp_salvar'),
+        
+    url(r'^s1270-remunavnp/cadastrar/$', 
+        s1270_remunavnp_salvar_views.salvar, 
+        name='s1270_remunavnp_cadastrar'),
+
+    url(r'^s1270-remunavnp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1270_remunavnp_salvar_views.salvar, 
+        name='s1270_remunavnp_salvar_output'),
+        
+    url(r'^s1270-remunavnp/(?P<output>[\w-]+)/$', 
+        s1270_remunavnp_listar_views.listar, 
+        name='s1270_remunavnp_output'),
 
 
 ]

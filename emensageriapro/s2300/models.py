@@ -105,8 +105,11 @@ class s2300CNH(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300CNH", "Can view S2300CNH"),
-            ("can_view_menu_s2300CNH", "Can view menu S2300CNH"),)
+            ("can_see_list_s2300CNH", u"Pode ver listagem do modelo S2300CNH"),
+            ("can_see_data_s2300CNH", u"Pode visualizar o conteúdo do modelo S2300CNH"),
+            ("can_see_menu_s2300CNH", u"Pode visualizar no menu o modelo S2300CNH"),
+            ("can_print_list_s2300CNH", u"Pode imprimir listagem do modelo S2300CNH"),
+            ("can_print_data_s2300CNH", u"Pode imprimir o conteúdo do modelo S2300CNH"), )
             
         ordering = [
             's2300_documentos',
@@ -169,8 +172,11 @@ class s2300CTPS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300CTPS", "Can view S2300CTPS"),
-            ("can_view_menu_s2300CTPS", "Can view menu S2300CTPS"),)
+            ("can_see_list_s2300CTPS", u"Pode ver listagem do modelo S2300CTPS"),
+            ("can_see_data_s2300CTPS", u"Pode visualizar o conteúdo do modelo S2300CTPS"),
+            ("can_see_menu_s2300CTPS", u"Pode visualizar no menu o modelo S2300CTPS"),
+            ("can_print_list_s2300CTPS", u"Pode imprimir listagem do modelo S2300CTPS"),
+            ("can_print_data_s2300CTPS", u"Pode imprimir o conteúdo do modelo S2300CTPS"), )
             
         ordering = [
             's2300_documentos',
@@ -232,8 +238,11 @@ class s2300OC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300OC", "Can view S2300OC"),
-            ("can_view_menu_s2300OC", "Can view menu S2300OC"),)
+            ("can_see_list_s2300OC", u"Pode ver listagem do modelo S2300OC"),
+            ("can_see_data_s2300OC", u"Pode visualizar o conteúdo do modelo S2300OC"),
+            ("can_see_menu_s2300OC", u"Pode visualizar no menu o modelo S2300OC"),
+            ("can_print_list_s2300OC", u"Pode imprimir listagem do modelo S2300OC"),
+            ("can_print_data_s2300OC", u"Pode imprimir o conteúdo do modelo S2300OC"), )
             
         ordering = [
             's2300_documentos',
@@ -293,8 +302,11 @@ class s2300RG(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300RG", "Can view S2300RG"),
-            ("can_view_menu_s2300RG", "Can view menu S2300RG"),)
+            ("can_see_list_s2300RG", u"Pode ver listagem do modelo S2300RG"),
+            ("can_see_data_s2300RG", u"Pode visualizar o conteúdo do modelo S2300RG"),
+            ("can_see_menu_s2300RG", u"Pode visualizar no menu o modelo S2300RG"),
+            ("can_print_list_s2300RG", u"Pode imprimir listagem do modelo S2300RG"),
+            ("can_print_data_s2300RG", u"Pode imprimir o conteúdo do modelo S2300RG"), )
             
         ordering = [
             's2300_documentos',
@@ -354,8 +366,11 @@ class s2300RIC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300RIC", "Can view S2300RIC"),
-            ("can_view_menu_s2300RIC", "Can view menu S2300RIC"),)
+            ("can_see_list_s2300RIC", u"Pode ver listagem do modelo S2300RIC"),
+            ("can_see_data_s2300RIC", u"Pode visualizar o conteúdo do modelo S2300RIC"),
+            ("can_see_menu_s2300RIC", u"Pode visualizar no menu o modelo S2300RIC"),
+            ("can_print_list_s2300RIC", u"Pode imprimir listagem do modelo S2300RIC"),
+            ("can_print_data_s2300RIC", u"Pode imprimir o conteúdo do modelo S2300RIC"), )
             
         ordering = [
             's2300_documentos',
@@ -415,8 +430,11 @@ class s2300RNE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300RNE", "Can view S2300RNE"),
-            ("can_view_menu_s2300RNE", "Can view menu S2300RNE"),)
+            ("can_see_list_s2300RNE", u"Pode ver listagem do modelo S2300RNE"),
+            ("can_see_data_s2300RNE", u"Pode visualizar o conteúdo do modelo S2300RNE"),
+            ("can_see_menu_s2300RNE", u"Pode visualizar no menu o modelo S2300RNE"),
+            ("can_print_list_s2300RNE", u"Pode imprimir listagem do modelo S2300RNE"),
+            ("can_print_data_s2300RNE", u"Pode imprimir o conteúdo do modelo S2300RNE"), )
             
         ordering = [
             's2300_documentos',
@@ -475,8 +493,11 @@ class s2300afastamento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300afastamento", "Can view S2300AFASTAMENTO"),
-            ("can_view_menu_s2300afastamento", "Can view menu S2300AFASTAMENTO"),)
+            ("can_see_list_s2300afastamento", u"Pode ver listagem do modelo S2300AFASTAMENTO"),
+            ("can_see_data_s2300afastamento", u"Pode visualizar o conteúdo do modelo S2300AFASTAMENTO"),
+            ("can_see_menu_s2300afastamento", u"Pode visualizar no menu o modelo S2300AFASTAMENTO"),
+            ("can_print_list_s2300afastamento", u"Pode imprimir listagem do modelo S2300AFASTAMENTO"),
+            ("can_print_data_s2300afastamento", u"Pode imprimir o conteúdo do modelo S2300AFASTAMENTO"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -545,8 +566,11 @@ class s2300ageIntegracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300ageIntegracao", "Can view S2300AGEINTEGRACAO"),
-            ("can_view_menu_s2300ageIntegracao", "Can view menu S2300AGEINTEGRACAO"),)
+            ("can_see_list_s2300ageIntegracao", u"Pode ver listagem do modelo S2300AGEINTEGRACAO"),
+            ("can_see_data_s2300ageIntegracao", u"Pode visualizar o conteúdo do modelo S2300AGEINTEGRACAO"),
+            ("can_see_menu_s2300ageIntegracao", u"Pode visualizar no menu o modelo S2300AGEINTEGRACAO"),
+            ("can_print_list_s2300ageIntegracao", u"Pode imprimir listagem do modelo S2300AGEINTEGRACAO"),
+            ("can_print_data_s2300ageIntegracao", u"Pode imprimir o conteúdo do modelo S2300AGEINTEGRACAO"), )
             
         ordering = [
             's2300_infoestagiario',
@@ -619,8 +643,11 @@ class s2300brasil(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300brasil", "Can view S2300BRASIL"),
-            ("can_view_menu_s2300brasil", "Can view menu S2300BRASIL"),)
+            ("can_see_list_s2300brasil", u"Pode ver listagem do modelo S2300BRASIL"),
+            ("can_see_data_s2300brasil", u"Pode visualizar o conteúdo do modelo S2300BRASIL"),
+            ("can_see_menu_s2300brasil", u"Pode visualizar no menu o modelo S2300BRASIL"),
+            ("can_print_list_s2300brasil", u"Pode imprimir listagem do modelo S2300BRASIL"),
+            ("can_print_data_s2300brasil", u"Pode imprimir o conteúdo do modelo S2300BRASIL"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -682,8 +709,11 @@ class s2300cargoFuncao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300cargoFuncao", "Can view S2300CARGOFUNCAO"),
-            ("can_view_menu_s2300cargoFuncao", "Can view menu S2300CARGOFUNCAO"),)
+            ("can_see_list_s2300cargoFuncao", u"Pode ver listagem do modelo S2300CARGOFUNCAO"),
+            ("can_see_data_s2300cargoFuncao", u"Pode visualizar o conteúdo do modelo S2300CARGOFUNCAO"),
+            ("can_see_menu_s2300cargoFuncao", u"Pode visualizar no menu o modelo S2300CARGOFUNCAO"),
+            ("can_print_list_s2300cargoFuncao", u"Pode imprimir listagem do modelo S2300CARGOFUNCAO"),
+            ("can_print_data_s2300cargoFuncao", u"Pode imprimir o conteúdo do modelo S2300CARGOFUNCAO"), )
             
         ordering = [
             's2300_infocomplementares',
@@ -741,8 +771,11 @@ class s2300contato(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300contato", "Can view S2300CONTATO"),
-            ("can_view_menu_s2300contato", "Can view menu S2300CONTATO"),)
+            ("can_see_list_s2300contato", u"Pode ver listagem do modelo S2300CONTATO"),
+            ("can_see_data_s2300contato", u"Pode visualizar o conteúdo do modelo S2300CONTATO"),
+            ("can_see_menu_s2300contato", u"Pode visualizar no menu o modelo S2300CONTATO"),
+            ("can_print_list_s2300contato", u"Pode imprimir listagem do modelo S2300CONTATO"),
+            ("can_print_data_s2300contato", u"Pode imprimir o conteúdo do modelo S2300CONTATO"), )
             
         ordering = [
             's2300_evttsvinicio',]
@@ -810,8 +843,11 @@ class s2300dependente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300dependente", "Can view S2300DEPENDENTE"),
-            ("can_view_menu_s2300dependente", "Can view menu S2300DEPENDENTE"),)
+            ("can_see_list_s2300dependente", u"Pode ver listagem do modelo S2300DEPENDENTE"),
+            ("can_see_data_s2300dependente", u"Pode visualizar o conteúdo do modelo S2300DEPENDENTE"),
+            ("can_see_menu_s2300dependente", u"Pode visualizar no menu o modelo S2300DEPENDENTE"),
+            ("can_print_list_s2300dependente", u"Pode imprimir listagem do modelo S2300DEPENDENTE"),
+            ("can_print_data_s2300dependente", u"Pode imprimir o conteúdo do modelo S2300DEPENDENTE"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -870,8 +906,11 @@ class s2300documentos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300documentos", "Can view S2300DOCUMENTOS"),
-            ("can_view_menu_s2300documentos", "Can view menu S2300DOCUMENTOS"),)
+            ("can_see_list_s2300documentos", u"Pode ver listagem do modelo S2300DOCUMENTOS"),
+            ("can_see_data_s2300documentos", u"Pode visualizar o conteúdo do modelo S2300DOCUMENTOS"),
+            ("can_see_menu_s2300documentos", u"Pode visualizar no menu o modelo S2300DOCUMENTOS"),
+            ("can_print_list_s2300documentos", u"Pode imprimir listagem do modelo S2300DOCUMENTOS"),
+            ("can_print_data_s2300documentos", u"Pode imprimir o conteúdo do modelo S2300DOCUMENTOS"), )
             
         ordering = [
             's2300_evttsvinicio',]
@@ -935,8 +974,11 @@ class s2300exterior(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300exterior", "Can view S2300EXTERIOR"),
-            ("can_view_menu_s2300exterior", "Can view menu S2300EXTERIOR"),)
+            ("can_see_list_s2300exterior", u"Pode ver listagem do modelo S2300EXTERIOR"),
+            ("can_see_data_s2300exterior", u"Pode visualizar o conteúdo do modelo S2300EXTERIOR"),
+            ("can_see_menu_s2300exterior", u"Pode visualizar no menu o modelo S2300EXTERIOR"),
+            ("can_print_list_s2300exterior", u"Pode imprimir listagem do modelo S2300EXTERIOR"),
+            ("can_print_data_s2300exterior", u"Pode imprimir o conteúdo do modelo S2300EXTERIOR"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -996,8 +1038,11 @@ class s2300fgts(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300fgts", "Can view S2300FGTS"),
-            ("can_view_menu_s2300fgts", "Can view menu S2300FGTS"),)
+            ("can_see_list_s2300fgts", u"Pode ver listagem do modelo S2300FGTS"),
+            ("can_see_data_s2300fgts", u"Pode visualizar o conteúdo do modelo S2300FGTS"),
+            ("can_see_menu_s2300fgts", u"Pode visualizar no menu o modelo S2300FGTS"),
+            ("can_print_list_s2300fgts", u"Pode imprimir listagem do modelo S2300FGTS"),
+            ("can_print_data_s2300fgts", u"Pode imprimir o conteúdo do modelo S2300FGTS"), )
             
         ordering = [
             's2300_infocomplementares',
@@ -1051,8 +1096,11 @@ class s2300infoComplementares(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300infoComplementares", "Can view S2300INFOCOMPLEMENTARES"),
-            ("can_view_menu_s2300infoComplementares", "Can view menu S2300INFOCOMPLEMENTARES"),)
+            ("can_see_list_s2300infoComplementares", u"Pode ver listagem do modelo S2300INFOCOMPLEMENTARES"),
+            ("can_see_data_s2300infoComplementares", u"Pode visualizar o conteúdo do modelo S2300INFOCOMPLEMENTARES"),
+            ("can_see_menu_s2300infoComplementares", u"Pode visualizar no menu o modelo S2300INFOCOMPLEMENTARES"),
+            ("can_print_list_s2300infoComplementares", u"Pode imprimir listagem do modelo S2300INFOCOMPLEMENTARES"),
+            ("can_print_data_s2300infoComplementares", u"Pode imprimir o conteúdo do modelo S2300INFOCOMPLEMENTARES"), )
             
         ordering = [
             's2300_evttsvinicio',]
@@ -1118,8 +1166,11 @@ class s2300infoDeficiencia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300infoDeficiencia", "Can view S2300INFODEFICIENCIA"),
-            ("can_view_menu_s2300infoDeficiencia", "Can view menu S2300INFODEFICIENCIA"),)
+            ("can_see_list_s2300infoDeficiencia", u"Pode ver listagem do modelo S2300INFODEFICIENCIA"),
+            ("can_see_data_s2300infoDeficiencia", u"Pode visualizar o conteúdo do modelo S2300INFODEFICIENCIA"),
+            ("can_see_menu_s2300infoDeficiencia", u"Pode visualizar no menu o modelo S2300INFODEFICIENCIA"),
+            ("can_print_list_s2300infoDeficiencia", u"Pode imprimir listagem do modelo S2300INFODEFICIENCIA"),
+            ("can_print_data_s2300infoDeficiencia", u"Pode imprimir o conteúdo do modelo S2300INFODEFICIENCIA"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -1183,8 +1234,11 @@ class s2300infoDirigenteSindical(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300infoDirigenteSindical", "Can view S2300INFODIRIGENTESINDICAL"),
-            ("can_view_menu_s2300infoDirigenteSindical", "Can view menu S2300INFODIRIGENTESINDICAL"),)
+            ("can_see_list_s2300infoDirigenteSindical", u"Pode ver listagem do modelo S2300INFODIRIGENTESINDICAL"),
+            ("can_see_data_s2300infoDirigenteSindical", u"Pode visualizar o conteúdo do modelo S2300INFODIRIGENTESINDICAL"),
+            ("can_see_menu_s2300infoDirigenteSindical", u"Pode visualizar no menu o modelo S2300INFODIRIGENTESINDICAL"),
+            ("can_print_list_s2300infoDirigenteSindical", u"Pode imprimir listagem do modelo S2300INFODIRIGENTESINDICAL"),
+            ("can_print_data_s2300infoDirigenteSindical", u"Pode imprimir o conteúdo do modelo S2300INFODIRIGENTESINDICAL"), )
             
         ordering = [
             's2300_infocomplementares',
@@ -1256,8 +1310,11 @@ class s2300infoEstagiario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300infoEstagiario", "Can view S2300INFOESTAGIARIO"),
-            ("can_view_menu_s2300infoEstagiario", "Can view menu S2300INFOESTAGIARIO"),)
+            ("can_see_list_s2300infoEstagiario", u"Pode ver listagem do modelo S2300INFOESTAGIARIO"),
+            ("can_see_data_s2300infoEstagiario", u"Pode visualizar o conteúdo do modelo S2300INFOESTAGIARIO"),
+            ("can_see_menu_s2300infoEstagiario", u"Pode visualizar no menu o modelo S2300INFOESTAGIARIO"),
+            ("can_print_list_s2300infoEstagiario", u"Pode imprimir listagem do modelo S2300INFOESTAGIARIO"),
+            ("can_print_data_s2300infoEstagiario", u"Pode imprimir o conteúdo do modelo S2300INFOESTAGIARIO"), )
             
         ordering = [
             's2300_infocomplementares',
@@ -1329,8 +1386,11 @@ class s2300infoTrabCedido(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300infoTrabCedido", "Can view S2300INFOTRABCEDIDO"),
-            ("can_view_menu_s2300infoTrabCedido", "Can view menu S2300INFOTRABCEDIDO"),)
+            ("can_see_list_s2300infoTrabCedido", u"Pode ver listagem do modelo S2300INFOTRABCEDIDO"),
+            ("can_see_data_s2300infoTrabCedido", u"Pode visualizar o conteúdo do modelo S2300INFOTRABCEDIDO"),
+            ("can_see_menu_s2300infoTrabCedido", u"Pode visualizar no menu o modelo S2300INFOTRABCEDIDO"),
+            ("can_print_list_s2300infoTrabCedido", u"Pode imprimir listagem do modelo S2300INFOTRABCEDIDO"),
+            ("can_print_data_s2300infoTrabCedido", u"Pode imprimir o conteúdo do modelo S2300INFOTRABCEDIDO"), )
             
         ordering = [
             's2300_infocomplementares',
@@ -1395,8 +1455,11 @@ class s2300mudancaCPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300mudancaCPF", "Can view S2300MUDANCACPF"),
-            ("can_view_menu_s2300mudancaCPF", "Can view menu S2300MUDANCACPF"),)
+            ("can_see_list_s2300mudancaCPF", u"Pode ver listagem do modelo S2300MUDANCACPF"),
+            ("can_see_data_s2300mudancaCPF", u"Pode visualizar o conteúdo do modelo S2300MUDANCACPF"),
+            ("can_see_menu_s2300mudancaCPF", u"Pode visualizar no menu o modelo S2300MUDANCACPF"),
+            ("can_print_list_s2300mudancaCPF", u"Pode imprimir listagem do modelo S2300MUDANCACPF"),
+            ("can_print_data_s2300mudancaCPF", u"Pode imprimir o conteúdo do modelo S2300MUDANCACPF"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -1456,8 +1519,11 @@ class s2300remuneracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300remuneracao", "Can view S2300REMUNERACAO"),
-            ("can_view_menu_s2300remuneracao", "Can view menu S2300REMUNERACAO"),)
+            ("can_see_list_s2300remuneracao", u"Pode ver listagem do modelo S2300REMUNERACAO"),
+            ("can_see_data_s2300remuneracao", u"Pode visualizar o conteúdo do modelo S2300REMUNERACAO"),
+            ("can_see_menu_s2300remuneracao", u"Pode visualizar no menu o modelo S2300REMUNERACAO"),
+            ("can_print_list_s2300remuneracao", u"Pode imprimir listagem do modelo S2300REMUNERACAO"),
+            ("can_print_data_s2300remuneracao", u"Pode imprimir o conteúdo do modelo S2300REMUNERACAO"), )
             
         ordering = [
             's2300_infocomplementares',
@@ -1516,8 +1582,11 @@ class s2300supervisorEstagio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300supervisorEstagio", "Can view S2300SUPERVISORESTAGIO"),
-            ("can_view_menu_s2300supervisorEstagio", "Can view menu S2300SUPERVISORESTAGIO"),)
+            ("can_see_list_s2300supervisorEstagio", u"Pode ver listagem do modelo S2300SUPERVISORESTAGIO"),
+            ("can_see_data_s2300supervisorEstagio", u"Pode visualizar o conteúdo do modelo S2300SUPERVISORESTAGIO"),
+            ("can_see_menu_s2300supervisorEstagio", u"Pode visualizar no menu o modelo S2300SUPERVISORESTAGIO"),
+            ("can_print_list_s2300supervisorEstagio", u"Pode imprimir listagem do modelo S2300SUPERVISORESTAGIO"),
+            ("can_print_data_s2300supervisorEstagio", u"Pode imprimir o conteúdo do modelo S2300SUPERVISORESTAGIO"), )
             
         ordering = [
             's2300_infoestagiario',
@@ -1574,8 +1643,11 @@ class s2300termino(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300termino", "Can view S2300TERMINO"),
-            ("can_view_menu_s2300termino", "Can view menu S2300TERMINO"),)
+            ("can_see_list_s2300termino", u"Pode ver listagem do modelo S2300TERMINO"),
+            ("can_see_data_s2300termino", u"Pode visualizar o conteúdo do modelo S2300TERMINO"),
+            ("can_see_menu_s2300termino", u"Pode visualizar no menu o modelo S2300TERMINO"),
+            ("can_print_list_s2300termino", u"Pode imprimir listagem do modelo S2300TERMINO"),
+            ("can_print_data_s2300termino", u"Pode imprimir o conteúdo do modelo S2300TERMINO"), )
             
         ordering = [
             's2300_evttsvinicio',
@@ -1636,8 +1708,11 @@ class s2300trabEstrangeiro(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300trabEstrangeiro", "Can view S2300TRABESTRANGEIRO"),
-            ("can_view_menu_s2300trabEstrangeiro", "Can view menu S2300TRABESTRANGEIRO"),)
+            ("can_see_list_s2300trabEstrangeiro", u"Pode ver listagem do modelo S2300TRABESTRANGEIRO"),
+            ("can_see_data_s2300trabEstrangeiro", u"Pode visualizar o conteúdo do modelo S2300TRABESTRANGEIRO"),
+            ("can_see_menu_s2300trabEstrangeiro", u"Pode visualizar no menu o modelo S2300TRABESTRANGEIRO"),
+            ("can_print_list_s2300trabEstrangeiro", u"Pode imprimir listagem do modelo S2300TRABESTRANGEIRO"),
+            ("can_print_data_s2300trabEstrangeiro", u"Pode imprimir o conteúdo do modelo S2300TRABESTRANGEIRO"), )
             
         ordering = [
             's2300_evttsvinicio',

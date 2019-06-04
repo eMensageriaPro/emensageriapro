@@ -72,46 +72,41 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def criar_alteracao(request, hash):
+def criar_alteracao(request, pk):
 
     from emensageriapro.efdreinf.views.r9000_evtexclusao_importar import read_r9000_evtexclusao_string
     from emensageriapro.efdreinf.views.r9000_evtexclusao_gerar_xml import gerar_xml_r9000
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('efdreinf.can_create_change_r9000evtExclusao'):
 
-    dict_hash = get_hash_url(hash)
-    r9000_evtexclusao_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('efdreinf.can_create_change_event_r9000evtExclusao'):
+        r9000_evtexclusao = get_object_or_404(
+            r9000evtExclusao,
+            id=pk)
 
-        if r9000_evtexclusao_id:
-    
-            r9000_evtexclusao = get_object_or_404(
-                r9000evtExclusao,
-                id=r9000_evtexclusao_id)
-    
-            texto = gerar_xml_r9000(r9000_evtexclusao_id, versao="|")
-            texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-            dados = read_r9000_evtexclusao_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r9000_evtexclusao)
-    
-            r9000evtExclusao.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r9000_evtexclusao.identidade),
-                'r9000_evtexclusao', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de alteração criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('r9000_evtexclusao_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de alteração!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        texto = gerar_xml_r9000(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+        dados = read_r9000_evtexclusao_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(r9000_evtexclusao)
+
+        r9000evtExclusao.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r9000_evtexclusao.identidade),
+            'r9000_evtexclusao', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de alteração criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('r9000_evtexclusao_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+        return redirect('r9000_evtexclusao_salvar', pk=pk, tab='master')

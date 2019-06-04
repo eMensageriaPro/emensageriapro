@@ -105,8 +105,11 @@ class s2205CNH(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205CNH", "Can view S2205CNH"),
-            ("can_view_menu_s2205CNH", "Can view menu S2205CNH"),)
+            ("can_see_list_s2205CNH", u"Pode ver listagem do modelo S2205CNH"),
+            ("can_see_data_s2205CNH", u"Pode visualizar o conteúdo do modelo S2205CNH"),
+            ("can_see_menu_s2205CNH", u"Pode visualizar no menu o modelo S2205CNH"),
+            ("can_print_list_s2205CNH", u"Pode imprimir listagem do modelo S2205CNH"),
+            ("can_print_data_s2205CNH", u"Pode imprimir o conteúdo do modelo S2205CNH"), )
             
         ordering = [
             's2205_documentos',
@@ -169,8 +172,11 @@ class s2205CTPS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205CTPS", "Can view S2205CTPS"),
-            ("can_view_menu_s2205CTPS", "Can view menu S2205CTPS"),)
+            ("can_see_list_s2205CTPS", u"Pode ver listagem do modelo S2205CTPS"),
+            ("can_see_data_s2205CTPS", u"Pode visualizar o conteúdo do modelo S2205CTPS"),
+            ("can_see_menu_s2205CTPS", u"Pode visualizar no menu o modelo S2205CTPS"),
+            ("can_print_list_s2205CTPS", u"Pode imprimir listagem do modelo S2205CTPS"),
+            ("can_print_data_s2205CTPS", u"Pode imprimir o conteúdo do modelo S2205CTPS"), )
             
         ordering = [
             's2205_documentos',
@@ -232,8 +238,11 @@ class s2205OC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205OC", "Can view S2205OC"),
-            ("can_view_menu_s2205OC", "Can view menu S2205OC"),)
+            ("can_see_list_s2205OC", u"Pode ver listagem do modelo S2205OC"),
+            ("can_see_data_s2205OC", u"Pode visualizar o conteúdo do modelo S2205OC"),
+            ("can_see_menu_s2205OC", u"Pode visualizar no menu o modelo S2205OC"),
+            ("can_print_list_s2205OC", u"Pode imprimir listagem do modelo S2205OC"),
+            ("can_print_data_s2205OC", u"Pode imprimir o conteúdo do modelo S2205OC"), )
             
         ordering = [
             's2205_documentos',
@@ -293,8 +302,11 @@ class s2205RG(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205RG", "Can view S2205RG"),
-            ("can_view_menu_s2205RG", "Can view menu S2205RG"),)
+            ("can_see_list_s2205RG", u"Pode ver listagem do modelo S2205RG"),
+            ("can_see_data_s2205RG", u"Pode visualizar o conteúdo do modelo S2205RG"),
+            ("can_see_menu_s2205RG", u"Pode visualizar no menu o modelo S2205RG"),
+            ("can_print_list_s2205RG", u"Pode imprimir listagem do modelo S2205RG"),
+            ("can_print_data_s2205RG", u"Pode imprimir o conteúdo do modelo S2205RG"), )
             
         ordering = [
             's2205_documentos',
@@ -354,8 +366,11 @@ class s2205RIC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205RIC", "Can view S2205RIC"),
-            ("can_view_menu_s2205RIC", "Can view menu S2205RIC"),)
+            ("can_see_list_s2205RIC", u"Pode ver listagem do modelo S2205RIC"),
+            ("can_see_data_s2205RIC", u"Pode visualizar o conteúdo do modelo S2205RIC"),
+            ("can_see_menu_s2205RIC", u"Pode visualizar no menu o modelo S2205RIC"),
+            ("can_print_list_s2205RIC", u"Pode imprimir listagem do modelo S2205RIC"),
+            ("can_print_data_s2205RIC", u"Pode imprimir o conteúdo do modelo S2205RIC"), )
             
         ordering = [
             's2205_documentos',
@@ -415,8 +430,11 @@ class s2205RNE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205RNE", "Can view S2205RNE"),
-            ("can_view_menu_s2205RNE", "Can view menu S2205RNE"),)
+            ("can_see_list_s2205RNE", u"Pode ver listagem do modelo S2205RNE"),
+            ("can_see_data_s2205RNE", u"Pode visualizar o conteúdo do modelo S2205RNE"),
+            ("can_see_menu_s2205RNE", u"Pode visualizar no menu o modelo S2205RNE"),
+            ("can_print_list_s2205RNE", u"Pode imprimir listagem do modelo S2205RNE"),
+            ("can_print_data_s2205RNE", u"Pode imprimir o conteúdo do modelo S2205RNE"), )
             
         ordering = [
             's2205_documentos',
@@ -473,8 +491,11 @@ class s2205aposentadoria(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205aposentadoria", "Can view S2205APOSENTADORIA"),
-            ("can_view_menu_s2205aposentadoria", "Can view menu S2205APOSENTADORIA"),)
+            ("can_see_list_s2205aposentadoria", u"Pode ver listagem do modelo S2205APOSENTADORIA"),
+            ("can_see_data_s2205aposentadoria", u"Pode visualizar o conteúdo do modelo S2205APOSENTADORIA"),
+            ("can_see_menu_s2205aposentadoria", u"Pode visualizar no menu o modelo S2205APOSENTADORIA"),
+            ("can_print_list_s2205aposentadoria", u"Pode imprimir listagem do modelo S2205APOSENTADORIA"),
+            ("can_print_data_s2205aposentadoria", u"Pode imprimir o conteúdo do modelo S2205APOSENTADORIA"), )
             
         ordering = [
             's2205_evtaltcadastral',
@@ -542,8 +563,11 @@ class s2205brasil(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205brasil", "Can view S2205BRASIL"),
-            ("can_view_menu_s2205brasil", "Can view menu S2205BRASIL"),)
+            ("can_see_list_s2205brasil", u"Pode ver listagem do modelo S2205BRASIL"),
+            ("can_see_data_s2205brasil", u"Pode visualizar o conteúdo do modelo S2205BRASIL"),
+            ("can_see_menu_s2205brasil", u"Pode visualizar no menu o modelo S2205BRASIL"),
+            ("can_print_list_s2205brasil", u"Pode imprimir listagem do modelo S2205BRASIL"),
+            ("can_print_data_s2205brasil", u"Pode imprimir o conteúdo do modelo S2205BRASIL"), )
             
         ordering = [
             's2205_evtaltcadastral',
@@ -606,8 +630,11 @@ class s2205contato(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205contato", "Can view S2205CONTATO"),
-            ("can_view_menu_s2205contato", "Can view menu S2205CONTATO"),)
+            ("can_see_list_s2205contato", u"Pode ver listagem do modelo S2205CONTATO"),
+            ("can_see_data_s2205contato", u"Pode visualizar o conteúdo do modelo S2205CONTATO"),
+            ("can_see_menu_s2205contato", u"Pode visualizar no menu o modelo S2205CONTATO"),
+            ("can_print_list_s2205contato", u"Pode imprimir listagem do modelo S2205CONTATO"),
+            ("can_print_data_s2205contato", u"Pode imprimir o conteúdo do modelo S2205CONTATO"), )
             
         ordering = [
             's2205_evtaltcadastral',]
@@ -675,8 +702,11 @@ class s2205dependente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205dependente", "Can view S2205DEPENDENTE"),
-            ("can_view_menu_s2205dependente", "Can view menu S2205DEPENDENTE"),)
+            ("can_see_list_s2205dependente", u"Pode ver listagem do modelo S2205DEPENDENTE"),
+            ("can_see_data_s2205dependente", u"Pode visualizar o conteúdo do modelo S2205DEPENDENTE"),
+            ("can_see_menu_s2205dependente", u"Pode visualizar no menu o modelo S2205DEPENDENTE"),
+            ("can_print_list_s2205dependente", u"Pode imprimir listagem do modelo S2205DEPENDENTE"),
+            ("can_print_data_s2205dependente", u"Pode imprimir o conteúdo do modelo S2205DEPENDENTE"), )
             
         ordering = [
             's2205_evtaltcadastral',
@@ -735,8 +765,11 @@ class s2205documentos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205documentos", "Can view S2205DOCUMENTOS"),
-            ("can_view_menu_s2205documentos", "Can view menu S2205DOCUMENTOS"),)
+            ("can_see_list_s2205documentos", u"Pode ver listagem do modelo S2205DOCUMENTOS"),
+            ("can_see_data_s2205documentos", u"Pode visualizar o conteúdo do modelo S2205DOCUMENTOS"),
+            ("can_see_menu_s2205documentos", u"Pode visualizar no menu o modelo S2205DOCUMENTOS"),
+            ("can_print_list_s2205documentos", u"Pode imprimir listagem do modelo S2205DOCUMENTOS"),
+            ("can_print_data_s2205documentos", u"Pode imprimir o conteúdo do modelo S2205DOCUMENTOS"), )
             
         ordering = [
             's2205_evtaltcadastral',]
@@ -800,8 +833,11 @@ class s2205exterior(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205exterior", "Can view S2205EXTERIOR"),
-            ("can_view_menu_s2205exterior", "Can view menu S2205EXTERIOR"),)
+            ("can_see_list_s2205exterior", u"Pode ver listagem do modelo S2205EXTERIOR"),
+            ("can_see_data_s2205exterior", u"Pode visualizar o conteúdo do modelo S2205EXTERIOR"),
+            ("can_see_menu_s2205exterior", u"Pode visualizar no menu o modelo S2205EXTERIOR"),
+            ("can_print_list_s2205exterior", u"Pode imprimir listagem do modelo S2205EXTERIOR"),
+            ("can_print_data_s2205exterior", u"Pode imprimir o conteúdo do modelo S2205EXTERIOR"), )
             
         ordering = [
             's2205_evtaltcadastral',
@@ -872,8 +908,11 @@ class s2205infoDeficiencia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205infoDeficiencia", "Can view S2205INFODEFICIENCIA"),
-            ("can_view_menu_s2205infoDeficiencia", "Can view menu S2205INFODEFICIENCIA"),)
+            ("can_see_list_s2205infoDeficiencia", u"Pode ver listagem do modelo S2205INFODEFICIENCIA"),
+            ("can_see_data_s2205infoDeficiencia", u"Pode visualizar o conteúdo do modelo S2205INFODEFICIENCIA"),
+            ("can_see_menu_s2205infoDeficiencia", u"Pode visualizar no menu o modelo S2205INFODEFICIENCIA"),
+            ("can_print_list_s2205infoDeficiencia", u"Pode imprimir listagem do modelo S2205INFODEFICIENCIA"),
+            ("can_print_data_s2205infoDeficiencia", u"Pode imprimir o conteúdo do modelo S2205INFODEFICIENCIA"), )
             
         ordering = [
             's2205_evtaltcadastral',
@@ -939,8 +978,11 @@ class s2205trabEstrangeiro(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205trabEstrangeiro", "Can view S2205TRABESTRANGEIRO"),
-            ("can_view_menu_s2205trabEstrangeiro", "Can view menu S2205TRABESTRANGEIRO"),)
+            ("can_see_list_s2205trabEstrangeiro", u"Pode ver listagem do modelo S2205TRABESTRANGEIRO"),
+            ("can_see_data_s2205trabEstrangeiro", u"Pode visualizar o conteúdo do modelo S2205TRABESTRANGEIRO"),
+            ("can_see_menu_s2205trabEstrangeiro", u"Pode visualizar no menu o modelo S2205TRABESTRANGEIRO"),
+            ("can_print_list_s2205trabEstrangeiro", u"Pode imprimir listagem do modelo S2205TRABESTRANGEIRO"),
+            ("can_print_data_s2205trabEstrangeiro", u"Pode imprimir o conteúdo do modelo S2205TRABESTRANGEIRO"), )
             
         ordering = [
             's2205_evtaltcadastral',

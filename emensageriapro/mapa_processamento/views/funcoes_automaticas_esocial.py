@@ -40,6 +40,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 
 import datetime
+from django.http import HttpResponseNotFound
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
@@ -119,7 +120,7 @@ def criar_transmissor_esocial(request, grupo, nrinsc, tpinsc):
 
             if hash:
                 messages.error(request, txt)
-                return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+                return redirect('mapa_esocial', tab='master')
             else:
                 data = {'response': txt}
                 return Response(data, status=HTTP_200_OK)
@@ -130,7 +131,7 @@ def criar_transmissor_esocial(request, grupo, nrinsc, tpinsc):
 
             if hash:
                 messages.error(request, txt)
-                return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+                return redirect('mapa_esocial', tab='master')
             else:
                 data = {'response': txt}
                 return Response(data, status=HTTP_200_OK)
@@ -172,23 +173,11 @@ def vincular_transmissor_esocial(request, grupo, model, a):
 
 @csrf_exempt
 @api_view(["GET"])
-def validar(request, hash=None):
-
-    texto = 'Validações processadas com sucesso!'
-
-    db_slug = 'default'
-
-    if hash:
-
-        try:
-            usuario_id = request.user.id
-
-        except:
-            return redirect('login')
-
-        usuario = get_object_or_404(Usuarios, id=usuario_id)
+def validar(request, tab=None):
 
     from django.apps import apps
+
+    texto = 'Validações processadas com sucesso!'
 
     app_models = apps.get_app_config('esocial').get_models()
 
@@ -204,15 +193,20 @@ def validar(request, hash=None):
 
             a.validar()
 
-    if hash:
+    if not tab:
 
         messages.success(request, texto)
-        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
+        return redirect(request.session['return_page'])
 
-    else:
+    elif tab == 'json':
 
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    else:
+
+        data = {'response': u'Página não existe!'}
+        return Response(data, status=HTTP_404_NOT_FOUND)
 
 
 
@@ -221,24 +215,13 @@ def validar(request, hash=None):
 
 @csrf_exempt
 @api_view(["GET"])
-def enviar(request, hash=None):
+def enviar(request, tab=None):
 
     from emensageriapro.mensageiro.views.transmissor_lote_esocial_comunicacao import send_xml
     from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEsocial, TransmissorEventosEsocial
     from django.apps import apps
 
     texto = ''
-
-    if hash:
-
-        try:
-            usuario_id = request.user.id
-
-        except:
-            return redirect('login')
-
-        usuario = get_object_or_404(Usuarios, id=usuario_id)
-
 
     app_models = apps.get_app_config('esocial').get_models()
 
@@ -262,8 +245,10 @@ def enviar(request, hash=None):
 
         if numero_evento < 1200:
             grupo = 1
+
         elif numero_evento >= 1200 and numero_evento <= 1300:
             grupo = 2
+
         else:
             grupo = 3
 
@@ -289,21 +274,32 @@ def enviar(request, hash=None):
 
     texto = '%s transmissores enviaram eventos para o eSocial' % n
 
-    if hash:
+    if not tab:
 
         messages.success(request, texto)
-        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
+        return redirect(request.session['return_page'])
 
-    else:
+    elif tab == 'mapa':
+
+        messages.success(request, texto)
+        return redirect('mapa_esocial', tab='master')
+
+    elif tab == 'json':
+
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    else:
+
+        data = {'response': u'Página não existe!'}
+        return Response(data, status=HTTP_404_NOT_FOUND)
 
 
 
 
 @csrf_exempt
 @api_view(["GET"])
-def consultar(request, hash=None):
+def consultar(request, tab=None):
 
     from emensageriapro.mensageiro.views.transmissor_lote_esocial_comunicacao import send_xml
     from emensageriapro.mensageiro.models import TransmissorLoteEsocial
@@ -311,18 +307,6 @@ def consultar(request, hash=None):
     from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEsocial, TransmissorEventosEsocial
 
     texto = 'Eventos consultados com sucesso!'
-
-    db_slug = 'default'
-
-    if hash:
-
-        try:
-            usuario_id = request.user.id
-
-        except:
-            return redirect('login')
-
-        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     lista_transmissores_esocial = []
 
@@ -353,11 +337,22 @@ def consultar(request, hash=None):
     for a in lista_transmissores:
         send_xml(request, a.id, 'WsConsultarLoteEventos')
 
-    if hash:
+    if not tab:
 
         messages.success(request, texto)
-        return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
+        return redirect(request.session['return_page'])
 
-    else:
+    elif tab == 'mapa':
+
+        messages.success(request, texto)
+        return redirect('mapa_esocial', tab='master')
+
+    elif tab == 'json':
+
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    else:
+
+        data = {'response': u'Página não existe!'}
+        return Response(data, status=HTTP_404_NOT_FOUND)

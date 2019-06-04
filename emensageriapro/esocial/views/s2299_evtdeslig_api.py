@@ -66,7 +66,6 @@ class s2299evtDesligList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2299evtDesligDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2299evtDeslig.objects.all()

@@ -60,7 +60,7 @@ from emensageriapro.r2020.views import r2020_infoprocretad_api as r2020_infoproc
 urlpatterns = [
 
 
-    url(r'^r2020-nfs/apagar/(?P<hash>.*)/$', 
+    url(r'^r2020-nfs/apagar/(?P<pk>[0-9]+)/$', 
         r2020_nfs_apagar_views.apagar, 
         name='r2020_nfs_apagar'),
 
@@ -70,15 +70,27 @@ urlpatterns = [
     url(r'^r2020-nfs/api/(?P<pk>[0-9]+)/$',
         r2020_nfs_api_views.r2020nfsDetail.as_view() ),
 
-    url(r'^r2020-nfs/listar/(?P<hash>.*)/$', 
+    url(r'^r2020-nfs/$', 
         r2020_nfs_listar_views.listar, 
         name='r2020_nfs'),
 
-    url(r'^r2020-nfs/salvar/(?P<hash>.*)/$', 
+    url(r'^r2020-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2020_nfs_salvar_views.salvar, 
         name='r2020_nfs_salvar'),
+        
+    url(r'^r2020-nfs/cadastrar/$', 
+        r2020_nfs_salvar_views.salvar, 
+        name='r2020_nfs_cadastrar'),
 
-    url(r'^r2020-infotpserv/apagar/(?P<hash>.*)/$', 
+    url(r'^r2020-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2020_nfs_salvar_views.salvar, 
+        name='r2020_nfs_salvar_output'),
+        
+    url(r'^r2020-nfs/(?P<output>[\w-]+)/$', 
+        r2020_nfs_listar_views.listar, 
+        name='r2020_nfs_output'),
+
+    url(r'^r2020-infotpserv/apagar/(?P<pk>[0-9]+)/$', 
         r2020_infotpserv_apagar_views.apagar, 
         name='r2020_infotpserv_apagar'),
 
@@ -88,15 +100,27 @@ urlpatterns = [
     url(r'^r2020-infotpserv/api/(?P<pk>[0-9]+)/$',
         r2020_infotpserv_api_views.r2020infoTpServDetail.as_view() ),
 
-    url(r'^r2020-infotpserv/listar/(?P<hash>.*)/$', 
+    url(r'^r2020-infotpserv/$', 
         r2020_infotpserv_listar_views.listar, 
         name='r2020_infotpserv'),
 
-    url(r'^r2020-infotpserv/salvar/(?P<hash>.*)/$', 
+    url(r'^r2020-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2020_infotpserv_salvar_views.salvar, 
         name='r2020_infotpserv_salvar'),
+        
+    url(r'^r2020-infotpserv/cadastrar/$', 
+        r2020_infotpserv_salvar_views.salvar, 
+        name='r2020_infotpserv_cadastrar'),
 
-    url(r'^r2020-infoprocretpr/apagar/(?P<hash>.*)/$', 
+    url(r'^r2020-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2020_infotpserv_salvar_views.salvar, 
+        name='r2020_infotpserv_salvar_output'),
+        
+    url(r'^r2020-infotpserv/(?P<output>[\w-]+)/$', 
+        r2020_infotpserv_listar_views.listar, 
+        name='r2020_infotpserv_output'),
+
+    url(r'^r2020-infoprocretpr/apagar/(?P<pk>[0-9]+)/$', 
         r2020_infoprocretpr_apagar_views.apagar, 
         name='r2020_infoprocretpr_apagar'),
 
@@ -106,15 +130,27 @@ urlpatterns = [
     url(r'^r2020-infoprocretpr/api/(?P<pk>[0-9]+)/$',
         r2020_infoprocretpr_api_views.r2020infoProcRetPrDetail.as_view() ),
 
-    url(r'^r2020-infoprocretpr/listar/(?P<hash>.*)/$', 
+    url(r'^r2020-infoprocretpr/$', 
         r2020_infoprocretpr_listar_views.listar, 
         name='r2020_infoprocretpr'),
 
-    url(r'^r2020-infoprocretpr/salvar/(?P<hash>.*)/$', 
+    url(r'^r2020-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2020_infoprocretpr_salvar_views.salvar, 
         name='r2020_infoprocretpr_salvar'),
+        
+    url(r'^r2020-infoprocretpr/cadastrar/$', 
+        r2020_infoprocretpr_salvar_views.salvar, 
+        name='r2020_infoprocretpr_cadastrar'),
 
-    url(r'^r2020-infoprocretad/apagar/(?P<hash>.*)/$', 
+    url(r'^r2020-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2020_infoprocretpr_salvar_views.salvar, 
+        name='r2020_infoprocretpr_salvar_output'),
+        
+    url(r'^r2020-infoprocretpr/(?P<output>[\w-]+)/$', 
+        r2020_infoprocretpr_listar_views.listar, 
+        name='r2020_infoprocretpr_output'),
+
+    url(r'^r2020-infoprocretad/apagar/(?P<pk>[0-9]+)/$', 
         r2020_infoprocretad_apagar_views.apagar, 
         name='r2020_infoprocretad_apagar'),
 
@@ -124,13 +160,25 @@ urlpatterns = [
     url(r'^r2020-infoprocretad/api/(?P<pk>[0-9]+)/$',
         r2020_infoprocretad_api_views.r2020infoProcRetAdDetail.as_view() ),
 
-    url(r'^r2020-infoprocretad/listar/(?P<hash>.*)/$', 
+    url(r'^r2020-infoprocretad/$', 
         r2020_infoprocretad_listar_views.listar, 
         name='r2020_infoprocretad'),
 
-    url(r'^r2020-infoprocretad/salvar/(?P<hash>.*)/$', 
+    url(r'^r2020-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2020_infoprocretad_salvar_views.salvar, 
         name='r2020_infoprocretad_salvar'),
+        
+    url(r'^r2020-infoprocretad/cadastrar/$', 
+        r2020_infoprocretad_salvar_views.salvar, 
+        name='r2020_infoprocretad_cadastrar'),
+
+    url(r'^r2020-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r2020_infoprocretad_salvar_views.salvar, 
+        name='r2020_infoprocretad_salvar_output'),
+        
+    url(r'^r2020-infoprocretad/(?P<output>[\w-]+)/$', 
+        r2020_infoprocretad_listar_views.listar, 
+        name='r2020_infoprocretad_output'),
 
 
 ]

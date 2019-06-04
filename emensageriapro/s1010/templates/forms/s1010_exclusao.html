@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1010_exclusao__s1010_evttabrubrica__label">Exclusão das informações*</label>
     {% if not for_print %}{% if s1010_exclusao_form.s1010_evttabrubrica.value %}
-        <a href="{% url 's1010_evttabrubrica_salvar' hash='{}'|json_return_page:'s1010_exclusao_salvar'|json_return_hash:hash|json_id:s1010_exclusao_form.s1010_evttabrubrica.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1010_evttabrubrica_salvar' pk=s1010_exclusao_form.s1010_evttabrubrica.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

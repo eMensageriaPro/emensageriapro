@@ -59,52 +59,36 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        retornos_eventos_ocorrencias_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
+def apagar(request, pk):
 
-    retornos_eventos_ocorrencias = get_object_or_404(RetornosEventosOcorrencias, id=retornos_eventos_ocorrencias_id)
+    retornos_eventos_ocorrencias = get_object_or_404(RetornosEventosOcorrencias, id=pk)
     
     if request.method == 'POST':
     
-        obj = RetornosEventosOcorrencias.objects.get(id=retornos_eventos_ocorrencias_id)
+        obj = RetornosEventosOcorrencias.objects.get(id=pk)
         obj.delete(request=request)
         #retornos_eventos_ocorrencias_apagar_custom
         #retornos_eventos_ocorrencias_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
         
-        if request.session['retorno_pagina'] == 'retornos_eventos_ocorrencias_salvar':
+        if 'retornos_eventos_ocorrencias' in request.session['return_page']:
         
-            return redirect('retornos_eventos_ocorrencias', 
-                            hash=request.session['retorno_hash'])
+            return redirect('retornos_eventos_ocorrencias')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
-    
-        'usuario': usuario, 
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'data': datetime.datetime.now(),
         'modulos': ['mensageiro', ],
         'paginas': ['retornos_eventos_ocorrencias', ],
-        'hash': hash,
-        
     }
     
     return render(request, 
-                  'retornos_eventos_ocorrencias_apagar.html', 
-                  context)
+        'retornos_eventos_ocorrencias_apagar.html', 
+        context)

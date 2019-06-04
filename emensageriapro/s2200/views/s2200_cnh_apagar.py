@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s2200_cnh_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s2200_cnh = get_object_or_404(s2200CNH, id=s2200_cnh_id)
+    s2200_cnh = get_object_or_404(s2200CNH, id=pk)
     
     dados_evento = {}
-    
-    if s2200_cnh_id:
-    
-        dados_evento = s2200_cnh.evento()
+    dados_evento = s2200_cnh.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s2200_cnh), indent=4, sort_keys=True, default=str)
-            obj = s2200CNH.objects.get(id = s2200_cnh_id)
+            obj = s2200CNH.objects.get(id=pk)
             obj.delete(request=request)
             #s2200_cnh_apagar_custom
             #s2200_cnh_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's2200_cnh', s2200_cnh_id, usuario_id, 3)
+                             's2200_cnh', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's2200_cnh_salvar':
+        if 's2200_cnh' in request.session['return_page']:
         
-            return redirect('s2200_cnh', hash=request.session['retorno_hash'])
+            return redirect('s2200_cnh')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s2200', ],
         'paginas': ['s2200_cnh', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

@@ -76,7 +76,7 @@ from emensageriapro.r5011.views import r5011_rcprb_api as r5011_rcprb_api_views
 urlpatterns = [
 
 
-    url(r'^r5011-regocorrs/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-regocorrs/apagar/(?P<pk>[0-9]+)/$', 
         r5011_regocorrs_apagar_views.apagar, 
         name='r5011_regocorrs_apagar'),
 
@@ -86,15 +86,27 @@ urlpatterns = [
     url(r'^r5011-regocorrs/api/(?P<pk>[0-9]+)/$',
         r5011_regocorrs_api_views.r5011regOcorrsDetail.as_view() ),
 
-    url(r'^r5011-regocorrs/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-regocorrs/$', 
         r5011_regocorrs_listar_views.listar, 
         name='r5011_regocorrs'),
 
-    url(r'^r5011-regocorrs/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-regocorrs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_regocorrs_salvar_views.salvar, 
         name='r5011_regocorrs_salvar'),
+        
+    url(r'^r5011-regocorrs/cadastrar/$', 
+        r5011_regocorrs_salvar_views.salvar, 
+        name='r5011_regocorrs_cadastrar'),
 
-    url(r'^r5011-infototalcontrib/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-regocorrs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_regocorrs_salvar_views.salvar, 
+        name='r5011_regocorrs_salvar_output'),
+        
+    url(r'^r5011-regocorrs/(?P<output>[\w-]+)/$', 
+        r5011_regocorrs_listar_views.listar, 
+        name='r5011_regocorrs_output'),
+
+    url(r'^r5011-infototalcontrib/apagar/(?P<pk>[0-9]+)/$', 
         r5011_infototalcontrib_apagar_views.apagar, 
         name='r5011_infototalcontrib_apagar'),
 
@@ -104,15 +116,27 @@ urlpatterns = [
     url(r'^r5011-infototalcontrib/api/(?P<pk>[0-9]+)/$',
         r5011_infototalcontrib_api_views.r5011infoTotalContribDetail.as_view() ),
 
-    url(r'^r5011-infototalcontrib/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-infototalcontrib/$', 
         r5011_infototalcontrib_listar_views.listar, 
         name='r5011_infototalcontrib'),
 
-    url(r'^r5011-infototalcontrib/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-infototalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_infototalcontrib_salvar_views.salvar, 
         name='r5011_infototalcontrib_salvar'),
+        
+    url(r'^r5011-infototalcontrib/cadastrar/$', 
+        r5011_infototalcontrib_salvar_views.salvar, 
+        name='r5011_infototalcontrib_cadastrar'),
 
-    url(r'^r5011-rtom/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-infototalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_infototalcontrib_salvar_views.salvar, 
+        name='r5011_infototalcontrib_salvar_output'),
+        
+    url(r'^r5011-infototalcontrib/(?P<output>[\w-]+)/$', 
+        r5011_infototalcontrib_listar_views.listar, 
+        name='r5011_infototalcontrib_output'),
+
+    url(r'^r5011-rtom/apagar/(?P<pk>[0-9]+)/$', 
         r5011_rtom_apagar_views.apagar, 
         name='r5011_rtom_apagar'),
 
@@ -122,15 +146,27 @@ urlpatterns = [
     url(r'^r5011-rtom/api/(?P<pk>[0-9]+)/$',
         r5011_rtom_api_views.r5011RTomDetail.as_view() ),
 
-    url(r'^r5011-rtom/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-rtom/$', 
         r5011_rtom_listar_views.listar, 
         name='r5011_rtom'),
 
-    url(r'^r5011-rtom/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-rtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_rtom_salvar_views.salvar, 
         name='r5011_rtom_salvar'),
+        
+    url(r'^r5011-rtom/cadastrar/$', 
+        r5011_rtom_salvar_views.salvar, 
+        name='r5011_rtom_cadastrar'),
 
-    url(r'^r5011-infocrtom/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-rtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_rtom_salvar_views.salvar, 
+        name='r5011_rtom_salvar_output'),
+        
+    url(r'^r5011-rtom/(?P<output>[\w-]+)/$', 
+        r5011_rtom_listar_views.listar, 
+        name='r5011_rtom_output'),
+
+    url(r'^r5011-infocrtom/apagar/(?P<pk>[0-9]+)/$', 
         r5011_infocrtom_apagar_views.apagar, 
         name='r5011_infocrtom_apagar'),
 
@@ -140,15 +176,27 @@ urlpatterns = [
     url(r'^r5011-infocrtom/api/(?P<pk>[0-9]+)/$',
         r5011_infocrtom_api_views.r5011infoCRTomDetail.as_view() ),
 
-    url(r'^r5011-infocrtom/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-infocrtom/$', 
         r5011_infocrtom_listar_views.listar, 
         name='r5011_infocrtom'),
 
-    url(r'^r5011-infocrtom/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-infocrtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_infocrtom_salvar_views.salvar, 
         name='r5011_infocrtom_salvar'),
+        
+    url(r'^r5011-infocrtom/cadastrar/$', 
+        r5011_infocrtom_salvar_views.salvar, 
+        name='r5011_infocrtom_cadastrar'),
 
-    url(r'^r5011-rprest/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-infocrtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_infocrtom_salvar_views.salvar, 
+        name='r5011_infocrtom_salvar_output'),
+        
+    url(r'^r5011-infocrtom/(?P<output>[\w-]+)/$', 
+        r5011_infocrtom_listar_views.listar, 
+        name='r5011_infocrtom_output'),
+
+    url(r'^r5011-rprest/apagar/(?P<pk>[0-9]+)/$', 
         r5011_rprest_apagar_views.apagar, 
         name='r5011_rprest_apagar'),
 
@@ -158,15 +206,27 @@ urlpatterns = [
     url(r'^r5011-rprest/api/(?P<pk>[0-9]+)/$',
         r5011_rprest_api_views.r5011RPrestDetail.as_view() ),
 
-    url(r'^r5011-rprest/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-rprest/$', 
         r5011_rprest_listar_views.listar, 
         name='r5011_rprest'),
 
-    url(r'^r5011-rprest/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-rprest/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_rprest_salvar_views.salvar, 
         name='r5011_rprest_salvar'),
+        
+    url(r'^r5011-rprest/cadastrar/$', 
+        r5011_rprest_salvar_views.salvar, 
+        name='r5011_rprest_cadastrar'),
 
-    url(r'^r5011-rrecrepad/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-rprest/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_rprest_salvar_views.salvar, 
+        name='r5011_rprest_salvar_output'),
+        
+    url(r'^r5011-rprest/(?P<output>[\w-]+)/$', 
+        r5011_rprest_listar_views.listar, 
+        name='r5011_rprest_output'),
+
+    url(r'^r5011-rrecrepad/apagar/(?P<pk>[0-9]+)/$', 
         r5011_rrecrepad_apagar_views.apagar, 
         name='r5011_rrecrepad_apagar'),
 
@@ -176,15 +236,27 @@ urlpatterns = [
     url(r'^r5011-rrecrepad/api/(?P<pk>[0-9]+)/$',
         r5011_rrecrepad_api_views.r5011RRecRepADDetail.as_view() ),
 
-    url(r'^r5011-rrecrepad/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-rrecrepad/$', 
         r5011_rrecrepad_listar_views.listar, 
         name='r5011_rrecrepad'),
 
-    url(r'^r5011-rrecrepad/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-rrecrepad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_rrecrepad_salvar_views.salvar, 
         name='r5011_rrecrepad_salvar'),
+        
+    url(r'^r5011-rrecrepad/cadastrar/$', 
+        r5011_rrecrepad_salvar_views.salvar, 
+        name='r5011_rrecrepad_cadastrar'),
 
-    url(r'^r5011-rcoml/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-rrecrepad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_rrecrepad_salvar_views.salvar, 
+        name='r5011_rrecrepad_salvar_output'),
+        
+    url(r'^r5011-rrecrepad/(?P<output>[\w-]+)/$', 
+        r5011_rrecrepad_listar_views.listar, 
+        name='r5011_rrecrepad_output'),
+
+    url(r'^r5011-rcoml/apagar/(?P<pk>[0-9]+)/$', 
         r5011_rcoml_apagar_views.apagar, 
         name='r5011_rcoml_apagar'),
 
@@ -194,15 +266,27 @@ urlpatterns = [
     url(r'^r5011-rcoml/api/(?P<pk>[0-9]+)/$',
         r5011_rcoml_api_views.r5011RComlDetail.as_view() ),
 
-    url(r'^r5011-rcoml/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-rcoml/$', 
         r5011_rcoml_listar_views.listar, 
         name='r5011_rcoml'),
 
-    url(r'^r5011-rcoml/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-rcoml/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_rcoml_salvar_views.salvar, 
         name='r5011_rcoml_salvar'),
+        
+    url(r'^r5011-rcoml/cadastrar/$', 
+        r5011_rcoml_salvar_views.salvar, 
+        name='r5011_rcoml_cadastrar'),
 
-    url(r'^r5011-rcprb/apagar/(?P<hash>.*)/$', 
+    url(r'^r5011-rcoml/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_rcoml_salvar_views.salvar, 
+        name='r5011_rcoml_salvar_output'),
+        
+    url(r'^r5011-rcoml/(?P<output>[\w-]+)/$', 
+        r5011_rcoml_listar_views.listar, 
+        name='r5011_rcoml_output'),
+
+    url(r'^r5011-rcprb/apagar/(?P<pk>[0-9]+)/$', 
         r5011_rcprb_apagar_views.apagar, 
         name='r5011_rcprb_apagar'),
 
@@ -212,13 +296,25 @@ urlpatterns = [
     url(r'^r5011-rcprb/api/(?P<pk>[0-9]+)/$',
         r5011_rcprb_api_views.r5011RCPRBDetail.as_view() ),
 
-    url(r'^r5011-rcprb/listar/(?P<hash>.*)/$', 
+    url(r'^r5011-rcprb/$', 
         r5011_rcprb_listar_views.listar, 
         name='r5011_rcprb'),
 
-    url(r'^r5011-rcprb/salvar/(?P<hash>.*)/$', 
+    url(r'^r5011-rcprb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_rcprb_salvar_views.salvar, 
         name='r5011_rcprb_salvar'),
+        
+    url(r'^r5011-rcprb/cadastrar/$', 
+        r5011_rcprb_salvar_views.salvar, 
+        name='r5011_rcprb_cadastrar'),
+
+    url(r'^r5011-rcprb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r5011_rcprb_salvar_views.salvar, 
+        name='r5011_rcprb_salvar_output'),
+        
+    url(r'^r5011-rcprb/(?P<output>[\w-]+)/$', 
+        r5011_rcprb_listar_views.listar, 
+        name='r5011_rcprb_output'),
 
 
 ]

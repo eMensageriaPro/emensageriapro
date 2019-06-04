@@ -137,17 +137,20 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1000evtInfoEmpregador", u"Pode visualizar o conteúdo do evento S1000EVTINFOEMPREGADOR"),
-            ("can_view_menu_s1000evtInfoEmpregador", u"Pode visualizar no menu o evento S1000EVTINFOEMPREGADOR"),
-            ("can_open_event_s1000evtInfoEmpregador", u"Pode abrir o evento S1000EVTINFOEMPREGADOR para edição"),
-            ("can_duplicate_event_s1000evtInfoEmpregador", u"Pode duplicar o evento S1000EVTINFOEMPREGADOR"),
-            ("can_create_change_event_s1000evtInfoEmpregador", u"Pode criar evento de alteração do evento S1000EVTINFOEMPREGADOR com base em evento existente"),
-            ("can_create_delete_event_s1000evtInfoEmpregador", u"Pode criar evento de exclusão do evento S1000EVTINFOEMPREGADOR com base em evento existente"), 
-            ("can_validate_event_s1000evtInfoEmpregador", u"Pode validar o evento S1000EVTINFOEMPREGADOR"),
-            ("can_print_event_s1000evtInfoEmpregador", u"Pode imprimir recibo do evento S1000EVTINFOEMPREGADOR"),
-            ("can_change_identity_event_s1000evtInfoEmpregador", u"Pode alterar identidade do evento S1000EVTINFOEMPREGADOR"),
-            ("can_view_layout_event_s1000evtInfoEmpregador", u"Pode ver layout do evento S1000EVTINFOEMPREGADOR"),
-            ("can_view_xml_event_s1000evtInfoEmpregador", u"Pode ver xml do evento S1000EVTINFOEMPREGADOR"),)
+            ("can_see_list_s1000evtInfoEmpregador", u"Pode ver listagem do modelo S1000EVTINFOEMPREGADOR"),
+            ("can_see_data_s1000evtInfoEmpregador", u"Pode visualizar o conteúdo do modelo S1000EVTINFOEMPREGADOR"),
+            ("can_see_menu_s1000evtInfoEmpregador", u"Pode visualizar no menu o modelo S1000EVTINFOEMPREGADOR"),
+            ("can_print_list_s1000evtInfoEmpregador", u"Pode imprimir listagem do modelo S1000EVTINFOEMPREGADOR"),
+            ("can_print_data_s1000evtInfoEmpregador", u"Pode imprimir o conteúdo do modelo S1000EVTINFOEMPREGADOR"),
+            ("can_open_s1000evtInfoEmpregador", u"Pode abrir o evento S1000EVTINFOEMPREGADOR para edição"),
+            ("can_duplicate_s1000evtInfoEmpregador", u"Pode duplicar o evento S1000EVTINFOEMPREGADOR"),
+            ("can_create_change_s1000evtInfoEmpregador", u"Pode criar evento de alteração do evento S1000EVTINFOEMPREGADOR com base em evento existente"),
+            ("can_create_delete_s1000evtInfoEmpregador", u"Pode criar evento de exclusão do evento S1000EVTINFOEMPREGADOR com base em evento existente"), 
+            ("can_validate_s1000evtInfoEmpregador", u"Pode validar o evento S1000EVTINFOEMPREGADOR"),
+            ("can_change_identity_s1000evtInfoEmpregador", u"Pode alterar identidade do evento S1000EVTINFOEMPREGADOR"),
+            ("can_see_layout_s1000evtInfoEmpregador", u"Pode ver layout do evento S1000EVTINFOEMPREGADOR"),
+            ("can_see_receipt_s1000evtInfoEmpregador", u"Pode ver recibo do evento S1000EVTINFOEMPREGADOR"),
+            ("can_see_xml_s1000evtInfoEmpregador", u"Pode ver xml do evento S1000EVTINFOEMPREGADOR"),)
             
         ordering = [
             'identidade',
@@ -232,17 +235,20 @@ class s1005evtTabEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005evtTabEstab", u"Pode visualizar o conteúdo do evento S1005EVTTABESTAB"),
-            ("can_view_menu_s1005evtTabEstab", u"Pode visualizar no menu o evento S1005EVTTABESTAB"),
-            ("can_open_event_s1005evtTabEstab", u"Pode abrir o evento S1005EVTTABESTAB para edição"),
-            ("can_duplicate_event_s1005evtTabEstab", u"Pode duplicar o evento S1005EVTTABESTAB"),
-            ("can_create_change_event_s1005evtTabEstab", u"Pode criar evento de alteração do evento S1005EVTTABESTAB com base em evento existente"),
-            ("can_create_delete_event_s1005evtTabEstab", u"Pode criar evento de exclusão do evento S1005EVTTABESTAB com base em evento existente"), 
-            ("can_validate_event_s1005evtTabEstab", u"Pode validar o evento S1005EVTTABESTAB"),
-            ("can_print_event_s1005evtTabEstab", u"Pode imprimir recibo do evento S1005EVTTABESTAB"),
-            ("can_change_identity_event_s1005evtTabEstab", u"Pode alterar identidade do evento S1005EVTTABESTAB"),
-            ("can_view_layout_event_s1005evtTabEstab", u"Pode ver layout do evento S1005EVTTABESTAB"),
-            ("can_view_xml_event_s1005evtTabEstab", u"Pode ver xml do evento S1005EVTTABESTAB"),)
+            ("can_see_list_s1005evtTabEstab", u"Pode ver listagem do modelo S1005EVTTABESTAB"),
+            ("can_see_data_s1005evtTabEstab", u"Pode visualizar o conteúdo do modelo S1005EVTTABESTAB"),
+            ("can_see_menu_s1005evtTabEstab", u"Pode visualizar no menu o modelo S1005EVTTABESTAB"),
+            ("can_print_list_s1005evtTabEstab", u"Pode imprimir listagem do modelo S1005EVTTABESTAB"),
+            ("can_print_data_s1005evtTabEstab", u"Pode imprimir o conteúdo do modelo S1005EVTTABESTAB"),
+            ("can_open_s1005evtTabEstab", u"Pode abrir o evento S1005EVTTABESTAB para edição"),
+            ("can_duplicate_s1005evtTabEstab", u"Pode duplicar o evento S1005EVTTABESTAB"),
+            ("can_create_change_s1005evtTabEstab", u"Pode criar evento de alteração do evento S1005EVTTABESTAB com base em evento existente"),
+            ("can_create_delete_s1005evtTabEstab", u"Pode criar evento de exclusão do evento S1005EVTTABESTAB com base em evento existente"), 
+            ("can_validate_s1005evtTabEstab", u"Pode validar o evento S1005EVTTABESTAB"),
+            ("can_change_identity_s1005evtTabEstab", u"Pode alterar identidade do evento S1005EVTTABESTAB"),
+            ("can_see_layout_s1005evtTabEstab", u"Pode ver layout do evento S1005EVTTABESTAB"),
+            ("can_see_receipt_s1005evtTabEstab", u"Pode ver recibo do evento S1005EVTTABESTAB"),
+            ("can_see_xml_s1005evtTabEstab", u"Pode ver xml do evento S1005EVTTABESTAB"),)
             
         ordering = [
             'identidade',
@@ -327,17 +333,20 @@ class s1010evtTabRubrica(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010evtTabRubrica", u"Pode visualizar o conteúdo do evento S1010EVTTABRUBRICA"),
-            ("can_view_menu_s1010evtTabRubrica", u"Pode visualizar no menu o evento S1010EVTTABRUBRICA"),
-            ("can_open_event_s1010evtTabRubrica", u"Pode abrir o evento S1010EVTTABRUBRICA para edição"),
-            ("can_duplicate_event_s1010evtTabRubrica", u"Pode duplicar o evento S1010EVTTABRUBRICA"),
-            ("can_create_change_event_s1010evtTabRubrica", u"Pode criar evento de alteração do evento S1010EVTTABRUBRICA com base em evento existente"),
-            ("can_create_delete_event_s1010evtTabRubrica", u"Pode criar evento de exclusão do evento S1010EVTTABRUBRICA com base em evento existente"), 
-            ("can_validate_event_s1010evtTabRubrica", u"Pode validar o evento S1010EVTTABRUBRICA"),
-            ("can_print_event_s1010evtTabRubrica", u"Pode imprimir recibo do evento S1010EVTTABRUBRICA"),
-            ("can_change_identity_event_s1010evtTabRubrica", u"Pode alterar identidade do evento S1010EVTTABRUBRICA"),
-            ("can_view_layout_event_s1010evtTabRubrica", u"Pode ver layout do evento S1010EVTTABRUBRICA"),
-            ("can_view_xml_event_s1010evtTabRubrica", u"Pode ver xml do evento S1010EVTTABRUBRICA"),)
+            ("can_see_list_s1010evtTabRubrica", u"Pode ver listagem do modelo S1010EVTTABRUBRICA"),
+            ("can_see_data_s1010evtTabRubrica", u"Pode visualizar o conteúdo do modelo S1010EVTTABRUBRICA"),
+            ("can_see_menu_s1010evtTabRubrica", u"Pode visualizar no menu o modelo S1010EVTTABRUBRICA"),
+            ("can_print_list_s1010evtTabRubrica", u"Pode imprimir listagem do modelo S1010EVTTABRUBRICA"),
+            ("can_print_data_s1010evtTabRubrica", u"Pode imprimir o conteúdo do modelo S1010EVTTABRUBRICA"),
+            ("can_open_s1010evtTabRubrica", u"Pode abrir o evento S1010EVTTABRUBRICA para edição"),
+            ("can_duplicate_s1010evtTabRubrica", u"Pode duplicar o evento S1010EVTTABRUBRICA"),
+            ("can_create_change_s1010evtTabRubrica", u"Pode criar evento de alteração do evento S1010EVTTABRUBRICA com base em evento existente"),
+            ("can_create_delete_s1010evtTabRubrica", u"Pode criar evento de exclusão do evento S1010EVTTABRUBRICA com base em evento existente"), 
+            ("can_validate_s1010evtTabRubrica", u"Pode validar o evento S1010EVTTABRUBRICA"),
+            ("can_change_identity_s1010evtTabRubrica", u"Pode alterar identidade do evento S1010EVTTABRUBRICA"),
+            ("can_see_layout_s1010evtTabRubrica", u"Pode ver layout do evento S1010EVTTABRUBRICA"),
+            ("can_see_receipt_s1010evtTabRubrica", u"Pode ver recibo do evento S1010EVTTABRUBRICA"),
+            ("can_see_xml_s1010evtTabRubrica", u"Pode ver xml do evento S1010EVTTABRUBRICA"),)
             
         ordering = [
             'identidade',
@@ -422,17 +431,20 @@ class s1020evtTabLotacao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1020evtTabLotacao", u"Pode visualizar o conteúdo do evento S1020EVTTABLOTACAO"),
-            ("can_view_menu_s1020evtTabLotacao", u"Pode visualizar no menu o evento S1020EVTTABLOTACAO"),
-            ("can_open_event_s1020evtTabLotacao", u"Pode abrir o evento S1020EVTTABLOTACAO para edição"),
-            ("can_duplicate_event_s1020evtTabLotacao", u"Pode duplicar o evento S1020EVTTABLOTACAO"),
-            ("can_create_change_event_s1020evtTabLotacao", u"Pode criar evento de alteração do evento S1020EVTTABLOTACAO com base em evento existente"),
-            ("can_create_delete_event_s1020evtTabLotacao", u"Pode criar evento de exclusão do evento S1020EVTTABLOTACAO com base em evento existente"), 
-            ("can_validate_event_s1020evtTabLotacao", u"Pode validar o evento S1020EVTTABLOTACAO"),
-            ("can_print_event_s1020evtTabLotacao", u"Pode imprimir recibo do evento S1020EVTTABLOTACAO"),
-            ("can_change_identity_event_s1020evtTabLotacao", u"Pode alterar identidade do evento S1020EVTTABLOTACAO"),
-            ("can_view_layout_event_s1020evtTabLotacao", u"Pode ver layout do evento S1020EVTTABLOTACAO"),
-            ("can_view_xml_event_s1020evtTabLotacao", u"Pode ver xml do evento S1020EVTTABLOTACAO"),)
+            ("can_see_list_s1020evtTabLotacao", u"Pode ver listagem do modelo S1020EVTTABLOTACAO"),
+            ("can_see_data_s1020evtTabLotacao", u"Pode visualizar o conteúdo do modelo S1020EVTTABLOTACAO"),
+            ("can_see_menu_s1020evtTabLotacao", u"Pode visualizar no menu o modelo S1020EVTTABLOTACAO"),
+            ("can_print_list_s1020evtTabLotacao", u"Pode imprimir listagem do modelo S1020EVTTABLOTACAO"),
+            ("can_print_data_s1020evtTabLotacao", u"Pode imprimir o conteúdo do modelo S1020EVTTABLOTACAO"),
+            ("can_open_s1020evtTabLotacao", u"Pode abrir o evento S1020EVTTABLOTACAO para edição"),
+            ("can_duplicate_s1020evtTabLotacao", u"Pode duplicar o evento S1020EVTTABLOTACAO"),
+            ("can_create_change_s1020evtTabLotacao", u"Pode criar evento de alteração do evento S1020EVTTABLOTACAO com base em evento existente"),
+            ("can_create_delete_s1020evtTabLotacao", u"Pode criar evento de exclusão do evento S1020EVTTABLOTACAO com base em evento existente"), 
+            ("can_validate_s1020evtTabLotacao", u"Pode validar o evento S1020EVTTABLOTACAO"),
+            ("can_change_identity_s1020evtTabLotacao", u"Pode alterar identidade do evento S1020EVTTABLOTACAO"),
+            ("can_see_layout_s1020evtTabLotacao", u"Pode ver layout do evento S1020EVTTABLOTACAO"),
+            ("can_see_receipt_s1020evtTabLotacao", u"Pode ver recibo do evento S1020EVTTABLOTACAO"),
+            ("can_see_xml_s1020evtTabLotacao", u"Pode ver xml do evento S1020EVTTABLOTACAO"),)
             
         ordering = [
             'identidade',
@@ -517,17 +529,20 @@ class s1030evtTabCargo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030evtTabCargo", u"Pode visualizar o conteúdo do evento S1030EVTTABCARGO"),
-            ("can_view_menu_s1030evtTabCargo", u"Pode visualizar no menu o evento S1030EVTTABCARGO"),
-            ("can_open_event_s1030evtTabCargo", u"Pode abrir o evento S1030EVTTABCARGO para edição"),
-            ("can_duplicate_event_s1030evtTabCargo", u"Pode duplicar o evento S1030EVTTABCARGO"),
-            ("can_create_change_event_s1030evtTabCargo", u"Pode criar evento de alteração do evento S1030EVTTABCARGO com base em evento existente"),
-            ("can_create_delete_event_s1030evtTabCargo", u"Pode criar evento de exclusão do evento S1030EVTTABCARGO com base em evento existente"), 
-            ("can_validate_event_s1030evtTabCargo", u"Pode validar o evento S1030EVTTABCARGO"),
-            ("can_print_event_s1030evtTabCargo", u"Pode imprimir recibo do evento S1030EVTTABCARGO"),
-            ("can_change_identity_event_s1030evtTabCargo", u"Pode alterar identidade do evento S1030EVTTABCARGO"),
-            ("can_view_layout_event_s1030evtTabCargo", u"Pode ver layout do evento S1030EVTTABCARGO"),
-            ("can_view_xml_event_s1030evtTabCargo", u"Pode ver xml do evento S1030EVTTABCARGO"),)
+            ("can_see_list_s1030evtTabCargo", u"Pode ver listagem do modelo S1030EVTTABCARGO"),
+            ("can_see_data_s1030evtTabCargo", u"Pode visualizar o conteúdo do modelo S1030EVTTABCARGO"),
+            ("can_see_menu_s1030evtTabCargo", u"Pode visualizar no menu o modelo S1030EVTTABCARGO"),
+            ("can_print_list_s1030evtTabCargo", u"Pode imprimir listagem do modelo S1030EVTTABCARGO"),
+            ("can_print_data_s1030evtTabCargo", u"Pode imprimir o conteúdo do modelo S1030EVTTABCARGO"),
+            ("can_open_s1030evtTabCargo", u"Pode abrir o evento S1030EVTTABCARGO para edição"),
+            ("can_duplicate_s1030evtTabCargo", u"Pode duplicar o evento S1030EVTTABCARGO"),
+            ("can_create_change_s1030evtTabCargo", u"Pode criar evento de alteração do evento S1030EVTTABCARGO com base em evento existente"),
+            ("can_create_delete_s1030evtTabCargo", u"Pode criar evento de exclusão do evento S1030EVTTABCARGO com base em evento existente"), 
+            ("can_validate_s1030evtTabCargo", u"Pode validar o evento S1030EVTTABCARGO"),
+            ("can_change_identity_s1030evtTabCargo", u"Pode alterar identidade do evento S1030EVTTABCARGO"),
+            ("can_see_layout_s1030evtTabCargo", u"Pode ver layout do evento S1030EVTTABCARGO"),
+            ("can_see_receipt_s1030evtTabCargo", u"Pode ver recibo do evento S1030EVTTABCARGO"),
+            ("can_see_xml_s1030evtTabCargo", u"Pode ver xml do evento S1030EVTTABCARGO"),)
             
         ordering = [
             'identidade',
@@ -612,17 +627,20 @@ class s1035evtTabCarreira(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035evtTabCarreira", u"Pode visualizar o conteúdo do evento S1035EVTTABCARREIRA"),
-            ("can_view_menu_s1035evtTabCarreira", u"Pode visualizar no menu o evento S1035EVTTABCARREIRA"),
-            ("can_open_event_s1035evtTabCarreira", u"Pode abrir o evento S1035EVTTABCARREIRA para edição"),
-            ("can_duplicate_event_s1035evtTabCarreira", u"Pode duplicar o evento S1035EVTTABCARREIRA"),
-            ("can_create_change_event_s1035evtTabCarreira", u"Pode criar evento de alteração do evento S1035EVTTABCARREIRA com base em evento existente"),
-            ("can_create_delete_event_s1035evtTabCarreira", u"Pode criar evento de exclusão do evento S1035EVTTABCARREIRA com base em evento existente"), 
-            ("can_validate_event_s1035evtTabCarreira", u"Pode validar o evento S1035EVTTABCARREIRA"),
-            ("can_print_event_s1035evtTabCarreira", u"Pode imprimir recibo do evento S1035EVTTABCARREIRA"),
-            ("can_change_identity_event_s1035evtTabCarreira", u"Pode alterar identidade do evento S1035EVTTABCARREIRA"),
-            ("can_view_layout_event_s1035evtTabCarreira", u"Pode ver layout do evento S1035EVTTABCARREIRA"),
-            ("can_view_xml_event_s1035evtTabCarreira", u"Pode ver xml do evento S1035EVTTABCARREIRA"),)
+            ("can_see_list_s1035evtTabCarreira", u"Pode ver listagem do modelo S1035EVTTABCARREIRA"),
+            ("can_see_data_s1035evtTabCarreira", u"Pode visualizar o conteúdo do modelo S1035EVTTABCARREIRA"),
+            ("can_see_menu_s1035evtTabCarreira", u"Pode visualizar no menu o modelo S1035EVTTABCARREIRA"),
+            ("can_print_list_s1035evtTabCarreira", u"Pode imprimir listagem do modelo S1035EVTTABCARREIRA"),
+            ("can_print_data_s1035evtTabCarreira", u"Pode imprimir o conteúdo do modelo S1035EVTTABCARREIRA"),
+            ("can_open_s1035evtTabCarreira", u"Pode abrir o evento S1035EVTTABCARREIRA para edição"),
+            ("can_duplicate_s1035evtTabCarreira", u"Pode duplicar o evento S1035EVTTABCARREIRA"),
+            ("can_create_change_s1035evtTabCarreira", u"Pode criar evento de alteração do evento S1035EVTTABCARREIRA com base em evento existente"),
+            ("can_create_delete_s1035evtTabCarreira", u"Pode criar evento de exclusão do evento S1035EVTTABCARREIRA com base em evento existente"), 
+            ("can_validate_s1035evtTabCarreira", u"Pode validar o evento S1035EVTTABCARREIRA"),
+            ("can_change_identity_s1035evtTabCarreira", u"Pode alterar identidade do evento S1035EVTTABCARREIRA"),
+            ("can_see_layout_s1035evtTabCarreira", u"Pode ver layout do evento S1035EVTTABCARREIRA"),
+            ("can_see_receipt_s1035evtTabCarreira", u"Pode ver recibo do evento S1035EVTTABCARREIRA"),
+            ("can_see_xml_s1035evtTabCarreira", u"Pode ver xml do evento S1035EVTTABCARREIRA"),)
             
         ordering = [
             'identidade',
@@ -707,17 +725,20 @@ class s1040evtTabFuncao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040evtTabFuncao", u"Pode visualizar o conteúdo do evento S1040EVTTABFUNCAO"),
-            ("can_view_menu_s1040evtTabFuncao", u"Pode visualizar no menu o evento S1040EVTTABFUNCAO"),
-            ("can_open_event_s1040evtTabFuncao", u"Pode abrir o evento S1040EVTTABFUNCAO para edição"),
-            ("can_duplicate_event_s1040evtTabFuncao", u"Pode duplicar o evento S1040EVTTABFUNCAO"),
-            ("can_create_change_event_s1040evtTabFuncao", u"Pode criar evento de alteração do evento S1040EVTTABFUNCAO com base em evento existente"),
-            ("can_create_delete_event_s1040evtTabFuncao", u"Pode criar evento de exclusão do evento S1040EVTTABFUNCAO com base em evento existente"), 
-            ("can_validate_event_s1040evtTabFuncao", u"Pode validar o evento S1040EVTTABFUNCAO"),
-            ("can_print_event_s1040evtTabFuncao", u"Pode imprimir recibo do evento S1040EVTTABFUNCAO"),
-            ("can_change_identity_event_s1040evtTabFuncao", u"Pode alterar identidade do evento S1040EVTTABFUNCAO"),
-            ("can_view_layout_event_s1040evtTabFuncao", u"Pode ver layout do evento S1040EVTTABFUNCAO"),
-            ("can_view_xml_event_s1040evtTabFuncao", u"Pode ver xml do evento S1040EVTTABFUNCAO"),)
+            ("can_see_list_s1040evtTabFuncao", u"Pode ver listagem do modelo S1040EVTTABFUNCAO"),
+            ("can_see_data_s1040evtTabFuncao", u"Pode visualizar o conteúdo do modelo S1040EVTTABFUNCAO"),
+            ("can_see_menu_s1040evtTabFuncao", u"Pode visualizar no menu o modelo S1040EVTTABFUNCAO"),
+            ("can_print_list_s1040evtTabFuncao", u"Pode imprimir listagem do modelo S1040EVTTABFUNCAO"),
+            ("can_print_data_s1040evtTabFuncao", u"Pode imprimir o conteúdo do modelo S1040EVTTABFUNCAO"),
+            ("can_open_s1040evtTabFuncao", u"Pode abrir o evento S1040EVTTABFUNCAO para edição"),
+            ("can_duplicate_s1040evtTabFuncao", u"Pode duplicar o evento S1040EVTTABFUNCAO"),
+            ("can_create_change_s1040evtTabFuncao", u"Pode criar evento de alteração do evento S1040EVTTABFUNCAO com base em evento existente"),
+            ("can_create_delete_s1040evtTabFuncao", u"Pode criar evento de exclusão do evento S1040EVTTABFUNCAO com base em evento existente"), 
+            ("can_validate_s1040evtTabFuncao", u"Pode validar o evento S1040EVTTABFUNCAO"),
+            ("can_change_identity_s1040evtTabFuncao", u"Pode alterar identidade do evento S1040EVTTABFUNCAO"),
+            ("can_see_layout_s1040evtTabFuncao", u"Pode ver layout do evento S1040EVTTABFUNCAO"),
+            ("can_see_receipt_s1040evtTabFuncao", u"Pode ver recibo do evento S1040EVTTABFUNCAO"),
+            ("can_see_xml_s1040evtTabFuncao", u"Pode ver xml do evento S1040EVTTABFUNCAO"),)
             
         ordering = [
             'identidade',
@@ -802,17 +823,20 @@ class s1050evtTabHorTur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050evtTabHorTur", u"Pode visualizar o conteúdo do evento S1050EVTTABHORTUR"),
-            ("can_view_menu_s1050evtTabHorTur", u"Pode visualizar no menu o evento S1050EVTTABHORTUR"),
-            ("can_open_event_s1050evtTabHorTur", u"Pode abrir o evento S1050EVTTABHORTUR para edição"),
-            ("can_duplicate_event_s1050evtTabHorTur", u"Pode duplicar o evento S1050EVTTABHORTUR"),
-            ("can_create_change_event_s1050evtTabHorTur", u"Pode criar evento de alteração do evento S1050EVTTABHORTUR com base em evento existente"),
-            ("can_create_delete_event_s1050evtTabHorTur", u"Pode criar evento de exclusão do evento S1050EVTTABHORTUR com base em evento existente"), 
-            ("can_validate_event_s1050evtTabHorTur", u"Pode validar o evento S1050EVTTABHORTUR"),
-            ("can_print_event_s1050evtTabHorTur", u"Pode imprimir recibo do evento S1050EVTTABHORTUR"),
-            ("can_change_identity_event_s1050evtTabHorTur", u"Pode alterar identidade do evento S1050EVTTABHORTUR"),
-            ("can_view_layout_event_s1050evtTabHorTur", u"Pode ver layout do evento S1050EVTTABHORTUR"),
-            ("can_view_xml_event_s1050evtTabHorTur", u"Pode ver xml do evento S1050EVTTABHORTUR"),)
+            ("can_see_list_s1050evtTabHorTur", u"Pode ver listagem do modelo S1050EVTTABHORTUR"),
+            ("can_see_data_s1050evtTabHorTur", u"Pode visualizar o conteúdo do modelo S1050EVTTABHORTUR"),
+            ("can_see_menu_s1050evtTabHorTur", u"Pode visualizar no menu o modelo S1050EVTTABHORTUR"),
+            ("can_print_list_s1050evtTabHorTur", u"Pode imprimir listagem do modelo S1050EVTTABHORTUR"),
+            ("can_print_data_s1050evtTabHorTur", u"Pode imprimir o conteúdo do modelo S1050EVTTABHORTUR"),
+            ("can_open_s1050evtTabHorTur", u"Pode abrir o evento S1050EVTTABHORTUR para edição"),
+            ("can_duplicate_s1050evtTabHorTur", u"Pode duplicar o evento S1050EVTTABHORTUR"),
+            ("can_create_change_s1050evtTabHorTur", u"Pode criar evento de alteração do evento S1050EVTTABHORTUR com base em evento existente"),
+            ("can_create_delete_s1050evtTabHorTur", u"Pode criar evento de exclusão do evento S1050EVTTABHORTUR com base em evento existente"), 
+            ("can_validate_s1050evtTabHorTur", u"Pode validar o evento S1050EVTTABHORTUR"),
+            ("can_change_identity_s1050evtTabHorTur", u"Pode alterar identidade do evento S1050EVTTABHORTUR"),
+            ("can_see_layout_s1050evtTabHorTur", u"Pode ver layout do evento S1050EVTTABHORTUR"),
+            ("can_see_receipt_s1050evtTabHorTur", u"Pode ver recibo do evento S1050EVTTABHORTUR"),
+            ("can_see_xml_s1050evtTabHorTur", u"Pode ver xml do evento S1050EVTTABHORTUR"),)
             
         ordering = [
             'identidade',
@@ -897,17 +921,20 @@ class s1060evtTabAmbiente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060evtTabAmbiente", u"Pode visualizar o conteúdo do evento S1060EVTTABAMBIENTE"),
-            ("can_view_menu_s1060evtTabAmbiente", u"Pode visualizar no menu o evento S1060EVTTABAMBIENTE"),
-            ("can_open_event_s1060evtTabAmbiente", u"Pode abrir o evento S1060EVTTABAMBIENTE para edição"),
-            ("can_duplicate_event_s1060evtTabAmbiente", u"Pode duplicar o evento S1060EVTTABAMBIENTE"),
-            ("can_create_change_event_s1060evtTabAmbiente", u"Pode criar evento de alteração do evento S1060EVTTABAMBIENTE com base em evento existente"),
-            ("can_create_delete_event_s1060evtTabAmbiente", u"Pode criar evento de exclusão do evento S1060EVTTABAMBIENTE com base em evento existente"), 
-            ("can_validate_event_s1060evtTabAmbiente", u"Pode validar o evento S1060EVTTABAMBIENTE"),
-            ("can_print_event_s1060evtTabAmbiente", u"Pode imprimir recibo do evento S1060EVTTABAMBIENTE"),
-            ("can_change_identity_event_s1060evtTabAmbiente", u"Pode alterar identidade do evento S1060EVTTABAMBIENTE"),
-            ("can_view_layout_event_s1060evtTabAmbiente", u"Pode ver layout do evento S1060EVTTABAMBIENTE"),
-            ("can_view_xml_event_s1060evtTabAmbiente", u"Pode ver xml do evento S1060EVTTABAMBIENTE"),)
+            ("can_see_list_s1060evtTabAmbiente", u"Pode ver listagem do modelo S1060EVTTABAMBIENTE"),
+            ("can_see_data_s1060evtTabAmbiente", u"Pode visualizar o conteúdo do modelo S1060EVTTABAMBIENTE"),
+            ("can_see_menu_s1060evtTabAmbiente", u"Pode visualizar no menu o modelo S1060EVTTABAMBIENTE"),
+            ("can_print_list_s1060evtTabAmbiente", u"Pode imprimir listagem do modelo S1060EVTTABAMBIENTE"),
+            ("can_print_data_s1060evtTabAmbiente", u"Pode imprimir o conteúdo do modelo S1060EVTTABAMBIENTE"),
+            ("can_open_s1060evtTabAmbiente", u"Pode abrir o evento S1060EVTTABAMBIENTE para edição"),
+            ("can_duplicate_s1060evtTabAmbiente", u"Pode duplicar o evento S1060EVTTABAMBIENTE"),
+            ("can_create_change_s1060evtTabAmbiente", u"Pode criar evento de alteração do evento S1060EVTTABAMBIENTE com base em evento existente"),
+            ("can_create_delete_s1060evtTabAmbiente", u"Pode criar evento de exclusão do evento S1060EVTTABAMBIENTE com base em evento existente"), 
+            ("can_validate_s1060evtTabAmbiente", u"Pode validar o evento S1060EVTTABAMBIENTE"),
+            ("can_change_identity_s1060evtTabAmbiente", u"Pode alterar identidade do evento S1060EVTTABAMBIENTE"),
+            ("can_see_layout_s1060evtTabAmbiente", u"Pode ver layout do evento S1060EVTTABAMBIENTE"),
+            ("can_see_receipt_s1060evtTabAmbiente", u"Pode ver recibo do evento S1060EVTTABAMBIENTE"),
+            ("can_see_xml_s1060evtTabAmbiente", u"Pode ver xml do evento S1060EVTTABAMBIENTE"),)
             
         ordering = [
             'identidade',
@@ -992,17 +1019,20 @@ class s1070evtTabProcesso(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1070evtTabProcesso", u"Pode visualizar o conteúdo do evento S1070EVTTABPROCESSO"),
-            ("can_view_menu_s1070evtTabProcesso", u"Pode visualizar no menu o evento S1070EVTTABPROCESSO"),
-            ("can_open_event_s1070evtTabProcesso", u"Pode abrir o evento S1070EVTTABPROCESSO para edição"),
-            ("can_duplicate_event_s1070evtTabProcesso", u"Pode duplicar o evento S1070EVTTABPROCESSO"),
-            ("can_create_change_event_s1070evtTabProcesso", u"Pode criar evento de alteração do evento S1070EVTTABPROCESSO com base em evento existente"),
-            ("can_create_delete_event_s1070evtTabProcesso", u"Pode criar evento de exclusão do evento S1070EVTTABPROCESSO com base em evento existente"), 
-            ("can_validate_event_s1070evtTabProcesso", u"Pode validar o evento S1070EVTTABPROCESSO"),
-            ("can_print_event_s1070evtTabProcesso", u"Pode imprimir recibo do evento S1070EVTTABPROCESSO"),
-            ("can_change_identity_event_s1070evtTabProcesso", u"Pode alterar identidade do evento S1070EVTTABPROCESSO"),
-            ("can_view_layout_event_s1070evtTabProcesso", u"Pode ver layout do evento S1070EVTTABPROCESSO"),
-            ("can_view_xml_event_s1070evtTabProcesso", u"Pode ver xml do evento S1070EVTTABPROCESSO"),)
+            ("can_see_list_s1070evtTabProcesso", u"Pode ver listagem do modelo S1070EVTTABPROCESSO"),
+            ("can_see_data_s1070evtTabProcesso", u"Pode visualizar o conteúdo do modelo S1070EVTTABPROCESSO"),
+            ("can_see_menu_s1070evtTabProcesso", u"Pode visualizar no menu o modelo S1070EVTTABPROCESSO"),
+            ("can_print_list_s1070evtTabProcesso", u"Pode imprimir listagem do modelo S1070EVTTABPROCESSO"),
+            ("can_print_data_s1070evtTabProcesso", u"Pode imprimir o conteúdo do modelo S1070EVTTABPROCESSO"),
+            ("can_open_s1070evtTabProcesso", u"Pode abrir o evento S1070EVTTABPROCESSO para edição"),
+            ("can_duplicate_s1070evtTabProcesso", u"Pode duplicar o evento S1070EVTTABPROCESSO"),
+            ("can_create_change_s1070evtTabProcesso", u"Pode criar evento de alteração do evento S1070EVTTABPROCESSO com base em evento existente"),
+            ("can_create_delete_s1070evtTabProcesso", u"Pode criar evento de exclusão do evento S1070EVTTABPROCESSO com base em evento existente"), 
+            ("can_validate_s1070evtTabProcesso", u"Pode validar o evento S1070EVTTABPROCESSO"),
+            ("can_change_identity_s1070evtTabProcesso", u"Pode alterar identidade do evento S1070EVTTABPROCESSO"),
+            ("can_see_layout_s1070evtTabProcesso", u"Pode ver layout do evento S1070EVTTABPROCESSO"),
+            ("can_see_receipt_s1070evtTabProcesso", u"Pode ver recibo do evento S1070EVTTABPROCESSO"),
+            ("can_see_xml_s1070evtTabProcesso", u"Pode ver xml do evento S1070EVTTABPROCESSO"),)
             
         ordering = [
             'identidade',
@@ -1087,17 +1117,20 @@ class s1080evtTabOperPort(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080evtTabOperPort", u"Pode visualizar o conteúdo do evento S1080EVTTABOPERPORT"),
-            ("can_view_menu_s1080evtTabOperPort", u"Pode visualizar no menu o evento S1080EVTTABOPERPORT"),
-            ("can_open_event_s1080evtTabOperPort", u"Pode abrir o evento S1080EVTTABOPERPORT para edição"),
-            ("can_duplicate_event_s1080evtTabOperPort", u"Pode duplicar o evento S1080EVTTABOPERPORT"),
-            ("can_create_change_event_s1080evtTabOperPort", u"Pode criar evento de alteração do evento S1080EVTTABOPERPORT com base em evento existente"),
-            ("can_create_delete_event_s1080evtTabOperPort", u"Pode criar evento de exclusão do evento S1080EVTTABOPERPORT com base em evento existente"), 
-            ("can_validate_event_s1080evtTabOperPort", u"Pode validar o evento S1080EVTTABOPERPORT"),
-            ("can_print_event_s1080evtTabOperPort", u"Pode imprimir recibo do evento S1080EVTTABOPERPORT"),
-            ("can_change_identity_event_s1080evtTabOperPort", u"Pode alterar identidade do evento S1080EVTTABOPERPORT"),
-            ("can_view_layout_event_s1080evtTabOperPort", u"Pode ver layout do evento S1080EVTTABOPERPORT"),
-            ("can_view_xml_event_s1080evtTabOperPort", u"Pode ver xml do evento S1080EVTTABOPERPORT"),)
+            ("can_see_list_s1080evtTabOperPort", u"Pode ver listagem do modelo S1080EVTTABOPERPORT"),
+            ("can_see_data_s1080evtTabOperPort", u"Pode visualizar o conteúdo do modelo S1080EVTTABOPERPORT"),
+            ("can_see_menu_s1080evtTabOperPort", u"Pode visualizar no menu o modelo S1080EVTTABOPERPORT"),
+            ("can_print_list_s1080evtTabOperPort", u"Pode imprimir listagem do modelo S1080EVTTABOPERPORT"),
+            ("can_print_data_s1080evtTabOperPort", u"Pode imprimir o conteúdo do modelo S1080EVTTABOPERPORT"),
+            ("can_open_s1080evtTabOperPort", u"Pode abrir o evento S1080EVTTABOPERPORT para edição"),
+            ("can_duplicate_s1080evtTabOperPort", u"Pode duplicar o evento S1080EVTTABOPERPORT"),
+            ("can_create_change_s1080evtTabOperPort", u"Pode criar evento de alteração do evento S1080EVTTABOPERPORT com base em evento existente"),
+            ("can_create_delete_s1080evtTabOperPort", u"Pode criar evento de exclusão do evento S1080EVTTABOPERPORT com base em evento existente"), 
+            ("can_validate_s1080evtTabOperPort", u"Pode validar o evento S1080EVTTABOPERPORT"),
+            ("can_change_identity_s1080evtTabOperPort", u"Pode alterar identidade do evento S1080EVTTABOPERPORT"),
+            ("can_see_layout_s1080evtTabOperPort", u"Pode ver layout do evento S1080EVTTABOPERPORT"),
+            ("can_see_receipt_s1080evtTabOperPort", u"Pode ver recibo do evento S1080EVTTABOPERPORT"),
+            ("can_see_xml_s1080evtTabOperPort", u"Pode ver xml do evento S1080EVTTABOPERPORT"),)
             
         ordering = [
             'identidade',
@@ -1191,15 +1224,18 @@ class s1200evtRemun(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1200evtRemun", u"Pode visualizar o conteúdo do evento S1200EVTREMUN"),
-            ("can_view_menu_s1200evtRemun", u"Pode visualizar no menu o evento S1200EVTREMUN"),
-            ("can_open_event_s1200evtRemun", u"Pode abrir o evento S1200EVTREMUN para edição"),
-            ("can_duplicate_event_s1200evtRemun", u"Pode duplicar o evento S1200EVTREMUN"),
-            ("can_validate_event_s1200evtRemun", u"Pode validar o evento S1200EVTREMUN"),
-            ("can_print_event_s1200evtRemun", u"Pode imprimir recibo do evento S1200EVTREMUN"),
-            ("can_change_identity_event_s1200evtRemun", u"Pode alterar identidade do evento S1200EVTREMUN"),
-            ("can_view_layout_event_s1200evtRemun", u"Pode ver layout do evento S1200EVTREMUN"),
-            ("can_view_xml_event_s1200evtRemun", u"Pode ver xml do evento S1200EVTREMUN"),)
+            ("can_see_list_s1200evtRemun", u"Pode ver listagem do modelo S1200EVTREMUN"),
+            ("can_see_data_s1200evtRemun", u"Pode visualizar o conteúdo do modelo S1200EVTREMUN"),
+            ("can_see_menu_s1200evtRemun", u"Pode visualizar no menu o modelo S1200EVTREMUN"),
+            ("can_print_list_s1200evtRemun", u"Pode imprimir listagem do modelo S1200EVTREMUN"),
+            ("can_print_data_s1200evtRemun", u"Pode imprimir o conteúdo do modelo S1200EVTREMUN"),
+            ("can_open_s1200evtRemun", u"Pode abrir o evento S1200EVTREMUN para edição"),
+            ("can_duplicate_s1200evtRemun", u"Pode duplicar o evento S1200EVTREMUN"),
+            ("can_validate_s1200evtRemun", u"Pode validar o evento S1200EVTREMUN"),
+            ("can_change_identity_s1200evtRemun", u"Pode alterar identidade do evento S1200EVTREMUN"),
+            ("can_see_layout_s1200evtRemun", u"Pode ver layout do evento S1200EVTREMUN"),
+            ("can_see_receipt_s1200evtRemun", u"Pode ver recibo do evento S1200EVTREMUN"),
+            ("can_see_xml_s1200evtRemun", u"Pode ver xml do evento S1200EVTREMUN"),)
             
         ordering = [
             'identidade',
@@ -1298,15 +1334,18 @@ class s1202evtRmnRPPS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1202evtRmnRPPS", u"Pode visualizar o conteúdo do evento S1202EVTRMNRPPS"),
-            ("can_view_menu_s1202evtRmnRPPS", u"Pode visualizar no menu o evento S1202EVTRMNRPPS"),
-            ("can_open_event_s1202evtRmnRPPS", u"Pode abrir o evento S1202EVTRMNRPPS para edição"),
-            ("can_duplicate_event_s1202evtRmnRPPS", u"Pode duplicar o evento S1202EVTRMNRPPS"),
-            ("can_validate_event_s1202evtRmnRPPS", u"Pode validar o evento S1202EVTRMNRPPS"),
-            ("can_print_event_s1202evtRmnRPPS", u"Pode imprimir recibo do evento S1202EVTRMNRPPS"),
-            ("can_change_identity_event_s1202evtRmnRPPS", u"Pode alterar identidade do evento S1202EVTRMNRPPS"),
-            ("can_view_layout_event_s1202evtRmnRPPS", u"Pode ver layout do evento S1202EVTRMNRPPS"),
-            ("can_view_xml_event_s1202evtRmnRPPS", u"Pode ver xml do evento S1202EVTRMNRPPS"),)
+            ("can_see_list_s1202evtRmnRPPS", u"Pode ver listagem do modelo S1202EVTRMNRPPS"),
+            ("can_see_data_s1202evtRmnRPPS", u"Pode visualizar o conteúdo do modelo S1202EVTRMNRPPS"),
+            ("can_see_menu_s1202evtRmnRPPS", u"Pode visualizar no menu o modelo S1202EVTRMNRPPS"),
+            ("can_print_list_s1202evtRmnRPPS", u"Pode imprimir listagem do modelo S1202EVTRMNRPPS"),
+            ("can_print_data_s1202evtRmnRPPS", u"Pode imprimir o conteúdo do modelo S1202EVTRMNRPPS"),
+            ("can_open_s1202evtRmnRPPS", u"Pode abrir o evento S1202EVTRMNRPPS para edição"),
+            ("can_duplicate_s1202evtRmnRPPS", u"Pode duplicar o evento S1202EVTRMNRPPS"),
+            ("can_validate_s1202evtRmnRPPS", u"Pode validar o evento S1202EVTRMNRPPS"),
+            ("can_change_identity_s1202evtRmnRPPS", u"Pode alterar identidade do evento S1202EVTRMNRPPS"),
+            ("can_see_layout_s1202evtRmnRPPS", u"Pode ver layout do evento S1202EVTRMNRPPS"),
+            ("can_see_receipt_s1202evtRmnRPPS", u"Pode ver recibo do evento S1202EVTRMNRPPS"),
+            ("can_see_xml_s1202evtRmnRPPS", u"Pode ver xml do evento S1202EVTRMNRPPS"),)
             
         ordering = [
             'identidade',
@@ -1403,15 +1442,18 @@ class s1207evtBenPrRP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1207evtBenPrRP", u"Pode visualizar o conteúdo do evento S1207EVTBENPRRP"),
-            ("can_view_menu_s1207evtBenPrRP", u"Pode visualizar no menu o evento S1207EVTBENPRRP"),
-            ("can_open_event_s1207evtBenPrRP", u"Pode abrir o evento S1207EVTBENPRRP para edição"),
-            ("can_duplicate_event_s1207evtBenPrRP", u"Pode duplicar o evento S1207EVTBENPRRP"),
-            ("can_validate_event_s1207evtBenPrRP", u"Pode validar o evento S1207EVTBENPRRP"),
-            ("can_print_event_s1207evtBenPrRP", u"Pode imprimir recibo do evento S1207EVTBENPRRP"),
-            ("can_change_identity_event_s1207evtBenPrRP", u"Pode alterar identidade do evento S1207EVTBENPRRP"),
-            ("can_view_layout_event_s1207evtBenPrRP", u"Pode ver layout do evento S1207EVTBENPRRP"),
-            ("can_view_xml_event_s1207evtBenPrRP", u"Pode ver xml do evento S1207EVTBENPRRP"),)
+            ("can_see_list_s1207evtBenPrRP", u"Pode ver listagem do modelo S1207EVTBENPRRP"),
+            ("can_see_data_s1207evtBenPrRP", u"Pode visualizar o conteúdo do modelo S1207EVTBENPRRP"),
+            ("can_see_menu_s1207evtBenPrRP", u"Pode visualizar no menu o modelo S1207EVTBENPRRP"),
+            ("can_print_list_s1207evtBenPrRP", u"Pode imprimir listagem do modelo S1207EVTBENPRRP"),
+            ("can_print_data_s1207evtBenPrRP", u"Pode imprimir o conteúdo do modelo S1207EVTBENPRRP"),
+            ("can_open_s1207evtBenPrRP", u"Pode abrir o evento S1207EVTBENPRRP para edição"),
+            ("can_duplicate_s1207evtBenPrRP", u"Pode duplicar o evento S1207EVTBENPRRP"),
+            ("can_validate_s1207evtBenPrRP", u"Pode validar o evento S1207EVTBENPRRP"),
+            ("can_change_identity_s1207evtBenPrRP", u"Pode alterar identidade do evento S1207EVTBENPRRP"),
+            ("can_see_layout_s1207evtBenPrRP", u"Pode ver layout do evento S1207EVTBENPRRP"),
+            ("can_see_receipt_s1207evtBenPrRP", u"Pode ver recibo do evento S1207EVTBENPRRP"),
+            ("can_see_xml_s1207evtBenPrRP", u"Pode ver xml do evento S1207EVTBENPRRP"),)
             
         ordering = [
             'identidade',
@@ -1508,15 +1550,18 @@ class s1210evtPgtos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210evtPgtos", u"Pode visualizar o conteúdo do evento S1210EVTPGTOS"),
-            ("can_view_menu_s1210evtPgtos", u"Pode visualizar no menu o evento S1210EVTPGTOS"),
-            ("can_open_event_s1210evtPgtos", u"Pode abrir o evento S1210EVTPGTOS para edição"),
-            ("can_duplicate_event_s1210evtPgtos", u"Pode duplicar o evento S1210EVTPGTOS"),
-            ("can_validate_event_s1210evtPgtos", u"Pode validar o evento S1210EVTPGTOS"),
-            ("can_print_event_s1210evtPgtos", u"Pode imprimir recibo do evento S1210EVTPGTOS"),
-            ("can_change_identity_event_s1210evtPgtos", u"Pode alterar identidade do evento S1210EVTPGTOS"),
-            ("can_view_layout_event_s1210evtPgtos", u"Pode ver layout do evento S1210EVTPGTOS"),
-            ("can_view_xml_event_s1210evtPgtos", u"Pode ver xml do evento S1210EVTPGTOS"),)
+            ("can_see_list_s1210evtPgtos", u"Pode ver listagem do modelo S1210EVTPGTOS"),
+            ("can_see_data_s1210evtPgtos", u"Pode visualizar o conteúdo do modelo S1210EVTPGTOS"),
+            ("can_see_menu_s1210evtPgtos", u"Pode visualizar no menu o modelo S1210EVTPGTOS"),
+            ("can_print_list_s1210evtPgtos", u"Pode imprimir listagem do modelo S1210EVTPGTOS"),
+            ("can_print_data_s1210evtPgtos", u"Pode imprimir o conteúdo do modelo S1210EVTPGTOS"),
+            ("can_open_s1210evtPgtos", u"Pode abrir o evento S1210EVTPGTOS para edição"),
+            ("can_duplicate_s1210evtPgtos", u"Pode duplicar o evento S1210EVTPGTOS"),
+            ("can_validate_s1210evtPgtos", u"Pode validar o evento S1210EVTPGTOS"),
+            ("can_change_identity_s1210evtPgtos", u"Pode alterar identidade do evento S1210EVTPGTOS"),
+            ("can_see_layout_s1210evtPgtos", u"Pode ver layout do evento S1210EVTPGTOS"),
+            ("can_see_receipt_s1210evtPgtos", u"Pode ver recibo do evento S1210EVTPGTOS"),
+            ("can_see_xml_s1210evtPgtos", u"Pode ver xml do evento S1210EVTPGTOS"),)
             
         ordering = [
             'identidade',
@@ -1615,15 +1660,18 @@ class s1250evtAqProd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250evtAqProd", u"Pode visualizar o conteúdo do evento S1250EVTAQPROD"),
-            ("can_view_menu_s1250evtAqProd", u"Pode visualizar no menu o evento S1250EVTAQPROD"),
-            ("can_open_event_s1250evtAqProd", u"Pode abrir o evento S1250EVTAQPROD para edição"),
-            ("can_duplicate_event_s1250evtAqProd", u"Pode duplicar o evento S1250EVTAQPROD"),
-            ("can_validate_event_s1250evtAqProd", u"Pode validar o evento S1250EVTAQPROD"),
-            ("can_print_event_s1250evtAqProd", u"Pode imprimir recibo do evento S1250EVTAQPROD"),
-            ("can_change_identity_event_s1250evtAqProd", u"Pode alterar identidade do evento S1250EVTAQPROD"),
-            ("can_view_layout_event_s1250evtAqProd", u"Pode ver layout do evento S1250EVTAQPROD"),
-            ("can_view_xml_event_s1250evtAqProd", u"Pode ver xml do evento S1250EVTAQPROD"),)
+            ("can_see_list_s1250evtAqProd", u"Pode ver listagem do modelo S1250EVTAQPROD"),
+            ("can_see_data_s1250evtAqProd", u"Pode visualizar o conteúdo do modelo S1250EVTAQPROD"),
+            ("can_see_menu_s1250evtAqProd", u"Pode visualizar no menu o modelo S1250EVTAQPROD"),
+            ("can_print_list_s1250evtAqProd", u"Pode imprimir listagem do modelo S1250EVTAQPROD"),
+            ("can_print_data_s1250evtAqProd", u"Pode imprimir o conteúdo do modelo S1250EVTAQPROD"),
+            ("can_open_s1250evtAqProd", u"Pode abrir o evento S1250EVTAQPROD para edição"),
+            ("can_duplicate_s1250evtAqProd", u"Pode duplicar o evento S1250EVTAQPROD"),
+            ("can_validate_s1250evtAqProd", u"Pode validar o evento S1250EVTAQPROD"),
+            ("can_change_identity_s1250evtAqProd", u"Pode alterar identidade do evento S1250EVTAQPROD"),
+            ("can_see_layout_s1250evtAqProd", u"Pode ver layout do evento S1250EVTAQPROD"),
+            ("can_see_receipt_s1250evtAqProd", u"Pode ver recibo do evento S1250EVTAQPROD"),
+            ("can_see_xml_s1250evtAqProd", u"Pode ver xml do evento S1250EVTAQPROD"),)
             
         ordering = [
             'identidade',
@@ -1721,15 +1769,18 @@ class s1260evtComProd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260evtComProd", u"Pode visualizar o conteúdo do evento S1260EVTCOMPROD"),
-            ("can_view_menu_s1260evtComProd", u"Pode visualizar no menu o evento S1260EVTCOMPROD"),
-            ("can_open_event_s1260evtComProd", u"Pode abrir o evento S1260EVTCOMPROD para edição"),
-            ("can_duplicate_event_s1260evtComProd", u"Pode duplicar o evento S1260EVTCOMPROD"),
-            ("can_validate_event_s1260evtComProd", u"Pode validar o evento S1260EVTCOMPROD"),
-            ("can_print_event_s1260evtComProd", u"Pode imprimir recibo do evento S1260EVTCOMPROD"),
-            ("can_change_identity_event_s1260evtComProd", u"Pode alterar identidade do evento S1260EVTCOMPROD"),
-            ("can_view_layout_event_s1260evtComProd", u"Pode ver layout do evento S1260EVTCOMPROD"),
-            ("can_view_xml_event_s1260evtComProd", u"Pode ver xml do evento S1260EVTCOMPROD"),)
+            ("can_see_list_s1260evtComProd", u"Pode ver listagem do modelo S1260EVTCOMPROD"),
+            ("can_see_data_s1260evtComProd", u"Pode visualizar o conteúdo do modelo S1260EVTCOMPROD"),
+            ("can_see_menu_s1260evtComProd", u"Pode visualizar no menu o modelo S1260EVTCOMPROD"),
+            ("can_print_list_s1260evtComProd", u"Pode imprimir listagem do modelo S1260EVTCOMPROD"),
+            ("can_print_data_s1260evtComProd", u"Pode imprimir o conteúdo do modelo S1260EVTCOMPROD"),
+            ("can_open_s1260evtComProd", u"Pode abrir o evento S1260EVTCOMPROD para edição"),
+            ("can_duplicate_s1260evtComProd", u"Pode duplicar o evento S1260EVTCOMPROD"),
+            ("can_validate_s1260evtComProd", u"Pode validar o evento S1260EVTCOMPROD"),
+            ("can_change_identity_s1260evtComProd", u"Pode alterar identidade do evento S1260EVTCOMPROD"),
+            ("can_see_layout_s1260evtComProd", u"Pode ver layout do evento S1260EVTCOMPROD"),
+            ("can_see_receipt_s1260evtComProd", u"Pode ver recibo do evento S1260EVTCOMPROD"),
+            ("can_see_xml_s1260evtComProd", u"Pode ver xml do evento S1260EVTCOMPROD"),)
             
         ordering = [
             'identidade',
@@ -1824,15 +1875,18 @@ class s1270evtContratAvNP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1270evtContratAvNP", u"Pode visualizar o conteúdo do evento S1270EVTCONTRATAVNP"),
-            ("can_view_menu_s1270evtContratAvNP", u"Pode visualizar no menu o evento S1270EVTCONTRATAVNP"),
-            ("can_open_event_s1270evtContratAvNP", u"Pode abrir o evento S1270EVTCONTRATAVNP para edição"),
-            ("can_duplicate_event_s1270evtContratAvNP", u"Pode duplicar o evento S1270EVTCONTRATAVNP"),
-            ("can_validate_event_s1270evtContratAvNP", u"Pode validar o evento S1270EVTCONTRATAVNP"),
-            ("can_print_event_s1270evtContratAvNP", u"Pode imprimir recibo do evento S1270EVTCONTRATAVNP"),
-            ("can_change_identity_event_s1270evtContratAvNP", u"Pode alterar identidade do evento S1270EVTCONTRATAVNP"),
-            ("can_view_layout_event_s1270evtContratAvNP", u"Pode ver layout do evento S1270EVTCONTRATAVNP"),
-            ("can_view_xml_event_s1270evtContratAvNP", u"Pode ver xml do evento S1270EVTCONTRATAVNP"),)
+            ("can_see_list_s1270evtContratAvNP", u"Pode ver listagem do modelo S1270EVTCONTRATAVNP"),
+            ("can_see_data_s1270evtContratAvNP", u"Pode visualizar o conteúdo do modelo S1270EVTCONTRATAVNP"),
+            ("can_see_menu_s1270evtContratAvNP", u"Pode visualizar no menu o modelo S1270EVTCONTRATAVNP"),
+            ("can_print_list_s1270evtContratAvNP", u"Pode imprimir listagem do modelo S1270EVTCONTRATAVNP"),
+            ("can_print_data_s1270evtContratAvNP", u"Pode imprimir o conteúdo do modelo S1270EVTCONTRATAVNP"),
+            ("can_open_s1270evtContratAvNP", u"Pode abrir o evento S1270EVTCONTRATAVNP para edição"),
+            ("can_duplicate_s1270evtContratAvNP", u"Pode duplicar o evento S1270EVTCONTRATAVNP"),
+            ("can_validate_s1270evtContratAvNP", u"Pode validar o evento S1270EVTCONTRATAVNP"),
+            ("can_change_identity_s1270evtContratAvNP", u"Pode alterar identidade do evento S1270EVTCONTRATAVNP"),
+            ("can_see_layout_s1270evtContratAvNP", u"Pode ver layout do evento S1270EVTCONTRATAVNP"),
+            ("can_see_receipt_s1270evtContratAvNP", u"Pode ver recibo do evento S1270EVTCONTRATAVNP"),
+            ("can_see_xml_s1270evtContratAvNP", u"Pode ver xml do evento S1270EVTCONTRATAVNP"),)
             
         ordering = [
             'identidade',
@@ -1926,15 +1980,18 @@ class s1280evtInfoComplPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280evtInfoComplPer", u"Pode visualizar o conteúdo do evento S1280EVTINFOCOMPLPER"),
-            ("can_view_menu_s1280evtInfoComplPer", u"Pode visualizar no menu o evento S1280EVTINFOCOMPLPER"),
-            ("can_open_event_s1280evtInfoComplPer", u"Pode abrir o evento S1280EVTINFOCOMPLPER para edição"),
-            ("can_duplicate_event_s1280evtInfoComplPer", u"Pode duplicar o evento S1280EVTINFOCOMPLPER"),
-            ("can_validate_event_s1280evtInfoComplPer", u"Pode validar o evento S1280EVTINFOCOMPLPER"),
-            ("can_print_event_s1280evtInfoComplPer", u"Pode imprimir recibo do evento S1280EVTINFOCOMPLPER"),
-            ("can_change_identity_event_s1280evtInfoComplPer", u"Pode alterar identidade do evento S1280EVTINFOCOMPLPER"),
-            ("can_view_layout_event_s1280evtInfoComplPer", u"Pode ver layout do evento S1280EVTINFOCOMPLPER"),
-            ("can_view_xml_event_s1280evtInfoComplPer", u"Pode ver xml do evento S1280EVTINFOCOMPLPER"),)
+            ("can_see_list_s1280evtInfoComplPer", u"Pode ver listagem do modelo S1280EVTINFOCOMPLPER"),
+            ("can_see_data_s1280evtInfoComplPer", u"Pode visualizar o conteúdo do modelo S1280EVTINFOCOMPLPER"),
+            ("can_see_menu_s1280evtInfoComplPer", u"Pode visualizar no menu o modelo S1280EVTINFOCOMPLPER"),
+            ("can_print_list_s1280evtInfoComplPer", u"Pode imprimir listagem do modelo S1280EVTINFOCOMPLPER"),
+            ("can_print_data_s1280evtInfoComplPer", u"Pode imprimir o conteúdo do modelo S1280EVTINFOCOMPLPER"),
+            ("can_open_s1280evtInfoComplPer", u"Pode abrir o evento S1280EVTINFOCOMPLPER para edição"),
+            ("can_duplicate_s1280evtInfoComplPer", u"Pode duplicar o evento S1280EVTINFOCOMPLPER"),
+            ("can_validate_s1280evtInfoComplPer", u"Pode validar o evento S1280EVTINFOCOMPLPER"),
+            ("can_change_identity_s1280evtInfoComplPer", u"Pode alterar identidade do evento S1280EVTINFOCOMPLPER"),
+            ("can_see_layout_s1280evtInfoComplPer", u"Pode ver layout do evento S1280EVTINFOCOMPLPER"),
+            ("can_see_receipt_s1280evtInfoComplPer", u"Pode ver recibo do evento S1280EVTINFOCOMPLPER"),
+            ("can_see_xml_s1280evtInfoComplPer", u"Pode ver xml do evento S1280EVTINFOCOMPLPER"),)
             
         ordering = [
             'identidade',
@@ -2025,15 +2082,18 @@ class s1295evtTotConting(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1295evtTotConting", u"Pode visualizar o conteúdo do evento S1295EVTTOTCONTING"),
-            ("can_view_menu_s1295evtTotConting", u"Pode visualizar no menu o evento S1295EVTTOTCONTING"),
-            ("can_open_event_s1295evtTotConting", u"Pode abrir o evento S1295EVTTOTCONTING para edição"),
-            ("can_duplicate_event_s1295evtTotConting", u"Pode duplicar o evento S1295EVTTOTCONTING"),
-            ("can_validate_event_s1295evtTotConting", u"Pode validar o evento S1295EVTTOTCONTING"),
-            ("can_print_event_s1295evtTotConting", u"Pode imprimir recibo do evento S1295EVTTOTCONTING"),
-            ("can_change_identity_event_s1295evtTotConting", u"Pode alterar identidade do evento S1295EVTTOTCONTING"),
-            ("can_view_layout_event_s1295evtTotConting", u"Pode ver layout do evento S1295EVTTOTCONTING"),
-            ("can_view_xml_event_s1295evtTotConting", u"Pode ver xml do evento S1295EVTTOTCONTING"),)
+            ("can_see_list_s1295evtTotConting", u"Pode ver listagem do modelo S1295EVTTOTCONTING"),
+            ("can_see_data_s1295evtTotConting", u"Pode visualizar o conteúdo do modelo S1295EVTTOTCONTING"),
+            ("can_see_menu_s1295evtTotConting", u"Pode visualizar no menu o modelo S1295EVTTOTCONTING"),
+            ("can_print_list_s1295evtTotConting", u"Pode imprimir listagem do modelo S1295EVTTOTCONTING"),
+            ("can_print_data_s1295evtTotConting", u"Pode imprimir o conteúdo do modelo S1295EVTTOTCONTING"),
+            ("can_open_s1295evtTotConting", u"Pode abrir o evento S1295EVTTOTCONTING para edição"),
+            ("can_duplicate_s1295evtTotConting", u"Pode duplicar o evento S1295EVTTOTCONTING"),
+            ("can_validate_s1295evtTotConting", u"Pode validar o evento S1295EVTTOTCONTING"),
+            ("can_change_identity_s1295evtTotConting", u"Pode alterar identidade do evento S1295EVTTOTCONTING"),
+            ("can_see_layout_s1295evtTotConting", u"Pode ver layout do evento S1295EVTTOTCONTING"),
+            ("can_see_receipt_s1295evtTotConting", u"Pode ver recibo do evento S1295EVTTOTCONTING"),
+            ("can_see_xml_s1295evtTotConting", u"Pode ver xml do evento S1295EVTTOTCONTING"),)
             
         ordering = [
             'identidade',
@@ -2123,15 +2183,18 @@ class s1298evtReabreEvPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1298evtReabreEvPer", u"Pode visualizar o conteúdo do evento S1298EVTREABREEVPER"),
-            ("can_view_menu_s1298evtReabreEvPer", u"Pode visualizar no menu o evento S1298EVTREABREEVPER"),
-            ("can_open_event_s1298evtReabreEvPer", u"Pode abrir o evento S1298EVTREABREEVPER para edição"),
-            ("can_duplicate_event_s1298evtReabreEvPer", u"Pode duplicar o evento S1298EVTREABREEVPER"),
-            ("can_validate_event_s1298evtReabreEvPer", u"Pode validar o evento S1298EVTREABREEVPER"),
-            ("can_print_event_s1298evtReabreEvPer", u"Pode imprimir recibo do evento S1298EVTREABREEVPER"),
-            ("can_change_identity_event_s1298evtReabreEvPer", u"Pode alterar identidade do evento S1298EVTREABREEVPER"),
-            ("can_view_layout_event_s1298evtReabreEvPer", u"Pode ver layout do evento S1298EVTREABREEVPER"),
-            ("can_view_xml_event_s1298evtReabreEvPer", u"Pode ver xml do evento S1298EVTREABREEVPER"),)
+            ("can_see_list_s1298evtReabreEvPer", u"Pode ver listagem do modelo S1298EVTREABREEVPER"),
+            ("can_see_data_s1298evtReabreEvPer", u"Pode visualizar o conteúdo do modelo S1298EVTREABREEVPER"),
+            ("can_see_menu_s1298evtReabreEvPer", u"Pode visualizar no menu o modelo S1298EVTREABREEVPER"),
+            ("can_print_list_s1298evtReabreEvPer", u"Pode imprimir listagem do modelo S1298EVTREABREEVPER"),
+            ("can_print_data_s1298evtReabreEvPer", u"Pode imprimir o conteúdo do modelo S1298EVTREABREEVPER"),
+            ("can_open_s1298evtReabreEvPer", u"Pode abrir o evento S1298EVTREABREEVPER para edição"),
+            ("can_duplicate_s1298evtReabreEvPer", u"Pode duplicar o evento S1298EVTREABREEVPER"),
+            ("can_validate_s1298evtReabreEvPer", u"Pode validar o evento S1298EVTREABREEVPER"),
+            ("can_change_identity_s1298evtReabreEvPer", u"Pode alterar identidade do evento S1298EVTREABREEVPER"),
+            ("can_see_layout_s1298evtReabreEvPer", u"Pode ver layout do evento S1298EVTREABREEVPER"),
+            ("can_see_receipt_s1298evtReabreEvPer", u"Pode ver recibo do evento S1298EVTREABREEVPER"),
+            ("can_see_xml_s1298evtReabreEvPer", u"Pode ver xml do evento S1298EVTREABREEVPER"),)
             
         ordering = [
             'identidade',
@@ -2234,15 +2297,18 @@ class s1299evtFechaEvPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1299evtFechaEvPer", u"Pode visualizar o conteúdo do evento S1299EVTFECHAEVPER"),
-            ("can_view_menu_s1299evtFechaEvPer", u"Pode visualizar no menu o evento S1299EVTFECHAEVPER"),
-            ("can_open_event_s1299evtFechaEvPer", u"Pode abrir o evento S1299EVTFECHAEVPER para edição"),
-            ("can_duplicate_event_s1299evtFechaEvPer", u"Pode duplicar o evento S1299EVTFECHAEVPER"),
-            ("can_validate_event_s1299evtFechaEvPer", u"Pode validar o evento S1299EVTFECHAEVPER"),
-            ("can_print_event_s1299evtFechaEvPer", u"Pode imprimir recibo do evento S1299EVTFECHAEVPER"),
-            ("can_change_identity_event_s1299evtFechaEvPer", u"Pode alterar identidade do evento S1299EVTFECHAEVPER"),
-            ("can_view_layout_event_s1299evtFechaEvPer", u"Pode ver layout do evento S1299EVTFECHAEVPER"),
-            ("can_view_xml_event_s1299evtFechaEvPer", u"Pode ver xml do evento S1299EVTFECHAEVPER"),)
+            ("can_see_list_s1299evtFechaEvPer", u"Pode ver listagem do modelo S1299EVTFECHAEVPER"),
+            ("can_see_data_s1299evtFechaEvPer", u"Pode visualizar o conteúdo do modelo S1299EVTFECHAEVPER"),
+            ("can_see_menu_s1299evtFechaEvPer", u"Pode visualizar no menu o modelo S1299EVTFECHAEVPER"),
+            ("can_print_list_s1299evtFechaEvPer", u"Pode imprimir listagem do modelo S1299EVTFECHAEVPER"),
+            ("can_print_data_s1299evtFechaEvPer", u"Pode imprimir o conteúdo do modelo S1299EVTFECHAEVPER"),
+            ("can_open_s1299evtFechaEvPer", u"Pode abrir o evento S1299EVTFECHAEVPER para edição"),
+            ("can_duplicate_s1299evtFechaEvPer", u"Pode duplicar o evento S1299EVTFECHAEVPER"),
+            ("can_validate_s1299evtFechaEvPer", u"Pode validar o evento S1299EVTFECHAEVPER"),
+            ("can_change_identity_s1299evtFechaEvPer", u"Pode alterar identidade do evento S1299EVTFECHAEVPER"),
+            ("can_see_layout_s1299evtFechaEvPer", u"Pode ver layout do evento S1299EVTFECHAEVPER"),
+            ("can_see_receipt_s1299evtFechaEvPer", u"Pode ver recibo do evento S1299EVTFECHAEVPER"),
+            ("can_see_xml_s1299evtFechaEvPer", u"Pode ver xml do evento S1299EVTFECHAEVPER"),)
             
         ordering = [
             'identidade',
@@ -2341,15 +2407,18 @@ class s1300evtContrSindPatr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1300evtContrSindPatr", u"Pode visualizar o conteúdo do evento S1300EVTCONTRSINDPATR"),
-            ("can_view_menu_s1300evtContrSindPatr", u"Pode visualizar no menu o evento S1300EVTCONTRSINDPATR"),
-            ("can_open_event_s1300evtContrSindPatr", u"Pode abrir o evento S1300EVTCONTRSINDPATR para edição"),
-            ("can_duplicate_event_s1300evtContrSindPatr", u"Pode duplicar o evento S1300EVTCONTRSINDPATR"),
-            ("can_validate_event_s1300evtContrSindPatr", u"Pode validar o evento S1300EVTCONTRSINDPATR"),
-            ("can_print_event_s1300evtContrSindPatr", u"Pode imprimir recibo do evento S1300EVTCONTRSINDPATR"),
-            ("can_change_identity_event_s1300evtContrSindPatr", u"Pode alterar identidade do evento S1300EVTCONTRSINDPATR"),
-            ("can_view_layout_event_s1300evtContrSindPatr", u"Pode ver layout do evento S1300EVTCONTRSINDPATR"),
-            ("can_view_xml_event_s1300evtContrSindPatr", u"Pode ver xml do evento S1300EVTCONTRSINDPATR"),)
+            ("can_see_list_s1300evtContrSindPatr", u"Pode ver listagem do modelo S1300EVTCONTRSINDPATR"),
+            ("can_see_data_s1300evtContrSindPatr", u"Pode visualizar o conteúdo do modelo S1300EVTCONTRSINDPATR"),
+            ("can_see_menu_s1300evtContrSindPatr", u"Pode visualizar no menu o modelo S1300EVTCONTRSINDPATR"),
+            ("can_print_list_s1300evtContrSindPatr", u"Pode imprimir listagem do modelo S1300EVTCONTRSINDPATR"),
+            ("can_print_data_s1300evtContrSindPatr", u"Pode imprimir o conteúdo do modelo S1300EVTCONTRSINDPATR"),
+            ("can_open_s1300evtContrSindPatr", u"Pode abrir o evento S1300EVTCONTRSINDPATR para edição"),
+            ("can_duplicate_s1300evtContrSindPatr", u"Pode duplicar o evento S1300EVTCONTRSINDPATR"),
+            ("can_validate_s1300evtContrSindPatr", u"Pode validar o evento S1300EVTCONTRSINDPATR"),
+            ("can_change_identity_s1300evtContrSindPatr", u"Pode alterar identidade do evento S1300EVTCONTRSINDPATR"),
+            ("can_see_layout_s1300evtContrSindPatr", u"Pode ver layout do evento S1300EVTCONTRSINDPATR"),
+            ("can_see_receipt_s1300evtContrSindPatr", u"Pode ver recibo do evento S1300EVTCONTRSINDPATR"),
+            ("can_see_xml_s1300evtContrSindPatr", u"Pode ver xml do evento S1300EVTCONTRSINDPATR"),)
             
         ordering = [
             'identidade',
@@ -2442,15 +2511,18 @@ class s2190evtAdmPrelim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2190evtAdmPrelim", u"Pode visualizar o conteúdo do evento S2190EVTADMPRELIM"),
-            ("can_view_menu_s2190evtAdmPrelim", u"Pode visualizar no menu o evento S2190EVTADMPRELIM"),
-            ("can_open_event_s2190evtAdmPrelim", u"Pode abrir o evento S2190EVTADMPRELIM para edição"),
-            ("can_duplicate_event_s2190evtAdmPrelim", u"Pode duplicar o evento S2190EVTADMPRELIM"),
-            ("can_validate_event_s2190evtAdmPrelim", u"Pode validar o evento S2190EVTADMPRELIM"),
-            ("can_print_event_s2190evtAdmPrelim", u"Pode imprimir recibo do evento S2190EVTADMPRELIM"),
-            ("can_change_identity_event_s2190evtAdmPrelim", u"Pode alterar identidade do evento S2190EVTADMPRELIM"),
-            ("can_view_layout_event_s2190evtAdmPrelim", u"Pode ver layout do evento S2190EVTADMPRELIM"),
-            ("can_view_xml_event_s2190evtAdmPrelim", u"Pode ver xml do evento S2190EVTADMPRELIM"),)
+            ("can_see_list_s2190evtAdmPrelim", u"Pode ver listagem do modelo S2190EVTADMPRELIM"),
+            ("can_see_data_s2190evtAdmPrelim", u"Pode visualizar o conteúdo do modelo S2190EVTADMPRELIM"),
+            ("can_see_menu_s2190evtAdmPrelim", u"Pode visualizar no menu o modelo S2190EVTADMPRELIM"),
+            ("can_print_list_s2190evtAdmPrelim", u"Pode imprimir listagem do modelo S2190EVTADMPRELIM"),
+            ("can_print_data_s2190evtAdmPrelim", u"Pode imprimir o conteúdo do modelo S2190EVTADMPRELIM"),
+            ("can_open_s2190evtAdmPrelim", u"Pode abrir o evento S2190EVTADMPRELIM para edição"),
+            ("can_duplicate_s2190evtAdmPrelim", u"Pode duplicar o evento S2190EVTADMPRELIM"),
+            ("can_validate_s2190evtAdmPrelim", u"Pode validar o evento S2190EVTADMPRELIM"),
+            ("can_change_identity_s2190evtAdmPrelim", u"Pode alterar identidade do evento S2190EVTADMPRELIM"),
+            ("can_see_layout_s2190evtAdmPrelim", u"Pode ver layout do evento S2190EVTADMPRELIM"),
+            ("can_see_receipt_s2190evtAdmPrelim", u"Pode ver recibo do evento S2190EVTADMPRELIM"),
+            ("can_see_xml_s2190evtAdmPrelim", u"Pode ver xml do evento S2190EVTADMPRELIM"),)
             
         ordering = [
             'identidade',
@@ -2591,15 +2663,18 @@ class s2200evtAdmissao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2200evtAdmissao", u"Pode visualizar o conteúdo do evento S2200EVTADMISSAO"),
-            ("can_view_menu_s2200evtAdmissao", u"Pode visualizar no menu o evento S2200EVTADMISSAO"),
-            ("can_open_event_s2200evtAdmissao", u"Pode abrir o evento S2200EVTADMISSAO para edição"),
-            ("can_duplicate_event_s2200evtAdmissao", u"Pode duplicar o evento S2200EVTADMISSAO"),
-            ("can_validate_event_s2200evtAdmissao", u"Pode validar o evento S2200EVTADMISSAO"),
-            ("can_print_event_s2200evtAdmissao", u"Pode imprimir recibo do evento S2200EVTADMISSAO"),
-            ("can_change_identity_event_s2200evtAdmissao", u"Pode alterar identidade do evento S2200EVTADMISSAO"),
-            ("can_view_layout_event_s2200evtAdmissao", u"Pode ver layout do evento S2200EVTADMISSAO"),
-            ("can_view_xml_event_s2200evtAdmissao", u"Pode ver xml do evento S2200EVTADMISSAO"),)
+            ("can_see_list_s2200evtAdmissao", u"Pode ver listagem do modelo S2200EVTADMISSAO"),
+            ("can_see_data_s2200evtAdmissao", u"Pode visualizar o conteúdo do modelo S2200EVTADMISSAO"),
+            ("can_see_menu_s2200evtAdmissao", u"Pode visualizar no menu o modelo S2200EVTADMISSAO"),
+            ("can_print_list_s2200evtAdmissao", u"Pode imprimir listagem do modelo S2200EVTADMISSAO"),
+            ("can_print_data_s2200evtAdmissao", u"Pode imprimir o conteúdo do modelo S2200EVTADMISSAO"),
+            ("can_open_s2200evtAdmissao", u"Pode abrir o evento S2200EVTADMISSAO para edição"),
+            ("can_duplicate_s2200evtAdmissao", u"Pode duplicar o evento S2200EVTADMISSAO"),
+            ("can_validate_s2200evtAdmissao", u"Pode validar o evento S2200EVTADMISSAO"),
+            ("can_change_identity_s2200evtAdmissao", u"Pode alterar identidade do evento S2200EVTADMISSAO"),
+            ("can_see_layout_s2200evtAdmissao", u"Pode ver layout do evento S2200EVTADMISSAO"),
+            ("can_see_receipt_s2200evtAdmissao", u"Pode ver recibo do evento S2200EVTADMISSAO"),
+            ("can_see_xml_s2200evtAdmissao", u"Pode ver xml do evento S2200EVTADMISSAO"),)
             
         ordering = [
             'identidade',
@@ -2729,15 +2804,18 @@ class s2205evtAltCadastral(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2205evtAltCadastral", u"Pode visualizar o conteúdo do evento S2205EVTALTCADASTRAL"),
-            ("can_view_menu_s2205evtAltCadastral", u"Pode visualizar no menu o evento S2205EVTALTCADASTRAL"),
-            ("can_open_event_s2205evtAltCadastral", u"Pode abrir o evento S2205EVTALTCADASTRAL para edição"),
-            ("can_duplicate_event_s2205evtAltCadastral", u"Pode duplicar o evento S2205EVTALTCADASTRAL"),
-            ("can_validate_event_s2205evtAltCadastral", u"Pode validar o evento S2205EVTALTCADASTRAL"),
-            ("can_print_event_s2205evtAltCadastral", u"Pode imprimir recibo do evento S2205EVTALTCADASTRAL"),
-            ("can_change_identity_event_s2205evtAltCadastral", u"Pode alterar identidade do evento S2205EVTALTCADASTRAL"),
-            ("can_view_layout_event_s2205evtAltCadastral", u"Pode ver layout do evento S2205EVTALTCADASTRAL"),
-            ("can_view_xml_event_s2205evtAltCadastral", u"Pode ver xml do evento S2205EVTALTCADASTRAL"),)
+            ("can_see_list_s2205evtAltCadastral", u"Pode ver listagem do modelo S2205EVTALTCADASTRAL"),
+            ("can_see_data_s2205evtAltCadastral", u"Pode visualizar o conteúdo do modelo S2205EVTALTCADASTRAL"),
+            ("can_see_menu_s2205evtAltCadastral", u"Pode visualizar no menu o modelo S2205EVTALTCADASTRAL"),
+            ("can_print_list_s2205evtAltCadastral", u"Pode imprimir listagem do modelo S2205EVTALTCADASTRAL"),
+            ("can_print_data_s2205evtAltCadastral", u"Pode imprimir o conteúdo do modelo S2205EVTALTCADASTRAL"),
+            ("can_open_s2205evtAltCadastral", u"Pode abrir o evento S2205EVTALTCADASTRAL para edição"),
+            ("can_duplicate_s2205evtAltCadastral", u"Pode duplicar o evento S2205EVTALTCADASTRAL"),
+            ("can_validate_s2205evtAltCadastral", u"Pode validar o evento S2205EVTALTCADASTRAL"),
+            ("can_change_identity_s2205evtAltCadastral", u"Pode alterar identidade do evento S2205EVTALTCADASTRAL"),
+            ("can_see_layout_s2205evtAltCadastral", u"Pode ver layout do evento S2205EVTALTCADASTRAL"),
+            ("can_see_receipt_s2205evtAltCadastral", u"Pode ver recibo do evento S2205EVTALTCADASTRAL"),
+            ("can_see_xml_s2205evtAltCadastral", u"Pode ver xml do evento S2205EVTALTCADASTRAL"),)
             
         ordering = [
             'identidade',
@@ -2861,15 +2939,18 @@ class s2206evtAltContratual(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206evtAltContratual", u"Pode visualizar o conteúdo do evento S2206EVTALTCONTRATUAL"),
-            ("can_view_menu_s2206evtAltContratual", u"Pode visualizar no menu o evento S2206EVTALTCONTRATUAL"),
-            ("can_open_event_s2206evtAltContratual", u"Pode abrir o evento S2206EVTALTCONTRATUAL para edição"),
-            ("can_duplicate_event_s2206evtAltContratual", u"Pode duplicar o evento S2206EVTALTCONTRATUAL"),
-            ("can_validate_event_s2206evtAltContratual", u"Pode validar o evento S2206EVTALTCONTRATUAL"),
-            ("can_print_event_s2206evtAltContratual", u"Pode imprimir recibo do evento S2206EVTALTCONTRATUAL"),
-            ("can_change_identity_event_s2206evtAltContratual", u"Pode alterar identidade do evento S2206EVTALTCONTRATUAL"),
-            ("can_view_layout_event_s2206evtAltContratual", u"Pode ver layout do evento S2206EVTALTCONTRATUAL"),
-            ("can_view_xml_event_s2206evtAltContratual", u"Pode ver xml do evento S2206EVTALTCONTRATUAL"),)
+            ("can_see_list_s2206evtAltContratual", u"Pode ver listagem do modelo S2206EVTALTCONTRATUAL"),
+            ("can_see_data_s2206evtAltContratual", u"Pode visualizar o conteúdo do modelo S2206EVTALTCONTRATUAL"),
+            ("can_see_menu_s2206evtAltContratual", u"Pode visualizar no menu o modelo S2206EVTALTCONTRATUAL"),
+            ("can_print_list_s2206evtAltContratual", u"Pode imprimir listagem do modelo S2206EVTALTCONTRATUAL"),
+            ("can_print_data_s2206evtAltContratual", u"Pode imprimir o conteúdo do modelo S2206EVTALTCONTRATUAL"),
+            ("can_open_s2206evtAltContratual", u"Pode abrir o evento S2206EVTALTCONTRATUAL para edição"),
+            ("can_duplicate_s2206evtAltContratual", u"Pode duplicar o evento S2206EVTALTCONTRATUAL"),
+            ("can_validate_s2206evtAltContratual", u"Pode validar o evento S2206EVTALTCONTRATUAL"),
+            ("can_change_identity_s2206evtAltContratual", u"Pode alterar identidade do evento S2206EVTALTCONTRATUAL"),
+            ("can_see_layout_s2206evtAltContratual", u"Pode ver layout do evento S2206EVTALTCONTRATUAL"),
+            ("can_see_receipt_s2206evtAltContratual", u"Pode ver recibo do evento S2206EVTALTCONTRATUAL"),
+            ("can_see_xml_s2206evtAltContratual", u"Pode ver xml do evento S2206EVTALTCONTRATUAL"),)
             
         ordering = [
             'identidade',
@@ -3008,15 +3089,18 @@ class s2210evtCAT(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210evtCAT", u"Pode visualizar o conteúdo do evento S2210EVTCAT"),
-            ("can_view_menu_s2210evtCAT", u"Pode visualizar no menu o evento S2210EVTCAT"),
-            ("can_open_event_s2210evtCAT", u"Pode abrir o evento S2210EVTCAT para edição"),
-            ("can_duplicate_event_s2210evtCAT", u"Pode duplicar o evento S2210EVTCAT"),
-            ("can_validate_event_s2210evtCAT", u"Pode validar o evento S2210EVTCAT"),
-            ("can_print_event_s2210evtCAT", u"Pode imprimir recibo do evento S2210EVTCAT"),
-            ("can_change_identity_event_s2210evtCAT", u"Pode alterar identidade do evento S2210EVTCAT"),
-            ("can_view_layout_event_s2210evtCAT", u"Pode ver layout do evento S2210EVTCAT"),
-            ("can_view_xml_event_s2210evtCAT", u"Pode ver xml do evento S2210EVTCAT"),)
+            ("can_see_list_s2210evtCAT", u"Pode ver listagem do modelo S2210EVTCAT"),
+            ("can_see_data_s2210evtCAT", u"Pode visualizar o conteúdo do modelo S2210EVTCAT"),
+            ("can_see_menu_s2210evtCAT", u"Pode visualizar no menu o modelo S2210EVTCAT"),
+            ("can_print_list_s2210evtCAT", u"Pode imprimir listagem do modelo S2210EVTCAT"),
+            ("can_print_data_s2210evtCAT", u"Pode imprimir o conteúdo do modelo S2210EVTCAT"),
+            ("can_open_s2210evtCAT", u"Pode abrir o evento S2210EVTCAT para edição"),
+            ("can_duplicate_s2210evtCAT", u"Pode duplicar o evento S2210EVTCAT"),
+            ("can_validate_s2210evtCAT", u"Pode validar o evento S2210EVTCAT"),
+            ("can_change_identity_s2210evtCAT", u"Pode alterar identidade do evento S2210EVTCAT"),
+            ("can_see_layout_s2210evtCAT", u"Pode ver layout do evento S2210EVTCAT"),
+            ("can_see_receipt_s2210evtCAT", u"Pode ver recibo do evento S2210EVTCAT"),
+            ("can_see_xml_s2210evtCAT", u"Pode ver xml do evento S2210EVTCAT"),)
             
         ordering = [
             'identidade',
@@ -3150,15 +3234,18 @@ class s2220evtMonit(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2220evtMonit", u"Pode visualizar o conteúdo do evento S2220EVTMONIT"),
-            ("can_view_menu_s2220evtMonit", u"Pode visualizar no menu o evento S2220EVTMONIT"),
-            ("can_open_event_s2220evtMonit", u"Pode abrir o evento S2220EVTMONIT para edição"),
-            ("can_duplicate_event_s2220evtMonit", u"Pode duplicar o evento S2220EVTMONIT"),
-            ("can_validate_event_s2220evtMonit", u"Pode validar o evento S2220EVTMONIT"),
-            ("can_print_event_s2220evtMonit", u"Pode imprimir recibo do evento S2220EVTMONIT"),
-            ("can_change_identity_event_s2220evtMonit", u"Pode alterar identidade do evento S2220EVTMONIT"),
-            ("can_view_layout_event_s2220evtMonit", u"Pode ver layout do evento S2220EVTMONIT"),
-            ("can_view_xml_event_s2220evtMonit", u"Pode ver xml do evento S2220EVTMONIT"),)
+            ("can_see_list_s2220evtMonit", u"Pode ver listagem do modelo S2220EVTMONIT"),
+            ("can_see_data_s2220evtMonit", u"Pode visualizar o conteúdo do modelo S2220EVTMONIT"),
+            ("can_see_menu_s2220evtMonit", u"Pode visualizar no menu o modelo S2220EVTMONIT"),
+            ("can_print_list_s2220evtMonit", u"Pode imprimir listagem do modelo S2220EVTMONIT"),
+            ("can_print_data_s2220evtMonit", u"Pode imprimir o conteúdo do modelo S2220EVTMONIT"),
+            ("can_open_s2220evtMonit", u"Pode abrir o evento S2220EVTMONIT para edição"),
+            ("can_duplicate_s2220evtMonit", u"Pode duplicar o evento S2220EVTMONIT"),
+            ("can_validate_s2220evtMonit", u"Pode validar o evento S2220EVTMONIT"),
+            ("can_change_identity_s2220evtMonit", u"Pode alterar identidade do evento S2220EVTMONIT"),
+            ("can_see_layout_s2220evtMonit", u"Pode ver layout do evento S2220EVTMONIT"),
+            ("can_see_receipt_s2220evtMonit", u"Pode ver recibo do evento S2220EVTMONIT"),
+            ("can_see_xml_s2220evtMonit", u"Pode ver xml do evento S2220EVTMONIT"),)
             
         ordering = [
             'identidade',
@@ -3273,15 +3360,18 @@ class s2221evtToxic(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2221evtToxic", u"Pode visualizar o conteúdo do evento S2221EVTTOXIC"),
-            ("can_view_menu_s2221evtToxic", u"Pode visualizar no menu o evento S2221EVTTOXIC"),
-            ("can_open_event_s2221evtToxic", u"Pode abrir o evento S2221EVTTOXIC para edição"),
-            ("can_duplicate_event_s2221evtToxic", u"Pode duplicar o evento S2221EVTTOXIC"),
-            ("can_validate_event_s2221evtToxic", u"Pode validar o evento S2221EVTTOXIC"),
-            ("can_print_event_s2221evtToxic", u"Pode imprimir recibo do evento S2221EVTTOXIC"),
-            ("can_change_identity_event_s2221evtToxic", u"Pode alterar identidade do evento S2221EVTTOXIC"),
-            ("can_view_layout_event_s2221evtToxic", u"Pode ver layout do evento S2221EVTTOXIC"),
-            ("can_view_xml_event_s2221evtToxic", u"Pode ver xml do evento S2221EVTTOXIC"),)
+            ("can_see_list_s2221evtToxic", u"Pode ver listagem do modelo S2221EVTTOXIC"),
+            ("can_see_data_s2221evtToxic", u"Pode visualizar o conteúdo do modelo S2221EVTTOXIC"),
+            ("can_see_menu_s2221evtToxic", u"Pode visualizar no menu o modelo S2221EVTTOXIC"),
+            ("can_print_list_s2221evtToxic", u"Pode imprimir listagem do modelo S2221EVTTOXIC"),
+            ("can_print_data_s2221evtToxic", u"Pode imprimir o conteúdo do modelo S2221EVTTOXIC"),
+            ("can_open_s2221evtToxic", u"Pode abrir o evento S2221EVTTOXIC para edição"),
+            ("can_duplicate_s2221evtToxic", u"Pode duplicar o evento S2221EVTTOXIC"),
+            ("can_validate_s2221evtToxic", u"Pode validar o evento S2221EVTTOXIC"),
+            ("can_change_identity_s2221evtToxic", u"Pode alterar identidade do evento S2221EVTTOXIC"),
+            ("can_see_layout_s2221evtToxic", u"Pode ver layout do evento S2221EVTTOXIC"),
+            ("can_see_receipt_s2221evtToxic", u"Pode ver recibo do evento S2221EVTTOXIC"),
+            ("can_see_xml_s2221evtToxic", u"Pode ver xml do evento S2221EVTTOXIC"),)
             
         ordering = [
             'identidade',
@@ -3377,15 +3467,18 @@ class s2230evtAfastTemp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230evtAfastTemp", u"Pode visualizar o conteúdo do evento S2230EVTAFASTTEMP"),
-            ("can_view_menu_s2230evtAfastTemp", u"Pode visualizar no menu o evento S2230EVTAFASTTEMP"),
-            ("can_open_event_s2230evtAfastTemp", u"Pode abrir o evento S2230EVTAFASTTEMP para edição"),
-            ("can_duplicate_event_s2230evtAfastTemp", u"Pode duplicar o evento S2230EVTAFASTTEMP"),
-            ("can_validate_event_s2230evtAfastTemp", u"Pode validar o evento S2230EVTAFASTTEMP"),
-            ("can_print_event_s2230evtAfastTemp", u"Pode imprimir recibo do evento S2230EVTAFASTTEMP"),
-            ("can_change_identity_event_s2230evtAfastTemp", u"Pode alterar identidade do evento S2230EVTAFASTTEMP"),
-            ("can_view_layout_event_s2230evtAfastTemp", u"Pode ver layout do evento S2230EVTAFASTTEMP"),
-            ("can_view_xml_event_s2230evtAfastTemp", u"Pode ver xml do evento S2230EVTAFASTTEMP"),)
+            ("can_see_list_s2230evtAfastTemp", u"Pode ver listagem do modelo S2230EVTAFASTTEMP"),
+            ("can_see_data_s2230evtAfastTemp", u"Pode visualizar o conteúdo do modelo S2230EVTAFASTTEMP"),
+            ("can_see_menu_s2230evtAfastTemp", u"Pode visualizar no menu o modelo S2230EVTAFASTTEMP"),
+            ("can_print_list_s2230evtAfastTemp", u"Pode imprimir listagem do modelo S2230EVTAFASTTEMP"),
+            ("can_print_data_s2230evtAfastTemp", u"Pode imprimir o conteúdo do modelo S2230EVTAFASTTEMP"),
+            ("can_open_s2230evtAfastTemp", u"Pode abrir o evento S2230EVTAFASTTEMP para edição"),
+            ("can_duplicate_s2230evtAfastTemp", u"Pode duplicar o evento S2230EVTAFASTTEMP"),
+            ("can_validate_s2230evtAfastTemp", u"Pode validar o evento S2230EVTAFASTTEMP"),
+            ("can_change_identity_s2230evtAfastTemp", u"Pode alterar identidade do evento S2230EVTAFASTTEMP"),
+            ("can_see_layout_s2230evtAfastTemp", u"Pode ver layout do evento S2230EVTAFASTTEMP"),
+            ("can_see_receipt_s2230evtAfastTemp", u"Pode ver recibo do evento S2230EVTAFASTTEMP"),
+            ("can_see_xml_s2230evtAfastTemp", u"Pode ver xml do evento S2230EVTAFASTTEMP"),)
             
         ordering = [
             'identidade',
@@ -3480,15 +3573,18 @@ class s2231evtCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2231evtCessao", u"Pode visualizar o conteúdo do evento S2231EVTCESSAO"),
-            ("can_view_menu_s2231evtCessao", u"Pode visualizar no menu o evento S2231EVTCESSAO"),
-            ("can_open_event_s2231evtCessao", u"Pode abrir o evento S2231EVTCESSAO para edição"),
-            ("can_duplicate_event_s2231evtCessao", u"Pode duplicar o evento S2231EVTCESSAO"),
-            ("can_validate_event_s2231evtCessao", u"Pode validar o evento S2231EVTCESSAO"),
-            ("can_print_event_s2231evtCessao", u"Pode imprimir recibo do evento S2231EVTCESSAO"),
-            ("can_change_identity_event_s2231evtCessao", u"Pode alterar identidade do evento S2231EVTCESSAO"),
-            ("can_view_layout_event_s2231evtCessao", u"Pode ver layout do evento S2231EVTCESSAO"),
-            ("can_view_xml_event_s2231evtCessao", u"Pode ver xml do evento S2231EVTCESSAO"),)
+            ("can_see_list_s2231evtCessao", u"Pode ver listagem do modelo S2231EVTCESSAO"),
+            ("can_see_data_s2231evtCessao", u"Pode visualizar o conteúdo do modelo S2231EVTCESSAO"),
+            ("can_see_menu_s2231evtCessao", u"Pode visualizar no menu o modelo S2231EVTCESSAO"),
+            ("can_print_list_s2231evtCessao", u"Pode imprimir listagem do modelo S2231EVTCESSAO"),
+            ("can_print_data_s2231evtCessao", u"Pode imprimir o conteúdo do modelo S2231EVTCESSAO"),
+            ("can_open_s2231evtCessao", u"Pode abrir o evento S2231EVTCESSAO para edição"),
+            ("can_duplicate_s2231evtCessao", u"Pode duplicar o evento S2231EVTCESSAO"),
+            ("can_validate_s2231evtCessao", u"Pode validar o evento S2231EVTCESSAO"),
+            ("can_change_identity_s2231evtCessao", u"Pode alterar identidade do evento S2231EVTCESSAO"),
+            ("can_see_layout_s2231evtCessao", u"Pode ver layout do evento S2231EVTCESSAO"),
+            ("can_see_receipt_s2231evtCessao", u"Pode ver recibo do evento S2231EVTCESSAO"),
+            ("can_see_xml_s2231evtCessao", u"Pode ver xml do evento S2231EVTCESSAO"),)
             
         ordering = [
             'identidade',
@@ -3588,15 +3684,18 @@ class s2240evtExpRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2240evtExpRisco", u"Pode visualizar o conteúdo do evento S2240EVTEXPRISCO"),
-            ("can_view_menu_s2240evtExpRisco", u"Pode visualizar no menu o evento S2240EVTEXPRISCO"),
-            ("can_open_event_s2240evtExpRisco", u"Pode abrir o evento S2240EVTEXPRISCO para edição"),
-            ("can_duplicate_event_s2240evtExpRisco", u"Pode duplicar o evento S2240EVTEXPRISCO"),
-            ("can_validate_event_s2240evtExpRisco", u"Pode validar o evento S2240EVTEXPRISCO"),
-            ("can_print_event_s2240evtExpRisco", u"Pode imprimir recibo do evento S2240EVTEXPRISCO"),
-            ("can_change_identity_event_s2240evtExpRisco", u"Pode alterar identidade do evento S2240EVTEXPRISCO"),
-            ("can_view_layout_event_s2240evtExpRisco", u"Pode ver layout do evento S2240EVTEXPRISCO"),
-            ("can_view_xml_event_s2240evtExpRisco", u"Pode ver xml do evento S2240EVTEXPRISCO"),)
+            ("can_see_list_s2240evtExpRisco", u"Pode ver listagem do modelo S2240EVTEXPRISCO"),
+            ("can_see_data_s2240evtExpRisco", u"Pode visualizar o conteúdo do modelo S2240EVTEXPRISCO"),
+            ("can_see_menu_s2240evtExpRisco", u"Pode visualizar no menu o modelo S2240EVTEXPRISCO"),
+            ("can_print_list_s2240evtExpRisco", u"Pode imprimir listagem do modelo S2240EVTEXPRISCO"),
+            ("can_print_data_s2240evtExpRisco", u"Pode imprimir o conteúdo do modelo S2240EVTEXPRISCO"),
+            ("can_open_s2240evtExpRisco", u"Pode abrir o evento S2240EVTEXPRISCO para edição"),
+            ("can_duplicate_s2240evtExpRisco", u"Pode duplicar o evento S2240EVTEXPRISCO"),
+            ("can_validate_s2240evtExpRisco", u"Pode validar o evento S2240EVTEXPRISCO"),
+            ("can_change_identity_s2240evtExpRisco", u"Pode alterar identidade do evento S2240EVTEXPRISCO"),
+            ("can_see_layout_s2240evtExpRisco", u"Pode ver layout do evento S2240EVTEXPRISCO"),
+            ("can_see_receipt_s2240evtExpRisco", u"Pode ver recibo do evento S2240EVTEXPRISCO"),
+            ("can_see_xml_s2240evtExpRisco", u"Pode ver xml do evento S2240EVTEXPRISCO"),)
             
         ordering = [
             'identidade',
@@ -3691,15 +3790,18 @@ class s2241evtInsApo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241evtInsApo", u"Pode visualizar o conteúdo do evento S2241EVTINSAPO"),
-            ("can_view_menu_s2241evtInsApo", u"Pode visualizar no menu o evento S2241EVTINSAPO"),
-            ("can_open_event_s2241evtInsApo", u"Pode abrir o evento S2241EVTINSAPO para edição"),
-            ("can_duplicate_event_s2241evtInsApo", u"Pode duplicar o evento S2241EVTINSAPO"),
-            ("can_validate_event_s2241evtInsApo", u"Pode validar o evento S2241EVTINSAPO"),
-            ("can_print_event_s2241evtInsApo", u"Pode imprimir recibo do evento S2241EVTINSAPO"),
-            ("can_change_identity_event_s2241evtInsApo", u"Pode alterar identidade do evento S2241EVTINSAPO"),
-            ("can_view_layout_event_s2241evtInsApo", u"Pode ver layout do evento S2241EVTINSAPO"),
-            ("can_view_xml_event_s2241evtInsApo", u"Pode ver xml do evento S2241EVTINSAPO"),)
+            ("can_see_list_s2241evtInsApo", u"Pode ver listagem do modelo S2241EVTINSAPO"),
+            ("can_see_data_s2241evtInsApo", u"Pode visualizar o conteúdo do modelo S2241EVTINSAPO"),
+            ("can_see_menu_s2241evtInsApo", u"Pode visualizar no menu o modelo S2241EVTINSAPO"),
+            ("can_print_list_s2241evtInsApo", u"Pode imprimir listagem do modelo S2241EVTINSAPO"),
+            ("can_print_data_s2241evtInsApo", u"Pode imprimir o conteúdo do modelo S2241EVTINSAPO"),
+            ("can_open_s2241evtInsApo", u"Pode abrir o evento S2241EVTINSAPO para edição"),
+            ("can_duplicate_s2241evtInsApo", u"Pode duplicar o evento S2241EVTINSAPO"),
+            ("can_validate_s2241evtInsApo", u"Pode validar o evento S2241EVTINSAPO"),
+            ("can_change_identity_s2241evtInsApo", u"Pode alterar identidade do evento S2241EVTINSAPO"),
+            ("can_see_layout_s2241evtInsApo", u"Pode ver layout do evento S2241EVTINSAPO"),
+            ("can_see_receipt_s2241evtInsApo", u"Pode ver recibo do evento S2241EVTINSAPO"),
+            ("can_see_xml_s2241evtInsApo", u"Pode ver xml do evento S2241EVTINSAPO"),)
             
         ordering = [
             'identidade',
@@ -3804,15 +3906,18 @@ class s2245evtTreiCap(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2245evtTreiCap", u"Pode visualizar o conteúdo do evento S2245EVTTREICAP"),
-            ("can_view_menu_s2245evtTreiCap", u"Pode visualizar no menu o evento S2245EVTTREICAP"),
-            ("can_open_event_s2245evtTreiCap", u"Pode abrir o evento S2245EVTTREICAP para edição"),
-            ("can_duplicate_event_s2245evtTreiCap", u"Pode duplicar o evento S2245EVTTREICAP"),
-            ("can_validate_event_s2245evtTreiCap", u"Pode validar o evento S2245EVTTREICAP"),
-            ("can_print_event_s2245evtTreiCap", u"Pode imprimir recibo do evento S2245EVTTREICAP"),
-            ("can_change_identity_event_s2245evtTreiCap", u"Pode alterar identidade do evento S2245EVTTREICAP"),
-            ("can_view_layout_event_s2245evtTreiCap", u"Pode ver layout do evento S2245EVTTREICAP"),
-            ("can_view_xml_event_s2245evtTreiCap", u"Pode ver xml do evento S2245EVTTREICAP"),)
+            ("can_see_list_s2245evtTreiCap", u"Pode ver listagem do modelo S2245EVTTREICAP"),
+            ("can_see_data_s2245evtTreiCap", u"Pode visualizar o conteúdo do modelo S2245EVTTREICAP"),
+            ("can_see_menu_s2245evtTreiCap", u"Pode visualizar no menu o modelo S2245EVTTREICAP"),
+            ("can_print_list_s2245evtTreiCap", u"Pode imprimir listagem do modelo S2245EVTTREICAP"),
+            ("can_print_data_s2245evtTreiCap", u"Pode imprimir o conteúdo do modelo S2245EVTTREICAP"),
+            ("can_open_s2245evtTreiCap", u"Pode abrir o evento S2245EVTTREICAP para edição"),
+            ("can_duplicate_s2245evtTreiCap", u"Pode duplicar o evento S2245EVTTREICAP"),
+            ("can_validate_s2245evtTreiCap", u"Pode validar o evento S2245EVTTREICAP"),
+            ("can_change_identity_s2245evtTreiCap", u"Pode alterar identidade do evento S2245EVTTREICAP"),
+            ("can_see_layout_s2245evtTreiCap", u"Pode ver layout do evento S2245EVTTREICAP"),
+            ("can_see_receipt_s2245evtTreiCap", u"Pode ver recibo do evento S2245EVTTREICAP"),
+            ("can_see_xml_s2245evtTreiCap", u"Pode ver xml do evento S2245EVTTREICAP"),)
             
         ordering = [
             'identidade',
@@ -3910,15 +4015,18 @@ class s2250evtAvPrevio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2250evtAvPrevio", u"Pode visualizar o conteúdo do evento S2250EVTAVPREVIO"),
-            ("can_view_menu_s2250evtAvPrevio", u"Pode visualizar no menu o evento S2250EVTAVPREVIO"),
-            ("can_open_event_s2250evtAvPrevio", u"Pode abrir o evento S2250EVTAVPREVIO para edição"),
-            ("can_duplicate_event_s2250evtAvPrevio", u"Pode duplicar o evento S2250EVTAVPREVIO"),
-            ("can_validate_event_s2250evtAvPrevio", u"Pode validar o evento S2250EVTAVPREVIO"),
-            ("can_print_event_s2250evtAvPrevio", u"Pode imprimir recibo do evento S2250EVTAVPREVIO"),
-            ("can_change_identity_event_s2250evtAvPrevio", u"Pode alterar identidade do evento S2250EVTAVPREVIO"),
-            ("can_view_layout_event_s2250evtAvPrevio", u"Pode ver layout do evento S2250EVTAVPREVIO"),
-            ("can_view_xml_event_s2250evtAvPrevio", u"Pode ver xml do evento S2250EVTAVPREVIO"),)
+            ("can_see_list_s2250evtAvPrevio", u"Pode ver listagem do modelo S2250EVTAVPREVIO"),
+            ("can_see_data_s2250evtAvPrevio", u"Pode visualizar o conteúdo do modelo S2250EVTAVPREVIO"),
+            ("can_see_menu_s2250evtAvPrevio", u"Pode visualizar no menu o modelo S2250EVTAVPREVIO"),
+            ("can_print_list_s2250evtAvPrevio", u"Pode imprimir listagem do modelo S2250EVTAVPREVIO"),
+            ("can_print_data_s2250evtAvPrevio", u"Pode imprimir o conteúdo do modelo S2250EVTAVPREVIO"),
+            ("can_open_s2250evtAvPrevio", u"Pode abrir o evento S2250EVTAVPREVIO para edição"),
+            ("can_duplicate_s2250evtAvPrevio", u"Pode duplicar o evento S2250EVTAVPREVIO"),
+            ("can_validate_s2250evtAvPrevio", u"Pode validar o evento S2250EVTAVPREVIO"),
+            ("can_change_identity_s2250evtAvPrevio", u"Pode alterar identidade do evento S2250EVTAVPREVIO"),
+            ("can_see_layout_s2250evtAvPrevio", u"Pode ver layout do evento S2250EVTAVPREVIO"),
+            ("can_see_receipt_s2250evtAvPrevio", u"Pode ver recibo do evento S2250EVTAVPREVIO"),
+            ("can_see_xml_s2250evtAvPrevio", u"Pode ver xml do evento S2250EVTAVPREVIO"),)
             
         ordering = [
             'identidade',
@@ -4027,15 +4135,18 @@ class s2260evtConvInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2260evtConvInterm", u"Pode visualizar o conteúdo do evento S2260EVTCONVINTERM"),
-            ("can_view_menu_s2260evtConvInterm", u"Pode visualizar no menu o evento S2260EVTCONVINTERM"),
-            ("can_open_event_s2260evtConvInterm", u"Pode abrir o evento S2260EVTCONVINTERM para edição"),
-            ("can_duplicate_event_s2260evtConvInterm", u"Pode duplicar o evento S2260EVTCONVINTERM"),
-            ("can_validate_event_s2260evtConvInterm", u"Pode validar o evento S2260EVTCONVINTERM"),
-            ("can_print_event_s2260evtConvInterm", u"Pode imprimir recibo do evento S2260EVTCONVINTERM"),
-            ("can_change_identity_event_s2260evtConvInterm", u"Pode alterar identidade do evento S2260EVTCONVINTERM"),
-            ("can_view_layout_event_s2260evtConvInterm", u"Pode ver layout do evento S2260EVTCONVINTERM"),
-            ("can_view_xml_event_s2260evtConvInterm", u"Pode ver xml do evento S2260EVTCONVINTERM"),)
+            ("can_see_list_s2260evtConvInterm", u"Pode ver listagem do modelo S2260EVTCONVINTERM"),
+            ("can_see_data_s2260evtConvInterm", u"Pode visualizar o conteúdo do modelo S2260EVTCONVINTERM"),
+            ("can_see_menu_s2260evtConvInterm", u"Pode visualizar no menu o modelo S2260EVTCONVINTERM"),
+            ("can_print_list_s2260evtConvInterm", u"Pode imprimir listagem do modelo S2260EVTCONVINTERM"),
+            ("can_print_data_s2260evtConvInterm", u"Pode imprimir o conteúdo do modelo S2260EVTCONVINTERM"),
+            ("can_open_s2260evtConvInterm", u"Pode abrir o evento S2260EVTCONVINTERM para edição"),
+            ("can_duplicate_s2260evtConvInterm", u"Pode duplicar o evento S2260EVTCONVINTERM"),
+            ("can_validate_s2260evtConvInterm", u"Pode validar o evento S2260EVTCONVINTERM"),
+            ("can_change_identity_s2260evtConvInterm", u"Pode alterar identidade do evento S2260EVTCONVINTERM"),
+            ("can_see_layout_s2260evtConvInterm", u"Pode ver layout do evento S2260EVTCONVINTERM"),
+            ("can_see_receipt_s2260evtConvInterm", u"Pode ver recibo do evento S2260EVTCONVINTERM"),
+            ("can_see_xml_s2260evtConvInterm", u"Pode ver xml do evento S2260EVTCONVINTERM"),)
             
         ordering = [
             'identidade',
@@ -4147,15 +4258,18 @@ class s2298evtReintegr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2298evtReintegr", u"Pode visualizar o conteúdo do evento S2298EVTREINTEGR"),
-            ("can_view_menu_s2298evtReintegr", u"Pode visualizar no menu o evento S2298EVTREINTEGR"),
-            ("can_open_event_s2298evtReintegr", u"Pode abrir o evento S2298EVTREINTEGR para edição"),
-            ("can_duplicate_event_s2298evtReintegr", u"Pode duplicar o evento S2298EVTREINTEGR"),
-            ("can_validate_event_s2298evtReintegr", u"Pode validar o evento S2298EVTREINTEGR"),
-            ("can_print_event_s2298evtReintegr", u"Pode imprimir recibo do evento S2298EVTREINTEGR"),
-            ("can_change_identity_event_s2298evtReintegr", u"Pode alterar identidade do evento S2298EVTREINTEGR"),
-            ("can_view_layout_event_s2298evtReintegr", u"Pode ver layout do evento S2298EVTREINTEGR"),
-            ("can_view_xml_event_s2298evtReintegr", u"Pode ver xml do evento S2298EVTREINTEGR"),)
+            ("can_see_list_s2298evtReintegr", u"Pode ver listagem do modelo S2298EVTREINTEGR"),
+            ("can_see_data_s2298evtReintegr", u"Pode visualizar o conteúdo do modelo S2298EVTREINTEGR"),
+            ("can_see_menu_s2298evtReintegr", u"Pode visualizar no menu o modelo S2298EVTREINTEGR"),
+            ("can_print_list_s2298evtReintegr", u"Pode imprimir listagem do modelo S2298EVTREINTEGR"),
+            ("can_print_data_s2298evtReintegr", u"Pode imprimir o conteúdo do modelo S2298EVTREINTEGR"),
+            ("can_open_s2298evtReintegr", u"Pode abrir o evento S2298EVTREINTEGR para edição"),
+            ("can_duplicate_s2298evtReintegr", u"Pode duplicar o evento S2298EVTREINTEGR"),
+            ("can_validate_s2298evtReintegr", u"Pode validar o evento S2298EVTREINTEGR"),
+            ("can_change_identity_s2298evtReintegr", u"Pode alterar identidade do evento S2298EVTREINTEGR"),
+            ("can_see_layout_s2298evtReintegr", u"Pode ver layout do evento S2298EVTREINTEGR"),
+            ("can_see_receipt_s2298evtReintegr", u"Pode ver recibo do evento S2298EVTREINTEGR"),
+            ("can_see_xml_s2298evtReintegr", u"Pode ver xml do evento S2298EVTREINTEGR"),)
             
         ordering = [
             'identidade',
@@ -4272,15 +4386,18 @@ class s2299evtDeslig(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2299evtDeslig", u"Pode visualizar o conteúdo do evento S2299EVTDESLIG"),
-            ("can_view_menu_s2299evtDeslig", u"Pode visualizar no menu o evento S2299EVTDESLIG"),
-            ("can_open_event_s2299evtDeslig", u"Pode abrir o evento S2299EVTDESLIG para edição"),
-            ("can_duplicate_event_s2299evtDeslig", u"Pode duplicar o evento S2299EVTDESLIG"),
-            ("can_validate_event_s2299evtDeslig", u"Pode validar o evento S2299EVTDESLIG"),
-            ("can_print_event_s2299evtDeslig", u"Pode imprimir recibo do evento S2299EVTDESLIG"),
-            ("can_change_identity_event_s2299evtDeslig", u"Pode alterar identidade do evento S2299EVTDESLIG"),
-            ("can_view_layout_event_s2299evtDeslig", u"Pode ver layout do evento S2299EVTDESLIG"),
-            ("can_view_xml_event_s2299evtDeslig", u"Pode ver xml do evento S2299EVTDESLIG"),)
+            ("can_see_list_s2299evtDeslig", u"Pode ver listagem do modelo S2299EVTDESLIG"),
+            ("can_see_data_s2299evtDeslig", u"Pode visualizar o conteúdo do modelo S2299EVTDESLIG"),
+            ("can_see_menu_s2299evtDeslig", u"Pode visualizar no menu o modelo S2299EVTDESLIG"),
+            ("can_print_list_s2299evtDeslig", u"Pode imprimir listagem do modelo S2299EVTDESLIG"),
+            ("can_print_data_s2299evtDeslig", u"Pode imprimir o conteúdo do modelo S2299EVTDESLIG"),
+            ("can_open_s2299evtDeslig", u"Pode abrir o evento S2299EVTDESLIG para edição"),
+            ("can_duplicate_s2299evtDeslig", u"Pode duplicar o evento S2299EVTDESLIG"),
+            ("can_validate_s2299evtDeslig", u"Pode validar o evento S2299EVTDESLIG"),
+            ("can_change_identity_s2299evtDeslig", u"Pode alterar identidade do evento S2299EVTDESLIG"),
+            ("can_see_layout_s2299evtDeslig", u"Pode ver layout do evento S2299EVTDESLIG"),
+            ("can_see_receipt_s2299evtDeslig", u"Pode ver recibo do evento S2299EVTDESLIG"),
+            ("can_see_xml_s2299evtDeslig", u"Pode ver xml do evento S2299EVTDESLIG"),)
             
         ordering = [
             'identidade',
@@ -4406,15 +4523,18 @@ class s2300evtTSVInicio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2300evtTSVInicio", u"Pode visualizar o conteúdo do evento S2300EVTTSVINICIO"),
-            ("can_view_menu_s2300evtTSVInicio", u"Pode visualizar no menu o evento S2300EVTTSVINICIO"),
-            ("can_open_event_s2300evtTSVInicio", u"Pode abrir o evento S2300EVTTSVINICIO para edição"),
-            ("can_duplicate_event_s2300evtTSVInicio", u"Pode duplicar o evento S2300EVTTSVINICIO"),
-            ("can_validate_event_s2300evtTSVInicio", u"Pode validar o evento S2300EVTTSVINICIO"),
-            ("can_print_event_s2300evtTSVInicio", u"Pode imprimir recibo do evento S2300EVTTSVINICIO"),
-            ("can_change_identity_event_s2300evtTSVInicio", u"Pode alterar identidade do evento S2300EVTTSVINICIO"),
-            ("can_view_layout_event_s2300evtTSVInicio", u"Pode ver layout do evento S2300EVTTSVINICIO"),
-            ("can_view_xml_event_s2300evtTSVInicio", u"Pode ver xml do evento S2300EVTTSVINICIO"),)
+            ("can_see_list_s2300evtTSVInicio", u"Pode ver listagem do modelo S2300EVTTSVINICIO"),
+            ("can_see_data_s2300evtTSVInicio", u"Pode visualizar o conteúdo do modelo S2300EVTTSVINICIO"),
+            ("can_see_menu_s2300evtTSVInicio", u"Pode visualizar no menu o modelo S2300EVTTSVINICIO"),
+            ("can_print_list_s2300evtTSVInicio", u"Pode imprimir listagem do modelo S2300EVTTSVINICIO"),
+            ("can_print_data_s2300evtTSVInicio", u"Pode imprimir o conteúdo do modelo S2300EVTTSVINICIO"),
+            ("can_open_s2300evtTSVInicio", u"Pode abrir o evento S2300EVTTSVINICIO para edição"),
+            ("can_duplicate_s2300evtTSVInicio", u"Pode duplicar o evento S2300EVTTSVINICIO"),
+            ("can_validate_s2300evtTSVInicio", u"Pode validar o evento S2300EVTTSVINICIO"),
+            ("can_change_identity_s2300evtTSVInicio", u"Pode alterar identidade do evento S2300EVTTSVINICIO"),
+            ("can_see_layout_s2300evtTSVInicio", u"Pode ver layout do evento S2300EVTTSVINICIO"),
+            ("can_see_receipt_s2300evtTSVInicio", u"Pode ver recibo do evento S2300EVTTSVINICIO"),
+            ("can_see_xml_s2300evtTSVInicio", u"Pode ver xml do evento S2300EVTTSVINICIO"),)
             
         ordering = [
             'identidade',
@@ -4521,15 +4641,18 @@ class s2306evtTSVAltContr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306evtTSVAltContr", u"Pode visualizar o conteúdo do evento S2306EVTTSVALTCONTR"),
-            ("can_view_menu_s2306evtTSVAltContr", u"Pode visualizar no menu o evento S2306EVTTSVALTCONTR"),
-            ("can_open_event_s2306evtTSVAltContr", u"Pode abrir o evento S2306EVTTSVALTCONTR para edição"),
-            ("can_duplicate_event_s2306evtTSVAltContr", u"Pode duplicar o evento S2306EVTTSVALTCONTR"),
-            ("can_validate_event_s2306evtTSVAltContr", u"Pode validar o evento S2306EVTTSVALTCONTR"),
-            ("can_print_event_s2306evtTSVAltContr", u"Pode imprimir recibo do evento S2306EVTTSVALTCONTR"),
-            ("can_change_identity_event_s2306evtTSVAltContr", u"Pode alterar identidade do evento S2306EVTTSVALTCONTR"),
-            ("can_view_layout_event_s2306evtTSVAltContr", u"Pode ver layout do evento S2306EVTTSVALTCONTR"),
-            ("can_view_xml_event_s2306evtTSVAltContr", u"Pode ver xml do evento S2306EVTTSVALTCONTR"),)
+            ("can_see_list_s2306evtTSVAltContr", u"Pode ver listagem do modelo S2306EVTTSVALTCONTR"),
+            ("can_see_data_s2306evtTSVAltContr", u"Pode visualizar o conteúdo do modelo S2306EVTTSVALTCONTR"),
+            ("can_see_menu_s2306evtTSVAltContr", u"Pode visualizar no menu o modelo S2306EVTTSVALTCONTR"),
+            ("can_print_list_s2306evtTSVAltContr", u"Pode imprimir listagem do modelo S2306EVTTSVALTCONTR"),
+            ("can_print_data_s2306evtTSVAltContr", u"Pode imprimir o conteúdo do modelo S2306EVTTSVALTCONTR"),
+            ("can_open_s2306evtTSVAltContr", u"Pode abrir o evento S2306EVTTSVALTCONTR para edição"),
+            ("can_duplicate_s2306evtTSVAltContr", u"Pode duplicar o evento S2306EVTTSVALTCONTR"),
+            ("can_validate_s2306evtTSVAltContr", u"Pode validar o evento S2306EVTTSVALTCONTR"),
+            ("can_change_identity_s2306evtTSVAltContr", u"Pode alterar identidade do evento S2306EVTTSVALTCONTR"),
+            ("can_see_layout_s2306evtTSVAltContr", u"Pode ver layout do evento S2306EVTTSVALTCONTR"),
+            ("can_see_receipt_s2306evtTSVAltContr", u"Pode ver recibo do evento S2306EVTTSVALTCONTR"),
+            ("can_see_xml_s2306evtTSVAltContr", u"Pode ver xml do evento S2306EVTTSVALTCONTR"),)
             
         ordering = [
             'identidade',
@@ -4631,15 +4754,18 @@ class s2399evtTSVTermino(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2399evtTSVTermino", u"Pode visualizar o conteúdo do evento S2399EVTTSVTERMINO"),
-            ("can_view_menu_s2399evtTSVTermino", u"Pode visualizar no menu o evento S2399EVTTSVTERMINO"),
-            ("can_open_event_s2399evtTSVTermino", u"Pode abrir o evento S2399EVTTSVTERMINO para edição"),
-            ("can_duplicate_event_s2399evtTSVTermino", u"Pode duplicar o evento S2399EVTTSVTERMINO"),
-            ("can_validate_event_s2399evtTSVTermino", u"Pode validar o evento S2399EVTTSVTERMINO"),
-            ("can_print_event_s2399evtTSVTermino", u"Pode imprimir recibo do evento S2399EVTTSVTERMINO"),
-            ("can_change_identity_event_s2399evtTSVTermino", u"Pode alterar identidade do evento S2399EVTTSVTERMINO"),
-            ("can_view_layout_event_s2399evtTSVTermino", u"Pode ver layout do evento S2399EVTTSVTERMINO"),
-            ("can_view_xml_event_s2399evtTSVTermino", u"Pode ver xml do evento S2399EVTTSVTERMINO"),)
+            ("can_see_list_s2399evtTSVTermino", u"Pode ver listagem do modelo S2399EVTTSVTERMINO"),
+            ("can_see_data_s2399evtTSVTermino", u"Pode visualizar o conteúdo do modelo S2399EVTTSVTERMINO"),
+            ("can_see_menu_s2399evtTSVTermino", u"Pode visualizar no menu o modelo S2399EVTTSVTERMINO"),
+            ("can_print_list_s2399evtTSVTermino", u"Pode imprimir listagem do modelo S2399EVTTSVTERMINO"),
+            ("can_print_data_s2399evtTSVTermino", u"Pode imprimir o conteúdo do modelo S2399EVTTSVTERMINO"),
+            ("can_open_s2399evtTSVTermino", u"Pode abrir o evento S2399EVTTSVTERMINO para edição"),
+            ("can_duplicate_s2399evtTSVTermino", u"Pode duplicar o evento S2399EVTTSVTERMINO"),
+            ("can_validate_s2399evtTSVTermino", u"Pode validar o evento S2399EVTTSVTERMINO"),
+            ("can_change_identity_s2399evtTSVTermino", u"Pode alterar identidade do evento S2399EVTTSVTERMINO"),
+            ("can_see_layout_s2399evtTSVTermino", u"Pode ver layout do evento S2399EVTTSVTERMINO"),
+            ("can_see_receipt_s2399evtTSVTermino", u"Pode ver recibo do evento S2399EVTTSVTERMINO"),
+            ("can_see_xml_s2399evtTSVTermino", u"Pode ver xml do evento S2399EVTTSVTERMINO"),)
             
         ordering = [
             'identidade',
@@ -4754,15 +4880,18 @@ class s2400evtCdBenefIn(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2400evtCdBenefIn", u"Pode visualizar o conteúdo do evento S2400EVTCDBENEFIN"),
-            ("can_view_menu_s2400evtCdBenefIn", u"Pode visualizar no menu o evento S2400EVTCDBENEFIN"),
-            ("can_open_event_s2400evtCdBenefIn", u"Pode abrir o evento S2400EVTCDBENEFIN para edição"),
-            ("can_duplicate_event_s2400evtCdBenefIn", u"Pode duplicar o evento S2400EVTCDBENEFIN"),
-            ("can_validate_event_s2400evtCdBenefIn", u"Pode validar o evento S2400EVTCDBENEFIN"),
-            ("can_print_event_s2400evtCdBenefIn", u"Pode imprimir recibo do evento S2400EVTCDBENEFIN"),
-            ("can_change_identity_event_s2400evtCdBenefIn", u"Pode alterar identidade do evento S2400EVTCDBENEFIN"),
-            ("can_view_layout_event_s2400evtCdBenefIn", u"Pode ver layout do evento S2400EVTCDBENEFIN"),
-            ("can_view_xml_event_s2400evtCdBenefIn", u"Pode ver xml do evento S2400EVTCDBENEFIN"),)
+            ("can_see_list_s2400evtCdBenefIn", u"Pode ver listagem do modelo S2400EVTCDBENEFIN"),
+            ("can_see_data_s2400evtCdBenefIn", u"Pode visualizar o conteúdo do modelo S2400EVTCDBENEFIN"),
+            ("can_see_menu_s2400evtCdBenefIn", u"Pode visualizar no menu o modelo S2400EVTCDBENEFIN"),
+            ("can_print_list_s2400evtCdBenefIn", u"Pode imprimir listagem do modelo S2400EVTCDBENEFIN"),
+            ("can_print_data_s2400evtCdBenefIn", u"Pode imprimir o conteúdo do modelo S2400EVTCDBENEFIN"),
+            ("can_open_s2400evtCdBenefIn", u"Pode abrir o evento S2400EVTCDBENEFIN para edição"),
+            ("can_duplicate_s2400evtCdBenefIn", u"Pode duplicar o evento S2400EVTCDBENEFIN"),
+            ("can_validate_s2400evtCdBenefIn", u"Pode validar o evento S2400EVTCDBENEFIN"),
+            ("can_change_identity_s2400evtCdBenefIn", u"Pode alterar identidade do evento S2400EVTCDBENEFIN"),
+            ("can_see_layout_s2400evtCdBenefIn", u"Pode ver layout do evento S2400EVTCDBENEFIN"),
+            ("can_see_receipt_s2400evtCdBenefIn", u"Pode ver recibo do evento S2400EVTCDBENEFIN"),
+            ("can_see_xml_s2400evtCdBenefIn", u"Pode ver xml do evento S2400EVTCDBENEFIN"),)
             
         ordering = [
             'identidade',
@@ -4877,15 +5006,18 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405evtCdBenefAlt", u"Pode visualizar o conteúdo do evento S2405EVTCDBENEFALT"),
-            ("can_view_menu_s2405evtCdBenefAlt", u"Pode visualizar no menu o evento S2405EVTCDBENEFALT"),
-            ("can_open_event_s2405evtCdBenefAlt", u"Pode abrir o evento S2405EVTCDBENEFALT para edição"),
-            ("can_duplicate_event_s2405evtCdBenefAlt", u"Pode duplicar o evento S2405EVTCDBENEFALT"),
-            ("can_validate_event_s2405evtCdBenefAlt", u"Pode validar o evento S2405EVTCDBENEFALT"),
-            ("can_print_event_s2405evtCdBenefAlt", u"Pode imprimir recibo do evento S2405EVTCDBENEFALT"),
-            ("can_change_identity_event_s2405evtCdBenefAlt", u"Pode alterar identidade do evento S2405EVTCDBENEFALT"),
-            ("can_view_layout_event_s2405evtCdBenefAlt", u"Pode ver layout do evento S2405EVTCDBENEFALT"),
-            ("can_view_xml_event_s2405evtCdBenefAlt", u"Pode ver xml do evento S2405EVTCDBENEFALT"),)
+            ("can_see_list_s2405evtCdBenefAlt", u"Pode ver listagem do modelo S2405EVTCDBENEFALT"),
+            ("can_see_data_s2405evtCdBenefAlt", u"Pode visualizar o conteúdo do modelo S2405EVTCDBENEFALT"),
+            ("can_see_menu_s2405evtCdBenefAlt", u"Pode visualizar no menu o modelo S2405EVTCDBENEFALT"),
+            ("can_print_list_s2405evtCdBenefAlt", u"Pode imprimir listagem do modelo S2405EVTCDBENEFALT"),
+            ("can_print_data_s2405evtCdBenefAlt", u"Pode imprimir o conteúdo do modelo S2405EVTCDBENEFALT"),
+            ("can_open_s2405evtCdBenefAlt", u"Pode abrir o evento S2405EVTCDBENEFALT para edição"),
+            ("can_duplicate_s2405evtCdBenefAlt", u"Pode duplicar o evento S2405EVTCDBENEFALT"),
+            ("can_validate_s2405evtCdBenefAlt", u"Pode validar o evento S2405EVTCDBENEFALT"),
+            ("can_change_identity_s2405evtCdBenefAlt", u"Pode alterar identidade do evento S2405EVTCDBENEFALT"),
+            ("can_see_layout_s2405evtCdBenefAlt", u"Pode ver layout do evento S2405EVTCDBENEFALT"),
+            ("can_see_receipt_s2405evtCdBenefAlt", u"Pode ver recibo do evento S2405EVTCDBENEFALT"),
+            ("can_see_xml_s2405evtCdBenefAlt", u"Pode ver xml do evento S2405EVTCDBENEFALT"),)
             
         ordering = [
             'identidade',
@@ -5001,15 +5133,18 @@ class s2410evtCdBenIn(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410evtCdBenIn", u"Pode visualizar o conteúdo do evento S2410EVTCDBENIN"),
-            ("can_view_menu_s2410evtCdBenIn", u"Pode visualizar no menu o evento S2410EVTCDBENIN"),
-            ("can_open_event_s2410evtCdBenIn", u"Pode abrir o evento S2410EVTCDBENIN para edição"),
-            ("can_duplicate_event_s2410evtCdBenIn", u"Pode duplicar o evento S2410EVTCDBENIN"),
-            ("can_validate_event_s2410evtCdBenIn", u"Pode validar o evento S2410EVTCDBENIN"),
-            ("can_print_event_s2410evtCdBenIn", u"Pode imprimir recibo do evento S2410EVTCDBENIN"),
-            ("can_change_identity_event_s2410evtCdBenIn", u"Pode alterar identidade do evento S2410EVTCDBENIN"),
-            ("can_view_layout_event_s2410evtCdBenIn", u"Pode ver layout do evento S2410EVTCDBENIN"),
-            ("can_view_xml_event_s2410evtCdBenIn", u"Pode ver xml do evento S2410EVTCDBENIN"),)
+            ("can_see_list_s2410evtCdBenIn", u"Pode ver listagem do modelo S2410EVTCDBENIN"),
+            ("can_see_data_s2410evtCdBenIn", u"Pode visualizar o conteúdo do modelo S2410EVTCDBENIN"),
+            ("can_see_menu_s2410evtCdBenIn", u"Pode visualizar no menu o modelo S2410EVTCDBENIN"),
+            ("can_print_list_s2410evtCdBenIn", u"Pode imprimir listagem do modelo S2410EVTCDBENIN"),
+            ("can_print_data_s2410evtCdBenIn", u"Pode imprimir o conteúdo do modelo S2410EVTCDBENIN"),
+            ("can_open_s2410evtCdBenIn", u"Pode abrir o evento S2410EVTCDBENIN para edição"),
+            ("can_duplicate_s2410evtCdBenIn", u"Pode duplicar o evento S2410EVTCDBENIN"),
+            ("can_validate_s2410evtCdBenIn", u"Pode validar o evento S2410EVTCDBENIN"),
+            ("can_change_identity_s2410evtCdBenIn", u"Pode alterar identidade do evento S2410EVTCDBENIN"),
+            ("can_see_layout_s2410evtCdBenIn", u"Pode ver layout do evento S2410EVTCDBENIN"),
+            ("can_see_receipt_s2410evtCdBenIn", u"Pode ver recibo do evento S2410EVTCDBENIN"),
+            ("can_see_xml_s2410evtCdBenIn", u"Pode ver xml do evento S2410EVTCDBENIN"),)
             
         ordering = [
             'identidade',
@@ -5123,15 +5258,18 @@ class s2416evtCdBenAlt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2416evtCdBenAlt", u"Pode visualizar o conteúdo do evento S2416EVTCDBENALT"),
-            ("can_view_menu_s2416evtCdBenAlt", u"Pode visualizar no menu o evento S2416EVTCDBENALT"),
-            ("can_open_event_s2416evtCdBenAlt", u"Pode abrir o evento S2416EVTCDBENALT para edição"),
-            ("can_duplicate_event_s2416evtCdBenAlt", u"Pode duplicar o evento S2416EVTCDBENALT"),
-            ("can_validate_event_s2416evtCdBenAlt", u"Pode validar o evento S2416EVTCDBENALT"),
-            ("can_print_event_s2416evtCdBenAlt", u"Pode imprimir recibo do evento S2416EVTCDBENALT"),
-            ("can_change_identity_event_s2416evtCdBenAlt", u"Pode alterar identidade do evento S2416EVTCDBENALT"),
-            ("can_view_layout_event_s2416evtCdBenAlt", u"Pode ver layout do evento S2416EVTCDBENALT"),
-            ("can_view_xml_event_s2416evtCdBenAlt", u"Pode ver xml do evento S2416EVTCDBENALT"),)
+            ("can_see_list_s2416evtCdBenAlt", u"Pode ver listagem do modelo S2416EVTCDBENALT"),
+            ("can_see_data_s2416evtCdBenAlt", u"Pode visualizar o conteúdo do modelo S2416EVTCDBENALT"),
+            ("can_see_menu_s2416evtCdBenAlt", u"Pode visualizar no menu o modelo S2416EVTCDBENALT"),
+            ("can_print_list_s2416evtCdBenAlt", u"Pode imprimir listagem do modelo S2416EVTCDBENALT"),
+            ("can_print_data_s2416evtCdBenAlt", u"Pode imprimir o conteúdo do modelo S2416EVTCDBENALT"),
+            ("can_open_s2416evtCdBenAlt", u"Pode abrir o evento S2416EVTCDBENALT para edição"),
+            ("can_duplicate_s2416evtCdBenAlt", u"Pode duplicar o evento S2416EVTCDBENALT"),
+            ("can_validate_s2416evtCdBenAlt", u"Pode validar o evento S2416EVTCDBENALT"),
+            ("can_change_identity_s2416evtCdBenAlt", u"Pode alterar identidade do evento S2416EVTCDBENALT"),
+            ("can_see_layout_s2416evtCdBenAlt", u"Pode ver layout do evento S2416EVTCDBENALT"),
+            ("can_see_receipt_s2416evtCdBenAlt", u"Pode ver recibo do evento S2416EVTCDBENALT"),
+            ("can_see_xml_s2416evtCdBenAlt", u"Pode ver xml do evento S2416EVTCDBENALT"),)
             
         ordering = [
             'identidade',
@@ -5235,15 +5373,18 @@ class s2420evtCdBenTerm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2420evtCdBenTerm", u"Pode visualizar o conteúdo do evento S2420EVTCDBENTERM"),
-            ("can_view_menu_s2420evtCdBenTerm", u"Pode visualizar no menu o evento S2420EVTCDBENTERM"),
-            ("can_open_event_s2420evtCdBenTerm", u"Pode abrir o evento S2420EVTCDBENTERM para edição"),
-            ("can_duplicate_event_s2420evtCdBenTerm", u"Pode duplicar o evento S2420EVTCDBENTERM"),
-            ("can_validate_event_s2420evtCdBenTerm", u"Pode validar o evento S2420EVTCDBENTERM"),
-            ("can_print_event_s2420evtCdBenTerm", u"Pode imprimir recibo do evento S2420EVTCDBENTERM"),
-            ("can_change_identity_event_s2420evtCdBenTerm", u"Pode alterar identidade do evento S2420EVTCDBENTERM"),
-            ("can_view_layout_event_s2420evtCdBenTerm", u"Pode ver layout do evento S2420EVTCDBENTERM"),
-            ("can_view_xml_event_s2420evtCdBenTerm", u"Pode ver xml do evento S2420EVTCDBENTERM"),)
+            ("can_see_list_s2420evtCdBenTerm", u"Pode ver listagem do modelo S2420EVTCDBENTERM"),
+            ("can_see_data_s2420evtCdBenTerm", u"Pode visualizar o conteúdo do modelo S2420EVTCDBENTERM"),
+            ("can_see_menu_s2420evtCdBenTerm", u"Pode visualizar no menu o modelo S2420EVTCDBENTERM"),
+            ("can_print_list_s2420evtCdBenTerm", u"Pode imprimir listagem do modelo S2420EVTCDBENTERM"),
+            ("can_print_data_s2420evtCdBenTerm", u"Pode imprimir o conteúdo do modelo S2420EVTCDBENTERM"),
+            ("can_open_s2420evtCdBenTerm", u"Pode abrir o evento S2420EVTCDBENTERM para edição"),
+            ("can_duplicate_s2420evtCdBenTerm", u"Pode duplicar o evento S2420EVTCDBENTERM"),
+            ("can_validate_s2420evtCdBenTerm", u"Pode validar o evento S2420EVTCDBENTERM"),
+            ("can_change_identity_s2420evtCdBenTerm", u"Pode alterar identidade do evento S2420EVTCDBENTERM"),
+            ("can_see_layout_s2420evtCdBenTerm", u"Pode ver layout do evento S2420EVTCDBENTERM"),
+            ("can_see_receipt_s2420evtCdBenTerm", u"Pode ver recibo do evento S2420EVTCDBENTERM"),
+            ("can_see_xml_s2420evtCdBenTerm", u"Pode ver xml do evento S2420EVTCDBENTERM"),)
             
         ordering = [
             'identidade',
@@ -5336,15 +5477,18 @@ class s3000evtExclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s3000evtExclusao", u"Pode visualizar o conteúdo do evento S3000EVTEXCLUSAO"),
-            ("can_view_menu_s3000evtExclusao", u"Pode visualizar no menu o evento S3000EVTEXCLUSAO"),
-            ("can_open_event_s3000evtExclusao", u"Pode abrir o evento S3000EVTEXCLUSAO para edição"),
-            ("can_duplicate_event_s3000evtExclusao", u"Pode duplicar o evento S3000EVTEXCLUSAO"),
-            ("can_validate_event_s3000evtExclusao", u"Pode validar o evento S3000EVTEXCLUSAO"),
-            ("can_print_event_s3000evtExclusao", u"Pode imprimir recibo do evento S3000EVTEXCLUSAO"),
-            ("can_change_identity_event_s3000evtExclusao", u"Pode alterar identidade do evento S3000EVTEXCLUSAO"),
-            ("can_view_layout_event_s3000evtExclusao", u"Pode ver layout do evento S3000EVTEXCLUSAO"),
-            ("can_view_xml_event_s3000evtExclusao", u"Pode ver xml do evento S3000EVTEXCLUSAO"),)
+            ("can_see_list_s3000evtExclusao", u"Pode ver listagem do modelo S3000EVTEXCLUSAO"),
+            ("can_see_data_s3000evtExclusao", u"Pode visualizar o conteúdo do modelo S3000EVTEXCLUSAO"),
+            ("can_see_menu_s3000evtExclusao", u"Pode visualizar no menu o modelo S3000EVTEXCLUSAO"),
+            ("can_print_list_s3000evtExclusao", u"Pode imprimir listagem do modelo S3000EVTEXCLUSAO"),
+            ("can_print_data_s3000evtExclusao", u"Pode imprimir o conteúdo do modelo S3000EVTEXCLUSAO"),
+            ("can_open_s3000evtExclusao", u"Pode abrir o evento S3000EVTEXCLUSAO para edição"),
+            ("can_duplicate_s3000evtExclusao", u"Pode duplicar o evento S3000EVTEXCLUSAO"),
+            ("can_validate_s3000evtExclusao", u"Pode validar o evento S3000EVTEXCLUSAO"),
+            ("can_change_identity_s3000evtExclusao", u"Pode alterar identidade do evento S3000EVTEXCLUSAO"),
+            ("can_see_layout_s3000evtExclusao", u"Pode ver layout do evento S3000EVTEXCLUSAO"),
+            ("can_see_receipt_s3000evtExclusao", u"Pode ver recibo do evento S3000EVTEXCLUSAO"),
+            ("can_see_xml_s3000evtExclusao", u"Pode ver xml do evento S3000EVTEXCLUSAO"),)
             
         ordering = [
             'identidade',
@@ -5432,15 +5576,18 @@ class s5001evtBasesTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001evtBasesTrab", u"Pode visualizar o conteúdo do evento S5001EVTBASESTRAB"),
-            ("can_view_menu_s5001evtBasesTrab", u"Pode visualizar no menu o evento S5001EVTBASESTRAB"),
-            ("can_open_event_s5001evtBasesTrab", u"Pode abrir o evento S5001EVTBASESTRAB para edição"),
-            ("can_duplicate_event_s5001evtBasesTrab", u"Pode duplicar o evento S5001EVTBASESTRAB"),
-            ("can_validate_event_s5001evtBasesTrab", u"Pode validar o evento S5001EVTBASESTRAB"),
-            ("can_print_event_s5001evtBasesTrab", u"Pode imprimir recibo do evento S5001EVTBASESTRAB"),
-            ("can_change_identity_event_s5001evtBasesTrab", u"Pode alterar identidade do evento S5001EVTBASESTRAB"),
-            ("can_view_layout_event_s5001evtBasesTrab", u"Pode ver layout do evento S5001EVTBASESTRAB"),
-            ("can_view_xml_event_s5001evtBasesTrab", u"Pode ver xml do evento S5001EVTBASESTRAB"),)
+            ("can_see_list_s5001evtBasesTrab", u"Pode ver listagem do modelo S5001EVTBASESTRAB"),
+            ("can_see_data_s5001evtBasesTrab", u"Pode visualizar o conteúdo do modelo S5001EVTBASESTRAB"),
+            ("can_see_menu_s5001evtBasesTrab", u"Pode visualizar no menu o modelo S5001EVTBASESTRAB"),
+            ("can_print_list_s5001evtBasesTrab", u"Pode imprimir listagem do modelo S5001EVTBASESTRAB"),
+            ("can_print_data_s5001evtBasesTrab", u"Pode imprimir o conteúdo do modelo S5001EVTBASESTRAB"),
+            ("can_open_s5001evtBasesTrab", u"Pode abrir o evento S5001EVTBASESTRAB para edição"),
+            ("can_duplicate_s5001evtBasesTrab", u"Pode duplicar o evento S5001EVTBASESTRAB"),
+            ("can_validate_s5001evtBasesTrab", u"Pode validar o evento S5001EVTBASESTRAB"),
+            ("can_change_identity_s5001evtBasesTrab", u"Pode alterar identidade do evento S5001EVTBASESTRAB"),
+            ("can_see_layout_s5001evtBasesTrab", u"Pode ver layout do evento S5001EVTBASESTRAB"),
+            ("can_see_receipt_s5001evtBasesTrab", u"Pode ver recibo do evento S5001EVTBASESTRAB"),
+            ("can_see_xml_s5001evtBasesTrab", u"Pode ver xml do evento S5001EVTBASESTRAB"),)
             
         ordering = [
             'identidade',
@@ -5525,15 +5672,18 @@ class s5002evtIrrfBenef(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002evtIrrfBenef", u"Pode visualizar o conteúdo do evento S5002EVTIRRFBENEF"),
-            ("can_view_menu_s5002evtIrrfBenef", u"Pode visualizar no menu o evento S5002EVTIRRFBENEF"),
-            ("can_open_event_s5002evtIrrfBenef", u"Pode abrir o evento S5002EVTIRRFBENEF para edição"),
-            ("can_duplicate_event_s5002evtIrrfBenef", u"Pode duplicar o evento S5002EVTIRRFBENEF"),
-            ("can_validate_event_s5002evtIrrfBenef", u"Pode validar o evento S5002EVTIRRFBENEF"),
-            ("can_print_event_s5002evtIrrfBenef", u"Pode imprimir recibo do evento S5002EVTIRRFBENEF"),
-            ("can_change_identity_event_s5002evtIrrfBenef", u"Pode alterar identidade do evento S5002EVTIRRFBENEF"),
-            ("can_view_layout_event_s5002evtIrrfBenef", u"Pode ver layout do evento S5002EVTIRRFBENEF"),
-            ("can_view_xml_event_s5002evtIrrfBenef", u"Pode ver xml do evento S5002EVTIRRFBENEF"),)
+            ("can_see_list_s5002evtIrrfBenef", u"Pode ver listagem do modelo S5002EVTIRRFBENEF"),
+            ("can_see_data_s5002evtIrrfBenef", u"Pode visualizar o conteúdo do modelo S5002EVTIRRFBENEF"),
+            ("can_see_menu_s5002evtIrrfBenef", u"Pode visualizar no menu o modelo S5002EVTIRRFBENEF"),
+            ("can_print_list_s5002evtIrrfBenef", u"Pode imprimir listagem do modelo S5002EVTIRRFBENEF"),
+            ("can_print_data_s5002evtIrrfBenef", u"Pode imprimir o conteúdo do modelo S5002EVTIRRFBENEF"),
+            ("can_open_s5002evtIrrfBenef", u"Pode abrir o evento S5002EVTIRRFBENEF para edição"),
+            ("can_duplicate_s5002evtIrrfBenef", u"Pode duplicar o evento S5002EVTIRRFBENEF"),
+            ("can_validate_s5002evtIrrfBenef", u"Pode validar o evento S5002EVTIRRFBENEF"),
+            ("can_change_identity_s5002evtIrrfBenef", u"Pode alterar identidade do evento S5002EVTIRRFBENEF"),
+            ("can_see_layout_s5002evtIrrfBenef", u"Pode ver layout do evento S5002EVTIRRFBENEF"),
+            ("can_see_receipt_s5002evtIrrfBenef", u"Pode ver recibo do evento S5002EVTIRRFBENEF"),
+            ("can_see_xml_s5002evtIrrfBenef", u"Pode ver xml do evento S5002EVTIRRFBENEF"),)
             
         ordering = [
             'identidade',
@@ -5619,15 +5769,18 @@ class s5003evtBasesFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003evtBasesFGTS", u"Pode visualizar o conteúdo do evento S5003EVTBASESFGTS"),
-            ("can_view_menu_s5003evtBasesFGTS", u"Pode visualizar no menu o evento S5003EVTBASESFGTS"),
-            ("can_open_event_s5003evtBasesFGTS", u"Pode abrir o evento S5003EVTBASESFGTS para edição"),
-            ("can_duplicate_event_s5003evtBasesFGTS", u"Pode duplicar o evento S5003EVTBASESFGTS"),
-            ("can_validate_event_s5003evtBasesFGTS", u"Pode validar o evento S5003EVTBASESFGTS"),
-            ("can_print_event_s5003evtBasesFGTS", u"Pode imprimir recibo do evento S5003EVTBASESFGTS"),
-            ("can_change_identity_event_s5003evtBasesFGTS", u"Pode alterar identidade do evento S5003EVTBASESFGTS"),
-            ("can_view_layout_event_s5003evtBasesFGTS", u"Pode ver layout do evento S5003EVTBASESFGTS"),
-            ("can_view_xml_event_s5003evtBasesFGTS", u"Pode ver xml do evento S5003EVTBASESFGTS"),)
+            ("can_see_list_s5003evtBasesFGTS", u"Pode ver listagem do modelo S5003EVTBASESFGTS"),
+            ("can_see_data_s5003evtBasesFGTS", u"Pode visualizar o conteúdo do modelo S5003EVTBASESFGTS"),
+            ("can_see_menu_s5003evtBasesFGTS", u"Pode visualizar no menu o modelo S5003EVTBASESFGTS"),
+            ("can_print_list_s5003evtBasesFGTS", u"Pode imprimir listagem do modelo S5003EVTBASESFGTS"),
+            ("can_print_data_s5003evtBasesFGTS", u"Pode imprimir o conteúdo do modelo S5003EVTBASESFGTS"),
+            ("can_open_s5003evtBasesFGTS", u"Pode abrir o evento S5003EVTBASESFGTS para edição"),
+            ("can_duplicate_s5003evtBasesFGTS", u"Pode duplicar o evento S5003EVTBASESFGTS"),
+            ("can_validate_s5003evtBasesFGTS", u"Pode validar o evento S5003EVTBASESFGTS"),
+            ("can_change_identity_s5003evtBasesFGTS", u"Pode alterar identidade do evento S5003EVTBASESFGTS"),
+            ("can_see_layout_s5003evtBasesFGTS", u"Pode ver layout do evento S5003EVTBASESFGTS"),
+            ("can_see_receipt_s5003evtBasesFGTS", u"Pode ver recibo do evento S5003EVTBASESFGTS"),
+            ("can_see_xml_s5003evtBasesFGTS", u"Pode ver xml do evento S5003EVTBASESFGTS"),)
             
         ordering = [
             'identidade',
@@ -5715,15 +5868,18 @@ class s5011evtCS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5011evtCS", u"Pode visualizar o conteúdo do evento S5011EVTCS"),
-            ("can_view_menu_s5011evtCS", u"Pode visualizar no menu o evento S5011EVTCS"),
-            ("can_open_event_s5011evtCS", u"Pode abrir o evento S5011EVTCS para edição"),
-            ("can_duplicate_event_s5011evtCS", u"Pode duplicar o evento S5011EVTCS"),
-            ("can_validate_event_s5011evtCS", u"Pode validar o evento S5011EVTCS"),
-            ("can_print_event_s5011evtCS", u"Pode imprimir recibo do evento S5011EVTCS"),
-            ("can_change_identity_event_s5011evtCS", u"Pode alterar identidade do evento S5011EVTCS"),
-            ("can_view_layout_event_s5011evtCS", u"Pode ver layout do evento S5011EVTCS"),
-            ("can_view_xml_event_s5011evtCS", u"Pode ver xml do evento S5011EVTCS"),)
+            ("can_see_list_s5011evtCS", u"Pode ver listagem do modelo S5011EVTCS"),
+            ("can_see_data_s5011evtCS", u"Pode visualizar o conteúdo do modelo S5011EVTCS"),
+            ("can_see_menu_s5011evtCS", u"Pode visualizar no menu o modelo S5011EVTCS"),
+            ("can_print_list_s5011evtCS", u"Pode imprimir listagem do modelo S5011EVTCS"),
+            ("can_print_data_s5011evtCS", u"Pode imprimir o conteúdo do modelo S5011EVTCS"),
+            ("can_open_s5011evtCS", u"Pode abrir o evento S5011EVTCS para edição"),
+            ("can_duplicate_s5011evtCS", u"Pode duplicar o evento S5011EVTCS"),
+            ("can_validate_s5011evtCS", u"Pode validar o evento S5011EVTCS"),
+            ("can_change_identity_s5011evtCS", u"Pode alterar identidade do evento S5011EVTCS"),
+            ("can_see_layout_s5011evtCS", u"Pode ver layout do evento S5011EVTCS"),
+            ("can_see_receipt_s5011evtCS", u"Pode ver recibo do evento S5011EVTCS"),
+            ("can_see_xml_s5011evtCS", u"Pode ver xml do evento S5011EVTCS"),)
             
         ordering = [
             'identidade',
@@ -5809,15 +5965,18 @@ class s5012evtIrrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5012evtIrrf", u"Pode visualizar o conteúdo do evento S5012EVTIRRF"),
-            ("can_view_menu_s5012evtIrrf", u"Pode visualizar no menu o evento S5012EVTIRRF"),
-            ("can_open_event_s5012evtIrrf", u"Pode abrir o evento S5012EVTIRRF para edição"),
-            ("can_duplicate_event_s5012evtIrrf", u"Pode duplicar o evento S5012EVTIRRF"),
-            ("can_validate_event_s5012evtIrrf", u"Pode validar o evento S5012EVTIRRF"),
-            ("can_print_event_s5012evtIrrf", u"Pode imprimir recibo do evento S5012EVTIRRF"),
-            ("can_change_identity_event_s5012evtIrrf", u"Pode alterar identidade do evento S5012EVTIRRF"),
-            ("can_view_layout_event_s5012evtIrrf", u"Pode ver layout do evento S5012EVTIRRF"),
-            ("can_view_xml_event_s5012evtIrrf", u"Pode ver xml do evento S5012EVTIRRF"),)
+            ("can_see_list_s5012evtIrrf", u"Pode ver listagem do modelo S5012EVTIRRF"),
+            ("can_see_data_s5012evtIrrf", u"Pode visualizar o conteúdo do modelo S5012EVTIRRF"),
+            ("can_see_menu_s5012evtIrrf", u"Pode visualizar no menu o modelo S5012EVTIRRF"),
+            ("can_print_list_s5012evtIrrf", u"Pode imprimir listagem do modelo S5012EVTIRRF"),
+            ("can_print_data_s5012evtIrrf", u"Pode imprimir o conteúdo do modelo S5012EVTIRRF"),
+            ("can_open_s5012evtIrrf", u"Pode abrir o evento S5012EVTIRRF para edição"),
+            ("can_duplicate_s5012evtIrrf", u"Pode duplicar o evento S5012EVTIRRF"),
+            ("can_validate_s5012evtIrrf", u"Pode validar o evento S5012EVTIRRF"),
+            ("can_change_identity_s5012evtIrrf", u"Pode alterar identidade do evento S5012EVTIRRF"),
+            ("can_see_layout_s5012evtIrrf", u"Pode ver layout do evento S5012EVTIRRF"),
+            ("can_see_receipt_s5012evtIrrf", u"Pode ver recibo do evento S5012EVTIRRF"),
+            ("can_see_xml_s5012evtIrrf", u"Pode ver xml do evento S5012EVTIRRF"),)
             
         ordering = [
             'identidade',
@@ -5901,15 +6060,18 @@ class s5013evtFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013evtFGTS", u"Pode visualizar o conteúdo do evento S5013EVTFGTS"),
-            ("can_view_menu_s5013evtFGTS", u"Pode visualizar no menu o evento S5013EVTFGTS"),
-            ("can_open_event_s5013evtFGTS", u"Pode abrir o evento S5013EVTFGTS para edição"),
-            ("can_duplicate_event_s5013evtFGTS", u"Pode duplicar o evento S5013EVTFGTS"),
-            ("can_validate_event_s5013evtFGTS", u"Pode validar o evento S5013EVTFGTS"),
-            ("can_print_event_s5013evtFGTS", u"Pode imprimir recibo do evento S5013EVTFGTS"),
-            ("can_change_identity_event_s5013evtFGTS", u"Pode alterar identidade do evento S5013EVTFGTS"),
-            ("can_view_layout_event_s5013evtFGTS", u"Pode ver layout do evento S5013EVTFGTS"),
-            ("can_view_xml_event_s5013evtFGTS", u"Pode ver xml do evento S5013EVTFGTS"),)
+            ("can_see_list_s5013evtFGTS", u"Pode ver listagem do modelo S5013EVTFGTS"),
+            ("can_see_data_s5013evtFGTS", u"Pode visualizar o conteúdo do modelo S5013EVTFGTS"),
+            ("can_see_menu_s5013evtFGTS", u"Pode visualizar no menu o modelo S5013EVTFGTS"),
+            ("can_print_list_s5013evtFGTS", u"Pode imprimir listagem do modelo S5013EVTFGTS"),
+            ("can_print_data_s5013evtFGTS", u"Pode imprimir o conteúdo do modelo S5013EVTFGTS"),
+            ("can_open_s5013evtFGTS", u"Pode abrir o evento S5013EVTFGTS para edição"),
+            ("can_duplicate_s5013evtFGTS", u"Pode duplicar o evento S5013EVTFGTS"),
+            ("can_validate_s5013evtFGTS", u"Pode validar o evento S5013EVTFGTS"),
+            ("can_change_identity_s5013evtFGTS", u"Pode alterar identidade do evento S5013EVTFGTS"),
+            ("can_see_layout_s5013evtFGTS", u"Pode ver layout do evento S5013EVTFGTS"),
+            ("can_see_receipt_s5013evtFGTS", u"Pode ver recibo do evento S5013EVTFGTS"),
+            ("can_see_xml_s5013evtFGTS", u"Pode ver xml do evento S5013EVTFGTS"),)
             
         ordering = [
             'identidade',

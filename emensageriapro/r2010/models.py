@@ -102,8 +102,11 @@ class r2010infoProcRetAd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010infoProcRetAd", "Can view R2010INFOPROCRETAD"),
-            ("can_view_menu_r2010infoProcRetAd", "Can view menu R2010INFOPROCRETAD"),)
+            ("can_see_list_r2010infoProcRetAd", u"Pode ver listagem do modelo R2010INFOPROCRETAD"),
+            ("can_see_data_r2010infoProcRetAd", u"Pode visualizar o conteúdo do modelo R2010INFOPROCRETAD"),
+            ("can_see_menu_r2010infoProcRetAd", u"Pode visualizar no menu o modelo R2010INFOPROCRETAD"),
+            ("can_print_list_r2010infoProcRetAd", u"Pode imprimir listagem do modelo R2010INFOPROCRETAD"),
+            ("can_print_data_r2010infoProcRetAd", u"Pode imprimir o conteúdo do modelo R2010INFOPROCRETAD"), )
             
         ordering = [
             'r2010_evtservtom',
@@ -166,8 +169,11 @@ class r2010infoProcRetPr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010infoProcRetPr", "Can view R2010INFOPROCRETPR"),
-            ("can_view_menu_r2010infoProcRetPr", "Can view menu R2010INFOPROCRETPR"),)
+            ("can_see_list_r2010infoProcRetPr", u"Pode ver listagem do modelo R2010INFOPROCRETPR"),
+            ("can_see_data_r2010infoProcRetPr", u"Pode visualizar o conteúdo do modelo R2010INFOPROCRETPR"),
+            ("can_see_menu_r2010infoProcRetPr", u"Pode visualizar no menu o modelo R2010INFOPROCRETPR"),
+            ("can_print_list_r2010infoProcRetPr", u"Pode imprimir listagem do modelo R2010INFOPROCRETPR"),
+            ("can_print_data_r2010infoProcRetPr", u"Pode imprimir o conteúdo do modelo R2010INFOPROCRETPR"), )
             
         ordering = [
             'r2010_evtservtom',
@@ -236,8 +242,11 @@ class r2010infoTpServ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010infoTpServ", "Can view R2010INFOTPSERV"),
-            ("can_view_menu_r2010infoTpServ", "Can view menu R2010INFOTPSERV"),)
+            ("can_see_list_r2010infoTpServ", u"Pode ver listagem do modelo R2010INFOTPSERV"),
+            ("can_see_data_r2010infoTpServ", u"Pode visualizar o conteúdo do modelo R2010INFOTPSERV"),
+            ("can_see_menu_r2010infoTpServ", u"Pode visualizar no menu o modelo R2010INFOTPSERV"),
+            ("can_print_list_r2010infoTpServ", u"Pode imprimir listagem do modelo R2010INFOTPSERV"),
+            ("can_print_data_r2010infoTpServ", u"Pode imprimir o conteúdo do modelo R2010INFOTPSERV"), )
             
         ordering = [
             'r2010_nfs',
@@ -302,8 +311,11 @@ class r2010nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010nfs", "Can view R2010NFS"),
-            ("can_view_menu_r2010nfs", "Can view menu R2010NFS"),)
+            ("can_see_list_r2010nfs", u"Pode ver listagem do modelo R2010NFS"),
+            ("can_see_data_r2010nfs", u"Pode visualizar o conteúdo do modelo R2010NFS"),
+            ("can_see_menu_r2010nfs", u"Pode visualizar no menu o modelo R2010NFS"),
+            ("can_print_list_r2010nfs", u"Pode imprimir listagem do modelo R2010NFS"),
+            ("can_print_data_r2010nfs", u"Pode imprimir o conteúdo do modelo R2010NFS"), )
             
         ordering = [
             'r2010_evtservtom',

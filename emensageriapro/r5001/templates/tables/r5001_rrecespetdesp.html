@@ -41,26 +41,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.r5001.can_view_r5001RRecEspetDesp %}
-                        <a href="{% url 'r5001_rrecespetdesp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.r5001.add_r5001RRecEspetDesp or perms.r5001.change_r5001RRecEspetDesp %}
+                        {% if perms.r5001.change_r5001RRecEspetDesp or perms.r5001.add_r5001RRecEspetDesp %}
+                    
+                        <a href="{% url 'r5001_rrecespetdesp_salvar' pk=a.id tab='master' %}">
+                            {% if perms.r5001.change_r5001RRecEspetDesp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.r5001.can_see_data_r5001RRecEspetDesp %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.r5001.delete_r5001RRecEspetDesp %}
-                        <a href="{% url 'r5001_rrecespetdesp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.r5001.delete_r5001RRecEspetDesp %}
+                        <a href="{% url 'r5001_rrecespetdesp_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

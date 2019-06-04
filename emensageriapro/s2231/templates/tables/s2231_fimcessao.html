@@ -29,26 +29,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s2231.can_view_s2231fimCessao %}
-                        <a href="{% url 's2231_fimcessao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s2231.add_s2231fimCessao or perms.s2231.change_s2231fimCessao %}
+                        {% if perms.s2231.change_s2231fimCessao or perms.s2231.add_s2231fimCessao %}
+                    
+                        <a href="{% url 's2231_fimcessao_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s2231.change_s2231fimCessao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s2231.can_see_data_s2231fimCessao %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s2231.delete_s2231fimCessao %}
-                        <a href="{% url 's2231_fimcessao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s2231.delete_s2231fimCessao %}
+                        <a href="{% url 's2231_fimcessao_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

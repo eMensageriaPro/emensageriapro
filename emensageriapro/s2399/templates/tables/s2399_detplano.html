@@ -47,26 +47,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s2399.can_view_s2399detPlano %}
-                        <a href="{% url 's2399_detplano_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s2399.add_s2399detPlano or perms.s2399.change_s2399detPlano %}
+                        {% if perms.s2399.change_s2399detPlano or perms.s2399.add_s2399detPlano %}
+                    
+                        <a href="{% url 's2399_detplano_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s2399.change_s2399detPlano %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s2399.can_see_data_s2399detPlano %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s2399.delete_s2399detPlano %}
-                        <a href="{% url 's2399_detplano_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s2399.delete_s2399detPlano %}
+                        <a href="{% url 's2399_detplano_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

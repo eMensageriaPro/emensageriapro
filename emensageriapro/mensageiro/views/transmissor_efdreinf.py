@@ -20,80 +20,43 @@ import base64
 
 
 @login_required
-def desvincular_eventos_efdreinf(request, hash):
+def desvincular_eventos_efdreinf(request, pk):
 
     from django.db import connections
-    
-    try:
         
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        evento_identidade = dict_hash['id']
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-            
-    except:
-        
-        usuario_id = False
-        return redirect('login')
-    
-    if evento_identidade:
-        
-        a = TransmissorEventosEfdreinf.objects.get(identidade=evento_identidade)
-        cursor = connections['default'].cursor()
-        cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=Null WHERE id=%s" % (a.tabela, a.id) )
-        messages.success(request, 'Evento desvinculado com sucesso!')
+    a = TransmissorEventosEfdreinf.objects.get(identidade=pk)
+    cursor = connections['default'].cursor()
+    cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=Null WHERE id=%s" % (a.tabela, a.id) )
+    messages.success(request, 'Evento desvinculado com sucesso!')
 
-    else:
-
-        messages.error(request, 'Erro ao desvincular evento!')
-
-    return redirect('transmissor_lote_efdreinf_salvar', hash=dict_hash['return_hash'])
+    return redirect('transmissor_lote_efdreinf_salvar', pk=request.session['return_pk'])
 
 
 @login_required
-def vincular_eventos_efdreinf(request, hash):
+def vincular_eventos_efdreinf(request, pk):
 
     from django.db import connections
 
-    try:
+    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=pk)
 
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        transmissor_lote_efdreinf_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
+    transmissor_eventos_efdreinf_vinculados_lista = TransmissorEventosEfdreinf.objects.\
+        filter(transmissor_lote_efdreinf_id=pk).all()
 
-    except:
+    quant = 50 - transmissor_eventos_efdreinf_vinculados_lista.count()
 
-        usuario_id = False
-        return redirect('login')
+    transmissor_eventos_efdreinf_lista = TransmissorEventosEfdreinf.objects.\
+        filter(transmissor_lote_efdreinf__isnull=True,
+               grupo=transmissor_lote_efdreinf.grupo).all()[:quant]
 
-    if transmissor_lote_efdreinf_id:
+    n = 0
 
-        transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf,
-                                             id=transmissor_lote_efdreinf_id)
+    for a in transmissor_eventos_efdreinf_lista:
 
-        transmissor_eventos_efdreinf_vinculados_lista = TransmissorEventosEfdreinf.objects.\
-            filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id).all()
+        cursor = connections['default'].cursor()
+        cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=%s WHERE id=%s" % (a.tabela, pk, a.id) )
 
-        quant = 50 - transmissor_eventos_efdreinf_vinculados_lista.count()
+        n += 1
 
-        transmissor_eventos_efdreinf_lista = TransmissorEventosEfdreinf.objects.\
-            filter(transmissor_lote_efdreinf__isnull=True,
-                  grupo = transmissor_lote_efdreinf.grupo ).all()[:quant]
+    messages.success(request, '%s eventos foram vinculados com sucesso a este transmissor!' % n)
 
-        n = 0
-        for a in transmissor_eventos_efdreinf_lista:
-
-            cursor = connections['default'].cursor()
-            cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=%s WHERE id=%s" % (a.tabela, transmissor_lote_efdreinf_id, a.id) )
-            n+=1
-
-        messages.success(request, '%s eventos foram vinculados com sucesso a este transmissor!' % n)
-
-    else:
-
-        messages.error(request, 'Erro ao vincular eventos!')
-
-    return redirect('transmissor_lote_efdreinf_salvar', hash=dict_hash['return_hash'])
+    return redirect('transmissor_lote_efdreinf_salvar', pk=request.session['return_pk'])

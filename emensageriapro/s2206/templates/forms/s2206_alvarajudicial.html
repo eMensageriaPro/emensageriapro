@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2206_alvarajudicial__s2206_evtaltcontratual__label">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.*</label>
     {% if not for_print %}{% if s2206_alvarajudicial_form.s2206_evtaltcontratual.value %}
-        <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_return_page:'s2206_alvarajudicial_salvar'|json_return_hash:hash|json_id:s2206_alvarajudicial_form.s2206_evtaltcontratual.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_alvarajudicial_form.s2206_evtaltcontratual.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

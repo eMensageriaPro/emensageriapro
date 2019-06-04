@@ -62,83 +62,93 @@ from emensageriapro.r4010.forms import form_r4010_inforra_ideadv
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        r4010_inforra_despprocjud_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if r4010_inforra_despprocjud_id:
+    if pk:
     
-        r4010_inforra_despprocjud = get_object_or_404(r4010infoRRAdespProcJud, id=r4010_inforra_despprocjud_id)
+        r4010_inforra_despprocjud = get_object_or_404(r4010infoRRAdespProcJud, id=pk)
         dados_evento = r4010_inforra_despprocjud.evento()
 
-    if request.user.has_perm('r4010.can_view_r4010infoRRAdespProcJud'):
+    if request.user.has_perm('r4010.can_see_r4010infoRRAdespProcJud'):
         
-        if r4010_inforra_despprocjud_id:
+        if pk:
         
-            r4010_inforra_despprocjud_form = form_r4010_inforra_despprocjud(request.POST or None, 
-                                                          instance=r4010_inforra_despprocjud,  
-                                                          initial={'excluido': False})
+            r4010_inforra_despprocjud_form = form_r4010_inforra_despprocjud(
+                request.POST or None, 
+                instance=r4010_inforra_despprocjud)
                                          
         else:
         
-            r4010_inforra_despprocjud_form = form_r4010_inforra_despprocjud(request.POST or None, 
-                                         initial={'excluido': False})
+            r4010_inforra_despprocjud_form = form_r4010_inforra_despprocjud(request.POST or None)
                                          
         if request.method == 'POST':
         
             if r4010_inforra_despprocjud_form.is_valid():
             
-                dados = r4010_inforra_despprocjud_form.cleaned_data
                 obj = r4010_inforra_despprocjud_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r4010_inforra_despprocjud_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4010_inforra_despprocjud', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r4010_inforra_despprocjud', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(r4010_inforra_despprocjud), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4010_inforra_despprocjud', r4010_inforra_despprocjud_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(r4010_inforra_despprocjud), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r4010_inforra_despprocjud', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('r4010_inforra_despprocjud_apagar', 'r4010_inforra_despprocjud_salvar', 'r4010_inforra_despprocjud'):
+                if request.session['return_page'] not in (
+                    'r4010_inforra_despprocjud_apagar', 
+                    'r4010_inforra_despprocjud_salvar', 
+                    'r4010_inforra_despprocjud'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if r4010_inforra_despprocjud_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r4010_inforra_despprocjud_salvar', hash=url_hash)
+                    return redirect(
+                        'r4010_inforra_despprocjud_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        r4010_inforra_despprocjud_form = disabled_form_fields(r4010_inforra_despprocjud_form, request.user.has_perm('r4010.change_r4010infoRRAdespProcJud'))
+        r4010_inforra_despprocjud_form = disabled_form_fields(
+            r4010_inforra_despprocjud_form, 
+            request.user.has_perm('r4010.change_r4010infoRRAdespProcJud'))
         
-        if r4010_inforra_despprocjud_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -146,7 +156,7 @@ def salvar(request, hash):
                 
         #r4010_inforra_despprocjud_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             r4010_inforra_despprocjud_form = disabled_form_for_print(r4010_inforra_despprocjud_form)
             
@@ -154,15 +164,16 @@ def salvar(request, hash):
         r4010_inforra_ideadv_lista = None 
         r4010_inforra_ideadv_form = None 
         
-        if r4010_inforra_despprocjud_id:
+        if pk:
         
-            r4010_inforra_despprocjud = get_object_or_404(r4010infoRRAdespProcJud, id=r4010_inforra_despprocjud_id)
+            r4010_inforra_despprocjud = get_object_or_404(r4010infoRRAdespProcJud, id=pk)
             
             r4010_inforra_ideadv_form = form_r4010_inforra_ideadv(
                 initial={ 'r4010_inforra_despprocjud': r4010_inforra_despprocjud })
             r4010_inforra_ideadv_form.fields['r4010_inforra_despprocjud'].widget.attrs['readonly'] = True
             r4010_inforra_ideadv_lista = r4010infoRRAideAdv.objects.\
                 filter(r4010_inforra_despprocjud_id=r4010_inforra_despprocjud.id).all()
+                
                 
         else:
         
@@ -172,14 +183,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'r4010_inforra_despprocjud' in request.session['retorno_pagina']:
+        if tab or 'r4010_inforra_despprocjud' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r4010_inforra_despprocjud_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r4010_inforra_despprocjud_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r4010_inforra_despprocjud_id, tabela='r4010_inforra_despprocjud').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r4010_inforra_despprocjud').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -188,28 +203,20 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             'r4010_inforra_despprocjud': r4010_inforra_despprocjud, 
             'r4010_inforra_despprocjud_form': r4010_inforra_despprocjud_form, 
-            'r4010_inforra_despprocjud_id': int(r4010_inforra_despprocjud_id),
-            'usuario': usuario, 
             'modulos': ['r4010', ],
             'paginas': ['r4010_inforra_despprocjud', ],
-            'hash': hash, 
-            
             'r4010_inforra_ideadv_form': r4010_inforra_ideadv_form,
             'r4010_inforra_ideadv_lista': r4010_inforra_ideadv_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r4010_inforra_despprocjud_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r4010_inforra_despprocjud_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_inforra_despprocjud_salvar.html',
@@ -226,23 +233,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('r4010_inforra_despprocjud_salvar.html', context)
             filename = "r4010_inforra_despprocjud.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r4010_inforra_despprocjud_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['r4010', ],
             'paginas': ['r4010_inforra_despprocjud', ],
             'data': datetime.datetime.now(),

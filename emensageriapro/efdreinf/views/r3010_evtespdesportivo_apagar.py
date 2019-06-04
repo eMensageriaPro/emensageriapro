@@ -54,67 +54,51 @@ from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.s1000.models import s1000inclusao
-from emensageriapro.s1000.models import s1000alteracao
-from emensageriapro.s1000.models import s1000exclusao
-from emensageriapro.s1000.forms import form_s1000_inclusao
-from emensageriapro.s1000.forms import form_s1000_alteracao
-from emensageriapro.s1000.forms import form_s1000_exclusao
 
 
 @login_required
-def apagar(request, hash):
-
+def apagar(request, pk):
+        
+    import json
+    from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r3010_evtespdesportivo_id = int(dict_hash['id'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    
-    r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=r3010_evtespdesportivo_id)
+    r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
     
     if request.method == 'POST':
     
         if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str)
-            obj = r3010evtEspDesportivo.objects.get(id = r3010_evtespdesportivo_id)
+            obj = r3010evtEspDesportivo.objects.get(id=pk)
             obj.delete(request=request)
             #r3010_evtespdesportivo_apagar_custom
             #r3010_evtespdesportivo_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '', 
-                             'r3010_evtespdesportivo', r3010_evtespdesportivo_id, usuario_id, 3)
-        else:
-            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
-        if request.session['retorno_pagina']== 'r3010_evtespdesportivo_salvar':
-        
-            return redirect('r3010_evtespdesportivo', 
-                            hash=request.session['retorno_hash'])
-            
+                             'r3010_evtespdesportivo', pk, request.user.id, 3)
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+                                        possível apagar os eventos com status "Cadastrado"!''')
+            
+        if 'r3010_evtespdesportivo' in request.session['return_page']:
+        
+            return redirect('r3010_evtespdesportivo')
+            
+        else:
+        
+            return redirect(request.session['return_page'], 
+                            pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk, 
         'r3010_evtespdesportivo': r3010_evtespdesportivo, 
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r3010_evtespdesportivo', ],
-        'hash': hash,
     }
     
     return render(request, 'r3010_evtespdesportivo_apagar.html', context)

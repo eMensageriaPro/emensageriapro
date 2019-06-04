@@ -100,8 +100,11 @@ class r9002infoTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002infoTotal", "Can view R9002INFOTOTAL"),
-            ("can_view_menu_r9002infoTotal", "Can view menu R9002INFOTOTAL"),)
+            ("can_see_list_r9002infoTotal", u"Pode ver listagem do modelo R9002INFOTOTAL"),
+            ("can_see_data_r9002infoTotal", u"Pode visualizar o conteúdo do modelo R9002INFOTOTAL"),
+            ("can_see_menu_r9002infoTotal", u"Pode visualizar no menu o modelo R9002INFOTOTAL"),
+            ("can_print_list_r9002infoTotal", u"Pode imprimir listagem do modelo R9002INFOTOTAL"),
+            ("can_print_data_r9002infoTotal", u"Pode imprimir o conteúdo do modelo R9002INFOTOTAL"), )
             
         ordering = [
             'r9002_evtret',
@@ -164,8 +167,11 @@ class r9002regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002regOcorrs", "Can view R9002REGOCORRS"),
-            ("can_view_menu_r9002regOcorrs", "Can view menu R9002REGOCORRS"),)
+            ("can_see_list_r9002regOcorrs", u"Pode ver listagem do modelo R9002REGOCORRS"),
+            ("can_see_data_r9002regOcorrs", u"Pode visualizar o conteúdo do modelo R9002REGOCORRS"),
+            ("can_see_menu_r9002regOcorrs", u"Pode visualizar no menu o modelo R9002REGOCORRS"),
+            ("can_print_list_r9002regOcorrs", u"Pode imprimir listagem do modelo R9002REGOCORRS"),
+            ("can_print_data_r9002regOcorrs", u"Pode imprimir o conteúdo do modelo R9002REGOCORRS"), )
             
         ordering = [
             'r9002_evtret',
@@ -232,8 +238,11 @@ class r9002totApurDec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002totApurDec", "Can view R9002TOTAPURDEC"),
-            ("can_view_menu_r9002totApurDec", "Can view menu R9002TOTAPURDEC"),)
+            ("can_see_list_r9002totApurDec", u"Pode ver listagem do modelo R9002TOTAPURDEC"),
+            ("can_see_data_r9002totApurDec", u"Pode visualizar o conteúdo do modelo R9002TOTAPURDEC"),
+            ("can_see_menu_r9002totApurDec", u"Pode visualizar no menu o modelo R9002TOTAPURDEC"),
+            ("can_print_list_r9002totApurDec", u"Pode imprimir listagem do modelo R9002TOTAPURDEC"),
+            ("can_print_data_r9002totApurDec", u"Pode imprimir o conteúdo do modelo R9002TOTAPURDEC"), )
             
         ordering = [
             'r9002_infototal',
@@ -300,8 +309,11 @@ class r9002totApurDia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002totApurDia", "Can view R9002TOTAPURDIA"),
-            ("can_view_menu_r9002totApurDia", "Can view menu R9002TOTAPURDIA"),)
+            ("can_see_list_r9002totApurDia", u"Pode ver listagem do modelo R9002TOTAPURDIA"),
+            ("can_see_data_r9002totApurDia", u"Pode visualizar o conteúdo do modelo R9002TOTAPURDIA"),
+            ("can_see_menu_r9002totApurDia", u"Pode visualizar no menu o modelo R9002TOTAPURDIA"),
+            ("can_print_list_r9002totApurDia", u"Pode imprimir listagem do modelo R9002TOTAPURDIA"),
+            ("can_print_data_r9002totApurDia", u"Pode imprimir o conteúdo do modelo R9002TOTAPURDIA"), )
             
         ordering = [
             'r9002_infototal',
@@ -366,8 +378,11 @@ class r9002totApurMen(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002totApurMen", "Can view R9002TOTAPURMEN"),
-            ("can_view_menu_r9002totApurMen", "Can view menu R9002TOTAPURMEN"),)
+            ("can_see_list_r9002totApurMen", u"Pode ver listagem do modelo R9002TOTAPURMEN"),
+            ("can_see_data_r9002totApurMen", u"Pode visualizar o conteúdo do modelo R9002TOTAPURMEN"),
+            ("can_see_menu_r9002totApurMen", u"Pode visualizar no menu o modelo R9002TOTAPURMEN"),
+            ("can_print_list_r9002totApurMen", u"Pode imprimir listagem do modelo R9002TOTAPURMEN"),
+            ("can_print_data_r9002totApurMen", u"Pode imprimir o conteúdo do modelo R9002TOTAPURMEN"), )
             
         ordering = [
             'r9002_infototal',
@@ -433,8 +448,11 @@ class r9002totApurQui(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002totApurQui", "Can view R9002TOTAPURQUI"),
-            ("can_view_menu_r9002totApurQui", "Can view menu R9002TOTAPURQUI"),)
+            ("can_see_list_r9002totApurQui", u"Pode ver listagem do modelo R9002TOTAPURQUI"),
+            ("can_see_data_r9002totApurQui", u"Pode visualizar o conteúdo do modelo R9002TOTAPURQUI"),
+            ("can_see_menu_r9002totApurQui", u"Pode visualizar no menu o modelo R9002TOTAPURQUI"),
+            ("can_print_list_r9002totApurQui", u"Pode imprimir listagem do modelo R9002TOTAPURQUI"),
+            ("can_print_data_r9002totApurQui", u"Pode imprimir o conteúdo do modelo R9002TOTAPURQUI"), )
             
         ordering = [
             'r9002_infototal',
@@ -501,8 +519,11 @@ class r9002totApurSem(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002totApurSem", "Can view R9002TOTAPURSEM"),
-            ("can_view_menu_r9002totApurSem", "Can view menu R9002TOTAPURSEM"),)
+            ("can_see_list_r9002totApurSem", u"Pode ver listagem do modelo R9002TOTAPURSEM"),
+            ("can_see_data_r9002totApurSem", u"Pode visualizar o conteúdo do modelo R9002TOTAPURSEM"),
+            ("can_see_menu_r9002totApurSem", u"Pode visualizar no menu o modelo R9002TOTAPURSEM"),
+            ("can_print_list_r9002totApurSem", u"Pode imprimir listagem do modelo R9002TOTAPURSEM"),
+            ("can_print_data_r9002totApurSem", u"Pode imprimir o conteúdo do modelo R9002TOTAPURSEM"), )
             
         ordering = [
             'r9002_infototal',

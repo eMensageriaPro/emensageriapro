@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_mudancacpf__s2300_evttsvinicio__label">Informações de mudança de CPF do trabalhador.*</label>
     {% if not for_print %}{% if s2300_mudancacpf_form.s2300_evttsvinicio.value %}
-        <a href="{% url 's2300_evttsvinicio_salvar' hash='{}'|json_return_page:'s2300_mudancacpf_salvar'|json_return_hash:hash|json_id:s2300_mudancacpf_form.s2300_evttsvinicio.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_mudancacpf_form.s2300_evttsvinicio.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

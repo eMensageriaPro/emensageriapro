@@ -66,7 +66,6 @@ class r5001evtTotalList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r5001evtTotalDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5001evtTotal.objects.all()

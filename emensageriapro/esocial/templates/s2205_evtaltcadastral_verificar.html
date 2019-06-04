@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-2205 - Alteração de Dados Cadastrais do Trabalhador<br>Identidade: {{ s2205_evtaltcadastral.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's2205_evtaltcadastral_verificar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's2205_evtaltcadastral_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's2205_evtaltcadastral_verificar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's2205_evtaltcadastral_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's2205_evtaltcadastral_verificar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's2205_evtaltcadastral_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's2205_evtaltcadastral_verificar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.indretif or s2205_evtaltcadastral.indretif == 0 %}{{ s2205_evtaltcadastral.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nrrecibo or s2205_evtaltcadastral.nrrecibo == 0 %}{{ s2205_evtaltcadastral.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.tpamb or s2205_evtaltcadastral.tpamb == 0 %}{{ s2205_evtaltcadastral.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.procemi or s2205_evtaltcadastral.procemi == 0 %}{{ s2205_evtaltcadastral.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.verproc or s2205_evtaltcadastral.verproc == 0 %}{{ s2205_evtaltcadastral.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -231,11 +228,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.tpinsc or s2205_evtaltcadastral.tpinsc == 0 %}{{ s2205_evtaltcadastral.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -250,11 +247,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nrinsc or s2205_evtaltcadastral.nrinsc == 0 %}{{ s2205_evtaltcadastral.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -274,11 +271,11 @@
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.cpftrab or s2205_evtaltcadastral.cpftrab == 0 %}{{ s2205_evtaltcadastral.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -298,11 +295,11 @@
             <td width="130px">dtAlteracao</td>
             <td width="500px">Preencher com a data da alteração das informações.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.dtalteracao or s2205_evtaltcadastral.dtalteracao == 0 %}{{ s2205_evtaltcadastral.dtalteracao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -322,11 +319,11 @@
             <td width="130px">nisTrab</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nistrab or s2205_evtaltcadastral.nistrab == 0 %}{{ s2205_evtaltcadastral.nistrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -341,11 +338,11 @@
             <td width="130px">nmTrab</td>
             <td width="500px">Nome do Trabalhador.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nmtrab or s2205_evtaltcadastral.nmtrab == 0 %}{{ s2205_evtaltcadastral.nmtrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -360,11 +357,11 @@
             <td width="130px">sexo</td>
             <td width="500px">Sexo do Trabalhador<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.sexo or s2205_evtaltcadastral.sexo == 0 %}{{ s2205_evtaltcadastral.sexo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -379,11 +376,11 @@
             <td width="130px">racaCor</td>
             <td width="500px">Raça e cor do trabalhador, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.racacor or s2205_evtaltcadastral.racacor == 0 %}{{ s2205_evtaltcadastral.racacor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -398,11 +395,11 @@
             <td width="130px">estCiv</td>
             <td width="500px">Estado civil do trabalhador, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.estciv or s2205_evtaltcadastral.estciv == 0 %}{{ s2205_evtaltcadastral.estciv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -417,11 +414,11 @@
             <td width="130px">grauInstr</td>
             <td width="500px">Grau de instrução do trabalhador, conforme opções abaixo<opcoes> 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou; 02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular; 03 - 5º ano completo do Ensino Fundamental; 04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série); 05 - Ensino Fundamental Completo; 06 - Ensino Médio incompleto; 07 - Ensino Médio completo; 08 - Educação Superior incompleta; 09 - Educação Superior completa; 10 - Pós-Graduação completa; 11 - Mestrado completo; 12 - Doutorado completo. <valores_validos> 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.grauinstr or s2205_evtaltcadastral.grauinstr == 0 %}{{ s2205_evtaltcadastral.grauinstr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -436,11 +433,11 @@
             <td width="130px">nmSoc</td>
             <td width="500px">Nome social para travesti ou transexual.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nmsoc or s2205_evtaltcadastral.nmsoc == 0 %}{{ s2205_evtaltcadastral.nmsoc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -460,11 +457,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.dtnascto or s2205_evtaltcadastral.dtnascto == 0 %}{{ s2205_evtaltcadastral.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -479,11 +476,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.codmunic or s2205_evtaltcadastral.codmunic == 0 %}{{ s2205_evtaltcadastral.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -498,11 +495,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.uf or s2205_evtaltcadastral.uf == 0 %}{{ s2205_evtaltcadastral.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -517,11 +514,11 @@
             <td width="130px">paisNascto</td>
             <td width="500px">Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.paisnascto or s2205_evtaltcadastral.paisnascto == 0 %}{{ s2205_evtaltcadastral.paisnascto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -536,11 +533,11 @@
             <td width="130px">paisNac</td>
             <td width="500px">Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.paisnac or s2205_evtaltcadastral.paisnac == 0 %}{{ s2205_evtaltcadastral.paisnac }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -555,11 +552,11 @@
             <td width="130px">nmMae</td>
             <td width="500px">Nome da mãe.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nmmae or s2205_evtaltcadastral.nmmae == 0 %}{{ s2205_evtaltcadastral.nmmae }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -574,11 +571,11 @@
             <td width="130px">nmPai</td>
             <td width="500px">Nome do pai do trabalhador.</td>
             <td width="200px"><b>{% if s2205_evtaltcadastral.nmpai or s2205_evtaltcadastral.nmpai == 0 %}{{ s2205_evtaltcadastral.nmpai }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_evtaltcadastral_visualizar' %}
-                <a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205evtAltCadastral or perms.esocial.can_see_s2205evtAltCadastral %}
+                <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_evtaltcadastral.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -605,11 +602,11 @@
             <td width="130px">nrCtps</td>
             <td width="500px">CTPS.</td>
             <td width="200px"><b>{% if s2205_ctps.nrctps or s2205_ctps.nrctps == 0 %}{{ s2205_ctps.nrctps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_ctps_visualizar' %}
-                <a href="{% url 's2205_ctps_salvar'  hash='{}'|json_id:s2205_ctps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CTPS or perms.esocial.can_see_s2205CTPS %}
+                <a href="{% url 's2205_ctps_salvar' pk=s2205_ctps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -624,11 +621,11 @@
             <td width="130px">serieCtps</td>
             <td width="500px">Número de série da CTPS.</td>
             <td width="200px"><b>{% if s2205_ctps.seriectps or s2205_ctps.seriectps == 0 %}{{ s2205_ctps.seriectps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_ctps_visualizar' %}
-                <a href="{% url 's2205_ctps_salvar'  hash='{}'|json_id:s2205_ctps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CTPS or perms.esocial.can_see_s2205CTPS %}
+                <a href="{% url 's2205_ctps_salvar' pk=s2205_ctps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -643,11 +640,11 @@
             <td width="130px">ufCtps</td>
             <td width="500px">UF da expedição da CTPS. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2205_ctps.ufctps or s2205_ctps.ufctps == 0 %}{{ s2205_ctps.ufctps }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_ctps_visualizar' %}
-                <a href="{% url 's2205_ctps_salvar'  hash='{}'|json_id:s2205_ctps.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CTPS or perms.esocial.can_see_s2205CTPS %}
+                <a href="{% url 's2205_ctps_salvar' pk=s2205_ctps.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -668,11 +665,11 @@
             <td width="130px">nrRic</td>
             <td width="500px">Número do Documento Nacional de Identidade - DNI.</td>
             <td width="200px"><b>{% if s2205_ric.nrric or s2205_ric.nrric == 0 %}{{ s2205_ric.nrric }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_ric_visualizar' %}
-                <a href="{% url 's2205_ric_salvar'  hash='{}'|json_id:s2205_ric.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RIC or perms.esocial.can_see_s2205RIC %}
+                <a href="{% url 's2205_ric_salvar' pk=s2205_ric.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -687,11 +684,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2205_ric.orgaoemissor or s2205_ric.orgaoemissor == 0 %}{{ s2205_ric.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_ric_visualizar' %}
-                <a href="{% url 's2205_ric_salvar'  hash='{}'|json_id:s2205_ric.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RIC or perms.esocial.can_see_s2205RIC %}
+                <a href="{% url 's2205_ric_salvar' pk=s2205_ric.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -706,11 +703,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2205_ric.dtexped or s2205_ric.dtexped == 0 %}{{ s2205_ric.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_ric_visualizar' %}
-                <a href="{% url 's2205_ric_salvar'  hash='{}'|json_id:s2205_ric.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RIC or perms.esocial.can_see_s2205RIC %}
+                <a href="{% url 's2205_ric_salvar' pk=s2205_ric.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -731,11 +728,11 @@
             <td width="130px">nrRg</td>
             <td width="500px">RG.</td>
             <td width="200px"><b>{% if s2205_rg.nrrg or s2205_rg.nrrg == 0 %}{{ s2205_rg.nrrg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_rg_visualizar' %}
-                <a href="{% url 's2205_rg_salvar'  hash='{}'|json_id:s2205_rg.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RG or perms.esocial.can_see_s2205RG %}
+                <a href="{% url 's2205_rg_salvar' pk=s2205_rg.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -750,11 +747,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2205_rg.orgaoemissor or s2205_rg.orgaoemissor == 0 %}{{ s2205_rg.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_rg_visualizar' %}
-                <a href="{% url 's2205_rg_salvar'  hash='{}'|json_id:s2205_rg.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RG or perms.esocial.can_see_s2205RG %}
+                <a href="{% url 's2205_rg_salvar' pk=s2205_rg.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -769,11 +766,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2205_rg.dtexped or s2205_rg.dtexped == 0 %}{{ s2205_rg.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_rg_visualizar' %}
-                <a href="{% url 's2205_rg_salvar'  hash='{}'|json_id:s2205_rg.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RG or perms.esocial.can_see_s2205RG %}
+                <a href="{% url 's2205_rg_salvar' pk=s2205_rg.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -794,11 +791,11 @@
             <td width="130px">nrRne</td>
             <td width="500px">Número de inscrição no Registro Nacional de Estrangeiros.</td>
             <td width="200px"><b>{% if s2205_rne.nrrne or s2205_rne.nrrne == 0 %}{{ s2205_rne.nrrne }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_rne_visualizar' %}
-                <a href="{% url 's2205_rne_salvar'  hash='{}'|json_id:s2205_rne.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RNE or perms.esocial.can_see_s2205RNE %}
+                <a href="{% url 's2205_rne_salvar' pk=s2205_rne.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -813,11 +810,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2205_rne.orgaoemissor or s2205_rne.orgaoemissor == 0 %}{{ s2205_rne.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_rne_visualizar' %}
-                <a href="{% url 's2205_rne_salvar'  hash='{}'|json_id:s2205_rne.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RNE or perms.esocial.can_see_s2205RNE %}
+                <a href="{% url 's2205_rne_salvar' pk=s2205_rne.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -832,11 +829,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2205_rne.dtexped or s2205_rne.dtexped == 0 %}{{ s2205_rne.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_rne_visualizar' %}
-                <a href="{% url 's2205_rne_salvar'  hash='{}'|json_id:s2205_rne.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205RNE or perms.esocial.can_see_s2205RNE %}
+                <a href="{% url 's2205_rne_salvar' pk=s2205_rne.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -857,11 +854,11 @@
             <td width="130px">nrOc</td>
             <td width="500px">Número de inscrição no órgão de classe.</td>
             <td width="200px"><b>{% if s2205_oc.nroc or s2205_oc.nroc == 0 %}{{ s2205_oc.nroc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_oc_visualizar' %}
-                <a href="{% url 's2205_oc_salvar'  hash='{}'|json_id:s2205_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205OC or perms.esocial.can_see_s2205OC %}
+                <a href="{% url 's2205_oc_salvar' pk=s2205_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -876,11 +873,11 @@
             <td width="130px">orgaoEmissor</td>
             <td width="500px">Órgão e UF de emissão.</td>
             <td width="200px"><b>{% if s2205_oc.orgaoemissor or s2205_oc.orgaoemissor == 0 %}{{ s2205_oc.orgaoemissor }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_oc_visualizar' %}
-                <a href="{% url 's2205_oc_salvar'  hash='{}'|json_id:s2205_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205OC or perms.esocial.can_see_s2205OC %}
+                <a href="{% url 's2205_oc_salvar' pk=s2205_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -895,11 +892,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2205_oc.dtexped or s2205_oc.dtexped == 0 %}{{ s2205_oc.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_oc_visualizar' %}
-                <a href="{% url 's2205_oc_salvar'  hash='{}'|json_id:s2205_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205OC or perms.esocial.can_see_s2205OC %}
+                <a href="{% url 's2205_oc_salvar' pk=s2205_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -914,11 +911,11 @@
             <td width="130px">dtValid</td>
             <td width="500px">Preencher com a data de validade. <validacao> Deve ser posterior a data de expedição ({dtExped}), se esta for informada.</td>
             <td width="200px"><b>{% if s2205_oc.dtvalid or s2205_oc.dtvalid == 0 %}{{ s2205_oc.dtvalid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_oc_visualizar' %}
-                <a href="{% url 's2205_oc_salvar'  hash='{}'|json_id:s2205_oc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205OC or perms.esocial.can_see_s2205OC %}
+                <a href="{% url 's2205_oc_salvar' pk=s2205_oc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -939,11 +936,11 @@
             <td width="130px">nrRegCnh</td>
             <td width="500px">Número do Registro da Carteira Nacional de Habilitação - CNH.</td>
             <td width="200px"><b>{% if s2205_cnh.nrregcnh or s2205_cnh.nrregcnh == 0 %}{{ s2205_cnh.nrregcnh }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_cnh_visualizar' %}
-                <a href="{% url 's2205_cnh_salvar'  hash='{}'|json_id:s2205_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CNH or perms.esocial.can_see_s2205CNH %}
+                <a href="{% url 's2205_cnh_salvar' pk=s2205_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -958,11 +955,11 @@
             <td width="130px">dtExped</td>
             <td width="500px">Data da expedição do documento.</td>
             <td width="200px"><b>{% if s2205_cnh.dtexped or s2205_cnh.dtexped == 0 %}{{ s2205_cnh.dtexped|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_cnh_visualizar' %}
-                <a href="{% url 's2205_cnh_salvar'  hash='{}'|json_id:s2205_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CNH or perms.esocial.can_see_s2205CNH %}
+                <a href="{% url 's2205_cnh_salvar' pk=s2205_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -977,11 +974,11 @@
             <td width="130px">ufCnh</td>
             <td width="500px">Estado da Federação emissor da CNH. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2205_cnh.ufcnh or s2205_cnh.ufcnh == 0 %}{{ s2205_cnh.ufcnh }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_cnh_visualizar' %}
-                <a href="{% url 's2205_cnh_salvar'  hash='{}'|json_id:s2205_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CNH or perms.esocial.can_see_s2205CNH %}
+                <a href="{% url 's2205_cnh_salvar' pk=s2205_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -996,11 +993,11 @@
             <td width="130px">dtValid</td>
             <td width="500px">Preencher com a data de validade. <validacao> Deve ser posterior a data de expedição ({dtExped}), se esta for informada.</td>
             <td width="200px"><b>{% if s2205_cnh.dtvalid or s2205_cnh.dtvalid == 0 %}{{ s2205_cnh.dtvalid|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_cnh_visualizar' %}
-                <a href="{% url 's2205_cnh_salvar'  hash='{}'|json_id:s2205_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CNH or perms.esocial.can_see_s2205CNH %}
+                <a href="{% url 's2205_cnh_salvar' pk=s2205_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1015,11 +1012,11 @@
             <td width="130px">dtPriHab</td>
             <td width="500px">Data da primeira habilitação.</td>
             <td width="200px"><b>{% if s2205_cnh.dtprihab or s2205_cnh.dtprihab == 0 %}{{ s2205_cnh.dtprihab|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_cnh_visualizar' %}
-                <a href="{% url 's2205_cnh_salvar'  hash='{}'|json_id:s2205_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CNH or perms.esocial.can_see_s2205CNH %}
+                <a href="{% url 's2205_cnh_salvar' pk=s2205_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1034,11 +1031,11 @@
             <td width="130px">categoriaCnh</td>
             <td width="500px">Categoria da CNH<opcoes>A; B; C; D; E; AB; AC; AD; AE<valores_validos> A, B, C, D, E, AB, AC, AD, AE.</td>
             <td width="200px"><b>{% if s2205_cnh.categoriacnh or s2205_cnh.categoriacnh == 0 %}{{ s2205_cnh.categoriacnh }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_cnh_visualizar' %}
-                <a href="{% url 's2205_cnh_salvar'  hash='{}'|json_id:s2205_cnh.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205CNH or perms.esocial.can_see_s2205CNH %}
+                <a href="{% url 's2205_cnh_salvar' pk=s2205_cnh.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1064,11 +1061,11 @@
             <td width="130px">tpLograd</td>
             <td width="500px">Tipo de Logradouro, conforme tabela 20. <validacao> Deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2205_brasil.tplograd or s2205_brasil.tplograd == 0 %}{{ s2205_brasil.tplograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1083,11 +1080,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2205_brasil.dsclograd or s2205_brasil.dsclograd == 0 %}{{ s2205_brasil.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1102,11 +1099,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
             <td width="200px"><b>{% if s2205_brasil.nrlograd or s2205_brasil.nrlograd == 0 %}{{ s2205_brasil.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1121,11 +1118,11 @@
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2205_brasil.complemento or s2205_brasil.complemento == 0 %}{{ s2205_brasil.complemento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1140,11 +1137,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2205_brasil.bairro or s2205_brasil.bairro == 0 %}{{ s2205_brasil.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1159,11 +1156,11 @@
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2205_brasil.cep or s2205_brasil.cep == 0 %}{{ s2205_brasil.cep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1178,11 +1175,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2205_brasil.codmunic or s2205_brasil.codmunic == 0 %}{{ s2205_brasil.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1197,11 +1194,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2205_brasil.uf or s2205_brasil.uf == 0 %}{{ s2205_brasil.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_brasil_visualizar' %}
-                <a href="{% url 's2205_brasil_salvar'  hash='{}'|json_id:s2205_brasil.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205brasil or perms.esocial.can_see_s2205brasil %}
+                <a href="{% url 's2205_brasil_salvar' pk=s2205_brasil.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1222,11 +1219,11 @@
             <td width="130px">paisResid</td>
             <td width="500px">Preencher com o código do país, conforme tabela 6. <validacao> Deve ser um código existente na tabela.</td>
             <td width="200px"><b>{% if s2205_exterior.paisresid or s2205_exterior.paisresid == 0 %}{{ s2205_exterior.paisresid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1241,11 +1238,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2205_exterior.dsclograd or s2205_exterior.dsclograd == 0 %}{{ s2205_exterior.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1260,11 +1257,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro. Se não houver número a ser informado, preencher com 'S/N'.</td>
             <td width="200px"><b>{% if s2205_exterior.nrlograd or s2205_exterior.nrlograd == 0 %}{{ s2205_exterior.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1279,11 +1276,11 @@
             <td width="130px">complemento</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2205_exterior.complemento or s2205_exterior.complemento == 0 %}{{ s2205_exterior.complemento }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1298,11 +1295,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2205_exterior.bairro or s2205_exterior.bairro == 0 %}{{ s2205_exterior.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1317,11 +1314,11 @@
             <td width="130px">nmCid</td>
             <td width="500px">Nome da Cidade.</td>
             <td width="200px"><b>{% if s2205_exterior.nmcid or s2205_exterior.nmcid == 0 %}{{ s2205_exterior.nmcid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1336,11 +1333,11 @@
             <td width="130px">codPostal</td>
             <td width="500px">Código de Endereçamento Postal.</td>
             <td width="200px"><b>{% if s2205_exterior.codpostal or s2205_exterior.codpostal == 0 %}{{ s2205_exterior.codpostal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_exterior_visualizar' %}
-                <a href="{% url 's2205_exterior_salvar'  hash='{}'|json_id:s2205_exterior.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205exterior or perms.esocial.can_see_s2205exterior %}
+                <a href="{% url 's2205_exterior_salvar' pk=s2205_exterior.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1361,11 +1358,11 @@
             <td width="130px">dtChegada</td>
             <td width="500px">Data de chegada do trabalhador ao Brasil, em caso de estrangeiro. <validacao> Preenchimento obrigatório se {classTrabEstrang} <> [6].</td>
             <td width="200px"><b>{% if s2205_trabestrangeiro.dtchegada or s2205_trabestrangeiro.dtchegada == 0 %}{{ s2205_trabestrangeiro.dtchegada|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2205_trabestrangeiro_salvar'  hash='{}'|json_id:s2205_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205trabEstrangeiro or perms.esocial.can_see_s2205trabEstrangeiro %}
+                <a href="{% url 's2205_trabestrangeiro_salvar' pk=s2205_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1380,11 +1377,11 @@
             <td width="130px">classTrabEstrang</td>
             <td width="500px">Classificação da condição de ingresso do trabalhador estrangeiro no Brasil<opcoes>1 - Visto permanente; 2 - Visto temporário; 3 - Asilado; 4 - Refugiado; 5 - Solicitante de Refúgio; 6 - Residente fora do Brasil; 7 - Deficiente físico e com mais de 51 anos; 8 - Com residência provisória e anistiado, em situação irregular; 9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros; 10 - Beneficiado pelo acordo entre países do Mercosul; 11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil; 12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12.</td>
             <td width="200px"><b>{% if s2205_trabestrangeiro.classtrabestrang or s2205_trabestrangeiro.classtrabestrang == 0 %}{{ s2205_trabestrangeiro.classtrabestrang }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2205_trabestrangeiro_salvar'  hash='{}'|json_id:s2205_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205trabEstrangeiro or perms.esocial.can_see_s2205trabEstrangeiro %}
+                <a href="{% url 's2205_trabestrangeiro_salvar' pk=s2205_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1399,11 +1396,11 @@
             <td width="130px">casadoBr</td>
             <td width="500px">Casado com brasileiro(a)<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_trabestrangeiro.casadobr or s2205_trabestrangeiro.casadobr == 0 %}{{ s2205_trabestrangeiro.casadobr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2205_trabestrangeiro_salvar'  hash='{}'|json_id:s2205_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205trabEstrangeiro or perms.esocial.can_see_s2205trabEstrangeiro %}
+                <a href="{% url 's2205_trabestrangeiro_salvar' pk=s2205_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1418,11 +1415,11 @@
             <td width="130px">filhosBr</td>
             <td width="500px">Indicar se o trabalhador estrangeiro tem filhos brasileiros<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_trabestrangeiro.filhosbr or s2205_trabestrangeiro.filhosbr == 0 %}{{ s2205_trabestrangeiro.filhosbr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_trabestrangeiro_visualizar' %}
-                <a href="{% url 's2205_trabestrangeiro_salvar'  hash='{}'|json_id:s2205_trabestrangeiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205trabEstrangeiro or perms.esocial.can_see_s2205trabEstrangeiro %}
+                <a href="{% url 's2205_trabestrangeiro_salvar' pk=s2205_trabestrangeiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1443,11 +1440,11 @@
             <td width="130px">defFisica</td>
             <td width="500px">Deficiência Física<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.deffisica or s2205_infodeficiencia.deffisica == 0 %}{{ s2205_infodeficiencia.deffisica }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1462,11 +1459,11 @@
             <td width="130px">defVisual</td>
             <td width="500px">Deficiência visual<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.defvisual or s2205_infodeficiencia.defvisual == 0 %}{{ s2205_infodeficiencia.defvisual }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1481,11 +1478,11 @@
             <td width="130px">defAuditiva</td>
             <td width="500px">Deficiência auditiva<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.defauditiva or s2205_infodeficiencia.defauditiva == 0 %}{{ s2205_infodeficiencia.defauditiva }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1500,11 +1497,11 @@
             <td width="130px">defMental</td>
             <td width="500px">Deficiência Mental<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.defmental or s2205_infodeficiencia.defmental == 0 %}{{ s2205_infodeficiencia.defmental }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1519,11 +1516,11 @@
             <td width="130px">defIntelectual</td>
             <td width="500px">Deficiência Intelectual<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.defintelectual or s2205_infodeficiencia.defintelectual == 0 %}{{ s2205_infodeficiencia.defintelectual }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1538,11 +1535,11 @@
             <td width="130px">reabReadap</td>
             <td width="500px">Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar). Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu Programa de Reabilitação Profissional no INSS, recebendo certificado, sendo proporcionado os meios indicados para participar do mercado de trabalho. Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.reabreadap or s2205_infodeficiencia.reabreadap == 0 %}{{ s2205_infodeficiencia.reabreadap }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1557,11 +1554,11 @@
             <td width="130px">infoCota</td>
             <td width="500px">Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados. Essa informação deve ser prestada apenas para trabalhadores da categoria 'Empregados'. Não informar nos demais casos<opcoes>S - Sim; N - Não <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.infocota or s2205_infodeficiencia.infocota == 0 %}{{ s2205_infodeficiencia.infocota }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1576,11 +1573,11 @@
             <td width="130px">observacao</td>
             <td width="500px">Observação.</td>
             <td width="200px"><b>{% if s2205_infodeficiencia.observacao or s2205_infodeficiencia.observacao == 0 %}{{ s2205_infodeficiencia.observacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_infodeficiencia_visualizar' %}
-                <a href="{% url 's2205_infodeficiencia_salvar'  hash='{}'|json_id:s2205_infodeficiencia.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205infoDeficiencia or perms.esocial.can_see_s2205infoDeficiencia %}
+                <a href="{% url 's2205_infodeficiencia_salvar' pk=s2205_infodeficiencia.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1601,11 +1598,11 @@
             <td width="130px">tpDep</td>
             <td width="500px">Tipo de dependente conforme tabela 7. <validacao> Deve ser um código existente na tabela 7.</td>
             <td width="200px"><b>{% if s2205_dependente.tpdep or s2205_dependente.tpdep == 0 %}{{ s2205_dependente.tpdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1620,11 +1617,11 @@
             <td width="130px">nmDep</td>
             <td width="500px">Nome do dependente.</td>
             <td width="200px"><b>{% if s2205_dependente.nmdep or s2205_dependente.nmdep == 0 %}{{ s2205_dependente.nmdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1639,11 +1636,11 @@
             <td width="130px">dtNascto</td>
             <td width="500px">Preencher com a data de nascimento. <validacao> Deve ser maior ou igual que 01/01/1890 e menor que a data atual.</td>
             <td width="200px"><b>{% if s2205_dependente.dtnascto or s2205_dependente.dtnascto == 0 %}{{ s2205_dependente.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1658,11 +1655,11 @@
             <td width="130px">cpfDep</td>
             <td width="500px">Número de Inscrição no CPF. <validacao> Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório se {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
             <td width="200px"><b>{% if s2205_dependente.cpfdep or s2205_dependente.cpfdep == 0 %}{{ s2205_dependente.cpfdep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1677,11 +1674,11 @@
             <td width="130px">sexoDep</td>
             <td width="500px">Sexo do dependente<opcoes> M - Masculino; F - Feminino. <validacao> Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS. <valores_validos> M, F.</td>
             <td width="200px"><b>{% if s2205_dependente.sexodep or s2205_dependente.sexodep == 0 %}{{ s2205_dependente.sexodep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1696,11 +1693,11 @@
             <td width="130px">depIRRF</td>
             <td width="500px">Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_dependente.depirrf or s2205_dependente.depirrf == 0 %}{{ s2205_dependente.depirrf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1715,11 +1712,11 @@
             <td width="130px">depSF</td>
             <td width="500px">Informar se é dependente para fins de recebimento do benefício de salário- família<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_dependente.depsf or s2205_dependente.depsf == 0 %}{{ s2205_dependente.depsf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1734,11 +1731,11 @@
             <td width="130px">incTrab</td>
             <td width="500px">Informar se o dependente tem incapacidade física ou mental para o trabalho<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_dependente.inctrab or s2205_dependente.inctrab == 0 %}{{ s2205_dependente.inctrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1753,11 +1750,11 @@
             <td width="130px">depFinsPrev</td>
             <td width="500px">Informar se é dependente para fins previdenciários<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS. Não preencher nos demais casos. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_dependente.depfinsprev or s2205_dependente.depfinsprev == 0 %}{{ s2205_dependente.depfinsprev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_dependente_visualizar' %}
-                <a href="{% url 's2205_dependente_salvar'  hash='{}'|json_id:s2205_dependente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205dependente or perms.esocial.can_see_s2205dependente %}
+                <a href="{% url 's2205_dependente_salvar' pk=s2205_dependente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1778,11 +1775,11 @@
             <td width="130px">trabAposent</td>
             <td width="500px">Informar se o trabalhador já recebe o benefício previdenciário da aposentadoria por tempo de contribuição ou por idade<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2205_aposentadoria.trabaposent or s2205_aposentadoria.trabaposent == 0 %}{{ s2205_aposentadoria.trabaposent }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_aposentadoria_visualizar' %}
-                <a href="{% url 's2205_aposentadoria_salvar'  hash='{}'|json_id:s2205_aposentadoria.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205aposentadoria or perms.esocial.can_see_s2205aposentadoria %}
+                <a href="{% url 's2205_aposentadoria_salvar' pk=s2205_aposentadoria.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1803,11 +1800,11 @@
             <td width="130px">fonePrinc</td>
             <td width="500px">Número de telefone do trabalhador, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s2205_contato.foneprinc or s2205_contato.foneprinc == 0 %}{{ s2205_contato.foneprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_contato_visualizar' %}
-                <a href="{% url 's2205_contato_salvar'  hash='{}'|json_id:s2205_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205contato or perms.esocial.can_see_s2205contato %}
+                <a href="{% url 's2205_contato_salvar' pk=s2205_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1822,11 +1819,11 @@
             <td width="130px">foneAlternat</td>
             <td width="500px">Número de telefone alternativo do trabalhador, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if s2205_contato.fonealternat or s2205_contato.fonealternat == 0 %}{{ s2205_contato.fonealternat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_contato_visualizar' %}
-                <a href="{% url 's2205_contato_salvar'  hash='{}'|json_id:s2205_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205contato or perms.esocial.can_see_s2205contato %}
+                <a href="{% url 's2205_contato_salvar' pk=s2205_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1841,11 +1838,11 @@
             <td width="130px">emailPrinc</td>
             <td width="500px">Endereço eletrônico. <validacao> O e-mail deve ser possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2205_contato.emailprinc or s2205_contato.emailprinc == 0 %}{{ s2205_contato.emailprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_contato_visualizar' %}
-                <a href="{% url 's2205_contato_salvar'  hash='{}'|json_id:s2205_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205contato or perms.esocial.can_see_s2205contato %}
+                <a href="{% url 's2205_contato_salvar' pk=s2205_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1860,11 +1857,11 @@
             <td width="130px">emailAlternat</td>
             <td width="500px">Endereço eletrônico alternativo. <validacao> O e-mail deve ser possuir o caractere '@' e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no início ou no final do e-mail.</td>
             <td width="200px"><b>{% if s2205_contato.emailalternat or s2205_contato.emailalternat == 0 %}{{ s2205_contato.emailalternat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2205_contato_visualizar' %}
-                <a href="{% url 's2205_contato_salvar'  hash='{}'|json_id:s2205_contato.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2205.can_see_s2205contato or perms.esocial.can_see_s2205contato %}
+                <a href="{% url 's2205_contato_salvar' pk=s2205_contato.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

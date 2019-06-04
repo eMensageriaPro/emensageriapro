@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        s2241_fiminsalperic_infoamb_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if s2241_fiminsalperic_infoamb_id:
+    if pk:
     
-        s2241_fiminsalperic_infoamb = get_object_or_404(s2241fimInsalPericinfoAmb, id=s2241_fiminsalperic_infoamb_id)
+        s2241_fiminsalperic_infoamb = get_object_or_404(s2241fimInsalPericinfoAmb, id=pk)
         dados_evento = s2241_fiminsalperic_infoamb.evento()
 
-    if request.user.has_perm('s2241.can_view_s2241fimInsalPericinfoAmb'):
+    if request.user.has_perm('s2241.can_see_s2241fimInsalPericinfoAmb'):
         
-        if s2241_fiminsalperic_infoamb_id:
+        if pk:
         
-            s2241_fiminsalperic_infoamb_form = form_s2241_fiminsalperic_infoamb(request.POST or None, 
-                                                          instance=s2241_fiminsalperic_infoamb,  
-                                                          initial={'excluido': False})
+            s2241_fiminsalperic_infoamb_form = form_s2241_fiminsalperic_infoamb(
+                request.POST or None, 
+                instance=s2241_fiminsalperic_infoamb)
                                          
         else:
         
-            s2241_fiminsalperic_infoamb_form = form_s2241_fiminsalperic_infoamb(request.POST or None, 
-                                         initial={'excluido': False})
+            s2241_fiminsalperic_infoamb_form = form_s2241_fiminsalperic_infoamb(request.POST or None)
                                          
         if request.method == 'POST':
         
             if s2241_fiminsalperic_infoamb_form.is_valid():
             
-                dados = s2241_fiminsalperic_infoamb_form.cleaned_data
                 obj = s2241_fiminsalperic_infoamb_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2241_fiminsalperic_infoamb_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2241_fiminsalperic_infoamb', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2241_fiminsalperic_infoamb', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(s2241_fiminsalperic_infoamb), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2241_fiminsalperic_infoamb', s2241_fiminsalperic_infoamb_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(s2241_fiminsalperic_infoamb), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        's2241_fiminsalperic_infoamb', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('s2241_fiminsalperic_infoamb_apagar', 's2241_fiminsalperic_infoamb_salvar', 's2241_fiminsalperic_infoamb'):
+                if request.session['return_page'] not in (
+                    's2241_fiminsalperic_infoamb_apagar', 
+                    's2241_fiminsalperic_infoamb_salvar', 
+                    's2241_fiminsalperic_infoamb'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if s2241_fiminsalperic_infoamb_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2241_fiminsalperic_infoamb_salvar', hash=url_hash)
+                    return redirect(
+                        's2241_fiminsalperic_infoamb_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        s2241_fiminsalperic_infoamb_form = disabled_form_fields(s2241_fiminsalperic_infoamb_form, request.user.has_perm('s2241.change_s2241fimInsalPericinfoAmb'))
+        s2241_fiminsalperic_infoamb_form = disabled_form_fields(
+            s2241_fiminsalperic_infoamb_form, 
+            request.user.has_perm('s2241.change_s2241fimInsalPericinfoAmb'))
         
-        if s2241_fiminsalperic_infoamb_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #s2241_fiminsalperic_infoamb_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             s2241_fiminsalperic_infoamb_form = disabled_form_for_print(s2241_fiminsalperic_infoamb_form)
             
         
         
-        if s2241_fiminsalperic_infoamb_id:
+        if pk:
         
-            s2241_fiminsalperic_infoamb = get_object_or_404(s2241fimInsalPericinfoAmb, id=s2241_fiminsalperic_infoamb_id)
+            s2241_fiminsalperic_infoamb = get_object_or_404(s2241fimInsalPericinfoAmb, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 's2241_fiminsalperic_infoamb' in request.session['retorno_pagina']:
+        if tab or 's2241_fiminsalperic_infoamb' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2241_fiminsalperic_infoamb_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2241_fiminsalperic_infoamb_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2241_fiminsalperic_infoamb_id, tabela='s2241_fiminsalperic_infoamb').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2241_fiminsalperic_infoamb').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             's2241_fiminsalperic_infoamb': s2241_fiminsalperic_infoamb, 
             's2241_fiminsalperic_infoamb_form': s2241_fiminsalperic_infoamb_form, 
-            's2241_fiminsalperic_infoamb_id': int(s2241_fiminsalperic_infoamb_id),
-            'usuario': usuario, 
             'modulos': ['s2241', ],
             'paginas': ['s2241_fiminsalperic_infoamb', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2241_fiminsalperic_infoamb_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2241_fiminsalperic_infoamb_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s2241_fiminsalperic_infoamb_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('s2241_fiminsalperic_infoamb_salvar.html', context)
             filename = "s2241_fiminsalperic_infoamb.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2241_fiminsalperic_infoamb_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['s2241', ],
             'paginas': ['s2241_fiminsalperic_infoamb', ],
             'data': datetime.datetime.now(),

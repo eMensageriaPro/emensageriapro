@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s5001.models import *
 from emensageriapro.s5001.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s5001(request, s5001_evtbasestrab_id, versao=None):
+def gerar_xml_s5001(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s5001_evtbasestrab_id:
+    if pk:
 
         s5001_evtbasestrab = get_object_or_404(
             s5001evtBasesTrab,
-            excluido = False,
-            id = s5001_evtbasestrab_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s5001_evtbasestrab.versao
@@ -105,7 +103,8 @@ def gerar_xml_s5001(request, s5001_evtbasestrab_id, versao=None):
             xmlns = ''
 
         s5001_evtbasestrab_lista = s5001evtBasesTrab.objects. \
-            filter(id=s5001_evtbasestrab_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s5001_procjudtrab_lista = s5001procJudTrab.objects. \
             filter(s5001_evtbasestrab_id__in=listar_ids(s5001_evtbasestrab_lista)).all()
@@ -134,10 +133,8 @@ def gerar_xml_s5001(request, s5001_evtbasestrab_id, versao=None):
             'versao': versao,
             'base': s5001_evtbasestrab,
             's5001_evtbasestrab_lista': s5001_evtbasestrab_lista,
-            's5001_evtbasestrab_id': int(s5001_evtbasestrab_id),
+            'pk': int(pk),
             's5001_evtbasestrab': s5001_evtbasestrab,
-
-            
             's5001_procjudtrab_lista': s5001_procjudtrab_lista,
             's5001_infocpcalc_lista': s5001_infocpcalc_lista,
             's5001_infocp_lista': s5001_infocp_lista,
@@ -152,9 +149,7 @@ def gerar_xml_s5001(request, s5001_evtbasestrab_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s5001_evtbasestrab_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -162,14 +157,14 @@ def gerar_xml_assinado(request, s5001_evtbasestrab_id):
 
     s5001_evtbasestrab = get_object_or_404(
         s5001evtBasesTrab,
-        id=s5001_evtbasestrab_id)
+        id=pk)
 
     if s5001_evtbasestrab.arquivo_original:
     
         xml = ler_arquivo(s5001_evtbasestrab.arquivo)
 
     else:
-        xml = gerar_xml_s5001(request, s5001_evtbasestrab_id)
+        xml = gerar_xml_s5001(request, pk)
 
     if 'Signature' in xml:
     
@@ -185,20 +180,23 @@ def gerar_xml_assinado(request, s5001_evtbasestrab_id):
             grupo = get_grupo(s5001evtBasesTrab)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s5001_evtbasestrab.nrinsc,
-                                      s5001_evtbasestrab.tpinsc)
+                grupo,
+                s5001_evtbasestrab.nrinsc,
+                s5001_evtbasestrab.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s5001evtBasesTrab,
-                                         s5001_evtbasestrab)
+                grupo,
+                s5001evtBasesTrab,
+                s5001_evtbasestrab)
         
         s5001_evtbasestrab = get_object_or_404(
             s5001evtBasesTrab,
-            id=s5001_evtbasestrab_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s5001_evtbasestrab.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s5001_evtbasestrab.transmissor_lote_esocial_id)
         
     if s5001_evtbasestrab.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -207,29 +205,28 @@ def gerar_xml_assinado(request, s5001_evtbasestrab_id):
         STATUS_EVENTO_GERADO):
 
         s5001evtBasesTrab.objects.\
-            filter(id=s5001_evtbasestrab_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s5001_evtbasestrab/%s.xml' % (s5001_evtbasestrab.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s5001_evtbasestrab/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s5001_evtbasestrab_id = int(dict_hash['id'])
+    if pk:
 
-    if s5001_evtbasestrab_id:
-
-        xml_assinado = gerar_xml_assinado(request, s5001_evtbasestrab_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

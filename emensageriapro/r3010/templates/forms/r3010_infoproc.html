@@ -15,7 +15,7 @@
     <label id="r3010_infoproc__r3010_evtespdesportivo__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
     {% if not for_print %}
       {% if r3010_infoproc_form.r3010_evtespdesportivo.value %}
-        <a id="r3010_infoproc__r3010_evtespdesportivo__div_acessar" href="{% url 'r3010_evtespdesportivo_salvar' hash='{}'|json_id:r3010_infoproc_form.r3010_evtespdesportivo.value|json_print:0|base64_encode_me %}">
+        <a id="r3010_infoproc__r3010_evtespdesportivo__div_acessar" href="{% url 'r3010_evtespdesportivo_salvar' pk=r3010_infoproc_form.r3010_evtespdesportivo.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

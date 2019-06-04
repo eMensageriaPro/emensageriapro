@@ -64,83 +64,93 @@ from emensageriapro.r2060.forms import form_r2060_infoproc
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        r2060_tipocod_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if r2060_tipocod_id:
+    if pk:
     
-        r2060_tipocod = get_object_or_404(r2060tipoCod, id=r2060_tipocod_id)
+        r2060_tipocod = get_object_or_404(r2060tipoCod, id=pk)
         dados_evento = r2060_tipocod.evento()
 
-    if request.user.has_perm('r2060.can_view_r2060tipoCod'):
+    if request.user.has_perm('r2060.can_see_r2060tipoCod'):
         
-        if r2060_tipocod_id:
+        if pk:
         
-            r2060_tipocod_form = form_r2060_tipocod(request.POST or None, 
-                                                          instance=r2060_tipocod,  
-                                                          initial={'excluido': False})
+            r2060_tipocod_form = form_r2060_tipocod(
+                request.POST or None, 
+                instance=r2060_tipocod)
                                          
         else:
         
-            r2060_tipocod_form = form_r2060_tipocod(request.POST or None, 
-                                         initial={'excluido': False})
+            r2060_tipocod_form = form_r2060_tipocod(request.POST or None)
                                          
         if request.method == 'POST':
         
             if r2060_tipocod_form.is_valid():
             
-                dados = r2060_tipocod_form.cleaned_data
                 obj = r2060_tipocod_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r2060_tipocod_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r2060_tipocod', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r2060_tipocod', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(r2060_tipocod), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r2060_tipocod', r2060_tipocod_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(r2060_tipocod), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r2060_tipocod', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('r2060_tipocod_apagar', 'r2060_tipocod_salvar', 'r2060_tipocod'):
+                if request.session['return_page'] not in (
+                    'r2060_tipocod_apagar', 
+                    'r2060_tipocod_salvar', 
+                    'r2060_tipocod'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if r2060_tipocod_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r2060_tipocod_salvar', hash=url_hash)
+                    return redirect(
+                        'r2060_tipocod_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        r2060_tipocod_form = disabled_form_fields(r2060_tipocod_form, request.user.has_perm('r2060.change_r2060tipoCod'))
+        r2060_tipocod_form = disabled_form_fields(
+            r2060_tipocod_form, 
+            request.user.has_perm('r2060.change_r2060tipoCod'))
         
-        if r2060_tipocod_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -148,7 +158,7 @@ def salvar(request, hash):
                 
         #r2060_tipocod_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             r2060_tipocod_form = disabled_form_for_print(r2060_tipocod_form)
             
@@ -158,20 +168,22 @@ def salvar(request, hash):
         r2060_infoproc_lista = None 
         r2060_infoproc_form = None 
         
-        if r2060_tipocod_id:
+        if pk:
         
-            r2060_tipocod = get_object_or_404(r2060tipoCod, id=r2060_tipocod_id)
+            r2060_tipocod = get_object_or_404(r2060tipoCod, id=pk)
             
             r2060_tipoajuste_form = form_r2060_tipoajuste(
                 initial={ 'r2060_tipocod': r2060_tipocod })
             r2060_tipoajuste_form.fields['r2060_tipocod'].widget.attrs['readonly'] = True
             r2060_tipoajuste_lista = r2060tipoAjuste.objects.\
                 filter(r2060_tipocod_id=r2060_tipocod.id).all()
+                
             r2060_infoproc_form = form_r2060_infoproc(
                 initial={ 'r2060_tipocod': r2060_tipocod })
             r2060_infoproc_form.fields['r2060_tipocod'].widget.attrs['readonly'] = True
             r2060_infoproc_lista = r2060infoProc.objects.\
                 filter(r2060_tipocod_id=r2060_tipocod.id).all()
+                
                 
         else:
         
@@ -181,14 +193,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'r2060_tipocod' in request.session['retorno_pagina']:
+        if tab or 'r2060_tipocod' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r2060_tipocod_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r2060_tipocod_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r2060_tipocod_id, tabela='r2060_tipocod').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2060_tipocod').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -197,30 +213,22 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             'r2060_tipocod': r2060_tipocod, 
             'r2060_tipocod_form': r2060_tipocod_form, 
-            'r2060_tipocod_id': int(r2060_tipocod_id),
-            'usuario': usuario, 
             'modulos': ['r2060', ],
             'paginas': ['r2060_tipocod', ],
-            'hash': hash, 
-            
             'r2060_tipoajuste_form': r2060_tipoajuste_form,
             'r2060_tipoajuste_lista': r2060_tipoajuste_lista,
             'r2060_infoproc_form': r2060_infoproc_form,
             'r2060_infoproc_lista': r2060_infoproc_lista,
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r2060_tipocod_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r2060_tipocod_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r2060_tipocod_salvar.html',
@@ -237,23 +245,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('r2060_tipocod_salvar.html', context)
             filename = "r2060_tipocod.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r2060_tipocod_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['r2060', ],
             'paginas': ['r2060_tipocod', ],
             'data': datetime.datetime.now(),

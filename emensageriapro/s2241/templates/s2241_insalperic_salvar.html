@@ -34,51 +34,48 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s2241insalPeric
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s2241insalPeric</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações sobre o ambiente de trabalho insalubre/periculoso.
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações sobre o ambiente de trabalho insalubre/periculoso.</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s2241.can_view_s2241insalPeric %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_return_page:'s2241_insalperic_salvar'|json_return_hash:hash|json_id:s2241_insalperic_id|json_print:0|base64_encode_me %}">
-                            Informações sobre o ambiente de trabalho insalubre/periculoso.
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s2241_insalperic_id %}
+                    {% if pk %}
+                        {% if perms.s2241.can_see_s2241insalPeric %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2241_insalperic_salvar' pk=pk tab='master' %}">
+                                Informações sobre o ambiente de trabalho insalubre/periculoso.</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s2241.can_view_s2241_iniinsalperic %}
+                            {% if perms.s2241.can_see_s2241iniInsalPeric %}
                                 <li {% if tab == 's2241_iniinsalperic' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|json_tab:'s2241_iniinsalperic'|base64_encode_me %}">
+                                    <a href="{% url 's2241_insalperic_salvar' pk=pk tab='s2241_iniinsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Início</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2241.can_view_s2241_altinsalperic %}
+                            {% if perms.s2241.can_see_s2241altInsalPeric %}
                                 <li {% if tab == 's2241_altinsalperic' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|json_tab:'s2241_altinsalperic'|base64_encode_me %}">
+                                    <a href="{% url 's2241_insalperic_salvar' pk=pk tab='s2241_altinsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Alteração</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2241.can_view_s2241_fiminsalperic %}
+                            {% if perms.s2241.can_see_s2241fimInsalPeric %}
                                 <li {% if tab == 's2241_fiminsalperic' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|json_tab:'s2241_fiminsalperic'|base64_encode_me %}">
+                                    <a href="{% url 's2241_insalperic_salvar' pk=pk tab='s2241_fiminsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Fim</a>
                                 </li>
                             {% endif %}
@@ -88,275 +85,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s2241_insalperic_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s2241_insalperic_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s2241_insalperic_id %}
-   {% if s2241_insalperic.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2241_insalperic.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2241_insalperic.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2241_insalperic.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2241_insalperic.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2241_insalperic.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2241_insalperic.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações sobre o ambiente de trabalho insalubre/periculoso.</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s2241_insalperic.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2241_insalperic.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s2241.change_s2241_insalperic or perms.s2241.add_s2241_insalperic %}
-                <form action="#" id="id_form_s2241_insalperic" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s2241_insalperic.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2241_insalperic.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2241_insalperic.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s2241_insalperic.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s2241_insalperic_id %}
-
-                                {% if perms.s2241.add_s2241insalPeric %}
-                                    <a href="{% url 's2241_insalperic_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s2241.can_view_s2241_insalperic or perms.s2241.can_view_s2241_insalperic %}
-                                <a href="{% url 's2241_insalperic'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2241.can_view_s2241_insalperic and s2241_insalperic_id %}
-                                <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s2241.can_view_s2241_insalperic and s2241_insalperic_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2241.change_s2241_insalperic or perms.s2241.add_s2241_insalperic %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s2241.delete_s2241_insalperic and s2241_insalperic_id %}
-
-                            <a href="{% url 's2241_insalperic_apagar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s2241_insalperic.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2241_insalperic.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s2241.change_s2241_insalperic or perms.s2241.add_s2241_insalperic %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s2241_insalperic_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações sobre o ambiente de trabalho insalubre/periculoso.</h3>
+                    </div>
+
+                    {% if perms.s2241.change_s2241insalPeric or perms.s2241.add_s2241insalPeric %}
+                        {% if s2241_insalperic_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2241_insalperic" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2241_insalperic.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s2241.add_s2241insalPeric %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2241_insalperic_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2241.can_see_list_s2241insalPeric %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2241_insalperic' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2241.can_print_data_s2241insalPeric %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2241_insalperic_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s2241.change_s2241insalPeric %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2241.delete_s2241insalPeric %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2241_insalperic_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s2241.add_s2241insalPeric %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s2241.add_s2241insalPeric or perms.s2241.change_s2241insalPeric %}
+
+                        {% if s2241_insalperic_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s2241_iniinsalperic -->
+        <!-- begin_s2241_iniinsalperic -->
 
-            {% if tab == 's2241_iniinsalperic' or for_print %} 
+            {% if tab == 's2241_iniinsalperic' %} 
 
-                {% if perms.s2241.can_view_s2241_iniinsalperic %} 
+                {% if perms.s2241.can_see_data_s2241iniInsalPeric %}
 
-                    {% if perms.s2241.change_s2241_iniinsalperic or perms.s2241.add_s2241iniInsalPeric %}
+                    {% if perms.s2241.add_s2241iniInsalPeric or perms.s2241.change_s2241iniInsalPeric %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -365,95 +370,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Início</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2241.change_s2241_iniinsalperic or perms.s2241.add_s2241iniInsalPeric %}
+                                    {% if perms.s2241.add_s2241iniInsalPeric or perms.s2241.can_see_list_s2241iniInsalPeric  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2241.add_s2241iniInsalPeric %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2241.add_s2241iniInsalPeric %}            
+
                                     <!-- begin_form_s2241_iniinsalperic --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2241_iniinsalperic" action="{% url 's2241_iniinsalperic_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2241_iniinsalperic" 
+                                              action="{% url 's2241_iniinsalperic_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2241_iniinsalperic.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2241_iniinsalperic -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2241_iniinsalperic -->
+                                {% endif %} 
+
+                                {% if perms.s2241.can_see_s2241iniInsalPeric %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2241_iniinsalperic --> 
 
-                                    {% include 'tables/s2241_iniinsalperic.html' %}
-                                        
-                                    <!-- end_table_s2241_iniinsalperic --> 
-
+                                        {% include 'tables/s2241_iniinsalperic.html' %}
+                                        <!-- end_table_s2241_iniinsalperic --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2241_iniinsalperic -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2241_altinsalperic -->
+        <!-- begin_s2241_altinsalperic -->
 
-            {% if tab == 's2241_altinsalperic' or for_print %} 
+            {% if tab == 's2241_altinsalperic' %} 
 
-                {% if perms.s2241.can_view_s2241_altinsalperic %} 
+                {% if perms.s2241.can_see_data_s2241altInsalPeric %}
 
-                    {% if perms.s2241.change_s2241_altinsalperic or perms.s2241.add_s2241altInsalPeric %}
+                    {% if perms.s2241.add_s2241altInsalPeric or perms.s2241.change_s2241altInsalPeric %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -462,95 +479,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Alteração</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2241.change_s2241_altinsalperic or perms.s2241.add_s2241altInsalPeric %}
+                                    {% if perms.s2241.add_s2241altInsalPeric or perms.s2241.can_see_list_s2241altInsalPeric  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2241.add_s2241altInsalPeric %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2241.add_s2241altInsalPeric %}            
+
                                     <!-- begin_form_s2241_altinsalperic --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2241_altinsalperic" action="{% url 's2241_altinsalperic_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2241_altinsalperic" 
+                                              action="{% url 's2241_altinsalperic_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2241_altinsalperic.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2241_altinsalperic -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2241_altinsalperic -->
+                                {% endif %} 
+
+                                {% if perms.s2241.can_see_s2241altInsalPeric %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2241_altinsalperic --> 
 
-                                    {% include 'tables/s2241_altinsalperic.html' %}
-                                        
-                                    <!-- end_table_s2241_altinsalperic --> 
-
+                                        {% include 'tables/s2241_altinsalperic.html' %}
+                                        <!-- end_table_s2241_altinsalperic --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2241_altinsalperic -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2241_fiminsalperic -->
+        <!-- begin_s2241_fiminsalperic -->
 
-            {% if tab == 's2241_fiminsalperic' or for_print %} 
+            {% if tab == 's2241_fiminsalperic' %} 
 
-                {% if perms.s2241.can_view_s2241_fiminsalperic %} 
+                {% if perms.s2241.can_see_data_s2241fimInsalPeric %}
 
-                    {% if perms.s2241.change_s2241_fiminsalperic or perms.s2241.add_s2241fimInsalPeric %}
+                    {% if perms.s2241.add_s2241fimInsalPeric or perms.s2241.change_s2241fimInsalPeric %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -559,75 +588,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Fim</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2241.change_s2241_fiminsalperic or perms.s2241.add_s2241fimInsalPeric %}
+                                    {% if perms.s2241.add_s2241fimInsalPeric or perms.s2241.can_see_list_s2241fimInsalPeric  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2241.add_s2241fimInsalPeric %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2241.add_s2241fimInsalPeric %}            
+
                                     <!-- begin_form_s2241_fiminsalperic --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2241_fiminsalperic" action="{% url 's2241_fiminsalperic_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2241_fiminsalperic" 
+                                              action="{% url 's2241_fiminsalperic_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2241_fiminsalperic.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2241_fiminsalperic -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2241_fiminsalperic -->
+                                {% endif %} 
+
+                                {% if perms.s2241.can_see_s2241fimInsalPeric %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2241_fiminsalperic --> 
 
-                                    {% include 'tables/s2241_fiminsalperic.html' %}
-                                        
-                                    <!-- end_table_s2241_fiminsalperic --> 
-
+                                        {% include 'tables/s2241_fiminsalperic.html' %}
+                                        <!-- end_table_s2241_fiminsalperic --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2241_fiminsalperic -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

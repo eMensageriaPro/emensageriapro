@@ -66,7 +66,6 @@ class s2221evtToxicList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2221evtToxicDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2221evtToxic.objects.all()

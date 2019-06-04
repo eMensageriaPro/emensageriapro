@@ -73,49 +73,42 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def criar_exclusao(request, hash):
+def criar_exclusao(request, pk):
 
     from emensageriapro.esocial.views.s2200_evtadmissao_importar import read_s2200_evtadmissao_string
     from emensageriapro.esocial.views.s2200_evtadmissao_gerar_xml import gerar_xml_s2200
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('esocial.can_create_delete_s2200evtAdmissao'):
+    
+        s2200_evtadmissao = get_object_or_404(
+            s2200evtAdmissao,
+            id=pk)
 
-    dict_hash = get_hash_url(hash)
-    s2200_evtadmissao_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('esocial.can_create_delete_event_s2200evtAdmissao'):
+        texto = gerar_xml_s2200(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
+        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
+        dados = read_s2200_evtadmissao_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(s2200_evtadmissao)
 
-        if s2200_evtadmissao_id:
-    
-            s2200_evtadmissao = get_object_or_404(
-                s2200evtAdmissao,
-                excluido=False,
-                id=s2200_evtadmissao_id)
-    
-            texto = gerar_xml_s2200(s2200_evtadmissao_id, versao="|")
-            texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-            texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-            dados = read_s2200_evtadmissao_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(s2200_evtadmissao)
-    
-            s2200evtAdmissao.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2200_evtadmissao.identidade),
-                's2200_evtadmissao', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de exclusão criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s2200_evtadmissao_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de exclusão!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        s2200evtAdmissao.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2200_evtadmissao.identidade),
+            's2200_evtadmissao', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de exclusão criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('s2200_evtadmissao_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('s2200_evtadmissao_salvar', pk=pk, tab='master')

@@ -15,7 +15,7 @@
     <label id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__label">Informações relativas ao ambiente de trabalho*</label>
     {% if not for_print %}
       {% if s2241_fiminsalperic_infoamb_form.s2241_fiminsalperic.value %}
-        <a id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__div_acessar" href="{% url 's2241_fiminsalperic_salvar' hash='{}'|json_id:s2241_fiminsalperic_infoamb_form.s2241_fiminsalperic.value|json_print:0|base64_encode_me %}">
+        <a id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__div_acessar" href="{% url 's2241_fiminsalperic_salvar' pk=s2241_fiminsalperic_infoamb_form.s2241_fiminsalperic.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

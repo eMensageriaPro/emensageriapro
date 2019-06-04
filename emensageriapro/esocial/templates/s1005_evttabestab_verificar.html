@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos<br>Identidade: {{ s1005_evttabestab.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1005_evttabestab_verificar' hash='{}'|json_id:s1005_evttabestab_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1005_evttabestab_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1005_evttabestab_verificar' hash='{}'|json_id:s1005_evttabestab_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1005_evttabestab_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1005_evttabestab_verificar' hash='{}'|json_id:s1005_evttabestab_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1005_evttabestab_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1005_evttabestab_verificar' hash='{}'|json_id:s1005_evttabestab_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1005_evttabestab.tpamb or s1005_evttabestab.tpamb == 0 %}{{ s1005_evttabestab.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_evttabestab_visualizar' %}
-                <a href="{% url 's1005_evttabestab_salvar'  hash='{}'|json_id:s1005_evttabestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005evtTabEstab or perms.esocial.can_see_s1005evtTabEstab %}
+                <a href="{% url 's1005_evttabestab_salvar' pk=s1005_evttabestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1005_evttabestab.procemi or s1005_evttabestab.procemi == 0 %}{{ s1005_evttabestab.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_evttabestab_visualizar' %}
-                <a href="{% url 's1005_evttabestab_salvar'  hash='{}'|json_id:s1005_evttabestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005evtTabEstab or perms.esocial.can_see_s1005evtTabEstab %}
+                <a href="{% url 's1005_evttabestab_salvar' pk=s1005_evttabestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1005_evttabestab.verproc or s1005_evttabestab.verproc == 0 %}{{ s1005_evttabestab.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_evttabestab_visualizar' %}
-                <a href="{% url 's1005_evttabestab_salvar'  hash='{}'|json_id:s1005_evttabestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005evtTabEstab or perms.esocial.can_see_s1005evtTabEstab %}
+                <a href="{% url 's1005_evttabestab_salvar' pk=s1005_evttabestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1005_evttabestab.tpinsc or s1005_evttabestab.tpinsc == 0 %}{{ s1005_evttabestab.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_evttabestab_visualizar' %}
-                <a href="{% url 's1005_evttabestab_salvar'  hash='{}'|json_id:s1005_evttabestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005evtTabEstab or perms.esocial.can_see_s1005evtTabEstab %}
+                <a href="{% url 's1005_evttabestab_salvar' pk=s1005_evttabestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1005_evttabestab.nrinsc or s1005_evttabestab.nrinsc == 0 %}{{ s1005_evttabestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_evttabestab_visualizar' %}
-                <a href="{% url 's1005_evttabestab_salvar'  hash='{}'|json_id:s1005_evttabestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005evtTabEstab or perms.esocial.can_see_s1005evtTabEstab %}
+                <a href="{% url 's1005_evttabestab_salvar' pk=s1005_evttabestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_inclusao.tpinsc or s1005_inclusao.tpinsc == 0 %}{{ s1005_inclusao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
             <td width="200px"><b>{% if s1005_inclusao.nrinsc or s1005_inclusao.nrinsc == 0 %}{{ s1005_inclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_inclusao.inivalid or s1005_inclusao.inivalid == 0 %}{{ s1005_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -304,11 +301,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_inclusao.fimvalid or s1005_inclusao.fimvalid == 0 %}{{ s1005_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">cnaePrep</td>
             <td width="500px">Preencher com o código do CNAE conforme legislação vigente, referente a atividade econômica preponderante do estabelecimento. <validacao> Deve ser um número existente na tabela CNAE. </td>
             <td width="200px"><b>{% if s1005_inclusao.cnaeprep or s1005_inclusao.cnaeprep == 0 %}{{ s1005_inclusao.cnaeprep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -352,11 +349,11 @@
             <td width="130px">aliqRat</td>
             <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}.</td>
             <td width="200px"><b>{% if s1005_inclusao.aliqrat or s1005_inclusao.aliqrat == 0 %}{{ s1005_inclusao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -371,11 +368,11 @@
             <td width="130px">fap</td>
             <td width="500px">Fator Acidentário de Prevenção - FAP. <validacao> Preenchimento obrigatório por Pessoa Jurídica. Não pode ser preenchido por Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.</td>
             <td width="200px"><b>{% if s1005_inclusao.fap or s1005_inclusao.fap == 0 %}{{ s1005_inclusao.fap }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -390,11 +387,11 @@
             <td width="130px">aliqRatAjust</td>
             <td width="500px">Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
             <td width="200px"><b>{% if s1005_inclusao.aliqratajust or s1005_inclusao.aliqratajust == 0 %}{{ s1005_inclusao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -415,11 +412,11 @@
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudrat.tpproc or s1005_inclusao_procadmjudrat.tpproc == 0 %}{{ s1005_inclusao_procadmjudrat.tpproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudrat_visualizar' %}
-                <a href="{% url 's1005_inclusao_procadmjudrat_salvar'  hash='{}'|json_id:s1005_inclusao_procadmjudrat.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoprocAdmJudRat or perms.esocial.can_see_s1005inclusaoprocAdmJudRat %}
+                <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=s1005_inclusao_procadmjudrat.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -434,11 +431,11 @@
             <td width="130px">nrProc</td>
             <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudrat.nrproc or s1005_inclusao_procadmjudrat.nrproc == 0 %}{{ s1005_inclusao_procadmjudrat.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudrat_visualizar' %}
-                <a href="{% url 's1005_inclusao_procadmjudrat_salvar'  hash='{}'|json_id:s1005_inclusao_procadmjudrat.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoprocAdmJudRat or perms.esocial.can_see_s1005inclusaoprocAdmJudRat %}
+                <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=s1005_inclusao_procadmjudrat.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -453,11 +450,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudrat.codsusp or s1005_inclusao_procadmjudrat.codsusp == 0 %}{{ s1005_inclusao_procadmjudrat.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudrat_visualizar' %}
-                <a href="{% url 's1005_inclusao_procadmjudrat_salvar'  hash='{}'|json_id:s1005_inclusao_procadmjudrat.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoprocAdmJudRat or perms.esocial.can_see_s1005inclusaoprocAdmJudRat %}
+                <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=s1005_inclusao_procadmjudrat.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -478,11 +475,11 @@
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial; 4 - Processo FAP. <valores_validos> 1, 2, 4.</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudfap.tpproc or s1005_inclusao_procadmjudfap.tpproc == 0 %}{{ s1005_inclusao_procadmjudfap.tpproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudfap_visualizar' %}
-                <a href="{% url 's1005_inclusao_procadmjudfap_salvar'  hash='{}'|json_id:s1005_inclusao_procadmjudfap.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoprocAdmJudFap or perms.esocial.can_see_s1005inclusaoprocAdmJudFap %}
+                <a href="{% url 's1005_inclusao_procadmjudfap_salvar' pk=s1005_inclusao_procadmjudfap.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -497,11 +494,11 @@
             <td width="130px">nrProc</td>
             <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudfap.nrproc or s1005_inclusao_procadmjudfap.nrproc == 0 %}{{ s1005_inclusao_procadmjudfap.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudfap_visualizar' %}
-                <a href="{% url 's1005_inclusao_procadmjudfap_salvar'  hash='{}'|json_id:s1005_inclusao_procadmjudfap.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoprocAdmJudFap or perms.esocial.can_see_s1005inclusaoprocAdmJudFap %}
+                <a href="{% url 's1005_inclusao_procadmjudfap_salvar' pk=s1005_inclusao_procadmjudfap.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -516,11 +513,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
             <td width="200px"><b>{% if s1005_inclusao_procadmjudfap.codsusp or s1005_inclusao_procadmjudfap.codsusp == 0 %}{{ s1005_inclusao_procadmjudfap.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudfap_visualizar' %}
-                <a href="{% url 's1005_inclusao_procadmjudfap_salvar'  hash='{}'|json_id:s1005_inclusao_procadmjudfap.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoprocAdmJudFap or perms.esocial.can_see_s1005inclusaoprocAdmJudFap %}
+                <a href="{% url 's1005_inclusao_procadmjudfap_salvar' pk=s1005_inclusao_procadmjudfap.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -541,11 +538,11 @@
             <td width="130px">tpCaepf</td>
             <td width="500px">Tipo de CAEPF<opcoes>1 - Contribuinte Individual; 2 - Produtor Rural; 3 - Segurado Especial. <validacao> Deve ser compatível com o cadastro da RFB. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if s1005_inclusao_infocaepf.tpcaepf or s1005_inclusao_infocaepf.tpcaepf == 0 %}{{ s1005_inclusao_infocaepf.tpcaepf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_infocaepf_visualizar' %}
-                <a href="{% url 's1005_inclusao_infocaepf_salvar'  hash='{}'|json_id:s1005_inclusao_infocaepf.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoinfoCaepf or perms.esocial.can_see_s1005inclusaoinfoCaepf %}
+                <a href="{% url 's1005_inclusao_infocaepf_salvar' pk=s1005_inclusao_infocaepf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -566,11 +563,11 @@
             <td width="130px">indSubstPatrObra</td>
             <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil<opcoes>1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1005_inclusao_infoobra.indsubstpatrobra or s1005_inclusao_infoobra.indsubstpatrobra == 0 %}{{ s1005_inclusao_infoobra.indsubstpatrobra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_infoobra_visualizar' %}
-                <a href="{% url 's1005_inclusao_infoobra_salvar'  hash='{}'|json_id:s1005_inclusao_infoobra.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoinfoObra or perms.esocial.can_see_s1005inclusaoinfoObra %}
+                <a href="{% url 's1005_inclusao_infoobra_salvar' pk=s1005_inclusao_infoobra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -590,11 +587,11 @@
             <td width="130px">regPt</td>
             <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções<opcoes>0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. <valores_validos> 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_inclusao.regpt or s1005_inclusao.regpt == 0 %}{{ s1005_inclusao.regpt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -614,11 +611,11 @@
             <td width="130px">contApr</td>
             <td width="500px">Indicativo de contratação de aprendiz<opcoes>0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Obrigado. <valores_validos> 0, 1, 2.</td>
             <td width="200px"><b>{% if s1005_inclusao.contapr or s1005_inclusao.contapr == 0 %}{{ s1005_inclusao.contapr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -633,11 +630,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Preencher com o número do processo judicial. <validacao> O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_inclusao.nrprocjud or s1005_inclusao.nrprocjud == 0 %}{{ s1005_inclusao.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -652,11 +649,11 @@
             <td width="130px">contEntEd</td>
             <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT)<opcoes>S - Sim; N - Não. <validacao> O preenchimento é obrigatório se {contApr} for igual a [1, 2]. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1005_inclusao.contented or s1005_inclusao.contented == 0 %}{{ s1005_inclusao.contented }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_visualizar' %}
-                <a href="{% url 's1005_inclusao_salvar'  hash='{}'|json_id:s1005_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusao or perms.esocial.can_see_s1005inclusao %}
+                <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -677,11 +674,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição da entidade educativa ou de prática desportiva. <validacao> Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s1005_inclusao_infoenteduc.nrinsc or s1005_inclusao_infoenteduc.nrinsc == 0 %}{{ s1005_inclusao_infoenteduc.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_infoenteduc_visualizar' %}
-                <a href="{% url 's1005_inclusao_infoenteduc_salvar'  hash='{}'|json_id:s1005_inclusao_infoenteduc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoinfoEntEduc or perms.esocial.can_see_s1005inclusaoinfoEntEduc %}
+                <a href="{% url 's1005_inclusao_infoenteduc_salvar' pk=s1005_inclusao_infoenteduc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -702,11 +699,11 @@
             <td width="130px">contPCD</td>
             <td width="500px">Indicativo de contratação de PCD<opcoes>0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho; 9 - Obrigado. <valores_validos> 0, 1, 2, 9.</td>
             <td width="200px"><b>{% if s1005_inclusao_infopcd.contpcd or s1005_inclusao_infopcd.contpcd == 0 %}{{ s1005_inclusao_infopcd.contpcd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_infopcd_visualizar' %}
-                <a href="{% url 's1005_inclusao_infopcd_salvar'  hash='{}'|json_id:s1005_inclusao_infopcd.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoinfoPCD or perms.esocial.can_see_s1005inclusaoinfoPCD %}
+                <a href="{% url 's1005_inclusao_infopcd_salvar' pk=s1005_inclusao_infopcd.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -721,11 +718,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Preencher com o número do processo judicial. <validacao> Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_inclusao_infopcd.nrprocjud or s1005_inclusao_infopcd.nrprocjud == 0 %}{{ s1005_inclusao_infopcd.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_inclusao_infopcd_visualizar' %}
-                <a href="{% url 's1005_inclusao_infopcd_salvar'  hash='{}'|json_id:s1005_inclusao_infopcd.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005inclusaoinfoPCD or perms.esocial.can_see_s1005inclusaoinfoPCD %}
+                <a href="{% url 's1005_inclusao_infopcd_salvar' pk=s1005_inclusao_infopcd.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -751,11 +748,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_alteracao.tpinsc or s1005_alteracao.tpinsc == 0 %}{{ s1005_alteracao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -770,11 +767,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
             <td width="200px"><b>{% if s1005_alteracao.nrinsc or s1005_alteracao.nrinsc == 0 %}{{ s1005_alteracao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -789,11 +786,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_alteracao.inivalid or s1005_alteracao.inivalid == 0 %}{{ s1005_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -808,11 +805,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_alteracao.fimvalid or s1005_alteracao.fimvalid == 0 %}{{ s1005_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -832,11 +829,11 @@
             <td width="130px">cnaePrep</td>
             <td width="500px">Preencher com o código do CNAE conforme legislação vigente, referente a atividade econômica preponderante do estabelecimento. <validacao> Deve ser um número existente na tabela CNAE. </td>
             <td width="200px"><b>{% if s1005_alteracao.cnaeprep or s1005_alteracao.cnaeprep == 0 %}{{ s1005_alteracao.cnaeprep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -856,11 +853,11 @@
             <td width="130px">aliqRat</td>
             <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}.</td>
             <td width="200px"><b>{% if s1005_alteracao.aliqrat or s1005_alteracao.aliqrat == 0 %}{{ s1005_alteracao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -875,11 +872,11 @@
             <td width="130px">fap</td>
             <td width="500px">Fator Acidentário de Prevenção - FAP. <validacao> Preenchimento obrigatório por Pessoa Jurídica. Não pode ser preenchido por Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000.</td>
             <td width="200px"><b>{% if s1005_alteracao.fap or s1005_alteracao.fap == 0 %}{{ s1005_alteracao.fap }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -894,11 +891,11 @@
             <td width="130px">aliqRatAjust</td>
             <td width="500px">Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica.</td>
             <td width="200px"><b>{% if s1005_alteracao.aliqratajust or s1005_alteracao.aliqratajust == 0 %}{{ s1005_alteracao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -919,11 +916,11 @@
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudrat.tpproc or s1005_alteracao_procadmjudrat.tpproc == 0 %}{{ s1005_alteracao_procadmjudrat.tpproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_visualizar' %}
-                <a href="{% url 's1005_alteracao_procadmjudrat_salvar'  hash='{}'|json_id:s1005_alteracao_procadmjudrat.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudRat or perms.esocial.can_see_s1005alteracaoprocAdmJudRat %}
+                <a href="{% url 's1005_alteracao_procadmjudrat_salvar' pk=s1005_alteracao_procadmjudrat.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -938,11 +935,11 @@
             <td width="130px">nrProc</td>
             <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudrat.nrproc or s1005_alteracao_procadmjudrat.nrproc == 0 %}{{ s1005_alteracao_procadmjudrat.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_visualizar' %}
-                <a href="{% url 's1005_alteracao_procadmjudrat_salvar'  hash='{}'|json_id:s1005_alteracao_procadmjudrat.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudRat or perms.esocial.can_see_s1005alteracaoprocAdmJudRat %}
+                <a href="{% url 's1005_alteracao_procadmjudrat_salvar' pk=s1005_alteracao_procadmjudrat.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -957,11 +954,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudrat.codsusp or s1005_alteracao_procadmjudrat.codsusp == 0 %}{{ s1005_alteracao_procadmjudrat.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_visualizar' %}
-                <a href="{% url 's1005_alteracao_procadmjudrat_salvar'  hash='{}'|json_id:s1005_alteracao_procadmjudrat.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudRat or perms.esocial.can_see_s1005alteracaoprocAdmJudRat %}
+                <a href="{% url 's1005_alteracao_procadmjudrat_salvar' pk=s1005_alteracao_procadmjudrat.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -982,11 +979,11 @@
             <td width="130px">tpProc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial; 4 - Processo FAP. <valores_validos> 1, 2, 4.</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudfap.tpproc or s1005_alteracao_procadmjudfap.tpproc == 0 %}{{ s1005_alteracao_procadmjudfap.tpproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_visualizar' %}
-                <a href="{% url 's1005_alteracao_procadmjudfap_salvar'  hash='{}'|json_id:s1005_alteracao_procadmjudfap.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudFap or perms.esocial.can_see_s1005alteracaoprocAdmJudFap %}
+                <a href="{% url 's1005_alteracao_procadmjudfap_salvar' pk=s1005_alteracao_procadmjudfap.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1001,11 +998,11 @@
             <td width="130px">nrProc</td>
             <td width="500px">Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos (S-1070).</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudfap.nrproc or s1005_alteracao_procadmjudfap.nrproc == 0 %}{{ s1005_alteracao_procadmjudfap.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_visualizar' %}
-                <a href="{% url 's1005_alteracao_procadmjudfap_salvar'  hash='{}'|json_id:s1005_alteracao_procadmjudfap.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudFap or perms.esocial.can_see_s1005alteracaoprocAdmJudFap %}
+                <a href="{% url 's1005_alteracao_procadmjudfap_salvar' pk=s1005_alteracao_procadmjudfap.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1020,11 +1017,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
             <td width="200px"><b>{% if s1005_alteracao_procadmjudfap.codsusp or s1005_alteracao_procadmjudfap.codsusp == 0 %}{{ s1005_alteracao_procadmjudfap.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_visualizar' %}
-                <a href="{% url 's1005_alteracao_procadmjudfap_salvar'  hash='{}'|json_id:s1005_alteracao_procadmjudfap.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoprocAdmJudFap or perms.esocial.can_see_s1005alteracaoprocAdmJudFap %}
+                <a href="{% url 's1005_alteracao_procadmjudfap_salvar' pk=s1005_alteracao_procadmjudfap.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1045,11 +1042,11 @@
             <td width="130px">tpCaepf</td>
             <td width="500px">Tipo de CAEPF<opcoes>1 - Contribuinte Individual; 2 - Produtor Rural; 3 - Segurado Especial. <validacao> Deve ser compatível com o cadastro da RFB. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if s1005_alteracao_infocaepf.tpcaepf or s1005_alteracao_infocaepf.tpcaepf == 0 %}{{ s1005_alteracao_infocaepf.tpcaepf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_visualizar' %}
-                <a href="{% url 's1005_alteracao_infocaepf_salvar'  hash='{}'|json_id:s1005_alteracao_infocaepf.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoinfoCaepf or perms.esocial.can_see_s1005alteracaoinfoCaepf %}
+                <a href="{% url 's1005_alteracao_infocaepf_salvar' pk=s1005_alteracao_infocaepf.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1070,11 +1067,11 @@
             <td width="130px">indSubstPatrObra</td>
             <td width="500px">Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil<opcoes>1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1005_alteracao_infoobra.indsubstpatrobra or s1005_alteracao_infoobra.indsubstpatrobra == 0 %}{{ s1005_alteracao_infoobra.indsubstpatrobra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_visualizar' %}
-                <a href="{% url 's1005_alteracao_infoobra_salvar'  hash='{}'|json_id:s1005_alteracao_infoobra.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoinfoObra or perms.esocial.can_see_s1005alteracaoinfoObra %}
+                <a href="{% url 's1005_alteracao_infoobra_salvar' pk=s1005_alteracao_infoobra.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1094,11 +1091,11 @@
             <td width="130px">regPt</td>
             <td width="500px">Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções<opcoes>0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. <valores_validos> 0, 1, 2, 3, 4, 5, 6.</td>
             <td width="200px"><b>{% if s1005_alteracao.regpt or s1005_alteracao.regpt == 0 %}{{ s1005_alteracao.regpt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1118,11 +1115,11 @@
             <td width="130px">contApr</td>
             <td width="500px">Indicativo de contratação de aprendiz<opcoes>0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Obrigado. <valores_validos> 0, 1, 2.</td>
             <td width="200px"><b>{% if s1005_alteracao.contapr or s1005_alteracao.contapr == 0 %}{{ s1005_alteracao.contapr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1137,11 +1134,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Preencher com o número do processo judicial. <validacao> O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_alteracao.nrprocjud or s1005_alteracao.nrprocjud == 0 %}{{ s1005_alteracao.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1156,11 +1153,11 @@
             <td width="130px">contEntEd</td>
             <td width="500px">Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT)<opcoes>S - Sim; N - Não. <validacao> O preenchimento é obrigatório se {contApr} for igual a [1, 2]. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1005_alteracao.contented or s1005_alteracao.contented == 0 %}{{ s1005_alteracao.contented }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
-                <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:s1005_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracao or perms.esocial.can_see_s1005alteracao %}
+                <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1181,11 +1178,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição da entidade educativa ou de prática desportiva. <validacao> Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s1005_alteracao_infoenteduc.nrinsc or s1005_alteracao_infoenteduc.nrinsc == 0 %}{{ s1005_alteracao_infoenteduc.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_visualizar' %}
-                <a href="{% url 's1005_alteracao_infoenteduc_salvar'  hash='{}'|json_id:s1005_alteracao_infoenteduc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoinfoEntEduc or perms.esocial.can_see_s1005alteracaoinfoEntEduc %}
+                <a href="{% url 's1005_alteracao_infoenteduc_salvar' pk=s1005_alteracao_infoenteduc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1206,11 +1203,11 @@
             <td width="130px">contPCD</td>
             <td width="500px">Indicativo de contratação de PCD<opcoes>0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho; 9 - Obrigado. <valores_validos> 0, 1, 2, 9.</td>
             <td width="200px"><b>{% if s1005_alteracao_infopcd.contpcd or s1005_alteracao_infopcd.contpcd == 0 %}{{ s1005_alteracao_infopcd.contpcd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_visualizar' %}
-                <a href="{% url 's1005_alteracao_infopcd_salvar'  hash='{}'|json_id:s1005_alteracao_infopcd.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoinfoPCD or perms.esocial.can_see_s1005alteracaoinfoPCD %}
+                <a href="{% url 's1005_alteracao_infopcd_salvar' pk=s1005_alteracao_infopcd.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1225,11 +1222,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Preencher com o número do processo judicial. <validacao> Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos - S-1070.</td>
             <td width="200px"><b>{% if s1005_alteracao_infopcd.nrprocjud or s1005_alteracao_infopcd.nrprocjud == 0 %}{{ s1005_alteracao_infopcd.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_visualizar' %}
-                <a href="{% url 's1005_alteracao_infopcd_salvar'  hash='{}'|json_id:s1005_alteracao_infopcd.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaoinfoPCD or perms.esocial.can_see_s1005alteracaoinfoPCD %}
+                <a href="{% url 's1005_alteracao_infopcd_salvar' pk=s1005_alteracao_infopcd.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1250,11 +1247,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_alteracao_novavalidade.inivalid or s1005_alteracao_novavalidade.inivalid == 0 %}{{ s1005_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1005_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1005_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaonovaValidade or perms.esocial.can_see_s1005alteracaonovaValidade %}
+                <a href="{% url 's1005_alteracao_novavalidade_salvar' pk=s1005_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1269,11 +1266,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_alteracao_novavalidade.fimvalid or s1005_alteracao_novavalidade.fimvalid == 0 %}{{ s1005_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1005_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1005_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005alteracaonovaValidade or perms.esocial.can_see_s1005alteracaonovaValidade %}
+                <a href="{% url 's1005_alteracao_novavalidade_salvar' pk=s1005_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1299,11 +1296,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1, 3, 4.</td>
             <td width="200px"><b>{% if s1005_exclusao.tpinsc or s1005_exclusao.tpinsc == 0 %}{{ s1005_exclusao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_exclusao_visualizar' %}
-                <a href="{% url 's1005_exclusao_salvar'  hash='{}'|json_id:s1005_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005exclusao or perms.esocial.can_see_s1005exclusao %}
+                <a href="{% url 's1005_exclusao_salvar' pk=s1005_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1318,11 +1315,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador.</td>
             <td width="200px"><b>{% if s1005_exclusao.nrinsc or s1005_exclusao.nrinsc == 0 %}{{ s1005_exclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_exclusao_visualizar' %}
-                <a href="{% url 's1005_exclusao_salvar'  hash='{}'|json_id:s1005_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005exclusao or perms.esocial.can_see_s1005exclusao %}
+                <a href="{% url 's1005_exclusao_salvar' pk=s1005_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1337,11 +1334,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1005_exclusao.inivalid or s1005_exclusao.inivalid == 0 %}{{ s1005_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_exclusao_visualizar' %}
-                <a href="{% url 's1005_exclusao_salvar'  hash='{}'|json_id:s1005_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005exclusao or perms.esocial.can_see_s1005exclusao %}
+                <a href="{% url 's1005_exclusao_salvar' pk=s1005_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1356,11 +1353,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1005_exclusao.fimvalid or s1005_exclusao.fimvalid == 0 %}{{ s1005_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1005_exclusao_visualizar' %}
-                <a href="{% url 's1005_exclusao_salvar'  hash='{}'|json_id:s1005_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1005.can_see_s1005exclusao or perms.esocial.can_see_s1005exclusao %}
+                <a href="{% url 's1005_exclusao_salvar' pk=s1005_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

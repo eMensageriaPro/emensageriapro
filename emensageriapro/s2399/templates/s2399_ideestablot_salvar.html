@@ -34,58 +34,55 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s2399ideEstabLot
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s2399ideEstabLot</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s2399.can_view_s2399ideEstabLot %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_return_page:'s2399_ideestablot_salvar'|json_return_hash:hash|json_id:s2399_ideestablot_id|json_print:0|base64_encode_me %}">
-                            Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s2399_ideestablot_id %}
+                    {% if pk %}
+                        {% if perms.s2399.can_see_s2399ideEstabLot %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2399_ideestablot_salvar' pk=pk tab='master' %}">
+                                Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s2399.can_view_s2399_detverbas %}
+                            {% if perms.s2399.can_see_s2399detVerbas %}
                                 <li {% if tab == 's2399_detverbas' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_id:s2399_ideestablot_id|json_print:0|json_tab:'s2399_detverbas'|base64_encode_me %}">
+                                    <a href="{% url 's2399_ideestablot_salvar' pk=pk tab='s2399_detverbas' %}">
                                     Detalhamento das verbas rescisórias devidas ao trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2399.can_view_s2399_infosaudecolet %}
+                            {% if perms.s2399.can_see_s2399infoSaudeColet %}
                                 <li {% if tab == 's2399_infosaudecolet' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_id:s2399_ideestablot_id|json_print:0|json_tab:'s2399_infosaudecolet'|base64_encode_me %}">
+                                    <a href="{% url 's2399_ideestablot_salvar' pk=pk tab='s2399_infosaudecolet' %}">
                                     Informações de plano privado coletivo empresarial de assistência à saúde</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2399.can_view_s2399_infoagnocivo %}
+                            {% if perms.s2399.can_see_s2399infoAgNocivo %}
                                 <li {% if tab == 's2399_infoagnocivo' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_id:s2399_ideestablot_id|json_print:0|json_tab:'s2399_infoagnocivo'|base64_encode_me %}">
+                                    <a href="{% url 's2399_ideestablot_salvar' pk=pk tab='s2399_infoagnocivo' %}">
                                     Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2399.can_view_s2399_infosimples %}
+                            {% if perms.s2399.can_see_s2399infoSimples %}
                                 <li {% if tab == 's2399_infosimples' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_id:s2399_ideestablot_id|json_print:0|json_tab:'s2399_infosimples'|base64_encode_me %}">
+                                    <a href="{% url 's2399_ideestablot_salvar' pk=pk tab='s2399_infosimples' %}">
                                     Informação relativa a empresas enquadradas no Regime de Tributação Simples</a>
                                 </li>
                             {% endif %}
@@ -95,275 +92,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s2399_ideestablot_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s2399_ideestablot_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s2399_ideestablot_id %}
-   {% if s2399_ideestablot.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2399_ideestablot.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2399_ideestablot.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2399_ideestablot.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2399_ideestablot.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2399_ideestablot.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2399_ideestablot.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s2399_ideestablot.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2399_ideestablot.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s2399.change_s2399_ideestablot or perms.s2399.add_s2399_ideestablot %}
-                <form action="#" id="id_form_s2399_ideestablot" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s2399_ideestablot.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2399_ideestablot.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2399_ideestablot.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s2399_ideestablot.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s2399_ideestablot_id %}
-
-                                {% if perms.s2399.add_s2399ideEstabLot %}
-                                    <a href="{% url 's2399_ideestablot_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s2399.can_view_s2399_ideestablot or perms.s2399.can_view_s2399_ideestablot %}
-                                <a href="{% url 's2399_ideestablot'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2399.can_view_s2399_ideestablot and s2399_ideestablot_id %}
-                                <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_id:s2399_ideestablot_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s2399.can_view_s2399_ideestablot and s2399_ideestablot_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's2399_ideestablot_salvar' hash='{}'|json_id:s2399_ideestablot_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2399.change_s2399_ideestablot or perms.s2399.add_s2399_ideestablot %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s2399.delete_s2399_ideestablot and s2399_ideestablot_id %}
-
-                            <a href="{% url 's2399_ideestablot_apagar' hash='{}'|json_id:s2399_ideestablot_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s2399_ideestablot.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2399_ideestablot.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s2399.change_s2399_ideestablot or perms.s2399.add_s2399_ideestablot %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s2399_ideestablot_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>
+                    </div>
+
+                    {% if perms.s2399.change_s2399ideEstabLot or perms.s2399.add_s2399ideEstabLot %}
+                        {% if s2399_ideestablot_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2399_ideestablot" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2399_ideestablot.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s2399.add_s2399ideEstabLot %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2399_ideestablot_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2399.can_see_list_s2399ideEstabLot %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2399_ideestablot' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2399.can_print_data_s2399ideEstabLot %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2399_ideestablot_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s2399.change_s2399ideEstabLot %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2399.delete_s2399ideEstabLot %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2399_ideestablot_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s2399.add_s2399ideEstabLot %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s2399.add_s2399ideEstabLot or perms.s2399.change_s2399ideEstabLot %}
+
+                        {% if s2399_ideestablot_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s2399_detverbas -->
+        <!-- begin_s2399_detverbas -->
 
-            {% if tab == 's2399_detverbas' or for_print %} 
+            {% if tab == 's2399_detverbas' %} 
 
-                {% if perms.s2399.can_view_s2399_detverbas %} 
+                {% if perms.s2399.can_see_data_s2399detVerbas %}
 
-                    {% if perms.s2399.change_s2399_detverbas or perms.s2399.add_s2399detVerbas %}
+                    {% if perms.s2399.add_s2399detVerbas or perms.s2399.change_s2399detVerbas %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -372,95 +377,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento das verbas rescisórias devidas ao trabalhador</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2399.change_s2399_detverbas or perms.s2399.add_s2399detVerbas %}
+                                    {% if perms.s2399.add_s2399detVerbas or perms.s2399.can_see_list_s2399detVerbas  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2399.add_s2399detVerbas %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2399.add_s2399detVerbas %}            
+
                                     <!-- begin_form_s2399_detverbas --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2399_detverbas" action="{% url 's2399_detverbas_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2399_detverbas" 
+                                              action="{% url 's2399_detverbas_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2399_detverbas.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2399_detverbas -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2399_detverbas -->
+                                {% endif %} 
+
+                                {% if perms.s2399.can_see_s2399detVerbas %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2399_detverbas --> 
 
-                                    {% include 'tables/s2399_detverbas.html' %}
-                                        
-                                    <!-- end_table_s2399_detverbas --> 
-
+                                        {% include 'tables/s2399_detverbas.html' %}
+                                        <!-- end_table_s2399_detverbas --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2399_detverbas -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2399_infosaudecolet -->
+        <!-- begin_s2399_infosaudecolet -->
 
-            {% if tab == 's2399_infosaudecolet' or for_print %} 
+            {% if tab == 's2399_infosaudecolet' %} 
 
-                {% if perms.s2399.can_view_s2399_infosaudecolet %} 
+                {% if perms.s2399.can_see_data_s2399infoSaudeColet %}
 
-                    {% if perms.s2399.change_s2399_infosaudecolet or perms.s2399.add_s2399infoSaudeColet %}
+                    {% if perms.s2399.add_s2399infoSaudeColet or perms.s2399.change_s2399infoSaudeColet %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -469,95 +486,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de plano privado coletivo empresarial de assistência à saúde</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2399.change_s2399_infosaudecolet or perms.s2399.add_s2399infoSaudeColet %}
+                                    {% if perms.s2399.add_s2399infoSaudeColet or perms.s2399.can_see_list_s2399infoSaudeColet  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2399.add_s2399infoSaudeColet %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2399.add_s2399infoSaudeColet %}            
+
                                     <!-- begin_form_s2399_infosaudecolet --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2399_infosaudecolet" action="{% url 's2399_infosaudecolet_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2399_infosaudecolet" 
+                                              action="{% url 's2399_infosaudecolet_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2399_infosaudecolet.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2399_infosaudecolet -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2399_infosaudecolet -->
+                                {% endif %} 
+
+                                {% if perms.s2399.can_see_s2399infoSaudeColet %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2399_infosaudecolet --> 
 
-                                    {% include 'tables/s2399_infosaudecolet.html' %}
-                                        
-                                    <!-- end_table_s2399_infosaudecolet --> 
-
+                                        {% include 'tables/s2399_infosaudecolet.html' %}
+                                        <!-- end_table_s2399_infosaudecolet --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2399_infosaudecolet -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2399_infoagnocivo -->
+        <!-- begin_s2399_infoagnocivo -->
 
-            {% if tab == 's2399_infoagnocivo' or for_print %} 
+            {% if tab == 's2399_infoagnocivo' %} 
 
-                {% if perms.s2399.can_view_s2399_infoagnocivo %} 
+                {% if perms.s2399.can_see_data_s2399infoAgNocivo %}
 
-                    {% if perms.s2399.change_s2399_infoagnocivo or perms.s2399.add_s2399infoAgNocivo %}
+                    {% if perms.s2399.add_s2399infoAgNocivo or perms.s2399.change_s2399infoAgNocivo %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -566,95 +595,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2399.change_s2399_infoagnocivo or perms.s2399.add_s2399infoAgNocivo %}
+                                    {% if perms.s2399.add_s2399infoAgNocivo or perms.s2399.can_see_list_s2399infoAgNocivo  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2399.add_s2399infoAgNocivo %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2399.add_s2399infoAgNocivo %}            
+
                                     <!-- begin_form_s2399_infoagnocivo --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2399_infoagnocivo" action="{% url 's2399_infoagnocivo_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2399_infoagnocivo" 
+                                              action="{% url 's2399_infoagnocivo_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2399_infoagnocivo.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2399_infoagnocivo -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2399_infoagnocivo -->
+                                {% endif %} 
+
+                                {% if perms.s2399.can_see_s2399infoAgNocivo %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2399_infoagnocivo --> 
 
-                                    {% include 'tables/s2399_infoagnocivo.html' %}
-                                        
-                                    <!-- end_table_s2399_infoagnocivo --> 
-
+                                        {% include 'tables/s2399_infoagnocivo.html' %}
+                                        <!-- end_table_s2399_infoagnocivo --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2399_infoagnocivo -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2399_infosimples -->
+        <!-- begin_s2399_infosimples -->
 
-            {% if tab == 's2399_infosimples' or for_print %} 
+            {% if tab == 's2399_infosimples' %} 
 
-                {% if perms.s2399.can_view_s2399_infosimples %} 
+                {% if perms.s2399.can_see_data_s2399infoSimples %}
 
-                    {% if perms.s2399.change_s2399_infosimples or perms.s2399.add_s2399infoSimples %}
+                    {% if perms.s2399.add_s2399infoSimples or perms.s2399.change_s2399infoSimples %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -663,75 +704,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação relativa a empresas enquadradas no Regime de Tributação Simples</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2399.change_s2399_infosimples or perms.s2399.add_s2399infoSimples %}
+                                    {% if perms.s2399.add_s2399infoSimples or perms.s2399.can_see_list_s2399infoSimples  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2399.add_s2399infoSimples %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2399.add_s2399infoSimples %}            
+
                                     <!-- begin_form_s2399_infosimples --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2399_infosimples" action="{% url 's2399_infosimples_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2399_infosimples" 
+                                              action="{% url 's2399_infosimples_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2399_infosimples.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2399_infosimples -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2399_infosimples -->
+                                {% endif %} 
+
+                                {% if perms.s2399.can_see_s2399infoSimples %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2399_infosimples --> 
 
-                                    {% include 'tables/s2399_infosimples.html' %}
-                                        
-                                    <!-- end_table_s2399_infosimples --> 
-
+                                        {% include 'tables/s2399_infosimples.html' %}
+                                        <!-- end_table_s2399_infosimples --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2399_infosimples -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

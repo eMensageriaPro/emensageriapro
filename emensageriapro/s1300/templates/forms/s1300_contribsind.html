@@ -15,7 +15,7 @@
     <label id="s1300_contribsind__s1300_evtcontrsindpatr__label">Informações da contribuição sindical patronal*</label>
     {% if not for_print %}
       {% if s1300_contribsind_form.s1300_evtcontrsindpatr.value %}
-        <a id="s1300_contribsind__s1300_evtcontrsindpatr__div_acessar" href="{% url 's1300_evtcontrsindpatr_salvar' hash='{}'|json_id:s1300_contribsind_form.s1300_evtcontrsindpatr.value|json_print:0|base64_encode_me %}">
+        <a id="s1300_contribsind__s1300_evtcontrsindpatr__div_acessar" href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_contribsind_form.s1300_evtcontrsindpatr.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -119,8 +119,11 @@ class s1010alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracao", "Can view S1010ALTERACAO"),
-            ("can_view_menu_s1010alteracao", "Can view menu S1010ALTERACAO"),)
+            ("can_see_list_s1010alteracao", u"Pode ver listagem do modelo S1010ALTERACAO"),
+            ("can_see_data_s1010alteracao", u"Pode visualizar o conteúdo do modelo S1010ALTERACAO"),
+            ("can_see_menu_s1010alteracao", u"Pode visualizar no menu o modelo S1010ALTERACAO"),
+            ("can_print_list_s1010alteracao", u"Pode imprimir listagem do modelo S1010ALTERACAO"),
+            ("can_print_data_s1010alteracao", u"Pode imprimir o conteúdo do modelo S1010ALTERACAO"), )
             
         ordering = [
             's1010_evttabrubrica',
@@ -191,8 +194,11 @@ class s1010alteracaoideProcessoCP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracaoideProcessoCP", "Can view S1010ALTERACAOIDEPROCESSOCP"),
-            ("can_view_menu_s1010alteracaoideProcessoCP", "Can view menu S1010ALTERACAOIDEPROCESSOCP"),)
+            ("can_see_list_s1010alteracaoideProcessoCP", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOCP"),
+            ("can_see_data_s1010alteracaoideProcessoCP", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCP"),
+            ("can_see_menu_s1010alteracaoideProcessoCP", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOCP"),
+            ("can_print_list_s1010alteracaoideProcessoCP", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOCP"),
+            ("can_print_data_s1010alteracaoideProcessoCP", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCP"), )
             
         ordering = [
             's1010_alteracao',
@@ -255,8 +261,11 @@ class s1010alteracaoideProcessoCPRP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracaoideProcessoCPRP", "Can view S1010ALTERACAOIDEPROCESSOCPRP"),
-            ("can_view_menu_s1010alteracaoideProcessoCPRP", "Can view menu S1010ALTERACAOIDEPROCESSOCPRP"),)
+            ("can_see_list_s1010alteracaoideProcessoCPRP", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOCPRP"),
+            ("can_see_data_s1010alteracaoideProcessoCPRP", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCPRP"),
+            ("can_see_menu_s1010alteracaoideProcessoCPRP", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOCPRP"),
+            ("can_print_list_s1010alteracaoideProcessoCPRP", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOCPRP"),
+            ("can_print_data_s1010alteracaoideProcessoCPRP", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOCPRP"), )
             
         ordering = [
             's1010_alteracao',
@@ -314,8 +323,11 @@ class s1010alteracaoideProcessoFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracaoideProcessoFGTS", "Can view S1010ALTERACAOIDEPROCESSOFGTS"),
-            ("can_view_menu_s1010alteracaoideProcessoFGTS", "Can view menu S1010ALTERACAOIDEPROCESSOFGTS"),)
+            ("can_see_list_s1010alteracaoideProcessoFGTS", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOFGTS"),
+            ("can_see_data_s1010alteracaoideProcessoFGTS", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOFGTS"),
+            ("can_see_menu_s1010alteracaoideProcessoFGTS", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOFGTS"),
+            ("can_print_list_s1010alteracaoideProcessoFGTS", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOFGTS"),
+            ("can_print_data_s1010alteracaoideProcessoFGTS", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOFGTS"), )
             
         ordering = [
             's1010_alteracao',
@@ -373,8 +385,11 @@ class s1010alteracaoideProcessoIRRF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracaoideProcessoIRRF", "Can view S1010ALTERACAOIDEPROCESSOIRRF"),
-            ("can_view_menu_s1010alteracaoideProcessoIRRF", "Can view menu S1010ALTERACAOIDEPROCESSOIRRF"),)
+            ("can_see_list_s1010alteracaoideProcessoIRRF", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOIRRF"),
+            ("can_see_data_s1010alteracaoideProcessoIRRF", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOIRRF"),
+            ("can_see_menu_s1010alteracaoideProcessoIRRF", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOIRRF"),
+            ("can_print_list_s1010alteracaoideProcessoIRRF", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOIRRF"),
+            ("can_print_data_s1010alteracaoideProcessoIRRF", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOIRRF"), )
             
         ordering = [
             's1010_alteracao',
@@ -431,8 +446,11 @@ class s1010alteracaoideProcessoSIND(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracaoideProcessoSIND", "Can view S1010ALTERACAOIDEPROCESSOSIND"),
-            ("can_view_menu_s1010alteracaoideProcessoSIND", "Can view menu S1010ALTERACAOIDEPROCESSOSIND"),)
+            ("can_see_list_s1010alteracaoideProcessoSIND", u"Pode ver listagem do modelo S1010ALTERACAOIDEPROCESSOSIND"),
+            ("can_see_data_s1010alteracaoideProcessoSIND", u"Pode visualizar o conteúdo do modelo S1010ALTERACAOIDEPROCESSOSIND"),
+            ("can_see_menu_s1010alteracaoideProcessoSIND", u"Pode visualizar no menu o modelo S1010ALTERACAOIDEPROCESSOSIND"),
+            ("can_print_list_s1010alteracaoideProcessoSIND", u"Pode imprimir listagem do modelo S1010ALTERACAOIDEPROCESSOSIND"),
+            ("can_print_data_s1010alteracaoideProcessoSIND", u"Pode imprimir o conteúdo do modelo S1010ALTERACAOIDEPROCESSOSIND"), )
             
         ordering = [
             's1010_alteracao',
@@ -489,8 +507,11 @@ class s1010alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010alteracaonovaValidade", "Can view S1010ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1010alteracaonovaValidade", "Can view menu S1010ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1010alteracaonovaValidade", u"Pode ver listagem do modelo S1010ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1010alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1010ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1010alteracaonovaValidade", u"Pode visualizar no menu o modelo S1010ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1010alteracaonovaValidade", u"Pode imprimir listagem do modelo S1010ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1010alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1010ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1010_alteracao',
@@ -551,8 +572,11 @@ class s1010exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010exclusao", "Can view S1010EXCLUSAO"),
-            ("can_view_menu_s1010exclusao", "Can view menu S1010EXCLUSAO"),)
+            ("can_see_list_s1010exclusao", u"Pode ver listagem do modelo S1010EXCLUSAO"),
+            ("can_see_data_s1010exclusao", u"Pode visualizar o conteúdo do modelo S1010EXCLUSAO"),
+            ("can_see_menu_s1010exclusao", u"Pode visualizar no menu o modelo S1010EXCLUSAO"),
+            ("can_print_list_s1010exclusao", u"Pode imprimir listagem do modelo S1010EXCLUSAO"),
+            ("can_print_data_s1010exclusao", u"Pode imprimir o conteúdo do modelo S1010EXCLUSAO"), )
             
         ordering = [
             's1010_evttabrubrica',
@@ -632,8 +656,11 @@ class s1010inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010inclusao", "Can view S1010INCLUSAO"),
-            ("can_view_menu_s1010inclusao", "Can view menu S1010INCLUSAO"),)
+            ("can_see_list_s1010inclusao", u"Pode ver listagem do modelo S1010INCLUSAO"),
+            ("can_see_data_s1010inclusao", u"Pode visualizar o conteúdo do modelo S1010INCLUSAO"),
+            ("can_see_menu_s1010inclusao", u"Pode visualizar no menu o modelo S1010INCLUSAO"),
+            ("can_print_list_s1010inclusao", u"Pode imprimir listagem do modelo S1010INCLUSAO"),
+            ("can_print_data_s1010inclusao", u"Pode imprimir o conteúdo do modelo S1010INCLUSAO"), )
             
         ordering = [
             's1010_evttabrubrica',
@@ -704,8 +731,11 @@ class s1010inclusaoideProcessoCP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010inclusaoideProcessoCP", "Can view S1010INCLUSAOIDEPROCESSOCP"),
-            ("can_view_menu_s1010inclusaoideProcessoCP", "Can view menu S1010INCLUSAOIDEPROCESSOCP"),)
+            ("can_see_list_s1010inclusaoideProcessoCP", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOCP"),
+            ("can_see_data_s1010inclusaoideProcessoCP", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCP"),
+            ("can_see_menu_s1010inclusaoideProcessoCP", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOCP"),
+            ("can_print_list_s1010inclusaoideProcessoCP", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOCP"),
+            ("can_print_data_s1010inclusaoideProcessoCP", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCP"), )
             
         ordering = [
             's1010_inclusao',
@@ -768,8 +798,11 @@ class s1010inclusaoideProcessoCPRP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010inclusaoideProcessoCPRP", "Can view S1010INCLUSAOIDEPROCESSOCPRP"),
-            ("can_view_menu_s1010inclusaoideProcessoCPRP", "Can view menu S1010INCLUSAOIDEPROCESSOCPRP"),)
+            ("can_see_list_s1010inclusaoideProcessoCPRP", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOCPRP"),
+            ("can_see_data_s1010inclusaoideProcessoCPRP", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCPRP"),
+            ("can_see_menu_s1010inclusaoideProcessoCPRP", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOCPRP"),
+            ("can_print_list_s1010inclusaoideProcessoCPRP", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOCPRP"),
+            ("can_print_data_s1010inclusaoideProcessoCPRP", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOCPRP"), )
             
         ordering = [
             's1010_inclusao',
@@ -827,8 +860,11 @@ class s1010inclusaoideProcessoFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010inclusaoideProcessoFGTS", "Can view S1010INCLUSAOIDEPROCESSOFGTS"),
-            ("can_view_menu_s1010inclusaoideProcessoFGTS", "Can view menu S1010INCLUSAOIDEPROCESSOFGTS"),)
+            ("can_see_list_s1010inclusaoideProcessoFGTS", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOFGTS"),
+            ("can_see_data_s1010inclusaoideProcessoFGTS", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOFGTS"),
+            ("can_see_menu_s1010inclusaoideProcessoFGTS", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOFGTS"),
+            ("can_print_list_s1010inclusaoideProcessoFGTS", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOFGTS"),
+            ("can_print_data_s1010inclusaoideProcessoFGTS", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOFGTS"), )
             
         ordering = [
             's1010_inclusao',
@@ -886,8 +922,11 @@ class s1010inclusaoideProcessoIRRF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010inclusaoideProcessoIRRF", "Can view S1010INCLUSAOIDEPROCESSOIRRF"),
-            ("can_view_menu_s1010inclusaoideProcessoIRRF", "Can view menu S1010INCLUSAOIDEPROCESSOIRRF"),)
+            ("can_see_list_s1010inclusaoideProcessoIRRF", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOIRRF"),
+            ("can_see_data_s1010inclusaoideProcessoIRRF", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOIRRF"),
+            ("can_see_menu_s1010inclusaoideProcessoIRRF", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOIRRF"),
+            ("can_print_list_s1010inclusaoideProcessoIRRF", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOIRRF"),
+            ("can_print_data_s1010inclusaoideProcessoIRRF", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOIRRF"), )
             
         ordering = [
             's1010_inclusao',
@@ -944,8 +983,11 @@ class s1010inclusaoideProcessoSIND(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1010inclusaoideProcessoSIND", "Can view S1010INCLUSAOIDEPROCESSOSIND"),
-            ("can_view_menu_s1010inclusaoideProcessoSIND", "Can view menu S1010INCLUSAOIDEPROCESSOSIND"),)
+            ("can_see_list_s1010inclusaoideProcessoSIND", u"Pode ver listagem do modelo S1010INCLUSAOIDEPROCESSOSIND"),
+            ("can_see_data_s1010inclusaoideProcessoSIND", u"Pode visualizar o conteúdo do modelo S1010INCLUSAOIDEPROCESSOSIND"),
+            ("can_see_menu_s1010inclusaoideProcessoSIND", u"Pode visualizar no menu o modelo S1010INCLUSAOIDEPROCESSOSIND"),
+            ("can_print_list_s1010inclusaoideProcessoSIND", u"Pode imprimir listagem do modelo S1010INCLUSAOIDEPROCESSOSIND"),
+            ("can_print_data_s1010inclusaoideProcessoSIND", u"Pode imprimir o conteúdo do modelo S1010INCLUSAOIDEPROCESSOSIND"), )
             
         ordering = [
             's1010_inclusao',

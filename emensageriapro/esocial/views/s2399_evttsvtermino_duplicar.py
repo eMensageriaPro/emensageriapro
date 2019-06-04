@@ -73,24 +73,21 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def duplicar(request, hash):
+def duplicar(request, pk):
 
     from emensageriapro.esocial.views.s2399_evttsvtermino_importar import read_s2399_evttsvtermino_string
     from emensageriapro.esocial.views.s2399_evttsvtermino_gerar_xml import gerar_xml_s2399
     from emensageriapro.functions import identidade_evento
-
-    dict_hash = get_hash_url(hash)
-    s2399_evttsvtermino_id = int(dict_hash['id'])
     
-    if request.user.has_perm('esocial.can_duplicate_event_s2399evtTSVTermino'):
+    if request.user.has_perm('esocial.can_duplicate_s2399evtTSVTermino'):
 
-        if s2399_evttsvtermino_id:
+        if pk:
     
             s2399_evttsvtermino = get_object_or_404(
                 s2399evtTSVTermino,
-                id=s2399_evttsvtermino_id)
+                id=pk)
     
-            texto = gerar_xml_s2399(s2399_evttsvtermino_id, versao="|")
+            texto = gerar_xml_s2399(request, pk, versao="|")
             dados = read_s2399_evttsvtermino_string({}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2399_evttsvtermino)
     
@@ -103,15 +100,17 @@ def duplicar(request, hash):
                 's2399_evttsvtermino', dados['id'], request.user.id, 1)
     
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s2399_evttsvtermino_salvar', hash=url_hash)
+            return_pk = dados['id']
+            
+            return redirect('s2399_evttsvtermino_salvar', pk=return_pk, tab='master')
     
         messages.error(request, 'Erro ao duplicar evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+        return redirect('s2399_evttsvtermino_salvar', pk=pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('s2399_evttsvtermino_salvar', pk=pk, tab='master')

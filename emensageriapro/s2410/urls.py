@@ -56,7 +56,7 @@ from emensageriapro.s2410.views import s2410_homologtc_api as s2410_homologtc_ap
 urlpatterns = [
 
 
-    url(r'^s2410-infopenmorte/apagar/(?P<hash>.*)/$', 
+    url(r'^s2410-infopenmorte/apagar/(?P<pk>[0-9]+)/$', 
         s2410_infopenmorte_apagar_views.apagar, 
         name='s2410_infopenmorte_apagar'),
 
@@ -66,15 +66,27 @@ urlpatterns = [
     url(r'^s2410-infopenmorte/api/(?P<pk>[0-9]+)/$',
         s2410_infopenmorte_api_views.s2410infoPenMorteDetail.as_view() ),
 
-    url(r'^s2410-infopenmorte/listar/(?P<hash>.*)/$', 
+    url(r'^s2410-infopenmorte/$', 
         s2410_infopenmorte_listar_views.listar, 
         name='s2410_infopenmorte'),
 
-    url(r'^s2410-infopenmorte/salvar/(?P<hash>.*)/$', 
+    url(r'^s2410-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2410_infopenmorte_salvar_views.salvar, 
         name='s2410_infopenmorte_salvar'),
+        
+    url(r'^s2410-infopenmorte/cadastrar/$', 
+        s2410_infopenmorte_salvar_views.salvar, 
+        name='s2410_infopenmorte_cadastrar'),
 
-    url(r'^s2410-instpenmorte/apagar/(?P<hash>.*)/$', 
+    url(r'^s2410-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2410_infopenmorte_salvar_views.salvar, 
+        name='s2410_infopenmorte_salvar_output'),
+        
+    url(r'^s2410-infopenmorte/(?P<output>[\w-]+)/$', 
+        s2410_infopenmorte_listar_views.listar, 
+        name='s2410_infopenmorte_output'),
+
+    url(r'^s2410-instpenmorte/apagar/(?P<pk>[0-9]+)/$', 
         s2410_instpenmorte_apagar_views.apagar, 
         name='s2410_instpenmorte_apagar'),
 
@@ -84,15 +96,27 @@ urlpatterns = [
     url(r'^s2410-instpenmorte/api/(?P<pk>[0-9]+)/$',
         s2410_instpenmorte_api_views.s2410instPenMorteDetail.as_view() ),
 
-    url(r'^s2410-instpenmorte/listar/(?P<hash>.*)/$', 
+    url(r'^s2410-instpenmorte/$', 
         s2410_instpenmorte_listar_views.listar, 
         name='s2410_instpenmorte'),
 
-    url(r'^s2410-instpenmorte/salvar/(?P<hash>.*)/$', 
+    url(r'^s2410-instpenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2410_instpenmorte_salvar_views.salvar, 
         name='s2410_instpenmorte_salvar'),
+        
+    url(r'^s2410-instpenmorte/cadastrar/$', 
+        s2410_instpenmorte_salvar_views.salvar, 
+        name='s2410_instpenmorte_cadastrar'),
 
-    url(r'^s2410-homologtc/apagar/(?P<hash>.*)/$', 
+    url(r'^s2410-instpenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2410_instpenmorte_salvar_views.salvar, 
+        name='s2410_instpenmorte_salvar_output'),
+        
+    url(r'^s2410-instpenmorte/(?P<output>[\w-]+)/$', 
+        s2410_instpenmorte_listar_views.listar, 
+        name='s2410_instpenmorte_output'),
+
+    url(r'^s2410-homologtc/apagar/(?P<pk>[0-9]+)/$', 
         s2410_homologtc_apagar_views.apagar, 
         name='s2410_homologtc_apagar'),
 
@@ -102,13 +126,25 @@ urlpatterns = [
     url(r'^s2410-homologtc/api/(?P<pk>[0-9]+)/$',
         s2410_homologtc_api_views.s2410homologTCDetail.as_view() ),
 
-    url(r'^s2410-homologtc/listar/(?P<hash>.*)/$', 
+    url(r'^s2410-homologtc/$', 
         s2410_homologtc_listar_views.listar, 
         name='s2410_homologtc'),
 
-    url(r'^s2410-homologtc/salvar/(?P<hash>.*)/$', 
+    url(r'^s2410-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2410_homologtc_salvar_views.salvar, 
         name='s2410_homologtc_salvar'),
+        
+    url(r'^s2410-homologtc/cadastrar/$', 
+        s2410_homologtc_salvar_views.salvar, 
+        name='s2410_homologtc_cadastrar'),
+
+    url(r'^s2410-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2410_homologtc_salvar_views.salvar, 
+        name='s2410_homologtc_salvar_output'),
+        
+    url(r'^s2410-homologtc/(?P<output>[\w-]+)/$', 
+        s2410_homologtc_listar_views.listar, 
+        name='s2410_homologtc_output'),
 
 
 ]

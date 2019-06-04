@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-1000 - Informações do Contribuinte<br>Identidade: {{ r1000_evtinfocontri.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 'r1000_evtinfocontri_verificar' hash='{}'|json_id:r1000_evtinfocontri_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 'r1000_evtinfocontri_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 'r1000_evtinfocontri_verificar' hash='{}'|json_id:r1000_evtinfocontri_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 'r1000_evtinfocontri_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 'r1000_evtinfocontri_verificar' hash='{}'|json_id:r1000_evtinfocontri_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 'r1000_evtinfocontri_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 'r1000_evtinfocontri_verificar' hash='{}'|json_id:r1000_evtinfocontri_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r1000_evtinfocontri.tpamb or r1000_evtinfocontri.tpamb == 0 %}{{ r1000_evtinfocontri.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %}
-                <a href="{% url 'r1000_evtinfocontri_salvar'  hash='{}'|json_id:r1000_evtinfocontri.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000evtInfoContri or perms.efdreinf.can_see_r1000evtInfoContri %}
+                <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_evtinfocontri.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r1000_evtinfocontri.procemi or r1000_evtinfocontri.procemi == 0 %}{{ r1000_evtinfocontri.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %}
-                <a href="{% url 'r1000_evtinfocontri_salvar'  hash='{}'|json_id:r1000_evtinfocontri.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000evtInfoContri or perms.efdreinf.can_see_r1000evtInfoContri %}
+                <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_evtinfocontri.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if r1000_evtinfocontri.verproc or r1000_evtinfocontri.verproc == 0 %}{{ r1000_evtinfocontri.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %}
-                <a href="{% url 'r1000_evtinfocontri_salvar'  hash='{}'|json_id:r1000_evtinfocontri.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000evtInfoContri or perms.efdreinf.can_see_r1000evtInfoContri %}
+                <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_evtinfocontri.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r1000_evtinfocontri.tpinsc or r1000_evtinfocontri.tpinsc == 0 %}{{ r1000_evtinfocontri.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %}
-                <a href="{% url 'r1000_evtinfocontri_salvar'  hash='{}'|json_id:r1000_evtinfocontri.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000evtInfoContri or perms.efdreinf.can_see_r1000evtInfoContri %}
+                <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_evtinfocontri.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r1000_evtinfocontri.nrinsc or r1000_evtinfocontri.nrinsc == 0 %}{{ r1000_evtinfocontri.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %}
-                <a href="{% url 'r1000_evtinfocontri_salvar'  hash='{}'|json_id:r1000_evtinfocontri.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000evtInfoContri or perms.efdreinf.can_see_r1000evtInfoContri %}
+                <a href="{% url 'r1000_evtinfocontri_salvar' pk=r1000_evtinfocontri.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data inicial de implantação da EFD-Reinf, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if r1000_inclusao.inivalid or r1000_inclusao.inivalid == 0 %}{{ r1000_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if r1000_inclusao.fimvalid or r1000_inclusao.fimvalid == 0 %}{{ r1000_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -290,11 +287,11 @@
             <td width="130px">classTrib</td>
             <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. <validacao> Deve ser um dos códigos existentes na tabela 8. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
             <td width="200px"><b>{% if r1000_inclusao.classtrib or r1000_inclusao.classtrib == 0 %}{{ r1000_inclusao.classtrib }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -309,11 +306,11 @@
             <td width="130px">indEscrituracao</td>
             <td width="500px">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital<opcoes>0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. <valores_validos> 0, 1.</td>
             <td width="200px"><b>{% if r1000_inclusao.indescrituracao or r1000_inclusao.indescrituracao == 0 %}{{ r1000_inclusao.indescrituracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">indDesoneracao</td>
             <td width="500px">Indicativo de desoneração da folha de pagamento<opcoes>0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. <validacao> Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. <valores_validos> 0, 1.</td>
             <td width="200px"><b>{% if r1000_inclusao.inddesoneracao or r1000_inclusao.inddesoneracao == 0 %}{{ r1000_inclusao.inddesoneracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">indAcordoIsenMulta</td>
             <td width="500px">Indicativo da existência de acordo internacional para isenção de multa<opcoes>0 - Sem acordo; 1 - Com acordo. <validacao> Só pode ser igual a [1] se {classTrib} for igual a [60]. <valores_validos> 0, 1.</td>
             <td width="200px"><b>{% if r1000_inclusao.indacordoisenmulta or r1000_inclusao.indacordoisenmulta == 0 %}{{ r1000_inclusao.indacordoisenmulta }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -366,11 +363,11 @@
             <td width="130px">indSitPJ</td>
             <td width="500px">Indicativo da Situação da Pessoa Jurídica<opcoes>0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. <validacao> Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. <valores_validos> 0, 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if r1000_inclusao.indsitpj or r1000_inclusao.indsitpj == 0 %}{{ r1000_inclusao.indsitpj }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -390,11 +387,11 @@
             <td width="130px">nmCtt</td>
             <td width="500px">Nome do contato no contribuinte. Pessoa responsável por ser o contato do contribuinte com a Receita Federal do Brasil relativamente à EFD-Reinf.</td>
             <td width="200px"><b>{% if r1000_inclusao.nmctt or r1000_inclusao.nmctt == 0 %}{{ r1000_inclusao.nmctt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -409,11 +406,11 @@
             <td width="130px">cpfCtt</td>
             <td width="500px">Preencher com o número do CPF do contato.</td>
             <td width="200px"><b>{% if r1000_inclusao.cpfctt or r1000_inclusao.cpfctt == 0 %}{{ r1000_inclusao.cpfctt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -428,11 +425,11 @@
             <td width="130px">foneFixo</td>
             <td width="500px">Informar o número do telefone, com DDD. <validacao> O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_inclusao.fonefixo or r1000_inclusao.fonefixo == 0 %}{{ r1000_inclusao.fonefixo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -447,11 +444,11 @@
             <td width="130px">foneCel</td>
             <td width="500px">Telefone celular, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_inclusao.fonecel or r1000_inclusao.fonecel == 0 %}{{ r1000_inclusao.fonecel }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -466,11 +463,11 @@
             <td width="130px">email</td>
             <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_inclusao.email or r1000_inclusao.email == 0 %}{{ r1000_inclusao.email }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
-                <a href="{% url 'r1000_inclusao_salvar'  hash='{}'|json_id:r1000_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusao or perms.efdreinf.can_see_r1000inclusao %}
+                <a href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -491,11 +488,11 @@
             <td width="130px">cnpjSoftHouse</td>
             <td width="500px">CNPJ da empresa desenvolvedora do software.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.cnpjsofthouse or r1000_inclusao_softhouse.cnpjsofthouse == 0 %}{{ r1000_inclusao_softhouse.cnpjsofthouse }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_inclusao_softhouse_salvar'  hash='{}'|json_id:r1000_inclusao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaosoftHouse or perms.efdreinf.can_see_r1000inclusaosoftHouse %}
+                <a href="{% url 'r1000_inclusao_softhouse_salvar' pk=r1000_inclusao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -510,11 +507,11 @@
             <td width="130px">nmRazao</td>
             <td width="500px">Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.nmrazao or r1000_inclusao_softhouse.nmrazao == 0 %}{{ r1000_inclusao_softhouse.nmrazao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_inclusao_softhouse_salvar'  hash='{}'|json_id:r1000_inclusao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaosoftHouse or perms.efdreinf.can_see_r1000inclusaosoftHouse %}
+                <a href="{% url 'r1000_inclusao_softhouse_salvar' pk=r1000_inclusao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -529,11 +526,11 @@
             <td width="130px">nmCont</td>
             <td width="500px">Nome do contato na empresa.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.nmcont or r1000_inclusao_softhouse.nmcont == 0 %}{{ r1000_inclusao_softhouse.nmcont }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_inclusao_softhouse_salvar'  hash='{}'|json_id:r1000_inclusao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaosoftHouse or perms.efdreinf.can_see_r1000inclusaosoftHouse %}
+                <a href="{% url 'r1000_inclusao_softhouse_salvar' pk=r1000_inclusao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -548,11 +545,11 @@
             <td width="130px">telefone</td>
             <td width="500px">Informar o número do telefone, com DDD. <validacao> Se preenchido, deve conter apenas números com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.telefone or r1000_inclusao_softhouse.telefone == 0 %}{{ r1000_inclusao_softhouse.telefone }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_inclusao_softhouse_salvar'  hash='{}'|json_id:r1000_inclusao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaosoftHouse or perms.efdreinf.can_see_r1000inclusaosoftHouse %}
+                <a href="{% url 'r1000_inclusao_softhouse_salvar' pk=r1000_inclusao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -567,11 +564,11 @@
             <td width="130px">email</td>
             <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.email or r1000_inclusao_softhouse.email == 0 %}{{ r1000_inclusao_softhouse.email }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_inclusao_softhouse_salvar'  hash='{}'|json_id:r1000_inclusao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaosoftHouse or perms.efdreinf.can_see_r1000inclusaosoftHouse %}
+                <a href="{% url 'r1000_inclusao_softhouse_salvar' pk=r1000_inclusao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -592,11 +589,11 @@
             <td width="130px">ideEFR</td>
             <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR<opcoes>S - É EFR; N - Não é EFR. <validacao> Essa informação é validada no cadastro do CNPJ na RFB. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r1000_inclusao_infoefr.ideefr or r1000_inclusao_infoefr.ideefr == 0 %}{{ r1000_inclusao_infoefr.ideefr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_infoefr_visualizar' %}
-                <a href="{% url 'r1000_inclusao_infoefr_salvar'  hash='{}'|json_id:r1000_inclusao_infoefr.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaoinfoEFR or perms.efdreinf.can_see_r1000inclusaoinfoEFR %}
+                <a href="{% url 'r1000_inclusao_infoefr_salvar' pk=r1000_inclusao_infoefr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -611,11 +608,11 @@
             <td width="130px">cnpjEFR</td>
             <td width="500px">CNPJ do Ente Federativo Responsável - EFR. <validacao> Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
             <td width="200px"><b>{% if r1000_inclusao_infoefr.cnpjefr or r1000_inclusao_infoefr.cnpjefr == 0 %}{{ r1000_inclusao_infoefr.cnpjefr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_inclusao_infoefr_visualizar' %}
-                <a href="{% url 'r1000_inclusao_infoefr_salvar'  hash='{}'|json_id:r1000_inclusao_infoefr.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000inclusaoinfoEFR or perms.efdreinf.can_see_r1000inclusaoinfoEFR %}
+                <a href="{% url 'r1000_inclusao_infoefr_salvar' pk=r1000_inclusao_infoefr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -641,11 +638,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_alteracao.inivalid or r1000_alteracao.inivalid == 0 %}{{ r1000_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -660,11 +657,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_alteracao.fimvalid or r1000_alteracao.fimvalid == 0 %}{{ r1000_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -684,11 +681,11 @@
             <td width="130px">classTrib</td>
             <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. <validacao> Deve ser um dos códigos existentes na tabela 8. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
             <td width="200px"><b>{% if r1000_alteracao.classtrib or r1000_alteracao.classtrib == 0 %}{{ r1000_alteracao.classtrib }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -703,11 +700,11 @@
             <td width="130px">indEscrituracao</td>
             <td width="500px">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital<opcoes>0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. <valores_validos> 0, 1.</td>
             <td width="200px"><b>{% if r1000_alteracao.indescrituracao or r1000_alteracao.indescrituracao == 0 %}{{ r1000_alteracao.indescrituracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -722,11 +719,11 @@
             <td width="130px">indDesoneracao</td>
             <td width="500px">Indicativo de desoneração da folha de pagamento<opcoes>0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. <validacao> Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. <valores_validos> 0, 1.</td>
             <td width="200px"><b>{% if r1000_alteracao.inddesoneracao or r1000_alteracao.inddesoneracao == 0 %}{{ r1000_alteracao.inddesoneracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -741,11 +738,11 @@
             <td width="130px">indAcordoIsenMulta</td>
             <td width="500px">Indicativo da existência de acordo internacional para isenção de multa<opcoes>0 - Sem acordo; 1 - Com acordo. <validacao> Só pode ser igual a [1] se {classTrib} for igual a [60]. <valores_validos> 0, 1.</td>
             <td width="200px"><b>{% if r1000_alteracao.indacordoisenmulta or r1000_alteracao.indacordoisenmulta == 0 %}{{ r1000_alteracao.indacordoisenmulta }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -760,11 +757,11 @@
             <td width="130px">indSitPJ</td>
             <td width="500px">Indicativo da Situação da Pessoa Jurídica<opcoes>0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. <validacao> Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. <valores_validos> 0, 1, 2, 3, 4.</td>
             <td width="200px"><b>{% if r1000_alteracao.indsitpj or r1000_alteracao.indsitpj == 0 %}{{ r1000_alteracao.indsitpj }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -784,11 +781,11 @@
             <td width="130px">nmCtt</td>
             <td width="500px">Nome do contato no contribuinte. Pessoa responsável por ser o contato do contribuinte com a Receita Federal do Brasil relativamente à EFD-Reinf.</td>
             <td width="200px"><b>{% if r1000_alteracao.nmctt or r1000_alteracao.nmctt == 0 %}{{ r1000_alteracao.nmctt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -803,11 +800,11 @@
             <td width="130px">cpfCtt</td>
             <td width="500px">Preencher com o número do CPF do contato.</td>
             <td width="200px"><b>{% if r1000_alteracao.cpfctt or r1000_alteracao.cpfctt == 0 %}{{ r1000_alteracao.cpfctt }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -822,11 +819,11 @@
             <td width="130px">foneFixo</td>
             <td width="500px">Informar o número do telefone, com DDD. <validacao> O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_alteracao.fonefixo or r1000_alteracao.fonefixo == 0 %}{{ r1000_alteracao.fonefixo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -841,11 +838,11 @@
             <td width="130px">foneCel</td>
             <td width="500px">Telefone celular, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_alteracao.fonecel or r1000_alteracao.fonecel == 0 %}{{ r1000_alteracao.fonecel }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -860,11 +857,11 @@
             <td width="130px">email</td>
             <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_alteracao.email or r1000_alteracao.email == 0 %}{{ r1000_alteracao.email }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
-                <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:r1000_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracao or perms.efdreinf.can_see_r1000alteracao %}
+                <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -885,11 +882,11 @@
             <td width="130px">cnpjSoftHouse</td>
             <td width="500px">CNPJ da empresa desenvolvedora do software.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.cnpjsofthouse or r1000_alteracao_softhouse.cnpjsofthouse == 0 %}{{ r1000_alteracao_softhouse.cnpjsofthouse }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_alteracao_softhouse_salvar'  hash='{}'|json_id:r1000_alteracao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaosoftHouse or perms.efdreinf.can_see_r1000alteracaosoftHouse %}
+                <a href="{% url 'r1000_alteracao_softhouse_salvar' pk=r1000_alteracao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -904,11 +901,11 @@
             <td width="130px">nmRazao</td>
             <td width="500px">Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.nmrazao or r1000_alteracao_softhouse.nmrazao == 0 %}{{ r1000_alteracao_softhouse.nmrazao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_alteracao_softhouse_salvar'  hash='{}'|json_id:r1000_alteracao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaosoftHouse or perms.efdreinf.can_see_r1000alteracaosoftHouse %}
+                <a href="{% url 'r1000_alteracao_softhouse_salvar' pk=r1000_alteracao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -923,11 +920,11 @@
             <td width="130px">nmCont</td>
             <td width="500px">Nome do contato na empresa.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.nmcont or r1000_alteracao_softhouse.nmcont == 0 %}{{ r1000_alteracao_softhouse.nmcont }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_alteracao_softhouse_salvar'  hash='{}'|json_id:r1000_alteracao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaosoftHouse or perms.efdreinf.can_see_r1000alteracaosoftHouse %}
+                <a href="{% url 'r1000_alteracao_softhouse_salvar' pk=r1000_alteracao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -942,11 +939,11 @@
             <td width="130px">telefone</td>
             <td width="500px">Informar o número do telefone, com DDD. <validacao> Se preenchido, deve conter apenas números com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.telefone or r1000_alteracao_softhouse.telefone == 0 %}{{ r1000_alteracao_softhouse.telefone }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_alteracao_softhouse_salvar'  hash='{}'|json_id:r1000_alteracao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaosoftHouse or perms.efdreinf.can_see_r1000alteracaosoftHouse %}
+                <a href="{% url 'r1000_alteracao_softhouse_salvar' pk=r1000_alteracao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -961,11 +958,11 @@
             <td width="130px">email</td>
             <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.email or r1000_alteracao_softhouse.email == 0 %}{{ r1000_alteracao_softhouse.email }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %}
-                <a href="{% url 'r1000_alteracao_softhouse_salvar'  hash='{}'|json_id:r1000_alteracao_softhouse.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaosoftHouse or perms.efdreinf.can_see_r1000alteracaosoftHouse %}
+                <a href="{% url 'r1000_alteracao_softhouse_salvar' pk=r1000_alteracao_softhouse.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -986,11 +983,11 @@
             <td width="130px">ideEFR</td>
             <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR<opcoes>S - É EFR; N - Não é EFR. <validacao> Essa informação é validada no cadastro do CNPJ na RFB. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r1000_alteracao_infoefr.ideefr or r1000_alteracao_infoefr.ideefr == 0 %}{{ r1000_alteracao_infoefr.ideefr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_visualizar' %}
-                <a href="{% url 'r1000_alteracao_infoefr_salvar'  hash='{}'|json_id:r1000_alteracao_infoefr.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaoinfoEFR or perms.efdreinf.can_see_r1000alteracaoinfoEFR %}
+                <a href="{% url 'r1000_alteracao_infoefr_salvar' pk=r1000_alteracao_infoefr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1005,11 +1002,11 @@
             <td width="130px">cnpjEFR</td>
             <td width="500px">CNPJ do Ente Federativo Responsável - EFR. <validacao> Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
             <td width="200px"><b>{% if r1000_alteracao_infoefr.cnpjefr or r1000_alteracao_infoefr.cnpjefr == 0 %}{{ r1000_alteracao_infoefr.cnpjefr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_visualizar' %}
-                <a href="{% url 'r1000_alteracao_infoefr_salvar'  hash='{}'|json_id:r1000_alteracao_infoefr.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaoinfoEFR or perms.efdreinf.can_see_r1000alteracaoinfoEFR %}
+                <a href="{% url 'r1000_alteracao_infoefr_salvar' pk=r1000_alteracao_infoefr.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1030,11 +1027,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data inicial de implantação da EFD-Reinf, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if r1000_alteracao_novavalidade.inivalid or r1000_alteracao_novavalidade.inivalid == 0 %}{{ r1000_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 'r1000_alteracao_novavalidade_salvar'  hash='{}'|json_id:r1000_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaonovaValidade or perms.efdreinf.can_see_r1000alteracaonovaValidade %}
+                <a href="{% url 'r1000_alteracao_novavalidade_salvar' pk=r1000_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1049,11 +1046,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if r1000_alteracao_novavalidade.fimvalid or r1000_alteracao_novavalidade.fimvalid == 0 %}{{ r1000_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 'r1000_alteracao_novavalidade_salvar'  hash='{}'|json_id:r1000_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000alteracaonovaValidade or perms.efdreinf.can_see_r1000alteracaonovaValidade %}
+                <a href="{% url 'r1000_alteracao_novavalidade_salvar' pk=r1000_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1079,11 +1076,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_exclusao.inivalid or r1000_exclusao.inivalid == 0 %}{{ r1000_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_exclusao_visualizar' %}
-                <a href="{% url 'r1000_exclusao_salvar'  hash='{}'|json_id:r1000_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000exclusao or perms.efdreinf.can_see_r1000exclusao %}
+                <a href="{% url 'r1000_exclusao_salvar' pk=r1000_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1098,11 +1095,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_exclusao.fimvalid or r1000_exclusao.fimvalid == 0 %}{{ r1000_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r1000_exclusao_visualizar' %}
-                <a href="{% url 'r1000_exclusao_salvar'  hash='{}'|json_id:r1000_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.r1000.can_see_r1000exclusao or perms.efdreinf.can_see_r1000exclusao %}
+                <a href="{% url 'r1000_exclusao_salvar' pk=r1000_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

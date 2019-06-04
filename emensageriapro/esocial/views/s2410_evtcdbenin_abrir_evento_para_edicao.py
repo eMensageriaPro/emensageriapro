@@ -72,70 +72,64 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def abrir_evento_para_edicao(request, hash):
+def abrir_evento_para_edicao(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
 
-    dict_hash = get_hash_url(hash)
-    s2410_evtcdbenin_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('esocial.can_open_event_s2410evtCdBenIn'):
+    if request.user.has_perm('esocial.can_open_s2410evtCdBenIn'):
 
-        if s2410_evtcdbenin_id:
-            s2410_evtcdbenin = get_object_or_404(s2410evtCdBenIn, excluido=False, id=s2410_evtcdbenin_id)
-    
-            status_list = [
-                STATUS_EVENTO_CADASTRADO,
-                STATUS_EVENTO_IMPORTADO,
-                STATUS_EVENTO_DUPLICADO,
-                STATUS_EVENTO_GERADO,
-                STATUS_EVENTO_GERADO_ERRO,
-                STATUS_EVENTO_ASSINADO,
-                STATUS_EVENTO_ASSINADO_ERRO,
-                STATUS_EVENTO_VALIDADO,
-                STATUS_EVENTO_VALIDADO_ERRO,
-                STATUS_EVENTO_AGUARD_PRECEDENCIA,
-                STATUS_EVENTO_AGUARD_ENVIO,
-                STATUS_EVENTO_ENVIADO_ERRO
-            ]
-    
-            if s2410_evtcdbenin.status in status_list:
-                s2410evtCdBenIn.objects.filter(id=s2410_evtcdbenin_id).update(status=STATUS_EVENTO_CADASTRADO,
-                                                                              arquivo_original=0)
-                arquivo = 'arquivos/Eventos/s2410_evtcdbenin/%s.xml' % (s2410_evtcdbenin.identidade)
-    
-                if os.path.exists(BASE_DIR + '/' + arquivo):
-    
-                    data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
-                    dad = (BASE_DIR, s2410_evtcdbenin.identidade, BASE_DIR, s2410_evtcdbenin.identidade, data_hora_atual)
-                    os.system('mv %s/arquivos/Eventos/s2410_evtcdbenin/%s.xml %s/arquivos/Eventos/s2410_evtcdbenin/%s_backup_%s.xml' % dad)
-                    gravar_nome_arquivo('/arquivos/Eventos/s2410_evtcdbenin/%s_backup_%s.xml' % (s2410_evtcdbenin.identidade, data_hora_atual),
-                        1)
-    
-                messages.success(request, 'Evento aberto para edição!')
-                usuario_id = request.user.id
-                gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                    's2410_evtcdbenin', s2410_evtcdbenin_id, usuario_id, 1)
-    
-                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2410_evtcdbenin_id )
-                return redirect('s2410_evtcdbenin_salvar', hash=url_hash)
-                
-            else:
-            
-                messages.error(request, u'''
-                    Não foi possível abrir o evento para edição! Somente é possível
-                    abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-                    "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-                     ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-                     "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
-                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    
-        messages.error(request, 'Erro ao abrir evento para edição!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        s2410_evtcdbenin = get_object_or_404(s2410evtCdBenIn, id=pk)
+
+        status_list = [
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO,
+            STATUS_EVENTO_GERADO,
+            STATUS_EVENTO_GERADO_ERRO,
+            STATUS_EVENTO_ASSINADO,
+            STATUS_EVENTO_ASSINADO_ERRO,
+            STATUS_EVENTO_VALIDADO,
+            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_AGUARD_PRECEDENCIA,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_ENVIADO_ERRO
+        ]
+
+        if s2410_evtcdbenin.status in status_list:
         
+            s2410evtCdBenIn.objects.filter(id=pk).update(
+                status=STATUS_EVENTO_CADASTRADO,
+                arquivo_original=0)
+                                                                          
+            arquivo = 'arquivos/Eventos/s2410_evtcdbenin/%s.xml' % (s2410_evtcdbenin.identidade)
+
+            if os.path.exists(BASE_DIR + '/' + arquivo):
+
+                data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
+                dad = (BASE_DIR, s2410_evtcdbenin.identidade, BASE_DIR, s2410_evtcdbenin.identidade, data_hora_atual)
+                os.system('mv %s/arquivos/Eventos/s2410_evtcdbenin/%s.xml %s/arquivos/Eventos/s2410_evtcdbenin/%s_backup_%s.xml' % dad)
+                gravar_nome_arquivo('/arquivos/Eventos/s2410_evtcdbenin/%s_backup_%s.xml' % (s2410_evtcdbenin.identidade, data_hora_atual),
+                    1)
+
+            messages.success(request, 'Evento aberto para edição!')
+            request.user.id = request.user.id
+            
+            gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
+                's2410_evtcdbenin', pk, request.user.id, 1)
+            
+        else:
+        
+            messages.error(request, u'''
+                Não foi possível abrir o evento para edição! Somente é possível
+                abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
+                "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
+                 ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
+                 "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
+
     else:
     
         messages.error(request, u'''Você não possui permissão para abrir evento para edição. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+    return redirect('s2410_evtcdbenin_salvar', pk=pk, tab='master')

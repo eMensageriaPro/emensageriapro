@@ -53,26 +53,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.r2060.can_view_r2060tipoAjuste %}
-                        <a href="{% url 'r2060_tipoajuste_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.r2060.add_r2060tipoAjuste or perms.r2060.change_r2060tipoAjuste %}
+                        {% if perms.r2060.change_r2060tipoAjuste or perms.r2060.add_r2060tipoAjuste %}
+                    
+                        <a href="{% url 'r2060_tipoajuste_salvar' pk=a.id tab='master' %}">
+                            {% if perms.r2060.change_r2060tipoAjuste %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.r2060.can_see_data_r2060tipoAjuste %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.r2060.delete_r2060tipoAjuste %}
-                        <a href="{% url 'r2060_tipoajuste_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.r2060.delete_r2060tipoAjuste %}
+                        <a href="{% url 'r2060_tipoajuste_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

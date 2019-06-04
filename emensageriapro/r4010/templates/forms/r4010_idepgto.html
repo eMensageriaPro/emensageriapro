@@ -15,7 +15,7 @@
     <label id="r4010_idepgto__r4010_evtretpf__label">Identificação do rendimento*</label>
     {% if not for_print %}
       {% if r4010_idepgto_form.r4010_evtretpf.value %}
-        <a id="r4010_idepgto__r4010_evtretpf__div_acessar" href="{% url 'r4010_evtretpf_salvar' hash='{}'|json_id:r4010_idepgto_form.r4010_evtretpf.value|json_print:0|base64_encode_me %}">
+        <a id="r4010_idepgto__r4010_evtretpf__div_acessar" href="{% url 'r4010_evtretpf_salvar' pk=r4010_idepgto_form.r4010_evtretpf.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

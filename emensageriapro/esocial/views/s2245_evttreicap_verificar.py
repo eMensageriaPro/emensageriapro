@@ -71,79 +71,61 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2245evtTreiCap'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2245_evttreicap_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2245evtTreiCap'):
-        s2245_evttreicap = get_object_or_404(s2245evtTreiCap, id=s2245_evttreicap_id)
-        s2245_evttreicap_lista = s2245evtTreiCap.objects.filter(id=s2245_evttreicap_id).all()
+        s2245_evttreicap = get_object_or_404(s2245evtTreiCap, id=pk)
+        s2245_evttreicap_lista = s2245evtTreiCap.objects.filter(id=pk).all()
 
         
         s2245_ideprofresp_lista = s2245ideProfResp.objects.filter(s2245_evttreicap_id__in = listar_ids(s2245_evttreicap_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2245_evttreicap'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2245_evttreicap'
 
         context = {
             's2245_evttreicap_lista': s2245_evttreicap_lista,
-            's2245_evttreicap_id': s2245_evttreicap_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2245_evttreicap': s2245_evttreicap,
-            
-            
             's2245_ideprofresp_lista': s2245_ideprofresp_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2245_evttreicap', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2245_evttreicap_verificar.html',
-                                           filename="s2245_evttreicap.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2245_evttreicap_verificar.html',
+                filename="s2245_evttreicap.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2245_evttreicap_verificar.html', context)
             filename = "%s.xls" % s2245_evttreicap.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2245_evttreicap_verificar.html', context)
             filename = "%s.csv" % s2245_evttreicap.identidade
@@ -158,7 +140,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2245_evttreicap', ],
             'data': datetime.now(),

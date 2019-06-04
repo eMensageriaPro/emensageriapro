@@ -71,79 +71,61 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1270evtContratAvNP'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1270_evtcontratavnp_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1270evtContratAvNP'):
-        s1270_evtcontratavnp = get_object_or_404(s1270evtContratAvNP, id=s1270_evtcontratavnp_id)
-        s1270_evtcontratavnp_lista = s1270evtContratAvNP.objects.filter(id=s1270_evtcontratavnp_id).all()
+        s1270_evtcontratavnp = get_object_or_404(s1270evtContratAvNP, id=pk)
+        s1270_evtcontratavnp_lista = s1270evtContratAvNP.objects.filter(id=pk).all()
 
         
         s1270_remunavnp_lista = s1270remunAvNP.objects.filter(s1270_evtcontratavnp_id__in = listar_ids(s1270_evtcontratavnp_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1270_evtcontratavnp'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1270_evtcontratavnp'
 
         context = {
             's1270_evtcontratavnp_lista': s1270_evtcontratavnp_lista,
-            's1270_evtcontratavnp_id': s1270_evtcontratavnp_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1270_evtcontratavnp': s1270_evtcontratavnp,
-            
-            
             's1270_remunavnp_lista': s1270_remunavnp_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1270_evtcontratavnp', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1270_evtcontratavnp_verificar.html',
-                                           filename="s1270_evtcontratavnp.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1270_evtcontratavnp_verificar.html',
+                filename="s1270_evtcontratavnp.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1270_evtcontratavnp_verificar.html', context)
             filename = "%s.xls" % s1270_evtcontratavnp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1270_evtcontratavnp_verificar.html', context)
             filename = "%s.csv" % s1270_evtcontratavnp.identidade
@@ -158,7 +140,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1270_evtcontratavnp', ],
             'data': datetime.now(),

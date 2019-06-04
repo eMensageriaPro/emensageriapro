@@ -908,7 +908,7 @@ from emensageriapro.esocial.views import s5013_evtfgts_duplicar as s5013_evtfgts
 urlpatterns = [
 
 
-    url(r'^s1000-evtinfoempregador/apagar/(?P<hash>.*)/$', 
+    url(r'^s1000-evtinfoempregador/apagar/(?P<pk>[0-9]+)/$', 
         s1000_evtinfoempregador_apagar_views.apagar, 
         name='s1000_evtinfoempregador_apagar'),
 
@@ -918,55 +918,71 @@ urlpatterns = [
     url(r'^s1000-evtinfoempregador/api/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_api_views.s1000evtInfoEmpregadorDetail.as_view() ),
 
-    url(r'^s1000-evtinfoempregador/listar/(?P<hash>.*)/$', 
+    url(r'^s1000-evtinfoempregador/$', 
         s1000_evtinfoempregador_listar_views.listar, 
         name='s1000_evtinfoempregador'),
         
-    url(r'^s1000-evtinfoempregador/verificar/(?P<hash>.*)/$', 
+    url(r'^s1000-evtinfoempregador/verificar/(?P<pk>[0-9]+)/$', 
         s1000_evtinfoempregador_verificar_views.verificar, 
         name='s1000_evtinfoempregador_verificar'),
+        
+    url(r'^s1000-evtinfoempregador/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1000_evtinfoempregador_verificar_views.verificar, 
+        name='s1000_evtinfoempregador_verificar_output'),
             
-    url(r'^s1000-evtinfoempregador/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1000-evtinfoempregador/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1000_evtinfoempregador_recibos_views.recibo, 
         name='s1000_evtinfoempregador_recibo'),
             
-    url(r'^s1000-evtinfoempregador/duplicar/(?P<hash>.*)/$',
+    url(r'^s1000-evtinfoempregador/duplicar/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_duplicar_views.duplicar,
         name='s1000_evtinfoempregador_duplicar'),
 
-    url(r'^s1000-evtinfoempregador/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1000-evtinfoempregador/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_criar_alteracao_views.criar_alteracao,
         name='s1000_evtinfoempregador_criar_alteracao'),
 
-    url(r'^s1000-evtinfoempregador/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1000-evtinfoempregador/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_criar_exclusao_views.criar_exclusao,
         name='s1000_evtinfoempregador_criar_exclusao'),
             
-    url(r'^s1000-evtinfoempregador/xml/(?P<hash>.*)/$', 
+    url(r'^s1000-evtinfoempregador/xml/(?P<pk>[0-9]+)/$', 
         s1000_evtinfoempregador_gerar_xml_views.gerar_xml, 
         name='s1000_evtinfoempregador_xml'),          
 
-    url(r'^s1000-evtinfoempregador/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1000-evtinfoempregador/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_alterar_identidade_views.alterar_identidade,
         name='s1000_evtinfoempregador_alterar_identidade'),
 
-    url(r'^s1000-evtinfoempregador/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1000-evtinfoempregador/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1000_evtinfoempregador_abrir_evento_para_edicao'),
 
-    url(r'^s1000-evtinfoempregador/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1000-evtinfoempregador/validar-evento/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_validar_evento_views.validar_evento,
         name='s1000_evtinfoempregador_validar_evento'),
 
-    url(r'^s1000-evtinfoempregador/salvar/(?P<hash>.*)/$', 
+    url(r'^s1000-evtinfoempregador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1000_evtinfoempregador_salvar_views.salvar, 
         name='s1000_evtinfoempregador_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1000-evtinfoempregador/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1000-evtinfoempregador/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1000_evtinfoempregador_gerar_identidade_views.gerar_identidade, 
         name='s1000_evtinfoempregador_gerar_identidade'),
+        
+    url(r'^s1000-evtinfoempregador/cadastrar/$', 
+        s1000_evtinfoempregador_salvar_views.salvar, 
+        name='s1000_evtinfoempregador_cadastrar'),
 
-    url(r'^s1005-evttabestab/apagar/(?P<hash>.*)/$', 
+    url(r'^s1000-evtinfoempregador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1000_evtinfoempregador_salvar_views.salvar, 
+        name='s1000_evtinfoempregador_salvar_output'),
+        
+    url(r'^s1000-evtinfoempregador/(?P<output>[\w-]+)/$', 
+        s1000_evtinfoempregador_listar_views.listar, 
+        name='s1000_evtinfoempregador_output'),
+
+    url(r'^s1005-evttabestab/apagar/(?P<pk>[0-9]+)/$', 
         s1005_evttabestab_apagar_views.apagar, 
         name='s1005_evttabestab_apagar'),
 
@@ -976,55 +992,71 @@ urlpatterns = [
     url(r'^s1005-evttabestab/api/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_api_views.s1005evtTabEstabDetail.as_view() ),
 
-    url(r'^s1005-evttabestab/listar/(?P<hash>.*)/$', 
+    url(r'^s1005-evttabestab/$', 
         s1005_evttabestab_listar_views.listar, 
         name='s1005_evttabestab'),
         
-    url(r'^s1005-evttabestab/verificar/(?P<hash>.*)/$', 
+    url(r'^s1005-evttabestab/verificar/(?P<pk>[0-9]+)/$', 
         s1005_evttabestab_verificar_views.verificar, 
         name='s1005_evttabestab_verificar'),
+        
+    url(r'^s1005-evttabestab/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1005_evttabestab_verificar_views.verificar, 
+        name='s1005_evttabestab_verificar_output'),
             
-    url(r'^s1005-evttabestab/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1005-evttabestab/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1005_evttabestab_recibos_views.recibo, 
         name='s1005_evttabestab_recibo'),
             
-    url(r'^s1005-evttabestab/duplicar/(?P<hash>.*)/$',
+    url(r'^s1005-evttabestab/duplicar/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_duplicar_views.duplicar,
         name='s1005_evttabestab_duplicar'),
 
-    url(r'^s1005-evttabestab/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1005-evttabestab/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_criar_alteracao_views.criar_alteracao,
         name='s1005_evttabestab_criar_alteracao'),
 
-    url(r'^s1005-evttabestab/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1005-evttabestab/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_criar_exclusao_views.criar_exclusao,
         name='s1005_evttabestab_criar_exclusao'),
             
-    url(r'^s1005-evttabestab/xml/(?P<hash>.*)/$', 
+    url(r'^s1005-evttabestab/xml/(?P<pk>[0-9]+)/$', 
         s1005_evttabestab_gerar_xml_views.gerar_xml, 
         name='s1005_evttabestab_xml'),          
 
-    url(r'^s1005-evttabestab/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1005-evttabestab/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_alterar_identidade_views.alterar_identidade,
         name='s1005_evttabestab_alterar_identidade'),
 
-    url(r'^s1005-evttabestab/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1005-evttabestab/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1005_evttabestab_abrir_evento_para_edicao'),
 
-    url(r'^s1005-evttabestab/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1005-evttabestab/validar-evento/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_validar_evento_views.validar_evento,
         name='s1005_evttabestab_validar_evento'),
 
-    url(r'^s1005-evttabestab/salvar/(?P<hash>.*)/$', 
+    url(r'^s1005-evttabestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1005_evttabestab_salvar_views.salvar, 
         name='s1005_evttabestab_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1005-evttabestab/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1005-evttabestab/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1005_evttabestab_gerar_identidade_views.gerar_identidade, 
         name='s1005_evttabestab_gerar_identidade'),
+        
+    url(r'^s1005-evttabestab/cadastrar/$', 
+        s1005_evttabestab_salvar_views.salvar, 
+        name='s1005_evttabestab_cadastrar'),
 
-    url(r'^s1010-evttabrubrica/apagar/(?P<hash>.*)/$', 
+    url(r'^s1005-evttabestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1005_evttabestab_salvar_views.salvar, 
+        name='s1005_evttabestab_salvar_output'),
+        
+    url(r'^s1005-evttabestab/(?P<output>[\w-]+)/$', 
+        s1005_evttabestab_listar_views.listar, 
+        name='s1005_evttabestab_output'),
+
+    url(r'^s1010-evttabrubrica/apagar/(?P<pk>[0-9]+)/$', 
         s1010_evttabrubrica_apagar_views.apagar, 
         name='s1010_evttabrubrica_apagar'),
 
@@ -1034,55 +1066,71 @@ urlpatterns = [
     url(r'^s1010-evttabrubrica/api/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_api_views.s1010evtTabRubricaDetail.as_view() ),
 
-    url(r'^s1010-evttabrubrica/listar/(?P<hash>.*)/$', 
+    url(r'^s1010-evttabrubrica/$', 
         s1010_evttabrubrica_listar_views.listar, 
         name='s1010_evttabrubrica'),
         
-    url(r'^s1010-evttabrubrica/verificar/(?P<hash>.*)/$', 
+    url(r'^s1010-evttabrubrica/verificar/(?P<pk>[0-9]+)/$', 
         s1010_evttabrubrica_verificar_views.verificar, 
         name='s1010_evttabrubrica_verificar'),
+        
+    url(r'^s1010-evttabrubrica/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1010_evttabrubrica_verificar_views.verificar, 
+        name='s1010_evttabrubrica_verificar_output'),
             
-    url(r'^s1010-evttabrubrica/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1010-evttabrubrica/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1010_evttabrubrica_recibos_views.recibo, 
         name='s1010_evttabrubrica_recibo'),
             
-    url(r'^s1010-evttabrubrica/duplicar/(?P<hash>.*)/$',
+    url(r'^s1010-evttabrubrica/duplicar/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_duplicar_views.duplicar,
         name='s1010_evttabrubrica_duplicar'),
 
-    url(r'^s1010-evttabrubrica/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1010-evttabrubrica/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_criar_alteracao_views.criar_alteracao,
         name='s1010_evttabrubrica_criar_alteracao'),
 
-    url(r'^s1010-evttabrubrica/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1010-evttabrubrica/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_criar_exclusao_views.criar_exclusao,
         name='s1010_evttabrubrica_criar_exclusao'),
             
-    url(r'^s1010-evttabrubrica/xml/(?P<hash>.*)/$', 
+    url(r'^s1010-evttabrubrica/xml/(?P<pk>[0-9]+)/$', 
         s1010_evttabrubrica_gerar_xml_views.gerar_xml, 
         name='s1010_evttabrubrica_xml'),          
 
-    url(r'^s1010-evttabrubrica/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1010-evttabrubrica/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_alterar_identidade_views.alterar_identidade,
         name='s1010_evttabrubrica_alterar_identidade'),
 
-    url(r'^s1010-evttabrubrica/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1010-evttabrubrica/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1010_evttabrubrica_abrir_evento_para_edicao'),
 
-    url(r'^s1010-evttabrubrica/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1010-evttabrubrica/validar-evento/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_validar_evento_views.validar_evento,
         name='s1010_evttabrubrica_validar_evento'),
 
-    url(r'^s1010-evttabrubrica/salvar/(?P<hash>.*)/$', 
+    url(r'^s1010-evttabrubrica/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1010_evttabrubrica_salvar_views.salvar, 
         name='s1010_evttabrubrica_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1010-evttabrubrica/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1010-evttabrubrica/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1010_evttabrubrica_gerar_identidade_views.gerar_identidade, 
         name='s1010_evttabrubrica_gerar_identidade'),
+        
+    url(r'^s1010-evttabrubrica/cadastrar/$', 
+        s1010_evttabrubrica_salvar_views.salvar, 
+        name='s1010_evttabrubrica_cadastrar'),
 
-    url(r'^s1020-evttablotacao/apagar/(?P<hash>.*)/$', 
+    url(r'^s1010-evttabrubrica/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1010_evttabrubrica_salvar_views.salvar, 
+        name='s1010_evttabrubrica_salvar_output'),
+        
+    url(r'^s1010-evttabrubrica/(?P<output>[\w-]+)/$', 
+        s1010_evttabrubrica_listar_views.listar, 
+        name='s1010_evttabrubrica_output'),
+
+    url(r'^s1020-evttablotacao/apagar/(?P<pk>[0-9]+)/$', 
         s1020_evttablotacao_apagar_views.apagar, 
         name='s1020_evttablotacao_apagar'),
 
@@ -1092,55 +1140,71 @@ urlpatterns = [
     url(r'^s1020-evttablotacao/api/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_api_views.s1020evtTabLotacaoDetail.as_view() ),
 
-    url(r'^s1020-evttablotacao/listar/(?P<hash>.*)/$', 
+    url(r'^s1020-evttablotacao/$', 
         s1020_evttablotacao_listar_views.listar, 
         name='s1020_evttablotacao'),
         
-    url(r'^s1020-evttablotacao/verificar/(?P<hash>.*)/$', 
+    url(r'^s1020-evttablotacao/verificar/(?P<pk>[0-9]+)/$', 
         s1020_evttablotacao_verificar_views.verificar, 
         name='s1020_evttablotacao_verificar'),
+        
+    url(r'^s1020-evttablotacao/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1020_evttablotacao_verificar_views.verificar, 
+        name='s1020_evttablotacao_verificar_output'),
             
-    url(r'^s1020-evttablotacao/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1020-evttablotacao/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1020_evttablotacao_recibos_views.recibo, 
         name='s1020_evttablotacao_recibo'),
             
-    url(r'^s1020-evttablotacao/duplicar/(?P<hash>.*)/$',
+    url(r'^s1020-evttablotacao/duplicar/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_duplicar_views.duplicar,
         name='s1020_evttablotacao_duplicar'),
 
-    url(r'^s1020-evttablotacao/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1020-evttablotacao/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_criar_alteracao_views.criar_alteracao,
         name='s1020_evttablotacao_criar_alteracao'),
 
-    url(r'^s1020-evttablotacao/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1020-evttablotacao/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_criar_exclusao_views.criar_exclusao,
         name='s1020_evttablotacao_criar_exclusao'),
             
-    url(r'^s1020-evttablotacao/xml/(?P<hash>.*)/$', 
+    url(r'^s1020-evttablotacao/xml/(?P<pk>[0-9]+)/$', 
         s1020_evttablotacao_gerar_xml_views.gerar_xml, 
         name='s1020_evttablotacao_xml'),          
 
-    url(r'^s1020-evttablotacao/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1020-evttablotacao/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_alterar_identidade_views.alterar_identidade,
         name='s1020_evttablotacao_alterar_identidade'),
 
-    url(r'^s1020-evttablotacao/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1020-evttablotacao/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1020_evttablotacao_abrir_evento_para_edicao'),
 
-    url(r'^s1020-evttablotacao/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1020-evttablotacao/validar-evento/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_validar_evento_views.validar_evento,
         name='s1020_evttablotacao_validar_evento'),
 
-    url(r'^s1020-evttablotacao/salvar/(?P<hash>.*)/$', 
+    url(r'^s1020-evttablotacao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1020_evttablotacao_salvar_views.salvar, 
         name='s1020_evttablotacao_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1020-evttablotacao/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1020-evttablotacao/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1020_evttablotacao_gerar_identidade_views.gerar_identidade, 
         name='s1020_evttablotacao_gerar_identidade'),
+        
+    url(r'^s1020-evttablotacao/cadastrar/$', 
+        s1020_evttablotacao_salvar_views.salvar, 
+        name='s1020_evttablotacao_cadastrar'),
 
-    url(r'^s1030-evttabcargo/apagar/(?P<hash>.*)/$', 
+    url(r'^s1020-evttablotacao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1020_evttablotacao_salvar_views.salvar, 
+        name='s1020_evttablotacao_salvar_output'),
+        
+    url(r'^s1020-evttablotacao/(?P<output>[\w-]+)/$', 
+        s1020_evttablotacao_listar_views.listar, 
+        name='s1020_evttablotacao_output'),
+
+    url(r'^s1030-evttabcargo/apagar/(?P<pk>[0-9]+)/$', 
         s1030_evttabcargo_apagar_views.apagar, 
         name='s1030_evttabcargo_apagar'),
 
@@ -1150,55 +1214,71 @@ urlpatterns = [
     url(r'^s1030-evttabcargo/api/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_api_views.s1030evtTabCargoDetail.as_view() ),
 
-    url(r'^s1030-evttabcargo/listar/(?P<hash>.*)/$', 
+    url(r'^s1030-evttabcargo/$', 
         s1030_evttabcargo_listar_views.listar, 
         name='s1030_evttabcargo'),
         
-    url(r'^s1030-evttabcargo/verificar/(?P<hash>.*)/$', 
+    url(r'^s1030-evttabcargo/verificar/(?P<pk>[0-9]+)/$', 
         s1030_evttabcargo_verificar_views.verificar, 
         name='s1030_evttabcargo_verificar'),
+        
+    url(r'^s1030-evttabcargo/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1030_evttabcargo_verificar_views.verificar, 
+        name='s1030_evttabcargo_verificar_output'),
             
-    url(r'^s1030-evttabcargo/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1030-evttabcargo/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1030_evttabcargo_recibos_views.recibo, 
         name='s1030_evttabcargo_recibo'),
             
-    url(r'^s1030-evttabcargo/duplicar/(?P<hash>.*)/$',
+    url(r'^s1030-evttabcargo/duplicar/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_duplicar_views.duplicar,
         name='s1030_evttabcargo_duplicar'),
 
-    url(r'^s1030-evttabcargo/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1030-evttabcargo/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_criar_alteracao_views.criar_alteracao,
         name='s1030_evttabcargo_criar_alteracao'),
 
-    url(r'^s1030-evttabcargo/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1030-evttabcargo/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_criar_exclusao_views.criar_exclusao,
         name='s1030_evttabcargo_criar_exclusao'),
             
-    url(r'^s1030-evttabcargo/xml/(?P<hash>.*)/$', 
+    url(r'^s1030-evttabcargo/xml/(?P<pk>[0-9]+)/$', 
         s1030_evttabcargo_gerar_xml_views.gerar_xml, 
         name='s1030_evttabcargo_xml'),          
 
-    url(r'^s1030-evttabcargo/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1030-evttabcargo/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_alterar_identidade_views.alterar_identidade,
         name='s1030_evttabcargo_alterar_identidade'),
 
-    url(r'^s1030-evttabcargo/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1030-evttabcargo/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1030_evttabcargo_abrir_evento_para_edicao'),
 
-    url(r'^s1030-evttabcargo/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1030-evttabcargo/validar-evento/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_validar_evento_views.validar_evento,
         name='s1030_evttabcargo_validar_evento'),
 
-    url(r'^s1030-evttabcargo/salvar/(?P<hash>.*)/$', 
+    url(r'^s1030-evttabcargo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1030_evttabcargo_salvar_views.salvar, 
         name='s1030_evttabcargo_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1030-evttabcargo/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1030-evttabcargo/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1030_evttabcargo_gerar_identidade_views.gerar_identidade, 
         name='s1030_evttabcargo_gerar_identidade'),
+        
+    url(r'^s1030-evttabcargo/cadastrar/$', 
+        s1030_evttabcargo_salvar_views.salvar, 
+        name='s1030_evttabcargo_cadastrar'),
 
-    url(r'^s1035-evttabcarreira/apagar/(?P<hash>.*)/$', 
+    url(r'^s1030-evttabcargo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1030_evttabcargo_salvar_views.salvar, 
+        name='s1030_evttabcargo_salvar_output'),
+        
+    url(r'^s1030-evttabcargo/(?P<output>[\w-]+)/$', 
+        s1030_evttabcargo_listar_views.listar, 
+        name='s1030_evttabcargo_output'),
+
+    url(r'^s1035-evttabcarreira/apagar/(?P<pk>[0-9]+)/$', 
         s1035_evttabcarreira_apagar_views.apagar, 
         name='s1035_evttabcarreira_apagar'),
 
@@ -1208,55 +1288,71 @@ urlpatterns = [
     url(r'^s1035-evttabcarreira/api/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_api_views.s1035evtTabCarreiraDetail.as_view() ),
 
-    url(r'^s1035-evttabcarreira/listar/(?P<hash>.*)/$', 
+    url(r'^s1035-evttabcarreira/$', 
         s1035_evttabcarreira_listar_views.listar, 
         name='s1035_evttabcarreira'),
         
-    url(r'^s1035-evttabcarreira/verificar/(?P<hash>.*)/$', 
+    url(r'^s1035-evttabcarreira/verificar/(?P<pk>[0-9]+)/$', 
         s1035_evttabcarreira_verificar_views.verificar, 
         name='s1035_evttabcarreira_verificar'),
+        
+    url(r'^s1035-evttabcarreira/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1035_evttabcarreira_verificar_views.verificar, 
+        name='s1035_evttabcarreira_verificar_output'),
             
-    url(r'^s1035-evttabcarreira/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1035-evttabcarreira/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1035_evttabcarreira_recibos_views.recibo, 
         name='s1035_evttabcarreira_recibo'),
             
-    url(r'^s1035-evttabcarreira/duplicar/(?P<hash>.*)/$',
+    url(r'^s1035-evttabcarreira/duplicar/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_duplicar_views.duplicar,
         name='s1035_evttabcarreira_duplicar'),
 
-    url(r'^s1035-evttabcarreira/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1035-evttabcarreira/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_criar_alteracao_views.criar_alteracao,
         name='s1035_evttabcarreira_criar_alteracao'),
 
-    url(r'^s1035-evttabcarreira/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1035-evttabcarreira/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_criar_exclusao_views.criar_exclusao,
         name='s1035_evttabcarreira_criar_exclusao'),
             
-    url(r'^s1035-evttabcarreira/xml/(?P<hash>.*)/$', 
+    url(r'^s1035-evttabcarreira/xml/(?P<pk>[0-9]+)/$', 
         s1035_evttabcarreira_gerar_xml_views.gerar_xml, 
         name='s1035_evttabcarreira_xml'),          
 
-    url(r'^s1035-evttabcarreira/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1035-evttabcarreira/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_alterar_identidade_views.alterar_identidade,
         name='s1035_evttabcarreira_alterar_identidade'),
 
-    url(r'^s1035-evttabcarreira/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1035-evttabcarreira/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1035_evttabcarreira_abrir_evento_para_edicao'),
 
-    url(r'^s1035-evttabcarreira/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1035-evttabcarreira/validar-evento/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_validar_evento_views.validar_evento,
         name='s1035_evttabcarreira_validar_evento'),
 
-    url(r'^s1035-evttabcarreira/salvar/(?P<hash>.*)/$', 
+    url(r'^s1035-evttabcarreira/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1035_evttabcarreira_salvar_views.salvar, 
         name='s1035_evttabcarreira_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1035-evttabcarreira/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1035-evttabcarreira/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1035_evttabcarreira_gerar_identidade_views.gerar_identidade, 
         name='s1035_evttabcarreira_gerar_identidade'),
+        
+    url(r'^s1035-evttabcarreira/cadastrar/$', 
+        s1035_evttabcarreira_salvar_views.salvar, 
+        name='s1035_evttabcarreira_cadastrar'),
 
-    url(r'^s1040-evttabfuncao/apagar/(?P<hash>.*)/$', 
+    url(r'^s1035-evttabcarreira/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1035_evttabcarreira_salvar_views.salvar, 
+        name='s1035_evttabcarreira_salvar_output'),
+        
+    url(r'^s1035-evttabcarreira/(?P<output>[\w-]+)/$', 
+        s1035_evttabcarreira_listar_views.listar, 
+        name='s1035_evttabcarreira_output'),
+
+    url(r'^s1040-evttabfuncao/apagar/(?P<pk>[0-9]+)/$', 
         s1040_evttabfuncao_apagar_views.apagar, 
         name='s1040_evttabfuncao_apagar'),
 
@@ -1266,55 +1362,71 @@ urlpatterns = [
     url(r'^s1040-evttabfuncao/api/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_api_views.s1040evtTabFuncaoDetail.as_view() ),
 
-    url(r'^s1040-evttabfuncao/listar/(?P<hash>.*)/$', 
+    url(r'^s1040-evttabfuncao/$', 
         s1040_evttabfuncao_listar_views.listar, 
         name='s1040_evttabfuncao'),
         
-    url(r'^s1040-evttabfuncao/verificar/(?P<hash>.*)/$', 
+    url(r'^s1040-evttabfuncao/verificar/(?P<pk>[0-9]+)/$', 
         s1040_evttabfuncao_verificar_views.verificar, 
         name='s1040_evttabfuncao_verificar'),
+        
+    url(r'^s1040-evttabfuncao/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1040_evttabfuncao_verificar_views.verificar, 
+        name='s1040_evttabfuncao_verificar_output'),
             
-    url(r'^s1040-evttabfuncao/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1040-evttabfuncao/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1040_evttabfuncao_recibos_views.recibo, 
         name='s1040_evttabfuncao_recibo'),
             
-    url(r'^s1040-evttabfuncao/duplicar/(?P<hash>.*)/$',
+    url(r'^s1040-evttabfuncao/duplicar/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_duplicar_views.duplicar,
         name='s1040_evttabfuncao_duplicar'),
 
-    url(r'^s1040-evttabfuncao/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1040-evttabfuncao/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_criar_alteracao_views.criar_alteracao,
         name='s1040_evttabfuncao_criar_alteracao'),
 
-    url(r'^s1040-evttabfuncao/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1040-evttabfuncao/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_criar_exclusao_views.criar_exclusao,
         name='s1040_evttabfuncao_criar_exclusao'),
             
-    url(r'^s1040-evttabfuncao/xml/(?P<hash>.*)/$', 
+    url(r'^s1040-evttabfuncao/xml/(?P<pk>[0-9]+)/$', 
         s1040_evttabfuncao_gerar_xml_views.gerar_xml, 
         name='s1040_evttabfuncao_xml'),          
 
-    url(r'^s1040-evttabfuncao/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1040-evttabfuncao/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_alterar_identidade_views.alterar_identidade,
         name='s1040_evttabfuncao_alterar_identidade'),
 
-    url(r'^s1040-evttabfuncao/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1040-evttabfuncao/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1040_evttabfuncao_abrir_evento_para_edicao'),
 
-    url(r'^s1040-evttabfuncao/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1040-evttabfuncao/validar-evento/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_validar_evento_views.validar_evento,
         name='s1040_evttabfuncao_validar_evento'),
 
-    url(r'^s1040-evttabfuncao/salvar/(?P<hash>.*)/$', 
+    url(r'^s1040-evttabfuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1040_evttabfuncao_salvar_views.salvar, 
         name='s1040_evttabfuncao_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1040-evttabfuncao/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1040-evttabfuncao/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1040_evttabfuncao_gerar_identidade_views.gerar_identidade, 
         name='s1040_evttabfuncao_gerar_identidade'),
+        
+    url(r'^s1040-evttabfuncao/cadastrar/$', 
+        s1040_evttabfuncao_salvar_views.salvar, 
+        name='s1040_evttabfuncao_cadastrar'),
 
-    url(r'^s1050-evttabhortur/apagar/(?P<hash>.*)/$', 
+    url(r'^s1040-evttabfuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1040_evttabfuncao_salvar_views.salvar, 
+        name='s1040_evttabfuncao_salvar_output'),
+        
+    url(r'^s1040-evttabfuncao/(?P<output>[\w-]+)/$', 
+        s1040_evttabfuncao_listar_views.listar, 
+        name='s1040_evttabfuncao_output'),
+
+    url(r'^s1050-evttabhortur/apagar/(?P<pk>[0-9]+)/$', 
         s1050_evttabhortur_apagar_views.apagar, 
         name='s1050_evttabhortur_apagar'),
 
@@ -1324,55 +1436,71 @@ urlpatterns = [
     url(r'^s1050-evttabhortur/api/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_api_views.s1050evtTabHorTurDetail.as_view() ),
 
-    url(r'^s1050-evttabhortur/listar/(?P<hash>.*)/$', 
+    url(r'^s1050-evttabhortur/$', 
         s1050_evttabhortur_listar_views.listar, 
         name='s1050_evttabhortur'),
         
-    url(r'^s1050-evttabhortur/verificar/(?P<hash>.*)/$', 
+    url(r'^s1050-evttabhortur/verificar/(?P<pk>[0-9]+)/$', 
         s1050_evttabhortur_verificar_views.verificar, 
         name='s1050_evttabhortur_verificar'),
+        
+    url(r'^s1050-evttabhortur/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1050_evttabhortur_verificar_views.verificar, 
+        name='s1050_evttabhortur_verificar_output'),
             
-    url(r'^s1050-evttabhortur/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1050-evttabhortur/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1050_evttabhortur_recibos_views.recibo, 
         name='s1050_evttabhortur_recibo'),
             
-    url(r'^s1050-evttabhortur/duplicar/(?P<hash>.*)/$',
+    url(r'^s1050-evttabhortur/duplicar/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_duplicar_views.duplicar,
         name='s1050_evttabhortur_duplicar'),
 
-    url(r'^s1050-evttabhortur/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1050-evttabhortur/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_criar_alteracao_views.criar_alteracao,
         name='s1050_evttabhortur_criar_alteracao'),
 
-    url(r'^s1050-evttabhortur/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1050-evttabhortur/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_criar_exclusao_views.criar_exclusao,
         name='s1050_evttabhortur_criar_exclusao'),
             
-    url(r'^s1050-evttabhortur/xml/(?P<hash>.*)/$', 
+    url(r'^s1050-evttabhortur/xml/(?P<pk>[0-9]+)/$', 
         s1050_evttabhortur_gerar_xml_views.gerar_xml, 
         name='s1050_evttabhortur_xml'),          
 
-    url(r'^s1050-evttabhortur/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1050-evttabhortur/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_alterar_identidade_views.alterar_identidade,
         name='s1050_evttabhortur_alterar_identidade'),
 
-    url(r'^s1050-evttabhortur/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1050-evttabhortur/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1050_evttabhortur_abrir_evento_para_edicao'),
 
-    url(r'^s1050-evttabhortur/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1050-evttabhortur/validar-evento/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_validar_evento_views.validar_evento,
         name='s1050_evttabhortur_validar_evento'),
 
-    url(r'^s1050-evttabhortur/salvar/(?P<hash>.*)/$', 
+    url(r'^s1050-evttabhortur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1050_evttabhortur_salvar_views.salvar, 
         name='s1050_evttabhortur_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1050-evttabhortur/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1050-evttabhortur/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1050_evttabhortur_gerar_identidade_views.gerar_identidade, 
         name='s1050_evttabhortur_gerar_identidade'),
+        
+    url(r'^s1050-evttabhortur/cadastrar/$', 
+        s1050_evttabhortur_salvar_views.salvar, 
+        name='s1050_evttabhortur_cadastrar'),
 
-    url(r'^s1060-evttabambiente/apagar/(?P<hash>.*)/$', 
+    url(r'^s1050-evttabhortur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1050_evttabhortur_salvar_views.salvar, 
+        name='s1050_evttabhortur_salvar_output'),
+        
+    url(r'^s1050-evttabhortur/(?P<output>[\w-]+)/$', 
+        s1050_evttabhortur_listar_views.listar, 
+        name='s1050_evttabhortur_output'),
+
+    url(r'^s1060-evttabambiente/apagar/(?P<pk>[0-9]+)/$', 
         s1060_evttabambiente_apagar_views.apagar, 
         name='s1060_evttabambiente_apagar'),
 
@@ -1382,55 +1510,71 @@ urlpatterns = [
     url(r'^s1060-evttabambiente/api/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_api_views.s1060evtTabAmbienteDetail.as_view() ),
 
-    url(r'^s1060-evttabambiente/listar/(?P<hash>.*)/$', 
+    url(r'^s1060-evttabambiente/$', 
         s1060_evttabambiente_listar_views.listar, 
         name='s1060_evttabambiente'),
         
-    url(r'^s1060-evttabambiente/verificar/(?P<hash>.*)/$', 
+    url(r'^s1060-evttabambiente/verificar/(?P<pk>[0-9]+)/$', 
         s1060_evttabambiente_verificar_views.verificar, 
         name='s1060_evttabambiente_verificar'),
+        
+    url(r'^s1060-evttabambiente/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1060_evttabambiente_verificar_views.verificar, 
+        name='s1060_evttabambiente_verificar_output'),
             
-    url(r'^s1060-evttabambiente/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1060-evttabambiente/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1060_evttabambiente_recibos_views.recibo, 
         name='s1060_evttabambiente_recibo'),
             
-    url(r'^s1060-evttabambiente/duplicar/(?P<hash>.*)/$',
+    url(r'^s1060-evttabambiente/duplicar/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_duplicar_views.duplicar,
         name='s1060_evttabambiente_duplicar'),
 
-    url(r'^s1060-evttabambiente/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1060-evttabambiente/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_criar_alteracao_views.criar_alteracao,
         name='s1060_evttabambiente_criar_alteracao'),
 
-    url(r'^s1060-evttabambiente/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1060-evttabambiente/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_criar_exclusao_views.criar_exclusao,
         name='s1060_evttabambiente_criar_exclusao'),
             
-    url(r'^s1060-evttabambiente/xml/(?P<hash>.*)/$', 
+    url(r'^s1060-evttabambiente/xml/(?P<pk>[0-9]+)/$', 
         s1060_evttabambiente_gerar_xml_views.gerar_xml, 
         name='s1060_evttabambiente_xml'),          
 
-    url(r'^s1060-evttabambiente/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1060-evttabambiente/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_alterar_identidade_views.alterar_identidade,
         name='s1060_evttabambiente_alterar_identidade'),
 
-    url(r'^s1060-evttabambiente/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1060-evttabambiente/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1060_evttabambiente_abrir_evento_para_edicao'),
 
-    url(r'^s1060-evttabambiente/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1060-evttabambiente/validar-evento/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_validar_evento_views.validar_evento,
         name='s1060_evttabambiente_validar_evento'),
 
-    url(r'^s1060-evttabambiente/salvar/(?P<hash>.*)/$', 
+    url(r'^s1060-evttabambiente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1060_evttabambiente_salvar_views.salvar, 
         name='s1060_evttabambiente_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1060-evttabambiente/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1060-evttabambiente/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1060_evttabambiente_gerar_identidade_views.gerar_identidade, 
         name='s1060_evttabambiente_gerar_identidade'),
+        
+    url(r'^s1060-evttabambiente/cadastrar/$', 
+        s1060_evttabambiente_salvar_views.salvar, 
+        name='s1060_evttabambiente_cadastrar'),
 
-    url(r'^s1070-evttabprocesso/apagar/(?P<hash>.*)/$', 
+    url(r'^s1060-evttabambiente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1060_evttabambiente_salvar_views.salvar, 
+        name='s1060_evttabambiente_salvar_output'),
+        
+    url(r'^s1060-evttabambiente/(?P<output>[\w-]+)/$', 
+        s1060_evttabambiente_listar_views.listar, 
+        name='s1060_evttabambiente_output'),
+
+    url(r'^s1070-evttabprocesso/apagar/(?P<pk>[0-9]+)/$', 
         s1070_evttabprocesso_apagar_views.apagar, 
         name='s1070_evttabprocesso_apagar'),
 
@@ -1440,55 +1584,71 @@ urlpatterns = [
     url(r'^s1070-evttabprocesso/api/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_api_views.s1070evtTabProcessoDetail.as_view() ),
 
-    url(r'^s1070-evttabprocesso/listar/(?P<hash>.*)/$', 
+    url(r'^s1070-evttabprocesso/$', 
         s1070_evttabprocesso_listar_views.listar, 
         name='s1070_evttabprocesso'),
         
-    url(r'^s1070-evttabprocesso/verificar/(?P<hash>.*)/$', 
+    url(r'^s1070-evttabprocesso/verificar/(?P<pk>[0-9]+)/$', 
         s1070_evttabprocesso_verificar_views.verificar, 
         name='s1070_evttabprocesso_verificar'),
+        
+    url(r'^s1070-evttabprocesso/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1070_evttabprocesso_verificar_views.verificar, 
+        name='s1070_evttabprocesso_verificar_output'),
             
-    url(r'^s1070-evttabprocesso/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1070-evttabprocesso/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1070_evttabprocesso_recibos_views.recibo, 
         name='s1070_evttabprocesso_recibo'),
             
-    url(r'^s1070-evttabprocesso/duplicar/(?P<hash>.*)/$',
+    url(r'^s1070-evttabprocesso/duplicar/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_duplicar_views.duplicar,
         name='s1070_evttabprocesso_duplicar'),
 
-    url(r'^s1070-evttabprocesso/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1070-evttabprocesso/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_criar_alteracao_views.criar_alteracao,
         name='s1070_evttabprocesso_criar_alteracao'),
 
-    url(r'^s1070-evttabprocesso/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1070-evttabprocesso/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_criar_exclusao_views.criar_exclusao,
         name='s1070_evttabprocesso_criar_exclusao'),
             
-    url(r'^s1070-evttabprocesso/xml/(?P<hash>.*)/$', 
+    url(r'^s1070-evttabprocesso/xml/(?P<pk>[0-9]+)/$', 
         s1070_evttabprocesso_gerar_xml_views.gerar_xml, 
         name='s1070_evttabprocesso_xml'),          
 
-    url(r'^s1070-evttabprocesso/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1070-evttabprocesso/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_alterar_identidade_views.alterar_identidade,
         name='s1070_evttabprocesso_alterar_identidade'),
 
-    url(r'^s1070-evttabprocesso/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1070-evttabprocesso/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1070_evttabprocesso_abrir_evento_para_edicao'),
 
-    url(r'^s1070-evttabprocesso/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1070-evttabprocesso/validar-evento/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_validar_evento_views.validar_evento,
         name='s1070_evttabprocesso_validar_evento'),
 
-    url(r'^s1070-evttabprocesso/salvar/(?P<hash>.*)/$', 
+    url(r'^s1070-evttabprocesso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1070_evttabprocesso_salvar_views.salvar, 
         name='s1070_evttabprocesso_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1070-evttabprocesso/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1070-evttabprocesso/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1070_evttabprocesso_gerar_identidade_views.gerar_identidade, 
         name='s1070_evttabprocesso_gerar_identidade'),
+        
+    url(r'^s1070-evttabprocesso/cadastrar/$', 
+        s1070_evttabprocesso_salvar_views.salvar, 
+        name='s1070_evttabprocesso_cadastrar'),
 
-    url(r'^s1080-evttaboperport/apagar/(?P<hash>.*)/$', 
+    url(r'^s1070-evttabprocesso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1070_evttabprocesso_salvar_views.salvar, 
+        name='s1070_evttabprocesso_salvar_output'),
+        
+    url(r'^s1070-evttabprocesso/(?P<output>[\w-]+)/$', 
+        s1070_evttabprocesso_listar_views.listar, 
+        name='s1070_evttabprocesso_output'),
+
+    url(r'^s1080-evttaboperport/apagar/(?P<pk>[0-9]+)/$', 
         s1080_evttaboperport_apagar_views.apagar, 
         name='s1080_evttaboperport_apagar'),
 
@@ -1498,55 +1658,71 @@ urlpatterns = [
     url(r'^s1080-evttaboperport/api/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_api_views.s1080evtTabOperPortDetail.as_view() ),
 
-    url(r'^s1080-evttaboperport/listar/(?P<hash>.*)/$', 
+    url(r'^s1080-evttaboperport/$', 
         s1080_evttaboperport_listar_views.listar, 
         name='s1080_evttaboperport'),
         
-    url(r'^s1080-evttaboperport/verificar/(?P<hash>.*)/$', 
+    url(r'^s1080-evttaboperport/verificar/(?P<pk>[0-9]+)/$', 
         s1080_evttaboperport_verificar_views.verificar, 
         name='s1080_evttaboperport_verificar'),
+        
+    url(r'^s1080-evttaboperport/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1080_evttaboperport_verificar_views.verificar, 
+        name='s1080_evttaboperport_verificar_output'),
             
-    url(r'^s1080-evttaboperport/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1080-evttaboperport/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1080_evttaboperport_recibos_views.recibo, 
         name='s1080_evttaboperport_recibo'),
             
-    url(r'^s1080-evttaboperport/duplicar/(?P<hash>.*)/$',
+    url(r'^s1080-evttaboperport/duplicar/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_duplicar_views.duplicar,
         name='s1080_evttaboperport_duplicar'),
 
-    url(r'^s1080-evttaboperport/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1080-evttaboperport/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_criar_alteracao_views.criar_alteracao,
         name='s1080_evttaboperport_criar_alteracao'),
 
-    url(r'^s1080-evttaboperport/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1080-evttaboperport/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_criar_exclusao_views.criar_exclusao,
         name='s1080_evttaboperport_criar_exclusao'),
             
-    url(r'^s1080-evttaboperport/xml/(?P<hash>.*)/$', 
+    url(r'^s1080-evttaboperport/xml/(?P<pk>[0-9]+)/$', 
         s1080_evttaboperport_gerar_xml_views.gerar_xml, 
         name='s1080_evttaboperport_xml'),          
 
-    url(r'^s1080-evttaboperport/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1080-evttaboperport/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_alterar_identidade_views.alterar_identidade,
         name='s1080_evttaboperport_alterar_identidade'),
 
-    url(r'^s1080-evttaboperport/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1080-evttaboperport/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1080_evttaboperport_abrir_evento_para_edicao'),
 
-    url(r'^s1080-evttaboperport/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1080-evttaboperport/validar-evento/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_validar_evento_views.validar_evento,
         name='s1080_evttaboperport_validar_evento'),
 
-    url(r'^s1080-evttaboperport/salvar/(?P<hash>.*)/$', 
+    url(r'^s1080-evttaboperport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1080_evttaboperport_salvar_views.salvar, 
         name='s1080_evttaboperport_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1080-evttaboperport/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1080-evttaboperport/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1080_evttaboperport_gerar_identidade_views.gerar_identidade, 
         name='s1080_evttaboperport_gerar_identidade'),
+        
+    url(r'^s1080-evttaboperport/cadastrar/$', 
+        s1080_evttaboperport_salvar_views.salvar, 
+        name='s1080_evttaboperport_cadastrar'),
 
-    url(r'^s1200-evtremun/apagar/(?P<hash>.*)/$', 
+    url(r'^s1080-evttaboperport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1080_evttaboperport_salvar_views.salvar, 
+        name='s1080_evttaboperport_salvar_output'),
+        
+    url(r'^s1080-evttaboperport/(?P<output>[\w-]+)/$', 
+        s1080_evttaboperport_listar_views.listar, 
+        name='s1080_evttaboperport_output'),
+
+    url(r'^s1200-evtremun/apagar/(?P<pk>[0-9]+)/$', 
         s1200_evtremun_apagar_views.apagar, 
         name='s1200_evtremun_apagar'),
 
@@ -1556,55 +1732,71 @@ urlpatterns = [
     url(r'^s1200-evtremun/api/(?P<pk>[0-9]+)/$',
         s1200_evtremun_api_views.s1200evtRemunDetail.as_view() ),
 
-    url(r'^s1200-evtremun/listar/(?P<hash>.*)/$', 
+    url(r'^s1200-evtremun/$', 
         s1200_evtremun_listar_views.listar, 
         name='s1200_evtremun'),
         
-    url(r'^s1200-evtremun/verificar/(?P<hash>.*)/$', 
+    url(r'^s1200-evtremun/verificar/(?P<pk>[0-9]+)/$', 
         s1200_evtremun_verificar_views.verificar, 
         name='s1200_evtremun_verificar'),
+        
+    url(r'^s1200-evtremun/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1200_evtremun_verificar_views.verificar, 
+        name='s1200_evtremun_verificar_output'),
             
-    url(r'^s1200-evtremun/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1200-evtremun/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1200_evtremun_recibos_views.recibo, 
         name='s1200_evtremun_recibo'),
             
-    url(r'^s1200-evtremun/duplicar/(?P<hash>.*)/$',
+    url(r'^s1200-evtremun/duplicar/(?P<pk>[0-9]+)/$',
         s1200_evtremun_duplicar_views.duplicar,
         name='s1200_evtremun_duplicar'),
 
-    url(r'^s1200-evtremun/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1200-evtremun/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1200_evtremun_criar_alteracao_views.criar_alteracao,
         name='s1200_evtremun_criar_alteracao'),
 
-    url(r'^s1200-evtremun/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1200-evtremun/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1200_evtremun_criar_exclusao_views.criar_exclusao,
         name='s1200_evtremun_criar_exclusao'),
             
-    url(r'^s1200-evtremun/xml/(?P<hash>.*)/$', 
+    url(r'^s1200-evtremun/xml/(?P<pk>[0-9]+)/$', 
         s1200_evtremun_gerar_xml_views.gerar_xml, 
         name='s1200_evtremun_xml'),          
 
-    url(r'^s1200-evtremun/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1200-evtremun/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1200_evtremun_alterar_identidade_views.alterar_identidade,
         name='s1200_evtremun_alterar_identidade'),
 
-    url(r'^s1200-evtremun/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1200-evtremun/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1200_evtremun_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1200_evtremun_abrir_evento_para_edicao'),
 
-    url(r'^s1200-evtremun/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1200-evtremun/validar-evento/(?P<pk>[0-9]+)/$',
         s1200_evtremun_validar_evento_views.validar_evento,
         name='s1200_evtremun_validar_evento'),
 
-    url(r'^s1200-evtremun/salvar/(?P<hash>.*)/$', 
+    url(r'^s1200-evtremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1200_evtremun_salvar_views.salvar, 
         name='s1200_evtremun_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1200-evtremun/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1200-evtremun/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1200_evtremun_gerar_identidade_views.gerar_identidade, 
         name='s1200_evtremun_gerar_identidade'),
+        
+    url(r'^s1200-evtremun/cadastrar/$', 
+        s1200_evtremun_salvar_views.salvar, 
+        name='s1200_evtremun_cadastrar'),
 
-    url(r'^s1202-evtrmnrpps/apagar/(?P<hash>.*)/$', 
+    url(r'^s1200-evtremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1200_evtremun_salvar_views.salvar, 
+        name='s1200_evtremun_salvar_output'),
+        
+    url(r'^s1200-evtremun/(?P<output>[\w-]+)/$', 
+        s1200_evtremun_listar_views.listar, 
+        name='s1200_evtremun_output'),
+
+    url(r'^s1202-evtrmnrpps/apagar/(?P<pk>[0-9]+)/$', 
         s1202_evtrmnrpps_apagar_views.apagar, 
         name='s1202_evtrmnrpps_apagar'),
 
@@ -1614,55 +1806,71 @@ urlpatterns = [
     url(r'^s1202-evtrmnrpps/api/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_api_views.s1202evtRmnRPPSDetail.as_view() ),
 
-    url(r'^s1202-evtrmnrpps/listar/(?P<hash>.*)/$', 
+    url(r'^s1202-evtrmnrpps/$', 
         s1202_evtrmnrpps_listar_views.listar, 
         name='s1202_evtrmnrpps'),
         
-    url(r'^s1202-evtrmnrpps/verificar/(?P<hash>.*)/$', 
+    url(r'^s1202-evtrmnrpps/verificar/(?P<pk>[0-9]+)/$', 
         s1202_evtrmnrpps_verificar_views.verificar, 
         name='s1202_evtrmnrpps_verificar'),
+        
+    url(r'^s1202-evtrmnrpps/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1202_evtrmnrpps_verificar_views.verificar, 
+        name='s1202_evtrmnrpps_verificar_output'),
             
-    url(r'^s1202-evtrmnrpps/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1202-evtrmnrpps/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1202_evtrmnrpps_recibos_views.recibo, 
         name='s1202_evtrmnrpps_recibo'),
             
-    url(r'^s1202-evtrmnrpps/duplicar/(?P<hash>.*)/$',
+    url(r'^s1202-evtrmnrpps/duplicar/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_duplicar_views.duplicar,
         name='s1202_evtrmnrpps_duplicar'),
 
-    url(r'^s1202-evtrmnrpps/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1202-evtrmnrpps/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_criar_alteracao_views.criar_alteracao,
         name='s1202_evtrmnrpps_criar_alteracao'),
 
-    url(r'^s1202-evtrmnrpps/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1202-evtrmnrpps/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_criar_exclusao_views.criar_exclusao,
         name='s1202_evtrmnrpps_criar_exclusao'),
             
-    url(r'^s1202-evtrmnrpps/xml/(?P<hash>.*)/$', 
+    url(r'^s1202-evtrmnrpps/xml/(?P<pk>[0-9]+)/$', 
         s1202_evtrmnrpps_gerar_xml_views.gerar_xml, 
         name='s1202_evtrmnrpps_xml'),          
 
-    url(r'^s1202-evtrmnrpps/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1202-evtrmnrpps/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_alterar_identidade_views.alterar_identidade,
         name='s1202_evtrmnrpps_alterar_identidade'),
 
-    url(r'^s1202-evtrmnrpps/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1202-evtrmnrpps/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1202_evtrmnrpps_abrir_evento_para_edicao'),
 
-    url(r'^s1202-evtrmnrpps/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1202-evtrmnrpps/validar-evento/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_validar_evento_views.validar_evento,
         name='s1202_evtrmnrpps_validar_evento'),
 
-    url(r'^s1202-evtrmnrpps/salvar/(?P<hash>.*)/$', 
+    url(r'^s1202-evtrmnrpps/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1202_evtrmnrpps_salvar_views.salvar, 
         name='s1202_evtrmnrpps_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1202-evtrmnrpps/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1202-evtrmnrpps/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1202_evtrmnrpps_gerar_identidade_views.gerar_identidade, 
         name='s1202_evtrmnrpps_gerar_identidade'),
+        
+    url(r'^s1202-evtrmnrpps/cadastrar/$', 
+        s1202_evtrmnrpps_salvar_views.salvar, 
+        name='s1202_evtrmnrpps_cadastrar'),
 
-    url(r'^s1207-evtbenprrp/apagar/(?P<hash>.*)/$', 
+    url(r'^s1202-evtrmnrpps/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1202_evtrmnrpps_salvar_views.salvar, 
+        name='s1202_evtrmnrpps_salvar_output'),
+        
+    url(r'^s1202-evtrmnrpps/(?P<output>[\w-]+)/$', 
+        s1202_evtrmnrpps_listar_views.listar, 
+        name='s1202_evtrmnrpps_output'),
+
+    url(r'^s1207-evtbenprrp/apagar/(?P<pk>[0-9]+)/$', 
         s1207_evtbenprrp_apagar_views.apagar, 
         name='s1207_evtbenprrp_apagar'),
 
@@ -1672,55 +1880,71 @@ urlpatterns = [
     url(r'^s1207-evtbenprrp/api/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_api_views.s1207evtBenPrRPDetail.as_view() ),
 
-    url(r'^s1207-evtbenprrp/listar/(?P<hash>.*)/$', 
+    url(r'^s1207-evtbenprrp/$', 
         s1207_evtbenprrp_listar_views.listar, 
         name='s1207_evtbenprrp'),
         
-    url(r'^s1207-evtbenprrp/verificar/(?P<hash>.*)/$', 
+    url(r'^s1207-evtbenprrp/verificar/(?P<pk>[0-9]+)/$', 
         s1207_evtbenprrp_verificar_views.verificar, 
         name='s1207_evtbenprrp_verificar'),
+        
+    url(r'^s1207-evtbenprrp/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1207_evtbenprrp_verificar_views.verificar, 
+        name='s1207_evtbenprrp_verificar_output'),
             
-    url(r'^s1207-evtbenprrp/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1207-evtbenprrp/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1207_evtbenprrp_recibos_views.recibo, 
         name='s1207_evtbenprrp_recibo'),
             
-    url(r'^s1207-evtbenprrp/duplicar/(?P<hash>.*)/$',
+    url(r'^s1207-evtbenprrp/duplicar/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_duplicar_views.duplicar,
         name='s1207_evtbenprrp_duplicar'),
 
-    url(r'^s1207-evtbenprrp/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1207-evtbenprrp/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_criar_alteracao_views.criar_alteracao,
         name='s1207_evtbenprrp_criar_alteracao'),
 
-    url(r'^s1207-evtbenprrp/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1207-evtbenprrp/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_criar_exclusao_views.criar_exclusao,
         name='s1207_evtbenprrp_criar_exclusao'),
             
-    url(r'^s1207-evtbenprrp/xml/(?P<hash>.*)/$', 
+    url(r'^s1207-evtbenprrp/xml/(?P<pk>[0-9]+)/$', 
         s1207_evtbenprrp_gerar_xml_views.gerar_xml, 
         name='s1207_evtbenprrp_xml'),          
 
-    url(r'^s1207-evtbenprrp/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1207-evtbenprrp/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_alterar_identidade_views.alterar_identidade,
         name='s1207_evtbenprrp_alterar_identidade'),
 
-    url(r'^s1207-evtbenprrp/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1207-evtbenprrp/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1207_evtbenprrp_abrir_evento_para_edicao'),
 
-    url(r'^s1207-evtbenprrp/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1207-evtbenprrp/validar-evento/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_validar_evento_views.validar_evento,
         name='s1207_evtbenprrp_validar_evento'),
 
-    url(r'^s1207-evtbenprrp/salvar/(?P<hash>.*)/$', 
+    url(r'^s1207-evtbenprrp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1207_evtbenprrp_salvar_views.salvar, 
         name='s1207_evtbenprrp_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1207-evtbenprrp/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1207-evtbenprrp/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1207_evtbenprrp_gerar_identidade_views.gerar_identidade, 
         name='s1207_evtbenprrp_gerar_identidade'),
+        
+    url(r'^s1207-evtbenprrp/cadastrar/$', 
+        s1207_evtbenprrp_salvar_views.salvar, 
+        name='s1207_evtbenprrp_cadastrar'),
 
-    url(r'^s1210-evtpgtos/apagar/(?P<hash>.*)/$', 
+    url(r'^s1207-evtbenprrp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1207_evtbenprrp_salvar_views.salvar, 
+        name='s1207_evtbenprrp_salvar_output'),
+        
+    url(r'^s1207-evtbenprrp/(?P<output>[\w-]+)/$', 
+        s1207_evtbenprrp_listar_views.listar, 
+        name='s1207_evtbenprrp_output'),
+
+    url(r'^s1210-evtpgtos/apagar/(?P<pk>[0-9]+)/$', 
         s1210_evtpgtos_apagar_views.apagar, 
         name='s1210_evtpgtos_apagar'),
 
@@ -1730,55 +1954,71 @@ urlpatterns = [
     url(r'^s1210-evtpgtos/api/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_api_views.s1210evtPgtosDetail.as_view() ),
 
-    url(r'^s1210-evtpgtos/listar/(?P<hash>.*)/$', 
+    url(r'^s1210-evtpgtos/$', 
         s1210_evtpgtos_listar_views.listar, 
         name='s1210_evtpgtos'),
         
-    url(r'^s1210-evtpgtos/verificar/(?P<hash>.*)/$', 
+    url(r'^s1210-evtpgtos/verificar/(?P<pk>[0-9]+)/$', 
         s1210_evtpgtos_verificar_views.verificar, 
         name='s1210_evtpgtos_verificar'),
+        
+    url(r'^s1210-evtpgtos/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1210_evtpgtos_verificar_views.verificar, 
+        name='s1210_evtpgtos_verificar_output'),
             
-    url(r'^s1210-evtpgtos/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1210-evtpgtos/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1210_evtpgtos_recibos_views.recibo, 
         name='s1210_evtpgtos_recibo'),
             
-    url(r'^s1210-evtpgtos/duplicar/(?P<hash>.*)/$',
+    url(r'^s1210-evtpgtos/duplicar/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_duplicar_views.duplicar,
         name='s1210_evtpgtos_duplicar'),
 
-    url(r'^s1210-evtpgtos/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1210-evtpgtos/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_criar_alteracao_views.criar_alteracao,
         name='s1210_evtpgtos_criar_alteracao'),
 
-    url(r'^s1210-evtpgtos/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1210-evtpgtos/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_criar_exclusao_views.criar_exclusao,
         name='s1210_evtpgtos_criar_exclusao'),
             
-    url(r'^s1210-evtpgtos/xml/(?P<hash>.*)/$', 
+    url(r'^s1210-evtpgtos/xml/(?P<pk>[0-9]+)/$', 
         s1210_evtpgtos_gerar_xml_views.gerar_xml, 
         name='s1210_evtpgtos_xml'),          
 
-    url(r'^s1210-evtpgtos/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1210-evtpgtos/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_alterar_identidade_views.alterar_identidade,
         name='s1210_evtpgtos_alterar_identidade'),
 
-    url(r'^s1210-evtpgtos/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1210-evtpgtos/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1210_evtpgtos_abrir_evento_para_edicao'),
 
-    url(r'^s1210-evtpgtos/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1210-evtpgtos/validar-evento/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_validar_evento_views.validar_evento,
         name='s1210_evtpgtos_validar_evento'),
 
-    url(r'^s1210-evtpgtos/salvar/(?P<hash>.*)/$', 
+    url(r'^s1210-evtpgtos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1210_evtpgtos_salvar_views.salvar, 
         name='s1210_evtpgtos_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1210-evtpgtos/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1210-evtpgtos/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1210_evtpgtos_gerar_identidade_views.gerar_identidade, 
         name='s1210_evtpgtos_gerar_identidade'),
+        
+    url(r'^s1210-evtpgtos/cadastrar/$', 
+        s1210_evtpgtos_salvar_views.salvar, 
+        name='s1210_evtpgtos_cadastrar'),
 
-    url(r'^s1250-evtaqprod/apagar/(?P<hash>.*)/$', 
+    url(r'^s1210-evtpgtos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1210_evtpgtos_salvar_views.salvar, 
+        name='s1210_evtpgtos_salvar_output'),
+        
+    url(r'^s1210-evtpgtos/(?P<output>[\w-]+)/$', 
+        s1210_evtpgtos_listar_views.listar, 
+        name='s1210_evtpgtos_output'),
+
+    url(r'^s1250-evtaqprod/apagar/(?P<pk>[0-9]+)/$', 
         s1250_evtaqprod_apagar_views.apagar, 
         name='s1250_evtaqprod_apagar'),
 
@@ -1788,55 +2028,71 @@ urlpatterns = [
     url(r'^s1250-evtaqprod/api/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_api_views.s1250evtAqProdDetail.as_view() ),
 
-    url(r'^s1250-evtaqprod/listar/(?P<hash>.*)/$', 
+    url(r'^s1250-evtaqprod/$', 
         s1250_evtaqprod_listar_views.listar, 
         name='s1250_evtaqprod'),
         
-    url(r'^s1250-evtaqprod/verificar/(?P<hash>.*)/$', 
+    url(r'^s1250-evtaqprod/verificar/(?P<pk>[0-9]+)/$', 
         s1250_evtaqprod_verificar_views.verificar, 
         name='s1250_evtaqprod_verificar'),
+        
+    url(r'^s1250-evtaqprod/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1250_evtaqprod_verificar_views.verificar, 
+        name='s1250_evtaqprod_verificar_output'),
             
-    url(r'^s1250-evtaqprod/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1250-evtaqprod/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1250_evtaqprod_recibos_views.recibo, 
         name='s1250_evtaqprod_recibo'),
             
-    url(r'^s1250-evtaqprod/duplicar/(?P<hash>.*)/$',
+    url(r'^s1250-evtaqprod/duplicar/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_duplicar_views.duplicar,
         name='s1250_evtaqprod_duplicar'),
 
-    url(r'^s1250-evtaqprod/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1250-evtaqprod/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_criar_alteracao_views.criar_alteracao,
         name='s1250_evtaqprod_criar_alteracao'),
 
-    url(r'^s1250-evtaqprod/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1250-evtaqprod/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_criar_exclusao_views.criar_exclusao,
         name='s1250_evtaqprod_criar_exclusao'),
             
-    url(r'^s1250-evtaqprod/xml/(?P<hash>.*)/$', 
+    url(r'^s1250-evtaqprod/xml/(?P<pk>[0-9]+)/$', 
         s1250_evtaqprod_gerar_xml_views.gerar_xml, 
         name='s1250_evtaqprod_xml'),          
 
-    url(r'^s1250-evtaqprod/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1250-evtaqprod/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_alterar_identidade_views.alterar_identidade,
         name='s1250_evtaqprod_alterar_identidade'),
 
-    url(r'^s1250-evtaqprod/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1250-evtaqprod/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1250_evtaqprod_abrir_evento_para_edicao'),
 
-    url(r'^s1250-evtaqprod/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1250-evtaqprod/validar-evento/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_validar_evento_views.validar_evento,
         name='s1250_evtaqprod_validar_evento'),
 
-    url(r'^s1250-evtaqprod/salvar/(?P<hash>.*)/$', 
+    url(r'^s1250-evtaqprod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1250_evtaqprod_salvar_views.salvar, 
         name='s1250_evtaqprod_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1250-evtaqprod/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1250-evtaqprod/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1250_evtaqprod_gerar_identidade_views.gerar_identidade, 
         name='s1250_evtaqprod_gerar_identidade'),
+        
+    url(r'^s1250-evtaqprod/cadastrar/$', 
+        s1250_evtaqprod_salvar_views.salvar, 
+        name='s1250_evtaqprod_cadastrar'),
 
-    url(r'^s1260-evtcomprod/apagar/(?P<hash>.*)/$', 
+    url(r'^s1250-evtaqprod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1250_evtaqprod_salvar_views.salvar, 
+        name='s1250_evtaqprod_salvar_output'),
+        
+    url(r'^s1250-evtaqprod/(?P<output>[\w-]+)/$', 
+        s1250_evtaqprod_listar_views.listar, 
+        name='s1250_evtaqprod_output'),
+
+    url(r'^s1260-evtcomprod/apagar/(?P<pk>[0-9]+)/$', 
         s1260_evtcomprod_apagar_views.apagar, 
         name='s1260_evtcomprod_apagar'),
 
@@ -1846,55 +2102,71 @@ urlpatterns = [
     url(r'^s1260-evtcomprod/api/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_api_views.s1260evtComProdDetail.as_view() ),
 
-    url(r'^s1260-evtcomprod/listar/(?P<hash>.*)/$', 
+    url(r'^s1260-evtcomprod/$', 
         s1260_evtcomprod_listar_views.listar, 
         name='s1260_evtcomprod'),
         
-    url(r'^s1260-evtcomprod/verificar/(?P<hash>.*)/$', 
+    url(r'^s1260-evtcomprod/verificar/(?P<pk>[0-9]+)/$', 
         s1260_evtcomprod_verificar_views.verificar, 
         name='s1260_evtcomprod_verificar'),
+        
+    url(r'^s1260-evtcomprod/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1260_evtcomprod_verificar_views.verificar, 
+        name='s1260_evtcomprod_verificar_output'),
             
-    url(r'^s1260-evtcomprod/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1260-evtcomprod/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1260_evtcomprod_recibos_views.recibo, 
         name='s1260_evtcomprod_recibo'),
             
-    url(r'^s1260-evtcomprod/duplicar/(?P<hash>.*)/$',
+    url(r'^s1260-evtcomprod/duplicar/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_duplicar_views.duplicar,
         name='s1260_evtcomprod_duplicar'),
 
-    url(r'^s1260-evtcomprod/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1260-evtcomprod/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_criar_alteracao_views.criar_alteracao,
         name='s1260_evtcomprod_criar_alteracao'),
 
-    url(r'^s1260-evtcomprod/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1260-evtcomprod/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_criar_exclusao_views.criar_exclusao,
         name='s1260_evtcomprod_criar_exclusao'),
             
-    url(r'^s1260-evtcomprod/xml/(?P<hash>.*)/$', 
+    url(r'^s1260-evtcomprod/xml/(?P<pk>[0-9]+)/$', 
         s1260_evtcomprod_gerar_xml_views.gerar_xml, 
         name='s1260_evtcomprod_xml'),          
 
-    url(r'^s1260-evtcomprod/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1260-evtcomprod/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_alterar_identidade_views.alterar_identidade,
         name='s1260_evtcomprod_alterar_identidade'),
 
-    url(r'^s1260-evtcomprod/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1260-evtcomprod/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1260_evtcomprod_abrir_evento_para_edicao'),
 
-    url(r'^s1260-evtcomprod/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1260-evtcomprod/validar-evento/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_validar_evento_views.validar_evento,
         name='s1260_evtcomprod_validar_evento'),
 
-    url(r'^s1260-evtcomprod/salvar/(?P<hash>.*)/$', 
+    url(r'^s1260-evtcomprod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1260_evtcomprod_salvar_views.salvar, 
         name='s1260_evtcomprod_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1260-evtcomprod/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1260-evtcomprod/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1260_evtcomprod_gerar_identidade_views.gerar_identidade, 
         name='s1260_evtcomprod_gerar_identidade'),
+        
+    url(r'^s1260-evtcomprod/cadastrar/$', 
+        s1260_evtcomprod_salvar_views.salvar, 
+        name='s1260_evtcomprod_cadastrar'),
 
-    url(r'^s1270-evtcontratavnp/apagar/(?P<hash>.*)/$', 
+    url(r'^s1260-evtcomprod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1260_evtcomprod_salvar_views.salvar, 
+        name='s1260_evtcomprod_salvar_output'),
+        
+    url(r'^s1260-evtcomprod/(?P<output>[\w-]+)/$', 
+        s1260_evtcomprod_listar_views.listar, 
+        name='s1260_evtcomprod_output'),
+
+    url(r'^s1270-evtcontratavnp/apagar/(?P<pk>[0-9]+)/$', 
         s1270_evtcontratavnp_apagar_views.apagar, 
         name='s1270_evtcontratavnp_apagar'),
 
@@ -1904,55 +2176,71 @@ urlpatterns = [
     url(r'^s1270-evtcontratavnp/api/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_api_views.s1270evtContratAvNPDetail.as_view() ),
 
-    url(r'^s1270-evtcontratavnp/listar/(?P<hash>.*)/$', 
+    url(r'^s1270-evtcontratavnp/$', 
         s1270_evtcontratavnp_listar_views.listar, 
         name='s1270_evtcontratavnp'),
         
-    url(r'^s1270-evtcontratavnp/verificar/(?P<hash>.*)/$', 
+    url(r'^s1270-evtcontratavnp/verificar/(?P<pk>[0-9]+)/$', 
         s1270_evtcontratavnp_verificar_views.verificar, 
         name='s1270_evtcontratavnp_verificar'),
+        
+    url(r'^s1270-evtcontratavnp/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1270_evtcontratavnp_verificar_views.verificar, 
+        name='s1270_evtcontratavnp_verificar_output'),
             
-    url(r'^s1270-evtcontratavnp/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1270-evtcontratavnp/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1270_evtcontratavnp_recibos_views.recibo, 
         name='s1270_evtcontratavnp_recibo'),
             
-    url(r'^s1270-evtcontratavnp/duplicar/(?P<hash>.*)/$',
+    url(r'^s1270-evtcontratavnp/duplicar/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_duplicar_views.duplicar,
         name='s1270_evtcontratavnp_duplicar'),
 
-    url(r'^s1270-evtcontratavnp/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1270-evtcontratavnp/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_criar_alteracao_views.criar_alteracao,
         name='s1270_evtcontratavnp_criar_alteracao'),
 
-    url(r'^s1270-evtcontratavnp/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1270-evtcontratavnp/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_criar_exclusao_views.criar_exclusao,
         name='s1270_evtcontratavnp_criar_exclusao'),
             
-    url(r'^s1270-evtcontratavnp/xml/(?P<hash>.*)/$', 
+    url(r'^s1270-evtcontratavnp/xml/(?P<pk>[0-9]+)/$', 
         s1270_evtcontratavnp_gerar_xml_views.gerar_xml, 
         name='s1270_evtcontratavnp_xml'),          
 
-    url(r'^s1270-evtcontratavnp/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1270-evtcontratavnp/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_alterar_identidade_views.alterar_identidade,
         name='s1270_evtcontratavnp_alterar_identidade'),
 
-    url(r'^s1270-evtcontratavnp/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1270-evtcontratavnp/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1270_evtcontratavnp_abrir_evento_para_edicao'),
 
-    url(r'^s1270-evtcontratavnp/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1270-evtcontratavnp/validar-evento/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_validar_evento_views.validar_evento,
         name='s1270_evtcontratavnp_validar_evento'),
 
-    url(r'^s1270-evtcontratavnp/salvar/(?P<hash>.*)/$', 
+    url(r'^s1270-evtcontratavnp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1270_evtcontratavnp_salvar_views.salvar, 
         name='s1270_evtcontratavnp_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1270-evtcontratavnp/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1270-evtcontratavnp/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1270_evtcontratavnp_gerar_identidade_views.gerar_identidade, 
         name='s1270_evtcontratavnp_gerar_identidade'),
+        
+    url(r'^s1270-evtcontratavnp/cadastrar/$', 
+        s1270_evtcontratavnp_salvar_views.salvar, 
+        name='s1270_evtcontratavnp_cadastrar'),
 
-    url(r'^s1280-evtinfocomplper/apagar/(?P<hash>.*)/$', 
+    url(r'^s1270-evtcontratavnp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1270_evtcontratavnp_salvar_views.salvar, 
+        name='s1270_evtcontratavnp_salvar_output'),
+        
+    url(r'^s1270-evtcontratavnp/(?P<output>[\w-]+)/$', 
+        s1270_evtcontratavnp_listar_views.listar, 
+        name='s1270_evtcontratavnp_output'),
+
+    url(r'^s1280-evtinfocomplper/apagar/(?P<pk>[0-9]+)/$', 
         s1280_evtinfocomplper_apagar_views.apagar, 
         name='s1280_evtinfocomplper_apagar'),
 
@@ -1962,55 +2250,71 @@ urlpatterns = [
     url(r'^s1280-evtinfocomplper/api/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_api_views.s1280evtInfoComplPerDetail.as_view() ),
 
-    url(r'^s1280-evtinfocomplper/listar/(?P<hash>.*)/$', 
+    url(r'^s1280-evtinfocomplper/$', 
         s1280_evtinfocomplper_listar_views.listar, 
         name='s1280_evtinfocomplper'),
         
-    url(r'^s1280-evtinfocomplper/verificar/(?P<hash>.*)/$', 
+    url(r'^s1280-evtinfocomplper/verificar/(?P<pk>[0-9]+)/$', 
         s1280_evtinfocomplper_verificar_views.verificar, 
         name='s1280_evtinfocomplper_verificar'),
+        
+    url(r'^s1280-evtinfocomplper/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1280_evtinfocomplper_verificar_views.verificar, 
+        name='s1280_evtinfocomplper_verificar_output'),
             
-    url(r'^s1280-evtinfocomplper/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1280-evtinfocomplper/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1280_evtinfocomplper_recibos_views.recibo, 
         name='s1280_evtinfocomplper_recibo'),
             
-    url(r'^s1280-evtinfocomplper/duplicar/(?P<hash>.*)/$',
+    url(r'^s1280-evtinfocomplper/duplicar/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_duplicar_views.duplicar,
         name='s1280_evtinfocomplper_duplicar'),
 
-    url(r'^s1280-evtinfocomplper/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1280-evtinfocomplper/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_criar_alteracao_views.criar_alteracao,
         name='s1280_evtinfocomplper_criar_alteracao'),
 
-    url(r'^s1280-evtinfocomplper/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1280-evtinfocomplper/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_criar_exclusao_views.criar_exclusao,
         name='s1280_evtinfocomplper_criar_exclusao'),
             
-    url(r'^s1280-evtinfocomplper/xml/(?P<hash>.*)/$', 
+    url(r'^s1280-evtinfocomplper/xml/(?P<pk>[0-9]+)/$', 
         s1280_evtinfocomplper_gerar_xml_views.gerar_xml, 
         name='s1280_evtinfocomplper_xml'),          
 
-    url(r'^s1280-evtinfocomplper/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1280-evtinfocomplper/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_alterar_identidade_views.alterar_identidade,
         name='s1280_evtinfocomplper_alterar_identidade'),
 
-    url(r'^s1280-evtinfocomplper/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1280-evtinfocomplper/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1280_evtinfocomplper_abrir_evento_para_edicao'),
 
-    url(r'^s1280-evtinfocomplper/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1280-evtinfocomplper/validar-evento/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_validar_evento_views.validar_evento,
         name='s1280_evtinfocomplper_validar_evento'),
 
-    url(r'^s1280-evtinfocomplper/salvar/(?P<hash>.*)/$', 
+    url(r'^s1280-evtinfocomplper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1280_evtinfocomplper_salvar_views.salvar, 
         name='s1280_evtinfocomplper_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1280-evtinfocomplper/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1280-evtinfocomplper/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1280_evtinfocomplper_gerar_identidade_views.gerar_identidade, 
         name='s1280_evtinfocomplper_gerar_identidade'),
+        
+    url(r'^s1280-evtinfocomplper/cadastrar/$', 
+        s1280_evtinfocomplper_salvar_views.salvar, 
+        name='s1280_evtinfocomplper_cadastrar'),
 
-    url(r'^s1295-evttotconting/apagar/(?P<hash>.*)/$', 
+    url(r'^s1280-evtinfocomplper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1280_evtinfocomplper_salvar_views.salvar, 
+        name='s1280_evtinfocomplper_salvar_output'),
+        
+    url(r'^s1280-evtinfocomplper/(?P<output>[\w-]+)/$', 
+        s1280_evtinfocomplper_listar_views.listar, 
+        name='s1280_evtinfocomplper_output'),
+
+    url(r'^s1295-evttotconting/apagar/(?P<pk>[0-9]+)/$', 
         s1295_evttotconting_apagar_views.apagar, 
         name='s1295_evttotconting_apagar'),
 
@@ -2020,55 +2324,71 @@ urlpatterns = [
     url(r'^s1295-evttotconting/api/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_api_views.s1295evtTotContingDetail.as_view() ),
 
-    url(r'^s1295-evttotconting/listar/(?P<hash>.*)/$', 
+    url(r'^s1295-evttotconting/$', 
         s1295_evttotconting_listar_views.listar, 
         name='s1295_evttotconting'),
         
-    url(r'^s1295-evttotconting/verificar/(?P<hash>.*)/$', 
+    url(r'^s1295-evttotconting/verificar/(?P<pk>[0-9]+)/$', 
         s1295_evttotconting_verificar_views.verificar, 
         name='s1295_evttotconting_verificar'),
+        
+    url(r'^s1295-evttotconting/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1295_evttotconting_verificar_views.verificar, 
+        name='s1295_evttotconting_verificar_output'),
             
-    url(r'^s1295-evttotconting/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1295-evttotconting/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1295_evttotconting_recibos_views.recibo, 
         name='s1295_evttotconting_recibo'),
             
-    url(r'^s1295-evttotconting/duplicar/(?P<hash>.*)/$',
+    url(r'^s1295-evttotconting/duplicar/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_duplicar_views.duplicar,
         name='s1295_evttotconting_duplicar'),
 
-    url(r'^s1295-evttotconting/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1295-evttotconting/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_criar_alteracao_views.criar_alteracao,
         name='s1295_evttotconting_criar_alteracao'),
 
-    url(r'^s1295-evttotconting/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1295-evttotconting/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_criar_exclusao_views.criar_exclusao,
         name='s1295_evttotconting_criar_exclusao'),
             
-    url(r'^s1295-evttotconting/xml/(?P<hash>.*)/$', 
+    url(r'^s1295-evttotconting/xml/(?P<pk>[0-9]+)/$', 
         s1295_evttotconting_gerar_xml_views.gerar_xml, 
         name='s1295_evttotconting_xml'),          
 
-    url(r'^s1295-evttotconting/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1295-evttotconting/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_alterar_identidade_views.alterar_identidade,
         name='s1295_evttotconting_alterar_identidade'),
 
-    url(r'^s1295-evttotconting/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1295-evttotconting/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1295_evttotconting_abrir_evento_para_edicao'),
 
-    url(r'^s1295-evttotconting/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1295-evttotconting/validar-evento/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_validar_evento_views.validar_evento,
         name='s1295_evttotconting_validar_evento'),
 
-    url(r'^s1295-evttotconting/salvar/(?P<hash>.*)/$', 
+    url(r'^s1295-evttotconting/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1295_evttotconting_salvar_views.salvar, 
         name='s1295_evttotconting_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1295-evttotconting/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1295-evttotconting/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1295_evttotconting_gerar_identidade_views.gerar_identidade, 
         name='s1295_evttotconting_gerar_identidade'),
+        
+    url(r'^s1295-evttotconting/cadastrar/$', 
+        s1295_evttotconting_salvar_views.salvar, 
+        name='s1295_evttotconting_cadastrar'),
 
-    url(r'^s1298-evtreabreevper/apagar/(?P<hash>.*)/$', 
+    url(r'^s1295-evttotconting/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1295_evttotconting_salvar_views.salvar, 
+        name='s1295_evttotconting_salvar_output'),
+        
+    url(r'^s1295-evttotconting/(?P<output>[\w-]+)/$', 
+        s1295_evttotconting_listar_views.listar, 
+        name='s1295_evttotconting_output'),
+
+    url(r'^s1298-evtreabreevper/apagar/(?P<pk>[0-9]+)/$', 
         s1298_evtreabreevper_apagar_views.apagar, 
         name='s1298_evtreabreevper_apagar'),
 
@@ -2078,55 +2398,71 @@ urlpatterns = [
     url(r'^s1298-evtreabreevper/api/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_api_views.s1298evtReabreEvPerDetail.as_view() ),
 
-    url(r'^s1298-evtreabreevper/listar/(?P<hash>.*)/$', 
+    url(r'^s1298-evtreabreevper/$', 
         s1298_evtreabreevper_listar_views.listar, 
         name='s1298_evtreabreevper'),
         
-    url(r'^s1298-evtreabreevper/verificar/(?P<hash>.*)/$', 
+    url(r'^s1298-evtreabreevper/verificar/(?P<pk>[0-9]+)/$', 
         s1298_evtreabreevper_verificar_views.verificar, 
         name='s1298_evtreabreevper_verificar'),
+        
+    url(r'^s1298-evtreabreevper/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1298_evtreabreevper_verificar_views.verificar, 
+        name='s1298_evtreabreevper_verificar_output'),
             
-    url(r'^s1298-evtreabreevper/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1298-evtreabreevper/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1298_evtreabreevper_recibos_views.recibo, 
         name='s1298_evtreabreevper_recibo'),
             
-    url(r'^s1298-evtreabreevper/duplicar/(?P<hash>.*)/$',
+    url(r'^s1298-evtreabreevper/duplicar/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_duplicar_views.duplicar,
         name='s1298_evtreabreevper_duplicar'),
 
-    url(r'^s1298-evtreabreevper/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1298-evtreabreevper/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_criar_alteracao_views.criar_alteracao,
         name='s1298_evtreabreevper_criar_alteracao'),
 
-    url(r'^s1298-evtreabreevper/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1298-evtreabreevper/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_criar_exclusao_views.criar_exclusao,
         name='s1298_evtreabreevper_criar_exclusao'),
             
-    url(r'^s1298-evtreabreevper/xml/(?P<hash>.*)/$', 
+    url(r'^s1298-evtreabreevper/xml/(?P<pk>[0-9]+)/$', 
         s1298_evtreabreevper_gerar_xml_views.gerar_xml, 
         name='s1298_evtreabreevper_xml'),          
 
-    url(r'^s1298-evtreabreevper/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1298-evtreabreevper/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_alterar_identidade_views.alterar_identidade,
         name='s1298_evtreabreevper_alterar_identidade'),
 
-    url(r'^s1298-evtreabreevper/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1298-evtreabreevper/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1298_evtreabreevper_abrir_evento_para_edicao'),
 
-    url(r'^s1298-evtreabreevper/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1298-evtreabreevper/validar-evento/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_validar_evento_views.validar_evento,
         name='s1298_evtreabreevper_validar_evento'),
 
-    url(r'^s1298-evtreabreevper/salvar/(?P<hash>.*)/$', 
+    url(r'^s1298-evtreabreevper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1298_evtreabreevper_salvar_views.salvar, 
         name='s1298_evtreabreevper_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1298-evtreabreevper/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1298-evtreabreevper/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1298_evtreabreevper_gerar_identidade_views.gerar_identidade, 
         name='s1298_evtreabreevper_gerar_identidade'),
+        
+    url(r'^s1298-evtreabreevper/cadastrar/$', 
+        s1298_evtreabreevper_salvar_views.salvar, 
+        name='s1298_evtreabreevper_cadastrar'),
 
-    url(r'^s1299-evtfechaevper/apagar/(?P<hash>.*)/$', 
+    url(r'^s1298-evtreabreevper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1298_evtreabreevper_salvar_views.salvar, 
+        name='s1298_evtreabreevper_salvar_output'),
+        
+    url(r'^s1298-evtreabreevper/(?P<output>[\w-]+)/$', 
+        s1298_evtreabreevper_listar_views.listar, 
+        name='s1298_evtreabreevper_output'),
+
+    url(r'^s1299-evtfechaevper/apagar/(?P<pk>[0-9]+)/$', 
         s1299_evtfechaevper_apagar_views.apagar, 
         name='s1299_evtfechaevper_apagar'),
 
@@ -2136,55 +2472,71 @@ urlpatterns = [
     url(r'^s1299-evtfechaevper/api/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_api_views.s1299evtFechaEvPerDetail.as_view() ),
 
-    url(r'^s1299-evtfechaevper/listar/(?P<hash>.*)/$', 
+    url(r'^s1299-evtfechaevper/$', 
         s1299_evtfechaevper_listar_views.listar, 
         name='s1299_evtfechaevper'),
         
-    url(r'^s1299-evtfechaevper/verificar/(?P<hash>.*)/$', 
+    url(r'^s1299-evtfechaevper/verificar/(?P<pk>[0-9]+)/$', 
         s1299_evtfechaevper_verificar_views.verificar, 
         name='s1299_evtfechaevper_verificar'),
+        
+    url(r'^s1299-evtfechaevper/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1299_evtfechaevper_verificar_views.verificar, 
+        name='s1299_evtfechaevper_verificar_output'),
             
-    url(r'^s1299-evtfechaevper/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1299-evtfechaevper/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1299_evtfechaevper_recibos_views.recibo, 
         name='s1299_evtfechaevper_recibo'),
             
-    url(r'^s1299-evtfechaevper/duplicar/(?P<hash>.*)/$',
+    url(r'^s1299-evtfechaevper/duplicar/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_duplicar_views.duplicar,
         name='s1299_evtfechaevper_duplicar'),
 
-    url(r'^s1299-evtfechaevper/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1299-evtfechaevper/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_criar_alteracao_views.criar_alteracao,
         name='s1299_evtfechaevper_criar_alteracao'),
 
-    url(r'^s1299-evtfechaevper/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1299-evtfechaevper/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_criar_exclusao_views.criar_exclusao,
         name='s1299_evtfechaevper_criar_exclusao'),
             
-    url(r'^s1299-evtfechaevper/xml/(?P<hash>.*)/$', 
+    url(r'^s1299-evtfechaevper/xml/(?P<pk>[0-9]+)/$', 
         s1299_evtfechaevper_gerar_xml_views.gerar_xml, 
         name='s1299_evtfechaevper_xml'),          
 
-    url(r'^s1299-evtfechaevper/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1299-evtfechaevper/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_alterar_identidade_views.alterar_identidade,
         name='s1299_evtfechaevper_alterar_identidade'),
 
-    url(r'^s1299-evtfechaevper/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1299-evtfechaevper/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1299_evtfechaevper_abrir_evento_para_edicao'),
 
-    url(r'^s1299-evtfechaevper/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1299-evtfechaevper/validar-evento/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_validar_evento_views.validar_evento,
         name='s1299_evtfechaevper_validar_evento'),
 
-    url(r'^s1299-evtfechaevper/salvar/(?P<hash>.*)/$', 
+    url(r'^s1299-evtfechaevper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1299_evtfechaevper_salvar_views.salvar, 
         name='s1299_evtfechaevper_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1299-evtfechaevper/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1299-evtfechaevper/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1299_evtfechaevper_gerar_identidade_views.gerar_identidade, 
         name='s1299_evtfechaevper_gerar_identidade'),
+        
+    url(r'^s1299-evtfechaevper/cadastrar/$', 
+        s1299_evtfechaevper_salvar_views.salvar, 
+        name='s1299_evtfechaevper_cadastrar'),
 
-    url(r'^s1300-evtcontrsindpatr/apagar/(?P<hash>.*)/$', 
+    url(r'^s1299-evtfechaevper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1299_evtfechaevper_salvar_views.salvar, 
+        name='s1299_evtfechaevper_salvar_output'),
+        
+    url(r'^s1299-evtfechaevper/(?P<output>[\w-]+)/$', 
+        s1299_evtfechaevper_listar_views.listar, 
+        name='s1299_evtfechaevper_output'),
+
+    url(r'^s1300-evtcontrsindpatr/apagar/(?P<pk>[0-9]+)/$', 
         s1300_evtcontrsindpatr_apagar_views.apagar, 
         name='s1300_evtcontrsindpatr_apagar'),
 
@@ -2194,55 +2546,71 @@ urlpatterns = [
     url(r'^s1300-evtcontrsindpatr/api/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_api_views.s1300evtContrSindPatrDetail.as_view() ),
 
-    url(r'^s1300-evtcontrsindpatr/listar/(?P<hash>.*)/$', 
+    url(r'^s1300-evtcontrsindpatr/$', 
         s1300_evtcontrsindpatr_listar_views.listar, 
         name='s1300_evtcontrsindpatr'),
         
-    url(r'^s1300-evtcontrsindpatr/verificar/(?P<hash>.*)/$', 
+    url(r'^s1300-evtcontrsindpatr/verificar/(?P<pk>[0-9]+)/$', 
         s1300_evtcontrsindpatr_verificar_views.verificar, 
         name='s1300_evtcontrsindpatr_verificar'),
+        
+    url(r'^s1300-evtcontrsindpatr/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s1300_evtcontrsindpatr_verificar_views.verificar, 
+        name='s1300_evtcontrsindpatr_verificar_output'),
             
-    url(r'^s1300-evtcontrsindpatr/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s1300-evtcontrsindpatr/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s1300_evtcontrsindpatr_recibos_views.recibo, 
         name='s1300_evtcontrsindpatr_recibo'),
             
-    url(r'^s1300-evtcontrsindpatr/duplicar/(?P<hash>.*)/$',
+    url(r'^s1300-evtcontrsindpatr/duplicar/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_duplicar_views.duplicar,
         name='s1300_evtcontrsindpatr_duplicar'),
 
-    url(r'^s1300-evtcontrsindpatr/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s1300-evtcontrsindpatr/criar-alteracao/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_criar_alteracao_views.criar_alteracao,
         name='s1300_evtcontrsindpatr_criar_alteracao'),
 
-    url(r'^s1300-evtcontrsindpatr/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s1300-evtcontrsindpatr/criar-exclusao/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_criar_exclusao_views.criar_exclusao,
         name='s1300_evtcontrsindpatr_criar_exclusao'),
             
-    url(r'^s1300-evtcontrsindpatr/xml/(?P<hash>.*)/$', 
+    url(r'^s1300-evtcontrsindpatr/xml/(?P<pk>[0-9]+)/$', 
         s1300_evtcontrsindpatr_gerar_xml_views.gerar_xml, 
         name='s1300_evtcontrsindpatr_xml'),          
 
-    url(r'^s1300-evtcontrsindpatr/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s1300-evtcontrsindpatr/alterar-identidade/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_alterar_identidade_views.alterar_identidade,
         name='s1300_evtcontrsindpatr_alterar_identidade'),
 
-    url(r'^s1300-evtcontrsindpatr/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s1300-evtcontrsindpatr/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s1300_evtcontrsindpatr_abrir_evento_para_edicao'),
 
-    url(r'^s1300-evtcontrsindpatr/validar-evento/(?P<hash>.*)/$',
+    url(r'^s1300-evtcontrsindpatr/validar-evento/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_validar_evento_views.validar_evento,
         name='s1300_evtcontrsindpatr_validar_evento'),
 
-    url(r'^s1300-evtcontrsindpatr/salvar/(?P<hash>.*)/$', 
+    url(r'^s1300-evtcontrsindpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1300_evtcontrsindpatr_salvar_views.salvar, 
         name='s1300_evtcontrsindpatr_salvar'),
         
-    url(r'^scripts/gerar-identidade/s1300-evtcontrsindpatr/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s1300-evtcontrsindpatr/gerar-identidade/(?P<pk>[0-9]+)/$',
         s1300_evtcontrsindpatr_gerar_identidade_views.gerar_identidade, 
         name='s1300_evtcontrsindpatr_gerar_identidade'),
+        
+    url(r'^s1300-evtcontrsindpatr/cadastrar/$', 
+        s1300_evtcontrsindpatr_salvar_views.salvar, 
+        name='s1300_evtcontrsindpatr_cadastrar'),
 
-    url(r'^s2190-evtadmprelim/apagar/(?P<hash>.*)/$', 
+    url(r'^s1300-evtcontrsindpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1300_evtcontrsindpatr_salvar_views.salvar, 
+        name='s1300_evtcontrsindpatr_salvar_output'),
+        
+    url(r'^s1300-evtcontrsindpatr/(?P<output>[\w-]+)/$', 
+        s1300_evtcontrsindpatr_listar_views.listar, 
+        name='s1300_evtcontrsindpatr_output'),
+
+    url(r'^s2190-evtadmprelim/apagar/(?P<pk>[0-9]+)/$', 
         s2190_evtadmprelim_apagar_views.apagar, 
         name='s2190_evtadmprelim_apagar'),
 
@@ -2252,55 +2620,71 @@ urlpatterns = [
     url(r'^s2190-evtadmprelim/api/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_api_views.s2190evtAdmPrelimDetail.as_view() ),
 
-    url(r'^s2190-evtadmprelim/listar/(?P<hash>.*)/$', 
+    url(r'^s2190-evtadmprelim/$', 
         s2190_evtadmprelim_listar_views.listar, 
         name='s2190_evtadmprelim'),
         
-    url(r'^s2190-evtadmprelim/verificar/(?P<hash>.*)/$', 
+    url(r'^s2190-evtadmprelim/verificar/(?P<pk>[0-9]+)/$', 
         s2190_evtadmprelim_verificar_views.verificar, 
         name='s2190_evtadmprelim_verificar'),
+        
+    url(r'^s2190-evtadmprelim/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2190_evtadmprelim_verificar_views.verificar, 
+        name='s2190_evtadmprelim_verificar_output'),
             
-    url(r'^s2190-evtadmprelim/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2190-evtadmprelim/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2190_evtadmprelim_recibos_views.recibo, 
         name='s2190_evtadmprelim_recibo'),
             
-    url(r'^s2190-evtadmprelim/duplicar/(?P<hash>.*)/$',
+    url(r'^s2190-evtadmprelim/duplicar/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_duplicar_views.duplicar,
         name='s2190_evtadmprelim_duplicar'),
 
-    url(r'^s2190-evtadmprelim/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2190-evtadmprelim/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_criar_alteracao_views.criar_alteracao,
         name='s2190_evtadmprelim_criar_alteracao'),
 
-    url(r'^s2190-evtadmprelim/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2190-evtadmprelim/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_criar_exclusao_views.criar_exclusao,
         name='s2190_evtadmprelim_criar_exclusao'),
             
-    url(r'^s2190-evtadmprelim/xml/(?P<hash>.*)/$', 
+    url(r'^s2190-evtadmprelim/xml/(?P<pk>[0-9]+)/$', 
         s2190_evtadmprelim_gerar_xml_views.gerar_xml, 
         name='s2190_evtadmprelim_xml'),          
 
-    url(r'^s2190-evtadmprelim/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2190-evtadmprelim/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_alterar_identidade_views.alterar_identidade,
         name='s2190_evtadmprelim_alterar_identidade'),
 
-    url(r'^s2190-evtadmprelim/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2190-evtadmprelim/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2190_evtadmprelim_abrir_evento_para_edicao'),
 
-    url(r'^s2190-evtadmprelim/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2190-evtadmprelim/validar-evento/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_validar_evento_views.validar_evento,
         name='s2190_evtadmprelim_validar_evento'),
 
-    url(r'^s2190-evtadmprelim/salvar/(?P<hash>.*)/$', 
+    url(r'^s2190-evtadmprelim/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2190_evtadmprelim_salvar_views.salvar, 
         name='s2190_evtadmprelim_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2190-evtadmprelim/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2190-evtadmprelim/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2190_evtadmprelim_gerar_identidade_views.gerar_identidade, 
         name='s2190_evtadmprelim_gerar_identidade'),
+        
+    url(r'^s2190-evtadmprelim/cadastrar/$', 
+        s2190_evtadmprelim_salvar_views.salvar, 
+        name='s2190_evtadmprelim_cadastrar'),
 
-    url(r'^s2200-evtadmissao/apagar/(?P<hash>.*)/$', 
+    url(r'^s2190-evtadmprelim/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2190_evtadmprelim_salvar_views.salvar, 
+        name='s2190_evtadmprelim_salvar_output'),
+        
+    url(r'^s2190-evtadmprelim/(?P<output>[\w-]+)/$', 
+        s2190_evtadmprelim_listar_views.listar, 
+        name='s2190_evtadmprelim_output'),
+
+    url(r'^s2200-evtadmissao/apagar/(?P<pk>[0-9]+)/$', 
         s2200_evtadmissao_apagar_views.apagar, 
         name='s2200_evtadmissao_apagar'),
 
@@ -2310,55 +2694,71 @@ urlpatterns = [
     url(r'^s2200-evtadmissao/api/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_api_views.s2200evtAdmissaoDetail.as_view() ),
 
-    url(r'^s2200-evtadmissao/listar/(?P<hash>.*)/$', 
+    url(r'^s2200-evtadmissao/$', 
         s2200_evtadmissao_listar_views.listar, 
         name='s2200_evtadmissao'),
         
-    url(r'^s2200-evtadmissao/verificar/(?P<hash>.*)/$', 
+    url(r'^s2200-evtadmissao/verificar/(?P<pk>[0-9]+)/$', 
         s2200_evtadmissao_verificar_views.verificar, 
         name='s2200_evtadmissao_verificar'),
+        
+    url(r'^s2200-evtadmissao/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2200_evtadmissao_verificar_views.verificar, 
+        name='s2200_evtadmissao_verificar_output'),
             
-    url(r'^s2200-evtadmissao/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2200-evtadmissao/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2200_evtadmissao_recibos_views.recibo, 
         name='s2200_evtadmissao_recibo'),
             
-    url(r'^s2200-evtadmissao/duplicar/(?P<hash>.*)/$',
+    url(r'^s2200-evtadmissao/duplicar/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_duplicar_views.duplicar,
         name='s2200_evtadmissao_duplicar'),
 
-    url(r'^s2200-evtadmissao/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2200-evtadmissao/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_criar_alteracao_views.criar_alteracao,
         name='s2200_evtadmissao_criar_alteracao'),
 
-    url(r'^s2200-evtadmissao/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2200-evtadmissao/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_criar_exclusao_views.criar_exclusao,
         name='s2200_evtadmissao_criar_exclusao'),
             
-    url(r'^s2200-evtadmissao/xml/(?P<hash>.*)/$', 
+    url(r'^s2200-evtadmissao/xml/(?P<pk>[0-9]+)/$', 
         s2200_evtadmissao_gerar_xml_views.gerar_xml, 
         name='s2200_evtadmissao_xml'),          
 
-    url(r'^s2200-evtadmissao/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2200-evtadmissao/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_alterar_identidade_views.alterar_identidade,
         name='s2200_evtadmissao_alterar_identidade'),
 
-    url(r'^s2200-evtadmissao/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2200-evtadmissao/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2200_evtadmissao_abrir_evento_para_edicao'),
 
-    url(r'^s2200-evtadmissao/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2200-evtadmissao/validar-evento/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_validar_evento_views.validar_evento,
         name='s2200_evtadmissao_validar_evento'),
 
-    url(r'^s2200-evtadmissao/salvar/(?P<hash>.*)/$', 
+    url(r'^s2200-evtadmissao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2200_evtadmissao_salvar_views.salvar, 
         name='s2200_evtadmissao_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2200-evtadmissao/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2200-evtadmissao/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2200_evtadmissao_gerar_identidade_views.gerar_identidade, 
         name='s2200_evtadmissao_gerar_identidade'),
+        
+    url(r'^s2200-evtadmissao/cadastrar/$', 
+        s2200_evtadmissao_salvar_views.salvar, 
+        name='s2200_evtadmissao_cadastrar'),
 
-    url(r'^s2205-evtaltcadastral/apagar/(?P<hash>.*)/$', 
+    url(r'^s2200-evtadmissao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2200_evtadmissao_salvar_views.salvar, 
+        name='s2200_evtadmissao_salvar_output'),
+        
+    url(r'^s2200-evtadmissao/(?P<output>[\w-]+)/$', 
+        s2200_evtadmissao_listar_views.listar, 
+        name='s2200_evtadmissao_output'),
+
+    url(r'^s2205-evtaltcadastral/apagar/(?P<pk>[0-9]+)/$', 
         s2205_evtaltcadastral_apagar_views.apagar, 
         name='s2205_evtaltcadastral_apagar'),
 
@@ -2368,55 +2768,71 @@ urlpatterns = [
     url(r'^s2205-evtaltcadastral/api/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_api_views.s2205evtAltCadastralDetail.as_view() ),
 
-    url(r'^s2205-evtaltcadastral/listar/(?P<hash>.*)/$', 
+    url(r'^s2205-evtaltcadastral/$', 
         s2205_evtaltcadastral_listar_views.listar, 
         name='s2205_evtaltcadastral'),
         
-    url(r'^s2205-evtaltcadastral/verificar/(?P<hash>.*)/$', 
+    url(r'^s2205-evtaltcadastral/verificar/(?P<pk>[0-9]+)/$', 
         s2205_evtaltcadastral_verificar_views.verificar, 
         name='s2205_evtaltcadastral_verificar'),
+        
+    url(r'^s2205-evtaltcadastral/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2205_evtaltcadastral_verificar_views.verificar, 
+        name='s2205_evtaltcadastral_verificar_output'),
             
-    url(r'^s2205-evtaltcadastral/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2205-evtaltcadastral/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2205_evtaltcadastral_recibos_views.recibo, 
         name='s2205_evtaltcadastral_recibo'),
             
-    url(r'^s2205-evtaltcadastral/duplicar/(?P<hash>.*)/$',
+    url(r'^s2205-evtaltcadastral/duplicar/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_duplicar_views.duplicar,
         name='s2205_evtaltcadastral_duplicar'),
 
-    url(r'^s2205-evtaltcadastral/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2205-evtaltcadastral/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_criar_alteracao_views.criar_alteracao,
         name='s2205_evtaltcadastral_criar_alteracao'),
 
-    url(r'^s2205-evtaltcadastral/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2205-evtaltcadastral/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_criar_exclusao_views.criar_exclusao,
         name='s2205_evtaltcadastral_criar_exclusao'),
             
-    url(r'^s2205-evtaltcadastral/xml/(?P<hash>.*)/$', 
+    url(r'^s2205-evtaltcadastral/xml/(?P<pk>[0-9]+)/$', 
         s2205_evtaltcadastral_gerar_xml_views.gerar_xml, 
         name='s2205_evtaltcadastral_xml'),          
 
-    url(r'^s2205-evtaltcadastral/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2205-evtaltcadastral/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_alterar_identidade_views.alterar_identidade,
         name='s2205_evtaltcadastral_alterar_identidade'),
 
-    url(r'^s2205-evtaltcadastral/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2205-evtaltcadastral/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2205_evtaltcadastral_abrir_evento_para_edicao'),
 
-    url(r'^s2205-evtaltcadastral/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2205-evtaltcadastral/validar-evento/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_validar_evento_views.validar_evento,
         name='s2205_evtaltcadastral_validar_evento'),
 
-    url(r'^s2205-evtaltcadastral/salvar/(?P<hash>.*)/$', 
+    url(r'^s2205-evtaltcadastral/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2205_evtaltcadastral_salvar_views.salvar, 
         name='s2205_evtaltcadastral_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2205-evtaltcadastral/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2205-evtaltcadastral/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2205_evtaltcadastral_gerar_identidade_views.gerar_identidade, 
         name='s2205_evtaltcadastral_gerar_identidade'),
+        
+    url(r'^s2205-evtaltcadastral/cadastrar/$', 
+        s2205_evtaltcadastral_salvar_views.salvar, 
+        name='s2205_evtaltcadastral_cadastrar'),
 
-    url(r'^s2206-evtaltcontratual/apagar/(?P<hash>.*)/$', 
+    url(r'^s2205-evtaltcadastral/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2205_evtaltcadastral_salvar_views.salvar, 
+        name='s2205_evtaltcadastral_salvar_output'),
+        
+    url(r'^s2205-evtaltcadastral/(?P<output>[\w-]+)/$', 
+        s2205_evtaltcadastral_listar_views.listar, 
+        name='s2205_evtaltcadastral_output'),
+
+    url(r'^s2206-evtaltcontratual/apagar/(?P<pk>[0-9]+)/$', 
         s2206_evtaltcontratual_apagar_views.apagar, 
         name='s2206_evtaltcontratual_apagar'),
 
@@ -2426,55 +2842,71 @@ urlpatterns = [
     url(r'^s2206-evtaltcontratual/api/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_api_views.s2206evtAltContratualDetail.as_view() ),
 
-    url(r'^s2206-evtaltcontratual/listar/(?P<hash>.*)/$', 
+    url(r'^s2206-evtaltcontratual/$', 
         s2206_evtaltcontratual_listar_views.listar, 
         name='s2206_evtaltcontratual'),
         
-    url(r'^s2206-evtaltcontratual/verificar/(?P<hash>.*)/$', 
+    url(r'^s2206-evtaltcontratual/verificar/(?P<pk>[0-9]+)/$', 
         s2206_evtaltcontratual_verificar_views.verificar, 
         name='s2206_evtaltcontratual_verificar'),
+        
+    url(r'^s2206-evtaltcontratual/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2206_evtaltcontratual_verificar_views.verificar, 
+        name='s2206_evtaltcontratual_verificar_output'),
             
-    url(r'^s2206-evtaltcontratual/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2206-evtaltcontratual/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2206_evtaltcontratual_recibos_views.recibo, 
         name='s2206_evtaltcontratual_recibo'),
             
-    url(r'^s2206-evtaltcontratual/duplicar/(?P<hash>.*)/$',
+    url(r'^s2206-evtaltcontratual/duplicar/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_duplicar_views.duplicar,
         name='s2206_evtaltcontratual_duplicar'),
 
-    url(r'^s2206-evtaltcontratual/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2206-evtaltcontratual/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_criar_alteracao_views.criar_alteracao,
         name='s2206_evtaltcontratual_criar_alteracao'),
 
-    url(r'^s2206-evtaltcontratual/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2206-evtaltcontratual/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_criar_exclusao_views.criar_exclusao,
         name='s2206_evtaltcontratual_criar_exclusao'),
             
-    url(r'^s2206-evtaltcontratual/xml/(?P<hash>.*)/$', 
+    url(r'^s2206-evtaltcontratual/xml/(?P<pk>[0-9]+)/$', 
         s2206_evtaltcontratual_gerar_xml_views.gerar_xml, 
         name='s2206_evtaltcontratual_xml'),          
 
-    url(r'^s2206-evtaltcontratual/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2206-evtaltcontratual/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_alterar_identidade_views.alterar_identidade,
         name='s2206_evtaltcontratual_alterar_identidade'),
 
-    url(r'^s2206-evtaltcontratual/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2206-evtaltcontratual/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2206_evtaltcontratual_abrir_evento_para_edicao'),
 
-    url(r'^s2206-evtaltcontratual/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2206-evtaltcontratual/validar-evento/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_validar_evento_views.validar_evento,
         name='s2206_evtaltcontratual_validar_evento'),
 
-    url(r'^s2206-evtaltcontratual/salvar/(?P<hash>.*)/$', 
+    url(r'^s2206-evtaltcontratual/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2206_evtaltcontratual_salvar_views.salvar, 
         name='s2206_evtaltcontratual_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2206-evtaltcontratual/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2206-evtaltcontratual/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2206_evtaltcontratual_gerar_identidade_views.gerar_identidade, 
         name='s2206_evtaltcontratual_gerar_identidade'),
+        
+    url(r'^s2206-evtaltcontratual/cadastrar/$', 
+        s2206_evtaltcontratual_salvar_views.salvar, 
+        name='s2206_evtaltcontratual_cadastrar'),
 
-    url(r'^s2210-evtcat/apagar/(?P<hash>.*)/$', 
+    url(r'^s2206-evtaltcontratual/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2206_evtaltcontratual_salvar_views.salvar, 
+        name='s2206_evtaltcontratual_salvar_output'),
+        
+    url(r'^s2206-evtaltcontratual/(?P<output>[\w-]+)/$', 
+        s2206_evtaltcontratual_listar_views.listar, 
+        name='s2206_evtaltcontratual_output'),
+
+    url(r'^s2210-evtcat/apagar/(?P<pk>[0-9]+)/$', 
         s2210_evtcat_apagar_views.apagar, 
         name='s2210_evtcat_apagar'),
 
@@ -2484,55 +2916,71 @@ urlpatterns = [
     url(r'^s2210-evtcat/api/(?P<pk>[0-9]+)/$',
         s2210_evtcat_api_views.s2210evtCATDetail.as_view() ),
 
-    url(r'^s2210-evtcat/listar/(?P<hash>.*)/$', 
+    url(r'^s2210-evtcat/$', 
         s2210_evtcat_listar_views.listar, 
         name='s2210_evtcat'),
         
-    url(r'^s2210-evtcat/verificar/(?P<hash>.*)/$', 
+    url(r'^s2210-evtcat/verificar/(?P<pk>[0-9]+)/$', 
         s2210_evtcat_verificar_views.verificar, 
         name='s2210_evtcat_verificar'),
+        
+    url(r'^s2210-evtcat/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2210_evtcat_verificar_views.verificar, 
+        name='s2210_evtcat_verificar_output'),
             
-    url(r'^s2210-evtcat/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2210-evtcat/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2210_evtcat_recibos_views.recibo, 
         name='s2210_evtcat_recibo'),
             
-    url(r'^s2210-evtcat/duplicar/(?P<hash>.*)/$',
+    url(r'^s2210-evtcat/duplicar/(?P<pk>[0-9]+)/$',
         s2210_evtcat_duplicar_views.duplicar,
         name='s2210_evtcat_duplicar'),
 
-    url(r'^s2210-evtcat/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2210-evtcat/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2210_evtcat_criar_alteracao_views.criar_alteracao,
         name='s2210_evtcat_criar_alteracao'),
 
-    url(r'^s2210-evtcat/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2210-evtcat/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2210_evtcat_criar_exclusao_views.criar_exclusao,
         name='s2210_evtcat_criar_exclusao'),
             
-    url(r'^s2210-evtcat/xml/(?P<hash>.*)/$', 
+    url(r'^s2210-evtcat/xml/(?P<pk>[0-9]+)/$', 
         s2210_evtcat_gerar_xml_views.gerar_xml, 
         name='s2210_evtcat_xml'),          
 
-    url(r'^s2210-evtcat/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2210-evtcat/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2210_evtcat_alterar_identidade_views.alterar_identidade,
         name='s2210_evtcat_alterar_identidade'),
 
-    url(r'^s2210-evtcat/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2210-evtcat/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2210_evtcat_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2210_evtcat_abrir_evento_para_edicao'),
 
-    url(r'^s2210-evtcat/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2210-evtcat/validar-evento/(?P<pk>[0-9]+)/$',
         s2210_evtcat_validar_evento_views.validar_evento,
         name='s2210_evtcat_validar_evento'),
 
-    url(r'^s2210-evtcat/salvar/(?P<hash>.*)/$', 
+    url(r'^s2210-evtcat/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2210_evtcat_salvar_views.salvar, 
         name='s2210_evtcat_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2210-evtcat/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2210-evtcat/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2210_evtcat_gerar_identidade_views.gerar_identidade, 
         name='s2210_evtcat_gerar_identidade'),
+        
+    url(r'^s2210-evtcat/cadastrar/$', 
+        s2210_evtcat_salvar_views.salvar, 
+        name='s2210_evtcat_cadastrar'),
 
-    url(r'^s2220-evtmonit/apagar/(?P<hash>.*)/$', 
+    url(r'^s2210-evtcat/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2210_evtcat_salvar_views.salvar, 
+        name='s2210_evtcat_salvar_output'),
+        
+    url(r'^s2210-evtcat/(?P<output>[\w-]+)/$', 
+        s2210_evtcat_listar_views.listar, 
+        name='s2210_evtcat_output'),
+
+    url(r'^s2220-evtmonit/apagar/(?P<pk>[0-9]+)/$', 
         s2220_evtmonit_apagar_views.apagar, 
         name='s2220_evtmonit_apagar'),
 
@@ -2542,55 +2990,71 @@ urlpatterns = [
     url(r'^s2220-evtmonit/api/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_api_views.s2220evtMonitDetail.as_view() ),
 
-    url(r'^s2220-evtmonit/listar/(?P<hash>.*)/$', 
+    url(r'^s2220-evtmonit/$', 
         s2220_evtmonit_listar_views.listar, 
         name='s2220_evtmonit'),
         
-    url(r'^s2220-evtmonit/verificar/(?P<hash>.*)/$', 
+    url(r'^s2220-evtmonit/verificar/(?P<pk>[0-9]+)/$', 
         s2220_evtmonit_verificar_views.verificar, 
         name='s2220_evtmonit_verificar'),
+        
+    url(r'^s2220-evtmonit/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2220_evtmonit_verificar_views.verificar, 
+        name='s2220_evtmonit_verificar_output'),
             
-    url(r'^s2220-evtmonit/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2220-evtmonit/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2220_evtmonit_recibos_views.recibo, 
         name='s2220_evtmonit_recibo'),
             
-    url(r'^s2220-evtmonit/duplicar/(?P<hash>.*)/$',
+    url(r'^s2220-evtmonit/duplicar/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_duplicar_views.duplicar,
         name='s2220_evtmonit_duplicar'),
 
-    url(r'^s2220-evtmonit/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2220-evtmonit/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_criar_alteracao_views.criar_alteracao,
         name='s2220_evtmonit_criar_alteracao'),
 
-    url(r'^s2220-evtmonit/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2220-evtmonit/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_criar_exclusao_views.criar_exclusao,
         name='s2220_evtmonit_criar_exclusao'),
             
-    url(r'^s2220-evtmonit/xml/(?P<hash>.*)/$', 
+    url(r'^s2220-evtmonit/xml/(?P<pk>[0-9]+)/$', 
         s2220_evtmonit_gerar_xml_views.gerar_xml, 
         name='s2220_evtmonit_xml'),          
 
-    url(r'^s2220-evtmonit/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2220-evtmonit/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_alterar_identidade_views.alterar_identidade,
         name='s2220_evtmonit_alterar_identidade'),
 
-    url(r'^s2220-evtmonit/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2220-evtmonit/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2220_evtmonit_abrir_evento_para_edicao'),
 
-    url(r'^s2220-evtmonit/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2220-evtmonit/validar-evento/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_validar_evento_views.validar_evento,
         name='s2220_evtmonit_validar_evento'),
 
-    url(r'^s2220-evtmonit/salvar/(?P<hash>.*)/$', 
+    url(r'^s2220-evtmonit/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2220_evtmonit_salvar_views.salvar, 
         name='s2220_evtmonit_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2220-evtmonit/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2220-evtmonit/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2220_evtmonit_gerar_identidade_views.gerar_identidade, 
         name='s2220_evtmonit_gerar_identidade'),
+        
+    url(r'^s2220-evtmonit/cadastrar/$', 
+        s2220_evtmonit_salvar_views.salvar, 
+        name='s2220_evtmonit_cadastrar'),
 
-    url(r'^s2221-evttoxic/apagar/(?P<hash>.*)/$', 
+    url(r'^s2220-evtmonit/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2220_evtmonit_salvar_views.salvar, 
+        name='s2220_evtmonit_salvar_output'),
+        
+    url(r'^s2220-evtmonit/(?P<output>[\w-]+)/$', 
+        s2220_evtmonit_listar_views.listar, 
+        name='s2220_evtmonit_output'),
+
+    url(r'^s2221-evttoxic/apagar/(?P<pk>[0-9]+)/$', 
         s2221_evttoxic_apagar_views.apagar, 
         name='s2221_evttoxic_apagar'),
 
@@ -2600,55 +3064,71 @@ urlpatterns = [
     url(r'^s2221-evttoxic/api/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_api_views.s2221evtToxicDetail.as_view() ),
 
-    url(r'^s2221-evttoxic/listar/(?P<hash>.*)/$', 
+    url(r'^s2221-evttoxic/$', 
         s2221_evttoxic_listar_views.listar, 
         name='s2221_evttoxic'),
         
-    url(r'^s2221-evttoxic/verificar/(?P<hash>.*)/$', 
+    url(r'^s2221-evttoxic/verificar/(?P<pk>[0-9]+)/$', 
         s2221_evttoxic_verificar_views.verificar, 
         name='s2221_evttoxic_verificar'),
+        
+    url(r'^s2221-evttoxic/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2221_evttoxic_verificar_views.verificar, 
+        name='s2221_evttoxic_verificar_output'),
             
-    url(r'^s2221-evttoxic/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2221-evttoxic/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2221_evttoxic_recibos_views.recibo, 
         name='s2221_evttoxic_recibo'),
             
-    url(r'^s2221-evttoxic/duplicar/(?P<hash>.*)/$',
+    url(r'^s2221-evttoxic/duplicar/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_duplicar_views.duplicar,
         name='s2221_evttoxic_duplicar'),
 
-    url(r'^s2221-evttoxic/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2221-evttoxic/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_criar_alteracao_views.criar_alteracao,
         name='s2221_evttoxic_criar_alteracao'),
 
-    url(r'^s2221-evttoxic/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2221-evttoxic/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_criar_exclusao_views.criar_exclusao,
         name='s2221_evttoxic_criar_exclusao'),
             
-    url(r'^s2221-evttoxic/xml/(?P<hash>.*)/$', 
+    url(r'^s2221-evttoxic/xml/(?P<pk>[0-9]+)/$', 
         s2221_evttoxic_gerar_xml_views.gerar_xml, 
         name='s2221_evttoxic_xml'),          
 
-    url(r'^s2221-evttoxic/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2221-evttoxic/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_alterar_identidade_views.alterar_identidade,
         name='s2221_evttoxic_alterar_identidade'),
 
-    url(r'^s2221-evttoxic/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2221-evttoxic/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2221_evttoxic_abrir_evento_para_edicao'),
 
-    url(r'^s2221-evttoxic/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2221-evttoxic/validar-evento/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_validar_evento_views.validar_evento,
         name='s2221_evttoxic_validar_evento'),
 
-    url(r'^s2221-evttoxic/salvar/(?P<hash>.*)/$', 
+    url(r'^s2221-evttoxic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2221_evttoxic_salvar_views.salvar, 
         name='s2221_evttoxic_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2221-evttoxic/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2221-evttoxic/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2221_evttoxic_gerar_identidade_views.gerar_identidade, 
         name='s2221_evttoxic_gerar_identidade'),
+        
+    url(r'^s2221-evttoxic/cadastrar/$', 
+        s2221_evttoxic_salvar_views.salvar, 
+        name='s2221_evttoxic_cadastrar'),
 
-    url(r'^s2230-evtafasttemp/apagar/(?P<hash>.*)/$', 
+    url(r'^s2221-evttoxic/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2221_evttoxic_salvar_views.salvar, 
+        name='s2221_evttoxic_salvar_output'),
+        
+    url(r'^s2221-evttoxic/(?P<output>[\w-]+)/$', 
+        s2221_evttoxic_listar_views.listar, 
+        name='s2221_evttoxic_output'),
+
+    url(r'^s2230-evtafasttemp/apagar/(?P<pk>[0-9]+)/$', 
         s2230_evtafasttemp_apagar_views.apagar, 
         name='s2230_evtafasttemp_apagar'),
 
@@ -2658,55 +3138,71 @@ urlpatterns = [
     url(r'^s2230-evtafasttemp/api/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_api_views.s2230evtAfastTempDetail.as_view() ),
 
-    url(r'^s2230-evtafasttemp/listar/(?P<hash>.*)/$', 
+    url(r'^s2230-evtafasttemp/$', 
         s2230_evtafasttemp_listar_views.listar, 
         name='s2230_evtafasttemp'),
         
-    url(r'^s2230-evtafasttemp/verificar/(?P<hash>.*)/$', 
+    url(r'^s2230-evtafasttemp/verificar/(?P<pk>[0-9]+)/$', 
         s2230_evtafasttemp_verificar_views.verificar, 
         name='s2230_evtafasttemp_verificar'),
+        
+    url(r'^s2230-evtafasttemp/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2230_evtafasttemp_verificar_views.verificar, 
+        name='s2230_evtafasttemp_verificar_output'),
             
-    url(r'^s2230-evtafasttemp/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2230-evtafasttemp/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2230_evtafasttemp_recibos_views.recibo, 
         name='s2230_evtafasttemp_recibo'),
             
-    url(r'^s2230-evtafasttemp/duplicar/(?P<hash>.*)/$',
+    url(r'^s2230-evtafasttemp/duplicar/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_duplicar_views.duplicar,
         name='s2230_evtafasttemp_duplicar'),
 
-    url(r'^s2230-evtafasttemp/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2230-evtafasttemp/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_criar_alteracao_views.criar_alteracao,
         name='s2230_evtafasttemp_criar_alteracao'),
 
-    url(r'^s2230-evtafasttemp/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2230-evtafasttemp/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_criar_exclusao_views.criar_exclusao,
         name='s2230_evtafasttemp_criar_exclusao'),
             
-    url(r'^s2230-evtafasttemp/xml/(?P<hash>.*)/$', 
+    url(r'^s2230-evtafasttemp/xml/(?P<pk>[0-9]+)/$', 
         s2230_evtafasttemp_gerar_xml_views.gerar_xml, 
         name='s2230_evtafasttemp_xml'),          
 
-    url(r'^s2230-evtafasttemp/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2230-evtafasttemp/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_alterar_identidade_views.alterar_identidade,
         name='s2230_evtafasttemp_alterar_identidade'),
 
-    url(r'^s2230-evtafasttemp/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2230-evtafasttemp/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2230_evtafasttemp_abrir_evento_para_edicao'),
 
-    url(r'^s2230-evtafasttemp/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2230-evtafasttemp/validar-evento/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_validar_evento_views.validar_evento,
         name='s2230_evtafasttemp_validar_evento'),
 
-    url(r'^s2230-evtafasttemp/salvar/(?P<hash>.*)/$', 
+    url(r'^s2230-evtafasttemp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2230_evtafasttemp_salvar_views.salvar, 
         name='s2230_evtafasttemp_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2230-evtafasttemp/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2230-evtafasttemp/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2230_evtafasttemp_gerar_identidade_views.gerar_identidade, 
         name='s2230_evtafasttemp_gerar_identidade'),
+        
+    url(r'^s2230-evtafasttemp/cadastrar/$', 
+        s2230_evtafasttemp_salvar_views.salvar, 
+        name='s2230_evtafasttemp_cadastrar'),
 
-    url(r'^s2231-evtcessao/apagar/(?P<hash>.*)/$', 
+    url(r'^s2230-evtafasttemp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2230_evtafasttemp_salvar_views.salvar, 
+        name='s2230_evtafasttemp_salvar_output'),
+        
+    url(r'^s2230-evtafasttemp/(?P<output>[\w-]+)/$', 
+        s2230_evtafasttemp_listar_views.listar, 
+        name='s2230_evtafasttemp_output'),
+
+    url(r'^s2231-evtcessao/apagar/(?P<pk>[0-9]+)/$', 
         s2231_evtcessao_apagar_views.apagar, 
         name='s2231_evtcessao_apagar'),
 
@@ -2716,55 +3212,71 @@ urlpatterns = [
     url(r'^s2231-evtcessao/api/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_api_views.s2231evtCessaoDetail.as_view() ),
 
-    url(r'^s2231-evtcessao/listar/(?P<hash>.*)/$', 
+    url(r'^s2231-evtcessao/$', 
         s2231_evtcessao_listar_views.listar, 
         name='s2231_evtcessao'),
         
-    url(r'^s2231-evtcessao/verificar/(?P<hash>.*)/$', 
+    url(r'^s2231-evtcessao/verificar/(?P<pk>[0-9]+)/$', 
         s2231_evtcessao_verificar_views.verificar, 
         name='s2231_evtcessao_verificar'),
+        
+    url(r'^s2231-evtcessao/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2231_evtcessao_verificar_views.verificar, 
+        name='s2231_evtcessao_verificar_output'),
             
-    url(r'^s2231-evtcessao/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2231-evtcessao/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2231_evtcessao_recibos_views.recibo, 
         name='s2231_evtcessao_recibo'),
             
-    url(r'^s2231-evtcessao/duplicar/(?P<hash>.*)/$',
+    url(r'^s2231-evtcessao/duplicar/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_duplicar_views.duplicar,
         name='s2231_evtcessao_duplicar'),
 
-    url(r'^s2231-evtcessao/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2231-evtcessao/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_criar_alteracao_views.criar_alteracao,
         name='s2231_evtcessao_criar_alteracao'),
 
-    url(r'^s2231-evtcessao/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2231-evtcessao/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_criar_exclusao_views.criar_exclusao,
         name='s2231_evtcessao_criar_exclusao'),
             
-    url(r'^s2231-evtcessao/xml/(?P<hash>.*)/$', 
+    url(r'^s2231-evtcessao/xml/(?P<pk>[0-9]+)/$', 
         s2231_evtcessao_gerar_xml_views.gerar_xml, 
         name='s2231_evtcessao_xml'),          
 
-    url(r'^s2231-evtcessao/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2231-evtcessao/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_alterar_identidade_views.alterar_identidade,
         name='s2231_evtcessao_alterar_identidade'),
 
-    url(r'^s2231-evtcessao/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2231-evtcessao/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2231_evtcessao_abrir_evento_para_edicao'),
 
-    url(r'^s2231-evtcessao/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2231-evtcessao/validar-evento/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_validar_evento_views.validar_evento,
         name='s2231_evtcessao_validar_evento'),
 
-    url(r'^s2231-evtcessao/salvar/(?P<hash>.*)/$', 
+    url(r'^s2231-evtcessao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2231_evtcessao_salvar_views.salvar, 
         name='s2231_evtcessao_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2231-evtcessao/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2231-evtcessao/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2231_evtcessao_gerar_identidade_views.gerar_identidade, 
         name='s2231_evtcessao_gerar_identidade'),
+        
+    url(r'^s2231-evtcessao/cadastrar/$', 
+        s2231_evtcessao_salvar_views.salvar, 
+        name='s2231_evtcessao_cadastrar'),
 
-    url(r'^s2240-evtexprisco/apagar/(?P<hash>.*)/$', 
+    url(r'^s2231-evtcessao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2231_evtcessao_salvar_views.salvar, 
+        name='s2231_evtcessao_salvar_output'),
+        
+    url(r'^s2231-evtcessao/(?P<output>[\w-]+)/$', 
+        s2231_evtcessao_listar_views.listar, 
+        name='s2231_evtcessao_output'),
+
+    url(r'^s2240-evtexprisco/apagar/(?P<pk>[0-9]+)/$', 
         s2240_evtexprisco_apagar_views.apagar, 
         name='s2240_evtexprisco_apagar'),
 
@@ -2774,55 +3286,71 @@ urlpatterns = [
     url(r'^s2240-evtexprisco/api/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_api_views.s2240evtExpRiscoDetail.as_view() ),
 
-    url(r'^s2240-evtexprisco/listar/(?P<hash>.*)/$', 
+    url(r'^s2240-evtexprisco/$', 
         s2240_evtexprisco_listar_views.listar, 
         name='s2240_evtexprisco'),
         
-    url(r'^s2240-evtexprisco/verificar/(?P<hash>.*)/$', 
+    url(r'^s2240-evtexprisco/verificar/(?P<pk>[0-9]+)/$', 
         s2240_evtexprisco_verificar_views.verificar, 
         name='s2240_evtexprisco_verificar'),
+        
+    url(r'^s2240-evtexprisco/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2240_evtexprisco_verificar_views.verificar, 
+        name='s2240_evtexprisco_verificar_output'),
             
-    url(r'^s2240-evtexprisco/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2240-evtexprisco/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2240_evtexprisco_recibos_views.recibo, 
         name='s2240_evtexprisco_recibo'),
             
-    url(r'^s2240-evtexprisco/duplicar/(?P<hash>.*)/$',
+    url(r'^s2240-evtexprisco/duplicar/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_duplicar_views.duplicar,
         name='s2240_evtexprisco_duplicar'),
 
-    url(r'^s2240-evtexprisco/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2240-evtexprisco/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_criar_alteracao_views.criar_alteracao,
         name='s2240_evtexprisco_criar_alteracao'),
 
-    url(r'^s2240-evtexprisco/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2240-evtexprisco/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_criar_exclusao_views.criar_exclusao,
         name='s2240_evtexprisco_criar_exclusao'),
             
-    url(r'^s2240-evtexprisco/xml/(?P<hash>.*)/$', 
+    url(r'^s2240-evtexprisco/xml/(?P<pk>[0-9]+)/$', 
         s2240_evtexprisco_gerar_xml_views.gerar_xml, 
         name='s2240_evtexprisco_xml'),          
 
-    url(r'^s2240-evtexprisco/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2240-evtexprisco/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_alterar_identidade_views.alterar_identidade,
         name='s2240_evtexprisco_alterar_identidade'),
 
-    url(r'^s2240-evtexprisco/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2240-evtexprisco/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2240_evtexprisco_abrir_evento_para_edicao'),
 
-    url(r'^s2240-evtexprisco/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2240-evtexprisco/validar-evento/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_validar_evento_views.validar_evento,
         name='s2240_evtexprisco_validar_evento'),
 
-    url(r'^s2240-evtexprisco/salvar/(?P<hash>.*)/$', 
+    url(r'^s2240-evtexprisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2240_evtexprisco_salvar_views.salvar, 
         name='s2240_evtexprisco_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2240-evtexprisco/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2240-evtexprisco/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2240_evtexprisco_gerar_identidade_views.gerar_identidade, 
         name='s2240_evtexprisco_gerar_identidade'),
+        
+    url(r'^s2240-evtexprisco/cadastrar/$', 
+        s2240_evtexprisco_salvar_views.salvar, 
+        name='s2240_evtexprisco_cadastrar'),
 
-    url(r'^s2241-evtinsapo/apagar/(?P<hash>.*)/$', 
+    url(r'^s2240-evtexprisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2240_evtexprisco_salvar_views.salvar, 
+        name='s2240_evtexprisco_salvar_output'),
+        
+    url(r'^s2240-evtexprisco/(?P<output>[\w-]+)/$', 
+        s2240_evtexprisco_listar_views.listar, 
+        name='s2240_evtexprisco_output'),
+
+    url(r'^s2241-evtinsapo/apagar/(?P<pk>[0-9]+)/$', 
         s2241_evtinsapo_apagar_views.apagar, 
         name='s2241_evtinsapo_apagar'),
 
@@ -2832,55 +3360,71 @@ urlpatterns = [
     url(r'^s2241-evtinsapo/api/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_api_views.s2241evtInsApoDetail.as_view() ),
 
-    url(r'^s2241-evtinsapo/listar/(?P<hash>.*)/$', 
+    url(r'^s2241-evtinsapo/$', 
         s2241_evtinsapo_listar_views.listar, 
         name='s2241_evtinsapo'),
         
-    url(r'^s2241-evtinsapo/verificar/(?P<hash>.*)/$', 
+    url(r'^s2241-evtinsapo/verificar/(?P<pk>[0-9]+)/$', 
         s2241_evtinsapo_verificar_views.verificar, 
         name='s2241_evtinsapo_verificar'),
+        
+    url(r'^s2241-evtinsapo/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2241_evtinsapo_verificar_views.verificar, 
+        name='s2241_evtinsapo_verificar_output'),
             
-    url(r'^s2241-evtinsapo/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2241-evtinsapo/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2241_evtinsapo_recibos_views.recibo, 
         name='s2241_evtinsapo_recibo'),
             
-    url(r'^s2241-evtinsapo/duplicar/(?P<hash>.*)/$',
+    url(r'^s2241-evtinsapo/duplicar/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_duplicar_views.duplicar,
         name='s2241_evtinsapo_duplicar'),
 
-    url(r'^s2241-evtinsapo/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2241-evtinsapo/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_criar_alteracao_views.criar_alteracao,
         name='s2241_evtinsapo_criar_alteracao'),
 
-    url(r'^s2241-evtinsapo/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2241-evtinsapo/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_criar_exclusao_views.criar_exclusao,
         name='s2241_evtinsapo_criar_exclusao'),
             
-    url(r'^s2241-evtinsapo/xml/(?P<hash>.*)/$', 
+    url(r'^s2241-evtinsapo/xml/(?P<pk>[0-9]+)/$', 
         s2241_evtinsapo_gerar_xml_views.gerar_xml, 
         name='s2241_evtinsapo_xml'),          
 
-    url(r'^s2241-evtinsapo/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2241-evtinsapo/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_alterar_identidade_views.alterar_identidade,
         name='s2241_evtinsapo_alterar_identidade'),
 
-    url(r'^s2241-evtinsapo/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2241-evtinsapo/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2241_evtinsapo_abrir_evento_para_edicao'),
 
-    url(r'^s2241-evtinsapo/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2241-evtinsapo/validar-evento/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_validar_evento_views.validar_evento,
         name='s2241_evtinsapo_validar_evento'),
 
-    url(r'^s2241-evtinsapo/salvar/(?P<hash>.*)/$', 
+    url(r'^s2241-evtinsapo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2241_evtinsapo_salvar_views.salvar, 
         name='s2241_evtinsapo_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2241-evtinsapo/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2241-evtinsapo/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2241_evtinsapo_gerar_identidade_views.gerar_identidade, 
         name='s2241_evtinsapo_gerar_identidade'),
+        
+    url(r'^s2241-evtinsapo/cadastrar/$', 
+        s2241_evtinsapo_salvar_views.salvar, 
+        name='s2241_evtinsapo_cadastrar'),
 
-    url(r'^s2245-evttreicap/apagar/(?P<hash>.*)/$', 
+    url(r'^s2241-evtinsapo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2241_evtinsapo_salvar_views.salvar, 
+        name='s2241_evtinsapo_salvar_output'),
+        
+    url(r'^s2241-evtinsapo/(?P<output>[\w-]+)/$', 
+        s2241_evtinsapo_listar_views.listar, 
+        name='s2241_evtinsapo_output'),
+
+    url(r'^s2245-evttreicap/apagar/(?P<pk>[0-9]+)/$', 
         s2245_evttreicap_apagar_views.apagar, 
         name='s2245_evttreicap_apagar'),
 
@@ -2890,55 +3434,71 @@ urlpatterns = [
     url(r'^s2245-evttreicap/api/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_api_views.s2245evtTreiCapDetail.as_view() ),
 
-    url(r'^s2245-evttreicap/listar/(?P<hash>.*)/$', 
+    url(r'^s2245-evttreicap/$', 
         s2245_evttreicap_listar_views.listar, 
         name='s2245_evttreicap'),
         
-    url(r'^s2245-evttreicap/verificar/(?P<hash>.*)/$', 
+    url(r'^s2245-evttreicap/verificar/(?P<pk>[0-9]+)/$', 
         s2245_evttreicap_verificar_views.verificar, 
         name='s2245_evttreicap_verificar'),
+        
+    url(r'^s2245-evttreicap/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2245_evttreicap_verificar_views.verificar, 
+        name='s2245_evttreicap_verificar_output'),
             
-    url(r'^s2245-evttreicap/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2245-evttreicap/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2245_evttreicap_recibos_views.recibo, 
         name='s2245_evttreicap_recibo'),
             
-    url(r'^s2245-evttreicap/duplicar/(?P<hash>.*)/$',
+    url(r'^s2245-evttreicap/duplicar/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_duplicar_views.duplicar,
         name='s2245_evttreicap_duplicar'),
 
-    url(r'^s2245-evttreicap/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2245-evttreicap/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_criar_alteracao_views.criar_alteracao,
         name='s2245_evttreicap_criar_alteracao'),
 
-    url(r'^s2245-evttreicap/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2245-evttreicap/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_criar_exclusao_views.criar_exclusao,
         name='s2245_evttreicap_criar_exclusao'),
             
-    url(r'^s2245-evttreicap/xml/(?P<hash>.*)/$', 
+    url(r'^s2245-evttreicap/xml/(?P<pk>[0-9]+)/$', 
         s2245_evttreicap_gerar_xml_views.gerar_xml, 
         name='s2245_evttreicap_xml'),          
 
-    url(r'^s2245-evttreicap/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2245-evttreicap/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_alterar_identidade_views.alterar_identidade,
         name='s2245_evttreicap_alterar_identidade'),
 
-    url(r'^s2245-evttreicap/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2245-evttreicap/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2245_evttreicap_abrir_evento_para_edicao'),
 
-    url(r'^s2245-evttreicap/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2245-evttreicap/validar-evento/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_validar_evento_views.validar_evento,
         name='s2245_evttreicap_validar_evento'),
 
-    url(r'^s2245-evttreicap/salvar/(?P<hash>.*)/$', 
+    url(r'^s2245-evttreicap/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2245_evttreicap_salvar_views.salvar, 
         name='s2245_evttreicap_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2245-evttreicap/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2245-evttreicap/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2245_evttreicap_gerar_identidade_views.gerar_identidade, 
         name='s2245_evttreicap_gerar_identidade'),
+        
+    url(r'^s2245-evttreicap/cadastrar/$', 
+        s2245_evttreicap_salvar_views.salvar, 
+        name='s2245_evttreicap_cadastrar'),
 
-    url(r'^s2250-evtavprevio/apagar/(?P<hash>.*)/$', 
+    url(r'^s2245-evttreicap/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2245_evttreicap_salvar_views.salvar, 
+        name='s2245_evttreicap_salvar_output'),
+        
+    url(r'^s2245-evttreicap/(?P<output>[\w-]+)/$', 
+        s2245_evttreicap_listar_views.listar, 
+        name='s2245_evttreicap_output'),
+
+    url(r'^s2250-evtavprevio/apagar/(?P<pk>[0-9]+)/$', 
         s2250_evtavprevio_apagar_views.apagar, 
         name='s2250_evtavprevio_apagar'),
 
@@ -2948,55 +3508,71 @@ urlpatterns = [
     url(r'^s2250-evtavprevio/api/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_api_views.s2250evtAvPrevioDetail.as_view() ),
 
-    url(r'^s2250-evtavprevio/listar/(?P<hash>.*)/$', 
+    url(r'^s2250-evtavprevio/$', 
         s2250_evtavprevio_listar_views.listar, 
         name='s2250_evtavprevio'),
         
-    url(r'^s2250-evtavprevio/verificar/(?P<hash>.*)/$', 
+    url(r'^s2250-evtavprevio/verificar/(?P<pk>[0-9]+)/$', 
         s2250_evtavprevio_verificar_views.verificar, 
         name='s2250_evtavprevio_verificar'),
+        
+    url(r'^s2250-evtavprevio/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2250_evtavprevio_verificar_views.verificar, 
+        name='s2250_evtavprevio_verificar_output'),
             
-    url(r'^s2250-evtavprevio/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2250-evtavprevio/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2250_evtavprevio_recibos_views.recibo, 
         name='s2250_evtavprevio_recibo'),
             
-    url(r'^s2250-evtavprevio/duplicar/(?P<hash>.*)/$',
+    url(r'^s2250-evtavprevio/duplicar/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_duplicar_views.duplicar,
         name='s2250_evtavprevio_duplicar'),
 
-    url(r'^s2250-evtavprevio/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2250-evtavprevio/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_criar_alteracao_views.criar_alteracao,
         name='s2250_evtavprevio_criar_alteracao'),
 
-    url(r'^s2250-evtavprevio/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2250-evtavprevio/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_criar_exclusao_views.criar_exclusao,
         name='s2250_evtavprevio_criar_exclusao'),
             
-    url(r'^s2250-evtavprevio/xml/(?P<hash>.*)/$', 
+    url(r'^s2250-evtavprevio/xml/(?P<pk>[0-9]+)/$', 
         s2250_evtavprevio_gerar_xml_views.gerar_xml, 
         name='s2250_evtavprevio_xml'),          
 
-    url(r'^s2250-evtavprevio/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2250-evtavprevio/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_alterar_identidade_views.alterar_identidade,
         name='s2250_evtavprevio_alterar_identidade'),
 
-    url(r'^s2250-evtavprevio/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2250-evtavprevio/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2250_evtavprevio_abrir_evento_para_edicao'),
 
-    url(r'^s2250-evtavprevio/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2250-evtavprevio/validar-evento/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_validar_evento_views.validar_evento,
         name='s2250_evtavprevio_validar_evento'),
 
-    url(r'^s2250-evtavprevio/salvar/(?P<hash>.*)/$', 
+    url(r'^s2250-evtavprevio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2250_evtavprevio_salvar_views.salvar, 
         name='s2250_evtavprevio_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2250-evtavprevio/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2250-evtavprevio/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2250_evtavprevio_gerar_identidade_views.gerar_identidade, 
         name='s2250_evtavprevio_gerar_identidade'),
+        
+    url(r'^s2250-evtavprevio/cadastrar/$', 
+        s2250_evtavprevio_salvar_views.salvar, 
+        name='s2250_evtavprevio_cadastrar'),
 
-    url(r'^s2260-evtconvinterm/apagar/(?P<hash>.*)/$', 
+    url(r'^s2250-evtavprevio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2250_evtavprevio_salvar_views.salvar, 
+        name='s2250_evtavprevio_salvar_output'),
+        
+    url(r'^s2250-evtavprevio/(?P<output>[\w-]+)/$', 
+        s2250_evtavprevio_listar_views.listar, 
+        name='s2250_evtavprevio_output'),
+
+    url(r'^s2260-evtconvinterm/apagar/(?P<pk>[0-9]+)/$', 
         s2260_evtconvinterm_apagar_views.apagar, 
         name='s2260_evtconvinterm_apagar'),
 
@@ -3006,55 +3582,71 @@ urlpatterns = [
     url(r'^s2260-evtconvinterm/api/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_api_views.s2260evtConvIntermDetail.as_view() ),
 
-    url(r'^s2260-evtconvinterm/listar/(?P<hash>.*)/$', 
+    url(r'^s2260-evtconvinterm/$', 
         s2260_evtconvinterm_listar_views.listar, 
         name='s2260_evtconvinterm'),
         
-    url(r'^s2260-evtconvinterm/verificar/(?P<hash>.*)/$', 
+    url(r'^s2260-evtconvinterm/verificar/(?P<pk>[0-9]+)/$', 
         s2260_evtconvinterm_verificar_views.verificar, 
         name='s2260_evtconvinterm_verificar'),
+        
+    url(r'^s2260-evtconvinterm/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2260_evtconvinterm_verificar_views.verificar, 
+        name='s2260_evtconvinterm_verificar_output'),
             
-    url(r'^s2260-evtconvinterm/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2260-evtconvinterm/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2260_evtconvinterm_recibos_views.recibo, 
         name='s2260_evtconvinterm_recibo'),
             
-    url(r'^s2260-evtconvinterm/duplicar/(?P<hash>.*)/$',
+    url(r'^s2260-evtconvinterm/duplicar/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_duplicar_views.duplicar,
         name='s2260_evtconvinterm_duplicar'),
 
-    url(r'^s2260-evtconvinterm/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2260-evtconvinterm/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_criar_alteracao_views.criar_alteracao,
         name='s2260_evtconvinterm_criar_alteracao'),
 
-    url(r'^s2260-evtconvinterm/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2260-evtconvinterm/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_criar_exclusao_views.criar_exclusao,
         name='s2260_evtconvinterm_criar_exclusao'),
             
-    url(r'^s2260-evtconvinterm/xml/(?P<hash>.*)/$', 
+    url(r'^s2260-evtconvinterm/xml/(?P<pk>[0-9]+)/$', 
         s2260_evtconvinterm_gerar_xml_views.gerar_xml, 
         name='s2260_evtconvinterm_xml'),          
 
-    url(r'^s2260-evtconvinterm/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2260-evtconvinterm/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_alterar_identidade_views.alterar_identidade,
         name='s2260_evtconvinterm_alterar_identidade'),
 
-    url(r'^s2260-evtconvinterm/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2260-evtconvinterm/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2260_evtconvinterm_abrir_evento_para_edicao'),
 
-    url(r'^s2260-evtconvinterm/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2260-evtconvinterm/validar-evento/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_validar_evento_views.validar_evento,
         name='s2260_evtconvinterm_validar_evento'),
 
-    url(r'^s2260-evtconvinterm/salvar/(?P<hash>.*)/$', 
+    url(r'^s2260-evtconvinterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2260_evtconvinterm_salvar_views.salvar, 
         name='s2260_evtconvinterm_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2260-evtconvinterm/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2260-evtconvinterm/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2260_evtconvinterm_gerar_identidade_views.gerar_identidade, 
         name='s2260_evtconvinterm_gerar_identidade'),
+        
+    url(r'^s2260-evtconvinterm/cadastrar/$', 
+        s2260_evtconvinterm_salvar_views.salvar, 
+        name='s2260_evtconvinterm_cadastrar'),
 
-    url(r'^s2298-evtreintegr/apagar/(?P<hash>.*)/$', 
+    url(r'^s2260-evtconvinterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2260_evtconvinterm_salvar_views.salvar, 
+        name='s2260_evtconvinterm_salvar_output'),
+        
+    url(r'^s2260-evtconvinterm/(?P<output>[\w-]+)/$', 
+        s2260_evtconvinterm_listar_views.listar, 
+        name='s2260_evtconvinterm_output'),
+
+    url(r'^s2298-evtreintegr/apagar/(?P<pk>[0-9]+)/$', 
         s2298_evtreintegr_apagar_views.apagar, 
         name='s2298_evtreintegr_apagar'),
 
@@ -3064,55 +3656,71 @@ urlpatterns = [
     url(r'^s2298-evtreintegr/api/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_api_views.s2298evtReintegrDetail.as_view() ),
 
-    url(r'^s2298-evtreintegr/listar/(?P<hash>.*)/$', 
+    url(r'^s2298-evtreintegr/$', 
         s2298_evtreintegr_listar_views.listar, 
         name='s2298_evtreintegr'),
         
-    url(r'^s2298-evtreintegr/verificar/(?P<hash>.*)/$', 
+    url(r'^s2298-evtreintegr/verificar/(?P<pk>[0-9]+)/$', 
         s2298_evtreintegr_verificar_views.verificar, 
         name='s2298_evtreintegr_verificar'),
+        
+    url(r'^s2298-evtreintegr/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2298_evtreintegr_verificar_views.verificar, 
+        name='s2298_evtreintegr_verificar_output'),
             
-    url(r'^s2298-evtreintegr/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2298-evtreintegr/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2298_evtreintegr_recibos_views.recibo, 
         name='s2298_evtreintegr_recibo'),
             
-    url(r'^s2298-evtreintegr/duplicar/(?P<hash>.*)/$',
+    url(r'^s2298-evtreintegr/duplicar/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_duplicar_views.duplicar,
         name='s2298_evtreintegr_duplicar'),
 
-    url(r'^s2298-evtreintegr/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2298-evtreintegr/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_criar_alteracao_views.criar_alteracao,
         name='s2298_evtreintegr_criar_alteracao'),
 
-    url(r'^s2298-evtreintegr/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2298-evtreintegr/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_criar_exclusao_views.criar_exclusao,
         name='s2298_evtreintegr_criar_exclusao'),
             
-    url(r'^s2298-evtreintegr/xml/(?P<hash>.*)/$', 
+    url(r'^s2298-evtreintegr/xml/(?P<pk>[0-9]+)/$', 
         s2298_evtreintegr_gerar_xml_views.gerar_xml, 
         name='s2298_evtreintegr_xml'),          
 
-    url(r'^s2298-evtreintegr/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2298-evtreintegr/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_alterar_identidade_views.alterar_identidade,
         name='s2298_evtreintegr_alterar_identidade'),
 
-    url(r'^s2298-evtreintegr/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2298-evtreintegr/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2298_evtreintegr_abrir_evento_para_edicao'),
 
-    url(r'^s2298-evtreintegr/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2298-evtreintegr/validar-evento/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_validar_evento_views.validar_evento,
         name='s2298_evtreintegr_validar_evento'),
 
-    url(r'^s2298-evtreintegr/salvar/(?P<hash>.*)/$', 
+    url(r'^s2298-evtreintegr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2298_evtreintegr_salvar_views.salvar, 
         name='s2298_evtreintegr_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2298-evtreintegr/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2298-evtreintegr/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2298_evtreintegr_gerar_identidade_views.gerar_identidade, 
         name='s2298_evtreintegr_gerar_identidade'),
+        
+    url(r'^s2298-evtreintegr/cadastrar/$', 
+        s2298_evtreintegr_salvar_views.salvar, 
+        name='s2298_evtreintegr_cadastrar'),
 
-    url(r'^s2299-evtdeslig/apagar/(?P<hash>.*)/$', 
+    url(r'^s2298-evtreintegr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2298_evtreintegr_salvar_views.salvar, 
+        name='s2298_evtreintegr_salvar_output'),
+        
+    url(r'^s2298-evtreintegr/(?P<output>[\w-]+)/$', 
+        s2298_evtreintegr_listar_views.listar, 
+        name='s2298_evtreintegr_output'),
+
+    url(r'^s2299-evtdeslig/apagar/(?P<pk>[0-9]+)/$', 
         s2299_evtdeslig_apagar_views.apagar, 
         name='s2299_evtdeslig_apagar'),
 
@@ -3122,55 +3730,71 @@ urlpatterns = [
     url(r'^s2299-evtdeslig/api/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_api_views.s2299evtDesligDetail.as_view() ),
 
-    url(r'^s2299-evtdeslig/listar/(?P<hash>.*)/$', 
+    url(r'^s2299-evtdeslig/$', 
         s2299_evtdeslig_listar_views.listar, 
         name='s2299_evtdeslig'),
         
-    url(r'^s2299-evtdeslig/verificar/(?P<hash>.*)/$', 
+    url(r'^s2299-evtdeslig/verificar/(?P<pk>[0-9]+)/$', 
         s2299_evtdeslig_verificar_views.verificar, 
         name='s2299_evtdeslig_verificar'),
+        
+    url(r'^s2299-evtdeslig/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2299_evtdeslig_verificar_views.verificar, 
+        name='s2299_evtdeslig_verificar_output'),
             
-    url(r'^s2299-evtdeslig/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2299-evtdeslig/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2299_evtdeslig_recibos_views.recibo, 
         name='s2299_evtdeslig_recibo'),
             
-    url(r'^s2299-evtdeslig/duplicar/(?P<hash>.*)/$',
+    url(r'^s2299-evtdeslig/duplicar/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_duplicar_views.duplicar,
         name='s2299_evtdeslig_duplicar'),
 
-    url(r'^s2299-evtdeslig/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2299-evtdeslig/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_criar_alteracao_views.criar_alteracao,
         name='s2299_evtdeslig_criar_alteracao'),
 
-    url(r'^s2299-evtdeslig/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2299-evtdeslig/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_criar_exclusao_views.criar_exclusao,
         name='s2299_evtdeslig_criar_exclusao'),
             
-    url(r'^s2299-evtdeslig/xml/(?P<hash>.*)/$', 
+    url(r'^s2299-evtdeslig/xml/(?P<pk>[0-9]+)/$', 
         s2299_evtdeslig_gerar_xml_views.gerar_xml, 
         name='s2299_evtdeslig_xml'),          
 
-    url(r'^s2299-evtdeslig/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2299-evtdeslig/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_alterar_identidade_views.alterar_identidade,
         name='s2299_evtdeslig_alterar_identidade'),
 
-    url(r'^s2299-evtdeslig/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2299-evtdeslig/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2299_evtdeslig_abrir_evento_para_edicao'),
 
-    url(r'^s2299-evtdeslig/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2299-evtdeslig/validar-evento/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_validar_evento_views.validar_evento,
         name='s2299_evtdeslig_validar_evento'),
 
-    url(r'^s2299-evtdeslig/salvar/(?P<hash>.*)/$', 
+    url(r'^s2299-evtdeslig/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2299_evtdeslig_salvar_views.salvar, 
         name='s2299_evtdeslig_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2299-evtdeslig/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2299-evtdeslig/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2299_evtdeslig_gerar_identidade_views.gerar_identidade, 
         name='s2299_evtdeslig_gerar_identidade'),
+        
+    url(r'^s2299-evtdeslig/cadastrar/$', 
+        s2299_evtdeslig_salvar_views.salvar, 
+        name='s2299_evtdeslig_cadastrar'),
 
-    url(r'^s2300-evttsvinicio/apagar/(?P<hash>.*)/$', 
+    url(r'^s2299-evtdeslig/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2299_evtdeslig_salvar_views.salvar, 
+        name='s2299_evtdeslig_salvar_output'),
+        
+    url(r'^s2299-evtdeslig/(?P<output>[\w-]+)/$', 
+        s2299_evtdeslig_listar_views.listar, 
+        name='s2299_evtdeslig_output'),
+
+    url(r'^s2300-evttsvinicio/apagar/(?P<pk>[0-9]+)/$', 
         s2300_evttsvinicio_apagar_views.apagar, 
         name='s2300_evttsvinicio_apagar'),
 
@@ -3180,55 +3804,71 @@ urlpatterns = [
     url(r'^s2300-evttsvinicio/api/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_api_views.s2300evtTSVInicioDetail.as_view() ),
 
-    url(r'^s2300-evttsvinicio/listar/(?P<hash>.*)/$', 
+    url(r'^s2300-evttsvinicio/$', 
         s2300_evttsvinicio_listar_views.listar, 
         name='s2300_evttsvinicio'),
         
-    url(r'^s2300-evttsvinicio/verificar/(?P<hash>.*)/$', 
+    url(r'^s2300-evttsvinicio/verificar/(?P<pk>[0-9]+)/$', 
         s2300_evttsvinicio_verificar_views.verificar, 
         name='s2300_evttsvinicio_verificar'),
+        
+    url(r'^s2300-evttsvinicio/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2300_evttsvinicio_verificar_views.verificar, 
+        name='s2300_evttsvinicio_verificar_output'),
             
-    url(r'^s2300-evttsvinicio/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2300-evttsvinicio/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2300_evttsvinicio_recibos_views.recibo, 
         name='s2300_evttsvinicio_recibo'),
             
-    url(r'^s2300-evttsvinicio/duplicar/(?P<hash>.*)/$',
+    url(r'^s2300-evttsvinicio/duplicar/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_duplicar_views.duplicar,
         name='s2300_evttsvinicio_duplicar'),
 
-    url(r'^s2300-evttsvinicio/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2300-evttsvinicio/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_criar_alteracao_views.criar_alteracao,
         name='s2300_evttsvinicio_criar_alteracao'),
 
-    url(r'^s2300-evttsvinicio/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2300-evttsvinicio/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_criar_exclusao_views.criar_exclusao,
         name='s2300_evttsvinicio_criar_exclusao'),
             
-    url(r'^s2300-evttsvinicio/xml/(?P<hash>.*)/$', 
+    url(r'^s2300-evttsvinicio/xml/(?P<pk>[0-9]+)/$', 
         s2300_evttsvinicio_gerar_xml_views.gerar_xml, 
         name='s2300_evttsvinicio_xml'),          
 
-    url(r'^s2300-evttsvinicio/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2300-evttsvinicio/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_alterar_identidade_views.alterar_identidade,
         name='s2300_evttsvinicio_alterar_identidade'),
 
-    url(r'^s2300-evttsvinicio/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2300-evttsvinicio/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2300_evttsvinicio_abrir_evento_para_edicao'),
 
-    url(r'^s2300-evttsvinicio/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2300-evttsvinicio/validar-evento/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_validar_evento_views.validar_evento,
         name='s2300_evttsvinicio_validar_evento'),
 
-    url(r'^s2300-evttsvinicio/salvar/(?P<hash>.*)/$', 
+    url(r'^s2300-evttsvinicio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2300_evttsvinicio_salvar_views.salvar, 
         name='s2300_evttsvinicio_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2300-evttsvinicio/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2300-evttsvinicio/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2300_evttsvinicio_gerar_identidade_views.gerar_identidade, 
         name='s2300_evttsvinicio_gerar_identidade'),
+        
+    url(r'^s2300-evttsvinicio/cadastrar/$', 
+        s2300_evttsvinicio_salvar_views.salvar, 
+        name='s2300_evttsvinicio_cadastrar'),
 
-    url(r'^s2306-evttsvaltcontr/apagar/(?P<hash>.*)/$', 
+    url(r'^s2300-evttsvinicio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2300_evttsvinicio_salvar_views.salvar, 
+        name='s2300_evttsvinicio_salvar_output'),
+        
+    url(r'^s2300-evttsvinicio/(?P<output>[\w-]+)/$', 
+        s2300_evttsvinicio_listar_views.listar, 
+        name='s2300_evttsvinicio_output'),
+
+    url(r'^s2306-evttsvaltcontr/apagar/(?P<pk>[0-9]+)/$', 
         s2306_evttsvaltcontr_apagar_views.apagar, 
         name='s2306_evttsvaltcontr_apagar'),
 
@@ -3238,55 +3878,71 @@ urlpatterns = [
     url(r'^s2306-evttsvaltcontr/api/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_api_views.s2306evtTSVAltContrDetail.as_view() ),
 
-    url(r'^s2306-evttsvaltcontr/listar/(?P<hash>.*)/$', 
+    url(r'^s2306-evttsvaltcontr/$', 
         s2306_evttsvaltcontr_listar_views.listar, 
         name='s2306_evttsvaltcontr'),
         
-    url(r'^s2306-evttsvaltcontr/verificar/(?P<hash>.*)/$', 
+    url(r'^s2306-evttsvaltcontr/verificar/(?P<pk>[0-9]+)/$', 
         s2306_evttsvaltcontr_verificar_views.verificar, 
         name='s2306_evttsvaltcontr_verificar'),
+        
+    url(r'^s2306-evttsvaltcontr/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2306_evttsvaltcontr_verificar_views.verificar, 
+        name='s2306_evttsvaltcontr_verificar_output'),
             
-    url(r'^s2306-evttsvaltcontr/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2306-evttsvaltcontr/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2306_evttsvaltcontr_recibos_views.recibo, 
         name='s2306_evttsvaltcontr_recibo'),
             
-    url(r'^s2306-evttsvaltcontr/duplicar/(?P<hash>.*)/$',
+    url(r'^s2306-evttsvaltcontr/duplicar/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_duplicar_views.duplicar,
         name='s2306_evttsvaltcontr_duplicar'),
 
-    url(r'^s2306-evttsvaltcontr/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2306-evttsvaltcontr/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_criar_alteracao_views.criar_alteracao,
         name='s2306_evttsvaltcontr_criar_alteracao'),
 
-    url(r'^s2306-evttsvaltcontr/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2306-evttsvaltcontr/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_criar_exclusao_views.criar_exclusao,
         name='s2306_evttsvaltcontr_criar_exclusao'),
             
-    url(r'^s2306-evttsvaltcontr/xml/(?P<hash>.*)/$', 
+    url(r'^s2306-evttsvaltcontr/xml/(?P<pk>[0-9]+)/$', 
         s2306_evttsvaltcontr_gerar_xml_views.gerar_xml, 
         name='s2306_evttsvaltcontr_xml'),          
 
-    url(r'^s2306-evttsvaltcontr/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2306-evttsvaltcontr/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_alterar_identidade_views.alterar_identidade,
         name='s2306_evttsvaltcontr_alterar_identidade'),
 
-    url(r'^s2306-evttsvaltcontr/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2306-evttsvaltcontr/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2306_evttsvaltcontr_abrir_evento_para_edicao'),
 
-    url(r'^s2306-evttsvaltcontr/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2306-evttsvaltcontr/validar-evento/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_validar_evento_views.validar_evento,
         name='s2306_evttsvaltcontr_validar_evento'),
 
-    url(r'^s2306-evttsvaltcontr/salvar/(?P<hash>.*)/$', 
+    url(r'^s2306-evttsvaltcontr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2306_evttsvaltcontr_salvar_views.salvar, 
         name='s2306_evttsvaltcontr_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2306-evttsvaltcontr/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2306-evttsvaltcontr/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2306_evttsvaltcontr_gerar_identidade_views.gerar_identidade, 
         name='s2306_evttsvaltcontr_gerar_identidade'),
+        
+    url(r'^s2306-evttsvaltcontr/cadastrar/$', 
+        s2306_evttsvaltcontr_salvar_views.salvar, 
+        name='s2306_evttsvaltcontr_cadastrar'),
 
-    url(r'^s2399-evttsvtermino/apagar/(?P<hash>.*)/$', 
+    url(r'^s2306-evttsvaltcontr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2306_evttsvaltcontr_salvar_views.salvar, 
+        name='s2306_evttsvaltcontr_salvar_output'),
+        
+    url(r'^s2306-evttsvaltcontr/(?P<output>[\w-]+)/$', 
+        s2306_evttsvaltcontr_listar_views.listar, 
+        name='s2306_evttsvaltcontr_output'),
+
+    url(r'^s2399-evttsvtermino/apagar/(?P<pk>[0-9]+)/$', 
         s2399_evttsvtermino_apagar_views.apagar, 
         name='s2399_evttsvtermino_apagar'),
 
@@ -3296,55 +3952,71 @@ urlpatterns = [
     url(r'^s2399-evttsvtermino/api/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_api_views.s2399evtTSVTerminoDetail.as_view() ),
 
-    url(r'^s2399-evttsvtermino/listar/(?P<hash>.*)/$', 
+    url(r'^s2399-evttsvtermino/$', 
         s2399_evttsvtermino_listar_views.listar, 
         name='s2399_evttsvtermino'),
         
-    url(r'^s2399-evttsvtermino/verificar/(?P<hash>.*)/$', 
+    url(r'^s2399-evttsvtermino/verificar/(?P<pk>[0-9]+)/$', 
         s2399_evttsvtermino_verificar_views.verificar, 
         name='s2399_evttsvtermino_verificar'),
+        
+    url(r'^s2399-evttsvtermino/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2399_evttsvtermino_verificar_views.verificar, 
+        name='s2399_evttsvtermino_verificar_output'),
             
-    url(r'^s2399-evttsvtermino/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2399-evttsvtermino/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2399_evttsvtermino_recibos_views.recibo, 
         name='s2399_evttsvtermino_recibo'),
             
-    url(r'^s2399-evttsvtermino/duplicar/(?P<hash>.*)/$',
+    url(r'^s2399-evttsvtermino/duplicar/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_duplicar_views.duplicar,
         name='s2399_evttsvtermino_duplicar'),
 
-    url(r'^s2399-evttsvtermino/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2399-evttsvtermino/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_criar_alteracao_views.criar_alteracao,
         name='s2399_evttsvtermino_criar_alteracao'),
 
-    url(r'^s2399-evttsvtermino/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2399-evttsvtermino/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_criar_exclusao_views.criar_exclusao,
         name='s2399_evttsvtermino_criar_exclusao'),
             
-    url(r'^s2399-evttsvtermino/xml/(?P<hash>.*)/$', 
+    url(r'^s2399-evttsvtermino/xml/(?P<pk>[0-9]+)/$', 
         s2399_evttsvtermino_gerar_xml_views.gerar_xml, 
         name='s2399_evttsvtermino_xml'),          
 
-    url(r'^s2399-evttsvtermino/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2399-evttsvtermino/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_alterar_identidade_views.alterar_identidade,
         name='s2399_evttsvtermino_alterar_identidade'),
 
-    url(r'^s2399-evttsvtermino/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2399-evttsvtermino/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2399_evttsvtermino_abrir_evento_para_edicao'),
 
-    url(r'^s2399-evttsvtermino/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2399-evttsvtermino/validar-evento/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_validar_evento_views.validar_evento,
         name='s2399_evttsvtermino_validar_evento'),
 
-    url(r'^s2399-evttsvtermino/salvar/(?P<hash>.*)/$', 
+    url(r'^s2399-evttsvtermino/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2399_evttsvtermino_salvar_views.salvar, 
         name='s2399_evttsvtermino_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2399-evttsvtermino/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2399-evttsvtermino/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2399_evttsvtermino_gerar_identidade_views.gerar_identidade, 
         name='s2399_evttsvtermino_gerar_identidade'),
+        
+    url(r'^s2399-evttsvtermino/cadastrar/$', 
+        s2399_evttsvtermino_salvar_views.salvar, 
+        name='s2399_evttsvtermino_cadastrar'),
 
-    url(r'^s2400-evtcdbenefin/apagar/(?P<hash>.*)/$', 
+    url(r'^s2399-evttsvtermino/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2399_evttsvtermino_salvar_views.salvar, 
+        name='s2399_evttsvtermino_salvar_output'),
+        
+    url(r'^s2399-evttsvtermino/(?P<output>[\w-]+)/$', 
+        s2399_evttsvtermino_listar_views.listar, 
+        name='s2399_evttsvtermino_output'),
+
+    url(r'^s2400-evtcdbenefin/apagar/(?P<pk>[0-9]+)/$', 
         s2400_evtcdbenefin_apagar_views.apagar, 
         name='s2400_evtcdbenefin_apagar'),
 
@@ -3354,55 +4026,71 @@ urlpatterns = [
     url(r'^s2400-evtcdbenefin/api/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_api_views.s2400evtCdBenefInDetail.as_view() ),
 
-    url(r'^s2400-evtcdbenefin/listar/(?P<hash>.*)/$', 
+    url(r'^s2400-evtcdbenefin/$', 
         s2400_evtcdbenefin_listar_views.listar, 
         name='s2400_evtcdbenefin'),
         
-    url(r'^s2400-evtcdbenefin/verificar/(?P<hash>.*)/$', 
+    url(r'^s2400-evtcdbenefin/verificar/(?P<pk>[0-9]+)/$', 
         s2400_evtcdbenefin_verificar_views.verificar, 
         name='s2400_evtcdbenefin_verificar'),
+        
+    url(r'^s2400-evtcdbenefin/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2400_evtcdbenefin_verificar_views.verificar, 
+        name='s2400_evtcdbenefin_verificar_output'),
             
-    url(r'^s2400-evtcdbenefin/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2400-evtcdbenefin/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2400_evtcdbenefin_recibos_views.recibo, 
         name='s2400_evtcdbenefin_recibo'),
             
-    url(r'^s2400-evtcdbenefin/duplicar/(?P<hash>.*)/$',
+    url(r'^s2400-evtcdbenefin/duplicar/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_duplicar_views.duplicar,
         name='s2400_evtcdbenefin_duplicar'),
 
-    url(r'^s2400-evtcdbenefin/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2400-evtcdbenefin/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_criar_alteracao_views.criar_alteracao,
         name='s2400_evtcdbenefin_criar_alteracao'),
 
-    url(r'^s2400-evtcdbenefin/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2400-evtcdbenefin/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_criar_exclusao_views.criar_exclusao,
         name='s2400_evtcdbenefin_criar_exclusao'),
             
-    url(r'^s2400-evtcdbenefin/xml/(?P<hash>.*)/$', 
+    url(r'^s2400-evtcdbenefin/xml/(?P<pk>[0-9]+)/$', 
         s2400_evtcdbenefin_gerar_xml_views.gerar_xml, 
         name='s2400_evtcdbenefin_xml'),          
 
-    url(r'^s2400-evtcdbenefin/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2400-evtcdbenefin/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_alterar_identidade_views.alterar_identidade,
         name='s2400_evtcdbenefin_alterar_identidade'),
 
-    url(r'^s2400-evtcdbenefin/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2400-evtcdbenefin/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2400_evtcdbenefin_abrir_evento_para_edicao'),
 
-    url(r'^s2400-evtcdbenefin/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2400-evtcdbenefin/validar-evento/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_validar_evento_views.validar_evento,
         name='s2400_evtcdbenefin_validar_evento'),
 
-    url(r'^s2400-evtcdbenefin/salvar/(?P<hash>.*)/$', 
+    url(r'^s2400-evtcdbenefin/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2400_evtcdbenefin_salvar_views.salvar, 
         name='s2400_evtcdbenefin_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2400-evtcdbenefin/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2400-evtcdbenefin/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2400_evtcdbenefin_gerar_identidade_views.gerar_identidade, 
         name='s2400_evtcdbenefin_gerar_identidade'),
+        
+    url(r'^s2400-evtcdbenefin/cadastrar/$', 
+        s2400_evtcdbenefin_salvar_views.salvar, 
+        name='s2400_evtcdbenefin_cadastrar'),
 
-    url(r'^s2405-evtcdbenefalt/apagar/(?P<hash>.*)/$', 
+    url(r'^s2400-evtcdbenefin/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2400_evtcdbenefin_salvar_views.salvar, 
+        name='s2400_evtcdbenefin_salvar_output'),
+        
+    url(r'^s2400-evtcdbenefin/(?P<output>[\w-]+)/$', 
+        s2400_evtcdbenefin_listar_views.listar, 
+        name='s2400_evtcdbenefin_output'),
+
+    url(r'^s2405-evtcdbenefalt/apagar/(?P<pk>[0-9]+)/$', 
         s2405_evtcdbenefalt_apagar_views.apagar, 
         name='s2405_evtcdbenefalt_apagar'),
 
@@ -3412,55 +4100,71 @@ urlpatterns = [
     url(r'^s2405-evtcdbenefalt/api/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_api_views.s2405evtCdBenefAltDetail.as_view() ),
 
-    url(r'^s2405-evtcdbenefalt/listar/(?P<hash>.*)/$', 
+    url(r'^s2405-evtcdbenefalt/$', 
         s2405_evtcdbenefalt_listar_views.listar, 
         name='s2405_evtcdbenefalt'),
         
-    url(r'^s2405-evtcdbenefalt/verificar/(?P<hash>.*)/$', 
+    url(r'^s2405-evtcdbenefalt/verificar/(?P<pk>[0-9]+)/$', 
         s2405_evtcdbenefalt_verificar_views.verificar, 
         name='s2405_evtcdbenefalt_verificar'),
+        
+    url(r'^s2405-evtcdbenefalt/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2405_evtcdbenefalt_verificar_views.verificar, 
+        name='s2405_evtcdbenefalt_verificar_output'),
             
-    url(r'^s2405-evtcdbenefalt/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2405-evtcdbenefalt/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2405_evtcdbenefalt_recibos_views.recibo, 
         name='s2405_evtcdbenefalt_recibo'),
             
-    url(r'^s2405-evtcdbenefalt/duplicar/(?P<hash>.*)/$',
+    url(r'^s2405-evtcdbenefalt/duplicar/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_duplicar_views.duplicar,
         name='s2405_evtcdbenefalt_duplicar'),
 
-    url(r'^s2405-evtcdbenefalt/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2405-evtcdbenefalt/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_criar_alteracao_views.criar_alteracao,
         name='s2405_evtcdbenefalt_criar_alteracao'),
 
-    url(r'^s2405-evtcdbenefalt/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2405-evtcdbenefalt/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_criar_exclusao_views.criar_exclusao,
         name='s2405_evtcdbenefalt_criar_exclusao'),
             
-    url(r'^s2405-evtcdbenefalt/xml/(?P<hash>.*)/$', 
+    url(r'^s2405-evtcdbenefalt/xml/(?P<pk>[0-9]+)/$', 
         s2405_evtcdbenefalt_gerar_xml_views.gerar_xml, 
         name='s2405_evtcdbenefalt_xml'),          
 
-    url(r'^s2405-evtcdbenefalt/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2405-evtcdbenefalt/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_alterar_identidade_views.alterar_identidade,
         name='s2405_evtcdbenefalt_alterar_identidade'),
 
-    url(r'^s2405-evtcdbenefalt/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2405-evtcdbenefalt/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2405_evtcdbenefalt_abrir_evento_para_edicao'),
 
-    url(r'^s2405-evtcdbenefalt/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2405-evtcdbenefalt/validar-evento/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_validar_evento_views.validar_evento,
         name='s2405_evtcdbenefalt_validar_evento'),
 
-    url(r'^s2405-evtcdbenefalt/salvar/(?P<hash>.*)/$', 
+    url(r'^s2405-evtcdbenefalt/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2405_evtcdbenefalt_salvar_views.salvar, 
         name='s2405_evtcdbenefalt_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2405-evtcdbenefalt/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2405-evtcdbenefalt/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2405_evtcdbenefalt_gerar_identidade_views.gerar_identidade, 
         name='s2405_evtcdbenefalt_gerar_identidade'),
+        
+    url(r'^s2405-evtcdbenefalt/cadastrar/$', 
+        s2405_evtcdbenefalt_salvar_views.salvar, 
+        name='s2405_evtcdbenefalt_cadastrar'),
 
-    url(r'^s2410-evtcdbenin/apagar/(?P<hash>.*)/$', 
+    url(r'^s2405-evtcdbenefalt/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2405_evtcdbenefalt_salvar_views.salvar, 
+        name='s2405_evtcdbenefalt_salvar_output'),
+        
+    url(r'^s2405-evtcdbenefalt/(?P<output>[\w-]+)/$', 
+        s2405_evtcdbenefalt_listar_views.listar, 
+        name='s2405_evtcdbenefalt_output'),
+
+    url(r'^s2410-evtcdbenin/apagar/(?P<pk>[0-9]+)/$', 
         s2410_evtcdbenin_apagar_views.apagar, 
         name='s2410_evtcdbenin_apagar'),
 
@@ -3470,55 +4174,71 @@ urlpatterns = [
     url(r'^s2410-evtcdbenin/api/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_api_views.s2410evtCdBenInDetail.as_view() ),
 
-    url(r'^s2410-evtcdbenin/listar/(?P<hash>.*)/$', 
+    url(r'^s2410-evtcdbenin/$', 
         s2410_evtcdbenin_listar_views.listar, 
         name='s2410_evtcdbenin'),
         
-    url(r'^s2410-evtcdbenin/verificar/(?P<hash>.*)/$', 
+    url(r'^s2410-evtcdbenin/verificar/(?P<pk>[0-9]+)/$', 
         s2410_evtcdbenin_verificar_views.verificar, 
         name='s2410_evtcdbenin_verificar'),
+        
+    url(r'^s2410-evtcdbenin/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2410_evtcdbenin_verificar_views.verificar, 
+        name='s2410_evtcdbenin_verificar_output'),
             
-    url(r'^s2410-evtcdbenin/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2410-evtcdbenin/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2410_evtcdbenin_recibos_views.recibo, 
         name='s2410_evtcdbenin_recibo'),
             
-    url(r'^s2410-evtcdbenin/duplicar/(?P<hash>.*)/$',
+    url(r'^s2410-evtcdbenin/duplicar/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_duplicar_views.duplicar,
         name='s2410_evtcdbenin_duplicar'),
 
-    url(r'^s2410-evtcdbenin/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2410-evtcdbenin/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_criar_alteracao_views.criar_alteracao,
         name='s2410_evtcdbenin_criar_alteracao'),
 
-    url(r'^s2410-evtcdbenin/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2410-evtcdbenin/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_criar_exclusao_views.criar_exclusao,
         name='s2410_evtcdbenin_criar_exclusao'),
             
-    url(r'^s2410-evtcdbenin/xml/(?P<hash>.*)/$', 
+    url(r'^s2410-evtcdbenin/xml/(?P<pk>[0-9]+)/$', 
         s2410_evtcdbenin_gerar_xml_views.gerar_xml, 
         name='s2410_evtcdbenin_xml'),          
 
-    url(r'^s2410-evtcdbenin/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2410-evtcdbenin/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_alterar_identidade_views.alterar_identidade,
         name='s2410_evtcdbenin_alterar_identidade'),
 
-    url(r'^s2410-evtcdbenin/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2410-evtcdbenin/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2410_evtcdbenin_abrir_evento_para_edicao'),
 
-    url(r'^s2410-evtcdbenin/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2410-evtcdbenin/validar-evento/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_validar_evento_views.validar_evento,
         name='s2410_evtcdbenin_validar_evento'),
 
-    url(r'^s2410-evtcdbenin/salvar/(?P<hash>.*)/$', 
+    url(r'^s2410-evtcdbenin/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2410_evtcdbenin_salvar_views.salvar, 
         name='s2410_evtcdbenin_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2410-evtcdbenin/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2410-evtcdbenin/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2410_evtcdbenin_gerar_identidade_views.gerar_identidade, 
         name='s2410_evtcdbenin_gerar_identidade'),
+        
+    url(r'^s2410-evtcdbenin/cadastrar/$', 
+        s2410_evtcdbenin_salvar_views.salvar, 
+        name='s2410_evtcdbenin_cadastrar'),
 
-    url(r'^s2416-evtcdbenalt/apagar/(?P<hash>.*)/$', 
+    url(r'^s2410-evtcdbenin/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2410_evtcdbenin_salvar_views.salvar, 
+        name='s2410_evtcdbenin_salvar_output'),
+        
+    url(r'^s2410-evtcdbenin/(?P<output>[\w-]+)/$', 
+        s2410_evtcdbenin_listar_views.listar, 
+        name='s2410_evtcdbenin_output'),
+
+    url(r'^s2416-evtcdbenalt/apagar/(?P<pk>[0-9]+)/$', 
         s2416_evtcdbenalt_apagar_views.apagar, 
         name='s2416_evtcdbenalt_apagar'),
 
@@ -3528,55 +4248,71 @@ urlpatterns = [
     url(r'^s2416-evtcdbenalt/api/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_api_views.s2416evtCdBenAltDetail.as_view() ),
 
-    url(r'^s2416-evtcdbenalt/listar/(?P<hash>.*)/$', 
+    url(r'^s2416-evtcdbenalt/$', 
         s2416_evtcdbenalt_listar_views.listar, 
         name='s2416_evtcdbenalt'),
         
-    url(r'^s2416-evtcdbenalt/verificar/(?P<hash>.*)/$', 
+    url(r'^s2416-evtcdbenalt/verificar/(?P<pk>[0-9]+)/$', 
         s2416_evtcdbenalt_verificar_views.verificar, 
         name='s2416_evtcdbenalt_verificar'),
+        
+    url(r'^s2416-evtcdbenalt/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2416_evtcdbenalt_verificar_views.verificar, 
+        name='s2416_evtcdbenalt_verificar_output'),
             
-    url(r'^s2416-evtcdbenalt/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2416-evtcdbenalt/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2416_evtcdbenalt_recibos_views.recibo, 
         name='s2416_evtcdbenalt_recibo'),
             
-    url(r'^s2416-evtcdbenalt/duplicar/(?P<hash>.*)/$',
+    url(r'^s2416-evtcdbenalt/duplicar/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_duplicar_views.duplicar,
         name='s2416_evtcdbenalt_duplicar'),
 
-    url(r'^s2416-evtcdbenalt/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2416-evtcdbenalt/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_criar_alteracao_views.criar_alteracao,
         name='s2416_evtcdbenalt_criar_alteracao'),
 
-    url(r'^s2416-evtcdbenalt/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2416-evtcdbenalt/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_criar_exclusao_views.criar_exclusao,
         name='s2416_evtcdbenalt_criar_exclusao'),
             
-    url(r'^s2416-evtcdbenalt/xml/(?P<hash>.*)/$', 
+    url(r'^s2416-evtcdbenalt/xml/(?P<pk>[0-9]+)/$', 
         s2416_evtcdbenalt_gerar_xml_views.gerar_xml, 
         name='s2416_evtcdbenalt_xml'),          
 
-    url(r'^s2416-evtcdbenalt/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2416-evtcdbenalt/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_alterar_identidade_views.alterar_identidade,
         name='s2416_evtcdbenalt_alterar_identidade'),
 
-    url(r'^s2416-evtcdbenalt/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2416-evtcdbenalt/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2416_evtcdbenalt_abrir_evento_para_edicao'),
 
-    url(r'^s2416-evtcdbenalt/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2416-evtcdbenalt/validar-evento/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_validar_evento_views.validar_evento,
         name='s2416_evtcdbenalt_validar_evento'),
 
-    url(r'^s2416-evtcdbenalt/salvar/(?P<hash>.*)/$', 
+    url(r'^s2416-evtcdbenalt/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2416_evtcdbenalt_salvar_views.salvar, 
         name='s2416_evtcdbenalt_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2416-evtcdbenalt/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2416-evtcdbenalt/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2416_evtcdbenalt_gerar_identidade_views.gerar_identidade, 
         name='s2416_evtcdbenalt_gerar_identidade'),
+        
+    url(r'^s2416-evtcdbenalt/cadastrar/$', 
+        s2416_evtcdbenalt_salvar_views.salvar, 
+        name='s2416_evtcdbenalt_cadastrar'),
 
-    url(r'^s2420-evtcdbenterm/apagar/(?P<hash>.*)/$', 
+    url(r'^s2416-evtcdbenalt/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2416_evtcdbenalt_salvar_views.salvar, 
+        name='s2416_evtcdbenalt_salvar_output'),
+        
+    url(r'^s2416-evtcdbenalt/(?P<output>[\w-]+)/$', 
+        s2416_evtcdbenalt_listar_views.listar, 
+        name='s2416_evtcdbenalt_output'),
+
+    url(r'^s2420-evtcdbenterm/apagar/(?P<pk>[0-9]+)/$', 
         s2420_evtcdbenterm_apagar_views.apagar, 
         name='s2420_evtcdbenterm_apagar'),
 
@@ -3586,55 +4322,71 @@ urlpatterns = [
     url(r'^s2420-evtcdbenterm/api/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_api_views.s2420evtCdBenTermDetail.as_view() ),
 
-    url(r'^s2420-evtcdbenterm/listar/(?P<hash>.*)/$', 
+    url(r'^s2420-evtcdbenterm/$', 
         s2420_evtcdbenterm_listar_views.listar, 
         name='s2420_evtcdbenterm'),
         
-    url(r'^s2420-evtcdbenterm/verificar/(?P<hash>.*)/$', 
+    url(r'^s2420-evtcdbenterm/verificar/(?P<pk>[0-9]+)/$', 
         s2420_evtcdbenterm_verificar_views.verificar, 
         name='s2420_evtcdbenterm_verificar'),
+        
+    url(r'^s2420-evtcdbenterm/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s2420_evtcdbenterm_verificar_views.verificar, 
+        name='s2420_evtcdbenterm_verificar_output'),
             
-    url(r'^s2420-evtcdbenterm/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s2420-evtcdbenterm/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s2420_evtcdbenterm_recibos_views.recibo, 
         name='s2420_evtcdbenterm_recibo'),
             
-    url(r'^s2420-evtcdbenterm/duplicar/(?P<hash>.*)/$',
+    url(r'^s2420-evtcdbenterm/duplicar/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_duplicar_views.duplicar,
         name='s2420_evtcdbenterm_duplicar'),
 
-    url(r'^s2420-evtcdbenterm/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s2420-evtcdbenterm/criar-alteracao/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_criar_alteracao_views.criar_alteracao,
         name='s2420_evtcdbenterm_criar_alteracao'),
 
-    url(r'^s2420-evtcdbenterm/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s2420-evtcdbenterm/criar-exclusao/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_criar_exclusao_views.criar_exclusao,
         name='s2420_evtcdbenterm_criar_exclusao'),
             
-    url(r'^s2420-evtcdbenterm/xml/(?P<hash>.*)/$', 
+    url(r'^s2420-evtcdbenterm/xml/(?P<pk>[0-9]+)/$', 
         s2420_evtcdbenterm_gerar_xml_views.gerar_xml, 
         name='s2420_evtcdbenterm_xml'),          
 
-    url(r'^s2420-evtcdbenterm/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s2420-evtcdbenterm/alterar-identidade/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_alterar_identidade_views.alterar_identidade,
         name='s2420_evtcdbenterm_alterar_identidade'),
 
-    url(r'^s2420-evtcdbenterm/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s2420-evtcdbenterm/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s2420_evtcdbenterm_abrir_evento_para_edicao'),
 
-    url(r'^s2420-evtcdbenterm/validar-evento/(?P<hash>.*)/$',
+    url(r'^s2420-evtcdbenterm/validar-evento/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_validar_evento_views.validar_evento,
         name='s2420_evtcdbenterm_validar_evento'),
 
-    url(r'^s2420-evtcdbenterm/salvar/(?P<hash>.*)/$', 
+    url(r'^s2420-evtcdbenterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2420_evtcdbenterm_salvar_views.salvar, 
         name='s2420_evtcdbenterm_salvar'),
         
-    url(r'^scripts/gerar-identidade/s2420-evtcdbenterm/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s2420-evtcdbenterm/gerar-identidade/(?P<pk>[0-9]+)/$',
         s2420_evtcdbenterm_gerar_identidade_views.gerar_identidade, 
         name='s2420_evtcdbenterm_gerar_identidade'),
+        
+    url(r'^s2420-evtcdbenterm/cadastrar/$', 
+        s2420_evtcdbenterm_salvar_views.salvar, 
+        name='s2420_evtcdbenterm_cadastrar'),
 
-    url(r'^s3000-evtexclusao/apagar/(?P<hash>.*)/$', 
+    url(r'^s2420-evtcdbenterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2420_evtcdbenterm_salvar_views.salvar, 
+        name='s2420_evtcdbenterm_salvar_output'),
+        
+    url(r'^s2420-evtcdbenterm/(?P<output>[\w-]+)/$', 
+        s2420_evtcdbenterm_listar_views.listar, 
+        name='s2420_evtcdbenterm_output'),
+
+    url(r'^s3000-evtexclusao/apagar/(?P<pk>[0-9]+)/$', 
         s3000_evtexclusao_apagar_views.apagar, 
         name='s3000_evtexclusao_apagar'),
 
@@ -3644,55 +4396,71 @@ urlpatterns = [
     url(r'^s3000-evtexclusao/api/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_api_views.s3000evtExclusaoDetail.as_view() ),
 
-    url(r'^s3000-evtexclusao/listar/(?P<hash>.*)/$', 
+    url(r'^s3000-evtexclusao/$', 
         s3000_evtexclusao_listar_views.listar, 
         name='s3000_evtexclusao'),
         
-    url(r'^s3000-evtexclusao/verificar/(?P<hash>.*)/$', 
+    url(r'^s3000-evtexclusao/verificar/(?P<pk>[0-9]+)/$', 
         s3000_evtexclusao_verificar_views.verificar, 
         name='s3000_evtexclusao_verificar'),
+        
+    url(r'^s3000-evtexclusao/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s3000_evtexclusao_verificar_views.verificar, 
+        name='s3000_evtexclusao_verificar_output'),
             
-    url(r'^s3000-evtexclusao/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s3000-evtexclusao/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s3000_evtexclusao_recibos_views.recibo, 
         name='s3000_evtexclusao_recibo'),
             
-    url(r'^s3000-evtexclusao/duplicar/(?P<hash>.*)/$',
+    url(r'^s3000-evtexclusao/duplicar/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_duplicar_views.duplicar,
         name='s3000_evtexclusao_duplicar'),
 
-    url(r'^s3000-evtexclusao/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s3000-evtexclusao/criar-alteracao/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_criar_alteracao_views.criar_alteracao,
         name='s3000_evtexclusao_criar_alteracao'),
 
-    url(r'^s3000-evtexclusao/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s3000-evtexclusao/criar-exclusao/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_criar_exclusao_views.criar_exclusao,
         name='s3000_evtexclusao_criar_exclusao'),
             
-    url(r'^s3000-evtexclusao/xml/(?P<hash>.*)/$', 
+    url(r'^s3000-evtexclusao/xml/(?P<pk>[0-9]+)/$', 
         s3000_evtexclusao_gerar_xml_views.gerar_xml, 
         name='s3000_evtexclusao_xml'),          
 
-    url(r'^s3000-evtexclusao/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s3000-evtexclusao/alterar-identidade/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_alterar_identidade_views.alterar_identidade,
         name='s3000_evtexclusao_alterar_identidade'),
 
-    url(r'^s3000-evtexclusao/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s3000-evtexclusao/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s3000_evtexclusao_abrir_evento_para_edicao'),
 
-    url(r'^s3000-evtexclusao/validar-evento/(?P<hash>.*)/$',
+    url(r'^s3000-evtexclusao/validar-evento/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_validar_evento_views.validar_evento,
         name='s3000_evtexclusao_validar_evento'),
 
-    url(r'^s3000-evtexclusao/salvar/(?P<hash>.*)/$', 
+    url(r'^s3000-evtexclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s3000_evtexclusao_salvar_views.salvar, 
         name='s3000_evtexclusao_salvar'),
         
-    url(r'^scripts/gerar-identidade/s3000-evtexclusao/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s3000-evtexclusao/gerar-identidade/(?P<pk>[0-9]+)/$',
         s3000_evtexclusao_gerar_identidade_views.gerar_identidade, 
         name='s3000_evtexclusao_gerar_identidade'),
+        
+    url(r'^s3000-evtexclusao/cadastrar/$', 
+        s3000_evtexclusao_salvar_views.salvar, 
+        name='s3000_evtexclusao_cadastrar'),
 
-    url(r'^s5001-evtbasestrab/apagar/(?P<hash>.*)/$', 
+    url(r'^s3000-evtexclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s3000_evtexclusao_salvar_views.salvar, 
+        name='s3000_evtexclusao_salvar_output'),
+        
+    url(r'^s3000-evtexclusao/(?P<output>[\w-]+)/$', 
+        s3000_evtexclusao_listar_views.listar, 
+        name='s3000_evtexclusao_output'),
+
+    url(r'^s5001-evtbasestrab/apagar/(?P<pk>[0-9]+)/$', 
         s5001_evtbasestrab_apagar_views.apagar, 
         name='s5001_evtbasestrab_apagar'),
 
@@ -3702,55 +4470,71 @@ urlpatterns = [
     url(r'^s5001-evtbasestrab/api/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_api_views.s5001evtBasesTrabDetail.as_view() ),
 
-    url(r'^s5001-evtbasestrab/listar/(?P<hash>.*)/$', 
+    url(r'^s5001-evtbasestrab/$', 
         s5001_evtbasestrab_listar_views.listar, 
         name='s5001_evtbasestrab'),
         
-    url(r'^s5001-evtbasestrab/verificar/(?P<hash>.*)/$', 
+    url(r'^s5001-evtbasestrab/verificar/(?P<pk>[0-9]+)/$', 
         s5001_evtbasestrab_verificar_views.verificar, 
         name='s5001_evtbasestrab_verificar'),
+        
+    url(r'^s5001-evtbasestrab/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5001_evtbasestrab_verificar_views.verificar, 
+        name='s5001_evtbasestrab_verificar_output'),
             
-    url(r'^s5001-evtbasestrab/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s5001-evtbasestrab/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s5001_evtbasestrab_recibos_views.recibo, 
         name='s5001_evtbasestrab_recibo'),
             
-    url(r'^s5001-evtbasestrab/duplicar/(?P<hash>.*)/$',
+    url(r'^s5001-evtbasestrab/duplicar/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_duplicar_views.duplicar,
         name='s5001_evtbasestrab_duplicar'),
 
-    url(r'^s5001-evtbasestrab/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s5001-evtbasestrab/criar-alteracao/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_criar_alteracao_views.criar_alteracao,
         name='s5001_evtbasestrab_criar_alteracao'),
 
-    url(r'^s5001-evtbasestrab/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s5001-evtbasestrab/criar-exclusao/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_criar_exclusao_views.criar_exclusao,
         name='s5001_evtbasestrab_criar_exclusao'),
             
-    url(r'^s5001-evtbasestrab/xml/(?P<hash>.*)/$', 
+    url(r'^s5001-evtbasestrab/xml/(?P<pk>[0-9]+)/$', 
         s5001_evtbasestrab_gerar_xml_views.gerar_xml, 
         name='s5001_evtbasestrab_xml'),          
 
-    url(r'^s5001-evtbasestrab/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s5001-evtbasestrab/alterar-identidade/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_alterar_identidade_views.alterar_identidade,
         name='s5001_evtbasestrab_alterar_identidade'),
 
-    url(r'^s5001-evtbasestrab/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s5001-evtbasestrab/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s5001_evtbasestrab_abrir_evento_para_edicao'),
 
-    url(r'^s5001-evtbasestrab/validar-evento/(?P<hash>.*)/$',
+    url(r'^s5001-evtbasestrab/validar-evento/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_validar_evento_views.validar_evento,
         name='s5001_evtbasestrab_validar_evento'),
 
-    url(r'^s5001-evtbasestrab/salvar/(?P<hash>.*)/$', 
+    url(r'^s5001-evtbasestrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5001_evtbasestrab_salvar_views.salvar, 
         name='s5001_evtbasestrab_salvar'),
         
-    url(r'^scripts/gerar-identidade/s5001-evtbasestrab/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s5001-evtbasestrab/gerar-identidade/(?P<pk>[0-9]+)/$',
         s5001_evtbasestrab_gerar_identidade_views.gerar_identidade, 
         name='s5001_evtbasestrab_gerar_identidade'),
+        
+    url(r'^s5001-evtbasestrab/cadastrar/$', 
+        s5001_evtbasestrab_salvar_views.salvar, 
+        name='s5001_evtbasestrab_cadastrar'),
 
-    url(r'^s5002-evtirrfbenef/apagar/(?P<hash>.*)/$', 
+    url(r'^s5001-evtbasestrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5001_evtbasestrab_salvar_views.salvar, 
+        name='s5001_evtbasestrab_salvar_output'),
+        
+    url(r'^s5001-evtbasestrab/(?P<output>[\w-]+)/$', 
+        s5001_evtbasestrab_listar_views.listar, 
+        name='s5001_evtbasestrab_output'),
+
+    url(r'^s5002-evtirrfbenef/apagar/(?P<pk>[0-9]+)/$', 
         s5002_evtirrfbenef_apagar_views.apagar, 
         name='s5002_evtirrfbenef_apagar'),
 
@@ -3760,55 +4544,71 @@ urlpatterns = [
     url(r'^s5002-evtirrfbenef/api/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_api_views.s5002evtIrrfBenefDetail.as_view() ),
 
-    url(r'^s5002-evtirrfbenef/listar/(?P<hash>.*)/$', 
+    url(r'^s5002-evtirrfbenef/$', 
         s5002_evtirrfbenef_listar_views.listar, 
         name='s5002_evtirrfbenef'),
         
-    url(r'^s5002-evtirrfbenef/verificar/(?P<hash>.*)/$', 
+    url(r'^s5002-evtirrfbenef/verificar/(?P<pk>[0-9]+)/$', 
         s5002_evtirrfbenef_verificar_views.verificar, 
         name='s5002_evtirrfbenef_verificar'),
+        
+    url(r'^s5002-evtirrfbenef/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5002_evtirrfbenef_verificar_views.verificar, 
+        name='s5002_evtirrfbenef_verificar_output'),
             
-    url(r'^s5002-evtirrfbenef/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s5002-evtirrfbenef/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s5002_evtirrfbenef_recibos_views.recibo, 
         name='s5002_evtirrfbenef_recibo'),
             
-    url(r'^s5002-evtirrfbenef/duplicar/(?P<hash>.*)/$',
+    url(r'^s5002-evtirrfbenef/duplicar/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_duplicar_views.duplicar,
         name='s5002_evtirrfbenef_duplicar'),
 
-    url(r'^s5002-evtirrfbenef/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s5002-evtirrfbenef/criar-alteracao/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_criar_alteracao_views.criar_alteracao,
         name='s5002_evtirrfbenef_criar_alteracao'),
 
-    url(r'^s5002-evtirrfbenef/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s5002-evtirrfbenef/criar-exclusao/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_criar_exclusao_views.criar_exclusao,
         name='s5002_evtirrfbenef_criar_exclusao'),
             
-    url(r'^s5002-evtirrfbenef/xml/(?P<hash>.*)/$', 
+    url(r'^s5002-evtirrfbenef/xml/(?P<pk>[0-9]+)/$', 
         s5002_evtirrfbenef_gerar_xml_views.gerar_xml, 
         name='s5002_evtirrfbenef_xml'),          
 
-    url(r'^s5002-evtirrfbenef/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s5002-evtirrfbenef/alterar-identidade/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_alterar_identidade_views.alterar_identidade,
         name='s5002_evtirrfbenef_alterar_identidade'),
 
-    url(r'^s5002-evtirrfbenef/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s5002-evtirrfbenef/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s5002_evtirrfbenef_abrir_evento_para_edicao'),
 
-    url(r'^s5002-evtirrfbenef/validar-evento/(?P<hash>.*)/$',
+    url(r'^s5002-evtirrfbenef/validar-evento/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_validar_evento_views.validar_evento,
         name='s5002_evtirrfbenef_validar_evento'),
 
-    url(r'^s5002-evtirrfbenef/salvar/(?P<hash>.*)/$', 
+    url(r'^s5002-evtirrfbenef/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5002_evtirrfbenef_salvar_views.salvar, 
         name='s5002_evtirrfbenef_salvar'),
         
-    url(r'^scripts/gerar-identidade/s5002-evtirrfbenef/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s5002-evtirrfbenef/gerar-identidade/(?P<pk>[0-9]+)/$',
         s5002_evtirrfbenef_gerar_identidade_views.gerar_identidade, 
         name='s5002_evtirrfbenef_gerar_identidade'),
+        
+    url(r'^s5002-evtirrfbenef/cadastrar/$', 
+        s5002_evtirrfbenef_salvar_views.salvar, 
+        name='s5002_evtirrfbenef_cadastrar'),
 
-    url(r'^s5003-evtbasesfgts/apagar/(?P<hash>.*)/$', 
+    url(r'^s5002-evtirrfbenef/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5002_evtirrfbenef_salvar_views.salvar, 
+        name='s5002_evtirrfbenef_salvar_output'),
+        
+    url(r'^s5002-evtirrfbenef/(?P<output>[\w-]+)/$', 
+        s5002_evtirrfbenef_listar_views.listar, 
+        name='s5002_evtirrfbenef_output'),
+
+    url(r'^s5003-evtbasesfgts/apagar/(?P<pk>[0-9]+)/$', 
         s5003_evtbasesfgts_apagar_views.apagar, 
         name='s5003_evtbasesfgts_apagar'),
 
@@ -3818,55 +4618,71 @@ urlpatterns = [
     url(r'^s5003-evtbasesfgts/api/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_api_views.s5003evtBasesFGTSDetail.as_view() ),
 
-    url(r'^s5003-evtbasesfgts/listar/(?P<hash>.*)/$', 
+    url(r'^s5003-evtbasesfgts/$', 
         s5003_evtbasesfgts_listar_views.listar, 
         name='s5003_evtbasesfgts'),
         
-    url(r'^s5003-evtbasesfgts/verificar/(?P<hash>.*)/$', 
+    url(r'^s5003-evtbasesfgts/verificar/(?P<pk>[0-9]+)/$', 
         s5003_evtbasesfgts_verificar_views.verificar, 
         name='s5003_evtbasesfgts_verificar'),
+        
+    url(r'^s5003-evtbasesfgts/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5003_evtbasesfgts_verificar_views.verificar, 
+        name='s5003_evtbasesfgts_verificar_output'),
             
-    url(r'^s5003-evtbasesfgts/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s5003-evtbasesfgts/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s5003_evtbasesfgts_recibos_views.recibo, 
         name='s5003_evtbasesfgts_recibo'),
             
-    url(r'^s5003-evtbasesfgts/duplicar/(?P<hash>.*)/$',
+    url(r'^s5003-evtbasesfgts/duplicar/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_duplicar_views.duplicar,
         name='s5003_evtbasesfgts_duplicar'),
 
-    url(r'^s5003-evtbasesfgts/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s5003-evtbasesfgts/criar-alteracao/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_criar_alteracao_views.criar_alteracao,
         name='s5003_evtbasesfgts_criar_alteracao'),
 
-    url(r'^s5003-evtbasesfgts/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s5003-evtbasesfgts/criar-exclusao/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_criar_exclusao_views.criar_exclusao,
         name='s5003_evtbasesfgts_criar_exclusao'),
             
-    url(r'^s5003-evtbasesfgts/xml/(?P<hash>.*)/$', 
+    url(r'^s5003-evtbasesfgts/xml/(?P<pk>[0-9]+)/$', 
         s5003_evtbasesfgts_gerar_xml_views.gerar_xml, 
         name='s5003_evtbasesfgts_xml'),          
 
-    url(r'^s5003-evtbasesfgts/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s5003-evtbasesfgts/alterar-identidade/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_alterar_identidade_views.alterar_identidade,
         name='s5003_evtbasesfgts_alterar_identidade'),
 
-    url(r'^s5003-evtbasesfgts/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s5003-evtbasesfgts/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s5003_evtbasesfgts_abrir_evento_para_edicao'),
 
-    url(r'^s5003-evtbasesfgts/validar-evento/(?P<hash>.*)/$',
+    url(r'^s5003-evtbasesfgts/validar-evento/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_validar_evento_views.validar_evento,
         name='s5003_evtbasesfgts_validar_evento'),
 
-    url(r'^s5003-evtbasesfgts/salvar/(?P<hash>.*)/$', 
+    url(r'^s5003-evtbasesfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5003_evtbasesfgts_salvar_views.salvar, 
         name='s5003_evtbasesfgts_salvar'),
         
-    url(r'^scripts/gerar-identidade/s5003-evtbasesfgts/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s5003-evtbasesfgts/gerar-identidade/(?P<pk>[0-9]+)/$',
         s5003_evtbasesfgts_gerar_identidade_views.gerar_identidade, 
         name='s5003_evtbasesfgts_gerar_identidade'),
+        
+    url(r'^s5003-evtbasesfgts/cadastrar/$', 
+        s5003_evtbasesfgts_salvar_views.salvar, 
+        name='s5003_evtbasesfgts_cadastrar'),
 
-    url(r'^s5011-evtcs/apagar/(?P<hash>.*)/$', 
+    url(r'^s5003-evtbasesfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5003_evtbasesfgts_salvar_views.salvar, 
+        name='s5003_evtbasesfgts_salvar_output'),
+        
+    url(r'^s5003-evtbasesfgts/(?P<output>[\w-]+)/$', 
+        s5003_evtbasesfgts_listar_views.listar, 
+        name='s5003_evtbasesfgts_output'),
+
+    url(r'^s5011-evtcs/apagar/(?P<pk>[0-9]+)/$', 
         s5011_evtcs_apagar_views.apagar, 
         name='s5011_evtcs_apagar'),
 
@@ -3876,55 +4692,71 @@ urlpatterns = [
     url(r'^s5011-evtcs/api/(?P<pk>[0-9]+)/$',
         s5011_evtcs_api_views.s5011evtCSDetail.as_view() ),
 
-    url(r'^s5011-evtcs/listar/(?P<hash>.*)/$', 
+    url(r'^s5011-evtcs/$', 
         s5011_evtcs_listar_views.listar, 
         name='s5011_evtcs'),
         
-    url(r'^s5011-evtcs/verificar/(?P<hash>.*)/$', 
+    url(r'^s5011-evtcs/verificar/(?P<pk>[0-9]+)/$', 
         s5011_evtcs_verificar_views.verificar, 
         name='s5011_evtcs_verificar'),
+        
+    url(r'^s5011-evtcs/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5011_evtcs_verificar_views.verificar, 
+        name='s5011_evtcs_verificar_output'),
             
-    url(r'^s5011-evtcs/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s5011-evtcs/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s5011_evtcs_recibos_views.recibo, 
         name='s5011_evtcs_recibo'),
             
-    url(r'^s5011-evtcs/duplicar/(?P<hash>.*)/$',
+    url(r'^s5011-evtcs/duplicar/(?P<pk>[0-9]+)/$',
         s5011_evtcs_duplicar_views.duplicar,
         name='s5011_evtcs_duplicar'),
 
-    url(r'^s5011-evtcs/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s5011-evtcs/criar-alteracao/(?P<pk>[0-9]+)/$',
         s5011_evtcs_criar_alteracao_views.criar_alteracao,
         name='s5011_evtcs_criar_alteracao'),
 
-    url(r'^s5011-evtcs/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s5011-evtcs/criar-exclusao/(?P<pk>[0-9]+)/$',
         s5011_evtcs_criar_exclusao_views.criar_exclusao,
         name='s5011_evtcs_criar_exclusao'),
             
-    url(r'^s5011-evtcs/xml/(?P<hash>.*)/$', 
+    url(r'^s5011-evtcs/xml/(?P<pk>[0-9]+)/$', 
         s5011_evtcs_gerar_xml_views.gerar_xml, 
         name='s5011_evtcs_xml'),          
 
-    url(r'^s5011-evtcs/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s5011-evtcs/alterar-identidade/(?P<pk>[0-9]+)/$',
         s5011_evtcs_alterar_identidade_views.alterar_identidade,
         name='s5011_evtcs_alterar_identidade'),
 
-    url(r'^s5011-evtcs/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s5011-evtcs/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s5011_evtcs_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s5011_evtcs_abrir_evento_para_edicao'),
 
-    url(r'^s5011-evtcs/validar-evento/(?P<hash>.*)/$',
+    url(r'^s5011-evtcs/validar-evento/(?P<pk>[0-9]+)/$',
         s5011_evtcs_validar_evento_views.validar_evento,
         name='s5011_evtcs_validar_evento'),
 
-    url(r'^s5011-evtcs/salvar/(?P<hash>.*)/$', 
+    url(r'^s5011-evtcs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5011_evtcs_salvar_views.salvar, 
         name='s5011_evtcs_salvar'),
         
-    url(r'^scripts/gerar-identidade/s5011-evtcs/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s5011-evtcs/gerar-identidade/(?P<pk>[0-9]+)/$',
         s5011_evtcs_gerar_identidade_views.gerar_identidade, 
         name='s5011_evtcs_gerar_identidade'),
+        
+    url(r'^s5011-evtcs/cadastrar/$', 
+        s5011_evtcs_salvar_views.salvar, 
+        name='s5011_evtcs_cadastrar'),
 
-    url(r'^s5012-evtirrf/apagar/(?P<hash>.*)/$', 
+    url(r'^s5011-evtcs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5011_evtcs_salvar_views.salvar, 
+        name='s5011_evtcs_salvar_output'),
+        
+    url(r'^s5011-evtcs/(?P<output>[\w-]+)/$', 
+        s5011_evtcs_listar_views.listar, 
+        name='s5011_evtcs_output'),
+
+    url(r'^s5012-evtirrf/apagar/(?P<pk>[0-9]+)/$', 
         s5012_evtirrf_apagar_views.apagar, 
         name='s5012_evtirrf_apagar'),
 
@@ -3934,55 +4766,71 @@ urlpatterns = [
     url(r'^s5012-evtirrf/api/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_api_views.s5012evtIrrfDetail.as_view() ),
 
-    url(r'^s5012-evtirrf/listar/(?P<hash>.*)/$', 
+    url(r'^s5012-evtirrf/$', 
         s5012_evtirrf_listar_views.listar, 
         name='s5012_evtirrf'),
         
-    url(r'^s5012-evtirrf/verificar/(?P<hash>.*)/$', 
+    url(r'^s5012-evtirrf/verificar/(?P<pk>[0-9]+)/$', 
         s5012_evtirrf_verificar_views.verificar, 
         name='s5012_evtirrf_verificar'),
+        
+    url(r'^s5012-evtirrf/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5012_evtirrf_verificar_views.verificar, 
+        name='s5012_evtirrf_verificar_output'),
             
-    url(r'^s5012-evtirrf/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s5012-evtirrf/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s5012_evtirrf_recibos_views.recibo, 
         name='s5012_evtirrf_recibo'),
             
-    url(r'^s5012-evtirrf/duplicar/(?P<hash>.*)/$',
+    url(r'^s5012-evtirrf/duplicar/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_duplicar_views.duplicar,
         name='s5012_evtirrf_duplicar'),
 
-    url(r'^s5012-evtirrf/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s5012-evtirrf/criar-alteracao/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_criar_alteracao_views.criar_alteracao,
         name='s5012_evtirrf_criar_alteracao'),
 
-    url(r'^s5012-evtirrf/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s5012-evtirrf/criar-exclusao/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_criar_exclusao_views.criar_exclusao,
         name='s5012_evtirrf_criar_exclusao'),
             
-    url(r'^s5012-evtirrf/xml/(?P<hash>.*)/$', 
+    url(r'^s5012-evtirrf/xml/(?P<pk>[0-9]+)/$', 
         s5012_evtirrf_gerar_xml_views.gerar_xml, 
         name='s5012_evtirrf_xml'),          
 
-    url(r'^s5012-evtirrf/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s5012-evtirrf/alterar-identidade/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_alterar_identidade_views.alterar_identidade,
         name='s5012_evtirrf_alterar_identidade'),
 
-    url(r'^s5012-evtirrf/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s5012-evtirrf/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s5012_evtirrf_abrir_evento_para_edicao'),
 
-    url(r'^s5012-evtirrf/validar-evento/(?P<hash>.*)/$',
+    url(r'^s5012-evtirrf/validar-evento/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_validar_evento_views.validar_evento,
         name='s5012_evtirrf_validar_evento'),
 
-    url(r'^s5012-evtirrf/salvar/(?P<hash>.*)/$', 
+    url(r'^s5012-evtirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5012_evtirrf_salvar_views.salvar, 
         name='s5012_evtirrf_salvar'),
         
-    url(r'^scripts/gerar-identidade/s5012-evtirrf/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s5012-evtirrf/gerar-identidade/(?P<pk>[0-9]+)/$',
         s5012_evtirrf_gerar_identidade_views.gerar_identidade, 
         name='s5012_evtirrf_gerar_identidade'),
+        
+    url(r'^s5012-evtirrf/cadastrar/$', 
+        s5012_evtirrf_salvar_views.salvar, 
+        name='s5012_evtirrf_cadastrar'),
 
-    url(r'^s5013-evtfgts/apagar/(?P<hash>.*)/$', 
+    url(r'^s5012-evtirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5012_evtirrf_salvar_views.salvar, 
+        name='s5012_evtirrf_salvar_output'),
+        
+    url(r'^s5012-evtirrf/(?P<output>[\w-]+)/$', 
+        s5012_evtirrf_listar_views.listar, 
+        name='s5012_evtirrf_output'),
+
+    url(r'^s5013-evtfgts/apagar/(?P<pk>[0-9]+)/$', 
         s5013_evtfgts_apagar_views.apagar, 
         name='s5013_evtfgts_apagar'),
 
@@ -3992,53 +4840,69 @@ urlpatterns = [
     url(r'^s5013-evtfgts/api/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_api_views.s5013evtFGTSDetail.as_view() ),
 
-    url(r'^s5013-evtfgts/listar/(?P<hash>.*)/$', 
+    url(r'^s5013-evtfgts/$', 
         s5013_evtfgts_listar_views.listar, 
         name='s5013_evtfgts'),
         
-    url(r'^s5013-evtfgts/verificar/(?P<hash>.*)/$', 
+    url(r'^s5013-evtfgts/verificar/(?P<pk>[0-9]+)/$', 
         s5013_evtfgts_verificar_views.verificar, 
         name='s5013_evtfgts_verificar'),
+        
+    url(r'^s5013-evtfgts/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5013_evtfgts_verificar_views.verificar, 
+        name='s5013_evtfgts_verificar_output'),
             
-    url(r'^s5013-evtfgts/recibo/(?P<hash>.*)/(?P<tipo>[\w\-]+)/$', 
+    url(r'^s5013-evtfgts/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
         s5013_evtfgts_recibos_views.recibo, 
         name='s5013_evtfgts_recibo'),
             
-    url(r'^s5013-evtfgts/duplicar/(?P<hash>.*)/$',
+    url(r'^s5013-evtfgts/duplicar/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_duplicar_views.duplicar,
         name='s5013_evtfgts_duplicar'),
 
-    url(r'^s5013-evtfgts/criar-alteracao/(?P<hash>.*)/$',
+    url(r'^s5013-evtfgts/criar-alteracao/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_criar_alteracao_views.criar_alteracao,
         name='s5013_evtfgts_criar_alteracao'),
 
-    url(r'^s5013-evtfgts/criar-exclusao/(?P<hash>.*)/$',
+    url(r'^s5013-evtfgts/criar-exclusao/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_criar_exclusao_views.criar_exclusao,
         name='s5013_evtfgts_criar_exclusao'),
             
-    url(r'^s5013-evtfgts/xml/(?P<hash>.*)/$', 
+    url(r'^s5013-evtfgts/xml/(?P<pk>[0-9]+)/$', 
         s5013_evtfgts_gerar_xml_views.gerar_xml, 
         name='s5013_evtfgts_xml'),          
 
-    url(r'^s5013-evtfgts/alterar-identidade/(?P<hash>.*)/$',
+    url(r'^s5013-evtfgts/alterar-identidade/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_alterar_identidade_views.alterar_identidade,
         name='s5013_evtfgts_alterar_identidade'),
 
-    url(r'^s5013-evtfgts/abrir-evento-para-edicao/(?P<hash>.*)/$',
+    url(r'^s5013-evtfgts/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
         name='s5013_evtfgts_abrir_evento_para_edicao'),
 
-    url(r'^s5013-evtfgts/validar-evento/(?P<hash>.*)/$',
+    url(r'^s5013-evtfgts/validar-evento/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_validar_evento_views.validar_evento,
         name='s5013_evtfgts_validar_evento'),
 
-    url(r'^s5013-evtfgts/salvar/(?P<hash>.*)/$', 
+    url(r'^s5013-evtfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s5013_evtfgts_salvar_views.salvar, 
         name='s5013_evtfgts_salvar'),
         
-    url(r'^scripts/gerar-identidade/s5013-evtfgts/(?P<chave>.*)/(?P<evento_id>\d+)/$',
+    url(r'^s5013-evtfgts/gerar-identidade/(?P<pk>[0-9]+)/$',
         s5013_evtfgts_gerar_identidade_views.gerar_identidade, 
         name='s5013_evtfgts_gerar_identidade'),
+        
+    url(r'^s5013-evtfgts/cadastrar/$', 
+        s5013_evtfgts_salvar_views.salvar, 
+        name='s5013_evtfgts_cadastrar'),
+
+    url(r'^s5013-evtfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s5013_evtfgts_salvar_views.salvar, 
+        name='s5013_evtfgts_salvar_output'),
+        
+    url(r'^s5013-evtfgts/(?P<output>[\w-]+)/$', 
+        s5013_evtfgts_listar_views.listar, 
+        name='s5013_evtfgts_output'),
 
 
 ]

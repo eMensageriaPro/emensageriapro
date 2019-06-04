@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2230evtAfastTemp'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2230_evtafasttemp_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2230evtAfastTemp'):
-        s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=s2230_evtafasttemp_id)
-        s2230_evtafasttemp_lista = s2230evtAfastTemp.objects.filter(id=s2230_evtafasttemp_id).all()
+        s2230_evtafasttemp = get_object_or_404(s2230evtAfastTemp, id=pk)
+        s2230_evtafasttemp_lista = s2230evtAfastTemp.objects.filter(id=pk).all()
 
         
         s2230_iniafastamento_lista = s2230iniAfastamento.objects.filter(s2230_evtafasttemp_id__in = listar_ids(s2230_evtafasttemp_lista) ).all()
@@ -101,15 +87,14 @@ def verificar(request, hash):
         s2230_inforetif_lista = s2230infoRetif.objects.filter(s2230_evtafasttemp_id__in = listar_ids(s2230_evtafasttemp_lista) ).all()
         s2230_fimafastamento_lista = s2230fimAfastamento.objects.filter(s2230_evtafasttemp_id__in = listar_ids(s2230_evtafasttemp_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2230_evtafasttemp'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2230_evtafasttemp'
 
         context = {
             's2230_evtafasttemp_lista': s2230_evtafasttemp_lista,
-            's2230_evtafasttemp_id': s2230_evtafasttemp_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2230_evtafasttemp': s2230_evtafasttemp,
-            
-            
             's2230_iniafastamento_lista': s2230_iniafastamento_lista,
             's2230_infoatestado_lista': s2230_infoatestado_lista,
             's2230_emitente_lista': s2230_emitente_lista,
@@ -117,45 +102,42 @@ def verificar(request, hash):
             's2230_infomandsind_lista': s2230_infomandsind_lista,
             's2230_inforetif_lista': s2230_inforetif_lista,
             's2230_fimafastamento_lista': s2230_fimafastamento_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2230_evtafasttemp', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2230_evtafasttemp_verificar.html',
-                                           filename="s2230_evtafasttemp.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2230_evtafasttemp_verificar.html',
+                filename="s2230_evtafasttemp.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2230_evtafasttemp_verificar.html', context)
             filename = "%s.xls" % s2230_evtafasttemp.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2230_evtafasttemp_verificar.html', context)
             filename = "%s.csv" % s2230_evtafasttemp.identidade
@@ -170,7 +152,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2230_evtafasttemp', ],
             'data': datetime.now(),

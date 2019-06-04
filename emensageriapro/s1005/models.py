@@ -114,8 +114,11 @@ class s1005alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracao", "Can view S1005ALTERACAO"),
-            ("can_view_menu_s1005alteracao", "Can view menu S1005ALTERACAO"),)
+            ("can_see_list_s1005alteracao", u"Pode ver listagem do modelo S1005ALTERACAO"),
+            ("can_see_data_s1005alteracao", u"Pode visualizar o conteúdo do modelo S1005ALTERACAO"),
+            ("can_see_menu_s1005alteracao", u"Pode visualizar no menu o modelo S1005ALTERACAO"),
+            ("can_print_list_s1005alteracao", u"Pode imprimir listagem do modelo S1005ALTERACAO"),
+            ("can_print_data_s1005alteracao", u"Pode imprimir o conteúdo do modelo S1005ALTERACAO"), )
             
         ordering = [
             's1005_evttabestab',
@@ -177,8 +180,11 @@ class s1005alteracaoinfoCaepf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaoinfoCaepf", "Can view S1005ALTERACAOINFOCAEPF"),
-            ("can_view_menu_s1005alteracaoinfoCaepf", "Can view menu S1005ALTERACAOINFOCAEPF"),)
+            ("can_see_list_s1005alteracaoinfoCaepf", u"Pode ver listagem do modelo S1005ALTERACAOINFOCAEPF"),
+            ("can_see_data_s1005alteracaoinfoCaepf", u"Pode visualizar o conteúdo do modelo S1005ALTERACAOINFOCAEPF"),
+            ("can_see_menu_s1005alteracaoinfoCaepf", u"Pode visualizar no menu o modelo S1005ALTERACAOINFOCAEPF"),
+            ("can_print_list_s1005alteracaoinfoCaepf", u"Pode imprimir listagem do modelo S1005ALTERACAOINFOCAEPF"),
+            ("can_print_data_s1005alteracaoinfoCaepf", u"Pode imprimir o conteúdo do modelo S1005ALTERACAOINFOCAEPF"), )
             
         ordering = [
             's1005_alteracao',
@@ -234,8 +240,11 @@ class s1005alteracaoinfoEntEduc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaoinfoEntEduc", "Can view S1005ALTERACAOINFOENTEDUC"),
-            ("can_view_menu_s1005alteracaoinfoEntEduc", "Can view menu S1005ALTERACAOINFOENTEDUC"),)
+            ("can_see_list_s1005alteracaoinfoEntEduc", u"Pode ver listagem do modelo S1005ALTERACAOINFOENTEDUC"),
+            ("can_see_data_s1005alteracaoinfoEntEduc", u"Pode visualizar o conteúdo do modelo S1005ALTERACAOINFOENTEDUC"),
+            ("can_see_menu_s1005alteracaoinfoEntEduc", u"Pode visualizar no menu o modelo S1005ALTERACAOINFOENTEDUC"),
+            ("can_print_list_s1005alteracaoinfoEntEduc", u"Pode imprimir listagem do modelo S1005ALTERACAOINFOENTEDUC"),
+            ("can_print_data_s1005alteracaoinfoEntEduc", u"Pode imprimir o conteúdo do modelo S1005ALTERACAOINFOENTEDUC"), )
             
         ordering = [
             's1005_alteracao',
@@ -291,8 +300,11 @@ class s1005alteracaoinfoObra(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaoinfoObra", "Can view S1005ALTERACAOINFOOBRA"),
-            ("can_view_menu_s1005alteracaoinfoObra", "Can view menu S1005ALTERACAOINFOOBRA"),)
+            ("can_see_list_s1005alteracaoinfoObra", u"Pode ver listagem do modelo S1005ALTERACAOINFOOBRA"),
+            ("can_see_data_s1005alteracaoinfoObra", u"Pode visualizar o conteúdo do modelo S1005ALTERACAOINFOOBRA"),
+            ("can_see_menu_s1005alteracaoinfoObra", u"Pode visualizar no menu o modelo S1005ALTERACAOINFOOBRA"),
+            ("can_print_list_s1005alteracaoinfoObra", u"Pode imprimir listagem do modelo S1005ALTERACAOINFOOBRA"),
+            ("can_print_data_s1005alteracaoinfoObra", u"Pode imprimir o conteúdo do modelo S1005ALTERACAOINFOOBRA"), )
             
         ordering = [
             's1005_alteracao',
@@ -349,8 +361,11 @@ class s1005alteracaoinfoPCD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaoinfoPCD", "Can view S1005ALTERACAOINFOPCD"),
-            ("can_view_menu_s1005alteracaoinfoPCD", "Can view menu S1005ALTERACAOINFOPCD"),)
+            ("can_see_list_s1005alteracaoinfoPCD", u"Pode ver listagem do modelo S1005ALTERACAOINFOPCD"),
+            ("can_see_data_s1005alteracaoinfoPCD", u"Pode visualizar o conteúdo do modelo S1005ALTERACAOINFOPCD"),
+            ("can_see_menu_s1005alteracaoinfoPCD", u"Pode visualizar no menu o modelo S1005ALTERACAOINFOPCD"),
+            ("can_print_list_s1005alteracaoinfoPCD", u"Pode imprimir listagem do modelo S1005ALTERACAOINFOPCD"),
+            ("can_print_data_s1005alteracaoinfoPCD", u"Pode imprimir o conteúdo do modelo S1005ALTERACAOINFOPCD"), )
             
         ordering = [
             's1005_alteracao',
@@ -407,8 +422,11 @@ class s1005alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaonovaValidade", "Can view S1005ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1005alteracaonovaValidade", "Can view menu S1005ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1005alteracaonovaValidade", u"Pode ver listagem do modelo S1005ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1005alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1005ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1005alteracaonovaValidade", u"Pode visualizar no menu o modelo S1005ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1005alteracaonovaValidade", u"Pode imprimir listagem do modelo S1005ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1005alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1005ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1005_alteracao',
@@ -468,8 +486,11 @@ class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaoprocAdmJudFap", "Can view S1005ALTERACAOPROCADMJUDFAP"),
-            ("can_view_menu_s1005alteracaoprocAdmJudFap", "Can view menu S1005ALTERACAOPROCADMJUDFAP"),)
+            ("can_see_list_s1005alteracaoprocAdmJudFap", u"Pode ver listagem do modelo S1005ALTERACAOPROCADMJUDFAP"),
+            ("can_see_data_s1005alteracaoprocAdmJudFap", u"Pode visualizar o conteúdo do modelo S1005ALTERACAOPROCADMJUDFAP"),
+            ("can_see_menu_s1005alteracaoprocAdmJudFap", u"Pode visualizar no menu o modelo S1005ALTERACAOPROCADMJUDFAP"),
+            ("can_print_list_s1005alteracaoprocAdmJudFap", u"Pode imprimir listagem do modelo S1005ALTERACAOPROCADMJUDFAP"),
+            ("can_print_data_s1005alteracaoprocAdmJudFap", u"Pode imprimir o conteúdo do modelo S1005ALTERACAOPROCADMJUDFAP"), )
             
         ordering = [
             's1005_alteracao',
@@ -531,8 +552,11 @@ class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005alteracaoprocAdmJudRat", "Can view S1005ALTERACAOPROCADMJUDRAT"),
-            ("can_view_menu_s1005alteracaoprocAdmJudRat", "Can view menu S1005ALTERACAOPROCADMJUDRAT"),)
+            ("can_see_list_s1005alteracaoprocAdmJudRat", u"Pode ver listagem do modelo S1005ALTERACAOPROCADMJUDRAT"),
+            ("can_see_data_s1005alteracaoprocAdmJudRat", u"Pode visualizar o conteúdo do modelo S1005ALTERACAOPROCADMJUDRAT"),
+            ("can_see_menu_s1005alteracaoprocAdmJudRat", u"Pode visualizar no menu o modelo S1005ALTERACAOPROCADMJUDRAT"),
+            ("can_print_list_s1005alteracaoprocAdmJudRat", u"Pode imprimir listagem do modelo S1005ALTERACAOPROCADMJUDRAT"),
+            ("can_print_data_s1005alteracaoprocAdmJudRat", u"Pode imprimir o conteúdo do modelo S1005ALTERACAOPROCADMJUDRAT"), )
             
         ordering = [
             's1005_alteracao',
@@ -595,8 +619,11 @@ class s1005exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005exclusao", "Can view S1005EXCLUSAO"),
-            ("can_view_menu_s1005exclusao", "Can view menu S1005EXCLUSAO"),)
+            ("can_see_list_s1005exclusao", u"Pode ver listagem do modelo S1005EXCLUSAO"),
+            ("can_see_data_s1005exclusao", u"Pode visualizar o conteúdo do modelo S1005EXCLUSAO"),
+            ("can_see_menu_s1005exclusao", u"Pode visualizar no menu o modelo S1005EXCLUSAO"),
+            ("can_print_list_s1005exclusao", u"Pode imprimir listagem do modelo S1005EXCLUSAO"),
+            ("can_print_data_s1005exclusao", u"Pode imprimir o conteúdo do modelo S1005EXCLUSAO"), )
             
         ordering = [
             's1005_evttabestab',
@@ -671,8 +698,11 @@ class s1005inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusao", "Can view S1005INCLUSAO"),
-            ("can_view_menu_s1005inclusao", "Can view menu S1005INCLUSAO"),)
+            ("can_see_list_s1005inclusao", u"Pode ver listagem do modelo S1005INCLUSAO"),
+            ("can_see_data_s1005inclusao", u"Pode visualizar o conteúdo do modelo S1005INCLUSAO"),
+            ("can_see_menu_s1005inclusao", u"Pode visualizar no menu o modelo S1005INCLUSAO"),
+            ("can_print_list_s1005inclusao", u"Pode imprimir listagem do modelo S1005INCLUSAO"),
+            ("can_print_data_s1005inclusao", u"Pode imprimir o conteúdo do modelo S1005INCLUSAO"), )
             
         ordering = [
             's1005_evttabestab',
@@ -734,8 +764,11 @@ class s1005inclusaoinfoCaepf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusaoinfoCaepf", "Can view S1005INCLUSAOINFOCAEPF"),
-            ("can_view_menu_s1005inclusaoinfoCaepf", "Can view menu S1005INCLUSAOINFOCAEPF"),)
+            ("can_see_list_s1005inclusaoinfoCaepf", u"Pode ver listagem do modelo S1005INCLUSAOINFOCAEPF"),
+            ("can_see_data_s1005inclusaoinfoCaepf", u"Pode visualizar o conteúdo do modelo S1005INCLUSAOINFOCAEPF"),
+            ("can_see_menu_s1005inclusaoinfoCaepf", u"Pode visualizar no menu o modelo S1005INCLUSAOINFOCAEPF"),
+            ("can_print_list_s1005inclusaoinfoCaepf", u"Pode imprimir listagem do modelo S1005INCLUSAOINFOCAEPF"),
+            ("can_print_data_s1005inclusaoinfoCaepf", u"Pode imprimir o conteúdo do modelo S1005INCLUSAOINFOCAEPF"), )
             
         ordering = [
             's1005_inclusao',
@@ -791,8 +824,11 @@ class s1005inclusaoinfoEntEduc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusaoinfoEntEduc", "Can view S1005INCLUSAOINFOENTEDUC"),
-            ("can_view_menu_s1005inclusaoinfoEntEduc", "Can view menu S1005INCLUSAOINFOENTEDUC"),)
+            ("can_see_list_s1005inclusaoinfoEntEduc", u"Pode ver listagem do modelo S1005INCLUSAOINFOENTEDUC"),
+            ("can_see_data_s1005inclusaoinfoEntEduc", u"Pode visualizar o conteúdo do modelo S1005INCLUSAOINFOENTEDUC"),
+            ("can_see_menu_s1005inclusaoinfoEntEduc", u"Pode visualizar no menu o modelo S1005INCLUSAOINFOENTEDUC"),
+            ("can_print_list_s1005inclusaoinfoEntEduc", u"Pode imprimir listagem do modelo S1005INCLUSAOINFOENTEDUC"),
+            ("can_print_data_s1005inclusaoinfoEntEduc", u"Pode imprimir o conteúdo do modelo S1005INCLUSAOINFOENTEDUC"), )
             
         ordering = [
             's1005_inclusao',
@@ -848,8 +884,11 @@ class s1005inclusaoinfoObra(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusaoinfoObra", "Can view S1005INCLUSAOINFOOBRA"),
-            ("can_view_menu_s1005inclusaoinfoObra", "Can view menu S1005INCLUSAOINFOOBRA"),)
+            ("can_see_list_s1005inclusaoinfoObra", u"Pode ver listagem do modelo S1005INCLUSAOINFOOBRA"),
+            ("can_see_data_s1005inclusaoinfoObra", u"Pode visualizar o conteúdo do modelo S1005INCLUSAOINFOOBRA"),
+            ("can_see_menu_s1005inclusaoinfoObra", u"Pode visualizar no menu o modelo S1005INCLUSAOINFOOBRA"),
+            ("can_print_list_s1005inclusaoinfoObra", u"Pode imprimir listagem do modelo S1005INCLUSAOINFOOBRA"),
+            ("can_print_data_s1005inclusaoinfoObra", u"Pode imprimir o conteúdo do modelo S1005INCLUSAOINFOOBRA"), )
             
         ordering = [
             's1005_inclusao',
@@ -906,8 +945,11 @@ class s1005inclusaoinfoPCD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusaoinfoPCD", "Can view S1005INCLUSAOINFOPCD"),
-            ("can_view_menu_s1005inclusaoinfoPCD", "Can view menu S1005INCLUSAOINFOPCD"),)
+            ("can_see_list_s1005inclusaoinfoPCD", u"Pode ver listagem do modelo S1005INCLUSAOINFOPCD"),
+            ("can_see_data_s1005inclusaoinfoPCD", u"Pode visualizar o conteúdo do modelo S1005INCLUSAOINFOPCD"),
+            ("can_see_menu_s1005inclusaoinfoPCD", u"Pode visualizar no menu o modelo S1005INCLUSAOINFOPCD"),
+            ("can_print_list_s1005inclusaoinfoPCD", u"Pode imprimir listagem do modelo S1005INCLUSAOINFOPCD"),
+            ("can_print_data_s1005inclusaoinfoPCD", u"Pode imprimir o conteúdo do modelo S1005INCLUSAOINFOPCD"), )
             
         ordering = [
             's1005_inclusao',
@@ -967,8 +1009,11 @@ class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusaoprocAdmJudFap", "Can view S1005INCLUSAOPROCADMJUDFAP"),
-            ("can_view_menu_s1005inclusaoprocAdmJudFap", "Can view menu S1005INCLUSAOPROCADMJUDFAP"),)
+            ("can_see_list_s1005inclusaoprocAdmJudFap", u"Pode ver listagem do modelo S1005INCLUSAOPROCADMJUDFAP"),
+            ("can_see_data_s1005inclusaoprocAdmJudFap", u"Pode visualizar o conteúdo do modelo S1005INCLUSAOPROCADMJUDFAP"),
+            ("can_see_menu_s1005inclusaoprocAdmJudFap", u"Pode visualizar no menu o modelo S1005INCLUSAOPROCADMJUDFAP"),
+            ("can_print_list_s1005inclusaoprocAdmJudFap", u"Pode imprimir listagem do modelo S1005INCLUSAOPROCADMJUDFAP"),
+            ("can_print_data_s1005inclusaoprocAdmJudFap", u"Pode imprimir o conteúdo do modelo S1005INCLUSAOPROCADMJUDFAP"), )
             
         ordering = [
             's1005_inclusao',
@@ -1030,8 +1075,11 @@ class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1005inclusaoprocAdmJudRat", "Can view S1005INCLUSAOPROCADMJUDRAT"),
-            ("can_view_menu_s1005inclusaoprocAdmJudRat", "Can view menu S1005INCLUSAOPROCADMJUDRAT"),)
+            ("can_see_list_s1005inclusaoprocAdmJudRat", u"Pode ver listagem do modelo S1005INCLUSAOPROCADMJUDRAT"),
+            ("can_see_data_s1005inclusaoprocAdmJudRat", u"Pode visualizar o conteúdo do modelo S1005INCLUSAOPROCADMJUDRAT"),
+            ("can_see_menu_s1005inclusaoprocAdmJudRat", u"Pode visualizar no menu o modelo S1005INCLUSAOPROCADMJUDRAT"),
+            ("can_print_list_s1005inclusaoprocAdmJudRat", u"Pode imprimir listagem do modelo S1005INCLUSAOPROCADMJUDRAT"),
+            ("can_print_data_s1005inclusaoprocAdmJudRat", u"Pode imprimir o conteúdo do modelo S1005INCLUSAOPROCADMJUDRAT"), )
             
         ordering = [
             's1005_inclusao',

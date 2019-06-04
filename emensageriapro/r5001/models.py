@@ -100,8 +100,11 @@ class r5001RCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001RCPRB", "Can view R5001RCPRB"),
-            ("can_view_menu_r5001RCPRB", "Can view menu R5001RCPRB"),)
+            ("can_see_list_r5001RCPRB", u"Pode ver listagem do modelo R5001RCPRB"),
+            ("can_see_data_r5001RCPRB", u"Pode visualizar o conteúdo do modelo R5001RCPRB"),
+            ("can_see_menu_r5001RCPRB", u"Pode visualizar no menu o modelo R5001RCPRB"),
+            ("can_print_list_r5001RCPRB", u"Pode imprimir listagem do modelo R5001RCPRB"),
+            ("can_print_data_r5001RCPRB", u"Pode imprimir o conteúdo do modelo R5001RCPRB"), )
             
         ordering = [
             'r5001_infototal',
@@ -161,8 +164,11 @@ class r5001RComl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001RComl", "Can view R5001RCOML"),
-            ("can_view_menu_r5001RComl", "Can view menu R5001RCOML"),)
+            ("can_see_list_r5001RComl", u"Pode ver listagem do modelo R5001RCOML"),
+            ("can_see_data_r5001RComl", u"Pode visualizar o conteúdo do modelo R5001RCOML"),
+            ("can_see_menu_r5001RComl", u"Pode visualizar no menu o modelo R5001RCOML"),
+            ("can_print_list_r5001RComl", u"Pode imprimir listagem do modelo R5001RCOML"),
+            ("can_print_data_r5001RComl", u"Pode imprimir o conteúdo do modelo R5001RCOML"), )
             
         ordering = [
             'r5001_infototal',
@@ -228,8 +234,11 @@ class r5001RPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001RPrest", "Can view R5001RPREST"),
-            ("can_view_menu_r5001RPrest", "Can view menu R5001RPREST"),)
+            ("can_see_list_r5001RPrest", u"Pode ver listagem do modelo R5001RPREST"),
+            ("can_see_data_r5001RPrest", u"Pode visualizar o conteúdo do modelo R5001RPREST"),
+            ("can_see_menu_r5001RPrest", u"Pode visualizar no menu o modelo R5001RPREST"),
+            ("can_print_list_r5001RPrest", u"Pode imprimir listagem do modelo R5001RPREST"),
+            ("can_print_data_r5001RPrest", u"Pode imprimir o conteúdo do modelo R5001RPREST"), )
             
         ordering = [
             'r5001_infototal',
@@ -293,8 +302,11 @@ class r5001RRecEspetDesp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001RRecEspetDesp", "Can view R5001RRECESPETDESP"),
-            ("can_view_menu_r5001RRecEspetDesp", "Can view menu R5001RRECESPETDESP"),)
+            ("can_see_list_r5001RRecEspetDesp", u"Pode ver listagem do modelo R5001RRECESPETDESP"),
+            ("can_see_data_r5001RRecEspetDesp", u"Pode visualizar o conteúdo do modelo R5001RRECESPETDESP"),
+            ("can_see_menu_r5001RRecEspetDesp", u"Pode visualizar no menu o modelo R5001RRECESPETDESP"),
+            ("can_print_list_r5001RRecEspetDesp", u"Pode imprimir listagem do modelo R5001RRECESPETDESP"),
+            ("can_print_data_r5001RRecEspetDesp", u"Pode imprimir o conteúdo do modelo R5001RRECESPETDESP"), )
             
         ordering = [
             'r5001_infototal',
@@ -359,8 +371,11 @@ class r5001RRecRepAD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001RRecRepAD", "Can view R5001RRECREPAD"),
-            ("can_view_menu_r5001RRecRepAD", "Can view menu R5001RRECREPAD"),)
+            ("can_see_list_r5001RRecRepAD", u"Pode ver listagem do modelo R5001RRECREPAD"),
+            ("can_see_data_r5001RRecRepAD", u"Pode visualizar o conteúdo do modelo R5001RRECREPAD"),
+            ("can_see_menu_r5001RRecRepAD", u"Pode visualizar no menu o modelo R5001RRECREPAD"),
+            ("can_print_list_r5001RRecRepAD", u"Pode imprimir listagem do modelo R5001RRECREPAD"),
+            ("can_print_data_r5001RRecRepAD", u"Pode imprimir o conteúdo do modelo R5001RRECREPAD"), )
             
         ordering = [
             'r5001_infototal',
@@ -422,8 +437,11 @@ class r5001RTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001RTom", "Can view R5001RTOM"),
-            ("can_view_menu_r5001RTom", "Can view menu R5001RTOM"),)
+            ("can_see_list_r5001RTom", u"Pode ver listagem do modelo R5001RTOM"),
+            ("can_see_data_r5001RTom", u"Pode visualizar o conteúdo do modelo R5001RTOM"),
+            ("can_see_menu_r5001RTom", u"Pode visualizar no menu o modelo R5001RTOM"),
+            ("can_print_list_r5001RTom", u"Pode imprimir listagem do modelo R5001RTOM"),
+            ("can_print_data_r5001RTom", u"Pode imprimir o conteúdo do modelo R5001RTOM"), )
             
         ordering = [
             'r5001_infototal',
@@ -482,8 +500,11 @@ class r5001infoCRTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001infoCRTom", "Can view R5001INFOCRTOM"),
-            ("can_view_menu_r5001infoCRTom", "Can view menu R5001INFOCRTOM"),)
+            ("can_see_list_r5001infoCRTom", u"Pode ver listagem do modelo R5001INFOCRTOM"),
+            ("can_see_data_r5001infoCRTom", u"Pode visualizar o conteúdo do modelo R5001INFOCRTOM"),
+            ("can_see_menu_r5001infoCRTom", u"Pode visualizar no menu o modelo R5001INFOCRTOM"),
+            ("can_print_list_r5001infoCRTom", u"Pode imprimir listagem do modelo R5001INFOCRTOM"),
+            ("can_print_data_r5001infoCRTom", u"Pode imprimir o conteúdo do modelo R5001INFOCRTOM"), )
             
         ordering = [
             'r5001_rtom',
@@ -542,8 +563,11 @@ class r5001infoTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001infoTotal", "Can view R5001INFOTOTAL"),
-            ("can_view_menu_r5001infoTotal", "Can view menu R5001INFOTOTAL"),)
+            ("can_see_list_r5001infoTotal", u"Pode ver listagem do modelo R5001INFOTOTAL"),
+            ("can_see_data_r5001infoTotal", u"Pode visualizar o conteúdo do modelo R5001INFOTOTAL"),
+            ("can_see_menu_r5001infoTotal", u"Pode visualizar no menu o modelo R5001INFOTOTAL"),
+            ("can_print_list_r5001infoTotal", u"Pode imprimir listagem do modelo R5001INFOTOTAL"),
+            ("can_print_data_r5001infoTotal", u"Pode imprimir o conteúdo do modelo R5001INFOTOTAL"), )
             
         ordering = [
             'r5001_evttotal',
@@ -606,8 +630,11 @@ class r5001regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001regOcorrs", "Can view R5001REGOCORRS"),
-            ("can_view_menu_r5001regOcorrs", "Can view menu R5001REGOCORRS"),)
+            ("can_see_list_r5001regOcorrs", u"Pode ver listagem do modelo R5001REGOCORRS"),
+            ("can_see_data_r5001regOcorrs", u"Pode visualizar o conteúdo do modelo R5001REGOCORRS"),
+            ("can_see_menu_r5001regOcorrs", u"Pode visualizar no menu o modelo R5001REGOCORRS"),
+            ("can_print_list_r5001regOcorrs", u"Pode imprimir listagem do modelo R5001REGOCORRS"),
+            ("can_print_data_r5001regOcorrs", u"Pode imprimir o conteúdo do modelo R5001REGOCORRS"), )
             
         ordering = [
             'r5001_evttotal',

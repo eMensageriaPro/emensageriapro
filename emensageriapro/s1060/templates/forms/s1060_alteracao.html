@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1060_alteracao__s1060_evttabambiente__label">Alteração das informações*</label>
     {% if not for_print %}{% if s1060_alteracao_form.s1060_evttabambiente.value %}
-        <a href="{% url 's1060_evttabambiente_salvar' hash='{}'|json_return_page:'s1060_alteracao_salvar'|json_return_hash:hash|json_id:s1060_alteracao_form.s1060_evttabambiente.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_alteracao_form.s1060_evttabambiente.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -15,7 +15,7 @@
     <label id="s1210_infopgto__s1210_evtpgtos__label">Informações dos pagamentos efetuados*</label>
     {% if not for_print %}
       {% if s1210_infopgto_form.s1210_evtpgtos.value %}
-        <a id="s1210_infopgto__s1210_evtpgtos__div_acessar" href="{% url 's1210_evtpgtos_salvar' hash='{}'|json_id:s1210_infopgto_form.s1210_evtpgtos.value|json_print:0|base64_encode_me %}">
+        <a id="s1210_infopgto__s1210_evtpgtos__div_acessar" href="{% url 's1210_evtpgtos_salvar' pk=s1210_infopgto_form.s1210_evtpgtos.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

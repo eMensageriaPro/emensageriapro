@@ -35,26 +35,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s5001.can_view_s5001procJudTrab %}
-                        <a href="{% url 's5001_procjudtrab_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s5001.add_s5001procJudTrab or perms.s5001.change_s5001procJudTrab %}
+                        {% if perms.s5001.change_s5001procJudTrab or perms.s5001.add_s5001procJudTrab %}
+                    
+                        <a href="{% url 's5001_procjudtrab_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s5001.change_s5001procJudTrab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s5001.can_see_data_s5001procJudTrab %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s5001.delete_s5001procJudTrab %}
-                        <a href="{% url 's5001_procjudtrab_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s5001.delete_s5001procJudTrab %}
+                        <a href="{% url 's5001_procjudtrab_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

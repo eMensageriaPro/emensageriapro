@@ -56,7 +56,7 @@ from emensageriapro.s2416.views import s2416_suspensao_api as s2416_suspensao_ap
 urlpatterns = [
 
 
-    url(r'^s2416-infopenmorte/apagar/(?P<hash>.*)/$', 
+    url(r'^s2416-infopenmorte/apagar/(?P<pk>[0-9]+)/$', 
         s2416_infopenmorte_apagar_views.apagar, 
         name='s2416_infopenmorte_apagar'),
 
@@ -66,15 +66,27 @@ urlpatterns = [
     url(r'^s2416-infopenmorte/api/(?P<pk>[0-9]+)/$',
         s2416_infopenmorte_api_views.s2416infoPenMorteDetail.as_view() ),
 
-    url(r'^s2416-infopenmorte/listar/(?P<hash>.*)/$', 
+    url(r'^s2416-infopenmorte/$', 
         s2416_infopenmorte_listar_views.listar, 
         name='s2416_infopenmorte'),
 
-    url(r'^s2416-infopenmorte/salvar/(?P<hash>.*)/$', 
+    url(r'^s2416-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2416_infopenmorte_salvar_views.salvar, 
         name='s2416_infopenmorte_salvar'),
+        
+    url(r'^s2416-infopenmorte/cadastrar/$', 
+        s2416_infopenmorte_salvar_views.salvar, 
+        name='s2416_infopenmorte_cadastrar'),
 
-    url(r'^s2416-homologtc/apagar/(?P<hash>.*)/$', 
+    url(r'^s2416-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2416_infopenmorte_salvar_views.salvar, 
+        name='s2416_infopenmorte_salvar_output'),
+        
+    url(r'^s2416-infopenmorte/(?P<output>[\w-]+)/$', 
+        s2416_infopenmorte_listar_views.listar, 
+        name='s2416_infopenmorte_output'),
+
+    url(r'^s2416-homologtc/apagar/(?P<pk>[0-9]+)/$', 
         s2416_homologtc_apagar_views.apagar, 
         name='s2416_homologtc_apagar'),
 
@@ -84,15 +96,27 @@ urlpatterns = [
     url(r'^s2416-homologtc/api/(?P<pk>[0-9]+)/$',
         s2416_homologtc_api_views.s2416homologTCDetail.as_view() ),
 
-    url(r'^s2416-homologtc/listar/(?P<hash>.*)/$', 
+    url(r'^s2416-homologtc/$', 
         s2416_homologtc_listar_views.listar, 
         name='s2416_homologtc'),
 
-    url(r'^s2416-homologtc/salvar/(?P<hash>.*)/$', 
+    url(r'^s2416-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2416_homologtc_salvar_views.salvar, 
         name='s2416_homologtc_salvar'),
+        
+    url(r'^s2416-homologtc/cadastrar/$', 
+        s2416_homologtc_salvar_views.salvar, 
+        name='s2416_homologtc_cadastrar'),
 
-    url(r'^s2416-suspensao/apagar/(?P<hash>.*)/$', 
+    url(r'^s2416-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2416_homologtc_salvar_views.salvar, 
+        name='s2416_homologtc_salvar_output'),
+        
+    url(r'^s2416-homologtc/(?P<output>[\w-]+)/$', 
+        s2416_homologtc_listar_views.listar, 
+        name='s2416_homologtc_output'),
+
+    url(r'^s2416-suspensao/apagar/(?P<pk>[0-9]+)/$', 
         s2416_suspensao_apagar_views.apagar, 
         name='s2416_suspensao_apagar'),
 
@@ -102,13 +126,25 @@ urlpatterns = [
     url(r'^s2416-suspensao/api/(?P<pk>[0-9]+)/$',
         s2416_suspensao_api_views.s2416suspensaoDetail.as_view() ),
 
-    url(r'^s2416-suspensao/listar/(?P<hash>.*)/$', 
+    url(r'^s2416-suspensao/$', 
         s2416_suspensao_listar_views.listar, 
         name='s2416_suspensao'),
 
-    url(r'^s2416-suspensao/salvar/(?P<hash>.*)/$', 
+    url(r'^s2416-suspensao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2416_suspensao_salvar_views.salvar, 
         name='s2416_suspensao_salvar'),
+        
+    url(r'^s2416-suspensao/cadastrar/$', 
+        s2416_suspensao_salvar_views.salvar, 
+        name='s2416_suspensao_cadastrar'),
+
+    url(r'^s2416-suspensao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2416_suspensao_salvar_views.salvar, 
+        name='s2416_suspensao_salvar_output'),
+        
+    url(r'^s2416-suspensao/(?P<output>[\w-]+)/$', 
+        s2416_suspensao_listar_views.listar, 
+        name='s2416_suspensao_output'),
 
 
 ]

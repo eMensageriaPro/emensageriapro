@@ -44,6 +44,7 @@ import json
 import base64
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
@@ -167,57 +168,57 @@ from emensageriapro.esocial.forms import form_s5013_evtfgts
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
     
-    try: 
+    if pk:
     
-        usuario_id = request.user.id  
-        dict_hash = get_hash_url( hash )
-        retornos_eventos_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
+        retornos_eventos = get_object_or_404(RetornosEventos, id=pk)
         
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
+    if request.user.has_perm('mensageiro.can_see_RetornosEventos'):
         
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if retornos_eventos_id:
-    
-        retornos_eventos = get_object_or_404(RetornosEventos, id=retornos_eventos_id)
+        if pk:
         
-    if request.user.has_perm('mensageiro.can_view_RetornosEventos'):
-        
-        if retornos_eventos_id:
             retornos_eventos_form = form_retornos_eventos(request.POST or None, instance=retornos_eventos)
             
         else:
+        
             retornos_eventos_form = form_retornos_eventos(request.POST or None)
             
         if request.method == 'POST':
+        
             if retornos_eventos_form.is_valid():
+            
                 #retornos_eventos_campos_multiple_passo1
+                
                 obj = retornos_eventos_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #retornos_eventos_campos_multiple_passo2
                 
-                if request.session['retorno_pagina'] not in ('retornos_eventos_apagar', 'retornos_eventos_salvar', 'retornos_eventos'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'retornos_eventos_apagar', 
+                    'retornos_eventos_salvar', 
+                    'retornos_eventos'):
                     
-                if retornos_eventos_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('retornos_eventos_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'retornos_eventos_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
+            
                 messages.error(request, 'Erro ao salvar!')
                 
         retornos_eventos_form = disabled_form_fields(retornos_eventos_form, request.user.has_perm('mensageiro.change_RetornosEventos'))
         #retornos_eventos_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             retornos_eventos_form = disabled_form_for_print(retornos_eventos_form)
         
@@ -331,280 +332,334 @@ def salvar(request, hash):
         s5013_evtfgts_lista = None 
         s5013_evtfgts_form = None 
         
-        if retornos_eventos_id:
+        if pk:
         
-            retornos_eventos = get_object_or_404(RetornosEventos, id = retornos_eventos_id)
+            retornos_eventos = get_object_or_404(RetornosEventos, id=pk)
             
             s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1000_evtinfoempregador_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1000_evtinfoempregador_lista = s1000evtInfoEmpregador.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1005_evttabestab_form = form_s1005_evttabestab(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1005_evttabestab_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1005_evttabestab_lista = s1005evtTabEstab.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1010_evttabrubrica_form = form_s1010_evttabrubrica(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1010_evttabrubrica_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1010_evttabrubrica_lista = s1010evtTabRubrica.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1020_evttablotacao_form = form_s1020_evttablotacao(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1020_evttablotacao_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1020_evttablotacao_lista = s1020evtTabLotacao.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1030_evttabcargo_form = form_s1030_evttabcargo(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1030_evttabcargo_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1030_evttabcargo_lista = s1030evtTabCargo.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1035_evttabcarreira_form = form_s1035_evttabcarreira(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1035_evttabcarreira_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1035_evttabcarreira_lista = s1035evtTabCarreira.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1040_evttabfuncao_form = form_s1040_evttabfuncao(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1040_evttabfuncao_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1040_evttabfuncao_lista = s1040evtTabFuncao.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1050_evttabhortur_form = form_s1050_evttabhortur(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1050_evttabhortur_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1050_evttabhortur_lista = s1050evtTabHorTur.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1060_evttabambiente_form = form_s1060_evttabambiente(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1060_evttabambiente_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1060_evttabambiente_lista = s1060evtTabAmbiente.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1070_evttabprocesso_form = form_s1070_evttabprocesso(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1070_evttabprocesso_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1070_evttabprocesso_lista = s1070evtTabProcesso.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1080_evttaboperport_form = form_s1080_evttaboperport(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1080_evttaboperport_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1080_evttaboperport_lista = s1080evtTabOperPort.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1200_evtremun_form = form_s1200_evtremun(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1200_evtremun_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1200_evtremun_lista = s1200evtRemun.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1202_evtrmnrpps_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1202_evtrmnrpps_lista = s1202evtRmnRPPS.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1207_evtbenprrp_form = form_s1207_evtbenprrp(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1207_evtbenprrp_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1207_evtbenprrp_lista = s1207evtBenPrRP.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1210_evtpgtos_form = form_s1210_evtpgtos(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1210_evtpgtos_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1210_evtpgtos_lista = s1210evtPgtos.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1250_evtaqprod_form = form_s1250_evtaqprod(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1250_evtaqprod_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1250_evtaqprod_lista = s1250evtAqProd.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1260_evtcomprod_form = form_s1260_evtcomprod(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1260_evtcomprod_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1260_evtcomprod_lista = s1260evtComProd.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1270_evtcontratavnp_form = form_s1270_evtcontratavnp(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1270_evtcontratavnp_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1270_evtcontratavnp_lista = s1270evtContratAvNP.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1280_evtinfocomplper_form = form_s1280_evtinfocomplper(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1280_evtinfocomplper_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1295_evttotconting_form = form_s1295_evttotconting(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1295_evttotconting_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1295_evttotconting_lista = s1295evtTotConting.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1298_evtreabreevper_form = form_s1298_evtreabreevper(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1298_evtreabreevper_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1298_evtreabreevper_lista = s1298evtReabreEvPer.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1299_evtfechaevper_form = form_s1299_evtfechaevper(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1299_evtfechaevper_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1299_evtfechaevper_lista = s1299evtFechaEvPer.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s1300_evtcontrsindpatr_form = form_s1300_evtcontrsindpatr(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1300_evtcontrsindpatr_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s1300_evtcontrsindpatr_lista = s1300evtContrSindPatr.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2190_evtadmprelim_form = form_s2190_evtadmprelim(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2190_evtadmprelim_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2190_evtadmprelim_lista = s2190evtAdmPrelim.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2200_evtadmissao_form = form_s2200_evtadmissao(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2200_evtadmissao_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2200_evtadmissao_lista = s2200evtAdmissao.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2205_evtaltcadastral_form = form_s2205_evtaltcadastral(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2205_evtaltcadastral_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2205_evtaltcadastral_lista = s2205evtAltCadastral.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2206_evtaltcontratual_form = form_s2206_evtaltcontratual(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2206_evtaltcontratual_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2206_evtaltcontratual_lista = s2206evtAltContratual.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2210_evtcat_form = form_s2210_evtcat(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2210_evtcat_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2210_evtcat_lista = s2210evtCAT.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2220_evtmonit_form = form_s2220_evtmonit(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2220_evtmonit_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2220_evtmonit_lista = s2220evtMonit.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2221_evttoxic_form = form_s2221_evttoxic(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2221_evttoxic_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2221_evttoxic_lista = s2221evtToxic.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2230_evtafasttemp_form = form_s2230_evtafasttemp(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2230_evtafasttemp_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2230_evtafasttemp_lista = s2230evtAfastTemp.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2231_evtcessao_form = form_s2231_evtcessao(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2231_evtcessao_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2231_evtcessao_lista = s2231evtCessao.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2240_evtexprisco_form = form_s2240_evtexprisco(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2240_evtexprisco_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2240_evtexprisco_lista = s2240evtExpRisco.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2241_evtinsapo_form = form_s2241_evtinsapo(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2241_evtinsapo_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2241_evtinsapo_lista = s2241evtInsApo.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2245_evttreicap_form = form_s2245_evttreicap(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2245_evttreicap_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2245_evttreicap_lista = s2245evtTreiCap.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2250_evtavprevio_form = form_s2250_evtavprevio(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2250_evtavprevio_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2250_evtavprevio_lista = s2250evtAvPrevio.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2260_evtconvinterm_form = form_s2260_evtconvinterm(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2260_evtconvinterm_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2260_evtconvinterm_lista = s2260evtConvInterm.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2298_evtreintegr_form = form_s2298_evtreintegr(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2298_evtreintegr_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2298_evtreintegr_lista = s2298evtReintegr.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2299_evtdeslig_form = form_s2299_evtdeslig(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2299_evtdeslig_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2299_evtdeslig_lista = s2299evtDeslig.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2300_evttsvinicio_form = form_s2300_evttsvinicio(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2300_evttsvinicio_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2300_evttsvinicio_lista = s2300evtTSVInicio.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2306_evttsvaltcontr_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2306_evttsvaltcontr_lista = s2306evtTSVAltContr.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2399_evttsvtermino_form = form_s2399_evttsvtermino(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2399_evttsvtermino_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2399_evttsvtermino_lista = s2399evtTSVTermino.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2400_evtcdbenefin_form = form_s2400_evtcdbenefin(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2400_evtcdbenefin_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2400_evtcdbenefin_lista = s2400evtCdBenefIn.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2405_evtcdbenefalt_form = form_s2405_evtcdbenefalt(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2405_evtcdbenefalt_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2405_evtcdbenefalt_lista = s2405evtCdBenefAlt.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2410_evtcdbenin_form = form_s2410_evtcdbenin(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2410_evtcdbenin_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2410_evtcdbenin_lista = s2410evtCdBenIn.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2416_evtcdbenalt_form = form_s2416_evtcdbenalt(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2416_evtcdbenalt_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2416_evtcdbenalt_lista = s2416evtCdBenAlt.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s2420_evtcdbenterm_form = form_s2420_evtcdbenterm(
                 initial={ 'retornos_eventos': retornos_eventos })
             s2420_evtcdbenterm_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s2420_evtcdbenterm_lista = s2420evtCdBenTerm.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s3000_evtexclusao_form = form_s3000_evtexclusao(
                 initial={ 'retornos_eventos': retornos_eventos })
             s3000_evtexclusao_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s3000_evtexclusao_lista = s3000evtExclusao.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s5001_evtbasestrab_form = form_s5001_evtbasestrab(
                 initial={ 'retornos_eventos': retornos_eventos })
             s5001_evtbasestrab_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s5001_evtbasestrab_lista = s5001evtBasesTrab.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s5002_evtirrfbenef_form = form_s5002_evtirrfbenef(
                 initial={ 'retornos_eventos': retornos_eventos })
             s5002_evtirrfbenef_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s5002_evtirrfbenef_lista = s5002evtIrrfBenef.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s5003_evtbasesfgts_form = form_s5003_evtbasesfgts(
                 initial={ 'retornos_eventos': retornos_eventos })
             s5003_evtbasesfgts_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s5003_evtbasesfgts_lista = s5003evtBasesFGTS.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s5011_evtcs_form = form_s5011_evtcs(
                 initial={ 'retornos_eventos': retornos_eventos })
             s5011_evtcs_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s5011_evtcs_lista = s5011evtCS.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s5012_evtirrf_form = form_s5012_evtirrf(
                 initial={ 'retornos_eventos': retornos_eventos })
             s5012_evtirrf_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s5012_evtirrf_lista = s5012evtIrrf.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
             s5013_evtfgts_form = form_s5013_evtfgts(
                 initial={ 'retornos_eventos': retornos_eventos })
             s5013_evtfgts_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
             s5013_evtfgts_lista = s5013evtFGTS.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
+                
                 
         else:
         
@@ -614,18 +669,19 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'retornos_eventos' in request.session['retorno_pagina']:
+        if tab or 'retornos_eventos' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'retornos_eventos_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'retornos_eventos_salvar'
             
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'retornos_eventos': retornos_eventos, 
             'retornos_eventos_form': retornos_eventos_form, 
-            'retornos_eventos_id': int(retornos_eventos_id),
-            'usuario': usuario, 
-            'hash': hash, 
-            
             's1000_evtinfoempregador_form': s1000_evtinfoempregador_form,
             's1000_evtinfoempregador_lista': s1000_evtinfoempregador_lista,
             's1005_evttabestab_form': s1005_evttabestab_form,
@@ -737,19 +793,14 @@ def salvar(request, hash):
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos', ],
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
             #retornos_eventos_salvar_custom_variaveis_context#
         }
-        
-        if for_print in (0, 1):
-        
-            return render(request, 'retornos_eventos_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='retornos_eventos_salvar.html',
@@ -766,29 +817,37 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True})
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('retornos_eventos_salvar.html', context)
             filename = "retornos_eventos.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+        
+        else:
+        
+            return render(request, 'retornos_eventos_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos', ],
             'data': datetime.datetime.now(),
-            'dict_permissoes': dict_permissoes,
         }
         
         return render(request, 
-                      'permissao_negada.html', 
-                      context)
+            'permissao_negada.html', 
+            context)

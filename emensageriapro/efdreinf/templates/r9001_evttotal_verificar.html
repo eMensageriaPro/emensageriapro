@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.<br>Identidade: {{ r9001_evttotal.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 'r9001_evttotal_verificar' hash='{}'|json_id:r9001_evttotal_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 'r9001_evttotal_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 'r9001_evttotal_verificar' hash='{}'|json_id:r9001_evttotal_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 'r9001_evttotal_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 'r9001_evttotal_verificar' hash='{}'|json_id:r9001_evttotal_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 'r9001_evttotal_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 'r9001_evttotal_verificar' hash='{}'|json_id:r9001_evttotal_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o ano/mês no formato AAAA-MM ou ano/mês/dia no formato AAAA-MM-DD de referência das informações. O formato diário refere-se a consolidação de bases e tributos informados apenas através do evento R-3010. <validacao> Deve ser uma data, igual ou posterior a implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente.</td>
             <td width="200px"><b>{% if r9001_evttotal.perapur or r9001_evttotal.perapur == 0 %}{{ r9001_evttotal.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -155,11 +152,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if r9001_evttotal.tpinsc or r9001_evttotal.tpinsc == 0 %}{{ r9001_evttotal.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -174,11 +171,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r9001_evttotal.nrinsc or r9001_evttotal.nrinsc == 0 %}{{ r9001_evttotal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -203,11 +200,11 @@
             <td width="130px">cdRetorno</td>
             <td width="500px">Código do Retorno<opcoes>0 - Sucesso; 1 - Erro; 2 - Em processamento. <valores_validos> 0, 1, 2.</td>
             <td width="200px"><b>{% if r9001_evttotal.cdretorno or r9001_evttotal.cdretorno == 0 %}{{ r9001_evttotal.cdretorno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -222,11 +219,11 @@
             <td width="130px">descRetorno</td>
             <td width="500px">Descrição do retorno.</td>
             <td width="200px"><b>{% if r9001_evttotal.descretorno or r9001_evttotal.descretorno == 0 %}{{ r9001_evttotal.descretorno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">tpOcorr</td>
             <td width="500px">Tipo da ocorrência<opcoes>1 - Erro; 2 - Aviso.</td>
             <td width="200px"><b>{% if r9001_regocorrs.tpocorr or r9001_regocorrs.tpocorr == 0 %}{{ r9001_regocorrs.tpocorr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_regocorrs_visualizar' %}
-                <a href="{% url 'r9001_regocorrs_salvar'  hash='{}'|json_id:r9001_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001regOcorrs or perms.efdreinf.can_see_r9001regOcorrs %}
+                <a href="{% url 'r9001_regocorrs_salvar' pk=r9001_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">localErroAviso</td>
             <td width="500px">Campo que originou o erro ou aviso.</td>
             <td width="200px"><b>{% if r9001_regocorrs.localerroaviso or r9001_regocorrs.localerroaviso == 0 %}{{ r9001_regocorrs.localerroaviso }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_regocorrs_visualizar' %}
-                <a href="{% url 'r9001_regocorrs_salvar'  hash='{}'|json_id:r9001_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001regOcorrs or perms.efdreinf.can_see_r9001regOcorrs %}
+                <a href="{% url 'r9001_regocorrs_salvar' pk=r9001_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">codResp</td>
             <td width="500px">Código do status da resposta do processamento da consulta.</td>
             <td width="200px"><b>{% if r9001_regocorrs.codresp or r9001_regocorrs.codresp == 0 %}{{ r9001_regocorrs.codresp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_regocorrs_visualizar' %}
-                <a href="{% url 'r9001_regocorrs_salvar'  hash='{}'|json_id:r9001_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001regOcorrs or perms.efdreinf.can_see_r9001regOcorrs %}
+                <a href="{% url 'r9001_regocorrs_salvar' pk=r9001_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -304,11 +301,11 @@
             <td width="130px">dscResp</td>
             <td width="500px">Descrição literal da resposta do processamento da consulta.</td>
             <td width="200px"><b>{% if r9001_regocorrs.dscresp or r9001_regocorrs.dscresp == 0 %}{{ r9001_regocorrs.dscresp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_regocorrs_visualizar' %}
-                <a href="{% url 'r9001_regocorrs_salvar'  hash='{}'|json_id:r9001_regocorrs.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001regOcorrs or perms.efdreinf.can_see_r9001regOcorrs %}
+                <a href="{% url 'r9001_regocorrs_salvar' pk=r9001_regocorrs.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">nrProtEntr</td>
             <td width="500px">Número do protocolo de entrega do evento.</td>
             <td width="200px"><b>{% if r9001_evttotal.nrprotentr or r9001_evttotal.nrprotentr == 0 %}{{ r9001_evttotal.nrprotentr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">dhProcess</td>
             <td width="500px">Data e hora do início do processamento da consulta.</td>
             <td width="200px"><b>{% if r9001_evttotal.dhprocess or r9001_evttotal.dhprocess == 0 %}{{ r9001_evttotal.dhprocess|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -366,11 +363,11 @@
             <td width="130px">tpEv</td>
             <td width="500px">Tipo do Evento.</td>
             <td width="200px"><b>{% if r9001_evttotal.tpev or r9001_evttotal.tpev == 0 %}{{ r9001_evttotal.tpev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -385,11 +382,11 @@
             <td width="130px">idEv</td>
             <td width="500px">ID do Evento.</td>
             <td width="200px"><b>{% if r9001_evttotal.idev or r9001_evttotal.idev == 0 %}{{ r9001_evttotal.idev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -404,11 +401,11 @@
             <td width="130px">hash</td>
             <td width="500px">Hash do arquivo processado.</td>
             <td width="200px"><b>{% if r9001_evttotal.hash or r9001_evttotal.hash == 0 %}{{ r9001_evttotal.hash }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
-                <a href="{% url 'r9001_evttotal_salvar'  hash='{}'|json_id:r9001_evttotal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001evtTotal or perms.efdreinf.can_see_r9001evtTotal %}
+                <a href="{% url 'r9001_evttotal_salvar' pk=r9001_evttotal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -429,11 +426,11 @@
             <td width="130px">nrRecArqBase</td>
             <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem a este arquivo totalizador.</td>
             <td width="200px"><b>{% if r9001_infototal.nrrecarqbase or r9001_infototal.nrrecarqbase == 0 %}{{ r9001_infototal.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_infototal_visualizar' %}
-                <a href="{% url 'r9001_infototal_salvar'  hash='{}'|json_id:r9001_infototal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001infoTotal or perms.efdreinf.can_see_r9001infoTotal %}
+                <a href="{% url 'r9001_infototal_salvar' pk=r9001_infototal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -453,11 +450,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [4] (CNO). <valores_validos> 1, 4.</td>
             <td width="200px"><b>{% if r9001_infototal.tpinsc or r9001_infototal.tpinsc == 0 %}{{ r9001_infototal.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_infototal_visualizar' %}
-                <a href="{% url 'r9001_infototal_salvar'  hash='{}'|json_id:r9001_infototal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001infoTotal or perms.efdreinf.can_see_r9001infoTotal %}
+                <a href="{% url 'r9001_infototal_salvar' pk=r9001_infototal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -472,11 +469,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> O número de inscrição informado deve ser válido e compatível com {tpInsc}.</td>
             <td width="200px"><b>{% if r9001_infototal.nrinsc or r9001_infototal.nrinsc == 0 %}{{ r9001_infototal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_infototal_visualizar' %}
-                <a href="{% url 'r9001_infototal_salvar'  hash='{}'|json_id:r9001_infototal.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001infoTotal or perms.efdreinf.can_see_r9001infoTotal %}
+                <a href="{% url 'r9001_infototal_salvar' pk=r9001_infototal.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -497,11 +494,11 @@
             <td width="130px">cnpjPrestador</td>
             <td width="500px">CNPJ do Prestador de Serviços. Origem: R-2010.</td>
             <td width="200px"><b>{% if r9001_rtom.cnpjprestador or r9001_rtom.cnpjprestador == 0 %}{{ r9001_rtom.cnpjprestador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rtom_visualizar' %}
-                <a href="{% url 'r9001_rtom_salvar'  hash='{}'|json_id:r9001_rtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RTom or perms.efdreinf.can_see_r9001RTom %}
+                <a href="{% url 'r9001_rtom_salvar' pk=r9001_rtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -516,11 +513,11 @@
             <td width="130px">cno</td>
             <td width="500px">Número de inscrição no Cadastro Nacional de Obras - CNO. Origem: Preencher com a informação do campo {nrInscEstab} do R-2010, apenas se {indObra} for igual a [1,2].</td>
             <td width="200px"><b>{% if r9001_rtom.cno or r9001_rtom.cno == 0 %}{{ r9001_rtom.cno }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rtom_visualizar' %}
-                <a href="{% url 'r9001_rtom_salvar'  hash='{}'|json_id:r9001_rtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RTom or perms.efdreinf.can_see_r9001RTom %}
+                <a href="{% url 'r9001_rtom_salvar' pk=r9001_rtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -535,11 +532,11 @@
             <td width="130px">vlrTotalBaseRet</td>
             <td width="500px">Base de cálculo da retenção da contribuição previdenciária. Origem: R-2010.</td>
             <td width="200px"><b>{% if r9001_rtom.vlrtotalbaseret or r9001_rtom.vlrtotalbaseret == 0 %}{{ r9001_rtom.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rtom_visualizar' %}
-                <a href="{% url 'r9001_rtom_salvar'  hash='{}'|json_id:r9001_rtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RTom or perms.efdreinf.can_see_r9001RTom %}
+                <a href="{% url 'r9001_rtom_salvar' pk=r9001_rtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -560,11 +557,11 @@
             <td width="130px">CRTom</td>
             <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. <valores_validos> 1141-06, 1162-01.</td>
             <td width="200px"><b>{% if r9001_infocrtom.crtom or r9001_infocrtom.crtom == 0 %}{{ r9001_infocrtom.crtom }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_infocrtom_visualizar' %}
-                <a href="{% url 'r9001_infocrtom_salvar'  hash='{}'|json_id:r9001_infocrtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001infoCRTom or perms.efdreinf.can_see_r9001infoCRTom %}
+                <a href="{% url 'r9001_infocrtom_salvar' pk=r9001_infocrtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -579,11 +576,11 @@
             <td width="130px">vlrCRTom</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if r9001_infocrtom.vlrcrtom or r9001_infocrtom.vlrcrtom == 0 %}{{ r9001_infocrtom.vlrcrtom }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_infocrtom_visualizar' %}
-                <a href="{% url 'r9001_infocrtom_salvar'  hash='{}'|json_id:r9001_infocrtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001infoCRTom or perms.efdreinf.can_see_r9001infoCRTom %}
+                <a href="{% url 'r9001_infocrtom_salvar' pk=r9001_infocrtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -598,11 +595,11 @@
             <td width="130px">vlrCRTomSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. <validacao> Deve ser maior que 0 (zero).</td>
             <td width="200px"><b>{% if r9001_infocrtom.vlrcrtomsusp or r9001_infocrtom.vlrcrtomsusp == 0 %}{{ r9001_infocrtom.vlrcrtomsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_infocrtom_visualizar' %}
-                <a href="{% url 'r9001_infocrtom_salvar'  hash='{}'|json_id:r9001_infocrtom.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001infoCRTom or perms.efdreinf.can_see_r9001infoCRTom %}
+                <a href="{% url 'r9001_infocrtom_salvar' pk=r9001_infocrtom.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -623,11 +620,11 @@
             <td width="130px">tpInscTomador</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Origem: R-2020. <valores_validos> 1,4.</td>
             <td width="200px"><b>{% if r9001_rprest.tpinsctomador or r9001_rprest.tpinsctomador == 0 %}{{ r9001_rprest.tpinsctomador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -642,11 +639,11 @@
             <td width="130px">nrInscTomador</td>
             <td width="500px">Número de inscrição do Tomador de Serviços, de acordo com o tipo de inscrição informado em {tpInscTomador}. Origem: R-2020.</td>
             <td width="200px"><b>{% if r9001_rprest.nrinsctomador or r9001_rprest.nrinsctomador == 0 %}{{ r9001_rprest.nrinsctomador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -661,11 +658,11 @@
             <td width="130px">vlrTotalBaseRet</td>
             <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante.</td>
             <td width="200px"><b>{% if r9001_rprest.vlrtotalbaseret or r9001_rprest.vlrtotalbaseret == 0 %}{{ r9001_rprest.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -680,11 +677,11 @@
             <td width="130px">vlrTotalRetPrinc</td>
             <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante.</td>
             <td width="200px"><b>{% if r9001_rprest.vlrtotalretprinc or r9001_rprest.vlrtotalretprinc == 0 %}{{ r9001_rprest.vlrtotalretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -699,11 +696,11 @@
             <td width="130px">vlrTotalRetAdic</td>
             <td width="500px">Soma do valor do adicional de retenção das notas fiscais.</td>
             <td width="200px"><b>{% if r9001_rprest.vlrtotalretadic or r9001_rprest.vlrtotalretadic == 0 %}{{ r9001_rprest.vlrtotalretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -718,11 +715,11 @@
             <td width="130px">vlrTotalNRetPrinc</td>
             <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial.</td>
             <td width="200px"><b>{% if r9001_rprest.vlrtotalnretprinc or r9001_rprest.vlrtotalnretprinc == 0 %}{{ r9001_rprest.vlrtotalnretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -737,11 +734,11 @@
             <td width="130px">vlrTotalNRetAdic</td>
             <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial.</td>
             <td width="200px"><b>{% if r9001_rprest.vlrtotalnretadic or r9001_rprest.vlrtotalnretadic == 0 %}{{ r9001_rprest.vlrtotalnretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rprest_visualizar' %}
-                <a href="{% url 'r9001_rprest_salvar'  hash='{}'|json_id:r9001_rprest.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RPrest or perms.efdreinf.can_see_r9001RPrest %}
+                <a href="{% url 'r9001_rprest_salvar' pk=r9001_rprest.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -762,11 +759,11 @@
             <td width="130px">cnpjAssocDesp</td>
             <td width="500px">CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. Origem: R- 2040.</td>
             <td width="200px"><b>{% if r9001_rrecrepad.cnpjassocdesp or r9001_rrecrepad.cnpjassocdesp == 0 %}{{ r9001_rrecrepad.cnpjassocdesp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecrepad_visualizar' %}
-                <a href="{% url 'r9001_rrecrepad_salvar'  hash='{}'|json_id:r9001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecRepAD or perms.efdreinf.can_see_r9001RRecRepAD %}
+                <a href="{% url 'r9001_rrecrepad_salvar' pk=r9001_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -781,11 +778,11 @@
             <td width="130px">vlrTotalRep</td>
             <td width="500px">Valor bruto dos recursos repassados. Origem: R- 2040.</td>
             <td width="200px"><b>{% if r9001_rrecrepad.vlrtotalrep or r9001_rrecrepad.vlrtotalrep == 0 %}{{ r9001_rrecrepad.vlrtotalrep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecrepad_visualizar' %}
-                <a href="{% url 'r9001_rrecrepad_salvar'  hash='{}'|json_id:r9001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecRepAD or perms.efdreinf.can_see_r9001RRecRepAD %}
+                <a href="{% url 'r9001_rrecrepad_salvar' pk=r9001_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -800,11 +797,11 @@
             <td width="130px">CRRecRepAD</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). <valores_validos> 1151-02.</td>
             <td width="200px"><b>{% if r9001_rrecrepad.crrecrepad or r9001_rrecrepad.crrecrepad == 0 %}{{ r9001_rrecrepad.crrecrepad }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecrepad_visualizar' %}
-                <a href="{% url 'r9001_rrecrepad_salvar'  hash='{}'|json_id:r9001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecRepAD or perms.efdreinf.can_see_r9001RRecRepAD %}
+                <a href="{% url 'r9001_rrecrepad_salvar' pk=r9001_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -819,11 +816,11 @@
             <td width="130px">vlrCRRecRepAD</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência.</td>
             <td width="200px"><b>{% if r9001_rrecrepad.vlrcrrecrepad or r9001_rrecrepad.vlrcrrecrepad == 0 %}{{ r9001_rrecrepad.vlrcrrecrepad }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecrepad_visualizar' %}
-                <a href="{% url 'r9001_rrecrepad_salvar'  hash='{}'|json_id:r9001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecRepAD or perms.efdreinf.can_see_r9001RRecRepAD %}
+                <a href="{% url 'r9001_rrecrepad_salvar' pk=r9001_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -838,11 +835,11 @@
             <td width="130px">vlrCRRecRepADSusp</td>
             <td width="500px">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040.</td>
             <td width="200px"><b>{% if r9001_rrecrepad.vlrcrrecrepadsusp or r9001_rrecrepad.vlrcrrecrepadsusp == 0 %}{{ r9001_rrecrepad.vlrcrrecrepadsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecrepad_visualizar' %}
-                <a href="{% url 'r9001_rrecrepad_salvar'  hash='{}'|json_id:r9001_rrecrepad.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecRepAD or perms.efdreinf.can_see_r9001RRecRepAD %}
+                <a href="{% url 'r9001_rrecrepad_salvar' pk=r9001_rrecrepad.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -863,11 +860,11 @@
             <td width="130px">CRComl</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} = [7] b) 1657-02 se {classTrib} <> [7], c) 1646-05 se {classTrib} = [7], d) 1646-06 se {classTrib} <> [7], e) 1213-02 se {classTrib} = [7], f) 1213-04 se {classTrib} <> [7]. <valores_validos> 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
             <td width="200px"><b>{% if r9001_rcoml.crcoml or r9001_rcoml.crcoml == 0 %}{{ r9001_rcoml.crcoml }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rcoml_visualizar' %}
-                <a href="{% url 'r9001_rcoml_salvar'  hash='{}'|json_id:r9001_rcoml.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RComl or perms.efdreinf.can_see_r9001RComl %}
+                <a href="{% url 'r9001_rcoml_salvar' pk=r9001_rcoml.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -882,11 +879,11 @@
             <td width="130px">vlrCRComl</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência.</td>
             <td width="200px"><b>{% if r9001_rcoml.vlrcrcoml or r9001_rcoml.vlrcrcoml == 0 %}{{ r9001_rcoml.vlrcrcoml }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rcoml_visualizar' %}
-                <a href="{% url 'r9001_rcoml_salvar'  hash='{}'|json_id:r9001_rcoml.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RComl or perms.efdreinf.can_see_r9001RComl %}
+                <a href="{% url 'r9001_rcoml_salvar' pk=r9001_rcoml.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -901,11 +898,11 @@
             <td width="130px">vlrCRComlSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050.</td>
             <td width="200px"><b>{% if r9001_rcoml.vlrcrcomlsusp or r9001_rcoml.vlrcrcomlsusp == 0 %}{{ r9001_rcoml.vlrcrcomlsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rcoml_visualizar' %}
-                <a href="{% url 'r9001_rcoml_salvar'  hash='{}'|json_id:r9001_rcoml.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RComl or perms.efdreinf.can_see_r9001RComl %}
+                <a href="{% url 'r9001_rcoml_salvar' pk=r9001_rcoml.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -926,11 +923,11 @@
             <td width="130px">CRCPRB</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. <valores_validos> 2991-01, 2985-01, 2985-04, 2985-06 (sem os hífens).</td>
             <td width="200px"><b>{% if r9001_rcprb.crcprb or r9001_rcprb.crcprb == 0 %}{{ r9001_rcprb.crcprb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rcprb_visualizar' %}
-                <a href="{% url 'r9001_rcprb_salvar'  hash='{}'|json_id:r9001_rcprb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RCPRB or perms.efdreinf.can_see_r9001RCPRB %}
+                <a href="{% url 'r9001_rcprb_salvar' pk=r9001_rcprb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -945,11 +942,11 @@
             <td width="130px">vlrCRCPRB</td>
             <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.</td>
             <td width="200px"><b>{% if r9001_rcprb.vlrcrcprb or r9001_rcprb.vlrcrcprb == 0 %}{{ r9001_rcprb.vlrcrcprb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rcprb_visualizar' %}
-                <a href="{% url 'r9001_rcprb_salvar'  hash='{}'|json_id:r9001_rcprb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RCPRB or perms.efdreinf.can_see_r9001RCPRB %}
+                <a href="{% url 'r9001_rcprb_salvar' pk=r9001_rcprb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -964,11 +961,11 @@
             <td width="130px">vlrCRCPRBSusp</td>
             <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060.</td>
             <td width="200px"><b>{% if r9001_rcprb.vlrcrcprbsusp or r9001_rcprb.vlrcrcprbsusp == 0 %}{{ r9001_rcprb.vlrcrcprbsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rcprb_visualizar' %}
-                <a href="{% url 'r9001_rcprb_salvar'  hash='{}'|json_id:r9001_rcprb.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RCPRB or perms.efdreinf.can_see_r9001RCPRB %}
+                <a href="{% url 'r9001_rcprb_salvar' pk=r9001_rcprb.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -989,11 +986,11 @@
             <td width="130px">CRRecEspetDesp</td>
             <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. <valores_validos> 1151-01.</td>
             <td width="200px"><b>{% if r9001_rrecespetdesp.crrecespetdesp or r9001_rrecespetdesp.crrecespetdesp == 0 %}{{ r9001_rrecespetdesp.crrecespetdesp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_visualizar' %}
-                <a href="{% url 'r9001_rrecespetdesp_salvar'  hash='{}'|json_id:r9001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecEspetDesp or perms.efdreinf.can_see_r9001RRecEspetDesp %}
+                <a href="{% url 'r9001_rrecespetdesp_salvar' pk=r9001_rrecespetdesp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1008,11 +1005,11 @@
             <td width="130px">vlrReceitaTotal</td>
             <td width="500px">Valor da receita bruta total auferida em espetáculos desportivos. Origem: R-3010 - somatório dos valores informados no campo {vlrReceitaTotal}.</td>
             <td width="200px"><b>{% if r9001_rrecespetdesp.vlrreceitatotal or r9001_rrecespetdesp.vlrreceitatotal == 0 %}{{ r9001_rrecespetdesp.vlrreceitatotal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_visualizar' %}
-                <a href="{% url 'r9001_rrecespetdesp_salvar'  hash='{}'|json_id:r9001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecEspetDesp or perms.efdreinf.can_see_r9001RRecEspetDesp %}
+                <a href="{% url 'r9001_rrecespetdesp_salvar' pk=r9001_rrecespetdesp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1027,11 +1024,11 @@
             <td width="130px">vlrCRRecEspetDesp</td>
             <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem: R-3010. <validacao> Deve ser igual ao somatório dos valores informados no campo {vlrReceitaTotal} multiplicado por 5%.</td>
             <td width="200px"><b>{% if r9001_rrecespetdesp.vlrcrrecespetdesp or r9001_rrecespetdesp.vlrcrrecespetdesp == 0 %}{{ r9001_rrecespetdesp.vlrcrrecespetdesp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_visualizar' %}
-                <a href="{% url 'r9001_rrecespetdesp_salvar'  hash='{}'|json_id:r9001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecEspetDesp or perms.efdreinf.can_see_r9001RRecEspetDesp %}
+                <a href="{% url 'r9001_rrecespetdesp_salvar' pk=r9001_rrecespetdesp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1046,11 +1043,11 @@
             <td width="130px">vlrCRRecEspetDespSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem: R-3010.</td>
             <td width="200px"><b>{% if r9001_rrecespetdesp.vlrcrrecespetdespsusp or r9001_rrecespetdesp.vlrcrrecespetdespsusp == 0 %}{{ r9001_rrecespetdesp.vlrcrrecespetdespsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_visualizar' %}
-                <a href="{% url 'r9001_rrecespetdesp_salvar'  hash='{}'|json_id:r9001_rrecespetdesp.id|json_print:0|base64_encode_me %}">
+                {% if perms.r9001.can_see_r9001RRecEspetDesp or perms.efdreinf.can_see_r9001RRecEspetDesp %}
+                <a href="{% url 'r9001_rrecespetdesp_salvar' pk=r9001_rrecespetdesp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

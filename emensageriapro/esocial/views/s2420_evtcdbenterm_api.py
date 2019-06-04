@@ -66,7 +66,6 @@ class s2420evtCdBenTermList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2420evtCdBenTermDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2420evtCdBenTerm.objects.all()

@@ -66,7 +66,6 @@ class s1060evtTabAmbienteList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1060evtTabAmbienteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1060evtTabAmbiente.objects.all()

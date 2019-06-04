@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s5011evtCS'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5011_evtcs_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s5011evtCS'):
-        s5011_evtcs = get_object_or_404(s5011evtCS, id=s5011_evtcs_id)
-        s5011_evtcs_lista = s5011evtCS.objects.filter(id=s5011_evtcs_id).all()
+        s5011_evtcs = get_object_or_404(s5011evtCS, id=pk)
+        s5011_evtcs_lista = s5011evtCS.objects.filter(id=pk).all()
 
         
         s5011_infocpseg_lista = s5011infoCPSeg.objects.filter(s5011_evtcs_id__in = listar_ids(s5011_evtcs_lista) ).all()
@@ -111,15 +97,14 @@ def verificar(request, hash):
         s5011_infocrestab_lista = s5011infoCREstab.objects.filter(s5011_ideestab_id__in = listar_ids(s5011_ideestab_lista) ).all()
         s5011_infocrcontrib_lista = s5011infoCRContrib.objects.filter(s5011_evtcs_id__in = listar_ids(s5011_evtcs_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's5011_evtcs'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's5011_evtcs'
 
         context = {
             's5011_evtcs_lista': s5011_evtcs_lista,
-            's5011_evtcs_id': s5011_evtcs_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's5011_evtcs': s5011_evtcs,
-            
-            
             's5011_infocpseg_lista': s5011_infocpseg_lista,
             's5011_infopj_lista': s5011_infopj_lista,
             's5011_infoatconc_lista': s5011_infoatconc_lista,
@@ -137,45 +122,42 @@ def verificar(request, hash):
             's5011_basescomerc_lista': s5011_basescomerc_lista,
             's5011_infocrestab_lista': s5011_infocrestab_lista,
             's5011_infocrcontrib_lista': s5011_infocrcontrib_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s5011_evtcs', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s5011_evtcs_verificar.html',
-                                           filename="s5011_evtcs.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s5011_evtcs_verificar.html',
+                filename="s5011_evtcs.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s5011_evtcs_verificar.html', context)
             filename = "%s.xls" % s5011_evtcs.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s5011_evtcs_verificar.html', context)
             filename = "%s.csv" % s5011_evtcs.identidade
@@ -190,7 +172,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s5011_evtcs', ],
             'data': datetime.now(),

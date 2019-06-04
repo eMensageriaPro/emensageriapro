@@ -71,83 +71,65 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s2410evtCdBenIn'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2410_evtcdbenin_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s2410evtCdBenIn'):
-        s2410_evtcdbenin = get_object_or_404(s2410evtCdBenIn, id=s2410_evtcdbenin_id)
-        s2410_evtcdbenin_lista = s2410evtCdBenIn.objects.filter(id=s2410_evtcdbenin_id).all()
+        s2410_evtcdbenin = get_object_or_404(s2410evtCdBenIn, id=pk)
+        s2410_evtcdbenin_lista = s2410evtCdBenIn.objects.filter(id=pk).all()
 
         
         s2410_infopenmorte_lista = s2410infoPenMorte.objects.filter(s2410_evtcdbenin_id__in = listar_ids(s2410_evtcdbenin_lista) ).all()
         s2410_instpenmorte_lista = s2410instPenMorte.objects.filter(s2410_infopenmorte_id__in = listar_ids(s2410_infopenmorte_lista) ).all()
         s2410_homologtc_lista = s2410homologTC.objects.filter(s2410_evtcdbenin_id__in = listar_ids(s2410_evtcdbenin_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's2410_evtcdbenin'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's2410_evtcdbenin'
 
         context = {
             's2410_evtcdbenin_lista': s2410_evtcdbenin_lista,
-            's2410_evtcdbenin_id': s2410_evtcdbenin_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's2410_evtcdbenin': s2410_evtcdbenin,
-            
-            
             's2410_infopenmorte_lista': s2410_infopenmorte_lista,
             's2410_instpenmorte_lista': s2410_instpenmorte_lista,
             's2410_homologtc_lista': s2410_homologtc_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2410_evtcdbenin', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s2410_evtcdbenin_verificar.html',
-                                           filename="s2410_evtcdbenin.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s2410_evtcdbenin_verificar.html',
+                filename="s2410_evtcdbenin.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s2410_evtcdbenin_verificar.html', context)
             filename = "%s.xls" % s2410_evtcdbenin.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s2410_evtcdbenin_verificar.html', context)
             filename = "%s.csv" % s2410_evtcdbenin.identidade
@@ -162,7 +144,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s2410_evtcdbenin', ],
             'data': datetime.now(),

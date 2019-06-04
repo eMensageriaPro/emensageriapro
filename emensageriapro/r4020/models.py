@@ -102,8 +102,11 @@ class r4020CSLL(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020CSLL", "Can view R4020CSLL"),
-            ("can_view_menu_r4020CSLL", "Can view menu R4020CSLL"),)
+            ("can_see_list_r4020CSLL", u"Pode ver listagem do modelo R4020CSLL"),
+            ("can_see_data_r4020CSLL", u"Pode visualizar o conteúdo do modelo R4020CSLL"),
+            ("can_see_menu_r4020CSLL", u"Pode visualizar no menu o modelo R4020CSLL"),
+            ("can_print_list_r4020CSLL", u"Pode imprimir listagem do modelo R4020CSLL"),
+            ("can_print_data_r4020CSLL", u"Pode imprimir o conteúdo do modelo R4020CSLL"), )
             
         ordering = [
             'r4020_infopgto',
@@ -165,8 +168,11 @@ class r4020Cofins(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020Cofins", "Can view R4020COFINS"),
-            ("can_view_menu_r4020Cofins", "Can view menu R4020COFINS"),)
+            ("can_see_list_r4020Cofins", u"Pode ver listagem do modelo R4020COFINS"),
+            ("can_see_data_r4020Cofins", u"Pode visualizar o conteúdo do modelo R4020COFINS"),
+            ("can_see_menu_r4020Cofins", u"Pode visualizar no menu o modelo R4020COFINS"),
+            ("can_print_list_r4020Cofins", u"Pode imprimir listagem do modelo R4020COFINS"),
+            ("can_print_data_r4020Cofins", u"Pode imprimir o conteúdo do modelo R4020COFINS"), )
             
         ordering = [
             'r4020_infopgto',
@@ -223,8 +229,11 @@ class r4020FCI(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020FCI", "Can view R4020FCI"),
-            ("can_view_menu_r4020FCI", "Can view menu R4020FCI"),)
+            ("can_see_list_r4020FCI", u"Pode ver listagem do modelo R4020FCI"),
+            ("can_see_data_r4020FCI", u"Pode visualizar o conteúdo do modelo R4020FCI"),
+            ("can_see_menu_r4020FCI", u"Pode visualizar no menu o modelo R4020FCI"),
+            ("can_print_list_r4020FCI", u"Pode imprimir listagem do modelo R4020FCI"),
+            ("can_print_data_r4020FCI", u"Pode imprimir o conteúdo do modelo R4020FCI"), )
             
         ordering = [
             'r4020_infopgto',
@@ -285,8 +294,11 @@ class r4020IR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020IR", "Can view R4020IR"),
-            ("can_view_menu_r4020IR", "Can view menu R4020IR"),)
+            ("can_see_list_r4020IR", u"Pode ver listagem do modelo R4020IR"),
+            ("can_see_data_r4020IR", u"Pode visualizar o conteúdo do modelo R4020IR"),
+            ("can_see_menu_r4020IR", u"Pode visualizar no menu o modelo R4020IR"),
+            ("can_print_list_r4020IR", u"Pode imprimir listagem do modelo R4020IR"),
+            ("can_print_data_r4020IR", u"Pode imprimir o conteúdo do modelo R4020IR"), )
             
         ordering = [
             'r4020_infopgto',
@@ -348,8 +360,11 @@ class r4020PP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020PP", "Can view R4020PP"),
-            ("can_view_menu_r4020PP", "Can view menu R4020PP"),)
+            ("can_see_list_r4020PP", u"Pode ver listagem do modelo R4020PP"),
+            ("can_see_data_r4020PP", u"Pode visualizar o conteúdo do modelo R4020PP"),
+            ("can_see_menu_r4020PP", u"Pode visualizar no menu o modelo R4020PP"),
+            ("can_print_list_r4020PP", u"Pode imprimir listagem do modelo R4020PP"),
+            ("can_print_data_r4020PP", u"Pode imprimir o conteúdo do modelo R4020PP"), )
             
         ordering = [
             'r4020_infopgto',
@@ -408,8 +423,11 @@ class r4020SCP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020SCP", "Can view R4020SCP"),
-            ("can_view_menu_r4020SCP", "Can view menu R4020SCP"),)
+            ("can_see_list_r4020SCP", u"Pode ver listagem do modelo R4020SCP"),
+            ("can_see_data_r4020SCP", u"Pode visualizar o conteúdo do modelo R4020SCP"),
+            ("can_see_menu_r4020SCP", u"Pode visualizar no menu o modelo R4020SCP"),
+            ("can_print_list_r4020SCP", u"Pode imprimir listagem do modelo R4020SCP"),
+            ("can_print_data_r4020SCP", u"Pode imprimir o conteúdo do modelo R4020SCP"), )
             
         ordering = [
             'r4020_infopgto',
@@ -468,8 +486,11 @@ class r4020despProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020despProcJud", "Can view R4020DESPPROCJUD"),
-            ("can_view_menu_r4020despProcJud", "Can view menu R4020DESPPROCJUD"),)
+            ("can_see_list_r4020despProcJud", u"Pode ver listagem do modelo R4020DESPPROCJUD"),
+            ("can_see_data_r4020despProcJud", u"Pode visualizar o conteúdo do modelo R4020DESPPROCJUD"),
+            ("can_see_menu_r4020despProcJud", u"Pode visualizar no menu o modelo R4020DESPPROCJUD"),
+            ("can_print_list_r4020despProcJud", u"Pode imprimir listagem do modelo R4020DESPPROCJUD"),
+            ("can_print_data_r4020despProcJud", u"Pode imprimir o conteúdo do modelo R4020DESPPROCJUD"), )
             
         ordering = [
             'r4020_infoprocjud',
@@ -530,8 +551,11 @@ class r4020ideAdv(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020ideAdv", "Can view R4020IDEADV"),
-            ("can_view_menu_r4020ideAdv", "Can view menu R4020IDEADV"),)
+            ("can_see_list_r4020ideAdv", u"Pode ver listagem do modelo R4020IDEADV"),
+            ("can_see_data_r4020ideAdv", u"Pode visualizar o conteúdo do modelo R4020IDEADV"),
+            ("can_see_menu_r4020ideAdv", u"Pode visualizar no menu o modelo R4020IDEADV"),
+            ("can_print_list_r4020ideAdv", u"Pode imprimir listagem do modelo R4020IDEADV"),
+            ("can_print_data_r4020ideAdv", u"Pode imprimir o conteúdo do modelo R4020IDEADV"), )
             
         ordering = [
             'r4020_despprocjud',
@@ -592,8 +616,11 @@ class r4020idePgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020idePgto", "Can view R4020IDEPGTO"),
-            ("can_view_menu_r4020idePgto", "Can view menu R4020IDEPGTO"),)
+            ("can_see_list_r4020idePgto", u"Pode ver listagem do modelo R4020IDEPGTO"),
+            ("can_see_data_r4020idePgto", u"Pode visualizar o conteúdo do modelo R4020IDEPGTO"),
+            ("can_see_menu_r4020idePgto", u"Pode visualizar no menu o modelo R4020IDEPGTO"),
+            ("can_print_list_r4020idePgto", u"Pode imprimir listagem do modelo R4020IDEPGTO"),
+            ("can_print_data_r4020idePgto", u"Pode imprimir o conteúdo do modelo R4020IDEPGTO"), )
             
         ordering = [
             'r4020_evtretpj',
@@ -654,8 +681,11 @@ class r4020infoPgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020infoPgto", "Can view R4020INFOPGTO"),
-            ("can_view_menu_r4020infoPgto", "Can view menu R4020INFOPGTO"),)
+            ("can_see_list_r4020infoPgto", u"Pode ver listagem do modelo R4020INFOPGTO"),
+            ("can_see_data_r4020infoPgto", u"Pode visualizar o conteúdo do modelo R4020INFOPGTO"),
+            ("can_see_menu_r4020infoPgto", u"Pode visualizar no menu o modelo R4020INFOPGTO"),
+            ("can_print_list_r4020infoPgto", u"Pode imprimir listagem do modelo R4020INFOPGTO"),
+            ("can_print_data_r4020infoPgto", u"Pode imprimir o conteúdo do modelo R4020INFOPGTO"), )
             
         ordering = [
             'r4020_idepgto',
@@ -727,8 +757,11 @@ class r4020infoPgtoExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020infoPgtoExt", "Can view R4020INFOPGTOEXT"),
-            ("can_view_menu_r4020infoPgtoExt", "Can view menu R4020INFOPGTOEXT"),)
+            ("can_see_list_r4020infoPgtoExt", u"Pode ver listagem do modelo R4020INFOPGTOEXT"),
+            ("can_see_data_r4020infoPgtoExt", u"Pode visualizar o conteúdo do modelo R4020INFOPGTOEXT"),
+            ("can_see_menu_r4020infoPgtoExt", u"Pode visualizar no menu o modelo R4020INFOPGTOEXT"),
+            ("can_print_list_r4020infoPgtoExt", u"Pode imprimir listagem do modelo R4020INFOPGTOEXT"),
+            ("can_print_data_r4020infoPgtoExt", u"Pode imprimir o conteúdo do modelo R4020INFOPGTOEXT"), )
             
         ordering = [
             'r4020_idepgto',
@@ -790,8 +823,11 @@ class r4020infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020infoProcJud", "Can view R4020INFOPROCJUD"),
-            ("can_view_menu_r4020infoProcJud", "Can view menu R4020INFOPROCJUD"),)
+            ("can_see_list_r4020infoProcJud", u"Pode ver listagem do modelo R4020INFOPROCJUD"),
+            ("can_see_data_r4020infoProcJud", u"Pode visualizar o conteúdo do modelo R4020INFOPROCJUD"),
+            ("can_see_menu_r4020infoProcJud", u"Pode visualizar no menu o modelo R4020INFOPROCJUD"),
+            ("can_print_list_r4020infoProcJud", u"Pode imprimir listagem do modelo R4020INFOPROCJUD"),
+            ("can_print_data_r4020infoProcJud", u"Pode imprimir o conteúdo do modelo R4020INFOPROCJUD"), )
             
         ordering = [
             'r4020_infopgto',
@@ -859,8 +895,11 @@ class r4020infoProcRet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020infoProcRet", "Can view R4020INFOPROCRET"),
-            ("can_view_menu_r4020infoProcRet", "Can view menu R4020INFOPROCRET"),)
+            ("can_see_list_r4020infoProcRet", u"Pode ver listagem do modelo R4020INFOPROCRET"),
+            ("can_see_data_r4020infoProcRet", u"Pode visualizar o conteúdo do modelo R4020INFOPROCRET"),
+            ("can_see_menu_r4020infoProcRet", u"Pode visualizar no menu o modelo R4020INFOPROCRET"),
+            ("can_print_list_r4020infoProcRet", u"Pode imprimir listagem do modelo R4020INFOPROCRET"),
+            ("can_print_data_r4020infoProcRet", u"Pode imprimir o conteúdo do modelo R4020INFOPROCRET"), )
             
         ordering = [
             'r4020_infopgto',
@@ -917,8 +956,11 @@ class r4020origemRec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020origemRec", "Can view R4020ORIGEMREC"),
-            ("can_view_menu_r4020origemRec", "Can view menu R4020ORIGEMREC"),)
+            ("can_see_list_r4020origemRec", u"Pode ver listagem do modelo R4020ORIGEMREC"),
+            ("can_see_data_r4020origemRec", u"Pode visualizar o conteúdo do modelo R4020ORIGEMREC"),
+            ("can_see_menu_r4020origemRec", u"Pode visualizar no menu o modelo R4020ORIGEMREC"),
+            ("can_print_list_r4020origemRec", u"Pode imprimir listagem do modelo R4020ORIGEMREC"),
+            ("can_print_data_r4020origemRec", u"Pode imprimir o conteúdo do modelo R4020ORIGEMREC"), )
             
         ordering = [
             'r4020_infoprocjud',

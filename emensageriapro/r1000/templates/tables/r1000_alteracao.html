@@ -65,26 +65,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.r1000.can_view_r1000alteracao %}
-                        <a href="{% url 'r1000_alteracao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.r1000.add_r1000alteracao or perms.r1000.change_r1000alteracao %}
+                        {% if perms.r1000.change_r1000alteracao or perms.r1000.add_r1000alteracao %}
+                    
+                        <a href="{% url 'r1000_alteracao_salvar' pk=a.id tab='master' %}">
+                            {% if perms.r1000.change_r1000alteracao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.r1000.can_see_data_r1000alteracao %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.r1000.delete_r1000alteracao %}
-                        <a href="{% url 'r1000_alteracao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.r1000.delete_r1000alteracao %}
+                        <a href="{% url 'r1000_alteracao_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

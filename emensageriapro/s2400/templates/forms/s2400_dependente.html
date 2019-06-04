@@ -15,7 +15,7 @@
     <label id="s2400_dependente__s2400_evtcdbenefin__label">Informações dos dependentes*</label>
     {% if not for_print %}
       {% if s2400_dependente_form.s2400_evtcdbenefin.value %}
-        <a id="s2400_dependente__s2400_evtcdbenefin__div_acessar" href="{% url 's2400_evtcdbenefin_salvar' hash='{}'|json_id:s2400_dependente_form.s2400_evtcdbenefin.value|json_print:0|base64_encode_me %}">
+        <a id="s2400_dependente__s2400_evtcdbenefin__div_acessar" href="{% url 's2400_evtcdbenefin_salvar' pk=s2400_dependente_form.s2400_evtcdbenefin.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -98,8 +98,11 @@ class r9012infoTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012infoTotalContrib", "Can view R9012INFOTOTALCONTRIB"),
-            ("can_view_menu_r9012infoTotalContrib", "Can view menu R9012INFOTOTALCONTRIB"),)
+            ("can_see_list_r9012infoTotalContrib", u"Pode ver listagem do modelo R9012INFOTOTALCONTRIB"),
+            ("can_see_data_r9012infoTotalContrib", u"Pode visualizar o conteúdo do modelo R9012INFOTOTALCONTRIB"),
+            ("can_see_menu_r9012infoTotalContrib", u"Pode visualizar no menu o modelo R9012INFOTOTALCONTRIB"),
+            ("can_print_list_r9012infoTotalContrib", u"Pode imprimir listagem do modelo R9012INFOTOTALCONTRIB"),
+            ("can_print_data_r9012infoTotalContrib", u"Pode imprimir o conteúdo do modelo R9012INFOTOTALCONTRIB"), )
             
         ordering = [
             'r9012_evtretcons',
@@ -161,8 +164,11 @@ class r9012regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012regOcorrs", "Can view R9012REGOCORRS"),
-            ("can_view_menu_r9012regOcorrs", "Can view menu R9012REGOCORRS"),)
+            ("can_see_list_r9012regOcorrs", u"Pode ver listagem do modelo R9012REGOCORRS"),
+            ("can_see_data_r9012regOcorrs", u"Pode visualizar o conteúdo do modelo R9012REGOCORRS"),
+            ("can_see_menu_r9012regOcorrs", u"Pode visualizar no menu o modelo R9012REGOCORRS"),
+            ("can_print_list_r9012regOcorrs", u"Pode imprimir listagem do modelo R9012REGOCORRS"),
+            ("can_print_data_r9012regOcorrs", u"Pode imprimir o conteúdo do modelo R9012REGOCORRS"), )
             
         ordering = [
             'r9012_evtretcons',
@@ -229,8 +235,11 @@ class r9012totApurDec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012totApurDec", "Can view R9012TOTAPURDEC"),
-            ("can_view_menu_r9012totApurDec", "Can view menu R9012TOTAPURDEC"),)
+            ("can_see_list_r9012totApurDec", u"Pode ver listagem do modelo R9012TOTAPURDEC"),
+            ("can_see_data_r9012totApurDec", u"Pode visualizar o conteúdo do modelo R9012TOTAPURDEC"),
+            ("can_see_menu_r9012totApurDec", u"Pode visualizar no menu o modelo R9012TOTAPURDEC"),
+            ("can_print_list_r9012totApurDec", u"Pode imprimir listagem do modelo R9012TOTAPURDEC"),
+            ("can_print_data_r9012totApurDec", u"Pode imprimir o conteúdo do modelo R9012TOTAPURDEC"), )
             
         ordering = [
             'r9012_infototalcontrib',
@@ -297,8 +306,11 @@ class r9012totApurDia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012totApurDia", "Can view R9012TOTAPURDIA"),
-            ("can_view_menu_r9012totApurDia", "Can view menu R9012TOTAPURDIA"),)
+            ("can_see_list_r9012totApurDia", u"Pode ver listagem do modelo R9012TOTAPURDIA"),
+            ("can_see_data_r9012totApurDia", u"Pode visualizar o conteúdo do modelo R9012TOTAPURDIA"),
+            ("can_see_menu_r9012totApurDia", u"Pode visualizar no menu o modelo R9012TOTAPURDIA"),
+            ("can_print_list_r9012totApurDia", u"Pode imprimir listagem do modelo R9012TOTAPURDIA"),
+            ("can_print_data_r9012totApurDia", u"Pode imprimir o conteúdo do modelo R9012TOTAPURDIA"), )
             
         ordering = [
             'r9012_infototalcontrib',
@@ -363,8 +375,11 @@ class r9012totApurMen(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012totApurMen", "Can view R9012TOTAPURMEN"),
-            ("can_view_menu_r9012totApurMen", "Can view menu R9012TOTAPURMEN"),)
+            ("can_see_list_r9012totApurMen", u"Pode ver listagem do modelo R9012TOTAPURMEN"),
+            ("can_see_data_r9012totApurMen", u"Pode visualizar o conteúdo do modelo R9012TOTAPURMEN"),
+            ("can_see_menu_r9012totApurMen", u"Pode visualizar no menu o modelo R9012TOTAPURMEN"),
+            ("can_print_list_r9012totApurMen", u"Pode imprimir listagem do modelo R9012TOTAPURMEN"),
+            ("can_print_data_r9012totApurMen", u"Pode imprimir o conteúdo do modelo R9012TOTAPURMEN"), )
             
         ordering = [
             'r9012_infototalcontrib',
@@ -430,8 +445,11 @@ class r9012totApurQui(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012totApurQui", "Can view R9012TOTAPURQUI"),
-            ("can_view_menu_r9012totApurQui", "Can view menu R9012TOTAPURQUI"),)
+            ("can_see_list_r9012totApurQui", u"Pode ver listagem do modelo R9012TOTAPURQUI"),
+            ("can_see_data_r9012totApurQui", u"Pode visualizar o conteúdo do modelo R9012TOTAPURQUI"),
+            ("can_see_menu_r9012totApurQui", u"Pode visualizar no menu o modelo R9012TOTAPURQUI"),
+            ("can_print_list_r9012totApurQui", u"Pode imprimir listagem do modelo R9012TOTAPURQUI"),
+            ("can_print_data_r9012totApurQui", u"Pode imprimir o conteúdo do modelo R9012TOTAPURQUI"), )
             
         ordering = [
             'r9012_infototalcontrib',
@@ -498,8 +516,11 @@ class r9012totApurSem(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012totApurSem", "Can view R9012TOTAPURSEM"),
-            ("can_view_menu_r9012totApurSem", "Can view menu R9012TOTAPURSEM"),)
+            ("can_see_list_r9012totApurSem", u"Pode ver listagem do modelo R9012TOTAPURSEM"),
+            ("can_see_data_r9012totApurSem", u"Pode visualizar o conteúdo do modelo R9012TOTAPURSEM"),
+            ("can_see_menu_r9012totApurSem", u"Pode visualizar no menu o modelo R9012TOTAPURSEM"),
+            ("can_print_list_r9012totApurSem", u"Pode imprimir listagem do modelo R9012TOTAPURSEM"),
+            ("can_print_data_r9012totApurSem", u"Pode imprimir o conteúdo do modelo R9012TOTAPURSEM"), )
             
         ordering = [
             'r9012_infototalcontrib',

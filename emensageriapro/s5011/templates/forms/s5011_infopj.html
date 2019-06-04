@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5011_infopj__s5011_evtcs__label">Informações complementares, exclusivas da Pessoa Jurídica.*</label>
     {% if not for_print %}{% if s5011_infopj_form.s5011_evtcs.value %}
-        <a href="{% url 's5011_evtcs_salvar' hash='{}'|json_return_page:'s5011_infopj_salvar'|json_return_hash:hash|json_id:s5011_infopj_form.s5011_evtcs.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's5011_evtcs_salvar' pk=s5011_infopj_form.s5011_evtcs.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

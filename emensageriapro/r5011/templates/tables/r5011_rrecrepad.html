@@ -47,26 +47,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.r5011.can_view_r5011RRecRepAD %}
-                        <a href="{% url 'r5011_rrecrepad_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.r5011.add_r5011RRecRepAD or perms.r5011.change_r5011RRecRepAD %}
+                        {% if perms.r5011.change_r5011RRecRepAD or perms.r5011.add_r5011RRecRepAD %}
+                    
+                        <a href="{% url 'r5011_rrecrepad_salvar' pk=a.id tab='master' %}">
+                            {% if perms.r5011.change_r5011RRecRepAD %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.r5011.can_see_data_r5011RRecRepAD %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.r5011.delete_r5011RRecRepAD %}
-                        <a href="{% url 'r5011_rrecrepad_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.r5011.delete_r5011RRecRepAD %}
+                        <a href="{% url 'r5011_rrecrepad_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

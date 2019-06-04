@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s1060evtTabAmbiente'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1060_evttabambiente_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s1060evtTabAmbiente'):
-        s1060_evttabambiente = get_object_or_404(s1060evtTabAmbiente, id=s1060_evttabambiente_id)
-        s1060_evttabambiente_lista = s1060evtTabAmbiente.objects.filter(id=s1060_evttabambiente_id).all()
+        s1060_evttabambiente = get_object_or_404(s1060evtTabAmbiente, id=pk)
+        s1060_evttabambiente_lista = s1060evtTabAmbiente.objects.filter(id=pk).all()
 
         
         s1060_inclusao_lista = s1060inclusao.objects.filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).all()
@@ -98,58 +84,54 @@ def verificar(request, hash):
         s1060_alteracao_novavalidade_lista = s1060alteracaonovaValidade.objects.filter(s1060_alteracao_id__in = listar_ids(s1060_alteracao_lista) ).all()
         s1060_exclusao_lista = s1060exclusao.objects.filter(s1060_evttabambiente_id__in = listar_ids(s1060_evttabambiente_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1060_evttabambiente'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's1060_evttabambiente'
 
         context = {
             's1060_evttabambiente_lista': s1060_evttabambiente_lista,
-            's1060_evttabambiente_id': s1060_evttabambiente_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's1060_evttabambiente': s1060_evttabambiente,
-            
-            
             's1060_inclusao_lista': s1060_inclusao_lista,
             's1060_alteracao_lista': s1060_alteracao_lista,
             's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
             's1060_exclusao_lista': s1060_exclusao_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1060_evttabambiente', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s1060_evttabambiente_verificar.html',
-                                           filename="s1060_evttabambiente.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s1060_evttabambiente_verificar.html',
+                filename="s1060_evttabambiente.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s1060_evttabambiente_verificar.html', context)
             filename = "%s.xls" % s1060_evttabambiente.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s1060_evttabambiente_verificar.html', context)
             filename = "%s.csv" % s1060_evttabambiente.identidade
@@ -164,7 +146,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s1060_evttabambiente', ],
             'data': datetime.now(),

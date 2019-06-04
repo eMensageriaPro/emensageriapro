@@ -60,83 +60,93 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id    
-        dict_hash = get_hash_url( hash )
-        r9001_rcoml_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys(): 
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
     
-    if r9001_rcoml_id:
+    if pk:
     
-        r9001_rcoml = get_object_or_404(r9001RComl, id=r9001_rcoml_id)
+        r9001_rcoml = get_object_or_404(r9001RComl, id=pk)
         dados_evento = r9001_rcoml.evento()
 
-    if request.user.has_perm('r9001.can_view_r9001RComl'):
+    if request.user.has_perm('r9001.can_see_r9001RComl'):
         
-        if r9001_rcoml_id:
+        if pk:
         
-            r9001_rcoml_form = form_r9001_rcoml(request.POST or None, 
-                                                          instance=r9001_rcoml,  
-                                                          initial={'excluido': False})
+            r9001_rcoml_form = form_r9001_rcoml(
+                request.POST or None, 
+                instance=r9001_rcoml)
                                          
         else:
         
-            r9001_rcoml_form = form_r9001_rcoml(request.POST or None, 
-                                         initial={'excluido': False})
+            r9001_rcoml_form = form_r9001_rcoml(request.POST or None)
                                          
         if request.method == 'POST':
         
             if r9001_rcoml_form.is_valid():
             
-                dados = r9001_rcoml_form.cleaned_data
                 obj = r9001_rcoml_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r9001_rcoml_id:
+                if not pk:
                 
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r9001_rcoml', obj.id, usuario_id, 1)
+                    gravar_auditoria(
+                        '{}',
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r9001_rcoml', 
+                        obj.id, 
+                        request.user.id, 1)
                                  
                 else:
                 
-                    gravar_auditoria(json.dumps(model_to_dict(r9001_rcoml), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r9001_rcoml', r9001_rcoml_id, usuario_id, 2)
+                    gravar_auditoria(
+                        json.dumps(
+                            model_to_dict(r9001_rcoml), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str),
+                        json.dumps(
+                            model_to_dict(obj), 
+                            indent=4, 
+                            sort_keys=True, 
+                            default=str), 
+                        'r9001_rcoml', 
+                        pk, 
+                        request.user.id, 2)
                                      
-                if request.session['retorno_pagina'] not in ('r9001_rcoml_apagar', 'r9001_rcoml_salvar', 'r9001_rcoml'):
+                if request.session['return_page'] not in (
+                    'r9001_rcoml_apagar', 
+                    'r9001_rcoml_salvar', 
+                    'r9001_rcoml'):
                     
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
                     
-                if r9001_rcoml_id != obj.id:
+                if pk != obj.id:
                 
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r9001_rcoml_salvar', hash=url_hash)
+                    return redirect(
+                        'r9001_rcoml_salvar', 
+                        pk=obj.id, 
+                        tab='master')
                     
             else:
             
                 messages.error(request, u'Erro ao salvar!')
                
-        r9001_rcoml_form = disabled_form_fields(r9001_rcoml_form, request.user.has_perm('r9001.change_r9001RComl'))
+        r9001_rcoml_form = disabled_form_fields(
+            r9001_rcoml_form, 
+            request.user.has_perm('r9001.change_r9001RComl'))
         
-        if r9001_rcoml_id:
+        if pk:
         
             if dados_evento['status'] != 0:
             
@@ -144,15 +154,15 @@ def salvar(request, hash):
                 
         #r9001_rcoml_campos_multiple_passo3
         
-        if int(dict_hash['print']):
+        if output:
         
             r9001_rcoml_form = disabled_form_for_print(r9001_rcoml_form)
             
         
         
-        if r9001_rcoml_id:
+        if pk:
         
-            r9001_rcoml = get_object_or_404(r9001RComl, id=r9001_rcoml_id)
+            r9001_rcoml = get_object_or_404(r9001RComl, id=pk)
             
                 
         else:
@@ -163,14 +173,18 @@ def salvar(request, hash):
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
-        if dict_hash['tab'] or 'r9001_rcoml' in request.session['retorno_pagina']:
+        if tab or 'r9001_rcoml' in request.session['return_page']:
         
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r9001_rcoml_salvar'
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r9001_rcoml_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r9001_rcoml_id, tabela='r9001_rcoml').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r9001_rcoml').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'ocorrencias': dados_evento['ocorrencias'], 
             'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
@@ -179,26 +193,18 @@ def salvar(request, hash):
             'controle_alteracoes': controle_alteracoes, 
             'r9001_rcoml': r9001_rcoml, 
             'r9001_rcoml_form': r9001_rcoml_form, 
-            'r9001_rcoml_id': int(r9001_rcoml_id),
-            'usuario': usuario, 
             'modulos': ['r9001', ],
             'paginas': ['r9001_rcoml', ],
-            'hash': hash, 
-            
             'data': datetime.datetime.now(),
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r9001_rcoml_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r9001_rcoml_salvar.html', context)
-            
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='r9001_rcoml_salvar.html',
@@ -215,23 +221,32 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+            
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
+            
             response = render_to_response('r9001_rcoml_salvar.html', context)
             filename = "r9001_rcoml.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r9001_rcoml_salvar.html', context)
 
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
+            'tab': tab,
             'modulos': ['r9001', ],
             'paginas': ['r9001_rcoml', ],
             'data': datetime.datetime.now(),

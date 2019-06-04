@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2206_localtrabdom__s2206_evtaltcontratual__label">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.*</label>
     {% if not for_print %}{% if s2206_localtrabdom_form.s2206_evtaltcontratual.value %}
-        <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_return_page:'s2206_localtrabdom_salvar'|json_return_hash:hash|json_id:s2206_localtrabdom_form.s2206_evtaltcontratual.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_localtrabdom_form.s2206_evtaltcontratual.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

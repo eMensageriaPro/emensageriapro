@@ -66,7 +66,6 @@ class r1000evtInfoContriList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r1000evtInfoContriDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1000evtInfoContri.objects.all()

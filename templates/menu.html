@@ -12,7 +12,7 @@
         
             {% if perms.mapa_processamento.can_view_menu_VisaoGeral %}
                 <li>
-                    <a href="{% url 'visao_geral' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'visao_geral' %}">
                         <i class="fa fa-circle-o"></i>
                         Visão Geral
                     </a>
@@ -20,7 +20,7 @@
             {% endif %}
             {% if perms.mapa_processamento.can_view_menu_MapaImportações %}
                 <li>
-                    <a href="{% url 'mapa_importacoes' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'mapa_importacoes' tab='master' %}">
                         <i class="fa fa-circle-o"></i>
                         Importações
                     </a>
@@ -28,7 +28,7 @@
             {% endif %}
             {% if perms.mapa_processamento.can_view_menu_MapaEsocial %}
                 <li>
-                    <a href="{% url 'mapa_esocial' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'mapa_esocial' tab='master' %}">
                         <i class="fa fa-circle-o"></i>
                         eSocial
                     </a>
@@ -36,7 +36,7 @@
             {% endif %}
             {% if perms.mapa_processamento.can_view_menu_MapaEfdreinf %}
                 <li>
-                    <a href="{% url 'mapa_efdreinf' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'mapa_efdreinf' tab='master' %}">
                         <i class="fa fa-circle-o"></i>
                         EFDReinf
                     </a>
@@ -56,7 +56,7 @@
         
             {% if perms.esocial.can_view_menu_s1000evtInfoEmpregador %}
                 <li>
-                    <a href="{% url 's1000_evtinfoempregador' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1000_evtinfoempregador' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1000 - Informações do Empregador/Contribuinte/Órgão Público
                     </a>
@@ -64,7 +64,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1005evtTabEstab %}
                 <li>
-                    <a href="{% url 's1005_evttabestab' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1005_evttabestab' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos
                     </a>
@@ -72,7 +72,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1010evtTabRubrica %}
                 <li>
-                    <a href="{% url 's1010_evttabrubrica' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1010_evttabrubrica' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1010 - Tabela de Rubricas
                     </a>
@@ -80,7 +80,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1020evtTabLotacao %}
                 <li>
-                    <a href="{% url 's1020_evttablotacao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1020_evttablotacao' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1020 - Tabela de Lotações Tributárias
                     </a>
@@ -88,7 +88,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1030evtTabCargo %}
                 <li>
-                    <a href="{% url 's1030_evttabcargo' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1030_evttabcargo' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1030 - Tabela de Cargos/Empregos Públicos
                     </a>
@@ -96,7 +96,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1035evtTabCarreira %}
                 <li>
-                    <a href="{% url 's1035_evttabcarreira' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1035_evttabcarreira' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1035 - Tabela de Carreiras Públicas
                     </a>
@@ -104,7 +104,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1040evtTabFuncao %}
                 <li>
-                    <a href="{% url 's1040_evttabfuncao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1040_evttabfuncao' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1040 - Tabela de Funções/Cargos em Comissão
                     </a>
@@ -112,7 +112,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1050evtTabHorTur %}
                 <li>
-                    <a href="{% url 's1050_evttabhortur' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1050_evttabhortur' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1050 - Tabela de Horários/Turnos de Trabalho
                     </a>
@@ -120,7 +120,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1060evtTabAmbiente %}
                 <li>
-                    <a href="{% url 's1060_evttabambiente' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1060_evttabambiente' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1060 - Tabela de Ambientes de Trabalho
                     </a>
@@ -128,7 +128,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1070evtTabProcesso %}
                 <li>
-                    <a href="{% url 's1070_evttabprocesso' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1070_evttabprocesso' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1070 - Tabela de Processos Administrativos/Judiciais
                     </a>
@@ -136,7 +136,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1080evtTabOperPort %}
                 <li>
-                    <a href="{% url 's1080_evttaboperport' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1080_evttaboperport' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1080 - Tabela de Operadores Portuários
                     </a>
@@ -144,7 +144,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1200evtRemun %}
                 <li>
-                    <a href="{% url 's1200_evtremun' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1200_evtremun' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social
                     </a>
@@ -152,7 +152,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1202evtRmnRPPS %}
                 <li>
-                    <a href="{% url 's1202_evtrmnrpps' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1202_evtrmnrpps' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social
                     </a>
@@ -160,7 +160,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1207evtBenPrRP %}
                 <li>
-                    <a href="{% url 's1207_evtbenprrp' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1207_evtbenprrp' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1207 - Benefícios previdenciários - RPPS
                     </a>
@@ -168,7 +168,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1210evtPgtos %}
                 <li>
-                    <a href="{% url 's1210_evtpgtos' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1210_evtpgtos' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1210 - Pagamentos de Rendimentos do Trabalho
                     </a>
@@ -176,7 +176,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1250evtAqProd %}
                 <li>
-                    <a href="{% url 's1250_evtaqprod' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1250_evtaqprod' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1250 - Aquisição de Produção Rural
                     </a>
@@ -184,7 +184,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1260evtComProd %}
                 <li>
-                    <a href="{% url 's1260_evtcomprod' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1260_evtcomprod' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1260 - Comercialização da Produção Rural Pessoa Física
                     </a>
@@ -192,7 +192,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1270evtContratAvNP %}
                 <li>
-                    <a href="{% url 's1270_evtcontratavnp' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1270_evtcontratavnp' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1270 - Contratação de Trabalhadores Avulsos Não Portuários
                     </a>
@@ -200,7 +200,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1280evtInfoComplPer %}
                 <li>
-                    <a href="{% url 's1280_evtinfocomplper' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1280_evtinfocomplper' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1280 - Informações Complementares aos Eventos Periódicos
                     </a>
@@ -208,7 +208,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1295evtTotConting %}
                 <li>
-                    <a href="{% url 's1295_evttotconting' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1295_evttotconting' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1295 - Solicitação de Totalização para Pagamento em Contingência
                     </a>
@@ -216,7 +216,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1298evtReabreEvPer %}
                 <li>
-                    <a href="{% url 's1298_evtreabreevper' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1298_evtreabreevper' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1298 - Reabertura dos Eventos Periódicos
                     </a>
@@ -224,7 +224,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1299evtFechaEvPer %}
                 <li>
-                    <a href="{% url 's1299_evtfechaevper' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1299_evtfechaevper' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1299 - Fechamento dos Eventos Periódicos
                     </a>
@@ -232,7 +232,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s1300evtContrSindPatr %}
                 <li>
-                    <a href="{% url 's1300_evtcontrsindpatr' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's1300_evtcontrsindpatr' %}">
                         <i class="fa fa-circle-o"></i>
                         S-1300 - Contribuição Sindical Patronal
                     </a>
@@ -240,7 +240,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2190evtAdmPrelim %}
                 <li>
-                    <a href="{% url 's2190_evtadmprelim' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2190_evtadmprelim' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2190 - Admissão de Trabalhador - Registro Preliminar
                     </a>
@@ -248,7 +248,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2200evtAdmissao %}
                 <li>
-                    <a href="{% url 's2200_evtadmissao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2200_evtadmissao' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador
                     </a>
@@ -256,7 +256,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2205evtAltCadastral %}
                 <li>
-                    <a href="{% url 's2205_evtaltcadastral' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2205_evtaltcadastral' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2205 - Alteração de Dados Cadastrais do Trabalhador
                     </a>
@@ -264,7 +264,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2206evtAltContratual %}
                 <li>
-                    <a href="{% url 's2206_evtaltcontratual' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2206_evtaltcontratual' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2206 - Alteração de Contrato de Trabalho
                     </a>
@@ -272,7 +272,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2210evtCAT %}
                 <li>
-                    <a href="{% url 's2210_evtcat' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2210_evtcat' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2210 - Comunicação de Acidente de Trabalho
                     </a>
@@ -280,7 +280,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2220evtMonit %}
                 <li>
-                    <a href="{% url 's2220_evtmonit' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2220_evtmonit' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2220 - Monitoramento da Saúde do Trabalhador
                     </a>
@@ -288,7 +288,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2221evtToxic %}
                 <li>
-                    <a href="{% url 's2221_evttoxic' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2221_evttoxic' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2221 - Exame Toxicológico do Motorista Profissional
                     </a>
@@ -296,7 +296,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2230evtAfastTemp %}
                 <li>
-                    <a href="{% url 's2230_evtafasttemp' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2230_evtafasttemp' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2230 - Afastamento Temporário
                     </a>
@@ -304,7 +304,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2231evtCessao %}
                 <li>
-                    <a href="{% url 's2231_evtcessao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2231_evtcessao' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2231 - Cessão/Exercício em Outro Órgão
                     </a>
@@ -312,7 +312,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2240evtExpRisco %}
                 <li>
-                    <a href="{% url 's2240_evtexprisco' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2240_evtexprisco' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2240 - Condições Ambientais do Trabalho - Fatores de Risco
                     </a>
@@ -320,7 +320,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2241evtInsApo %}
                 <li>
-                    <a href="{% url 's2241_evtinsapo' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2241_evtinsapo' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial
                     </a>
@@ -328,7 +328,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2245evtTreiCap %}
                 <li>
-                    <a href="{% url 's2245_evttreicap' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2245_evttreicap' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2245 - Treinamentos, Capacitações e Exercícios Simulados
                     </a>
@@ -336,7 +336,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2250evtAvPrevio %}
                 <li>
-                    <a href="{% url 's2250_evtavprevio' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2250_evtavprevio' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2250 - Aviso Prévio
                     </a>
@@ -344,7 +344,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2260evtConvInterm %}
                 <li>
-                    <a href="{% url 's2260_evtconvinterm' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2260_evtconvinterm' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2260 - Convocação para Trabalho Intermitente
                     </a>
@@ -352,7 +352,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2298evtReintegr %}
                 <li>
-                    <a href="{% url 's2298_evtreintegr' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2298_evtreintegr' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2298 - Reintegração
                     </a>
@@ -360,7 +360,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2299evtDeslig %}
                 <li>
-                    <a href="{% url 's2299_evtdeslig' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2299_evtdeslig' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2299 - Desligamento
                     </a>
@@ -368,7 +368,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2300evtTSVInicio %}
                 <li>
-                    <a href="{% url 's2300_evttsvinicio' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2300_evttsvinicio' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início
                     </a>
@@ -376,7 +376,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2306evtTSVAltContr %}
                 <li>
-                    <a href="{% url 's2306_evttsvaltcontr' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2306_evttsvaltcontr' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual
                     </a>
@@ -384,7 +384,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2399evtTSVTermino %}
                 <li>
-                    <a href="{% url 's2399_evttsvtermino' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2399_evttsvtermino' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término
                     </a>
@@ -392,7 +392,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2400evtCdBenefIn %}
                 <li>
-                    <a href="{% url 's2400_evtcdbenefin' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2400_evtcdbenefin' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2400 - Cadastro de Beneficiários - Entes Públicos - Início
                     </a>
@@ -400,7 +400,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2405evtCdBenefAlt %}
                 <li>
-                    <a href="{% url 's2405_evtcdbenefalt' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2405_evtcdbenefalt' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração
                     </a>
@@ -408,7 +408,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2410evtCdBenIn %}
                 <li>
-                    <a href="{% url 's2410_evtcdbenin' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2410_evtcdbenin' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2410 - Cadastro de Benefícios - Entes Públicos - Início
                     </a>
@@ -416,7 +416,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2416evtCdBenAlt %}
                 <li>
-                    <a href="{% url 's2416_evtcdbenalt' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2416_evtcdbenalt' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração
                     </a>
@@ -424,7 +424,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s2420evtCdBenTerm %}
                 <li>
-                    <a href="{% url 's2420_evtcdbenterm' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's2420_evtcdbenterm' %}">
                         <i class="fa fa-circle-o"></i>
                         S-2420 - Cadastro de Benefícios - Entes Públicos - Término
                     </a>
@@ -432,7 +432,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s3000evtExclusao %}
                 <li>
-                    <a href="{% url 's3000_evtexclusao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's3000_evtexclusao' %}">
                         <i class="fa fa-circle-o"></i>
                         S-3000 - Exclusão de eventos
                     </a>
@@ -440,7 +440,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s5001evtBasesTrab %}
                 <li>
-                    <a href="{% url 's5001_evtbasestrab' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's5001_evtbasestrab' %}">
                         <i class="fa fa-circle-o"></i>
                         S-5001 - Informações das contribuições sociais por trabalhador
                     </a>
@@ -448,7 +448,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s5002evtIrrfBenef %}
                 <li>
-                    <a href="{% url 's5002_evtirrfbenef' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's5002_evtirrfbenef' %}">
                         <i class="fa fa-circle-o"></i>
                         S-5002 - Imposto de Renda Retido na Fonte
                     </a>
@@ -456,7 +456,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s5003evtBasesFGTS %}
                 <li>
-                    <a href="{% url 's5003_evtbasesfgts' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's5003_evtbasesfgts' %}">
                         <i class="fa fa-circle-o"></i>
                         S-5003 - Informações do FGTS por Trabalhador
                     </a>
@@ -464,7 +464,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s5011evtCS %}
                 <li>
-                    <a href="{% url 's5011_evtcs' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's5011_evtcs' %}">
                         <i class="fa fa-circle-o"></i>
                         S-5011 - Informações das contribuições sociais consolidadas por contribuinte
                     </a>
@@ -472,7 +472,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s5012evtIrrf %}
                 <li>
-                    <a href="{% url 's5012_evtirrf' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's5012_evtirrf' %}">
                         <i class="fa fa-circle-o"></i>
                         S-5012 - Informações do IRRF consolidadas por contribuinte
                     </a>
@@ -480,7 +480,7 @@
             {% endif %}
             {% if perms.esocial.can_view_menu_s5013evtFGTS %}
                 <li>
-                    <a href="{% url 's5013_evtfgts' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 's5013_evtfgts' %}">
                         <i class="fa fa-circle-o"></i>
                         S-5013 - Informações do FGTS consolidadas por contribuinte
                     </a>
@@ -500,7 +500,7 @@
         
             {% if perms.efdreinf.can_view_menu_r1000evtInfoContri %}
                 <li>
-                    <a href="{% url 'r1000_evtinfocontri' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r1000_evtinfocontri' %}">
                         <i class="fa fa-circle-o"></i>
                         R-1000 - Informações do Contribuinte
                     </a>
@@ -508,7 +508,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r1070evtTabProcesso %}
                 <li>
-                    <a href="{% url 'r1070_evttabprocesso' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r1070_evttabprocesso' %}">
                         <i class="fa fa-circle-o"></i>
                         R-1070 - Tabela de Processos Administrativos/Judiciais
                     </a>
@@ -516,7 +516,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2010evtServTom %}
                 <li>
-                    <a href="{% url 'r2010_evtservtom' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2010_evtservtom' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados
                     </a>
@@ -524,7 +524,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2020evtServPrest %}
                 <li>
-                    <a href="{% url 'r2020_evtservprest' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2020_evtservprest' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados
                     </a>
@@ -532,7 +532,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2030evtAssocDespRec %}
                 <li>
-                    <a href="{% url 'r2030_evtassocdesprec' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2030_evtassocdesprec' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2030 - Recursos Recebidos por Associação Desportiva
                     </a>
@@ -540,7 +540,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2040evtAssocDespRep %}
                 <li>
-                    <a href="{% url 'r2040_evtassocdesprep' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2040_evtassocdesprep' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2040 - Recursos Repassados para Associação Desportiva
                     </a>
@@ -548,7 +548,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2050evtComProd %}
                 <li>
-                    <a href="{% url 'r2050_evtcomprod' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2050_evtcomprod' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria
                     </a>
@@ -556,7 +556,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2060evtCPRB %}
                 <li>
-                    <a href="{% url 'r2060_evtcprb' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2060_evtcprb' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB
                     </a>
@@ -564,7 +564,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2070evtPgtosDivs %}
                 <li>
-                    <a href="{% url 'r2070_evtpgtosdivs' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2070_evtpgtosdivs' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP
                     </a>
@@ -572,7 +572,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2098evtReabreEvPer %}
                 <li>
-                    <a href="{% url 'r2098_evtreabreevper' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2098_evtreabreevper' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2098 - Reabertura dos Eventos Periódicos
                     </a>
@@ -580,7 +580,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r2099evtFechaEvPer %}
                 <li>
-                    <a href="{% url 'r2099_evtfechaevper' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r2099_evtfechaevper' %}">
                         <i class="fa fa-circle-o"></i>
                         R-2099 - Fechamento dos Eventos Periódicos
                     </a>
@@ -588,7 +588,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r3010evtEspDesportivo %}
                 <li>
-                    <a href="{% url 'r3010_evtespdesportivo' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r3010_evtespdesportivo' %}">
                         <i class="fa fa-circle-o"></i>
                         R-3010 - Receita de Espetáculo Desportivo
                     </a>
@@ -596,7 +596,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r4010evtRetPF %}
                 <li>
-                    <a href="{% url 'r4010_evtretpf' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r4010_evtretpf' %}">
                         <i class="fa fa-circle-o"></i>
                         R-4010 - Retenções na Fonte - Pessoa Física
                     </a>
@@ -604,7 +604,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r4020evtRetPJ %}
                 <li>
-                    <a href="{% url 'r4020_evtretpj' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r4020_evtretpj' %}">
                         <i class="fa fa-circle-o"></i>
                         R-4020 - Retenções na Fonte - Pessoa Jurídica
                     </a>
@@ -612,7 +612,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r4040evtBenefNId %}
                 <li>
-                    <a href="{% url 'r4040_evtbenefnid' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r4040_evtbenefnid' %}">
                         <i class="fa fa-circle-o"></i>
                         R-4040 - Retenções na Fonte - Beneficiários não identificados
                     </a>
@@ -620,7 +620,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r4098evtReab %}
                 <li>
-                    <a href="{% url 'r4098_evtreab' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r4098_evtreab' %}">
                         <i class="fa fa-circle-o"></i>
                         R-4098 - Reabertura dos Eventos Periódicos Série R-4000
                     </a>
@@ -628,7 +628,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r4099evtFech %}
                 <li>
-                    <a href="{% url 'r4099_evtfech' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r4099_evtfech' %}">
                         <i class="fa fa-circle-o"></i>
                         R-4099 - Fechamento dos Eventos Periódicos Série R-4000
                     </a>
@@ -636,7 +636,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r5001evtTotal %}
                 <li>
-                    <a href="{% url 'r5001_evttotal' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r5001_evttotal' %}">
                         <i class="fa fa-circle-o"></i>
                         R-5001 - Informações de bases e tributos por evento
                     </a>
@@ -644,7 +644,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r5011evtTotalContrib %}
                 <li>
-                    <a href="{% url 'r5011_evttotalcontrib' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r5011_evttotalcontrib' %}">
                         <i class="fa fa-circle-o"></i>
                         R-5011 - Informações de bases e tributos consolidadas por período de apuração
                     </a>
@@ -652,7 +652,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r9000evtExclusao %}
                 <li>
-                    <a href="{% url 'r9000_evtexclusao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r9000_evtexclusao' %}">
                         <i class="fa fa-circle-o"></i>
                         R-9000 - Exclusão de Eventos
                     </a>
@@ -660,7 +660,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r9001evtTotal %}
                 <li>
-                    <a href="{% url 'r9001_evttotal' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r9001_evttotal' %}">
                         <i class="fa fa-circle-o"></i>
                         R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.
                     </a>
@@ -668,7 +668,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r9002evtRet %}
                 <li>
-                    <a href="{% url 'r9002_evtret' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r9002_evtret' %}">
                         <i class="fa fa-circle-o"></i>
                         R-9002 - Informações de bases e tributos por evento - Retenções na fonte
                     </a>
@@ -676,7 +676,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r9011evtTotalContrib %}
                 <li>
-                    <a href="{% url 'r9011_evttotalcontrib' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r9011_evttotalcontrib' %}">
                         <i class="fa fa-circle-o"></i>
                         R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária
                     </a>
@@ -684,7 +684,7 @@
             {% endif %}
             {% if perms.efdreinf.can_view_menu_r9012evtRetCons %}
                 <li>
-                    <a href="{% url 'r9012_evtretcons' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'r9012_evtretcons' %}">
                         <i class="fa fa-circle-o"></i>
                         R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte
                     </a>
@@ -704,7 +704,7 @@
         
             {% if perms.mensageiro.can_view_menu_Importacoes %}
                 <li>
-                    <a href="{% url 'importacoes' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'importacoes' %}">
                         <i class="fa fa-circle-o"></i>
                         Importações
                     </a>
@@ -712,7 +712,7 @@
             {% endif %}
             {% if perms.mensageiro.can_view_menu_Relatorios %}
                 <li>
-                    <a href="{% url 'relatorios' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'relatorios' %}">
                         <i class="fa fa-circle-o"></i>
                         Relatórios
                     </a>
@@ -720,7 +720,7 @@
             {% endif %}
             {% if perms.mensageiro.can_view_menu_TransmissorLote %}
                 <li>
-                    <a href="{% url 'transmissores' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'transmissores' %}">
                         <i class="fa fa-circle-o"></i>
                         Transmissor
                     </a>
@@ -728,7 +728,7 @@
             {% endif %}
             {% if perms.mensageiro.can_view_menu_TransmissorLoteEsocial %}
                 <li>
-                    <a href="{% url 'transmissor_lote_esocial' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'transmissor_lote_esocial' %}">
                         <i class="fa fa-circle-o"></i>
                         Transmissor do eSocial
                     </a>
@@ -736,7 +736,7 @@
             {% endif %}
             {% if perms.mensageiro.can_view_menu_TransmissorLoteEfdreinf %}
                 <li>
-                    <a href="{% url 'transmissor_lote_efdreinf' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'transmissor_lote_efdreinf' %}">
                         <i class="fa fa-circle-o"></i>
                         Transmissor do EFD-Reinf
                     </a>
@@ -744,7 +744,7 @@
             {% endif %}
             {% if perms.mensageiro.can_view_menu_Arquivos %}
                 <li>
-                    <a href="{% url 'arquivos' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'arquivos' %}">
                         <i class="fa fa-circle-o"></i>
                         Arquivos
                     </a>
@@ -752,7 +752,7 @@
             {% endif %}
             {% if perms.mensageiro.can_view_menu_RetornosEventos %}
                 <li>
-                    <a href="{% url 'retornos_eventos' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'retornos_eventos' %}">
                         <i class="fa fa-circle-o"></i>
                         Retornos dos Eventos
                     </a>
@@ -772,7 +772,7 @@
         
             {% if perms.controle_de_acesso.can_view_menu_Usuarios %}
                 <li>
-                    <a href="{% url 'usuarios' hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                    <a href="{% url 'usuarios' %}">
                         <i class="fa fa-circle-o"></i>
                         Usuários
                     </a>

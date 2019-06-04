@@ -54,67 +54,51 @@ from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
 from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.s1000.models import s1000inclusao
-from emensageriapro.s1000.models import s1000alteracao
-from emensageriapro.s1000.models import s1000exclusao
-from emensageriapro.s1000.forms import form_s1000_inclusao
-from emensageriapro.s1000.forms import form_s1000_alteracao
-from emensageriapro.s1000.forms import form_s1000_exclusao
 
 
 @login_required
-def apagar(request, hash):
-
+def apagar(request, pk):
+        
+    import json
+    from django.forms.models import model_to_dict
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5003_evtbasesfgts_id = int(dict_hash['id'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    
-    s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id=s5003_evtbasesfgts_id)
+    s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id=pk)
     
     if request.method == 'POST':
     
         if s5003_evtbasesfgts.status == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s5003_evtbasesfgts), indent=4, sort_keys=True, default=str)
-            obj = s5003evtBasesFGTS.objects.get(id = s5003_evtbasesfgts_id)
+            obj = s5003evtBasesFGTS.objects.get(id=pk)
             obj.delete(request=request)
             #s5003_evtbasesfgts_apagar_custom
             #s5003_evtbasesfgts_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's5003_evtbasesfgts', s5003_evtbasesfgts_id, usuario_id, 3)
-        else:
-            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
-        if request.session['retorno_pagina']== 's5003_evtbasesfgts_salvar':
-        
-            return redirect('s5003_evtbasesfgts', 
-                            hash=request.session['retorno_hash'])
-            
+                             's5003_evtbasesfgts', pk, request.user.id, 3)
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+                                        possível apagar os eventos com status "Cadastrado"!''')
+            
+        if 's5003_evtbasesfgts' in request.session['return_page']:
+        
+            return redirect('s5003_evtbasesfgts')
+            
+        else:
+        
+            return redirect(request.session['return_page'], 
+                            pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk, 
         's5003_evtbasesfgts': s5003_evtbasesfgts, 
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
         'modulos': ['esocial', ],
         'paginas': ['s5003_evtbasesfgts', ],
-        'hash': hash,
     }
     
     return render(request, 's5003_evtbasesfgts_apagar.html', context)

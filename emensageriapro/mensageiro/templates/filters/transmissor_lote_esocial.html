@@ -68,10 +68,10 @@
       <select name="status" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
         <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option>
-        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Consultado</option>
         <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option>
-        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na consulta</option>
         <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no envio</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Consultado</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na consulta</option>
       </select>
     </div>
   </div>
@@ -85,6 +85,7 @@
     <div class="input-group" style="width: 100%;">
       <select name="resposta_codigo" class="form-control automate-select" style="width: 100%;">
         <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >Cadastrado</option>
         <option value="101" {% ifequal 101 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >101 - Lote Aguardando Processamento</option>
         <option value="201" {% ifequal 201 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >201 - Lote Processado com Sucesso</option>
         <option value="202" {% ifequal 202 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >202 - Lote Processado com Advertências</option>
@@ -99,7 +100,6 @@
         <option value="503" {% ifequal 503 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.</option>
         <option value="504" {% ifequal 504 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >504 - Solicitação de Consulta Incorreta - Erro Certificado.</option>
         <option value="505" {% ifequal 505 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.</option>
-        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >Cadastrado</option>
       </select>
     </div>
   </div>

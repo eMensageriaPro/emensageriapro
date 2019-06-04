@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2250_detavprevio__s2250_evtavprevio__label">Detalha as informações do evento trabalhista*</label>
     {% if not for_print %}{% if s2250_detavprevio_form.s2250_evtavprevio.value %}
-        <a href="{% url 's2250_evtavprevio_salvar' hash='{}'|json_return_page:'s2250_detavprevio_salvar'|json_return_hash:hash|json_id:s2250_detavprevio_form.s2250_evtavprevio.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_detavprevio_form.s2250_evtavprevio.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -114,8 +114,11 @@ class r1000alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000alteracao", "Can view R1000ALTERACAO"),
-            ("can_view_menu_r1000alteracao", "Can view menu R1000ALTERACAO"),)
+            ("can_see_list_r1000alteracao", u"Pode ver listagem do modelo R1000ALTERACAO"),
+            ("can_see_data_r1000alteracao", u"Pode visualizar o conteúdo do modelo R1000ALTERACAO"),
+            ("can_see_menu_r1000alteracao", u"Pode visualizar no menu o modelo R1000ALTERACAO"),
+            ("can_print_list_r1000alteracao", u"Pode imprimir listagem do modelo R1000ALTERACAO"),
+            ("can_print_data_r1000alteracao", u"Pode imprimir o conteúdo do modelo R1000ALTERACAO"), )
             
         ordering = [
             'r1000_evtinfocontri',
@@ -178,8 +181,11 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000alteracaoinfoEFR", "Can view R1000ALTERACAOINFOEFR"),
-            ("can_view_menu_r1000alteracaoinfoEFR", "Can view menu R1000ALTERACAOINFOEFR"),)
+            ("can_see_list_r1000alteracaoinfoEFR", u"Pode ver listagem do modelo R1000ALTERACAOINFOEFR"),
+            ("can_see_data_r1000alteracaoinfoEFR", u"Pode visualizar o conteúdo do modelo R1000ALTERACAOINFOEFR"),
+            ("can_see_menu_r1000alteracaoinfoEFR", u"Pode visualizar no menu o modelo R1000ALTERACAOINFOEFR"),
+            ("can_print_list_r1000alteracaoinfoEFR", u"Pode imprimir listagem do modelo R1000ALTERACAOINFOEFR"),
+            ("can_print_data_r1000alteracaoinfoEFR", u"Pode imprimir o conteúdo do modelo R1000ALTERACAOINFOEFR"), )
             
         ordering = [
             'r1000_alteracao',
@@ -236,8 +242,11 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000alteracaonovaValidade", "Can view R1000ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_r1000alteracaonovaValidade", "Can view menu R1000ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_r1000alteracaonovaValidade", u"Pode ver listagem do modelo R1000ALTERACAONOVAVALIDADE"),
+            ("can_see_data_r1000alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo R1000ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_r1000alteracaonovaValidade", u"Pode visualizar no menu o modelo R1000ALTERACAONOVAVALIDADE"),
+            ("can_print_list_r1000alteracaonovaValidade", u"Pode imprimir listagem do modelo R1000ALTERACAONOVAVALIDADE"),
+            ("can_print_data_r1000alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo R1000ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             'r1000_alteracao',
@@ -299,8 +308,11 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000alteracaosoftHouse", "Can view R1000ALTERACAOSOFTHOUSE"),
-            ("can_view_menu_r1000alteracaosoftHouse", "Can view menu R1000ALTERACAOSOFTHOUSE"),)
+            ("can_see_list_r1000alteracaosoftHouse", u"Pode ver listagem do modelo R1000ALTERACAOSOFTHOUSE"),
+            ("can_see_data_r1000alteracaosoftHouse", u"Pode visualizar o conteúdo do modelo R1000ALTERACAOSOFTHOUSE"),
+            ("can_see_menu_r1000alteracaosoftHouse", u"Pode visualizar no menu o modelo R1000ALTERACAOSOFTHOUSE"),
+            ("can_print_list_r1000alteracaosoftHouse", u"Pode imprimir listagem do modelo R1000ALTERACAOSOFTHOUSE"),
+            ("can_print_data_r1000alteracaosoftHouse", u"Pode imprimir o conteúdo do modelo R1000ALTERACAOSOFTHOUSE"), )
             
         ordering = [
             'r1000_alteracao',
@@ -359,8 +371,11 @@ class r1000exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000exclusao", "Can view R1000EXCLUSAO"),
-            ("can_view_menu_r1000exclusao", "Can view menu R1000EXCLUSAO"),)
+            ("can_see_list_r1000exclusao", u"Pode ver listagem do modelo R1000EXCLUSAO"),
+            ("can_see_data_r1000exclusao", u"Pode visualizar o conteúdo do modelo R1000EXCLUSAO"),
+            ("can_see_menu_r1000exclusao", u"Pode visualizar no menu o modelo R1000EXCLUSAO"),
+            ("can_print_list_r1000exclusao", u"Pode imprimir listagem do modelo R1000EXCLUSAO"),
+            ("can_print_data_r1000exclusao", u"Pode imprimir o conteúdo do modelo R1000EXCLUSAO"), )
             
         ordering = [
             'r1000_evtinfocontri',
@@ -433,8 +448,11 @@ class r1000inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000inclusao", "Can view R1000INCLUSAO"),
-            ("can_view_menu_r1000inclusao", "Can view menu R1000INCLUSAO"),)
+            ("can_see_list_r1000inclusao", u"Pode ver listagem do modelo R1000INCLUSAO"),
+            ("can_see_data_r1000inclusao", u"Pode visualizar o conteúdo do modelo R1000INCLUSAO"),
+            ("can_see_menu_r1000inclusao", u"Pode visualizar no menu o modelo R1000INCLUSAO"),
+            ("can_print_list_r1000inclusao", u"Pode imprimir listagem do modelo R1000INCLUSAO"),
+            ("can_print_data_r1000inclusao", u"Pode imprimir o conteúdo do modelo R1000INCLUSAO"), )
             
         ordering = [
             'r1000_evtinfocontri',
@@ -497,8 +515,11 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000inclusaoinfoEFR", "Can view R1000INCLUSAOINFOEFR"),
-            ("can_view_menu_r1000inclusaoinfoEFR", "Can view menu R1000INCLUSAOINFOEFR"),)
+            ("can_see_list_r1000inclusaoinfoEFR", u"Pode ver listagem do modelo R1000INCLUSAOINFOEFR"),
+            ("can_see_data_r1000inclusaoinfoEFR", u"Pode visualizar o conteúdo do modelo R1000INCLUSAOINFOEFR"),
+            ("can_see_menu_r1000inclusaoinfoEFR", u"Pode visualizar no menu o modelo R1000INCLUSAOINFOEFR"),
+            ("can_print_list_r1000inclusaoinfoEFR", u"Pode imprimir listagem do modelo R1000INCLUSAOINFOEFR"),
+            ("can_print_data_r1000inclusaoinfoEFR", u"Pode imprimir o conteúdo do modelo R1000INCLUSAOINFOEFR"), )
             
         ordering = [
             'r1000_inclusao',
@@ -560,8 +581,11 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000inclusaosoftHouse", "Can view R1000INCLUSAOSOFTHOUSE"),
-            ("can_view_menu_r1000inclusaosoftHouse", "Can view menu R1000INCLUSAOSOFTHOUSE"),)
+            ("can_see_list_r1000inclusaosoftHouse", u"Pode ver listagem do modelo R1000INCLUSAOSOFTHOUSE"),
+            ("can_see_data_r1000inclusaosoftHouse", u"Pode visualizar o conteúdo do modelo R1000INCLUSAOSOFTHOUSE"),
+            ("can_see_menu_r1000inclusaosoftHouse", u"Pode visualizar no menu o modelo R1000INCLUSAOSOFTHOUSE"),
+            ("can_print_list_r1000inclusaosoftHouse", u"Pode imprimir listagem do modelo R1000INCLUSAOSOFTHOUSE"),
+            ("can_print_data_r1000inclusaosoftHouse", u"Pode imprimir o conteúdo do modelo R1000INCLUSAOSOFTHOUSE"), )
             
         ordering = [
             'r1000_inclusao',

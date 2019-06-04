@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2200_ideestabvinc__s2200_trabtemporario__label">Identificação do estabelecimento ao qual o trabalhador temporário está vinculado*</label>
     {% if not for_print %}{% if s2200_ideestabvinc_form.s2200_trabtemporario.value %}
-        <a href="{% url 's2200_trabtemporario_salvar' hash='{}'|json_return_page:'s2200_ideestabvinc_salvar'|json_return_hash:hash|json_id:s2200_ideestabvinc_form.s2200_trabtemporario.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2200_trabtemporario_salvar' pk=s2200_ideestabvinc_form.s2200_trabtemporario.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4010_infoprocjud__r4010_infopgto__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*</label>
     {% if not for_print %}{% if r4010_infoprocjud_form.r4010_infopgto.value %}
-        <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_return_page:'r4010_infoprocjud_salvar'|json_return_hash:hash|json_id:r4010_infoprocjud_form.r4010_infopgto.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infoprocjud_form.r4010_infopgto.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

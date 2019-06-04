@@ -97,8 +97,11 @@ class s2206alvaraJudicial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206alvaraJudicial", "Can view S2206ALVARAJUDICIAL"),
-            ("can_view_menu_s2206alvaraJudicial", "Can view menu S2206ALVARAJUDICIAL"),)
+            ("can_see_list_s2206alvaraJudicial", u"Pode ver listagem do modelo S2206ALVARAJUDICIAL"),
+            ("can_see_data_s2206alvaraJudicial", u"Pode visualizar o conteúdo do modelo S2206ALVARAJUDICIAL"),
+            ("can_see_menu_s2206alvaraJudicial", u"Pode visualizar no menu o modelo S2206ALVARAJUDICIAL"),
+            ("can_print_list_s2206alvaraJudicial", u"Pode imprimir listagem do modelo S2206ALVARAJUDICIAL"),
+            ("can_print_data_s2206alvaraJudicial", u"Pode imprimir o conteúdo do modelo S2206ALVARAJUDICIAL"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -156,8 +159,11 @@ class s2206aprend(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206aprend", "Can view S2206APREND"),
-            ("can_view_menu_s2206aprend", "Can view menu S2206APREND"),)
+            ("can_see_list_s2206aprend", u"Pode ver listagem do modelo S2206APREND"),
+            ("can_see_data_s2206aprend", u"Pode visualizar o conteúdo do modelo S2206APREND"),
+            ("can_see_menu_s2206aprend", u"Pode visualizar no menu o modelo S2206APREND"),
+            ("can_print_list_s2206aprend", u"Pode imprimir listagem do modelo S2206APREND"),
+            ("can_print_data_s2206aprend", u"Pode imprimir o conteúdo do modelo S2206APREND"), )
             
         ordering = [
             's2206_infoceletista',
@@ -214,8 +220,11 @@ class s2206filiacaoSindical(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206filiacaoSindical", "Can view S2206FILIACAOSINDICAL"),
-            ("can_view_menu_s2206filiacaoSindical", "Can view menu S2206FILIACAOSINDICAL"),)
+            ("can_see_list_s2206filiacaoSindical", u"Pode ver listagem do modelo S2206FILIACAOSINDICAL"),
+            ("can_see_data_s2206filiacaoSindical", u"Pode visualizar o conteúdo do modelo S2206FILIACAOSINDICAL"),
+            ("can_see_menu_s2206filiacaoSindical", u"Pode visualizar no menu o modelo S2206FILIACAOSINDICAL"),
+            ("can_print_list_s2206filiacaoSindical", u"Pode imprimir listagem do modelo S2206FILIACAOSINDICAL"),
+            ("can_print_data_s2206filiacaoSindical", u"Pode imprimir o conteúdo do modelo S2206FILIACAOSINDICAL"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -275,8 +284,11 @@ class s2206horContratual(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206horContratual", "Can view S2206HORCONTRATUAL"),
-            ("can_view_menu_s2206horContratual", "Can view menu S2206HORCONTRATUAL"),)
+            ("can_see_list_s2206horContratual", u"Pode ver listagem do modelo S2206HORCONTRATUAL"),
+            ("can_see_data_s2206horContratual", u"Pode visualizar o conteúdo do modelo S2206HORCONTRATUAL"),
+            ("can_see_menu_s2206horContratual", u"Pode visualizar no menu o modelo S2206HORCONTRATUAL"),
+            ("can_print_list_s2206horContratual", u"Pode imprimir listagem do modelo S2206HORCONTRATUAL"),
+            ("can_print_data_s2206horContratual", u"Pode imprimir o conteúdo do modelo S2206HORCONTRATUAL"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -335,8 +347,11 @@ class s2206horario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206horario", "Can view S2206HORARIO"),
-            ("can_view_menu_s2206horario", "Can view menu S2206HORARIO"),)
+            ("can_see_list_s2206horario", u"Pode ver listagem do modelo S2206HORARIO"),
+            ("can_see_data_s2206horario", u"Pode visualizar o conteúdo do modelo S2206HORARIO"),
+            ("can_see_menu_s2206horario", u"Pode visualizar no menu o modelo S2206HORARIO"),
+            ("can_print_list_s2206horario", u"Pode imprimir listagem do modelo S2206HORARIO"),
+            ("can_print_data_s2206horario", u"Pode imprimir o conteúdo do modelo S2206HORARIO"), )
             
         ordering = [
             's2206_horcontratual',
@@ -398,8 +413,11 @@ class s2206infoCeletista(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206infoCeletista", "Can view S2206INFOCELETISTA"),
-            ("can_view_menu_s2206infoCeletista", "Can view menu S2206INFOCELETISTA"),)
+            ("can_see_list_s2206infoCeletista", u"Pode ver listagem do modelo S2206INFOCELETISTA"),
+            ("can_see_data_s2206infoCeletista", u"Pode visualizar o conteúdo do modelo S2206INFOCELETISTA"),
+            ("can_see_menu_s2206infoCeletista", u"Pode visualizar no menu o modelo S2206INFOCELETISTA"),
+            ("can_print_list_s2206infoCeletista", u"Pode imprimir listagem do modelo S2206INFOCELETISTA"),
+            ("can_print_data_s2206infoCeletista", u"Pode imprimir o conteúdo do modelo S2206INFOCELETISTA"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -460,8 +478,11 @@ class s2206infoEstatutario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206infoEstatutario", "Can view S2206INFOESTATUTARIO"),
-            ("can_view_menu_s2206infoEstatutario", "Can view menu S2206INFOESTATUTARIO"),)
+            ("can_see_list_s2206infoEstatutario", u"Pode ver listagem do modelo S2206INFOESTATUTARIO"),
+            ("can_see_data_s2206infoEstatutario", u"Pode visualizar o conteúdo do modelo S2206INFOESTATUTARIO"),
+            ("can_see_menu_s2206infoEstatutario", u"Pode visualizar no menu o modelo S2206INFOESTATUTARIO"),
+            ("can_print_list_s2206infoEstatutario", u"Pode imprimir listagem do modelo S2206INFOESTATUTARIO"),
+            ("can_print_data_s2206infoEstatutario", u"Pode imprimir o conteúdo do modelo S2206INFOESTATUTARIO"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -529,8 +550,11 @@ class s2206localTrabDom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206localTrabDom", "Can view S2206LOCALTRABDOM"),
-            ("can_view_menu_s2206localTrabDom", "Can view menu S2206LOCALTRABDOM"),)
+            ("can_see_list_s2206localTrabDom", u"Pode ver listagem do modelo S2206LOCALTRABDOM"),
+            ("can_see_data_s2206localTrabDom", u"Pode visualizar o conteúdo do modelo S2206LOCALTRABDOM"),
+            ("can_see_menu_s2206localTrabDom", u"Pode visualizar no menu o modelo S2206LOCALTRABDOM"),
+            ("can_print_list_s2206localTrabDom", u"Pode imprimir listagem do modelo S2206LOCALTRABDOM"),
+            ("can_print_data_s2206localTrabDom", u"Pode imprimir o conteúdo do modelo S2206LOCALTRABDOM"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -594,8 +618,11 @@ class s2206localTrabGeral(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206localTrabGeral", "Can view S2206LOCALTRABGERAL"),
-            ("can_view_menu_s2206localTrabGeral", "Can view menu S2206LOCALTRABGERAL"),)
+            ("can_see_list_s2206localTrabGeral", u"Pode ver listagem do modelo S2206LOCALTRABGERAL"),
+            ("can_see_data_s2206localTrabGeral", u"Pode visualizar o conteúdo do modelo S2206LOCALTRABGERAL"),
+            ("can_see_menu_s2206localTrabGeral", u"Pode visualizar no menu o modelo S2206LOCALTRABGERAL"),
+            ("can_print_list_s2206localTrabGeral", u"Pode imprimir listagem do modelo S2206LOCALTRABGERAL"),
+            ("can_print_data_s2206localTrabGeral", u"Pode imprimir o conteúdo do modelo S2206LOCALTRABGERAL"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -652,8 +679,11 @@ class s2206observacoes(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206observacoes", "Can view S2206OBSERVACOES"),
-            ("can_view_menu_s2206observacoes", "Can view menu S2206OBSERVACOES"),)
+            ("can_see_list_s2206observacoes", u"Pode ver listagem do modelo S2206OBSERVACOES"),
+            ("can_see_data_s2206observacoes", u"Pode visualizar o conteúdo do modelo S2206OBSERVACOES"),
+            ("can_see_menu_s2206observacoes", u"Pode visualizar no menu o modelo S2206OBSERVACOES"),
+            ("can_print_list_s2206observacoes", u"Pode imprimir listagem do modelo S2206OBSERVACOES"),
+            ("can_print_data_s2206observacoes", u"Pode imprimir o conteúdo do modelo S2206OBSERVACOES"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -709,8 +739,11 @@ class s2206servPubl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206servPubl", "Can view S2206SERVPUBL"),
-            ("can_view_menu_s2206servPubl", "Can view menu S2206SERVPUBL"),)
+            ("can_see_list_s2206servPubl", u"Pode ver listagem do modelo S2206SERVPUBL"),
+            ("can_see_data_s2206servPubl", u"Pode visualizar o conteúdo do modelo S2206SERVPUBL"),
+            ("can_see_menu_s2206servPubl", u"Pode visualizar no menu o modelo S2206SERVPUBL"),
+            ("can_print_list_s2206servPubl", u"Pode imprimir listagem do modelo S2206SERVPUBL"),
+            ("can_print_data_s2206servPubl", u"Pode imprimir o conteúdo do modelo S2206SERVPUBL"), )
             
         ordering = [
             's2206_evtaltcontratual',
@@ -766,8 +799,11 @@ class s2206trabTemp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206trabTemp", "Can view S2206TRABTEMP"),
-            ("can_view_menu_s2206trabTemp", "Can view menu S2206TRABTEMP"),)
+            ("can_see_list_s2206trabTemp", u"Pode ver listagem do modelo S2206TRABTEMP"),
+            ("can_see_data_s2206trabTemp", u"Pode visualizar o conteúdo do modelo S2206TRABTEMP"),
+            ("can_see_menu_s2206trabTemp", u"Pode visualizar no menu o modelo S2206TRABTEMP"),
+            ("can_print_list_s2206trabTemp", u"Pode imprimir listagem do modelo S2206TRABTEMP"),
+            ("can_print_data_s2206trabTemp", u"Pode imprimir o conteúdo do modelo S2206TRABTEMP"), )
             
         ordering = [
             's2206_infoceletista',

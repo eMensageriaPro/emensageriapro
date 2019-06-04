@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1200_sucessaovinc__s1200_infocomplem__label">Grupo de informações da sucessão de vínculo trabalhista/estatutário*</label>
     {% if not for_print %}{% if s1200_sucessaovinc_form.s1200_infocomplem.value %}
-        <a href="{% url 's1200_infocomplem_salvar' hash='{}'|json_return_page:'s1200_sucessaovinc_salvar'|json_return_hash:hash|json_id:s1200_sucessaovinc_form.s1200_infocomplem.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1200_infocomplem_salvar' pk=s1200_sucessaovinc_form.s1200_infocomplem.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -66,7 +66,6 @@ class TransmissorLoteList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class TransmissorLoteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = TransmissorLote.objects.all()

@@ -66,7 +66,6 @@ class s2399evtTSVTerminoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2399evtTSVTerminoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2399evtTSVTermino.objects.all()

@@ -66,7 +66,6 @@ class s2241evtInsApoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2241evtInsApoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2241evtInsApo.objects.all()

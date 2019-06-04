@@ -15,7 +15,7 @@
     <label id="s5003_baseperapur__s5003_infobasefgts__label">Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.*</label>
     {% if not for_print %}
       {% if s5003_baseperapur_form.s5003_infobasefgts.value %}
-        <a id="s5003_baseperapur__s5003_infobasefgts__div_acessar" href="{% url 's5003_infobasefgts_salvar' hash='{}'|json_id:s5003_baseperapur_form.s5003_infobasefgts.value|json_print:0|base64_encode_me %}">
+        <a id="s5003_baseperapur__s5003_infobasefgts__div_acessar" href="{% url 's5003_infobasefgts_salvar' pk=s5003_baseperapur_form.s5003_infobasefgts.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

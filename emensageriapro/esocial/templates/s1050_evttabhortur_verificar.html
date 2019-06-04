@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1050 - Tabela de Horários/Turnos de Trabalho<br>Identidade: {{ s1050_evttabhortur.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1050_evttabhortur_verificar' hash='{}'|json_id:s1050_evttabhortur_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1050_evttabhortur_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1050_evttabhortur_verificar' hash='{}'|json_id:s1050_evttabhortur_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1050_evttabhortur_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1050_evttabhortur_verificar' hash='{}'|json_id:s1050_evttabhortur_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1050_evttabhortur_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1050_evttabhortur_verificar' hash='{}'|json_id:s1050_evttabhortur_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.tpamb or s1050_evttabhortur.tpamb == 0 %}{{ s1050_evttabhortur.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_evttabhortur_visualizar' %}
-                <a href="{% url 's1050_evttabhortur_salvar'  hash='{}'|json_id:s1050_evttabhortur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050evtTabHorTur or perms.esocial.can_see_s1050evtTabHorTur %}
+                <a href="{% url 's1050_evttabhortur_salvar' pk=s1050_evttabhortur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.procemi or s1050_evttabhortur.procemi == 0 %}{{ s1050_evttabhortur.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_evttabhortur_visualizar' %}
-                <a href="{% url 's1050_evttabhortur_salvar'  hash='{}'|json_id:s1050_evttabhortur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050evtTabHorTur or perms.esocial.can_see_s1050evtTabHorTur %}
+                <a href="{% url 's1050_evttabhortur_salvar' pk=s1050_evttabhortur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.verproc or s1050_evttabhortur.verproc == 0 %}{{ s1050_evttabhortur.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_evttabhortur_visualizar' %}
-                <a href="{% url 's1050_evttabhortur_salvar'  hash='{}'|json_id:s1050_evttabhortur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050evtTabHorTur or perms.esocial.can_see_s1050evtTabHorTur %}
+                <a href="{% url 's1050_evttabhortur_salvar' pk=s1050_evttabhortur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1050_evttabhortur.tpinsc or s1050_evttabhortur.tpinsc == 0 %}{{ s1050_evttabhortur.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_evttabhortur_visualizar' %}
-                <a href="{% url 's1050_evttabhortur_salvar'  hash='{}'|json_id:s1050_evttabhortur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050evtTabHorTur or perms.esocial.can_see_s1050evtTabHorTur %}
+                <a href="{% url 's1050_evttabhortur_salvar' pk=s1050_evttabhortur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1050_evttabhortur.nrinsc or s1050_evttabhortur.nrinsc == 0 %}{{ s1050_evttabhortur.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_evttabhortur_visualizar' %}
-                <a href="{% url 's1050_evttabhortur_salvar'  hash='{}'|json_id:s1050_evttabhortur.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050evtTabHorTur or perms.esocial.can_see_s1050evtTabHorTur %}
+                <a href="{% url 's1050_evttabhortur_salvar' pk=s1050_evttabhortur.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
             <td width="200px"><b>{% if s1050_inclusao.codhorcontrat or s1050_inclusao.codhorcontrat == 0 %}{{ s1050_inclusao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_inclusao.inivalid or s1050_inclusao.inivalid == 0 %}{{ s1050_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1050_inclusao.fimvalid or s1050_inclusao.fimvalid == 0 %}{{ s1050_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -309,11 +306,11 @@
             <td width="130px">hrEntr</td>
             <td width="500px">Informar hora da entrada, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_inclusao.hrentr or s1050_inclusao.hrentr == 0 %}{{ s1050_inclusao.hrentr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">hrSaida</td>
             <td width="500px">Informar hora da saída, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_inclusao.hrsaida or s1050_inclusao.hrsaida == 0 %}{{ s1050_inclusao.hrsaida }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">durJornada</td>
             <td width="500px">Preencher com o tempo de duração da jornada, em minutos. Devem ser consideradas as horas reduzidas noturnas, se houver.</td>
             <td width="200px"><b>{% if s1050_inclusao.durjornada or s1050_inclusao.durjornada == 0 %}{{ s1050_inclusao.durjornada }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -366,11 +363,11 @@
             <td width="130px">perHorFlexivel</td>
             <td width="500px">Indicar se é permitida a flexibilidade<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1050_inclusao.perhorflexivel or s1050_inclusao.perhorflexivel == 0 %}{{ s1050_inclusao.perhorflexivel }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_visualizar' %}
-                <a href="{% url 's1050_inclusao_salvar'  hash='{}'|json_id:s1050_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusao or perms.esocial.can_see_s1050inclusao %}
+                <a href="{% url 's1050_inclusao_salvar' pk=s1050_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -391,11 +388,11 @@
             <td width="130px">tpInterv</td>
             <td width="500px">Tipo de Intervalo da Jornada<opcoes>1 - Intervalo em Horário Fixo; 2 - Intervalo em Horário Variável. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.tpinterv or s1050_inclusao_horariointervalo.tpinterv == 0 %}{{ s1050_inclusao_horariointervalo.tpinterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_inclusao_horariointervalo_salvar'  hash='{}'|json_id:s1050_inclusao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusaohorarioIntervalo or perms.esocial.can_see_s1050inclusaohorarioIntervalo %}
+                <a href="{% url 's1050_inclusao_horariointervalo_salvar' pk=s1050_inclusao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -410,11 +407,11 @@
             <td width="130px">durInterv</td>
             <td width="500px">Preencher com o tempo de duração do intervalo, em minutos.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.durinterv or s1050_inclusao_horariointervalo.durinterv == 0 %}{{ s1050_inclusao_horariointervalo.durinterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_inclusao_horariointervalo_salvar'  hash='{}'|json_id:s1050_inclusao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusaohorarioIntervalo or perms.esocial.can_see_s1050inclusaohorarioIntervalo %}
+                <a href="{% url 's1050_inclusao_horariointervalo_salvar' pk=s1050_inclusao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -429,11 +426,11 @@
             <td width="130px">iniInterv</td>
             <td width="500px">informar a hora de início do intervalo, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.iniinterv or s1050_inclusao_horariointervalo.iniinterv == 0 %}{{ s1050_inclusao_horariointervalo.iniinterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_inclusao_horariointervalo_salvar'  hash='{}'|json_id:s1050_inclusao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusaohorarioIntervalo or perms.esocial.can_see_s1050inclusaohorarioIntervalo %}
+                <a href="{% url 's1050_inclusao_horariointervalo_salvar' pk=s1050_inclusao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -448,11 +445,11 @@
             <td width="130px">termInterv</td>
             <td width="500px">Informar a hora de termino do intervalo, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_inclusao_horariointervalo.terminterv or s1050_inclusao_horariointervalo.terminterv == 0 %}{{ s1050_inclusao_horariointervalo.terminterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_inclusao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_inclusao_horariointervalo_salvar'  hash='{}'|json_id:s1050_inclusao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050inclusaohorarioIntervalo or perms.esocial.can_see_s1050inclusaohorarioIntervalo %}
+                <a href="{% url 's1050_inclusao_horariointervalo_salvar' pk=s1050_inclusao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -478,11 +475,11 @@
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
             <td width="200px"><b>{% if s1050_alteracao.codhorcontrat or s1050_alteracao.codhorcontrat == 0 %}{{ s1050_alteracao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -497,11 +494,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_alteracao.inivalid or s1050_alteracao.inivalid == 0 %}{{ s1050_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -516,11 +513,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1050_alteracao.fimvalid or s1050_alteracao.fimvalid == 0 %}{{ s1050_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -540,11 +537,11 @@
             <td width="130px">hrEntr</td>
             <td width="500px">Informar hora da entrada, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_alteracao.hrentr or s1050_alteracao.hrentr == 0 %}{{ s1050_alteracao.hrentr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -559,11 +556,11 @@
             <td width="130px">hrSaida</td>
             <td width="500px">Informar hora da saída, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</td>
             <td width="200px"><b>{% if s1050_alteracao.hrsaida or s1050_alteracao.hrsaida == 0 %}{{ s1050_alteracao.hrsaida }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -578,11 +575,11 @@
             <td width="130px">durJornada</td>
             <td width="500px">Preencher com o tempo de duração da jornada, em minutos. Devem ser consideradas as horas reduzidas noturnas, se houver.</td>
             <td width="200px"><b>{% if s1050_alteracao.durjornada or s1050_alteracao.durjornada == 0 %}{{ s1050_alteracao.durjornada }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -597,11 +594,11 @@
             <td width="130px">perHorFlexivel</td>
             <td width="500px">Indicar se é permitida a flexibilidade<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1050_alteracao.perhorflexivel or s1050_alteracao.perhorflexivel == 0 %}{{ s1050_alteracao.perhorflexivel }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_visualizar' %}
-                <a href="{% url 's1050_alteracao_salvar'  hash='{}'|json_id:s1050_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracao or perms.esocial.can_see_s1050alteracao %}
+                <a href="{% url 's1050_alteracao_salvar' pk=s1050_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -622,11 +619,11 @@
             <td width="130px">tpInterv</td>
             <td width="500px">Tipo de Intervalo da Jornada<opcoes>1 - Intervalo em Horário Fixo; 2 - Intervalo em Horário Variável. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.tpinterv or s1050_alteracao_horariointervalo.tpinterv == 0 %}{{ s1050_alteracao_horariointervalo.tpinterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_alteracao_horariointervalo_salvar'  hash='{}'|json_id:s1050_alteracao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracaohorarioIntervalo or perms.esocial.can_see_s1050alteracaohorarioIntervalo %}
+                <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=s1050_alteracao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -641,11 +638,11 @@
             <td width="130px">durInterv</td>
             <td width="500px">Preencher com o tempo de duração do intervalo, em minutos.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.durinterv or s1050_alteracao_horariointervalo.durinterv == 0 %}{{ s1050_alteracao_horariointervalo.durinterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_alteracao_horariointervalo_salvar'  hash='{}'|json_id:s1050_alteracao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracaohorarioIntervalo or perms.esocial.can_see_s1050alteracaohorarioIntervalo %}
+                <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=s1050_alteracao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -660,11 +657,11 @@
             <td width="130px">iniInterv</td>
             <td width="500px">informar a hora de início do intervalo, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.iniinterv or s1050_alteracao_horariointervalo.iniinterv == 0 %}{{ s1050_alteracao_horariointervalo.iniinterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_alteracao_horariointervalo_salvar'  hash='{}'|json_id:s1050_alteracao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracaohorarioIntervalo or perms.esocial.can_see_s1050alteracaohorarioIntervalo %}
+                <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=s1050_alteracao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -679,11 +676,11 @@
             <td width="130px">termInterv</td>
             <td width="500px">Informar a hora de termino do intervalo, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59. Somente deve ser informado se {tpInterv}=1.</td>
             <td width="200px"><b>{% if s1050_alteracao_horariointervalo.terminterv or s1050_alteracao_horariointervalo.terminterv == 0 %}{{ s1050_alteracao_horariointervalo.terminterv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_horariointervalo_visualizar' %}
-                <a href="{% url 's1050_alteracao_horariointervalo_salvar'  hash='{}'|json_id:s1050_alteracao_horariointervalo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracaohorarioIntervalo or perms.esocial.can_see_s1050alteracaohorarioIntervalo %}
+                <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=s1050_alteracao_horariointervalo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -704,11 +701,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_alteracao_novavalidade.inivalid or s1050_alteracao_novavalidade.inivalid == 0 %}{{ s1050_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1050_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1050_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracaonovaValidade or perms.esocial.can_see_s1050alteracaonovaValidade %}
+                <a href="{% url 's1050_alteracao_novavalidade_salvar' pk=s1050_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -723,11 +720,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1050_alteracao_novavalidade.fimvalid or s1050_alteracao_novavalidade.fimvalid == 0 %}{{ s1050_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1050_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1050_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050alteracaonovaValidade or perms.esocial.can_see_s1050alteracaonovaValidade %}
+                <a href="{% url 's1050_alteracao_novavalidade_salvar' pk=s1050_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -753,11 +750,11 @@
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o Horário Contratual.</td>
             <td width="200px"><b>{% if s1050_exclusao.codhorcontrat or s1050_exclusao.codhorcontrat == 0 %}{{ s1050_exclusao.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_exclusao_visualizar' %}
-                <a href="{% url 's1050_exclusao_salvar'  hash='{}'|json_id:s1050_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050exclusao or perms.esocial.can_see_s1050exclusao %}
+                <a href="{% url 's1050_exclusao_salvar' pk=s1050_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -772,11 +769,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1050_exclusao.inivalid or s1050_exclusao.inivalid == 0 %}{{ s1050_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_exclusao_visualizar' %}
-                <a href="{% url 's1050_exclusao_salvar'  hash='{}'|json_id:s1050_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050exclusao or perms.esocial.can_see_s1050exclusao %}
+                <a href="{% url 's1050_exclusao_salvar' pk=s1050_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -791,11 +788,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1050_exclusao.fimvalid or s1050_exclusao.fimvalid == 0 %}{{ s1050_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1050_exclusao_visualizar' %}
-                <a href="{% url 's1050_exclusao_salvar'  hash='{}'|json_id:s1050_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1050.can_see_s1050exclusao or perms.esocial.can_see_s1050exclusao %}
+                <a href="{% url 's1050_exclusao_salvar' pk=s1050_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

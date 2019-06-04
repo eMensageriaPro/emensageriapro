@@ -25,7 +25,7 @@ import base64
 
 
 @login_required
-def listar(request, hash):
+def listar(request, tab='master'):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
         STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
@@ -34,23 +34,6 @@ def listar(request, hash):
         STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
         STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
         STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
-    for_print = 0
-
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     if True:
 
@@ -80,9 +63,6 @@ def listar(request, hash):
         esocial_processados = TransmissorEventosEsocial.objects.\
             filter(status=STATUS_EVENTO_PROCESSADO).exclude(id=0).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'mapa_esocial'
-
         quant_cadastrados = len(esocial_cadastrados) or 0
         quant_importados = len(esocial_importados) or 0
         quant_validados = len(esocial_validados) or 0
@@ -92,8 +72,7 @@ def listar(request, hash):
         quant_processados = len(esocial_processados) or 0
 
         context = {
-
-            'tab': dict_hash['tab'],
+            'tab': tab,
             'esocial_enviados': esocial_enviados,
             'esocial_validados': esocial_validados,
             'esocial_erros_validacao': esocial_erros_validacao,
@@ -101,18 +80,13 @@ def listar(request, hash):
             'esocial_cadastrados': esocial_cadastrados,
             'esocial_erros_envio': esocial_erros_envio,
             'esocial_processados': esocial_processados,
-
             'quant_cadastrados': quant_cadastrados,
             'quant_importados': quant_importados,
             'quant_validados': quant_validados,
             'quant_erros': quant_erros,
             'quant_enviados': quant_enviados,
             'quant_processados': quant_processados,
-
-            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
         }
 
         return render(request, 'mapa_esocial.html', context)

@@ -48,7 +48,7 @@ from emensageriapro.s1300.views import s1300_contribsind_api as s1300_contribsin
 urlpatterns = [
 
 
-    url(r'^s1300-contribsind/apagar/(?P<hash>.*)/$', 
+    url(r'^s1300-contribsind/apagar/(?P<pk>[0-9]+)/$', 
         s1300_contribsind_apagar_views.apagar, 
         name='s1300_contribsind_apagar'),
 
@@ -58,13 +58,25 @@ urlpatterns = [
     url(r'^s1300-contribsind/api/(?P<pk>[0-9]+)/$',
         s1300_contribsind_api_views.s1300contribSindDetail.as_view() ),
 
-    url(r'^s1300-contribsind/listar/(?P<hash>.*)/$', 
+    url(r'^s1300-contribsind/$', 
         s1300_contribsind_listar_views.listar, 
         name='s1300_contribsind'),
 
-    url(r'^s1300-contribsind/salvar/(?P<hash>.*)/$', 
+    url(r'^s1300-contribsind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s1300_contribsind_salvar_views.salvar, 
         name='s1300_contribsind_salvar'),
+        
+    url(r'^s1300-contribsind/cadastrar/$', 
+        s1300_contribsind_salvar_views.salvar, 
+        name='s1300_contribsind_cadastrar'),
+
+    url(r'^s1300-contribsind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s1300_contribsind_salvar_views.salvar, 
+        name='s1300_contribsind_salvar_output'),
+        
+    url(r'^s1300-contribsind/(?P<output>[\w-]+)/$', 
+        s1300_contribsind_listar_views.listar, 
+        name='s1300_contribsind_output'),
 
 
 ]

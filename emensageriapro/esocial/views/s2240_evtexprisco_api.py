@@ -66,7 +66,6 @@ class s2240evtExpRiscoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2240evtExpRiscoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2240evtExpRisco.objects.all()

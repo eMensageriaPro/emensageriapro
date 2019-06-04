@@ -25,35 +25,7 @@ import base64
 
 
 @login_required
-def listar(request, hash):
-
-    from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-        STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-        STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-        STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-        STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-        STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-        STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
-    for_print = 0
-
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #importacao_arquivos_eventos_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
+def listar(request, tab='master'):
 
     if True:
 
@@ -74,12 +46,8 @@ def listar(request, hash):
             'show_evento': 1,
             'show_arquivo': 1,
             'show_importacao_arquivos': 0, }
-        post = False
-        #ANTES-POST-LISTAGEM
         
         if request.method == 'POST':
-            
-            post = True
             
             dict_fields = {
                 'validacoes__icontains': 'validacoes__icontains',
@@ -122,26 +90,16 @@ def listar(request, hash):
         lista_erros = ImportacaoArquivosEventos.objects.filter(**dict_qs).filter(status=2).exclude(id=0).all()
         lista_processados = ImportacaoArquivos.objects.filter(status=0).all()
 
-        #importacao_arquivos_eventos_listar_custom
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 'mapa_importacoes'
-
         context = {
 
-            'tab': dict_hash['tab'],
+            'tab': tab,
             'lista_aguardando': lista_aguardando,
             'lista_erros': lista_erros,
             'lista_processados': lista_processados,
-
-            'usuario': usuario,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
-
-            #'importacao_arquivos_lista': importacao_arquivos_lista,
         }
 
         return render(request, 'mapa_importacoes.html', context)
@@ -149,7 +107,6 @@ def listar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'data': datetime.datetime.now(),
             'dict_permissoes': dict_permissoes,
         }

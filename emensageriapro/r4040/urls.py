@@ -52,7 +52,7 @@ from emensageriapro.r4040.views import r4040_infopgto_api as r4040_infopgto_api_
 urlpatterns = [
 
 
-    url(r'^r4040-idenat/apagar/(?P<hash>.*)/$', 
+    url(r'^r4040-idenat/apagar/(?P<pk>[0-9]+)/$', 
         r4040_idenat_apagar_views.apagar, 
         name='r4040_idenat_apagar'),
 
@@ -62,15 +62,27 @@ urlpatterns = [
     url(r'^r4040-idenat/api/(?P<pk>[0-9]+)/$',
         r4040_idenat_api_views.r4040ideNatDetail.as_view() ),
 
-    url(r'^r4040-idenat/listar/(?P<hash>.*)/$', 
+    url(r'^r4040-idenat/$', 
         r4040_idenat_listar_views.listar, 
         name='r4040_idenat'),
 
-    url(r'^r4040-idenat/salvar/(?P<hash>.*)/$', 
+    url(r'^r4040-idenat/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4040_idenat_salvar_views.salvar, 
         name='r4040_idenat_salvar'),
+        
+    url(r'^r4040-idenat/cadastrar/$', 
+        r4040_idenat_salvar_views.salvar, 
+        name='r4040_idenat_cadastrar'),
 
-    url(r'^r4040-infopgto/apagar/(?P<hash>.*)/$', 
+    url(r'^r4040-idenat/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r4040_idenat_salvar_views.salvar, 
+        name='r4040_idenat_salvar_output'),
+        
+    url(r'^r4040-idenat/(?P<output>[\w-]+)/$', 
+        r4040_idenat_listar_views.listar, 
+        name='r4040_idenat_output'),
+
+    url(r'^r4040-infopgto/apagar/(?P<pk>[0-9]+)/$', 
         r4040_infopgto_apagar_views.apagar, 
         name='r4040_infopgto_apagar'),
 
@@ -80,13 +92,25 @@ urlpatterns = [
     url(r'^r4040-infopgto/api/(?P<pk>[0-9]+)/$',
         r4040_infopgto_api_views.r4040infoPgtoDetail.as_view() ),
 
-    url(r'^r4040-infopgto/listar/(?P<hash>.*)/$', 
+    url(r'^r4040-infopgto/$', 
         r4040_infopgto_listar_views.listar, 
         name='r4040_infopgto'),
 
-    url(r'^r4040-infopgto/salvar/(?P<hash>.*)/$', 
+    url(r'^r4040-infopgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4040_infopgto_salvar_views.salvar, 
         name='r4040_infopgto_salvar'),
+        
+    url(r'^r4040-infopgto/cadastrar/$', 
+        r4040_infopgto_salvar_views.salvar, 
+        name='r4040_infopgto_cadastrar'),
+
+    url(r'^r4040-infopgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        r4040_infopgto_salvar_views.salvar, 
+        name='r4040_infopgto_salvar_output'),
+        
+    url(r'^r4040-infopgto/(?P<output>[\w-]+)/$', 
+        r4040_infopgto_listar_views.listar, 
+        name='r4040_infopgto_output'),
 
 
 ]

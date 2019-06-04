@@ -32,769 +32,1049 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.esocial.can_view_s1200evtRemun %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_return_page:'s1200_evtremun_salvar'|json_return_hash:hash|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">
-                    S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a>
-                </li>
-                {% endif %}
-                {% if s1200_evtremun_id %}
-                    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.esocial.can_see_s1200evtRemun %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's1200_evtremun_salvar' pk=pk tab='master' %}">
+                                S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.esocial.can_view_s1200_infomv %}
-                                <li {% if tab == 's1200_infomv' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_infomv'|base64_encode_me %}">
-                                    Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.s1200.can_see_s1200infoMV %}
+                                    <li {% if tab == 's1200_infomv' %} class="active"{% endif %} >
+                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_infomv' %}">
+                                        Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s1200.can_see_s1200infoComplem %}
+                                    <li {% if tab == 's1200_infocomplem' %} class="active"{% endif %} >
+                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_infocomplem' %}">
+                                        Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s1200.can_see_s1200procJudTrab %}
+                                    <li {% if tab == 's1200_procjudtrab' %} class="active"{% endif %} >
+                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_procjudtrab' %}">
+                                        Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s1200.can_see_s1200infoInterm %}
+                                    <li {% if tab == 's1200_infointerm' %} class="active"{% endif %} >
+                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_infointerm' %}">
+                                        Informações relativas ao trabalho intermitente</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s1200.can_see_s1200dmDev %}
+                                    <li {% if tab == 's1200_dmdev' %} class="active"{% endif %} >
+                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_dmdev' %}">
+                                        Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
+                                    </li>
+                                {% endif %}
+                            
                         
-                            {% if perms.esocial.can_view_s1200_infocomplem %}
-                                <li {% if tab == 's1200_infocomplem' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_infocomplem'|base64_encode_me %}">
-                                    Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s1200_procjudtrab %}
-                                <li {% if tab == 's1200_procjudtrab' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_procjudtrab'|base64_encode_me %}">
-                                    Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s1200_infointerm %}
-                                <li {% if tab == 's1200_infointerm' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_infointerm'|base64_encode_me %}">
-                                    Informações relativas ao trabalho intermitente</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s1200_dmdev %}
-                                <li {% if tab == 's1200_dmdev' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_dmdev'|base64_encode_me %}">
-                                    Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
-                                </li>
-                            {% endif %}
-                        
-                    
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABS -->
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if s1200_evtremun_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in s1200_evtremun_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if s1200_evtremun_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in s1200_evtremun_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if s1200_evtremun_id %}
-   {% if s1200_evtremun.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s1200_evtremun.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s1200_evtremun.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1200_evtremun.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s1200_evtremun.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s1200_evtremun.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s1200_evtremun.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</h3>
-            </div>
-            {% else %}
+    {% if s1200_evtremun_id %}
+        {% if s1200_evtremun.ocorrencias %}
             <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.esocial.change_s1200_evtremun or perms.esocial.add_s1200_evtremun %}
-               {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s1200_evtremun" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/s1200_evtremun.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s1200_evtremun.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if s1200_evtremun_id %}
-                           {% if perms.esocial.add_s1200evtRemun %}<a href="{% url 's1200_evtremun_verificar'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.add_s1200evtRemun %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_recibo'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_recibo'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_recibo'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s1200evtRemun %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_duplicar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if s1200_evtremun.operacao == 1 and s1200_inclusao_lista or s1200_evtremun.operacao == 2 and s1200_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_criar_alteracao' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_criar_exclusao' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_alterar_identidade' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 's1200_evtremun_abrir_evento_para_edicao' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s1200evtRemun %}<a href="{% url 's1200_evtremun_xml'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO or s1200_evtremun.status == STATUS_EVENTO_IMPORTADO or s1200_evtremun.status == STATUS_EVENTO_DUPLICADO or s1200_evtremun.status == STATUS_EVENTO_GERADO or s1200_evtremun.status == STATUS_EVENTO_ASSINADO or s1200_evtremun.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.esocial.add_s1200evtRemun %}
-                           <a href="{% url 's1200_evtremun_validar_evento' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.esocial.add_s1200evtRemun %}<a href="{% url 's1200_evtremun_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.can_view_s1200_evtremun or perms.esocial.can_view_s1200_evtremun %}<a href="{% url 's1200_evtremun'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.can_view_s1200_evtremun and s1200_evtremun_id %}<a href="{% url 's1200_evtremun_salvar'  hash='{}'|json_id:s1200_evtremun_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.change_s1200_evtremun or perms.esocial.add_s1200_evtremun %}
-                           {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.delete_s1200_evtremun and s1200_evtremun_id %}<a href="{% url 's1200_evtremun_apagar'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
-                        </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.esocial.change_s1200_evtremun or perms.esocial.add_s1200_evtremun %}
-               {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+                </div>
             </div>
-            {% if s1200_evtremun_id %}
+        {% endif %}
+        {% if s1200_evtremun.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1200_evtremun.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s1200_evtremun.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if s1200_evtremun.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ s1200_evtremun.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</h3>
+                    </div>
+
+                    {% if perms.esocial.change_s1200evtRemun or perms.esocial.add_s1200evtRemun %}
+                        {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s1200_evtremun" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s1200_evtremun.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if s1200_evtremun.operacao == 1 and s1200_inclusao_lista or s1200_evtremun.operacao == 2 and s1200_alteracao_lista %}
+
+
+                                    {% if perms.esocial.can_create_change_s1200evtRemun %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's1200_evtremun_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.esocial.can_create_delete_s1200evtRemun %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's1200_evtremun_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.esocial.can_duplicate_s1200evtRemun %}
+                            <div class="col-md-4">
+                                <a href="{% url 's1200_evtremun_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_change_identity_s1200evtRemun %}
+                            <div class="col-md-4">
+                                <a href="{% url 's1200_evtremun_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.esocial.can_open_s1200evtRemun %}
+                            <div class="col-md-4">
+                                <a href="{% url 's1200_evtremun_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_layout_s1200evtRemun %}
+                            <div class="col-md-3">
+                                <a href="{% url 's1200_evtremun_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.esocial.can_see_xml_s1200evtRemun %}
+                            <div class="col-md-3">
+                                <a href="{% url 's1200_evtremun_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.esocial.can_validate_s1200evtRemun %}
+                            <div class="col-md-3">
+                                <a href="{% url 's1200_evtremun_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_receipt_s1200evtRemun %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's1200_evtremun_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's1200_evtremun_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's1200_evtremun_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.esocial.add_s1200evtRemun %}
+                        <div class="col-md-2">
+                            <a href="{% url 's1200_evtremun_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_see_list_s1200evtRemun %}
+                        <div class="col-md-2">
+                            <a href="{% url 's1200_evtremun' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_print_data_s1200evtRemun %}
+                        <div class="col-md-2">
+                            <a href="{% url 's1200_evtremun_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.esocial.change_s1200evtRemun %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.delete_s1200evtRemun %}
+                            <div class="col-md-2">
+                                <a href="{% url 's1200_evtremun_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.esocial.add_s1200evtRemun %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.esocial.add_s1200evtRemun or perms.esocial.change_s1200evtRemun %}
+    
+                        {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if s1200_evtremun_id %}
 
-<!-- begin_s1200_infomv -->
+        <!-- fim controle de alterações -->
+        {% endif %}
 
-{% if tab == 's1200_infomv' or for_print %} 
-
-{% if perms.esocial.can_view_s1200_infomv %} 
-
-{% if perms.esocial.change_s1200_infomv or perms.s1200.add_s1200infoMV %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1200_infomv or perms.s1200.add_s1200infoMV %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1200.add_s1200infoMV %}            
+    {% endif %}
 
 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-        <!-- begin_form_s1200_infomv --> 
-        <div id="cadastrar" style="display:none">
 
-              <form id="id_form_s1200_infomv" action="{% url 's1200_infomv_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1200_infomv.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+        
+        <!-- begin_s1200_infomv -->
+
+            {% if tab == 's1200_infomv' %} 
+
+                {% if perms.s1200.can_see_data_s1200infoMV %}
+
+                    {% if perms.s1200.add_s1200infoMV or perms.s1200.change_s1200infoMV %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1200.add_s1200infoMV or perms.s1200.can_see_list_s1200infoMV %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1200.add_s1200infoMV %}            
+
+                                    <!-- begin_form_s1200_infomv --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s1200_infomv" 
+                                              action="{% url 's1200_infomv_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1200_infomv.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s1200_infomv -->
+                                {% endif %} 
+
+                                {% if perms.s1200.can_see_s1200infoMV %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1200_infomv --> 
+
+                                        {% include 'tables/s1200_infomv.html' %}
+                                        <!-- end_table_s1200_infomv --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s1200_infocomplem -->
+
+            {% if tab == 's1200_infocomplem' %} 
+
+                {% if perms.s1200.can_see_data_s1200infoComplem %}
+
+                    {% if perms.s1200.add_s1200infoComplem or perms.s1200.change_s1200infoComplem %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1200.add_s1200infoComplem or perms.s1200.can_see_list_s1200infoComplem %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1200.add_s1200infoComplem %}            
+
+                                    <!-- begin_form_s1200_infocomplem --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s1200_infocomplem" 
+                                              action="{% url 's1200_infocomplem_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1200_infocomplem.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s1200_infocomplem -->
+                                {% endif %} 
+
+                                {% if perms.s1200.can_see_s1200infoComplem %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1200_infocomplem --> 
+
+                                        {% include 'tables/s1200_infocomplem.html' %}
+                                        <!-- end_table_s1200_infocomplem --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1200_infomv -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1200_infomv --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s1200_infomv.html' %}
-        <!-- end_table_s1200_infomv --> 
+            {% endif %} 
 
+        
+        <!-- begin_s1200_procjudtrab -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's1200_procjudtrab' %} 
 
+                {% if perms.s1200.can_see_data_s1200procJudTrab %}
 
-{% endif %} 
+                    {% if perms.s1200.add_s1200procJudTrab or perms.s1200.change_s1200procJudTrab %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s1200_infomv -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s1200_infocomplem -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's1200_infocomplem' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s1200_infocomplem %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1200.add_s1200procJudTrab or perms.s1200.can_see_list_s1200procJudTrab %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s1200_infocomplem or perms.s1200.add_s1200infoComplem %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s1200.add_s1200procJudTrab %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s1200_procjudtrab --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1200_infocomplem or perms.s1200.add_s1200infoComplem %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1200.add_s1200infoComplem %}            
+                                        <form id="id_form_s1200_procjudtrab" 
+                                              action="{% url 's1200_procjudtrab_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1200_procjudtrab.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s1200_infocomplem --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s1200_infocomplem" action="{% url 's1200_infocomplem_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1200_infocomplem.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s1200_procjudtrab -->
+                                {% endif %} 
+
+                                {% if perms.s1200.can_see_s1200procJudTrab %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1200_procjudtrab --> 
+
+                                        {% include 'tables/s1200_procjudtrab.html' %}
+                                        <!-- end_table_s1200_procjudtrab --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s1200_infointerm -->
+
+            {% if tab == 's1200_infointerm' %} 
+
+                {% if perms.s1200.can_see_data_s1200infoInterm %}
+
+                    {% if perms.s1200.add_s1200infoInterm or perms.s1200.change_s1200infoInterm %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1200.add_s1200infoInterm or perms.s1200.can_see_list_s1200infoInterm %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s1200.add_s1200infoInterm %}            
+
+                                    <!-- begin_form_s1200_infointerm --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s1200_infointerm" 
+                                              action="{% url 's1200_infointerm_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1200_infointerm.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s1200_infointerm -->
+                                {% endif %} 
+
+                                {% if perms.s1200.can_see_s1200infoInterm %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1200_infointerm --> 
+
+                                        {% include 'tables/s1200_infointerm.html' %}
+                                        <!-- end_table_s1200_infointerm --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1200_infocomplem -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1200_infocomplem --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s1200_infocomplem.html' %}
-        <!-- end_table_s1200_infocomplem --> 
+            {% endif %} 
 
+        
+        <!-- begin_s1200_dmdev -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's1200_dmdev' %} 
 
+                {% if perms.s1200.can_see_data_s1200dmDev %}
 
-{% endif %} 
+                    {% if perms.s1200.add_s1200dmDev or perms.s1200.change_s1200dmDev %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s1200_infocomplem -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s1200_procjudtrab -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's1200_procjudtrab' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s1200_procjudtrab %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s1200.add_s1200dmDev or perms.s1200.can_see_list_s1200dmDev %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s1200_procjudtrab or perms.s1200.add_s1200procJudTrab %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s1200.add_s1200dmDev %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s1200_dmdev --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1200_procjudtrab or perms.s1200.add_s1200procJudTrab %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1200.add_s1200procJudTrab %}            
+                                        <form id="id_form_s1200_dmdev" 
+                                              action="{% url 's1200_dmdev_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1200_dmdev.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s1200_procjudtrab --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s1200_procjudtrab" action="{% url 's1200_procjudtrab_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1200_procjudtrab.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s1200_dmdev -->
+                                {% endif %} 
+
+                                {% if perms.s1200.can_see_s1200dmDev %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1200_dmdev --> 
+
+                                        {% include 'tables/s1200_dmdev.html' %}
+                                        <!-- end_table_s1200_dmdev --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1200_procjudtrab -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1200_procjudtrab --> 
-  
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+
+    {% endif %} 
 
 
-        {% include 'tables/s1200_procjudtrab.html' %}
-        <!-- end_table_s1200_procjudtrab --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s1200_procjudtrab -->
-
-<!-- begin_s1200_infointerm -->
-
-{% if tab == 's1200_infointerm' or for_print %} 
-
-{% if perms.esocial.can_view_s1200_infointerm %} 
-
-{% if perms.esocial.change_s1200_infointerm or perms.s1200.add_s1200infoInterm %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1200_infointerm or perms.s1200.add_s1200infoInterm %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1200.add_s1200infoInterm %}            
-
-
-
-        <!-- begin_form_s1200_infointerm --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s1200_infointerm" action="{% url 's1200_infointerm_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1200_infointerm.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1200_infointerm -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1200_infointerm --> 
-  
-
-
-        {% include 'tables/s1200_infointerm.html' %}
-        <!-- end_table_s1200_infointerm --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s1200_infointerm -->
-
-<!-- begin_s1200_dmdev -->
-
-{% if tab == 's1200_dmdev' or for_print %} 
-
-{% if perms.esocial.can_view_s1200_dmdev %} 
-
-{% if perms.esocial.change_s1200_dmdev or perms.s1200.add_s1200dmDev %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s1200_dmdev or perms.s1200.add_s1200dmDev %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s1200.add_s1200dmDev %}            
-
-
-
-        <!-- begin_form_s1200_dmdev --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s1200_dmdev" action="{% url 's1200_dmdev_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s1200_dmdev.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s1200_dmdev -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s1200_dmdev --> 
-  
-
-
-        {% include 'tables/s1200_dmdev.html' %}
-        <!-- end_table_s1200_dmdev --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s1200_dmdev -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

@@ -66,7 +66,6 @@ class s1280evtInfoComplPerList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1280evtInfoComplPerDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1280evtInfoComplPer.objects.all()

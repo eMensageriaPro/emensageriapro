@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1040_alteracao__s1040_evttabfuncao__label">Alteração das informações*</label>
     {% if not for_print %}{% if s1040_alteracao_form.s1040_evttabfuncao.value %}
-        <a href="{% url 's1040_evttabfuncao_salvar' hash='{}'|json_return_page:'s1040_alteracao_salvar'|json_return_hash:hash|json_id:s1040_alteracao_form.s1040_evttabfuncao.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1040_evttabfuncao_salvar' pk=s1040_alteracao_form.s1040_evttabfuncao.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

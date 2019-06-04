@@ -15,7 +15,7 @@
     <label id="s5013_infodpsperante__s5013_infodpsfgts__label">Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].*</label>
     {% if not for_print %}
       {% if s5013_infodpsperante_form.s5013_infodpsfgts.value %}
-        <a id="s5013_infodpsperante__s5013_infodpsfgts__div_acessar" href="{% url 's5013_infodpsfgts_salvar' hash='{}'|json_id:s5013_infodpsperante_form.s5013_infodpsfgts.value|json_print:0|base64_encode_me %}">
+        <a id="s5013_infodpsperante__s5013_infodpsfgts__div_acessar" href="{% url 's5013_infodpsfgts_salvar' pk=s5013_infodpsperante_form.s5013_infodpsfgts.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

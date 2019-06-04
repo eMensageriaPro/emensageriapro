@@ -15,7 +15,7 @@
     <label id="r9002_regocorrs__r9002_evtret__label">Informações de ocorrências registradas*</label>
     {% if not for_print %}
       {% if r9002_regocorrs_form.r9002_evtret.value %}
-        <a id="r9002_regocorrs__r9002_evtret__div_acessar" href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_regocorrs_form.r9002_evtret.value|json_print:0|base64_encode_me %}">
+        <a id="r9002_regocorrs__r9002_evtret__div_acessar" href="{% url 'r9002_evtret_salvar' pk=r9002_regocorrs_form.r9002_evtret.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

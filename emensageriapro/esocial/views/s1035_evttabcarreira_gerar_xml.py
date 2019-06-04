@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s1035.models import *
 from emensageriapro.s1035.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1035(request, s1035_evttabcarreira_id, versao=None):
+def gerar_xml_s1035(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s1035_evttabcarreira_id:
+    if pk:
 
         s1035_evttabcarreira = get_object_or_404(
             s1035evtTabCarreira,
-            excluido = False,
-            id = s1035_evttabcarreira_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s1035_evttabcarreira.versao
@@ -105,7 +103,8 @@ def gerar_xml_s1035(request, s1035_evttabcarreira_id, versao=None):
             xmlns = ''
 
         s1035_evttabcarreira_lista = s1035evtTabCarreira.objects. \
-            filter(id=s1035_evttabcarreira_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s1035_inclusao_lista = s1035inclusao.objects. \
             filter(s1035_evttabcarreira_id__in=listar_ids(s1035_evttabcarreira_lista)).all()
@@ -125,10 +124,8 @@ def gerar_xml_s1035(request, s1035_evttabcarreira_id, versao=None):
             'versao': versao,
             'base': s1035_evttabcarreira,
             's1035_evttabcarreira_lista': s1035_evttabcarreira_lista,
-            's1035_evttabcarreira_id': int(s1035_evttabcarreira_id),
+            'pk': int(pk),
             's1035_evttabcarreira': s1035_evttabcarreira,
-
-            
             's1035_inclusao_lista': s1035_inclusao_lista,
             's1035_alteracao_lista': s1035_alteracao_lista,
             's1035_alteracao_novavalidade_lista': s1035_alteracao_novavalidade_lista,
@@ -140,9 +137,7 @@ def gerar_xml_s1035(request, s1035_evttabcarreira_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s1035_evttabcarreira_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -150,14 +145,14 @@ def gerar_xml_assinado(request, s1035_evttabcarreira_id):
 
     s1035_evttabcarreira = get_object_or_404(
         s1035evtTabCarreira,
-        id=s1035_evttabcarreira_id)
+        id=pk)
 
     if s1035_evttabcarreira.arquivo_original:
     
         xml = ler_arquivo(s1035_evttabcarreira.arquivo)
 
     else:
-        xml = gerar_xml_s1035(request, s1035_evttabcarreira_id)
+        xml = gerar_xml_s1035(request, pk)
 
     if 'Signature' in xml:
     
@@ -173,20 +168,23 @@ def gerar_xml_assinado(request, s1035_evttabcarreira_id):
             grupo = get_grupo(s1035evtTabCarreira)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s1035_evttabcarreira.nrinsc,
-                                      s1035_evttabcarreira.tpinsc)
+                grupo,
+                s1035_evttabcarreira.nrinsc,
+                s1035_evttabcarreira.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s1035evtTabCarreira,
-                                         s1035_evttabcarreira)
+                grupo,
+                s1035evtTabCarreira,
+                s1035_evttabcarreira)
         
         s1035_evttabcarreira = get_object_or_404(
             s1035evtTabCarreira,
-            id=s1035_evttabcarreira_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s1035_evttabcarreira.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s1035_evttabcarreira.transmissor_lote_esocial_id)
         
     if s1035_evttabcarreira.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -195,29 +193,28 @@ def gerar_xml_assinado(request, s1035_evttabcarreira_id):
         STATUS_EVENTO_GERADO):
 
         s1035evtTabCarreira.objects.\
-            filter(id=s1035_evttabcarreira_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s1035_evttabcarreira/%s.xml' % (s1035_evttabcarreira.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1035_evttabcarreira/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s1035_evttabcarreira_id = int(dict_hash['id'])
+    if pk:
 
-    if s1035_evttabcarreira_id:
-
-        xml_assinado = gerar_xml_assinado(request, s1035_evttabcarreira_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

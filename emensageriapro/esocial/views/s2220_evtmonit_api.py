@@ -66,7 +66,6 @@ class s2220evtMonitList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2220evtMonitDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2220evtMonit.objects.all()

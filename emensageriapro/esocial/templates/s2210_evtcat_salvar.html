@@ -32,769 +32,1049 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       S-2210 - Comunicação de Acidente de Trabalho
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">S-2210 - Comunicação de Acidente de Trabalho</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.esocial.can_view_s2210evtCAT %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_return_page:'s2210_evtcat_salvar'|json_return_hash:hash|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}">
-                    S-2210 - Comunicação de Acidente de Trabalho</a>
-                </li>
-                {% endif %}
-                {% if s2210_evtcat_id %}
-                    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.esocial.can_see_s2210evtCAT %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2210_evtcat_salvar' pk=pk tab='master' %}">
+                                S-2210 - Comunicação de Acidente de Trabalho</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.esocial.can_view_s2210_idelocalacid %}
-                                <li {% if tab == 's2210_idelocalacid' %} class="active"{% endif %} >
-                                    <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:s2210_evtcat_id|json_print:0|json_tab:'s2210_idelocalacid'|base64_encode_me %}">
-                                    Identificação do local onde ocorreu o acidente</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.s2210.can_see_s2210ideLocalAcid %}
+                                    <li {% if tab == 's2210_idelocalacid' %} class="active"{% endif %} >
+                                        <a href="{% url 's2210_evtcat_salvar' pk=pk tab='s2210_idelocalacid' %}">
+                                        Identificação do local onde ocorreu o acidente</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2210.can_see_s2210parteAtingida %}
+                                    <li {% if tab == 's2210_parteatingida' %} class="active"{% endif %} >
+                                        <a href="{% url 's2210_evtcat_salvar' pk=pk tab='s2210_parteatingida' %}">
+                                        Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2210.can_see_s2210agenteCausador %}
+                                    <li {% if tab == 's2210_agentecausador' %} class="active"{% endif %} >
+                                        <a href="{% url 's2210_evtcat_salvar' pk=pk tab='s2210_agentecausador' %}">
+                                        Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2210.can_see_s2210atestado %}
+                                    <li {% if tab == 's2210_atestado' %} class="active"{% endif %} >
+                                        <a href="{% url 's2210_evtcat_salvar' pk=pk tab='s2210_atestado' %}">
+                                        Atestado Médico</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2210.can_see_s2210catOrigem %}
+                                    <li {% if tab == 's2210_catorigem' %} class="active"{% endif %} >
+                                        <a href="{% url 's2210_evtcat_salvar' pk=pk tab='s2210_catorigem' %}">
+                                        Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</a>
+                                    </li>
+                                {% endif %}
+                            
                         
-                            {% if perms.esocial.can_view_s2210_parteatingida %}
-                                <li {% if tab == 's2210_parteatingida' %} class="active"{% endif %} >
-                                    <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:s2210_evtcat_id|json_print:0|json_tab:'s2210_parteatingida'|base64_encode_me %}">
-                                    Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2210_agentecausador %}
-                                <li {% if tab == 's2210_agentecausador' %} class="active"{% endif %} >
-                                    <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:s2210_evtcat_id|json_print:0|json_tab:'s2210_agentecausador'|base64_encode_me %}">
-                                    Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2210_atestado %}
-                                <li {% if tab == 's2210_atestado' %} class="active"{% endif %} >
-                                    <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:s2210_evtcat_id|json_print:0|json_tab:'s2210_atestado'|base64_encode_me %}">
-                                    Atestado Médico</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2210_catorigem %}
-                                <li {% if tab == 's2210_catorigem' %} class="active"{% endif %} >
-                                    <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:s2210_evtcat_id|json_print:0|json_tab:'s2210_catorigem'|base64_encode_me %}">
-                                    Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</a>
-                                </li>
-                            {% endif %}
-                        
-                    
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABS -->
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if s2210_evtcat_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in s2210_evtcat_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if s2210_evtcat_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in s2210_evtcat_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if s2210_evtcat_id %}
-   {% if s2210_evtcat.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2210_evtcat.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2210_evtcat.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2210_evtcat.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2210_evtcat.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2210_evtcat.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2210_evtcat.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">S-2210 - Comunicação de Acidente de Trabalho</h3>
-            </div>
-            {% else %}
+    {% if s2210_evtcat_id %}
+        {% if s2210_evtcat.ocorrencias %}
             <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.esocial.change_s2210_evtcat or perms.esocial.add_s2210_evtcat %}
-               {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2210_evtcat" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/s2210_evtcat.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2210_evtcat.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if s2210_evtcat_id %}
-                           {% if perms.esocial.add_s2210evtCAT %}<a href="{% url 's2210_evtcat_verificar'  hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.add_s2210evtCAT %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_recibo'  hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_recibo'  hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_recibo'  hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s2210evtCAT %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_duplicar' hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if s2210_evtcat.operacao == 1 and s2210_inclusao_lista or s2210_evtcat.operacao == 2 and s2210_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_criar_alteracao' hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_criar_exclusao' hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_alterar_identidade' hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 's2210_evtcat_abrir_evento_para_edicao' hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s2210evtCAT %}<a href="{% url 's2210_evtcat_xml'  hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO or s2210_evtcat.status == STATUS_EVENTO_IMPORTADO or s2210_evtcat.status == STATUS_EVENTO_DUPLICADO or s2210_evtcat.status == STATUS_EVENTO_GERADO or s2210_evtcat.status == STATUS_EVENTO_ASSINADO or s2210_evtcat.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.esocial.add_s2210evtCAT %}
-                           <a href="{% url 's2210_evtcat_validar_evento' hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.esocial.add_s2210evtCAT %}<a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.can_view_s2210_evtcat or perms.esocial.can_view_s2210_evtcat %}<a href="{% url 's2210_evtcat'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.can_view_s2210_evtcat and s2210_evtcat_id %}<a href="{% url 's2210_evtcat_salvar'  hash='{}'|json_id:s2210_evtcat_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.change_s2210_evtcat or perms.esocial.add_s2210_evtcat %}
-                           {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.delete_s2210_evtcat and s2210_evtcat_id %}<a href="{% url 's2210_evtcat_apagar'  hash='{}'|json_id:s2210_evtcat_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
-                        </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.esocial.change_s2210_evtcat or perms.esocial.add_s2210_evtcat %}
-               {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+                </div>
             </div>
-            {% if s2210_evtcat_id %}
+        {% endif %}
+        {% if s2210_evtcat.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2210_evtcat.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2210_evtcat.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if s2210_evtcat.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ s2210_evtcat.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">S-2210 - Comunicação de Acidente de Trabalho</h3>
+                    </div>
+
+                    {% if perms.esocial.change_s2210evtCAT or perms.esocial.add_s2210evtCAT %}
+                        {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2210_evtcat" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2210_evtcat.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if s2210_evtcat.operacao == 1 and s2210_inclusao_lista or s2210_evtcat.operacao == 2 and s2210_alteracao_lista %}
+
+
+                                    {% if perms.esocial.can_create_change_s2210evtCAT %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's2210_evtcat_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.esocial.can_create_delete_s2210evtCAT %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's2210_evtcat_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.esocial.can_duplicate_s2210evtCAT %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2210_evtcat_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_change_identity_s2210evtCAT %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2210_evtcat_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.esocial.can_open_s2210evtCAT %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2210_evtcat_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_layout_s2210evtCAT %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2210_evtcat_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.esocial.can_see_xml_s2210evtCAT %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2210_evtcat_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.esocial.can_validate_s2210evtCAT %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2210_evtcat_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_receipt_s2210evtCAT %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's2210_evtcat_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's2210_evtcat_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's2210_evtcat_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.esocial.add_s2210evtCAT %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2210_evtcat_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_see_list_s2210evtCAT %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2210_evtcat' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_print_data_s2210evtCAT %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2210_evtcat_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.esocial.change_s2210evtCAT %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.delete_s2210evtCAT %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2210_evtcat_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.esocial.add_s2210evtCAT %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.esocial.add_s2210evtCAT or perms.esocial.change_s2210evtCAT %}
+    
+                        {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if s2210_evtcat_id %}
 
-<!-- begin_s2210_idelocalacid -->
+        <!-- fim controle de alterações -->
+        {% endif %}
 
-{% if tab == 's2210_idelocalacid' or for_print %} 
-
-{% if perms.esocial.can_view_s2210_idelocalacid %} 
-
-{% if perms.esocial.change_s2210_idelocalacid or perms.s2210.add_s2210ideLocalAcid %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Identificação do local onde ocorreu o acidente</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2210_idelocalacid or perms.s2210.add_s2210ideLocalAcid %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2210.add_s2210ideLocalAcid %}            
+    {% endif %}
 
 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-        <!-- begin_form_s2210_idelocalacid --> 
-        <div id="cadastrar" style="display:none">
 
-              <form id="id_form_s2210_idelocalacid" action="{% url 's2210_idelocalacid_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2210_idelocalacid.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+        
+        <!-- begin_s2210_idelocalacid -->
+
+            {% if tab == 's2210_idelocalacid' %} 
+
+                {% if perms.s2210.can_see_data_s2210ideLocalAcid %}
+
+                    {% if perms.s2210.add_s2210ideLocalAcid or perms.s2210.change_s2210ideLocalAcid %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Identificação do local onde ocorreu o acidente</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2210.add_s2210ideLocalAcid or perms.s2210.can_see_list_s2210ideLocalAcid %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2210.add_s2210ideLocalAcid %}            
+
+                                    <!-- begin_form_s2210_idelocalacid --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2210_idelocalacid" 
+                                              action="{% url 's2210_idelocalacid_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2210_idelocalacid.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2210_idelocalacid -->
+                                {% endif %} 
+
+                                {% if perms.s2210.can_see_s2210ideLocalAcid %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2210_idelocalacid --> 
+
+                                        {% include 'tables/s2210_idelocalacid.html' %}
+                                        <!-- end_table_s2210_idelocalacid --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2210_parteatingida -->
+
+            {% if tab == 's2210_parteatingida' %} 
+
+                {% if perms.s2210.can_see_data_s2210parteAtingida %}
+
+                    {% if perms.s2210.add_s2210parteAtingida or perms.s2210.change_s2210parteAtingida %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2210.add_s2210parteAtingida or perms.s2210.can_see_list_s2210parteAtingida %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2210.add_s2210parteAtingida %}            
+
+                                    <!-- begin_form_s2210_parteatingida --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2210_parteatingida" 
+                                              action="{% url 's2210_parteatingida_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2210_parteatingida.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2210_parteatingida -->
+                                {% endif %} 
+
+                                {% if perms.s2210.can_see_s2210parteAtingida %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2210_parteatingida --> 
+
+                                        {% include 'tables/s2210_parteatingida.html' %}
+                                        <!-- end_table_s2210_parteatingida --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2210_idelocalacid -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2210_idelocalacid --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2210_idelocalacid.html' %}
-        <!-- end_table_s2210_idelocalacid --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2210_agentecausador -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2210_agentecausador' %} 
 
+                {% if perms.s2210.can_see_data_s2210agenteCausador %}
 
-{% endif %} 
+                    {% if perms.s2210.add_s2210agenteCausador or perms.s2210.change_s2210agenteCausador %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2210_idelocalacid -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2210_parteatingida -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2210_parteatingida' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2210_parteatingida %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2210.add_s2210agenteCausador or perms.s2210.can_see_list_s2210agenteCausador %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2210_parteatingida or perms.s2210.add_s2210parteAtingida %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2210.add_s2210agenteCausador %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2210_agentecausador --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2210_parteatingida or perms.s2210.add_s2210parteAtingida %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2210.add_s2210parteAtingida %}            
+                                        <form id="id_form_s2210_agentecausador" 
+                                              action="{% url 's2210_agentecausador_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2210_agentecausador.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2210_parteatingida --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2210_parteatingida" action="{% url 's2210_parteatingida_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2210_parteatingida.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2210_agentecausador -->
+                                {% endif %} 
+
+                                {% if perms.s2210.can_see_s2210agenteCausador %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2210_agentecausador --> 
+
+                                        {% include 'tables/s2210_agentecausador.html' %}
+                                        <!-- end_table_s2210_agentecausador --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2210_atestado -->
+
+            {% if tab == 's2210_atestado' %} 
+
+                {% if perms.s2210.can_see_data_s2210atestado %}
+
+                    {% if perms.s2210.add_s2210atestado or perms.s2210.change_s2210atestado %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Atestado Médico</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2210.add_s2210atestado or perms.s2210.can_see_list_s2210atestado %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2210.add_s2210atestado %}            
+
+                                    <!-- begin_form_s2210_atestado --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2210_atestado" 
+                                              action="{% url 's2210_atestado_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2210_atestado.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2210_atestado -->
+                                {% endif %} 
+
+                                {% if perms.s2210.can_see_s2210atestado %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2210_atestado --> 
+
+                                        {% include 'tables/s2210_atestado.html' %}
+                                        <!-- end_table_s2210_atestado --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2210_parteatingida -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2210_parteatingida --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2210_parteatingida.html' %}
-        <!-- end_table_s2210_parteatingida --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2210_catorigem -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2210_catorigem' %} 
 
+                {% if perms.s2210.can_see_data_s2210catOrigem %}
 
-{% endif %} 
+                    {% if perms.s2210.add_s2210catOrigem or perms.s2210.change_s2210catOrigem %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2210_parteatingida -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2210_agentecausador -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2210_agentecausador' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2210_agentecausador %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2210.add_s2210catOrigem or perms.s2210.can_see_list_s2210catOrigem %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2210_agentecausador or perms.s2210.add_s2210agenteCausador %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2210.add_s2210catOrigem %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2210_catorigem --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2210_agentecausador or perms.s2210.add_s2210agenteCausador %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2210.add_s2210agenteCausador %}            
+                                        <form id="id_form_s2210_catorigem" 
+                                              action="{% url 's2210_catorigem_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2210_catorigem.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2210_agentecausador --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2210_agentecausador" action="{% url 's2210_agentecausador_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2210_agentecausador.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2210_catorigem -->
+                                {% endif %} 
+
+                                {% if perms.s2210.can_see_s2210catOrigem %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2210_catorigem --> 
+
+                                        {% include 'tables/s2210_catorigem.html' %}
+                                        <!-- end_table_s2210_catorigem --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2210_agentecausador -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2210_agentecausador --> 
-  
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+
+    {% endif %} 
 
 
-        {% include 'tables/s2210_agentecausador.html' %}
-        <!-- end_table_s2210_agentecausador --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2210_agentecausador -->
-
-<!-- begin_s2210_atestado -->
-
-{% if tab == 's2210_atestado' or for_print %} 
-
-{% if perms.esocial.can_view_s2210_atestado %} 
-
-{% if perms.esocial.change_s2210_atestado or perms.s2210.add_s2210atestado %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Atestado Médico</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2210_atestado or perms.s2210.add_s2210atestado %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2210.add_s2210atestado %}            
-
-
-
-        <!-- begin_form_s2210_atestado --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2210_atestado" action="{% url 's2210_atestado_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2210_atestado.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2210_atestado -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2210_atestado --> 
-  
-
-
-        {% include 'tables/s2210_atestado.html' %}
-        <!-- end_table_s2210_atestado --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2210_atestado -->
-
-<!-- begin_s2210_catorigem -->
-
-{% if tab == 's2210_catorigem' or for_print %} 
-
-{% if perms.esocial.can_view_s2210_catorigem %} 
-
-{% if perms.esocial.change_s2210_catorigem or perms.s2210.add_s2210catOrigem %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2210_catorigem or perms.s2210.add_s2210catOrigem %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2210.add_s2210catOrigem %}            
-
-
-
-        <!-- begin_form_s2210_catorigem --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2210_catorigem" action="{% url 's2210_catorigem_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2210_catorigem.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2210_catorigem -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2210_catorigem --> 
-  
-
-
-        {% include 'tables/s2210_catorigem.html' %}
-        <!-- end_table_s2210_catorigem --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2210_catorigem -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

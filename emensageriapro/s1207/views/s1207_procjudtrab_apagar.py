@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s1207_procjudtrab_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s1207_procjudtrab = get_object_or_404(s1207procJudTrab, id=s1207_procjudtrab_id)
+    s1207_procjudtrab = get_object_or_404(s1207procJudTrab, id=pk)
     
     dados_evento = {}
-    
-    if s1207_procjudtrab_id:
-    
-        dados_evento = s1207_procjudtrab.evento()
+    dados_evento = s1207_procjudtrab.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s1207_procjudtrab), indent=4, sort_keys=True, default=str)
-            obj = s1207procJudTrab.objects.get(id = s1207_procjudtrab_id)
+            obj = s1207procJudTrab.objects.get(id=pk)
             obj.delete(request=request)
             #s1207_procjudtrab_apagar_custom
             #s1207_procjudtrab_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's1207_procjudtrab', s1207_procjudtrab_id, usuario_id, 3)
+                             's1207_procjudtrab', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's1207_procjudtrab_salvar':
+        if 's1207_procjudtrab' in request.session['return_page']:
         
-            return redirect('s1207_procjudtrab', hash=request.session['retorno_hash'])
+            return redirect('s1207_procjudtrab')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s1207', ],
         'paginas': ['s1207_procjudtrab', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

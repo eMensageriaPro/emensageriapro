@@ -59,52 +59,36 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        importacao_arquivos_eventos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
+def apagar(request, pk):
 
-    importacao_arquivos_eventos = get_object_or_404(ImportacaoArquivosEventos, id=importacao_arquivos_eventos_id)
+    importacao_arquivos_eventos = get_object_or_404(ImportacaoArquivosEventos, id=pk)
     
     if request.method == 'POST':
     
-        obj = ImportacaoArquivosEventos.objects.get(id=importacao_arquivos_eventos_id)
+        obj = ImportacaoArquivosEventos.objects.get(id=pk)
         obj.delete(request=request)
         #importacao_arquivos_eventos_apagar_custom
         #importacao_arquivos_eventos_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
         
-        if request.session['retorno_pagina'] == 'importacao_arquivos_eventos_salvar':
+        if 'importacao_arquivos_eventos' in request.session['return_page']:
         
-            return redirect('importacao_arquivos_eventos', 
-                            hash=request.session['retorno_hash'])
+            return redirect('importacao_arquivos_eventos')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
-    
-        'usuario': usuario, 
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'data': datetime.datetime.now(),
         'modulos': ['mensageiro', ],
         'paginas': ['importacao_arquivos_eventos', ],
-        'hash': hash,
-        
     }
     
     return render(request, 
-                  'importacao_arquivos_eventos_apagar.html', 
-                  context)
+        'importacao_arquivos_eventos_apagar.html', 
+        context)

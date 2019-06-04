@@ -73,24 +73,21 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def duplicar(request, hash):
+def duplicar(request, pk):
 
     from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_string
     from emensageriapro.esocial.views.s5002_evtirrfbenef_gerar_xml import gerar_xml_s5002
     from emensageriapro.functions import identidade_evento
-
-    dict_hash = get_hash_url(hash)
-    s5002_evtirrfbenef_id = int(dict_hash['id'])
     
-    if request.user.has_perm('esocial.can_duplicate_event_s5002evtIrrfBenef'):
+    if request.user.has_perm('esocial.can_duplicate_s5002evtIrrfBenef'):
 
-        if s5002_evtirrfbenef_id:
+        if pk:
     
             s5002_evtirrfbenef = get_object_or_404(
                 s5002evtIrrfBenef,
-                id=s5002_evtirrfbenef_id)
+                id=pk)
     
-            texto = gerar_xml_s5002(s5002_evtirrfbenef_id, versao="|")
+            texto = gerar_xml_s5002(request, pk, versao="|")
             dados = read_s5002_evtirrfbenef_string({}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s5002_evtirrfbenef)
     
@@ -103,15 +100,17 @@ def duplicar(request, hash):
                 's5002_evtirrfbenef', dados['id'], request.user.id, 1)
     
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('s5002_evtirrfbenef_salvar', hash=url_hash)
+            return_pk = dados['id']
+            
+            return redirect('s5002_evtirrfbenef_salvar', pk=return_pk, tab='master')
     
         messages.error(request, 'Erro ao duplicar evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+        return redirect('s5002_evtirrfbenef_salvar', pk=pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('s5002_evtirrfbenef_salvar', pk=pk, tab='master')

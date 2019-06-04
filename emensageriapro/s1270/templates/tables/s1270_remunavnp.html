@@ -83,26 +83,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.s1270.can_view_s1270remunAvNP %}
-                        <a href="{% url 's1270_remunavnp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.s1270.add_s1270remunAvNP or perms.s1270.change_s1270remunAvNP %}
+                        {% if perms.s1270.change_s1270remunAvNP or perms.s1270.add_s1270remunAvNP %}
+                    
+                        <a href="{% url 's1270_remunavnp_salvar' pk=a.id tab='master' %}">
+                            {% if perms.s1270.change_s1270remunAvNP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.s1270.can_see_data_s1270remunAvNP %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.s1270.delete_s1270remunAvNP %}
-                        <a href="{% url 's1270_remunavnp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.s1270.delete_s1270remunAvNP %}
+                        <a href="{% url 's1270_remunavnp_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}

@@ -61,28 +61,14 @@ from emensageriapro.r2030.forms import form_r2030_recursosrec
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2030_evtassocdesprec_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if r2030_evtassocdesprec_id:
-    
-        r2030_evtassocdesprec = get_object_or_404(r2030evtAssocDespRec, id=r2030_evtassocdesprec_id)
+        r2030_evtassocdesprec = get_object_or_404(r2030evtAssocDespRec, id=pk)
 
         if r2030_evtassocdesprec.status != STATUS_EVENTO_CADASTRADO:
         
@@ -90,9 +76,9 @@ def salvar(request, hash):
             dict_permissoes['r2030_evtassocdesprec_apagar'] = 0
             dict_permissoes['r2030_evtassocdesprec_editar'] = 0
             
-    if request.user.has_perm('efdreinf.can_view_r2030evtAssocDespRec'):
+    if request.user.has_perm('efdreinf.can_see_r2030evtAssocDespRec'):
     
-        if r2030_evtassocdesprec_id:
+        if pk:
         
             r2030_evtassocdesprec_form = form_r2030_evtassocdesprec(request.POST or None, instance = r2030_evtassocdesprec, 
                                          initial={'excluido': False})
@@ -111,54 +97,70 @@ def salvar(request, hash):
         
             if r2030_evtassocdesprec_form.is_valid():
             
-                dados = r2030_evtassocdesprec_form.cleaned_data
                 obj = r2030_evtassocdesprec_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r2030_evtassocdesprec_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r2030_evtassocdesprec', obj.id, usuario_id, 1)
+                                 'r2030_evtassocdesprec', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r2030_evtassocdesprec), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r2030_evtassocdesprec', r2030_evtassocdesprec_id, usuario_id, 2)
+                                     'r2030_evtassocdesprec', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('r2030_evtassocdesprec_apagar', 'r2030_evtassocdesprec_salvar', 'r2030_evtassocdesprec'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'r2030_evtassocdesprec_apagar', 
+                    'r2030_evtassocdesprec_salvar', 
+                    'r2030_evtassocdesprec'):
                     
-                if r2030_evtassocdesprec_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r2030_evtassocdesprec_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'r2030_evtassocdesprec_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        r2030_evtassocdesprec_form = disabled_form_fields(r2030_evtassocdesprec_form, request.user.has_perm('efdreinf.change_r2030evtAssocDespRec'))
+        r2030_evtassocdesprec_form = disabled_form_fields(
+             r2030_evtassocdesprec_form, 
+             request.user.has_perm('efdreinf.change_r2030evtAssocDespRec'))
         
-        if r2030_evtassocdesprec_id:
+        if pk:
+        
             if r2030_evtassocdesprec.status != 0:
+            
                 r2030_evtassocdesprec_form = disabled_form_fields(r2030_evtassocdesprec_form, False)
+                
         #r2030_evtassocdesprec_campos_multiple_passo3
 
         for field in r2030_evtassocdesprec_form.fields.keys():
+        
             r2030_evtassocdesprec_form.fields[field].widget.attrs['ng-model'] = 'r2030_evtassocdesprec_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             r2030_evtassocdesprec_form = disabled_form_for_print(r2030_evtassocdesprec_form)
 
         
         r2030_recursosrec_lista = None 
         r2030_recursosrec_form = None 
         
-        if r2030_evtassocdesprec_id:
+        if pk:
         
-            r2030_evtassocdesprec = get_object_or_404(r2030evtAssocDespRec, id = r2030_evtassocdesprec_id)
+            r2030_evtassocdesprec = get_object_or_404(r2030evtAssocDespRec, id=pk)
             
             r2030_recursosrec_form = form_r2030_recursosrec(
                 initial={ 'r2030_evtassocdesprec': r2030_evtassocdesprec })
@@ -167,6 +169,7 @@ def salvar(request, hash):
                 filter(r2030_evtassocdesprec_id=r2030_evtassocdesprec.id).all()
                 
         else:
+        
             r2030_evtassocdesprec = None
             
         #r2030_evtassocdesprec_salvar_custom_variaveis#
@@ -175,40 +178,39 @@ def salvar(request, hash):
         
         if 'r2030_evtassocdesprec'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 'r2030_evtassocdesprec' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r2030_evtassocdesprec_salvar'
+        if tab or 'r2030_evtassocdesprec' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r2030_evtassocdesprec_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r2030_evtassocdesprec_id, tabela='r2030_evtassocdesprec').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r2030_evtassocdesprec').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r2030_evtassocdesprec': r2030_evtassocdesprec, 
             'r2030_evtassocdesprec_form': r2030_evtassocdesprec_form, 
-            'r2030_evtassocdesprec_id': int(r2030_evtassocdesprec_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             'r2030_recursosrec_form': r2030_recursosrec_form,
             'r2030_recursosrec_lista': r2030_recursosrec_lista,
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r2030_evtassocdesprec', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r2030_evtassocdesprec_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r2030_evtassocdesprec_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -226,25 +228,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('r2030_evtassocdesprec_salvar.html', context)
             filename = "r2030_evtassocdesprec.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r2030_evtassocdesprec_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['efdreinf', ],
             'paginas': ['r2030_evtassocdesprec', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

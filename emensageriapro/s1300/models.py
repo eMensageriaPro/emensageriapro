@@ -101,8 +101,11 @@ class s1300contribSind(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1300contribSind", "Can view S1300CONTRIBSIND"),
-            ("can_view_menu_s1300contribSind", "Can view menu S1300CONTRIBSIND"),)
+            ("can_see_list_s1300contribSind", u"Pode ver listagem do modelo S1300CONTRIBSIND"),
+            ("can_see_data_s1300contribSind", u"Pode visualizar o conteúdo do modelo S1300CONTRIBSIND"),
+            ("can_see_menu_s1300contribSind", u"Pode visualizar no menu o modelo S1300CONTRIBSIND"),
+            ("can_print_list_s1300contribSind", u"Pode imprimir listagem do modelo S1300CONTRIBSIND"),
+            ("can_print_data_s1300contribSind", u"Pode imprimir o conteúdo do modelo S1300CONTRIBSIND"), )
             
         ordering = [
             's1300_evtcontrsindpatr',

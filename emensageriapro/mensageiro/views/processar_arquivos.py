@@ -5,7 +5,6 @@ __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
-
 import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -23,10 +22,12 @@ from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arqu
 
 @login_required
 def atualizar_arquivo_tabela(tabela, tabela_id, arquivo, arquivo_id):
+
     executar_sql("""
         UPDATE public.%s
         SET arquivo='%s'
         WHERE id=%s""" % (tabela, arquivo, tabela_id), False)
+
     executar_sql("""
         UPDATE public.importacao_arquivos_eventos iae
         SET versao=(SELECT versao FROM public.%s WHERE id = %s)
@@ -35,6 +36,7 @@ def atualizar_arquivo_tabela(tabela, tabela_id, arquivo, arquivo_id):
 
 @login_required
 def atualizar_importador():
+
     executar_sql("""
         UPDATE public.importacao_arquivos e SET
             quant_total = (
@@ -50,11 +52,13 @@ def atualizar_importador():
             SELECT count(*) FROM public.importacao_arquivos_eventos e4
             WHERE e4.importacao_arquivos_id=e.id AND e4.status in (1,4));
         """ , False)
+
     executar_sql("""
         UPDATE public.importacao_arquivos SET
         status = 7 -- processando
         WHERE (quant_processado + quant_erros) < quant_total;
     """, False)
+
     executar_sql("""
         UPDATE public.importacao_arquivos SET
         status = 6 -- processado com sucesso
@@ -101,16 +105,17 @@ def scripts_processar_arquivos(request):
     import os
 
     import os.path
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo, get_identidade_evento, get_versao_evento
-    from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
-
-    for_print = 0
+    from emensageriapro.settings import BASE_DIR, VERSOES_EFDREINF, VERSOES_ESOCIAL
+    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo, \
+        get_identidade_evento, get_versao_evento
 
     executar_sql("""
     UPDATE public.importacao_arquivos_eventos
-       SET excluido=True
-     WHERE importacao_arquivos_id IN (SELECT id FROM importacao_arquivos WHERE excluido=True);""", False)
+       SET excluido=NULL 
+     WHERE importacao_arquivos_id IN (
+            SELECT id 
+              FROM importacao_arquivos 
+             WHERE excluido IS NULL);""", False)
 
     arquivos = ImportacaoArquivosEventos.objects.filter(status=0).exclude(id=0).all()
 
@@ -128,8 +133,12 @@ def scripts_processar_arquivos(request):
 
             dados_eventos['identidade_evento'] = get_identidade_evento(ler_arquivo(filename))
             dados_eventos['versao'] = get_versao_evento(ler_arquivo(filename))
+
             existe_identidade = executar_sql(
-                "SELECT count(*) FROM public.transmissor_eventos_esocial WHERE identidade='%s'" % dados_eventos['identidade_evento'], True)
+                """SELECT count(*) 
+                     FROM public.transmissor_eventos_esocial 
+                    WHERE identidade='%s'""" % dados_eventos['identidade_evento'], True)
+
             existe_identidade = existe_identidade[0][0]
 
             if existe_identidade:
@@ -143,10 +152,12 @@ def scripts_processar_arquivos(request):
                 ia_id = arquivo.importacao_arquivos_id
                 gravar_nome_arquivo(dados_eventos['arquivo'], 1)
 
-            elif dados_eventos['versao'] in VERSAO_ATUAL:
+            elif dados_eventos['versao'] in VERSOES_ESOCIAL or dados_eventos['versao'] in VERSOES_EFDREINF:
 
                 quant_erros, error_list = validar_arquivo(filename, request, lang='pt')
-                if not quant_erros or (quant_erros == 1 and 'Signature' in str(error_list) ):
+
+                if not quant_erros or (quant_erros == 1 and 'Signature' in str(error_list)):
+
                     dados_importacao = importar_arquivo(filename, request, 1)
                     #dados_eventos['evento'] = dados_eventos['tabela']
                     #del dados_eventos['tabela']
@@ -190,7 +201,7 @@ def scripts_processar_arquivos(request):
         dados_eventos['criado_em'] = datetime.datetime.now()
         dados_eventos['criado_por_id'] = 1
         dados_eventos['excluido'] = False
-        ImportacaoArquivosEventos.objects.using(db_slug).filter(id=arquivo.id).update(**dados_eventos)
+        ImportacaoArquivosEventos.objects.filter(id=arquivo.id).update(**dados_eventos)
         ia_id = arquivo.importacao_arquivos_id
         atualizar_importador()
 
@@ -200,27 +211,13 @@ def scripts_processar_arquivos(request):
 
 
 @login_required
-def scripts_salvar_arquivos(request, hash):
+def scripts_salvar_arquivos(request):
 
-    from emensageriapro.settings import BASE_DIR
     import os
+    from emensageriapro.settings import BASE_DIR
     from django.core.files.storage import FileSystemStorage
 
     # tipos: 1-pdf; 2-xls, 3-csv
-
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        # retorno_pagina = dict_hash['retorno_pagina']
-        # retorno_hash = dict_hash['retorno_hash']
-        importacao_arquivos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
 
     if request.method == 'POST' and request.FILES['arquivo']:
 
@@ -236,9 +233,9 @@ def scripts_salvar_arquivos(request, hash):
         dados_importacao['quant_processado'] = 0
         dados_importacao['quant_erros'] = 0
         dados_importacao['quant_aguardando'] = 0
-        dados_importacao['importado_por_id'] = usuario_id
+        dados_importacao['importado_por_id'] = request.session.user.id
         dados_importacao['criado_em'] = datetime.datetime.now()
-        dados_importacao['criado_por_id'] = usuario_id
+        dados_importacao['criado_por_id'] = request.session.user.id
         dados_importacao['excluido'] = False
 
         obj = ImportacaoArquivos(**dados_importacao)
@@ -255,11 +252,12 @@ def scripts_salvar_arquivos(request, hash):
                 destino = filename.replace('/enviado/', '/aguardando/')
                 os.system('mv %s %s' % (filename, destino))
 
-            elif ('.zip' in filename):
+            elif '.zip' in filename:
 
                 os.system('unzip -o -a %s -d %s' % (filename, BASE_DIR + '/arquivos/Importacao/aguardando'))
 
             lista = os.listdir(BASE_DIR + '/arquivos/Importacao/aguardando')
+
             n = 0
 
             for arquivo_evento in lista:
@@ -313,26 +311,9 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 @login_required
-def imprimir(request, hash):
+def imprimir(request, pk):
 
     # tipos: 1-pdf; 2-xls, 3-csv
-    for_print = 0
-
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        # retorno_pagina = dict_hash['retorno_pagina']
-        # retorno_hash = dict_hash['retorno_hash']
-        importacao_arquivos_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     if True:
 
@@ -351,15 +332,16 @@ def imprimir(request, hash):
             'show_data_hora': 1,
             'show_status': 1,
             'show_arquivo': 1, }
-        post = False
 
         dict_qs = clear_dict_fields(dict_fields)
 
-        importacao_arquivos_lista = ImportacaoArquivos.objects.filter(**dict_qs).filter(
-            excluido=False, id=importacao_arquivos_id).exclude(id=0).all()
+        importacao_arquivos_lista = ImportacaoArquivos.objects.filter(**dict_qs).\
+            filter(id=pk).exclude(id=0).all()
 
         ia_lista = []
+
         for a in importacao_arquivos_lista:
+
             ia_lista.append(a.id)
 
         importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.\
@@ -370,11 +352,10 @@ def imprimir(request, hash):
         context = {
             'importacao_arquivos_lista': importacao_arquivos_lista,
             'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
-            'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             'importado_por_lista': importado_por_lista,
@@ -385,7 +366,7 @@ def imprimir(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
         }
 

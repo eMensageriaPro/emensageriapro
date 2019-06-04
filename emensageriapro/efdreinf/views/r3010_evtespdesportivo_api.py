@@ -66,7 +66,6 @@ class r3010evtEspDesportivoList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r3010evtEspDesportivoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r3010evtEspDesportivo.objects.all()

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r2070_pgtoresidbr__r2070_ideestab__label">Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil*</label>
     {% if not for_print %}{% if r2070_pgtoresidbr_form.r2070_ideestab.value %}
-        <a href="{% url 'r2070_ideestab_salvar' hash='{}'|json_return_page:'r2070_pgtoresidbr_salvar'|json_return_hash:hash|json_id:r2070_pgtoresidbr_form.r2070_ideestab.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r2070_ideestab_salvar' pk=r2070_pgtoresidbr_form.r2070_ideestab.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

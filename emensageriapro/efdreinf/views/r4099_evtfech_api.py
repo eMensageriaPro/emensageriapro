@@ -66,7 +66,6 @@ class r4099evtFechList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r4099evtFechDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4099evtFech.objects.all()

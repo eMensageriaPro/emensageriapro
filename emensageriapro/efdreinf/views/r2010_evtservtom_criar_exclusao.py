@@ -73,49 +73,42 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def criar_exclusao(request, hash):
+def criar_exclusao(request, pk):
 
     from emensageriapro.efdreinf.views.r2010_evtservtom_importar import read_r2010_evtservtom_string
     from emensageriapro.efdreinf.views.r2010_evtservtom_gerar_xml import gerar_xml_r2010
     from emensageriapro.functions import identidade_evento
+    
+    if request.user.has_perm('efdreinf.can_create_delete_r2010evtServTom'):
+    
+        r2010_evtservtom = get_object_or_404(
+            r2010evtServTom,
+            id=pk)
 
-    dict_hash = get_hash_url(hash)
-    r2010_evtservtom_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('efdreinf.can_create_delete_event_r2010evtServTom'):
+        texto = gerar_xml_r2010(request, pk, versao="|")
+        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
+        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
+        dados = read_r2010_evtservtom_string({}, texto.encode('utf-8'), 0)
+        nova_identidade = identidade_evento(r2010_evtservtom)
 
-        if r2010_evtservtom_id:
-    
-            r2010_evtservtom = get_object_or_404(
-                r2010evtServTom,
-                excluido=False,
-                id=r2010_evtservtom_id)
-    
-            texto = gerar_xml_r2010(r2010_evtservtom_id, versao="|")
-            texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-            texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-            dados = read_r2010_evtservtom_string({}, texto.encode('utf-8'), 0)
-            nova_identidade = identidade_evento(r2010_evtservtom)
-    
-            r2010evtServTom.objects.filter(id=dados['id']).\
-                update(status=STATUS_EVENTO_CADASTRADO,
-                       arquivo_original=0,
-                       arquivo='')
-    
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2010_evtservtom.identidade),
-                'r2010_evtservtom', dados['id'], request.user.id, 1)
-    
-            messages.success(request, u'Evento de exclusão criado com sucesso!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('r2010_evtservtom_salvar', hash=url_hash)
-    
-        messages.error(request, 'Erro ao criar evento de exclusão!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        r2010evtServTom.objects.filter(id=dados['id']).\
+            update(status=STATUS_EVENTO_CADASTRADO,
+                   arquivo_original=0,
+                   arquivo='')
+
+        gravar_auditoria(u'{}',
+            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2010_evtservtom.identidade),
+            'r2010_evtservtom', dados['id'], request.user.id, 1)
+
+        messages.success(request, u'Evento de exclusão criado com sucesso!')
+        
+        return_pk = dados['id']
+        
+        return redirect('r2010_evtservtom_salvar', pk=return_pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('r2010_evtservtom_salvar', pk=pk, tab='master')

@@ -109,8 +109,11 @@ class s2400brasil(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2400brasil", "Can view S2400BRASIL"),
-            ("can_view_menu_s2400brasil", "Can view menu S2400BRASIL"),)
+            ("can_see_list_s2400brasil", u"Pode ver listagem do modelo S2400BRASIL"),
+            ("can_see_data_s2400brasil", u"Pode visualizar o conteúdo do modelo S2400BRASIL"),
+            ("can_see_menu_s2400brasil", u"Pode visualizar no menu o modelo S2400BRASIL"),
+            ("can_print_list_s2400brasil", u"Pode imprimir listagem do modelo S2400BRASIL"),
+            ("can_print_data_s2400brasil", u"Pode imprimir o conteúdo do modelo S2400BRASIL"), )
             
         ordering = [
             's2400_endereco',
@@ -184,8 +187,11 @@ class s2400dependente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2400dependente", "Can view S2400DEPENDENTE"),
-            ("can_view_menu_s2400dependente", "Can view menu S2400DEPENDENTE"),)
+            ("can_see_list_s2400dependente", u"Pode ver listagem do modelo S2400DEPENDENTE"),
+            ("can_see_data_s2400dependente", u"Pode visualizar o conteúdo do modelo S2400DEPENDENTE"),
+            ("can_see_menu_s2400dependente", u"Pode visualizar no menu o modelo S2400DEPENDENTE"),
+            ("can_print_list_s2400dependente", u"Pode imprimir listagem do modelo S2400DEPENDENTE"),
+            ("can_print_data_s2400dependente", u"Pode imprimir o conteúdo do modelo S2400DEPENDENTE"), )
             
         ordering = [
             's2400_evtcdbenefin',
@@ -245,8 +251,11 @@ class s2400endereco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2400endereco", "Can view S2400ENDERECO"),
-            ("can_view_menu_s2400endereco", "Can view menu S2400ENDERECO"),)
+            ("can_see_list_s2400endereco", u"Pode ver listagem do modelo S2400ENDERECO"),
+            ("can_see_data_s2400endereco", u"Pode visualizar o conteúdo do modelo S2400ENDERECO"),
+            ("can_see_menu_s2400endereco", u"Pode visualizar no menu o modelo S2400ENDERECO"),
+            ("can_print_list_s2400endereco", u"Pode imprimir listagem do modelo S2400ENDERECO"),
+            ("can_print_data_s2400endereco", u"Pode imprimir o conteúdo do modelo S2400ENDERECO"), )
             
         ordering = [
             's2400_evtcdbenefin',]
@@ -310,8 +319,11 @@ class s2400exterior(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2400exterior", "Can view S2400EXTERIOR"),
-            ("can_view_menu_s2400exterior", "Can view menu S2400EXTERIOR"),)
+            ("can_see_list_s2400exterior", u"Pode ver listagem do modelo S2400EXTERIOR"),
+            ("can_see_data_s2400exterior", u"Pode visualizar o conteúdo do modelo S2400EXTERIOR"),
+            ("can_see_menu_s2400exterior", u"Pode visualizar no menu o modelo S2400EXTERIOR"),
+            ("can_print_list_s2400exterior", u"Pode imprimir listagem do modelo S2400EXTERIOR"),
+            ("can_print_data_s2400exterior", u"Pode imprimir o conteúdo do modelo S2400EXTERIOR"), )
             
         ordering = [
             's2400_endereco',

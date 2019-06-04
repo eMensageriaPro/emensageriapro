@@ -66,7 +66,6 @@ class TransmissorLoteEsocialOcorrenciasList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class TransmissorLoteEsocialOcorrenciasDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = TransmissorLoteEsocialOcorrencias.objects.all()

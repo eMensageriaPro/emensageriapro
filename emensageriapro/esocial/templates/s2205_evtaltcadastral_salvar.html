@@ -32,1075 +32,1394 @@
 -->{% extends 'base.html' %}
 {% load templatetags %}
 {% block content %}
+
 <section class="content-header">
    <h1>
       S-2205 - Alteração de Dados Cadastrais do Trabalhador
-      <small>Cadastrar/Editar</small>
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
    </h1>
    <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">S-2205 - Alteração de Dados Cadastrais do Trabalhador</a></li>
-      <li class="active">Cadastrar/Editar</li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
    </ol>
 </section>
-{% if not for_print %}
+
+
 <section class="content">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                {% if perms.esocial.can_view_s2205evtAltCadastral %}
-                <li {% if not tab %}class="active"{% endif %} >
-                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_return_page:'s2205_evtaltcadastral_salvar'|json_return_hash:hash|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}">
-                    S-2205 - Alteração de Dados Cadastrais do Trabalhador</a>
-                </li>
-                {% endif %}
-                {% if s2205_evtaltcadastral_id %}
-                    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if pk %}
+                        {% if perms.esocial.can_see_s2205evtAltCadastral %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='master' %}">
+                                S-2205 - Alteração de Dados Cadastrais do Trabalhador</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.esocial.can_view_s2205_documentos %}
-                                <li {% if tab == 's2205_documentos' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_documentos'|base64_encode_me %}">
-                                    Informações dos documentos pessoais do trabalhador</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205documentos %}
+                                    <li {% if tab == 's2205_documentos' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_documentos' %}">
+                                        Informações dos documentos pessoais do trabalhador</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205brasil %}
+                                    <li {% if tab == 's2205_brasil' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_brasil' %}">
+                                        Preenchimento obrigatório para trabalhador residente no Brasil.</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205exterior %}
+                                    <li {% if tab == 's2205_exterior' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_exterior' %}">
+                                        Preenchido em caso de trabalhador residente no exterior.</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205trabEstrangeiro %}
+                                    <li {% if tab == 's2205_trabestrangeiro' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_trabestrangeiro' %}">
+                                        Grupo de informações do Trabalhador Estrangeiro</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205infoDeficiencia %}
+                                    <li {% if tab == 's2205_infodeficiencia' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_infodeficiencia' %}">
+                                        Pessoa com Deficiência</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205dependente %}
+                                    <li {% if tab == 's2205_dependente' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_dependente' %}">
+                                        Informações dos dependentes</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205aposentadoria %}
+                                    <li {% if tab == 's2205_aposentadoria' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_aposentadoria' %}">
+                                        Informação de aposentadoria do trabalhador</a>
+                                    </li>
+                                {% endif %}
+                            
+                                {% if perms.s2205.can_see_s2205contato %}
+                                    <li {% if tab == 's2205_contato' %} class="active"{% endif %} >
+                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_contato' %}">
+                                        Informações de contato</a>
+                                    </li>
+                                {% endif %}
+                            
                         
-                            {% if perms.esocial.can_view_s2205_brasil %}
-                                <li {% if tab == 's2205_brasil' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_brasil'|base64_encode_me %}">
-                                    Preenchimento obrigatório para trabalhador residente no Brasil.</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2205_exterior %}
-                                <li {% if tab == 's2205_exterior' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_exterior'|base64_encode_me %}">
-                                    Preenchido em caso de trabalhador residente no exterior.</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2205_trabestrangeiro %}
-                                <li {% if tab == 's2205_trabestrangeiro' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_trabestrangeiro'|base64_encode_me %}">
-                                    Grupo de informações do Trabalhador Estrangeiro</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2205_infodeficiencia %}
-                                <li {% if tab == 's2205_infodeficiencia' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_infodeficiencia'|base64_encode_me %}">
-                                    Pessoa com Deficiência</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2205_dependente %}
-                                <li {% if tab == 's2205_dependente' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_dependente'|base64_encode_me %}">
-                                    Informações dos dependentes</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2205_aposentadoria %}
-                                <li {% if tab == 's2205_aposentadoria' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_aposentadoria'|base64_encode_me %}">
-                                    Informação de aposentadoria do trabalhador</a>
-                                </li>
-                            {% endif %}
-                        
-                            {% if perms.esocial.can_view_s2205_contato %}
-                                <li {% if tab == 's2205_contato' %} class="active"{% endif %} >
-                                    <a href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|json_tab:'s2205_contato'|base64_encode_me %}">
-                                    Informações de contato</a>
-                                </li>
-                            {% endif %}
-                        
-                    
-                {% endif %}
-            </ul>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- TABS -->
+    <!-- TABS -->
+    {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if s2205_evtaltcadastral_form.errors %}
+        <div class="row">
+            <div class="pad margin no-print">
+            {% for error in s2205_evtaltcadastral_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
-{% else %}
-<section class="invoice">
-   {% endif %}
-   {% if not for_print %}
-   {% if messages %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for message in messages %}
-         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-            {{ message }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   {% if s2205_evtaltcadastral_form.errors %}
-   <div class="row">
-      <div class="pad margin no-print">
-         {% for error in s2205_evtaltcadastral_form.non_field_errors %}
-         <div class="alert alert-error" style="margin-bottom: 0!important;">
-            {{ error|escape }}
-         </div>
-         {% endfor %}
-      </div>
-   </div>
-   {% endif %}
-   
-   
-   
-   {% if s2205_evtaltcadastral_id %}
-   {% if s2205_evtaltcadastral.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2205_evtaltcadastral.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2205_evtaltcadastral.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2205_evtaltcadastral.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2205_evtaltcadastral.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2205_evtaltcadastral.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2205_evtaltcadastral.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-   {% endif %}
-   {% if not tab %}
-   <div class="row">
-      <div class="col-md-12">
-         {% if not for_print %}
-         <div class="box box-primary">
-            <div class="box-header with-border">
-               <h3 class="box-title">S-2205 - Alteração de Dados Cadastrais do Trabalhador</h3>
-            </div>
-            {% else %}
+    {% if s2205_evtaltcadastral_id %}
+        {% if s2205_evtaltcadastral.ocorrencias %}
             <div class="row">
-               {% endif %}
-               {% if not for_print %}
-               {% if perms.esocial.change_s2205_evtaltcadastral or perms.esocial.add_s2205_evtaltcadastral %}
-               {% if s2205_evtaltcadastral_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2205_evtaltcadastral" method="POST" content="text/html; charset=UTF-8">{% endif %}
-                  {% csrf_token %}
-                  {% endif %}
-                  {% endif %}
-                  <div class="box-body">
-                     <div class="row">
-                        {% include 'forms/s2205_evtaltcadastral.html' %}
-                     </div>
-                  </div>
-                  {% if not for_print %}
-                  <div class="row">
-                     <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                           <font color="red">* Campos Obrigatórios.
-                           </font>
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2205_evtaltcadastral.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
-                     </div>
-                     <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                           <!-- botões especiais -->
-                           {% if s2205_evtaltcadastral_id %}
-                           {% if perms.esocial.add_s2205evtAltCadastral %}<a href="{% url 's2205_evtaltcadastral_verificar'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.add_s2205evtAltCadastral %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Exportar Recibo</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_recibo'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_recibo'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_recibo'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s2205evtAltCadastral %}
-                           {% if not evento_totalizador %}
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
-                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Ações</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_duplicar' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
-                                 {% if s2205_evtaltcadastral.operacao == 1 and s2205_inclusao_lista or s2205_evtaltcadastral.operacao == 2 and s2205_alteracao_lista %}
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_criar_alteracao' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_criar_exclusao' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
-                                 {% endif %}
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_alterar_identidade' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
-                                 <li class="text-left"><a href="{% url 's2205_evtaltcadastral_abrir_evento_para_edicao' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
-                              </ul>
-                           </div>
-                           &nbsp;
-                           {% endif %}
-                           {% endif %}
-                           {% if perms.esocial.add_s2205evtAltCadastral %}<a href="{% url 's2205_evtaltcadastral_xml'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
-                           {% if s2205_evtaltcadastral.status == STATUS_EVENTO_CADASTRADO or s2205_evtaltcadastral.status == STATUS_EVENTO_IMPORTADO or s2205_evtaltcadastral.status == STATUS_EVENTO_DUPLICADO or s2205_evtaltcadastral.status == STATUS_EVENTO_GERADO or s2205_evtaltcadastral.status == STATUS_EVENTO_ASSINADO or s2205_evtaltcadastral.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if perms.esocial.add_s2205evtAltCadastral %}
-                           <a href="{% url 's2205_evtaltcadastral_validar_evento' hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}"
-                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
-                           &nbsp;{% endif %}
-                           {% endif %}
-                           <br><br>
-                           {% if perms.esocial.add_s2205evtAltCadastral %}<a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.can_view_s2205_evtaltcadastral or perms.esocial.can_view_s2205_evtaltcadastral %}<a href="{% url 's2205_evtaltcadastral'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.can_view_s2205_evtaltcadastral and s2205_evtaltcadastral_id %}<a href="{% url 's2205_evtaltcadastral_salvar'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if perms.esocial.change_s2205_evtaltcadastral or perms.esocial.add_s2205_evtaltcadastral %}
-                           {% if s2205_evtaltcadastral_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
-                           {% endif %}
-                           {% if perms.esocial.delete_s2205_evtaltcadastral and s2205_evtaltcadastral_id %}<a href="{% url 's2205_evtaltcadastral_apagar'  hash='{}'|json_id:s2205_evtaltcadastral_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
-                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
-                        </div>
-                     </div>
-                  </div>
-                  {% endif %}
-                  {% if not for_print %}
-                  {% if perms.esocial.change_s2205_evtaltcadastral or perms.esocial.add_s2205_evtaltcadastral %}
-               {% if s2205_evtaltcadastral_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
-               {% endif %}
-               {% endif %}
+                    </div>
+                </div>
             </div>
-            {% if s2205_evtaltcadastral_id %}
+        {% endif %}
+        {% if s2205_evtaltcadastral.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2205_evtaltcadastral.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2205_evtaltcadastral.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if s2205_evtaltcadastral.validacoes %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <strong>Erros de validação:</strong><br>
+                                <p>{% autoescape off %}{{ s2205_evtaltcadastral.validacoes }}{% endautoescape %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">S-2205 - Alteração de Dados Cadastrais do Trabalhador</h3>
+                    </div>
+
+                    {% if perms.esocial.change_s2205evtAltCadastral or perms.esocial.add_s2205evtAltCadastral %}
+                        {% if s2205_evtaltcadastral_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2205_evtaltcadastral" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2205_evtaltcadastral.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+                        <div class="row">
+
+                    {% if pk %}
+
+
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if s2205_evtaltcadastral.operacao == 1 and s2205_inclusao_lista or s2205_evtaltcadastral.operacao == 2 and s2205_alteracao_lista %}
+
+
+                                    {% if perms.esocial.can_create_change_s2205evtAltCadastral %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's2205_evtaltcadastral_criar_alteracao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Alteração
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if perms.esocial.can_create_delete_s2205evtAltCadastral %}
+                                    <div class="col-md-6">
+                                        <a href="{% url 's2205_evtaltcadastral_criar_exclusao' pk=pk %}">
+                                            <span class="btn btn-warning btn-block btn-lg">
+                                                <i class="fa fa-gear"></i>&nbsp;
+                                                    Criar evento de Exclusão
+                                            </span>
+                                        </a>&nbsp;
+                                    </div>
+                                    {% endif %}
+
+
+                             {% endif %}
+
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+                        {% if not evento_totalizador %}
+
+
+                            {% if perms.esocial.can_duplicate_s2205evtAltCadastral %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2205_evtaltcadastral_duplicar' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Duplicar Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_change_identity_s2205evtAltCadastral %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2205_evtaltcadastral_alterar_identidade' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Alterar Identidade do Evento
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                                
+
+                            {% if perms.esocial.can_open_s2205evtAltCadastral %}
+                            <div class="col-md-4">
+                                <a href="{% url 's2205_evtaltcadastral_abrir_evento_para_edicao' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg btn-block btn-lg">
+                                        <i class="fa fa-gear"></i>&nbsp;
+                                            Abrir evento para edição
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_layout_s2205evtAltCadastral %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2205_evtaltcadastral_verificar' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-table"></i>&nbsp;Layout
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.esocial.can_see_xml_s2205evtAltCadastral %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2205_evtaltcadastral_xml' pk=pk %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-code"></i>&nbsp;XML
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+                            
+
+                        
+
+                            {% if perms.esocial.can_validate_s2205evtAltCadastral %}
+                            <div class="col-md-3">
+                                <a href="{% url 's2205_evtaltcadastral_validar_evento' pk=pk %}">
+                                    <span class="btn btn-success btn-block btn-lg">
+                                        <i class="fa fa-thumbs-o-up"></i>&nbsp;
+                                            Validar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.can_see_receipt_s2205evtAltCadastral %}
+                            <div class="col-md-3">
+
+                                <div class="btn-group btn-block">
+                                    <button type="button" 
+                                            class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                                            data-toggle="dropdown" 
+                                            aria-expanded="false">
+                                        <i class="fa fa-download"></i>&nbsp;Recibo
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Recibo</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's2205_evtaltcadastral_recibo' pk=pk output='pdf' %}" target="_blank">
+                                                <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's2205_evtaltcadastral_recibo' pk=pk output='xls' %}" target="_blank">
+                                                <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                            </a>
+                                        </li>
+                                        <li class="text-left">
+                                            <a href="{% url 's2205_evtaltcadastral_recibo' pk=pk output='csv' %}" target="_blank">
+                                                <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>&nbsp;
+                            </div>
+
+                            {% endif %}
+
+
+
+                        {% endif %}
+
+
+                        {% if perms.esocial.add_s2205evtAltCadastral %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2205_evtaltcadastral_cadastrar' %}">
+                                <span class="btn btn-info btn-block btn-lg">
+                                    <i class="fa fa-plus-circle"></i>&nbsp;
+                                        Cadastrar
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_see_list_s2205evtAltCadastral %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2205_evtaltcadastral' %}">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-list"></i>&nbsp;
+                                        Listagem
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if perms.esocial.can_print_data_s2205evtAltCadastral %}
+                        <div class="col-md-2">
+                            <a href="{% url 's2205_evtaltcadastral_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                <span class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa fa-print"></i>&nbsp;
+                                        Imprimir
+                                </span>
+                            </a>&nbsp;
+                        </div>
+                        {% endif %}
+
+
+                        {% if s2205_evtaltcadastral_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        
+
+                            {% if perms.esocial.change_s2205evtAltCadastral %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.esocial.delete_s2205evtAltCadastral %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2205_evtaltcadastral_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                        {% endif %}
+
+
+                        <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+
+                    {% else %}
+
+
+                        {% if perms.esocial.add_s2205evtAltCadastral %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Cadastrar
+                                </button>&nbsp;
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;
+                                    Voltar
+                            </a>
+                        </div>
+
+
+                    {% endif %}
+                    
+                        </div>
+                    </div>
+
+
+
+                    {% if perms.esocial.add_s2205evtAltCadastral or perms.esocial.change_s2205evtAltCadastral %}
+    
+                        {% if s2205_evtaltcadastral_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+    
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
             <!-- inicio controle de alterações -->
             <div class="row">
-               <div class="col-md-12">
-                  <div class="box box-primary collapsed-box">
-                     <div class="box-header with-border">
-                        <h3 class="box-title">Controle de Alterações</h3>
-                        <div class="pull-right box-tools">
-                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
-                              class="fa fa-minus"></i></button>
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="box-body">
-                        <table class="table table-bordered table-striped automate-data-table">
-                           <thead>
-                              <tr>
-                                 <th>Data</th>
-                                 <th>Situação Anterior</th>
-                                 <th>Situação Posterior</th>
-                                 <th>Modificado por</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              {% for c in controle_alteracoes %}
-                              <tr>
-                                 <td>{{ c.criado_em }}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
-                                 <td>{{ c.modificado_por }}</td>
-                              </tr>
-                              {% endfor %}
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fim controle de alterações -->
-            {% endif %}
-         </div>
-      </div>
-   </div>
-   </div>
-   {% endif %}
-   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-   {% if s2205_evtaltcadastral_id %}
 
-<!-- begin_s2205_documentos -->
+        <!-- fim controle de alterações -->
+        {% endif %}
 
-{% if tab == 's2205_documentos' or for_print %} 
-
-{% if perms.esocial.can_view_s2205_documentos %} 
-
-{% if perms.esocial.change_s2205_documentos or perms.s2205.add_s2205documentos %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_documentos or perms.s2205.add_s2205documentos %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205documentos %}            
+    {% endif %}
 
 
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-        <!-- begin_form_s2205_documentos --> 
-        <div id="cadastrar" style="display:none">
 
-              <form id="id_form_s2205_documentos" action="{% url 's2205_documentos_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_documentos.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+        
+        <!-- begin_s2205_documentos -->
+
+            {% if tab == 's2205_documentos' %} 
+
+                {% if perms.s2205.can_see_data_s2205documentos %}
+
+                    {% if perms.s2205.add_s2205documentos or perms.s2205.change_s2205documentos %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205documentos or perms.s2205.can_see_list_s2205documentos %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2205.add_s2205documentos %}            
+
+                                    <!-- begin_form_s2205_documentos --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2205_documentos" 
+                                              action="{% url 's2205_documentos_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_documentos.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2205_documentos -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205documentos %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_documentos --> 
+
+                                        {% include 'tables/s2205_documentos.html' %}
+                                        <!-- end_table_s2205_documentos --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2205_brasil -->
+
+            {% if tab == 's2205_brasil' %} 
+
+                {% if perms.s2205.can_see_data_s2205brasil %}
+
+                    {% if perms.s2205.add_s2205brasil or perms.s2205.change_s2205brasil %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205brasil or perms.s2205.can_see_list_s2205brasil %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2205.add_s2205brasil %}            
+
+                                    <!-- begin_form_s2205_brasil --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2205_brasil" 
+                                              action="{% url 's2205_brasil_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_brasil.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2205_brasil -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205brasil %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_brasil --> 
+
+                                        {% include 'tables/s2205_brasil.html' %}
+                                        <!-- end_table_s2205_brasil --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_documentos -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_documentos --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2205_documentos.html' %}
-        <!-- end_table_s2205_documentos --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2205_exterior -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2205_exterior' %} 
 
+                {% if perms.s2205.can_see_data_s2205exterior %}
 
-{% endif %} 
+                    {% if perms.s2205.add_s2205exterior or perms.s2205.change_s2205exterior %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2205_documentos -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2205_brasil -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2205_brasil' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2205_brasil %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205exterior or perms.s2205.can_see_list_s2205exterior %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2205_brasil or perms.s2205.add_s2205brasil %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2205.add_s2205exterior %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2205_exterior --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_brasil or perms.s2205.add_s2205brasil %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205brasil %}            
+                                        <form id="id_form_s2205_exterior" 
+                                              action="{% url 's2205_exterior_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_exterior.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2205_brasil --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2205_brasil" action="{% url 's2205_brasil_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_brasil.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2205_exterior -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205exterior %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_exterior --> 
+
+                                        {% include 'tables/s2205_exterior.html' %}
+                                        <!-- end_table_s2205_exterior --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2205_trabestrangeiro -->
+
+            {% if tab == 's2205_trabestrangeiro' %} 
+
+                {% if perms.s2205.can_see_data_s2205trabEstrangeiro %}
+
+                    {% if perms.s2205.add_s2205trabEstrangeiro or perms.s2205.change_s2205trabEstrangeiro %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205trabEstrangeiro or perms.s2205.can_see_list_s2205trabEstrangeiro %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2205.add_s2205trabEstrangeiro %}            
+
+                                    <!-- begin_form_s2205_trabestrangeiro --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2205_trabestrangeiro" 
+                                              action="{% url 's2205_trabestrangeiro_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_trabestrangeiro.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2205_trabestrangeiro -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205trabEstrangeiro %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_trabestrangeiro --> 
+
+                                        {% include 'tables/s2205_trabestrangeiro.html' %}
+                                        <!-- end_table_s2205_trabestrangeiro --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_brasil -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_brasil --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2205_brasil.html' %}
-        <!-- end_table_s2205_brasil --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2205_infodeficiencia -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2205_infodeficiencia' %} 
 
+                {% if perms.s2205.can_see_data_s2205infoDeficiencia %}
 
-{% endif %} 
+                    {% if perms.s2205.add_s2205infoDeficiencia or perms.s2205.change_s2205infoDeficiencia %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2205_brasil -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2205_exterior -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2205_exterior' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2205_exterior %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Pessoa com Deficiência</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205infoDeficiencia or perms.s2205.can_see_list_s2205infoDeficiencia %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2205_exterior or perms.s2205.add_s2205exterior %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2205.add_s2205infoDeficiencia %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2205_infodeficiencia --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_exterior or perms.s2205.add_s2205exterior %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205exterior %}            
+                                        <form id="id_form_s2205_infodeficiencia" 
+                                              action="{% url 's2205_infodeficiencia_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_infodeficiencia.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2205_exterior --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2205_exterior" action="{% url 's2205_exterior_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_exterior.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2205_infodeficiencia -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205infoDeficiencia %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_infodeficiencia --> 
+
+                                        {% include 'tables/s2205_infodeficiencia.html' %}
+                                        <!-- end_table_s2205_infodeficiencia --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2205_dependente -->
+
+            {% if tab == 's2205_dependente' %} 
+
+                {% if perms.s2205.can_see_data_s2205dependente %}
+
+                    {% if perms.s2205.add_s2205dependente or perms.s2205.change_s2205dependente %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações dos dependentes</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205dependente or perms.s2205.can_see_list_s2205dependente %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2205.add_s2205dependente %}            
+
+                                    <!-- begin_form_s2205_dependente --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2205_dependente" 
+                                              action="{% url 's2205_dependente_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_dependente.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2205_dependente -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205dependente %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_dependente --> 
+
+                                        {% include 'tables/s2205_dependente.html' %}
+                                        <!-- end_table_s2205_dependente --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_exterior -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_exterior --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2205_exterior.html' %}
-        <!-- end_table_s2205_exterior --> 
+            {% endif %} 
 
+        
+        <!-- begin_s2205_aposentadoria -->
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            {% if tab == 's2205_aposentadoria' %} 
 
+                {% if perms.s2205.can_see_data_s2205aposentadoria %}
 
-{% endif %} 
+                    {% if perms.s2205.add_s2205aposentadoria or perms.s2205.change_s2205aposentadoria %}
 
-{% endif %}  
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-<!-- end_s2205_exterior -->
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-<!-- begin_s2205_trabestrangeiro -->
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
 
-{% if tab == 's2205_trabestrangeiro' or for_print %} 
+                    {% endif %}
 
-{% if perms.esocial.can_view_s2205_trabestrangeiro %} 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informação de aposentadoria do trabalhador</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205aposentadoria or perms.s2205.can_see_list_s2205aposentadoria %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
 
-{% if perms.esocial.change_s2205_trabestrangeiro or perms.s2205.add_s2205trabEstrangeiro %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
+                                {% if perms.s2205.add_s2205aposentadoria %}            
 
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
+                                    <!-- begin_form_s2205_aposentadoria --> 
+                                    <div id="cadastrar" style="display:none">
 
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_trabestrangeiro or perms.s2205.add_s2205trabEstrangeiro %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205trabEstrangeiro %}            
+                                        <form id="id_form_s2205_aposentadoria" 
+                                              action="{% url 's2205_aposentadoria_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
 
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_aposentadoria.html' %}
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
 
-        <!-- begin_form_s2205_trabestrangeiro --> 
-        <div id="cadastrar" style="display:none">
+                                    </div>
 
-              <form id="id_form_s2205_trabestrangeiro" action="{% url 's2205_trabestrangeiro_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_trabestrangeiro.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
+                                <!-- end_form_s2205_aposentadoria -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205aposentadoria %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_aposentadoria --> 
+
+                                        {% include 'tables/s2205_aposentadoria.html' %}
+                                        <!-- end_table_s2205_aposentadoria --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
+
+                {% endif %} 
+
+            {% endif %} 
+
+        
+        <!-- begin_s2205_contato -->
+
+            {% if tab == 's2205_contato' %} 
+
+                {% if perms.s2205.can_see_data_s2205contato %}
+
+                    {% if perms.s2205.add_s2205contato or perms.s2205.change_s2205contato %}
+
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
+
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
+                        </script>
+
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações de contato</h3>   
+                                    <div class="pull-right box-tools">
+                                    {% if perms.s2205.add_s2205contato or perms.s2205.can_see_list_s2205contato %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
+                                        </button>
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2205.add_s2205contato %}            
+
+                                    <!-- begin_form_s2205_contato --> 
+                                    <div id="cadastrar" style="display:none">
+
+                                        <form id="id_form_s2205_contato" 
+                                              action="{% url 's2205_contato_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s2205_contato.html' %}
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-md-10">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                <!-- end_form_s2205_contato -->
+                                {% endif %} 
+
+                                {% if perms.s2205.can_see_s2205contato %} 
+
+                                    <div id="listar"> 
+                                    <!-- begin_table_s2205_contato --> 
+
+                                        {% include 'tables/s2205_contato.html' %}
+                                        <!-- end_table_s2205_contato --> 
+                                    
+                                    </div>
+
+                                {% endif %} 
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_trabestrangeiro -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_trabestrangeiro --> 
-  
 
+                {% endif %} 
 
-        {% include 'tables/s2205_trabestrangeiro.html' %}
-        <!-- end_table_s2205_trabestrangeiro --> 
+            {% endif %} 
 
+        
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    {% endif %} 
 
 
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2205_trabestrangeiro -->
-
-<!-- begin_s2205_infodeficiencia -->
-
-{% if tab == 's2205_infodeficiencia' or for_print %} 
-
-{% if perms.esocial.can_view_s2205_infodeficiencia %} 
-
-{% if perms.esocial.change_s2205_infodeficiencia or perms.s2205.add_s2205infoDeficiencia %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Pessoa com Deficiência</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_infodeficiencia or perms.s2205.add_s2205infoDeficiencia %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205infoDeficiencia %}            
-
-
-
-        <!-- begin_form_s2205_infodeficiencia --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2205_infodeficiencia" action="{% url 's2205_infodeficiencia_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_infodeficiencia.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_infodeficiencia -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_infodeficiencia --> 
-  
-
-
-        {% include 'tables/s2205_infodeficiencia.html' %}
-        <!-- end_table_s2205_infodeficiencia --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2205_infodeficiencia -->
-
-<!-- begin_s2205_dependente -->
-
-{% if tab == 's2205_dependente' or for_print %} 
-
-{% if perms.esocial.can_view_s2205_dependente %} 
-
-{% if perms.esocial.change_s2205_dependente or perms.s2205.add_s2205dependente %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações dos dependentes</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_dependente or perms.s2205.add_s2205dependente %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205dependente %}            
-
-
-
-        <!-- begin_form_s2205_dependente --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2205_dependente" action="{% url 's2205_dependente_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_dependente.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_dependente -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_dependente --> 
-  
-
-
-        {% include 'tables/s2205_dependente.html' %}
-        <!-- end_table_s2205_dependente --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2205_dependente -->
-
-<!-- begin_s2205_aposentadoria -->
-
-{% if tab == 's2205_aposentadoria' or for_print %} 
-
-{% if perms.esocial.can_view_s2205_aposentadoria %} 
-
-{% if perms.esocial.change_s2205_aposentadoria or perms.s2205.add_s2205aposentadoria %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informação de aposentadoria do trabalhador</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_aposentadoria or perms.s2205.add_s2205aposentadoria %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205aposentadoria %}            
-
-
-
-        <!-- begin_form_s2205_aposentadoria --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2205_aposentadoria" action="{% url 's2205_aposentadoria_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_aposentadoria.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_aposentadoria -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_aposentadoria --> 
-  
-
-
-        {% include 'tables/s2205_aposentadoria.html' %}
-        <!-- end_table_s2205_aposentadoria --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2205_aposentadoria -->
-
-<!-- begin_s2205_contato -->
-
-{% if tab == 's2205_contato' or for_print %} 
-
-{% if perms.esocial.can_view_s2205_contato %} 
-
-{% if perms.esocial.change_s2205_contato or perms.s2205.add_s2205contato %}
-<script type="text/javascript">
-function CadastroListagem() {
-      var display = document.getElementById('cadastrar').style.display;
-      if (display == "none") {
-          document.getElementById('cadastrar').style.display = 'block';
-          document.getElementById('listar').style.display = 'none';
-
-          document.getElementById('CadastrarBotao').style.display = 'none';
-          document.getElementById('ListarBotao').style.display = 'block';
-      } else {
-          document.getElementById('cadastrar').style.display = 'none';
-          document.getElementById('listar').style.display = 'block';
-
-          document.getElementById('CadastrarBotao').style.display = 'block';
-          document.getElementById('ListarBotao').style.display = 'none';
-      }
-  }
-</script>
-{% endif %}
-<div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Informações de contato</h3>   
-        <div class="pull-right box-tools">
-          {% if perms.esocial.change_s2205_contato or perms.s2205.add_s2205contato %}
-            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
-                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
-            </button>
-            {% endif %}
-        </div>   
-      </div>
-      <div class="box-body" >
-        {% if perms.s2205.add_s2205contato %}            
-
-
-
-        <!-- begin_form_s2205_contato --> 
-        <div id="cadastrar" style="display:none">
-
-              <form id="id_form_s2205_contato" action="{% url 's2205_contato_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                  <div class="row">
-                    {% include 'forms/s2205_contato.html' %}
-                  </div>
-                  
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-left">
-                        <font color="red">* Campos Obrigatórios.
-                        </font>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
-                        
-                      </div>
-                    </div>
-                  </div>
-     
-              </form>
-            </div>
-        <!-- end_form_s2205_contato -->
-        {% endif %} 
-        <div id="listar"> 
-        <!-- begin_table_s2205_contato --> 
-  
-
-
-        {% include 'tables/s2205_contato.html' %}
-        <!-- end_table_s2205_contato --> 
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-{% endif %} 
-
-{% endif %}  
-
-<!-- end_s2205_contato -->
-
-   {% endif %}
 </section>
+
 <!-- script -->
 <!--- javascript -->
 {% endblock content %}

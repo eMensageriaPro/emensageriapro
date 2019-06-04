@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_documentos__s2300_evttsvinicio__label">Informações dos documentos pessoais do trabalhador*</label>
     {% if not for_print %}{% if s2300_documentos_form.s2300_evttsvinicio.value %}
-        <a href="{% url 's2300_evttsvinicio_salvar' hash='{}'|json_return_page:'s2300_documentos_salvar'|json_return_hash:hash|json_id:s2300_documentos_form.s2300_evttsvinicio.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_documentos_form.s2300_evttsvinicio.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -15,7 +15,7 @@
     <label id="s1200_infoperapur_detoper__s1200_infoperapur_infosaudecolet__label">Detalhamento dos valores pagos a Operadoras de Planos de Saúde.*</label>
     {% if not for_print %}
       {% if s1200_infoperapur_detoper_form.s1200_infoperapur_infosaudecolet.value %}
-        <a id="s1200_infoperapur_detoper__s1200_infoperapur_infosaudecolet__div_acessar" href="{% url 's1200_infoperapur_infosaudecolet_salvar' hash='{}'|json_id:s1200_infoperapur_detoper_form.s1200_infoperapur_infosaudecolet.value|json_print:0|base64_encode_me %}">
+        <a id="s1200_infoperapur_detoper__s1200_infoperapur_infosaudecolet__div_acessar" href="{% url 's1200_infoperapur_infosaudecolet_salvar' pk=s1200_infoperapur_detoper_form.s1200_infoperapur_infosaudecolet.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

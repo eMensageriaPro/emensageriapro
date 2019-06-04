@@ -34,243 +34,201 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        ImportacaoArquivosEventos
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">ImportacaoArquivosEventos</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Eventos de Arquivos Importados
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Eventos de Arquivos Importados</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.mensageiro.can_view_ImportacaoArquivosEventos %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 'importacao_arquivos_eventos_salvar' hash='{}'|json_return_page:'importacao_arquivos_eventos_salvar'|json_return_hash:hash|json_id:importacao_arquivos_eventos_id|json_print:0|base64_encode_me %}">
-                            Eventos de Arquivos Importados
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if importacao_arquivos_eventos_id %}
+                    {% if pk %}
+                        {% if perms.mensageiro.can_see_ImportacaoArquivosEventos %}
+                        <li {% if tab == 'master' %}class="active"{% endif %} >
+                            <a href="{% url 'importacao_arquivos_eventos_salvar' pk=pk tab='master' %}">
+                            Eventos de Arquivos Importados</a>
+                        </li>
+                        {% endif %}
                         
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if importacao_arquivos_eventos_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in importacao_arquivos_eventos_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Eventos de Arquivos Importados</h3>
-                </div>
-
-        {% else %}
-
-            <div class="row">
-
-        {% endif %}
 
 
-        {% if not for_print %}
-            {% if perms.mensageiro.change_importacao_arquivos_eventos or perms.mensageiro.add_importacao_arquivos_eventos %}
-                <form action="#" id="id_form_importacao_arquivos_eventos" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
-            {% endif %}
-        {% endif %}
 
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/importacao_arquivos_eventos.html' %}
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Eventos de Arquivos Importados</h3>
                     </div>
-                </div>
 
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if importacao_arquivos_eventos_id %}
-
-                                {% if perms.mensageiro.add_ImportacaoArquivosEventos %}
-                                    <a href="{% url 'importacao_arquivos_eventos_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.mensageiro.can_view_importacao_arquivos_eventos or perms.mensageiro.can_view_importacao_arquivos_eventos %}
-                                <a href="{% url 'importacao_arquivos_eventos'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.mensageiro.can_view_importacao_arquivos_eventos and importacao_arquivos_eventos_id %}
-                                <a href="{% url 'importacao_arquivos_eventos_salvar' hash='{}'|json_id:importacao_arquivos_eventos_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.mensageiro.can_view_importacao_arquivos_eventos and importacao_arquivos_eventos_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 'importacao_arquivos_eventos_salvar' hash='{}'|json_id:importacao_arquivos_eventos_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.mensageiro.change_importacao_arquivos_eventos or perms.mensageiro.add_importacao_arquivos_eventos %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.mensageiro.delete_importacao_arquivos_eventos and importacao_arquivos_eventos_id %}
-
-                            <a href="{% url 'importacao_arquivos_eventos_apagar' hash='{}'|json_id:importacao_arquivos_eventos_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.mensageiro.change_importacao_arquivos_eventos or perms.mensageiro.add_importacao_arquivos_eventos %}
-                        </form>
+                    {% if perms.mensageiro.change_ImportacaoArquivosEventos or perms.mensageiro.add_ImportacaoArquivosEventos %}
+                        
+                        <form action="#" id="id_form_importacao_arquivos_eventos" method="POST" content="text/html; charset=UTF-8">
+                        {% csrf_token %}
+                        
                     {% endif %}
 
-                {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/importacao_arquivos_eventos.html' %}
+
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                        {% if pk %}
 
 
-            </div>    
+                            {% if perms.mensageiro.add_ImportacaoArquivosEventos %}
+                            <div class="col-md-2">
+                                <a href="{% url 'importacao_arquivos_eventos_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
 
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
 
+                            {% if perms.mensageiro.can_see_list_ImportacaoArquivosEventos %}
+                            <div class="col-md-2">
+                                <a href="{% url 'importacao_arquivos_eventos' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.mensageiro.can_print_data_ImportacaoArquivosEventos %}
+                            <div class="col-md-2">
+                                <a href="{% url 'importacao_arquivos_eventos_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.mensageiro.change_ImportacaoArquivosEventos %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.mensageiro.delete_ImportacaoArquivosEventos %}
+                            <div class="col-md-2">
+                                <a href="{% url 'importacao_arquivos_eventos_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;Voltar
+                            </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.mensageiro.add_ImportacaoArquivosEventos %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                            <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>&nbsp;Voltar
+                            </a>
+                            </div>
+
+
+                        {% endif %}
+                        </div>
+                    </div>
+                    {% if perms.mensageiro.add_ImportacaoArquivosEventos or perms.mensageiro.change_ImportacaoArquivosEventos %}
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
+
 
     {% endif %}
 
     <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
 
-    {% if importacao_arquivos_eventos_id %}
 
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

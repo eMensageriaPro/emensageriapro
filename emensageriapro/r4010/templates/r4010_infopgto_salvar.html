@@ -34,79 +34,76 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        r4010infoPgto
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">r4010infoPgto</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações do Pagamento
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações do Pagamento</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.r4010.can_view_r4010infoPgto %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_return_page:'r4010_infopgto_salvar'|json_return_hash:hash|json_id:r4010_infopgto_id|json_print:0|base64_encode_me %}">
-                            Informações do Pagamento
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if r4010_infopgto_id %}
+                    {% if pk %}
+                        {% if perms.r4010.can_see_r4010infoPgto %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='master' %}">
+                                Informações do Pagamento</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_fci %}
+                            {% if perms.r4010.can_see_r4010FCI %}
                                 <li {% if tab == 'r4010_fci' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_fci'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_fci' %}">
                                     Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_scp %}
+                            {% if perms.r4010.can_see_r4010SCP %}
                                 <li {% if tab == 'r4010_scp' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_scp'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_scp' %}">
                                     Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_detded %}
+                            {% if perms.r4010.can_see_r4010detDed %}
                                 <li {% if tab == 'r4010_detded' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_detded'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_detded' %}">
                                     Detalhamento das deduções</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_rendisento %}
+                            {% if perms.r4010.can_see_r4010rendIsento %}
                                 <li {% if tab == 'r4010_rendisento' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_rendisento'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_rendisento' %}">
                                     Rendimentos Isentos/Não Tributáveis</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_infoprocret %}
+                            {% if perms.r4010.can_see_r4010infoProcRet %}
                                 <li {% if tab == 'r4010_infoprocret' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_infoprocret'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_infoprocret' %}">
                                     Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_inforra %}
+                            {% if perms.r4010.can_see_r4010infoRRA %}
                                 <li {% if tab == 'r4010_inforra' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_inforra'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_inforra' %}">
                                     Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.r4010.can_view_r4010_infoprocjud %}
+                            {% if perms.r4010.can_see_r4010infoProcJud %}
                                 <li {% if tab == 'r4010_infoprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|json_tab:'r4010_infoprocjud'|base64_encode_me %}">
+                                    <a href="{% url 'r4010_infopgto_salvar' pk=pk tab='r4010_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}
@@ -116,275 +113,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if r4010_infopgto_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in r4010_infopgto_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if r4010_infopgto_id %}
-   {% if r4010_infopgto.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ r4010_infopgto.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r4010_infopgto.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r4010_infopgto.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not r4010_infopgto.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if r4010_infopgto.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ r4010_infopgto.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações do Pagamento</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if r4010_infopgto.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ r4010_infopgto.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.r4010.change_r4010_infopgto or perms.r4010.add_r4010_infopgto %}
-                <form action="#" id="id_form_r4010_infopgto" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if r4010_infopgto.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r4010_infopgto.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not r4010_infopgto.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/r4010_infopgto.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if r4010_infopgto_id %}
-
-                                {% if perms.r4010.add_r4010infoPgto %}
-                                    <a href="{% url 'r4010_infopgto_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.r4010.can_view_r4010_infopgto or perms.r4010.can_view_r4010_infopgto %}
-                                <a href="{% url 'r4010_infopgto'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r4010.can_view_r4010_infopgto and r4010_infopgto_id %}
-                                <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.r4010.can_view_r4010_infopgto and r4010_infopgto_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:r4010_infopgto_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.r4010.change_r4010_infopgto or perms.r4010.add_r4010_infopgto %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.r4010.delete_r4010_infopgto and r4010_infopgto_id %}
-
-                            <a href="{% url 'r4010_infopgto_apagar' hash='{}'|json_id:r4010_infopgto_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if r4010_infopgto.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r4010_infopgto.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.r4010.change_r4010_infopgto or perms.r4010.add_r4010_infopgto %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if r4010_infopgto_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações do Pagamento</h3>
+                    </div>
+
+                    {% if perms.r4010.change_r4010infoPgto or perms.r4010.add_r4010infoPgto %}
+                        {% if r4010_infopgto_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_r4010_infopgto" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/r4010_infopgto.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.r4010.add_r4010infoPgto %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r4010_infopgto_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r4010.can_see_list_r4010infoPgto %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r4010_infopgto' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r4010.can_print_data_r4010infoPgto %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r4010_infopgto_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.r4010.change_r4010infoPgto %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.r4010.delete_r4010infoPgto %}
+                            <div class="col-md-2">
+                                <a href="{% url 'r4010_infopgto_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.r4010.add_r4010infoPgto %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.r4010.add_r4010infoPgto or perms.r4010.change_r4010infoPgto %}
+
+                        {% if r4010_infopgto_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_r4010_fci -->
+        <!-- begin_r4010_fci -->
 
-            {% if tab == 'r4010_fci' or for_print %} 
+            {% if tab == 'r4010_fci' %} 
 
-                {% if perms.r4010.can_view_r4010_fci %} 
+                {% if perms.r4010.can_see_data_r4010FCI %}
 
-                    {% if perms.r4010.change_r4010_fci or perms.r4010.add_r4010FCI %}
+                    {% if perms.r4010.add_r4010FCI or perms.r4010.change_r4010FCI %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -393,95 +398,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_fci or perms.r4010.add_r4010FCI %}
+                                    {% if perms.r4010.add_r4010FCI or perms.r4010.can_see_list_r4010FCI  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010FCI %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010FCI %}            
+
                                     <!-- begin_form_r4010_fci --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_fci" action="{% url 'r4010_fci_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_fci" 
+                                              action="{% url 'r4010_fci_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_fci.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_fci -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_fci -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010FCI %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_fci --> 
 
-                                    {% include 'tables/r4010_fci.html' %}
-                                        
-                                    <!-- end_table_r4010_fci --> 
-
+                                        {% include 'tables/r4010_fci.html' %}
+                                        <!-- end_table_r4010_fci --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_fci -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r4010_scp -->
+        <!-- begin_r4010_scp -->
 
-            {% if tab == 'r4010_scp' or for_print %} 
+            {% if tab == 'r4010_scp' %} 
 
-                {% if perms.r4010.can_view_r4010_scp %} 
+                {% if perms.r4010.can_see_data_r4010SCP %}
 
-                    {% if perms.r4010.change_r4010_scp or perms.r4010.add_r4010SCP %}
+                    {% if perms.r4010.add_r4010SCP or perms.r4010.change_r4010SCP %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -490,95 +507,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_scp or perms.r4010.add_r4010SCP %}
+                                    {% if perms.r4010.add_r4010SCP or perms.r4010.can_see_list_r4010SCP  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010SCP %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010SCP %}            
+
                                     <!-- begin_form_r4010_scp --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_scp" action="{% url 'r4010_scp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_scp" 
+                                              action="{% url 'r4010_scp_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_scp.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_scp -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_scp -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010SCP %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_scp --> 
 
-                                    {% include 'tables/r4010_scp.html' %}
-                                        
-                                    <!-- end_table_r4010_scp --> 
-
+                                        {% include 'tables/r4010_scp.html' %}
+                                        <!-- end_table_r4010_scp --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_scp -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r4010_detded -->
+        <!-- begin_r4010_detded -->
 
-            {% if tab == 'r4010_detded' or for_print %} 
+            {% if tab == 'r4010_detded' %} 
 
-                {% if perms.r4010.can_view_r4010_detded %} 
+                {% if perms.r4010.can_see_data_r4010detDed %}
 
-                    {% if perms.r4010.change_r4010_detded or perms.r4010.add_r4010detDed %}
+                    {% if perms.r4010.add_r4010detDed or perms.r4010.change_r4010detDed %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -587,95 +616,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento das deduções</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_detded or perms.r4010.add_r4010detDed %}
+                                    {% if perms.r4010.add_r4010detDed or perms.r4010.can_see_list_r4010detDed  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010detDed %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010detDed %}            
+
                                     <!-- begin_form_r4010_detded --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_detded" action="{% url 'r4010_detded_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_detded" 
+                                              action="{% url 'r4010_detded_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_detded.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_detded -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_detded -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010detDed %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_detded --> 
 
-                                    {% include 'tables/r4010_detded.html' %}
-                                        
-                                    <!-- end_table_r4010_detded --> 
-
+                                        {% include 'tables/r4010_detded.html' %}
+                                        <!-- end_table_r4010_detded --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_detded -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r4010_rendisento -->
+        <!-- begin_r4010_rendisento -->
 
-            {% if tab == 'r4010_rendisento' or for_print %} 
+            {% if tab == 'r4010_rendisento' %} 
 
-                {% if perms.r4010.can_view_r4010_rendisento %} 
+                {% if perms.r4010.can_see_data_r4010rendIsento %}
 
-                    {% if perms.r4010.change_r4010_rendisento or perms.r4010.add_r4010rendIsento %}
+                    {% if perms.r4010.add_r4010rendIsento or perms.r4010.change_r4010rendIsento %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -684,95 +725,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Rendimentos Isentos/Não Tributáveis</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_rendisento or perms.r4010.add_r4010rendIsento %}
+                                    {% if perms.r4010.add_r4010rendIsento or perms.r4010.can_see_list_r4010rendIsento  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010rendIsento %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010rendIsento %}            
+
                                     <!-- begin_form_r4010_rendisento --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_rendisento" action="{% url 'r4010_rendisento_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_rendisento" 
+                                              action="{% url 'r4010_rendisento_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_rendisento.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_rendisento -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_rendisento -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010rendIsento %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_rendisento --> 
 
-                                    {% include 'tables/r4010_rendisento.html' %}
-                                        
-                                    <!-- end_table_r4010_rendisento --> 
-
+                                        {% include 'tables/r4010_rendisento.html' %}
+                                        <!-- end_table_r4010_rendisento --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_rendisento -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r4010_infoprocret -->
+        <!-- begin_r4010_infoprocret -->
 
-            {% if tab == 'r4010_infoprocret' or for_print %} 
+            {% if tab == 'r4010_infoprocret' %} 
 
-                {% if perms.r4010.can_view_r4010_infoprocret %} 
+                {% if perms.r4010.can_see_data_r4010infoProcRet %}
 
-                    {% if perms.r4010.change_r4010_infoprocret or perms.r4010.add_r4010infoProcRet %}
+                    {% if perms.r4010.add_r4010infoProcRet or perms.r4010.change_r4010infoProcRet %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -781,95 +834,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_infoprocret or perms.r4010.add_r4010infoProcRet %}
+                                    {% if perms.r4010.add_r4010infoProcRet or perms.r4010.can_see_list_r4010infoProcRet  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010infoProcRet %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010infoProcRet %}            
+
                                     <!-- begin_form_r4010_infoprocret --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_infoprocret" action="{% url 'r4010_infoprocret_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_infoprocret" 
+                                              action="{% url 'r4010_infoprocret_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_infoprocret.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_infoprocret -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_infoprocret -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010infoProcRet %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_infoprocret --> 
 
-                                    {% include 'tables/r4010_infoprocret.html' %}
-                                        
-                                    <!-- end_table_r4010_infoprocret --> 
-
+                                        {% include 'tables/r4010_infoprocret.html' %}
+                                        <!-- end_table_r4010_infoprocret --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_infoprocret -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r4010_inforra -->
+        <!-- begin_r4010_inforra -->
 
-            {% if tab == 'r4010_inforra' or for_print %} 
+            {% if tab == 'r4010_inforra' %} 
 
-                {% if perms.r4010.can_view_r4010_inforra %} 
+                {% if perms.r4010.can_see_data_r4010infoRRA %}
 
-                    {% if perms.r4010.change_r4010_inforra or perms.r4010.add_r4010infoRRA %}
+                    {% if perms.r4010.add_r4010infoRRA or perms.r4010.change_r4010infoRRA %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -878,95 +943,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações Complementares - Rendimentos Recebidos Acumuladamente</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_inforra or perms.r4010.add_r4010infoRRA %}
+                                    {% if perms.r4010.add_r4010infoRRA or perms.r4010.can_see_list_r4010infoRRA  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010infoRRA %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010infoRRA %}            
+
                                     <!-- begin_form_r4010_inforra --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_inforra" action="{% url 'r4010_inforra_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_inforra" 
+                                              action="{% url 'r4010_inforra_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_inforra.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_inforra -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_inforra -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010infoRRA %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_inforra --> 
 
-                                    {% include 'tables/r4010_inforra.html' %}
-                                        
-                                    <!-- end_table_r4010_inforra --> 
-
+                                        {% include 'tables/r4010_inforra.html' %}
+                                        <!-- end_table_r4010_inforra --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_inforra -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_r4010_infoprocjud -->
+        <!-- begin_r4010_infoprocjud -->
 
-            {% if tab == 'r4010_infoprocjud' or for_print %} 
+            {% if tab == 'r4010_infoprocjud' %} 
 
-                {% if perms.r4010.can_view_r4010_infoprocjud %} 
+                {% if perms.r4010.can_see_data_r4010infoProcJud %}
 
-                    {% if perms.r4010.change_r4010_infoprocjud or perms.r4010.add_r4010infoProcJud %}
+                    {% if perms.r4010.add_r4010infoProcJud or perms.r4010.change_r4010infoProcJud %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -975,75 +1052,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.r4010.change_r4010_infoprocjud or perms.r4010.add_r4010infoProcJud %}
+                                    {% if perms.r4010.add_r4010infoProcJud or perms.r4010.can_see_list_r4010infoProcJud  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.r4010.add_r4010infoProcJud %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.r4010.add_r4010infoProcJud %}            
+
                                     <!-- begin_form_r4010_infoprocjud --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_r4010_infoprocjud" action="{% url 'r4010_infoprocjud_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_r4010_infoprocjud" 
+                                              action="{% url 'r4010_infoprocjud_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/r4010_infoprocjud.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_r4010_infoprocjud -->
-                                    {% endif %} 
+
+                                <!-- end_form_r4010_infoprocjud -->
+                                {% endif %} 
+
+                                {% if perms.r4010.can_see_r4010infoProcJud %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_r4010_infoprocjud --> 
 
-                                    {% include 'tables/r4010_infoprocjud.html' %}
-                                        
-                                    <!-- end_table_r4010_infoprocjud --> 
-
+                                        {% include 'tables/r4010_infoprocjud.html' %}
+                                        <!-- end_table_r4010_infoprocjud --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_r4010_infoprocjud -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

@@ -104,8 +104,11 @@ class s1030alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030alteracao", "Can view S1030ALTERACAO"),
-            ("can_view_menu_s1030alteracao", "Can view menu S1030ALTERACAO"),)
+            ("can_see_list_s1030alteracao", u"Pode ver listagem do modelo S1030ALTERACAO"),
+            ("can_see_data_s1030alteracao", u"Pode visualizar o conteúdo do modelo S1030ALTERACAO"),
+            ("can_see_menu_s1030alteracao", u"Pode visualizar no menu o modelo S1030ALTERACAO"),
+            ("can_print_list_s1030alteracao", u"Pode imprimir listagem do modelo S1030ALTERACAO"),
+            ("can_print_data_s1030alteracao", u"Pode imprimir o conteúdo do modelo S1030ALTERACAO"), )
             
         ordering = [
             's1030_evttabcargo',
@@ -175,8 +178,11 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030alteracaocargoPublico", "Can view S1030ALTERACAOCARGOPUBLICO"),
-            ("can_view_menu_s1030alteracaocargoPublico", "Can view menu S1030ALTERACAOCARGOPUBLICO"),)
+            ("can_see_list_s1030alteracaocargoPublico", u"Pode ver listagem do modelo S1030ALTERACAOCARGOPUBLICO"),
+            ("can_see_data_s1030alteracaocargoPublico", u"Pode visualizar o conteúdo do modelo S1030ALTERACAOCARGOPUBLICO"),
+            ("can_see_menu_s1030alteracaocargoPublico", u"Pode visualizar no menu o modelo S1030ALTERACAOCARGOPUBLICO"),
+            ("can_print_list_s1030alteracaocargoPublico", u"Pode imprimir listagem do modelo S1030ALTERACAOCARGOPUBLICO"),
+            ("can_print_data_s1030alteracaocargoPublico", u"Pode imprimir o conteúdo do modelo S1030ALTERACAOCARGOPUBLICO"), )
             
         ordering = [
             's1030_alteracao',
@@ -238,8 +244,11 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030alteracaonovaValidade", "Can view S1030ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1030alteracaonovaValidade", "Can view menu S1030ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1030alteracaonovaValidade", u"Pode ver listagem do modelo S1030ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1030alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1030ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1030alteracaonovaValidade", u"Pode visualizar no menu o modelo S1030ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1030alteracaonovaValidade", u"Pode imprimir listagem do modelo S1030ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1030alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1030ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1030_alteracao',
@@ -298,8 +307,11 @@ class s1030exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030exclusao", "Can view S1030EXCLUSAO"),
-            ("can_view_menu_s1030exclusao", "Can view menu S1030EXCLUSAO"),)
+            ("can_see_list_s1030exclusao", u"Pode ver listagem do modelo S1030EXCLUSAO"),
+            ("can_see_data_s1030exclusao", u"Pode visualizar o conteúdo do modelo S1030EXCLUSAO"),
+            ("can_see_menu_s1030exclusao", u"Pode visualizar no menu o modelo S1030EXCLUSAO"),
+            ("can_print_list_s1030exclusao", u"Pode imprimir listagem do modelo S1030EXCLUSAO"),
+            ("can_print_data_s1030exclusao", u"Pode imprimir o conteúdo do modelo S1030EXCLUSAO"), )
             
         ordering = [
             's1030_evttabcargo',
@@ -363,8 +375,11 @@ class s1030inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030inclusao", "Can view S1030INCLUSAO"),
-            ("can_view_menu_s1030inclusao", "Can view menu S1030INCLUSAO"),)
+            ("can_see_list_s1030inclusao", u"Pode ver listagem do modelo S1030INCLUSAO"),
+            ("can_see_data_s1030inclusao", u"Pode visualizar o conteúdo do modelo S1030INCLUSAO"),
+            ("can_see_menu_s1030inclusao", u"Pode visualizar no menu o modelo S1030INCLUSAO"),
+            ("can_print_list_s1030inclusao", u"Pode imprimir listagem do modelo S1030INCLUSAO"),
+            ("can_print_data_s1030inclusao", u"Pode imprimir o conteúdo do modelo S1030INCLUSAO"), )
             
         ordering = [
             's1030_evttabcargo',
@@ -434,8 +449,11 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030inclusaocargoPublico", "Can view S1030INCLUSAOCARGOPUBLICO"),
-            ("can_view_menu_s1030inclusaocargoPublico", "Can view menu S1030INCLUSAOCARGOPUBLICO"),)
+            ("can_see_list_s1030inclusaocargoPublico", u"Pode ver listagem do modelo S1030INCLUSAOCARGOPUBLICO"),
+            ("can_see_data_s1030inclusaocargoPublico", u"Pode visualizar o conteúdo do modelo S1030INCLUSAOCARGOPUBLICO"),
+            ("can_see_menu_s1030inclusaocargoPublico", u"Pode visualizar no menu o modelo S1030INCLUSAOCARGOPUBLICO"),
+            ("can_print_list_s1030inclusaocargoPublico", u"Pode imprimir listagem do modelo S1030INCLUSAOCARGOPUBLICO"),
+            ("can_print_data_s1030inclusaocargoPublico", u"Pode imprimir o conteúdo do modelo S1030INCLUSAOCARGOPUBLICO"), )
             
         ordering = [
             's1030_inclusao',

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4010_infoprocjud_despprocjud__r4010_infoprocjud__label">Detalhamento das despesas de processo judicial*</label>
     {% if not for_print %}{% if r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value %}
-        <a href="{% url 'r4010_infoprocjud_salvar' hash='{}'|json_return_page:'r4010_infoprocjud_despprocjud_salvar'|json_return_hash:hash|json_id:r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

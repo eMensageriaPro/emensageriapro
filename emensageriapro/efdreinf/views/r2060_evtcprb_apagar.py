@@ -54,67 +54,51 @@ from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
 from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.s1000.models import s1000inclusao
-from emensageriapro.s1000.models import s1000alteracao
-from emensageriapro.s1000.models import s1000exclusao
-from emensageriapro.s1000.forms import form_s1000_inclusao
-from emensageriapro.s1000.forms import form_s1000_alteracao
-from emensageriapro.s1000.forms import form_s1000_exclusao
 
 
 @login_required
-def apagar(request, hash):
-
+def apagar(request, pk):
+        
+    import json
+    from django.forms.models import model_to_dict
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r2060_evtcprb_id = int(dict_hash['id'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    
-    r2060_evtcprb = get_object_or_404(r2060evtCPRB, id=r2060_evtcprb_id)
+    r2060_evtcprb = get_object_or_404(r2060evtCPRB, id=pk)
     
     if request.method == 'POST':
     
         if r2060_evtcprb.status == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(r2060_evtcprb), indent=4, sort_keys=True, default=str)
-            obj = r2060evtCPRB.objects.get(id = r2060_evtcprb_id)
+            obj = r2060evtCPRB.objects.get(id=pk)
             obj.delete(request=request)
             #r2060_evtcprb_apagar_custom
             #r2060_evtcprb_apagar_custom
             messages.success(request, 'Apagado com sucesso!')
             gravar_auditoria(situacao_anterior,
                              '', 
-                             'r2060_evtcprb', r2060_evtcprb_id, usuario_id, 3)
-        else:
-            messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
-            
-        if request.session['retorno_pagina']== 'r2060_evtcprb_salvar':
-        
-            return redirect('r2060_evtcprb', 
-                            hash=request.session['retorno_hash'])
-            
+                             'r2060_evtcprb', pk, request.user.id, 3)
         else:
         
-            return redirect(request.session['retorno_pagina'], 
-                            hash=request.session['retorno_hash'])
+            messages.error(request, u'''Não foi possivel apagar o evento, somente é 
+                                        possível apagar os eventos com status "Cadastrado"!''')
+            
+        if 'r2060_evtcprb' in request.session['return_page']:
+        
+            return redirect('r2060_evtcprb')
+            
+        else:
+        
+            return redirect(request.session['return_page'], 
+                            pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk, 
         'r2060_evtcprb': r2060_evtcprb, 
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
         'modulos': ['efdreinf', ],
         'paginas': ['r2060_evtcprb', ],
-        'hash': hash,
     }
     
     return render(request, 'r2060_evtcprb_apagar.html', context)

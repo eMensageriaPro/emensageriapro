@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2306_supervisorestagio__s2306_infoestagiario__label">Supervisor do Estágio*</label>
     {% if not for_print %}{% if s2306_supervisorestagio_form.s2306_infoestagiario.value %}
-        <a href="{% url 's2306_infoestagiario_salvar' hash='{}'|json_return_page:'s2306_supervisorestagio_salvar'|json_return_hash:hash|json_id:s2306_supervisorestagio_form.s2306_infoestagiario.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2306_infoestagiario_salvar' pk=s2306_supervisorestagio_form.s2306_infoestagiario.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

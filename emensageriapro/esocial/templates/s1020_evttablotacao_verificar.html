@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1020 - Tabela de Lotações Tributárias<br>Identidade: {{ s1020_evttablotacao.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1020_evttablotacao_verificar' hash='{}'|json_id:s1020_evttablotacao_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1020_evttablotacao_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1020_evttablotacao_verificar' hash='{}'|json_id:s1020_evttablotacao_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1020_evttablotacao_verificar' hash='{}'|json_id:s1020_evttablotacao_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1020_evttablotacao_verificar' hash='{}'|json_id:s1020_evttablotacao_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1020_evttablotacao.tpamb or s1020_evttablotacao.tpamb == 0 %}{{ s1020_evttablotacao.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_evttablotacao_visualizar' %}
-                <a href="{% url 's1020_evttablotacao_salvar'  hash='{}'|json_id:s1020_evttablotacao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
+                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1020_evttablotacao.procemi or s1020_evttablotacao.procemi == 0 %}{{ s1020_evttablotacao.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_evttablotacao_visualizar' %}
-                <a href="{% url 's1020_evttablotacao_salvar'  hash='{}'|json_id:s1020_evttablotacao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
+                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1020_evttablotacao.verproc or s1020_evttablotacao.verproc == 0 %}{{ s1020_evttablotacao.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_evttablotacao_visualizar' %}
-                <a href="{% url 's1020_evttablotacao_salvar'  hash='{}'|json_id:s1020_evttablotacao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
+                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1020_evttablotacao.tpinsc or s1020_evttablotacao.tpinsc == 0 %}{{ s1020_evttablotacao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_evttablotacao_visualizar' %}
-                <a href="{% url 's1020_evttablotacao_salvar'  hash='{}'|json_id:s1020_evttablotacao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
+                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1020_evttablotacao.nrinsc or s1020_evttablotacao.nrinsc == 0 %}{{ s1020_evttablotacao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_evttablotacao_visualizar' %}
-                <a href="{% url 's1020_evttablotacao_salvar'  hash='{}'|json_id:s1020_evttablotacao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
+                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">codLotacao</td>
             <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
             <td width="200px"><b>{% if s1020_inclusao.codlotacao or s1020_inclusao.codlotacao == 0 %}{{ s1020_inclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1020_inclusao.inivalid or s1020_inclusao.inivalid == 0 %}{{ s1020_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1020_inclusao.fimvalid or s1020_inclusao.fimvalid == 0 %}{{ s1020_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -309,11 +306,11 @@
             <td width="130px">tpLotacao</td>
             <td width="500px">Preencher com o código correspondente ao tipo de lotação, conforme tabela 10. <validacao> Deve ser um código válido, existente na tabela 10, e compatível com a Classificação Tributária indicada no evento de Informações Cadastrais do Empregador.</td>
             <td width="200px"><b>{% if s1020_inclusao.tplotacao or s1020_inclusao.tplotacao == 0 %}{{ s1020_inclusao.tplotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> O campo não deve ser preenchido se {tpLotacao} for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo {nrInsc}, conforme tabela 10 - Tipos de Lotação Tributária. <valores_validos> 1, 2, 4.</td>
             <td width="200px"><b>{% if s1020_inclusao.tpinsc or s1020_inclusao.tpinsc == 0 %}{{ s1020_inclusao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Preencher com o número de Inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária, conforme indicado na tabela 10 - Tipos de Lotação Tributária. <validacao> a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo {tpInsc} e na tabela de tipos de Lotação Tributária. b) Deve ser um identificador válido, constante das bases da RFB.</td>
             <td width="200px"><b>{% if s1020_inclusao.nrinsc or s1020_inclusao.nrinsc == 0 %}{{ s1020_inclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -371,11 +368,11 @@
             <td width="130px">fpas</td>
             <td width="500px">Preencher com o código relativo ao FPAS. <validacao> Deve ser um código FPAS válido, conforme tabela 4.</td>
             <td width="200px"><b>{% if s1020_inclusao.fpas or s1020_inclusao.fpas == 0 %}{{ s1020_inclusao.fpas }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -390,11 +387,11 @@
             <td width="130px">codTercs</td>
             <td width="500px">Preencher com o código de Terceiros, conforme tabela 4, já considerando a existência de eventuais convênios para recolhimento direto. Exemplo: Se o contribuinte está enquadrado com FPAS 507, cujo código cheio de Terceiros é 0079, se possuir convênio com Senai deve informar o código 0075. <validacao> Se a classificação tributária for igual a [01, 02, 03, 04], informar 0000. Nos demais casos, o código de terceiros informado deve ser compatível com o código de FPAS informado, conforme tabela 4.</td>
             <td width="200px"><b>{% if s1020_inclusao.codtercs or s1020_inclusao.codtercs == 0 %}{{ s1020_inclusao.codtercs }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -409,11 +406,11 @@
             <td width="130px">codTercsSusp</td>
             <td width="500px">Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. <validacao> Deve ser um código consistente com a tabela 4. Deve haver um processo em {procJudTerceiro} para cada código de Terceiro cujo recolhimento esteja suspenso.</td>
             <td width="200px"><b>{% if s1020_inclusao.codtercssusp or s1020_inclusao.codtercssusp == 0 %}{{ s1020_inclusao.codtercssusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_visualizar' %}
-                <a href="{% url 's1020_inclusao_salvar'  hash='{}'|json_id:s1020_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
+                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -440,11 +437,11 @@
             <td width="130px">codTerc</td>
             <td width="500px">Informar o Código de Terceiro. <validacao> Deve ser um código de terceiro válido e compatível com o FPAS/Terceiros informado no registro superior, conforme tabela 4.</td>
             <td width="200px"><b>{% if s1020_inclusao_procjudterceiro.codterc or s1020_inclusao_procjudterceiro.codterc == 0 %}{{ s1020_inclusao_procjudterceiro.codterc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_procjudterceiro_visualizar' %}
-                <a href="{% url 's1020_inclusao_procjudterceiro_salvar'  hash='{}'|json_id:s1020_inclusao_procjudterceiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro or perms.esocial.can_see_s1020inclusaoprocJudTerceiro %}
+                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=s1020_inclusao_procjudterceiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -459,11 +456,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo válido e deve existir na tabela de processos (S-1070).</td>
             <td width="200px"><b>{% if s1020_inclusao_procjudterceiro.nrprocjud or s1020_inclusao_procjudterceiro.nrprocjud == 0 %}{{ s1020_inclusao_procjudterceiro.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_procjudterceiro_visualizar' %}
-                <a href="{% url 's1020_inclusao_procjudterceiro_salvar'  hash='{}'|json_id:s1020_inclusao_procjudterceiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro or perms.esocial.can_see_s1020inclusaoprocJudTerceiro %}
+                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=s1020_inclusao_procjudterceiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -478,11 +475,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
             <td width="200px"><b>{% if s1020_inclusao_procjudterceiro.codsusp or s1020_inclusao_procjudterceiro.codsusp == 0 %}{{ s1020_inclusao_procjudterceiro.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_procjudterceiro_visualizar' %}
-                <a href="{% url 's1020_inclusao_procjudterceiro_salvar'  hash='{}'|json_id:s1020_inclusao_procjudterceiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro or perms.esocial.can_see_s1020inclusaoprocJudTerceiro %}
+                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=s1020_inclusao_procjudterceiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -503,11 +500,11 @@
             <td width="130px">tpInscContrat</td>
             <td width="500px">Tipo de Inscrição do contratante<opcoes>1 - CNPJ; 2 - CPF. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.tpinsccontrat or s1020_inclusao_infoemprparcial.tpinsccontrat == 0 %}{{ s1020_inclusao_infoemprparcial.tpinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_inclusao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
+                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -522,11 +519,11 @@
             <td width="130px">nrInscContrat</td>
             <td width="500px">Número de Inscrição (CNPJ/CPF) do contratante. <validacao> Deve ser um número de CNPJ ou CPF válido, conforme definido em {tpInscContrat}.</td>
             <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.nrinsccontrat or s1020_inclusao_infoemprparcial.nrinsccontrat == 0 %}{{ s1020_inclusao_infoemprparcial.nrinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_inclusao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
+                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -541,11 +538,11 @@
             <td width="130px">tpInscProp</td>
             <td width="500px">Tipo de Inscrição do proprietário do CNO. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.tpinscprop or s1020_inclusao_infoemprparcial.tpinscprop == 0 %}{{ s1020_inclusao_infoemprparcial.tpinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_inclusao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
+                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -560,11 +557,11 @@
             <td width="130px">nrInscProp</td>
             <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscProp}, e constar como responsável no cadastro do CNO.</td>
             <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.nrinscprop or s1020_inclusao_infoemprparcial.nrinscprop == 0 %}{{ s1020_inclusao_infoemprparcial.nrinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_inclusao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_inclusao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
+                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -590,11 +587,11 @@
             <td width="130px">codLotacao</td>
             <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
             <td width="200px"><b>{% if s1020_alteracao.codlotacao or s1020_alteracao.codlotacao == 0 %}{{ s1020_alteracao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -609,11 +606,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1020_alteracao.inivalid or s1020_alteracao.inivalid == 0 %}{{ s1020_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -628,11 +625,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1020_alteracao.fimvalid or s1020_alteracao.fimvalid == 0 %}{{ s1020_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -652,11 +649,11 @@
             <td width="130px">tpLotacao</td>
             <td width="500px">Preencher com o código correspondente ao tipo de lotação, conforme tabela 10. <validacao> Deve ser um código válido, existente na tabela 10, e compatível com a Classificação Tributária indicada no evento de Informações Cadastrais do Empregador.</td>
             <td width="200px"><b>{% if s1020_alteracao.tplotacao or s1020_alteracao.tplotacao == 0 %}{{ s1020_alteracao.tplotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -671,11 +668,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> O campo não deve ser preenchido se {tpLotacao} for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo {nrInsc}, conforme tabela 10 - Tipos de Lotação Tributária. <valores_validos> 1, 2, 4.</td>
             <td width="200px"><b>{% if s1020_alteracao.tpinsc or s1020_alteracao.tpinsc == 0 %}{{ s1020_alteracao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -690,11 +687,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Preencher com o número de Inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária, conforme indicado na tabela 10 - Tipos de Lotação Tributária. <validacao> a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo {tpInsc} e na tabela de tipos de Lotação Tributária. b) Deve ser um identificador válido, constante das bases da RFB.</td>
             <td width="200px"><b>{% if s1020_alteracao.nrinsc or s1020_alteracao.nrinsc == 0 %}{{ s1020_alteracao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -714,11 +711,11 @@
             <td width="130px">fpas</td>
             <td width="500px">Preencher com o código relativo ao FPAS. <validacao> Deve ser um código FPAS válido, conforme tabela 4.</td>
             <td width="200px"><b>{% if s1020_alteracao.fpas or s1020_alteracao.fpas == 0 %}{{ s1020_alteracao.fpas }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -733,11 +730,11 @@
             <td width="130px">codTercs</td>
             <td width="500px">Preencher com o código de Terceiros, conforme tabela 4, já considerando a existência de eventuais convênios para recolhimento direto. Exemplo: Se o contribuinte está enquadrado com FPAS 507, cujo código cheio de Terceiros é 0079, se possuir convênio com Senai deve informar o código 0075. <validacao> Se a classificação tributária for igual a [01, 02, 03, 04], informar 0000. Nos demais casos, o código de terceiros informado deve ser compatível com o código de FPAS informado, conforme tabela 4.</td>
             <td width="200px"><b>{% if s1020_alteracao.codtercs or s1020_alteracao.codtercs == 0 %}{{ s1020_alteracao.codtercs }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -752,11 +749,11 @@
             <td width="130px">codTercsSusp</td>
             <td width="500px">Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. <validacao> Deve ser um código consistente com a tabela 4. Deve haver um processo em {procJudTerceiro} para cada código de Terceiro cujo recolhimento esteja suspenso.</td>
             <td width="200px"><b>{% if s1020_alteracao.codtercssusp or s1020_alteracao.codtercssusp == 0 %}{{ s1020_alteracao.codtercssusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
-                <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:s1020_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
+                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -783,11 +780,11 @@
             <td width="130px">codTerc</td>
             <td width="500px">Informar o Código de Terceiro. <validacao> Deve ser um código de terceiro válido e compatível com o FPAS/Terceiros informado no registro superior, conforme tabela 4.</td>
             <td width="200px"><b>{% if s1020_alteracao_procjudterceiro.codterc or s1020_alteracao_procjudterceiro.codterc == 0 %}{{ s1020_alteracao_procjudterceiro.codterc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_procjudterceiro_visualizar' %}
-                <a href="{% url 's1020_alteracao_procjudterceiro_salvar'  hash='{}'|json_id:s1020_alteracao_procjudterceiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro or perms.esocial.can_see_s1020alteracaoprocJudTerceiro %}
+                <a href="{% url 's1020_alteracao_procjudterceiro_salvar' pk=s1020_alteracao_procjudterceiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -802,11 +799,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo válido e deve existir na tabela de processos (S-1070).</td>
             <td width="200px"><b>{% if s1020_alteracao_procjudterceiro.nrprocjud or s1020_alteracao_procjudterceiro.nrprocjud == 0 %}{{ s1020_alteracao_procjudterceiro.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_procjudterceiro_visualizar' %}
-                <a href="{% url 's1020_alteracao_procjudterceiro_salvar'  hash='{}'|json_id:s1020_alteracao_procjudterceiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro or perms.esocial.can_see_s1020alteracaoprocJudTerceiro %}
+                <a href="{% url 's1020_alteracao_procjudterceiro_salvar' pk=s1020_alteracao_procjudterceiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -821,11 +818,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
             <td width="200px"><b>{% if s1020_alteracao_procjudterceiro.codsusp or s1020_alteracao_procjudterceiro.codsusp == 0 %}{{ s1020_alteracao_procjudterceiro.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_procjudterceiro_visualizar' %}
-                <a href="{% url 's1020_alteracao_procjudterceiro_salvar'  hash='{}'|json_id:s1020_alteracao_procjudterceiro.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro or perms.esocial.can_see_s1020alteracaoprocJudTerceiro %}
+                <a href="{% url 's1020_alteracao_procjudterceiro_salvar' pk=s1020_alteracao_procjudterceiro.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -846,11 +843,11 @@
             <td width="130px">tpInscContrat</td>
             <td width="500px">Tipo de Inscrição do contratante<opcoes>1 - CNPJ; 2 - CPF. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.tpinsccontrat or s1020_alteracao_infoemprparcial.tpinsccontrat == 0 %}{{ s1020_alteracao_infoemprparcial.tpinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_alteracao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
+                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -865,11 +862,11 @@
             <td width="130px">nrInscContrat</td>
             <td width="500px">Número de Inscrição (CNPJ/CPF) do contratante. <validacao> Deve ser um número de CNPJ ou CPF válido, conforme definido em {tpInscContrat}.</td>
             <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.nrinsccontrat or s1020_alteracao_infoemprparcial.nrinsccontrat == 0 %}{{ s1020_alteracao_infoemprparcial.nrinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_alteracao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
+                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -884,11 +881,11 @@
             <td width="130px">tpInscProp</td>
             <td width="500px">Tipo de Inscrição do proprietário do CNO. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.tpinscprop or s1020_alteracao_infoemprparcial.tpinscprop == 0 %}{{ s1020_alteracao_infoemprparcial.tpinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_alteracao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
+                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -903,11 +900,11 @@
             <td width="130px">nrInscProp</td>
             <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscProp}, e constar como responsável no cadastro do CNO.</td>
             <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.nrinscprop or s1020_alteracao_infoemprparcial.nrinscprop == 0 %}{{ s1020_alteracao_infoemprparcial.nrinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_visualizar' %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar'  hash='{}'|json_id:s1020_alteracao_infoemprparcial.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
+                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -928,11 +925,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1020_alteracao_novavalidade.inivalid or s1020_alteracao_novavalidade.inivalid == 0 %}{{ s1020_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1020_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1020_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaonovaValidade or perms.esocial.can_see_s1020alteracaonovaValidade %}
+                <a href="{% url 's1020_alteracao_novavalidade_salvar' pk=s1020_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -947,11 +944,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1020_alteracao_novavalidade.fimvalid or s1020_alteracao_novavalidade.fimvalid == 0 %}{{ s1020_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1020_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1020_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020alteracaonovaValidade or perms.esocial.can_see_s1020alteracaonovaValidade %}
+                <a href="{% url 's1020_alteracao_novavalidade_salvar' pk=s1020_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -977,11 +974,11 @@
             <td width="130px">codLotacao</td>
             <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
             <td width="200px"><b>{% if s1020_exclusao.codlotacao or s1020_exclusao.codlotacao == 0 %}{{ s1020_exclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_exclusao_visualizar' %}
-                <a href="{% url 's1020_exclusao_salvar'  hash='{}'|json_id:s1020_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020exclusao or perms.esocial.can_see_s1020exclusao %}
+                <a href="{% url 's1020_exclusao_salvar' pk=s1020_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -996,11 +993,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1020_exclusao.inivalid or s1020_exclusao.inivalid == 0 %}{{ s1020_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_exclusao_visualizar' %}
-                <a href="{% url 's1020_exclusao_salvar'  hash='{}'|json_id:s1020_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020exclusao or perms.esocial.can_see_s1020exclusao %}
+                <a href="{% url 's1020_exclusao_salvar' pk=s1020_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -1015,11 +1012,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1020_exclusao.fimvalid or s1020_exclusao.fimvalid == 0 %}{{ s1020_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1020_exclusao_visualizar' %}
-                <a href="{% url 's1020_exclusao_salvar'  hash='{}'|json_id:s1020_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1020.can_see_s1020exclusao or perms.esocial.can_see_s1020exclusao %}
+                <a href="{% url 's1020_exclusao_salvar' pk=s1020_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

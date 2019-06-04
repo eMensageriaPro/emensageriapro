@@ -100,8 +100,11 @@ class r9001RCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001RCPRB", "Can view R9001RCPRB"),
-            ("can_view_menu_r9001RCPRB", "Can view menu R9001RCPRB"),)
+            ("can_see_list_r9001RCPRB", u"Pode ver listagem do modelo R9001RCPRB"),
+            ("can_see_data_r9001RCPRB", u"Pode visualizar o conteúdo do modelo R9001RCPRB"),
+            ("can_see_menu_r9001RCPRB", u"Pode visualizar no menu o modelo R9001RCPRB"),
+            ("can_print_list_r9001RCPRB", u"Pode imprimir listagem do modelo R9001RCPRB"),
+            ("can_print_data_r9001RCPRB", u"Pode imprimir o conteúdo do modelo R9001RCPRB"), )
             
         ordering = [
             'r9001_infototal',
@@ -161,8 +164,11 @@ class r9001RComl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001RComl", "Can view R9001RCOML"),
-            ("can_view_menu_r9001RComl", "Can view menu R9001RCOML"),)
+            ("can_see_list_r9001RComl", u"Pode ver listagem do modelo R9001RCOML"),
+            ("can_see_data_r9001RComl", u"Pode visualizar o conteúdo do modelo R9001RCOML"),
+            ("can_see_menu_r9001RComl", u"Pode visualizar no menu o modelo R9001RCOML"),
+            ("can_print_list_r9001RComl", u"Pode imprimir listagem do modelo R9001RCOML"),
+            ("can_print_data_r9001RComl", u"Pode imprimir o conteúdo do modelo R9001RCOML"), )
             
         ordering = [
             'r9001_infototal',
@@ -228,8 +234,11 @@ class r9001RPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001RPrest", "Can view R9001RPREST"),
-            ("can_view_menu_r9001RPrest", "Can view menu R9001RPREST"),)
+            ("can_see_list_r9001RPrest", u"Pode ver listagem do modelo R9001RPREST"),
+            ("can_see_data_r9001RPrest", u"Pode visualizar o conteúdo do modelo R9001RPREST"),
+            ("can_see_menu_r9001RPrest", u"Pode visualizar no menu o modelo R9001RPREST"),
+            ("can_print_list_r9001RPrest", u"Pode imprimir listagem do modelo R9001RPREST"),
+            ("can_print_data_r9001RPrest", u"Pode imprimir o conteúdo do modelo R9001RPREST"), )
             
         ordering = [
             'r9001_infototal',
@@ -293,8 +302,11 @@ class r9001RRecEspetDesp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001RRecEspetDesp", "Can view R9001RRECESPETDESP"),
-            ("can_view_menu_r9001RRecEspetDesp", "Can view menu R9001RRECESPETDESP"),)
+            ("can_see_list_r9001RRecEspetDesp", u"Pode ver listagem do modelo R9001RRECESPETDESP"),
+            ("can_see_data_r9001RRecEspetDesp", u"Pode visualizar o conteúdo do modelo R9001RRECESPETDESP"),
+            ("can_see_menu_r9001RRecEspetDesp", u"Pode visualizar no menu o modelo R9001RRECESPETDESP"),
+            ("can_print_list_r9001RRecEspetDesp", u"Pode imprimir listagem do modelo R9001RRECESPETDESP"),
+            ("can_print_data_r9001RRecEspetDesp", u"Pode imprimir o conteúdo do modelo R9001RRECESPETDESP"), )
             
         ordering = [
             'r9001_infototal',
@@ -359,8 +371,11 @@ class r9001RRecRepAD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001RRecRepAD", "Can view R9001RRECREPAD"),
-            ("can_view_menu_r9001RRecRepAD", "Can view menu R9001RRECREPAD"),)
+            ("can_see_list_r9001RRecRepAD", u"Pode ver listagem do modelo R9001RRECREPAD"),
+            ("can_see_data_r9001RRecRepAD", u"Pode visualizar o conteúdo do modelo R9001RRECREPAD"),
+            ("can_see_menu_r9001RRecRepAD", u"Pode visualizar no menu o modelo R9001RRECREPAD"),
+            ("can_print_list_r9001RRecRepAD", u"Pode imprimir listagem do modelo R9001RRECREPAD"),
+            ("can_print_data_r9001RRecRepAD", u"Pode imprimir o conteúdo do modelo R9001RRECREPAD"), )
             
         ordering = [
             'r9001_infototal',
@@ -422,8 +437,11 @@ class r9001RTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001RTom", "Can view R9001RTOM"),
-            ("can_view_menu_r9001RTom", "Can view menu R9001RTOM"),)
+            ("can_see_list_r9001RTom", u"Pode ver listagem do modelo R9001RTOM"),
+            ("can_see_data_r9001RTom", u"Pode visualizar o conteúdo do modelo R9001RTOM"),
+            ("can_see_menu_r9001RTom", u"Pode visualizar no menu o modelo R9001RTOM"),
+            ("can_print_list_r9001RTom", u"Pode imprimir listagem do modelo R9001RTOM"),
+            ("can_print_data_r9001RTom", u"Pode imprimir o conteúdo do modelo R9001RTOM"), )
             
         ordering = [
             'r9001_infototal',
@@ -482,8 +500,11 @@ class r9001infoCRTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001infoCRTom", "Can view R9001INFOCRTOM"),
-            ("can_view_menu_r9001infoCRTom", "Can view menu R9001INFOCRTOM"),)
+            ("can_see_list_r9001infoCRTom", u"Pode ver listagem do modelo R9001INFOCRTOM"),
+            ("can_see_data_r9001infoCRTom", u"Pode visualizar o conteúdo do modelo R9001INFOCRTOM"),
+            ("can_see_menu_r9001infoCRTom", u"Pode visualizar no menu o modelo R9001INFOCRTOM"),
+            ("can_print_list_r9001infoCRTom", u"Pode imprimir listagem do modelo R9001INFOCRTOM"),
+            ("can_print_data_r9001infoCRTom", u"Pode imprimir o conteúdo do modelo R9001INFOCRTOM"), )
             
         ordering = [
             'r9001_rtom',
@@ -542,8 +563,11 @@ class r9001infoTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001infoTotal", "Can view R9001INFOTOTAL"),
-            ("can_view_menu_r9001infoTotal", "Can view menu R9001INFOTOTAL"),)
+            ("can_see_list_r9001infoTotal", u"Pode ver listagem do modelo R9001INFOTOTAL"),
+            ("can_see_data_r9001infoTotal", u"Pode visualizar o conteúdo do modelo R9001INFOTOTAL"),
+            ("can_see_menu_r9001infoTotal", u"Pode visualizar no menu o modelo R9001INFOTOTAL"),
+            ("can_print_list_r9001infoTotal", u"Pode imprimir listagem do modelo R9001INFOTOTAL"),
+            ("can_print_data_r9001infoTotal", u"Pode imprimir o conteúdo do modelo R9001INFOTOTAL"), )
             
         ordering = [
             'r9001_evttotal',
@@ -606,8 +630,11 @@ class r9001regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001regOcorrs", "Can view R9001REGOCORRS"),
-            ("can_view_menu_r9001regOcorrs", "Can view menu R9001REGOCORRS"),)
+            ("can_see_list_r9001regOcorrs", u"Pode ver listagem do modelo R9001REGOCORRS"),
+            ("can_see_data_r9001regOcorrs", u"Pode visualizar o conteúdo do modelo R9001REGOCORRS"),
+            ("can_see_menu_r9001regOcorrs", u"Pode visualizar no menu o modelo R9001REGOCORRS"),
+            ("can_print_list_r9001regOcorrs", u"Pode imprimir listagem do modelo R9001REGOCORRS"),
+            ("can_print_data_r9001regOcorrs", u"Pode imprimir o conteúdo do modelo R9001REGOCORRS"), )
             
         ordering = [
             'r9001_evttotal',

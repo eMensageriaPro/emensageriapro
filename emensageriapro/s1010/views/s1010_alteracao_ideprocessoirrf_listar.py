@@ -59,24 +59,9 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def listar(request, hash):
+def listar(request, output=None):
 
-    for_print = 0
-    
-    try: 
-    
-        usuario_id = request.user.id   
-        dict_hash = get_hash_url( hash )
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('s1010.can_view_s1010alteracaoideProcessoIRRF'):
+    if request.user.has_perm('s1010.can_see_s1010alteracaoideProcessoIRRF'):
     
         filtrar = False
         
@@ -126,30 +111,23 @@ def listar(request, hash):
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s1010_alteracao_ideprocessoirrf_listar_custom
         
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's1010_alteracao_ideprocessoirrf'
-        
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             's1010_alteracao_ideprocessoirrf_lista': s1010_alteracao_ideprocessoirrf_lista, 
-            'usuario': usuario,
             'modulos': ['s1010', ],
             'paginas': ['s1010_alteracao_ideprocessoirrf', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,
-            'for_print': for_print,
-            'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
-        
-        if for_print in (0,1):
-        
-            return render(request, 's1010_alteracao_ideprocessoirrf_listar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             from wkhtmltopdf.views import PDFTemplateResponse
+            
             response = PDFTemplateResponse(
                 request=request,
                 template='s1010_alteracao_ideprocessoirrf_listar.html',
@@ -166,11 +144,11 @@ def listar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
+                             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             from django.shortcuts import render_to_response
             response = render_to_response('s1010_alteracao_ideprocessoirrf_listar.html', context)
@@ -179,7 +157,7 @@ def listar(request, hash):
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
             
-        elif for_print == 4:
+        elif output == 'csv':
         
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s1010_alteracao_ideprocessoirrf.csv', context)
@@ -187,11 +165,16 @@ def listar(request, hash):
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+        
+        else:
+        
+            return render(request, 's1010_alteracao_ideprocessoirrf_listar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'output': output,
             'data': datetime.datetime.now(),
             'modulos': ['s1010', ],
             'paginas': ['s1010_alteracao_ideprocessoirrf', ],

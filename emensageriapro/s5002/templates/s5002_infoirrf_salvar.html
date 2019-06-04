@@ -34,51 +34,48 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s5002infoIrrf
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s5002infoIrrf</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s5002.can_view_s5002infoIrrf %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's5002_infoirrf_salvar' hash='{}'|json_return_page:'s5002_infoirrf_salvar'|json_return_hash:hash|json_id:s5002_infoirrf_id|json_print:0|base64_encode_me %}">
-                            Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s5002_infoirrf_id %}
+                    {% if pk %}
+                        {% if perms.s5002.can_see_s5002infoIrrf %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='master' %}">
+                                Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s5002.can_view_s5002_basesirrf %}
+                            {% if perms.s5002.can_see_s5002basesIrrf %}
                                 <li {% if tab == 's5002_basesirrf' %} class="active"{% endif %} >
-                                    <a href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_infoirrf_id|json_print:0|json_tab:'s5002_basesirrf'|base64_encode_me %}">
+                                    <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='s5002_basesirrf' %}">
                                     Bases, deduções, isenções e retenções do IRRF</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s5002.can_view_s5002_irrf %}
+                            {% if perms.s5002.can_see_s5002irrf %}
                                 <li {% if tab == 's5002_irrf' %} class="active"{% endif %} >
-                                    <a href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_infoirrf_id|json_print:0|json_tab:'s5002_irrf'|base64_encode_me %}">
+                                    <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='s5002_irrf' %}">
                                     Informações relativas ao Imposto de Renda Retido na Fonte</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s5002.can_view_s5002_idepgtoext %}
+                            {% if perms.s5002.can_see_s5002idePgtoExt %}
                                 <li {% if tab == 's5002_idepgtoext' %} class="active"{% endif %} >
-                                    <a href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_infoirrf_id|json_print:0|json_tab:'s5002_idepgtoext'|base64_encode_me %}">
+                                    <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='s5002_idepgtoext' %}">
                                     Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</a>
                                 </li>
                             {% endif %}
@@ -88,275 +85,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s5002_infoirrf_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s5002_infoirrf_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s5002_infoirrf_id %}
-   {% if s5002_infoirrf.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s5002_infoirrf.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s5002_infoirrf.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5002_infoirrf.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s5002_infoirrf.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s5002_infoirrf.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s5002_infoirrf.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s5002_infoirrf.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s5002_infoirrf.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s5002.change_s5002_infoirrf or perms.s5002.add_s5002_infoirrf %}
-                <form action="#" id="id_form_s5002_infoirrf" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s5002_infoirrf.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5002_infoirrf.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s5002_infoirrf.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s5002_infoirrf.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s5002_infoirrf_id %}
-
-                                {% if perms.s5002.add_s5002infoIrrf %}
-                                    <a href="{% url 's5002_infoirrf_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s5002.can_view_s5002_infoirrf or perms.s5002.can_view_s5002_infoirrf %}
-                                <a href="{% url 's5002_infoirrf'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s5002.can_view_s5002_infoirrf and s5002_infoirrf_id %}
-                                <a href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_infoirrf_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s5002.can_view_s5002_infoirrf and s5002_infoirrf_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_infoirrf_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s5002.change_s5002_infoirrf or perms.s5002.add_s5002_infoirrf %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s5002.delete_s5002_infoirrf and s5002_infoirrf_id %}
-
-                            <a href="{% url 's5002_infoirrf_apagar' hash='{}'|json_id:s5002_infoirrf_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s5002_infoirrf.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s5002_infoirrf.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s5002.change_s5002_infoirrf or perms.s5002.add_s5002_infoirrf %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s5002_infoirrf_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</h3>
+                    </div>
+
+                    {% if perms.s5002.change_s5002infoIrrf or perms.s5002.add_s5002infoIrrf %}
+                        {% if s5002_infoirrf_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s5002_infoirrf" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s5002_infoirrf.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s5002.add_s5002infoIrrf %}
+                            <div class="col-md-2">
+                                <a href="{% url 's5002_infoirrf_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s5002.can_see_list_s5002infoIrrf %}
+                            <div class="col-md-2">
+                                <a href="{% url 's5002_infoirrf' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s5002.can_print_data_s5002infoIrrf %}
+                            <div class="col-md-2">
+                                <a href="{% url 's5002_infoirrf_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s5002.change_s5002infoIrrf %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s5002.delete_s5002infoIrrf %}
+                            <div class="col-md-2">
+                                <a href="{% url 's5002_infoirrf_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s5002.add_s5002infoIrrf %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s5002.add_s5002infoIrrf or perms.s5002.change_s5002infoIrrf %}
+
+                        {% if s5002_infoirrf_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s5002_basesirrf -->
+        <!-- begin_s5002_basesirrf -->
 
-            {% if tab == 's5002_basesirrf' or for_print %} 
+            {% if tab == 's5002_basesirrf' %} 
 
-                {% if perms.s5002.can_view_s5002_basesirrf %} 
+                {% if perms.s5002.can_see_data_s5002basesIrrf %}
 
-                    {% if perms.s5002.change_s5002_basesirrf or perms.s5002.add_s5002basesIrrf %}
+                    {% if perms.s5002.add_s5002basesIrrf or perms.s5002.change_s5002basesIrrf %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -365,95 +370,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Bases, deduções, isenções e retenções do IRRF</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s5002.change_s5002_basesirrf or perms.s5002.add_s5002basesIrrf %}
+                                    {% if perms.s5002.add_s5002basesIrrf or perms.s5002.can_see_list_s5002basesIrrf  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s5002.add_s5002basesIrrf %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s5002.add_s5002basesIrrf %}            
+
                                     <!-- begin_form_s5002_basesirrf --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s5002_basesirrf" action="{% url 's5002_basesirrf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s5002_basesirrf" 
+                                              action="{% url 's5002_basesirrf_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s5002_basesirrf.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s5002_basesirrf -->
-                                    {% endif %} 
+
+                                <!-- end_form_s5002_basesirrf -->
+                                {% endif %} 
+
+                                {% if perms.s5002.can_see_s5002basesIrrf %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s5002_basesirrf --> 
 
-                                    {% include 'tables/s5002_basesirrf.html' %}
-                                        
-                                    <!-- end_table_s5002_basesirrf --> 
-
+                                        {% include 'tables/s5002_basesirrf.html' %}
+                                        <!-- end_table_s5002_basesirrf --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s5002_basesirrf -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s5002_irrf -->
+        <!-- begin_s5002_irrf -->
 
-            {% if tab == 's5002_irrf' or for_print %} 
+            {% if tab == 's5002_irrf' %} 
 
-                {% if perms.s5002.can_view_s5002_irrf %} 
+                {% if perms.s5002.can_see_data_s5002irrf %}
 
-                    {% if perms.s5002.change_s5002_irrf or perms.s5002.add_s5002irrf %}
+                    {% if perms.s5002.add_s5002irrf or perms.s5002.change_s5002irrf %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -462,95 +479,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao Imposto de Renda Retido na Fonte</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s5002.change_s5002_irrf or perms.s5002.add_s5002irrf %}
+                                    {% if perms.s5002.add_s5002irrf or perms.s5002.can_see_list_s5002irrf  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s5002.add_s5002irrf %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s5002.add_s5002irrf %}            
+
                                     <!-- begin_form_s5002_irrf --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s5002_irrf" action="{% url 's5002_irrf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s5002_irrf" 
+                                              action="{% url 's5002_irrf_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s5002_irrf.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s5002_irrf -->
-                                    {% endif %} 
+
+                                <!-- end_form_s5002_irrf -->
+                                {% endif %} 
+
+                                {% if perms.s5002.can_see_s5002irrf %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s5002_irrf --> 
 
-                                    {% include 'tables/s5002_irrf.html' %}
-                                        
-                                    <!-- end_table_s5002_irrf --> 
-
+                                        {% include 'tables/s5002_irrf.html' %}
+                                        <!-- end_table_s5002_irrf --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s5002_irrf -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s5002_idepgtoext -->
+        <!-- begin_s5002_idepgtoext -->
 
-            {% if tab == 's5002_idepgtoext' or for_print %} 
+            {% if tab == 's5002_idepgtoext' %} 
 
-                {% if perms.s5002.can_view_s5002_idepgtoext %} 
+                {% if perms.s5002.can_see_data_s5002idePgtoExt %}
 
-                    {% if perms.s5002.change_s5002_idepgtoext or perms.s5002.add_s5002idePgtoExt %}
+                    {% if perms.s5002.add_s5002idePgtoExt or perms.s5002.change_s5002idePgtoExt %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -559,75 +588,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s5002.change_s5002_idepgtoext or perms.s5002.add_s5002idePgtoExt %}
+                                    {% if perms.s5002.add_s5002idePgtoExt or perms.s5002.can_see_list_s5002idePgtoExt  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s5002.add_s5002idePgtoExt %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s5002.add_s5002idePgtoExt %}            
+
                                     <!-- begin_form_s5002_idepgtoext --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s5002_idepgtoext" action="{% url 's5002_idepgtoext_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s5002_idepgtoext" 
+                                              action="{% url 's5002_idepgtoext_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s5002_idepgtoext.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s5002_idepgtoext -->
-                                    {% endif %} 
+
+                                <!-- end_form_s5002_idepgtoext -->
+                                {% endif %} 
+
+                                {% if perms.s5002.can_see_s5002idePgtoExt %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s5002_idepgtoext --> 
 
-                                    {% include 'tables/s5002_idepgtoext.html' %}
-                                        
-                                    <!-- end_table_s5002_idepgtoext --> 
-
+                                        {% include 'tables/s5002_idepgtoext.html' %}
+                                        <!-- end_table_s5002_idepgtoext --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s5002_idepgtoext -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

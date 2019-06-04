@@ -66,7 +66,6 @@ class s2416evtCdBenAltList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2416evtCdBenAltDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2416evtCdBenAlt.objects.all()

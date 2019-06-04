@@ -102,8 +102,11 @@ class s2230emitente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230emitente", "Can view S2230EMITENTE"),
-            ("can_view_menu_s2230emitente", "Can view menu S2230EMITENTE"),)
+            ("can_see_list_s2230emitente", u"Pode ver listagem do modelo S2230EMITENTE"),
+            ("can_see_data_s2230emitente", u"Pode visualizar o conteúdo do modelo S2230EMITENTE"),
+            ("can_see_menu_s2230emitente", u"Pode visualizar no menu o modelo S2230EMITENTE"),
+            ("can_print_list_s2230emitente", u"Pode imprimir listagem do modelo S2230EMITENTE"),
+            ("can_print_data_s2230emitente", u"Pode imprimir o conteúdo do modelo S2230EMITENTE"), )
             
         ordering = [
             's2230_infoatestado',
@@ -161,8 +164,11 @@ class s2230fimAfastamento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230fimAfastamento", "Can view S2230FIMAFASTAMENTO"),
-            ("can_view_menu_s2230fimAfastamento", "Can view menu S2230FIMAFASTAMENTO"),)
+            ("can_see_list_s2230fimAfastamento", u"Pode ver listagem do modelo S2230FIMAFASTAMENTO"),
+            ("can_see_data_s2230fimAfastamento", u"Pode visualizar o conteúdo do modelo S2230FIMAFASTAMENTO"),
+            ("can_see_menu_s2230fimAfastamento", u"Pode visualizar no menu o modelo S2230FIMAFASTAMENTO"),
+            ("can_print_list_s2230fimAfastamento", u"Pode imprimir listagem do modelo S2230FIMAFASTAMENTO"),
+            ("can_print_data_s2230fimAfastamento", u"Pode imprimir o conteúdo do modelo S2230FIMAFASTAMENTO"), )
             
         ordering = [
             's2230_evtafasttemp',
@@ -219,8 +225,11 @@ class s2230infoAtestado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230infoAtestado", "Can view S2230INFOATESTADO"),
-            ("can_view_menu_s2230infoAtestado", "Can view menu S2230INFOATESTADO"),)
+            ("can_see_list_s2230infoAtestado", u"Pode ver listagem do modelo S2230INFOATESTADO"),
+            ("can_see_data_s2230infoAtestado", u"Pode visualizar o conteúdo do modelo S2230INFOATESTADO"),
+            ("can_see_menu_s2230infoAtestado", u"Pode visualizar no menu o modelo S2230INFOATESTADO"),
+            ("can_print_list_s2230infoAtestado", u"Pode imprimir listagem do modelo S2230INFOATESTADO"),
+            ("can_print_data_s2230infoAtestado", u"Pode imprimir o conteúdo do modelo S2230INFOATESTADO"), )
             
         ordering = [
             's2230_iniafastamento',
@@ -278,8 +287,11 @@ class s2230infoCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230infoCessao", "Can view S2230INFOCESSAO"),
-            ("can_view_menu_s2230infoCessao", "Can view menu S2230INFOCESSAO"),)
+            ("can_see_list_s2230infoCessao", u"Pode ver listagem do modelo S2230INFOCESSAO"),
+            ("can_see_data_s2230infoCessao", u"Pode visualizar o conteúdo do modelo S2230INFOCESSAO"),
+            ("can_see_menu_s2230infoCessao", u"Pode visualizar no menu o modelo S2230INFOCESSAO"),
+            ("can_print_list_s2230infoCessao", u"Pode imprimir listagem do modelo S2230INFOCESSAO"),
+            ("can_print_data_s2230infoCessao", u"Pode imprimir o conteúdo do modelo S2230INFOCESSAO"), )
             
         ordering = [
             's2230_iniafastamento',
@@ -338,8 +350,11 @@ class s2230infoMandSind(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230infoMandSind", "Can view S2230INFOMANDSIND"),
-            ("can_view_menu_s2230infoMandSind", "Can view menu S2230INFOMANDSIND"),)
+            ("can_see_list_s2230infoMandSind", u"Pode ver listagem do modelo S2230INFOMANDSIND"),
+            ("can_see_data_s2230infoMandSind", u"Pode visualizar o conteúdo do modelo S2230INFOMANDSIND"),
+            ("can_see_menu_s2230infoMandSind", u"Pode visualizar no menu o modelo S2230INFOMANDSIND"),
+            ("can_print_list_s2230infoMandSind", u"Pode imprimir listagem do modelo S2230INFOMANDSIND"),
+            ("can_print_data_s2230infoMandSind", u"Pode imprimir o conteúdo do modelo S2230INFOMANDSIND"), )
             
         ordering = [
             's2230_iniafastamento',
@@ -398,8 +413,11 @@ class s2230infoRetif(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230infoRetif", "Can view S2230INFORETIF"),
-            ("can_view_menu_s2230infoRetif", "Can view menu S2230INFORETIF"),)
+            ("can_see_list_s2230infoRetif", u"Pode ver listagem do modelo S2230INFORETIF"),
+            ("can_see_data_s2230infoRetif", u"Pode visualizar o conteúdo do modelo S2230INFORETIF"),
+            ("can_see_menu_s2230infoRetif", u"Pode visualizar no menu o modelo S2230INFORETIF"),
+            ("can_print_list_s2230infoRetif", u"Pode imprimir listagem do modelo S2230INFORETIF"),
+            ("can_print_data_s2230infoRetif", u"Pode imprimir o conteúdo do modelo S2230INFORETIF"), )
             
         ordering = [
             's2230_evtafasttemp',
@@ -460,8 +478,11 @@ class s2230iniAfastamento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230iniAfastamento", "Can view S2230INIAFASTAMENTO"),
-            ("can_view_menu_s2230iniAfastamento", "Can view menu S2230INIAFASTAMENTO"),)
+            ("can_see_list_s2230iniAfastamento", u"Pode ver listagem do modelo S2230INIAFASTAMENTO"),
+            ("can_see_data_s2230iniAfastamento", u"Pode visualizar o conteúdo do modelo S2230INIAFASTAMENTO"),
+            ("can_see_menu_s2230iniAfastamento", u"Pode visualizar no menu o modelo S2230INIAFASTAMENTO"),
+            ("can_print_list_s2230iniAfastamento", u"Pode imprimir listagem do modelo S2230INIAFASTAMENTO"),
+            ("can_print_data_s2230iniAfastamento", u"Pode imprimir o conteúdo do modelo S2230INIAFASTAMENTO"), )
             
         ordering = [
             's2230_evtafasttemp',

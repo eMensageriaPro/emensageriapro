@@ -66,7 +66,6 @@ class r9012evtRetConsList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r9012evtRetConsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9012evtRetCons.objects.all()

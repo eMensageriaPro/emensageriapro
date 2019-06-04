@@ -111,28 +111,14 @@ from emensageriapro.r9002.forms import form_r9002_infototal
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        r9002_evtret_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if r9002_evtret_id:
-    
-        r9002_evtret = get_object_or_404(r9002evtRet, id=r9002_evtret_id)
+        r9002_evtret = get_object_or_404(r9002evtRet, id=pk)
 
         if r9002_evtret.status != STATUS_EVENTO_CADASTRADO:
         
@@ -140,9 +126,9 @@ def salvar(request, hash):
             dict_permissoes['r9002_evtret_apagar'] = 0
             dict_permissoes['r9002_evtret_editar'] = 0
             
-    if request.user.has_perm('efdreinf.can_view_r9002evtRet'):
+    if request.user.has_perm('efdreinf.can_see_r9002evtRet'):
     
-        if r9002_evtret_id:
+        if pk:
         
             r9002_evtret_form = form_r9002_evtret(request.POST or None, instance = r9002_evtret, 
                                          initial={'excluido': False})
@@ -161,45 +147,61 @@ def salvar(request, hash):
         
             if r9002_evtret_form.is_valid():
             
-                dados = r9002_evtret_form.cleaned_data
                 obj = r9002_evtret_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not r9002_evtret_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r9002_evtret', obj.id, usuario_id, 1)
+                                 'r9002_evtret', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r9002_evtret), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r9002_evtret', r9002_evtret_id, usuario_id, 2)
+                                     'r9002_evtret', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('r9002_evtret_apagar', 'r9002_evtret_salvar', 'r9002_evtret'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    'r9002_evtret_apagar', 
+                    'r9002_evtret_salvar', 
+                    'r9002_evtret'):
                     
-                if r9002_evtret_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('r9002_evtret_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        'r9002_evtret_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        r9002_evtret_form = disabled_form_fields(r9002_evtret_form, request.user.has_perm('efdreinf.change_r9002evtRet'))
+        r9002_evtret_form = disabled_form_fields(
+             r9002_evtret_form, 
+             request.user.has_perm('efdreinf.change_r9002evtRet'))
         
-        if r9002_evtret_id:
+        if pk:
+        
             if r9002_evtret.status != 0:
+            
                 r9002_evtret_form = disabled_form_fields(r9002_evtret_form, False)
+                
         #r9002_evtret_campos_multiple_passo3
 
         for field in r9002_evtret_form.fields.keys():
+        
             r9002_evtret_form.fields[field].widget.attrs['ng-model'] = 'r9002_evtret_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             r9002_evtret_form = disabled_form_for_print(r9002_evtret_form)
 
         
@@ -256,9 +258,9 @@ def salvar(request, hash):
         r9002_infototal_lista = None 
         r9002_infototal_form = None 
         
-        if r9002_evtret_id:
+        if pk:
         
-            r9002_evtret = get_object_or_404(r9002evtRet, id = r9002_evtret_id)
+            r9002_evtret = get_object_or_404(r9002evtRet, id=pk)
             
             r9002_regocorrs_form = form_r9002_regocorrs(
                 initial={ 'r9002_evtret': r9002_evtret })
@@ -392,6 +394,7 @@ def salvar(request, hash):
                 filter(retornos_r9002_id=r9002_evtret.id).all()
                 
         else:
+        
             r9002_evtret = None
             
         #r9002_evtret_salvar_custom_variaveis#
@@ -400,23 +403,26 @@ def salvar(request, hash):
         
         if 'r9002_evtret'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 'r9002_evtret' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 'r9002_evtret_salvar'
+        if tab or 'r9002_evtret' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 'r9002_evtret_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=r9002_evtret_id, tabela='r9002_evtret').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='r9002_evtret').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r9002_evtret': r9002_evtret, 
             'r9002_evtret_form': r9002_evtret_form, 
-            'r9002_evtret_id': int(r9002_evtret_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             'r1000_evtinfocontri_form': r1000_evtinfocontri_form,
             'r1000_evtinfocontri_lista': r1000_evtinfocontri_lista,
@@ -473,17 +479,13 @@ def salvar(request, hash):
             'data': datetime.datetime.now(),
             'modulos': ['efdreinf', ],
             'paginas': ['r9002_evtret', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #r9002_evtret_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 'r9002_evtret_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -501,25 +503,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('r9002_evtret_salvar.html', context)
             filename = "r9002_evtret.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 'r9002_evtret_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['efdreinf', ],
             'paginas': ['r9002_evtret', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s1280.models import *
 from emensageriapro.s1280.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1280(request, s1280_evtinfocomplper_id, versao=None):
+def gerar_xml_s1280(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s1280_evtinfocomplper_id:
+    if pk:
 
         s1280_evtinfocomplper = get_object_or_404(
             s1280evtInfoComplPer,
-            excluido = False,
-            id = s1280_evtinfocomplper_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s1280_evtinfocomplper.versao
@@ -105,7 +103,8 @@ def gerar_xml_s1280(request, s1280_evtinfocomplper_id, versao=None):
             xmlns = ''
 
         s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects. \
-            filter(id=s1280_evtinfocomplper_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s1280_infosubstpatr_lista = s1280infoSubstPatr.objects. \
             filter(s1280_evtinfocomplper_id__in=listar_ids(s1280_evtinfocomplper_lista)).all()
@@ -122,10 +121,8 @@ def gerar_xml_s1280(request, s1280_evtinfocomplper_id, versao=None):
             'versao': versao,
             'base': s1280_evtinfocomplper,
             's1280_evtinfocomplper_lista': s1280_evtinfocomplper_lista,
-            's1280_evtinfocomplper_id': int(s1280_evtinfocomplper_id),
+            'pk': int(pk),
             's1280_evtinfocomplper': s1280_evtinfocomplper,
-
-            
             's1280_infosubstpatr_lista': s1280_infosubstpatr_lista,
             's1280_infosubstpatropport_lista': s1280_infosubstpatropport_lista,
             's1280_infoativconcom_lista': s1280_infoativconcom_lista,
@@ -136,9 +133,7 @@ def gerar_xml_s1280(request, s1280_evtinfocomplper_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s1280_evtinfocomplper_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -146,14 +141,14 @@ def gerar_xml_assinado(request, s1280_evtinfocomplper_id):
 
     s1280_evtinfocomplper = get_object_or_404(
         s1280evtInfoComplPer,
-        id=s1280_evtinfocomplper_id)
+        id=pk)
 
     if s1280_evtinfocomplper.arquivo_original:
     
         xml = ler_arquivo(s1280_evtinfocomplper.arquivo)
 
     else:
-        xml = gerar_xml_s1280(request, s1280_evtinfocomplper_id)
+        xml = gerar_xml_s1280(request, pk)
 
     if 'Signature' in xml:
     
@@ -169,20 +164,23 @@ def gerar_xml_assinado(request, s1280_evtinfocomplper_id):
             grupo = get_grupo(s1280evtInfoComplPer)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s1280_evtinfocomplper.nrinsc,
-                                      s1280_evtinfocomplper.tpinsc)
+                grupo,
+                s1280_evtinfocomplper.nrinsc,
+                s1280_evtinfocomplper.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s1280evtInfoComplPer,
-                                         s1280_evtinfocomplper)
+                grupo,
+                s1280evtInfoComplPer,
+                s1280_evtinfocomplper)
         
         s1280_evtinfocomplper = get_object_or_404(
             s1280evtInfoComplPer,
-            id=s1280_evtinfocomplper_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s1280_evtinfocomplper.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s1280_evtinfocomplper.transmissor_lote_esocial_id)
         
     if s1280_evtinfocomplper.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -191,29 +189,28 @@ def gerar_xml_assinado(request, s1280_evtinfocomplper_id):
         STATUS_EVENTO_GERADO):
 
         s1280evtInfoComplPer.objects.\
-            filter(id=s1280_evtinfocomplper_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s1280_evtinfocomplper/%s.xml' % (s1280_evtinfocomplper.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1280_evtinfocomplper/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s1280_evtinfocomplper_id = int(dict_hash['id'])
+    if pk:
 
-    if s1280_evtinfocomplper_id:
-
-        xml_assinado = gerar_xml_assinado(request, s1280_evtinfocomplper_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

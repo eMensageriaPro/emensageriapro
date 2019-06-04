@@ -66,7 +66,6 @@ class s2298evtReintegrList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2298evtReintegrDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2298evtReintegr.objects.all()

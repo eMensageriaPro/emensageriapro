@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1207 - Benefícios previdenciários - RPPS<br>Identidade: {{ s1207_evtbenprrp.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1207_evtbenprrp_verificar' hash='{}'|json_id:s1207_evtbenprrp_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1207_evtbenprrp_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1207_evtbenprrp_verificar' hash='{}'|json_id:s1207_evtbenprrp_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1207_evtbenprrp_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1207_evtbenprrp_verificar' hash='{}'|json_id:s1207_evtbenprrp_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1207_evtbenprrp_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1207_evtbenprrp_verificar' hash='{}'|json_id:s1207_evtbenprrp_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.indretif or s1207_evtbenprrp.indretif == 0 %}{{ s1207_evtbenprrp.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.nrrecibo or s1207_evtbenprrp.nrrecibo == 0 %}{{ s1207_evtbenprrp.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">indApuracao</td>
             <td width="500px">Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual (13° salário). <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.indapuracao or s1207_evtbenprrp.indapuracao == 0 %}{{ s1207_evtbenprrp.indapuracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">perApur</td>
             <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, igual ou posterior a implementação do eSocial.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.perapur or s1207_evtbenprrp.perapur == 0 %}{{ s1207_evtbenprrp.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.tpamb or s1207_evtbenprrp.tpamb == 0 %}{{ s1207_evtbenprrp.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -226,11 +223,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.procemi or s1207_evtbenprrp.procemi == 0 %}{{ s1207_evtbenprrp.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -245,11 +242,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.verproc or s1207_evtbenprrp.verproc == 0 %}{{ s1207_evtbenprrp.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -269,11 +266,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ). <valores_validos> 1.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.tpinsc or s1207_evtbenprrp.tpinsc == 0 %}{{ s1207_evtbenprrp.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -288,11 +285,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.nrinsc or s1207_evtbenprrp.nrinsc == 0 %}{{ s1207_evtbenprrp.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -312,11 +309,11 @@
             <td width="130px">cpfBenef</td>
             <td width="500px">Informar o CPF do beneficiário.</td>
             <td width="200px"><b>{% if s1207_evtbenprrp.cpfbenef or s1207_evtbenprrp.cpfbenef == 0 %}{{ s1207_evtbenprrp.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_evtbenprrp_visualizar' %}
-                <a href="{% url 's1207_evtbenprrp_salvar'  hash='{}'|json_id:s1207_evtbenprrp.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207evtBenPrRP or perms.esocial.can_see_s1207evtBenPrRP %}
+                <a href="{% url 's1207_evtbenprrp_salvar' pk=s1207_evtbenprrp.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -337,11 +334,11 @@
             <td width="130px">tpTrib</td>
             <td width="500px">Abrangência da decisão<opcoes>1 - IRRF; 5 - Contribuição para o RPPS/regime militar. <valores_validos> 1, 5.</td>
             <td width="200px"><b>{% if s1207_procjudtrab.tptrib or s1207_procjudtrab.tptrib == 0 %}{{ s1207_procjudtrab.tptrib }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_procjudtrab_visualizar' %}
-                <a href="{% url 's1207_procjudtrab_salvar'  hash='{}'|json_id:s1207_procjudtrab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207procJudTrab or perms.esocial.can_see_s1207procJudTrab %}
+                <a href="{% url 's1207_procjudtrab_salvar' pk=s1207_procjudtrab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -356,11 +353,11 @@
             <td width="130px">nrProcJud</td>
             <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a: - [1], se {tpTrib} = [1]; - [9], se {tpTrib} = [5]. <validacao> O processo deve existir na tabela de processos.</td>
             <td width="200px"><b>{% if s1207_procjudtrab.nrprocjud or s1207_procjudtrab.nrprocjud == 0 %}{{ s1207_procjudtrab.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_procjudtrab_visualizar' %}
-                <a href="{% url 's1207_procjudtrab_salvar'  hash='{}'|json_id:s1207_procjudtrab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207procJudTrab or perms.esocial.can_see_s1207procJudTrab %}
+                <a href="{% url 's1207_procjudtrab_salvar' pk=s1207_procjudtrab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -375,11 +372,11 @@
             <td width="130px">codSusp</td>
             <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> Preenchimento obrigatório se {tpTrib} = [1]. A informação prestada deve estar de acordo com o que foi informado em S- 1070.</td>
             <td width="200px"><b>{% if s1207_procjudtrab.codsusp or s1207_procjudtrab.codsusp == 0 %}{{ s1207_procjudtrab.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_procjudtrab_visualizar' %}
-                <a href="{% url 's1207_procjudtrab_salvar'  hash='{}'|json_id:s1207_procjudtrab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207procJudTrab or perms.esocial.can_see_s1207procJudTrab %}
+                <a href="{% url 's1207_procjudtrab_salvar' pk=s1207_procjudtrab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -400,11 +397,11 @@
             <td width="130px">tpBenef</td>
             <td width="500px">Tipo de benefício previdenciário, conforme tabela 25. <validacao> Deve ser um código existente na tabela 25.</td>
             <td width="200px"><b>{% if s1207_dmdev.tpbenef or s1207_dmdev.tpbenef == 0 %}{{ s1207_dmdev.tpbenef }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_dmdev_visualizar' %}
-                <a href="{% url 's1207_dmdev_salvar'  hash='{}'|json_id:s1207_dmdev.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207dmDev or perms.esocial.can_see_s1207dmDev %}
+                <a href="{% url 's1207_dmdev_salvar' pk=s1207_dmdev.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -419,11 +416,11 @@
             <td width="130px">nrBenefic</td>
             <td width="500px">Número do benefício previdenciário. <validacao> Deve estar previamente cadastrado através do evento S-2400 e estar ativo no período definido em {perApur}.</td>
             <td width="200px"><b>{% if s1207_dmdev.nrbenefic or s1207_dmdev.nrbenefic == 0 %}{{ s1207_dmdev.nrbenefic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_dmdev_visualizar' %}
-                <a href="{% url 's1207_dmdev_salvar'  hash='{}'|json_id:s1207_dmdev.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207dmDev or perms.esocial.can_see_s1207dmDev %}
+                <a href="{% url 's1207_dmdev_salvar' pk=s1207_dmdev.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -438,11 +435,11 @@
             <td width="130px">ideDmDev</td>
             <td width="500px">Identificador atribuído pelo órgão público para o demonstrativo de pagamento. Este campo poderá ser informado utilizando-se de um identificador padrão para todos os beneficiários, no entanto, havendo mais de um pagamento relativo a um mesmo período de competência devem ser utilizados identificadores diferentes para cada um dos demonstrativos. <validacao> Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento do beneficiário.</td>
             <td width="200px"><b>{% if s1207_dmdev.idedmdev or s1207_dmdev.idedmdev == 0 %}{{ s1207_dmdev.idedmdev }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_dmdev_visualizar' %}
-                <a href="{% url 's1207_dmdev_salvar'  hash='{}'|json_id:s1207_dmdev.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207dmDev or perms.esocial.can_see_s1207dmDev %}
+                <a href="{% url 's1207_dmdev_salvar' pk=s1207_dmdev.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -463,11 +460,11 @@
             <td width="130px">codRubr</td>
             <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento.</td>
             <td width="200px"><b>{% if s1207_itens.codrubr or s1207_itens.codrubr == 0 %}{{ s1207_itens.codrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_itens_visualizar' %}
-                <a href="{% url 's1207_itens_salvar'  hash='{}'|json_id:s1207_itens.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207itens or perms.esocial.can_see_s1207itens %}
+                <a href="{% url 's1207_itens_salvar' pk=s1207_itens.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -482,11 +479,11 @@
             <td width="130px">ideTabRubr</td>
             <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. <validacao> Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perApur}.</td>
             <td width="200px"><b>{% if s1207_itens.idetabrubr or s1207_itens.idetabrubr == 0 %}{{ s1207_itens.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_itens_visualizar' %}
-                <a href="{% url 's1207_itens_salvar'  hash='{}'|json_id:s1207_itens.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207itens or perms.esocial.can_see_s1207itens %}
+                <a href="{% url 's1207_itens_salvar' pk=s1207_itens.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -501,11 +498,11 @@
             <td width="130px">vrRubr</td>
             <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
             <td width="200px"><b>{% if s1207_itens.vrrubr or s1207_itens.vrrubr == 0 %}{{ s1207_itens.vrrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_itens_visualizar' %}
-                <a href="{% url 's1207_itens_salvar'  hash='{}'|json_id:s1207_itens.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207itens or perms.esocial.can_see_s1207itens %}
+                <a href="{% url 's1207_itens_salvar' pk=s1207_itens.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -532,11 +529,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1.</td>
             <td width="200px"><b>{% if s1207_infoperapur_ideestab.tpinsc or s1207_infoperapur_ideestab.tpinsc == 0 %}{{ s1207_infoperapur_ideestab.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_ideestab_visualizar' %}
-                <a href="{% url 's1207_infoperapur_ideestab_salvar'  hash='{}'|json_id:s1207_infoperapur_ideestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApurideEstab or perms.esocial.can_see_s1207infoPerApurideEstab %}
+                <a href="{% url 's1207_infoperapur_ideestab_salvar' pk=s1207_infoperapur_ideestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -551,11 +548,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser um número de CNPJ válido e deve constar na tabela S- 1005.</td>
             <td width="200px"><b>{% if s1207_infoperapur_ideestab.nrinsc or s1207_infoperapur_ideestab.nrinsc == 0 %}{{ s1207_infoperapur_ideestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_ideestab_visualizar' %}
-                <a href="{% url 's1207_infoperapur_ideestab_salvar'  hash='{}'|json_id:s1207_infoperapur_ideestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApurideEstab or perms.esocial.can_see_s1207infoPerApurideEstab %}
+                <a href="{% url 's1207_infoperapur_ideestab_salvar' pk=s1207_infoperapur_ideestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -582,11 +579,11 @@
             <td width="130px">codRubr</td>
             <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, com o campo {codIncCPRP} preenchido, vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}. Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
             <td width="200px"><b>{% if s1207_infoperapur_itensremun.codrubr or s1207_infoperapur_itensremun.codrubr == 0 %}{{ s1207_infoperapur_itensremun.codrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperapur_itensremun_salvar'  hash='{}'|json_id:s1207_infoperapur_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApuritensRemun or perms.esocial.can_see_s1207infoPerApuritensRemun %}
+                <a href="{% url 's1207_infoperapur_itensremun_salvar' pk=s1207_infoperapur_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -601,11 +598,11 @@
             <td width="130px">ideTabRubr</td>
             <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. <validacao> Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}.</td>
             <td width="200px"><b>{% if s1207_infoperapur_itensremun.idetabrubr or s1207_infoperapur_itensremun.idetabrubr == 0 %}{{ s1207_infoperapur_itensremun.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperapur_itensremun_salvar'  hash='{}'|json_id:s1207_infoperapur_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApuritensRemun or perms.esocial.can_see_s1207infoPerApuritensRemun %}
+                <a href="{% url 's1207_infoperapur_itensremun_salvar' pk=s1207_infoperapur_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -620,11 +617,11 @@
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
             <td width="200px"><b>{% if s1207_infoperapur_itensremun.qtdrubr or s1207_infoperapur_itensremun.qtdrubr == 0 %}{{ s1207_infoperapur_itensremun.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperapur_itensremun_salvar'  hash='{}'|json_id:s1207_infoperapur_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApuritensRemun or perms.esocial.can_see_s1207infoPerApuritensRemun %}
+                <a href="{% url 's1207_infoperapur_itensremun_salvar' pk=s1207_infoperapur_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -639,11 +636,11 @@
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
             <td width="200px"><b>{% if s1207_infoperapur_itensremun.fatorrubr or s1207_infoperapur_itensremun.fatorrubr == 0 %}{{ s1207_infoperapur_itensremun.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperapur_itensremun_salvar'  hash='{}'|json_id:s1207_infoperapur_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApuritensRemun or perms.esocial.can_see_s1207infoPerApuritensRemun %}
+                <a href="{% url 's1207_infoperapur_itensremun_salvar' pk=s1207_infoperapur_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -658,11 +655,11 @@
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
             <td width="200px"><b>{% if s1207_infoperapur_itensremun.vrunit or s1207_infoperapur_itensremun.vrunit == 0 %}{{ s1207_infoperapur_itensremun.vrunit }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperapur_itensremun_salvar'  hash='{}'|json_id:s1207_infoperapur_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApuritensRemun or perms.esocial.can_see_s1207infoPerApuritensRemun %}
+                <a href="{% url 's1207_infoperapur_itensremun_salvar' pk=s1207_infoperapur_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -677,11 +674,11 @@
             <td width="130px">vrRubr</td>
             <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
             <td width="200px"><b>{% if s1207_infoperapur_itensremun.vrrubr or s1207_infoperapur_itensremun.vrrubr == 0 %}{{ s1207_infoperapur_itensremun.vrrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperapur_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperapur_itensremun_salvar'  hash='{}'|json_id:s1207_infoperapur_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerApuritensRemun or perms.esocial.can_see_s1207infoPerApuritensRemun %}
+                <a href="{% url 's1207_infoperapur_itensremun_salvar' pk=s1207_infoperapur_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -708,11 +705,11 @@
             <td width="130px">dtAcConv</td>
             <td width="500px">Data da lei ou da decisão judicial. <validacao> Deve ser uma data igual ou anterior ao período de apuração, informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H].</td>
             <td width="200px"><b>{% if s1207_infoperant_ideadc.dtacconv or s1207_infoperant_ideadc.dtacconv == 0 %}{{ s1207_infoperant_ideadc.dtacconv|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideadc_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideadc_salvar'  hash='{}'|json_id:s1207_infoperant_ideadc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideADC or perms.esocial.can_see_s1207infoPerAntideADC %}
+                <a href="{% url 's1207_infoperant_ideadc_salvar' pk=s1207_infoperant_ideadc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -727,11 +724,11 @@
             <td width="130px">tpAcConv</td>
             <td width="500px">Tipo do instrumento ou situação ensejadora de provento ou pensão relativo a Períodos de Apuração Anteriores<opcoes> B - Legislação federal, estadual, municipal ou distrital; G - Decisão administrativa; H - Decisão judicial. <valores_validos> B, G, H.</td>
             <td width="200px"><b>{% if s1207_infoperant_ideadc.tpacconv or s1207_infoperant_ideadc.tpacconv == 0 %}{{ s1207_infoperant_ideadc.tpacconv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideadc_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideadc_salvar'  hash='{}'|json_id:s1207_infoperant_ideadc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideADC or perms.esocial.can_see_s1207infoPerAntideADC %}
+                <a href="{% url 's1207_infoperant_ideadc_salvar' pk=s1207_infoperant_ideadc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -746,11 +743,11 @@
             <td width="130px">compAcConv</td>
             <td width="500px">Competência (formato AAAA-MM) em que é devida a obrigação de pagar os efeitos remuneratórios de lei ou decisão judicial. <validacao> Deve ser maior ou igual ao período de apuração informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H].</td>
             <td width="200px"><b>{% if s1207_infoperant_ideadc.compacconv or s1207_infoperant_ideadc.compacconv == 0 %}{{ s1207_infoperant_ideadc.compacconv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideadc_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideadc_salvar'  hash='{}'|json_id:s1207_infoperant_ideadc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideADC or perms.esocial.can_see_s1207infoPerAntideADC %}
+                <a href="{% url 's1207_infoperant_ideadc_salvar' pk=s1207_infoperant_ideadc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -765,11 +762,11 @@
             <td width="130px">dtEfAcConv</td>
             <td width="500px">Data a partir da qual a lei passa a produzir seus efeitos. <validacao> Preenchimento obrigatório se {tpAcConv} = [B].</td>
             <td width="200px"><b>{% if s1207_infoperant_ideadc.dtefacconv or s1207_infoperant_ideadc.dtefacconv == 0 %}{{ s1207_infoperant_ideadc.dtefacconv|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideadc_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideadc_salvar'  hash='{}'|json_id:s1207_infoperant_ideadc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideADC or perms.esocial.can_see_s1207infoPerAntideADC %}
+                <a href="{% url 's1207_infoperant_ideadc_salvar' pk=s1207_infoperant_ideadc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -784,11 +781,11 @@
             <td width="130px">dsc</td>
             <td width="500px">Descrição da lei, decisão ou situação que ensejou provento ou pensão relativo a períodos anteriores.</td>
             <td width="200px"><b>{% if s1207_infoperant_ideadc.dsc or s1207_infoperant_ideadc.dsc == 0 %}{{ s1207_infoperant_ideadc.dsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideadc_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideadc_salvar'  hash='{}'|json_id:s1207_infoperant_ideadc.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideADC or perms.esocial.can_see_s1207infoPerAntideADC %}
+                <a href="{% url 's1207_infoperant_ideadc_salvar' pk=s1207_infoperant_ideadc.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -809,11 +806,11 @@
             <td width="130px">perRef</td>
             <td width="500px">Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM. <validacao> Deve ser igual ou anterior ao período de apuração informado em {perApur}.</td>
             <td width="200px"><b>{% if s1207_infoperant_ideperiodo.perref or s1207_infoperant_ideperiodo.perref == 0 %}{{ s1207_infoperant_ideperiodo.perref }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideperiodo_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideperiodo_salvar'  hash='{}'|json_id:s1207_infoperant_ideperiodo.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntidePeriodo or perms.esocial.can_see_s1207infoPerAntidePeriodo %}
+                <a href="{% url 's1207_infoperant_ideperiodo_salvar' pk=s1207_infoperant_ideperiodo.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -834,11 +831,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1.</td>
             <td width="200px"><b>{% if s1207_infoperant_ideestab.tpinsc or s1207_infoperant_ideestab.tpinsc == 0 %}{{ s1207_infoperant_ideestab.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideestab_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideestab_salvar'  hash='{}'|json_id:s1207_infoperant_ideestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideEstab or perms.esocial.can_see_s1207infoPerAntideEstab %}
+                <a href="{% url 's1207_infoperant_ideestab_salvar' pk=s1207_infoperant_ideestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -853,11 +850,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser um número de CNPJ válido e deve constar na tabela S- 1005.</td>
             <td width="200px"><b>{% if s1207_infoperant_ideestab.nrinsc or s1207_infoperant_ideestab.nrinsc == 0 %}{{ s1207_infoperant_ideestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_ideestab_visualizar' %}
-                <a href="{% url 's1207_infoperant_ideestab_salvar'  hash='{}'|json_id:s1207_infoperant_ideestab.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntideEstab or perms.esocial.can_see_s1207infoPerAntideEstab %}
+                <a href="{% url 's1207_infoperant_ideestab_salvar' pk=s1207_infoperant_ideestab.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -884,11 +881,11 @@
             <td width="130px">codRubr</td>
             <td width="500px">Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, com o campo {codIncCPRP} preenchido, vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}. Não pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
             <td width="200px"><b>{% if s1207_infoperant_itensremun.codrubr or s1207_infoperant_itensremun.codrubr == 0 %}{{ s1207_infoperant_itensremun.codrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperant_itensremun_salvar'  hash='{}'|json_id:s1207_infoperant_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntitensRemun or perms.esocial.can_see_s1207infoPerAntitensRemun %}
+                <a href="{% url 's1207_infoperant_itensremun_salvar' pk=s1207_infoperant_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -903,11 +900,11 @@
             <td width="130px">ideTabRubr</td>
             <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. <validacao> Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}.</td>
             <td width="200px"><b>{% if s1207_infoperant_itensremun.idetabrubr or s1207_infoperant_itensremun.idetabrubr == 0 %}{{ s1207_infoperant_itensremun.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperant_itensremun_salvar'  hash='{}'|json_id:s1207_infoperant_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntitensRemun or perms.esocial.can_see_s1207infoPerAntitensRemun %}
+                <a href="{% url 's1207_infoperant_itensremun_salvar' pk=s1207_infoperant_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -922,11 +919,11 @@
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
             <td width="200px"><b>{% if s1207_infoperant_itensremun.qtdrubr or s1207_infoperant_itensremun.qtdrubr == 0 %}{{ s1207_infoperant_itensremun.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperant_itensremun_salvar'  hash='{}'|json_id:s1207_infoperant_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntitensRemun or perms.esocial.can_see_s1207infoPerAntitensRemun %}
+                <a href="{% url 's1207_infoperant_itensremun_salvar' pk=s1207_infoperant_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -941,11 +938,11 @@
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
             <td width="200px"><b>{% if s1207_infoperant_itensremun.fatorrubr or s1207_infoperant_itensremun.fatorrubr == 0 %}{{ s1207_infoperant_itensremun.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperant_itensremun_salvar'  hash='{}'|json_id:s1207_infoperant_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntitensRemun or perms.esocial.can_see_s1207infoPerAntitensRemun %}
+                <a href="{% url 's1207_infoperant_itensremun_salvar' pk=s1207_infoperant_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -960,11 +957,11 @@
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
             <td width="200px"><b>{% if s1207_infoperant_itensremun.vrunit or s1207_infoperant_itensremun.vrunit == 0 %}{{ s1207_infoperant_itensremun.vrunit }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperant_itensremun_salvar'  hash='{}'|json_id:s1207_infoperant_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntitensRemun or perms.esocial.can_see_s1207infoPerAntitensRemun %}
+                <a href="{% url 's1207_infoperant_itensremun_salvar' pk=s1207_infoperant_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -979,11 +976,11 @@
             <td width="130px">vrRubr</td>
             <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
             <td width="200px"><b>{% if s1207_infoperant_itensremun.vrrubr or s1207_infoperant_itensremun.vrrubr == 0 %}{{ s1207_infoperant_itensremun.vrrubr }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
-                <a href="{% url 's1207_infoperant_itensremun_salvar'  hash='{}'|json_id:s1207_infoperant_itensremun.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1207.can_see_s1207infoPerAntitensRemun or perms.esocial.can_see_s1207infoPerAntitensRemun %}
+                <a href="{% url 's1207_infoperant_itensremun_salvar' pk=s1207_infoperant_itensremun.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s1060.models import *
 from emensageriapro.s1060.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1060(request, s1060_evttabambiente_id, versao=None):
+def gerar_xml_s1060(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s1060_evttabambiente_id:
+    if pk:
 
         s1060_evttabambiente = get_object_or_404(
             s1060evtTabAmbiente,
-            excluido = False,
-            id = s1060_evttabambiente_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s1060_evttabambiente.versao
@@ -105,7 +103,8 @@ def gerar_xml_s1060(request, s1060_evttabambiente_id, versao=None):
             xmlns = ''
 
         s1060_evttabambiente_lista = s1060evtTabAmbiente.objects. \
-            filter(id=s1060_evttabambiente_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s1060_inclusao_lista = s1060inclusao.objects. \
             filter(s1060_evttabambiente_id__in=listar_ids(s1060_evttabambiente_lista)).all()
@@ -125,10 +124,8 @@ def gerar_xml_s1060(request, s1060_evttabambiente_id, versao=None):
             'versao': versao,
             'base': s1060_evttabambiente,
             's1060_evttabambiente_lista': s1060_evttabambiente_lista,
-            's1060_evttabambiente_id': int(s1060_evttabambiente_id),
+            'pk': int(pk),
             's1060_evttabambiente': s1060_evttabambiente,
-
-            
             's1060_inclusao_lista': s1060_inclusao_lista,
             's1060_alteracao_lista': s1060_alteracao_lista,
             's1060_alteracao_novavalidade_lista': s1060_alteracao_novavalidade_lista,
@@ -140,9 +137,7 @@ def gerar_xml_s1060(request, s1060_evttabambiente_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s1060_evttabambiente_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -150,14 +145,14 @@ def gerar_xml_assinado(request, s1060_evttabambiente_id):
 
     s1060_evttabambiente = get_object_or_404(
         s1060evtTabAmbiente,
-        id=s1060_evttabambiente_id)
+        id=pk)
 
     if s1060_evttabambiente.arquivo_original:
     
         xml = ler_arquivo(s1060_evttabambiente.arquivo)
 
     else:
-        xml = gerar_xml_s1060(request, s1060_evttabambiente_id)
+        xml = gerar_xml_s1060(request, pk)
 
     if 'Signature' in xml:
     
@@ -173,20 +168,23 @@ def gerar_xml_assinado(request, s1060_evttabambiente_id):
             grupo = get_grupo(s1060evtTabAmbiente)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s1060_evttabambiente.nrinsc,
-                                      s1060_evttabambiente.tpinsc)
+                grupo,
+                s1060_evttabambiente.nrinsc,
+                s1060_evttabambiente.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s1060evtTabAmbiente,
-                                         s1060_evttabambiente)
+                grupo,
+                s1060evtTabAmbiente,
+                s1060_evttabambiente)
         
         s1060_evttabambiente = get_object_or_404(
             s1060evtTabAmbiente,
-            id=s1060_evttabambiente_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s1060_evttabambiente.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s1060_evttabambiente.transmissor_lote_esocial_id)
         
     if s1060_evttabambiente.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -195,29 +193,28 @@ def gerar_xml_assinado(request, s1060_evttabambiente_id):
         STATUS_EVENTO_GERADO):
 
         s1060evtTabAmbiente.objects.\
-            filter(id=s1060_evttabambiente_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s1060_evttabambiente/%s.xml' % (s1060_evttabambiente.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1060_evttabambiente/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s1060_evttabambiente_id = int(dict_hash['id'])
+    if pk:
 
-    if s1060_evttabambiente_id:
-
-        xml_assinado = gerar_xml_assinado(request, s1060_evttabambiente_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

@@ -109,8 +109,11 @@ class s2405brasil(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405brasil", "Can view S2405BRASIL"),
-            ("can_view_menu_s2405brasil", "Can view menu S2405BRASIL"),)
+            ("can_see_list_s2405brasil", u"Pode ver listagem do modelo S2405BRASIL"),
+            ("can_see_data_s2405brasil", u"Pode visualizar o conteúdo do modelo S2405BRASIL"),
+            ("can_see_menu_s2405brasil", u"Pode visualizar no menu o modelo S2405BRASIL"),
+            ("can_print_list_s2405brasil", u"Pode imprimir listagem do modelo S2405BRASIL"),
+            ("can_print_data_s2405brasil", u"Pode imprimir o conteúdo do modelo S2405BRASIL"), )
             
         ordering = [
             's2405_endereco',
@@ -184,8 +187,11 @@ class s2405dependente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405dependente", "Can view S2405DEPENDENTE"),
-            ("can_view_menu_s2405dependente", "Can view menu S2405DEPENDENTE"),)
+            ("can_see_list_s2405dependente", u"Pode ver listagem do modelo S2405DEPENDENTE"),
+            ("can_see_data_s2405dependente", u"Pode visualizar o conteúdo do modelo S2405DEPENDENTE"),
+            ("can_see_menu_s2405dependente", u"Pode visualizar no menu o modelo S2405DEPENDENTE"),
+            ("can_print_list_s2405dependente", u"Pode imprimir listagem do modelo S2405DEPENDENTE"),
+            ("can_print_data_s2405dependente", u"Pode imprimir o conteúdo do modelo S2405DEPENDENTE"), )
             
         ordering = [
             's2405_evtcdbenefalt',
@@ -245,8 +251,11 @@ class s2405endereco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405endereco", "Can view S2405ENDERECO"),
-            ("can_view_menu_s2405endereco", "Can view menu S2405ENDERECO"),)
+            ("can_see_list_s2405endereco", u"Pode ver listagem do modelo S2405ENDERECO"),
+            ("can_see_data_s2405endereco", u"Pode visualizar o conteúdo do modelo S2405ENDERECO"),
+            ("can_see_menu_s2405endereco", u"Pode visualizar no menu o modelo S2405ENDERECO"),
+            ("can_print_list_s2405endereco", u"Pode imprimir listagem do modelo S2405ENDERECO"),
+            ("can_print_data_s2405endereco", u"Pode imprimir o conteúdo do modelo S2405ENDERECO"), )
             
         ordering = [
             's2405_evtcdbenefalt',]
@@ -310,8 +319,11 @@ class s2405exterior(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405exterior", "Can view S2405EXTERIOR"),
-            ("can_view_menu_s2405exterior", "Can view menu S2405EXTERIOR"),)
+            ("can_see_list_s2405exterior", u"Pode ver listagem do modelo S2405EXTERIOR"),
+            ("can_see_data_s2405exterior", u"Pode visualizar o conteúdo do modelo S2405EXTERIOR"),
+            ("can_see_menu_s2405exterior", u"Pode visualizar no menu o modelo S2405EXTERIOR"),
+            ("can_print_list_s2405exterior", u"Pode imprimir listagem do modelo S2405EXTERIOR"),
+            ("can_print_data_s2405exterior", u"Pode imprimir o conteúdo do modelo S2405EXTERIOR"), )
             
         ordering = [
             's2405_endereco',

@@ -107,8 +107,11 @@ class s1035alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035alteracao", "Can view S1035ALTERACAO"),
-            ("can_view_menu_s1035alteracao", "Can view menu S1035ALTERACAO"),)
+            ("can_see_list_s1035alteracao", u"Pode ver listagem do modelo S1035ALTERACAO"),
+            ("can_see_data_s1035alteracao", u"Pode visualizar o conteúdo do modelo S1035ALTERACAO"),
+            ("can_see_menu_s1035alteracao", u"Pode visualizar no menu o modelo S1035ALTERACAO"),
+            ("can_print_list_s1035alteracao", u"Pode imprimir listagem do modelo S1035ALTERACAO"),
+            ("can_print_data_s1035alteracao", u"Pode imprimir o conteúdo do modelo S1035ALTERACAO"), )
             
         ordering = [
             's1035_evttabcarreira',
@@ -169,8 +172,11 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035alteracaonovaValidade", "Can view S1035ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1035alteracaonovaValidade", "Can view menu S1035ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1035alteracaonovaValidade", u"Pode ver listagem do modelo S1035ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1035alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1035ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1035alteracaonovaValidade", u"Pode visualizar no menu o modelo S1035ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1035alteracaonovaValidade", u"Pode imprimir listagem do modelo S1035ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1035alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1035ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1035_alteracao',
@@ -229,8 +235,11 @@ class s1035exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035exclusao", "Can view S1035EXCLUSAO"),
-            ("can_view_menu_s1035exclusao", "Can view menu S1035EXCLUSAO"),)
+            ("can_see_list_s1035exclusao", u"Pode ver listagem do modelo S1035EXCLUSAO"),
+            ("can_see_data_s1035exclusao", u"Pode visualizar o conteúdo do modelo S1035EXCLUSAO"),
+            ("can_see_menu_s1035exclusao", u"Pode visualizar no menu o modelo S1035EXCLUSAO"),
+            ("can_print_list_s1035exclusao", u"Pode imprimir listagem do modelo S1035EXCLUSAO"),
+            ("can_print_data_s1035exclusao", u"Pode imprimir o conteúdo do modelo S1035EXCLUSAO"), )
             
         ordering = [
             's1035_evttabcarreira',
@@ -297,8 +306,11 @@ class s1035inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035inclusao", "Can view S1035INCLUSAO"),
-            ("can_view_menu_s1035inclusao", "Can view menu S1035INCLUSAO"),)
+            ("can_see_list_s1035inclusao", u"Pode ver listagem do modelo S1035INCLUSAO"),
+            ("can_see_data_s1035inclusao", u"Pode visualizar o conteúdo do modelo S1035INCLUSAO"),
+            ("can_see_menu_s1035inclusao", u"Pode visualizar no menu o modelo S1035INCLUSAO"),
+            ("can_print_list_s1035inclusao", u"Pode imprimir listagem do modelo S1035INCLUSAO"),
+            ("can_print_data_s1035inclusao", u"Pode imprimir o conteúdo do modelo S1035INCLUSAO"), )
             
         ordering = [
             's1035_evttabcarreira',

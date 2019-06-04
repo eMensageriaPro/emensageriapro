@@ -61,28 +61,14 @@ from emensageriapro.s2220.forms import form_s2220_exame
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2220_evtmonit_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s2220_evtmonit_id:
-    
-        s2220_evtmonit = get_object_or_404(s2220evtMonit, id=s2220_evtmonit_id)
+        s2220_evtmonit = get_object_or_404(s2220evtMonit, id=pk)
 
         if s2220_evtmonit.status != STATUS_EVENTO_CADASTRADO:
         
@@ -90,9 +76,9 @@ def salvar(request, hash):
             dict_permissoes['s2220_evtmonit_apagar'] = 0
             dict_permissoes['s2220_evtmonit_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s2220evtMonit'):
+    if request.user.has_perm('esocial.can_see_s2220evtMonit'):
     
-        if s2220_evtmonit_id:
+        if pk:
         
             s2220_evtmonit_form = form_s2220_evtmonit(request.POST or None, instance = s2220_evtmonit, 
                                          initial={'excluido': False})
@@ -111,54 +97,70 @@ def salvar(request, hash):
         
             if s2220_evtmonit_form.is_valid():
             
-                dados = s2220_evtmonit_form.cleaned_data
                 obj = s2220_evtmonit_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s2220_evtmonit_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2220_evtmonit', obj.id, usuario_id, 1)
+                                 's2220_evtmonit', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2220_evtmonit), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2220_evtmonit', s2220_evtmonit_id, usuario_id, 2)
+                                     's2220_evtmonit', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s2220_evtmonit_apagar', 's2220_evtmonit_salvar', 's2220_evtmonit'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's2220_evtmonit_apagar', 
+                    's2220_evtmonit_salvar', 
+                    's2220_evtmonit'):
                     
-                if s2220_evtmonit_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s2220_evtmonit_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's2220_evtmonit_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s2220_evtmonit_form = disabled_form_fields(s2220_evtmonit_form, request.user.has_perm('esocial.change_s2220evtMonit'))
+        s2220_evtmonit_form = disabled_form_fields(
+             s2220_evtmonit_form, 
+             request.user.has_perm('esocial.change_s2220evtMonit'))
         
-        if s2220_evtmonit_id:
+        if pk:
+        
             if s2220_evtmonit.status != 0:
+            
                 s2220_evtmonit_form = disabled_form_fields(s2220_evtmonit_form, False)
+                
         #s2220_evtmonit_campos_multiple_passo3
 
         for field in s2220_evtmonit_form.fields.keys():
+        
             s2220_evtmonit_form.fields[field].widget.attrs['ng-model'] = 's2220_evtmonit_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s2220_evtmonit_form = disabled_form_for_print(s2220_evtmonit_form)
 
         
         s2220_exame_lista = None 
         s2220_exame_form = None 
         
-        if s2220_evtmonit_id:
+        if pk:
         
-            s2220_evtmonit = get_object_or_404(s2220evtMonit, id = s2220_evtmonit_id)
+            s2220_evtmonit = get_object_or_404(s2220evtMonit, id=pk)
             
             s2220_exame_form = form_s2220_exame(
                 initial={ 's2220_evtmonit': s2220_evtmonit })
@@ -167,6 +169,7 @@ def salvar(request, hash):
                 filter(s2220_evtmonit_id=s2220_evtmonit.id).all()
                 
         else:
+        
             s2220_evtmonit = None
             
         #s2220_evtmonit_salvar_custom_variaveis#
@@ -175,40 +178,39 @@ def salvar(request, hash):
         
         if 's2220_evtmonit'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's2220_evtmonit' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's2220_evtmonit_salvar'
+        if tab or 's2220_evtmonit' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's2220_evtmonit_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s2220_evtmonit_id, tabela='s2220_evtmonit').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s2220_evtmonit').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2220_evtmonit': s2220_evtmonit, 
             's2220_evtmonit_form': s2220_evtmonit_form, 
-            's2220_evtmonit_id': int(s2220_evtmonit_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             's2220_exame_form': s2220_exame_form,
             's2220_exame_lista': s2220_exame_lista,
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s2220_evtmonit', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s2220_evtmonit_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's2220_evtmonit_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -226,25 +228,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s2220_evtmonit_salvar.html', context)
             filename = "s2220_evtmonit.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's2220_evtmonit_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s2220_evtmonit', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

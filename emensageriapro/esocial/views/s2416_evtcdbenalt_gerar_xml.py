@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s2416.models import *
 from emensageriapro.s2416.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s2416(request, s2416_evtcdbenalt_id, versao=None):
+def gerar_xml_s2416(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s2416_evtcdbenalt_id:
+    if pk:
 
         s2416_evtcdbenalt = get_object_or_404(
             s2416evtCdBenAlt,
-            excluido = False,
-            id = s2416_evtcdbenalt_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s2416_evtcdbenalt.versao
@@ -105,7 +103,8 @@ def gerar_xml_s2416(request, s2416_evtcdbenalt_id, versao=None):
             xmlns = ''
 
         s2416_evtcdbenalt_lista = s2416evtCdBenAlt.objects. \
-            filter(id=s2416_evtcdbenalt_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s2416_infopenmorte_lista = s2416infoPenMorte.objects. \
             filter(s2416_evtcdbenalt_id__in=listar_ids(s2416_evtcdbenalt_lista)).all()
@@ -122,10 +121,8 @@ def gerar_xml_s2416(request, s2416_evtcdbenalt_id, versao=None):
             'versao': versao,
             'base': s2416_evtcdbenalt,
             's2416_evtcdbenalt_lista': s2416_evtcdbenalt_lista,
-            's2416_evtcdbenalt_id': int(s2416_evtcdbenalt_id),
+            'pk': int(pk),
             's2416_evtcdbenalt': s2416_evtcdbenalt,
-
-            
             's2416_infopenmorte_lista': s2416_infopenmorte_lista,
             's2416_homologtc_lista': s2416_homologtc_lista,
             's2416_suspensao_lista': s2416_suspensao_lista,
@@ -136,9 +133,7 @@ def gerar_xml_s2416(request, s2416_evtcdbenalt_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s2416_evtcdbenalt_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -146,14 +141,14 @@ def gerar_xml_assinado(request, s2416_evtcdbenalt_id):
 
     s2416_evtcdbenalt = get_object_or_404(
         s2416evtCdBenAlt,
-        id=s2416_evtcdbenalt_id)
+        id=pk)
 
     if s2416_evtcdbenalt.arquivo_original:
     
         xml = ler_arquivo(s2416_evtcdbenalt.arquivo)
 
     else:
-        xml = gerar_xml_s2416(request, s2416_evtcdbenalt_id)
+        xml = gerar_xml_s2416(request, pk)
 
     if 'Signature' in xml:
     
@@ -169,20 +164,23 @@ def gerar_xml_assinado(request, s2416_evtcdbenalt_id):
             grupo = get_grupo(s2416evtCdBenAlt)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s2416_evtcdbenalt.nrinsc,
-                                      s2416_evtcdbenalt.tpinsc)
+                grupo,
+                s2416_evtcdbenalt.nrinsc,
+                s2416_evtcdbenalt.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s2416evtCdBenAlt,
-                                         s2416_evtcdbenalt)
+                grupo,
+                s2416evtCdBenAlt,
+                s2416_evtcdbenalt)
         
         s2416_evtcdbenalt = get_object_or_404(
             s2416evtCdBenAlt,
-            id=s2416_evtcdbenalt_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s2416_evtcdbenalt.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s2416_evtcdbenalt.transmissor_lote_esocial_id)
         
     if s2416_evtcdbenalt.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -191,29 +189,28 @@ def gerar_xml_assinado(request, s2416_evtcdbenalt_id):
         STATUS_EVENTO_GERADO):
 
         s2416evtCdBenAlt.objects.\
-            filter(id=s2416_evtcdbenalt_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s2416_evtcdbenalt/%s.xml' % (s2416_evtcdbenalt.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s2416_evtcdbenalt/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s2416_evtcdbenalt_id = int(dict_hash['id'])
+    if pk:
 
-    if s2416_evtcdbenalt_id:
-
-        xml_assinado = gerar_xml_assinado(request, s2416_evtcdbenalt_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

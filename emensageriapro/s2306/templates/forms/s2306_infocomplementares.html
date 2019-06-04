@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2306_infocomplementares__s2306_evttsvaltcontr__label">Informações complementares sobre o declarante*</label>
     {% if not for_print %}{% if s2306_infocomplementares_form.s2306_evttsvaltcontr.value %}
-        <a href="{% url 's2306_evttsvaltcontr_salvar' hash='{}'|json_return_page:'s2306_infocomplementares_salvar'|json_return_hash:hash|json_id:s2306_infocomplementares_form.s2306_evttsvaltcontr.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2306_evttsvaltcontr_salvar' pk=s2306_infocomplementares_form.s2306_evttsvaltcontr.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

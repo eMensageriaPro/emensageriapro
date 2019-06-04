@@ -104,8 +104,11 @@ class s1040alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040alteracao", "Can view S1040ALTERACAO"),
-            ("can_view_menu_s1040alteracao", "Can view menu S1040ALTERACAO"),)
+            ("can_see_list_s1040alteracao", u"Pode ver listagem do modelo S1040ALTERACAO"),
+            ("can_see_data_s1040alteracao", u"Pode visualizar o conteúdo do modelo S1040ALTERACAO"),
+            ("can_see_menu_s1040alteracao", u"Pode visualizar no menu o modelo S1040ALTERACAO"),
+            ("can_print_list_s1040alteracao", u"Pode imprimir listagem do modelo S1040ALTERACAO"),
+            ("can_print_data_s1040alteracao", u"Pode imprimir o conteúdo do modelo S1040ALTERACAO"), )
             
         ordering = [
             's1040_evttabfuncao',
@@ -165,8 +168,11 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040alteracaonovaValidade", "Can view S1040ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1040alteracaonovaValidade", "Can view menu S1040ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1040alteracaonovaValidade", u"Pode ver listagem do modelo S1040ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1040alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1040ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1040alteracaonovaValidade", u"Pode visualizar no menu o modelo S1040ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1040alteracaonovaValidade", u"Pode imprimir listagem do modelo S1040ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1040alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1040ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1040_alteracao',
@@ -225,8 +231,11 @@ class s1040exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040exclusao", "Can view S1040EXCLUSAO"),
-            ("can_view_menu_s1040exclusao", "Can view menu S1040EXCLUSAO"),)
+            ("can_see_list_s1040exclusao", u"Pode ver listagem do modelo S1040EXCLUSAO"),
+            ("can_see_data_s1040exclusao", u"Pode visualizar o conteúdo do modelo S1040EXCLUSAO"),
+            ("can_see_menu_s1040exclusao", u"Pode visualizar no menu o modelo S1040EXCLUSAO"),
+            ("can_print_list_s1040exclusao", u"Pode imprimir listagem do modelo S1040EXCLUSAO"),
+            ("can_print_data_s1040exclusao", u"Pode imprimir o conteúdo do modelo S1040EXCLUSAO"), )
             
         ordering = [
             's1040_evttabfuncao',
@@ -290,8 +299,11 @@ class s1040inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040inclusao", "Can view S1040INCLUSAO"),
-            ("can_view_menu_s1040inclusao", "Can view menu S1040INCLUSAO"),)
+            ("can_see_list_s1040inclusao", u"Pode ver listagem do modelo S1040INCLUSAO"),
+            ("can_see_data_s1040inclusao", u"Pode visualizar o conteúdo do modelo S1040INCLUSAO"),
+            ("can_see_menu_s1040inclusao", u"Pode visualizar no menu o modelo S1040INCLUSAO"),
+            ("can_print_list_s1040inclusao", u"Pode imprimir listagem do modelo S1040INCLUSAO"),
+            ("can_print_data_s1040inclusao", u"Pode imprimir o conteúdo do modelo S1040INCLUSAO"), )
             
         ordering = [
             's1040_evttabfuncao',

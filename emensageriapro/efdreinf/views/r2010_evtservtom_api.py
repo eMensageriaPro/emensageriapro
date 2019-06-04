@@ -66,7 +66,6 @@ class r2010evtServTomList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class r2010evtServTomDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2010evtServTom.objects.all()

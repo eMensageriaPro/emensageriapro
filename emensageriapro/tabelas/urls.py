@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^opcoes/api/(?P<pk>[0-9]+)/$',
         opcoes_api_views.OpcoesDetail.as_view() ),
         
-    url(r'^opcoes/json-search/(?P<opcoes_id>[0-9]+)/(?P<search>[\w ]+)/$',
+    url(r'^opcoes/json-search/(?P<pk>[0-9]+)/(?P<search>[\w ]+)/$', 
         opcoes_api_views.json_search, 
         name='opcoes_json_search'),
 

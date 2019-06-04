@@ -55,61 +55,27 @@ from emensageriapro.controle_de_acesso.models import Usuarios
 
 
 @login_required
-def enviar(request, hash):
+def enviar(request, pk):
 
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        transmissor_lote_esocial_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=transmissor_lote_esocial_id)
-    a = send_xml(request, transmissor_lote_esocial_id, 'WsEnviarLoteEventos')
+    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
+    a = send_xml(request, pk, 'WsEnviarLoteEventos')
 
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
 @login_required
-def consultar(request, hash):
+def consultar(request, pk):
 
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        transmissor_lote_esocial_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
+    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
+    a = send_xml(request, pk, 'WsConsultarLoteEventos')
 
-    except:
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=transmissor_lote_esocial_id)
-    a = send_xml(request, transmissor_lote_esocial_id, 'WsConsultarLoteEventos')
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
 @login_required
-def recibo(request, hash):
+def recibo(request, pk):
 
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        transmissor_lote_esocial_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    transmissor_lote_esocial = get_object_or_404(
-        TransmissorLoteEsocial,
-        id=transmissor_lote_esocial_id)
+    transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
 
     ocorrencias_lista = TransmissorLoteEsocialOcorrencias.objects.\
         filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
@@ -121,13 +87,7 @@ def recibo(request, hash):
         'eventos_lista': eventos_lista,
         'ocorrencias_lista': ocorrencias_lista,
         'transmissor_lote_esocial': transmissor_lote_esocial,
-        'transmissor_lote_esocial_id': int(transmissor_lote_esocial_id),
-        'usuario': usuario,
-
-        'hash': hash,
         'data': datetime.datetime.now(),
-        'for_print': int(dict_hash['print']),
-        #'transmissor_eventos_lista': transmissor_eventos_lista,
-        #'transmissor_ocorrencias_lista': transmissor_ocorrencias_lista,
     }
+
     return render(request, 'transmissor_lote_esocial_recibo.html', context)

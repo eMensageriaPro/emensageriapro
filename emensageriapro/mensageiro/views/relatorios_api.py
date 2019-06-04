@@ -66,7 +66,6 @@ class RelatoriosList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class RelatoriosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Relatorios.objects.all()

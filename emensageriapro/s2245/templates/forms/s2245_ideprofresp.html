@@ -15,7 +15,7 @@
     <label id="s2245_ideprofresp__s2245_evttreicap__label">Informações relativas ao profissional responsável pelo treinamento/capacitação*</label>
     {% if not for_print %}
       {% if s2245_ideprofresp_form.s2245_evttreicap.value %}
-        <a id="s2245_ideprofresp__s2245_evttreicap__div_acessar" href="{% url 's2245_evttreicap_salvar' hash='{}'|json_id:s2245_ideprofresp_form.s2245_evttreicap.value|json_print:0|base64_encode_me %}">
+        <a id="s2245_ideprofresp__s2245_evttreicap__div_acessar" href="{% url 's2245_evttreicap_salvar' pk=s2245_ideprofresp_form.s2245_evttreicap.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

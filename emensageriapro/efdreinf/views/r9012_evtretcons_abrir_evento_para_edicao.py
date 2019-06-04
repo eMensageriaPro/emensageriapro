@@ -72,70 +72,64 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def abrir_evento_para_edicao(request, hash):
+def abrir_evento_para_edicao(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
 
-    dict_hash = get_hash_url(hash)
-    r9012_evtretcons_id = int(dict_hash['id'])
-    
-    if request.user.has_perm('efdreinf.can_open_event_r9012evtRetCons'):
+    if request.user.has_perm('efdreinf.can_open_r9012evtRetCons'):
 
-        if r9012_evtretcons_id:
-            r9012_evtretcons = get_object_or_404(r9012evtRetCons, excluido=False, id=r9012_evtretcons_id)
-    
-            status_list = [
-                STATUS_EVENTO_CADASTRADO,
-                STATUS_EVENTO_IMPORTADO,
-                STATUS_EVENTO_DUPLICADO,
-                STATUS_EVENTO_GERADO,
-                STATUS_EVENTO_GERADO_ERRO,
-                STATUS_EVENTO_ASSINADO,
-                STATUS_EVENTO_ASSINADO_ERRO,
-                STATUS_EVENTO_VALIDADO,
-                STATUS_EVENTO_VALIDADO_ERRO,
-                STATUS_EVENTO_AGUARD_PRECEDENCIA,
-                STATUS_EVENTO_AGUARD_ENVIO,
-                STATUS_EVENTO_ENVIADO_ERRO
-            ]
-    
-            if r9012_evtretcons.status in status_list:
-                r9012evtRetCons.objects.filter(id=r9012_evtretcons_id).update(status=STATUS_EVENTO_CADASTRADO,
-                                                                              arquivo_original=0)
-                arquivo = 'arquivos/Eventos/r9012_evtretcons/%s.xml' % (r9012_evtretcons.identidade)
-    
-                if os.path.exists(BASE_DIR + '/' + arquivo):
-    
-                    data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
-                    dad = (BASE_DIR, r9012_evtretcons.identidade, BASE_DIR, r9012_evtretcons.identidade, data_hora_atual)
-                    os.system('mv %s/arquivos/Eventos/r9012_evtretcons/%s.xml %s/arquivos/Eventos/r9012_evtretcons/%s_backup_%s.xml' % dad)
-                    gravar_nome_arquivo('/arquivos/Eventos/r9012_evtretcons/%s_backup_%s.xml' % (r9012_evtretcons.identidade, data_hora_atual),
-                        1)
-    
-                messages.success(request, 'Evento aberto para edição!')
-                usuario_id = request.user.id
-                gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                    'r9012_evtretcons', r9012_evtretcons_id, usuario_id, 1)
-    
-                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r9012_evtretcons_id )
-                return redirect('r9012_evtretcons_salvar', hash=url_hash)
-                
-            else:
-            
-                messages.error(request, u'''
-                    Não foi possível abrir o evento para edição! Somente é possível
-                    abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-                    "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-                     ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-                     "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
-                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    
-        messages.error(request, 'Erro ao abrir evento para edição!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        r9012_evtretcons = get_object_or_404(r9012evtRetCons, id=pk)
+
+        status_list = [
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_IMPORTADO,
+            STATUS_EVENTO_DUPLICADO,
+            STATUS_EVENTO_GERADO,
+            STATUS_EVENTO_GERADO_ERRO,
+            STATUS_EVENTO_ASSINADO,
+            STATUS_EVENTO_ASSINADO_ERRO,
+            STATUS_EVENTO_VALIDADO,
+            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_AGUARD_PRECEDENCIA,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_ENVIADO_ERRO
+        ]
+
+        if r9012_evtretcons.status in status_list:
         
+            r9012evtRetCons.objects.filter(id=pk).update(
+                status=STATUS_EVENTO_CADASTRADO,
+                arquivo_original=0)
+                                                                          
+            arquivo = 'arquivos/Eventos/r9012_evtretcons/%s.xml' % (r9012_evtretcons.identidade)
+
+            if os.path.exists(BASE_DIR + '/' + arquivo):
+
+                data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
+                dad = (BASE_DIR, r9012_evtretcons.identidade, BASE_DIR, r9012_evtretcons.identidade, data_hora_atual)
+                os.system('mv %s/arquivos/Eventos/r9012_evtretcons/%s.xml %s/arquivos/Eventos/r9012_evtretcons/%s_backup_%s.xml' % dad)
+                gravar_nome_arquivo('/arquivos/Eventos/r9012_evtretcons/%s_backup_%s.xml' % (r9012_evtretcons.identidade, data_hora_atual),
+                    1)
+
+            messages.success(request, 'Evento aberto para edição!')
+            request.user.id = request.user.id
+            
+            gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
+                'r9012_evtretcons', pk, request.user.id, 1)
+            
+        else:
+        
+            messages.error(request, u'''
+                Não foi possível abrir o evento para edição! Somente é possível
+                abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
+                "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
+                 ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
+                 "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
+
     else:
     
         messages.error(request, u'''Você não possui permissão para abrir evento para edição. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                                    
+    return redirect('r9012_evtretcons_salvar', pk=pk, tab='master')

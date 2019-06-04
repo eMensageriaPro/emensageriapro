@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1005_alteracao_infocaepf__s1005_alteracao__label">Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.*</label>
     {% if not for_print %}{% if s1005_alteracao_infocaepf_form.s1005_alteracao.value %}
-        <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_return_page:'s1005_alteracao_infocaepf_salvar'|json_return_hash:hash|json_id:s1005_alteracao_infocaepf_form.s1005_alteracao.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao_infocaepf_form.s1005_alteracao.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

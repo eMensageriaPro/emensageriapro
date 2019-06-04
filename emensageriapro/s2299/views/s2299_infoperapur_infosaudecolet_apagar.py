@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s2299_infoperapur_infosaudecolet_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s2299_infoperapur_infosaudecolet = get_object_or_404(s2299infoPerApurinfoSaudeColet, id=s2299_infoperapur_infosaudecolet_id)
+    s2299_infoperapur_infosaudecolet = get_object_or_404(s2299infoPerApurinfoSaudeColet, id=pk)
     
     dados_evento = {}
-    
-    if s2299_infoperapur_infosaudecolet_id:
-    
-        dados_evento = s2299_infoperapur_infosaudecolet.evento()
+    dados_evento = s2299_infoperapur_infosaudecolet.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s2299_infoperapur_infosaudecolet), indent=4, sort_keys=True, default=str)
-            obj = s2299infoPerApurinfoSaudeColet.objects.get(id = s2299_infoperapur_infosaudecolet_id)
+            obj = s2299infoPerApurinfoSaudeColet.objects.get(id=pk)
             obj.delete(request=request)
             #s2299_infoperapur_infosaudecolet_apagar_custom
             #s2299_infoperapur_infosaudecolet_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's2299_infoperapur_infosaudecolet', s2299_infoperapur_infosaudecolet_id, usuario_id, 3)
+                             's2299_infoperapur_infosaudecolet', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's2299_infoperapur_infosaudecolet_salvar':
+        if 's2299_infoperapur_infosaudecolet' in request.session['return_page']:
         
-            return redirect('s2299_infoperapur_infosaudecolet', hash=request.session['retorno_hash'])
+            return redirect('s2299_infoperapur_infosaudecolet')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s2299', ],
         'paginas': ['s2299_infoperapur_infosaudecolet', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

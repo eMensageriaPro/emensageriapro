@@ -106,8 +106,11 @@ class s2245ideProfResp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2245ideProfResp", "Can view S2245IDEPROFRESP"),
-            ("can_view_menu_s2245ideProfResp", "Can view menu S2245IDEPROFRESP"),)
+            ("can_see_list_s2245ideProfResp", u"Pode ver listagem do modelo S2245IDEPROFRESP"),
+            ("can_see_data_s2245ideProfResp", u"Pode visualizar o conteúdo do modelo S2245IDEPROFRESP"),
+            ("can_see_menu_s2245ideProfResp", u"Pode visualizar no menu o modelo S2245IDEPROFRESP"),
+            ("can_print_list_s2245ideProfResp", u"Pode imprimir listagem do modelo S2245IDEPROFRESP"),
+            ("can_print_data_s2245ideProfResp", u"Pode imprimir o conteúdo do modelo S2245IDEPROFRESP"), )
             
         ordering = [
             's2245_evttreicap',

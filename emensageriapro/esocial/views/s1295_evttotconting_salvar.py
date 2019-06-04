@@ -61,28 +61,14 @@ from emensageriapro.s1295.forms import form_s1295_iderespinf
 
 
 @login_required
-def salvar(request, hash):
+def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
-    try:
+    if pk:
     
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s1295_evttotconting_id = int(dict_hash['id'])
-        if 'tab' not in dict_hash.keys():
-            dict_hash['tab'] = ''
-        for_print = int(dict_hash['print'])
-        
-    except:
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    
-    if s1295_evttotconting_id:
-    
-        s1295_evttotconting = get_object_or_404(s1295evtTotConting, id=s1295_evttotconting_id)
+        s1295_evttotconting = get_object_or_404(s1295evtTotConting, id=pk)
 
         if s1295_evttotconting.status != STATUS_EVENTO_CADASTRADO:
         
@@ -90,9 +76,9 @@ def salvar(request, hash):
             dict_permissoes['s1295_evttotconting_apagar'] = 0
             dict_permissoes['s1295_evttotconting_editar'] = 0
             
-    if request.user.has_perm('esocial.can_view_s1295evtTotConting'):
+    if request.user.has_perm('esocial.can_see_s1295evtTotConting'):
     
-        if s1295_evttotconting_id:
+        if pk:
         
             s1295_evttotconting_form = form_s1295_evttotconting(request.POST or None, instance = s1295_evttotconting, 
                                          initial={'excluido': False})
@@ -111,54 +97,70 @@ def salvar(request, hash):
         
             if s1295_evttotconting_form.is_valid():
             
-                dados = s1295_evttotconting_form.cleaned_data
                 obj = s1295_evttotconting_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not s1295_evttotconting_id:
+                if not pk:
                 
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1295_evttotconting', obj.id, usuario_id, 1)
+                                 's1295_evttotconting', obj.id, request.user.id, 1)
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s1295_evttotconting), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1295_evttotconting', s1295_evttotconting_id, usuario_id, 2)
+                                     's1295_evttotconting', pk, request.user.id, 2)
                                  
-                if request.session['retorno_pagina'] not in ('s1295_evttotconting_apagar', 's1295_evttotconting_salvar', 's1295_evttotconting'):
-                    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                if request.session['return_page'] not in (
+                    's1295_evttotconting_apagar', 
+                    's1295_evttotconting_salvar', 
+                    's1295_evttotconting'):
                     
-                if s1295_evttotconting_id != obj.id:
-                    url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
-                    return redirect('s1295_evttotconting_salvar', hash=url_hash)
+                    return redirect(
+                        request.session['return_page'], 
+                        pk=request.session['return_pk'], 
+                        tab=request.session['return_tab'])
+                    
+                if pk != obj.id:
+                
+                    return redirect(
+                        's1295_evttotconting_salvar', 
+                        pk=obj.id, 
+                        tab='master')
 
             else:
                 messages.error(request, u'Erro ao salvar!')
                 
-        s1295_evttotconting_form = disabled_form_fields(s1295_evttotconting_form, request.user.has_perm('esocial.change_s1295evtTotConting'))
+        s1295_evttotconting_form = disabled_form_fields(
+             s1295_evttotconting_form, 
+             request.user.has_perm('esocial.change_s1295evtTotConting'))
         
-        if s1295_evttotconting_id:
+        if pk:
+        
             if s1295_evttotconting.status != 0:
+            
                 s1295_evttotconting_form = disabled_form_fields(s1295_evttotconting_form, False)
+                
         #s1295_evttotconting_campos_multiple_passo3
 
         for field in s1295_evttotconting_form.fields.keys():
+        
             s1295_evttotconting_form.fields[field].widget.attrs['ng-model'] = 's1295_evttotconting_'+field
             
-        if int(dict_hash['print']):
+        if output:
+        
             s1295_evttotconting_form = disabled_form_for_print(s1295_evttotconting_form)
 
         
         s1295_iderespinf_lista = None 
         s1295_iderespinf_form = None 
         
-        if s1295_evttotconting_id:
+        if pk:
         
-            s1295_evttotconting = get_object_or_404(s1295evtTotConting, id = s1295_evttotconting_id)
+            s1295_evttotconting = get_object_or_404(s1295evtTotConting, id=pk)
             
             s1295_iderespinf_form = form_s1295_iderespinf(
                 initial={ 's1295_evttotconting': s1295_evttotconting })
@@ -167,6 +169,7 @@ def salvar(request, hash):
                 filter(s1295_evttotconting_id=s1295_evttotconting.id).all()
                 
         else:
+        
             s1295_evttotconting = None
             
         #s1295_evttotconting_salvar_custom_variaveis#
@@ -175,40 +178,39 @@ def salvar(request, hash):
         
         if 's1295_evttotconting'[1] == '5':
             evento_totalizador = True
+            
         else:
             evento_totalizador = False
         
-        if dict_hash['tab'] or 's1295_evttotconting' in request.session['retorno_pagina']:
-            request.session["retorno_hash"] = hash
-            request.session["retorno_pagina"] = 's1295_evttotconting_salvar'
+        if tab or 's1295_evttotconting' in request.session['return_page']:
+        
+            request.session['return_pk'] = pk
+            request.session['return_tab'] = tab
+            request.session['return_page'] = 's1295_evttotconting_salvar'
             
-        controle_alteracoes = Auditoria.objects.filter(identidade=s1295_evttotconting_id, tabela='s1295_evttotconting').all()
+        controle_alteracoes = Auditoria.objects.filter(identidade=pk, tabela='s1295_evttotconting').all()
         
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'output': output,
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's1295_evttotconting': s1295_evttotconting, 
             's1295_evttotconting_form': s1295_evttotconting_form, 
-            's1295_evttotconting_id': int(s1295_evttotconting_id),
-            'usuario': usuario, 
-            'hash': hash, 
             
             's1295_iderespinf_form': s1295_iderespinf_form,
             's1295_iderespinf_lista': s1295_iderespinf_lista,
             'data': datetime.datetime.now(),
             'modulos': ['esocial', ],
             'paginas': ['s1295_evttotconting', ],
-            'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
-            'tab': dict_hash['tab'],
+            'tab': tab,
             #s1295_evttotconting_salvar_custom_variaveis_context#
         }
         
-        if for_print in (0, 1):
-        
-            return render(request, 's1295_evttotconting_salvar.html', context)
             
-        elif for_print == 2:
+        if output == 'pdf':
         
             response = PDFTemplateResponse(
                 request=request,
@@ -226,25 +228,33 @@ def salvar(request, hash):
                              "viewport-size": "1366 x 513",
                              'javascript-delay': 1000,
                              'footer-center': '[page]/[topage]',
-                             "no-stop-slow-scripts": True},
-            )
+                             "no-stop-slow-scripts": True}, )
             
             return response
             
-        elif for_print == 3:
+        elif output == 'xls':
         
             response = render_to_response('s1295_evttotconting_salvar.html', context)
             filename = "s1295_evttotconting.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
+            
+        else:
+        
+            return render(request, 's1295_evttotconting_salvar.html', context)
             
     else:
     
         context = {
-            'usuario': usuario, 
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
+            'tab': tab,
+            'output': output,
             'modulos': ['esocial', ],
             'paginas': ['s1295_evttotconting', ],
             'data': datetime.datetime.now(),
         }
+        
         return render(request, 'permissao_negada.html', context)

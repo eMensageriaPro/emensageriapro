@@ -292,7 +292,7 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 # Endereços login e logout
 
-LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mapa-processamento/visao-geral/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
+LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mapa-processamento/visao-geral/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
 # Static files

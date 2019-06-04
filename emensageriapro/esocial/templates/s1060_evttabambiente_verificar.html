@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1060 - Tabela de Ambientes de Trabalho<br>Identidade: {{ s1060_evttabambiente.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's1060_evttabambiente_verificar' hash='{}'|json_id:s1060_evttabambiente_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's1060_evttabambiente_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's1060_evttabambiente_verificar' hash='{}'|json_id:s1060_evttabambiente_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's1060_evttabambiente_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's1060_evttabambiente_verificar' hash='{}'|json_id:s1060_evttabambiente_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's1060_evttabambiente_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's1060_evttabambiente_verificar' hash='{}'|json_id:s1060_evttabambiente_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s1060_evttabambiente.tpamb or s1060_evttabambiente.tpamb == 0 %}{{ s1060_evttabambiente.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_evttabambiente_visualizar' %}
-                <a href="{% url 's1060_evttabambiente_salvar'  hash='{}'|json_id:s1060_evttabambiente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060evtTabAmbiente or perms.esocial.can_see_s1060evtTabAmbiente %}
+                <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_evttabambiente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s1060_evttabambiente.procemi or s1060_evttabambiente.procemi == 0 %}{{ s1060_evttabambiente.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_evttabambiente_visualizar' %}
-                <a href="{% url 's1060_evttabambiente_salvar'  hash='{}'|json_id:s1060_evttabambiente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060evtTabAmbiente or perms.esocial.can_see_s1060evtTabAmbiente %}
+                <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_evttabambiente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s1060_evttabambiente.verproc or s1060_evttabambiente.verproc == 0 %}{{ s1060_evttabambiente.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_evttabambiente_visualizar' %}
-                <a href="{% url 's1060_evttabambiente_salvar'  hash='{}'|json_id:s1060_evttabambiente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060evtTabAmbiente or perms.esocial.can_see_s1060evtTabAmbiente %}
+                <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_evttabambiente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -193,11 +190,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s1060_evttabambiente.tpinsc or s1060_evttabambiente.tpinsc == 0 %}{{ s1060_evttabambiente.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_evttabambiente_visualizar' %}
-                <a href="{% url 's1060_evttabambiente_salvar'  hash='{}'|json_id:s1060_evttabambiente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060evtTabAmbiente or perms.esocial.can_see_s1060evtTabAmbiente %}
+                <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_evttabambiente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -212,11 +209,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1060_evttabambiente.nrinsc or s1060_evttabambiente.nrinsc == 0 %}{{ s1060_evttabambiente.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_evttabambiente_visualizar' %}
-                <a href="{% url 's1060_evttabambiente_salvar'  hash='{}'|json_id:s1060_evttabambiente.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060evtTabAmbiente or perms.esocial.can_see_s1060evtTabAmbiente %}
+                <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_evttabambiente.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -247,11 +244,11 @@
             <td width="130px">codAmb</td>
             <td width="500px">Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1060_inclusao.codamb or s1060_inclusao.codamb == 0 %}{{ s1060_inclusao.codamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -266,11 +263,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1060_inclusao.inivalid or s1060_inclusao.inivalid == 0 %}{{ s1060_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -285,11 +282,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1060_inclusao.fimvalid or s1060_inclusao.fimvalid == 0 %}{{ s1060_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -309,11 +306,11 @@
             <td width="130px">nmAmb</td>
             <td width="500px">Informar o nome do ambiente de trabalho.</td>
             <td width="200px"><b>{% if s1060_inclusao.nmamb or s1060_inclusao.nmamb == 0 %}{{ s1060_inclusao.nmamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -328,11 +325,11 @@
             <td width="130px">dscAmb</td>
             <td width="500px">Descrição do ambiente de trabalho.</td>
             <td width="200px"><b>{% if s1060_inclusao.dscamb or s1060_inclusao.dscamb == 0 %}{{ s1060_inclusao.dscamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -347,11 +344,11 @@
             <td width="130px">localAmb</td>
             <td width="500px">Preencher com uma das opções<opcoes>1 - Estabelecimento do próprio empregador; 2 - Estabelecimento de terceiros; 3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if s1060_inclusao.localamb or s1060_inclusao.localamb == 0 %}{{ s1060_inclusao.localamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -366,11 +363,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Preenchimento obrigatório e exclusivo se {localAmb} = [1, 3]. <valores_validos> 1, 3, 4.</td>
             <td width="200px"><b>{% if s1060_inclusao.tpinsc or s1060_inclusao.tpinsc == 0 %}{{ s1060_inclusao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -385,11 +382,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Número de inscrição onde está localizado o ambiente. <validacao> Preenchimento obrigatório e exclusivo se {localAmb} = [1, 3]. Caso informado, deve ser compatível com o conteúdo do campo {tpInsc} e: a) Se {localAmb} = [1], o estabelecimento deve pertencer ao empregador e constar na tabela de Estabelecimentos (S-1005); b) Se {localAmb} = [3], deve ser diferente dos estabelecimentos informados na tabela S-1005 e, se {tpInsc} = [1] e o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente da constante em S-1000. Deve ser um identificador válido, constante das bases da RFB.</td>
             <td width="200px"><b>{% if s1060_inclusao.nrinsc or s1060_inclusao.nrinsc == 0 %}{{ s1060_inclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -404,11 +401,11 @@
             <td width="130px">codLotacao</td>
             <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> Preenchimento obrigatório e exclusivo se {localAmb} = [2]. Se informado, deve ser um código existente em S-1020 - tabela de Lotações Tributárias com o campo {tpLotacao} = [03,04,05,06,07,08,09].</td>
             <td width="200px"><b>{% if s1060_inclusao.codlotacao or s1060_inclusao.codlotacao == 0 %}{{ s1060_inclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_inclusao_visualizar' %}
-                <a href="{% url 's1060_inclusao_salvar'  hash='{}'|json_id:s1060_inclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060inclusao or perms.esocial.can_see_s1060inclusao %}
+                <a href="{% url 's1060_inclusao_salvar' pk=s1060_inclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -434,11 +431,11 @@
             <td width="130px">codAmb</td>
             <td width="500px">Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1060_alteracao.codamb or s1060_alteracao.codamb == 0 %}{{ s1060_alteracao.codamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -453,11 +450,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1060_alteracao.inivalid or s1060_alteracao.inivalid == 0 %}{{ s1060_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -472,11 +469,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1060_alteracao.fimvalid or s1060_alteracao.fimvalid == 0 %}{{ s1060_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -496,11 +493,11 @@
             <td width="130px">nmAmb</td>
             <td width="500px">Informar o nome do ambiente de trabalho.</td>
             <td width="200px"><b>{% if s1060_alteracao.nmamb or s1060_alteracao.nmamb == 0 %}{{ s1060_alteracao.nmamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -515,11 +512,11 @@
             <td width="130px">dscAmb</td>
             <td width="500px">Descrição do ambiente de trabalho.</td>
             <td width="200px"><b>{% if s1060_alteracao.dscamb or s1060_alteracao.dscamb == 0 %}{{ s1060_alteracao.dscamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -534,11 +531,11 @@
             <td width="130px">localAmb</td>
             <td width="500px">Preencher com uma das opções<opcoes>1 - Estabelecimento do próprio empregador; 2 - Estabelecimento de terceiros; 3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10. <valores_validos> 1, 2, 3.</td>
             <td width="200px"><b>{% if s1060_alteracao.localamb or s1060_alteracao.localamb == 0 %}{{ s1060_alteracao.localamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -553,11 +550,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Preenchimento obrigatório e exclusivo se {localAmb} = [1, 3]. <valores_validos> 1, 3, 4.</td>
             <td width="200px"><b>{% if s1060_alteracao.tpinsc or s1060_alteracao.tpinsc == 0 %}{{ s1060_alteracao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -572,11 +569,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Número de inscrição onde está localizado o ambiente. <validacao> Preenchimento obrigatório e exclusivo se {localAmb} = [1, 3]. Caso informado, deve ser compatível com o conteúdo do campo {tpInsc} e: a) Se {localAmb} = [1], o estabelecimento deve pertencer ao empregador e constar na tabela de Estabelecimentos (S-1005); b) Se {localAmb} = [3], deve ser diferente dos estabelecimentos informados na tabela S-1005 e, se {tpInsc} = [1] e o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente da constante em S-1000. Deve ser um identificador válido, constante das bases da RFB.</td>
             <td width="200px"><b>{% if s1060_alteracao.nrinsc or s1060_alteracao.nrinsc == 0 %}{{ s1060_alteracao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -591,11 +588,11 @@
             <td width="130px">codLotacao</td>
             <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> Preenchimento obrigatório e exclusivo se {localAmb} = [2]. Se informado, deve ser um código existente em S-1020 - tabela de Lotações Tributárias com o campo {tpLotacao} = [03,04,05,06,07,08,09].</td>
             <td width="200px"><b>{% if s1060_alteracao.codlotacao or s1060_alteracao.codlotacao == 0 %}{{ s1060_alteracao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_visualizar' %}
-                <a href="{% url 's1060_alteracao_salvar'  hash='{}'|json_id:s1060_alteracao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracao or perms.esocial.can_see_s1060alteracao %}
+                <a href="{% url 's1060_alteracao_salvar' pk=s1060_alteracao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -616,11 +613,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1060_alteracao_novavalidade.inivalid or s1060_alteracao_novavalidade.inivalid == 0 %}{{ s1060_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1060_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1060_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracaonovaValidade or perms.esocial.can_see_s1060alteracaonovaValidade %}
+                <a href="{% url 's1060_alteracao_novavalidade_salvar' pk=s1060_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -635,11 +632,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1060_alteracao_novavalidade.fimvalid or s1060_alteracao_novavalidade.fimvalid == 0 %}{{ s1060_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_alteracao_novavalidade_visualizar' %}
-                <a href="{% url 's1060_alteracao_novavalidade_salvar'  hash='{}'|json_id:s1060_alteracao_novavalidade.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060alteracaonovaValidade or perms.esocial.can_see_s1060alteracaonovaValidade %}
+                <a href="{% url 's1060_alteracao_novavalidade_salvar' pk=s1060_alteracao_novavalidade.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -665,11 +662,11 @@
             <td width="130px">codAmb</td>
             <td width="500px">Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.</td>
             <td width="200px"><b>{% if s1060_exclusao.codamb or s1060_exclusao.codamb == 0 %}{{ s1060_exclusao.codamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_exclusao_visualizar' %}
-                <a href="{% url 's1060_exclusao_salvar'  hash='{}'|json_id:s1060_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060exclusao or perms.esocial.can_see_s1060exclusao %}
+                <a href="{% url 's1060_exclusao_salvar' pk=s1060_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -684,11 +681,11 @@
             <td width="130px">iniValid</td>
             <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1060_exclusao.inivalid or s1060_exclusao.inivalid == 0 %}{{ s1060_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_exclusao_visualizar' %}
-                <a href="{% url 's1060_exclusao_salvar'  hash='{}'|json_id:s1060_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060exclusao or perms.esocial.can_see_s1060exclusao %}
+                <a href="{% url 's1060_exclusao_salvar' pk=s1060_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -703,11 +700,11 @@
             <td width="130px">fimValid</td>
             <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1060_exclusao.fimvalid or s1060_exclusao.fimvalid == 0 %}{{ s1060_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s1060_exclusao_visualizar' %}
-                <a href="{% url 's1060_exclusao_salvar'  hash='{}'|json_id:s1060_exclusao.id|json_print:0|base64_encode_me %}">
+                {% if perms.s1060.can_see_s1060exclusao or perms.esocial.can_see_s1060exclusao %}
+                <a href="{% url 's1060_exclusao_salvar' pk=s1060_exclusao.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

@@ -31,7 +31,7 @@
         junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
 
 -->
-{% if not for_print %}
+{% if not output %}
 
     <section class="content-header">
       <h1>
@@ -64,7 +64,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-2260 - Convocação para Trabalho Intermitente<br>Identidade: {{ s2260_evtconvinterm.identidade }}</h3>
               <div class="text-right">
-                <a href="{% url 's2260_evtconvinterm_verificar' hash='{}'|json_id:s2260_evtconvinterm_id|json_print:1|base64_encode_me %}" target="_blank">
+                <a href="{% url 's2260_evtconvinterm_verificar' pk=pk %}" target="_blank">
                   <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
                 </a>
 
@@ -78,14 +78,11 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="text-left"><a
-                                            href="{% url 's2260_evtconvinterm_verificar' hash='{}'|json_id:s2260_evtconvinterm_id|json_print:2|base64_encode_me %}"
+                                            href="{% url 's2260_evtconvinterm_verificar_output' pk=pk output='pdf' %}"
                                             target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
                                     <li class="text-left"><a
-                                            href="{% url 's2260_evtconvinterm_verificar' hash='{}'|json_id:s2260_evtconvinterm_id|json_print:3|base64_encode_me %}"
+                                            href="{% url 's2260_evtconvinterm_verificar_output' pk=pk output='xls' %}"
                                             target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                    <!--<li class="text-left"><a
-                                            href="{% url 's2260_evtconvinterm_verificar' hash='{}'|json_id:s2260_evtconvinterm_id|json_print:4|base64_encode_me %}"
-                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
                                 </ul>
                             </div>&nbsp;
 
@@ -131,11 +128,11 @@
             <td width="130px">indRetif</td>
             <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.indretif or s2260_evtconvinterm.indretif == 0 %}{{ s2260_evtconvinterm.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -150,11 +147,11 @@
             <td width="130px">nrRecibo</td>
             <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.nrrecibo or s2260_evtconvinterm.nrrecibo == 0 %}{{ s2260_evtconvinterm.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -169,11 +166,11 @@
             <td width="130px">tpAmb</td>
             <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.tpamb or s2260_evtconvinterm.tpamb == 0 %}{{ s2260_evtconvinterm.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -188,11 +185,11 @@
             <td width="130px">procEmi</td>
             <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.procemi or s2260_evtconvinterm.procemi == 0 %}{{ s2260_evtconvinterm.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -207,11 +204,11 @@
             <td width="130px">verProc</td>
             <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.verproc or s2260_evtconvinterm.verproc == 0 %}{{ s2260_evtconvinterm.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -231,11 +228,11 @@
             <td width="130px">tpInsc</td>
             <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.tpinsc or s2260_evtconvinterm.tpinsc == 0 %}{{ s2260_evtconvinterm.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -250,11 +247,11 @@
             <td width="130px">nrInsc</td>
             <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.nrinsc or s2260_evtconvinterm.nrinsc == 0 %}{{ s2260_evtconvinterm.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -274,11 +271,11 @@
             <td width="130px">cpfTrab</td>
             <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.cpftrab or s2260_evtconvinterm.cpftrab == 0 %}{{ s2260_evtconvinterm.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -293,11 +290,11 @@
             <td width="130px">nisTrab</td>
             <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.nistrab or s2260_evtconvinterm.nistrab == 0 %}{{ s2260_evtconvinterm.nistrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -312,11 +309,11 @@
             <td width="130px">matricula</td>
             <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.matricula or s2260_evtconvinterm.matricula == 0 %}{{ s2260_evtconvinterm.matricula }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -336,11 +333,11 @@
             <td width="130px">codConv</td>
             <td width="500px">Preencher com o código atribuído pela empresa que identifica a convocação para trabalho intermitente.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.codconv or s2260_evtconvinterm.codconv == 0 %}{{ s2260_evtconvinterm.codconv }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -355,11 +352,11 @@
             <td width="130px">dtInicio</td>
             <td width="500px">Preencher com a data de início da prestação de trabalho intermitente. Se a data de início da prestação for anterior ao inicio da obrigatoriedade dos eventos não periódicos, informar a data de inicio da obrigatoriedade. <validacao> Deve ser uma data válida, igual ou posterior a data de admissão do trabalhador (no caso de sucessão ou mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente) e igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.dtinicio or s2260_evtconvinterm.dtinicio == 0 %}{{ s2260_evtconvinterm.dtinicio|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -374,11 +371,11 @@
             <td width="130px">dtFim</td>
             <td width="500px">Preencher com a data de término da prestação de trabalho intermitente. <validacao> Deve ser uma data valida e igual ou posterior a {dtInicio}.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.dtfim or s2260_evtconvinterm.dtfim == 0 %}{{ s2260_evtconvinterm.dtfim|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -393,11 +390,11 @@
             <td width="130px">dtPrevPgto</td>
             <td width="500px">Preencher com a data prevista para o pagamento da remuneração. Caso a convocação compreenda mais de um período de apuração, preencher com a data prevista para o pagamento da remuneração do último mês. <validacao> Deve ser uma data válida e igual ou posterior a data de admissão do trabalhador (no caso de sucessão ou mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente).</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.dtprevpgto or s2260_evtconvinterm.dtprevpgto == 0 %}{{ s2260_evtconvinterm.dtprevpgto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -417,11 +414,11 @@
             <td width="130px">codHorContrat</td>
             <td width="500px">Preencher com o código atribuído pela empresa para o horário da prestação de trabalho intermitente, caso a jornada diária seja fixa durante o período da convocação e não haja prestação de serviços em dias alternados. <validacao> O preenchimento é obrigatório se {dscJornada} não for preenchido. O valor informado deve existir na tabela de Horários/Turnos de Trabalho - S-1050.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.codhorcontrat or s2260_evtconvinterm.codhorcontrat == 0 %}{{ s2260_evtconvinterm.codhorcontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -436,11 +433,11 @@
             <td width="130px">dscJornada</td>
             <td width="500px">Descrição das jornadas e dos dias da prestação de trabalho intermitente, caso a jornada diária seja variável durante o período da convocação ou haja prestação de serviços em dias alternados. <validacao> O preenchimento é obrigatório se {codHorContrat} não for preenchido.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.dscjornada or s2260_evtconvinterm.dscjornada == 0 %}{{ s2260_evtconvinterm.dscjornada }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -460,11 +457,11 @@
             <td width="130px">indLocal</td>
             <td width="500px">Indicativo do local da prestação de trabalho intermitente<opcoes>0 - Prestação de serviços no estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso; 1 - Prestação de serviços em apenas um local e fora do estabelecimento informado no grupo {localTrabGeral} do S-2200 ou S-2206, quando for o caso; 2 - Prestação de serviços de natureza externa ou em mais de um local. <valores_validos> 0, 1, 2.</td>
             <td width="200px"><b>{% if s2260_evtconvinterm.indlocal or s2260_evtconvinterm.indlocal == 0 %}{{ s2260_evtconvinterm.indlocal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_evtconvinterm_visualizar' %}
-                <a href="{% url 's2260_evtconvinterm_salvar'  hash='{}'|json_id:s2260_evtconvinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260evtConvInterm or perms.esocial.can_see_s2260evtConvInterm %}
+                <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_evtconvinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -485,11 +482,11 @@
             <td width="130px">tpLograd</td>
             <td width="500px">Tipo de Logradouro, conforme tabela 20. <validacao> Deve ser um código válido, existente na tabela 20.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.tplograd or s2260_localtrabinterm.tplograd == 0 %}{{ s2260_localtrabinterm.tplograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -504,11 +501,11 @@
             <td width="130px">dscLograd</td>
             <td width="500px">Descrição do logradouro.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.dsclograd or s2260_localtrabinterm.dsclograd == 0 %}{{ s2260_localtrabinterm.dsclograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -523,11 +520,11 @@
             <td width="130px">nrLograd</td>
             <td width="500px">Número do logradouro.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.nrlograd or s2260_localtrabinterm.nrlograd == 0 %}{{ s2260_localtrabinterm.nrlograd }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -542,11 +539,11 @@
             <td width="130px">complem</td>
             <td width="500px">Complemento do logradouro.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.complem or s2260_localtrabinterm.complem == 0 %}{{ s2260_localtrabinterm.complem }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -561,11 +558,11 @@
             <td width="130px">bairro</td>
             <td width="500px">Nome do bairro/distrito.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.bairro or s2260_localtrabinterm.bairro == 0 %}{{ s2260_localtrabinterm.bairro }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -580,11 +577,11 @@
             <td width="130px">cep</td>
             <td width="500px">Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.cep or s2260_localtrabinterm.cep == 0 %}{{ s2260_localtrabinterm.cep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -599,11 +596,11 @@
             <td width="130px">codMunic</td>
             <td width="500px">Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.codmunic or s2260_localtrabinterm.codmunic == 0 %}{{ s2260_localtrabinterm.codmunic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>
@@ -618,11 +615,11 @@
             <td width="130px">uf</td>
             <td width="500px">Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida.</td>
             <td width="200px"><b>{% if s2260_localtrabinterm.uf or s2260_localtrabinterm.uf == 0 %}{{ s2260_localtrabinterm.uf }}{% else %}(vazio){% endif %}</b></td>
-            {% if not for_print %}
+            {% if not output %}
             <td width="40px">
               <div>
-                {% if dict_permissoes|get_permissao:'s2260_localtrabinterm_visualizar' %}
-                <a href="{% url 's2260_localtrabinterm_salvar'  hash='{}'|json_id:s2260_localtrabinterm.id|json_print:0|base64_encode_me %}">
+                {% if perms.s2260.can_see_s2260localTrabInterm or perms.esocial.can_see_s2260localTrabInterm %}
+                <a href="{% url 's2260_localtrabinterm_salvar' pk=s2260_localtrabinterm.id tab='master' %}">
                     <span class="btn btn-primary">
                         <i class="fa fa-fw fa-edit"></i>
                     </span>

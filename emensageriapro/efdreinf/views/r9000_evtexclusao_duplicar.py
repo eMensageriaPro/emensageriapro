@@ -73,24 +73,21 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 
 @login_required
-def duplicar(request, hash):
+def duplicar(request, pk):
 
     from emensageriapro.efdreinf.views.r9000_evtexclusao_importar import read_r9000_evtexclusao_string
     from emensageriapro.efdreinf.views.r9000_evtexclusao_gerar_xml import gerar_xml_r9000
     from emensageriapro.functions import identidade_evento
-
-    dict_hash = get_hash_url(hash)
-    r9000_evtexclusao_id = int(dict_hash['id'])
     
-    if request.user.has_perm('efdreinf.can_duplicate_event_r9000evtExclusao'):
+    if request.user.has_perm('efdreinf.can_duplicate_r9000evtExclusao'):
 
-        if r9000_evtexclusao_id:
+        if pk:
     
             r9000_evtexclusao = get_object_or_404(
                 r9000evtExclusao,
-                id=r9000_evtexclusao_id)
+                id=pk)
     
-            texto = gerar_xml_r9000(r9000_evtexclusao_id, versao="|")
+            texto = gerar_xml_r9000(request, pk, versao="|")
             dados = read_r9000_evtexclusao_string({}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r9000_evtexclusao)
     
@@ -103,15 +100,17 @@ def duplicar(request, hash):
                 'r9000_evtexclusao', dados['id'], request.user.id, 1)
     
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-            return redirect('r9000_evtexclusao_salvar', hash=url_hash)
+            return_pk = dados['id']
+            
+            return redirect('r9000_evtexclusao_salvar', pk=return_pk, tab='master')
     
         messages.error(request, 'Erro ao duplicar evento!')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+        return redirect('r9000_evtexclusao_salvar', pk=pk, tab='master')
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
-        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-        
+                                    
+        return redirect('r9000_evtexclusao_salvar', pk=pk, tab='master')

@@ -42,6 +42,8 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 import json
 import base64
+import json
+from django.forms.models import model_to_dict
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
@@ -59,68 +61,53 @@ from emensageriapro.controle_de_acesso.models import *
 
 
 @login_required
-def apagar(request, hash):
+def apagar(request, pk):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
-    
-    try: 
-    
-        usuario_id = request.user.id 
-        dict_hash = get_hash_url( hash )
-        s2306_remuneracao_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except: 
-    
-        usuario_id = False
-        return redirect('login')
-        
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s2306_remuneracao = get_object_or_404(s2306remuneracao, id=s2306_remuneracao_id)
+    s2306_remuneracao = get_object_or_404(s2306remuneracao, id=pk)
     
     dados_evento = {}
-    
-    if s2306_remuneracao_id:
-    
-        dados_evento = s2306_remuneracao.evento()
+    dados_evento = s2306_remuneracao.evento()
             
     if request.method == 'POST':
     
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
-        
-            import json
-            from django.forms.models import model_to_dict
             
             situacao_anterior = json.dumps(model_to_dict(s2306_remuneracao), indent=4, sort_keys=True, default=str)
-            obj = s2306remuneracao.objects.get(id = s2306_remuneracao_id)
+            obj = s2306remuneracao.objects.get(id=pk)
             obj.delete(request=request)
             #s2306_remuneracao_apagar_custom
             #s2306_remuneracao_apagar_custom
             messages.success(request, u'Apagado com sucesso!')
+            
             gravar_auditoria(situacao_anterior,
                              '', 
-                             's2306_remuneracao', s2306_remuneracao_id, usuario_id, 3)
+                             's2306_remuneracao', 
+                             pk, 
+                             request.user.id, 3)
                              
         else:
         
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
-        if request.session['retorno_pagina']== 's2306_remuneracao_salvar':
+        if 's2306_remuneracao' in request.session['return_page']:
         
-            return redirect('s2306_remuneracao', hash=request.session['retorno_hash'])
+            return redirect('s2306_remuneracao')
             
         else:
         
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            return redirect(
+                request.session['return_page'], 
+                pk=request.session['return_pk'])
             
     context = {
+        'usuario': Usuarios.objects.get(user_id=request.user.id),
+        'pk': pk,
         'dados_evento': dados_evento, 
         'modulos': ['s2306', ],
         'paginas': ['s2306_remuneracao', ],
-        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'hash': hash,
     }
     
     return render(request, 

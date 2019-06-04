@@ -97,8 +97,11 @@ class r2070compJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070compJud", "Can view R2070COMPJUD"),
-            ("can_view_menu_r2070compJud", "Can view menu R2070COMPJUD"),)
+            ("can_see_list_r2070compJud", u"Pode ver listagem do modelo R2070COMPJUD"),
+            ("can_see_data_r2070compJud", u"Pode visualizar o conteúdo do modelo R2070COMPJUD"),
+            ("can_see_menu_r2070compJud", u"Pode visualizar no menu o modelo R2070COMPJUD"),
+            ("can_print_list_r2070compJud", u"Pode imprimir listagem do modelo R2070COMPJUD"),
+            ("can_print_data_r2070compJud", u"Pode imprimir o conteúdo do modelo R2070COMPJUD"), )
             
         ordering = [
             'r2070_pgtopf',]
@@ -152,8 +155,11 @@ class r2070depJudicial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070depJudicial", "Can view R2070DEPJUDICIAL"),
-            ("can_view_menu_r2070depJudicial", "Can view menu R2070DEPJUDICIAL"),)
+            ("can_see_list_r2070depJudicial", u"Pode ver listagem do modelo R2070DEPJUDICIAL"),
+            ("can_see_data_r2070depJudicial", u"Pode visualizar o conteúdo do modelo R2070DEPJUDICIAL"),
+            ("can_see_menu_r2070depJudicial", u"Pode visualizar no menu o modelo R2070DEPJUDICIAL"),
+            ("can_print_list_r2070depJudicial", u"Pode imprimir listagem do modelo R2070DEPJUDICIAL"),
+            ("can_print_data_r2070depJudicial", u"Pode imprimir o conteúdo do modelo R2070DEPJUDICIAL"), )
             
         ordering = [
             'r2070_pgtopf',]
@@ -212,8 +218,11 @@ class r2070detCompet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070detCompet", "Can view R2070DETCOMPET"),
-            ("can_view_menu_r2070detCompet", "Can view menu R2070DETCOMPET"),)
+            ("can_see_list_r2070detCompet", u"Pode ver listagem do modelo R2070DETCOMPET"),
+            ("can_see_data_r2070detCompet", u"Pode visualizar o conteúdo do modelo R2070DETCOMPET"),
+            ("can_see_menu_r2070detCompet", u"Pode visualizar no menu o modelo R2070DETCOMPET"),
+            ("can_print_list_r2070detCompet", u"Pode imprimir listagem do modelo R2070DETCOMPET"),
+            ("can_print_data_r2070detCompet", u"Pode imprimir o conteúdo do modelo R2070DETCOMPET"), )
             
         ordering = [
             'r2070_pgtopf',
@@ -273,8 +282,11 @@ class r2070detDeducao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070detDeducao", "Can view R2070DETDEDUCAO"),
-            ("can_view_menu_r2070detDeducao", "Can view menu R2070DETDEDUCAO"),)
+            ("can_see_list_r2070detDeducao", u"Pode ver listagem do modelo R2070DETDEDUCAO"),
+            ("can_see_data_r2070detDeducao", u"Pode visualizar o conteúdo do modelo R2070DETDEDUCAO"),
+            ("can_see_menu_r2070detDeducao", u"Pode visualizar no menu o modelo R2070DETDEDUCAO"),
+            ("can_print_list_r2070detDeducao", u"Pode imprimir listagem do modelo R2070DETDEDUCAO"),
+            ("can_print_data_r2070detDeducao", u"Pode imprimir o conteúdo do modelo R2070DETDEDUCAO"), )
             
         ordering = [
             'r2070_pgtopf',
@@ -333,8 +345,11 @@ class r2070ideEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070ideEstab", "Can view R2070IDEESTAB"),
-            ("can_view_menu_r2070ideEstab", "Can view menu R2070IDEESTAB"),)
+            ("can_see_list_r2070ideEstab", u"Pode ver listagem do modelo R2070IDEESTAB"),
+            ("can_see_data_r2070ideEstab", u"Pode visualizar o conteúdo do modelo R2070IDEESTAB"),
+            ("can_see_menu_r2070ideEstab", u"Pode visualizar no menu o modelo R2070IDEESTAB"),
+            ("can_print_list_r2070ideEstab", u"Pode imprimir listagem do modelo R2070IDEESTAB"),
+            ("can_print_data_r2070ideEstab", u"Pode imprimir o conteúdo do modelo R2070IDEESTAB"), )
             
         ordering = [
             'r2070_evtpgtosdivs',
@@ -391,8 +406,11 @@ class r2070infoMolestia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoMolestia", "Can view R2070INFOMOLESTIA"),
-            ("can_view_menu_r2070infoMolestia", "Can view menu R2070INFOMOLESTIA"),)
+            ("can_see_list_r2070infoMolestia", u"Pode ver listagem do modelo R2070INFOMOLESTIA"),
+            ("can_see_data_r2070infoMolestia", u"Pode visualizar o conteúdo do modelo R2070INFOMOLESTIA"),
+            ("can_see_menu_r2070infoMolestia", u"Pode visualizar no menu o modelo R2070INFOMOLESTIA"),
+            ("can_print_list_r2070infoMolestia", u"Pode imprimir listagem do modelo R2070INFOMOLESTIA"),
+            ("can_print_data_r2070infoMolestia", u"Pode imprimir o conteúdo do modelo R2070INFOMOLESTIA"), )
             
         ordering = [
             'r2070_evtpgtosdivs',
@@ -451,8 +469,11 @@ class r2070infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoProcJud", "Can view R2070INFOPROCJUD"),
-            ("can_view_menu_r2070infoProcJud", "Can view menu R2070INFOPROCJUD"),)
+            ("can_see_list_r2070infoProcJud", u"Pode ver listagem do modelo R2070INFOPROCJUD"),
+            ("can_see_data_r2070infoProcJud", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUD"),
+            ("can_see_menu_r2070infoProcJud", u"Pode visualizar no menu o modelo R2070INFOPROCJUD"),
+            ("can_print_list_r2070infoProcJud", u"Pode imprimir listagem do modelo R2070INFOPROCJUD"),
+            ("can_print_data_r2070infoProcJud", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUD"), )
             
         ordering = [
             'r2070_pgtopf',
@@ -511,8 +532,11 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoProcJuddespProcJud", "Can view R2070INFOPROCJUDDESPPROCJUD"),
-            ("can_view_menu_r2070infoProcJuddespProcJud", "Can view menu R2070INFOPROCJUDDESPPROCJUD"),)
+            ("can_see_list_r2070infoProcJuddespProcJud", u"Pode ver listagem do modelo R2070INFOPROCJUDDESPPROCJUD"),
+            ("can_see_data_r2070infoProcJuddespProcJud", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUDDESPPROCJUD"),
+            ("can_see_menu_r2070infoProcJuddespProcJud", u"Pode visualizar no menu o modelo R2070INFOPROCJUDDESPPROCJUD"),
+            ("can_print_list_r2070infoProcJuddespProcJud", u"Pode imprimir listagem do modelo R2070INFOPROCJUDDESPPROCJUD"),
+            ("can_print_data_r2070infoProcJuddespProcJud", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUDDESPPROCJUD"), )
             
         ordering = [
             'r2070_infoprocjud',
@@ -573,8 +597,11 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoProcJudideAdvogado", "Can view R2070INFOPROCJUDIDEADVOGADO"),
-            ("can_view_menu_r2070infoProcJudideAdvogado", "Can view menu R2070INFOPROCJUDIDEADVOGADO"),)
+            ("can_see_list_r2070infoProcJudideAdvogado", u"Pode ver listagem do modelo R2070INFOPROCJUDIDEADVOGADO"),
+            ("can_see_data_r2070infoProcJudideAdvogado", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUDIDEADVOGADO"),
+            ("can_see_menu_r2070infoProcJudideAdvogado", u"Pode visualizar no menu o modelo R2070INFOPROCJUDIDEADVOGADO"),
+            ("can_print_list_r2070infoProcJudideAdvogado", u"Pode imprimir listagem do modelo R2070INFOPROCJUDIDEADVOGADO"),
+            ("can_print_data_r2070infoProcJudideAdvogado", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUDIDEADVOGADO"), )
             
         ordering = [
             'r2070_infoprocjud_despprocjud',
@@ -632,8 +659,11 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoProcJudorigemRecursos", "Can view R2070INFOPROCJUDORIGEMRECURSOS"),
-            ("can_view_menu_r2070infoProcJudorigemRecursos", "Can view menu R2070INFOPROCJUDORIGEMRECURSOS"),)
+            ("can_see_list_r2070infoProcJudorigemRecursos", u"Pode ver listagem do modelo R2070INFOPROCJUDORIGEMRECURSOS"),
+            ("can_see_data_r2070infoProcJudorigemRecursos", u"Pode visualizar o conteúdo do modelo R2070INFOPROCJUDORIGEMRECURSOS"),
+            ("can_see_menu_r2070infoProcJudorigemRecursos", u"Pode visualizar no menu o modelo R2070INFOPROCJUDORIGEMRECURSOS"),
+            ("can_print_list_r2070infoProcJudorigemRecursos", u"Pode imprimir listagem do modelo R2070INFOPROCJUDORIGEMRECURSOS"),
+            ("can_print_data_r2070infoProcJudorigemRecursos", u"Pode imprimir o conteúdo do modelo R2070INFOPROCJUDORIGEMRECURSOS"), )
             
         ordering = [
             'r2070_infoprocjud',
@@ -692,8 +722,11 @@ class r2070infoRRA(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoRRA", "Can view R2070INFORRA"),
-            ("can_view_menu_r2070infoRRA", "Can view menu R2070INFORRA"),)
+            ("can_see_list_r2070infoRRA", u"Pode ver listagem do modelo R2070INFORRA"),
+            ("can_see_data_r2070infoRRA", u"Pode visualizar o conteúdo do modelo R2070INFORRA"),
+            ("can_see_menu_r2070infoRRA", u"Pode visualizar no menu o modelo R2070INFORRA"),
+            ("can_print_list_r2070infoRRA", u"Pode imprimir listagem do modelo R2070INFORRA"),
+            ("can_print_data_r2070infoRRA", u"Pode imprimir o conteúdo do modelo R2070INFORRA"), )
             
         ordering = [
             'r2070_pgtopf',]
@@ -750,8 +783,11 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoRRAdespProcJud", "Can view R2070INFORRADESPPROCJUD"),
-            ("can_view_menu_r2070infoRRAdespProcJud", "Can view menu R2070INFORRADESPPROCJUD"),)
+            ("can_see_list_r2070infoRRAdespProcJud", u"Pode ver listagem do modelo R2070INFORRADESPPROCJUD"),
+            ("can_see_data_r2070infoRRAdespProcJud", u"Pode visualizar o conteúdo do modelo R2070INFORRADESPPROCJUD"),
+            ("can_see_menu_r2070infoRRAdespProcJud", u"Pode visualizar no menu o modelo R2070INFORRADESPPROCJUD"),
+            ("can_print_list_r2070infoRRAdespProcJud", u"Pode imprimir listagem do modelo R2070INFORRADESPPROCJUD"),
+            ("can_print_data_r2070infoRRAdespProcJud", u"Pode imprimir o conteúdo do modelo R2070INFORRADESPPROCJUD"), )
             
         ordering = [
             'r2070_inforra',
@@ -812,8 +848,11 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoRRAideAdvogado", "Can view R2070INFORRAIDEADVOGADO"),
-            ("can_view_menu_r2070infoRRAideAdvogado", "Can view menu R2070INFORRAIDEADVOGADO"),)
+            ("can_see_list_r2070infoRRAideAdvogado", u"Pode ver listagem do modelo R2070INFORRAIDEADVOGADO"),
+            ("can_see_data_r2070infoRRAideAdvogado", u"Pode visualizar o conteúdo do modelo R2070INFORRAIDEADVOGADO"),
+            ("can_see_menu_r2070infoRRAideAdvogado", u"Pode visualizar no menu o modelo R2070INFORRAIDEADVOGADO"),
+            ("can_print_list_r2070infoRRAideAdvogado", u"Pode imprimir listagem do modelo R2070INFORRAIDEADVOGADO"),
+            ("can_print_data_r2070infoRRAideAdvogado", u"Pode imprimir o conteúdo do modelo R2070INFORRAIDEADVOGADO"), )
             
         ordering = [
             'r2070_inforra_despprocjud',
@@ -882,8 +921,11 @@ class r2070infoResidExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070infoResidExt", "Can view R2070INFORESIDEXT"),
-            ("can_view_menu_r2070infoResidExt", "Can view menu R2070INFORESIDEXT"),)
+            ("can_see_list_r2070infoResidExt", u"Pode ver listagem do modelo R2070INFORESIDEXT"),
+            ("can_see_data_r2070infoResidExt", u"Pode visualizar o conteúdo do modelo R2070INFORESIDEXT"),
+            ("can_see_menu_r2070infoResidExt", u"Pode visualizar no menu o modelo R2070INFORESIDEXT"),
+            ("can_print_list_r2070infoResidExt", u"Pode imprimir listagem do modelo R2070INFORESIDEXT"),
+            ("can_print_data_r2070infoResidExt", u"Pode imprimir o conteúdo do modelo R2070INFORESIDEXT"), )
             
         ordering = [
             'r2070_evtpgtosdivs',
@@ -949,8 +991,11 @@ class r2070pgtoPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoPF", "Can view R2070PGTOPF"),
-            ("can_view_menu_r2070pgtoPF", "Can view menu R2070PGTOPF"),)
+            ("can_see_list_r2070pgtoPF", u"Pode ver listagem do modelo R2070PGTOPF"),
+            ("can_see_data_r2070pgtoPF", u"Pode visualizar o conteúdo do modelo R2070PGTOPF"),
+            ("can_see_menu_r2070pgtoPF", u"Pode visualizar no menu o modelo R2070PGTOPF"),
+            ("can_print_list_r2070pgtoPF", u"Pode imprimir listagem do modelo R2070PGTOPF"),
+            ("can_print_data_r2070pgtoPF", u"Pode imprimir o conteúdo do modelo R2070PGTOPF"), )
             
         ordering = [
             'r2070_pgtoresidbr',
@@ -1014,8 +1059,11 @@ class r2070pgtoPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoPJ", "Can view R2070PGTOPJ"),
-            ("can_view_menu_r2070pgtoPJ", "Can view menu R2070PGTOPJ"),)
+            ("can_see_list_r2070pgtoPJ", u"Pode ver listagem do modelo R2070PGTOPJ"),
+            ("can_see_data_r2070pgtoPJ", u"Pode visualizar o conteúdo do modelo R2070PGTOPJ"),
+            ("can_see_menu_r2070pgtoPJ", u"Pode visualizar no menu o modelo R2070PGTOPJ"),
+            ("can_print_list_r2070pgtoPJ", u"Pode imprimir listagem do modelo R2070PGTOPJ"),
+            ("can_print_data_r2070pgtoPJ", u"Pode imprimir o conteúdo do modelo R2070PGTOPJ"), )
             
         ordering = [
             'r2070_pgtoresidbr',
@@ -1075,8 +1123,11 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoPJdespProcJud", "Can view R2070PGTOPJDESPPROCJUD"),
-            ("can_view_menu_r2070pgtoPJdespProcJud", "Can view menu R2070PGTOPJDESPPROCJUD"),)
+            ("can_see_list_r2070pgtoPJdespProcJud", u"Pode ver listagem do modelo R2070PGTOPJDESPPROCJUD"),
+            ("can_see_data_r2070pgtoPJdespProcJud", u"Pode visualizar o conteúdo do modelo R2070PGTOPJDESPPROCJUD"),
+            ("can_see_menu_r2070pgtoPJdespProcJud", u"Pode visualizar no menu o modelo R2070PGTOPJDESPPROCJUD"),
+            ("can_print_list_r2070pgtoPJdespProcJud", u"Pode imprimir listagem do modelo R2070PGTOPJDESPPROCJUD"),
+            ("can_print_data_r2070pgtoPJdespProcJud", u"Pode imprimir o conteúdo do modelo R2070PGTOPJDESPPROCJUD"), )
             
         ordering = [
             'r2070_pgtopj_infoprocjud',
@@ -1137,8 +1188,11 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoPJideAdvogado", "Can view R2070PGTOPJIDEADVOGADO"),
-            ("can_view_menu_r2070pgtoPJideAdvogado", "Can view menu R2070PGTOPJIDEADVOGADO"),)
+            ("can_see_list_r2070pgtoPJideAdvogado", u"Pode ver listagem do modelo R2070PGTOPJIDEADVOGADO"),
+            ("can_see_data_r2070pgtoPJideAdvogado", u"Pode visualizar o conteúdo do modelo R2070PGTOPJIDEADVOGADO"),
+            ("can_see_menu_r2070pgtoPJideAdvogado", u"Pode visualizar no menu o modelo R2070PGTOPJIDEADVOGADO"),
+            ("can_print_list_r2070pgtoPJideAdvogado", u"Pode imprimir listagem do modelo R2070PGTOPJIDEADVOGADO"),
+            ("can_print_data_r2070pgtoPJideAdvogado", u"Pode imprimir o conteúdo do modelo R2070PGTOPJIDEADVOGADO"), )
             
         ordering = [
             'r2070_pgtopj_despprocjud',
@@ -1199,8 +1253,11 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoPJinfoProcJud", "Can view R2070PGTOPJINFOPROCJUD"),
-            ("can_view_menu_r2070pgtoPJinfoProcJud", "Can view menu R2070PGTOPJINFOPROCJUD"),)
+            ("can_see_list_r2070pgtoPJinfoProcJud", u"Pode ver listagem do modelo R2070PGTOPJINFOPROCJUD"),
+            ("can_see_data_r2070pgtoPJinfoProcJud", u"Pode visualizar o conteúdo do modelo R2070PGTOPJINFOPROCJUD"),
+            ("can_see_menu_r2070pgtoPJinfoProcJud", u"Pode visualizar no menu o modelo R2070PGTOPJINFOPROCJUD"),
+            ("can_print_list_r2070pgtoPJinfoProcJud", u"Pode imprimir listagem do modelo R2070PGTOPJINFOPROCJUD"),
+            ("can_print_data_r2070pgtoPJinfoProcJud", u"Pode imprimir o conteúdo do modelo R2070PGTOPJINFOPROCJUD"), )
             
         ordering = [
             'r2070_pgtopj',
@@ -1257,8 +1314,11 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoPJorigemRecursos", "Can view R2070PGTOPJORIGEMRECURSOS"),
-            ("can_view_menu_r2070pgtoPJorigemRecursos", "Can view menu R2070PGTOPJORIGEMRECURSOS"),)
+            ("can_see_list_r2070pgtoPJorigemRecursos", u"Pode ver listagem do modelo R2070PGTOPJORIGEMRECURSOS"),
+            ("can_see_data_r2070pgtoPJorigemRecursos", u"Pode visualizar o conteúdo do modelo R2070PGTOPJORIGEMRECURSOS"),
+            ("can_see_menu_r2070pgtoPJorigemRecursos", u"Pode visualizar no menu o modelo R2070PGTOPJORIGEMRECURSOS"),
+            ("can_print_list_r2070pgtoPJorigemRecursos", u"Pode imprimir listagem do modelo R2070PGTOPJORIGEMRECURSOS"),
+            ("can_print_data_r2070pgtoPJorigemRecursos", u"Pode imprimir o conteúdo do modelo R2070PGTOPJORIGEMRECURSOS"), )
             
         ordering = [
             'r2070_pgtopj_infoprocjud',
@@ -1312,8 +1372,11 @@ class r2070pgtoResidBR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoResidBR", "Can view R2070PGTORESIDBR"),
-            ("can_view_menu_r2070pgtoResidBR", "Can view menu R2070PGTORESIDBR"),)
+            ("can_see_list_r2070pgtoResidBR", u"Pode ver listagem do modelo R2070PGTORESIDBR"),
+            ("can_see_data_r2070pgtoResidBR", u"Pode visualizar o conteúdo do modelo R2070PGTORESIDBR"),
+            ("can_see_menu_r2070pgtoResidBR", u"Pode visualizar no menu o modelo R2070PGTORESIDBR"),
+            ("can_print_list_r2070pgtoResidBR", u"Pode imprimir listagem do modelo R2070PGTORESIDBR"),
+            ("can_print_data_r2070pgtoResidBR", u"Pode imprimir o conteúdo do modelo R2070PGTORESIDBR"), )
             
         ordering = [
             'r2070_ideestab',]
@@ -1376,8 +1439,11 @@ class r2070pgtoResidExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070pgtoResidExt", "Can view R2070PGTORESIDEXT"),
-            ("can_view_menu_r2070pgtoResidExt", "Can view menu R2070PGTORESIDEXT"),)
+            ("can_see_list_r2070pgtoResidExt", u"Pode ver listagem do modelo R2070PGTORESIDEXT"),
+            ("can_see_data_r2070pgtoResidExt", u"Pode visualizar o conteúdo do modelo R2070PGTORESIDEXT"),
+            ("can_see_menu_r2070pgtoResidExt", u"Pode visualizar no menu o modelo R2070PGTORESIDEXT"),
+            ("can_print_list_r2070pgtoResidExt", u"Pode imprimir listagem do modelo R2070PGTORESIDEXT"),
+            ("can_print_data_r2070pgtoResidExt", u"Pode imprimir o conteúdo do modelo R2070PGTORESIDEXT"), )
             
         ordering = [
             'r2070_ideestab',
@@ -1440,8 +1506,11 @@ class r2070rendIsento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070rendIsento", "Can view R2070RENDISENTO"),
-            ("can_view_menu_r2070rendIsento", "Can view menu R2070RENDISENTO"),)
+            ("can_see_list_r2070rendIsento", u"Pode ver listagem do modelo R2070RENDISENTO"),
+            ("can_see_data_r2070rendIsento", u"Pode visualizar o conteúdo do modelo R2070RENDISENTO"),
+            ("can_see_menu_r2070rendIsento", u"Pode visualizar no menu o modelo R2070RENDISENTO"),
+            ("can_print_list_r2070rendIsento", u"Pode imprimir listagem do modelo R2070RENDISENTO"),
+            ("can_print_data_r2070rendIsento", u"Pode imprimir o conteúdo do modelo R2070RENDISENTO"), )
             
         ordering = [
             'r2070_pgtopf',

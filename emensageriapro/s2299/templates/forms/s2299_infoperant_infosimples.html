@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2299_infoperant_infosimples__s2299_infoperant_ideestablot__label">Informação relativa a empresas enquadradas no Regime de Tributação Simples*</label>
     {% if not for_print %}{% if s2299_infoperant_infosimples_form.s2299_infoperant_ideestablot.value %}
-        <a href="{% url 's2299_infoperant_ideestablot_salvar' hash='{}'|json_return_page:'s2299_infoperant_infosimples_salvar'|json_return_hash:hash|json_id:s2299_infoperant_infosimples_form.s2299_infoperant_ideestablot.value|json_print:0|base64_encode_me %}">
+        <a href="{% url 's2299_infoperant_ideestablot_salvar' pk=s2299_infoperant_infosimples_form.s2299_infoperant_ideestablot.value tab='master' %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

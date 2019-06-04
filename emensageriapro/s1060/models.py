@@ -109,8 +109,11 @@ class s1060alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060alteracao", "Can view S1060ALTERACAO"),
-            ("can_view_menu_s1060alteracao", "Can view menu S1060ALTERACAO"),)
+            ("can_see_list_s1060alteracao", u"Pode ver listagem do modelo S1060ALTERACAO"),
+            ("can_see_data_s1060alteracao", u"Pode visualizar o conteúdo do modelo S1060ALTERACAO"),
+            ("can_see_menu_s1060alteracao", u"Pode visualizar no menu o modelo S1060ALTERACAO"),
+            ("can_print_list_s1060alteracao", u"Pode imprimir listagem do modelo S1060ALTERACAO"),
+            ("can_print_data_s1060alteracao", u"Pode imprimir o conteúdo do modelo S1060ALTERACAO"), )
             
         ordering = [
             's1060_evttabambiente',
@@ -171,8 +174,11 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060alteracaonovaValidade", "Can view S1060ALTERACAONOVAVALIDADE"),
-            ("can_view_menu_s1060alteracaonovaValidade", "Can view menu S1060ALTERACAONOVAVALIDADE"),)
+            ("can_see_list_s1060alteracaonovaValidade", u"Pode ver listagem do modelo S1060ALTERACAONOVAVALIDADE"),
+            ("can_see_data_s1060alteracaonovaValidade", u"Pode visualizar o conteúdo do modelo S1060ALTERACAONOVAVALIDADE"),
+            ("can_see_menu_s1060alteracaonovaValidade", u"Pode visualizar no menu o modelo S1060ALTERACAONOVAVALIDADE"),
+            ("can_print_list_s1060alteracaonovaValidade", u"Pode imprimir listagem do modelo S1060ALTERACAONOVAVALIDADE"),
+            ("can_print_data_s1060alteracaonovaValidade", u"Pode imprimir o conteúdo do modelo S1060ALTERACAONOVAVALIDADE"), )
             
         ordering = [
             's1060_alteracao',
@@ -231,8 +237,11 @@ class s1060exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060exclusao", "Can view S1060EXCLUSAO"),
-            ("can_view_menu_s1060exclusao", "Can view menu S1060EXCLUSAO"),)
+            ("can_see_list_s1060exclusao", u"Pode ver listagem do modelo S1060EXCLUSAO"),
+            ("can_see_data_s1060exclusao", u"Pode visualizar o conteúdo do modelo S1060EXCLUSAO"),
+            ("can_see_menu_s1060exclusao", u"Pode visualizar no menu o modelo S1060EXCLUSAO"),
+            ("can_print_list_s1060exclusao", u"Pode imprimir listagem do modelo S1060EXCLUSAO"),
+            ("can_print_data_s1060exclusao", u"Pode imprimir o conteúdo do modelo S1060EXCLUSAO"), )
             
         ordering = [
             's1060_evttabambiente',
@@ -301,8 +310,11 @@ class s1060inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060inclusao", "Can view S1060INCLUSAO"),
-            ("can_view_menu_s1060inclusao", "Can view menu S1060INCLUSAO"),)
+            ("can_see_list_s1060inclusao", u"Pode ver listagem do modelo S1060INCLUSAO"),
+            ("can_see_data_s1060inclusao", u"Pode visualizar o conteúdo do modelo S1060INCLUSAO"),
+            ("can_see_menu_s1060inclusao", u"Pode visualizar no menu o modelo S1060INCLUSAO"),
+            ("can_print_list_s1060inclusao", u"Pode imprimir listagem do modelo S1060INCLUSAO"),
+            ("can_print_data_s1060inclusao", u"Pode imprimir o conteúdo do modelo S1060INCLUSAO"), )
             
         ordering = [
             's1060_evttabambiente',

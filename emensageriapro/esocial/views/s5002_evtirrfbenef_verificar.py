@@ -71,26 +71,12 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 @login_required
-def verificar(request, hash):
+def verificar(request, pk, output=None):
 
-    for_print = 0
+    if request.user.has_perm('esocial.can_see_s5002evtIrrfBenef'):
     
-    try:
-    
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5002_evtirrfbenef_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-        
-    except:
-    
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    if request.user.has_perm('esocial.can_view_s5002evtIrrfBenef'):
-        s5002_evtirrfbenef = get_object_or_404(s5002evtIrrfBenef, id=s5002_evtirrfbenef_id)
-        s5002_evtirrfbenef_lista = s5002evtIrrfBenef.objects.filter(id=s5002_evtirrfbenef_id).all()
+        s5002_evtirrfbenef = get_object_or_404(s5002evtIrrfBenef, id=pk)
+        s5002_evtirrfbenef_lista = s5002evtIrrfBenef.objects.filter(id=pk).all()
 
         
         s5002_infodep_lista = s5002infoDep.objects.filter(s5002_evtirrfbenef_id__in = listar_ids(s5002_evtirrfbenef_lista) ).all()
@@ -99,59 +85,55 @@ def verificar(request, hash):
         s5002_irrf_lista = s5002irrf.objects.filter(s5002_infoirrf_id__in = listar_ids(s5002_infoirrf_lista) ).all()
         s5002_idepgtoext_lista = s5002idePgtoExt.objects.filter(s5002_infoirrf_id__in = listar_ids(s5002_infoirrf_lista) ).all()
 
-        request.session["retorno_hash"] = hash
-        request.session["retorno_pagina"] = 's5002_evtirrfbenef'
+        request.session['return_pk'] = pk
+        request.session['return_page'] = 's5002_evtirrfbenef'
 
         context = {
             's5002_evtirrfbenef_lista': s5002_evtirrfbenef_lista,
-            's5002_evtirrfbenef_id': s5002_evtirrfbenef_id,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'pk': pk,
             's5002_evtirrfbenef': s5002_evtirrfbenef,
-            
-            
             's5002_infodep_lista': s5002_infodep_lista,
             's5002_infoirrf_lista': s5002_infoirrf_lista,
             's5002_basesirrf_lista': s5002_basesirrf_lista,
             's5002_irrf_lista': s5002_irrf_lista,
             's5002_idepgtoext_lista': s5002_idepgtoext_lista,
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s5002_evtirrfbenef', ],
             'data': datetime.now(),
-            'for_print': for_print,
-            'hash': hash,
-
-            
-
+            'output': output,
         }
         
-        if for_print == 2:
+        if output == 'pdf':
         
-            response = PDFTemplateResponse(request=request,
-                                           template='s5002_evtirrfbenef_verificar.html',
-                                           filename="s5002_evtirrfbenef.pdf",
-                                           context=context,
-                                           show_content_in_browser=True,
-                                           cmd_options={'margin-top': 5,
-                                                        'margin-bottom': 5,
-                                                        'margin-right': 5,
-                                                        'margin-left': 5,
-                                                        "zoom": 3,
-                                                        "viewport-size": "1366 x 513",
-                                                        'javascript-delay': 1000,
-                                                        'footer-center': '[page]/[topage]',
-                                                        "no-stop-slow-scripts": True},
-                                           )
+            response = PDFTemplateResponse(
+                request=request,
+                template='s5002_evtirrfbenef_verificar.html',
+                filename="s5002_evtirrfbenef.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 5,
+                            'margin-bottom': 5,
+                            'margin-right': 5,
+                            'margin-left': 5,
+                            "zoom": 3,
+                            "viewport-size": "1366 x 513",
+                            'javascript-delay': 1000,
+                            'footer-center': '[page]/[topage]',
+                            "no-stop-slow-scripts": True} )
+                            
             return response
 
-        elif for_print == 3:
+        elif output == 'xls':
         
             response =  render_to_response('s5002_evtirrfbenef_verificar.html', context)
             filename = "%s.xls" % s5002_evtirrfbenef.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            
             return response
 
-        elif for_print == 4:
+        elif output == 'csv':
         
             response =  render_to_response('s5002_evtirrfbenef_verificar.html', context)
             filename = "%s.csv" % s5002_evtirrfbenef.identidade
@@ -166,7 +148,6 @@ def verificar(request, hash):
     else:
 
         context = {
-            'usuario': usuario,
             'modulos': ['esocial', ],
             'paginas': ['s5002_evtirrfbenef', ],
             'data': datetime.now(),

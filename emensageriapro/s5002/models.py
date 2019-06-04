@@ -99,8 +99,11 @@ class s5002basesIrrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002basesIrrf", "Can view S5002BASESIRRF"),
-            ("can_view_menu_s5002basesIrrf", "Can view menu S5002BASESIRRF"),)
+            ("can_see_list_s5002basesIrrf", u"Pode ver listagem do modelo S5002BASESIRRF"),
+            ("can_see_data_s5002basesIrrf", u"Pode visualizar o conteúdo do modelo S5002BASESIRRF"),
+            ("can_see_menu_s5002basesIrrf", u"Pode visualizar no menu o modelo S5002BASESIRRF"),
+            ("can_print_list_s5002basesIrrf", u"Pode imprimir listagem do modelo S5002BASESIRRF"),
+            ("can_print_data_s5002basesIrrf", u"Pode imprimir o conteúdo do modelo S5002BASESIRRF"), )
             
         ordering = [
             's5002_infoirrf',
@@ -168,8 +171,11 @@ class s5002idePgtoExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002idePgtoExt", "Can view S5002IDEPGTOEXT"),
-            ("can_view_menu_s5002idePgtoExt", "Can view menu S5002IDEPGTOEXT"),)
+            ("can_see_list_s5002idePgtoExt", u"Pode ver listagem do modelo S5002IDEPGTOEXT"),
+            ("can_see_data_s5002idePgtoExt", u"Pode visualizar o conteúdo do modelo S5002IDEPGTOEXT"),
+            ("can_see_menu_s5002idePgtoExt", u"Pode visualizar no menu o modelo S5002IDEPGTOEXT"),
+            ("can_print_list_s5002idePgtoExt", u"Pode imprimir listagem do modelo S5002IDEPGTOEXT"),
+            ("can_print_data_s5002idePgtoExt", u"Pode imprimir o conteúdo do modelo S5002IDEPGTOEXT"), )
             
         ordering = [
             's5002_infoirrf',
@@ -228,8 +234,11 @@ class s5002infoDep(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002infoDep", "Can view S5002INFODEP"),
-            ("can_view_menu_s5002infoDep", "Can view menu S5002INFODEP"),)
+            ("can_see_list_s5002infoDep", u"Pode ver listagem do modelo S5002INFODEP"),
+            ("can_see_data_s5002infoDep", u"Pode visualizar o conteúdo do modelo S5002INFODEP"),
+            ("can_see_menu_s5002infoDep", u"Pode visualizar no menu o modelo S5002INFODEP"),
+            ("can_print_list_s5002infoDep", u"Pode imprimir listagem do modelo S5002INFODEP"),
+            ("can_print_data_s5002infoDep", u"Pode imprimir o conteúdo do modelo S5002INFODEP"), )
             
         ordering = [
             's5002_evtirrfbenef',
@@ -286,8 +295,11 @@ class s5002infoIrrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002infoIrrf", "Can view S5002INFOIRRF"),
-            ("can_view_menu_s5002infoIrrf", "Can view menu S5002INFOIRRF"),)
+            ("can_see_list_s5002infoIrrf", u"Pode ver listagem do modelo S5002INFOIRRF"),
+            ("can_see_data_s5002infoIrrf", u"Pode visualizar o conteúdo do modelo S5002INFOIRRF"),
+            ("can_see_menu_s5002infoIrrf", u"Pode visualizar no menu o modelo S5002INFOIRRF"),
+            ("can_print_list_s5002infoIrrf", u"Pode imprimir listagem do modelo S5002INFOIRRF"),
+            ("can_print_data_s5002infoIrrf", u"Pode imprimir o conteúdo do modelo S5002INFOIRRF"), )
             
         ordering = [
             's5002_evtirrfbenef',
@@ -345,8 +357,11 @@ class s5002irrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002irrf", "Can view S5002IRRF"),
-            ("can_view_menu_s5002irrf", "Can view menu S5002IRRF"),)
+            ("can_see_list_s5002irrf", u"Pode ver listagem do modelo S5002IRRF"),
+            ("can_see_data_s5002irrf", u"Pode visualizar o conteúdo do modelo S5002IRRF"),
+            ("can_see_menu_s5002irrf", u"Pode visualizar no menu o modelo S5002IRRF"),
+            ("can_print_list_s5002irrf", u"Pode imprimir listagem do modelo S5002IRRF"),
+            ("can_print_data_s5002irrf", u"Pode imprimir o conteúdo do modelo S5002IRRF"), )
             
         ordering = [
             's5002_infoirrf',

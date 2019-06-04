@@ -66,7 +66,6 @@ class s1010evtTabRubricaList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s1010evtTabRubricaDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1010evtTabRubrica.objects.all()

@@ -97,8 +97,11 @@ class s2231fimCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2231fimCessao", "Can view S2231FIMCESSAO"),
-            ("can_view_menu_s2231fimCessao", "Can view menu S2231FIMCESSAO"),)
+            ("can_see_list_s2231fimCessao", u"Pode ver listagem do modelo S2231FIMCESSAO"),
+            ("can_see_data_s2231fimCessao", u"Pode visualizar o conteúdo do modelo S2231FIMCESSAO"),
+            ("can_see_menu_s2231fimCessao", u"Pode visualizar no menu o modelo S2231FIMCESSAO"),
+            ("can_print_list_s2231fimCessao", u"Pode imprimir listagem do modelo S2231FIMCESSAO"),
+            ("can_print_data_s2231fimCessao", u"Pode imprimir o conteúdo do modelo S2231FIMCESSAO"), )
             
         ordering = [
             's2231_evtcessao',
@@ -161,8 +164,11 @@ class s2231iniCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2231iniCessao", "Can view S2231INICESSAO"),
-            ("can_view_menu_s2231iniCessao", "Can view menu S2231INICESSAO"),)
+            ("can_see_list_s2231iniCessao", u"Pode ver listagem do modelo S2231INICESSAO"),
+            ("can_see_data_s2231iniCessao", u"Pode visualizar o conteúdo do modelo S2231INICESSAO"),
+            ("can_see_menu_s2231iniCessao", u"Pode visualizar no menu o modelo S2231INICESSAO"),
+            ("can_print_list_s2231iniCessao", u"Pode imprimir listagem do modelo S2231INICESSAO"),
+            ("can_print_data_s2231iniCessao", u"Pode imprimir o conteúdo do modelo S2231INICESSAO"), )
             
         ordering = [
             's2231_evtcessao',

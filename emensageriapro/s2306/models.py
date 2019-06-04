@@ -109,8 +109,11 @@ class s2306ageIntegracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306ageIntegracao", "Can view S2306AGEINTEGRACAO"),
-            ("can_view_menu_s2306ageIntegracao", "Can view menu S2306AGEINTEGRACAO"),)
+            ("can_see_list_s2306ageIntegracao", u"Pode ver listagem do modelo S2306AGEINTEGRACAO"),
+            ("can_see_data_s2306ageIntegracao", u"Pode visualizar o conteúdo do modelo S2306AGEINTEGRACAO"),
+            ("can_see_menu_s2306ageIntegracao", u"Pode visualizar no menu o modelo S2306AGEINTEGRACAO"),
+            ("can_print_list_s2306ageIntegracao", u"Pode imprimir listagem do modelo S2306AGEINTEGRACAO"),
+            ("can_print_data_s2306ageIntegracao", u"Pode imprimir o conteúdo do modelo S2306AGEINTEGRACAO"), )
             
         ordering = [
             's2306_infoestagiario',
@@ -172,8 +175,11 @@ class s2306cargoFuncao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306cargoFuncao", "Can view S2306CARGOFUNCAO"),
-            ("can_view_menu_s2306cargoFuncao", "Can view menu S2306CARGOFUNCAO"),)
+            ("can_see_list_s2306cargoFuncao", u"Pode ver listagem do modelo S2306CARGOFUNCAO"),
+            ("can_see_data_s2306cargoFuncao", u"Pode visualizar o conteúdo do modelo S2306CARGOFUNCAO"),
+            ("can_see_menu_s2306cargoFuncao", u"Pode visualizar no menu o modelo S2306CARGOFUNCAO"),
+            ("can_print_list_s2306cargoFuncao", u"Pode imprimir listagem do modelo S2306CARGOFUNCAO"),
+            ("can_print_data_s2306cargoFuncao", u"Pode imprimir o conteúdo do modelo S2306CARGOFUNCAO"), )
             
         ordering = [
             's2306_infocomplementares',
@@ -227,8 +233,11 @@ class s2306infoComplementares(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306infoComplementares", "Can view S2306INFOCOMPLEMENTARES"),
-            ("can_view_menu_s2306infoComplementares", "Can view menu S2306INFOCOMPLEMENTARES"),)
+            ("can_see_list_s2306infoComplementares", u"Pode ver listagem do modelo S2306INFOCOMPLEMENTARES"),
+            ("can_see_data_s2306infoComplementares", u"Pode visualizar o conteúdo do modelo S2306INFOCOMPLEMENTARES"),
+            ("can_see_menu_s2306infoComplementares", u"Pode visualizar no menu o modelo S2306INFOCOMPLEMENTARES"),
+            ("can_print_list_s2306infoComplementares", u"Pode imprimir listagem do modelo S2306INFOCOMPLEMENTARES"),
+            ("can_print_data_s2306infoComplementares", u"Pode imprimir o conteúdo do modelo S2306INFOCOMPLEMENTARES"), )
             
         ordering = [
             's2306_evttsvaltcontr',]
@@ -299,8 +308,11 @@ class s2306infoEstagiario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306infoEstagiario", "Can view S2306INFOESTAGIARIO"),
-            ("can_view_menu_s2306infoEstagiario", "Can view menu S2306INFOESTAGIARIO"),)
+            ("can_see_list_s2306infoEstagiario", u"Pode ver listagem do modelo S2306INFOESTAGIARIO"),
+            ("can_see_data_s2306infoEstagiario", u"Pode visualizar o conteúdo do modelo S2306INFOESTAGIARIO"),
+            ("can_see_menu_s2306infoEstagiario", u"Pode visualizar no menu o modelo S2306INFOESTAGIARIO"),
+            ("can_print_list_s2306infoEstagiario", u"Pode imprimir listagem do modelo S2306INFOESTAGIARIO"),
+            ("can_print_data_s2306infoEstagiario", u"Pode imprimir o conteúdo do modelo S2306INFOESTAGIARIO"), )
             
         ordering = [
             's2306_infocomplementares',
@@ -359,8 +371,11 @@ class s2306infoTrabCedido(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306infoTrabCedido", "Can view S2306INFOTRABCEDIDO"),
-            ("can_view_menu_s2306infoTrabCedido", "Can view menu S2306INFOTRABCEDIDO"),)
+            ("can_see_list_s2306infoTrabCedido", u"Pode ver listagem do modelo S2306INFOTRABCEDIDO"),
+            ("can_see_data_s2306infoTrabCedido", u"Pode visualizar o conteúdo do modelo S2306INFOTRABCEDIDO"),
+            ("can_see_menu_s2306infoTrabCedido", u"Pode visualizar no menu o modelo S2306INFOTRABCEDIDO"),
+            ("can_print_list_s2306infoTrabCedido", u"Pode imprimir listagem do modelo S2306INFOTRABCEDIDO"),
+            ("can_print_data_s2306infoTrabCedido", u"Pode imprimir o conteúdo do modelo S2306INFOTRABCEDIDO"), )
             
         ordering = [
             's2306_infocomplementares',
@@ -419,8 +434,11 @@ class s2306remuneracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306remuneracao", "Can view S2306REMUNERACAO"),
-            ("can_view_menu_s2306remuneracao", "Can view menu S2306REMUNERACAO"),)
+            ("can_see_list_s2306remuneracao", u"Pode ver listagem do modelo S2306REMUNERACAO"),
+            ("can_see_data_s2306remuneracao", u"Pode visualizar o conteúdo do modelo S2306REMUNERACAO"),
+            ("can_see_menu_s2306remuneracao", u"Pode visualizar no menu o modelo S2306REMUNERACAO"),
+            ("can_print_list_s2306remuneracao", u"Pode imprimir listagem do modelo S2306REMUNERACAO"),
+            ("can_print_data_s2306remuneracao", u"Pode imprimir o conteúdo do modelo S2306REMUNERACAO"), )
             
         ordering = [
             's2306_infocomplementares',
@@ -479,8 +497,11 @@ class s2306supervisorEstagio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306supervisorEstagio", "Can view S2306SUPERVISORESTAGIO"),
-            ("can_view_menu_s2306supervisorEstagio", "Can view menu S2306SUPERVISORESTAGIO"),)
+            ("can_see_list_s2306supervisorEstagio", u"Pode ver listagem do modelo S2306SUPERVISORESTAGIO"),
+            ("can_see_data_s2306supervisorEstagio", u"Pode visualizar o conteúdo do modelo S2306SUPERVISORESTAGIO"),
+            ("can_see_menu_s2306supervisorEstagio", u"Pode visualizar no menu o modelo S2306SUPERVISORESTAGIO"),
+            ("can_print_list_s2306supervisorEstagio", u"Pode imprimir listagem do modelo S2306SUPERVISORESTAGIO"),
+            ("can_print_data_s2306supervisorEstagio", u"Pode imprimir o conteúdo do modelo S2306SUPERVISORESTAGIO"), )
             
         ordering = [
             's2306_infoestagiario',

@@ -48,7 +48,7 @@ from emensageriapro.s2220.views import s2220_exame_api as s2220_exame_api_views
 urlpatterns = [
 
 
-    url(r'^s2220-exame/apagar/(?P<hash>.*)/$', 
+    url(r'^s2220-exame/apagar/(?P<pk>[0-9]+)/$', 
         s2220_exame_apagar_views.apagar, 
         name='s2220_exame_apagar'),
 
@@ -58,13 +58,25 @@ urlpatterns = [
     url(r'^s2220-exame/api/(?P<pk>[0-9]+)/$',
         s2220_exame_api_views.s2220exameDetail.as_view() ),
 
-    url(r'^s2220-exame/listar/(?P<hash>.*)/$', 
+    url(r'^s2220-exame/$', 
         s2220_exame_listar_views.listar, 
         name='s2220_exame'),
 
-    url(r'^s2220-exame/salvar/(?P<hash>.*)/$', 
+    url(r'^s2220-exame/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         s2220_exame_salvar_views.salvar, 
         name='s2220_exame_salvar'),
+        
+    url(r'^s2220-exame/cadastrar/$', 
+        s2220_exame_salvar_views.salvar, 
+        name='s2220_exame_cadastrar'),
+
+    url(r'^s2220-exame/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
+        s2220_exame_salvar_views.salvar, 
+        name='s2220_exame_salvar_output'),
+        
+    url(r'^s2220-exame/(?P<output>[\w-]+)/$', 
+        s2220_exame_listar_views.listar, 
+        name='s2220_exame_output'),
 
 
 ]

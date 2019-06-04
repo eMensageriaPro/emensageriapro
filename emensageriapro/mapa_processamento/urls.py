@@ -50,15 +50,15 @@ from emensageriapro.mapa_processamento.views import visao_geral as visao_geral_v
 urlpatterns = [
 
 
-    url(r'^importacoes/(?P<hash>.*)/$',
+    url(r'^importacoes/(?P<tab>[\w-]+)/$',
         mapa_importacoes_views.listar,
         name='mapa_importacoes'),
 
-    url(r'^esocial/(?P<hash>.*)/$',
+    url(r'^esocial/(?P<tab>[\w-]+)/$',
         mapa_esocial_views.listar,
         name='mapa_esocial'),
 
-    url(r'^efdreinf/(?P<hash>.*)/$',
+    url(r'^efdreinf/(?P<tab>[\w-]+)/$',
         mapa_efdreinf_views.listar,
         name='mapa_efdreinf'),
 
@@ -66,51 +66,51 @@ urlpatterns = [
         funcoes_automaticas_esocial_views.validar,
         name='esocial_validar'),
 
-    url(r'^esocial-validar/(?P<hash>.*)/$',
+    url(r'^esocial-validar/(?P<tab>[\w-]+)/$',
         funcoes_automaticas_esocial_views.validar,
-        name='esocial_validar'),
+        name='esocial_validar_api'),
 
     url(r'^esocial-enviar/$',
         funcoes_automaticas_esocial_views.enviar,
         name='esocial_enviar'),
 
-    url(r'^esocial-enviar/(?P<hash>.*)/$',
+    url(r'^esocial-enviar/(?P<tab>[\w-]+)/$',
         funcoes_automaticas_esocial_views.enviar,
-        name='esocial_enviar'),
+        name='esocial_enviar_api'),
 
     url(r'^esocial-consultar/$',
         funcoes_automaticas_esocial_views.consultar,
         name='esocial_consultar'),
 
-    url(r'^esocial-consultar/(?P<hash>.*)/$',
+    url(r'^esocial-consultar/(?P<tab>[\w-]+)/$',
         funcoes_automaticas_esocial_views.consultar,
-        name='esocial_consultar'),
+        name='esocial_consultar_api'),
 
     url(r'^efdreinf-validar/$',
         funcoes_automaticas_efdreinf_views.validar,
         name='efdreinf_validar'),
 
-    url(r'^efdreinf-validar/(?P<hash>.*)/$',
+    url(r'^efdreinf-validar/(?P<tab>[\w-]+)/$',
         funcoes_automaticas_efdreinf_views.validar,
-        name='efdreinf_validar'),
+        name='efdreinf_validar_api'),
 
     url(r'^efdreinf-enviar/$',
         funcoes_automaticas_efdreinf_views.enviar,
         name='efdreinf_enviar'),
 
-    url(r'^efdreinf-enviar/(?P<hash>.*)/$',
+    url(r'^efdreinf-enviar/(?P<tab>[\w-]+)/$',
         funcoes_automaticas_efdreinf_views.enviar,
-        name='efdreinf_enviar'),
+        name='efdreinf_enviar_api'),
 
     url(r'^efdreinf-consultar/$',
         funcoes_automaticas_efdreinf_views.consultar,
         name='efdreinf_consultar'),
 
-    url(r'^efdreinf-consultar/(?P<hash>.*)/$',
+    url(r'^efdreinf-consultar/(?P<tab>[\w-]+)/$',
         funcoes_automaticas_efdreinf_views.consultar,
-        name='efdreinf_consultar'),
+        name='efdreinf_consultar_api'),
 
-    url(r'^visao-geral/(?P<hash>.*)/$',
+    url(r'^visao-geral/$',
         visao_geral_views.listar,
         name='visao_geral'),
 

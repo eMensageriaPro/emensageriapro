@@ -66,7 +66,6 @@ class s2300evtTSVInicioList(generics.ListCreateAPIView):
     # permission_classes = (IsAdminUser,)
 
 
-
 class s2300evtTSVInicioDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300evtTSVInicio.objects.all()

@@ -34,72 +34,69 @@
 {% block content %}
 
 <section class="content-header">
-    <h1>
-        s2300infoComplementares
-        <small>Cadastrar/Editar</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">s2300infoComplementares</a></li>
-        <li class="active">Cadastrar/Editar</li>
-    </ol>
+   <h1>
+      Informações complementares sobre o declarante
+      <small>{% if not pk %}Cadastrar{% else %}Editar{% endif %}</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">Informações complementares sobre o declarante</a></li>
+      <li class="active">{% if not pk %}Cadastrar{% else %}Editar{% endif %}</li>
+   </ol>
 </section>
 
-{% if not for_print %}
 
 <section class="content">
-
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if perms.s2300.can_view_s2300infoComplementares %}
-                    <li {% if not tab %}class="active"{% endif %} >
-                            <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_return_page:'s2300_infocomplementares_salvar'|json_return_hash:hash|json_id:s2300_infocomplementares_id|json_print:0|base64_encode_me %}">
-                            Informações complementares sobre o declarante
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if s2300_infocomplementares_id %}
+                    {% if pk %}
+                        {% if perms.s2300.can_see_s2300infoComplementares %}
+                            <li {% if tab == 'master' %}class="active"{% endif %} >
+                                <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='master' %}">
+                                Informações complementares sobre o declarante</a>
+                            </li>
+                        {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_cargofuncao %}
+                            {% if perms.s2300.can_see_s2300cargoFuncao %}
                                 <li {% if tab == 's2300_cargofuncao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|json_tab:'s2300_cargofuncao'|base64_encode_me %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_cargofuncao' %}">
                                     Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_remuneracao %}
+                            {% if perms.s2300.can_see_s2300remuneracao %}
                                 <li {% if tab == 's2300_remuneracao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|json_tab:'s2300_remuneracao'|base64_encode_me %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_remuneracao' %}">
                                     Informações da remuneração e periodicidade de pagamento</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_fgts %}
+                            {% if perms.s2300.can_see_s2300fgts %}
                                 <li {% if tab == 's2300_fgts' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|json_tab:'s2300_fgts'|base64_encode_me %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_fgts' %}">
                                     Informações relativas ao FGTS.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_infodirigentesindical %}
+                            {% if perms.s2300.can_see_s2300infoDirigenteSindical %}
                                 <li {% if tab == 's2300_infodirigentesindical' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|json_tab:'s2300_infodirigentesindical'|base64_encode_me %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_infodirigentesindical' %}">
                                     Empresa de Origem do Dirigente Sindical</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_infotrabcedido %}
+                            {% if perms.s2300.can_see_s2300infoTrabCedido %}
                                 <li {% if tab == 's2300_infotrabcedido' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|json_tab:'s2300_infotrabcedido'|base64_encode_me %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_infotrabcedido' %}">
                                     Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if perms.s2300.can_view_s2300_infoestagiario %}
+                            {% if perms.s2300.can_see_s2300infoEstagiario %}
                                 <li {% if tab == 's2300_infoestagiario' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|json_tab:'s2300_infoestagiario'|base64_encode_me %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_infoestagiario' %}">
                                     Informações relativas ao estagiário</a>
                                 </li>
                             {% endif %}
@@ -109,275 +106,283 @@
             </div>
         </div>
     </div>
-
-{% else %}
-
-<section class="invoice">
-
-{% endif %}
-  
-                  
-{% if not for_print %}
-
+    <!-- TABS -->
     {% if messages %}
-
-    <div class="row">
-        <div class="pad margin no-print">
-            {% for message in messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                     {{ message }}
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-
-      
     {% if s2300_infocomplementares_form.errors %}
-
-    <div class="row">
-        <div class="pad margin no-print">
+        <div class="row">
+            <div class="pad margin no-print">
             {% for error in s2300_infocomplementares_form.non_field_errors %}
                 <div class="alert alert-error" style="margin-bottom: 0!important;">
                     {{ error|escape }}
                 </div>
             {% endfor %}
+            </div>
         </div>
-    </div>
-
     {% endif %}
-   
-{% endif %}
 
-
-
-
-
-   {% if s2300_infocomplementares_id %}
-   {% if s2300_infocomplementares.evento.ocorrencias %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-               <p>{% autoescape off %}{{ s2300_infocomplementares.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2300_infocomplementares.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2300_infocomplementares.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
-   {% if not s2300_infocomplementares.evento.validacao_precedencia %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-yellow">
-            <div class="inner">
-               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% if s2300_infocomplementares.evento.validacoes %}
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="small-box bg-red">
-            <div class="inner">
-               <strong>Erros de validação:</strong><br>
-               <p>{% autoescape off %}{{ s2300_infocomplementares.evento.validacoes }}{% endautoescape %}</p>
-            </div>
-         </div>
-      </div>
-   </div>
-   {% endif %}
-   {% endif %}
-   {% endif %} 
-
-
-{% if not tab %}
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-        {% if not for_print %}
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informações complementares sobre o declarante</h3>
-                </div>
-
-        {% else %}
-
+    {% if pk %}
+        {% if s2300_infocomplementares.ocorrencias %}
             <div class="row">
-
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+                            <p>{% autoescape off %}{{ s2300_infocomplementares.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endif %}
-
-
-        {% if not for_print %}
-            {% if perms.s2300.change_s2300_infocomplementares or perms.s2300.add_s2300_infocomplementares %}
-                <form action="#" id="id_form_s2300_infocomplementares" method="POST" content="text/html; charset=UTF-8">
-                {% csrf_token %}
+        {% if s2300_infocomplementares.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2300_infocomplementares.status == STATUS_EVENTO_VALIDADO_ERRO %}
+            {% if not s2300_infocomplementares.validacao_precedencia %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         {% endif %}
-
-                <div class="box-body">
-                    <div class="row">
-                        {% include 'forms/s2300_infocomplementares.html' %}
-                    </div>
-                </div>
-
-
-                {% if not for_print %}
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <div class="box-footer text-left">
-                            <font color="red">* Campos Obrigatórios.
-                            </font>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <div class="box-footer text-right">
-                            <!-- botões especiais -->
-                            {% if s2300_infocomplementares_id %}
-
-                                {% if perms.s2300.add_s2300infoComplementares %}
-                                    <a href="{% url 's2300_infocomplementares_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                        <span class="btn btn-info">
-                                            <i class="fa fa-plus-circle"></i>
-                                            &nbsp;Cadastrar
-                                        </span>
-                                    </a>
-
-                                {% endif %}
-
-                            {% endif %}
-
-                            {% if perms.s2300.can_view_s2300_infocomplementares or perms.s2300.can_view_s2300_infocomplementares %}
-                                <a href="{% url 's2300_infocomplementares'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-list"></i>
-                                        &nbsp;Listagem
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2300.can_view_s2300_infocomplementares and s2300_infocomplementares_id %}
-                                <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:1|base64_encode_me %}" target="_blank">
-                                    <span class="btn btn-primary">
-                                        <i class="fa fa-print"></i>
-                                        &nbsp;Imprimir
-                                    </span>
-                                </a>&nbsp;
-                            {% endif %}
-                            
-                            {% if perms.s2300.can_view_s2300_infocomplementares and s2300_infocomplementares_id %}
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download"></i>
-                                        &nbsp;Exportar
-                                    </button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Exportar</span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="text-left">
-                                            <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:2|base64_encode_me %}"
-                                            target="_blank">
-                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                    &nbsp;PDF
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>&nbsp;
-                            {% endif %}
-
-                            {% if perms.s2300.change_s2300_infocomplementares or perms.s2300.add_s2300_infocomplementares %}
-                            
-                            <button type="submit" class="btn btn-primary" >
-                                <i class="fa fa-save"></i>
-                                &nbsp;Salvar
-                            </button>&nbsp;
-
-                            {% endif %}
-
-                            {% if perms.s2300.delete_s2300_infocomplementares and s2300_infocomplementares_id %}
-
-                            <a href="{% url 's2300_infocomplementares_apagar' hash='{}'|json_id:s2300_infocomplementares_id|json_print:0|base64_encode_me %}">
-                                <span class="btn btn-danger">
-                                    <i class="fa fa-remove"></i> &nbsp;Apagar
-                                </span>
-                            </a>&nbsp;
-
-                            {% endif %}
-
-                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
-                                <i class="fa fa-rotate-left"></i>
-                                &nbsp;Voltar
-                            </a>
-
+        {% if s2300_infocomplementares.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2300_infocomplementares.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-
-                {% if not for_print %}
-
-                    {% if perms.s2300.change_s2300_infocomplementares or perms.s2300.add_s2300_infocomplementares %}
-                        </form>
-                    {% endif %}
-
-                {% endif %}
-
-
-            </div>    
-
-        <!-- TEXTO_ABAIXO_FORMULARIO -->
-
-        </div>
-    </div>
-
+            </div>
+        {% endif %}
     {% endif %}
 
-    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
 
-    {% if s2300_infocomplementares_id %}
+
+    {% if tab == 'master' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações complementares sobre o declarante</h3>
+                    </div>
+
+                    {% if perms.s2300.change_s2300infoComplementares or perms.s2300.add_s2300infoComplementares %}
+                        {% if s2300_infocomplementares_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            <form action="#" id="id_form_s2300_infocomplementares" method="POST" content="text/html; charset=UTF-8">
+                            {% csrf_token %}
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            {% include 'forms/s2300_infocomplementares.html' %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="box-footer text-left">
+                                <font color="red">* Campos Obrigatórios.</font>
+                            </div>
+                        </div>
+
+                        {% if pk %}
+
+
+                            {% if perms.s2300.add_s2300infoComplementares %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_infocomplementares_cadastrar' %}">
+                                    <span class="btn btn-info btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Cadastrar Outro
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2300.can_see_list_s2300infoComplementares %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_infocomplementares' %}">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-list"></i>&nbsp;
+                                            Listagem
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2300.can_print_data_s2300infoComplementares %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_infocomplementares_salvar_output' pk=pk tab='master' output='html' %}" target="_blank">
+                                    <span class="btn btn-primary btn-block btn-lg">
+                                        <i class="fa fa-print"></i>&nbsp;
+                                            Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            {% if perms.s2300.change_s2300infoComplementares %}
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Salvar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+
+                            {% if perms.s2300.delete_s2300infoComplementares %}
+                            <div class="col-md-2">
+                                <a href="{% url 's2300_infocomplementares_apagar' pk=pk %}">
+                                    <span class="btn btn-danger btn-block btn-lg">
+                                        <i class="fa fa-remove"></i>&nbsp;
+                                        Apagar
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-2">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% else %}
+
+                            {% if perms.s2300.add_s2300infoComplementares %}
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" >
+                                    <i class="fa fa-save"></i>&nbsp;
+                                        Cadastrar
+                                </button>&nbsp;
+                            </div>
+                            {% endif %}
+
+                            <div class="col-md-6">
+                                <a class="btn btn-default btn-block btn-lg" href="#" onclick="history.go(-1)">
+                                    <i class="fa fa-rotate-left"></i>&nbsp;
+                                        Voltar
+                                </a>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if perms.s2300.add_s2300infoComplementares or perms.s2300.change_s2300infoComplementares %}
+
+                        {% if s2300_infocomplementares_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                            </form>
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {% if pk %}
+
+            <!-- inicio controle de alterações -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Controle de Alterações</h3>
+                            <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered table-striped automate-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Situação Anterior</th>
+                                        <th>Situação Posterior</th>
+                                        <th>Modificado por</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in controle_alteracoes %}
+                                    <tr>
+                                        <td>{{ c.criado_em }}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.modificado_por }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- fim controle de alterações -->
+        {% endif %}
+        
+    {% endif %}
+
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    {% if pk %}
+
 
         
-            
-            <!-- begin_s2300_cargofuncao -->
+        <!-- begin_s2300_cargofuncao -->
 
-            {% if tab == 's2300_cargofuncao' or for_print %} 
+            {% if tab == 's2300_cargofuncao' %} 
 
-                {% if perms.s2300.can_view_s2300_cargofuncao %} 
+                {% if perms.s2300.can_see_data_s2300cargoFuncao %}
 
-                    {% if perms.s2300.change_s2300_cargofuncao or perms.s2300.add_s2300cargoFuncao %}
+                    {% if perms.s2300.add_s2300cargoFuncao or perms.s2300.change_s2300cargoFuncao %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -386,95 +391,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_cargofuncao or perms.s2300.add_s2300cargoFuncao %}
+                                    {% if perms.s2300.add_s2300cargoFuncao or perms.s2300.can_see_list_s2300cargoFuncao  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300cargoFuncao %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300cargoFuncao %}            
+
                                     <!-- begin_form_s2300_cargofuncao --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_cargofuncao" action="{% url 's2300_cargofuncao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_cargofuncao" 
+                                              action="{% url 's2300_cargofuncao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_cargofuncao.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_cargofuncao -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_cargofuncao -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300cargoFuncao %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_cargofuncao --> 
 
-                                    {% include 'tables/s2300_cargofuncao.html' %}
-                                        
-                                    <!-- end_table_s2300_cargofuncao --> 
-
+                                        {% include 'tables/s2300_cargofuncao.html' %}
+                                        <!-- end_table_s2300_cargofuncao --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_cargofuncao -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_remuneracao -->
+        <!-- begin_s2300_remuneracao -->
 
-            {% if tab == 's2300_remuneracao' or for_print %} 
+            {% if tab == 's2300_remuneracao' %} 
 
-                {% if perms.s2300.can_view_s2300_remuneracao %} 
+                {% if perms.s2300.can_see_data_s2300remuneracao %}
 
-                    {% if perms.s2300.change_s2300_remuneracao or perms.s2300.add_s2300remuneracao %}
+                    {% if perms.s2300.add_s2300remuneracao or perms.s2300.change_s2300remuneracao %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -483,95 +500,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações da remuneração e periodicidade de pagamento</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_remuneracao or perms.s2300.add_s2300remuneracao %}
+                                    {% if perms.s2300.add_s2300remuneracao or perms.s2300.can_see_list_s2300remuneracao  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300remuneracao %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300remuneracao %}            
+
                                     <!-- begin_form_s2300_remuneracao --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_remuneracao" action="{% url 's2300_remuneracao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_remuneracao" 
+                                              action="{% url 's2300_remuneracao_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_remuneracao.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_remuneracao -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_remuneracao -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300remuneracao %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_remuneracao --> 
 
-                                    {% include 'tables/s2300_remuneracao.html' %}
-                                        
-                                    <!-- end_table_s2300_remuneracao --> 
-
+                                        {% include 'tables/s2300_remuneracao.html' %}
+                                        <!-- end_table_s2300_remuneracao --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_remuneracao -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_fgts -->
+        <!-- begin_s2300_fgts -->
 
-            {% if tab == 's2300_fgts' or for_print %} 
+            {% if tab == 's2300_fgts' %} 
 
-                {% if perms.s2300.can_view_s2300_fgts %} 
+                {% if perms.s2300.can_see_data_s2300fgts %}
 
-                    {% if perms.s2300.change_s2300_fgts or perms.s2300.add_s2300fgts %}
+                    {% if perms.s2300.add_s2300fgts or perms.s2300.change_s2300fgts %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -580,95 +609,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao FGTS.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_fgts or perms.s2300.add_s2300fgts %}
+                                    {% if perms.s2300.add_s2300fgts or perms.s2300.can_see_list_s2300fgts  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300fgts %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300fgts %}            
+
                                     <!-- begin_form_s2300_fgts --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_fgts" action="{% url 's2300_fgts_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_fgts" 
+                                              action="{% url 's2300_fgts_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_fgts.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_fgts -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_fgts -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300fgts %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_fgts --> 
 
-                                    {% include 'tables/s2300_fgts.html' %}
-                                        
-                                    <!-- end_table_s2300_fgts --> 
-
+                                        {% include 'tables/s2300_fgts.html' %}
+                                        <!-- end_table_s2300_fgts --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_fgts -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_infodirigentesindical -->
+        <!-- begin_s2300_infodirigentesindical -->
 
-            {% if tab == 's2300_infodirigentesindical' or for_print %} 
+            {% if tab == 's2300_infodirigentesindical' %} 
 
-                {% if perms.s2300.can_view_s2300_infodirigentesindical %} 
+                {% if perms.s2300.can_see_data_s2300infoDirigenteSindical %}
 
-                    {% if perms.s2300.change_s2300_infodirigentesindical or perms.s2300.add_s2300infoDirigenteSindical %}
+                    {% if perms.s2300.add_s2300infoDirigenteSindical or perms.s2300.change_s2300infoDirigenteSindical %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -677,95 +718,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Empresa de Origem do Dirigente Sindical</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_infodirigentesindical or perms.s2300.add_s2300infoDirigenteSindical %}
+                                    {% if perms.s2300.add_s2300infoDirigenteSindical or perms.s2300.can_see_list_s2300infoDirigenteSindical  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300infoDirigenteSindical %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300infoDirigenteSindical %}            
+
                                     <!-- begin_form_s2300_infodirigentesindical --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_infodirigentesindical" action="{% url 's2300_infodirigentesindical_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_infodirigentesindical" 
+                                              action="{% url 's2300_infodirigentesindical_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_infodirigentesindical.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_infodirigentesindical -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_infodirigentesindical -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300infoDirigenteSindical %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_infodirigentesindical --> 
 
-                                    {% include 'tables/s2300_infodirigentesindical.html' %}
-                                        
-                                    <!-- end_table_s2300_infodirigentesindical --> 
-
+                                        {% include 'tables/s2300_infodirigentesindical.html' %}
+                                        <!-- end_table_s2300_infodirigentesindical --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_infodirigentesindical -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_infotrabcedido -->
+        <!-- begin_s2300_infotrabcedido -->
 
-            {% if tab == 's2300_infotrabcedido' or for_print %} 
+            {% if tab == 's2300_infotrabcedido' %} 
 
-                {% if perms.s2300.can_view_s2300_infotrabcedido %} 
+                {% if perms.s2300.can_see_data_s2300infoTrabCedido %}
 
-                    {% if perms.s2300.change_s2300_infotrabcedido or perms.s2300.add_s2300infoTrabCedido %}
+                    {% if perms.s2300.add_s2300infoTrabCedido or perms.s2300.change_s2300infoTrabCedido %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -774,95 +827,107 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_infotrabcedido or perms.s2300.add_s2300infoTrabCedido %}
+                                    {% if perms.s2300.add_s2300infoTrabCedido or perms.s2300.can_see_list_s2300infoTrabCedido  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300infoTrabCedido %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300infoTrabCedido %}            
+
                                     <!-- begin_form_s2300_infotrabcedido --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_infotrabcedido" action="{% url 's2300_infotrabcedido_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_infotrabcedido" 
+                                              action="{% url 's2300_infotrabcedido_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_infotrabcedido.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_infotrabcedido -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_infotrabcedido -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300infoTrabCedido %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_infotrabcedido --> 
 
-                                    {% include 'tables/s2300_infotrabcedido.html' %}
-                                        
-                                    <!-- end_table_s2300_infotrabcedido --> 
-
+                                        {% include 'tables/s2300_infotrabcedido.html' %}
+                                        <!-- end_table_s2300_infotrabcedido --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_infotrabcedido -->
-
+            {% endif %} 
+    
         
-            
-            <!-- begin_s2300_infoestagiario -->
+        <!-- begin_s2300_infoestagiario -->
 
-            {% if tab == 's2300_infoestagiario' or for_print %} 
+            {% if tab == 's2300_infoestagiario' %} 
 
-                {% if perms.s2300.can_view_s2300_infoestagiario %} 
+                {% if perms.s2300.can_see_data_s2300infoEstagiario %}
 
-                    {% if perms.s2300.change_s2300_infoestagiario or perms.s2300.add_s2300infoEstagiario %}
+                    {% if perms.s2300.add_s2300infoEstagiario or perms.s2300.change_s2300infoEstagiario %}
+
                         <script type="text/javascript">
                         function CadastroListagem() {
-                            var display = document.getElementById('cadastrar').style.display;
-                            if (display == "none") {
-                                document.getElementById('cadastrar').style.display = 'block';
-                                document.getElementById('listar').style.display = 'none';
+                              var display = document.getElementById('cadastrar').style.display;
+                              if (display == "none") {
+                                  document.getElementById('cadastrar').style.display = 'block';
+                                  document.getElementById('listar').style.display = 'none';
 
-                                document.getElementById('CadastrarBotao').style.display = 'none';
-                                document.getElementById('ListarBotao').style.display = 'block';
-                            } else {
-                                document.getElementById('cadastrar').style.display = 'none';
-                                document.getElementById('listar').style.display = 'block';
+                                  document.getElementById('CadastrarBotao').style.display = 'none';
+                                  document.getElementById('ListarBotao').style.display = 'block';
+                              } else {
+                                  document.getElementById('cadastrar').style.display = 'none';
+                                  document.getElementById('listar').style.display = 'block';
 
-                                document.getElementById('CadastrarBotao').style.display = 'block';
-                                document.getElementById('ListarBotao').style.display = 'none';
-                            }
-                        }
+                                  document.getElementById('CadastrarBotao').style.display = 'block';
+                                  document.getElementById('ListarBotao').style.display = 'none';
+                              };
+                        };
                         </script>
+
                     {% endif %}
 
                     <div class="row">
@@ -871,75 +936,85 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao estagiário</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if perms.s2300.change_s2300_infoestagiario or perms.s2300.add_s2300infoEstagiario %}
+                                    {% if perms.s2300.add_s2300infoEstagiario or perms.s2300.can_see_list_s2300infoEstagiario  %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
-                                            <div id="CadastrarBotao">
-                                                <i class="fa fa-plus-circle"></i> 
-                                                Cadastrar
-                                            </div>
-                                            <div id="ListarBotao" style="display:none">
-                                                <i class="fa fa-table"></i> 
-                                                Listar
-                                            </div>
+                                        <div id="CadastrarBotao">
+                                            <i class="fa fa-plus-circle"></i> Cadastrar
+                                        </div>
+                                        <div id="ListarBotao" style="display:none">
+                                            <i class="fa fa-table"></i> Listar
+                                        </div>
                                         </button>
-                                        {% endif %}
-                                    </div>   
-                                </div>
-                                <div class="box-body" >
-                                    {% if perms.s2300.add_s2300infoEstagiario %}            
+                                    {% endif %}
+                                </div>   
+                            </div>
+                            <div class="box-body" >
+
+                                {% if perms.s2300.add_s2300infoEstagiario %}            
+
                                     <!-- begin_form_s2300_infoestagiario --> 
                                     <div id="cadastrar" style="display:none">
-                                        <form id="id_form_s2300_infoestagiario" action="{% url 's2300_infoestagiario_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+
+                                        <form id="id_form_s2300_infoestagiario" 
+                                              action="{% url 's2300_infoestagiario_cadastrar' %}" 
+                                              method="POST" 
+                                              enctype="multipart/form-data">
+
                                             {% csrf_token %}
                                             <div class="row">
                                                 {% include 'forms/s2300_infoestagiario.html' %}
                                             </div>
+
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-8">
                                                     <div class="box-footer text-left">
                                                         <font color="red">
                                                             * Campos Obrigatórios.
                                                         </font>
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <div class="box-footer text-right">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-save"></i> Salvar
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <div class="box-footer text-right">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                                            <i class="fa fa-save"></i> Salvar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
-                                    <!-- end_form_s2300_infoestagiario -->
-                                    {% endif %} 
+
+                                <!-- end_form_s2300_infoestagiario -->
+                                {% endif %} 
+
+                                {% if perms.s2300.can_see_s2300infoEstagiario %} 
+
                                     <div id="listar"> 
                                     <!-- begin_table_s2300_infoestagiario --> 
 
-                                    {% include 'tables/s2300_infoestagiario.html' %}
-                                        
-                                    <!-- end_table_s2300_infoestagiario --> 
-
+                                        {% include 'tables/s2300_infoestagiario.html' %}
+                                        <!-- end_table_s2300_infoestagiario --> 
+                
                                     </div>
-                                </div>
+
+                                {% endif %} 
+
                             </div>
                         </div>
                     </div>
 
+
                 {% endif %} 
 
-            {% endif %}  
-
-            <!-- end_s2300_infoestagiario -->
-
+            {% endif %} 
+    
         
 
-    {% endif %}
+    {% endif %} 
 
 </section>
 
 <!-- script -->
 <!--- javascript -->
-
 {% endblock content %}

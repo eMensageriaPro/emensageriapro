@@ -15,7 +15,7 @@
     <label id="r3010_receitaingressos__r3010_boletim__label">Receita da Venda de Ingressos*</label>
     {% if not for_print %}
       {% if r3010_receitaingressos_form.r3010_boletim.value %}
-        <a id="r3010_receitaingressos__r3010_boletim__div_acessar" href="{% url 'r3010_boletim_salvar' hash='{}'|json_id:r3010_receitaingressos_form.r3010_boletim.value|json_print:0|base64_encode_me %}">
+        <a id="r3010_receitaingressos__r3010_boletim__div_acessar" href="{% url 'r3010_boletim_salvar' pk=r3010_receitaingressos_form.r3010_boletim.value tab='master' %}">
           [Acessar]
         </a>
       {% endif %} 

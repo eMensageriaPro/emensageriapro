@@ -55,67 +55,28 @@ from emensageriapro.controle_de_acesso.models import Usuarios
 
 
 @login_required
-def enviar(request, hash):
+def enviar(request, pk):
 
-    try:
+    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=pk)
 
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        transmissor_lote_efdreinf_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=transmissor_lote_efdreinf_id)
-    a = send_xml(request, transmissor_lote_efdreinf_id, 'RecepcaoLoteReinf')
+    a = send_xml(request, pk, 'RecepcaoLoteReinf')
 
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
 @login_required
-def consultar(request, hash):
+def consultar(request, pk):
 
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        transmissor_lote_efdreinf_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=transmissor_lote_efdreinf_id)
-    a = send_xml(request, transmissor_lote_efdreinf_id, 'ConsultasReinf')
+    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=pk)
+    a = send_xml(request, pk, 'ConsultasReinf')
 
     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
 
 
 @login_required
-def recibo(request, hash):
+def recibo(request, pk):
 
-    try:
-
-        usuario_id = request.user.id
-        dict_hash = get_hash_url(hash)
-        transmissor_lote_efdreinf_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-
-        usuario_id = False
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios, id=usuario_id)
-
-    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=transmissor_lote_efdreinf_id)
+    transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=pk)
 
     ocorrencias_lista = TransmissorLoteEfdreinfOcorrencias.objects.\
         filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
@@ -127,14 +88,8 @@ def recibo(request, hash):
         'eventos_lista': eventos_lista,
         'ocorrencias_lista': ocorrencias_lista,
         'transmissor_lote_efdreinf': transmissor_lote_efdreinf,
-        'transmissor_lote_efdreinf_id': int(transmissor_lote_efdreinf_id),
-        'usuario': usuario,
-
-        'hash': hash,
         'data': datetime.datetime.now(),
-        'for_print': int(dict_hash['print']),
-        #'transmissor_eventos_lista': transmissor_eventos_lista,
-        #'transmissor_ocorrencias_lista': transmissor_ocorrencias_lista,
     }
+
     return render(request, 'transmissor_lote_efdreinf_recibo.html', context)
 

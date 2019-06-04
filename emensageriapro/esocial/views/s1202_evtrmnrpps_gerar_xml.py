@@ -43,6 +43,9 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+import os
+import base64
+from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -56,9 +59,8 @@ from emensageriapro.s1202.models import *
 from emensageriapro.s1202.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
 from wkhtmltopdf.views import PDFTemplateResponse
-from datetime import datetime
-import base64
-import os
+from django.template.loader import get_template
+from emensageriapro.functions import get_xmlns
 
 
 from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
@@ -70,17 +72,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
     STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
 
-def gerar_xml_s1202(request, s1202_evtrmnrpps_id, versao=None):
+def gerar_xml_s1202(request, pk, versao=None):
 
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s1202_evtrmnrpps_id:
+    if pk:
 
         s1202_evtrmnrpps = get_object_or_404(
             s1202evtRmnRPPS,
-            excluido = False,
-            id = s1202_evtrmnrpps_id)
+            id=pk)
 
         if not versao or versao == '|':
             versao = s1202_evtrmnrpps.versao
@@ -105,7 +103,8 @@ def gerar_xml_s1202(request, s1202_evtrmnrpps_id, versao=None):
             xmlns = ''
 
         s1202_evtrmnrpps_lista = s1202evtRmnRPPS.objects. \
-            filter(id=s1202_evtrmnrpps_id, excluido = False).all()
+            filter(id=pk).all()
+            
         
         s1202_procjudtrab_lista = s1202procJudTrab.objects. \
             filter(s1202_evtrmnrpps_id__in=listar_ids(s1202_evtrmnrpps_lista)).all()
@@ -158,10 +157,8 @@ def gerar_xml_s1202(request, s1202_evtrmnrpps_id, versao=None):
             'versao': versao,
             'base': s1202_evtrmnrpps,
             's1202_evtrmnrpps_lista': s1202_evtrmnrpps_lista,
-            's1202_evtrmnrpps_id': int(s1202_evtrmnrpps_id),
+            'pk': int(pk),
             's1202_evtrmnrpps': s1202_evtrmnrpps,
-
-            
             's1202_procjudtrab_lista': s1202_procjudtrab_lista,
             's1202_dmdev_lista': s1202_dmdev_lista,
             's1202_infoperapur_lista': s1202_infoperapur_lista,
@@ -184,9 +181,7 @@ def gerar_xml_s1202(request, s1202_evtrmnrpps_id, versao=None):
         return xml
 
 
-
-
-def gerar_xml_assinado(request, s1202_evtrmnrpps_id):
+def gerar_xml_assinado(request, pk):
 
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
@@ -194,14 +189,14 @@ def gerar_xml_assinado(request, s1202_evtrmnrpps_id):
 
     s1202_evtrmnrpps = get_object_or_404(
         s1202evtRmnRPPS,
-        id=s1202_evtrmnrpps_id)
+        id=pk)
 
     if s1202_evtrmnrpps.arquivo_original:
     
         xml = ler_arquivo(s1202_evtrmnrpps.arquivo)
 
     else:
-        xml = gerar_xml_s1202(request, s1202_evtrmnrpps_id)
+        xml = gerar_xml_s1202(request, pk)
 
     if 'Signature' in xml:
     
@@ -217,20 +212,23 @@ def gerar_xml_assinado(request, s1202_evtrmnrpps_id):
             grupo = get_grupo(s1202evtRmnRPPS)
 
             criar_transmissor_esocial(request,
-                                      grupo,
-                                      s1202_evtrmnrpps.nrinsc,
-                                      s1202_evtrmnrpps.tpinsc)
+                grupo,
+                s1202_evtrmnrpps.nrinsc,
+                s1202_evtrmnrpps.tpinsc)
 
             vincular_transmissor_esocial(request,
-                                         grupo,
-                                         s1202evtRmnRPPS,
-                                         s1202_evtrmnrpps)
+                grupo,
+                s1202evtRmnRPPS,
+                s1202_evtrmnrpps)
         
         s1202_evtrmnrpps = get_object_or_404(
             s1202evtRmnRPPS,
-            id=s1202_evtrmnrpps_id)
+            id=pk)
         
-        xml_assinado = assinar_esocial(request, xml, s1202_evtrmnrpps.transmissor_lote_esocial_id)
+        xml_assinado = assinar_esocial(
+            request, 
+            xml, 
+            s1202_evtrmnrpps.transmissor_lote_esocial_id)
         
     if s1202_evtrmnrpps.status in (
         STATUS_EVENTO_CADASTRADO,
@@ -239,29 +237,28 @@ def gerar_xml_assinado(request, s1202_evtrmnrpps_id):
         STATUS_EVENTO_GERADO):
 
         s1202evtRmnRPPS.objects.\
-            filter(id=s1202_evtrmnrpps_id).update(status=STATUS_EVENTO_ASSINADO)
+            filter(id=pk).update(status=STATUS_EVENTO_ASSINADO)
 
     arquivo = 'arquivos/Eventos/s1202_evtrmnrpps/%s.xml' % (s1202_evtrmnrpps.identidade)
     os.system('mkdir -p %s/arquivos/Eventos/s1202_evtrmnrpps/' % BASE_DIR)
 
     if not os.path.exists(BASE_DIR+arquivo):
+    
         salvar_arquivo_esocial(arquivo, xml_assinado, 1)
 
     xml_assinado = ler_arquivo(arquivo)
+    
     return xml_assinado
 
 
-
 @login_required
-def gerar_xml(request, hash):
+def gerar_xml(request, pk):
 
-    dict_hash = get_hash_url( hash )
-    s1202_evtrmnrpps_id = int(dict_hash['id'])
+    if pk:
 
-    if s1202_evtrmnrpps_id:
-
-        xml_assinado = gerar_xml_assinado(request, s1202_evtrmnrpps_id)
+        xml_assinado = gerar_xml_assinado(request, pk)
         return HttpResponse(xml_assinado, content_type='text/xml')
 
     context = {'data': datetime.now(),}
+    
     return render(request, 'permissao_negada.html', context)

@@ -35,26 +35,27 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if perms.r4099.can_view_r4099ideRespInf %}
-                        <a href="{% url 'r4099_iderespinf_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if perms.r4099.add_r4099ideRespInf or perms.r4099.change_r4099ideRespInf %}
+                        {% if perms.r4099.change_r4099ideRespInf or perms.r4099.add_r4099ideRespInf %}
+                    
+                        <a href="{% url 'r4099_iderespinf_salvar' pk=a.id tab='master' %}">
+                            {% if perms.r4099.change_r4099ideRespInf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
-                            {% else %}
+                            {% elif perms.r4099.can_see_data_r4099ideRespInf %}
                                 <span class="btn btn-primary" title="Visualizar">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </span>
                             {% endif %}
                         </a>
-                    {% endif %}
-                    {% if perms.r4099.delete_r4099ideRespInf %}
-                        <a href="{% url 'r4099_iderespinf_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                        {% endif %}
+                        {% if perms.r4099.delete_r4099ideRespInf %}
+                        <a href="{% url 'r4099_iderespinf_apagar' pk=a.id %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>
                             </span>
                         </a>
-                    {% endif %}
+                        {% endif %}
                 </div>
             </td>
             {% endif %}
