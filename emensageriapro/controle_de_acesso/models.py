@@ -163,7 +163,8 @@ class Usuarios(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_usuarios", "Can view usuarios"),)
+            ("can_view_usuarios", "Can view usuarios"),
+            ("can_create_token_usuarios", "Pode criar Token"),)
             
         # ordering = [
         #     'user.first_name', 

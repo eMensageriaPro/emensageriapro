@@ -47,30 +47,8 @@
 
 
 <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    {% if pk %}
-                        {% if perms.controle_de_acesso.can_see_Usuarios %}
-                        <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'usuarios_salvar' pk=pk tab='master' %}">
-                            Usuários</a>
-                        </li>
-                        {% endif %}
-                        
-                            {% if perms.mensageiro.can_see_ImportacaoArquivos %}
-                                <li {% if tab == 'importacao_arquivos' %} class="active"{% endif %} >
-                                    <a href="{% url 'usuarios_salvar' pk=pk tab='importacao_arquivos' %}">
-                                    Importação de Arquivos</a>
-                                </li>
-                            {% endif %}
-                        
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </div>
+
+    
     <!-- TABS -->
     {% if messages %}
         <div class="row">
@@ -131,9 +109,9 @@
                     <div class="box-body">
                         <div class="row">
                         {% if pk %}
-
-
-
+                        
+                        
+                            
                             {% if perms.controle_de_acesso.can_create_token_usuarios %}
                             <div class="col-md-12">
                                 <a href="{% url 'usuarios_create_token' pk=pk %}">
@@ -144,6 +122,7 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
+                            
 
 
                             {% if perms.controle_de_acesso.add_Usuarios %}

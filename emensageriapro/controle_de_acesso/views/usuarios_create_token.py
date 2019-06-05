@@ -27,21 +27,26 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 
 @login_required
 def create_token(request, pk):
 
     from rest_framework.authtoken.models import Token
+    from emensageriapro.controle_de_acesso.models import Usuarios
+    from django.contrib.auth.models import User
+
+    usuario = get_object_or_404(Usuarios, id=pk)
+    user = get_object_or_404(User, id=usuario.user_id)
 
     try:
 
-        token = Token.objects.create(user=pk)
+        token = Token.objects.create(user=user)
 
     except:
 
-        token = Token.objects.get(user=pk)
+        token = Token.objects.get(user=user)
 
     messages.success(request, 'Token criado com sucesso! Token: %s' % token.key)
 
