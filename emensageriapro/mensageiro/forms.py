@@ -85,6 +85,49 @@ class form_arquivos(forms.ModelForm):
             'modificado_por',]
 
 
+class form_certificados(forms.ModelForm):
+
+    from django.forms import ModelForm, PasswordInput
+    senha = forms.CharField(widget=PasswordInput())
+
+    def __init__(self, *args, **kwargs):
+    
+        super(form_certificados, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        
+        if kwargs.has_key('request'):
+        
+            request = kwargs.pop('request')
+        
+        m =  super(form_certificados, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = Certificados
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',
+            'senha']
+
+
 class form_importacao_arquivos(forms.ModelForm):
 
 

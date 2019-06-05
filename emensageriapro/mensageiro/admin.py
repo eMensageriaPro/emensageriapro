@@ -35,6 +35,14 @@ class CertificadosAdmin(AuditoriaAdmin):
     def queryset(self, request, queryset):
         return queryset.filter(excluido=False)
 
+    def get_form(self, request, obj=None, **kwargs):
+        if obj:
+            self.exclude = ('certificado', 'senha')
+        else:
+            self.exclude = ()
+        form = super(CertificadosAdmin, self).get_form(request, obj, **kwargs)
+        return form
+
 
 
 admin.site.register(Certificados, CertificadosAdmin)
