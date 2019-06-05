@@ -62,7 +62,7 @@ urlpatterns = [
     url(r'^api-token-auth/', 
         views.obtain_auth_token),
 
-    url(r'^usuarios/criar-token/$', 
+    url(r'^usuarios/criar-token/(?P<pk>[0-9]+)/$',
         usuarios_create_token_views.create_token, 
         name='usuarios_create_token'),
 

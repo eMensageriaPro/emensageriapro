@@ -133,6 +133,19 @@
                         {% if pk %}
 
 
+
+                            {% if perms.controle_de_acesso.can_create_token_usuarios %}
+                            <div class="col-md-12">
+                                <a href="{% url 'usuarios_create_token' pk=pk %}">
+                                    <span class="btn btn-warning btn-block btn-lg">
+                                        <i class="fa fa-plus-circle"></i>&nbsp;
+                                            Criar Token
+                                    </span>
+                                </a>&nbsp;
+                            </div>
+                            {% endif %}
+
+
                             {% if perms.controle_de_acesso.add_Usuarios %}
                             <div class="col-md-2">
                                 <a href="{% url 'usuarios_cadastrar' %}">

@@ -22,54 +22,27 @@ __email__ = "marcelomdevasconcellos@gmail.com"
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
 """
 
 import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Count
-from emensageriapro.padrao import *
-from emensageriapro.controle_de_acesso.forms import *
-from emensageriapro.controle_de_acesso.models import *
-from emensageriapro.controle_de_acesso.models import *
-import base64
-from emensageriapro.mensageiro.models import ImportacaoArquivos
-from emensageriapro.mensageiro.forms import form_importacao_arquivos
-
-from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 
 @login_required
-def create_token(request, hash):
-    db_slug = 'default'
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        usuarios_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-    except:
-        usuario_id = False
-        return redirect('login')
+def create_token(request, pk):
 
     from rest_framework.authtoken.models import Token
+
     try:
-        token = Token.objects.create(user=request.user)
+
+        token = Token.objects.create(user=pk)
+
     except:
-        token = Token.objects.get(user=request.user)
+
+        token = Token.objects.get(user=pk)
+
     messages.success(request, 'Token criado com sucesso! Token: %s' % token.key)
-    return redirect('usuarios', hash=hash)
+
+    return redirect('usuarios_salvar', pk=pk, tab='master')
