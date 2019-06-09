@@ -53,7 +53,7 @@
                         <div class="box-header with-border"><h3 class="box-title">Listagem de Importação de
                             Arquivos</h3><!-- XXXXXX -->
                             <div class="text-right">
-                                {% if dict_permissoes|get_permissao:'importacao_arquivos_cadastrar' %}
+                                {% if perms.mensageiro.add_ImportacaoArquivos %}
                                     <button type="button" class="btn btn-info" id="myBtn"><i
                                             class="fa fa-plus-circle"></i>&nbsp; Importar Arquivo
                                     </button>{% endif %}</div><!-- Modal -->

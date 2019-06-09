@@ -72,6 +72,7 @@ def listar(request, tab='master'):
         quant_processados = len(esocial_processados) or 0
 
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'tab': tab,
             'esocial_enviados': esocial_enviados,
             'esocial_validados': esocial_validados,
@@ -94,7 +95,7 @@ def listar(request, tab='master'):
     else:
 
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
         }
 

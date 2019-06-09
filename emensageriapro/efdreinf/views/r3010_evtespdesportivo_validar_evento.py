@@ -168,7 +168,7 @@ def validar_evento_funcao(request, pk):
 
 
 @login_required
-def validar_evento(request, pk):
+def validar_evento(request, pk, tab=None):
 
     from emensageriapro.settings import VERSOES_EFDREINF, VERIFICAR_PREDECESSAO_ANTES_ENVIO
 
@@ -213,5 +213,11 @@ def validar_evento(request, pk):
             u'''Não foi possível validar o 
                 evento pois o mesmo não está em nenhum dos sequintes status: Cadastrado, 
                 Importado, Duplicado, Gerado, Assinado ou com Erro de Validação!''')
-
-    return redirect('r3010_evtespdesportivo_salvar', pk=pk, tab='master')
+                
+    if tab == 'mapa':
+    
+        return redirect('mapa_efdreinf', tab='master')
+        
+    else:
+    
+        return redirect('r3010_evtespdesportivo_salvar', pk=pk, tab='master')

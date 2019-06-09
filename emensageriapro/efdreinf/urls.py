@@ -482,6 +482,10 @@ urlpatterns = [
         r1000_evtinfocontri_validar_evento_views.validar_evento,
         name='r1000_evtinfocontri_validar_evento'),
 
+    url(r'^r1000-evtinfocontri/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r1000_evtinfocontri_validar_evento_views.validar_evento,
+        name='r1000_evtinfocontri_validar_evento_api'),
+
     url(r'^r1000-evtinfocontri/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r1000_evtinfocontri_salvar_views.salvar, 
         name='r1000_evtinfocontri_salvar'),
@@ -555,6 +559,10 @@ urlpatterns = [
     url(r'^r1070-evttabprocesso/validar-evento/(?P<pk>[0-9]+)/$',
         r1070_evttabprocesso_validar_evento_views.validar_evento,
         name='r1070_evttabprocesso_validar_evento'),
+
+    url(r'^r1070-evttabprocesso/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r1070_evttabprocesso_validar_evento_views.validar_evento,
+        name='r1070_evttabprocesso_validar_evento_api'),
 
     url(r'^r1070-evttabprocesso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r1070_evttabprocesso_salvar_views.salvar, 
@@ -630,6 +638,10 @@ urlpatterns = [
         r2010_evtservtom_validar_evento_views.validar_evento,
         name='r2010_evtservtom_validar_evento'),
 
+    url(r'^r2010-evtservtom/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2010_evtservtom_validar_evento_views.validar_evento,
+        name='r2010_evtservtom_validar_evento_api'),
+
     url(r'^r2010-evtservtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2010_evtservtom_salvar_views.salvar, 
         name='r2010_evtservtom_salvar'),
@@ -703,6 +715,10 @@ urlpatterns = [
     url(r'^r2020-evtservprest/validar-evento/(?P<pk>[0-9]+)/$',
         r2020_evtservprest_validar_evento_views.validar_evento,
         name='r2020_evtservprest_validar_evento'),
+
+    url(r'^r2020-evtservprest/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2020_evtservprest_validar_evento_views.validar_evento,
+        name='r2020_evtservprest_validar_evento_api'),
 
     url(r'^r2020-evtservprest/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2020_evtservprest_salvar_views.salvar, 
@@ -778,6 +794,10 @@ urlpatterns = [
         r2030_evtassocdesprec_validar_evento_views.validar_evento,
         name='r2030_evtassocdesprec_validar_evento'),
 
+    url(r'^r2030-evtassocdesprec/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2030_evtassocdesprec_validar_evento_views.validar_evento,
+        name='r2030_evtassocdesprec_validar_evento_api'),
+
     url(r'^r2030-evtassocdesprec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2030_evtassocdesprec_salvar_views.salvar, 
         name='r2030_evtassocdesprec_salvar'),
@@ -851,6 +871,10 @@ urlpatterns = [
     url(r'^r2040-evtassocdesprep/validar-evento/(?P<pk>[0-9]+)/$',
         r2040_evtassocdesprep_validar_evento_views.validar_evento,
         name='r2040_evtassocdesprep_validar_evento'),
+
+    url(r'^r2040-evtassocdesprep/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2040_evtassocdesprep_validar_evento_views.validar_evento,
+        name='r2040_evtassocdesprep_validar_evento_api'),
 
     url(r'^r2040-evtassocdesprep/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2040_evtassocdesprep_salvar_views.salvar, 
@@ -926,6 +950,10 @@ urlpatterns = [
         r2050_evtcomprod_validar_evento_views.validar_evento,
         name='r2050_evtcomprod_validar_evento'),
 
+    url(r'^r2050-evtcomprod/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2050_evtcomprod_validar_evento_views.validar_evento,
+        name='r2050_evtcomprod_validar_evento_api'),
+
     url(r'^r2050-evtcomprod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2050_evtcomprod_salvar_views.salvar, 
         name='r2050_evtcomprod_salvar'),
@@ -999,6 +1027,10 @@ urlpatterns = [
     url(r'^r2060-evtcprb/validar-evento/(?P<pk>[0-9]+)/$',
         r2060_evtcprb_validar_evento_views.validar_evento,
         name='r2060_evtcprb_validar_evento'),
+
+    url(r'^r2060-evtcprb/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2060_evtcprb_validar_evento_views.validar_evento,
+        name='r2060_evtcprb_validar_evento_api'),
 
     url(r'^r2060-evtcprb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2060_evtcprb_salvar_views.salvar, 
@@ -1074,6 +1106,10 @@ urlpatterns = [
         r2070_evtpgtosdivs_validar_evento_views.validar_evento,
         name='r2070_evtpgtosdivs_validar_evento'),
 
+    url(r'^r2070-evtpgtosdivs/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2070_evtpgtosdivs_validar_evento_views.validar_evento,
+        name='r2070_evtpgtosdivs_validar_evento_api'),
+
     url(r'^r2070-evtpgtosdivs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2070_evtpgtosdivs_salvar_views.salvar, 
         name='r2070_evtpgtosdivs_salvar'),
@@ -1147,6 +1183,10 @@ urlpatterns = [
     url(r'^r2098-evtreabreevper/validar-evento/(?P<pk>[0-9]+)/$',
         r2098_evtreabreevper_validar_evento_views.validar_evento,
         name='r2098_evtreabreevper_validar_evento'),
+
+    url(r'^r2098-evtreabreevper/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2098_evtreabreevper_validar_evento_views.validar_evento,
+        name='r2098_evtreabreevper_validar_evento_api'),
 
     url(r'^r2098-evtreabreevper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2098_evtreabreevper_salvar_views.salvar, 
@@ -1222,6 +1262,10 @@ urlpatterns = [
         r2099_evtfechaevper_validar_evento_views.validar_evento,
         name='r2099_evtfechaevper_validar_evento'),
 
+    url(r'^r2099-evtfechaevper/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r2099_evtfechaevper_validar_evento_views.validar_evento,
+        name='r2099_evtfechaevper_validar_evento_api'),
+
     url(r'^r2099-evtfechaevper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r2099_evtfechaevper_salvar_views.salvar, 
         name='r2099_evtfechaevper_salvar'),
@@ -1295,6 +1339,10 @@ urlpatterns = [
     url(r'^r3010-evtespdesportivo/validar-evento/(?P<pk>[0-9]+)/$',
         r3010_evtespdesportivo_validar_evento_views.validar_evento,
         name='r3010_evtespdesportivo_validar_evento'),
+
+    url(r'^r3010-evtespdesportivo/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r3010_evtespdesportivo_validar_evento_views.validar_evento,
+        name='r3010_evtespdesportivo_validar_evento_api'),
 
     url(r'^r3010-evtespdesportivo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r3010_evtespdesportivo_salvar_views.salvar, 
@@ -1370,6 +1418,10 @@ urlpatterns = [
         r4010_evtretpf_validar_evento_views.validar_evento,
         name='r4010_evtretpf_validar_evento'),
 
+    url(r'^r4010-evtretpf/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r4010_evtretpf_validar_evento_views.validar_evento,
+        name='r4010_evtretpf_validar_evento_api'),
+
     url(r'^r4010-evtretpf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4010_evtretpf_salvar_views.salvar, 
         name='r4010_evtretpf_salvar'),
@@ -1443,6 +1495,10 @@ urlpatterns = [
     url(r'^r4020-evtretpj/validar-evento/(?P<pk>[0-9]+)/$',
         r4020_evtretpj_validar_evento_views.validar_evento,
         name='r4020_evtretpj_validar_evento'),
+
+    url(r'^r4020-evtretpj/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r4020_evtretpj_validar_evento_views.validar_evento,
+        name='r4020_evtretpj_validar_evento_api'),
 
     url(r'^r4020-evtretpj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4020_evtretpj_salvar_views.salvar, 
@@ -1518,6 +1574,10 @@ urlpatterns = [
         r4040_evtbenefnid_validar_evento_views.validar_evento,
         name='r4040_evtbenefnid_validar_evento'),
 
+    url(r'^r4040-evtbenefnid/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r4040_evtbenefnid_validar_evento_views.validar_evento,
+        name='r4040_evtbenefnid_validar_evento_api'),
+
     url(r'^r4040-evtbenefnid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4040_evtbenefnid_salvar_views.salvar, 
         name='r4040_evtbenefnid_salvar'),
@@ -1591,6 +1651,10 @@ urlpatterns = [
     url(r'^r4098-evtreab/validar-evento/(?P<pk>[0-9]+)/$',
         r4098_evtreab_validar_evento_views.validar_evento,
         name='r4098_evtreab_validar_evento'),
+
+    url(r'^r4098-evtreab/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r4098_evtreab_validar_evento_views.validar_evento,
+        name='r4098_evtreab_validar_evento_api'),
 
     url(r'^r4098-evtreab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4098_evtreab_salvar_views.salvar, 
@@ -1666,6 +1730,10 @@ urlpatterns = [
         r4099_evtfech_validar_evento_views.validar_evento,
         name='r4099_evtfech_validar_evento'),
 
+    url(r'^r4099-evtfech/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r4099_evtfech_validar_evento_views.validar_evento,
+        name='r4099_evtfech_validar_evento_api'),
+
     url(r'^r4099-evtfech/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r4099_evtfech_salvar_views.salvar, 
         name='r4099_evtfech_salvar'),
@@ -1739,6 +1807,10 @@ urlpatterns = [
     url(r'^r5001-evttotal/validar-evento/(?P<pk>[0-9]+)/$',
         r5001_evttotal_validar_evento_views.validar_evento,
         name='r5001_evttotal_validar_evento'),
+
+    url(r'^r5001-evttotal/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r5001_evttotal_validar_evento_views.validar_evento,
+        name='r5001_evttotal_validar_evento_api'),
 
     url(r'^r5001-evttotal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5001_evttotal_salvar_views.salvar, 
@@ -1814,6 +1886,10 @@ urlpatterns = [
         r5011_evttotalcontrib_validar_evento_views.validar_evento,
         name='r5011_evttotalcontrib_validar_evento'),
 
+    url(r'^r5011-evttotalcontrib/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r5011_evttotalcontrib_validar_evento_views.validar_evento,
+        name='r5011_evttotalcontrib_validar_evento_api'),
+
     url(r'^r5011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r5011_evttotalcontrib_salvar_views.salvar, 
         name='r5011_evttotalcontrib_salvar'),
@@ -1887,6 +1963,10 @@ urlpatterns = [
     url(r'^r9000-evtexclusao/validar-evento/(?P<pk>[0-9]+)/$',
         r9000_evtexclusao_validar_evento_views.validar_evento,
         name='r9000_evtexclusao_validar_evento'),
+
+    url(r'^r9000-evtexclusao/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r9000_evtexclusao_validar_evento_views.validar_evento,
+        name='r9000_evtexclusao_validar_evento_api'),
 
     url(r'^r9000-evtexclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r9000_evtexclusao_salvar_views.salvar, 
@@ -1962,6 +2042,10 @@ urlpatterns = [
         r9001_evttotal_validar_evento_views.validar_evento,
         name='r9001_evttotal_validar_evento'),
 
+    url(r'^r9001-evttotal/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r9001_evttotal_validar_evento_views.validar_evento,
+        name='r9001_evttotal_validar_evento_api'),
+
     url(r'^r9001-evttotal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r9001_evttotal_salvar_views.salvar, 
         name='r9001_evttotal_salvar'),
@@ -2035,6 +2119,10 @@ urlpatterns = [
     url(r'^r9002-evtret/validar-evento/(?P<pk>[0-9]+)/$',
         r9002_evtret_validar_evento_views.validar_evento,
         name='r9002_evtret_validar_evento'),
+
+    url(r'^r9002-evtret/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r9002_evtret_validar_evento_views.validar_evento,
+        name='r9002_evtret_validar_evento_api'),
 
     url(r'^r9002-evtret/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r9002_evtret_salvar_views.salvar, 
@@ -2110,6 +2198,10 @@ urlpatterns = [
         r9011_evttotalcontrib_validar_evento_views.validar_evento,
         name='r9011_evttotalcontrib_validar_evento'),
 
+    url(r'^r9011-evttotalcontrib/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r9011_evttotalcontrib_validar_evento_views.validar_evento,
+        name='r9011_evttotalcontrib_validar_evento_api'),
+
     url(r'^r9011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r9011_evttotalcontrib_salvar_views.salvar, 
         name='r9011_evttotalcontrib_salvar'),
@@ -2183,6 +2275,10 @@ urlpatterns = [
     url(r'^r9012-evtretcons/validar-evento/(?P<pk>[0-9]+)/$',
         r9012_evtretcons_validar_evento_views.validar_evento,
         name='r9012_evtretcons_validar_evento'),
+
+    url(r'^r9012-evtretcons/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
+        r9012_evtretcons_validar_evento_views.validar_evento,
+        name='r9012_evtretcons_validar_evento_api'),
 
     url(r'^r9012-evtretcons/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
         r9012_evtretcons_salvar_views.salvar, 

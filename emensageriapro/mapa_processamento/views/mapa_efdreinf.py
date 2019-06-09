@@ -69,7 +69,7 @@ def listar(request, tab='master'):
         quant_processados = len(efdreinf_processados) or 0
 
         context = {
-
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'tab': tab,
             'efdreinf_enviados': efdreinf_enviados,
             'efdreinf_validados': efdreinf_validados,
@@ -78,7 +78,6 @@ def listar(request, tab='master'):
             'efdreinf_cadastrados': efdreinf_cadastrados,
             'efdreinf_erros_envio': efdreinf_erros_envio,
             'efdreinf_processados': efdreinf_processados,
-
             'quant_cadastrados': quant_cadastrados,
             'quant_importados': quant_importados,
             'quant_validados': quant_validados,
@@ -93,7 +92,7 @@ def listar(request, tab='master'):
     else:
 
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
         }
 

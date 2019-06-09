@@ -1058,8 +1058,10 @@ TIPO_TRANSMISSOR_EVENTOS = (
 
 
 
-class TransmissorEventosEsocial(models.Model):
+class TransmissorEventosEsocial(SoftDeletionModel):
+
     from emensageriapro.esocial.models import EVENTO_STATUS
+    
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -1074,13 +1076,6 @@ class TransmissorEventosEsocial(models.Model):
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
 
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
@@ -1101,12 +1096,15 @@ class TransmissorEventosEsocial(models.Model):
         return self.tabela + '_xml'
         
     class Meta:
+    
         db_table = r'transmissor_eventos_esocial'
         managed = False
 
 
-class TransmissorEventosEfdreinf(models.Model):
+class TransmissorEventosEfdreinf(SoftDeletionModel):
+
     from emensageriapro.esocial.models import EVENTO_STATUS
+    
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -1135,14 +1133,6 @@ class TransmissorEventosEfdreinf(models.Model):
     retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
         related_name='%(class)s_retornos_r9012', blank=True, null=True)
         
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
-
     def tabela_validar_api(self):
         return self.tabela + '_validar_evento_api'
 
@@ -1162,13 +1152,16 @@ class TransmissorEventosEfdreinf(models.Model):
         return self.tabela + '_xml'
 
     class Meta:
+    
         db_table = r'transmissor_eventos_efdreinf'
         managed = False
         
         
 
-class TransmissorEventosEsocialTotalizacoes(models.Model):
+class TransmissorEventosEsocialTotalizacoes(SoftDeletionModel):
+
     from emensageriapro.esocial.models import EVENTO_STATUS
+    
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
@@ -1183,13 +1176,6 @@ class TransmissorEventosEsocialTotalizacoes(models.Model):
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
 
     def tabela_verificar(self):
         return self.tabela + '_verificar'
@@ -1204,12 +1190,15 @@ class TransmissorEventosEsocialTotalizacoes(models.Model):
         return self.tabela + '_xml'
 
     class Meta:
+    
         db_table = r'transmissor_eventos_esocial_totalizacoes'
         managed = False
 
 
-class TransmissorEventosEfdreinfTotalizacoes(models.Model):
+class TransmissorEventosEfdreinfTotalizacoes(SoftDeletionModel):
+
     from emensageriapro.esocial.models import EVENTO_STATUS
+    
     evento = models.CharField(max_length=10)
     identidade = models.CharField(max_length=36)
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
@@ -1224,11 +1213,6 @@ class TransmissorEventosEfdreinfTotalizacoes(models.Model):
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True)
     validacoes = models.TextField(blank=True, null=True)
     status = models.IntegerField(choices=EVENTO_STATUS, default=0)
-    
-    # retornos_evttotal = models.ForeignKey('efdreinf.r5001evtTotal',
-    #     related_name='%(class)s_retornos_evttotal', blank=True, null=True)
-    # retornos_evttotalcontrib = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-    #     related_name='%(class)s_retornos_evttotalcontrib', blank=True, null=True)
 
     retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
         related_name='%(class)s_retornos_r5001', blank=True, null=True)
@@ -1242,14 +1226,6 @@ class TransmissorEventosEfdreinfTotalizacoes(models.Model):
         related_name='%(class)s_retornos_r9011', blank=True, null=True)
     retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
         related_name='%(class)s_retornos_r9012', blank=True, null=True)
-        
-    criado_em = models.DateTimeField(blank=True)
-    criado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.BooleanField(blank=True)
 
     def tabela_verificar(self):
         return self.tabela + '_verificar'
@@ -1264,5 +1240,6 @@ class TransmissorEventosEfdreinfTotalizacoes(models.Model):
         return self.tabela + '_xml'
 
     class Meta:
+    
         db_table = r'transmissor_eventos_efdreinf_totalizacoes'
         managed = False

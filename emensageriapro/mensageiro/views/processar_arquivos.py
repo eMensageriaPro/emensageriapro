@@ -233,9 +233,9 @@ def scripts_salvar_arquivos(request):
         dados_importacao['quant_processado'] = 0
         dados_importacao['quant_erros'] = 0
         dados_importacao['quant_aguardando'] = 0
-        dados_importacao['importado_por_id'] = request.session.user.id
+        dados_importacao['importado_por_id'] = request.user.id
         dados_importacao['criado_em'] = datetime.datetime.now()
-        dados_importacao['criado_por_id'] = request.session.user.id
+        dados_importacao['criado_por_id'] = request.user.id
         dados_importacao['excluido'] = False
 
         obj = ImportacaoArquivos(**dados_importacao)
@@ -278,7 +278,7 @@ def scripts_salvar_arquivos(request):
                     dados_eventos['data_hora'] = datetime.datetime.now()
                     dados_eventos['validacoes'] = ''
                     dados_eventos['criado_em'] = datetime.datetime.now()
-                    dados_eventos['criado_por_id'] = 1
+                    dados_eventos['criado_por_id'] = request.user.id
                     dados_eventos['excluido'] = False
 
                     obj = ImportacaoArquivosEventos(**dados_eventos)
@@ -290,7 +290,7 @@ def scripts_salvar_arquivos(request):
 
         messages.error(request, 'Não foram encontrados arquivos para processamento!')
 
-    return redirect('importacao_arquivos', hash=hash)
+    return redirect('importacao_arquivos')
 
 
 

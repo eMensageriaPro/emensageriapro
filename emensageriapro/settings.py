@@ -81,7 +81,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_cron',
+    'django_celery_beat',
+    'constance',
+    'constance.backends.database',
 
     'emensageriapro.controle_de_acesso',
     'emensageriapro.r1000',
@@ -181,7 +183,11 @@ MIDDLEWARE_CLASSES = (
 )
 
 CRON_CLASSES = [
-    'emensageriapro.cron.MyCronJob',
+    'emensageriapro.cron.EsocialSend',
+    'emensageriapro.cron.EsocialConsult',
+    'emensageriapro.cron.EfdreinfSend',
+    'emensageriapro.cron.EfdreinfConsult',
+    'emensageriapro.cron.ImportFiles',
 ]
 
 
@@ -203,13 +209,12 @@ TEMPLATES = [
         'django.template.context_processors.request',
         'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
+        'constance.context_processors.config',
         'emensageriapro.context_processors.admin_media',
       ],
     },
   },
 ]
-
-
 
 # Internacionalização
 
@@ -320,3 +325,36 @@ REST_FRAMEWORK = {
 
     )
 }
+
+# https://medium.com/luizalabs/executando-processos-em-background-com-django-e-celery-5ade867e1bf3
+from kombu import Exchange, Queue
+
+task_default_queue = 'default' #1
+default_exchange = Exchange('media', type='direct') #2
+task_queues = (
+    Queue(
+        'media_queue', #3
+        exchange=default_exchange, #4
+        routing_key='video' #5
+    )
+)
+
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+CONSTANCE_CONFIG = {
+    'ESOCIAL_SEND_RUN_EVERY_MINS': (10, 'Tempo de envio (em minutos)'
+                                        'dos eventos do eSocial', int),
+    'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10, 'Tempo de consulta (em minutos)'
+                                           'dos eventos do eSocial', int),
+    'EFDREINF_SEND_RUN_EVERY_MINS': (10, 'Tempo de envio (em minutos)'
+                                         'dos eventos do EFD-Reinf', int),
+    'EFDREINF_CONSULT_RUN_EVERY_MINS': (10, 'Tempo de consulta (em minutos)'
+                                            'dos eventos do EFD-Reinf', int),
+    'IMPORT_FILES_RUN_EVERY_MINS': (10, 'Tempo de leitura de arquivos importados'
+                                        '(em minutos)', int),
+    'BROKER_URL': ('redis://', 'Endereço do servidor '
+                               'do Redis', str),
+}
+
+broker_url='redis://'

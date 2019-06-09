@@ -110,6 +110,7 @@ def listar(request):
         efdreinf_quant_processados = len(efdreinf_processados) or 0
 
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'esocial_quant_cadastrados': esocial_quant_cadastrados,
             'esocial_quant_importados': esocial_quant_importados,
             'esocial_quant_validados': esocial_quant_validados,
@@ -130,7 +131,7 @@ def listar(request):
     else:
 
         context = {
-            'usuario': usuario,
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
         }
 

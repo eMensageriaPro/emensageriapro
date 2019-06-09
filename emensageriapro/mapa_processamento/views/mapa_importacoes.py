@@ -91,7 +91,7 @@ def listar(request, tab='master'):
         lista_processados = ImportacaoArquivos.objects.filter(status=0).all()
 
         context = {
-
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'tab': tab,
             'lista_aguardando': lista_aguardando,
             'lista_erros': lista_erros,
@@ -107,6 +107,7 @@ def listar(request, tab='master'):
     else:
 
         context = {
+            'usuario': Usuarios.objects.get(user_id=request.user.id),
             'data': datetime.datetime.now(),
             'dict_permissoes': dict_permissoes,
         }
