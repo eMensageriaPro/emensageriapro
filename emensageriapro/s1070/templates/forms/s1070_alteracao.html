@@ -5,7 +5,7 @@
 <!-- inicio__s1070_alteracao__s1070_evttabprocesso -->
 <div class="col-md-12" id="s1070_alteracao__s1070_evttabprocesso__div">
   <div class="form-group">
-    <label id="s1070_alteracao__s1070_evttabprocesso__label">Alteração das informações*</label>
+    <label id="s1070_alteracao__s1070_evttabprocesso__label">Alteração das informações*<a data-toggle="tooltip" title="Alteração de informações já existentes."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1070_alteracao_form.s1070_evttabprocesso.value %}
         <a href="{% url 's1070_evttabprocesso_salvar' pk=s1070_alteracao_form.s1070_evttabprocesso.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1070_alteracao__tpproc -->
 <div class="col-md-6" id="s1070_alteracao__tpproc__div">
   <div class="form-group">
-    <label id="s1070_alteracao__tpproc__label">Processo RAT*</label>
+    <label id="s1070_alteracao__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial; 3 - Número de Benefício (NB) do INSS; 4 - Processo FAP de exercício anterior a 2019. <valores_validos> 1, 2, 3, 5"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_alteracao_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_alteracao_form.tpproc.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__s1070_alteracao__nrproc -->
 <div class="col-md-6" id="s1070_alteracao__nrproc__div">
   <div class="form-group">
-    <label id="s1070_alteracao__nrproc__label">Número do Processo*</label>
+    <label id="s1070_alteracao__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}. <validacao> Deve ser um número de processo/benefício válido e: a) Se {tpProc} = [1], deve possuir 17 (dezessete) ou 21 (vinte e um) algarismos; b) Se {tpProc} = [2], deve possuir 20 (vinte) algarismos; c) Se {tpProc} = [3], deve possuir 10 (dez) algarismos; d) Se {tpProc} = [4], deve possuir 16 (dezesseis) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1070_alteracao_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1070_alteracao_form.nrproc.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1070_alteracao__inivalid -->
 <div class="col-md-6" id="s1070_alteracao__inivalid__div">
   <div class="form-group">
-    <label id="s1070_alteracao__inivalid__label">Início da Validade*</label>
+    <label id="s1070_alteracao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_alteracao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_alteracao_form.inivalid.errors }}
@@ -100,7 +100,7 @@
 <!-- inicio__s1070_alteracao__fimvalid -->
 <div class="col-md-6" id="s1070_alteracao__fimvalid__div">
   <div class="form-group">
-    <label id="s1070_alteracao__fimvalid__label">Fim da Validade</label>
+    <label id="s1070_alteracao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_alteracao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_alteracao_form.fimvalid.errors }}
@@ -129,7 +129,7 @@
 <!-- inicio__s1070_alteracao__indautoria -->
 <div class="col-md-6" id="s1070_alteracao__indautoria__div">
   <div class="form-group">
-    <label id="s1070_alteracao__indautoria__label">Autoria</label>
+    <label id="s1070_alteracao__indautoria__label">Autoria<a data-toggle="tooltip" title="Indicativo da autoria da ação judicial<opcoes>1 - Próprio contribuinte; 2 - Outra entidade, empresa ou empregado. <validacao> Preenchimento obrigatório se {tpProc} = [2]. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_alteracao_form.indautoria.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_alteracao_form.indautoria.errors }}
@@ -153,7 +153,7 @@
 <!-- inicio__s1070_alteracao__indmatproc -->
 <div class="col-md-6" id="s1070_alteracao__indmatproc__div">
   <div class="form-group">
-    <label id="s1070_alteracao__indmatproc__label">Matéria*</label>
+    <label id="s1070_alteracao__indmatproc__label">Matéria*<a data-toggle="tooltip" title="Indicativo da matéria do processo ou alvará judicial<opcoes>1 - Exclusivamente tributária ou tributária e FGTS; 2 - Autorização de trabalho de menor; 3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência (PCD); 4 - Dispensa, ainda que parcial, de contratação de aprendiz; 5 - Segurança e Saúde no Trabalho; 6 - Conversão de Licença Saúde em Acidente de Trabalho; 7 - Exclusivamente FGTS e/ou Contribuição Social Rescisória (Lei Complementar 110/2001); 8 - Contribuição sindical; 99 - Outros assuntos. <validacao> Se {tpProc} = [3], deve ser preenchido com [6]. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_alteracao_form.indmatproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_alteracao_form.indmatproc.errors }}
@@ -177,7 +177,7 @@
 <!-- inicio__s1070_alteracao__observacao -->
 <div class="col-md-6" id="s1070_alteracao__observacao__div">
   <div class="form-group">
-    <label id="s1070_alteracao__observacao__label">Observações</label>
+    <label id="s1070_alteracao__observacao__label">Observações<a data-toggle="tooltip" title="Observações relacionadas ao processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1070_alteracao_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1070_alteracao_form.observacao.errors }}

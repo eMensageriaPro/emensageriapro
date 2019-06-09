@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_s1210(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s1210_evtpgtos_string({}, texto.encode('utf-8'), 0)
+        dados = read_s1210_evtpgtos_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s1210_evtpgtos)
 
         s1210evtPgtos.objects.filter(id=dados['id']).\

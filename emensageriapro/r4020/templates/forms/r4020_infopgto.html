@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4020_infopgto__r4020_idepgto__div">
   <div class="form-group">
-    <label id="r4020_infopgto__r4020_idepgto__label">Informações do Pagamento*</label>
+    <label id="r4020_infopgto__r4020_idepgto__label">Informações do Pagamento*<a data-toggle="tooltip" title="Informações relativas ao pagamento efetuado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4020_infopgto_form.r4020_idepgto.value %}
         <a id="r4020_infopgto__r4020_idepgto__div_acessar" href="{% url 'r4020_idepgto_salvar' pk=r4020_infopgto_form.r4020_idepgto.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4020_infopgto__dtfg -->
 <div class="col-md-3" id="r4020_infopgto__dtfg__div">
   <div class="form-group">
-    <label id="r4020_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*</label>
+    <label id="r4020_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*<a data-toggle="tooltip" title="Informar a data do fato gerador ou pagamento/crédito. <validacao> A data informada deve estar compreendida no período de apuração ao qual se refere o arquivo, conforme informado em (perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4020_infopgto_form.dtfg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r4020_infopgto_form.dtfg.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4020_infopgto__vlrtotalpag -->
 <div class="col-md-3" id="r4020_infopgto__vlrtotalpag__div">
   <div class="form-group">
-    <label id="r4020_infopgto__vlrtotalpag__label">Valor total pago*</label>
+    <label id="r4020_infopgto__vlrtotalpag__label">Valor total pago*<a data-toggle="tooltip" title="Valor total pago. <validacao> Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_infopgto_form.vlrtotalpag.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infopgto_form.vlrtotalpag.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r4020_infopgto__vlrtotalcred -->
 <div class="col-md-3" id="r4020_infopgto__vlrtotalcred__div">
   <div class="form-group">
-    <label id="r4020_infopgto__vlrtotalcred__label">Valor total creditado*</label>
+    <label id="r4020_infopgto__vlrtotalcred__label">Valor total creditado*<a data-toggle="tooltip" title="Valor total creditado. <validacao> Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_infopgto_form.vlrtotalcred.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infopgto_form.vlrtotalcred.errors }}

@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2300(request, pk, versao="|")
-            dados = read_s2300_evttsvinicio_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2300_evttsvinicio_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2300_evttsvinicio)
     
             s2300evtTSVInicio.objects.filter(id=dados['id']).\

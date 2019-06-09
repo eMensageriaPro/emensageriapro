@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_r1070(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_r1070_evttabprocesso_string({}, texto.encode('utf-8'), 0)
+        dados = read_r1070_evttabprocesso_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r1070_evttabprocesso)
 
         r1070evtTabProcesso.objects.filter(id=dados['id']).\

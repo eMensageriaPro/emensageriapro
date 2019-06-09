@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__label">Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.*</label>
+    <label id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__label">Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.*<a data-toggle="tooltip" title="Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1210_detpgtofl_retpgtotot_form.s1210_detpgtofl.value %}
         <a id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__div_acessar" href="{% url 's1210_detpgtofl_salvar' pk=s1210_detpgtofl_retpgtotot_form.s1210_detpgtofl.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1210_detpgtofl_retpgtotot__codrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_retpgtotot__codrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__codrubr__label">Código da Rubrica*</label>
+    <label id="s1210_detpgtofl_retpgtotot__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofl_retpgtotot_form.codrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_retpgtotot_form.codrubr.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1210_detpgtofl_retpgtotot__idetabrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_retpgtotot__idetabrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__idetabrubr__label">Identificador tabela de rubricas*</label>
+    <label id="s1210_detpgtofl_retpgtotot__idetabrubr__label">Identificador tabela de rubricas*<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofl_retpgtotot_form.idetabrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_retpgtotot_form.idetabrubr.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1210_detpgtofl_retpgtotot__qtdrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_retpgtotot__qtdrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__qtdrubr__label">Quantidade</label>
+    <label id="s1210_detpgtofl_retpgtotot__qtdrubr__label">Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_retpgtotot_form.qtdrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_retpgtotot_form.qtdrubr.errors }}
@@ -88,7 +88,7 @@
 <!-- inicio__s1210_detpgtofl_retpgtotot__fatorrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_retpgtotot__fatorrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__fatorrubr__label">Fator</label>
+    <label id="s1210_detpgtofl_retpgtotot__fatorrubr__label">Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_retpgtotot_form.fatorrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_retpgtotot_form.fatorrubr.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1210_detpgtofl_retpgtotot__vrunit -->
 <div class="col-md-6" id="s1210_detpgtofl_retpgtotot__vrunit__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__vrunit__label">Valor Unitário</label>
+    <label id="s1210_detpgtofl_retpgtotot__vrunit__label">Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_retpgtotot_form.vrunit.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_retpgtotot_form.vrunit.errors }}
@@ -123,7 +123,7 @@
 <!-- inicio__s1210_detpgtofl_retpgtotot__vrrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_retpgtotot__vrrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_retpgtotot__vrrubr__label">Valor total*</label>
+    <label id="s1210_detpgtofl_retpgtotot__vrrubr__label">Valor total*<a data-toggle="tooltip" title="Valor total da rubrica. <validacao> Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_retpgtotot_form.vrrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_retpgtotot_form.vrrubr.errors }}

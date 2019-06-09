@@ -5,7 +5,7 @@
 <!-- inicio__s5003_infobasefgts__s5003_infotrabfgts -->
 <div class="col-md-12" id="s5003_infobasefgts__s5003_infotrabfgts__div">
   <div class="form-group">
-    <label id="s5003_infobasefgts__s5003_infotrabfgts__label">Informações referentes a bases de cálculo do FGTS.*</label>
+    <label id="s5003_infobasefgts__s5003_infotrabfgts__label">Informações referentes a bases de cálculo do FGTS.*<a data-toggle="tooltip" title="Informações referentes a bases de cálculo do FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s5003_infobasefgts_form.s5003_infotrabfgts.value %}
         <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infobasefgts_form.s5003_infotrabfgts.value tab='master' %}">
             [Acessar]

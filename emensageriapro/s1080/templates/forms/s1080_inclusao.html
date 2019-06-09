@@ -5,7 +5,7 @@
 <!-- inicio__s1080_inclusao__s1080_evttaboperport -->
 <div class="col-md-12" id="s1080_inclusao__s1080_evttaboperport__div">
   <div class="form-group">
-    <label id="s1080_inclusao__s1080_evttaboperport__label">Inclusão de novas informações*</label>
+    <label id="s1080_inclusao__s1080_evttaboperport__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1080_inclusao_form.s1080_evttaboperport.value %}
         <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_inclusao_form.s1080_evttaboperport.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1080_inclusao__cnpjopportuario -->
 <div class="col-md-6" id="s1080_inclusao__cnpjopportuario__div">
   <div class="form-group">
-    <label id="s1080_inclusao__cnpjopportuario__label">CNPJ do Operador Portuário*</label>
+    <label id="s1080_inclusao__cnpjopportuario__label">CNPJ do Operador Portuário*<a data-toggle="tooltip" title="Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1080_inclusao_form.cnpjopportuario.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1080_inclusao_form.cnpjopportuario.errors }}
@@ -52,7 +52,7 @@
 <!-- inicio__s1080_inclusao__inivalid -->
 <div class="col-md-6" id="s1080_inclusao__inivalid__div">
   <div class="form-group">
-    <label id="s1080_inclusao__inivalid__label">Início da Validade*</label>
+    <label id="s1080_inclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1080_inclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1080_inclusao_form.inivalid.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1080_inclusao__fimvalid -->
 <div class="col-md-6" id="s1080_inclusao__fimvalid__div">
   <div class="form-group">
-    <label id="s1080_inclusao__fimvalid__label">Fim da Validade</label>
+    <label id="s1080_inclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1080_inclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1080_inclusao_form.fimvalid.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1080_inclusao__aliqrat -->
 <div class="col-md-6" id="s1080_inclusao__aliqrat__div">
   <div class="form-group">
-    <label id="s1080_inclusao__aliqrat__label">Alíquota RAT*</label>
+    <label id="s1080_inclusao__aliqrat__label">Alíquota RAT*<a data-toggle="tooltip" title="Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1080_inclusao_form.aliqrat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1080_inclusao_form.aliqrat.errors }}
@@ -129,7 +129,7 @@
 <!-- inicio__s1080_inclusao__fap -->
 <div class="col-md-6" id="s1080_inclusao__fap__div">
   <div class="form-group">
-    <label id="s1080_inclusao__fap__label">FAP*</label>
+    <label id="s1080_inclusao__fap__label">FAP*<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP. <validacao> Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1080_inclusao_form.fap.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1080_inclusao_form.fap.errors }}
@@ -146,7 +146,7 @@
 <!-- inicio__s1080_inclusao__aliqratajust -->
 <div class="col-md-6" id="s1080_inclusao__aliqratajust__div">
   <div class="form-group">
-    <label id="s1080_inclusao__aliqratajust__label">Alíquota RAT (Ajustada)*</label>
+    <label id="s1080_inclusao__aliqratajust__label">Alíquota RAT (Ajustada)*<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1080_inclusao_form.aliqratajust.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1080_inclusao_form.aliqratajust.errors }}

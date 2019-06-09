@@ -5,7 +5,7 @@
 <!-- inicio__arquivos__arquivo -->
 <div class="col-md-12" id="arquivos__arquivo__div">
   <div class="form-group">
-    <label id="arquivos__arquivo__label">Arquivo*</label>
+    <label id="arquivos__arquivo__label">Arquivo*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if arquivos_form.arquivo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ arquivos_form.arquivo.errors }}
@@ -20,7 +20,7 @@
 <!-- inicio__arquivos__data_criacao -->
 <div class="col-md-6" id="arquivos__data_criacao__div">
   <div class="form-group">
-    <label id="arquivos__data_criacao__label">Data de Criação*</label>
+    <label id="arquivos__data_criacao__label">Data de Criação*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if arquivos_form.data_criacao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ arquivos_form.data_criacao.errors }}
@@ -35,7 +35,7 @@
 <!-- inicio__arquivos__permite_recuperacao -->
 <div class="col-md-6" id="arquivos__permite_recuperacao__div">
   <div class="form-group">
-    <label id="arquivos__permite_recuperacao__label">Permite Recuperação*</label>
+    <label id="arquivos__permite_recuperacao__label">Permite Recuperação*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if arquivos_form.permite_recuperacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ arquivos_form.permite_recuperacao.errors }}

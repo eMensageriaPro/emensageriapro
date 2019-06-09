@@ -10,7 +10,7 @@ from emensageriapro.s1298.models import *
 
 
 
-def read_s1298_evtreabreevper_string(dados, xml, validar=False):
+def read_s1298_evtreabreevper_string(request, dados, xml, validar=False):
 
     import untangle
     doc = untangle.parse(xml)
@@ -20,14 +20,16 @@ def read_s1298_evtreabreevper_string(dados, xml, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_s1298_evtreabreevper_obj(doc, status, validar)
+    dados = read_s1298_evtreabreevper_obj(request, doc, status, validar)
     return dados
 
 
 
-def read_s1298_evtreabreevper(dados, arquivo, validar=False):
+def read_s1298_evtreabreevper(request, dados, arquivo, validar=False):
 
     import untangle
+    from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
+    
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
@@ -37,12 +39,16 @@ def read_s1298_evtreabreevper(dados, arquivo, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_s1298_evtreabreevper_obj(doc, status, validar)
+    dados = read_s1298_evtreabreevper_obj(request, doc, status, validar)
+
+    s1298evtReabreEvPer.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
+
     return dados
 
 
 
-def read_s1298_evtreabreevper_obj(doc, status, validar=False):
+def read_s1298_evtreabreevper_obj(request, doc, status, validar=False):
 
     xmlns_lista = doc.eSocial['xmlns'].split('/')
 
@@ -95,6 +101,8 @@ def read_s1298_evtreabreevper_obj(doc, status, validar=False):
 
 
     from emensageriapro.esocial.views.s1298_evtreabreevper_validar_evento import validar_evento_funcao
+    
     if validar:
-        validar_evento_funcao(s1298_evtreabreevper.id)
+        validar_evento_funcao(request, s1298_evtreabreevper.id)
+    
     return s1298_evtreabreevper_dados

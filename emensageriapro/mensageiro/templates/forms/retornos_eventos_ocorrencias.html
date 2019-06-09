@@ -14,7 +14,7 @@
 
 <div class="col-md-12" id="retornos_eventos_ocorrencias__retornos_eventos__div">
 <div class="form-group">
-  <label id="retornos_eventos_ocorrencias__retornos_eventos__label">Retorno</label>
+  <label id="retornos_eventos_ocorrencias__retornos_eventos__label">Retorno<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if retornos_eventos_ocorrencias_form.retornos_eventos.value %}
@@ -46,7 +46,7 @@
 <!-- inicio__retornos_eventos_ocorrencias__tipo -->
 <div class="col-md-6" id="retornos_eventos_ocorrencias__tipo__div">
   <div class="form-group">
-    <label id="retornos_eventos_ocorrencias__tipo__label">Tipo</label>
+    <label id="retornos_eventos_ocorrencias__tipo__label">Tipo<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if retornos_eventos_ocorrencias_form.tipo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ retornos_eventos_ocorrencias_form.tipo.errors }}
@@ -70,7 +70,7 @@
 <!-- inicio__retornos_eventos_ocorrencias__codigo -->
 <div class="col-md-6" id="retornos_eventos_ocorrencias__codigo__div">
   <div class="form-group">
-    <label id="retornos_eventos_ocorrencias__codigo__label">Código</label>
+    <label id="retornos_eventos_ocorrencias__codigo__label">Código<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if retornos_eventos_ocorrencias_form.codigo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ retornos_eventos_ocorrencias_form.codigo.errors }}
@@ -85,7 +85,7 @@
 <!-- inicio__retornos_eventos_ocorrencias__localizacao -->
 <div class="col-md-12" id="retornos_eventos_ocorrencias__localizacao__div">
   <div class="form-group">
-    <label id="retornos_eventos_ocorrencias__localizacao__label">Localização</label>
+    <label id="retornos_eventos_ocorrencias__localizacao__label">Localização<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if retornos_eventos_ocorrencias_form.localizacao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ retornos_eventos_ocorrencias_form.localizacao.errors }}

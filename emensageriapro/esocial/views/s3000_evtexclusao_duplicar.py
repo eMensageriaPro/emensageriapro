@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s3000(request, pk, versao="|")
-            dados = read_s3000_evtexclusao_string({}, texto.encode('utf-8'), 0)
+            dados = read_s3000_evtexclusao_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s3000_evtexclusao)
     
             s3000evtExclusao.objects.filter(id=dados['id']).\

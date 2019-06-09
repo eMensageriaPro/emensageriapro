@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1200_remunoutrempr__s1200_infomv__div">
   <div class="form-group">
-    <label id="s1200_remunoutrempr__s1200_infomv__label">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual*</label>
+    <label id="s1200_remunoutrempr__s1200_infomv__label">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual*<a data-toggle="tooltip" title="Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição. As informações são necessárias para a conferência da contribuição descontada do segurado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1200_remunoutrempr_form.s1200_infomv.value %}
         <a id="s1200_remunoutrempr__s1200_infomv__div_acessar" href="{% url 's1200_infomv_salvar' pk=s1200_remunoutrempr_form.s1200_infomv.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1200_remunoutrempr__tpinsc -->
 <div class="col-md-6" id="s1200_remunoutrempr__tpinsc__div">
   <div class="form-group">
-    <label id="s1200_remunoutrempr__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s1200_remunoutrempr__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Pode ser preenchido com [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_remunoutrempr_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_remunoutrempr_form.tpinsc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1200_remunoutrempr__nrinsc -->
 <div class="col-md-6" id="s1200_remunoutrempr__nrinsc__div">
   <div class="form-group">
-    <label id="s1200_remunoutrempr__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1200_remunoutrempr__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> a) Se {tpInsc} for igual a [1], deve ser um CNPJ válido, diferente do CNPJ base indicado no registro de Informações do Empregador (S-1000) e dos estabelecimentos informados através do evento S-1005. b) Se {tpInsc} for igual a [2], deve ser um CPF válido e diferente do CPF do trabalhador e ainda, caso o empregador seja pessoa física, diferente do CPF do empregador.c) Se {indApuracao} = [2] e {tpInsc} = [1], é permitido informar número de inscrição igual ao CNPJ base indicado no registro de Informações do Empregador (S1000) e aos estabelecimentos informados através do evento S-1005. d) Se {indApuracao} = [2] e {tpInsc} = [2], é permitido informar número de inscrição igual ao CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_remunoutrempr_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_remunoutrempr_form.nrinsc.errors }}
@@ -81,7 +81,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1200_remunoutrempr__codcateg__div">
     <div class="form-group">
-      <label id="s1200_remunoutrempr__codcateg__label">Código da Categoria*</label>
+      <label id="s1200_remunoutrempr__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador na qual houve a remuneração, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1200_remunoutrempr_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1200_remunoutrempr_form.codcateg.errors }}
@@ -135,7 +135,7 @@
   {% else %}
   <div class="col-md-6" id="s1200_remunoutrempr__codcateg__div">
     <div class="form-group">
-      <label id="s1200_remunoutrempr__codcateg__label">Código da Categoria*</label>
+      <label id="s1200_remunoutrempr__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador na qual houve a remuneração, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s1200_remunoutrempr.codcateg %}{{ s1200_remunoutrempr.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -144,7 +144,7 @@
 <!-- inicio__s1200_remunoutrempr__vlrremunoe -->
 <div class="col-md-6" id="s1200_remunoutrempr__vlrremunoe__div">
   <div class="form-group">
-    <label id="s1200_remunoutrempr__vlrremunoe__label">Valor da Remuneração*</label>
+    <label id="s1200_remunoutrempr__vlrremunoe__label">Valor da Remuneração*<a data-toggle="tooltip" title="Preencher com o valor da remuneração recebida pelo trabalhador na outra empresa/atividade, sobre a qual houve desconto/recolhimento da contribuição do segurado. <validacao> Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_remunoutrempr_form.vlrremunoe.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1200_remunoutrempr_form.vlrremunoe.errors }}

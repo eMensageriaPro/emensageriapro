@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_iniexprisco_respreg__s2240_evtexprisco__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__s2240_evtexprisco__label">Informações relativas ao responsável pelos registros ambientais*</label>
+    <label id="s2240_iniexprisco_respreg__s2240_evtexprisco__label">Informações relativas ao responsável pelos registros ambientais*<a data-toggle="tooltip" title="Informações relativas ao responsável pelos registros ambientais."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2240_iniexprisco_respreg_form.s2240_evtexprisco.value %}
         <a id="s2240_iniexprisco_respreg__s2240_evtexprisco__div_acessar" href="{% url 's2240_evtexprisco_salvar' pk=s2240_iniexprisco_respreg_form.s2240_evtexprisco.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__cpfresp -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__cpfresp__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__cpfresp__label">CPF*</label>
+    <label id="s2240_iniexprisco_respreg__cpfresp__label">CPF*<a data-toggle="tooltip" title="Preencher com o CPF do responsável pelos registros ambientais. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_respreg_form.cpfresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_respreg_form.cpfresp.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__nisresp -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__nisresp__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__nisresp__label">NIS*</label>
+    <label id="s2240_iniexprisco_respreg__nisresp__label">NIS*<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS do responsável pelos registros ambientais, o qual pode ser o PIS, PASEP ou NIT. <validacao> Deve ser um NIS válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_respreg_form.nisresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_respreg_form.nisresp.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__nmresp -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__nmresp__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__nmresp__label">Nome do Responsável pelas Informações*</label>
+    <label id="s2240_iniexprisco_respreg__nmresp__label">Nome do Responsável pelas Informações*<a data-toggle="tooltip" title="Preencher com o nome do responsável pelos registros ambientais."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_respreg_form.nmresp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_respreg_form.nmresp.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__ideoc -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__ideoc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__ideoc__label">Órgão de Classe (OC)*</label>
+    <label id="s2240_iniexprisco_respreg__ideoc__label">Órgão de Classe (OC)*<a data-toggle="tooltip" title="Órgão de classe ao qual o responsável pelos registros ambientais está vinculado<opcoes>1 - Conselho Regional de Medicina (CRM); 4 - Conselho Regional de Engenharia e Agronomia (CREA); 9 - Outros. <valores_validos> 1, 4, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_respreg_form.ideoc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_respreg_form.ideoc.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__dscoc -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__dscoc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__dscoc__label">Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado</label>
+    <label id="s2240_iniexprisco_respreg__dscoc__label">Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado<a data-toggle="tooltip" title="Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado. <validacao> Preenchimento obrigatório se {ideOC} = [9]. Não informar se {ideOC} = [1,4]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_respreg_form.dscoc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_respreg_form.dscoc.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__nroc -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__nroc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__nroc__label">Número de Inscrição no órgão de classe.*</label>
+    <label id="s2240_iniexprisco_respreg__nroc__label">Número de Inscrição no órgão de classe.*<a data-toggle="tooltip" title="Número de Inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_respreg_form.nroc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_respreg_form.nroc.errors }}
@@ -140,7 +140,7 @@
 <!-- inicio__s2240_iniexprisco_respreg__ufoc -->
 <div class="col-md-6" id="s2240_iniexprisco_respreg__ufoc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_respreg__ufoc__label">UF do OC*</label>
+    <label id="s2240_iniexprisco_respreg__ufoc__label">UF do OC*<a data-toggle="tooltip" title="Sigla da UF do órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_respreg_form.ufoc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_respreg_form.ufoc.errors }}

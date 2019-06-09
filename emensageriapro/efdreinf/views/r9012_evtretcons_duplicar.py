@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r9012(request, pk, versao="|")
-            dados = read_r9012_evtretcons_string({}, texto.encode('utf-8'), 0)
+            dados = read_r9012_evtretcons_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r9012_evtretcons)
     
             r9012evtRetCons.objects.filter(id=dados['id']).\

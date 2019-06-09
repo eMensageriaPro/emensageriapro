@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_detpgtofl_infopgtoparc__s1210_detpgtofl__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__s1210_detpgtofl__label">Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.*</label>
+    <label id="s1210_detpgtofl_infopgtoparc__s1210_detpgtofl__label">Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.*<a data-toggle="tooltip" title="Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo. Devem ser utilizadas rubricas que integram o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1200, S-1202, S-2299, S-2399) que deu origem ao presente pagamento parcial, além de rubricas que representam os descontos de IRRF e pensão alimentícia."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1210_detpgtofl_infopgtoparc_form.s1210_detpgtofl.value %}
         <a id="s1210_detpgtofl_infopgtoparc__s1210_detpgtofl__div_acessar" href="{% url 's1210_detpgtofl_salvar' pk=s1210_detpgtofl_infopgtoparc_form.s1210_detpgtofl.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__matricula -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__matricula__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__matricula__label">Matricula</label>
+    <label id="s1210_detpgtofl_infopgtoparc__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula informada pelo empregador no evento remuneratório (S-1200 ou S-1202, S-2299) do respectivo demonstrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofl_infopgtoparc_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_infopgtoparc_form.matricula.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__codrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__codrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__codrubr__label">Código da Rubrica*</label>
+    <label id="s1210_detpgtofl_infopgtoparc__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1200, S-1202, S-2299, S-2399) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofl_infopgtoparc_form.codrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_infopgtoparc_form.codrubr.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__idetabrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__idetabrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__idetabrubr__label">Identificador tabela de rubricas*</label>
+    <label id="s1210_detpgtofl_infopgtoparc__idetabrubr__label">Identificador tabela de rubricas*<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofl_infopgtoparc_form.idetabrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_infopgtoparc_form.idetabrubr.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__qtdrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__qtdrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__qtdrubr__label">Quantidade</label>
+    <label id="s1210_detpgtofl_infopgtoparc__qtdrubr__label">Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_infopgtoparc_form.qtdrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_infopgtoparc_form.qtdrubr.errors }}
@@ -103,7 +103,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__fatorrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__fatorrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__fatorrubr__label">Fator</label>
+    <label id="s1210_detpgtofl_infopgtoparc__fatorrubr__label">Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_infopgtoparc_form.fatorrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_infopgtoparc_form.fatorrubr.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__vrunit -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__vrunit__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__vrunit__label">Valor Unitário</label>
+    <label id="s1210_detpgtofl_infopgtoparc__vrunit__label">Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_infopgtoparc_form.vrunit.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_infopgtoparc_form.vrunit.errors }}
@@ -138,7 +138,7 @@
 <!-- inicio__s1210_detpgtofl_infopgtoparc__vrrubr -->
 <div class="col-md-6" id="s1210_detpgtofl_infopgtoparc__vrrubr__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_infopgtoparc__vrrubr__label">Valor total*</label>
+    <label id="s1210_detpgtofl_infopgtoparc__vrrubr__label">Valor total*<a data-toggle="tooltip" title="Valor total da rubrica. <validacao> Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofl_infopgtoparc_form.vrrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_infopgtoparc_form.vrrubr.errors }}

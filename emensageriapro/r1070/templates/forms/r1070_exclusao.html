@@ -5,7 +5,7 @@
 <!-- inicio__r1070_exclusao__r1070_evttabprocesso -->
 <div class="col-md-12" id="r1070_exclusao__r1070_evttabprocesso__div">
   <div class="form-group">
-    <label id="r1070_exclusao__r1070_evttabprocesso__label">Exclusão das informações*</label>
+    <label id="r1070_exclusao__r1070_evttabprocesso__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1070_exclusao_form.r1070_evttabprocesso.value %}
         <a href="{% url 'r1070_evttabprocesso_salvar' pk=r1070_exclusao_form.r1070_evttabprocesso.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__r1070_exclusao__tpproc -->
 <div class="col-md-6" id="r1070_exclusao__tpproc__div">
   <div class="form-group">
-    <label id="r1070_exclusao__tpproc__label">Preencher com o código correspondente ao tipo de processo*</label>
+    <label id="r1070_exclusao__tpproc__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1070_exclusao_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1070_exclusao_form.tpproc.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__r1070_exclusao__nrproc -->
 <div class="col-md-6" id="r1070_exclusao__nrproc__div">
   <div class="form-group">
-    <label id="r1070_exclusao__nrproc__label">Informar o número do processo administrativo/judicial*</label>
+    <label id="r1070_exclusao__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1070_exclusao_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1070_exclusao_form.nrproc.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__r1070_exclusao__inivalid -->
 <div class="col-md-6" id="r1070_exclusao__inivalid__div">
   <div class="form-group">
-    <label id="r1070_exclusao__inivalid__label">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM*</label>
+    <label id="r1070_exclusao__inivalid__label">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data informada anteriormente no registro que se pretende excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1070_exclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1070_exclusao_form.inivalid.errors }}
@@ -100,7 +100,7 @@
 <!-- inicio__r1070_exclusao__fimvalid -->
 <div class="col-md-6" id="r1070_exclusao__fimvalid__div">
   <div class="form-group">
-    <label id="r1070_exclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver</label>
+    <label id="r1070_exclusao__fimvalid__label">Preencher com o mês e ano de término da validade das informações, se houver<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informada, deve ser uma data informada anteriormente no registro que se pretende excluir."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1070_exclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1070_exclusao_form.fimvalid.errors }}

@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_r9002(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_r9002_evtret_string({}, texto.encode('utf-8'), 0)
+        dados = read_r9002_evtret_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r9002_evtret)
 
         r9002evtRet.objects.filter(id=dados['id']).\

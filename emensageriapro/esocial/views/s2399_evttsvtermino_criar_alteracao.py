@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_s2399(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s2399_evttsvtermino_string({}, texto.encode('utf-8'), 0)
+        dados = read_s2399_evttsvtermino_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s2399_evttsvtermino)
 
         s2399evtTSVTermino.objects.filter(id=dados['id']).\

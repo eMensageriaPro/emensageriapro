@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1300_contribsind__s1300_evtcontrsindpatr__div">
   <div class="form-group">
-    <label id="s1300_contribsind__s1300_evtcontrsindpatr__label">Informações da contribuição sindical patronal*</label>
+    <label id="s1300_contribsind__s1300_evtcontrsindpatr__label">Informações da contribuição sindical patronal*<a data-toggle="tooltip" title="Informações da contribuição sindical patronal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1300_contribsind_form.s1300_evtcontrsindpatr.value %}
         <a id="s1300_contribsind__s1300_evtcontrsindpatr__div_acessar" href="{% url 's1300_evtcontrsindpatr_salvar' pk=s1300_contribsind_form.s1300_evtcontrsindpatr.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1300_contribsind__cnpjsindic -->
 <div class="col-md-3" id="s1300_contribsind__cnpjsindic__div">
   <div class="form-group">
-    <label id="s1300_contribsind__cnpjsindic__label">CNPJ do Sindicato*</label>
+    <label id="s1300_contribsind__cnpjsindic__label">CNPJ do Sindicato*<a data-toggle="tooltip" title="CNPJ da entidade Sindical Beneficiária, ou caso não haja, o CNPJ do órgão responsável pela administração da Conta Especial Emprego e Salário. <validacao> Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1300_contribsind_form.cnpjsindic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1300_contribsind_form.cnpjsindic.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1300_contribsind__tpcontribsind -->
 <div class="col-md-3" id="s1300_contribsind__tpcontribsind__div">
   <div class="form-group">
-    <label id="s1300_contribsind__tpcontribsind__label">Tipo de Contribuição Sindical*</label>
+    <label id="s1300_contribsind__tpcontribsind__label">Tipo de Contribuição Sindical*<a data-toggle="tooltip" title="Tipo de contribuição sindical, conforme opções a seguir<opcoes>1 - Contribuição Sindical Compulsória; 2 - Contribuição Associativa; 3 - Contribuição Assistencial; 4 - Contribuição Confederativa. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1300_contribsind_form.tpcontribsind.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1300_contribsind_form.tpcontribsind.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1300_contribsind__vlrcontribsind -->
 <div class="col-md-3" id="s1300_contribsind__vlrcontribsind__div">
   <div class="form-group">
-    <label id="s1300_contribsind__vlrcontribsind__label">Valor*</label>
+    <label id="s1300_contribsind__vlrcontribsind__label">Valor*<a data-toggle="tooltip" title="Informar o valor da contribuição sindical a ser paga. <validacao> Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1300_contribsind_form.vlrcontribsind.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1300_contribsind_form.vlrcontribsind.errors }}

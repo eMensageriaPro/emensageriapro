@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2210_parteatingida__s2210_evtcat__div">
   <div class="form-group">
-    <label id="s2210_parteatingida__s2210_evtcat__label">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.*</label>
+    <label id="s2210_parteatingida__s2210_evtcat__label">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.*<a data-toggle="tooltip" title="Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2210_parteatingida_form.s2210_evtcat.value %}
         <a id="s2210_parteatingida__s2210_evtcat__div_acessar" href="{% url 's2210_evtcat_salvar' pk=s2210_parteatingida_form.s2210_evtcat.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-4" id="s2210_parteatingida__codparteating__div">
     <div class="form-group">
-      <label id="s2210_parteatingida__codparteating__label">Parte Atingida*</label>
+      <label id="s2210_parteatingida__codparteating__label">Parte Atingida*<a data-toggle="tooltip" title="Preencher com o código correspondente a parte atingida, conforme tabela 13. <validacao> Deve ser um código existente na tabela 13 - Parte do corpo atingida."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_parteatingida_form.codparteating.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_parteatingida_form.codparteating.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-4" id="s2210_parteatingida__codparteating__div">
     <div class="form-group">
-      <label id="s2210_parteatingida__codparteating__label">Parte Atingida*</label>
+      <label id="s2210_parteatingida__codparteating__label">Parte Atingida*<a data-toggle="tooltip" title="Preencher com o código correspondente a parte atingida, conforme tabela 13. <validacao> Deve ser um código existente na tabela 13 - Parte do corpo atingida."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codparteating" name="txt_codparteating" class="form-control" value="{% if s2210_parteatingida.codparteating %}{{ s2210_parteatingida.codparteating }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s2210_parteatingida__lateralidade -->
 <div class="col-md-4" id="s2210_parteatingida__lateralidade__div">
   <div class="form-group">
-    <label id="s2210_parteatingida__lateralidade__label">Laterabilidade*</label>
+    <label id="s2210_parteatingida__lateralidade__label">Laterabilidade*<a data-toggle="tooltip" title="Preencher com<opcoes>0 - Não aplicável; 1 - Esquerda; 2 - Direita; 3 - Ambas. Nos casos de órgãos bilaterais, ou seja, que se situam dos lados do corpo, assinalar o lado (direito ou esquerdo). Exemplo: no caso de o órgão atingido ser uma perna, apontar qual foi a atingida (se a perna direita, se a perna esquerda, ou se ambas). Se o órgão atingido é único (como, por exemplo, a cabeça), assinalar este campo como não aplicável. <valores_validos> 0, 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_parteatingida_form.lateralidade.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_parteatingida_form.lateralidade.errors }}

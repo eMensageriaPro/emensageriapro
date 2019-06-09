@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1200(request, pk, versao="|")
-            dados = read_s1200_evtremun_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1200_evtremun_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1200_evtremun)
     
             s1200evtRemun.objects.filter(id=dados['id']).\

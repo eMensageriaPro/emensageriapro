@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r2020(request, pk, versao="|")
-            dados = read_r2020_evtservprest_string({}, texto.encode('utf-8'), 0)
+            dados = read_r2020_evtservprest_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r2020_evtservprest)
     
             r2020evtServPrest.objects.filter(id=dados['id']).\

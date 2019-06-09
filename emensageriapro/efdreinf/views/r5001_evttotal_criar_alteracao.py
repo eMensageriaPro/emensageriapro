@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_r5001(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_r5001_evttotal_string({}, texto.encode('utf-8'), 0)
+        dados = read_r5001_evttotal_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r5001_evttotal)
 
         r5001evtTotal.objects.filter(id=dados['id']).\

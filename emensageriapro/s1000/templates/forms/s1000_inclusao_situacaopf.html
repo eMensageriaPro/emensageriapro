@@ -5,7 +5,7 @@
 <!-- inicio__s1000_inclusao_situacaopf__s1000_inclusao -->
 <div class="col-md-12" id="s1000_inclusao_situacaopf__s1000_inclusao__div">
   <div class="form-group">
-    <label id="s1000_inclusao_situacaopf__s1000_inclusao__label">Informações Complementares - Pessoa Física*</label>
+    <label id="s1000_inclusao_situacaopf__s1000_inclusao__label">Informações Complementares - Pessoa Física*<a data-toggle="tooltip" title="Informações Complementares - Pessoa Física."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1000_inclusao_situacaopf_form.s1000_inclusao.value %}
         <a href="{% url 's1000_inclusao_salvar' pk=s1000_inclusao_situacaopf_form.s1000_inclusao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1000_inclusao_situacaopf__indsitpf -->
 <div class="col-md-6" id="s1000_inclusao_situacaopf__indsitpf__div">
   <div class="form-group">
-    <label id="s1000_inclusao_situacaopf__indsitpf__label">Situação PF*</label>
+    <label id="s1000_inclusao_situacaopf__indsitpf__label">Situação PF*<a data-toggle="tooltip" title="Indicativo da Situação da Pessoa Física<opcoes>0 - Situação Normal; 1 - Encerramento de espólio; 2 - Saída do país em caráter permanente. <valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1000_inclusao_situacaopf_form.indsitpf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_inclusao_situacaopf_form.indsitpf.errors }}

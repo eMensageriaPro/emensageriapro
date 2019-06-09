@@ -10,7 +10,7 @@
 <!-- inicio__r2099_evtfechaevper__identidade -->
 <div class="col-md-6" id="r2099_evtfechaevper__identidade__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__identidade__label">Identificação única do evento</label>
+    <label id="r2099_evtfechaevper__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2099_evtfechaevper_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2099_evtfechaevper_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__r2099_evtfechaevper__perapur -->
 <div class="col-md-6" id="r2099_evtfechaevper__perapur__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+    <label id="r2099_evtfechaevper__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2099_evtfechaevper_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2099_evtfechaevper_form.perapur.errors }}
@@ -45,7 +45,7 @@
 <!-- inicio__r2099_evtfechaevper__tpamb -->
 <div class="col-md-6" id="r2099_evtfechaevper__tpamb__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__tpamb__label">Identificação do ambiente*</label>
+    <label id="r2099_evtfechaevper__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.tpamb.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__r2099_evtfechaevper__procemi -->
 <div class="col-md-6" id="r2099_evtfechaevper__procemi__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__procemi__label">Processo de emissão do evento*</label>
+    <label id="r2099_evtfechaevper__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.procemi.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__r2099_evtfechaevper__verproc -->
 <div class="col-md-6" id="r2099_evtfechaevper__verproc__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__verproc__label">Versão do processo de emissão do evento*</label>
+    <label id="r2099_evtfechaevper__verproc__label">Versão do processo de emissão do evento*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2099_evtfechaevper_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2099_evtfechaevper_form.verproc.errors }}
@@ -113,7 +113,7 @@
 <!-- inicio__r2099_evtfechaevper__tpinsc -->
 <div class="col-md-6" id="r2099_evtfechaevper__tpinsc__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    <label id="r2099_evtfechaevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2099_evtfechaevper_form.tpinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2099_evtfechaevper_form.tpinsc.errors }}
@@ -128,7 +128,7 @@
 <!-- inicio__r2099_evtfechaevper__nrinsc -->
 <div class="col-md-6" id="r2099_evtfechaevper__nrinsc__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+    <label id="r2099_evtfechaevper__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2099_evtfechaevper_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2099_evtfechaevper_form.nrinsc.errors }}
@@ -148,7 +148,7 @@
 <!-- inicio__r2099_evtfechaevper__evtservtm -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtservtm__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtservtm__label">Contratou serviços sujeitos à retenção de contribuição previdenciária?*</label>
+    <label id="r2099_evtfechaevper__evtservtm__label">Contratou serviços sujeitos à retenção de contribuição previdenciária?*<a data-toggle="tooltip" title="Contratou serviços sujeitos à retenção de contribuição previdenciária<opcoes>S - Sim; N - Não. <validacao> Se for igual a [S], deve existir evento R-2010 para o período de apuração. Caso contrário, não deve existir o referido evento. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtservtm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtservtm.errors }}
@@ -172,7 +172,7 @@
 <!-- inicio__r2099_evtfechaevper__evtservpr -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtservpr__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtservpr__label">Prestou serviços sujeitos à retenção de contribuição previdenciária?*</label>
+    <label id="r2099_evtfechaevper__evtservpr__label">Prestou serviços sujeitos à retenção de contribuição previdenciária?*<a data-toggle="tooltip" title="Prestou serviços sujeitos à retenção de contribuição previdenciária<opcoes>S - Sim; N - Não. <validacao> Se for igual a [S], deve existir evento R-2020 para o mesmo período de apuração. Caso contrário, não deve existir o referido evento. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtservpr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtservpr.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__r2099_evtfechaevper__evtassdesprec -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtassdesprec__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtassdesprec__label">A associação desportiva que mantém equipe de futebol profissional, possui informações sobre recursos recebidos?*</label>
+    <label id="r2099_evtfechaevper__evtassdesprec__label">A associação desportiva que mantém equipe de futebol profissional, possui informações sobre recursos recebidos?*<a data-toggle="tooltip" title="A associação desportiva que mantém equipe de futebol profissional, possui informações sobre recursos recebidos<opcoes>S - Sim; N - Não. <validacao> Se for igual a [S], deve existir o evento R-2030 para o mesmo período de apuração. Caso contrário, não deve existir o referido evento. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtassdesprec.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtassdesprec.errors }}
@@ -220,7 +220,7 @@
 <!-- inicio__r2099_evtfechaevper__evtassdesprep -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtassdesprep__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtassdesprep__label">Possui informações sobre repasses efetuados à associação desportiva que mantém equipe de futebol profissional?*</label>
+    <label id="r2099_evtfechaevper__evtassdesprep__label">Possui informações sobre repasses efetuados à associação desportiva que mantém equipe de futebol profissional?*<a data-toggle="tooltip" title="Possui informações sobre repasses efetuados à associação desportiva que mantém equipe de futebol profissional<opcoes>S - Sim; N - Não. <validacao> Se for igual a [S], deve existir o evento R-2040 para o mesmo período de apuração. Caso contrário, não deve existir o referido evento. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtassdesprep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtassdesprep.errors }}
@@ -244,7 +244,7 @@
 <!-- inicio__r2099_evtfechaevper__evtcomprod -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtcomprod__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtcomprod__label">Evento Comercialização da Produção*</label>
+    <label id="r2099_evtfechaevper__evtcomprod__label">Evento Comercialização da Produção*<a data-toggle="tooltip" title="O produtor rural PJ/Agroindústria possui informações de comercialização de produção<opcoes>S - Sim; N - Não. <validacao> Se for igual a [S], deve existir o evento R-2050 no período de apuração. Caso contrário, não deve existir o referido evento. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtcomprod.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtcomprod.errors }}
@@ -268,7 +268,7 @@
 <!-- inicio__r2099_evtfechaevper__evtcprb -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtcprb__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtcprb__label">Evento da contribuição previdenciária sobre a receita bruta - CPRB*</label>
+    <label id="r2099_evtfechaevper__evtcprb__label">Evento da contribuição previdenciária sobre a receita bruta - CPRB*<a data-toggle="tooltip" title="Possui informações sobre a apuração da Contribuição Previdenciária sobre a Receita Bruta<opcoes>S - Sim; N - Não. <validacao> Se for igual a [S], deve existir o evento R-2060 no período de apuração. Caso contrário, não deve existir o evento. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtcprb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtcprb.errors }}
@@ -292,7 +292,7 @@
 <!-- inicio__r2099_evtfechaevper__evtpgtos -->
 <div class="col-md-6" id="r2099_evtfechaevper__evtpgtos__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__evtpgtos__label">Possui informações de pagamentos diversos no período de apuração?</label>
+    <label id="r2099_evtfechaevper__evtpgtos__label">Possui informações de pagamentos diversos no período de apuração?<a data-toggle="tooltip" title="Possui informações de pagamentos diversos no período de apuração<opcoes>S - Sim; N - Não. <validacao> Só preencher este campo se {perApur} <= [2018-10]. Não preencher nos demais casos. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.evtpgtos.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.evtpgtos.errors }}
@@ -316,7 +316,7 @@
 <!-- inicio__r2099_evtfechaevper__compsemmovto -->
 <div class="col-md-6" id="r2099_evtfechaevper__compsemmovto__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__compsemmovto__label">Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual</label>
+    <label id="r2099_evtfechaevper__compsemmovto__label">Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual<a data-toggle="tooltip" title="Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual. <validacao> Preenchimento opcional se {perApur} <= [2018-10]. Não pode ser preenchido nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2099_evtfechaevper_form.compsemmovto.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2099_evtfechaevper_form.compsemmovto.errors }}
@@ -331,7 +331,7 @@
 <!-- inicio__r2099_evtfechaevper__versao -->
 <div class="col-md-3" id="r2099_evtfechaevper__versao__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__versao__label">Versão</label>
+    <label id="r2099_evtfechaevper__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.versao.errors }}
@@ -364,7 +364,7 @@
 
 <div class="col-md-3" id="r2099_evtfechaevper__transmissor_lote_efdreinf__div">
 <div class="form-group">
-  <label id="r2099_evtfechaevper__transmissor_lote_efdreinf__label">Transmissor</label>
+  <label id="r2099_evtfechaevper__transmissor_lote_efdreinf__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if r2099_evtfechaevper_form.transmissor_lote_efdreinf.value %}
@@ -396,7 +396,7 @@
 <!-- inicio__r2099_evtfechaevper__status -->
 <div class="col-md-3" id="r2099_evtfechaevper__status__div">
   <div class="form-group">
-    <label id="r2099_evtfechaevper__status__label">Status</label>
+    <label id="r2099_evtfechaevper__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2099_evtfechaevper_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2099_evtfechaevper_form.status.errors }}

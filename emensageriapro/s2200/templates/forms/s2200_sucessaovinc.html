@@ -5,7 +5,7 @@
 <!-- inicio__s2200_sucessaovinc__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_sucessaovinc__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_sucessaovinc__s2200_evtadmissao__label">Grupo de informações da sucessão de vínculo trabalhista/estatutário*</label>
+    <label id="s2200_sucessaovinc__s2200_evtadmissao__label">Grupo de informações da sucessão de vínculo trabalhista/estatutário*<a data-toggle="tooltip" title="Grupo de informações da sucessão de vínculo trabalhista/estatutário."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_sucessaovinc_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_sucessaovinc_form.s2200_evtadmissao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_sucessaovinc__tpinscant -->
 <div class="col-md-6" id="s2200_sucessaovinc__tpinscant__div">
   <div class="form-group">
-    <label id="s2200_sucessaovinc__tpinscant__label">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05*</label>
+    <label id="s2200_sucessaovinc__tpinscant__label">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ), [2] (CPF) ou [5] (CGC). Somente é possível informar [5] se {dtTransf} for igual ou anterior a 01/07/1998. <valores_validos> 1, 2, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_sucessaovinc_form.tpinscant.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_sucessaovinc_form.tpinscant.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2200_sucessaovinc__cnpjempregant -->
 <div class="col-md-6" id="s2200_sucessaovinc__cnpjempregant__div">
   <div class="form-group">
-    <label id="s2200_sucessaovinc__cnpjempregant__label">CNPJ Empregador Anterior*</label>
+    <label id="s2200_sucessaovinc__cnpjempregant__label">CNPJ Empregador Anterior*<a data-toggle="tooltip" title="Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo {tpInscAnt}. <validacao> Deve ser um número de inscrição válido diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Se {tpInscAnt} = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador e dos estabelecimentos informados através do evento S-1005. Se {tpInscAnt} = [2], deve possuir 11 (onze) algarismos. Se {tpInscAnt} = [5], deve possuir somente algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_sucessaovinc_form.cnpjempregant.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_sucessaovinc_form.cnpjempregant.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2200_sucessaovinc__matricant -->
 <div class="col-md-6" id="s2200_sucessaovinc__matricant__div">
   <div class="form-group">
-    <label id="s2200_sucessaovinc__matricant__label">Matricula anterior</label>
+    <label id="s2200_sucessaovinc__matricant__label">Matricula anterior<a data-toggle="tooltip" title="Matrícula do trabalhador no empregador anterior. <validacao> O preenchimento é obrigatório se {cadIni} = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_sucessaovinc_form.matricant.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_sucessaovinc_form.matricant.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s2200_sucessaovinc__dttransf -->
 <div class="col-md-6" id="s2200_sucessaovinc__dttransf__div">
   <div class="form-group">
-    <label id="s2200_sucessaovinc__dttransf__label">Preencher com a data da transferência do empregado para o empregador declarante*</label>
+    <label id="s2200_sucessaovinc__dttransf__label">Preencher com a data da transferência do empregado para o empregador declarante*<a data-toggle="tooltip" title="Preencher com a data da transferência do empregado para o empregador declarante. <validacao> Devem ser observadas as seguintes regras: a) Deve ser posterior à data de admissão do trabalhador; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador; c) Se {cadIni} = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_sucessaovinc_form.dttransf.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_sucessaovinc_form.dttransf.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s2200_sucessaovinc__observacao -->
 <div class="col-md-6" id="s2200_sucessaovinc__observacao__div">
   <div class="form-group">
-    <label id="s2200_sucessaovinc__observacao__label">Observações</label>
+    <label id="s2200_sucessaovinc__observacao__label">Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_sucessaovinc_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_sucessaovinc_form.observacao.errors }}

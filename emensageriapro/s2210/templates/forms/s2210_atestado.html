@@ -5,7 +5,7 @@
 <!-- inicio__s2210_atestado__s2210_evtcat -->
 <div class="col-md-12" id="s2210_atestado__s2210_evtcat__div">
   <div class="form-group">
-    <label id="s2210_atestado__s2210_evtcat__label">Atestado Médico*</label>
+    <label id="s2210_atestado__s2210_evtcat__label">Atestado Médico*<a data-toggle="tooltip" title="Atestado Médico."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2210_atestado_form.s2210_evtcat.value %}
         <a href="{% url 's2210_evtcat_salvar' pk=s2210_atestado_form.s2210_evtcat.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2210_atestado__codcnes -->
 <div class="col-md-6" id="s2210_atestado__codcnes__div">
   <div class="form-group">
-    <label id="s2210_atestado__codcnes__label">CNES da unidade de atendimento</label>
+    <label id="s2210_atestado__codcnes__label">CNES da unidade de atendimento<a data-toggle="tooltip" title="Código da unidade de atendimento médico no Cadastro Nacional de Estabelecimento de Saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.codcnes.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.codcnes.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2210_atestado__dtatendimento -->
 <div class="col-md-6" id="s2210_atestado__dtatendimento__div">
   <div class="form-group">
-    <label id="s2210_atestado__dtatendimento__label">Data do atendimento*</label>
+    <label id="s2210_atestado__dtatendimento__label">Data do atendimento*<a data-toggle="tooltip" title="Data do atendimento. <validacao> Deve ser uma data válida, igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_atestado_form.dtatendimento.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2210_atestado_form.dtatendimento.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2210_atestado__hratendimento -->
 <div class="col-md-6" id="s2210_atestado__hratendimento__div">
   <div class="form-group">
-    <label id="s2210_atestado__hratendimento__label">Hora do atendimento*</label>
+    <label id="s2210_atestado__hratendimento__label">Hora do atendimento*<a data-toggle="tooltip" title="Hora do atendimento, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.hratendimento.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.hratendimento.errors }}
@@ -77,7 +77,7 @@
 <!-- inicio__s2210_atestado__indinternacao -->
 <div class="col-md-6" id="s2210_atestado__indinternacao__div">
   <div class="form-group">
-    <label id="s2210_atestado__indinternacao__label">Internação*</label>
+    <label id="s2210_atestado__indinternacao__label">Internação*<a data-toggle="tooltip" title="Indicativo de Internação<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_atestado_form.indinternacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_atestado_form.indinternacao.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s2210_atestado__durtrat -->
 <div class="col-md-6" id="s2210_atestado__durtrat__div">
   <div class="form-group">
-    <label id="s2210_atestado__durtrat__label">Duração do tratamento*</label>
+    <label id="s2210_atestado__durtrat__label">Duração do tratamento*<a data-toggle="tooltip" title="Duração estimada do tratamento, em dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.durtrat.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.durtrat.errors }}
@@ -116,7 +116,7 @@
 <!-- inicio__s2210_atestado__indafast -->
 <div class="col-md-6" id="s2210_atestado__indafast__div">
   <div class="form-group">
-    <label id="s2210_atestado__indafast__label">Afastamento*</label>
+    <label id="s2210_atestado__indafast__label">Afastamento*<a data-toggle="tooltip" title="Indicativo de afastamento do trabalho durante o tratamento<opcoes>S - Sim; N - Não. <valores_validos> S, N. <validacao> Se o campo {indCatObito} for igual a [S], o campo deve sempre ser preenchido com [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_atestado_form.indafast.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_atestado_form.indafast.errors }}
@@ -141,7 +141,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_atestado__dsclesao__div">
     <div class="form-group">
-      <label id="s2210_atestado__dsclesao__label">Descrição da Lesão*</label>
+      <label id="s2210_atestado__dsclesao__label">Descrição da Lesão*<a data-toggle="tooltip" title="Preencher com a descrição da natureza da lesão, conforme tabela 17. <validacao> Deve ser um código existente na tabela 17 - Descrição da Natureza da Lesão."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_atestado_form.dsclesao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_atestado_form.dsclesao.errors }}
@@ -195,7 +195,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_atestado__dsclesao__div">
     <div class="form-group">
-      <label id="s2210_atestado__dsclesao__label">Descrição da Lesão*</label>
+      <label id="s2210_atestado__dsclesao__label">Descrição da Lesão*<a data-toggle="tooltip" title="Preencher com a descrição da natureza da lesão, conforme tabela 17. <validacao> Deve ser um código existente na tabela 17 - Descrição da Natureza da Lesão."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_dsclesao" name="txt_dsclesao" class="form-control" value="{% if s2210_atestado.dsclesao %}{{ s2210_atestado.dsclesao }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -204,7 +204,7 @@
 <!-- inicio__s2210_atestado__dsccomplesao -->
 <div class="col-md-6" id="s2210_atestado__dsccomplesao__div">
   <div class="form-group">
-    <label id="s2210_atestado__dsccomplesao__label">Descrição complementar da lesão</label>
+    <label id="s2210_atestado__dsccomplesao__label">Descrição complementar da lesão<a data-toggle="tooltip" title="Descrição complementar da lesão."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.dsccomplesao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.dsccomplesao.errors }}
@@ -219,7 +219,7 @@
 <!-- inicio__s2210_atestado__diagprovavel -->
 <div class="col-md-6" id="s2210_atestado__diagprovavel__div">
   <div class="form-group">
-    <label id="s2210_atestado__diagprovavel__label">Diagnóstivo provável</label>
+    <label id="s2210_atestado__diagprovavel__label">Diagnóstivo provável<a data-toggle="tooltip" title="Diagnóstico Provável."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.diagprovavel.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.diagprovavel.errors }}
@@ -234,7 +234,7 @@
 <!-- inicio__s2210_atestado__codcid -->
 <div class="col-md-6" id="s2210_atestado__codcid__div">
   <div class="form-group">
-    <label id="s2210_atestado__codcid__label">CID*</label>
+    <label id="s2210_atestado__codcid__label">CID*<a data-toggle="tooltip" title="Informar o código na tabela de Classificação Internacional de Doenças - CID. <validacao> Deve ser preenchido com caracteres alfanuméricos conforme opções constantes na tabela CID."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.codcid.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.codcid.errors }}
@@ -249,7 +249,7 @@
 <!-- inicio__s2210_atestado__observacao -->
 <div class="col-md-6" id="s2210_atestado__observacao__div">
   <div class="form-group">
-    <label id="s2210_atestado__observacao__label">Observações</label>
+    <label id="s2210_atestado__observacao__label">Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.observacao.errors }}
@@ -269,7 +269,7 @@
 <!-- inicio__s2210_atestado__nmemit -->
 <div class="col-md-6" id="s2210_atestado__nmemit__div">
   <div class="form-group">
-    <label id="s2210_atestado__nmemit__label">Nome*</label>
+    <label id="s2210_atestado__nmemit__label">Nome*<a data-toggle="tooltip" title="Nome do médico/dentista que emitiu o atestado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.nmemit.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.nmemit.errors }}
@@ -284,7 +284,7 @@
 <!-- inicio__s2210_atestado__ideoc -->
 <div class="col-md-6" id="s2210_atestado__ideoc__div">
   <div class="form-group">
-    <label id="s2210_atestado__ideoc__label">Órgão de Classe (OC)*</label>
+    <label id="s2210_atestado__ideoc__label">Órgão de Classe (OC)*<a data-toggle="tooltip" title="Órgão de classe<opcoes>1 - Conselho Regional de Medicina (CRM); 2 - Conselho Regional de Odontologia (CRO); 3 - Registro do Ministério da Saúde (RMS). <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_atestado_form.ideoc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_atestado_form.ideoc.errors }}
@@ -308,7 +308,7 @@
 <!-- inicio__s2210_atestado__nroc -->
 <div class="col-md-6" id="s2210_atestado__nroc__div">
   <div class="form-group">
-    <label id="s2210_atestado__nroc__label">Número de Inscrição no órgão de classe.*</label>
+    <label id="s2210_atestado__nroc__label">Número de Inscrição no órgão de classe.*<a data-toggle="tooltip" title="Número de Inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2210_atestado_form.nroc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2210_atestado_form.nroc.errors }}
@@ -323,7 +323,7 @@
 <!-- inicio__s2210_atestado__ufoc -->
 <div class="col-md-6" id="s2210_atestado__ufoc__div">
   <div class="form-group">
-    <label id="s2210_atestado__ufoc__label">UF do OC</label>
+    <label id="s2210_atestado__ufoc__label">UF do OC<a data-toggle="tooltip" title="Sigla da UF do órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2210_atestado_form.ufoc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2210_atestado_form.ufoc.errors }}

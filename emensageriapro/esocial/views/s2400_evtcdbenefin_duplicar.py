@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2400(request, pk, versao="|")
-            dados = read_s2400_evtcdbenefin_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2400_evtcdbenefin_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2400_evtcdbenefin)
     
             s2400evtCdBenefIn.objects.filter(id=dados['id']).\

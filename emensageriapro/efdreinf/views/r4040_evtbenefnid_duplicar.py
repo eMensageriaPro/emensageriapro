@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r4040(request, pk, versao="|")
-            dados = read_r4040_evtbenefnid_string({}, texto.encode('utf-8'), 0)
+            dados = read_r4040_evtbenefnid_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r4040_evtbenefnid)
     
             r4040evtBenefNId.objects.filter(id=dados['id']).\

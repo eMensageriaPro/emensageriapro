@@ -5,7 +5,7 @@
 <!-- inicio__s2300_rg__s2300_documentos -->
 <div class="col-md-12" id="s2300_rg__s2300_documentos__div">
   <div class="form-group">
-    <label id="s2300_rg__s2300_documentos__label">Informações do Registro Geral (RG)*</label>
+    <label id="s2300_rg__s2300_documentos__label">Informações do Registro Geral (RG)*<a data-toggle="tooltip" title="Informações do Registro Geral (RG)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_rg_form.s2300_documentos.value %}
         <a href="{% url 's2300_documentos_salvar' pk=s2300_rg_form.s2300_documentos.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_rg__nrrg -->
 <div class="col-md-3" id="s2300_rg__nrrg__div">
   <div class="form-group">
-    <label id="s2300_rg__nrrg__label">Número do RG*</label>
+    <label id="s2300_rg__nrrg__label">Número do RG*<a data-toggle="tooltip" title="RG."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_rg_form.nrrg.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_rg_form.nrrg.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2300_rg__orgaoemissor -->
 <div class="col-md-3" id="s2300_rg__orgaoemissor__div">
   <div class="form-group">
-    <label id="s2300_rg__orgaoemissor__label">Órgão Emissor do RIC*</label>
+    <label id="s2300_rg__orgaoemissor__label">Órgão Emissor do RIC*<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_rg_form.orgaoemissor.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_rg_form.orgaoemissor.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2300_rg__dtexped -->
 <div class="col-md-3" id="s2300_rg__dtexped__div">
   <div class="form-group">
-    <label id="s2300_rg__dtexped__label">Data de Expedição do RIC</label>
+    <label id="s2300_rg__dtexped__label">Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2300_rg_form.dtexped.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_rg_form.dtexped.errors }}

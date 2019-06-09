@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1207_infoperapur_remunperapur__s1207_infoperapur_ideestab__div">
   <div class="form-group">
-    <label id="s1207_infoperapur_remunperapur__s1207_infoperapur_ideestab__label">Informações relativas a remuneração do trabalhador no período de apuração*</label>
+    <label id="s1207_infoperapur_remunperapur__s1207_infoperapur_ideestab__label">Informações relativas a remuneração do trabalhador no período de apuração*<a data-toggle="tooltip" title="Informações relativas a provento ou pensão do beneficiário no período de apuração"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1207_infoperapur_remunperapur_form.s1207_infoperapur_ideestab.value %}
         <a id="s1207_infoperapur_remunperapur__s1207_infoperapur_ideestab__div_acessar" href="{% url 's1207_infoperapur_ideestab_salvar' pk=s1207_infoperapur_remunperapur_form.s1207_infoperapur_ideestab.value tab='master' %}">

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r3010_receitaingressos__r3010_boletim__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__r3010_boletim__label">Receita da Venda de Ingressos*</label>
+    <label id="r3010_receitaingressos__r3010_boletim__label">Receita da Venda de Ingressos*<a data-toggle="tooltip" title="Receita da Venda de Ingressos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r3010_receitaingressos_form.r3010_boletim.value %}
         <a id="r3010_receitaingressos__r3010_boletim__div_acessar" href="{% url 'r3010_boletim_salvar' pk=r3010_receitaingressos_form.r3010_boletim.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r3010_receitaingressos__tpingresso -->
 <div class="col-md-6" id="r3010_receitaingressos__tpingresso__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__tpingresso__label">Tipo de Ingresso*</label>
+    <label id="r3010_receitaingressos__tpingresso__label">Tipo de Ingresso*<a data-toggle="tooltip" title="Tipo de Ingresso<opcoes>1 - Arquibancada; 2 - Geral; 3 - Cadeiras; 4 - Camarote. <valores_validos> 1,2,3,4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_receitaingressos_form.tpingresso.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r3010_receitaingressos_form.tpingresso.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r3010_receitaingressos__descingr -->
 <div class="col-md-6" id="r3010_receitaingressos__descingr__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__descingr__label">Descrição do tipo de ingresso*</label>
+    <label id="r3010_receitaingressos__descingr__label">Descrição do tipo de ingresso*<a data-toggle="tooltip" title="Descrição do tipo de ingresso."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_receitaingressos_form.descingr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_receitaingressos_form.descingr.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r3010_receitaingressos__qtdeingrvenda -->
 <div class="col-md-6" id="r3010_receitaingressos__qtdeingrvenda__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__qtdeingrvenda__label">Número de ingressos colocados à venda*</label>
+    <label id="r3010_receitaingressos__qtdeingrvenda__label">Número de ingressos colocados à venda*<a data-toggle="tooltip" title="Número de ingressos colocados à venda."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_receitaingressos_form.qtdeingrvenda.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_receitaingressos_form.qtdeingrvenda.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r3010_receitaingressos__qtdeingrvendidos -->
 <div class="col-md-6" id="r3010_receitaingressos__qtdeingrvendidos__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__qtdeingrvendidos__label">Número de ingressos vendidos*</label>
+    <label id="r3010_receitaingressos__qtdeingrvendidos__label">Número de ingressos vendidos*<a data-toggle="tooltip" title="Número de ingressos vendidos. <validacao> Não pode ser superior ao valor informado em {qtdeIngrVenda}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_receitaingressos_form.qtdeingrvendidos.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_receitaingressos_form.qtdeingrvendidos.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r3010_receitaingressos__qtdeingrdev -->
 <div class="col-md-6" id="r3010_receitaingressos__qtdeingrdev__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__qtdeingrdev__label">Número de ingressos devolvidos*</label>
+    <label id="r3010_receitaingressos__qtdeingrdev__label">Número de ingressos devolvidos*<a data-toggle="tooltip" title="Número de ingressos devolvidos. <validacao> Não pode ser superior ao valor informado em {qtdeIngrVenda}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_receitaingressos_form.qtdeingrdev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_receitaingressos_form.qtdeingrdev.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__r3010_receitaingressos__precoindiv -->
 <div class="col-md-6" id="r3010_receitaingressos__precoindiv__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__precoindiv__label">Preço individual do ingresso*</label>
+    <label id="r3010_receitaingressos__precoindiv__label">Preço individual do ingresso*<a data-toggle="tooltip" title="Preço individual do ingresso."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_receitaingressos_form.precoindiv.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r3010_receitaingressos_form.precoindiv.errors }}
@@ -143,7 +143,7 @@
 <!-- inicio__r3010_receitaingressos__vlrtotal -->
 <div class="col-md-6" id="r3010_receitaingressos__vlrtotal__div">
   <div class="form-group">
-    <label id="r3010_receitaingressos__vlrtotal__label">Valor total arrecadado*</label>
+    <label id="r3010_receitaingressos__vlrtotal__label">Valor total arrecadado*<a data-toggle="tooltip" title="Valor total arrecadado. <validacao> Deve corresponder a {qtdeIngrVendidos} x {precoIndiv}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_receitaingressos_form.vlrtotal.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r3010_receitaingressos_form.vlrtotal.errors }}

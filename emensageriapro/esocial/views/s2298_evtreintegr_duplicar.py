@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2298(request, pk, versao="|")
-            dados = read_s2298_evtreintegr_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2298_evtreintegr_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2298_evtreintegr)
     
             s2298evtReintegr.objects.filter(id=dados['id']).\

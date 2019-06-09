@@ -5,7 +5,7 @@
 <!-- inicio__s5011_dadosopport__s5011_idelotacao -->
 <div class="col-md-12" id="s5011_dadosopport__s5011_idelotacao__div">
   <div class="form-group">
-    <label id="s5011_dadosopport__s5011_idelotacao__label">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).*</label>
+    <label id="s5011_dadosopport__s5011_idelotacao__label">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).*<a data-toggle="tooltip" title="Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s5011_dadosopport_form.s5011_idelotacao.value %}
         <a href="{% url 's5011_idelotacao_salvar' pk=s5011_dadosopport_form.s5011_idelotacao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s5011_dadosopport__cnpjopportuario -->
 <div class="col-md-6" id="s5011_dadosopport__cnpjopportuario__div">
   <div class="form-group">
-    <label id="s5011_dadosopport__cnpjopportuario__label">CNPJ do Operador Portuário*</label>
+    <label id="s5011_dadosopport__cnpjopportuario__label">CNPJ do Operador Portuário*<a data-toggle="tooltip" title="Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ indicado no registro de abertura."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5011_dadosopport_form.cnpjopportuario.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_dadosopport_form.cnpjopportuario.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s5011_dadosopport__aliqrat -->
 <div class="col-md-6" id="s5011_dadosopport__aliqrat__div">
   <div class="form-group">
-    <label id="s5011_dadosopport__aliqrat__label">Alíquota RAT*</label>
+    <label id="s5011_dadosopport__aliqrat__label">Alíquota RAT*<a data-toggle="tooltip" title="Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3, conforme informado em S-1080."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_dadosopport_form.aliqrat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_dadosopport_form.aliqrat.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s5011_dadosopport__fap -->
 <div class="col-md-6" id="s5011_dadosopport__fap__div">
   <div class="form-group">
-    <label id="s5011_dadosopport__fap__label">FAP*</label>
+    <label id="s5011_dadosopport__fap__label">FAP*<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP. <validacao> Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido para a empresa pelo Órgão Governamental competente, conforme informado em S-1080."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_dadosopport_form.fap.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_dadosopport_form.fap.errors }}
@@ -88,7 +88,7 @@
 <!-- inicio__s5011_dadosopport__aliqratajust -->
 <div class="col-md-6" id="s5011_dadosopport__aliqratajust__div">
   <div class="form-group">
-    <label id="s5011_dadosopport__aliqratajust__label">Alíquota RAT (Ajustada)*</label>
+    <label id="s5011_dadosopport__aliqratajust__label">Alíquota RAT (Ajustada)*<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}, conforme definido em S-1080."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5011_dadosopport_form.aliqratajust.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_dadosopport_form.aliqratajust.errors }}

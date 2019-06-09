@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_s5013(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s5013_evtfgts_string({}, texto.encode('utf-8'), 0)
+        dados = read_s5013_evtfgts_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s5013_evtfgts)
 
         s5013evtFGTS.objects.filter(id=dados['id']).\

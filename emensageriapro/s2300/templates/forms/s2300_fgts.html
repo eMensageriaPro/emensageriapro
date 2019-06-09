@@ -5,7 +5,7 @@
 <!-- inicio__s2300_fgts__s2300_infocomplementares -->
 <div class="col-md-12" id="s2300_fgts__s2300_infocomplementares__div">
   <div class="form-group">
-    <label id="s2300_fgts__s2300_infocomplementares__label">Informações relativas ao FGTS.*</label>
+    <label id="s2300_fgts__s2300_infocomplementares__label">Informações relativas ao FGTS.*<a data-toggle="tooltip" title="Informações relativas ao FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_fgts_form.s2300_infocomplementares.value %}
         <a href="{% url 's2300_infocomplementares_salvar' pk=s2300_fgts_form.s2300_infocomplementares.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_fgts__opcfgts -->
 <div class="col-md-4" id="s2300_fgts__opcfgts__div">
   <div class="form-group">
-    <label id="s2300_fgts__opcfgts__label">Opção pelo FGTS*</label>
+    <label id="s2300_fgts__opcfgts__label">Opção pelo FGTS*<a data-toggle="tooltip" title="Opção pelo FGTS<opcoes>1 - Optante; 2 - Não Optante. <validacao> Para trabalhador admitido após 04/10/1988, o campo deve ser preenchido com [1] (Optante). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2300_fgts_form.opcfgts.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2300_fgts_form.opcfgts.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2300_fgts__dtopcfgts -->
 <div class="col-md-4" id="s2300_fgts__dtopcfgts__div">
   <div class="form-group">
-    <label id="s2300_fgts__dtopcfgts__label">Data da opção pelo FGTS</label>
+    <label id="s2300_fgts__dtopcfgts__label">Data da opção pelo FGTS<a data-toggle="tooltip" title="Informar a data de opção do trabalhador pelo FGTS. <validacao> Preenchimento obrigatório em caso de trabalhador optante pelo FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2300_fgts_form.dtopcfgts.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_fgts_form.dtopcfgts.errors }}

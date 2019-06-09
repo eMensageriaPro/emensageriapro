@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2230(request, pk, versao="|")
-            dados = read_s2230_evtafasttemp_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2230_evtafasttemp_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2230_evtafasttemp)
     
             s2230evtAfastTemp.objects.filter(id=dados['id']).\

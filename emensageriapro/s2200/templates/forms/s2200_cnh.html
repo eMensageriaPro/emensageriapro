@@ -5,7 +5,7 @@
 <!-- inicio__s2200_cnh__s2200_documentos -->
 <div class="col-md-12" id="s2200_cnh__s2200_documentos__div">
   <div class="form-group">
-    <label id="s2200_cnh__s2200_documentos__label">Informações da Carteira Nacional de Habilitação (CNH)*</label>
+    <label id="s2200_cnh__s2200_documentos__label">Informações da Carteira Nacional de Habilitação (CNH)*<a data-toggle="tooltip" title="Informações da Carteira Nacional de Habilitação (CNH)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_cnh_form.s2200_documentos.value %}
         <a href="{% url 's2200_documentos_salvar' pk=s2200_cnh_form.s2200_documentos.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_cnh__nrregcnh -->
 <div class="col-md-6" id="s2200_cnh__nrregcnh__div">
   <div class="form-group">
-    <label id="s2200_cnh__nrregcnh__label">Número do CNH*</label>
+    <label id="s2200_cnh__nrregcnh__label">Número do CNH*<a data-toggle="tooltip" title="Número do Registro da Carteira Nacional de Habilitação - CNH."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_cnh_form.nrregcnh.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_cnh_form.nrregcnh.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2200_cnh__dtexped -->
 <div class="col-md-6" id="s2200_cnh__dtexped__div">
   <div class="form-group">
-    <label id="s2200_cnh__dtexped__label">Data de Expedição do RIC</label>
+    <label id="s2200_cnh__dtexped__label">Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_cnh_form.dtexped.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_cnh_form.dtexped.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2200_cnh__ufcnh -->
 <div class="col-md-6" id="s2200_cnh__ufcnh__div">
   <div class="form-group">
-    <label id="s2200_cnh__ufcnh__label">UF do CNH*</label>
+    <label id="s2200_cnh__ufcnh__label">UF do CNH*<a data-toggle="tooltip" title="Estado da Federação emissor da CNH. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_cnh_form.ufcnh.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_cnh_form.ufcnh.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s2200_cnh__dtvalid -->
 <div class="col-md-6" id="s2200_cnh__dtvalid__div">
   <div class="form-group">
-    <label id="s2200_cnh__dtvalid__label">Data de Validade do OC*</label>
+    <label id="s2200_cnh__dtvalid__label">Data de Validade do OC*<a data-toggle="tooltip" title="Preencher com a data de validade. <validacao> Deve ser posterior a data de expedição ({dtExped}), se esta for informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_cnh_form.dtvalid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_cnh_form.dtvalid.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s2200_cnh__dtprihab -->
 <div class="col-md-6" id="s2200_cnh__dtprihab__div">
   <div class="form-group">
-    <label id="s2200_cnh__dtprihab__label">Data da Primeira Habilitação do CNH</label>
+    <label id="s2200_cnh__dtprihab__label">Data da Primeira Habilitação do CNH<a data-toggle="tooltip" title="Data da primeira habilitação."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_cnh_form.dtprihab.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_cnh_form.dtprihab.errors }}
@@ -116,7 +116,7 @@
 <!-- inicio__s2200_cnh__categoriacnh -->
 <div class="col-md-6" id="s2200_cnh__categoriacnh__div">
   <div class="form-group">
-    <label id="s2200_cnh__categoriacnh__label">Categoria do CNH*</label>
+    <label id="s2200_cnh__categoriacnh__label">Categoria do CNH*<a data-toggle="tooltip" title="Categoria da CNH<opcoes>A; B; C; D; E; AB; AC; AD; AE<valores_validos> A, B, C, D, E, AB, AC, AD, AE."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_cnh_form.categoriacnh.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_cnh_form.categoriacnh.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__s2200_infoceletista__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_infoceletista__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__s2200_evtadmissao__label">Informações de Trabalhador Celetista*</label>
+    <label id="s2200_infoceletista__s2200_evtadmissao__label">Informações de Trabalhador Celetista*<a data-toggle="tooltip" title="Informações de Trabalhador Celetista."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_infoceletista_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_infoceletista_form.s2200_evtadmissao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_infoceletista__dtadm -->
 <div class="col-md-6" id="s2200_infoceletista__dtadm__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__dtadm__label">Data de admissão*</label>
+    <label id="s2200_infoceletista__dtadm__label">Data de admissão*<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. No caso de transferência do empregado ou de mudança de CPF, preencher com a data inicial do vínculo no primeiro empregador (data de início do vínculo). <validacao> Devem ser observadas as seguintes regras: a) Deve ser posterior à data de nascimento do trabalhador; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial; c) Se {cadIni} = [N] e {tpAdmissao} = [1], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_infoceletista_form.dtadm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoceletista_form.dtadm.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2200_infoceletista__tpadmissao -->
 <div class="col-md-6" id="s2200_infoceletista__tpadmissao__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__tpadmissao__label">Tipo de admissão*</label>
+    <label id="s2200_infoceletista__tpadmissao__label">Tipo de admissão*<a data-toggle="tooltip" title="Tipo de admissão do trabalhador, conforme opções abaixo<opcoes>1 - Admissão; 2 - Transferência de empresa do mesmo grupo econômico; 3 - Transferência de empresa consorciada ou de consórcio; 4 - Transferência por motivo de sucessão, incorporação, cisão ou fusão; 5 - Transferência do empregado doméstico para outro representante da mesma unidade familiar; 6 - Mudança de CPF. <validacao> Se for igual a [2,3,4], é obrigatório o preenchimento do registro de Sucessão de Vínculo Trabalhista. Se for igual a [5], {codCateg} deve ser igual a [104] e {procEmi} deve ser igual a [2]. Se for igual a [6], {cadIni} deve ser igual a [N]. <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_infoceletista_form.tpadmissao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoceletista_form.tpadmissao.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2200_infoceletista__indadmissao -->
 <div class="col-md-6" id="s2200_infoceletista__indadmissao__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__indadmissao__label">Admissão*</label>
+    <label id="s2200_infoceletista__indadmissao__label">Admissão*<a data-toggle="tooltip" title="Indicativo de Admissão<opcoes>1 - Normal; 2 - Decorrente de Ação Fiscal; 3 - Decorrente de Decisão Judicial. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_infoceletista_form.indadmissao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoceletista_form.indadmissao.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2200_infoceletista__tpregjor -->
 <div class="col-md-6" id="s2200_infoceletista__tpregjor__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__tpregjor__label">Regime da Jornada*</label>
+    <label id="s2200_infoceletista__tpregjor__label">Regime da Jornada*<a data-toggle="tooltip" title="Identifica o regime de jornada do empregado<opcoes>1 - Submetidos a Horário de Trabalho (Cap. II da CLT); 2 - Atividade Externa especificada no Inciso I do Art. 62 da CLT; 3 - Funções especificadas no Inciso II do Art. 62 da CLT; 4 - Teletrabalho, previsto no Inciso III do Art. 62 da CLT. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_infoceletista_form.tpregjor.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoceletista_form.tpregjor.errors }}
@@ -119,7 +119,7 @@
 <!-- inicio__s2200_infoceletista__natatividade -->
 <div class="col-md-6" id="s2200_infoceletista__natatividade__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__natatividade__label">Natureza da atividade*</label>
+    <label id="s2200_infoceletista__natatividade__label">Natureza da atividade*<a data-toggle="tooltip" title="Natureza da atividade, conforme opções abaixo<opcoes>1 - Trabalho Urbano; 2 - Trabalho Rural. <validacao> Se {codCateg} = [104], deve ser preenchido com [1]. Se {codCateg} = [102], deve ser preenchido com [2]. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_infoceletista_form.natatividade.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoceletista_form.natatividade.errors }}
@@ -143,7 +143,7 @@
 <!-- inicio__s2200_infoceletista__dtbase -->
 <div class="col-md-6" id="s2200_infoceletista__dtbase__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__dtbase__label">Data base da categoria profissional</label>
+    <label id="s2200_infoceletista__dtbase__label">Data base da categoria profissional<a data-toggle="tooltip" title="Mês relativo à data base da categoria profissional do trabalhador. <validacao> Se informado, deve ser maior ou igual a 1 e menor ou igual a 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_infoceletista_form.dtbase.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_infoceletista_form.dtbase.errors }}
@@ -158,7 +158,7 @@
 <!-- inicio__s2200_infoceletista__cnpjsindcategprof -->
 <div class="col-md-6" id="s2200_infoceletista__cnpjsindcategprof__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__cnpjsindcategprof__label">CNPJ do Sindicato*</label>
+    <label id="s2200_infoceletista__cnpjsindcategprof__label">CNPJ do Sindicato*<a data-toggle="tooltip" title="Preencher com o CNPJ do sindicato representativo da categoria (Preponderante ou Diferenciada). <validacao> Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_infoceletista_form.cnpjsindcategprof.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_infoceletista_form.cnpjsindcategprof.errors }}
@@ -178,7 +178,7 @@
 <!-- inicio__s2200_infoceletista__opcfgts -->
 <div class="col-md-6" id="s2200_infoceletista__opcfgts__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__opcfgts__label">Opção pelo FGTS*</label>
+    <label id="s2200_infoceletista__opcfgts__label">Opção pelo FGTS*<a data-toggle="tooltip" title="Opção pelo FGTS<opcoes>1 - Optante; 2 - Não Optante. <validacao> Para trabalhador admitido após 04/10/1988, o campo deve ser preenchido com [1] (Optante). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_infoceletista_form.opcfgts.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoceletista_form.opcfgts.errors }}
@@ -202,7 +202,7 @@
 <!-- inicio__s2200_infoceletista__dtopcfgts -->
 <div class="col-md-6" id="s2200_infoceletista__dtopcfgts__div">
   <div class="form-group">
-    <label id="s2200_infoceletista__dtopcfgts__label">Data da opção pelo FGTS</label>
+    <label id="s2200_infoceletista__dtopcfgts__label">Data da opção pelo FGTS<a data-toggle="tooltip" title="Informar a data de opção do trabalhador pelo FGTS. <validacao> Preenchimento obrigatório em caso de trabalhador optante pelo FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_infoceletista_form.dtopcfgts.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoceletista_form.dtopcfgts.errors }}

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9012_totapurqui__r9012_infototalcontrib__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal*</label>
+    <label id="r9012_totapurqui__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9012_totapurqui_form.r9012_infototalcontrib.value %}
         <a id="r9012_totapurqui__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' pk=r9012_totapurqui_form.r9012_infototalcontrib.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9012_totapurqui__perapurqui -->
 <div class="col-md-6" id="r9012_totapurqui__perapurqui__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__perapurqui__label">Período de apuração quinzenal do Código de Receita - CR*</label>
+    <label id="r9012_totapurqui__perapurqui__label">Período de apuração quinzenal do Código de Receita - CR*<a data-toggle="tooltip" title="Período de apuração quinzenal do Código de Receita - CR. Origem: R-9002. <opcoes>1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 15; 2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 16 a 31. <validacao> Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 1 a 15, deve ser igual a [1]. Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 16 a 31, deve ser igual a [2]. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapurqui_form.perapurqui.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9012_totapurqui_form.perapurqui.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r9012_totapurqui__crqui -->
 <div class="col-md-6" id="r9012_totapurqui__crqui__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__crqui__label">Código de Receita - CR relativo a tributo que possui período de apuração quinzenal*</label>
+    <label id="r9012_totapurqui__crqui__label">Código de Receita - CR relativo a tributo que possui período de apuração quinzenal*<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração quinzenal. Origem: R-9002. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [3746, 3770]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9012_totapurqui_form.crqui.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_totapurqui_form.crqui.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r9012_totapurqui__vlrbasecrqui -->
 <div class="col-md-6" id="r9012_totapurqui__vlrbasecrqui__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__vlrbasecrqui__label">Valor da base do tributo com período de apuração quinzenal*</label>
+    <label id="r9012_totapurqui__vlrbasecrqui__label">Valor da base do tributo com período de apuração quinzenal*<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração quinzenal. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapurqui_form.vlrbasecrqui.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapurqui_form.vlrbasecrqui.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r9012_totapurqui__vlrcrqui -->
 <div class="col-md-6" id="r9012_totapurqui__vlrcrqui__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__vlrcrqui__label">Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r9012_totapurqui__vlrcrqui__label">Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapurqui_form.vlrcrqui.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapurqui_form.vlrcrqui.errors }}
@@ -116,7 +116,7 @@
 <!-- inicio__r9012_totapurqui__vlrbasecrquisusp -->
 <div class="col-md-6" id="r9012_totapurqui__vlrbasecrquisusp__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__vlrbasecrquisusp__label">Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa</label>
+    <label id="r9012_totapurqui__vlrbasecrquisusp__label">Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapurqui_form.vlrbasecrquisusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapurqui_form.vlrbasecrquisusp.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__r9012_totapurqui__vlrcrquisusp -->
 <div class="col-md-6" id="r9012_totapurqui__vlrcrquisusp__div">
   <div class="form-group">
-    <label id="r9012_totapurqui__vlrcrquisusp__label">Valor do tributo com período de apuração quinzenal, que deixou de ser retido</label>
+    <label id="r9012_totapurqui__vlrcrquisusp__label">Valor do tributo com período de apuração quinzenal, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração quinzenal, que deixou de ser retido. Origem: R-9002."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9012_totapurqui_form.vlrcrquisusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9012_totapurqui_form.vlrcrquisusp.errors }}

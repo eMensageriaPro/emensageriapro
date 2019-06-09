@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_altexprisco_epc__s2240_altexprisco_fatrisco__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epc__s2240_altexprisco_fatrisco__label">Equipamentos de Proteção Coletiva - EPC*</label>
+    <label id="s2240_altexprisco_epc__s2240_altexprisco_fatrisco__label">Equipamentos de Proteção Coletiva - EPC*<a data-toggle="tooltip" title="Equipamentos de Proteção Coletiva - EPC"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2240_altexprisco_epc_form.s2240_altexprisco_fatrisco.value %}
         <a id="s2240_altexprisco_epc__s2240_altexprisco_fatrisco__div_acessar" href="{% url 's2240_altexprisco_fatrisco_salvar' pk=s2240_altexprisco_epc_form.s2240_altexprisco_fatrisco.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2240_altexprisco_epc__dscepc -->
 <div class="col-md-4" id="s2240_altexprisco_epc__dscepc__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epc__dscepc__label">Descrição do EPC*</label>
+    <label id="s2240_altexprisco_epc__dscepc__label">Descrição do EPC*<a data-toggle="tooltip" title="Descrição do EPC"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_altexprisco_epc_form.dscepc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_altexprisco_epc_form.dscepc.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2240_altexprisco_epc__eficepc -->
 <div class="col-md-4" id="s2240_altexprisco_epc__eficepc__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_epc__eficepc__label">EPC é eficaz na neutralização</label>
+    <label id="s2240_altexprisco_epc__eficepc__label">EPC é eficaz na neutralização<a data-toggle="tooltip" title="O EPC é eficaz na neutralização dos riscos ao trabalhador<opcoes>S - Sim; N - Não.<validacao> Preenchimento obrigatório se {utilizEPC} = [2]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_altexprisco_epc_form.eficepc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_epc_form.eficepc.errors }}

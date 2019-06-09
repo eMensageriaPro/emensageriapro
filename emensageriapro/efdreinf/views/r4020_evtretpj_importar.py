@@ -10,7 +10,7 @@ from emensageriapro.r4020.models import *
 
 
 
-def read_r4020_evtretpj_string(dados, xml, validar=False):
+def read_r4020_evtretpj_string(request, dados, xml, validar=False):
 
     import untangle
     doc = untangle.parse(xml)
@@ -20,14 +20,16 @@ def read_r4020_evtretpj_string(dados, xml, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_r4020_evtretpj_obj(doc, status, validar)
+    dados = read_r4020_evtretpj_obj(request, doc, status, validar)
     return dados
 
 
 
-def read_r4020_evtretpj(dados, arquivo, validar=False):
+def read_r4020_evtretpj(request, dados, arquivo, validar=False):
 
     import untangle
+    from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
+    
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
@@ -37,12 +39,16 @@ def read_r4020_evtretpj(dados, arquivo, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_r4020_evtretpj_obj(doc, status, validar)
+    dados = read_r4020_evtretpj_obj(request, doc, status, validar)
+
+    r4020evtRetPJ.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
+
     return dados
 
 
 
-def read_r4020_evtretpj_obj(doc, status, validar=False):
+def read_r4020_evtretpj_obj(request, doc, status, validar=False):
 
     xmlns_lista = doc.Reinf['xmlns'].split('/')
 
@@ -556,6 +562,8 @@ def read_r4020_evtretpj_obj(doc, status, validar=False):
 
 
     from emensageriapro.efdreinf.views.r4020_evtretpj_validar_evento import validar_evento_funcao
+    
     if validar:
-        validar_evento_funcao(r4020_evtretpj.id)
+        validar_evento_funcao(request, r4020_evtretpj.id)
+    
     return r4020_evtretpj_dados

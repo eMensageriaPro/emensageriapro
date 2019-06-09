@@ -5,7 +5,7 @@
 <!-- inicio__s1070_inclusao_dadosprocjud__s1070_inclusao -->
 <div class="col-md-12" id="s1070_inclusao_dadosprocjud__s1070_inclusao__div">
   <div class="form-group">
-    <label id="s1070_inclusao_dadosprocjud__s1070_inclusao__label">Informações Complementares do Processo Judicial*</label>
+    <label id="s1070_inclusao_dadosprocjud__s1070_inclusao__label">Informações Complementares do Processo Judicial*<a data-toggle="tooltip" title="Informações Complementares do Processo Judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1070_inclusao_dadosprocjud_form.s1070_inclusao.value %}
         <a href="{% url 's1070_inclusao_salvar' pk=s1070_inclusao_dadosprocjud_form.s1070_inclusao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1070_inclusao_dadosprocjud__ufvara -->
 <div class="col-md-3" id="s1070_inclusao_dadosprocjud__ufvara__div">
   <div class="form-group">
-    <label id="s1070_inclusao_dadosprocjud__ufvara__label">UF da seção jucidial*</label>
+    <label id="s1070_inclusao_dadosprocjud__ufvara__label">UF da seção jucidial*<a data-toggle="tooltip" title="Identificação da UF da Seção Judiciária. <validacao> Deve ser uma Sigla de UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1070_inclusao_dadosprocjud_form.ufvara.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_inclusao_dadosprocjud_form.ufvara.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="s1070_inclusao_dadosprocjud__codmunic__div">
     <div class="form-group">
-      <label id="s1070_inclusao_dadosprocjud__codmunic__label">Código do Município*</label>
+      <label id="s1070_inclusao_dadosprocjud__codmunic__label">Código do Município*<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1070_inclusao_dadosprocjud_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1070_inclusao_dadosprocjud_form.codmunic.errors }}
@@ -103,7 +103,7 @@
   {% else %}
   <div class="col-md-3" id="s1070_inclusao_dadosprocjud__codmunic__div">
     <div class="form-group">
-      <label id="s1070_inclusao_dadosprocjud__codmunic__label">Código do Município*</label>
+      <label id="s1070_inclusao_dadosprocjud__codmunic__label">Código do Município*<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if not for_print %}{% if s1070_inclusao_dadosprocjud_form.codmunic.value %}
             <a id="s1070_inclusao_dadosprocjud__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s1070_inclusao_dadosprocjud_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -117,7 +117,7 @@
 <!-- inicio__s1070_inclusao_dadosprocjud__idvara -->
 <div class="col-md-3" id="s1070_inclusao_dadosprocjud__idvara__div">
   <div class="form-group">
-    <label id="s1070_inclusao_dadosprocjud__idvara__label">Vara*</label>
+    <label id="s1070_inclusao_dadosprocjud__idvara__label">Vara*<a data-toggle="tooltip" title="Código de Identificação da Vara."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1070_inclusao_dadosprocjud_form.idvara.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1070_inclusao_dadosprocjud_form.idvara.errors }}

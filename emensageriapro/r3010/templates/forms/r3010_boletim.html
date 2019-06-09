@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r3010_boletim__r3010_evtespdesportivo__div">
   <div class="form-group">
-    <label id="r3010_boletim__r3010_evtespdesportivo__label">Boletim do Espetáculo Desportivo*</label>
+    <label id="r3010_boletim__r3010_evtespdesportivo__label">Boletim do Espetáculo Desportivo*<a data-toggle="tooltip" title="Boletim do Espetáculo Desportivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r3010_boletim_form.r3010_evtespdesportivo.value %}
         <a id="r3010_boletim__r3010_evtespdesportivo__div_acessar" href="{% url 'r3010_evtespdesportivo_salvar' pk=r3010_boletim_form.r3010_evtespdesportivo.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r3010_boletim__nrboletim -->
 <div class="col-md-6" id="r3010_boletim__nrboletim__div">
   <div class="form-group">
-    <label id="r3010_boletim__nrboletim__label">Número do boletim relativo ao espetáculo desportivo*</label>
+    <label id="r3010_boletim__nrboletim__label">Número do boletim relativo ao espetáculo desportivo*<a data-toggle="tooltip" title="Número do boletim relativo ao espetáculo desportivo. <validacao> Não pode haver duplicidade de registros com o mesmo {nrBoletim}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.nrboletim.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.nrboletim.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r3010_boletim__tpcompeticao -->
 <div class="col-md-6" id="r3010_boletim__tpcompeticao__div">
   <div class="form-group">
-    <label id="r3010_boletim__tpcompeticao__label">Tipo de Competição*</label>
+    <label id="r3010_boletim__tpcompeticao__label">Tipo de Competição*<a data-toggle="tooltip" title="Tipo de Competição<opcoes>1 - Oficial; 2 - Não Oficial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_boletim_form.tpcompeticao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r3010_boletim_form.tpcompeticao.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r3010_boletim__categevento -->
 <div class="col-md-6" id="r3010_boletim__categevento__div">
   <div class="form-group">
-    <label id="r3010_boletim__categevento__label">Categoria do evento*</label>
+    <label id="r3010_boletim__categevento__label">Categoria do evento*<a data-toggle="tooltip" title="Categoria do evento<opcoes>1 - Internacional; 2 - Interestadual; 3 - Estadual; 4 - Local. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_boletim_form.categevento.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r3010_boletim_form.categevento.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__r3010_boletim__moddesportiva -->
 <div class="col-md-6" id="r3010_boletim__moddesportiva__div">
   <div class="form-group">
-    <label id="r3010_boletim__moddesportiva__label">Descrição da modalidade do evento desportivo*</label>
+    <label id="r3010_boletim__moddesportiva__label">Descrição da modalidade do evento desportivo*<a data-toggle="tooltip" title="Descrição da modalidade do evento desportivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.moddesportiva.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.moddesportiva.errors }}
@@ -119,7 +119,7 @@
 <!-- inicio__r3010_boletim__nomecompeticao -->
 <div class="col-md-6" id="r3010_boletim__nomecompeticao__div">
   <div class="form-group">
-    <label id="r3010_boletim__nomecompeticao__label">Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)*</label>
+    <label id="r3010_boletim__nomecompeticao__label">Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)*<a data-toggle="tooltip" title="Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.nomecompeticao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.nomecompeticao.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__r3010_boletim__cnpjmandante -->
 <div class="col-md-6" id="r3010_boletim__cnpjmandante__div">
   <div class="form-group">
-    <label id="r3010_boletim__cnpjmandante__label">Preencher com o CNPJ do clube mandante*</label>
+    <label id="r3010_boletim__cnpjmandante__label">Preencher com o CNPJ do clube mandante*<a data-toggle="tooltip" title="Preencher com o CNPJ do clube mandante. <validacao> Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.cnpjmandante.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.cnpjmandante.errors }}
@@ -149,7 +149,7 @@
 <!-- inicio__r3010_boletim__cnpjvisitante -->
 <div class="col-md-6" id="r3010_boletim__cnpjvisitante__div">
   <div class="form-group">
-    <label id="r3010_boletim__cnpjvisitante__label">Preencher com o número de inscrição do clube visitante no CNPJ</label>
+    <label id="r3010_boletim__cnpjvisitante__label">Preencher com o número de inscrição do clube visitante no CNPJ<a data-toggle="tooltip" title="Preencher com o número de inscrição do clube visitante no CNPJ. Não deve ser preenchido em caso de clube estrangeiro. <validacao> Se informado, deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.cnpjvisitante.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.cnpjvisitante.errors }}
@@ -164,7 +164,7 @@
 <!-- inicio__r3010_boletim__nomevisitante -->
 <div class="col-md-6" id="r3010_boletim__nomevisitante__div">
   <div class="form-group">
-    <label id="r3010_boletim__nomevisitante__label">Nome do clube visitante</label>
+    <label id="r3010_boletim__nomevisitante__label">Nome do clube visitante<a data-toggle="tooltip" title="Nome do clube visitante. <validacao> Preenchimento obrigatório se não preencher {cnpjVisitante}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.nomevisitante.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.nomevisitante.errors }}
@@ -179,7 +179,7 @@
 <!-- inicio__r3010_boletim__pracadesportiva -->
 <div class="col-md-6" id="r3010_boletim__pracadesportiva__div">
   <div class="form-group">
-    <label id="r3010_boletim__pracadesportiva__label">Praça desportiva do local do evento*</label>
+    <label id="r3010_boletim__pracadesportiva__label">Praça desportiva do local do evento*<a data-toggle="tooltip" title="Praça desportiva do local do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.pracadesportiva.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.pracadesportiva.errors }}
@@ -195,7 +195,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="r3010_boletim__codmunic__div">
     <div class="form-group">
-      <label id="r3010_boletim__codmunic__label">Código do Município</label>
+      <label id="r3010_boletim__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Deve ser um código existente na tabela de municípios do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r3010_boletim_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r3010_boletim_form.codmunic.errors }}
@@ -241,7 +241,7 @@
   {% else %}
   <div class="col-md-12" id="r3010_boletim__codmunic__div">
     <div class="form-group">
-      <label id="r3010_boletim__codmunic__label">Código do Município</label>
+      <label id="r3010_boletim__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Deve ser um código existente na tabela de municípios do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if not for_print %}{% if r3010_boletim_form.codmunic.value %}
             <a id="r3010_boletim__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:r3010_boletim_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -255,7 +255,7 @@
 <!-- inicio__r3010_boletim__uf -->
 <div class="col-md-6" id="r3010_boletim__uf__div">
   <div class="form-group">
-    <label id="r3010_boletim__uf__label">Preencher com a sigla da Unidade da Federação*</label>
+    <label id="r3010_boletim__uf__label">Preencher com a sigla da Unidade da Federação*<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r3010_boletim_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r3010_boletim_form.uf.errors }}
@@ -279,7 +279,7 @@
 <!-- inicio__r3010_boletim__qtdepagantes -->
 <div class="col-md-6" id="r3010_boletim__qtdepagantes__div">
   <div class="form-group">
-    <label id="r3010_boletim__qtdepagantes__label">Quantidade de espectadores pagantes do evento*</label>
+    <label id="r3010_boletim__qtdepagantes__label">Quantidade de espectadores pagantes do evento*<a data-toggle="tooltip" title="Quantidade de espectadores pagantes do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.qtdepagantes.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.qtdepagantes.errors }}
@@ -294,7 +294,7 @@
 <!-- inicio__r3010_boletim__qtdenaopagantes -->
 <div class="col-md-6" id="r3010_boletim__qtdenaopagantes__div">
   <div class="form-group">
-    <label id="r3010_boletim__qtdenaopagantes__label">Quantidade de espectadores não pagantes do evento*</label>
+    <label id="r3010_boletim__qtdenaopagantes__label">Quantidade de espectadores não pagantes do evento*<a data-toggle="tooltip" title="Quantidade de espectadores não pagantes do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r3010_boletim_form.qtdenaopagantes.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r3010_boletim_form.qtdenaopagantes.errors }}

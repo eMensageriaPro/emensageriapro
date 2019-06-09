@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1050(request, pk, versao="|")
-            dados = read_s1050_evttabhortur_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1050_evttabhortur_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1050_evttabhortur)
     
             s1050evtTabHorTur.objects.filter(id=dados['id']).\

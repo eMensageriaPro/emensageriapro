@@ -5,7 +5,7 @@
 <!-- inicio__s2200_localtrabgeral__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_localtrabgeral__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_localtrabgeral__s2200_evtadmissao__label">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades*</label>
+    <label id="s2200_localtrabgeral__s2200_evtadmissao__label">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades*<a data-toggle="tooltip" title="Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregador ao qual o trabalhador esteja vinculado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_localtrabgeral_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_localtrabgeral_form.s2200_evtadmissao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_localtrabgeral__tpinsc -->
 <div class="col-md-3" id="s2200_localtrabgeral__tpinsc__div">
   <div class="form-group">
-    <label id="s2200_localtrabgeral__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2200_localtrabgeral__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_localtrabgeral_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_localtrabgeral_form.tpinsc.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2200_localtrabgeral__nrinsc -->
 <div class="col-md-3" id="s2200_localtrabgeral__nrinsc__div">
   <div class="form-group">
-    <label id="s2200_localtrabgeral__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2200_localtrabgeral__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> A inscrição informada deve ser compatível com {tpInsc} e constar na tabela S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_localtrabgeral_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_localtrabgeral_form.nrinsc.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2200_localtrabgeral__desccomp -->
 <div class="col-md-3" id="s2200_localtrabgeral__desccomp__div">
   <div class="form-group">
-    <label id="s2200_localtrabgeral__desccomp__label">Descrição</label>
+    <label id="s2200_localtrabgeral__desccomp__label">Descrição<a data-toggle="tooltip" title="Descrição complementar do local de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_localtrabgeral_form.desccomp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_localtrabgeral_form.desccomp.errors }}

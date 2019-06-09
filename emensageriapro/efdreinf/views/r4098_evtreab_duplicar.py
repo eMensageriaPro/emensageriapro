@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r4098(request, pk, versao="|")
-            dados = read_r4098_evtreab_string({}, texto.encode('utf-8'), 0)
+            dados = read_r4098_evtreab_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r4098_evtreab)
     
             r4098evtReab.objects.filter(id=dados['id']).\

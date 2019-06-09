@@ -5,7 +5,7 @@
 <!-- inicio__s2300_ric__s2300_documentos -->
 <div class="col-md-12" id="s2300_ric__s2300_documentos__div">
   <div class="form-group">
-    <label id="s2300_ric__s2300_documentos__label">Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)*</label>
+    <label id="s2300_ric__s2300_documentos__label">Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)*<a data-toggle="tooltip" title="Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_ric_form.s2300_documentos.value %}
         <a href="{% url 's2300_documentos_salvar' pk=s2300_ric_form.s2300_documentos.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_ric__nrric -->
 <div class="col-md-3" id="s2300_ric__nrric__div">
   <div class="form-group">
-    <label id="s2300_ric__nrric__label">Número do RIC*</label>
+    <label id="s2300_ric__nrric__label">Número do RIC*<a data-toggle="tooltip" title="Número do Documento Nacional de Identidade - DNI."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ric_form.nrric.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ric_form.nrric.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2300_ric__orgaoemissor -->
 <div class="col-md-3" id="s2300_ric__orgaoemissor__div">
   <div class="form-group">
-    <label id="s2300_ric__orgaoemissor__label">Órgão Emissor do RIC*</label>
+    <label id="s2300_ric__orgaoemissor__label">Órgão Emissor do RIC*<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_ric_form.orgaoemissor.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_ric_form.orgaoemissor.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2300_ric__dtexped -->
 <div class="col-md-3" id="s2300_ric__dtexped__div">
   <div class="form-group">
-    <label id="s2300_ric__dtexped__label">Data de Expedição do RIC</label>
+    <label id="s2300_ric__dtexped__label">Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2300_ric_form.dtexped.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_ric_form.dtexped.errors }}

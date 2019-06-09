@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_inforeemb__r4010_ideopsaude__div">
   <div class="form-group">
-    <label id="r4010_inforeemb__r4010_ideopsaude__label">Informação de reembolso do titular do plano de saúde coletivo empresarial*</label>
+    <label id="r4010_inforeemb__r4010_ideopsaude__label">Informação de reembolso do titular do plano de saúde coletivo empresarial*<a data-toggle="tooltip" title="Informação de reembolso do titular do plano de saúde coletivo empresarial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4010_inforeemb_form.r4010_ideopsaude.value %}
         <a id="r4010_inforeemb__r4010_ideopsaude__div_acessar" href="{% url 'r4010_ideopsaude_salvar' pk=r4010_inforeemb_form.r4010_ideopsaude.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_inforeemb__tpinsc -->
 <div class="col-md-6" id="r4010_inforeemb__tpinsc__div">
   <div class="form-group">
-    <label id="r4010_inforeemb__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    <label id="r4010_inforeemb__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição<opcoes>1 - Pessoa Jurídica; 2 - Pessoa Física. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforeemb_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_inforeemb_form.tpinsc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r4010_inforeemb__nrinsc -->
 <div class="col-md-6" id="r4010_inforeemb__nrinsc__div">
   <div class="form-group">
-    <label id="r4010_inforeemb__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+    <label id="r4010_inforeemb__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do prestador de serviços de assistência médica. <validacao> Deve ser um CNPJ ou CPF válido, conforme tipo de inscrição indicado em {tpInsc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_inforeemb_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_inforeemb_form.nrinsc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r4010_inforeemb__vlrreemb -->
 <div class="col-md-6" id="r4010_inforeemb__vlrreemb__div">
   <div class="form-group">
-    <label id="r4010_inforeemb__vlrreemb__label">Valor do reembolso relativo ao período indicado em {perApur}*</label>
+    <label id="r4010_inforeemb__vlrreemb__label">Valor do reembolso relativo ao período indicado em {perApur}*<a data-toggle="tooltip" title="Valor do reembolso relativo ao período indicado em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforeemb_form.vlrreemb.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_inforeemb_form.vlrreemb.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r4010_inforeemb__vlrreembant -->
 <div class="col-md-6" id="r4010_inforeemb__vlrreembant__div">
   <div class="form-group">
-    <label id="r4010_inforeemb__vlrreembant__label">Valor do reembolso relativo a anos anteriores</label>
+    <label id="r4010_inforeemb__vlrreembant__label">Valor do reembolso relativo a anos anteriores<a data-toggle="tooltip" title="Valor do reembolso relativo a anos anteriores."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforeemb_form.vlrreembant.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_inforeemb_form.vlrreembant.errors }}

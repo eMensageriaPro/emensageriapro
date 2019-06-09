@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_r9002(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_r9002_evtret_string({}, texto.encode('utf-8'), 0)
+        dados = read_r9002_evtret_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r9002_evtret)
 
         r9002evtRet.objects.filter(id=dados['id']).\

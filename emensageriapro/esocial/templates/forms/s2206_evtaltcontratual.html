@@ -10,7 +10,7 @@
 <!-- inicio__s2206_evtaltcontratual__identidade -->
 <div class="col-md-6" id="s2206_evtaltcontratual__identidade__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__identidade__label">Identidade do Registro</label>
+    <label id="s2206_evtaltcontratual__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2206_evtaltcontratual__indretif -->
 <div class="col-md-6" id="s2206_evtaltcontratual__indretif__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__indretif__label">Identificador de retificação*</label>
+    <label id="s2206_evtaltcontratual__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2206_evtaltcontratual__nrrecibo -->
 <div class="col-md-6" id="s2206_evtaltcontratual__nrrecibo__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__nrrecibo__label">Número do recibo</label>
+    <label id="s2206_evtaltcontratual__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2206_evtaltcontratual__tpamb -->
 <div class="col-md-6" id="s2206_evtaltcontratual__tpamb__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2206_evtaltcontratual__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2206_evtaltcontratual__procemi -->
 <div class="col-md-6" id="s2206_evtaltcontratual__procemi__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2206_evtaltcontratual__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2206_evtaltcontratual__verproc -->
 <div class="col-md-6" id="s2206_evtaltcontratual__verproc__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__verproc__label">Versão do processo*</label>
+    <label id="s2206_evtaltcontratual__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2206_evtaltcontratual__tpinsc -->
 <div class="col-md-6" id="s2206_evtaltcontratual__tpinsc__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2206_evtaltcontratual__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2206_evtaltcontratual__nrinsc -->
 <div class="col-md-6" id="s2206_evtaltcontratual__nrinsc__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2206_evtaltcontratual__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2206_evtaltcontratual__cpftrab -->
 <div class="col-md-6" id="s2206_evtaltcontratual__cpftrab__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__cpftrab__label">CPF*</label>
+    <label id="s2206_evtaltcontratual__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.cpftrab.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2206_evtaltcontratual__nistrab -->
 <div class="col-md-6" id="s2206_evtaltcontratual__nistrab__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__nistrab__label">NIS*</label>
+    <label id="s2206_evtaltcontratual__nistrab__label">NIS*<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.nistrab.errors }}
@@ -211,7 +211,7 @@
 <!-- inicio__s2206_evtaltcontratual__matricula -->
 <div class="col-md-6" id="s2206_evtaltcontratual__matricula__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__matricula__label">Matricula*</label>
+    <label id="s2206_evtaltcontratual__matricula__label">Matricula*<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.matricula.errors }}
@@ -231,7 +231,7 @@
 <!-- inicio__s2206_evtaltcontratual__dtalteracao -->
 <div class="col-md-6" id="s2206_evtaltcontratual__dtalteracao__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__dtalteracao__label">Data de alteração*</label>
+    <label id="s2206_evtaltcontratual__dtalteracao__label">Data de alteração*<a data-toggle="tooltip" title="Preencher com a data da alteração das informações. <validacao> Deve ser uma data válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2206_evtaltcontratual_form.dtalteracao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2206_evtaltcontratual_form.dtalteracao.errors }}
@@ -246,7 +246,7 @@
 <!-- inicio__s2206_evtaltcontratual__dtef -->
 <div class="col-md-6" id="s2206_evtaltcontratual__dtef__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__dtef__label">Data de efetivação da alteração (lei)</label>
+    <label id="s2206_evtaltcontratual__dtef__label">Data de efetivação da alteração (lei)<a data-toggle="tooltip" title="Se a alteração foi fruto de lei, acordo coletivo, convenção coletiva ou sentença normativa, informar a data a partir da qual a alteração produz efeitos remuneratórios. <validacao> Deve ser uma data válida, igual ou posterior à data de admissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2206_evtaltcontratual_form.dtef.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2206_evtaltcontratual_form.dtef.errors }}
@@ -261,7 +261,7 @@
 <!-- inicio__s2206_evtaltcontratual__dscalt -->
 <div class="col-md-6" id="s2206_evtaltcontratual__dscalt__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__dscalt__label">Descrição da Alteração</label>
+    <label id="s2206_evtaltcontratual__dscalt__label">Descrição da Alteração<a data-toggle="tooltip" title="Descrição da alteração ou do instrumento que a gerou."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.dscalt.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.dscalt.errors }}
@@ -281,7 +281,7 @@
 <!-- inicio__s2206_evtaltcontratual__tpregprev -->
 <div class="col-md-6" id="s2206_evtaltcontratual__tpregprev__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__tpregprev__label">Tipo de regime previdenciário*</label>
+    <label id="s2206_evtaltcontratual__tpregprev__label">Tipo de regime previdenciário*<a data-toggle="tooltip" title="Tipo de regime previdenciário conforme opções abaixo<opcoes>1 - Regime Geral da Previdência Social - RGPS; 2 - Regime Próprio de Previdência Social - RPPS; 3 - Regime de Previdência Social no Exterior. <validacao> Se {codCateg} = [104], deve ser preenchido com [1]. Se {codCateg} = [101, 102, 103, 105, 106, 111], não pode ser preenchido com [2]. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.tpregprev.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.tpregprev.errors }}
@@ -315,7 +315,7 @@
 <!-- inicio__s2206_evtaltcontratual__codcargo -->
 <div class="col-md-6" id="s2206_evtaltcontratual__codcargo__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__codcargo__label">Código do Cargo</label>
+    <label id="s2206_evtaltcontratual__codcargo__label">Código do Cargo<a data-toggle="tooltip" title="Preencher com o código do cargo. <validacao> Não é obrigatório para o servidor público contratado com {tpProv} = [2]. Obrigatório nos demais casos. Se informado, o código informado deve constar na tabela de Cargos/Empregos Públicos - S-1030."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.codcargo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.codcargo.errors }}
@@ -330,7 +330,7 @@
 <!-- inicio__s2206_evtaltcontratual__codfuncao -->
 <div class="col-md-6" id="s2206_evtaltcontratual__codfuncao__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__codfuncao__label">Código da Função</label>
+    <label id="s2206_evtaltcontratual__codfuncao__label">Código da Função<a data-toggle="tooltip" title="Preencher com o código da função, se utilizado pelo empregador. <validacao> Preenchimento obrigatório para categorias de trabalhadores 'Agente Público' se {tpProv} = [2]. Se informado, o código informado deve constar na tabela de Funções/Cargos em Comissão - S-1040."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.codfuncao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.codfuncao.errors }}
@@ -346,7 +346,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2206_evtaltcontratual__codcateg__div">
     <div class="form-group">
-      <label id="s2206_evtaltcontratual__codcateg__label">Código da Categoria*</label>
+      <label id="s2206_evtaltcontratual__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2206_evtaltcontratual_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2206_evtaltcontratual_form.codcateg.errors }}
@@ -400,7 +400,7 @@
   {% else %}
   <div class="col-md-6" id="s2206_evtaltcontratual__codcateg__div">
     <div class="form-group">
-      <label id="s2206_evtaltcontratual__codcateg__label">Código da Categoria*</label>
+      <label id="s2206_evtaltcontratual__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2206_evtaltcontratual.codcateg %}{{ s2206_evtaltcontratual.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -409,7 +409,7 @@
 <!-- inicio__s2206_evtaltcontratual__codcarreira -->
 <div class="col-md-6" id="s2206_evtaltcontratual__codcarreira__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__codcarreira__label">Código da Carreira</label>
+    <label id="s2206_evtaltcontratual__codcarreira__label">Código da Carreira<a data-toggle="tooltip" title="Preencher com o código da carreira pública. <validacao> Se informado deve constar na tabela de Carreiras Públicas - S- 1035."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.codcarreira.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.codcarreira.errors }}
@@ -424,7 +424,7 @@
 <!-- inicio__s2206_evtaltcontratual__dtingrcarr -->
 <div class="col-md-6" id="s2206_evtaltcontratual__dtingrcarr__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__dtingrcarr__label">Data de ingresso na carreira</label>
+    <label id="s2206_evtaltcontratual__dtingrcarr__label">Data de ingresso na carreira<a data-toggle="tooltip" title="Data de ingresso na carreira identificada em {codCarreira}. <validacao> Preenchimento obrigatório se houver informação em {codCarreira}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2206_evtaltcontratual_form.dtingrcarr.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2206_evtaltcontratual_form.dtingrcarr.errors }}
@@ -444,7 +444,7 @@
 <!-- inicio__s2206_evtaltcontratual__vrsalfx -->
 <div class="col-md-6" id="s2206_evtaltcontratual__vrsalfx__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__vrsalfx__label">Valor do Salário Fixo*</label>
+    <label id="s2206_evtaltcontratual__vrsalfx__label">Valor do Salário Fixo*<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração. <validacao> Se {undSalFixo} for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.vrsalfx.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2206_evtaltcontratual_form.vrsalfx.errors }}
@@ -462,7 +462,7 @@
 <!-- inicio__s2206_evtaltcontratual__undsalfixo -->
 <div class="col-md-6" id="s2206_evtaltcontratual__undsalfixo__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__undsalfixo__label">Unidade do Salário Fixo*</label>
+    <label id="s2206_evtaltcontratual__undsalfixo__label">Unidade do Salário Fixo*<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo<opcoes>1 - Por Hora; 2 - Por Dia; 3 - Por Semana; 4 - Por Quinzena; 5 - Por Mês; 6 - Por Tarefa; 7 - Não aplicável - salário exclusivamente variável. <valores_validos> 1, 2, 3, 4, 5, 6, 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.undsalfixo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.undsalfixo.errors }}
@@ -486,7 +486,7 @@
 <!-- inicio__s2206_evtaltcontratual__dscsalvar -->
 <div class="col-md-6" id="s2206_evtaltcontratual__dscsalvar__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__dscsalvar__label">Descrição do salário variável</label>
+    <label id="s2206_evtaltcontratual__dscsalvar__label">Descrição do salário variável<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas. <validacao> Preenchimento obrigatório se {undSalFixo} for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.dscsalvar.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.dscsalvar.errors }}
@@ -506,7 +506,7 @@
 <!-- inicio__s2206_evtaltcontratual__tpcontr -->
 <div class="col-md-6" id="s2206_evtaltcontratual__tpcontr__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__tpcontr__label">Tipo de contrato de trabalho*</label>
+    <label id="s2206_evtaltcontratual__tpcontr__label">Tipo de contrato de trabalho*<a data-toggle="tooltip" title="Tipo de contrato de trabalho conforme opções abaixo<opcoes>1 - Prazo indeterminado; 2 - Prazo determinado, definido em dias; 3 - Prazo determinado, vinculado à ocorrência de um fato. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.tpcontr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.tpcontr.errors }}
@@ -530,7 +530,7 @@
 <!-- inicio__s2206_evtaltcontratual__dtterm -->
 <div class="col-md-6" id="s2206_evtaltcontratual__dtterm__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__dtterm__label">Data de Término do contrato de trabalho</label>
+    <label id="s2206_evtaltcontratual__dtterm__label">Data de Término do contrato de trabalho<a data-toggle="tooltip" title="Data do Término. <validacao> O preenchimento é obrigatório se {tpContr} igual a [2]. Deve ser igual ou posterior à data de admissão (no caso de sucessão ou de mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2206_evtaltcontratual_form.dtterm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2206_evtaltcontratual_form.dtterm.errors }}
@@ -545,7 +545,7 @@
 <!-- inicio__s2206_evtaltcontratual__objdet -->
 <div class="col-md-6" id="s2206_evtaltcontratual__objdet__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__objdet__label">Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). Validação: O preenchimento é obrigatório e exclusivo se {tpContr} = [3].</label>
+    <label id="s2206_evtaltcontratual__objdet__label">Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). Validação: O preenchimento é obrigatório e exclusivo se {tpContr} = [3].<a data-toggle="tooltip" title="Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). <validacao> O preenchimento é obrigatório e exclusivo se {tpContr} = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2206_evtaltcontratual_form.objdet.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_evtaltcontratual_form.objdet.errors }}
@@ -565,7 +565,7 @@
 <!-- inicio__s2206_evtaltcontratual__versao -->
 <div class="col-md-3" id="s2206_evtaltcontratual__versao__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__versao__label">Versão</label>
+    <label id="s2206_evtaltcontratual__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.versao.errors }}
@@ -598,7 +598,7 @@
 
 <div class="col-md-3" id="s2206_evtaltcontratual__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s2206_evtaltcontratual__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s2206_evtaltcontratual__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s2206_evtaltcontratual_form.transmissor_lote_esocial.value %}
@@ -630,7 +630,7 @@
 <!-- inicio__s2206_evtaltcontratual__status -->
 <div class="col-md-3" id="s2206_evtaltcontratual__status__div">
   <div class="form-group">
-    <label id="s2206_evtaltcontratual__status__label">Status</label>
+    <label id="s2206_evtaltcontratual__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2206_evtaltcontratual_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2206_evtaltcontratual_form.status.errors }}

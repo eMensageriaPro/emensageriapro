@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_rendisento__r4010_infopgto__div">
   <div class="form-group">
-    <label id="r4010_rendisento__r4010_infopgto__label">Rendimentos Isentos/Não Tributáveis*</label>
+    <label id="r4010_rendisento__r4010_infopgto__label">Rendimentos Isentos/Não Tributáveis*<a data-toggle="tooltip" title="Rendimentos isentos ou não tributáveis."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4010_rendisento_form.r4010_infopgto.value %}
         <a id="r4010_rendisento__r4010_infopgto__div_acessar" href="{% url 'r4010_infopgto_salvar' pk=r4010_rendisento_form.r4010_infopgto.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_rendisento__tpisencao -->
 <div class="col-md-6" id="r4010_rendisento__tpisencao__div">
   <div class="form-group">
-    <label id="r4010_rendisento__tpisencao__label">Tipo de Isenção*</label>
+    <label id="r4010_rendisento__tpisencao__label">Tipo de Isenção*<a data-toggle="tooltip" title="Tipo de Isenção<opcoes>1 - Parcela Isenta 65 anos; 2 - Diária de viagem; 3 - Indenização e rescisão de contrato, inclusive a título de PDV; 4 - Abono pecuniário; 5 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 6 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço; 7 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995; 8 - Ajuda de custo; 99 - Outros (especificar). <validacao> Vide regras na tabela 1 - Regras para Utilização dos Tipos de Isenção, na coluna "Rendimentos Isentos". <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_rendisento_form.tpisencao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_rendisento_form.tpisencao.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r4010_rendisento__vlrisento -->
 <div class="col-md-6" id="r4010_rendisento__vlrisento__div">
   <div class="form-group">
-    <label id="r4010_rendisento__vlrisento__label">Valor da Parcela Isenta*</label>
+    <label id="r4010_rendisento__vlrisento__label">Valor da Parcela Isenta*<a data-toggle="tooltip" title="Valor da parcela isenta. <validacao> Não pode ser maior que {vlrRendBruto}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_rendisento_form.vlrisento.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_rendisento_form.vlrisento.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__r4010_rendisento__descrendimento -->
 <div class="col-md-6" id="r4010_rendisento__descrendimento__div">
   <div class="form-group">
-    <label id="r4010_rendisento__descrendimento__label">Descrição do rendimento isento/Não tributável</label>
+    <label id="r4010_rendisento__descrendimento__label">Descrição do rendimento isento/Não tributável<a data-toggle="tooltip" title="Descrição do rendimento isento/Não tributável. <validacao> Informação obrigatória e exclusiva se {tpIsencao} = [99])."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_rendisento_form.descrendimento.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_rendisento_form.descrendimento.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r4010_rendisento__dtlaudo -->
 <div class="col-md-6" id="r4010_rendisento__dtlaudo__div">
   <div class="form-group">
-    <label id="r4010_rendisento__dtlaudo__label">Data atribuída pelo laudo da moléstia grave</label>
+    <label id="r4010_rendisento__dtlaudo__label">Data atribuída pelo laudo da moléstia grave<a data-toggle="tooltip" title="Data da moléstia grave atribuída pelo laudo. <validacao> Informação obrigatória e exclusiva se {tpIsencao} = [8]. Se informada, a data deve ser anterior ou igual ao período de apuração ao qual se refere o arquivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4010_rendisento_form.dtlaudo.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r4010_rendisento_form.dtlaudo.errors }}

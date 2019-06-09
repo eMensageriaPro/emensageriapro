@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_infopgto__r4010_idepgto__div">
   <div class="form-group">
-    <label id="r4010_infopgto__r4010_idepgto__label">Informações do Pagamento*</label>
+    <label id="r4010_infopgto__r4010_idepgto__label">Informações do Pagamento*<a data-toggle="tooltip" title="Informações relativas ao pagamento efetuado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4010_infopgto_form.r4010_idepgto.value %}
         <a id="r4010_infopgto__r4010_idepgto__div_acessar" href="{% url 'r4010_idepgto_salvar' pk=r4010_infopgto_form.r4010_idepgto.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_infopgto__dtfg -->
 <div class="col-md-6" id="r4010_infopgto__dtfg__div">
   <div class="form-group">
-    <label id="r4010_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*</label>
+    <label id="r4010_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*<a data-toggle="tooltip" title="Informar a data do fato gerador ou pagamento/crédito. <validacao> A data informada deve estar compreendida no período de apuração ao qual se refere o arquivo, conforme informado em (perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4010_infopgto_form.dtfg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r4010_infopgto_form.dtfg.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4010_infopgto__inddecterc -->
 <div class="col-md-6" id="r4010_infopgto__inddecterc__div">
   <div class="form-group">
-    <label id="r4010_infopgto__inddecterc__label">Indicativo de décimo terceiro salário*</label>
+    <label id="r4010_infopgto__inddecterc__label">Indicativo de décimo terceiro salário*<a data-toggle="tooltip" title="Indicativo de décimo terceiro salário<opcoes>S - Sim; N - Não. <validacao> Deve estar de acordo com as regras estabelecidas na tabela 1, na coluna 13° Salário. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.inddecterc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_infopgto_form.inddecterc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r4010_infopgto__vlrrendbruto -->
 <div class="col-md-6" id="r4010_infopgto__vlrrendbruto__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrrendbruto__label">Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos*</label>
+    <label id="r4010_infopgto__vlrrendbruto__label">Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos*<a data-toggle="tooltip" title="Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrrendbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrrendbruto.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r4010_infopgto__vlrrendtrib -->
 <div class="col-md-6" id="r4010_infopgto__vlrrendtrib__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrrendtrib__label">Valor do rendimento tributável, conforme previsto na legislação</label>
+    <label id="r4010_infopgto__vlrrendtrib__label">Valor do rendimento tributável, conforme previsto na legislação<a data-toggle="tooltip" title="Valor do rendimento tributável, conforme previsto na legislação. <validacao> Só pode ser informado se, para a natureza de rendimento informada em {natRend}, a coluna "TRIBUTO" da tabela 1 for igual a "IR"."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrrendtrib.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrrendtrib.errors }}
@@ -116,7 +116,7 @@
 <!-- inicio__r4010_infopgto__vlrir -->
 <div class="col-md-6" id="r4010_infopgto__vlrir__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</label>
+    <label id="r4010_infopgto__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação<a data-toggle="tooltip" title="Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação. <validacao> Só pode ser informado se, para a natureza de rendimento informada em {natRend}, a coluna "TRIBUTO" da tabela 1 for igual a "IR"."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrir.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__r4010_infopgto__vlrrendsusp -->
 <div class="col-md-6" id="r4010_infopgto__vlrrendsusp__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrrendsusp__label">Valor do rendimento com exigibilidade suspensa</label>
+    <label id="r4010_infopgto__vlrrendsusp__label">Valor do rendimento com exigibilidade suspensa<a data-toggle="tooltip" title="Valor do rendimento com exigibilidade suspensa. <validacao> Não pode ser maior que {vlrRendTrib}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrrendsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrrendsusp.errors }}
@@ -152,7 +152,7 @@
 <!-- inicio__r4010_infopgto__vlrnir -->
 <div class="col-md-6" id="r4010_infopgto__vlrnir__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrnir__label">Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte</label>
+    <label id="r4010_infopgto__vlrnir__label">Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte. <validacao> O somatório de {vlrNIR} + {vlrDeposito} não pode ser maior que {vlrIR}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrnir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrnir.errors }}
@@ -170,7 +170,7 @@
 <!-- inicio__r4010_infopgto__vlrdeposito -->
 <div class="col-md-6" id="r4010_infopgto__vlrdeposito__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrdeposito__label">Valor do depósito judicial</label>
+    <label id="r4010_infopgto__vlrdeposito__label">Valor do depósito judicial<a data-toggle="tooltip" title="Valor do depósito judicial. <validacao> O somatório de {vlrNIR} + {vlrDeposito} não pode ser maior que {vlrIR}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrdeposito.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrdeposito.errors }}
@@ -188,7 +188,7 @@
 <!-- inicio__r4010_infopgto__vlrcompanocalend -->
 <div class="col-md-6" id="r4010_infopgto__vlrcompanocalend__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrcompanocalend__label">Compensação Judicial relativa ao ano calendário</label>
+    <label id="r4010_infopgto__vlrcompanocalend__label">Compensação Judicial relativa ao ano calendário<a data-toggle="tooltip" title="Compensação Judicial relativa ao ano calendário. <validacao> Deve estar de acordo com a tabela 1, na coluna "Compensação do Imposto por Decisão Judicial". Informação obrigatória e exclusiva se {paisResid} = [105] (Brasil)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrcompanocalend.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrcompanocalend.errors }}
@@ -206,7 +206,7 @@
 <!-- inicio__r4010_infopgto__vlrcompanoant -->
 <div class="col-md-6" id="r4010_infopgto__vlrcompanoant__div">
   <div class="form-group">
-    <label id="r4010_infopgto__vlrcompanoant__label">Compensação Judicial relativa a anos anteriores ao ano calendário</label>
+    <label id="r4010_infopgto__vlrcompanoant__label">Compensação Judicial relativa a anos anteriores ao ano calendário<a data-toggle="tooltip" title="Compensação Judicial relativa a anos anteriores ao ano calendário. <validacao> Deve estar de acordo com a tabela 1, na coluna "Compensação do Imposto por Decisão Judicial". Informação obrigatória e exclusiva se {paisResid} = [105] (Brasil)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_infopgto_form.vlrcompanoant.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infopgto_form.vlrcompanoant.errors }}

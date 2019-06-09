@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_r2099(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_r2099_evtfechaevper_string({}, texto.encode('utf-8'), 0)
+        dados = read_r2099_evtfechaevper_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r2099_evtfechaevper)
 
         r2099evtFechaEvPer.objects.filter(id=dados['id']).\

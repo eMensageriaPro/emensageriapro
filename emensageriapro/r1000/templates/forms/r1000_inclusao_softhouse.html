@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r1000_inclusao_softhouse__r1000_inclusao__div">
   <div class="form-group">
-    <label id="r1000_inclusao_softhouse__r1000_inclusao__label">Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.*</label>
+    <label id="r1000_inclusao_softhouse__r1000_inclusao__label">Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.*<a data-toggle="tooltip" title="Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r1000_inclusao_softhouse_form.r1000_inclusao.value %}
         <a id="r1000_inclusao_softhouse__r1000_inclusao__div_acessar" href="{% url 'r1000_inclusao_salvar' pk=r1000_inclusao_softhouse_form.r1000_inclusao.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r1000_inclusao_softhouse__cnpjsofthouse -->
 <div class="col-md-6" id="r1000_inclusao_softhouse__cnpjsofthouse__div">
   <div class="form-group">
-    <label id="r1000_inclusao_softhouse__cnpjsofthouse__label">CNPJ da empresa desenvolvedora do software.*</label>
+    <label id="r1000_inclusao_softhouse__cnpjsofthouse__label">CNPJ da empresa desenvolvedora do software.*<a data-toggle="tooltip" title="CNPJ da empresa desenvolvedora do software."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_softhouse_form.cnpjsofthouse.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_softhouse_form.cnpjsofthouse.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r1000_inclusao_softhouse__nmrazao -->
 <div class="col-md-6" id="r1000_inclusao_softhouse__nmrazao__div">
   <div class="form-group">
-    <label id="r1000_inclusao_softhouse__nmrazao__label">Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.*</label>
+    <label id="r1000_inclusao_softhouse__nmrazao__label">Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.*<a data-toggle="tooltip" title="Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_softhouse_form.nmrazao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_softhouse_form.nmrazao.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r1000_inclusao_softhouse__nmcont -->
 <div class="col-md-6" id="r1000_inclusao_softhouse__nmcont__div">
   <div class="form-group">
-    <label id="r1000_inclusao_softhouse__nmcont__label">Nome do contato na empresa.*</label>
+    <label id="r1000_inclusao_softhouse__nmcont__label">Nome do contato na empresa.*<a data-toggle="tooltip" title="Nome do contato na empresa."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_softhouse_form.nmcont.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_softhouse_form.nmcont.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r1000_inclusao_softhouse__telefone -->
 <div class="col-md-6" id="r1000_inclusao_softhouse__telefone__div">
   <div class="form-group">
-    <label id="r1000_inclusao_softhouse__telefone__label">Informar o número do telefone, com DDD</label>
+    <label id="r1000_inclusao_softhouse__telefone__label">Informar o número do telefone, com DDD<a data-toggle="tooltip" title="Informar o número do telefone, com DDD. <validacao> Se preenchido, deve conter apenas números com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_softhouse_form.telefone.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_softhouse_form.telefone.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__r1000_inclusao_softhouse__email -->
 <div class="col-md-6" id="r1000_inclusao_softhouse__email__div">
   <div class="form-group">
-    <label id="r1000_inclusao_softhouse__email__label">Endereço eletrônico</label>
+    <label id="r1000_inclusao_softhouse__email__label">Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_inclusao_softhouse_form.email.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_inclusao_softhouse_form.email.errors }}

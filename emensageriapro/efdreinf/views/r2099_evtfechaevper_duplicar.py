@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r2099(request, pk, versao="|")
-            dados = read_r2099_evtfechaevper_string({}, texto.encode('utf-8'), 0)
+            dados = read_r2099_evtfechaevper_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r2099_evtfechaevper)
     
             r2099evtFechaEvPer.objects.filter(id=dados['id']).\

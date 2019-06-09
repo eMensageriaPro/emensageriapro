@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r9000(request, pk, versao="|")
-            dados = read_r9000_evtexclusao_string({}, texto.encode('utf-8'), 0)
+            dados = read_r9000_evtexclusao_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r9000_evtexclusao)
     
             r9000evtExclusao.objects.filter(id=dados['id']).\

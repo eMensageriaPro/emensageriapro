@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1000(request, pk, versao="|")
-            dados = read_s1000_evtinfoempregador_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1000_evtinfoempregador_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1000_evtinfoempregador)
     
             s1000evtInfoEmpregador.objects.filter(id=dados['id']).\

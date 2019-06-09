@@ -67,7 +67,7 @@
                                                 style="color:red">Somente é permitido importar arquivos em XML ou lotes
                                             de arquivos .XML compactados com as extensões .ZIP</font></div>
                                         <div class="modal-body">
-                                            <form action="{% url 'scripts_salvar_arquivos' %}" method="post"
+                                            <form action="{% url 'scripts_salvar_arquivos' tab-'master' %}" method="post"
                                                   enctype="multipart/form-data">{% csrf_token %}
                                                 <div class="form-group"><input type="file" class="form-control"
                                                                                name="arquivo" id="file"

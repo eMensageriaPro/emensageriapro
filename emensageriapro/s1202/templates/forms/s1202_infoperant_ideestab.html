@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1202_infoperant_ideestab__s1202_infoperant_ideperiodo__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideestab__s1202_infoperant_ideperiodo__label">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas*</label>
+    <label id="s1202_infoperant_ideestab__s1202_infoperant_ideperiodo__label">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas*<a data-toggle="tooltip" title="Registro que identifica a Unidade do Órgão Público na qual o servidor possui remuneração."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1202_infoperant_ideestab_form.s1202_infoperant_ideperiodo.value %}
         <a id="s1202_infoperant_ideestab__s1202_infoperant_ideperiodo__div_acessar" href="{% url 's1202_infoperant_ideperiodo_salvar' pk=s1202_infoperant_ideestab_form.s1202_infoperant_ideperiodo.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1202_infoperant_ideestab__tpinsc -->
 <div class="col-md-4" id="s1202_infoperant_ideestab__tpinsc__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideestab__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s1202_infoperant_ideestab__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1202_infoperant_ideestab_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1202_infoperant_ideestab_form.tpinsc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1202_infoperant_ideestab__nrinsc -->
 <div class="col-md-4" id="s1202_infoperant_ideestab__nrinsc__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideestab__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1202_infoperant_ideestab__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser um número de CNPJ válido e deve constar na tabela S- 1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_infoperant_ideestab_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperant_ideestab_form.nrinsc.errors }}

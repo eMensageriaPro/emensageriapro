@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2405(request, pk, versao="|")
-            dados = read_s2405_evtcdbenefalt_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2405_evtcdbenefalt_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2405_evtcdbenefalt)
     
             s2405evtCdBenefAlt.objects.filter(id=dados['id']).\

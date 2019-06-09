@@ -10,7 +10,7 @@
 <!-- inicio__r9001_evttotal__identidade -->
 <div class="col-md-6" id="r9001_evttotal__identidade__div">
   <div class="form-group">
-    <label id="r9001_evttotal__identidade__label">Identificação única do evento</label>
+    <label id="r9001_evttotal__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__r9001_evttotal__perapur -->
 <div class="col-md-6" id="r9001_evttotal__perapur__div">
   <div class="form-group">
-    <label id="r9001_evttotal__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+    <label id="r9001_evttotal__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês no formato AAAA-MM ou ano/mês/dia no formato AAAA-MM-DD de referência das informações. O formato diário refere-se a consolidação de bases e tributos informados apenas através do evento R-3010. <validacao> Deve ser uma data, igual ou posterior a implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.perapur.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r9001_evttotal__tpinsc -->
 <div class="col-md-6" id="r9001_evttotal__tpinsc__div">
   <div class="form-group">
-    <label id="r9001_evttotal__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    <label id="r9001_evttotal__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.tpinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.tpinsc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r9001_evttotal__nrinsc -->
 <div class="col-md-6" id="r9001_evttotal__nrinsc__div">
   <div class="form-group">
-    <label id="r9001_evttotal__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+    <label id="r9001_evttotal__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.nrinsc.errors }}
@@ -90,7 +90,7 @@
 <!-- inicio__r9001_evttotal__cdretorno -->
 <div class="col-md-6" id="r9001_evttotal__cdretorno__div">
   <div class="form-group">
-    <label id="r9001_evttotal__cdretorno__label">Código do Retorno*</label>
+    <label id="r9001_evttotal__cdretorno__label">Código do Retorno*<a data-toggle="tooltip" title="Código do Retorno<opcoes>0 - Sucesso; 1 - Erro; 2 - Em processamento. <valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_evttotal_form.cdretorno.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9001_evttotal_form.cdretorno.errors }}
@@ -114,7 +114,7 @@
 <!-- inicio__r9001_evttotal__descretorno -->
 <div class="col-md-6" id="r9001_evttotal__descretorno__div">
   <div class="form-group">
-    <label id="r9001_evttotal__descretorno__label">Descrição do retorno*</label>
+    <label id="r9001_evttotal__descretorno__label">Descrição do retorno*<a data-toggle="tooltip" title="Descrição do retorno."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.descretorno.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.descretorno.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__r9001_evttotal__nrprotentr -->
 <div class="col-md-6" id="r9001_evttotal__nrprotentr__div">
   <div class="form-group">
-    <label id="r9001_evttotal__nrprotentr__label">Número do protocolo de entrega do evento</label>
+    <label id="r9001_evttotal__nrprotentr__label">Número do protocolo de entrega do evento<a data-toggle="tooltip" title="Número do protocolo de entrega do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.nrprotentr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.nrprotentr.errors }}
@@ -149,7 +149,7 @@
 <!-- inicio__r9001_evttotal__dhprocess -->
 <div class="col-md-6" id="r9001_evttotal__dhprocess__div">
   <div class="form-group">
-    <label id="r9001_evttotal__dhprocess__label">Data e hora do início do processamento da consulta*</label>
+    <label id="r9001_evttotal__dhprocess__label">Data e hora do início do processamento da consulta*<a data-toggle="tooltip" title="Data e hora do início do processamento da consulta."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r9001_evttotal_form.dhprocess.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r9001_evttotal_form.dhprocess.errors }}
@@ -164,7 +164,7 @@
 <!-- inicio__r9001_evttotal__tpev -->
 <div class="col-md-6" id="r9001_evttotal__tpev__div">
   <div class="form-group">
-    <label id="r9001_evttotal__tpev__label">Tipo do Evento*</label>
+    <label id="r9001_evttotal__tpev__label">Tipo do Evento*<a data-toggle="tooltip" title="Tipo do Evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.tpev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.tpev.errors }}
@@ -179,7 +179,7 @@
 <!-- inicio__r9001_evttotal__idev -->
 <div class="col-md-6" id="r9001_evttotal__idev__div">
   <div class="form-group">
-    <label id="r9001_evttotal__idev__label">ID do Evento*</label>
+    <label id="r9001_evttotal__idev__label">ID do Evento*<a data-toggle="tooltip" title="ID do Evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.idev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.idev.errors }}
@@ -194,7 +194,7 @@
 <!-- inicio__r9001_evttotal__hash -->
 <div class="col-md-6" id="r9001_evttotal__hash__div">
   <div class="form-group">
-    <label id="r9001_evttotal__hash__label">Hash do arquivo processado*</label>
+    <label id="r9001_evttotal__hash__label">Hash do arquivo processado*<a data-toggle="tooltip" title="Hash do arquivo processado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_evttotal_form.hash.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_evttotal_form.hash.errors }}
@@ -209,7 +209,7 @@
 <!-- inicio__r9001_evttotal__versao -->
 <div class="col-md-3" id="r9001_evttotal__versao__div">
   <div class="form-group">
-    <label id="r9001_evttotal__versao__label">Versão</label>
+    <label id="r9001_evttotal__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_evttotal_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9001_evttotal_form.versao.errors }}
@@ -242,7 +242,7 @@
 
 <div class="col-md-3" id="r9001_evttotal__transmissor_lote_efdreinf__div">
 <div class="form-group">
-  <label id="r9001_evttotal__transmissor_lote_efdreinf__label">Transmissor</label>
+  <label id="r9001_evttotal__transmissor_lote_efdreinf__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if r9001_evttotal_form.transmissor_lote_efdreinf.value %}
@@ -274,7 +274,7 @@
 <!-- inicio__r9001_evttotal__status -->
 <div class="col-md-3" id="r9001_evttotal__status__div">
   <div class="form-group">
-    <label id="r9001_evttotal__status__label">Status</label>
+    <label id="r9001_evttotal__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_evttotal_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9001_evttotal_form.status.errors }}

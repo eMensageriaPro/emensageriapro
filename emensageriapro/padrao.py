@@ -84,7 +84,7 @@ def range_ano_mes():
     for a in anos: 
         for (m, me) in zip(meses, meses_ext): 
             lista.append( (str(a)+'-'+m, me+'/'+str(a)) )
-    print lista
+    # print lista
 
 
 def listar_ids(objeto):

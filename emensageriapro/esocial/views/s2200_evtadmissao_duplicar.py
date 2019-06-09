@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2200(request, pk, versao="|")
-            dados = read_s2200_evtadmissao_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2200_evtadmissao_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2200_evtadmissao)
     
             s2200evtAdmissao.objects.filter(id=dados['id']).\

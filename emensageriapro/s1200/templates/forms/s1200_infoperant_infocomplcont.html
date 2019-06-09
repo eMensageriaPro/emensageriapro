@@ -5,7 +5,7 @@
 <!-- inicio__s1200_infoperant_infocomplcont__s1200_dmdev -->
 <div class="col-md-12" id="s1200_infoperant_infocomplcont__s1200_dmdev__div">
   <div class="form-group">
-    <label id="s1200_infoperant_infocomplcont__s1200_dmdev__label">Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).*</label>
+    <label id="s1200_infoperant_infocomplcont__s1200_dmdev__label">Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).*<a data-toggle="tooltip" title="Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1200_infoperant_infocomplcont_form.s1200_dmdev.value %}
         <a href="{% url 's1200_dmdev_salvar' pk=s1200_infoperant_infocomplcont_form.s1200_dmdev.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1200_infoperant_infocomplcont__codcbo -->
 <div class="col-md-3" id="s1200_infoperant_infocomplcont__codcbo__div">
   <div class="form-group">
-    <label id="s1200_infoperant_infocomplcont__codcbo__label">CBO*</label>
+    <label id="s1200_infoperant_infocomplcont__codcbo__label">CBO*<a data-toggle="tooltip" title="Classificação Brasileira de Ocupação - CBO. <validacao> Deve ser um código existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_infoperant_infocomplcont_form.codcbo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_infoperant_infocomplcont_form.codcbo.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s1200_infoperant_infocomplcont__natatividade -->
 <div class="col-md-3" id="s1200_infoperant_infocomplcont__natatividade__div">
   <div class="form-group">
-    <label id="s1200_infoperant_infocomplcont__natatividade__label">Natureza da atividade</label>
+    <label id="s1200_infoperant_infocomplcont__natatividade__label">Natureza da atividade<a data-toggle="tooltip" title="Natureza da atividade, conforme opções abaixo<opcoes>1 - Trabalho Urbano; 2 - Trabalho Rural. <validacao> O campo deve ser preenchido apenas se atendida uma das condições a seguir apresentadas: a) a classificação tributária for igual a [06, 07, 08]; b) a classificação tributária for igual a [21,22] e existir remuneração para o trabalhador vinculada a um tipo de CAEPF informado em S-1005 como produtor rural ou segurado especial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_infoperant_infocomplcont_form.natatividade.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_infoperant_infocomplcont_form.natatividade.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1200_infoperant_infocomplcont__qtddiastrab -->
 <div class="col-md-3" id="s1200_infoperant_infocomplcont__qtddiastrab__div">
   <div class="form-group">
-    <label id="s1200_infoperant_infocomplcont__qtddiastrab__label">Quant. de dias trabalhados</label>
+    <label id="s1200_infoperant_infocomplcont__qtddiastrab__label">Quant. de dias trabalhados<a data-toggle="tooltip" title="Informação prestada exclusivamente pelo Segurado Especial em caso de contratação de Contribuinte Individual, indicando a quantidade de dias trabalhados pelo mesmo. <validacao> Só pode ser preenchido se {classTrib} = [22] e exista remuneração exclusivamente na categoria [701]. Neste caso, preencher com um número entre 1 e 31."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_infoperant_infocomplcont_form.qtddiastrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_infoperant_infocomplcont_form.qtddiastrab.errors }}

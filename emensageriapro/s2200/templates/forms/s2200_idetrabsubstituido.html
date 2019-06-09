@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2200_idetrabsubstituido__s2200_trabtemporario__div">
   <div class="form-group">
-    <label id="s2200_idetrabsubstituido__s2200_trabtemporario__label">Identificação do(s) trabalhador(es) substituído(s)*</label>
+    <label id="s2200_idetrabsubstituido__s2200_trabtemporario__label">Identificação do(s) trabalhador(es) substituído(s)*<a data-toggle="tooltip" title="Identificação do(s) trabalhador(es) substituído(s)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2200_idetrabsubstituido_form.s2200_trabtemporario.value %}
         <a id="s2200_idetrabsubstituido__s2200_trabtemporario__div_acessar" href="{% url 's2200_trabtemporario_salvar' pk=s2200_idetrabsubstituido_form.s2200_trabtemporario.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2200_idetrabsubstituido__cpftrabsubst -->
 <div class="col-md-6" id="s2200_idetrabsubstituido__cpftrabsubst__div">
   <div class="form-group">
-    <label id="s2200_idetrabsubstituido__cpftrabsubst__label">CPF*</label>
+    <label id="s2200_idetrabsubstituido__cpftrabsubst__label">CPF*<a data-toggle="tooltip" title="CPF do trabalhador substituído. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_idetrabsubstituido_form.cpftrabsubst.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_idetrabsubstituido_form.cpftrabsubst.errors }}

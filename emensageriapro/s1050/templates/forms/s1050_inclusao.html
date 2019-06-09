@@ -5,7 +5,7 @@
 <!-- inicio__s1050_inclusao__s1050_evttabhortur -->
 <div class="col-md-12" id="s1050_inclusao__s1050_evttabhortur__div">
   <div class="form-group">
-    <label id="s1050_inclusao__s1050_evttabhortur__label">Inclusão de novas informações*</label>
+    <label id="s1050_inclusao__s1050_evttabhortur__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1050_inclusao_form.s1050_evttabhortur.value %}
         <a href="{% url 's1050_evttabhortur_salvar' pk=s1050_inclusao_form.s1050_evttabhortur.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1050_inclusao__codhorcontrat -->
 <div class="col-md-6" id="s1050_inclusao__codhorcontrat__div">
   <div class="form-group">
-    <label id="s1050_inclusao__codhorcontrat__label">Código do Horário Contratual*</label>
+    <label id="s1050_inclusao__codhorcontrat__label">Código do Horário Contratual*<a data-toggle="tooltip" title="Preencher com o código atribuído pela empresa para o Horário Contratual."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_form.codhorcontrat.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_form.codhorcontrat.errors }}
@@ -52,7 +52,7 @@
 <!-- inicio__s1050_inclusao__inivalid -->
 <div class="col-md-6" id="s1050_inclusao__inivalid__div">
   <div class="form-group">
-    <label id="s1050_inclusao__inivalid__label">Início da Validade*</label>
+    <label id="s1050_inclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1050_inclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1050_inclusao_form.inivalid.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1050_inclusao__fimvalid -->
 <div class="col-md-6" id="s1050_inclusao__fimvalid__div">
   <div class="form-group">
-    <label id="s1050_inclusao__fimvalid__label">Fim da Validade</label>
+    <label id="s1050_inclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1050_inclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1050_inclusao_form.fimvalid.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1050_inclusao__hrentr -->
 <div class="col-md-6" id="s1050_inclusao__hrentr__div">
   <div class="form-group">
-    <label id="s1050_inclusao__hrentr__label">Hora de Entrada*</label>
+    <label id="s1050_inclusao__hrentr__label">Hora de Entrada*<a data-toggle="tooltip" title="Informar hora da entrada, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_form.hrentr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_form.hrentr.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1050_inclusao__hrsaida -->
 <div class="col-md-6" id="s1050_inclusao__hrsaida__div">
   <div class="form-group">
-    <label id="s1050_inclusao__hrsaida__label">Hora de Saída*</label>
+    <label id="s1050_inclusao__hrsaida__label">Hora de Saída*<a data-toggle="tooltip" title="Informar hora da saída, no formato HHMM. <validacao> Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_form.hrsaida.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_form.hrsaida.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s1050_inclusao__durjornada -->
 <div class="col-md-6" id="s1050_inclusao__durjornada__div">
   <div class="form-group">
-    <label id="s1050_inclusao__durjornada__label">Duração da jornada (min)*</label>
+    <label id="s1050_inclusao__durjornada__label">Duração da jornada (min)*<a data-toggle="tooltip" title="Preencher com o tempo de duração da jornada, em minutos. Devem ser consideradas as horas reduzidas noturnas, se houver."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1050_inclusao_form.durjornada.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1050_inclusao_form.durjornada.errors }}
@@ -150,7 +150,7 @@
 <!-- inicio__s1050_inclusao__perhorflexivel -->
 <div class="col-md-6" id="s1050_inclusao__perhorflexivel__div">
   <div class="form-group">
-    <label id="s1050_inclusao__perhorflexivel__label">Horário Flexivel*</label>
+    <label id="s1050_inclusao__perhorflexivel__label">Horário Flexivel*<a data-toggle="tooltip" title="Indicar se é permitida a flexibilidade<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1050_inclusao_form.perhorflexivel.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1050_inclusao_form.perhorflexivel.errors }}

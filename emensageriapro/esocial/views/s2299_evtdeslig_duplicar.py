@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2299(request, pk, versao="|")
-            dados = read_s2299_evtdeslig_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2299_evtdeslig_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2299_evtdeslig)
     
             s2299evtDeslig.objects.filter(id=dados['id']).\

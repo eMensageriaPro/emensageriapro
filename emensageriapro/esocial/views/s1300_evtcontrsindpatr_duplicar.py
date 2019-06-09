@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1300(request, pk, versao="|")
-            dados = read_s1300_evtcontrsindpatr_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1300_evtcontrsindpatr_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1300_evtcontrsindpatr)
     
             s1300evtContrSindPatr.objects.filter(id=dados['id']).\

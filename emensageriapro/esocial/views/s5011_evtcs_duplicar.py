@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s5011(request, pk, versao="|")
-            dados = read_s5011_evtcs_string({}, texto.encode('utf-8'), 0)
+            dados = read_s5011_evtcs_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s5011_evtcs)
     
             s5011evtCS.objects.filter(id=dados['id']).\

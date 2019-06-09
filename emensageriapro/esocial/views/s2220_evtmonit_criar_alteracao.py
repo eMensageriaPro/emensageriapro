@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_s2220(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s2220_evtmonit_string({}, texto.encode('utf-8'), 0)
+        dados = read_s2220_evtmonit_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s2220_evtmonit)
 
         s2220evtMonit.objects.filter(id=dados['id']).\

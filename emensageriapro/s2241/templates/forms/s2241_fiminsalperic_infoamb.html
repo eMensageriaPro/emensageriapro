@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__div">
   <div class="form-group">
-    <label id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__label">Informações relativas ao ambiente de trabalho*</label>
+    <label id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__label">Informações relativas ao ambiente de trabalho*<a data-toggle="tooltip" title="Detalha o ambiente de trabalho em que o trabalhador desempenha atividade insalubre/periculosa"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2241_fiminsalperic_infoamb_form.s2241_fiminsalperic.value %}
         <a id="s2241_fiminsalperic_infoamb__s2241_fiminsalperic__div_acessar" href="{% url 's2241_fiminsalperic_salvar' pk=s2241_fiminsalperic_infoamb_form.s2241_fiminsalperic.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2241_fiminsalperic_infoamb__codamb -->
 <div class="col-md-6" id="s2241_fiminsalperic_infoamb__codamb__div">
   <div class="form-group">
-    <label id="s2241_fiminsalperic_infoamb__codamb__label">Código do Ambiente*</label>
+    <label id="s2241_fiminsalperic_infoamb__codamb__label">Código do Ambiente*<a data-toggle="tooltip" title="Preencher com o código atribuído pela empresa ao Ambiente de Trabalho"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2241_fiminsalperic_infoamb_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2241_fiminsalperic_infoamb_form.codamb.errors }}

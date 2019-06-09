@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r2070(request, pk, versao="|")
-            dados = read_r2070_evtpgtosdivs_string({}, texto.encode('utf-8'), 0)
+            dados = read_r2070_evtpgtosdivs_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r2070_evtpgtosdivs)
     
             r2070evtPgtosDivs.objects.filter(id=dados['id']).\

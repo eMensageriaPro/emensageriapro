@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2399_dmdev__s2399_verbasresc__div">
   <div class="form-group">
-    <label id="s2399_dmdev__s2399_verbasresc__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*</label>
+    <label id="s2399_dmdev__s2399_verbasresc__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*<a data-toggle="tooltip" title="Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos. As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr}, {ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês da data do desligamento informada no campo {dtTerm}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2399_dmdev_form.s2399_verbasresc.value %}
         <a id="s2399_dmdev__s2399_verbasresc__div_acessar" href="{% url 's2399_verbasresc_salvar' pk=s2399_dmdev_form.s2399_verbasresc.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2399_dmdev__idedmdev -->
 <div class="col-md-6" id="s2399_dmdev__idedmdev__div">
   <div class="form-group">
-    <label id="s2399_dmdev__idedmdev__label">Identificador dos demostrativos de pagamento*</label>
+    <label id="s2399_dmdev__idedmdev__label">Identificador dos demostrativos de pagamento*<a data-toggle="tooltip" title="Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias. <validacao> Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento gerados no presente arquivo de rescisão contratual."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2399_dmdev_form.idedmdev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2399_dmdev_form.idedmdev.errors }}

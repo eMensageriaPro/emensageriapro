@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2221(request, pk, versao="|")
-            dados = read_s2221_evttoxic_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2221_evttoxic_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2221_evttoxic)
     
             s2221evtToxic.objects.filter(id=dados['id']).\

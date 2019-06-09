@@ -5,7 +5,7 @@
 <!-- inicio__s2300_remuneracao__s2300_infocomplementares -->
 <div class="col-md-12" id="s2300_remuneracao__s2300_infocomplementares__div">
   <div class="form-group">
-    <label id="s2300_remuneracao__s2300_infocomplementares__label">Informações da remuneração e periodicidade de pagamento*</label>
+    <label id="s2300_remuneracao__s2300_infocomplementares__label">Informações da remuneração e periodicidade de pagamento*<a data-toggle="tooltip" title="Informações da remuneração e periodicidade de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_remuneracao_form.s2300_infocomplementares.value %}
         <a href="{% url 's2300_infocomplementares_salvar' pk=s2300_remuneracao_form.s2300_infocomplementares.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_remuneracao__vrsalfx -->
 <div class="col-md-3" id="s2300_remuneracao__vrsalfx__div">
   <div class="form-group">
-    <label id="s2300_remuneracao__vrsalfx__label">Valor do Salário Fixo*</label>
+    <label id="s2300_remuneracao__vrsalfx__label">Valor do Salário Fixo*<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração. <validacao> Se {undSalFixo} for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2300_remuneracao_form.vrsalfx.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2300_remuneracao_form.vrsalfx.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__s2300_remuneracao__undsalfixo -->
 <div class="col-md-3" id="s2300_remuneracao__undsalfixo__div">
   <div class="form-group">
-    <label id="s2300_remuneracao__undsalfixo__label">Unidade do Salário Fixo*</label>
+    <label id="s2300_remuneracao__undsalfixo__label">Unidade do Salário Fixo*<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo<opcoes>1 - Por Hora; 2 - Por Dia; 3 - Por Semana; 4 - Por Quinzena; 5 - Por Mês; 6 - Por Tarefa; 7 - Não aplicável - salário exclusivamente variável. <valores_validos> 1, 2, 3, 4, 5, 6, 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2300_remuneracao_form.undsalfixo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2300_remuneracao_form.undsalfixo.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__s2300_remuneracao__dscsalvar -->
 <div class="col-md-3" id="s2300_remuneracao__dscsalvar__div">
   <div class="form-group">
-    <label id="s2300_remuneracao__dscsalvar__label">Descrição do salário variável</label>
+    <label id="s2300_remuneracao__dscsalvar__label">Descrição do salário variável<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas. <validacao> Preenchimento obrigatório se {undSalFixo} for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2300_remuneracao_form.dscsalvar.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_remuneracao_form.dscsalvar.errors }}

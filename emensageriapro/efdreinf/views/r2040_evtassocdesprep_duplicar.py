@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r2040(request, pk, versao="|")
-            dados = read_r2040_evtassocdesprep_string({}, texto.encode('utf-8'), 0)
+            dados = read_r2040_evtassocdesprep_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r2040_evtassocdesprep)
     
             r2040evtAssocDespRep.objects.filter(id=dados['id']).\

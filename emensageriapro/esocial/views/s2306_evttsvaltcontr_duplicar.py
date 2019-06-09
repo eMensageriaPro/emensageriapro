@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2306(request, pk, versao="|")
-            dados = read_s2306_evttsvaltcontr_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2306_evttsvaltcontr_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2306_evttsvaltcontr)
     
             s2306evtTSVAltContr.objects.filter(id=dados['id']).\

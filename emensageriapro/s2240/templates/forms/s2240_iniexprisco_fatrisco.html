@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_iniexprisco_fatrisco__s2240_evtexprisco__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__s2240_evtexprisco__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*</label>
+    <label id="s2240_iniexprisco_fatrisco__s2240_evtexprisco__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*<a data-toggle="tooltip" title="Fator(es) de risco ao(s) qual(is) o trabalhador está exposto."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2240_iniexprisco_fatrisco_form.s2240_evtexprisco.value %}
         <a id="s2240_iniexprisco_fatrisco__s2240_evtexprisco__div_acessar" href="{% url 's2240_evtexprisco_salvar' pk=s2240_iniexprisco_fatrisco_form.s2240_evtexprisco.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2240_iniexprisco_fatrisco__codfatris__div">
     <div class="form-group">
-      <label id="s2240_iniexprisco_fatrisco__codfatris__label">Código do Fator de Risco*</label>
+      <label id="s2240_iniexprisco_fatrisco__codfatris__label">Código do Fator de Risco*<a data-toggle="tooltip" title="Informar o código do fator de risco ao qual o trabalhador está exposto, conforme tabela 23. Preencher com números e pontos. Caso não haja exposição, informar o código [09.01.001] (Ausência de Fator de Risco). <validacao> Deve ser um código existente na tabela 23 - Fatores de Riscos do Meio Ambiente do Trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2240_iniexprisco_fatrisco_form.codfatris.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2240_iniexprisco_fatrisco_form.codfatris.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s2240_iniexprisco_fatrisco__codfatris__div">
     <div class="form-group">
-      <label id="s2240_iniexprisco_fatrisco__codfatris__label">Código do Fator de Risco*</label>
+      <label id="s2240_iniexprisco_fatrisco__codfatris__label">Código do Fator de Risco*<a data-toggle="tooltip" title="Informar o código do fator de risco ao qual o trabalhador está exposto, conforme tabela 23. Preencher com números e pontos. Caso não haja exposição, informar o código [09.01.001] (Ausência de Fator de Risco). <validacao> Deve ser um código existente na tabela 23 - Fatores de Riscos do Meio Ambiente do Trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codfatris" name="txt_codfatris" class="form-control" value="{% if s2240_iniexprisco_fatrisco.codfatris %}{{ s2240_iniexprisco_fatrisco.codfatris }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__tpaval -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__tpaval__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__tpaval__label">Tipo de avaliação do fator de risco*</label>
+    <label id="s2240_iniexprisco_fatrisco__tpaval__label">Tipo de avaliação do fator de risco*<a data-toggle="tooltip" title="Tipo de avaliação do fator de risco<opcoes>1 - Critério quantitativo; 2 - Critério qualitativo. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.tpaval.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.tpaval.errors }}
@@ -129,7 +129,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__intconc -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__intconc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__intconc__label">Concentração</label>
+    <label id="s2240_iniexprisco_fatrisco__intconc__label">Concentração<a data-toggle="tooltip" title="Intensidade, concentração ou dose da exposição do trabalhador ao fator de risco cujo critério de avaliação seja quantitativo. <validacao> Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.intconc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2240_iniexprisco_fatrisco_form.intconc.errors }}
@@ -146,7 +146,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__limtol -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__limtol__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__limtol__label">Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação</label>
+    <label id="s2240_iniexprisco_fatrisco__limtol__label">Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação<a data-toggle="tooltip" title="Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação. <validacao> Preenchimento obrigatório se {tpAval} = [1] e {codFatRis} = [01.01.014, 01.01.018, 02.01.687, 02.01.788]. Não informar nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.limtol.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2240_iniexprisco_fatrisco_form.limtol.errors }}
@@ -164,7 +164,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2240_iniexprisco_fatrisco__unmed__div">
     <div class="form-group">
-      <label id="s2240_iniexprisco_fatrisco__unmed__label">Unidade de medida da intensidade ou concentração</label>
+      <label id="s2240_iniexprisco_fatrisco__unmed__label">Unidade de medida da intensidade ou concentração<a data-toggle="tooltip" title="Dose ou unidade de medida da intensidade ou concentração do agente<opcoes>1 - dose diária de ruído; 2 - decibel linear (dB (linear)); 3 - decibel (C) (dB(C)); 4 - decibel (A) (dB(A)); 9 - metro por segundo ao quadrado (m/s2); 10 - metro por segundo elevado a 1,75 (m/s1,75); 11 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm); 12 - miligrama por metro cúbico de ar (mg/m3); 13 - fibra por centímetro cúbico (f/cm3); 14 - grau Celsius (ºC); 15 - metro por segundo (m/s); 16 - porcentual (%); 17 - lux (lx); 18 - unidade formadora de colônias por metro cúbico (ufc/m3); 19 - dose diária; 20 - dose mensal; 21 - dose trimestral; 22 - dose anual; 26 - watt por metro quadrado (W/m2); 27 - ampère por metro (A/m); 28 - militesla(mT); 29 - microtesla (µT); 30 - miliampère (mA); 31 - quilovolt por metro (kV/m); 32 - volt por metro (V/m); 35 - joule por metro quadrado (J/m2); 36 - milijoule por centímetro quadrado (mJ/cm2); 37 - milisievert (mSv); 39 - milhão de partículas por decímetro cúbico (mppdc); 43 - umidade relativa do ar (UR (%)). <validacao> Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2]. <valores_validos> 1,2,3,4,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,27,28,29,30,31,32,35,36,37,39,43."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2240_iniexprisco_fatrisco_form.unmed.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2240_iniexprisco_fatrisco_form.unmed.errors }}
@@ -218,7 +218,7 @@
   {% else %}
   <div class="col-md-6" id="s2240_iniexprisco_fatrisco__unmed__div">
     <div class="form-group">
-      <label id="s2240_iniexprisco_fatrisco__unmed__label">Unidade de medida da intensidade ou concentração</label>
+      <label id="s2240_iniexprisco_fatrisco__unmed__label">Unidade de medida da intensidade ou concentração<a data-toggle="tooltip" title="Dose ou unidade de medida da intensidade ou concentração do agente<opcoes>1 - dose diária de ruído; 2 - decibel linear (dB (linear)); 3 - decibel (C) (dB(C)); 4 - decibel (A) (dB(A)); 9 - metro por segundo ao quadrado (m/s2); 10 - metro por segundo elevado a 1,75 (m/s1,75); 11 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm); 12 - miligrama por metro cúbico de ar (mg/m3); 13 - fibra por centímetro cúbico (f/cm3); 14 - grau Celsius (ºC); 15 - metro por segundo (m/s); 16 - porcentual (%); 17 - lux (lx); 18 - unidade formadora de colônias por metro cúbico (ufc/m3); 19 - dose diária; 20 - dose mensal; 21 - dose trimestral; 22 - dose anual; 26 - watt por metro quadrado (W/m2); 27 - ampère por metro (A/m); 28 - militesla(mT); 29 - microtesla (µT); 30 - miliampère (mA); 31 - quilovolt por metro (kV/m); 32 - volt por metro (V/m); 35 - joule por metro quadrado (J/m2); 36 - milijoule por centímetro quadrado (mJ/cm2); 37 - milisievert (mSv); 39 - milhão de partículas por decímetro cúbico (mppdc); 43 - umidade relativa do ar (UR (%)). <validacao> Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2]. <valores_validos> 1,2,3,4,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,27,28,29,30,31,32,35,36,37,39,43."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_unmed" name="txt_unmed" class="form-control" value="{% if s2240_iniexprisco_fatrisco.unmed %}{{ s2240_iniexprisco_fatrisco.unmed }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -227,7 +227,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__tecmedicao -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__tecmedicao__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__tecmedicao__label">Técnica de medição</label>
+    <label id="s2240_iniexprisco_fatrisco__tecmedicao__label">Técnica de medição<a data-toggle="tooltip" title="Técnica utilizada para medição da intensidade ou concentração. <validacao> Preenchimento obrigatório se {tpAval} = [1]. Não informar se {tpAval} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_fatrisco_form.tecmedicao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_fatrisco_form.tecmedicao.errors }}
@@ -242,7 +242,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__insalubridade -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__insalubridade__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__insalubridade__label">A exposição ao fator de risco/execução da atividade configura trabalho insalubre?</label>
+    <label id="s2240_iniexprisco_fatrisco__insalubridade__label">A exposição ao fator de risco/execução da atividade configura trabalho insalubre?<a data-toggle="tooltip" title="A exposição ao fator de risco/execução da atividade configura trabalho insalubre<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório caso uma das situações abaixo seja atendida: a) Se o campo {matricula} for informado, referente a trabalhador com {tpRegTrab} = [1], exceto se {codCateg} = [104]; ou b) Se {codCateg} = [201,202,901]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.insalubridade.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.insalubridade.errors }}
@@ -266,7 +266,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__periculosidade -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__periculosidade__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__periculosidade__label">A exposição ao fator de risco/execução da atividade configura trabalho periculoso?</label>
+    <label id="s2240_iniexprisco_fatrisco__periculosidade__label">A exposição ao fator de risco/execução da atividade configura trabalho periculoso?<a data-toggle="tooltip" title="A exposição ao fator de risco/execução da atividade configura trabalho perigoso<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório caso uma das situações abaixo seja atendida: a) Se o campo {matricula} for informado, referente a trabalhador com {tpRegTrab} = [1], exceto se {codCateg} = [104]; ou b) Se {codCateg} = [201,202,901]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.periculosidade.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.periculosidade.errors }}
@@ -290,7 +290,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__aposentesp -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__aposentesp__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__aposentesp__label">Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</label>
+    <label id="s2240_iniexprisco_fatrisco__aposentesp__label">Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.<a data-toggle="tooltip" title="A exposição ao fator de risco/execução da atividade enseja recolhimento do adicional para o financiamento da aposentadoria especial<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório e exclusivo caso uma das situações abaixo seja atendida: a) Se o campo {matricula} for informado, referente a trabalhador com {tpRegPrev} = [1], exceto se {codCateg} = [104]; ou b) Se {codCateg} = [201,202,731,734,738]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.aposentesp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.aposentesp.errors }}
@@ -314,7 +314,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__dscfatrisc -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__dscfatrisc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__dscfatrisc__label">Descrição do fator de risco</label>
+    <label id="s2240_iniexprisco_fatrisco__dscfatrisc__label">Descrição do fator de risco<a data-toggle="tooltip" title="Descrição do fator de risco. Preenchimento obrigatório e exclusivo se {codFatRis} = [01.01.999, 02.01.999, 03.01.999, 04.01.999, 04.02.999, 04.03.999, 04.04.999, 04.05.999, 05.01.999]"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_fatrisco_form.dscfatrisc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_fatrisco_form.dscfatrisc.errors }}
@@ -334,7 +334,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__utilizepc -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__utilizepc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__utilizepc__label">Utiliza EPC*</label>
+    <label id="s2240_iniexprisco_fatrisco__utilizepc__label">Utiliza EPC*<a data-toggle="tooltip" title="O empregador implementa medidas de proteção coletiva (EPC) para eliminar ou reduzir a exposição dos trabalhadores ao fator de risco<opcoes>0 - Não se aplica; 1 - Não implementa; 2 - Implementa. <valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.utilizepc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.utilizepc.errors }}
@@ -358,7 +358,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__eficepc -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__eficepc__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__eficepc__label">EPC é eficaz na neutralização</label>
+    <label id="s2240_iniexprisco_fatrisco__eficepc__label">EPC é eficaz na neutralização<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização dos riscos ao trabalhador<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório e exclusivo se {utilizEPC} = [2]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.eficepc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.eficepc.errors }}
@@ -382,7 +382,7 @@
 <!-- inicio__s2240_iniexprisco_fatrisco__utilizepi -->
 <div class="col-md-6" id="s2240_iniexprisco_fatrisco__utilizepi__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_fatrisco__utilizepi__label">Utiliza EPI*</label>
+    <label id="s2240_iniexprisco_fatrisco__utilizepi__label">Utiliza EPI*<a data-toggle="tooltip" title="Utilização de EPI<opcoes>0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado. <valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_fatrisco_form.utilizepi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_fatrisco_form.utilizepi.errors }}

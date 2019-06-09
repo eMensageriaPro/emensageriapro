@@ -10,7 +10,7 @@
 <!-- inicio__s1260_evtcomprod__identidade -->
 <div class="col-md-6" id="s1260_evtcomprod__identidade__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__identidade__label">Identidade do Registro</label>
+    <label id="s1260_evtcomprod__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_evtcomprod_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_evtcomprod_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s1260_evtcomprod__indretif -->
 <div class="col-md-6" id="s1260_evtcomprod__indretif__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__indretif__label">Identificador de retificação*</label>
+    <label id="s1260_evtcomprod__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s1260_evtcomprod__nrrecibo -->
 <div class="col-md-6" id="s1260_evtcomprod__nrrecibo__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__nrrecibo__label">Número do recibo</label>
+    <label id="s1260_evtcomprod__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_evtcomprod_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_evtcomprod_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s1260_evtcomprod__indapuracao -->
 <div class="col-md-6" id="s1260_evtcomprod__indapuracao__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__indapuracao__label">Indicativo do periodo de apuração*</label>
+    <label id="s1260_evtcomprod__indapuracao__label">Indicativo do periodo de apuração*<a data-toggle="tooltip" title="Indicativo de período de apuração<opcoes>1 - Mensal. <valores_validos> 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.indapuracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.indapuracao.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s1260_evtcomprod__perapur -->
 <div class="col-md-6" id="s1260_evtcomprod__perapur__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__perapur__label">Período de Apuração*</label>
+    <label id="s1260_evtcomprod__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações. <validacao> Deve ser um mês/ano válido, igual ou posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_evtcomprod_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_evtcomprod_form.perapur.errors }}
@@ -108,7 +108,7 @@
 <!-- inicio__s1260_evtcomprod__tpamb -->
 <div class="col-md-6" id="s1260_evtcomprod__tpamb__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__tpamb__label">Identificação do ambiente*</label>
+    <label id="s1260_evtcomprod__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.tpamb.errors }}
@@ -132,7 +132,7 @@
 <!-- inicio__s1260_evtcomprod__procemi -->
 <div class="col-md-6" id="s1260_evtcomprod__procemi__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__procemi__label">Processo de emissão do evento*</label>
+    <label id="s1260_evtcomprod__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.procemi.errors }}
@@ -156,7 +156,7 @@
 <!-- inicio__s1260_evtcomprod__verproc -->
 <div class="col-md-6" id="s1260_evtcomprod__verproc__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__verproc__label">Versão do processo*</label>
+    <label id="s1260_evtcomprod__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_evtcomprod_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_evtcomprod_form.verproc.errors }}
@@ -176,7 +176,7 @@
 <!-- inicio__s1260_evtcomprod__tpinsc -->
 <div class="col-md-6" id="s1260_evtcomprod__tpinsc__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s1260_evtcomprod__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.tpinsc.errors }}
@@ -200,7 +200,7 @@
 <!-- inicio__s1260_evtcomprod__nrinsc -->
 <div class="col-md-6" id="s1260_evtcomprod__nrinsc__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1260_evtcomprod__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte no CPF. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_evtcomprod_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_evtcomprod_form.nrinsc.errors }}
@@ -225,7 +225,7 @@
 <!-- inicio__s1260_evtcomprod__nrinscestabrural -->
 <div class="col-md-6" id="s1260_evtcomprod__nrinscestabrural__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__nrinscestabrural__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1260_evtcomprod__nrinscestabrural__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Preencher com o número de inscrição no CAEPF do estabelecimento rural. <validacao> A inscrição informada deve constar na tabela de Estabelecimentos S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1260_evtcomprod_form.nrinscestabrural.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1260_evtcomprod_form.nrinscestabrural.errors }}
@@ -240,7 +240,7 @@
 <!-- inicio__s1260_evtcomprod__versao -->
 <div class="col-md-3" id="s1260_evtcomprod__versao__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__versao__label">Versão</label>
+    <label id="s1260_evtcomprod__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.versao.errors }}
@@ -273,7 +273,7 @@
 
 <div class="col-md-3" id="s1260_evtcomprod__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s1260_evtcomprod__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s1260_evtcomprod__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s1260_evtcomprod_form.transmissor_lote_esocial.value %}
@@ -305,7 +305,7 @@
 <!-- inicio__s1260_evtcomprod__status -->
 <div class="col-md-3" id="s1260_evtcomprod__status__div">
   <div class="form-group">
-    <label id="s1260_evtcomprod__status__label">Status</label>
+    <label id="s1260_evtcomprod__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1260_evtcomprod_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1260_evtcomprod_form.status.errors }}

@@ -10,7 +10,7 @@
 <!-- inicio__s2405_evtcdbenefalt__identidade -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__identidade__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__identidade__label">Identidade do Registro</label>
+    <label id="s2405_evtcdbenefalt__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2405_evtcdbenefalt__indretif -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__indretif__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__indretif__label">Identificador de retificação*</label>
+    <label id="s2405_evtcdbenefalt__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2405_evtcdbenefalt__nrrecibo -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__nrrecibo__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__nrrecibo__label">Número do recibo</label>
+    <label id="s2405_evtcdbenefalt__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2405_evtcdbenefalt__tpamb -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__tpamb__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2405_evtcdbenefalt__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2405_evtcdbenefalt__procemi -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__procemi__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2405_evtcdbenefalt__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes>1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2405_evtcdbenefalt__verproc -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__verproc__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__verproc__label">Versão do processo*</label>
+    <label id="s2405_evtcdbenefalt__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2405_evtcdbenefalt__tpinsc -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__tpinsc__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2405_evtcdbenefalt__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ). <valores_validos> 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2405_evtcdbenefalt__nrinsc -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__nrinsc__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2405_evtcdbenefalt__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2405_evtcdbenefalt__cpfbenef -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__cpfbenef__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__cpfbenef__label">CPF*</label>
+    <label id="s2405_evtcdbenefalt__cpfbenef__label">CPF*<a data-toggle="tooltip" title="Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido e cadastrado pelo órgão público declarante por meio do evento S-2400."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.cpfbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.cpfbenef.errors }}
@@ -201,7 +201,7 @@
 <!-- inicio__s2405_evtcdbenefalt__dtalteracao -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__dtalteracao__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__dtalteracao__label">Data de alteração*</label>
+    <label id="s2405_evtcdbenefalt__dtalteracao__label">Data de alteração*<a data-toggle="tooltip" title="Preencher com a data de alteração. <validacao> Deve ser uma data válida, posterior à data de início informada no evento S-2400 e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2405_evtcdbenefalt_form.dtalteracao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2405_evtcdbenefalt_form.dtalteracao.errors }}
@@ -221,7 +221,7 @@
 <!-- inicio__s2405_evtcdbenefalt__nisbenef -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__nisbenef__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__nisbenef__label">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT</label>
+    <label id="s2405_evtcdbenefalt__nisbenef__label">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> Deve ser um NIS válido e pertencente ao beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.nisbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.nisbenef.errors }}
@@ -236,7 +236,7 @@
 <!-- inicio__s2405_evtcdbenefalt__nmbenefic -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__nmbenefic__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__nmbenefic__label">Nome*</label>
+    <label id="s2405_evtcdbenefalt__nmbenefic__label">Nome*<a data-toggle="tooltip" title="Nome do Beneficiário"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.nmbenefic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.nmbenefic.errors }}
@@ -251,7 +251,7 @@
 <!-- inicio__s2405_evtcdbenefalt__sexo -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__sexo__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__sexo__label">Sexo*</label>
+    <label id="s2405_evtcdbenefalt__sexo__label">Sexo*<a data-toggle="tooltip" title="Sexo do beneficiário<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.sexo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.sexo.errors }}
@@ -275,7 +275,7 @@
 <!-- inicio__s2405_evtcdbenefalt__racacor -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__racacor__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__racacor__label">Raça/Cor*</label>
+    <label id="s2405_evtcdbenefalt__racacor__label">Raça/Cor*<a data-toggle="tooltip" title="Raça e cor do beneficiário, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.racacor.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.racacor.errors }}
@@ -299,7 +299,7 @@
 <!-- inicio__s2405_evtcdbenefalt__estciv -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__estciv__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__estciv__label">Estado Civil</label>
+    <label id="s2405_evtcdbenefalt__estciv__label">Estado Civil<a data-toggle="tooltip" title="Estado civil do beneficiário, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.estciv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.estciv.errors }}
@@ -323,7 +323,7 @@
 <!-- inicio__s2405_evtcdbenefalt__incfismen -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__incfismen__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__incfismen__label">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei*</label>
+    <label id="s2405_evtcdbenefalt__incfismen__label">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei*<a data-toggle="tooltip" title="Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.incfismen.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.incfismen.errors }}
@@ -347,7 +347,7 @@
 <!-- inicio__s2405_evtcdbenefalt__dtincfismen -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__dtincfismen__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__dtincfismen__label">Preencher com a data do reconhecimento da incapacidade</label>
+    <label id="s2405_evtcdbenefalt__dtincfismen__label">Preencher com a data do reconhecimento da incapacidade<a data-toggle="tooltip" title="Preencher com a data do reconhecimento da incapacidade. <validacao> Preenchimento obrigatório se {incFisMen} = S. Não preencher nos demais casos. Se informada, deve ser uma data válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2405_evtcdbenefalt_form.dtincfismen.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2405_evtcdbenefalt_form.dtincfismen.errors }}
@@ -368,7 +368,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2405_evtcdbenefalt__paisnac__div">
     <div class="form-group">
-      <label id="s2405_evtcdbenefalt__paisnac__label">País de nacionalidade*</label>
+      <label id="s2405_evtcdbenefalt__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do beneficiário, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2405_evtcdbenefalt_form.paisnac.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2405_evtcdbenefalt_form.paisnac.errors }}
@@ -422,7 +422,7 @@
   {% else %}
   <div class="col-md-6" id="s2405_evtcdbenefalt__paisnac__div">
     <div class="form-group">
-      <label id="s2405_evtcdbenefalt__paisnac__label">País de nacionalidade*</label>
+      <label id="s2405_evtcdbenefalt__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do beneficiário, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{% if s2405_evtcdbenefalt.paisnac %}{{ s2405_evtcdbenefalt.paisnac }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -431,7 +431,7 @@
 <!-- inicio__s2405_evtcdbenefalt__nmmae -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__nmmae__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__nmmae__label">Nome da Mãe</label>
+    <label id="s2405_evtcdbenefalt__nmmae__label">Nome da Mãe<a data-toggle="tooltip" title="Nome da mãe do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.nmmae.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.nmmae.errors }}
@@ -446,7 +446,7 @@
 <!-- inicio__s2405_evtcdbenefalt__nmpai -->
 <div class="col-md-6" id="s2405_evtcdbenefalt__nmpai__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__nmpai__label">Nome do Pai</label>
+    <label id="s2405_evtcdbenefalt__nmpai__label">Nome do Pai<a data-toggle="tooltip" title="Nome do pai do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2405_evtcdbenefalt_form.nmpai.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2405_evtcdbenefalt_form.nmpai.errors }}
@@ -461,7 +461,7 @@
 <!-- inicio__s2405_evtcdbenefalt__versao -->
 <div class="col-md-3" id="s2405_evtcdbenefalt__versao__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__versao__label">Versão</label>
+    <label id="s2405_evtcdbenefalt__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.versao.errors }}
@@ -494,7 +494,7 @@
 
 <div class="col-md-3" id="s2405_evtcdbenefalt__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s2405_evtcdbenefalt__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s2405_evtcdbenefalt__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s2405_evtcdbenefalt_form.transmissor_lote_esocial.value %}
@@ -526,7 +526,7 @@
 <!-- inicio__s2405_evtcdbenefalt__status -->
 <div class="col-md-3" id="s2405_evtcdbenefalt__status__div">
   <div class="form-group">
-    <label id="s2405_evtcdbenefalt__status__label">Status</label>
+    <label id="s2405_evtcdbenefalt__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2405_evtcdbenefalt_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2405_evtcdbenefalt_form.status.errors }}

@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_s1050(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s1050_evttabhortur_string({}, texto.encode('utf-8'), 0)
+        dados = read_s1050_evttabhortur_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s1050_evttabhortur)
 
         s1050evtTabHorTur.objects.filter(id=dados['id']).\

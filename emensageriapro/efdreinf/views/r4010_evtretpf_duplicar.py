@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r4010(request, pk, versao="|")
-            dados = read_r4010_evtretpf_string({}, texto.encode('utf-8'), 0)
+            dados = read_r4010_evtretpf_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r4010_evtretpf)
     
             r4010evtRetPF.objects.filter(id=dados['id']).\

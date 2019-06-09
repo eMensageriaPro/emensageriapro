@@ -5,7 +5,7 @@
 <!-- inicio__r4020_cofins__r4020_infopgto -->
 <div class="col-md-12" id="r4020_cofins__r4020_infopgto__div">
   <div class="form-group">
-    <label id="r4020_cofins__r4020_infopgto__label">Informações relativas à Cofins*</label>
+    <label id="r4020_cofins__r4020_infopgto__label">Informações relativas à Cofins*<a data-toggle="tooltip" title="Informações relativas à Cofins."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4020_cofins_form.r4020_infopgto.value %}
         <a href="{% url 'r4020_infopgto_salvar' pk=r4020_cofins_form.r4020_infopgto.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4020_cofins__vlrbasecofins -->
 <div class="col-md-6" id="r4020_cofins__vlrbasecofins__div">
   <div class="form-group">
-    <label id="r4020_cofins__vlrbasecofins__label">Valor da base Cofins*</label>
+    <label id="r4020_cofins__vlrbasecofins__label">Valor da base Cofins*<a data-toggle="tooltip" title="Valor da base Cofins, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_cofins_form.vlrbasecofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_cofins_form.vlrbasecofins.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r4020_cofins__vlrcofins -->
 <div class="col-md-6" id="r4020_cofins__vlrcofins__div">
   <div class="form-group">
-    <label id="r4020_cofins__vlrcofins__label">Valor da retenção relativa a Cofins*</label>
+    <label id="r4020_cofins__vlrcofins__label">Valor da retenção relativa a Cofins*<a data-toggle="tooltip" title="Valor da retenção relativa a Cofins, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_cofins_form.vlrcofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_cofins_form.vlrcofins.errors }}
@@ -68,7 +68,7 @@
 <!-- inicio__r4020_cofins__vlrbasencofins -->
 <div class="col-md-6" id="r4020_cofins__vlrbasencofins__div">
   <div class="form-group">
-    <label id="r4020_cofins__vlrbasencofins__label">Valor da base de cálculo da Cofins com exibilidade suspensa</label>
+    <label id="r4020_cofins__vlrbasencofins__label">Valor da base de cálculo da Cofins com exibilidade suspensa<a data-toggle="tooltip" title="Valor da base de cálculo da Cofins com exibilidade suspensa. <validacao> Se informado, não pode ser maior que {vlrBaseCofins}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_cofins_form.vlrbasencofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_cofins_form.vlrbasencofins.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r4020_cofins__vlrncofins -->
 <div class="col-md-6" id="r4020_cofins__vlrncofins__div">
   <div class="form-group">
-    <label id="r4020_cofins__vlrncofins__label">Valor da Cofins com exigibilidade suspensa, que deixou de ser retida</label>
+    <label id="r4020_cofins__vlrncofins__label">Valor da Cofins com exigibilidade suspensa, que deixou de ser retida<a data-toggle="tooltip" title="Valor da Cofins com exigibilidade suspensa, que deixou de ser retida. <validacao> Se informado, não pode ser maior que {vlrCofins}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_cofins_form.vlrncofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_cofins_form.vlrncofins.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__r4020_cofins__vlrdepcofins -->
 <div class="col-md-6" id="r4020_cofins__vlrdepcofins__div">
   <div class="form-group">
-    <label id="r4020_cofins__vlrdepcofins__label">Valor relativo a depósito judicial de Cofins</label>
+    <label id="r4020_cofins__vlrdepcofins__label">Valor relativo a depósito judicial de Cofins<a data-toggle="tooltip" title="Valor relativo a depósito judicial de Cofins. <validacao> Se informado, não pode ser maior que {vlrCofins}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4020_cofins_form.vlrdepcofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_cofins_form.vlrdepcofins.errors }}

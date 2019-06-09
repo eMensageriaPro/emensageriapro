@@ -10,7 +10,7 @@
 <!-- inicio__s5012_evtirrf__identidade -->
 <div class="col-md-6" id="s5012_evtirrf__identidade__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__identidade__label">Identidade do Registro</label>
+    <label id="s5012_evtirrf__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5012_evtirrf_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5012_evtirrf_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s5012_evtirrf__perapur -->
 <div class="col-md-6" id="s5012_evtirrf__perapur__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__perapur__label">Período de Apuração*</label>
+    <label id="s5012_evtirrf__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações. <validacao> Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5012_evtirrf_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5012_evtirrf_form.perapur.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__s5012_evtirrf__tpinsc -->
 <div class="col-md-6" id="s5012_evtirrf__tpinsc__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s5012_evtirrf__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5012_evtirrf_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5012_evtirrf_form.tpinsc.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__s5012_evtirrf__nrinsc -->
 <div class="col-md-6" id="s5012_evtirrf__nrinsc__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s5012_evtirrf__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5012_evtirrf_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5012_evtirrf_form.nrinsc.errors }}
@@ -94,7 +94,7 @@
 <!-- inicio__s5012_evtirrf__nrrecarqbase -->
 <div class="col-md-6" id="s5012_evtirrf__nrrecarqbase__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__nrrecarqbase__label">Número do recibo do arquivo vase*</label>
+    <label id="s5012_evtirrf__nrrecarqbase__label">Número do recibo do arquivo vase*<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5012_evtirrf_form.nrrecarqbase.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5012_evtirrf_form.nrrecarqbase.errors }}
@@ -109,7 +109,7 @@
 <!-- inicio__s5012_evtirrf__indexistinfo -->
 <div class="col-md-6" id="s5012_evtirrf__indexistinfo__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__indexistinfo__label">Existência de valores base*</label>
+    <label id="s5012_evtirrf__indexistinfo__label">Existência de valores base*<a data-toggle="tooltip" title="Indicativo de existência de Imposto de Renda Retido na Fonte, conforme opções a seguir<opcoes>1 - Há informações de Imposto de Renda Retido na Fonte; 2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte; 3 - Não há movimento no período informado em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5012_evtirrf_form.indexistinfo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5012_evtirrf_form.indexistinfo.errors }}
@@ -133,7 +133,7 @@
 <!-- inicio__s5012_evtirrf__versao -->
 <div class="col-md-3" id="s5012_evtirrf__versao__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__versao__label">Versão</label>
+    <label id="s5012_evtirrf__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5012_evtirrf_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5012_evtirrf_form.versao.errors }}
@@ -166,7 +166,7 @@
 
 <div class="col-md-3" id="s5012_evtirrf__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s5012_evtirrf__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s5012_evtirrf__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s5012_evtirrf_form.transmissor_lote_esocial.value %}
@@ -198,7 +198,7 @@
 <!-- inicio__s5012_evtirrf__status -->
 <div class="col-md-3" id="s5012_evtirrf__status__div">
   <div class="form-group">
-    <label id="s5012_evtirrf__status__label">Status</label>
+    <label id="s5012_evtirrf__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5012_evtirrf_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5012_evtirrf_form.status.errors }}

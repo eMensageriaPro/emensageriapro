@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1202_infoperapur_detoper__s1202_infoperapur_infosaudecolet__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detoper__s1202_infoperapur_infosaudecolet__label">Detalhamento dos valores pagos a Operadoras de Planos de Saúde.*</label>
+    <label id="s1202_infoperapur_detoper__s1202_infoperapur_infosaudecolet__label">Detalhamento dos valores pagos a Operadoras de Planos de Saúde.*<a data-toggle="tooltip" title="Detalhamento dos valores pagos a Operadoras de Planos de Saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1202_infoperapur_detoper_form.s1202_infoperapur_infosaudecolet.value %}
         <a id="s1202_infoperapur_detoper__s1202_infoperapur_infosaudecolet__div_acessar" href="{% url 's1202_infoperapur_infosaudecolet_salvar' pk=s1202_infoperapur_detoper_form.s1202_infoperapur_infosaudecolet.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1202_infoperapur_detoper__cnpjoper -->
 <div class="col-md-3" id="s1202_infoperapur_detoper__cnpjoper__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detoper__cnpjoper__label">CNPJ da Operadora do Plano de Saúde*</label>
+    <label id="s1202_infoperapur_detoper__cnpjoper__label">CNPJ da Operadora do Plano de Saúde*<a data-toggle="tooltip" title="CNPJ de Operadora do Plano de Saúde. <validacao> Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_infoperapur_detoper_form.cnpjoper.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperapur_detoper_form.cnpjoper.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1202_infoperapur_detoper__regans -->
 <div class="col-md-3" id="s1202_infoperapur_detoper__regans__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detoper__regans__label">Registro ANS*</label>
+    <label id="s1202_infoperapur_detoper__regans__label">Registro ANS*<a data-toggle="tooltip" title="Registro da operadora na Agência Nacional de Saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_infoperapur_detoper_form.regans.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperapur_detoper_form.regans.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1202_infoperapur_detoper__vrpgtit -->
 <div class="col-md-3" id="s1202_infoperapur_detoper__vrpgtit__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detoper__vrpgtit__label">Valor pago pelo titular*</label>
+    <label id="s1202_infoperapur_detoper__vrpgtit__label">Valor pago pelo titular*<a data-toggle="tooltip" title="Valor pago pelo Titular."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1202_infoperapur_detoper_form.vrpgtit.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1202_infoperapur_detoper_form.vrpgtit.errors }}

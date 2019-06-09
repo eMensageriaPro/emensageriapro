@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2245_ideprofresp__s2245_evttreicap__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__s2245_evttreicap__label">Informações relativas ao profissional responsável pelo treinamento/capacitação*</label>
+    <label id="s2245_ideprofresp__s2245_evttreicap__label">Informações relativas ao profissional responsável pelo treinamento/capacitação*<a data-toggle="tooltip" title="Informações relativas ao profissional responsável pelo treinamento/capacitação/exercício simulado."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2245_ideprofresp_form.s2245_evttreicap.value %}
         <a id="s2245_ideprofresp__s2245_evttreicap__div_acessar" href="{% url 's2245_evttreicap_salvar' pk=s2245_ideprofresp_form.s2245_evttreicap.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2245_ideprofresp__cpfprof -->
 <div class="col-md-6" id="s2245_ideprofresp__cpfprof__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__cpfprof__label">Preencher com o CPF do profissional responsável pelo treinamento/capacitação</label>
+    <label id="s2245_ideprofresp__cpfprof__label">Preencher com o CPF do profissional responsável pelo treinamento/capacitação<a data-toggle="tooltip" title="Preencher com o CPF do profissional responsável pelo treinamento/capacitação/exercício simulado. <validacao> Preenchimento obrigatório se {nacProf} = [1]. Se informado, deve ser um CPF válido e diferente do informado em {cpfTrab}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2245_ideprofresp_form.cpfprof.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2245_ideprofresp_form.cpfprof.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2245_ideprofresp__nmprof -->
 <div class="col-md-6" id="s2245_ideprofresp__nmprof__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__nmprof__label">Nome do profissional responsável pelo treinamento/capacitação.*</label>
+    <label id="s2245_ideprofresp__nmprof__label">Nome do profissional responsável pelo treinamento/capacitação.*<a data-toggle="tooltip" title="Nome do profissional responsável pelo treinamento/capacitação/exercício simulado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2245_ideprofresp_form.nmprof.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2245_ideprofresp_form.nmprof.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2245_ideprofresp__tpprof -->
 <div class="col-md-6" id="s2245_ideprofresp__tpprof__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__tpprof__label">O treinamento/capacitação foi ministrado por*</label>
+    <label id="s2245_ideprofresp__tpprof__label">O treinamento/capacitação foi ministrado por*<a data-toggle="tooltip" title="O treinamento/capacitação/exercício simulado foi ministrado por<opcoes>1 - Profissional empregado do declarante; 2 - Profissional sem vínculo de emprego/estatutário com o declarante. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2245_ideprofresp_form.tpprof.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2245_ideprofresp_form.tpprof.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2245_ideprofresp__formprof -->
 <div class="col-md-6" id="s2245_ideprofresp__formprof__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__formprof__label">Formação do profissional responsável pelo treinamento/capacitação (seja acadêmica, prática ou outra forma).*</label>
+    <label id="s2245_ideprofresp__formprof__label">Formação do profissional responsável pelo treinamento/capacitação (seja acadêmica, prática ou outra forma).*<a data-toggle="tooltip" title="Formação do profissional responsável pelo treinamento/capacitação/exercício simulado (seja acadêmica, prática ou outra forma)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2245_ideprofresp_form.formprof.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2245_ideprofresp_form.formprof.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2245_ideprofresp__codcbo -->
 <div class="col-md-6" id="s2245_ideprofresp__codcbo__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__codcbo__label">CBO*</label>
+    <label id="s2245_ideprofresp__codcbo__label">CBO*<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupação - CBO referente à formação do profissional responsável pelo treinamento/capacitação/exercício simulado. <validacao> Deve ser um código existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2245_ideprofresp_form.codcbo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2245_ideprofresp_form.codcbo.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__s2245_ideprofresp__nacprof -->
 <div class="col-md-6" id="s2245_ideprofresp__nacprof__div">
   <div class="form-group">
-    <label id="s2245_ideprofresp__nacprof__label">Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado*</label>
+    <label id="s2245_ideprofresp__nacprof__label">Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado*<a data-toggle="tooltip" title="Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado<opcoes>1 - Brasileiro; 2 - Estrangeiro. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2245_ideprofresp_form.nacprof.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2245_ideprofresp_form.nacprof.errors }}

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2020_infotpserv__r2020_nfs__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__r2020_nfs__label">Informações sobre os tipos de Serviços constantes da Nota Fiscal*</label>
+    <label id="r2020_infotpserv__r2020_nfs__label">Informações sobre os tipos de Serviços constantes da Nota Fiscal*<a data-toggle="tooltip" title="Informações sobre os tipos de Serviços constantes da Nota Fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2020_infotpserv_form.r2020_nfs.value %}
         <a id="r2020_infotpserv__r2020_nfs__div_acessar" href="{% url 'r2020_nfs_salvar' pk=r2020_infotpserv_form.r2020_nfs.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="r2020_infotpserv__tpservico__div">
     <div class="form-group">
-      <label id="r2020_infotpserv__tpservico__label">Informar o tipo de serviço, conforme tabela 6*</label>
+      <label id="r2020_infotpserv__tpservico__label">Informar o tipo de serviço, conforme tabela 6*<a data-toggle="tooltip" title="Informar o tipo de serviço, conforme tabela 6. <validacao> O código informado deve existir na tabela 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r2020_infotpserv_form.tpservico.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r2020_infotpserv_form.tpservico.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="r2020_infotpserv__tpservico__div">
     <div class="form-group">
-      <label id="r2020_infotpserv__tpservico__label">Informar o tipo de serviço, conforme tabela 6*</label>
+      <label id="r2020_infotpserv__tpservico__label">Informar o tipo de serviço, conforme tabela 6*<a data-toggle="tooltip" title="Informar o tipo de serviço, conforme tabela 6. <validacao> O código informado deve existir na tabela 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tpservico" name="txt_tpservico" class="form-control" value="{% if r2020_infotpserv.tpservico %}{{ r2020_infotpserv.tpservico }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__r2020_infotpserv__vlrbaseret -->
 <div class="col-md-6" id="r2020_infotpserv__vlrbaseret__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrbaseret__label">Valor da Base de cálculo da retenção da contribuição previdenciária.*</label>
+    <label id="r2020_infotpserv__vlrbaseret__label">Valor da Base de cálculo da retenção da contribuição previdenciária.*<a data-toggle="tooltip" title="Valor da Base de cálculo da retenção da contribuição previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrbaseret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrbaseret.errors }}
@@ -123,7 +123,7 @@
 <!-- inicio__r2020_infotpserv__vlrretencao -->
 <div class="col-md-6" id="r2020_infotpserv__vlrretencao__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrretencao__label">Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura*</label>
+    <label id="r2020_infotpserv__vlrretencao__label">Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura*<a data-toggle="tooltip" title="Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura. <validacao> Não pode ser maior que 11% de {vlrBaseRet}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrretencao.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrretencao.errors }}
@@ -141,7 +141,7 @@
 <!-- inicio__r2020_infotpserv__vlrretsub -->
 <div class="col-md-6" id="r2020_infotpserv__vlrretsub__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrretsub__label">Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação</label>
+    <label id="r2020_infotpserv__vlrretsub__label">Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação<a data-toggle="tooltip" title="Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação. <validacao> Não pode ser superior ao {vlrRetencao}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrretsub.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrretsub.errors }}
@@ -159,7 +159,7 @@
 <!-- inicio__r2020_infotpserv__vlrnretprinc -->
 <div class="col-md-6" id="r2020_infotpserv__vlrnretprinc__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</label>
+    <label id="r2020_infotpserv__vlrnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. <validacao> Não pode ser maior que {vlrRetencao}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrnretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrnretprinc.errors }}
@@ -177,7 +177,7 @@
 <!-- inicio__r2020_infotpserv__vlrservicos15 -->
 <div class="col-md-6" id="r2020_infotpserv__vlrservicos15__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrservicos15__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição</label>
+    <label id="r2020_infotpserv__vlrservicos15__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição. <validacao> O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrservicos15.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrservicos15.errors }}
@@ -195,7 +195,7 @@
 <!-- inicio__r2020_infotpserv__vlrservicos20 -->
 <div class="col-md-6" id="r2020_infotpserv__vlrservicos20__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrservicos20__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição</label>
+    <label id="r2020_infotpserv__vlrservicos20__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição. <validacao> O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrservicos20.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrservicos20.errors }}
@@ -213,7 +213,7 @@
 <!-- inicio__r2020_infotpserv__vlrservicos25 -->
 <div class="col-md-6" id="r2020_infotpserv__vlrservicos25__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrservicos25__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição</label>
+    <label id="r2020_infotpserv__vlrservicos25__label">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição. <validacao> O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrservicos25.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrservicos25.errors }}
@@ -231,7 +231,7 @@
 <!-- inicio__r2020_infotpserv__vlradicional -->
 <div class="col-md-6" id="r2020_infotpserv__vlradicional__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlradicional__label">Adicional apurado de retenção da nota fiscal</label>
+    <label id="r2020_infotpserv__vlradicional__label">Adicional apurado de retenção da nota fiscal<a data-toggle="tooltip" title="Adicional apurado de retenção da nota fiscal, caso os serviços tenham sido prestados sob condições especiais que ensejem aposentadoria especial aos trabalhadores após 15, 20, ou 25 anos de contribuição. Preencher com o valor correspondente ao somatório de 4% sobre o {vlrServicos15} mais 3% sobre {vlrServicos20} mais 2% sobre {vlrServicos25}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlradicional.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlradicional.errors }}
@@ -249,7 +249,7 @@
 <!-- inicio__r2020_infotpserv__vlrnretadic -->
 <div class="col-md-6" id="r2020_infotpserv__vlrnretadic__div">
   <div class="form-group">
-    <label id="r2020_infotpserv__vlrnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</label>
+    <label id="r2020_infotpserv__vlrnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. <validacao> Não pode ser maior que {vlrAdicional}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infotpserv_form.vlrnretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infotpserv_form.vlrnretadic.errors }}

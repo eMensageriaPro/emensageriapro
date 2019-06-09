@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_r5001(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_r5001_evttotal_string({}, texto.encode('utf-8'), 0)
+        dados = read_r5001_evttotal_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r5001_evttotal)
 
         r5001evtTotal.objects.filter(id=dados['id']).\

@@ -5,7 +5,7 @@
 <!-- inicio__r4010_inforra__r4010_infopgto -->
 <div class="col-md-12" id="r4010_inforra__r4010_infopgto__div">
   <div class="form-group">
-    <label id="r4010_inforra__r4010_infopgto__label">Informações Complementares - Rendimentos Recebidos Acumuladamente*</label>
+    <label id="r4010_inforra__r4010_infopgto__label">Informações Complementares - Rendimentos Recebidos Acumuladamente*<a data-toggle="tooltip" title="Informações complementares relativos a Rendimentos Recebidos Acumuladamente - RRA."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4010_inforra_form.r4010_infopgto.value %}
         <a href="{% url 'r4010_infopgto_salvar' pk=r4010_inforra_form.r4010_infopgto.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4010_inforra__tpprocrra -->
 <div class="col-md-6" id="r4010_inforra__tpprocrra__div">
   <div class="form-group">
-    <label id="r4010_inforra__tpprocrra__label">Preencher com o código correspondente ao tipo de processo*</label>
+    <label id="r4010_inforra__tpprocrra__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforra_form.tpprocrra.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_inforra_form.tpprocrra.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4010_inforra__nrprocrra -->
 <div class="col-md-6" id="r4010_inforra__nrprocrra__div">
   <div class="form-group">
-    <label id="r4010_inforra__nrprocrra__label">Informar o número do processo/requerimento administrativo/judicial</label>
+    <label id="r4010_inforra__nrprocrra__label">Informar o número do processo/requerimento administrativo/judicial<a data-toggle="tooltip" title="Informar o número do processo/requerimento administrativo/judicial. <validacao> Informação obrigatória se {tpProcRRA} = [2]. Deve ser número de processo válido de acordo com o tipo."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_inforra_form.nrprocrra.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_inforra_form.nrprocrra.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r4010_inforra__indorigrec -->
 <div class="col-md-6" id="r4010_inforra__indorigrec__div">
   <div class="form-group">
-    <label id="r4010_inforra__indorigrec__label">Indicativo da origem dos recursos*</label>
+    <label id="r4010_inforra__indorigrec__label">Indicativo da origem dos recursos*<a data-toggle="tooltip" title="Indicativo da origem dos recursos<opcoes>1 - Recursos do próprio declarante; 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. <validacao> Se {tpProcRRA} = [1], deve ser = [1]. Se {natRend} = 000000001, deve ser = [2]. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforra_form.indorigrec.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_inforra_form.indorigrec.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r4010_inforra__descrra -->
 <div class="col-md-6" id="r4010_inforra__descrra__div">
   <div class="form-group">
-    <label id="r4010_inforra__descrra__label">Descrição dos Rendimentos Recebidos Acumuladamente - RRA*</label>
+    <label id="r4010_inforra__descrra__label">Descrição dos Rendimentos Recebidos Acumuladamente - RRA*<a data-toggle="tooltip" title="Descrição dos Rendimentos Recebidos Acumuladamente - RRA."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_inforra_form.descrra.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_inforra_form.descrra.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r4010_inforra__qtdmesesrra -->
 <div class="col-md-6" id="r4010_inforra__qtdmesesrra__div">
   <div class="form-group">
-    <label id="r4010_inforra__qtdmesesrra__label">Quantidade de meses*</label>
+    <label id="r4010_inforra__qtdmesesrra__label">Quantidade de meses*<a data-toggle="tooltip" title="Número de meses relativo aos Rendimentos Recebidos Acumuladamente - RRA."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_inforra_form.qtdmesesrra.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_inforra_form.qtdmesesrra.errors }}

@@ -161,7 +161,7 @@ urlpatterns = [
         transmissor_lote_efdreinf_comunicacao_views.recibo,
         name='transmissor_lote_efdreinf_recibo'),
 
-    url(r'^processar-arquivos/(?P<pk>[0-9]+)/$',
+    url(r'^processar-arquivos/(?P<tab>[\w-]+)/$',
         processar_arquivos_views.scripts_processar_arquivos,
         name='scripts_processar_arquivos'),
 
@@ -169,7 +169,7 @@ urlpatterns = [
         processar_arquivos_views.imprimir,
         name='processar_arquivos_imprimir'),
 
-    url(r'^processar-arquivos-salvar/$',
+    url(r'^processar-arquivos-salvar/(?P<tab>[\w-]+)/$',
         processar_arquivos_views.scripts_salvar_arquivos,
         name='scripts_salvar_arquivos'),
 

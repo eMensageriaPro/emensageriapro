@@ -355,6 +355,8 @@ CONSTANCE_CONFIG = {
                                         '(em minutos)', int),
     'BROKER_URL': ('redis://', 'Endereço do servidor '
                                'do Redis', str),
+    'LEN_EVENTS_IMPORT': (10, 'Quantidade do lote de arquivos'
+                              'de eventos para importação', int),
 }
 
 broker_url='redis://'

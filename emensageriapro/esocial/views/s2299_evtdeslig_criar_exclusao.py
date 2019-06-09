@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_s2299(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s2299_evtdeslig_string({}, texto.encode('utf-8'), 0)
+        dados = read_s2299_evtdeslig_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s2299_evtdeslig)
 
         s2299evtDeslig.objects.filter(id=dados['id']).\

@@ -10,7 +10,7 @@
 <!-- inicio__s2200_evtadmissao__identidade -->
 <div class="col-md-6" id="s2200_evtadmissao__identidade__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__identidade__label">Identidade do Registro</label>
+    <label id="s2200_evtadmissao__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2200_evtadmissao__indretif -->
 <div class="col-md-6" id="s2200_evtadmissao__indretif__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__indretif__label">Identificador de retificação*</label>
+    <label id="s2200_evtadmissao__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2200_evtadmissao__nrrecibo -->
 <div class="col-md-6" id="s2200_evtadmissao__nrrecibo__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nrrecibo__label">Número do recibo</label>
+    <label id="s2200_evtadmissao__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2200_evtadmissao__tpamb -->
 <div class="col-md-6" id="s2200_evtadmissao__tpamb__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2200_evtadmissao__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2200_evtadmissao__procemi -->
 <div class="col-md-6" id="s2200_evtadmissao__procemi__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2200_evtadmissao__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2200_evtadmissao__verproc -->
 <div class="col-md-6" id="s2200_evtadmissao__verproc__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__verproc__label">Versão do processo*</label>
+    <label id="s2200_evtadmissao__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2200_evtadmissao__tpinsc -->
 <div class="col-md-6" id="s2200_evtadmissao__tpinsc__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2200_evtadmissao__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2200_evtadmissao__nrinsc -->
 <div class="col-md-6" id="s2200_evtadmissao__nrinsc__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2200_evtadmissao__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2200_evtadmissao__cpftrab -->
 <div class="col-md-6" id="s2200_evtadmissao__cpftrab__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__cpftrab__label">CPF*</label>
+    <label id="s2200_evtadmissao__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.cpftrab.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2200_evtadmissao__nistrab -->
 <div class="col-md-6" id="s2200_evtadmissao__nistrab__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nistrab__label">NIS*</label>
+    <label id="s2200_evtadmissao__nistrab__label">NIS*<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nistrab.errors }}
@@ -211,7 +211,7 @@
 <!-- inicio__s2200_evtadmissao__nmtrab -->
 <div class="col-md-6" id="s2200_evtadmissao__nmtrab__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nmtrab__label">Nome*</label>
+    <label id="s2200_evtadmissao__nmtrab__label">Nome*<a data-toggle="tooltip" title="Nome do Trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nmtrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nmtrab.errors }}
@@ -226,7 +226,7 @@
 <!-- inicio__s2200_evtadmissao__sexo -->
 <div class="col-md-6" id="s2200_evtadmissao__sexo__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__sexo__label">Sexo*</label>
+    <label id="s2200_evtadmissao__sexo__label">Sexo*<a data-toggle="tooltip" title="Sexo do Trabalhador<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.sexo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.sexo.errors }}
@@ -250,7 +250,7 @@
 <!-- inicio__s2200_evtadmissao__racacor -->
 <div class="col-md-6" id="s2200_evtadmissao__racacor__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__racacor__label">Raça/Cor*</label>
+    <label id="s2200_evtadmissao__racacor__label">Raça/Cor*<a data-toggle="tooltip" title="Raça e cor do trabalhador, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.racacor.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.racacor.errors }}
@@ -274,7 +274,7 @@
 <!-- inicio__s2200_evtadmissao__estciv -->
 <div class="col-md-6" id="s2200_evtadmissao__estciv__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__estciv__label">Estado Civil</label>
+    <label id="s2200_evtadmissao__estciv__label">Estado Civil<a data-toggle="tooltip" title="Estado civil do trabalhador, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.estciv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.estciv.errors }}
@@ -298,7 +298,7 @@
 <!-- inicio__s2200_evtadmissao__grauinstr -->
 <div class="col-md-6" id="s2200_evtadmissao__grauinstr__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__grauinstr__label">Grau de Instrução*</label>
+    <label id="s2200_evtadmissao__grauinstr__label">Grau de Instrução*<a data-toggle="tooltip" title="Grau de instrução do trabalhador, conforme opções abaixo<opcoes> 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou; 02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular; 03 - 5º ano completo do Ensino Fundamental; 04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série); 05 - Ensino Fundamental Completo; 06 - Ensino Médio incompleto; 07 - Ensino Médio completo; 08 - Educação Superior incompleta; 09 - Educação Superior completa; 10 - Pós-Graduação completa; 11 - Mestrado completo; 12 - Doutorado completo. <valores_validos> 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.grauinstr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.grauinstr.errors }}
@@ -322,7 +322,7 @@
 <!-- inicio__s2200_evtadmissao__indpriempr -->
 <div class="col-md-6" id="s2200_evtadmissao__indpriempr__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__indpriempr__label">Indicador de Primeiro Emprego</label>
+    <label id="s2200_evtadmissao__indpriempr__label">Indicador de Primeiro Emprego<a data-toggle="tooltip" title="Indicar caso se trate do primeiro emprego do trabalhador<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório se {cadIni} = [N]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.indpriempr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.indpriempr.errors }}
@@ -346,7 +346,7 @@
 <!-- inicio__s2200_evtadmissao__nmsoc -->
 <div class="col-md-6" id="s2200_evtadmissao__nmsoc__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nmsoc__label">Nome Social</label>
+    <label id="s2200_evtadmissao__nmsoc__label">Nome Social<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nmsoc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nmsoc.errors }}
@@ -366,7 +366,7 @@
 <!-- inicio__s2200_evtadmissao__dtnascto -->
 <div class="col-md-6" id="s2200_evtadmissao__dtnascto__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__dtnascto__label">Data de nascimento*</label>
+    <label id="s2200_evtadmissao__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_evtadmissao_form.dtnascto.errors }}
@@ -382,7 +382,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
+      <label id="s2200_evtadmissao__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2200_evtadmissao_form.codmunic.errors }}
@@ -428,7 +428,7 @@
   {% else %}
   <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
+      <label id="s2200_evtadmissao__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if not for_print %}{% if s2200_evtadmissao_form.codmunic.value %}
             <a id="s2200_evtadmissao__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2200_evtadmissao_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -442,7 +442,7 @@
 <!-- inicio__s2200_evtadmissao__uf -->
 <div class="col-md-6" id="s2200_evtadmissao__uf__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__uf__label">UF</label>
+    <label id="s2200_evtadmissao__uf__label">UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.uf.errors }}
@@ -467,7 +467,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2200_evtadmissao__paisnascto__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*</label>
+      <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.paisnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2200_evtadmissao_form.paisnascto.errors }}
@@ -521,7 +521,7 @@
   {% else %}
   <div class="col-md-6" id="s2200_evtadmissao__paisnascto__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*</label>
+      <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnascto" name="txt_paisnascto" class="form-control" value="{% if s2200_evtadmissao.paisnascto %}{{ s2200_evtadmissao.paisnascto }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -531,7 +531,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2200_evtadmissao__paisnac__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*</label>
+      <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.paisnac.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2200_evtadmissao_form.paisnac.errors }}
@@ -585,7 +585,7 @@
   {% else %}
   <div class="col-md-6" id="s2200_evtadmissao__paisnac__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*</label>
+      <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{% if s2200_evtadmissao.paisnac %}{{ s2200_evtadmissao.paisnac }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -594,7 +594,7 @@
 <!-- inicio__s2200_evtadmissao__nmmae -->
 <div class="col-md-6" id="s2200_evtadmissao__nmmae__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nmmae__label">Nome da Mãe</label>
+    <label id="s2200_evtadmissao__nmmae__label">Nome da Mãe<a data-toggle="tooltip" title="Nome da mãe."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nmmae.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nmmae.errors }}
@@ -609,7 +609,7 @@
 <!-- inicio__s2200_evtadmissao__nmpai -->
 <div class="col-md-6" id="s2200_evtadmissao__nmpai__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nmpai__label">Nome do Pai</label>
+    <label id="s2200_evtadmissao__nmpai__label">Nome do Pai<a data-toggle="tooltip" title="Nome do pai do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nmpai.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nmpai.errors }}
@@ -634,7 +634,7 @@
 <!-- inicio__s2200_evtadmissao__matricula -->
 <div class="col-md-6" id="s2200_evtadmissao__matricula__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__matricula__label">Matricula*</label>
+    <label id="s2200_evtadmissao__matricula__label">Matricula*<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.matricula.errors }}
@@ -649,7 +649,7 @@
 <!-- inicio__s2200_evtadmissao__tpregtrab -->
 <div class="col-md-6" id="s2200_evtadmissao__tpregtrab__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__tpregtrab__label">Tipo de regime trabalhista*</label>
+    <label id="s2200_evtadmissao__tpregtrab__label">Tipo de regime trabalhista*<a data-toggle="tooltip" title="Tipo de regime trabalhista<opcoes>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas; 2 - Estatutário. <validacao> Se {codCateg} = [104], deve ser preenchido com [1]. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.tpregtrab.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.tpregtrab.errors }}
@@ -673,7 +673,7 @@
 <!-- inicio__s2200_evtadmissao__tpregprev -->
 <div class="col-md-6" id="s2200_evtadmissao__tpregprev__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__tpregprev__label">Tipo de regime previdenciário*</label>
+    <label id="s2200_evtadmissao__tpregprev__label">Tipo de regime previdenciário*<a data-toggle="tooltip" title="Tipo de regime previdenciário conforme opções abaixo<opcoes>1 - Regime Geral da Previdência Social - RGPS; 2 - Regime Próprio de Previdência Social - RPPS; 3 - Regime de Previdência Social no Exterior. <validacao> Se {codCateg} = [104], deve ser preenchido com [1]. Se {codCateg} = [101, 102, 103, 105, 106, 111], não pode ser preenchido com [2]. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.tpregprev.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.tpregprev.errors }}
@@ -697,7 +697,7 @@
 <!-- inicio__s2200_evtadmissao__nrrecinfprelim -->
 <div class="col-md-6" id="s2200_evtadmissao__nrrecinfprelim__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__nrrecinfprelim__label">Número do recibo (Admissão Preliminar)</label>
+    <label id="s2200_evtadmissao__nrrecinfprelim__label">Número do recibo (Admissão Preliminar)<a data-toggle="tooltip" title="Informar o número do recibo do evento S-2190 - Admissão de Trabalhador - Registro Preliminar, caso o mesmo tenha sido enviado. <validacao> Se informado, deve ser um recibo de entrega válido e as informações de CPF, Data de Nascimento e Data de Admissão informadas no evento correspondente devem ser iguais às informações prestadas neste evento. Se não informado, verificar a existência de evento de admissão preliminar (S-2190) para o mesmo CPF e que não tenha evento de admissão correspondente. Caso exista, rejeitar este evento de admissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.nrrecinfprelim.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.nrrecinfprelim.errors }}
@@ -712,7 +712,7 @@
 <!-- inicio__s2200_evtadmissao__cadini -->
 <div class="col-md-6" id="s2200_evtadmissao__cadini__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__cadini__label">Indicar se o evento se refere a cadastramento inicial de vínculo*</label>
+    <label id="s2200_evtadmissao__cadini__label">Indicar se o evento se refere a cadastramento inicial de vínculo*<a data-toggle="tooltip" title="Indicar se o evento se refere a cadastramento inicial de vínculo (o ingresso do trabalhador no empregador declarante, por admissão ou transferência, é anterior à data de início da obrigatoriedade de envio de seus eventos não periódicos) ou se refere a uma admissão (o ingresso do trabalhador no empregador declarante é igual ou posterior à data de início de obrigatoriedade de envio de seus eventos não periódicos)<opcoes>S - Sim (Cadastramento Inicial); N - Não (Admissão). <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.cadini.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.cadini.errors }}
@@ -746,7 +746,7 @@
 <!-- inicio__s2200_evtadmissao__codcargo -->
 <div class="col-md-6" id="s2200_evtadmissao__codcargo__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__codcargo__label">Código do Cargo</label>
+    <label id="s2200_evtadmissao__codcargo__label">Código do Cargo<a data-toggle="tooltip" title="Preencher com o código do cargo. <validacao> Não é obrigatório para o servidor público contratado com {tpProv} = [2]. Obrigatório nos demais casos. Se informado, o código informado deve constar na tabela de Cargos/Empregos Públicos - S-1030."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.codcargo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.codcargo.errors }}
@@ -761,7 +761,7 @@
 <!-- inicio__s2200_evtadmissao__dtingrcargo -->
 <div class="col-md-6" id="s2200_evtadmissao__dtingrcargo__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__dtingrcargo__label">Data de ingresso no cargo identificado em {codCargo}</label>
+    <label id="s2200_evtadmissao__dtingrcargo__label">Data de ingresso no cargo identificado em {codCargo}<a data-toggle="tooltip" title="Data de ingresso no cargo identificado em {codCargo}. <validacao> Preenchimento obrigatório se {tpRegTrab} = [2]. Se preenchida, devem ser observadas as seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de exercício do servidor; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos; c) Se {cadIni} = [N], deve ser igual ou anterior à data da transferência do servidor ({sucessaoVinc/dtTransf}). Não informar se {tpProv} = [1, 2, 3, 4, 6, 7, 9, 99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.dtingrcargo.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_evtadmissao_form.dtingrcargo.errors }}
@@ -776,7 +776,7 @@
 <!-- inicio__s2200_evtadmissao__codfuncao -->
 <div class="col-md-6" id="s2200_evtadmissao__codfuncao__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__codfuncao__label">Código da Função</label>
+    <label id="s2200_evtadmissao__codfuncao__label">Código da Função<a data-toggle="tooltip" title="Preencher com o código da função, se utilizado pelo empregador. <validacao> Preenchimento obrigatório para categorias de trabalhadores 'Agente Público' se {tpProv} = [2]. Se informado, o código informado deve constar na tabela de Funções/Cargos em Comissão - S-1040."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.codfuncao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.codfuncao.errors }}
@@ -792,7 +792,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2200_evtadmissao__codcateg__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*</label>
+      <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2200_evtadmissao_form.codcateg.errors }}
@@ -846,7 +846,7 @@
   {% else %}
   <div class="col-md-6" id="s2200_evtadmissao__codcateg__div">
     <div class="form-group">
-      <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*</label>
+      <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2200_evtadmissao.codcateg %}{{ s2200_evtadmissao.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -855,7 +855,7 @@
 <!-- inicio__s2200_evtadmissao__codcarreira -->
 <div class="col-md-6" id="s2200_evtadmissao__codcarreira__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__codcarreira__label">Código da Carreira</label>
+    <label id="s2200_evtadmissao__codcarreira__label">Código da Carreira<a data-toggle="tooltip" title="Preencher com o código da carreira pública. <validacao> Se informado deve constar na tabela de Carreiras Públicas - S- 1035."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.codcarreira.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.codcarreira.errors }}
@@ -870,7 +870,7 @@
 <!-- inicio__s2200_evtadmissao__dtingrcarr -->
 <div class="col-md-6" id="s2200_evtadmissao__dtingrcarr__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__dtingrcarr__label">Data de ingresso na carreira</label>
+    <label id="s2200_evtadmissao__dtingrcarr__label">Data de ingresso na carreira<a data-toggle="tooltip" title="Data de ingresso na carreira identificada em {codCarreira}. <validacao> Preenchimento obrigatório se houver informação em {codCarreira}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.dtingrcarr.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_evtadmissao_form.dtingrcarr.errors }}
@@ -890,7 +890,7 @@
 <!-- inicio__s2200_evtadmissao__vrsalfx -->
 <div class="col-md-6" id="s2200_evtadmissao__vrsalfx__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__vrsalfx__label">Valor do Salário Fixo*</label>
+    <label id="s2200_evtadmissao__vrsalfx__label">Valor do Salário Fixo*<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração. <validacao> Se {undSalFixo} for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.vrsalfx.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2200_evtadmissao_form.vrsalfx.errors }}
@@ -908,7 +908,7 @@
 <!-- inicio__s2200_evtadmissao__undsalfixo -->
 <div class="col-md-6" id="s2200_evtadmissao__undsalfixo__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__undsalfixo__label">Unidade do Salário Fixo*</label>
+    <label id="s2200_evtadmissao__undsalfixo__label">Unidade do Salário Fixo*<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração, conforme opções abaixo<opcoes>1 - Por Hora; 2 - Por Dia; 3 - Por Semana; 4 - Por Quinzena; 5 - Por Mês; 6 - Por Tarefa; 7 - Não aplicável - salário exclusivamente variável. <valores_validos> 1, 2, 3, 4, 5, 6, 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.undsalfixo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.undsalfixo.errors }}
@@ -932,7 +932,7 @@
 <!-- inicio__s2200_evtadmissao__dscsalvar -->
 <div class="col-md-6" id="s2200_evtadmissao__dscsalvar__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__dscsalvar__label">Descrição do salário variável</label>
+    <label id="s2200_evtadmissao__dscsalvar__label">Descrição do salário variável<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas. <validacao> Preenchimento obrigatório se {undSalFixo} for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.dscsalvar.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.dscsalvar.errors }}
@@ -952,7 +952,7 @@
 <!-- inicio__s2200_evtadmissao__tpcontr -->
 <div class="col-md-6" id="s2200_evtadmissao__tpcontr__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__tpcontr__label">Tipo de contrato de trabalho*</label>
+    <label id="s2200_evtadmissao__tpcontr__label">Tipo de contrato de trabalho*<a data-toggle="tooltip" title="Tipo de contrato de trabalho conforme opções abaixo<opcoes>1 - Prazo indeterminado; 2 - Prazo determinado, definido em dias; 3 - Prazo determinado, vinculado à ocorrência de um fato. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.tpcontr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.tpcontr.errors }}
@@ -976,7 +976,7 @@
 <!-- inicio__s2200_evtadmissao__dtterm -->
 <div class="col-md-6" id="s2200_evtadmissao__dtterm__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__dtterm__label">Data de Término do contrato de trabalho</label>
+    <label id="s2200_evtadmissao__dtterm__label">Data de Término do contrato de trabalho<a data-toggle="tooltip" title="Data do Término. <validacao> O preenchimento é obrigatório se {tpContr} igual a [2]. Deve ser igual ou posterior à data de admissão (no caso de sucessão ou de mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_evtadmissao_form.dtterm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_evtadmissao_form.dtterm.errors }}
@@ -991,7 +991,7 @@
 <!-- inicio__s2200_evtadmissao__clauassec -->
 <div class="col-md-6" id="s2200_evtadmissao__clauassec__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__clauassec__label">Indicar se o contrato por prazo determinado contém cláusula assecuratória do direito recíproco de rescisão antes da data de seu término</label>
+    <label id="s2200_evtadmissao__clauassec__label">Indicar se o contrato por prazo determinado contém cláusula assecuratória do direito recíproco de rescisão antes da data de seu término<a data-toggle="tooltip" title="Indicar se o contrato por prazo determinado contém cláusula assecuratória do direito recíproco de rescisão antes da data de seu término<opcoes>S - Sim; N - Não. <validacao> O preenchimento é obrigatório se {tpContr} = [2, 3]. Não preencher se {tpContr} = [1]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.clauassec.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.clauassec.errors }}
@@ -1015,7 +1015,7 @@
 <!-- inicio__s2200_evtadmissao__objdet -->
 <div class="col-md-6" id="s2200_evtadmissao__objdet__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__objdet__label">Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). Validação: O preenchimento é obrigatório e exclusivo se {tpContr} = [3].</label>
+    <label id="s2200_evtadmissao__objdet__label">Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). Validação: O preenchimento é obrigatório e exclusivo se {tpContr} = [3].<a data-toggle="tooltip" title="Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). <validacao> O preenchimento é obrigatório e exclusivo se {tpContr} = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_evtadmissao_form.objdet.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_evtadmissao_form.objdet.errors }}
@@ -1035,7 +1035,7 @@
 <!-- inicio__s2200_evtadmissao__versao -->
 <div class="col-md-3" id="s2200_evtadmissao__versao__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__versao__label">Versão</label>
+    <label id="s2200_evtadmissao__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.versao.errors }}
@@ -1068,7 +1068,7 @@
 
 <div class="col-md-3" id="s2200_evtadmissao__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s2200_evtadmissao__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s2200_evtadmissao__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s2200_evtadmissao_form.transmissor_lote_esocial.value %}
@@ -1100,7 +1100,7 @@
 <!-- inicio__s2200_evtadmissao__status -->
 <div class="col-md-3" id="s2200_evtadmissao__status__div">
   <div class="form-group">
-    <label id="s2200_evtadmissao__status__label">Status</label>
+    <label id="s2200_evtadmissao__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_evtadmissao_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_evtadmissao_form.status.errors }}

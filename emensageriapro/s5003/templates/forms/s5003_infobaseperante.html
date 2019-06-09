@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5003_infobaseperante__s5003_infobasefgts__div">
   <div class="form-group">
-    <label id="s5003_infobaseperante__s5003_infobasefgts__label">Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].*</label>
+    <label id="s5003_infobaseperante__s5003_infobasefgts__label">Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].*<a data-toggle="tooltip" title="Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5003_infobaseperante_form.s5003_infobasefgts.value %}
         <a id="s5003_infobaseperante__s5003_infobasefgts__div_acessar" href="{% url 's5003_infobasefgts_salvar' pk=s5003_infobaseperante_form.s5003_infobasefgts.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5003_infobaseperante__perref -->
 <div class="col-md-6" id="s5003_infobaseperante__perref__div">
   <div class="form-group">
-    <label id="s5003_infobaseperante__perref__label">Período de Referência*</label>
+    <label id="s5003_infobaseperante__perref__label">Período de Referência*<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Evento de origem: S-1200 ou S-2299. <validacao> Deve corresponder ao período informado no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s5003_infobaseperante_form.perref.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_infobaseperante_form.perref.errors }}

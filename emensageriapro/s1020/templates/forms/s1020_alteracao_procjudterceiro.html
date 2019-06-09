@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1020_alteracao_procjudterceiro__s1020_alteracao_infoprocjudterceiros__div">
   <div class="form-group">
-    <label id="s1020_alteracao_procjudterceiro__s1020_alteracao_infoprocjudterceiros__label">Identificação do Processo Judicial*</label>
+    <label id="s1020_alteracao_procjudterceiro__s1020_alteracao_infoprocjudterceiros__label">Identificação do Processo Judicial*<a data-toggle="tooltip" title="Identificação do Processo Judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1020_alteracao_procjudterceiro_form.s1020_alteracao_infoprocjudterceiros.value %}
         <a id="s1020_alteracao_procjudterceiro__s1020_alteracao_infoprocjudterceiros__div_acessar" href="{% url 's1020_alteracao_infoprocjudterceiros_salvar' pk=s1020_alteracao_procjudterceiro_form.s1020_alteracao_infoprocjudterceiros.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="s1020_alteracao_procjudterceiro__codterc__div">
     <div class="form-group">
-      <label id="s1020_alteracao_procjudterceiro__codterc__label">Código de Terceiros*</label>
+      <label id="s1020_alteracao_procjudterceiro__codterc__label">Código de Terceiros*<a data-toggle="tooltip" title="Informar o Código de Terceiro. <validacao> Deve ser um código de terceiro válido e compatível com o FPAS/Terceiros informado no registro superior, conforme tabela 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1020_alteracao_procjudterceiro_form.codterc.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1020_alteracao_procjudterceiro_form.codterc.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-3" id="s1020_alteracao_procjudterceiro__codterc__div">
     <div class="form-group">
-      <label id="s1020_alteracao_procjudterceiro__codterc__label">Código de Terceiros*</label>
+      <label id="s1020_alteracao_procjudterceiro__codterc__label">Código de Terceiros*<a data-toggle="tooltip" title="Informar o Código de Terceiro. <validacao> Deve ser um código de terceiro válido e compatível com o FPAS/Terceiros informado no registro superior, conforme tabela 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codterc" name="txt_codterc" class="form-control" value="{% if s1020_alteracao_procjudterceiro.codterc %}{{ s1020_alteracao_procjudterceiro.codterc }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s1020_alteracao_procjudterceiro__nrprocjud -->
 <div class="col-md-3" id="s1020_alteracao_procjudterceiro__nrprocjud__div">
   <div class="form-group">
-    <label id="s1020_alteracao_procjudterceiro__nrprocjud__label">Número do Processo Judicial*</label>
+    <label id="s1020_alteracao_procjudterceiro__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo válido e deve existir na tabela de processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1020_alteracao_procjudterceiro_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1020_alteracao_procjudterceiro_form.nrprocjud.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1020_alteracao_procjudterceiro__codsusp -->
 <div class="col-md-3" id="s1020_alteracao_procjudterceiro__codsusp__div">
   <div class="form-group">
-    <label id="s1020_alteracao_procjudterceiro__codsusp__label">Código do Indicativo da Suspensão*</label>
+    <label id="s1020_alteracao_procjudterceiro__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1020_alteracao_procjudterceiro_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1020_alteracao_procjudterceiro_form.codsusp.errors }}

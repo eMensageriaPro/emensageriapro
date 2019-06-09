@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4040_idenat__r4040_evtbenefnid__div">
   <div class="form-group">
-    <label id="r4040_idenat__r4040_evtbenefnid__label">Identificação da natureza do rendimento*</label>
+    <label id="r4040_idenat__r4040_evtbenefnid__label">Identificação da natureza do rendimento*<a data-toggle="tooltip" title="Identificação da natureza do rendimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4040_idenat_form.r4040_evtbenefnid.value %}
         <a id="r4040_idenat__r4040_evtbenefnid__div_acessar" href="{% url 'r4040_evtbenefnid_salvar' pk=r4040_idenat_form.r4040_evtbenefnid.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4040_idenat__natrendim -->
 <div class="col-md-6" id="r4040_idenat__natrendim__div">
   <div class="form-group">
-    <label id="r4040_idenat__natrendim__label">Informar a natureza dos rendimentos pagos a beneficiários não identificados*</label>
+    <label id="r4040_idenat__natrendim__label">Informar a natureza dos rendimentos pagos a beneficiários não identificados*<a data-toggle="tooltip" title="Informar a natureza dos rendimentos pagos a beneficiários não identificados, conforme opções a seguir<opcoes>1 - Rendimentos do trabalho; 9 - Demais rendimentos. <valores_validos> 1, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4040_idenat_form.natrendim.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4040_idenat_form.natrendim.errors }}

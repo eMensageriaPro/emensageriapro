@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4020_idepgto__r4020_evtretpj__div">
   <div class="form-group">
-    <label id="r4020_idepgto__r4020_evtretpj__label">Identificação do rendimento*</label>
+    <label id="r4020_idepgto__r4020_evtretpj__label">Identificação do rendimento*<a data-toggle="tooltip" title="Identificação do rendimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r4020_idepgto_form.r4020_evtretpj.value %}
         <a id="r4020_idepgto__r4020_evtretpj__div_acessar" href="{% url 'r4020_evtretpj_salvar' pk=r4020_idepgto_form.r4020_evtretpj.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="r4020_idepgto__natrend__div">
     <div class="form-group">
-      <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
+      <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*<a data-toggle="tooltip" title="Código da natureza do rendimento, conforme tabela 1. <validacao> Deve ser um código válido, existente na tabela 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4020_idepgto_form.natrend.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r4020_idepgto_form.natrend.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-3" id="r4020_idepgto__natrend__div">
     <div class="form-group">
-      <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
+      <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*<a data-toggle="tooltip" title="Código da natureza do rendimento, conforme tabela 1. <validacao> Deve ser um código válido, existente na tabela 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_natrend" name="txt_natrend" class="form-control" value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -106,7 +106,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-3" id="r4020_idepgto__paisresid__div">
     <div class="form-group">
-      <label id="r4020_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
+      <label id="r4020_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*<a data-toggle="tooltip" title="Preencher com o código do país de residência fiscal, conforme tabela 7. <validacao> Deve ser um código existente na tabela 7. Deve estar de acordo com as regras de validação da tabela 1 para a natureza de rendimento informada em {natRend}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r4020_idepgto_form.paisresid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r4020_idepgto_form.paisresid.errors }}
@@ -160,7 +160,7 @@
   {% else %}
   <div class="col-md-3" id="r4020_idepgto__paisresid__div">
     <div class="form-group">
-      <label id="r4020_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
+      <label id="r4020_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*<a data-toggle="tooltip" title="Preencher com o código do país de residência fiscal, conforme tabela 7. <validacao> Deve ser um código existente na tabela 7. Deve estar de acordo com as regras de validação da tabela 1 para a natureza de rendimento informada em {natRend}."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -169,7 +169,7 @@
 <!-- inicio__r4020_idepgto__observ -->
 <div class="col-md-3" id="r4020_idepgto__observ__div">
   <div class="form-group">
-    <label id="r4020_idepgto__observ__label">Observações</label>
+    <label id="r4020_idepgto__observ__label">Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4020_idepgto_form.observ.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4020_idepgto_form.observ.errors }}

@@ -10,7 +10,7 @@
 <!-- inicio__s1200_evtremun__identidade -->
 <div class="col-md-6" id="s1200_evtremun__identidade__div">
   <div class="form-group">
-    <label id="s1200_evtremun__identidade__label">Identidade do Registro</label>
+    <label id="s1200_evtremun__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s1200_evtremun__indretif -->
 <div class="col-md-6" id="s1200_evtremun__indretif__div">
   <div class="form-group">
-    <label id="s1200_evtremun__indretif__label">Identificador de retificação*</label>
+    <label id="s1200_evtremun__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s1200_evtremun__nrrecibo -->
 <div class="col-md-6" id="s1200_evtremun__nrrecibo__div">
   <div class="form-group">
-    <label id="s1200_evtremun__nrrecibo__label">Número do recibo</label>
+    <label id="s1200_evtremun__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s1200_evtremun__indapuracao -->
 <div class="col-md-6" id="s1200_evtremun__indapuracao__div">
   <div class="form-group">
-    <label id="s1200_evtremun__indapuracao__label">Indicativo do periodo de apuração*</label>
+    <label id="s1200_evtremun__indapuracao__label">Indicativo do periodo de apuração*<a data-toggle="tooltip" title="Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual (13° salário). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.indapuracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.indapuracao.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s1200_evtremun__perapur -->
 <div class="col-md-6" id="s1200_evtremun__perapur__div">
   <div class="form-group">
-    <label id="s1200_evtremun__perapur__label">Período de Apuração*</label>
+    <label id="s1200_evtremun__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, igual ou posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.perapur.errors }}
@@ -108,7 +108,7 @@
 <!-- inicio__s1200_evtremun__tpamb -->
 <div class="col-md-6" id="s1200_evtremun__tpamb__div">
   <div class="form-group">
-    <label id="s1200_evtremun__tpamb__label">Identificação do ambiente*</label>
+    <label id="s1200_evtremun__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.tpamb.errors }}
@@ -132,7 +132,7 @@
 <!-- inicio__s1200_evtremun__procemi -->
 <div class="col-md-6" id="s1200_evtremun__procemi__div">
   <div class="form-group">
-    <label id="s1200_evtremun__procemi__label">Processo de emissão do evento*</label>
+    <label id="s1200_evtremun__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.procemi.errors }}
@@ -156,7 +156,7 @@
 <!-- inicio__s1200_evtremun__verproc -->
 <div class="col-md-6" id="s1200_evtremun__verproc__div">
   <div class="form-group">
-    <label id="s1200_evtremun__verproc__label">Versão do processo*</label>
+    <label id="s1200_evtremun__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.verproc.errors }}
@@ -176,7 +176,7 @@
 <!-- inicio__s1200_evtremun__tpinsc -->
 <div class="col-md-6" id="s1200_evtremun__tpinsc__div">
   <div class="form-group">
-    <label id="s1200_evtremun__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s1200_evtremun__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.tpinsc.errors }}
@@ -200,7 +200,7 @@
 <!-- inicio__s1200_evtremun__nrinsc -->
 <div class="col-md-6" id="s1200_evtremun__nrinsc__div">
   <div class="form-group">
-    <label id="s1200_evtremun__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1200_evtremun__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.nrinsc.errors }}
@@ -220,7 +220,7 @@
 <!-- inicio__s1200_evtremun__cpftrab -->
 <div class="col-md-6" id="s1200_evtremun__cpftrab__div">
   <div class="form-group">
-    <label id="s1200_evtremun__cpftrab__label">CPF*</label>
+    <label id="s1200_evtremun__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido. Em arquivo gerado por empregador PF, não pode ser igual ao CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.cpftrab.errors }}
@@ -235,7 +235,7 @@
 <!-- inicio__s1200_evtremun__nistrab -->
 <div class="col-md-6" id="s1200_evtremun__nistrab__div">
   <div class="form-group">
-    <label id="s1200_evtremun__nistrab__label">NIS</label>
+    <label id="s1200_evtremun__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1200_evtremun_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_evtremun_form.nistrab.errors }}
@@ -250,7 +250,7 @@
 <!-- inicio__s1200_evtremun__versao -->
 <div class="col-md-3" id="s1200_evtremun__versao__div">
   <div class="form-group">
-    <label id="s1200_evtremun__versao__label">Versão</label>
+    <label id="s1200_evtremun__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.versao.errors }}
@@ -283,7 +283,7 @@
 
 <div class="col-md-3" id="s1200_evtremun__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s1200_evtremun__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s1200_evtremun__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s1200_evtremun_form.transmissor_lote_esocial.value %}
@@ -315,7 +315,7 @@
 <!-- inicio__s1200_evtremun__status -->
 <div class="col-md-3" id="s1200_evtremun__status__div">
   <div class="form-group">
-    <label id="s1200_evtremun__status__label">Status</label>
+    <label id="s1200_evtremun__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1200_evtremun_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_evtremun_form.status.errors }}

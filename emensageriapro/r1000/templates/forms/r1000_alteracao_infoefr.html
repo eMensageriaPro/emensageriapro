@@ -5,7 +5,7 @@
 <!-- inicio__r1000_alteracao_infoefr__r1000_alteracao -->
 <div class="col-md-12" id="r1000_alteracao_infoefr__r1000_alteracao__div">
   <div class="form-group">
-    <label id="r1000_alteracao_infoefr__r1000_alteracao__label">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR*</label>
+    <label id="r1000_alteracao_infoefr__r1000_alteracao__label">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR*<a data-toggle="tooltip" title="Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r1000_alteracao_infoefr_form.r1000_alteracao.value %}
         <a href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao_infoefr_form.r1000_alteracao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r1000_alteracao_infoefr__ideefr -->
 <div class="col-md-4" id="r1000_alteracao_infoefr__ideefr__div">
   <div class="form-group">
-    <label id="r1000_alteracao_infoefr__ideefr__label">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR*</label>
+    <label id="r1000_alteracao_infoefr__ideefr__label">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR*<a data-toggle="tooltip" title="Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR<opcoes>S - É EFR; N - Não é EFR. <validacao> Essa informação é validada no cadastro do CNPJ na RFB. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r1000_alteracao_infoefr_form.ideefr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r1000_alteracao_infoefr_form.ideefr.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r1000_alteracao_infoefr__cnpjefr -->
 <div class="col-md-4" id="r1000_alteracao_infoefr__cnpjefr__div">
   <div class="form-group">
-    <label id="r1000_alteracao_infoefr__cnpjefr__label">CNPJ do Ente Federativo Responsável - EFR</label>
+    <label id="r1000_alteracao_infoefr__cnpjefr__label">CNPJ do Ente Federativo Responsável - EFR<a data-toggle="tooltip" title="CNPJ do Ente Federativo Responsável - EFR. <validacao> Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r1000_alteracao_infoefr_form.cnpjefr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r1000_alteracao_infoefr_form.cnpjefr.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__s1000_exclusao__s1000_evtinfoempregador -->
 <div class="col-md-12" id="s1000_exclusao__s1000_evtinfoempregador__div">
   <div class="form-group">
-    <label id="s1000_exclusao__s1000_evtinfoempregador__label">Exclusão das informações*</label>
+    <label id="s1000_exclusao__s1000_evtinfoempregador__label">Exclusão das informações*<a data-toggle="tooltip" title="Exclusão das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1000_exclusao_form.s1000_evtinfoempregador.value %}
         <a href="{% url 's1000_evtinfoempregador_salvar' pk=s1000_exclusao_form.s1000_evtinfoempregador.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1000_exclusao__inivalid -->
 <div class="col-md-3" id="s1000_exclusao__inivalid__div">
   <div class="form-group">
-    <label id="s1000_exclusao__inivalid__label">Início da Validade*</label>
+    <label id="s1000_exclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1000_exclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_exclusao_form.inivalid.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__s1000_exclusao__fimvalid -->
 <div class="col-md-3" id="s1000_exclusao__fimvalid__div">
   <div class="form-group">
-    <label id="s1000_exclusao__fimvalid__label">Fim da Validade</label>
+    <label id="s1000_exclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1000_exclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_exclusao_form.fimvalid.errors }}

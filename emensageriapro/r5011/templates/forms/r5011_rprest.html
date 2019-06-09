@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r5011_rprest__r5011_infototalcontrib__div">
   <div class="form-group">
-    <label id="r5011_rprest__r5011_infototalcontrib__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020*</label>
+    <label id="r5011_rprest__r5011_infototalcontrib__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r5011_rprest_form.r5011_infototalcontrib.value %}
         <a id="r5011_rprest__r5011_infototalcontrib__div_acessar" href="{% url 'r5011_infototalcontrib_salvar' pk=r5011_rprest_form.r5011_infototalcontrib.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r5011_rprest__tpinsctomador -->
 <div class="col-md-6" id="r5011_rprest__tpinsctomador__div">
   <div class="form-group">
-    <label id="r5011_rprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    <label id="r5011_rprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Origem: R-5001. <valores_validos> 1,4"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_rprest_form.tpinsctomador.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_rprest_form.tpinsctomador.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r5011_rprest__nrinsctomador -->
 <div class="col-md-6" id="r5011_rprest__nrinsctomador__div">
   <div class="form-group">
-    <label id="r5011_rprest__nrinsctomador__label">Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}*</label>
+    <label id="r5011_rprest__nrinsctomador__label">Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}*<a data-toggle="tooltip" title="Número de inscrição do Tomador de Serviços, de acordo com o tipo de inscrição informado em {tpInscTomador}. Origem: R-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r5011_rprest_form.nrinsctomador.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_rprest_form.nrinsctomador.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r5011_rprest__vlrtotalbaseret -->
 <div class="col-md-6" id="r5011_rprest__vlrtotalbaseret__div">
   <div class="form-group">
-    <label id="r5011_rprest__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*</label>
+    <label id="r5011_rprest__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*<a data-toggle="tooltip" title="Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. Origem: R-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rprest_form.vlrtotalbaseret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rprest_form.vlrtotalbaseret.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__r5011_rprest__vlrtotalretprinc -->
 <div class="col-md-6" id="r5011_rprest__vlrtotalretprinc__div">
   <div class="form-group">
-    <label id="r5011_rprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*</label>
+    <label id="r5011_rprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Origem: R-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rprest_form.vlrtotalretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rprest_form.vlrtotalretprinc.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__r5011_rprest__vlrtotalretadic -->
 <div class="col-md-6" id="r5011_rprest__vlrtotalretadic__div">
   <div class="form-group">
-    <label id="r5011_rprest__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais</label>
+    <label id="r5011_rprest__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais<a data-toggle="tooltip" title="Soma do valor do adicional de retenção das notas fiscais. Origem: R-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rprest_form.vlrtotalretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rprest_form.vlrtotalretadic.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__r5011_rprest__vlrtotalnretprinc -->
 <div class="col-md-6" id="r5011_rprest__vlrtotalnretprinc__div">
   <div class="form-group">
-    <label id="r5011_rprest__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</label>
+    <label id="r5011_rprest__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Origem: R-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rprest_form.vlrtotalnretprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rprest_form.vlrtotalnretprinc.errors }}
@@ -143,7 +143,7 @@
 <!-- inicio__r5011_rprest__vlrtotalnretadic -->
 <div class="col-md-6" id="r5011_rprest__vlrtotalnretadic__div">
   <div class="form-group">
-    <label id="r5011_rprest__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</label>
+    <label id="r5011_rprest__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Origem: R-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r5011_rprest_form.vlrtotalnretadic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_rprest_form.vlrtotalnretadic.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__s2306_cargofuncao__s2306_infocomplementares -->
 <div class="col-md-12" id="s2306_cargofuncao__s2306_infocomplementares__div">
   <div class="form-group">
-    <label id="s2306_cargofuncao__s2306_infocomplementares__label">Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo*</label>
+    <label id="s2306_cargofuncao__s2306_infocomplementares__label">Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo*<a data-toggle="tooltip" title="Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2306_cargofuncao_form.s2306_infocomplementares.value %}
         <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_cargofuncao_form.s2306_infocomplementares.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2306_cargofuncao__codcargo -->
 <div class="col-md-4" id="s2306_cargofuncao__codcargo__div">
   <div class="form-group">
-    <label id="s2306_cargofuncao__codcargo__label">Código do Cargo*</label>
+    <label id="s2306_cargofuncao__codcargo__label">Código do Cargo*<a data-toggle="tooltip" title="Preencher com o código do cargo. <validacao> Deve ser um cargo existente na tabela de Cargos/Empregos Públicos - S-1030."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2306_cargofuncao_form.codcargo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_cargofuncao_form.codcargo.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2306_cargofuncao__codfuncao -->
 <div class="col-md-4" id="s2306_cargofuncao__codfuncao__div">
   <div class="form-group">
-    <label id="s2306_cargofuncao__codfuncao__label">Código da Função</label>
+    <label id="s2306_cargofuncao__codfuncao__label">Código da Função<a data-toggle="tooltip" title="Preencher com o código da função, se utilizado pelo empregador. <validacao> Se informada, deve ser uma função existente na tabela de Funções/Cargos em Comissão - S-1040."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2306_cargofuncao_form.codfuncao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_cargofuncao_form.codfuncao.errors }}

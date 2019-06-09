@@ -5,7 +5,7 @@
 <!-- inicio__s2300_infocomplementares__s2300_evttsvinicio -->
 <div class="col-md-12" id="s2300_infocomplementares__s2300_evttsvinicio__div">
   <div class="form-group">
-    <label id="s2300_infocomplementares__s2300_evttsvinicio__label">Informações complementares sobre o declarante*</label>
+    <label id="s2300_infocomplementares__s2300_evttsvinicio__label">Informações complementares sobre o declarante*<a data-toggle="tooltip" title="Registro onde são fornecidas informações complementares, preenchidas conforme a categoria do trabalhador sem vínculo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2300_infocomplementares_form.s2300_evttsvinicio.value %}
         <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_infocomplementares_form.s2300_evttsvinicio.value tab='master' %}">
             [Acessar]

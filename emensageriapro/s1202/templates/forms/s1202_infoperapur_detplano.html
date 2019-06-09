@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1202_infoperapur_detplano__s1202_infoperapur_detoper__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detplano__s1202_infoperapur_detoper__label">Informações do dependente do plano privado de saúde.*</label>
+    <label id="s1202_infoperapur_detplano__s1202_infoperapur_detoper__label">Informações do dependente do plano privado de saúde.*<a data-toggle="tooltip" title="Informações do dependente do plano privado de saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1202_infoperapur_detplano_form.s1202_infoperapur_detoper.value %}
         <a id="s1202_infoperapur_detplano__s1202_infoperapur_detoper__div_acessar" href="{% url 's1202_infoperapur_detoper_salvar' pk=s1202_infoperapur_detplano_form.s1202_infoperapur_detoper.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1202_infoperapur_detplano__tpdep -->
 <div class="col-md-6" id="s1202_infoperapur_detplano__tpdep__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detplano__tpdep__label">Tipo*</label>
+    <label id="s1202_infoperapur_detplano__tpdep__label">Tipo*<a data-toggle="tooltip" title="Tipo de dependente conforme tabela 7. <validacao> Deve ser um código existente na tabela 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1202_infoperapur_detplano_form.tpdep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1202_infoperapur_detplano_form.tpdep.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1202_infoperapur_detplano__cpfdep -->
 <div class="col-md-6" id="s1202_infoperapur_detplano__cpfdep__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detplano__cpfdep__label">CPF</label>
+    <label id="s1202_infoperapur_detplano__cpfdep__label">CPF<a data-toggle="tooltip" title="Número de Inscrição no CPF. <validacao> Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_infoperapur_detplano_form.cpfdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperapur_detplano_form.cpfdep.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1202_infoperapur_detplano__nmdep -->
 <div class="col-md-6" id="s1202_infoperapur_detplano__nmdep__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detplano__nmdep__label">Nome*</label>
+    <label id="s1202_infoperapur_detplano__nmdep__label">Nome*<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1202_infoperapur_detplano_form.nmdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperapur_detplano_form.nmdep.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s1202_infoperapur_detplano__dtnascto -->
 <div class="col-md-6" id="s1202_infoperapur_detplano__dtnascto__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detplano__dtnascto__label">Data de nascimento*</label>
+    <label id="s1202_infoperapur_detplano__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1202_infoperapur_detplano_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1202_infoperapur_detplano_form.dtnascto.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s1202_infoperapur_detplano__vlrpgdep -->
 <div class="col-md-6" id="s1202_infoperapur_detplano__vlrpgdep__div">
   <div class="form-group">
-    <label id="s1202_infoperapur_detplano__vlrpgdep__label">Valor pago relativo ao plano de saúde do dependente*</label>
+    <label id="s1202_infoperapur_detplano__vlrpgdep__label">Valor pago relativo ao plano de saúde do dependente*<a data-toggle="tooltip" title="Valor pago relativo ao plano de saúde do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1202_infoperapur_detplano_form.vlrpgdep.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1202_infoperapur_detplano_form.vlrpgdep.errors }}

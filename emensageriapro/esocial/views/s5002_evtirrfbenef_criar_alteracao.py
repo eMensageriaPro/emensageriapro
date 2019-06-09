@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_s5002(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s5002_evtirrfbenef_string({}, texto.encode('utf-8'), 0)
+        dados = read_s5002_evtirrfbenef_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s5002_evtirrfbenef)
 
         s5002evtIrrfBenef.objects.filter(id=dados['id']).\

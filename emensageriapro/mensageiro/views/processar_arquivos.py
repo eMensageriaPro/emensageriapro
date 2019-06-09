@@ -19,55 +19,33 @@ import base64
 from emensageriapro.padrao import executar_sql
 from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
 
-
-@login_required
-def atualizar_arquivo_tabela(tabela, tabela_id, arquivo, arquivo_id):
-
-    executar_sql("""
-        UPDATE public.%s
-        SET arquivo='%s'
-        WHERE id=%s""" % (tabela, arquivo, tabela_id), False)
-
-    executar_sql("""
-        UPDATE public.importacao_arquivos_eventos iae
-        SET versao=(SELECT versao FROM public.%s WHERE id = %s)
-        WHERE id=%s""" % (tabela, tabela_id, arquivo_id), False)
+from emensageriapro.mapa_processamento.views.mapa_importacoes import STATUS_IMPORT_AGUARDANDO, \
+    STATUS_IMPORT_PROCESSANDO, STATUS_IMPORT_PROCESSADO, \
+    STATUS_IMPORT_ERRO_PROCESSAMENTO,STATUS_IMPORT_ERRO_OUTROS, STATUS_IMPORT_ERRO_ARQUIVO_INVALIDO, \
+    STATUS_IMPORT_ERRO_IDENTIDADE_EXISTENTE, STATUS_IMPORT_ERRO_VERSAO_LEIAUTE, STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE
 
 
-@login_required
-def atualizar_importador():
 
-    executar_sql("""
-        UPDATE public.importacao_arquivos e SET
-            quant_total = (
-            SELECT count(*) FROM public.importacao_arquivos_eventos e1
-            WHERE e1.importacao_arquivos_id=e.id),
-            quant_aguardando = (
-            SELECT count(*) FROM public.importacao_arquivos_eventos e2
-            WHERE e2.importacao_arquivos_id=e.id AND e2.status=0),
-            quant_erros = (
-            SELECT count(*) FROM public.importacao_arquivos_eventos e3
-            WHERE e3.importacao_arquivos_id=e.id AND e3.status in (2,3,5)),
-            quant_processado = (
-            SELECT count(*) FROM public.importacao_arquivos_eventos e4
-            WHERE e4.importacao_arquivos_id=e.id AND e4.status in (1,4));
-        """ , False)
+def create_import_dirs():
 
-    executar_sql("""
-        UPDATE public.importacao_arquivos SET
-        status = 7 -- processando
-        WHERE (quant_processado + quant_erros) < quant_total;
-    """, False)
+    import os
+    from emensageriapro.settings import BASE_DIR
 
-    executar_sql("""
-        UPDATE public.importacao_arquivos SET
-        status = 6 -- processado com sucesso
-        WHERE (quant_processado + quant_erros) = quant_total;
-    """, False)
+    dir_list = [
+        'erros',
+        'processado',
+        'aguardando',
+        'enviado'
+    ]
+
+    for d in dir_list:
+        diretory_name = BASE_DIR + '/arquivos/Importacao/%s/' % d
+        if not os.path.isdir(diretory_name):
+            os.system('mkdir -p %s' % diretory_name)
 
 
-@login_required
-def validar_arquivo(arquivo, request, lang=None):
+
+def validar_arquivo(request, arquivo, lang=None):
 
     from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_schema
     from django.contrib import messages
@@ -87,106 +65,94 @@ def validar_arquivo(arquivo, request, lang=None):
 
         messages.error(request, 'Erro na importação. Arquivo XML inválido!')
         dados['status'] = 3
-        return dados, request, 1, ['Erro na importação. Arquivo XML inválido!']
+        return 1, ['Erro na importação. Arquivo XML inválido!']
 
     if dados['status'] == 1:
 
         from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name
         schema_filename = get_schema_name(arquivo)
-        quant_erros, error_list = validar_schema(schema_filename, arquivo, lang=lang)
+        quant_erros, error_list = validar_schema(request, schema_filename, arquivo, lang=lang)
 
     return quant_erros, error_list
 
 
 
 
-def scripts_processar_arquivos(request):
-    #atualizar_importador()
-    import os
+def scripts_processar_arquivos(request, tab):
+
+    create_import_dirs()
 
     import os.path
     from emensageriapro.settings import BASE_DIR, VERSOES_EFDREINF, VERSOES_ESOCIAL
     from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo, \
         get_identidade_evento, get_versao_evento
 
-    executar_sql("""
-    UPDATE public.importacao_arquivos_eventos
-       SET excluido=NULL 
-     WHERE importacao_arquivos_id IN (
-            SELECT id 
-              FROM importacao_arquivos 
-             WHERE excluido IS NULL);""", False)
+    arquivos_lista = ImportacaoArquivos.objects.all()
+    ImportacaoArquivosEventos.objects.exclude(importacao_arquivos__in=arquivos_lista).delete()
 
-    arquivos = ImportacaoArquivosEventos.objects.filter(status=0).exclude(id=0).all()
+    arquivos = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_AGUARDANDO).exclude(id=0).all()
 
     for arquivo in arquivos:
 
         error_list = []
 
         ident = str(arquivo.id)
+
         while len(ident) < 10:
             ident = '0' + ident
+
         filename = arquivo.arquivo
         dados_eventos = {}
 
-        if os.path.isfile(BASE_DIR+'/'+filename):
+        if os.path.isfile(BASE_DIR+filename):
 
             dados_eventos['identidade_evento'] = get_identidade_evento(ler_arquivo(filename))
             dados_eventos['versao'] = get_versao_evento(ler_arquivo(filename))
 
-            existe_identidade = executar_sql(
-                """SELECT count(*) 
-                     FROM public.transmissor_eventos_esocial 
-                    WHERE identidade='%s'""" % dados_eventos['identidade_evento'], True)
+            existe_identidade_esocial = TransmissorEventosEsocial.objects.filter(identidade=dados_eventos['identidade_evento']).all()
+            existe_identidade_efdreinf = TransmissorEventosEfdreinf.objects.filter(identidade=dados_eventos['identidade_evento']).all()
 
-            existe_identidade = existe_identidade[0][0]
+            if existe_identidade_esocial or existe_identidade_efdreinf:
 
-            if existe_identidade:
-
-                dados_eventos['status'] = 5
+                dados_eventos['status'] = STATUS_IMPORT_ERRO_IDENTIDADE_EXISTENTE
                 error_list = ['Não é possível importar o evento pois o ID já existe em nossa base!']
-                origem = BASE_DIR + '/' + arquivo.arquivo
-                destino = BASE_DIR + '/' + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
+                origem = BASE_DIR + arquivo.arquivo
+                destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
                 os.system('mv %s %s' % (origem, destino))
                 dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/erro/'+ ident + '__')
-                ia_id = arquivo.importacao_arquivos_id
                 gravar_nome_arquivo(dados_eventos['arquivo'], 1)
 
             elif dados_eventos['versao'] in VERSOES_ESOCIAL or dados_eventos['versao'] in VERSOES_EFDREINF:
 
-                quant_erros, error_list = validar_arquivo(filename, request, lang='pt')
+                quant_erros, error_list = validar_arquivo(request, filename, lang='pt')
 
                 if not quant_erros or (quant_erros == 1 and 'Signature' in str(error_list)):
 
                     dados_importacao = importar_arquivo(filename, request, 1)
-                    #dados_eventos['evento'] = dados_eventos['tabela']
-                    #del dados_eventos['tabela']
                     dados_eventos['evento'] = dados_importacao['tabela']
-                    dados_eventos['status'] = 1
-                    origem = BASE_DIR + '/' + arquivo.arquivo
-                    destino = BASE_DIR + '/' + arquivo.arquivo.replace('/aguardando/', '/processado/' + ident + '__')
+                    dados_eventos['status'] = STATUS_IMPORT_PROCESSADO
+                    origem = BASE_DIR + arquivo.arquivo
+                    destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/processado/' + ident + '__')
                     os.system('mv %s %s' % (origem, destino))
-                    dados_eventos['arquivo'] = '/' + arquivo.arquivo.replace('/aguardando/', '/processado/' + ident + '__')
-                    atualizar_arquivo_tabela(dados_eventos['evento'], dados_importacao['identidade'], dados_eventos['arquivo'], arquivo.id)
+                    dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/processado/' + ident + '__')
+
                     gravar_nome_arquivo(dados_eventos['arquivo'], 1)
 
                 else:
 
-                    #dados_eventos['evento'] = dados_eventos['tabela']
-                    #del dados_eventos['tabela']
-                    dados_eventos['status'] = 2
-                    origem = BASE_DIR + '/' + arquivo.arquivo
-                    destino = BASE_DIR + '/' + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
+                    dados_eventos['status'] = STATUS_IMPORT_ERRO_PROCESSAMENTO
+                    origem = BASE_DIR + arquivo.arquivo
+                    destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
                     os.system('mv %s %s' % (origem, destino))
                     dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
                     gravar_nome_arquivo(dados_eventos['arquivo'], 1)
 
             else:
 
-                dados_eventos['status'] = 2
+                dados_eventos['status'] = STATUS_IMPORT_ERRO_VERSAO_LEIAUTE
                 error_list = ['Versão do evento incompatível!']
-                origem = BASE_DIR + '/' + arquivo.arquivo
-                destino = BASE_DIR + '/' + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
+                origem = BASE_DIR + arquivo.arquivo
+                destino = BASE_DIR + arquivo.arquivo.replace('/aguardando/', '/erro/' + ident + '__')
                 os.system('mv %s %s' % (origem, destino))
                 dados_eventos['arquivo'] = arquivo.arquivo.replace('/aguardando/', '/erro/'+ ident + '__')
                 ia_id = arquivo.importacao_arquivos_id
@@ -194,16 +160,18 @@ def scripts_processar_arquivos(request):
 
         else:
 
-            dados_eventos['status'] = 2
+            dados_eventos['status'] = STATUS_IMPORT_ERRO_ARQUIVO_INVALIDO
             error_list = ['Arquivo não encontrado!']
 
         dados_eventos['validacoes'] = '<br>'.join(error_list)
         dados_eventos['criado_em'] = datetime.datetime.now()
-        dados_eventos['criado_por_id'] = 1
+        dados_eventos['criado_por_id'] = request.user.id
         dados_eventos['excluido'] = False
         ImportacaoArquivosEventos.objects.filter(id=arquivo.id).update(**dados_eventos)
-        ia_id = arquivo.importacao_arquivos_id
-        atualizar_importador()
+
+    if tab == 'mapa':
+        messages.success(request, 'Processamento realizado com sucesso...')
+        return redirect('mapa_importacoes', tab='master')
 
     return HttpResponse('')
 
@@ -211,7 +179,7 @@ def scripts_processar_arquivos(request):
 
 
 @login_required
-def scripts_salvar_arquivos(request):
+def scripts_salvar_arquivos(request, tab='master'):
 
     import os
     from emensageriapro.settings import BASE_DIR
@@ -290,7 +258,13 @@ def scripts_salvar_arquivos(request):
 
         messages.error(request, 'Não foram encontrados arquivos para processamento!')
 
-    return redirect('importacao_arquivos')
+    if tab == 'mapa':
+
+        return redirect('mapa_importacoes', tab='master')
+
+    else:
+
+        return redirect('importacao_arquivos')
 
 
 

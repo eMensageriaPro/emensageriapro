@@ -5,7 +5,7 @@
 <!-- inicio__s2200_horcontratual__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_horcontratual__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_horcontratual__s2200_evtadmissao__label">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].*</label>
+    <label id="s2200_horcontratual__s2200_evtadmissao__label">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].*<a data-toggle="tooltip" title="Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2200_horcontratual_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_horcontratual_form.s2200_evtadmissao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_horcontratual__qtdhrssem -->
 <div class="col-md-6" id="s2200_horcontratual__qtdhrssem__div">
   <div class="form-group">
-    <label id="s2200_horcontratual__qtdhrssem__label">Quant. de horas semanais</label>
+    <label id="s2200_horcontratual__qtdhrssem__label">Quant. de horas semanais<a data-toggle="tooltip" title="Quantidade média de horas relativas à jornada semanal do trabalhador. <validacao> Deve ser preenchido se {codCateg} <> [111]. Se preenchido, deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_horcontratual_form.qtdhrssem.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2200_horcontratual_form.qtdhrssem.errors }}
@@ -49,7 +49,7 @@
 <!-- inicio__s2200_horcontratual__tpjornada -->
 <div class="col-md-6" id="s2200_horcontratual__tpjornada__div">
   <div class="form-group">
-    <label id="s2200_horcontratual__tpjornada__label">Tipo de jornada*</label>
+    <label id="s2200_horcontratual__tpjornada__label">Tipo de jornada*<a data-toggle="tooltip" title="Tipo da Jornada. Preencher com uma das opções<opcoes>1 - Jornada com horário diário e folga fixos; 2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso); 3 - Jornada com horário diário fixo e folga variável; 9 - Demais tipos de jornada. <valores_validos> 1, 2, 3, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_horcontratual_form.tpjornada.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_horcontratual_form.tpjornada.errors }}
@@ -73,7 +73,7 @@
 <!-- inicio__s2200_horcontratual__dsctpjorn -->
 <div class="col-md-6" id="s2200_horcontratual__dsctpjorn__div">
   <div class="form-group">
-    <label id="s2200_horcontratual__dsctpjorn__label">Descrição do tipo de jornada</label>
+    <label id="s2200_horcontratual__dsctpjorn__label">Descrição do tipo de jornada<a data-toggle="tooltip" title="Descrição do tipo de jornada. <validacao> Deve ser preenchido se {tpJornada} = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_horcontratual_form.dsctpjorn.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_horcontratual_form.dsctpjorn.errors }}
@@ -88,7 +88,7 @@
 <!-- inicio__s2200_horcontratual__tmpparc -->
 <div class="col-md-6" id="s2200_horcontratual__tmpparc__div">
   <div class="form-group">
-    <label id="s2200_horcontratual__tmpparc__label">Contrato em tempo parcial*</label>
+    <label id="s2200_horcontratual__tmpparc__label">Contrato em tempo parcial*<a data-toggle="tooltip" title="Preencher com o código relativo ao tipo de contrato em tempo parcial<opcoes>0 - Não é contrato em tempo parcial; 1 - Limitado a 25 horas semanais; 2 - Limitado a 30 horas semanais; 3 - Limitado a 26 horas semanais. <validacao> O código [1] só é válido se {codCateg} = [104]. Os códigos [2, 3] não são válidos se {codCateg} = [104]. <valores_validos> 0, 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_horcontratual_form.tmpparc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_horcontratual_form.tmpparc.errors }}

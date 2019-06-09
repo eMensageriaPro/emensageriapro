@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_s1035(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s1035_evttabcarreira_string({}, texto.encode('utf-8'), 0)
+        dados = read_s1035_evttabcarreira_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s1035_evttabcarreira)
 
         s1035evtTabCarreira.objects.filter(id=dados['id']).\

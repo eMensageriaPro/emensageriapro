@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1207_procjudtrab__s1207_evtbenprrp__div">
   <div class="form-group">
-    <label id="s1207_procjudtrab__s1207_evtbenprrp__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*</label>
+    <label id="s1207_procjudtrab__s1207_evtbenprrp__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*<a data-toggle="tooltip" title="Informações sobre a existência de processos judiciais do beneficiário com decisão favorável quanto a não incidência/exigibilidade ou alterações na incidência/exigibilidade de contribuição previdenciária e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1207_procjudtrab_form.s1207_evtbenprrp.value %}
         <a id="s1207_procjudtrab__s1207_evtbenprrp__div_acessar" href="{% url 's1207_evtbenprrp_salvar' pk=s1207_procjudtrab_form.s1207_evtbenprrp.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1207_procjudtrab__tptrib -->
 <div class="col-md-3" id="s1207_procjudtrab__tptrib__div">
   <div class="form-group">
-    <label id="s1207_procjudtrab__tptrib__label">Abrangência da Decisão*</label>
+    <label id="s1207_procjudtrab__tptrib__label">Abrangência da Decisão*<a data-toggle="tooltip" title="Abrangência da decisão<opcoes>1 - IRRF; 5 - Contribuição para o RPPS/regime militar. <valores_validos> 1, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1207_procjudtrab_form.tptrib.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1207_procjudtrab_form.tptrib.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1207_procjudtrab__nrprocjud -->
 <div class="col-md-3" id="s1207_procjudtrab__nrprocjud__div">
   <div class="form-group">
-    <label id="s1207_procjudtrab__nrprocjud__label">Número do Processo Judicial*</label>
+    <label id="s1207_procjudtrab__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a: - [1], se {tpTrib} = [1]; - [9], se {tpTrib} = [5]. <validacao> O processo deve existir na tabela de processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_procjudtrab_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_procjudtrab_form.nrprocjud.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1207_procjudtrab__codsusp -->
 <div class="col-md-3" id="s1207_procjudtrab__codsusp__div">
   <div class="form-group">
-    <label id="s1207_procjudtrab__codsusp__label">Código do Indicativo da Suspensão</label>
+    <label id="s1207_procjudtrab__codsusp__label">Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> Preenchimento obrigatório se {tpTrib} = [1]. A informação prestada deve estar de acordo com o que foi informado em S- 1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1207_procjudtrab_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1207_procjudtrab_form.codsusp.errors }}

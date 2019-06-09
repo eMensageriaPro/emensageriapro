@@ -5,7 +5,7 @@
 <!-- inicio__r2070_inforesidext__r2070_evtpgtosdivs -->
 <div class="col-md-12" id="r2070_inforesidext__r2070_evtpgtosdivs__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__r2070_evtpgtosdivs__label">Informações complementares de beneficiário residente ou domiciliado no exterior*</label>
+    <label id="r2070_inforesidext__r2070_evtpgtosdivs__label">Informações complementares de beneficiário residente ou domiciliado no exterior*<a data-toggle="tooltip" title="Informações complementares de beneficiário residente ou domiciliado no exterior"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r2070_inforesidext_form.r2070_evtpgtosdivs.value %}
         <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_inforesidext_form.r2070_evtpgtosdivs.value tab='master' %}">
             [Acessar]
@@ -38,7 +38,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="r2070_inforesidext__paisresid__div">
     <div class="form-group">
-      <label id="r2070_inforesidext__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
+      <label id="r2070_inforesidext__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*<a data-toggle="tooltip" title="Preencher com o código do país de residência fiscal, conforme tabela 7. <validacao> Deve ser um código existente na tabela"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if r2070_inforesidext_form.paisresid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r2070_inforesidext_form.paisresid.errors }}
@@ -92,7 +92,7 @@
   {% else %}
   <div class="col-md-6" id="r2070_inforesidext__paisresid__div">
     <div class="form-group">
-      <label id="r2070_inforesidext__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
+      <label id="r2070_inforesidext__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*<a data-toggle="tooltip" title="Preencher com o código do país de residência fiscal, conforme tabela 7. <validacao> Deve ser um código existente na tabela"><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -101,7 +101,7 @@
 <!-- inicio__r2070_inforesidext__dsclograd -->
 <div class="col-md-6" id="r2070_inforesidext__dsclograd__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__dsclograd__label">Descrição do logradouro*</label>
+    <label id="r2070_inforesidext__dsclograd__label">Descrição do logradouro*<a data-toggle="tooltip" title="Descrição do logradouro"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.dsclograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.dsclograd.errors }}
@@ -116,7 +116,7 @@
 <!-- inicio__r2070_inforesidext__nrlograd -->
 <div class="col-md-6" id="r2070_inforesidext__nrlograd__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__nrlograd__label">Número do logradouro.</label>
+    <label id="r2070_inforesidext__nrlograd__label">Número do logradouro.<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.nrlograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.nrlograd.errors }}
@@ -131,7 +131,7 @@
 <!-- inicio__r2070_inforesidext__complem -->
 <div class="col-md-6" id="r2070_inforesidext__complem__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__complem__label">Complemento do logradouro.</label>
+    <label id="r2070_inforesidext__complem__label">Complemento do logradouro.<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.complem.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.complem.errors }}
@@ -146,7 +146,7 @@
 <!-- inicio__r2070_inforesidext__bairro -->
 <div class="col-md-6" id="r2070_inforesidext__bairro__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__bairro__label">Nome do bairro/distrito</label>
+    <label id="r2070_inforesidext__bairro__label">Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.bairro.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.bairro.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__r2070_inforesidext__cidade -->
 <div class="col-md-6" id="r2070_inforesidext__cidade__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__cidade__label">Nome da cidade</label>
+    <label id="r2070_inforesidext__cidade__label">Nome da cidade<a data-toggle="tooltip" title="Nome da cidade"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.cidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.cidade.errors }}
@@ -176,7 +176,7 @@
 <!-- inicio__r2070_inforesidext__codpostal -->
 <div class="col-md-6" id="r2070_inforesidext__codpostal__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__codpostal__label">Código de Endereçamento Postal</label>
+    <label id="r2070_inforesidext__codpostal__label">Código de Endereçamento Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.codpostal.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.codpostal.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__r2070_inforesidext__indnif -->
 <div class="col-md-6" id="r2070_inforesidext__indnif__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__indnif__label">Indicativo do Número de Identificação Fiscal*</label>
+    <label id="r2070_inforesidext__indnif__label">Indicativo do Número de Identificação Fiscal*<a data-toggle="tooltip" title="Indicativo do Número de Identificação Fiscal<opcoes>1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_inforesidext_form.indnif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_inforesidext_form.indnif.errors }}
@@ -220,7 +220,7 @@
 <!-- inicio__r2070_inforesidext__nifbenef -->
 <div class="col-md-6" id="r2070_inforesidext__nifbenef__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__nifbenef__label">Número de Identificação Fiscal - NIF</label>
+    <label id="r2070_inforesidext__nifbenef__label">Número de Identificação Fiscal - NIF<a data-toggle="tooltip" title="Número de Identificação Fiscal - NIF <validacao> Obrigatório se {indNIF} = [1]"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_inforesidext_form.nifbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_inforesidext_form.nifbenef.errors }}
@@ -235,7 +235,7 @@
 <!-- inicio__r2070_inforesidext__relfontepagad -->
 <div class="col-md-6" id="r2070_inforesidext__relfontepagad__div">
   <div class="form-group">
-    <label id="r2070_inforesidext__relfontepagad__label">Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme Tabela 05 - Informações sobre os Beneficiários dos Rendimentos</label>
+    <label id="r2070_inforesidext__relfontepagad__label">Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme Tabela 05 - Informações sobre os Beneficiários dos Rendimentos<a data-toggle="tooltip" title="Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme tabela 5 - Informações sobre os Beneficiários dos Rendimentos <validacao> Informação obrigatória se {ideBenef/tpInsc} = [1]. Não informar nos demais casos. O código informado deve existir na tabela 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_inforesidext_form.relfontepagad.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_inforesidext_form.relfontepagad.errors }}

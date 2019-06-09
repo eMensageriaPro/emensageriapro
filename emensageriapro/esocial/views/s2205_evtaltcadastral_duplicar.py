@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2205(request, pk, versao="|")
-            dados = read_s2205_evtaltcadastral_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2205_evtaltcadastral_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2205_evtaltcadastral)
     
             s2205evtAltCadastral.objects.filter(id=dados['id']).\

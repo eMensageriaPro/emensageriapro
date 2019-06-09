@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1207(request, pk, versao="|")
-            dados = read_s1207_evtbenprrp_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1207_evtbenprrp_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1207_evtbenprrp)
     
             s1207evtBenPrRP.objects.filter(id=dados['id']).\

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2299_infoperant_ideadc__s2299_infoperant__div">
   <div class="form-group">
-    <label id="s2299_infoperant_ideadc__s2299_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*</label>
+    <label id="s2299_infoperant_ideadc__s2299_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*<a data-toggle="tooltip" title="Identificação do Acordo coletivo, Legislação, Convenção Coletiva, Dissídio ou Conversão da licença saúde em acidente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2299_infoperant_ideadc_form.s2299_infoperant.value %}
         <a id="s2299_infoperant_ideadc__s2299_infoperant__div_acessar" href="{% url 's2299_infoperant_salvar' pk=s2299_infoperant_ideadc_form.s2299_infoperant.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2299_infoperant_ideadc__dtacconv -->
 <div class="col-md-6" id="s2299_infoperant_ideadc__dtacconv__div">
   <div class="form-group">
-    <label id="s2299_infoperant_ideadc__dtacconv__label">Data do vencimento da obrigação*</label>
+    <label id="s2299_infoperant_ideadc__dtacconv__label">Data do vencimento da obrigação*<a data-toggle="tooltip" title="Data da assinatura do acordo, convenção coletiva, sentença normativa ou da conversão da licença saúde em acidente de trabalho. <validacao> Deve ser uma data compreendida no mês em que ocorreu o desligamento conforme informado no campo {dtDeslig} ou em mês anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2299_infoperant_ideadc_form.dtacconv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2299_infoperant_ideadc_form.dtacconv.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2299_infoperant_ideadc__tpacconv -->
 <div class="col-md-6" id="s2299_infoperant_ideadc__tpacconv__div">
   <div class="form-group">
-    <label id="s2299_infoperant_ideadc__tpacconv__label">Tipo*</label>
+    <label id="s2299_infoperant_ideadc__tpacconv__label">Tipo*<a data-toggle="tooltip" title="Tipo do instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores<opcoes> A - Acordo Coletivo de Trabalho; B - Legislação federal, estadual, municipal ou distrital; C - Convenção Coletiva de Trabalho; D - Sentença Normativa - Dissídio; E - Conversão de Licença Saúde em Acidente de Trabalho. <valores_validos> A, B, C, D, E."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2299_infoperant_ideadc_form.tpacconv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2299_infoperant_ideadc_form.tpacconv.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2299_infoperant_ideadc__compacconv -->
 <div class="col-md-6" id="s2299_infoperant_ideadc__compacconv__div">
   <div class="form-group">
-    <label id="s2299_infoperant_ideadc__compacconv__label">Competência</label>
+    <label id="s2299_infoperant_ideadc__compacconv__label">Competência<a data-toggle="tooltip" title="Competência (formato AAAA-MM) em que é devida a obrigação de pagar os efeitos remuneratórios de lei, acordo coletivo, convenção coletiva ou sentença normativa. <validacao> Deve ser maior ou igual ao mês/ano informado em {dtDeslig}. Preenchimento obrigatório se {tpAcConv} = [A, B, C, D]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_infoperant_ideadc_form.compacconv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infoperant_ideadc_form.compacconv.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2299_infoperant_ideadc__dtefacconv -->
 <div class="col-md-6" id="s2299_infoperant_ideadc__dtefacconv__div">
   <div class="form-group">
-    <label id="s2299_infoperant_ideadc__dtefacconv__label">Data do efeito*</label>
+    <label id="s2299_infoperant_ideadc__dtefacconv__label">Data do efeito*<a data-toggle="tooltip" title="Data a partir da qual o instrumento ou legislação mencionada em {tpAcConv} passa a produzir seus efeitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2299_infoperant_ideadc_form.dtefacconv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2299_infoperant_ideadc_form.dtefacconv.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2299_infoperant_ideadc__dsc -->
 <div class="col-md-6" id="s2299_infoperant_ideadc__dsc__div">
   <div class="form-group">
-    <label id="s2299_infoperant_ideadc__dsc__label">Descrição*</label>
+    <label id="s2299_infoperant_ideadc__dsc__label">Descrição*<a data-toggle="tooltip" title="Detalhamento do instrumento ou situação que originou o pagamento das verbas relativas a períodos anteriores."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_infoperant_ideadc_form.dsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infoperant_ideadc_form.dsc.errors }}

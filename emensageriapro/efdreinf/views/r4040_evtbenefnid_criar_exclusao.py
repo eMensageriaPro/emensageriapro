@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_r4040(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_r4040_evtbenefnid_string({}, texto.encode('utf-8'), 0)
+        dados = read_r4040_evtbenefnid_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(r4040_evtbenefnid)
 
         r4040evtBenefNId.objects.filter(id=dados['id']).\

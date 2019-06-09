@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5013_dpsperapur__s5013_infodpsfgts__div">
   <div class="form-group">
-    <label id="s5013_dpsperapur__s5013_infodpsfgts__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].*</label>
+    <label id="s5013_dpsperapur__s5013_infodpsfgts__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].*<a data-toggle="tooltip" title="Cálculo consolidado dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s5013_dpsperapur_form.s5013_infodpsfgts.value %}
         <a id="s5013_dpsperapur__s5013_infodpsfgts__div_acessar" href="{% url 's5013_infodpsfgts_salvar' pk=s5013_dpsperapur_form.s5013_infodpsfgts.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5013_dpsperapur__tpdps -->
 <div class="col-md-4" id="s5013_dpsperapur__tpdps__div">
   <div class="form-group">
-    <label id="s5013_dpsperapur__tpdps__label">Tipo de depósito*</label>
+    <label id="s5013_dpsperapur__tpdps__label">Tipo de depósito*<a data-toggle="tooltip" title="Tipo de depósito<opcoes>51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz; 56 - Depósito do FGTS 13° Salário - Aprendiz; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório - 13° Salário; 63 - Depósito do FGTS Rescisório - Aviso Prévio; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz; 68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz; 69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. <validacao> Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5013_dpsperapur_form.tpdps.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5013_dpsperapur_form.tpdps.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5013_dpsperapur__vrfgts -->
 <div class="col-md-4" id="s5013_dpsperapur__vrfgts__div">
   <div class="form-group">
-    <label id="s5013_dpsperapur__vrfgts__label">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador*</label>
+    <label id="s5013_dpsperapur__vrfgts__label">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador*<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTS}, agrupados por {tpDps}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s5013_dpsperapur_form.vrfgts.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5013_dpsperapur_form.vrfgts.errors }}

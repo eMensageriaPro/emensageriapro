@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r3010(request, pk, versao="|")
-            dados = read_r3010_evtespdesportivo_string({}, texto.encode('utf-8'), 0)
+            dados = read_r3010_evtespdesportivo_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r3010_evtespdesportivo)
     
             r3010evtEspDesportivo.objects.filter(id=dados['id']).\

@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1005(request, pk, versao="|")
-            dados = read_s1005_evttabestab_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1005_evttabestab_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1005_evttabestab)
     
             s1005evtTabEstab.objects.filter(id=dados['id']).\

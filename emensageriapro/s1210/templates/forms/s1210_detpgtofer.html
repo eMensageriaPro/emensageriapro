@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_detpgtofer__s1210_infopgto__div">
   <div class="form-group">
-    <label id="s1210_detpgtofer__s1210_infopgto__label">Detalhamento dos pagamentos efetuados relativos a férias*</label>
+    <label id="s1210_detpgtofer__s1210_infopgto__label">Detalhamento dos pagamentos efetuados relativos a férias*<a data-toggle="tooltip" title="Detalhamento dos pagamentos efetuados relativos a férias. O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] e {codIncIRRF} = [31, 32, 33, 34, 35] não pode ser negativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1210_detpgtofer_form.s1210_infopgto.value %}
         <a id="s1210_detpgtofer__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtofer_form.s1210_infopgto.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1210_detpgtofer__codcateg__div">
     <div class="form-group">
-      <label id="s1210_detpgtofer__codcateg__label">Código da Categoria*</label>
+      <label id="s1210_detpgtofer__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1210_detpgtofer_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1210_detpgtofer_form.codcateg.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s1210_detpgtofer__codcateg__div">
     <div class="form-group">
-      <label id="s1210_detpgtofer__codcateg__label">Código da Categoria*</label>
+      <label id="s1210_detpgtofer__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s1210_detpgtofer.codcateg %}{{ s1210_detpgtofer.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s1210_detpgtofer__matricula -->
 <div class="col-md-6" id="s1210_detpgtofer__matricula__div">
   <div class="form-group">
-    <label id="s1210_detpgtofer__matricula__label">Matricula</label>
+    <label id="s1210_detpgtofer__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Informação obrigatória para trabalhadores das categorias 'empregados' e 'agentes públicos'. Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofer_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofer_form.matricula.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1210_detpgtofer__dtinigoz -->
 <div class="col-md-6" id="s1210_detpgtofer__dtinigoz__div">
   <div class="form-group">
-    <label id="s1210_detpgtofer__dtinigoz__label">Data de início do gozo de férias*</label>
+    <label id="s1210_detpgtofer__dtinigoz__label">Data de início do gozo de férias*<a data-toggle="tooltip" title="Data de início de gozo das férias."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s1210_detpgtofer_form.dtinigoz.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1210_detpgtofer_form.dtinigoz.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s1210_detpgtofer__qtdias -->
 <div class="col-md-6" id="s1210_detpgtofer__qtdias__div">
   <div class="form-group">
-    <label id="s1210_detpgtofer__qtdias__label">Quant. de dias de férias gozadas*</label>
+    <label id="s1210_detpgtofer__qtdias__label">Quant. de dias de férias gozadas*<a data-toggle="tooltip" title="Quantidade de dias de férias gozadas. Não devem ser incluídos os dias referentes ao abono pecuniário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1210_detpgtofer_form.qtdias.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofer_form.qtdias.errors }}
@@ -150,7 +150,7 @@
 <!-- inicio__s1210_detpgtofer__vrliq -->
 <div class="col-md-6" id="s1210_detpgtofer__vrliq__div">
   <div class="form-group">
-    <label id="s1210_detpgtofer__vrliq__label">Valor liquido*</label>
+    <label id="s1210_detpgtofer__vrliq__label">Valor liquido*<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). <validacao> Deve corresponder ao somatório dos valores de vencimentos e descontos descritos em {detRubrFer}. Não pode ser um valor negativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1210_detpgtofer_form.vrliq.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofer_form.vrliq.errors }}

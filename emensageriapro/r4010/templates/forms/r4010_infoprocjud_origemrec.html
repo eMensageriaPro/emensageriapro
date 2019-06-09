@@ -5,7 +5,7 @@
 <!-- inicio__r4010_infoprocjud_origemrec__r4010_infoprocjud -->
 <div class="col-md-12" id="r4010_infoprocjud_origemrec__r4010_infoprocjud__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud_origemrec__r4010_infoprocjud__label">Informações sobre a origem dos recursos*</label>
+    <label id="r4010_infoprocjud_origemrec__r4010_infoprocjud__label">Informações sobre a origem dos recursos*<a data-toggle="tooltip" title="Identificação da origem dos recursos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4010_infoprocjud_origemrec_form.r4010_infoprocjud.value %}
         <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud_origemrec_form.r4010_infoprocjud.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4010_infoprocjud_origemrec__cnpjorigrecurso -->
 <div class="col-md-6" id="r4010_infoprocjud_origemrec__cnpjorigrecurso__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud_origemrec__cnpjorigrecurso__label">Preencher com o CNPJ da empresa que repassou recursos*</label>
+    <label id="r4010_infoprocjud_origemrec__cnpjorigrecurso__label">Preencher com o CNPJ da empresa que repassou recursos*<a data-toggle="tooltip" title="Preencher com o CNPJ da empresa que repassou recursos. <validacao> Informação obrigatória se {indOrigRec} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_infoprocjud_origemrec_form.cnpjorigrecurso.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_infoprocjud_origemrec_form.cnpjorigrecurso.errors }}

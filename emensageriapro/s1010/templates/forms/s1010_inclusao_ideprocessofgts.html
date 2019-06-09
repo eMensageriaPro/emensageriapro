@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1010_inclusao_ideprocessofgts__s1010_inclusao__div">
   <div class="form-group">
-    <label id="s1010_inclusao_ideprocessofgts__s1010_inclusao__label">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*</label>
+    <label id="s1010_inclusao_ideprocessofgts__s1010_inclusao__label">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*<a data-toggle="tooltip" title="Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s1010_inclusao_ideprocessofgts_form.s1010_inclusao.value %}
         <a id="s1010_inclusao_ideprocessofgts__s1010_inclusao__div_acessar" href="{% url 's1010_inclusao_salvar' pk=s1010_inclusao_ideprocessofgts_form.s1010_inclusao.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1010_inclusao_ideprocessofgts__nrproc -->
 <div class="col-md-6" id="s1010_inclusao_ideprocessofgts__nrproc__div">
   <div class="form-group">
-    <label id="s1010_inclusao_ideprocessofgts__nrproc__label">Número do Processo*</label>
+    <label id="s1010_inclusao_ideprocessofgts__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1, 7]. <validacao> Deve ser um número de processo judicial válido e existente na tabela de Processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1010_inclusao_ideprocessofgts_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1010_inclusao_ideprocessofgts_form.nrproc.errors }}

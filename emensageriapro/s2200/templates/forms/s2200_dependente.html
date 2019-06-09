@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2200_dependente__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_dependente__s2200_evtadmissao__label">Informações dos dependentes*</label>
+    <label id="s2200_dependente__s2200_evtadmissao__label">Informações dos dependentes*<a data-toggle="tooltip" title="Informações dos dependentes."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2200_dependente_form.s2200_evtadmissao.value %}
         <a id="s2200_dependente__s2200_evtadmissao__div_acessar" href="{% url 's2200_evtadmissao_salvar' pk=s2200_dependente_form.s2200_evtadmissao.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2200_dependente__tpdep -->
 <div class="col-md-6" id="s2200_dependente__tpdep__div">
   <div class="form-group">
-    <label id="s2200_dependente__tpdep__label">Tipo*</label>
+    <label id="s2200_dependente__tpdep__label">Tipo*<a data-toggle="tooltip" title="Tipo de dependente conforme tabela 7. <validacao> Deve ser um código existente na tabela 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_dependente_form.tpdep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_dependente_form.tpdep.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s2200_dependente__nmdep -->
 <div class="col-md-6" id="s2200_dependente__nmdep__div">
   <div class="form-group">
-    <label id="s2200_dependente__nmdep__label">Nome*</label>
+    <label id="s2200_dependente__nmdep__label">Nome*<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_dependente_form.nmdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_dependente_form.nmdep.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2200_dependente__dtnascto -->
 <div class="col-md-6" id="s2200_dependente__dtnascto__div">
   <div class="form-group">
-    <label id="s2200_dependente__dtnascto__label">Data de nascimento*</label>
+    <label id="s2200_dependente__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento. <validacao> Deve ser maior ou igual que 01/01/1890 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2200_dependente_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_dependente_form.dtnascto.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2200_dependente__cpfdep -->
 <div class="col-md-6" id="s2200_dependente__cpfdep__div">
   <div class="form-group">
-    <label id="s2200_dependente__cpfdep__label">CPF</label>
+    <label id="s2200_dependente__cpfdep__label">CPF<a data-toggle="tooltip" title="Número de Inscrição no CPF. <validacao> Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório se {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2200_dependente_form.cpfdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_dependente_form.cpfdep.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2200_dependente__sexodep -->
 <div class="col-md-6" id="s2200_dependente__sexodep__div">
   <div class="form-group">
-    <label id="s2200_dependente__sexodep__label">Sexo do dependente</label>
+    <label id="s2200_dependente__sexodep__label">Sexo do dependente<a data-toggle="tooltip" title="Sexo do dependente<opcoes> M - Masculino; F - Feminino. <validacao> Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS e {cadIni} = [N]. <valores_validos> M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_dependente_form.sexodep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_dependente_form.sexodep.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__s2200_dependente__depirrf -->
 <div class="col-md-6" id="s2200_dependente__depirrf__div">
   <div class="form-group">
-    <label id="s2200_dependente__depirrf__label">Dependente de IRRF*</label>
+    <label id="s2200_dependente__depirrf__label">Dependente de IRRF*<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_dependente_form.depirrf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_dependente_form.depirrf.errors }}
@@ -158,7 +158,7 @@
 <!-- inicio__s2200_dependente__depsf -->
 <div class="col-md-6" id="s2200_dependente__depsf__div">
   <div class="form-group">
-    <label id="s2200_dependente__depsf__label">Dependente de SF*</label>
+    <label id="s2200_dependente__depsf__label">Dependente de SF*<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário- família<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_dependente_form.depsf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_dependente_form.depsf.errors }}
@@ -182,7 +182,7 @@
 <!-- inicio__s2200_dependente__inctrab -->
 <div class="col-md-6" id="s2200_dependente__inctrab__div">
   <div class="form-group">
-    <label id="s2200_dependente__inctrab__label">Possui incapacidade física ou mental*</label>
+    <label id="s2200_dependente__inctrab__label">Possui incapacidade física ou mental*<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_dependente_form.inctrab.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_dependente_form.inctrab.errors }}
@@ -206,7 +206,7 @@
 <!-- inicio__s2200_dependente__depfinsprev -->
 <div class="col-md-6" id="s2200_dependente__depfinsprev__div">
   <div class="form-group">
-    <label id="s2200_dependente__depfinsprev__label">Informar se é dependente para fins previdenciários</label>
+    <label id="s2200_dependente__depfinsprev__label">Informar se é dependente para fins previdenciários<a data-toggle="tooltip" title="Informar se é dependente para fins previdenciários<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS. Não preencher nos demais casos. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2200_dependente_form.depfinsprev.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_dependente_form.depfinsprev.errors }}

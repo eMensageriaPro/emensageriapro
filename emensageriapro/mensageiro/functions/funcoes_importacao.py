@@ -55,7 +55,6 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 def get_evento_nome(texto):
-    print texto
     texto = texto.replace('/">', '">').replace('id="', 'Id="')
     a = texto.split(' Id="')
     b = a[0].split('"><')
@@ -165,183 +164,183 @@ def importar_arquivo(arquivo, request, validar=0):
             from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf
 
             if ('evtInfoEmpregador' in xml) and ('eSocial' in xml):
-                dados = read_s1000_evtinfoempregador(dados, arquivo, validar)
+                dados = read_s1000_evtinfoempregador(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1000_evtinfoempregador', dados, arquivo)
 
             elif ('evtTabEstab' in xml) and ('eSocial' in xml):
-                dados = read_s1005_evttabestab(dados, arquivo, validar)
+                dados = read_s1005_evttabestab(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1005_evttabestab', dados, arquivo)
 
             elif ('evtTabRubrica' in xml) and ('eSocial' in xml):
-                dados = read_s1010_evttabrubrica(dados, arquivo, validar)
+                dados = read_s1010_evttabrubrica(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1010_evttabrubrica', dados, arquivo)
 
             elif ('evtTabLotacao' in xml) and ('eSocial' in xml):
-                dados = read_s1020_evttablotacao(dados, arquivo, validar)
+                dados = read_s1020_evttablotacao(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1020_evttablotacao', dados, arquivo)
 
             elif ('evtTabCargo' in xml) and ('eSocial' in xml):
-                dados = read_s1030_evttabcargo(dados, arquivo, validar)
+                dados = read_s1030_evttabcargo(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1030_evttabcargo', dados, arquivo)
 
             elif ('evtTabCarreira' in xml) and ('eSocial' in xml):
-                dados = read_s1035_evttabcarreira(dados, arquivo, validar)
+                dados = read_s1035_evttabcarreira(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1035_evttabcarreira', dados, arquivo)
 
             elif ('evtTabFuncao' in xml) and ('eSocial' in xml):
-                dados = read_s1040_evttabfuncao(dados, arquivo, validar)
+                dados = read_s1040_evttabfuncao(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1040_evttabfuncao', dados, arquivo)
 
             elif ('evtTabHorTur' in xml) and ('eSocial' in xml):
-                dados = read_s1050_evttabhortur(dados, arquivo, validar)
+                dados = read_s1050_evttabhortur(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1050_evttabhortur', dados, arquivo)
 
             elif ('evtTabAmbiente' in xml) and ('eSocial' in xml, validar):
-                dados = read_s1060_evttabambiente(dados, arquivo, validar)
+                dados = read_s1060_evttabambiente(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1060_evttabambiente', dados, arquivo)
 
             elif ('evtTabProcesso' in xml) and ('eSocial' in xml):
-                dados = read_s1070_evttabprocesso(dados, arquivo, validar)
+                dados = read_s1070_evttabprocesso(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1070_evttabprocesso', dados, arquivo)
 
             elif ('evtTabOperPort' in xml) and ('eSocial' in xml):
-                dados = read_s1080_evttaboperport(dados, arquivo, validar)
+                dados = read_s1080_evttaboperport(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1080_evttaboperport', dados, arquivo)
 
             elif ('evtRemun' in xml) and ('eSocial' in xml):
-                dados = read_s1200_evtremun(dados, arquivo, validar)
+                dados = read_s1200_evtremun(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1200_evtremun', dados, arquivo)
 
             elif ('evtRmnRPPS' in xml) and ('eSocial' in xml):
-                dados = read_s1202_evtrmnrpps(dados, arquivo, validar)
+                dados = read_s1202_evtrmnrpps(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1202_evtrmnrpps', dados, arquivo)
 
             elif ('evtBenPrRP' in xml) and ('eSocial' in xml):
-                dados = read_s1207_evtbenprrp(dados, arquivo, validar)
+                dados = read_s1207_evtbenprrp(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1207_evtbenprrp', dados, arquivo)
 
             elif ('evtPgtos' in xml) and ('eSocial' in xml):
-                dados = read_s1210_evtpgtos(dados, arquivo, validar)
+                dados = read_s1210_evtpgtos(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1210_evtpgtos', dados, arquivo)
 
             elif ('evtAqProd' in xml) and ('eSocial' in xml):
-                dados = read_s1250_evtaqprod(dados, arquivo, validar)
+                dados = read_s1250_evtaqprod(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1250_evtaqprod', dados, arquivo)
 
             elif ('evtComProd' in xml) and ('eSocial' in xml):
-                dados = read_s1260_evtcomprod(dados, arquivo, validar)
+                dados = read_s1260_evtcomprod(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1260_evtcomprod', dados, arquivo)
 
             elif ('evtContratAvNP' in xml) and ('eSocial' in xml):
-                dados = read_s1270_evtcontratavnp(dados, arquivo, validar)
+                dados = read_s1270_evtcontratavnp(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1270_evtcontratavnp', dados, arquivo)
 
             elif ('evtInfoComplPer' in xml) and ('eSocial' in xml):
-                dados = read_s1280_evtinfocomplper(dados, arquivo, validar)
+                dados = read_s1280_evtinfocomplper(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1280_evtinfocomplper', dados, arquivo)
 
             elif ('evtTotConting' in xml) and ('eSocial' in xml):
-                dados = read_s1295_evttotconting(dados, arquivo, validar)
+                dados = read_s1295_evttotconting(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1295_evttotconting', dados, arquivo)
 
             elif ('evtReabreEvPer' in xml) and ('eSocial' in xml):
-                dados = read_s1298_evtreabreevper(dados, arquivo, validar)
+                dados = read_s1298_evtreabreevper(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1298_evtreabreevper', dados, arquivo)
 
             elif ('evtFechaEvPer' in xml) and ('eSocial' in xml):
-                dados = read_s1299_evtfechaevper(dados, arquivo, validar)
+                dados = read_s1299_evtfechaevper(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1299_evtfechaevper', dados, arquivo)
 
             elif ('evtContrSindPatr' in xml) and ('eSocial' in xml):
-                dados = read_s1300_evtcontrsindpatr(dados, arquivo, validar)
+                dados = read_s1300_evtcontrsindpatr(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s1300_evtcontrsindpatr', dados, arquivo)
 
             elif ('evtAdmPrelim' in xml) and ('eSocial' in xml):
-                dados = read_s2190_evtadmprelim(dados, arquivo, validar)
+                dados = read_s2190_evtadmprelim(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2190_evtadmprelim', dados, arquivo)
 
             elif ('evtAdmissao' in xml) and ('eSocial' in xml):
-                dados = read_s2200_evtadmissao(dados, arquivo, validar)
+                dados = read_s2200_evtadmissao(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2200_evtadmissao', dados, arquivo)
 
             elif ('evtAltCadastral' in xml) and ('eSocial' in xml):
-                dados = read_s2205_evtaltcadastral(dados, arquivo, validar)
+                dados = read_s2205_evtaltcadastral(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2205_evtaltcadastral', dados, arquivo)
 
             elif ('evtAltContratual' in xml) and ('eSocial' in xml):
-                dados = read_s2206_evtaltcontratual(dados, arquivo, validar)
+                dados = read_s2206_evtaltcontratual(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2206_evtaltcontratual', dados, arquivo)
 
             elif ('evtCAT' in xml) and ('eSocial' in xml):
-                dados = read_s2210_evtcat(dados, arquivo, validar)
+                dados = read_s2210_evtcat(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2210_evtcat', dados, arquivo)
 
             elif ('evtMonit' in xml) and ('eSocial' in xml):
-                dados = read_s2220_evtmonit(dados, arquivo, validar)
+                dados = read_s2220_evtmonit(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2220_evtmonit', dados, arquivo)
 
             elif ('evtAfastTemp' in xml) and ('eSocial' in xml):
-                dados = read_s2230_evtafasttemp(dados, arquivo, validar)
+                dados = read_s2230_evtafasttemp(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2230_evtafasttemp', dados, arquivo)
 
             elif ('evtExpRisco' in xml) and ('eSocial' in xml):
-                dados = read_s2240_evtexprisco(dados, arquivo, validar)
+                dados = read_s2240_evtexprisco(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2240_evtexprisco', dados, arquivo)
 
             elif ('evtInsApo' in xml) and ('eSocial' in xml):
-                dados = read_s2241_evtinsapo(dados, arquivo, validar)
+                dados = read_s2241_evtinsapo(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2241_evtinsapo', dados, arquivo)
 
             elif ('evtAvPrevio' in xml) and ('eSocial' in xml):
-                dados = read_s2250_evtavprevio(dados, arquivo, validar)
+                dados = read_s2250_evtavprevio(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2250_evtavprevio', dados, arquivo)
 
             elif ('evtConvInterm' in xml) and ('eSocial' in xml):
-                dados = read_s2260_evtconvinterm(dados, arquivo, validar)
+                dados = read_s2260_evtconvinterm(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2260_evtconvinterm', dados, arquivo)
 
             elif ('evtReintegr' in xml) and ('eSocial' in xml):
-                dados = read_s2298_evtreintegr(dados, arquivo, validar)
+                dados = read_s2298_evtreintegr(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2298_evtreintegr', dados, arquivo)
 
             elif ('evtDeslig' in xml) and ('eSocial' in xml):
-                dados = read_s2299_evtdeslig(dados, arquivo, validar)
+                dados = read_s2299_evtdeslig(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2299_evtdeslig', dados, arquivo)
 
             elif ('evtTSVInicio' in xml) and ('eSocial' in xml):
-                dados = read_s2300_evttsvinicio(dados, arquivo, validar)
+                dados = read_s2300_evttsvinicio(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2300_evttsvinicio', dados, arquivo)
 
             elif ('evtTSVAltContr' in xml) and ('eSocial' in xml):
-                dados = read_s2306_evttsvaltcontr(dados, arquivo, validar)
+                dados = read_s2306_evttsvaltcontr(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2306_evttsvaltcontr', dados, arquivo)
 
             elif ('evtTSVTermino' in xml) and ('eSocial' in xml):
-                dados = read_s2399_evttsvtermino(dados, arquivo, validar)
+                dados = read_s2399_evttsvtermino(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s2399_evttsvtermino', dados, arquivo)
 
             # elif ('evtCdBenPrRP' in xml) and ('eSocial' in xml):
-            #     dados = read_s2400_evtcdbenefin(dados, arquivo, validar)
+            #     dados = read_s2400_evtcdbenefin(request, dados, arquivo, validar)
             #     if dados: dados = atualizar_tabela('s2400_evtcdbenefin', dados, arquivo)
 
             elif ('evtExclusao' in xml) and ('eSocial' in xml):
-                dados = read_s3000_evtexclusao(dados, arquivo, validar)
+                dados = read_s3000_evtexclusao(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s3000_evtexclusao', dados, arquivo)
 
             elif ('evtBasesTrab' in xml) and ('eSocial' in xml):
-                dados = read_s5001_evtbasestrab(dados, arquivo, validar)
+                dados = read_s5001_evtbasestrab(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s5001_evtbasestrab', dados, arquivo)
 
             elif ('evtIrrfBenef' in xml) and ('eSocial' in xml):
-                dados = read_s5002_evtirrfbenef(dados, arquivo, validar)
+                dados = read_s5002_evtirrfbenef(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s5002_evtirrfbenef', dados, arquivo)
 
             elif ('evtCS' in xml) and ('eSocial' in xml):
-                dados = read_s5011_evtcs(dados, arquivo, validar)
+                dados = read_s5011_evtcs(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s5011_evtcs', dados, arquivo)
 
             elif ('evtIrrf' in xml) and ('eSocial' in xml):
-                dados = read_s5012_evtirrf(dados, arquivo, validar)
+                dados = read_s5012_evtirrf(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('s5012_evtirrf', dados, arquivo)
 
         elif 'Reinf' in xml:
@@ -364,63 +363,63 @@ def importar_arquivo(arquivo, request, validar=0):
             from emensageriapro.efdreinf.views.r9000_evtexclusao_importar import read_r9000_evtexclusao
 
             if ('evtInfoContri' in xml) and ('Reinf' in xml):
-                dados = read_r1000_evtinfocontri(dados, arquivo, validar)
+                dados = read_r1000_evtinfocontri(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r1000_evtinfocontri', dados, arquivo)
 
             elif ('evtTabProcesso' in xml) and ('Reinf' in xml):
-                dados = read_r1070_evttabprocesso(dados, arquivo, validar)
+                dados = read_r1070_evttabprocesso(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r1070_evttabprocesso', dados, arquivo)
 
             elif ('evtServTom' in xml) and ('Reinf' in xml):
-                dados = read_r2010_evtservtom(dados, arquivo, validar)
+                dados = read_r2010_evtservtom(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2010_evtservtom', dados, arquivo)
 
             elif ('evtServPrest' in xml) and ('Reinf' in xml):
-                dados = read_r2020_evtservprest(dados, arquivo, validar)
+                dados = read_r2020_evtservprest(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2020_evtservprest', dados, arquivo)
 
             elif ('evtAssocDespRec' in xml) and ('Reinf' in xml):
-                dados = read_r2030_evtassocdesprec(dados, arquivo, validar)
+                dados = read_r2030_evtassocdesprec(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2030_evtassocdesprec', dados, arquivo)
 
             elif ('evtAssocDespRep' in xml) and ('Reinf' in xml):
-                dados = read_r2040_evtassocdesprep(dados, arquivo, validar)
+                dados = read_r2040_evtassocdesprep(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2040_evtassocdesprep', dados, arquivo)
 
             elif ('evtComProd' in xml) and ('Reinf' in xml):
-                dados = read_r2050_evtcomprod(dados, arquivo, validar)
+                dados = read_r2050_evtcomprod(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2050_evtcomprod', dados, arquivo)
 
             elif ('evtCPRB' in xml) and ('Reinf' in xml):
-                dados = read_r2060_evtcprb(dados, arquivo, validar)
+                dados = read_r2060_evtcprb(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2060_evtcprb', dados, arquivo)
 
             elif ('evtPgtosDivs' in xml) and ('Reinf' in xml):
-                dados = read_r2070_evtpgtosdivs(dados, arquivo, validar)
+                dados = read_r2070_evtpgtosdivs(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2070_evtpgtosdivs', dados, arquivo)
 
             elif ('evtReabreEvPer' in xml) and ('Reinf' in xml):
-                dados = read_r2098_evtreabreevper(dados, arquivo, validar)
+                dados = read_r2098_evtreabreevper(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2098_evtreabreevper', dados, arquivo)
 
             elif ('evtFechaEvPer' in xml) and ('Reinf' in xml):
-                dados = read_r2099_evtfechaevper(dados, arquivo, validar)
+                dados = read_r2099_evtfechaevper(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r2099_evtfechaevper', dados, arquivo)
 
             elif ('evtEspDesportivo' in xml) and ('Reinf' in xml):
-                dados = read_r3010_evtespdesportivo(dados, arquivo, validar)
+                dados = read_r3010_evtespdesportivo(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r3010_evtespdesportivo', dados, arquivo)
 
             elif ('evtTotal' in xml) and ('Reinf' in xml):
-                dados = read_r5001_evttotal(dados, arquivo, validar)
+                dados = read_r5001_evttotal(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r5001_evttotal', dados, arquivo)
 
             elif ('evtTotalContrib' in xml) and ('Reinf' in xml):
-                dados = read_r5011_evttotalcontrib(dados, arquivo, validar)
+                dados = read_r5011_evttotalcontrib(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r5011_evttotalcontrib', dados, arquivo)
 
             elif ('evtExclusao' in xml) and ('Reinf' in xml):
-                dados = read_r9000_evtexclusao(dados, arquivo, validar)
+                dados = read_r9000_evtexclusao(request, dados, arquivo, validar)
                 if dados: dados = atualizar_tabela('r9000_evtexclusao', dados, arquivo)
         else:
             dados['status'] = 2

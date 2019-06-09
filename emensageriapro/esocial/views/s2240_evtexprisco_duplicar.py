@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s2240(request, pk, versao="|")
-            dados = read_s2240_evtexprisco_string({}, texto.encode('utf-8'), 0)
+            dados = read_s2240_evtexprisco_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s2240_evtexprisco)
     
             s2240evtExpRisco.objects.filter(id=dados['id']).\

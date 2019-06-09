@@ -10,7 +10,7 @@ from emensageriapro.s1295.models import *
 
 
 
-def read_s1295_evttotconting_string(dados, xml, validar=False):
+def read_s1295_evttotconting_string(request, dados, xml, validar=False):
 
     import untangle
     doc = untangle.parse(xml)
@@ -20,14 +20,16 @@ def read_s1295_evttotconting_string(dados, xml, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_s1295_evttotconting_obj(doc, status, validar)
+    dados = read_s1295_evttotconting_obj(request, doc, status, validar)
     return dados
 
 
 
-def read_s1295_evttotconting(dados, arquivo, validar=False):
+def read_s1295_evttotconting(request, dados, arquivo, validar=False):
 
     import untangle
+    from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
+    
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
@@ -37,12 +39,16 @@ def read_s1295_evttotconting(dados, arquivo, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_s1295_evttotconting_obj(doc, status, validar)
+    dados = read_s1295_evttotconting_obj(request, doc, status, validar)
+
+    s1295evtTotConting.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
+
     return dados
 
 
 
-def read_s1295_evttotconting_obj(doc, status, validar=False):
+def read_s1295_evttotconting_obj(request, doc, status, validar=False):
 
     xmlns_lista = doc.eSocial['xmlns'].split('/')
 
@@ -124,6 +130,8 @@ def read_s1295_evttotconting_obj(doc, status, validar=False):
 
 
     from emensageriapro.esocial.views.s1295_evttotconting_validar_evento import validar_evento_funcao
+    
     if validar:
-        validar_evento_funcao(s1295_evttotconting.id)
+        validar_evento_funcao(request, s1295_evttotconting.id)
+    
     return s1295_evttotconting_dados

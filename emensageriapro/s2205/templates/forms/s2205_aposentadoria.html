@@ -5,7 +5,7 @@
 <!-- inicio__s2205_aposentadoria__s2205_evtaltcadastral -->
 <div class="col-md-12" id="s2205_aposentadoria__s2205_evtaltcadastral__div">
   <div class="form-group">
-    <label id="s2205_aposentadoria__s2205_evtaltcadastral__label">Informação de aposentadoria do trabalhador*</label>
+    <label id="s2205_aposentadoria__s2205_evtaltcadastral__label">Informação de aposentadoria do trabalhador*<a data-toggle="tooltip" title="Informação de aposentadoria do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2205_aposentadoria_form.s2205_evtaltcadastral.value %}
         <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_aposentadoria_form.s2205_evtaltcadastral.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2205_aposentadoria__trabaposent -->
 <div class="col-md-6" id="s2205_aposentadoria__trabaposent__div">
   <div class="form-group">
-    <label id="s2205_aposentadoria__trabaposent__label">Aposentado*</label>
+    <label id="s2205_aposentadoria__trabaposent__label">Aposentado*<a data-toggle="tooltip" title="Informar se o trabalhador já recebe o benefício previdenciário da aposentadoria por tempo de contribuição ou por idade<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_aposentadoria_form.trabaposent.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_aposentadoria_form.trabaposent.errors }}

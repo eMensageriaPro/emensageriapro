@@ -157,6 +157,8 @@ def vincular_transmissor_esocial(request, grupo, model, a):
         empregador_nrinsc=a.nrinsc,
         empregador_tpinsc=a.tpinsc).all()
 
+    txt = ''
+
     for te in transmissor_esocial_lista:
 
         eventos_lista = TransmissorEventosEsocial.objects.filter(

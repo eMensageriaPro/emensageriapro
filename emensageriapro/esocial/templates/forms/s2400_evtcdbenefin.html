@@ -10,7 +10,7 @@
 <!-- inicio__s2400_evtcdbenefin__identidade -->
 <div class="col-md-6" id="s2400_evtcdbenefin__identidade__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__identidade__label">Identidade do Registro</label>
+    <label id="s2400_evtcdbenefin__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2400_evtcdbenefin__indretif -->
 <div class="col-md-6" id="s2400_evtcdbenefin__indretif__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__indretif__label">Identificador de retificação*</label>
+    <label id="s2400_evtcdbenefin__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2400_evtcdbenefin__nrrecibo -->
 <div class="col-md-6" id="s2400_evtcdbenefin__nrrecibo__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__nrrecibo__label">Número do recibo</label>
+    <label id="s2400_evtcdbenefin__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2400_evtcdbenefin__tpamb -->
 <div class="col-md-6" id="s2400_evtcdbenefin__tpamb__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2400_evtcdbenefin__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2400_evtcdbenefin__procemi -->
 <div class="col-md-6" id="s2400_evtcdbenefin__procemi__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2400_evtcdbenefin__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2400_evtcdbenefin__verproc -->
 <div class="col-md-6" id="s2400_evtcdbenefin__verproc__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__verproc__label">Versão do processo*</label>
+    <label id="s2400_evtcdbenefin__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2400_evtcdbenefin__tpinsc -->
 <div class="col-md-6" id="s2400_evtcdbenefin__tpinsc__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2400_evtcdbenefin__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5 <validacao> Deve ser igual a [1] (CNPJ) <valores_validos> 1"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2400_evtcdbenefin__nrinsc -->
 <div class="col-md-6" id="s2400_evtcdbenefin__nrinsc__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2400_evtcdbenefin__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2400_evtcdbenefin__cpfbenef -->
 <div class="col-md-6" id="s2400_evtcdbenefin__cpfbenef__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__cpfbenef__label">CPF*</label>
+    <label id="s2400_evtcdbenefin__cpfbenef__label">CPF*<a data-toggle="tooltip" title="Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.cpfbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.cpfbenef.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2400_evtcdbenefin__nisbenef -->
 <div class="col-md-6" id="s2400_evtcdbenefin__nisbenef__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__nisbenef__label">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT</label>
+    <label id="s2400_evtcdbenefin__nisbenef__label">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> Deve ser um NIS válido e pertencente ao beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.nisbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.nisbenef.errors }}
@@ -211,7 +211,7 @@
 <!-- inicio__s2400_evtcdbenefin__nmbenefic -->
 <div class="col-md-6" id="s2400_evtcdbenefin__nmbenefic__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__nmbenefic__label">Nome*</label>
+    <label id="s2400_evtcdbenefin__nmbenefic__label">Nome*<a data-toggle="tooltip" title="Nome do Beneficiário"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.nmbenefic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.nmbenefic.errors }}
@@ -226,7 +226,7 @@
 <!-- inicio__s2400_evtcdbenefin__dtinicio -->
 <div class="col-md-6" id="s2400_evtcdbenefin__dtinicio__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__dtinicio__label">Data de início*</label>
+    <label id="s2400_evtcdbenefin__dtinicio__label">Data de início*<a data-toggle="tooltip" title="Preencher com a data de início do cadastro do beneficiário. Informar a data de início da obrigatoriedade dos eventos não periódicos para entes públicos no eSocial caso o beneficiário possua cadastro anterior a essa data. <validacao> Deve ser uma data válida, igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos no eSocial e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2400_evtcdbenefin_form.dtinicio.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2400_evtcdbenefin_form.dtinicio.errors }}
@@ -241,7 +241,7 @@
 <!-- inicio__s2400_evtcdbenefin__sexo -->
 <div class="col-md-6" id="s2400_evtcdbenefin__sexo__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__sexo__label">Sexo*</label>
+    <label id="s2400_evtcdbenefin__sexo__label">Sexo*<a data-toggle="tooltip" title="Sexo do beneficiário<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.sexo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.sexo.errors }}
@@ -265,7 +265,7 @@
 <!-- inicio__s2400_evtcdbenefin__racacor -->
 <div class="col-md-6" id="s2400_evtcdbenefin__racacor__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__racacor__label">Raça/Cor*</label>
+    <label id="s2400_evtcdbenefin__racacor__label">Raça/Cor*<a data-toggle="tooltip" title="Raça e cor do beneficiário, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.racacor.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.racacor.errors }}
@@ -289,7 +289,7 @@
 <!-- inicio__s2400_evtcdbenefin__estciv -->
 <div class="col-md-6" id="s2400_evtcdbenefin__estciv__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__estciv__label">Estado Civil</label>
+    <label id="s2400_evtcdbenefin__estciv__label">Estado Civil<a data-toggle="tooltip" title="Estado civil do beneficiário, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.estciv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.estciv.errors }}
@@ -313,7 +313,7 @@
 <!-- inicio__s2400_evtcdbenefin__incfismen -->
 <div class="col-md-6" id="s2400_evtcdbenefin__incfismen__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__incfismen__label">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei*</label>
+    <label id="s2400_evtcdbenefin__incfismen__label">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei*<a data-toggle="tooltip" title="Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.incfismen.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.incfismen.errors }}
@@ -337,7 +337,7 @@
 <!-- inicio__s2400_evtcdbenefin__dtincfismen -->
 <div class="col-md-6" id="s2400_evtcdbenefin__dtincfismen__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__dtincfismen__label">Preencher com a data do reconhecimento da incapacidade</label>
+    <label id="s2400_evtcdbenefin__dtincfismen__label">Preencher com a data do reconhecimento da incapacidade<a data-toggle="tooltip" title="Preencher com a data do reconhecimento da incapacidade. <validacao> Preenchimento obrigatório se {incFisMen} = S. Não preencher nos demais casos. Se informada, deve ser uma data válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2400_evtcdbenefin_form.dtincfismen.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2400_evtcdbenefin_form.dtincfismen.errors }}
@@ -357,7 +357,7 @@
 <!-- inicio__s2400_evtcdbenefin__dtnascto -->
 <div class="col-md-6" id="s2400_evtcdbenefin__dtnascto__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__dtnascto__label">Data de nascimento*</label>
+    <label id="s2400_evtcdbenefin__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2400_evtcdbenefin_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2400_evtcdbenefin_form.dtnascto.errors }}
@@ -373,7 +373,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2400_evtcdbenefin__codmunic__div">
     <div class="form-group">
-      <label id="s2400_evtcdbenefin__codmunic__label">Código do Município</label>
+      <label id="s2400_evtcdbenefin__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2400_evtcdbenefin_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2400_evtcdbenefin_form.codmunic.errors }}
@@ -419,7 +419,7 @@
   {% else %}
   <div class="col-md-12" id="s2400_evtcdbenefin__codmunic__div">
     <div class="form-group">
-      <label id="s2400_evtcdbenefin__codmunic__label">Código do Município</label>
+      <label id="s2400_evtcdbenefin__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if not for_print %}{% if s2400_evtcdbenefin_form.codmunic.value %}
             <a id="s2400_evtcdbenefin__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2400_evtcdbenefin_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -433,7 +433,7 @@
 <!-- inicio__s2400_evtcdbenefin__uf -->
 <div class="col-md-6" id="s2400_evtcdbenefin__uf__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__uf__label">UF</label>
+    <label id="s2400_evtcdbenefin__uf__label">UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.uf.errors }}
@@ -458,7 +458,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2400_evtcdbenefin__paisnascto__div">
     <div class="form-group">
-      <label id="s2400_evtcdbenefin__paisnascto__label">País de nascimento</label>
+      <label id="s2400_evtcdbenefin__paisnascto__label">País de nascimento<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do beneficiário, conforme tabela 6. <validacao> Se informado, deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2400_evtcdbenefin_form.paisnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2400_evtcdbenefin_form.paisnascto.errors }}
@@ -512,7 +512,7 @@
   {% else %}
   <div class="col-md-6" id="s2400_evtcdbenefin__paisnascto__div">
     <div class="form-group">
-      <label id="s2400_evtcdbenefin__paisnascto__label">País de nascimento</label>
+      <label id="s2400_evtcdbenefin__paisnascto__label">País de nascimento<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do beneficiário, conforme tabela 6. <validacao> Se informado, deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnascto" name="txt_paisnascto" class="form-control" value="{% if s2400_evtcdbenefin.paisnascto %}{{ s2400_evtcdbenefin.paisnascto }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -522,7 +522,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2400_evtcdbenefin__paisnac__div">
     <div class="form-group">
-      <label id="s2400_evtcdbenefin__paisnac__label">País de nacionalidade*</label>
+      <label id="s2400_evtcdbenefin__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do beneficiário, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2400_evtcdbenefin_form.paisnac.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2400_evtcdbenefin_form.paisnac.errors }}
@@ -576,7 +576,7 @@
   {% else %}
   <div class="col-md-6" id="s2400_evtcdbenefin__paisnac__div">
     <div class="form-group">
-      <label id="s2400_evtcdbenefin__paisnac__label">País de nacionalidade*</label>
+      <label id="s2400_evtcdbenefin__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do beneficiário, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{% if s2400_evtcdbenefin.paisnac %}{{ s2400_evtcdbenefin.paisnac }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -585,7 +585,7 @@
 <!-- inicio__s2400_evtcdbenefin__nmmae -->
 <div class="col-md-6" id="s2400_evtcdbenefin__nmmae__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__nmmae__label">Nome da Mãe</label>
+    <label id="s2400_evtcdbenefin__nmmae__label">Nome da Mãe<a data-toggle="tooltip" title="Nome da mãe do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.nmmae.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.nmmae.errors }}
@@ -600,7 +600,7 @@
 <!-- inicio__s2400_evtcdbenefin__nmpai -->
 <div class="col-md-6" id="s2400_evtcdbenefin__nmpai__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__nmpai__label">Nome do Pai</label>
+    <label id="s2400_evtcdbenefin__nmpai__label">Nome do Pai<a data-toggle="tooltip" title="Nome do pai do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2400_evtcdbenefin_form.nmpai.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_evtcdbenefin_form.nmpai.errors }}
@@ -615,7 +615,7 @@
 <!-- inicio__s2400_evtcdbenefin__versao -->
 <div class="col-md-3" id="s2400_evtcdbenefin__versao__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__versao__label">Versão</label>
+    <label id="s2400_evtcdbenefin__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.versao.errors }}
@@ -648,7 +648,7 @@
 
 <div class="col-md-3" id="s2400_evtcdbenefin__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s2400_evtcdbenefin__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s2400_evtcdbenefin__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s2400_evtcdbenefin_form.transmissor_lote_esocial.value %}
@@ -680,7 +680,7 @@
 <!-- inicio__s2400_evtcdbenefin__status -->
 <div class="col-md-3" id="s2400_evtcdbenefin__status__div">
   <div class="form-group">
-    <label id="s2400_evtcdbenefin__status__label">Status</label>
+    <label id="s2400_evtcdbenefin__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2400_evtcdbenefin_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_evtcdbenefin_form.status.errors }}

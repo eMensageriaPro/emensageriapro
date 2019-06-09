@@ -86,7 +86,7 @@ def criar_alteracao(request, pk):
 
         texto = gerar_xml_s1250(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s1250_evtaqprod_string({}, texto.encode('utf-8'), 0)
+        dados = read_s1250_evtaqprod_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s1250_evtaqprod)
 
         s1250evtAqProd.objects.filter(id=dados['id']).\

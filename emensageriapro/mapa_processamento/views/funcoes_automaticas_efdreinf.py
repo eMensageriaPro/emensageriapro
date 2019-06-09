@@ -104,6 +104,8 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
         contribuinte_nrinsc=nrinsc,
         contribuinte_tpinsc=tpinsc).all()
 
+    txt = ''
+
     if not transmissor_efdreinf_lista:
 
         transmissor = TransmissorLote.objects.filter(
@@ -150,6 +152,8 @@ def vincular_transmissor_efdreinf(request, grupo, model, a):
         grupo=grupo,
         contribuinte_nrinsc=a.nrinsc,
         contribuinte_tpinsc=a.tpinsc).all()
+
+    txt = ''
 
     for te in transmissor_efdreinf_lista:
 

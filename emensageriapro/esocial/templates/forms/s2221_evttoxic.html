@@ -10,7 +10,7 @@
 <!-- inicio__s2221_evttoxic__identidade -->
 <div class="col-md-6" id="s2221_evttoxic__identidade__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__identidade__label">Identidade do Registro</label>
+    <label id="s2221_evttoxic__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2221_evttoxic__indretif -->
 <div class="col-md-6" id="s2221_evttoxic__indretif__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__indretif__label">Identificador de retificação*</label>
+    <label id="s2221_evttoxic__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2221_evttoxic__nrrecibo -->
 <div class="col-md-6" id="s2221_evttoxic__nrrecibo__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__nrrecibo__label">Número do recibo</label>
+    <label id="s2221_evttoxic__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2221_evttoxic__tpamb -->
 <div class="col-md-6" id="s2221_evttoxic__tpamb__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2221_evttoxic__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2221_evttoxic__procemi -->
 <div class="col-md-6" id="s2221_evttoxic__procemi__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2221_evttoxic__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2221_evttoxic__verproc -->
 <div class="col-md-6" id="s2221_evttoxic__verproc__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__verproc__label">Versão do processo*</label>
+    <label id="s2221_evttoxic__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2221_evttoxic__tpinsc -->
 <div class="col-md-6" id="s2221_evttoxic__tpinsc__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2221_evttoxic__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2221_evttoxic__nrinsc -->
 <div class="col-md-6" id="s2221_evttoxic__nrinsc__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2221_evttoxic__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2221_evttoxic__cpftrab -->
 <div class="col-md-6" id="s2221_evttoxic__cpftrab__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__cpftrab__label">CPF*</label>
+    <label id="s2221_evttoxic__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.cpftrab.errors }}
@@ -196,7 +196,7 @@
 <!-- inicio__s2221_evttoxic__nistrab -->
 <div class="col-md-6" id="s2221_evttoxic__nistrab__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__nistrab__label">NIS</label>
+    <label id="s2221_evttoxic__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.nistrab.errors }}
@@ -211,7 +211,7 @@
 <!-- inicio__s2221_evttoxic__matricula -->
 <div class="col-md-6" id="s2221_evttoxic__matricula__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__matricula__label">Matricula</label>
+    <label id="s2221_evttoxic__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.matricula.errors }}
@@ -227,7 +227,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2221_evttoxic__codcateg__div">
     <div class="form-group">
-      <label id="s2221_evttoxic__codcateg__label">Código da Categoria</label>
+      <label id="s2221_evttoxic__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2221_evttoxic_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2221_evttoxic_form.codcateg.errors }}
@@ -281,7 +281,7 @@
   {% else %}
   <div class="col-md-6" id="s2221_evttoxic__codcateg__div">
     <div class="form-group">
-      <label id="s2221_evttoxic__codcateg__label">Código da Categoria</label>
+      <label id="s2221_evttoxic__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2221_evttoxic.codcateg %}{{ s2221_evttoxic.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -295,7 +295,7 @@
 <!-- inicio__s2221_evttoxic__dtexame -->
 <div class="col-md-6" id="s2221_evttoxic__dtexame__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__dtexame__label">Data da realização do exame toxicológico*</label>
+    <label id="s2221_evttoxic__dtexame__label">Data da realização do exame toxicológico*<a data-toggle="tooltip" title="Data da realização do exame toxicológico. Se {indRecusa} = [S], informar a data do desligamento. <validacao> Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2221_evttoxic_form.dtexame.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2221_evttoxic_form.dtexame.errors }}
@@ -310,7 +310,7 @@
 <!-- inicio__s2221_evttoxic__cnpjlab -->
 <div class="col-md-6" id="s2221_evttoxic__cnpjlab__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__cnpjlab__label">CNPJ do laboratório responsável pela realização do exame</label>
+    <label id="s2221_evttoxic__cnpjlab__label">CNPJ do laboratório responsável pela realização do exame<a data-toggle="tooltip" title="CNPJ do laboratório responsável pela realização do exame. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.cnpjlab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.cnpjlab.errors }}
@@ -325,7 +325,7 @@
 <!-- inicio__s2221_evttoxic__codseqexame -->
 <div class="col-md-6" id="s2221_evttoxic__codseqexame__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__codseqexame__label">Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame</label>
+    <label id="s2221_evttoxic__codseqexame__label">Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame<a data-toggle="tooltip" title="Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve possuir 11 (onze) caracteres, composto por duas letras (dois primeiros caracteres) e nove algarismos (últimos nove caracteres)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.codseqexame.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.codseqexame.errors }}
@@ -340,7 +340,7 @@
 <!-- inicio__s2221_evttoxic__nmmed -->
 <div class="col-md-6" id="s2221_evttoxic__nmmed__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__nmmed__label">Nome do Médico</label>
+    <label id="s2221_evttoxic__nmmed__label">Nome do Médico<a data-toggle="tooltip" title="Preencher com o nome do médico. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.nmmed.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.nmmed.errors }}
@@ -355,7 +355,7 @@
 <!-- inicio__s2221_evttoxic__nrcrm -->
 <div class="col-md-6" id="s2221_evttoxic__nrcrm__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__nrcrm__label">Número do CRM</label>
+    <label id="s2221_evttoxic__nrcrm__label">Número do CRM<a data-toggle="tooltip" title="Número de inscrição do médico no CRM. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2221_evttoxic_form.nrcrm.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2221_evttoxic_form.nrcrm.errors }}
@@ -370,7 +370,7 @@
 <!-- inicio__s2221_evttoxic__ufcrm -->
 <div class="col-md-6" id="s2221_evttoxic__ufcrm__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__ufcrm__label">UF do Órgão de classe</label>
+    <label id="s2221_evttoxic__ufcrm__label">UF do Órgão de classe<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informada, deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.ufcrm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.ufcrm.errors }}
@@ -394,7 +394,7 @@
 <!-- inicio__s2221_evttoxic__indrecusa -->
 <div class="col-md-6" id="s2221_evttoxic__indrecusa__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__indrecusa__label">Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.*</label>
+    <label id="s2221_evttoxic__indrecusa__label">Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.*<a data-toggle="tooltip" title="Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.indrecusa.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.indrecusa.errors }}
@@ -418,7 +418,7 @@
 <!-- inicio__s2221_evttoxic__versao -->
 <div class="col-md-3" id="s2221_evttoxic__versao__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__versao__label">Versão</label>
+    <label id="s2221_evttoxic__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.versao.errors }}
@@ -451,7 +451,7 @@
 
 <div class="col-md-3" id="s2221_evttoxic__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s2221_evttoxic__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s2221_evttoxic__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s2221_evttoxic_form.transmissor_lote_esocial.value %}
@@ -483,7 +483,7 @@
 <!-- inicio__s2221_evttoxic__status -->
 <div class="col-md-3" id="s2221_evttoxic__status__div">
   <div class="form-group">
-    <label id="s2221_evttoxic__status__label">Status</label>
+    <label id="s2221_evttoxic__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2221_evttoxic_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2221_evttoxic_form.status.errors }}

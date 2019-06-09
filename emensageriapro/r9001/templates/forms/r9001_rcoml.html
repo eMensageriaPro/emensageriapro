@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9001_rcoml__r9001_infototal__div">
   <div class="form-group">
-    <label id="r9001_rcoml__r9001_infototal__label">Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050*</label>
+    <label id="r9001_rcoml__r9001_infototal__label">Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050*<a data-toggle="tooltip" title="Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r9001_rcoml_form.r9001_infototal.value %}
         <a id="r9001_rcoml__r9001_infototal__div_acessar" href="{% url 'r9001_infototal_salvar' pk=r9001_rcoml_form.r9001_infototal.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9001_rcoml__crcoml -->
 <div class="col-md-3" id="r9001_rcoml__crcoml__div">
   <div class="form-group">
-    <label id="r9001_rcoml__crcoml__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor*</label>
+    <label id="r9001_rcoml__crcoml__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} = [7] b) 1657-02 se {classTrib} <> [7], c) 1646-05 se {classTrib} = [7], d) 1646-06 se {classTrib} <> [7], e) 1213-02 se {classTrib} = [7], f) 1213-04 se {classTrib} <> [7]. <valores_validos> 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r9001_rcoml_form.crcoml.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9001_rcoml_form.crcoml.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r9001_rcoml__vlrcrcoml -->
 <div class="col-md-3" id="r9001_rcoml__vlrcrcoml__div">
   <div class="form-group">
-    <label id="r9001_rcoml__vlrcrcoml__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050*</label>
+    <label id="r9001_rcoml__vlrcrcoml__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050*<a data-toggle="tooltip" title="Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rcoml_form.vlrcrcoml.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rcoml_form.vlrcrcoml.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r9001_rcoml__vlrcrcomlsusp -->
 <div class="col-md-3" id="r9001_rcoml__vlrcrcomlsusp__div">
   <div class="form-group">
-    <label id="r9001_rcoml__vlrcrcomlsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</label>
+    <label id="r9001_rcoml__vlrcrcomlsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050<a data-toggle="tooltip" title="Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r9001_rcoml_form.vlrcrcomlsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9001_rcoml_form.vlrcrcomlsusp.errors }}

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__label">Equipamentos de Proteção Individual - EPI*</label>
+    <label id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__label">Equipamentos de Proteção Individual - EPI*<a data-toggle="tooltip" title="Equipamento de Proteção Individual - EPI."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2240_iniexprisco_epi_form.s2240_iniexprisco_fatrisco.value %}
         <a id="s2240_iniexprisco_epi__s2240_iniexprisco_fatrisco__div_acessar" href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=s2240_iniexprisco_epi_form.s2240_iniexprisco_fatrisco.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2240_iniexprisco_epi__caepi -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__caepi__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__caepi__label">Certificado de Aprovação do EPI</label>
+    <label id="s2240_iniexprisco_epi__caepi__label">Certificado de Aprovação do EPI<a data-toggle="tooltip" title="Certificado de Aprovação do EPI."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_epi_form.caepi.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_epi_form.caepi.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2240_iniexprisco_epi__dscepi -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__dscepi__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__dscepi__label">Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {caEPI} não for informado.</label>
+    <label id="s2240_iniexprisco_epi__dscepi__label">Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {caEPI} não for informado.<a data-toggle="tooltip" title="Descrição do EPI. <validacao> Preenchimento obrigatório e exclusivo se {caEPI} não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2240_iniexprisco_epi_form.dscepi.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_iniexprisco_epi_form.dscepi.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2240_iniexprisco_epi__eficepi -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__eficepi__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__eficepi__label">EPI é eficaz na neutralização*</label>
+    <label id="s2240_iniexprisco_epi__eficepi__label">EPI é eficaz na neutralização*<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.eficepi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.eficepi.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2240_iniexprisco_epi__medprotecao -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__medprotecao__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__medprotecao__label">Medidas de proteção coletiva*</label>
+    <label id="s2240_iniexprisco_epi__medprotecao__label">Medidas de proteção coletiva*<a data-toggle="tooltip" title="Foi tentada a implementação de medidas de proteção coletiva, de caráter administrativo ou de organização, optando-se pelo EPI por inviabilidade técnica, insuficiência ou interinidade, ou ainda em caráter complementar ou emergencial<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.medprotecao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.medprotecao.errors }}
@@ -119,7 +119,7 @@
 <!-- inicio__s2240_iniexprisco_epi__condfuncto -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__condfuncto__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__condfuncto__label">Condição de funcionamento e uso ininterrupto*</label>
+    <label id="s2240_iniexprisco_epi__condfuncto__label">Condição de funcionamento e uso ininterrupto*<a data-toggle="tooltip" title="Foram observadas as condições de funcionamento do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.condfuncto.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.condfuncto.errors }}
@@ -143,7 +143,7 @@
 <!-- inicio__s2240_iniexprisco_epi__usoinint -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__usoinint__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__usoinint__label">Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo?*</label>
+    <label id="s2240_iniexprisco_epi__usoinint__label">Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo?*<a data-toggle="tooltip" title="Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.usoinint.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.usoinint.errors }}
@@ -167,7 +167,7 @@
 <!-- inicio__s2240_iniexprisco_epi__przvalid -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__przvalid__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__przvalid__label">Observado Prazo de validade*</label>
+    <label id="s2240_iniexprisco_epi__przvalid__label">Observado Prazo de validade*<a data-toggle="tooltip" title="Foi observado o prazo de validade do Certificado de Aprovação - CA do MTb no momento da compra do EPI<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.przvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.przvalid.errors }}
@@ -191,7 +191,7 @@
 <!-- inicio__s2240_iniexprisco_epi__periodictroca -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__periodictroca__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__periodictroca__label">Observado periodicidade de troca*</label>
+    <label id="s2240_iniexprisco_epi__periodictroca__label">Observado periodicidade de troca*<a data-toggle="tooltip" title="É observada a periodicidade de troca definida pelo fabricante nacional ou importador e/ou programas ambientais, comprovada mediante recibo assinado pelo usuário em época própria<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.periodictroca.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.periodictroca.errors }}
@@ -215,7 +215,7 @@
 <!-- inicio__s2240_iniexprisco_epi__higienizacao -->
 <div class="col-md-6" id="s2240_iniexprisco_epi__higienizacao__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_epi__higienizacao__label">Observada higienização*</label>
+    <label id="s2240_iniexprisco_epi__higienizacao__label">Observada higienização*<a data-toggle="tooltip" title="É observada a higienização conforme orientação do fabricante nacional ou importador<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2240_iniexprisco_epi_form.higienizacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_iniexprisco_epi_form.higienizacao.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__r4010_scp__r4010_infopgto -->
 <div class="col-md-12" id="r4010_scp__r4010_infopgto__div">
   <div class="form-group">
-    <label id="r4010_scp__r4010_infopgto__label">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo*</label>
+    <label id="r4010_scp__r4010_infopgto__label">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo*<a data-toggle="tooltip" title="Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r4010_scp_form.r4010_infopgto.value %}
         <a href="{% url 'r4010_infopgto_salvar' pk=r4010_scp_form.r4010_infopgto.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4010_scp__nrinscscp -->
 <div class="col-md-4" id="r4010_scp__nrinscscp__div">
   <div class="form-group">
-    <label id="r4010_scp__nrinscscp__label">Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo*</label>
+    <label id="r4010_scp__nrinscscp__label">Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo*<a data-toggle="tooltip" title="Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo. <validacao> Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r4010_scp_form.nrinscscp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_scp_form.nrinscscp.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__r4010_scp__percscp -->
 <div class="col-md-4" id="r4010_scp__percscp__div">
   <div class="form-group">
-    <label id="r4010_scp__percscp__label">Percentual que o beneficiário possui na Sociedade em Conta de Participação*</label>
+    <label id="r4010_scp__percscp__label">Percentual que o beneficiário possui na Sociedade em Conta de Participação*<a data-toggle="tooltip" title="Percentual que o beneficiário possui na Sociedade em Conta de Participação."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r4010_scp_form.percscp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_scp_form.percscp.errors }}

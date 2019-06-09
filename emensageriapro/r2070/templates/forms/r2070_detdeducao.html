@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_detdeducao__r2070_pgtopf__div">
   <div class="form-group">
-    <label id="r2070_detdeducao__r2070_pgtopf__label">Detalhamento das Deduções*</label>
+    <label id="r2070_detdeducao__r2070_pgtopf__label">Detalhamento das Deduções*<a data-toggle="tooltip" title="Detalhamento das Deduções"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_detdeducao_form.r2070_pgtopf.value %}
         <a id="r2070_detdeducao__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_detdeducao_form.r2070_pgtopf.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_detdeducao__indtpdeducao -->
 <div class="col-md-4" id="r2070_detdeducao__indtpdeducao__div">
   <div class="form-group">
-    <label id="r2070_detdeducao__indtpdeducao__label">Indicativo do Tipo de Dedução*</label>
+    <label id="r2070_detdeducao__indtpdeducao__label">Indicativo do Tipo de Dedução*<a data-toggle="tooltip" title="Indicativo do Tipo de Dedução<opcoes>1 - Previdência Oficial; 2 - Previdência Privada; 3 - Fapi; 4 - Funpresp; 5 - Pensão Alimentícia; 6 - Dependentes. <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_detdeducao_form.indtpdeducao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_detdeducao_form.indtpdeducao.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2070_detdeducao__vlrdeducao -->
 <div class="col-md-4" id="r2070_detdeducao__vlrdeducao__div">
   <div class="form-group">
-    <label id="r2070_detdeducao__vlrdeducao__label">Preencher com o Valor da dedução da base de cálculo.*</label>
+    <label id="r2070_detdeducao__vlrdeducao__label">Preencher com o Valor da dedução da base de cálculo.*<a data-toggle="tooltip" title="Preencher com o Valor da dedução da base de cálculo."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_detdeducao_form.vlrdeducao.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_detdeducao_form.vlrdeducao.errors }}

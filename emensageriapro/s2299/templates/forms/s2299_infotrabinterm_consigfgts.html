@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2299_infotrabinterm_consigfgts__s2299_evtdeslig__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_consigfgts__s2299_evtdeslig__label">Informações sobre operação de crédito consignado com garantia de FGTS*</label>
+    <label id="s2299_infotrabinterm_consigfgts__s2299_evtdeslig__label">Informações sobre operação de crédito consignado com garantia de FGTS*<a data-toggle="tooltip" title="Informações sobre operação de crédito consignado com garantia de FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2299_infotrabinterm_consigfgts_form.s2299_evtdeslig.value %}
         <a id="s2299_infotrabinterm_consigfgts__s2299_evtdeslig__div_acessar" href="{% url 's2299_evtdeslig_salvar' pk=s2299_infotrabinterm_consigfgts_form.s2299_evtdeslig.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2299_infotrabinterm_consigfgts__insconsig -->
 <div class="col-md-4" id="s2299_infotrabinterm_consigfgts__insconsig__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_consigfgts__insconsig__label">Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal*</label>
+    <label id="s2299_infotrabinterm_consigfgts__insconsig__label">Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal*<a data-toggle="tooltip" title="Matrícula da Instituição Consignatária, cadastrada na Caixa Econômica Federal."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_infotrabinterm_consigfgts_form.insconsig.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infotrabinterm_consigfgts_form.insconsig.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2299_infotrabinterm_consigfgts__nrcontr -->
 <div class="col-md-4" id="s2299_infotrabinterm_consigfgts__nrcontr__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_consigfgts__nrcontr__label">Número do contrato de empréstimo consignado existente na Instituição Consignatária*</label>
+    <label id="s2299_infotrabinterm_consigfgts__nrcontr__label">Número do contrato de empréstimo consignado existente na Instituição Consignatária*<a data-toggle="tooltip" title="Número do contrato de empréstimo consignado existente na Instituição Consignatária."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2299_infotrabinterm_consigfgts_form.nrcontr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infotrabinterm_consigfgts_form.nrcontr.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__s2260_localtrabinterm__s2260_evtconvinterm -->
 <div class="col-md-12" id="s2260_localtrabinterm__s2260_evtconvinterm__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__s2260_evtconvinterm__label">Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206*</label>
+    <label id="s2260_localtrabinterm__s2260_evtconvinterm__label">Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206*<a data-toggle="tooltip" title="Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2260_localtrabinterm_form.s2260_evtconvinterm.value %}
         <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_localtrabinterm_form.s2260_evtconvinterm.value tab='master' %}">
             [Acessar]
@@ -33,7 +33,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2260_localtrabinterm__tplograd__div">
     <div class="form-group">
-      <label id="s2260_localtrabinterm__tplograd__label">Tipo de logradouro*</label>
+      <label id="s2260_localtrabinterm__tplograd__label">Tipo de logradouro*<a data-toggle="tooltip" title="Tipo de Logradouro, conforme tabela 20. <validacao> Deve ser um código válido, existente na tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2260_localtrabinterm_form.tplograd.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2260_localtrabinterm_form.tplograd.errors }}
@@ -87,7 +87,7 @@
   {% else %}
   <div class="col-md-6" id="s2260_localtrabinterm__tplograd__div">
     <div class="form-group">
-      <label id="s2260_localtrabinterm__tplograd__label">Tipo de logradouro*</label>
+      <label id="s2260_localtrabinterm__tplograd__label">Tipo de logradouro*<a data-toggle="tooltip" title="Tipo de Logradouro, conforme tabela 20. <validacao> Deve ser um código válido, existente na tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{% if s2260_localtrabinterm.tplograd %}{{ s2260_localtrabinterm.tplograd }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -96,7 +96,7 @@
 <!-- inicio__s2260_localtrabinterm__dsclograd -->
 <div class="col-md-6" id="s2260_localtrabinterm__dsclograd__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__dsclograd__label">Logradouro*</label>
+    <label id="s2260_localtrabinterm__dsclograd__label">Logradouro*<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2260_localtrabinterm_form.dsclograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2260_localtrabinterm_form.dsclograd.errors }}
@@ -111,7 +111,7 @@
 <!-- inicio__s2260_localtrabinterm__nrlograd -->
 <div class="col-md-6" id="s2260_localtrabinterm__nrlograd__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__nrlograd__label">Número*</label>
+    <label id="s2260_localtrabinterm__nrlograd__label">Número*<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2260_localtrabinterm_form.nrlograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2260_localtrabinterm_form.nrlograd.errors }}
@@ -126,7 +126,7 @@
 <!-- inicio__s2260_localtrabinterm__complem -->
 <div class="col-md-6" id="s2260_localtrabinterm__complem__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__complem__label">Complemento</label>
+    <label id="s2260_localtrabinterm__complem__label">Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2260_localtrabinterm_form.complem.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2260_localtrabinterm_form.complem.errors }}
@@ -141,7 +141,7 @@
 <!-- inicio__s2260_localtrabinterm__bairro -->
 <div class="col-md-6" id="s2260_localtrabinterm__bairro__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__bairro__label">Bairro</label>
+    <label id="s2260_localtrabinterm__bairro__label">Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2260_localtrabinterm_form.bairro.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2260_localtrabinterm_form.bairro.errors }}
@@ -156,7 +156,7 @@
 <!-- inicio__s2260_localtrabinterm__cep -->
 <div class="col-md-6" id="s2260_localtrabinterm__cep__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__cep__label">CEP*</label>
+    <label id="s2260_localtrabinterm__cep__label">CEP*<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2260_localtrabinterm_form.cep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2260_localtrabinterm_form.cep.errors }}
@@ -172,7 +172,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2260_localtrabinterm__codmunic__div">
     <div class="form-group">
-      <label id="s2260_localtrabinterm__codmunic__label">Código do Município*</label>
+      <label id="s2260_localtrabinterm__codmunic__label">Código do Município*<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2260_localtrabinterm_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2260_localtrabinterm_form.codmunic.errors }}
@@ -218,7 +218,7 @@
   {% else %}
   <div class="col-md-12" id="s2260_localtrabinterm__codmunic__div">
     <div class="form-group">
-      <label id="s2260_localtrabinterm__codmunic__label">Código do Município*</label>
+      <label id="s2260_localtrabinterm__codmunic__label">Código do Município*<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if not for_print %}{% if s2260_localtrabinterm_form.codmunic.value %}
             <a id="s2260_localtrabinterm__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2260_localtrabinterm_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -232,7 +232,7 @@
 <!-- inicio__s2260_localtrabinterm__uf -->
 <div class="col-md-6" id="s2260_localtrabinterm__uf__div">
   <div class="form-group">
-    <label id="s2260_localtrabinterm__uf__label">UF*</label>
+    <label id="s2260_localtrabinterm__uf__label">UF*<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2260_localtrabinterm_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2260_localtrabinterm_form.uf.errors }}

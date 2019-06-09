@@ -21,85 +21,64 @@ import base64
 #IMPORTACOES
 
 
+IMPORTACAO_STATUS = [
+
+    (0, u'Aguardando'),
+    (1, u'Processando'),
+    (2, u'Processado com sucesso'),
+    (3, u'Erro - Processamento'),
+    (4, u'Erro - Outros'),
+    (5, u'Erro - Arquivo Inválido'),
+    (6, u'Erro - Identidade já existente'),
+    (7, u'Erro - Versão de leiaute incompatível'),
+    (8, u'Erro - Validação de Leiaute'),
+
+]
+
+STATUS_IMPORT_AGUARDANDO = 0
+STATUS_IMPORT_PROCESSANDO = 1
+STATUS_IMPORT_PROCESSADO = 2
+STATUS_IMPORT_ERRO_PROCESSAMENTO = 3
+STATUS_IMPORT_ERRO_OUTROS = 4
+STATUS_IMPORT_ERRO_ARQUIVO_INVALIDO = 5
+STATUS_IMPORT_ERRO_IDENTIDADE_EXISTENTE = 6
+STATUS_IMPORT_ERRO_VERSAO_LEIAUTE = 7
+STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE = 8
 
 
 
 @login_required
 def listar(request, tab='master'):
 
+    status_erros = [
+        STATUS_IMPORT_ERRO_PROCESSAMENTO,
+        STATUS_IMPORT_ERRO_OUTROS,
+        STATUS_IMPORT_ERRO_ARQUIVO_INVALIDO,
+        STATUS_IMPORT_ERRO_IDENTIDADE_EXISTENTE,
+        STATUS_IMPORT_ERRO_VERSAO_LEIAUTE,
+        STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE,
+    ]
+
     if True:
 
-        filtrar = False
-        dict_fields = {}
-        show_fields = {
-            'show_excluido': 0,
-            'show_modificado_por': 0,
-            'show_modificado_em': 0,
-            'show_criado_por': 0,
-            'show_criado_em': 0,
-            'show_validacoes': 0,
-            'show_data_hora': 1,
-            'show_status': 1,
-            'show_identidade': 0,
-            'show_identidade_evento': 1,
-            'show_versao': 0,
-            'show_evento': 1,
-            'show_arquivo': 1,
-            'show_importacao_arquivos': 0, }
-        
-        if request.method == 'POST':
-            
-            dict_fields = {
-                'validacoes__icontains': 'validacoes__icontains',
-                'data_hora__range': 'data_hora__range',
-                'status': 'status',
-                'identidade': 'identidade',
-                'identidade_evento__icontains': 'identidade_evento__icontains',
-                'versao__icontains': 'versao__icontains',
-                'evento__icontains': 'evento__icontains',
-                'arquivo__icontains': 'arquivo__icontains',
-                'importacao_arquivos': 'importacao_arquivos',}
-            
-            for a in dict_fields:
-                
-                dict_fields[a] = request.POST.get(a or None)
-                
-            for a in show_fields:
-                
-                show_fields[a] = request.POST.get(a or None)
-                
-            if request.method == 'POST':
-                
-                dict_fields = {
-                    'validacoes__icontains': 'validacoes__icontains',
-                    'data_hora__range': 'data_hora__range',
-                    'status': 'status',
-                    'identidade': 'identidade',
-                    'identidade_evento__icontains': 'identidade_evento__icontains',
-                    'versao__icontains': 'versao__icontains',
-                    'evento__icontains': 'evento__icontains',
-                    'arquivo__icontains': 'arquivo__icontains',
-                    'importacao_arquivos': 'importacao_arquivos',}
-                
-                for a in dict_fields:
-                    dict_fields[a] = request.POST.get(dict_fields[a] or None)
-                    
-        dict_qs = clear_dict_fields(dict_fields)
 
-        lista_aguardando = ImportacaoArquivosEventos.objects.filter(**dict_qs).filter(status=0).exclude(id=0).all()
-        lista_erros = ImportacaoArquivosEventos.objects.filter(**dict_qs).filter(status=2).exclude(id=0).all()
-        lista_processados = ImportacaoArquivos.objects.filter(status=0).all()
+        lista_aguardando = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_AGUARDANDO).exclude(id=0).all()
+        lista_erros = ImportacaoArquivosEventos.objects.filter(status__in=status_erros).exclude(id=0).all()
+        lista_processando = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_PROCESSANDO).all()
+        lista_processados = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_PROCESSADO).all()
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'tab': tab,
             'lista_aguardando': lista_aguardando,
             'lista_erros': lista_erros,
+            'lista_processando': lista_processando,
             'lista_processados': lista_processados,
-            'dict_fields': dict_fields,
+            'quant_aguardando': len(lista_aguardando),
+            'quant_erros': len(lista_erros),
+            'quant_processando': len(lista_processando),
+            'quant_processados': len(lista_processados),
             'data': datetime.datetime.now(),
-            'show_fields': show_fields,
-            'filtrar': filtrar,
         }
 
         return render(request, 'mapa_importacoes.html', context)

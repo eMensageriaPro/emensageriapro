@@ -5,7 +5,7 @@
 <!-- inicio__r2070_depjudicial__r2070_pgtopf -->
 <div class="col-md-12" id="r2070_depjudicial__r2070_pgtopf__div">
   <div class="form-group">
-    <label id="r2070_depjudicial__r2070_pgtopf__label">Depósito Judicial*</label>
+    <label id="r2070_depjudicial__r2070_pgtopf__label">Depósito Judicial*<a data-toggle="tooltip" title="Depósito Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if r2070_depjudicial_form.r2070_pgtopf.value %}
         <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_depjudicial_form.r2070_pgtopf.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r2070_depjudicial__vlrdepjudicial -->
 <div class="col-md-6" id="r2070_depjudicial__vlrdepjudicial__div">
   <div class="form-group">
-    <label id="r2070_depjudicial__vlrdepjudicial__label">Preencher com o Valor do Depósito Judicial</label>
+    <label id="r2070_depjudicial__vlrdepjudicial__label">Preencher com o Valor do Depósito Judicial<a data-toggle="tooltip" title="Preencher com o Valor do Depósito Judicial <validacao> Somente pode ser preenchido se {indSuspExig} = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_depjudicial_form.vlrdepjudicial.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_depjudicial_form.vlrdepjudicial.errors }}

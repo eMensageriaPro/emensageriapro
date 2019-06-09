@@ -5,7 +5,7 @@
 <!-- inicio__s2241_altinsalperic__s2241_insalperic -->
 <div class="col-md-12" id="s2241_altinsalperic__s2241_insalperic__div">
   <div class="form-group">
-    <label id="s2241_altinsalperic__s2241_insalperic__label">Condições do ambiente de trabalho insalubre/periculoso - Alteração*</label>
+    <label id="s2241_altinsalperic__s2241_insalperic__label">Condições do ambiente de trabalho insalubre/periculoso - Alteração*<a data-toggle="tooltip" title="Condições do ambiente de trabalho insalubre/periculoso - Alteração<regras_validacao> REGRA_EXISTE_EVENTO_INICIO_INS"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2241_altinsalperic_form.s2241_insalperic.value %}
         <a href="{% url 's2241_insalperic_salvar' pk=s2241_altinsalperic_form.s2241_insalperic.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2241_altinsalperic__dtaltcondicao -->
 <div class="col-md-6" id="s2241_altinsalperic__dtaltcondicao__div">
   <div class="form-group">
-    <label id="s2241_altinsalperic__dtaltcondicao__label">Data de alteração de condição*</label>
+    <label id="s2241_altinsalperic__dtaltcondicao__label">Data de alteração de condição*<a data-toggle="tooltip" title="Informar a data em que ocorreu alteração na condição de exposição ao(s) fator(es) de risco para o trabalhador. A data informada deve ser igual ou posterior à data de início na condição de exposição que se pretende alterar. <validacao> Deve ser uma data igual ou posterior à data de início das atividades exercidas pelo trabalhador, sujeitas ao(s) fator(es) de risco."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2241_altinsalperic_form.dtaltcondicao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2241_altinsalperic_form.dtaltcondicao.errors }}

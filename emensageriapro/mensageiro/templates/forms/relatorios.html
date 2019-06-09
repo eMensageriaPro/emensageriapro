@@ -5,7 +5,7 @@
 <!-- inicio__relatorios__titulo -->
 <div class="col-md-12" id="relatorios__titulo__div">
   <div class="form-group">
-    <label id="relatorios__titulo__label">Título*</label>
+    <label id="relatorios__titulo__label">Título*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if relatorios_form.titulo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ relatorios_form.titulo.errors }}
@@ -20,7 +20,7 @@
 <!-- inicio__relatorios__campos -->
 <div class="col-md-12" id="relatorios__campos__div">
   <div class="form-group">
-    <label id="relatorios__campos__label">Lista dos Campos (separados por vírgula)*</label>
+    <label id="relatorios__campos__label">Lista dos Campos (separados por vírgula)*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if relatorios_form.campos.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ relatorios_form.campos.errors }}
@@ -48,7 +48,7 @@
 </script>                
 <div class="col-md-12" id="relatorios__sql__div">
   <div class="form-group">
-    <label id="relatorios__sql__label">SQL</label>
+    <label id="relatorios__sql__label">SQL<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if relatorios_form.sql.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ relatorios_form.sql.errors }}

@@ -10,7 +10,7 @@ from emensageriapro.r9000.models import *
 
 
 
-def read_r9000_evtexclusao_string(dados, xml, validar=False):
+def read_r9000_evtexclusao_string(request, dados, xml, validar=False):
 
     import untangle
     doc = untangle.parse(xml)
@@ -20,14 +20,16 @@ def read_r9000_evtexclusao_string(dados, xml, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_r9000_evtexclusao_obj(doc, status, validar)
+    dados = read_r9000_evtexclusao_obj(request, doc, status, validar)
     return dados
 
 
 
-def read_r9000_evtexclusao(dados, arquivo, validar=False):
+def read_r9000_evtexclusao(request, dados, arquivo, validar=False):
 
     import untangle
+    from emensageriapro.mensageiro.models import ImportacaoArquivosEventos
+    
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
 
@@ -37,12 +39,16 @@ def read_r9000_evtexclusao(dados, arquivo, validar=False):
     else:
         status = STATUS_EVENTO_CADASTRADO
 
-    dados = read_r9000_evtexclusao_obj(doc, status, validar)
+    dados = read_r9000_evtexclusao_obj(request, doc, status, validar)
+
+    r9000evtExclusao.objects.filter(id=dados['id']).update(arquivo=arquivo)
+    ImportacaoArquivosEventos.objects.filter(arquivo=arquivo).update(versao=dados['versao'])
+
     return dados
 
 
 
-def read_r9000_evtexclusao_obj(doc, status, validar=False):
+def read_r9000_evtexclusao_obj(request, doc, status, validar=False):
 
     xmlns_lista = doc.Reinf['xmlns'].split('/')
 
@@ -100,6 +106,8 @@ def read_r9000_evtexclusao_obj(doc, status, validar=False):
 
 
     from emensageriapro.efdreinf.views.r9000_evtexclusao_validar_evento import validar_evento_funcao
+    
     if validar:
-        validar_evento_funcao(r9000_evtexclusao.id)
+        validar_evento_funcao(request, r9000_evtexclusao.id)
+    
     return r9000_evtexclusao_dados

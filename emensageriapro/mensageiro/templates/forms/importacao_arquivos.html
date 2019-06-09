@@ -5,7 +5,7 @@
 <!-- inicio__importacao_arquivos__arquivo -->
 <div class="col-md-12" id="importacao_arquivos__arquivo__div">
   <div class="form-group">
-    <label id="importacao_arquivos__arquivo__label">Nome do Arquivo</label>
+    <label id="importacao_arquivos__arquivo__label">Nome do Arquivo<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if importacao_arquivos_form.arquivo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ importacao_arquivos_form.arquivo.errors }}
@@ -20,7 +20,7 @@
 <!-- inicio__importacao_arquivos__status -->
 <div class="col-md-4" id="importacao_arquivos__status__div">
   <div class="form-group">
-    <label id="importacao_arquivos__status__label">Status</label>
+    <label id="importacao_arquivos__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if importacao_arquivos_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ importacao_arquivos_form.status.errors }}
@@ -44,7 +44,7 @@
 <!-- inicio__importacao_arquivos__data_hora -->
 <div class="col-md-4" id="importacao_arquivos__data_hora__div">
   <div class="form-group">
-    <label id="importacao_arquivos__data_hora__label">Data/Hora de Importação</label>
+    <label id="importacao_arquivos__data_hora__label">Data/Hora de Importação<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if importacao_arquivos_form.data_hora.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ importacao_arquivos_form.data_hora.errors }}
@@ -68,7 +68,7 @@
 
 <div class="col-md-4" id="importacao_arquivos__importado_por__div">
 <div class="form-group">
-  <label id="importacao_arquivos__importado_por__label">Importado por</label>
+  <label id="importacao_arquivos__importado_por__label">Importado por<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if importacao_arquivos_form.importado_por.value %}
@@ -100,7 +100,7 @@
 <!-- inicio__importacao_arquivos__quant_total -->
 <div class="col-md-3" id="importacao_arquivos__quant_total__div">
   <div class="form-group">
-    <label id="importacao_arquivos__quant_total__label">Quant. Total</label>
+    <label id="importacao_arquivos__quant_total__label">Quant. Total<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if importacao_arquivos_form.quant_total.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ importacao_arquivos_form.quant_total.errors }}
@@ -115,7 +115,7 @@
 <!-- inicio__importacao_arquivos__quant_aguardando -->
 <div class="col-md-3" id="importacao_arquivos__quant_aguardando__div">
   <div class="form-group">
-    <label id="importacao_arquivos__quant_aguardando__label">Quant. Aguardando Processamento</label>
+    <label id="importacao_arquivos__quant_aguardando__label">Quant. Aguardando Processamento<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if importacao_arquivos_form.quant_aguardando.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ importacao_arquivos_form.quant_aguardando.errors }}
@@ -130,7 +130,7 @@
 <!-- inicio__importacao_arquivos__quant_importado -->
 <div class="col-md-3" id="importacao_arquivos__quant_importado__div">
   <div class="form-group">
-    <label id="importacao_arquivos__quant_importado__label">Quant. Importada</label>
+    <label id="importacao_arquivos__quant_importado__label">Quant. Importada<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if importacao_arquivos_form.quant_importado.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ importacao_arquivos_form.quant_importado.errors }}
@@ -145,7 +145,7 @@
 <!-- inicio__importacao_arquivos__quant_erros -->
 <div class="col-md-3" id="importacao_arquivos__quant_erros__div">
   <div class="form-group">
-    <label id="importacao_arquivos__quant_erros__label">Quant. com Erros</label>
+    <label id="importacao_arquivos__quant_erros__label">Quant. com Erros<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if importacao_arquivos_form.quant_erros.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ importacao_arquivos_form.quant_erros.errors }}

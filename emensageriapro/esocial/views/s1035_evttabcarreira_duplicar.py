@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_s1035(request, pk, versao="|")
-            dados = read_s1035_evttabcarreira_string({}, texto.encode('utf-8'), 0)
+            dados = read_s1035_evttabcarreira_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(s1035_evttabcarreira)
     
             s1035evtTabCarreira.objects.filter(id=dados['id']).\

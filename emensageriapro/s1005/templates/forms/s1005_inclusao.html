@@ -5,7 +5,7 @@
 <!-- inicio__s1005_inclusao__s1005_evttabestab -->
 <div class="col-md-12" id="s1005_inclusao__s1005_evttabestab__div">
   <div class="form-group">
-    <label id="s1005_inclusao__s1005_evttabestab__label">Inclusão de novas informações*</label>
+    <label id="s1005_inclusao__s1005_evttabestab__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s1005_inclusao_form.s1005_evttabestab.value %}
         <a href="{% url 's1005_evttabestab_salvar' pk=s1005_inclusao_form.s1005_evttabestab.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1005_inclusao__tpinsc -->
 <div class="col-md-6" id="s1005_inclusao__tpinsc__div">
   <div class="form-group">
-    <label id="s1005_inclusao__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s1005_inclusao__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <valores_validos> 1, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.tpinsc.errors }}
@@ -61,7 +61,7 @@
 <!-- inicio__s1005_inclusao__nrinsc -->
 <div class="col-md-6" id="s1005_inclusao__nrinsc__div">
   <div class="form-group">
-    <label id="s1005_inclusao__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s1005_inclusao__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve ser compatível com o conteúdo do campo {tpInsc}. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1005_inclusao_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_inclusao_form.nrinsc.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1005_inclusao__inivalid -->
 <div class="col-md-6" id="s1005_inclusao__inivalid__div">
   <div class="form-group">
-    <label id="s1005_inclusao__inivalid__label">Início da Validade*</label>
+    <label id="s1005_inclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.inivalid.errors }}
@@ -100,7 +100,7 @@
 <!-- inicio__s1005_inclusao__fimvalid -->
 <div class="col-md-6" id="s1005_inclusao__fimvalid__div">
   <div class="form-group">
-    <label id="s1005_inclusao__fimvalid__label">Fim da Validade</label>
+    <label id="s1005_inclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.fimvalid.errors }}
@@ -129,7 +129,7 @@
 <!-- inicio__s1005_inclusao__cnaeprep -->
 <div class="col-md-6" id="s1005_inclusao__cnaeprep__div">
   <div class="form-group">
-    <label id="s1005_inclusao__cnaeprep__label">CNAE preponderante*</label>
+    <label id="s1005_inclusao__cnaeprep__label">CNAE preponderante*<a data-toggle="tooltip" title="Preencher com o código do CNAE conforme legislação vigente, referente a atividade econômica preponderante do estabelecimento. <validacao> Deve ser um número existente na tabela CNAE. "><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1005_inclusao_form.cnaeprep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_inclusao_form.cnaeprep.errors }}
@@ -149,7 +149,7 @@
 <!-- inicio__s1005_inclusao__aliqrat -->
 <div class="col-md-6" id="s1005_inclusao__aliqrat__div">
   <div class="form-group">
-    <label id="s1005_inclusao__aliqrat__label">Alíquota RAT*</label>
+    <label id="s1005_inclusao__aliqrat__label">Alíquota RAT*<a data-toggle="tooltip" title="Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o registro complementar com informações sobre o processo administrativo/judicial que permite a aplicação de alíquotas diferentes. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3. Se a alíquota informada for diferente da definida na legislação vigente para o CNAE informado deverá haver informações de processo em {procAdmJudRat}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.aliqrat.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.aliqrat.errors }}
@@ -173,7 +173,7 @@
 <!-- inicio__s1005_inclusao__fap -->
 <div class="col-md-6" id="s1005_inclusao__fap__div">
   <div class="form-group">
-    <label id="s1005_inclusao__fap__label">FAP</label>
+    <label id="s1005_inclusao__fap__label">FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP. <validacao> Preenchimento obrigatório por Pessoa Jurídica. Não pode ser preenchido por Pessoa Física. O FAP informado deve corresponder àquele definido pelo Órgão Governamental Competente para o estabelecimento, exceto se {ideEstab/tpInsc} = [4]. A divergência só é permitida se houver processo informado em {procAdmJudFap}. Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.fap.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1005_inclusao_form.fap.errors }}
@@ -190,7 +190,7 @@
 <!-- inicio__s1005_inclusao__aliqratajust -->
 <div class="col-md-6" id="s1005_inclusao__aliqratajust__div">
   <div class="form-group">
-    <label id="s1005_inclusao__aliqratajust__label">Alíquota RAT (Ajustada)</label>
+    <label id="s1005_inclusao__aliqratajust__label">Alíquota RAT (Ajustada)<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}. Preenchimento obrigatório pela Pessoa Jurídica."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.aliqratajust.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1005_inclusao_form.aliqratajust.errors }}
@@ -212,7 +212,7 @@
 <!-- inicio__s1005_inclusao__regpt -->
 <div class="col-md-6" id="s1005_inclusao__regpt__div">
   <div class="form-group">
-    <label id="s1005_inclusao__regpt__label">Registro de Ponto (Horário)*</label>
+    <label id="s1005_inclusao__regpt__label">Registro de Ponto (Horário)*<a data-toggle="tooltip" title="Opção de registro de ponto (jornada) adotada pelo estabelecimento. Indicar o sistema de controle de ponto preponderante, conforme opções<opcoes>0 - Não utiliza; 1 - Manual; 2 - Mecânico; 3 - Eletrônico (portaria MTE 1.510/2009); 4 - Não eletrônico alternativo (art. 1° da Portaria MTE 373/2011); 5 - Eletrônico alternativo ( art. 2° da Portaria MTE 373/2011); 6 - Eletrônico - outros. <valores_validos> 0, 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.regpt.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.regpt.errors }}
@@ -241,7 +241,7 @@
 <!-- inicio__s1005_inclusao__contapr -->
 <div class="col-md-6" id="s1005_inclusao__contapr__div">
   <div class="form-group">
-    <label id="s1005_inclusao__contapr__label">Indicativo de contratação de aprendiz*</label>
+    <label id="s1005_inclusao__contapr__label">Indicativo de contratação de aprendiz*<a data-toggle="tooltip" title="Indicativo de contratação de aprendiz<opcoes>0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Obrigado. <valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.contapr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.contapr.errors }}
@@ -265,7 +265,7 @@
 <!-- inicio__s1005_inclusao__nrprocjud -->
 <div class="col-md-6" id="s1005_inclusao__nrprocjud__div">
   <div class="form-group">
-    <label id="s1005_inclusao__nrprocjud__label">Número do Processo Judicial</label>
+    <label id="s1005_inclusao__nrprocjud__label">Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. <validacao> O preenchimento é obrigatório se {contApr} for igual a [1]. Deve ser um número de processo judicial válido e existente na tabela de Processos - S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s1005_inclusao_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_inclusao_form.nrprocjud.errors }}
@@ -280,7 +280,7 @@
 <!-- inicio__s1005_inclusao__contented -->
 <div class="col-md-6" id="s1005_inclusao__contented__div">
   <div class="form-group">
-    <label id="s1005_inclusao__contented__label">Entidade educativa sem fins lucrativos</label>
+    <label id="s1005_inclusao__contented__label">Entidade educativa sem fins lucrativos<a data-toggle="tooltip" title="Informar se o estabelecimento realiza a contratação de aprendiz por intermédio de entidade educativa sem fins lucrativos que tenha por objetivo a assistência ao adolescente e à educação profissional (art. 430, inciso II, CLT) ou por entidade de prática desportiva filiada ao Sistema Nacional do Desporto ou a Sistema de Desporto de Estado, do Distrito Federal ou de Município (art. 430, inciso III, CLT)<opcoes>S - Sim; N - Não. <validacao> O preenchimento é obrigatório se {contApr} for igual a [1, 2]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s1005_inclusao_form.contented.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_form.contented.errors }}

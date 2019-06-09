@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2210_agentecausador__s2210_evtcat__div">
   <div class="form-group">
-    <label id="s2210_agentecausador__s2210_evtcat__label">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho*</label>
+    <label id="s2210_agentecausador__s2210_evtcat__label">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho*<a data-toggle="tooltip" title="Detalhamento do(s) agente(s) causador(es) do acidente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if s2210_agentecausador_form.s2210_evtcat.value %}
         <a id="s2210_agentecausador__s2210_evtcat__div_acessar" href="{% url 's2210_evtcat_salvar' pk=s2210_agentecausador_form.s2210_evtcat.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2210_agentecausador__codagntcausador__div">
     <div class="form-group">
-      <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*</label>
+      <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*<a data-toggle="tooltip" title="Preencher com o código correspondente ao agente causador do acidente, conforme tabelas 14 ou 15. <validacao> Deve ser um código válido, existente na tabela 14 - Agente Causador do Acidente de Trabalho ou na tabela 15 - Agente Causador / Situação Geradora de Doença Profissional."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2210_agentecausador_form.codagntcausador.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2210_agentecausador_form.codagntcausador.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s2210_agentecausador__codagntcausador__div">
     <div class="form-group">
-      <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*</label>
+      <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*<a data-toggle="tooltip" title="Preencher com o código correspondente ao agente causador do acidente, conforme tabelas 14 ou 15. <validacao> Deve ser um código válido, existente na tabela 14 - Agente Causador do Acidente de Trabalho ou na tabela 15 - Agente Causador / Situação Geradora de Doença Profissional."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_codagntcausador" name="txt_codagntcausador" class="form-control" value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador.codagntcausador }}{% endif %}" disabled="disabled">
     </div>
   </div>

@@ -88,7 +88,7 @@ def duplicar(request, pk):
                 id=pk)
     
             texto = gerar_xml_r9001(request, pk, versao="|")
-            dados = read_r9001_evttotal_string({}, texto.encode('utf-8'), 0)
+            dados = read_r9001_evttotal_string(request, {}, texto.encode('utf-8'), 0)
             nova_identidade = identidade_evento(r9001_evttotal)
     
             r9001evtTotal.objects.filter(id=dados['id']).\

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_detcompet__r2070_pgtopf__div">
   <div class="form-group">
-    <label id="r2070_detcompet__r2070_pgtopf__label">Detalhamento das Competências*</label>
+    <label id="r2070_detcompet__r2070_pgtopf__label">Detalhamento das Competências*<a data-toggle="tooltip" title="Detalhamento das Competências"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2070_detcompet_form.r2070_pgtopf.value %}
         <a id="r2070_detcompet__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_detcompet_form.r2070_pgtopf.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_detcompet__indperreferencia -->
 <div class="col-md-3" id="r2070_detcompet__indperreferencia__div">
   <div class="form-group">
-    <label id="r2070_detcompet__indperreferencia__label">Indicativo de período de referência*</label>
+    <label id="r2070_detcompet__indperreferencia__label">Indicativo de período de referência*<a data-toggle="tooltip" title="Indicativo de período de referência<opcoes>1 - Folha de Pagamento Mensal; 2 - Folha do Décimo Terceiro Salário. <validacao> Deve ser igual a [1] se {indDecTerceiro} = [N]. Deve ser igual a [2] se {indDecTerceiro} = [S]. <valores_validos> 1,2"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_detcompet_form.indperreferencia.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_detcompet_form.indperreferencia.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2070_detcompet__perrefpagto -->
 <div class="col-md-3" id="r2070_detcompet__perrefpagto__div">
   <div class="form-group">
-    <label id="r2070_detcompet__perrefpagto__label">Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário*</label>
+    <label id="r2070_detcompet__perrefpagto__label">Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário*<a data-toggle="tooltip" title="Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário. <validacao> Deve estar no formato AAAA-MM se {indPerReferencia} = [1], ou no formato AAAA se {indPerReferencia} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2070_detcompet_form.perrefpagto.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_detcompet_form.perrefpagto.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2070_detcompet__vlrrendtributavel -->
 <div class="col-md-3" id="r2070_detcompet__vlrrendtributavel__div">
   <div class="form-group">
-    <label id="r2070_detcompet__vlrrendtributavel__label">Valor do rendimento tributável*</label>
+    <label id="r2070_detcompet__vlrrendtributavel__label">Valor do rendimento tributável*<a data-toggle="tooltip" title="Valor do rendimento tributável relativo ao período de referência. <validacao> A soma do campo nos registros deve ser igual ao {vlrRendTributavel} indicado no registro superior."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2070_detcompet_form.vlrrendtributavel.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_detcompet_form.vlrrendtributavel.errors }}

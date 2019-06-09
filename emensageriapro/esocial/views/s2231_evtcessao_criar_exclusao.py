@@ -88,7 +88,7 @@ def criar_exclusao(request, pk):
         texto = gerar_xml_s2231(request, pk, versao="|")
         texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
         texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s2231_evtcessao_string({}, texto.encode('utf-8'), 0)
+        dados = read_s2231_evtcessao_string(request, {}, texto.encode('utf-8'), 0)
         nova_identidade = identidade_evento(s2231_evtcessao)
 
         s2231evtCessao.objects.filter(id=dados['id']).\

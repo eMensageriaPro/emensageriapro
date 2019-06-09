@@ -5,7 +5,7 @@
 <!-- inicio__s2231_fimcessao__s2231_evtcessao -->
 <div class="col-md-12" id="s2231_fimcessao__s2231_evtcessao__div">
   <div class="form-group">
-    <label id="s2231_fimcessao__s2231_evtcessao__label">Informações de término da cessão/exercício em outro órgão*</label>
+    <label id="s2231_fimcessao__s2231_evtcessao__label">Informações de término da cessão/exercício em outro órgão*<a data-toggle="tooltip" title="Informações de término da cessão/exercício em outro órgão <regras_validacao> REGRA_EXISTE_EVENTO_CESSAO"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}{% if s2231_fimcessao_form.s2231_evtcessao.value %}
         <a href="{% url 's2231_evtcessao_salvar' pk=s2231_fimcessao_form.s2231_evtcessao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2231_fimcessao__dttermcessao -->
 <div class="col-md-6" id="s2231_fimcessao__dttermcessao__div">
   <div class="form-group">
-    <label id="s2231_fimcessao__dttermcessao__label">Preencher com a data de término da cessão/exercício em outro órgão*</label>
+    <label id="s2231_fimcessao__dttermcessao__label">Preencher com a data de término da cessão/exercício em outro órgão*<a data-toggle="tooltip" title="Preencher com a data de término da cessão/exercício em outro órgão. <validacao> Deve-se obedecer às seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de início da cessão/exercício em outro órgão; b) Deve ser uma data não superior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2231_fimcessao_form.dttermcessao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2231_fimcessao_form.dttermcessao.errors }}

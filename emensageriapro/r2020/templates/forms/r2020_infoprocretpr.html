@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2020_infoprocretpr__r2020_evtservprest__div">
   <div class="form-group">
-    <label id="r2020_infoprocretpr__r2020_evtservprest__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
+    <label id="r2020_infoprocretpr__r2020_evtservprest__label">Informações de processos relacionados a não retenção de contribuição previdenciária*<a data-toggle="tooltip" title="Informações de processos relacionados a não retenção de contribuição previdenciária. <validacao> A soma dos valores informados no campo {valorPrinc} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a {vlrTotalNRetPrinc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2020_infoprocretpr_form.r2020_evtservprest.value %}
         <a id="r2020_infoprocretpr__r2020_evtservprest__div_acessar" href="{% url 'r2020_evtservprest_salvar' pk=r2020_infoprocretpr_form.r2020_evtservprest.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2020_infoprocretpr__tpprocretprinc -->
 <div class="col-md-6" id="r2020_infoprocretpr__tpprocretprinc__div">
   <div class="form-group">
-    <label id="r2020_infoprocretpr__tpprocretprinc__label">Preencher com o código correspondente ao tipo de processo*</label>
+    <label id="r2020_infoprocretpr__tpprocretprinc__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infoprocretpr_form.tpprocretprinc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2020_infoprocretpr_form.tpprocretprinc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2020_infoprocretpr__nrprocretprinc -->
 <div class="col-md-6" id="r2020_infoprocretpr__nrprocretprinc__div">
   <div class="form-group">
-    <label id="r2020_infoprocretpr__nrprocretprinc__label">Informar o número do processo administrativo/judicial*</label>
+    <label id="r2020_infoprocretpr__nrprocretprinc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de PROCESSOS."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_infoprocretpr_form.nrprocretprinc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_infoprocretpr_form.nrprocretprinc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2020_infoprocretpr__codsuspprinc -->
 <div class="col-md-6" id="r2020_infoprocretpr__codsuspprinc__div">
   <div class="form-group">
-    <label id="r2020_infoprocretpr__codsuspprinc__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+    <label id="r2020_infoprocretpr__codsuspprinc__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProcRetPrinc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2020_infoprocretpr_form.codsuspprinc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2020_infoprocretpr_form.codsuspprinc.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r2020_infoprocretpr__valorprinc -->
 <div class="col-md-6" id="r2020_infoprocretpr__valorprinc__div">
   <div class="form-group">
-    <label id="r2020_infoprocretpr__valorprinc__label">Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial.*</label>
+    <label id="r2020_infoprocretpr__valorprinc__label">Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial.*<a data-toggle="tooltip" title="Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2020_infoprocretpr_form.valorprinc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2020_infoprocretpr_form.valorprinc.errors }}

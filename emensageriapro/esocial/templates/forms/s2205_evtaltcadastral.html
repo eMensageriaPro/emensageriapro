@@ -10,7 +10,7 @@
 <!-- inicio__s2205_evtaltcadastral__identidade -->
 <div class="col-md-6" id="s2205_evtaltcadastral__identidade__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__identidade__label">Identidade do Registro</label>
+    <label id="s2205_evtaltcadastral__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s2205_evtaltcadastral__indretif -->
 <div class="col-md-6" id="s2205_evtaltcadastral__indretif__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__indretif__label">Identificador de retificação*</label>
+    <label id="s2205_evtaltcadastral__indretif__label">Identificador de retificação*<a data-toggle="tooltip" title="Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.indretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.indretif.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s2205_evtaltcadastral__nrrecibo -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nrrecibo__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nrrecibo__label">Número do recibo</label>
+    <label id="s2205_evtaltcadastral__nrrecibo__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nrrecibo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nrrecibo.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s2205_evtaltcadastral__tpamb -->
 <div class="col-md-6" id="s2205_evtaltcadastral__tpamb__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__tpamb__label">Identificação do ambiente*</label>
+    <label id="s2205_evtaltcadastral__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.tpamb.errors }}
@@ -93,7 +93,7 @@
 <!-- inicio__s2205_evtaltcadastral__procemi -->
 <div class="col-md-6" id="s2205_evtaltcadastral__procemi__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__procemi__label">Processo de emissão do evento*</label>
+    <label id="s2205_evtaltcadastral__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.procemi.errors }}
@@ -117,7 +117,7 @@
 <!-- inicio__s2205_evtaltcadastral__verproc -->
 <div class="col-md-6" id="s2205_evtaltcadastral__verproc__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__verproc__label">Versão do processo*</label>
+    <label id="s2205_evtaltcadastral__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.verproc.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s2205_evtaltcadastral__tpinsc -->
 <div class="col-md-6" id="s2205_evtaltcadastral__tpinsc__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__tpinsc__label">Tipo de inscrição*</label>
+    <label id="s2205_evtaltcadastral__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.tpinsc.errors }}
@@ -161,7 +161,7 @@
 <!-- inicio__s2205_evtaltcadastral__nrinsc -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nrinsc__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+    <label id="s2205_evtaltcadastral__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nrinsc.errors }}
@@ -181,7 +181,7 @@
 <!-- inicio__s2205_evtaltcadastral__cpftrab -->
 <div class="col-md-6" id="s2205_evtaltcadastral__cpftrab__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__cpftrab__label">CPF*</label>
+    <label id="s2205_evtaltcadastral__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.cpftrab.errors }}
@@ -201,7 +201,7 @@
 <!-- inicio__s2205_evtaltcadastral__dtalteracao -->
 <div class="col-md-6" id="s2205_evtaltcadastral__dtalteracao__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__dtalteracao__label">Data de alteração*</label>
+    <label id="s2205_evtaltcadastral__dtalteracao__label">Data de alteração*<a data-toggle="tooltip" title="Preencher com a data da alteração das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2205_evtaltcadastral_form.dtalteracao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2205_evtaltcadastral_form.dtalteracao.errors }}
@@ -221,7 +221,7 @@
 <!-- inicio__s2205_evtaltcadastral__nistrab -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nistrab__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nistrab__label">NIS</label>
+    <label id="s2205_evtaltcadastral__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nistrab.errors }}
@@ -236,7 +236,7 @@
 <!-- inicio__s2205_evtaltcadastral__nmtrab -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nmtrab__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nmtrab__label">Nome*</label>
+    <label id="s2205_evtaltcadastral__nmtrab__label">Nome*<a data-toggle="tooltip" title="Nome do Trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nmtrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nmtrab.errors }}
@@ -251,7 +251,7 @@
 <!-- inicio__s2205_evtaltcadastral__sexo -->
 <div class="col-md-6" id="s2205_evtaltcadastral__sexo__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__sexo__label">Sexo*</label>
+    <label id="s2205_evtaltcadastral__sexo__label">Sexo*<a data-toggle="tooltip" title="Sexo do Trabalhador<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.sexo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.sexo.errors }}
@@ -275,7 +275,7 @@
 <!-- inicio__s2205_evtaltcadastral__racacor -->
 <div class="col-md-6" id="s2205_evtaltcadastral__racacor__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__racacor__label">Raça/Cor*</label>
+    <label id="s2205_evtaltcadastral__racacor__label">Raça/Cor*<a data-toggle="tooltip" title="Raça e cor do trabalhador, conforme opções abaixo<opcoes>1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.racacor.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.racacor.errors }}
@@ -299,7 +299,7 @@
 <!-- inicio__s2205_evtaltcadastral__estciv -->
 <div class="col-md-6" id="s2205_evtaltcadastral__estciv__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__estciv__label">Estado Civil</label>
+    <label id="s2205_evtaltcadastral__estciv__label">Estado Civil<a data-toggle="tooltip" title="Estado civil do trabalhador, conforme opções abaixo<opcoes>1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.estciv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.estciv.errors }}
@@ -323,7 +323,7 @@
 <!-- inicio__s2205_evtaltcadastral__grauinstr -->
 <div class="col-md-6" id="s2205_evtaltcadastral__grauinstr__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__grauinstr__label">Grau de Instrução*</label>
+    <label id="s2205_evtaltcadastral__grauinstr__label">Grau de Instrução*<a data-toggle="tooltip" title="Grau de instrução do trabalhador, conforme opções abaixo<opcoes> 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou; 02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular; 03 - 5º ano completo do Ensino Fundamental; 04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série); 05 - Ensino Fundamental Completo; 06 - Ensino Médio incompleto; 07 - Ensino Médio completo; 08 - Educação Superior incompleta; 09 - Educação Superior completa; 10 - Pós-Graduação completa; 11 - Mestrado completo; 12 - Doutorado completo. <valores_validos> 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.grauinstr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.grauinstr.errors }}
@@ -347,7 +347,7 @@
 <!-- inicio__s2205_evtaltcadastral__nmsoc -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nmsoc__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nmsoc__label">Nome Social</label>
+    <label id="s2205_evtaltcadastral__nmsoc__label">Nome Social<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nmsoc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nmsoc.errors }}
@@ -367,7 +367,7 @@
 <!-- inicio__s2205_evtaltcadastral__dtnascto -->
 <div class="col-md-6" id="s2205_evtaltcadastral__dtnascto__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__dtnascto__label">Data de nascimento*</label>
+    <label id="s2205_evtaltcadastral__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2205_evtaltcadastral_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2205_evtaltcadastral_form.dtnascto.errors }}
@@ -383,7 +383,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2205_evtaltcadastral__codmunic__div">
     <div class="form-group">
-      <label id="s2205_evtaltcadastral__codmunic__label">Código do Município</label>
+      <label id="s2205_evtaltcadastral__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2205_evtaltcadastral_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2205_evtaltcadastral_form.codmunic.errors }}
@@ -429,7 +429,7 @@
   {% else %}
   <div class="col-md-12" id="s2205_evtaltcadastral__codmunic__div">
     <div class="form-group">
-      <label id="s2205_evtaltcadastral__codmunic__label">Código do Município</label>
+      <label id="s2205_evtaltcadastral__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if not for_print %}{% if s2205_evtaltcadastral_form.codmunic.value %}
             <a id="s2205_evtaltcadastral__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2205_evtaltcadastral_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -443,7 +443,7 @@
 <!-- inicio__s2205_evtaltcadastral__uf -->
 <div class="col-md-6" id="s2205_evtaltcadastral__uf__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__uf__label">UF</label>
+    <label id="s2205_evtaltcadastral__uf__label">UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.uf.errors }}
@@ -468,7 +468,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2205_evtaltcadastral__paisnascto__div">
     <div class="form-group">
-      <label id="s2205_evtaltcadastral__paisnascto__label">País de nascimento*</label>
+      <label id="s2205_evtaltcadastral__paisnascto__label">País de nascimento*<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2205_evtaltcadastral_form.paisnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2205_evtaltcadastral_form.paisnascto.errors }}
@@ -522,7 +522,7 @@
   {% else %}
   <div class="col-md-6" id="s2205_evtaltcadastral__paisnascto__div">
     <div class="form-group">
-      <label id="s2205_evtaltcadastral__paisnascto__label">País de nascimento*</label>
+      <label id="s2205_evtaltcadastral__paisnascto__label">País de nascimento*<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnascto" name="txt_paisnascto" class="form-control" value="{% if s2205_evtaltcadastral.paisnascto %}{{ s2205_evtaltcadastral.paisnascto }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -532,7 +532,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2205_evtaltcadastral__paisnac__div">
     <div class="form-group">
-      <label id="s2205_evtaltcadastral__paisnac__label">País de nacionalidade*</label>
+      <label id="s2205_evtaltcadastral__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         {% if s2205_evtaltcadastral_form.paisnac.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2205_evtaltcadastral_form.paisnac.errors }}
@@ -586,7 +586,7 @@
   {% else %}
   <div class="col-md-6" id="s2205_evtaltcadastral__paisnac__div">
     <div class="form-group">
-      <label id="s2205_evtaltcadastral__paisnac__label">País de nacionalidade*</label>
+      <label id="s2205_evtaltcadastral__paisnac__label">País de nacionalidade*<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. <validacao> Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
         <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{% if s2205_evtaltcadastral.paisnac %}{{ s2205_evtaltcadastral.paisnac }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -595,7 +595,7 @@
 <!-- inicio__s2205_evtaltcadastral__nmmae -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nmmae__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nmmae__label">Nome da Mãe</label>
+    <label id="s2205_evtaltcadastral__nmmae__label">Nome da Mãe<a data-toggle="tooltip" title="Nome da mãe."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nmmae.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nmmae.errors }}
@@ -610,7 +610,7 @@
 <!-- inicio__s2205_evtaltcadastral__nmpai -->
 <div class="col-md-6" id="s2205_evtaltcadastral__nmpai__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__nmpai__label">Nome do Pai</label>
+    <label id="s2205_evtaltcadastral__nmpai__label">Nome do Pai<a data-toggle="tooltip" title="Nome do pai do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if s2205_evtaltcadastral_form.nmpai.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_evtaltcadastral_form.nmpai.errors }}
@@ -630,7 +630,7 @@
 <!-- inicio__s2205_evtaltcadastral__versao -->
 <div class="col-md-3" id="s2205_evtaltcadastral__versao__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__versao__label">Versão</label>
+    <label id="s2205_evtaltcadastral__versao__label">Versão<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.versao.errors }}
@@ -663,7 +663,7 @@
 
 <div class="col-md-3" id="s2205_evtaltcadastral__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s2205_evtaltcadastral__transmissor_lote_esocial__label">Transmissor</label>
+  <label id="s2205_evtaltcadastral__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if not output %}
     {% if s2205_evtaltcadastral_form.transmissor_lote_esocial.value %}
@@ -695,7 +695,7 @@
 <!-- inicio__s2205_evtaltcadastral__status -->
 <div class="col-md-3" id="s2205_evtaltcadastral__status__div">
   <div class="form-group">
-    <label id="s2205_evtaltcadastral__status__label">Status</label>
+    <label id="s2205_evtaltcadastral__status__label">Status<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if s2205_evtaltcadastral_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_evtaltcadastral_form.status.errors }}

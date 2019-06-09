@@ -21,7 +21,7 @@
 <!-- inicio__usuarios__username -->
 <div class="col-md-8" id="usuarios__username__div">
   <div class="form-group">
-    <label id="usuarios__username__label">Usuário (Utilizado no Login)*</label>
+    <label id="usuarios__username__label">Usuário (Utilizado no Login)*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if users_form.username.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ users_form.username.errors }}
@@ -36,7 +36,7 @@
 <!-- inicio__usuarios__first_name -->
 <div class="col-md-4" id="usuarios__first_name__div">
   <div class="form-group">
-    <label id="usuarios__first_name__label">Nome*</label>
+    <label id="usuarios__first_name__label">Nome*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if users_form.first_name.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ users_form.first_name.errors }}
@@ -51,7 +51,7 @@
 <!-- inicio__usuarios__last_name -->
 <div class="col-md-4" id="usuarios__last_name__div">
   <div class="form-group">
-    <label id="usuarios__last_name__label">Sobrenome*</label>
+    <label id="usuarios__last_name__label">Sobrenome*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if users_form.last_name.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ users_form.last_name.errors }}
@@ -89,7 +89,7 @@
         <input type="checkbox" name="is_superuser" class="minimal" value="True" 
         {% if users_form.is_superuser.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_superuser }}{% endcomment %}
-        É Super usuário?* {{ users_form.is_superuser.errors }}
+        É Super usuário?*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a> {{ users_form.is_superuser.errors }}
       </label>
     </div>
 </div>
@@ -103,7 +103,7 @@
         <input type="checkbox" name="is_staff" class="minimal" value="True" 
         {% if users_form.is_staff.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_staff }}{% endcomment %}
-        É Administrador?* {{ users_form.is_staff.errors }}
+        É Administrador?*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a> {{ users_form.is_staff.errors }}
       </label>
     </div>
 </div>
@@ -117,7 +117,7 @@
         <input type="checkbox" name="is_active" class="minimal" value="True" 
         {% if users_form.is_active.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_active }}{% endcomment %}
-        Ativo?* {{ users_form.is_active.errors }}
+        Ativo?*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a> {{ users_form.is_active.errors }}
       </label>
     </div>
 </div>
@@ -127,7 +127,7 @@
 
 <div class="col-md-4" id="usuarios__config_perfis__div">
 <div class="form-group">
-  <label id="usuarios__config_perfis__label">Perfil*</label>
+  <label id="usuarios__config_perfis__label">Perfil*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
   
   {% if usuarios_form.config_perfis.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2050_tipocom__r2050_evtcomprod__div">
   <div class="form-group">
-    <label id="r2050_tipocom__r2050_evtcomprod__label">Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.*</label>
+    <label id="r2050_tipocom__r2050_evtcomprod__label">Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.*<a data-toggle="tooltip" title="Registro que apresenta o valor total da Receita Bruta por "tipo" de comercialização."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2050_tipocom_form.r2050_evtcomprod.value %}
         <a id="r2050_tipocom__r2050_evtcomprod__div_acessar" href="{% url 'r2050_evtcomprod_salvar' pk=r2050_tipocom_form.r2050_evtcomprod.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2050_tipocom__indcom -->
 <div class="col-md-4" id="r2050_tipocom__indcom__div">
   <div class="form-group">
-    <label id="r2050_tipocom__indcom__label">Indicativo de Comercialização*</label>
+    <label id="r2050_tipocom__indcom__label">Indicativo de Comercialização*<a data-toggle="tooltip" title="Indicativo de Comercialização<opcoes>1 - Comercialização da Produção por Prod. Rural PJ/Agroindústria, exceto para entidades executoras do PAA; 7 - Comercialização da Produção com Isenção de Contribuição Previdenciária, de acordo com a Lei n° 13.606/2018; 8 - Comercialização da Produção para Entidade do Programa de Aquisição de Alimentos - PAA; 9 - Comercialização direta da Produção no Mercado Externo. <valores_validos> 1, 7, 8, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_tipocom_form.indcom.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2050_tipocom_form.indcom.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2050_tipocom__vlrrecbruta -->
 <div class="col-md-4" id="r2050_tipocom__vlrrecbruta__div">
   <div class="form-group">
-    <label id="r2050_tipocom__vlrrecbruta__label">Preencher com o valor total da comercialização*</label>
+    <label id="r2050_tipocom__vlrrecbruta__label">Preencher com o valor total da comercialização*<a data-toggle="tooltip" title="Preencher com o valor total da comercialização. <validacao> Deve ser maior que "0" e não pode ser maior que {vlrRecBrutaTotal}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2050_tipocom_form.vlrrecbruta.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2050_tipocom_form.vlrrecbruta.errors }}

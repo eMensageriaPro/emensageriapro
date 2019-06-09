@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2010_infoprocretad__r2010_evtservtom__div">
   <div class="form-group">
-    <label id="r2010_infoprocretad__r2010_evtservtom__label">Informações de processos relacionados a não retenção de contribuição previdenciária adicional*</label>
+    <label id="r2010_infoprocretad__r2010_evtservtom__label">Informações de processos relacionados a não retenção de contribuição previdenciária adicional*<a data-toggle="tooltip" title="Informações de processos relacionados a não retenção de contribuição previdenciária adicional. <validacao> A soma dos valores informados no campo {valorAdic} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a {vlrTotalNRetAdic}."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if not for_print %}
       {% if r2010_infoprocretad_form.r2010_evtservtom.value %}
         <a id="r2010_infoprocretad__r2010_evtservtom__div_acessar" href="{% url 'r2010_evtservtom_salvar' pk=r2010_infoprocretad_form.r2010_evtservtom.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2010_infoprocretad__tpprocretadic -->
 <div class="col-md-6" id="r2010_infoprocretad__tpprocretadic__div">
   <div class="form-group">
-    <label id="r2010_infoprocretad__tpprocretadic__label">Preencher com o código correspondente ao tipo de processo*</label>
+    <label id="r2010_infoprocretad__tpprocretadic__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_infoprocretad_form.tpprocretadic.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2010_infoprocretad_form.tpprocretadic.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2010_infoprocretad__nrprocretadic -->
 <div class="col-md-6" id="r2010_infoprocretad__nrprocretadic__div">
   <div class="form-group">
-    <label id="r2010_infoprocretad__nrprocretadic__label">Informar o número do processo administrativo/judicial*</label>
+    <label id="r2010_infoprocretad__nrprocretadic__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de processos (R-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2010_infoprocretad_form.nrprocretadic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2010_infoprocretad_form.nrprocretadic.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2010_infoprocretad__codsuspadic -->
 <div class="col-md-6" id="r2010_infoprocretad__codsuspadic__div">
   <div class="form-group">
-    <label id="r2010_infoprocretad__codsuspadic__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+    <label id="r2010_infoprocretad__codsuspadic__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProcRetAdic}."><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if r2010_infoprocretad_form.codsuspadic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2010_infoprocretad_form.codsuspadic.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r2010_infoprocretad__valoradic -->
 <div class="col-md-6" id="r2010_infoprocretad__valoradic__div">
   <div class="form-group">
-    <label id="r2010_infoprocretad__valoradic__label">Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial.*</label>
+    <label id="r2010_infoprocretad__valoradic__label">Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial.*<a data-toggle="tooltip" title="Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
     {% if r2010_infoprocretad_form.valoradic.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2010_infoprocretad_form.valoradic.errors }}
