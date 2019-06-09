@@ -105,50 +105,50 @@
         </div>
     {% endif %}
     {% if s2299_infoperapur_ideestablot_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s2299_infoperapur_ideestablot_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s2299_infoperapur_ideestablot_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s2299_infoperapur_ideestablot.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s2299_infoperapur_ideestablot.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s2299_infoperapur_ideestablot.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2299_infoperapur_ideestablot.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2299_infoperapur_ideestablot.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s2299_infoperapur_ideestablot.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s2299_infoperapur_ideestablot.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                     </div>
 
                     {% if perms.s2299.change_s2299infoPerApurideEstabLot or perms.s2299.add_s2299infoPerApurideEstabLot %}
-                        {% if s2299_infoperapur_ideestablot_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s2299_infoperapur_ideestablot" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -182,6 +182,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -227,7 +228,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s2299.change_s2299infoPerApurideEstabLot %}
+                            {% if perms.s2299.change_s2299infoPerApurideEstabLot and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -237,7 +238,7 @@
                             {% endif %}
 
 
-                            {% if perms.s2299.delete_s2299infoPerApurideEstabLot %}
+                            {% if perms.s2299.delete_s2299infoPerApurideEstabLot and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's2299_infoperapur_ideestablot_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -257,7 +258,7 @@
 
                         {% else %}
 
-                            {% if perms.s2299.add_s2299infoPerApurideEstabLot %}
+                            {% if perms.s2299.add_s2299infoPerApurideEstabLot and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -276,10 +277,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s2299.add_s2299infoPerApurideEstabLot or perms.s2299.change_s2299infoPerApurideEstabLot %}
 
-                        {% if s2299_infoperapur_ideestablot_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -378,6 +380,7 @@
                                     <h3 class="box-title">Detalhamento das verbas rescisórias devidas ao trabalhador</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerApurdetVerbas or perms.s2299.can_see_list_s2299infoPerApurdetVerbas  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -386,12 +389,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299infoPerApurdetVerbas %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerApurdetVerbas %}            
 
                                     <!-- begin_form_s2299_infoperapur_detverbas --> 
                                     <div id="cadastrar" style="display:none">
@@ -487,6 +491,7 @@
                                     <h3 class="box-title">Informações de plano privado coletivo empresarial de assistência à saúde</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerApurinfoSaudeColet or perms.s2299.can_see_list_s2299infoPerApurinfoSaudeColet  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -495,12 +500,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299infoPerApurinfoSaudeColet %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerApurinfoSaudeColet %}            
 
                                     <!-- begin_form_s2299_infoperapur_infosaudecolet --> 
                                     <div id="cadastrar" style="display:none">
@@ -596,6 +602,7 @@
                                     <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerApurinfoAgNocivo or perms.s2299.can_see_list_s2299infoPerApurinfoAgNocivo  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -604,12 +611,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299infoPerApurinfoAgNocivo %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerApurinfoAgNocivo %}            
 
                                     <!-- begin_form_s2299_infoperapur_infoagnocivo --> 
                                     <div id="cadastrar" style="display:none">
@@ -705,6 +713,7 @@
                                     <h3 class="box-title">Informação relativa a empresas enquadradas no Regime de Tributação Simples</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerApurinfoSimples or perms.s2299.can_see_list_s2299infoPerApurinfoSimples  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -713,12 +722,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299infoPerApurinfoSimples %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerApurinfoSimples %}            
 
                                     <!-- begin_form_s2299_infoperapur_infosimples --> 
                                     <div id="cadastrar" style="display:none">

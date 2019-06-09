@@ -66,13 +66,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r4040_idenat = get_object_or_404(r4040ideNat, id=pk)
-        dados_evento = r4040_idenat.evento()
+        evento_dados = r4040_idenat.evento()
 
     if request.user.has_perm('r4040.can_see_r4040ideNat'):
         
@@ -150,12 +150,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r4040_idenat_form = disabled_form_fields(r4040_idenat_form, 0)
                 
-        #r4040_idenat_campos_multiple_passo3
-        
         if output:
         
             r4040_idenat_form = disabled_form_for_print(r4040_idenat_form)
@@ -179,9 +177,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r4040_idenat = None
             
-        #r4040_idenat_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r4040_idenat' in request.session['return_page']:
         
@@ -195,11 +191,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r4040_idenat': r4040_idenat, 
             'r4040_idenat_form': r4040_idenat_form, 

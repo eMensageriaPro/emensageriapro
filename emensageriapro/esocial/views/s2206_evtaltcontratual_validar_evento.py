@@ -137,6 +137,9 @@ def validar_evento_funcao(request, pk):
             update(validacoes=validacoes,
                    status=STATUS_EVENTO_VALIDADO_ERRO)
 
+        messages.error(request, 
+            u'Validações foram processadas, porém foram encontrados erros!')
+
     else:
 
         if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
@@ -150,6 +153,9 @@ def validar_evento_funcao(request, pk):
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
 
+                messages.warning(request, 
+                    u'Validações foram processadas com sucesso, porém o evento está aguardando envio de sua precedência!')
+
             else:
             
                 s2206evtAltContratual.objects.\
@@ -157,12 +163,18 @@ def validar_evento_funcao(request, pk):
                     update(validacoes=None,
                            status=STATUS_EVENTO_AGUARD_ENVIO)
 
+                messages.success(request, 
+                    u'Validações foram processadas com sucesso, evento está aguardandando envio!')
+
         else:
 
             s2206evtAltContratual.objects. \
                 filter(id=pk).\
                 update(validacoes=None,
                        status=STATUS_EVENTO_AGUARD_ENVIO)
+
+            messages.success(request, 
+                u'Validações foram processadas com sucesso, evento está aguardandando envio!')
 
     return lista_validacoes
 
@@ -189,18 +201,7 @@ def validar_evento(request, pk, tab=None):
 
         if s2206_evtaltcontratual.versao in VERSOES_ESOCIAL:
         
-            validar_evento_funcao(request, pk)
-            
-            if s2206_evtaltcontratual.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-                s2206evtAltContratual.objects.\
-                    filter(id=pk).update(status=STATUS_EVENTO_AGUARD_ENVIO)
-
-            elif s2206_evtaltcontratual.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-                s2206evtAltContratual.objects.\
-                    filter(id=pk).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
-
-            messages.success(request, 
-                u'Validações processadas com sucesso!')
+            lista_validacoes = validar_evento_funcao(request, pk)
 
         else:
         

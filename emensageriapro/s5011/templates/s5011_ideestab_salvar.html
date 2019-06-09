@@ -112,50 +112,50 @@
         </div>
     {% endif %}
     {% if s5011_ideestab_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s5011_ideestab_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s5011_ideestab_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s5011_ideestab.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s5011_ideestab.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s5011_ideestab.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5011_ideestab.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s5011_ideestab.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s5011_ideestab.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s5011_ideestab.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                     </div>
 
                     {% if perms.s5011.change_s5011ideEstab or perms.s5011.add_s5011ideEstab %}
-                        {% if s5011_ideestab_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s5011_ideestab" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -189,6 +189,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -234,7 +235,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s5011.change_s5011ideEstab %}
+                            {% if perms.s5011.change_s5011ideEstab and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -244,7 +245,7 @@
                             {% endif %}
 
 
-                            {% if perms.s5011.delete_s5011ideEstab %}
+                            {% if perms.s5011.delete_s5011ideEstab and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's5011_ideestab_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -264,7 +265,7 @@
 
                         {% else %}
 
-                            {% if perms.s5011.add_s5011ideEstab %}
+                            {% if perms.s5011.add_s5011ideEstab and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -283,10 +284,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s5011.add_s5011ideEstab or perms.s5011.change_s5011ideEstab %}
 
-                        {% if s5011_ideestab_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -385,6 +387,7 @@
                                     <h3 class="box-title">Informações do Estabelecimento ou obra</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s5011.add_s5011infoEstab or perms.s5011.can_see_list_s5011infoEstab  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -393,12 +396,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011infoEstab %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011infoEstab %}            
 
                                     <!-- begin_form_s5011_infoestab --> 
                                     <div id="cadastrar" style="display:none">
@@ -494,6 +498,7 @@
                                     <h3 class="box-title">Informações de identificação da lotação e validade das informações que estão sendo incluídas</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s5011.add_s5011ideLotacao or perms.s5011.can_see_list_s5011ideLotacao  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -502,12 +507,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011ideLotacao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011ideLotacao %}            
 
                                     <!-- begin_form_s5011_idelotacao --> 
                                     <div id="cadastrar" style="display:none">
@@ -603,6 +609,7 @@
                                     <h3 class="box-title">Informações de bases de cálculo relativas a aquisição de produção rural</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s5011.add_s5011basesAquis or perms.s5011.can_see_list_s5011basesAquis  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -611,12 +618,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011basesAquis %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011basesAquis %}            
 
                                     <!-- begin_form_s5011_basesaquis --> 
                                     <div id="cadastrar" style="display:none">
@@ -712,6 +720,7 @@
                                     <h3 class="box-title">Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s5011.add_s5011basesComerc or perms.s5011.can_see_list_s5011basesComerc  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -720,12 +729,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011basesComerc %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011basesComerc %}            
 
                                     <!-- begin_form_s5011_basescomerc --> 
                                     <div id="cadastrar" style="display:none">
@@ -821,6 +831,7 @@
                                     <h3 class="box-title">Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s5011.add_s5011infoCREstab or perms.s5011.can_see_list_s5011infoCREstab  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -829,12 +840,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011infoCREstab %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011infoCREstab %}            
 
                                     <!-- begin_form_s5011_infocrestab --> 
                                     <div id="cadastrar" style="display:none">

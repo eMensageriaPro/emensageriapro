@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r3010_outrasreceitas = get_object_or_404(r3010outrasReceitas, id=pk)
-        dados_evento = r3010_outrasreceitas.evento()
+        evento_dados = r3010_outrasreceitas.evento()
 
     if request.user.has_perm('r3010.can_see_r3010outrasReceitas'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r3010_outrasreceitas_form = disabled_form_fields(r3010_outrasreceitas_form, 0)
                 
-        #r3010_outrasreceitas_campos_multiple_passo3
-        
         if output:
         
             r3010_outrasreceitas_form = disabled_form_for_print(r3010_outrasreceitas_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r3010_outrasreceitas = None
             
-        #r3010_outrasreceitas_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r3010_outrasreceitas' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r3010_outrasreceitas': r3010_outrasreceitas, 
             'r3010_outrasreceitas_form': r3010_outrasreceitas_form, 

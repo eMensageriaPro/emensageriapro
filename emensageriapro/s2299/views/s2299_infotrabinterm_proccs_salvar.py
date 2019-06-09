@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s2299_infotrabinterm_proccs = get_object_or_404(s2299infoTrabIntermprocCS, id=pk)
-        dados_evento = s2299_infotrabinterm_proccs.evento()
+        evento_dados = s2299_infotrabinterm_proccs.evento()
 
     if request.user.has_perm('s2299.can_see_s2299infoTrabIntermprocCS'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s2299_infotrabinterm_proccs_form = disabled_form_fields(s2299_infotrabinterm_proccs_form, 0)
                 
-        #s2299_infotrabinterm_proccs_campos_multiple_passo3
-        
         if output:
         
             s2299_infotrabinterm_proccs_form = disabled_form_for_print(s2299_infotrabinterm_proccs_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s2299_infotrabinterm_proccs = None
             
-        #s2299_infotrabinterm_proccs_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's2299_infotrabinterm_proccs' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's2299_infotrabinterm_proccs': s2299_infotrabinterm_proccs, 
             's2299_infotrabinterm_proccs_form': s2299_infotrabinterm_proccs_form, 

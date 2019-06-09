@@ -112,50 +112,50 @@
         </div>
     {% endif %}
     {% if r9002_infototal_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in r9002_infototal_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in r9002_infototal_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if r9002_infototal.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ r9002_infototal.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if r9002_infototal.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r9002_infototal.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not r9002_infototal.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if r9002_infototal.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ r9002_infototal.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                     </div>
 
                     {% if perms.r9002.change_r9002infoTotal or perms.r9002.add_r9002infoTotal %}
-                        {% if r9002_infototal_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_r9002_infototal" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -189,6 +189,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -234,7 +235,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.r9002.change_r9002infoTotal %}
+                            {% if perms.r9002.change_r9002infoTotal and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -244,7 +245,7 @@
                             {% endif %}
 
 
-                            {% if perms.r9002.delete_r9002infoTotal %}
+                            {% if perms.r9002.delete_r9002infoTotal and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 'r9002_infototal_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -264,7 +265,7 @@
 
                         {% else %}
 
-                            {% if perms.r9002.add_r9002infoTotal %}
+                            {% if perms.r9002.add_r9002infoTotal and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -283,10 +284,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.r9002.add_r9002infoTotal or perms.r9002.change_r9002infoTotal %}
 
-                        {% if r9002_infototal_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -385,6 +387,7 @@
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r9002.add_r9002totApurMen or perms.r9002.can_see_list_r9002totApurMen  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -393,12 +396,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r9002.add_r9002totApurMen %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r9002.add_r9002totApurMen %}            
 
                                     <!-- begin_form_r9002_totapurmen --> 
                                     <div id="cadastrar" style="display:none">
@@ -494,6 +498,7 @@
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r9002.add_r9002totApurQui or perms.r9002.can_see_list_r9002totApurQui  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -502,12 +507,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r9002.add_r9002totApurQui %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r9002.add_r9002totApurQui %}            
 
                                     <!-- begin_form_r9002_totapurqui --> 
                                     <div id="cadastrar" style="display:none">
@@ -603,6 +609,7 @@
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r9002.add_r9002totApurDec or perms.r9002.can_see_list_r9002totApurDec  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -611,12 +618,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r9002.add_r9002totApurDec %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r9002.add_r9002totApurDec %}            
 
                                     <!-- begin_form_r9002_totapurdec --> 
                                     <div id="cadastrar" style="display:none">
@@ -712,6 +720,7 @@
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r9002.add_r9002totApurSem or perms.r9002.can_see_list_r9002totApurSem  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -720,12 +729,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r9002.add_r9002totApurSem %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r9002.add_r9002totApurSem %}            
 
                                     <!-- begin_form_r9002_totapursem --> 
                                     <div id="cadastrar" style="display:none">
@@ -821,6 +831,7 @@
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r9002.add_r9002totApurDia or perms.r9002.can_see_list_r9002totApurDia  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -829,12 +840,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r9002.add_r9002totApurDia %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r9002.add_r9002totApurDia %}            
 
                                     <!-- begin_form_r9002_totapurdia --> 
                                     <div id="cadastrar" style="display:none">

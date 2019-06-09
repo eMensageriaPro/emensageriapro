@@ -105,50 +105,50 @@
         </div>
     {% endif %}
     {% if s1200_infoperapur_remunperapur_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s1200_infoperapur_remunperapur_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s1200_infoperapur_remunperapur_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s1200_infoperapur_remunperapur.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s1200_infoperapur_remunperapur.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s1200_infoperapur_remunperapur.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1200_infoperapur_remunperapur.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s1200_infoperapur_remunperapur.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s1200_infoperapur_remunperapur.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s1200_infoperapur_remunperapur.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                     </div>
 
                     {% if perms.s1200.change_s1200infoPerApurremunPerApur or perms.s1200.add_s1200infoPerApurremunPerApur %}
-                        {% if s1200_infoperapur_remunperapur_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s1200_infoperapur_remunperapur" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -182,6 +182,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -227,7 +228,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s1200.change_s1200infoPerApurremunPerApur %}
+                            {% if perms.s1200.change_s1200infoPerApurremunPerApur and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -237,7 +238,7 @@
                             {% endif %}
 
 
-                            {% if perms.s1200.delete_s1200infoPerApurremunPerApur %}
+                            {% if perms.s1200.delete_s1200infoPerApurremunPerApur and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's1200_infoperapur_remunperapur_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -257,7 +258,7 @@
 
                         {% else %}
 
-                            {% if perms.s1200.add_s1200infoPerApurremunPerApur %}
+                            {% if perms.s1200.add_s1200infoPerApurremunPerApur and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -276,10 +277,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s1200.add_s1200infoPerApurremunPerApur or perms.s1200.change_s1200infoPerApurremunPerApur %}
 
-                        {% if s1200_infoperapur_remunperapur_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -378,6 +380,7 @@
                                     <h3 class="box-title">Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerApuritensRemun or perms.s1200.can_see_list_s1200infoPerApuritensRemun  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -386,12 +389,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoPerApuritensRemun %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerApuritensRemun %}            
 
                                     <!-- begin_form_s1200_infoperapur_itensremun --> 
                                     <div id="cadastrar" style="display:none">
@@ -487,6 +491,7 @@
                                     <h3 class="box-title">Informações de plano privado coletivo empresarial de assistência à saúde</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerApurinfoSaudeColet or perms.s1200.can_see_list_s1200infoPerApurinfoSaudeColet  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -495,12 +500,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoPerApurinfoSaudeColet %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerApurinfoSaudeColet %}            
 
                                     <!-- begin_form_s1200_infoperapur_infosaudecolet --> 
                                     <div id="cadastrar" style="display:none">
@@ -596,6 +602,7 @@
                                     <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerApurinfoAgNocivo or perms.s1200.can_see_list_s1200infoPerApurinfoAgNocivo  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -604,12 +611,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoPerApurinfoAgNocivo %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerApurinfoAgNocivo %}            
 
                                     <!-- begin_form_s1200_infoperapur_infoagnocivo --> 
                                     <div id="cadastrar" style="display:none">
@@ -705,6 +713,7 @@
                                     <h3 class="box-title">Informações da(s) convocação(ões) de trabalho intermitente</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerApurinfoTrabInterm or perms.s1200.can_see_list_s1200infoPerApurinfoTrabInterm  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -713,12 +722,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoPerApurinfoTrabInterm %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerApurinfoTrabInterm %}            
 
                                     <!-- begin_form_s1200_infoperapur_infotrabinterm --> 
                                     <div id="cadastrar" style="display:none">

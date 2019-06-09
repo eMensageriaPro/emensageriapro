@@ -98,50 +98,50 @@
         </div>
     {% endif %}
     {% if s2241_insalperic_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s2241_insalperic_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s2241_insalperic_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s2241_insalperic.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s2241_insalperic.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s2241_insalperic.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2241_insalperic.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2241_insalperic.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s2241_insalperic.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s2241_insalperic.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                     </div>
 
                     {% if perms.s2241.change_s2241insalPeric or perms.s2241.add_s2241insalPeric %}
-                        {% if s2241_insalperic_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s2241_insalperic" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -175,6 +175,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -220,7 +221,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s2241.change_s2241insalPeric %}
+                            {% if perms.s2241.change_s2241insalPeric and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -230,7 +231,7 @@
                             {% endif %}
 
 
-                            {% if perms.s2241.delete_s2241insalPeric %}
+                            {% if perms.s2241.delete_s2241insalPeric and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's2241_insalperic_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -250,7 +251,7 @@
 
                         {% else %}
 
-                            {% if perms.s2241.add_s2241insalPeric %}
+                            {% if perms.s2241.add_s2241insalPeric and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -269,10 +270,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s2241.add_s2241insalPeric or perms.s2241.change_s2241insalPeric %}
 
-                        {% if s2241_insalperic_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -371,6 +373,7 @@
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Início</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241iniInsalPeric or perms.s2241.can_see_list_s2241iniInsalPeric  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -379,12 +382,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2241.add_s2241iniInsalPeric %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241iniInsalPeric %}            
 
                                     <!-- begin_form_s2241_iniinsalperic --> 
                                     <div id="cadastrar" style="display:none">
@@ -480,6 +484,7 @@
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Alteração</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241altInsalPeric or perms.s2241.can_see_list_s2241altInsalPeric  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -488,12 +493,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2241.add_s2241altInsalPeric %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241altInsalPeric %}            
 
                                     <!-- begin_form_s2241_altinsalperic --> 
                                     <div id="cadastrar" style="display:none">
@@ -589,6 +595,7 @@
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Fim</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241fimInsalPeric or perms.s2241.can_see_list_s2241fimInsalPeric  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -597,12 +604,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2241.add_s2241fimInsalPeric %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241fimInsalPeric %}            
 
                                     <!-- begin_form_s2241_fiminsalperic --> 
                                     <div id="cadastrar" style="display:none">

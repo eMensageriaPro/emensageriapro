@@ -68,13 +68,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s2240_altexprisco_fatrisco = get_object_or_404(s2240altExpRiscofatRisco, id=pk)
-        dados_evento = s2240_altexprisco_fatrisco.evento()
+        evento_dados = s2240_altexprisco_fatrisco.evento()
 
     if request.user.has_perm('s2240.can_see_s2240altExpRiscofatRisco'):
         
@@ -152,12 +152,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s2240_altexprisco_fatrisco_form = disabled_form_fields(s2240_altexprisco_fatrisco_form, 0)
                 
-        #s2240_altexprisco_fatrisco_campos_multiple_passo3
-        
         if output:
         
             s2240_altexprisco_fatrisco_form = disabled_form_for_print(s2240_altexprisco_fatrisco_form)
@@ -189,9 +187,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s2240_altexprisco_fatrisco = None
             
-        #s2240_altexprisco_fatrisco_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's2240_altexprisco_fatrisco' in request.session['return_page']:
         
@@ -205,11 +201,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's2240_altexprisco_fatrisco': s2240_altexprisco_fatrisco, 
             's2240_altexprisco_fatrisco_form': s2240_altexprisco_fatrisco_form, 

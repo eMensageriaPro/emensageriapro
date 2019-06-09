@@ -66,13 +66,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s2206_horcontratual = get_object_or_404(s2206horContratual, id=pk)
-        dados_evento = s2206_horcontratual.evento()
+        evento_dados = s2206_horcontratual.evento()
 
     if request.user.has_perm('s2206.can_see_s2206horContratual'):
         
@@ -150,12 +150,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s2206_horcontratual_form = disabled_form_fields(s2206_horcontratual_form, 0)
                 
-        #s2206_horcontratual_campos_multiple_passo3
-        
         if output:
         
             s2206_horcontratual_form = disabled_form_for_print(s2206_horcontratual_form)
@@ -179,9 +177,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s2206_horcontratual = None
             
-        #s2206_horcontratual_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's2206_horcontratual' in request.session['return_page']:
         
@@ -195,11 +191,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's2206_horcontratual': s2206_horcontratual, 
             's2206_horcontratual_form': s2206_horcontratual_form, 

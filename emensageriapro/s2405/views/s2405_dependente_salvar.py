@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s2405_dependente = get_object_or_404(s2405dependente, id=pk)
-        dados_evento = s2405_dependente.evento()
+        evento_dados = s2405_dependente.evento()
 
     if request.user.has_perm('s2405.can_see_s2405dependente'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s2405_dependente_form = disabled_form_fields(s2405_dependente_form, 0)
                 
-        #s2405_dependente_campos_multiple_passo3
-        
         if output:
         
             s2405_dependente_form = disabled_form_for_print(s2405_dependente_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s2405_dependente = None
             
-        #s2405_dependente_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's2405_dependente' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's2405_dependente': s2405_dependente, 
             's2405_dependente_form': s2405_dependente_form, 

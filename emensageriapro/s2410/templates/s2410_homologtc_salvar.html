@@ -77,50 +77,50 @@
         </div>
     {% endif %}
     {% if s2410_homologtc_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s2410_homologtc_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s2410_homologtc_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s2410_homologtc.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s2410_homologtc.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s2410_homologtc.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2410_homologtc.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2410_homologtc.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s2410_homologtc.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s2410_homologtc.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                     </div>
 
                     {% if perms.s2410.change_s2410homologTC or perms.s2410.add_s2410homologTC %}
-                        {% if s2410_homologtc_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s2410_homologtc" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -154,6 +154,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -199,7 +200,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s2410.change_s2410homologTC %}
+                            {% if perms.s2410.change_s2410homologTC and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -209,7 +210,7 @@
                             {% endif %}
 
 
-                            {% if perms.s2410.delete_s2410homologTC %}
+                            {% if perms.s2410.delete_s2410homologTC and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's2410_homologtc_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -229,7 +230,7 @@
 
                         {% else %}
 
-                            {% if perms.s2410.add_s2410homologTC %}
+                            {% if perms.s2410.add_s2410homologTC and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -248,10 +249,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s2410.add_s2410homologTC or perms.s2410.change_s2410homologTC %}
 
-                        {% if s2410_homologtc_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 

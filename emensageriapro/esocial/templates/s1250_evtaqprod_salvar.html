@@ -75,15 +75,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s1250_evtaqprod_form.errors %}
         <div class="row">
@@ -110,31 +110,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s1250_evtaqprod.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1250_evtaqprod.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s1250_evtaqprod.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s1250_evtaqprod.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s1250_evtaqprod.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s1250_evtaqprod.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s1250_evtaqprod.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s1250_evtaqprod.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -236,7 +237,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s1250evtAqProd %}
+                            {% if perms.esocial.can_change_identity_s1250evtAqProd and s1250_evtaqprod_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's1250_evtaqprod_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -285,7 +286,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s1250evtAqProd %}
+                            {% if perms.esocial.can_validate_s1250evtAqProd and s1250_evtaqprod_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's1250_evtaqprod_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -341,7 +342,7 @@
                             <a href="{% url 's1250_evtaqprod_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -532,6 +533,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s1250_evtaqprod.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</h3>   
@@ -548,9 +550,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s1250.add_s1250tpAquis %}            
+                                {% if s1250_evtaqprod.status == STATUS_EVENTO_CADASTRADO and perms.s1250.add_s1250tpAquis %}            
 
                                     <!-- begin_form_s1250_tpaquis --> 
                                     <div id="cadastrar" style="display:none">

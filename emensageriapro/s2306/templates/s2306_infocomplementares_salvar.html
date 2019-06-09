@@ -105,50 +105,50 @@
         </div>
     {% endif %}
     {% if s2306_infocomplementares_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s2306_infocomplementares_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s2306_infocomplementares_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s2306_infocomplementares.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s2306_infocomplementares.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s2306_infocomplementares.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2306_infocomplementares.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2306_infocomplementares.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s2306_infocomplementares.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s2306_infocomplementares.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                     </div>
 
                     {% if perms.s2306.change_s2306infoComplementares or perms.s2306.add_s2306infoComplementares %}
-                        {% if s2306_infocomplementares_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s2306_infocomplementares" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -182,6 +182,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -227,7 +228,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s2306.change_s2306infoComplementares %}
+                            {% if perms.s2306.change_s2306infoComplementares and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -237,7 +238,7 @@
                             {% endif %}
 
 
-                            {% if perms.s2306.delete_s2306infoComplementares %}
+                            {% if perms.s2306.delete_s2306infoComplementares and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's2306_infocomplementares_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -257,7 +258,7 @@
 
                         {% else %}
 
-                            {% if perms.s2306.add_s2306infoComplementares %}
+                            {% if perms.s2306.add_s2306infoComplementares and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -276,10 +277,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s2306.add_s2306infoComplementares or perms.s2306.change_s2306infoComplementares %}
 
-                        {% if s2306_infocomplementares_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -378,6 +380,7 @@
                                     <h3 class="box-title">Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2306.add_s2306cargoFuncao or perms.s2306.can_see_list_s2306cargoFuncao  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -386,12 +389,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2306.add_s2306cargoFuncao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2306.add_s2306cargoFuncao %}            
 
                                     <!-- begin_form_s2306_cargofuncao --> 
                                     <div id="cadastrar" style="display:none">
@@ -487,6 +491,7 @@
                                     <h3 class="box-title">Informações da remuneração e periodicidade de pagamento</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2306.add_s2306remuneracao or perms.s2306.can_see_list_s2306remuneracao  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -495,12 +500,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2306.add_s2306remuneracao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2306.add_s2306remuneracao %}            
 
                                     <!-- begin_form_s2306_remuneracao --> 
                                     <div id="cadastrar" style="display:none">
@@ -596,6 +602,7 @@
                                     <h3 class="box-title">Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2306.add_s2306infoTrabCedido or perms.s2306.can_see_list_s2306infoTrabCedido  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -604,12 +611,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2306.add_s2306infoTrabCedido %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2306.add_s2306infoTrabCedido %}            
 
                                     <!-- begin_form_s2306_infotrabcedido --> 
                                     <div id="cadastrar" style="display:none">
@@ -705,6 +713,7 @@
                                     <h3 class="box-title">Informações relativas ao estagiário</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s2306.add_s2306infoEstagiario or perms.s2306.can_see_list_s2306infoEstagiario  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -713,12 +722,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s2306.add_s2306infoEstagiario %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2306.add_s2306infoEstagiario %}            
 
                                     <!-- begin_form_s2306_infoestagiario --> 
                                     <div id="cadastrar" style="display:none">

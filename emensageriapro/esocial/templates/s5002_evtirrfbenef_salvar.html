@@ -82,15 +82,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s5002_evtirrfbenef_form.errors %}
         <div class="row">
@@ -117,31 +117,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s5002_evtirrfbenef.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5002_evtirrfbenef.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s5002_evtirrfbenef.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s5002_evtirrfbenef.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s5002_evtirrfbenef.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s5002_evtirrfbenef.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s5002_evtirrfbenef.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s5002_evtirrfbenef.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -243,7 +244,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s5002evtIrrfBenef %}
+                            {% if perms.esocial.can_change_identity_s5002evtIrrfBenef and s5002_evtirrfbenef_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's5002_evtirrfbenef_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -292,7 +293,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s5002evtIrrfBenef %}
+                            {% if perms.esocial.can_validate_s5002evtIrrfBenef and s5002_evtirrfbenef_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's5002_evtirrfbenef_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -348,7 +349,7 @@
                             <a href="{% url 's5002_evtirrfbenef_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -539,6 +540,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s5002_evtirrfbenef.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}</h3>   
@@ -555,9 +557,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s5002.add_s5002infoDep %}            
+                                {% if s5002_evtirrfbenef.status == STATUS_EVENTO_CADASTRADO and perms.s5002.add_s5002infoDep %}            
 
                                     <!-- begin_form_s5002_infodep --> 
                                     <div id="cadastrar" style="display:none">
@@ -647,6 +650,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s5002_evtirrfbenef.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</h3>   
@@ -663,9 +667,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s5002.add_s5002infoIrrf %}            
+                                {% if s5002_evtirrfbenef.status == STATUS_EVENTO_CADASTRADO and perms.s5002.add_s5002infoIrrf %}            
 
                                     <!-- begin_form_s5002_infoirrf --> 
                                     <div id="cadastrar" style="display:none">

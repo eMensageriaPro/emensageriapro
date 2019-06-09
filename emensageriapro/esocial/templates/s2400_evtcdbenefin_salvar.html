@@ -82,15 +82,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s2400_evtcdbenefin_form.errors %}
         <div class="row">
@@ -117,31 +117,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s2400_evtcdbenefin.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2400_evtcdbenefin.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2400_evtcdbenefin.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s2400_evtcdbenefin.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s2400_evtcdbenefin.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s2400_evtcdbenefin.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s2400_evtcdbenefin.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2400_evtcdbenefin.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -243,7 +244,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s2400evtCdBenefIn %}
+                            {% if perms.esocial.can_change_identity_s2400evtCdBenefIn and s2400_evtcdbenefin_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's2400_evtcdbenefin_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -292,7 +293,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s2400evtCdBenefIn %}
+                            {% if perms.esocial.can_validate_s2400evtCdBenefIn and s2400_evtcdbenefin_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's2400_evtcdbenefin_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -348,7 +349,7 @@
                             <a href="{% url 's2400_evtcdbenefin_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -539,6 +540,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Grupo de informações do endereço do Trabalhador</h3>   
@@ -555,9 +557,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2400.add_s2400endereco %}            
+                                {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO and perms.s2400.add_s2400endereco %}            
 
                                     <!-- begin_form_s2400_endereco --> 
                                     <div id="cadastrar" style="display:none">
@@ -647,6 +650,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações dos dependentes</h3>   
@@ -663,9 +667,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2400.add_s2400dependente %}            
+                                {% if s2400_evtcdbenefin.status == STATUS_EVENTO_CADASTRADO and perms.s2400.add_s2400dependente %}            
 
                                     <!-- begin_form_s2400_dependente --> 
                                     <div id="cadastrar" style="display:none">

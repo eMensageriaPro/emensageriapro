@@ -76,13 +76,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s1000_inclusao = get_object_or_404(s1000inclusao, id=pk)
-        dados_evento = s1000_inclusao.evento()
+        evento_dados = s1000_inclusao.evento()
 
     if request.user.has_perm('s1000.can_see_s1000inclusao'):
         
@@ -160,12 +160,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s1000_inclusao_form = disabled_form_fields(s1000_inclusao_form, 0)
                 
-        #s1000_inclusao_campos_multiple_passo3
-        
         if output:
         
             s1000_inclusao_form = disabled_form_for_print(s1000_inclusao_form)
@@ -229,9 +227,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s1000_inclusao = None
             
-        #s1000_inclusao_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's1000_inclusao' in request.session['return_page']:
         
@@ -245,11 +241,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's1000_inclusao': s1000_inclusao, 
             's1000_inclusao_form': s1000_inclusao_form, 

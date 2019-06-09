@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r5001_regocorrs = get_object_or_404(r5001regOcorrs, id=pk)
-        dados_evento = r5001_regocorrs.evento()
+        evento_dados = r5001_regocorrs.evento()
 
     if request.user.has_perm('r5001.can_see_r5001regOcorrs'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r5001_regocorrs_form = disabled_form_fields(r5001_regocorrs_form, 0)
                 
-        #r5001_regocorrs_campos_multiple_passo3
-        
         if output:
         
             r5001_regocorrs_form = disabled_form_for_print(r5001_regocorrs_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r5001_regocorrs = None
             
-        #r5001_regocorrs_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r5001_regocorrs' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r5001_regocorrs': r5001_regocorrs, 
             'r5001_regocorrs_form': r5001_regocorrs_form, 

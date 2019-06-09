@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s1295_iderespinf = get_object_or_404(s1295ideRespInf, id=pk)
-        dados_evento = s1295_iderespinf.evento()
+        evento_dados = s1295_iderespinf.evento()
 
     if request.user.has_perm('s1295.can_see_s1295ideRespInf'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s1295_iderespinf_form = disabled_form_fields(s1295_iderespinf_form, 0)
                 
-        #s1295_iderespinf_campos_multiple_passo3
-        
         if output:
         
             s1295_iderespinf_form = disabled_form_for_print(s1295_iderespinf_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s1295_iderespinf = None
             
-        #s1295_iderespinf_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's1295_iderespinf' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's1295_iderespinf': s1295_iderespinf, 
             's1295_iderespinf_form': s1295_iderespinf_form, 

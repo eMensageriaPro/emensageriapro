@@ -70,13 +70,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s5002_infoirrf = get_object_or_404(s5002infoIrrf, id=pk)
-        dados_evento = s5002_infoirrf.evento()
+        evento_dados = s5002_infoirrf.evento()
 
     if request.user.has_perm('s5002.can_see_s5002infoIrrf'):
         
@@ -154,12 +154,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s5002_infoirrf_form = disabled_form_fields(s5002_infoirrf_form, 0)
                 
-        #s5002_infoirrf_campos_multiple_passo3
-        
         if output:
         
             s5002_infoirrf_form = disabled_form_for_print(s5002_infoirrf_form)
@@ -199,9 +197,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s5002_infoirrf = None
             
-        #s5002_infoirrf_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's5002_infoirrf' in request.session['return_page']:
         
@@ -215,11 +211,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's5002_infoirrf': s5002_infoirrf, 
             's5002_infoirrf_form': s5002_infoirrf_form, 

@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s3000_idetrabalhador = get_object_or_404(s3000ideTrabalhador, id=pk)
-        dados_evento = s3000_idetrabalhador.evento()
+        evento_dados = s3000_idetrabalhador.evento()
 
     if request.user.has_perm('s3000.can_see_s3000ideTrabalhador'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s3000_idetrabalhador_form = disabled_form_fields(s3000_idetrabalhador_form, 0)
                 
-        #s3000_idetrabalhador_campos_multiple_passo3
-        
         if output:
         
             s3000_idetrabalhador_form = disabled_form_for_print(s3000_idetrabalhador_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s3000_idetrabalhador = None
             
-        #s3000_idetrabalhador_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's3000_idetrabalhador' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's3000_idetrabalhador': s3000_idetrabalhador, 
             's3000_idetrabalhador_form': s3000_idetrabalhador_form, 

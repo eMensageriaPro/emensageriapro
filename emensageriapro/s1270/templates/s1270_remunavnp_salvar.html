@@ -77,50 +77,50 @@
         </div>
     {% endif %}
     {% if s1270_remunavnp_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s1270_remunavnp_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s1270_remunavnp_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s1270_remunavnp.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s1270_remunavnp.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s1270_remunavnp.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1270_remunavnp.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s1270_remunavnp.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s1270_remunavnp.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s1270_remunavnp.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                     </div>
 
                     {% if perms.s1270.change_s1270remunAvNP or perms.s1270.add_s1270remunAvNP %}
-                        {% if s1270_remunavnp_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s1270_remunavnp" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -154,6 +154,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -199,7 +200,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s1270.change_s1270remunAvNP %}
+                            {% if perms.s1270.change_s1270remunAvNP and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -209,7 +210,7 @@
                             {% endif %}
 
 
-                            {% if perms.s1270.delete_s1270remunAvNP %}
+                            {% if perms.s1270.delete_s1270remunAvNP and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's1270_remunavnp_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -229,7 +230,7 @@
 
                         {% else %}
 
-                            {% if perms.s1270.add_s1270remunAvNP %}
+                            {% if perms.s1270.add_s1270remunAvNP and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -248,10 +249,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s1270.add_s1270remunAvNP or perms.s1270.change_s1270remunAvNP %}
 
-                        {% if s1270_remunavnp_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 

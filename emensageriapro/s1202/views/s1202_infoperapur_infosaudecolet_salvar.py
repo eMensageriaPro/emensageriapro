@@ -66,13 +66,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s1202_infoperapur_infosaudecolet = get_object_or_404(s1202infoPerApurinfoSaudeColet, id=pk)
-        dados_evento = s1202_infoperapur_infosaudecolet.evento()
+        evento_dados = s1202_infoperapur_infosaudecolet.evento()
 
     if request.user.has_perm('s1202.can_see_s1202infoPerApurinfoSaudeColet'):
         
@@ -150,12 +150,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s1202_infoperapur_infosaudecolet_form = disabled_form_fields(s1202_infoperapur_infosaudecolet_form, 0)
                 
-        #s1202_infoperapur_infosaudecolet_campos_multiple_passo3
-        
         if output:
         
             s1202_infoperapur_infosaudecolet_form = disabled_form_for_print(s1202_infoperapur_infosaudecolet_form)
@@ -179,9 +177,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s1202_infoperapur_infosaudecolet = None
             
-        #s1202_infoperapur_infosaudecolet_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's1202_infoperapur_infosaudecolet' in request.session['return_page']:
         
@@ -195,11 +191,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's1202_infoperapur_infosaudecolet': s1202_infoperapur_infosaudecolet, 
             's1202_infoperapur_infosaudecolet_form': s1202_infoperapur_infosaudecolet_form, 

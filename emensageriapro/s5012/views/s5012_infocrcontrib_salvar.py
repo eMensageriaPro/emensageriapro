@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s5012_infocrcontrib = get_object_or_404(s5012infoCRContrib, id=pk)
-        dados_evento = s5012_infocrcontrib.evento()
+        evento_dados = s5012_infocrcontrib.evento()
 
     if request.user.has_perm('s5012.can_see_s5012infoCRContrib'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s5012_infocrcontrib_form = disabled_form_fields(s5012_infocrcontrib_form, 0)
                 
-        #s5012_infocrcontrib_campos_multiple_passo3
-        
         if output:
         
             s5012_infocrcontrib_form = disabled_form_for_print(s5012_infocrcontrib_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s5012_infocrcontrib = None
             
-        #s5012_infocrcontrib_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's5012_infocrcontrib' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's5012_infocrcontrib': s5012_infocrcontrib, 
             's5012_infocrcontrib_form': s5012_infocrcontrib_form, 

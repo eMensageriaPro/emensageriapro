@@ -96,15 +96,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s5011_evtcs_form.errors %}
         <div class="row">
@@ -131,31 +131,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s5011_evtcs.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5011_evtcs.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s5011_evtcs.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s5011_evtcs.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s5011_evtcs.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s5011_evtcs.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s5011_evtcs.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s5011_evtcs.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -257,7 +258,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s5011evtCS %}
+                            {% if perms.esocial.can_change_identity_s5011evtCS and s5011_evtcs_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's5011_evtcs_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -306,7 +307,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s5011evtCS %}
+                            {% if perms.esocial.can_validate_s5011evtCS and s5011_evtcs_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's5011_evtcs_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -362,7 +363,7 @@
                             <a href="{% url 's5011_evtcs_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -553,6 +554,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de contribuição previdenciária do Segurado</h3>   
@@ -569,9 +571,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011infoCPSeg %}            
+                                {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011infoCPSeg %}            
 
                                     <!-- begin_form_s5011_infocpseg --> 
                                     <div id="cadastrar" style="display:none">
@@ -661,6 +664,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações complementares, exclusivas da Pessoa Jurídica.</h3>   
@@ -677,9 +681,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011infoPJ %}            
+                                {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011infoPJ %}            
 
                                     <!-- begin_form_s5011_infopj --> 
                                     <div id="cadastrar" style="display:none">
@@ -769,6 +774,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</h3>   
@@ -785,9 +791,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011ideEstab %}            
+                                {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011ideEstab %}            
 
                                     <!-- begin_form_s5011_ideestab --> 
                                     <div id="cadastrar" style="display:none">
@@ -877,6 +884,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</h3>   
@@ -893,9 +901,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s5011.add_s5011infoCRContrib %}            
+                                {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO and perms.s5011.add_s5011infoCRContrib %}            
 
                                     <!-- begin_form_s5011_infocrcontrib --> 
                                     <div id="cadastrar" style="display:none">

@@ -46,9 +46,9 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 def r1000_enviados():
-    db_slug='default'
+    
     from emensageriapro.efdreinf.models import r1000evtInfoContri
-    lista = r1000evtInfoContri.objects.using(db_slug).filter(excluido=False).all()
+    lista = r1000evtInfoContri.objects.all()
     codigos_lista = [ ]
     for a in lista:
         if a.status == STATUS_EVENTO_PROCESSADO:
@@ -59,9 +59,9 @@ def r1000_enviados():
 
 
 def r1070_enviados():
-    db_slug='default'
+    
     from emensageriapro.r1070.models import r1070inclusao
-    lista = r1070inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = r1070inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.r1070_evttabprocesso.status == STATUS_EVENTO_PROCESSADO:
@@ -71,9 +71,9 @@ def r1070_enviados():
 
 
 def s1000_enviados():
-    db_slug='default'
+    
     from emensageriapro.esocial.models import s1000evtInfoEmpregador
-    lista = s1000evtInfoEmpregador.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1000evtInfoEmpregador.objects.all()
     codigos_lista = []
     for a in lista:
         if a.status == STATUS_EVENTO_PROCESSADO:
@@ -84,9 +84,9 @@ def s1000_enviados():
 
 
 def s1005_estabelecimentos_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1005.models import s1005inclusao
-    lista = s1005inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1005inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1005_evttabestab.status == STATUS_EVENTO_PROCESSADO:
@@ -96,9 +96,9 @@ def s1005_estabelecimentos_enviados():
 
 
 def s1010_rubricas_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1010.models import s1010inclusao
-    lista = s1010inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1010inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1010_evttabrubrica.status == STATUS_EVENTO_PROCESSADO:
@@ -109,9 +109,9 @@ def s1010_rubricas_enviados():
 
 
 def s1020_lotacoes_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1020.models import s1020inclusao
-    lista = s1020inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1020inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1020_evttablotacao.status == STATUS_EVENTO_PROCESSADO:
@@ -121,9 +121,9 @@ def s1020_lotacoes_enviados():
 
 
 def s1030_cargos_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1030.models import s1030inclusao
-    lista = s1030inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1030inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1030_evttabcargo.status == STATUS_EVENTO_PROCESSADO:
@@ -132,9 +132,9 @@ def s1030_cargos_enviados():
 
 
 def s1035_carreiras_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1035.models import s1035inclusao
-    lista = s1035inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1035inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1035_evttabcarreira.status == STATUS_EVENTO_PROCESSADO:
@@ -145,9 +145,9 @@ def s1035_carreiras_enviados():
 
 
 def s1040_funcoes_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1040.models import s1040inclusao
-    lista = s1040inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1040inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1040_evttabfuncao.status == STATUS_EVENTO_PROCESSADO:
@@ -158,9 +158,9 @@ def s1040_funcoes_enviados():
 
 
 def s1050_horarios_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1050.models import s1050inclusao
-    lista = s1050inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1050inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1050_evttabhortur.status == STATUS_EVENTO_PROCESSADO:
@@ -171,9 +171,9 @@ def s1050_horarios_enviados():
 
 
 def s1060_ambientes_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1060.models import s1060inclusao
-    lista = s1060inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1060inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1060_evttabambiente.status == STATUS_EVENTO_PROCESSADO:
@@ -184,9 +184,9 @@ def s1060_ambientes_enviados():
 
 
 def s1070_processos_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1070.models import s1070inclusao
-    lista = s1070inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1070inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.s1070_evttabprocesso.status == STATUS_EVENTO_PROCESSADO:
@@ -197,9 +197,9 @@ def s1070_processos_enviados():
 
 
 def s1080_operadores_enviados():
-    db_slug='default'
+    
     from emensageriapro.s1080.models import s1080inclusao
-    lista = s1080inclusao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s1080inclusao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.r1000_evtinfocontri.status == STATUS_EVENTO_PROCESSADO:
@@ -209,9 +209,9 @@ def s1080_operadores_enviados():
 
 
 def s2200_enviados():
-    db_slug='default'
+    
     from emensageriapro.esocial.models import s2200evtAdmissao
-    lista = s2200evtAdmissao.objects.using(db_slug).filter(excluido=False).all()
+    lista = s2200evtAdmissao.objects.all()
     codigos_lista = [ None ]
     for a in lista:
         if a.status == STATUS_EVENTO_PROCESSADO:

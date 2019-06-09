@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s5003_dpsperapur = get_object_or_404(s5003dpsPerApur, id=pk)
-        dados_evento = s5003_dpsperapur.evento()
+        evento_dados = s5003_dpsperapur.evento()
 
     if request.user.has_perm('s5003.can_see_s5003dpsPerApur'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s5003_dpsperapur_form = disabled_form_fields(s5003_dpsperapur_form, 0)
                 
-        #s5003_dpsperapur_campos_multiple_passo3
-        
         if output:
         
             s5003_dpsperapur_form = disabled_form_for_print(s5003_dpsperapur_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s5003_dpsperapur = None
             
-        #s5003_dpsperapur_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's5003_dpsperapur' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's5003_dpsperapur': s5003_dpsperapur, 
             's5003_dpsperapur_form': s5003_dpsperapur_form, 

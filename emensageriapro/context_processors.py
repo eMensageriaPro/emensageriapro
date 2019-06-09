@@ -46,10 +46,11 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 def admin_media(request):
-    # return the value you want as a dictionary. you may add multiple values in there.
+
     return {
         'LINK_WEBSITE': settings.LINK_WEBSITE,
         'VERSAO_EMENSAGERIA': settings.VERSAO_EMENSAGERIA,
+        'VERIFICAR_PREDECESSAO_ANTES_ENVIO': settings.VERIFICAR_PREDECESSAO_ANTES_ENVIO,
         'STATUS_EVENTO_CADASTRADO': STATUS_EVENTO_CADASTRADO,
         'STATUS_EVENTO_IMPORTADO': STATUS_EVENTO_IMPORTADO,
         'STATUS_EVENTO_DUPLICADO': STATUS_EVENTO_DUPLICADO,

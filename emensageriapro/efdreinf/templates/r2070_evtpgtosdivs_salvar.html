@@ -89,15 +89,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if r2070_evtpgtosdivs_form.errors %}
         <div class="row">
@@ -124,31 +124,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r2070_evtpgtosdivs.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not r2070_evtpgtosdivs.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and r2070_evtpgtosdivs.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if r2070_evtpgtosdivs.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ r2070_evtpgtosdivs.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if r2070_evtpgtosdivs.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r2070_evtpgtosdivs.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -250,7 +251,7 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_change_identity_r2070evtPgtosDivs %}
+                            {% if perms.efdreinf.can_change_identity_r2070evtPgtosDivs and r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 'r2070_evtpgtosdivs_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -299,7 +300,7 @@
 
                         
 
-                            {% if perms.efdreinf.can_validate_r2070evtPgtosDivs %}
+                            {% if perms.efdreinf.can_validate_r2070evtPgtosDivs and r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 'r2070_evtpgtosdivs_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -355,7 +356,7 @@
                             <a href="{% url 'r2070_evtpgtosdivs_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -546,6 +547,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações complementares de beneficiário residente ou domiciliado no exterior</h3>   
@@ -562,9 +564,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r2070.add_r2070infoResidExt %}            
+                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoResidExt %}            
 
                                     <!-- begin_form_r2070_inforesidext --> 
                                     <div id="cadastrar" style="display:none">
@@ -654,6 +657,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de Beneficiário portador de moléstia grave</h3>   
@@ -670,9 +674,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r2070.add_r2070infoMolestia %}            
+                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoMolestia %}            
 
                                     <!-- begin_form_r2070_infomolestia --> 
                                     <div id="cadastrar" style="display:none">
@@ -762,6 +767,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação dos estabelecimentos da associação desportiva que receberam os recursos</h3>   
@@ -778,9 +784,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r2070.add_r2070ideEstab %}            
+                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070ideEstab %}            
 
                                     <!-- begin_form_r2070_ideestab --> 
                                     <div id="cadastrar" style="display:none">

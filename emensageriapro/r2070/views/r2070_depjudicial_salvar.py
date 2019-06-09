@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r2070_depjudicial = get_object_or_404(r2070depJudicial, id=pk)
-        dados_evento = r2070_depjudicial.evento()
+        evento_dados = r2070_depjudicial.evento()
 
     if request.user.has_perm('r2070.can_see_r2070depJudicial'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r2070_depjudicial_form = disabled_form_fields(r2070_depjudicial_form, 0)
                 
-        #r2070_depjudicial_campos_multiple_passo3
-        
         if output:
         
             r2070_depjudicial_form = disabled_form_for_print(r2070_depjudicial_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r2070_depjudicial = None
             
-        #r2070_depjudicial_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r2070_depjudicial' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r2070_depjudicial': r2070_depjudicial, 
             'r2070_depjudicial_form': r2070_depjudicial_form, 

@@ -103,15 +103,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s1200_evtremun_form.errors %}
         <div class="row">
@@ -138,31 +138,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s1200_evtremun.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1200_evtremun.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s1200_evtremun.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s1200_evtremun.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s1200_evtremun.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s1200_evtremun.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s1200_evtremun.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s1200_evtremun.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -264,7 +265,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s1200evtRemun %}
+                            {% if perms.esocial.can_change_identity_s1200evtRemun and s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's1200_evtremun_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -313,7 +314,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s1200evtRemun %}
+                            {% if perms.esocial.can_validate_s1200evtRemun and s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's1200_evtremun_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -369,7 +370,7 @@
                             <a href="{% url 's1200_evtremun_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -560,6 +561,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>   
@@ -576,9 +578,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoMV %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoMV %}            
 
                                     <!-- begin_form_s1200_infomv --> 
                                     <div id="cadastrar" style="display:none">
@@ -668,6 +671,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>   
@@ -684,9 +688,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoComplem %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoComplem %}            
 
                                     <!-- begin_form_s1200_infocomplem --> 
                                     <div id="cadastrar" style="display:none">
@@ -776,6 +781,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
@@ -792,9 +798,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200procJudTrab %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200procJudTrab %}            
 
                                     <!-- begin_form_s1200_procjudtrab --> 
                                     <div id="cadastrar" style="display:none">
@@ -884,6 +891,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>   
@@ -900,9 +908,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200infoInterm %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoInterm %}            
 
                                     <!-- begin_form_s1200_infointerm --> 
                                     <div id="cadastrar" style="display:none">
@@ -992,6 +1001,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
@@ -1008,9 +1018,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s1200.add_s1200dmDev %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200dmDev %}            
 
                                     <!-- begin_form_s1200_dmdev --> 
                                     <div id="cadastrar" style="display:none">

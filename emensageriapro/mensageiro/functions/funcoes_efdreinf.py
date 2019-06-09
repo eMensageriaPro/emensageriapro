@@ -167,13 +167,14 @@ def assinar_efdreinf(request, xml, transmissor_id):
     else:
 
         messages.error(request,
-                       'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+                       '''O certificado não está configurado,
+                          configure pelo menos um transmissor para o respectivo empregador!''')
 
         return xml
 
     if FORCE_PRODUCAO_RESTRITA:
 
-        xml = xml.replace('<tpAmb>1</tpAmb>','<tpAmb>2</tpAmb>')
+        xml = xml.replace('<tpAmb>1</tpAmb>', '<tpAmb>2</tpAmb>')
 
     identidade = get_identidade_evento(xml)
 

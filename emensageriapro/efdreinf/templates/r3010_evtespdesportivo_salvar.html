@@ -82,15 +82,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if r3010_evtespdesportivo_form.errors %}
         <div class="row">
@@ -117,31 +117,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if r3010_evtespdesportivo.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r3010_evtespdesportivo.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not r3010_evtespdesportivo.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and r3010_evtespdesportivo.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if r3010_evtespdesportivo.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ r3010_evtespdesportivo.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if r3010_evtespdesportivo.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r3010_evtespdesportivo.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -243,7 +244,7 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_change_identity_r3010evtEspDesportivo %}
+                            {% if perms.efdreinf.can_change_identity_r3010evtEspDesportivo and r3010_evtespdesportivo_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 'r3010_evtespdesportivo_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -292,7 +293,7 @@
 
                         
 
-                            {% if perms.efdreinf.can_validate_r3010evtEspDesportivo %}
+                            {% if perms.efdreinf.can_validate_r3010evtEspDesportivo and r3010_evtespdesportivo_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 'r3010_evtespdesportivo_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -348,7 +349,7 @@
                             <a href="{% url 'r3010_evtespdesportivo_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -539,6 +540,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Boletim do Espetáculo Desportivo</h3>   
@@ -555,9 +557,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r3010.add_r3010boletim %}            
+                                {% if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO and perms.r3010.add_r3010boletim %}            
 
                                     <!-- begin_form_r3010_boletim --> 
                                     <div id="cadastrar" style="display:none">
@@ -647,6 +650,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária</h3>   
@@ -663,9 +667,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r3010.add_r3010infoProc %}            
+                                {% if r3010_evtespdesportivo.status == STATUS_EVENTO_CADASTRADO and perms.r3010.add_r3010infoProc %}            
 
                                     <!-- begin_form_r3010_infoproc --> 
                                     <div id="cadastrar" style="display:none">

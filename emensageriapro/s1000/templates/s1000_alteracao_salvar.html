@@ -126,50 +126,50 @@
         </div>
     {% endif %}
     {% if s1000_alteracao_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in s1000_alteracao_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in s1000_alteracao_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if s1000_alteracao.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ s1000_alteracao.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if s1000_alteracao.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1000_alteracao.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s1000_alteracao.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if s1000_alteracao.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ s1000_alteracao.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                     </div>
 
                     {% if perms.s1000.change_s1000alteracao or perms.s1000.add_s1000alteracao %}
-                        {% if s1000_alteracao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_s1000_alteracao" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -203,6 +203,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -248,7 +249,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.s1000.change_s1000alteracao %}
+                            {% if perms.s1000.change_s1000alteracao and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -258,7 +259,7 @@
                             {% endif %}
 
 
-                            {% if perms.s1000.delete_s1000alteracao %}
+                            {% if perms.s1000.delete_s1000alteracao and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 's1000_alteracao_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -278,7 +279,7 @@
 
                         {% else %}
 
-                            {% if perms.s1000.add_s1000alteracao %}
+                            {% if perms.s1000.add_s1000alteracao and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -297,10 +298,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.s1000.add_s1000alteracao or perms.s1000.change_s1000alteracao %}
 
-                        {% if s1000_alteracao_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -399,6 +401,7 @@
                                     <h3 class="box-title">Informações Complementares - Empresas Isentas - Dados da Isenção</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaodadosIsencao or perms.s1000.can_see_list_s1000alteracaodadosIsencao  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -407,12 +410,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaodadosIsencao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaodadosIsencao %}            
 
                                     <!-- begin_form_s1000_alteracao_dadosisencao --> 
                                     <div id="cadastrar" style="display:none">
@@ -508,6 +512,7 @@
                                     <h3 class="box-title">Informações relativas a Órgãos Públicos</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaoinfoOP or perms.s1000.can_see_list_s1000alteracaoinfoOP  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -516,12 +521,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaoinfoOP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaoinfoOP %}            
 
                                     <!-- begin_form_s1000_alteracao_infoop --> 
                                     <div id="cadastrar" style="display:none">
@@ -617,6 +623,7 @@
                                     <h3 class="box-title">Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaoinfoOrgInternacional or perms.s1000.can_see_list_s1000alteracaoinfoOrgInternacional  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -625,12 +632,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaoinfoOrgInternacional %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaoinfoOrgInternacional %}            
 
                                     <!-- begin_form_s1000_alteracao_infoorginternacional --> 
                                     <div id="cadastrar" style="display:none">
@@ -726,6 +734,7 @@
                                     <h3 class="box-title">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaosoftwareHouse or perms.s1000.can_see_list_s1000alteracaosoftwareHouse  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -734,12 +743,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaosoftwareHouse %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosoftwareHouse %}            
 
                                     <!-- begin_form_s1000_alteracao_softwarehouse --> 
                                     <div id="cadastrar" style="display:none">
@@ -835,6 +845,7 @@
                                     <h3 class="box-title">Informações Complementares - Pessoa Jurídica</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaosituacaoPJ or perms.s1000.can_see_list_s1000alteracaosituacaoPJ  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -843,12 +854,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaosituacaoPJ %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosituacaoPJ %}            
 
                                     <!-- begin_form_s1000_alteracao_situacaopj --> 
                                     <div id="cadastrar" style="display:none">
@@ -944,6 +956,7 @@
                                     <h3 class="box-title">Informações Complementares - Pessoa Física</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaosituacaoPF or perms.s1000.can_see_list_s1000alteracaosituacaoPF  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -952,12 +965,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaosituacaoPF %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosituacaoPF %}            
 
                                     <!-- begin_form_s1000_alteracao_situacaopf --> 
                                     <div id="cadastrar" style="display:none">
@@ -1053,6 +1067,7 @@
                                     <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaonovaValidade or perms.s1000.can_see_list_s1000alteracaonovaValidade  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -1061,12 +1076,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.s1000.add_s1000alteracaonovaValidade %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaonovaValidade %}            
 
                                     <!-- begin_form_s1000_alteracao_novavalidade --> 
                                     <div id="cadastrar" style="display:none">

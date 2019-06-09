@@ -117,15 +117,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s2299_evtdeslig_form.errors %}
         <div class="row">
@@ -152,31 +152,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s2299_evtdeslig.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2299_evtdeslig.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2299_evtdeslig.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s2299_evtdeslig.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s2299_evtdeslig.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s2299_evtdeslig.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s2299_evtdeslig.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2299_evtdeslig.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -278,7 +279,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s2299evtDeslig %}
+                            {% if perms.esocial.can_change_identity_s2299evtDeslig and s2299_evtdeslig_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's2299_evtdeslig_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -327,7 +328,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s2299evtDeslig %}
+                            {% if perms.esocial.can_validate_s2299evtDeslig and s2299_evtdeslig_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's2299_evtdeslig_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -383,7 +384,7 @@
                             <a href="{% url 's2299_evtdeslig_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -574,6 +575,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Observações do contrato de trabalho</h3>   
@@ -590,9 +592,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299observacoes %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299observacoes %}            
 
                                     <!-- begin_form_s2299_observacoes --> 
                                     <div id="cadastrar" style="display:none">
@@ -682,6 +685,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>   
@@ -698,9 +702,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299sucessaoVinc %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299sucessaoVinc %}            
 
                                     <!-- begin_form_s2299_sucessaovinc --> 
                                     <div id="cadastrar" style="display:none">
@@ -790,6 +795,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</h3>   
@@ -806,9 +812,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299transfTit %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299transfTit %}            
 
                                     <!-- begin_form_s2299_transftit --> 
                                     <div id="cadastrar" style="display:none">
@@ -898,6 +905,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
@@ -914,9 +922,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299mudancaCPF %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299mudancaCPF %}            
 
                                     <!-- begin_form_s2299_mudancacpf --> 
                                     <div id="cadastrar" style="display:none">
@@ -1006,6 +1015,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h3>   
@@ -1022,9 +1032,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299verbasResc %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299verbasResc %}            
 
                                     <!-- begin_form_s2299_verbasresc --> 
                                     <div id="cadastrar" style="display:none">
@@ -1114,6 +1125,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a 'quarentena' remunerada de trabalhador desligado</h3>   
@@ -1130,9 +1142,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299infoTrabIntermquarentena %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermquarentena %}            
 
                                     <!-- begin_form_s2299_infotrabinterm_quarentena --> 
                                     <div id="cadastrar" style="display:none">
@@ -1222,6 +1235,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre operação de crédito consignado com garantia de FGTS</h3>   
@@ -1238,9 +1252,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2299.add_s2299infoTrabIntermconsigFGTS %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermconsigFGTS %}            
 
                                     <!-- begin_form_s2299_infotrabinterm_consigfgts --> 
                                     <div id="cadastrar" style="display:none">

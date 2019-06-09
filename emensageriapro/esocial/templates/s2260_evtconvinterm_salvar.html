@@ -75,15 +75,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s2260_evtconvinterm_form.errors %}
         <div class="row">
@@ -110,31 +110,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s2260_evtconvinterm.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2260_evtconvinterm.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2260_evtconvinterm.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s2260_evtconvinterm.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s2260_evtconvinterm.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s2260_evtconvinterm.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s2260_evtconvinterm.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2260_evtconvinterm.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -236,7 +237,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s2260evtConvInterm %}
+                            {% if perms.esocial.can_change_identity_s2260evtConvInterm and s2260_evtconvinterm_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's2260_evtconvinterm_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -285,7 +286,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s2260evtConvInterm %}
+                            {% if perms.esocial.can_validate_s2260evtConvInterm and s2260_evtconvinterm_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's2260_evtconvinterm_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -341,7 +342,7 @@
                             <a href="{% url 's2260_evtconvinterm_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -532,6 +533,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2260_evtconvinterm.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206</h3>   
@@ -548,9 +550,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2260.add_s2260localTrabInterm %}            
+                                {% if s2260_evtconvinterm.status == STATUS_EVENTO_CADASTRADO and perms.s2260.add_s2260localTrabInterm %}            
 
                                     <!-- begin_form_s2260_localtrabinterm --> 
                                     <div id="cadastrar" style="display:none">

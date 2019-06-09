@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r9002_totapurqui = get_object_or_404(r9002totApurQui, id=pk)
-        dados_evento = r9002_totapurqui.evento()
+        evento_dados = r9002_totapurqui.evento()
 
     if request.user.has_perm('r9002.can_see_r9002totApurQui'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r9002_totapurqui_form = disabled_form_fields(r9002_totapurqui_form, 0)
                 
-        #r9002_totapurqui_campos_multiple_passo3
-        
         if output:
         
             r9002_totapurqui_form = disabled_form_for_print(r9002_totapurqui_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r9002_totapurqui = None
             
-        #r9002_totapurqui_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r9002_totapurqui' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r9002_totapurqui': r9002_totapurqui, 
             'r9002_totapurqui_form': r9002_totapurqui_form, 

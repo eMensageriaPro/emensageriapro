@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         s2250_cancavprevio = get_object_or_404(s2250cancAvPrevio, id=pk)
-        dados_evento = s2250_cancavprevio.evento()
+        evento_dados = s2250_cancavprevio.evento()
 
     if request.user.has_perm('s2250.can_see_s2250cancAvPrevio'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 s2250_cancavprevio_form = disabled_form_fields(s2250_cancavprevio_form, 0)
                 
-        #s2250_cancavprevio_campos_multiple_passo3
-        
         if output:
         
             s2250_cancavprevio_form = disabled_form_for_print(s2250_cancavprevio_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             s2250_cancavprevio = None
             
-        #s2250_cancavprevio_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 's2250_cancavprevio' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             's2250_cancavprevio': s2250_cancavprevio, 
             's2250_cancavprevio_form': s2250_cancavprevio_form, 

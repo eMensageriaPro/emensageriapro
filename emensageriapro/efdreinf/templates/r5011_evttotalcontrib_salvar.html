@@ -250,15 +250,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if r5011_evttotalcontrib_form.errors %}
         <div class="row">
@@ -285,31 +285,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if r5011_evttotalcontrib.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r5011_evttotalcontrib.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not r5011_evttotalcontrib.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and r5011_evttotalcontrib.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if r5011_evttotalcontrib.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ r5011_evttotalcontrib.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if r5011_evttotalcontrib.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ r5011_evttotalcontrib.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -411,7 +412,7 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_change_identity_r5011evtTotalContrib %}
+                            {% if perms.efdreinf.can_change_identity_r5011evtTotalContrib and r5011_evttotalcontrib_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 'r5011_evttotalcontrib_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -460,7 +461,7 @@
 
                         
 
-                            {% if perms.efdreinf.can_validate_r5011evtTotalContrib %}
+                            {% if perms.efdreinf.can_validate_r5011evtTotalContrib and r5011_evttotalcontrib_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 'r5011_evttotalcontrib_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -516,7 +517,7 @@
                             <a href="{% url 'r5011_evttotalcontrib_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -707,6 +708,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-1000 - Informações do Contribuinte</h3>   
@@ -723,9 +725,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r1000evtInfoContri %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r1000evtInfoContri %}            
 
                                     <!-- begin_form_r1000_evtinfocontri --> 
                                     <div id="cadastrar" style="display:none">
@@ -815,6 +818,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-1070 - Tabela de Processos Administrativos/Judiciais</h3>   
@@ -831,9 +835,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r1070evtTabProcesso %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r1070evtTabProcesso %}            
 
                                     <!-- begin_form_r1070_evttabprocesso --> 
                                     <div id="cadastrar" style="display:none">
@@ -923,6 +928,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados</h3>   
@@ -939,9 +945,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2010evtServTom %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2010evtServTom %}            
 
                                     <!-- begin_form_r2010_evtservtom --> 
                                     <div id="cadastrar" style="display:none">
@@ -1031,6 +1038,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</h3>   
@@ -1047,9 +1055,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2020evtServPrest %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2020evtServPrest %}            
 
                                     <!-- begin_form_r2020_evtservprest --> 
                                     <div id="cadastrar" style="display:none">
@@ -1139,6 +1148,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2030 - Recursos Recebidos por Associação Desportiva</h3>   
@@ -1155,9 +1165,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2030evtAssocDespRec %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2030evtAssocDespRec %}            
 
                                     <!-- begin_form_r2030_evtassocdesprec --> 
                                     <div id="cadastrar" style="display:none">
@@ -1247,6 +1258,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2040 - Recursos Repassados para Associação Desportiva</h3>   
@@ -1263,9 +1275,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2040evtAssocDespRep %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2040evtAssocDespRep %}            
 
                                     <!-- begin_form_r2040_evtassocdesprep --> 
                                     <div id="cadastrar" style="display:none">
@@ -1355,6 +1368,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria</h3>   
@@ -1371,9 +1385,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2050evtComProd %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2050evtComProd %}            
 
                                     <!-- begin_form_r2050_evtcomprod --> 
                                     <div id="cadastrar" style="display:none">
@@ -1463,6 +1478,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</h3>   
@@ -1479,9 +1495,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2060evtCPRB %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2060evtCPRB %}            
 
                                     <!-- begin_form_r2060_evtcprb --> 
                                     <div id="cadastrar" style="display:none">
@@ -1571,6 +1588,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP</h3>   
@@ -1587,9 +1605,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2070evtPgtosDivs %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2070evtPgtosDivs %}            
 
                                     <!-- begin_form_r2070_evtpgtosdivs --> 
                                     <div id="cadastrar" style="display:none">
@@ -1679,6 +1698,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2098 - Reabertura dos Eventos Periódicos</h3>   
@@ -1695,9 +1715,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2098evtReabreEvPer %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2098evtReabreEvPer %}            
 
                                     <!-- begin_form_r2098_evtreabreevper --> 
                                     <div id="cadastrar" style="display:none">
@@ -1787,6 +1808,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-2099 - Fechamento dos Eventos Periódicos</h3>   
@@ -1803,9 +1825,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r2099evtFechaEvPer %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r2099evtFechaEvPer %}            
 
                                     <!-- begin_form_r2099_evtfechaevper --> 
                                     <div id="cadastrar" style="display:none">
@@ -1895,6 +1918,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-3010 - Receita de Espetáculo Desportivo</h3>   
@@ -1911,9 +1935,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r3010evtEspDesportivo %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r3010evtEspDesportivo %}            
 
                                     <!-- begin_form_r3010_evtespdesportivo --> 
                                     <div id="cadastrar" style="display:none">
@@ -2003,6 +2028,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-4010 - Retenções na Fonte - Pessoa Física</h3>   
@@ -2019,9 +2045,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r4010evtRetPF %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r4010evtRetPF %}            
 
                                     <!-- begin_form_r4010_evtretpf --> 
                                     <div id="cadastrar" style="display:none">
@@ -2111,6 +2138,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-4020 - Retenções na Fonte - Pessoa Jurídica</h3>   
@@ -2127,9 +2155,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r4020evtRetPJ %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r4020evtRetPJ %}            
 
                                     <!-- begin_form_r4020_evtretpj --> 
                                     <div id="cadastrar" style="display:none">
@@ -2219,6 +2248,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-4040 - Retenções na Fonte - Beneficiários não identificados</h3>   
@@ -2235,9 +2265,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r4040evtBenefNId %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r4040evtBenefNId %}            
 
                                     <!-- begin_form_r4040_evtbenefnid --> 
                                     <div id="cadastrar" style="display:none">
@@ -2327,6 +2358,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-4098 - Reabertura dos Eventos Periódicos Série R-4000</h3>   
@@ -2343,9 +2375,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r4098evtReab %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r4098evtReab %}            
 
                                     <!-- begin_form_r4098_evtreab --> 
                                     <div id="cadastrar" style="display:none">
@@ -2435,6 +2468,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-4099 - Fechamento dos Eventos Periódicos Série R-4000</h3>   
@@ -2451,9 +2485,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r4099evtFech %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r4099evtFech %}            
 
                                     <!-- begin_form_r4099_evtfech --> 
                                     <div id="cadastrar" style="display:none">
@@ -2543,6 +2578,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-5001 - Informações de bases e tributos por evento</h3>   
@@ -2559,9 +2595,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r5001evtTotal %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r5001evtTotal %}            
 
                                     <!-- begin_form_r5001_evttotal --> 
                                     <div id="cadastrar" style="display:none">
@@ -2651,6 +2688,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-5011 - Informações de bases e tributos consolidadas por período de apuração</h3>   
@@ -2667,9 +2705,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r5011evtTotalContrib %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r5011evtTotalContrib %}            
 
                                     <!-- begin_form_r5011_evttotalcontrib --> 
                                     <div id="cadastrar" style="display:none">
@@ -2759,6 +2798,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-9000 - Exclusão de Eventos</h3>   
@@ -2775,9 +2815,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r9000evtExclusao %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r9000evtExclusao %}            
 
                                     <!-- begin_form_r9000_evtexclusao --> 
                                     <div id="cadastrar" style="display:none">
@@ -2867,6 +2908,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.</h3>   
@@ -2883,9 +2925,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r9001evtTotal %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r9001evtTotal %}            
 
                                     <!-- begin_form_r9001_evttotal --> 
                                     <div id="cadastrar" style="display:none">
@@ -2975,6 +3018,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-9002 - Informações de bases e tributos por evento - Retenções na fonte</h3>   
@@ -2991,9 +3035,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r9002evtRet %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r9002evtRet %}            
 
                                     <!-- begin_form_r9002_evtret --> 
                                     <div id="cadastrar" style="display:none">
@@ -3083,6 +3128,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária</h3>   
@@ -3099,9 +3145,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r9011evtTotalContrib %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r9011evtTotalContrib %}            
 
                                     <!-- begin_form_r9011_evttotalcontrib --> 
                                     <div id="cadastrar" style="display:none">
@@ -3191,6 +3238,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte</h3>   
@@ -3207,9 +3255,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.efdreinf.add_r9012evtRetCons %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.efdreinf.add_r9012evtRetCons %}            
 
                                     <!-- begin_form_r9012_evtretcons --> 
                                     <div id="cadastrar" style="display:none">
@@ -3299,6 +3348,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de ocorrências registradas</h3>   
@@ -3315,9 +3365,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r5011.add_r5011regOcorrs %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.r5011.add_r5011regOcorrs %}            
 
                                     <!-- begin_form_r5011_regocorrs --> 
                                     <div id="cadastrar" style="display:none">
@@ -3407,6 +3458,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</h3>   
@@ -3423,9 +3475,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.r5011.add_r5011infoTotalContrib %}            
+                                {% if r5011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO and perms.r5011.add_r5011infoTotalContrib %}            
 
                                     <!-- begin_form_r5011_infototalcontrib --> 
                                     <div id="cadastrar" style="display:none">

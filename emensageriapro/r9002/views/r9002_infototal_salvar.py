@@ -74,13 +74,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r9002_infototal = get_object_or_404(r9002infoTotal, id=pk)
-        dados_evento = r9002_infototal.evento()
+        evento_dados = r9002_infototal.evento()
 
     if request.user.has_perm('r9002.can_see_r9002infoTotal'):
         
@@ -158,12 +158,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r9002_infototal_form = disabled_form_fields(r9002_infototal_form, 0)
                 
-        #r9002_infototal_campos_multiple_passo3
-        
         if output:
         
             r9002_infototal_form = disabled_form_for_print(r9002_infototal_form)
@@ -219,9 +217,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r9002_infototal = None
             
-        #r9002_infototal_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r9002_infototal' in request.session['return_page']:
         
@@ -235,11 +231,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r9002_infototal': r9002_infototal, 
             'r9002_infototal_form': r9002_infototal_form, 

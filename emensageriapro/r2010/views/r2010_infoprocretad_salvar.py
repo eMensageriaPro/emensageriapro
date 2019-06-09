@@ -64,13 +64,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r2010_infoprocretad = get_object_or_404(r2010infoProcRetAd, id=pk)
-        dados_evento = r2010_infoprocretad.evento()
+        evento_dados = r2010_infoprocretad.evento()
 
     if request.user.has_perm('r2010.can_see_r2010infoProcRetAd'):
         
@@ -148,12 +148,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r2010_infoprocretad_form = disabled_form_fields(r2010_infoprocretad_form, 0)
                 
-        #r2010_infoprocretad_campos_multiple_passo3
-        
         if output:
         
             r2010_infoprocretad_form = disabled_form_for_print(r2010_infoprocretad_form)
@@ -169,9 +167,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r2010_infoprocretad = None
             
-        #r2010_infoprocretad_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r2010_infoprocretad' in request.session['return_page']:
         
@@ -185,11 +181,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r2010_infoprocretad': r2010_infoprocretad, 
             'r2010_infoprocretad_form': r2010_infoprocretad_form, 

@@ -145,15 +145,15 @@
     </div>
     <!-- TABS -->
     {% if messages %}
-        <div class="row">
-            <div class="pad margin no-print">
-                {% for message in messages %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="pad margin no-print">
                     <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
                         {{ message }}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
     {% if s2300_evttsvinicio_form.errors %}
         <div class="row">
@@ -180,31 +180,32 @@
                 </div>
             </div>
         {% endif %}
-        {% if s2300_evttsvinicio.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s2300_evttsvinicio.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not s2300_evttsvinicio.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and s2300_evttsvinicio.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            {% if s2300_evttsvinicio.validacoes %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <strong>Erros de validação:</strong><br>
-                                <p>{% autoescape off %}{{ s2300_evttsvinicio.validacoes }}{% endautoescape %}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            </div>
         {% endif %}
+        
+        {% if s2300_evttsvinicio.validacoes %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <strong>Erros de validação:</strong><br>
+                            <p>{% autoescape off %}{{ s2300_evttsvinicio.validacoes }}{% endautoescape %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 
@@ -306,7 +307,7 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_change_identity_s2300evtTSVInicio %}
+                            {% if perms.esocial.can_change_identity_s2300evtTSVInicio and s2300_evttsvinicio_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-4">
                                 <a href="{% url 's2300_evttsvinicio_alterar_identidade' pk=pk %}">
                                     <span class="btn btn-warning btn-block btn-lg">
@@ -355,7 +356,7 @@
 
                         
 
-                            {% if perms.esocial.can_validate_s2300evtTSVInicio %}
+                            {% if perms.esocial.can_validate_s2300evtTSVInicio and s2300_evttsvinicio_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
                                 <a href="{% url 's2300_evttsvinicio_validar_evento' pk=pk %}">
                                     <span class="btn btn-success btn-block btn-lg">
@@ -411,7 +412,7 @@
                             <a href="{% url 's2300_evttsvinicio_cadastrar' %}">
                                 <span class="btn btn-info btn-block btn-lg">
                                     <i class="fa fa-plus-circle"></i>&nbsp;
-                                        Cadastrar
+                                        Cadastrar Outro
                                 </span>
                             </a>&nbsp;
                         </div>
@@ -602,6 +603,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>   
@@ -618,9 +620,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300documentos %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300documentos %}            
 
                                     <!-- begin_form_s2300_documentos --> 
                                     <div id="cadastrar" style="display:none">
@@ -710,6 +713,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
@@ -726,9 +730,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300brasil %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300brasil %}            
 
                                     <!-- begin_form_s2300_brasil --> 
                                     <div id="cadastrar" style="display:none">
@@ -818,6 +823,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
@@ -834,9 +840,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300exterior %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300exterior %}            
 
                                     <!-- begin_form_s2300_exterior --> 
                                     <div id="cadastrar" style="display:none">
@@ -926,6 +933,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>   
@@ -942,9 +950,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300trabEstrangeiro %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300trabEstrangeiro %}            
 
                                     <!-- begin_form_s2300_trabestrangeiro --> 
                                     <div id="cadastrar" style="display:none">
@@ -1034,6 +1043,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Pessoa com Deficiência</h3>   
@@ -1050,9 +1060,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300infoDeficiencia %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300infoDeficiencia %}            
 
                                     <!-- begin_form_s2300_infodeficiencia --> 
                                     <div id="cadastrar" style="display:none">
@@ -1142,6 +1153,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações dos dependentes</h3>   
@@ -1158,9 +1170,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300dependente %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300dependente %}            
 
                                     <!-- begin_form_s2300_dependente --> 
                                     <div id="cadastrar" style="display:none">
@@ -1250,6 +1263,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de contato</h3>   
@@ -1266,9 +1280,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300contato %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300contato %}            
 
                                     <!-- begin_form_s2300_contato --> 
                                     <div id="cadastrar" style="display:none">
@@ -1358,6 +1373,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações complementares sobre o declarante</h3>   
@@ -1374,9 +1390,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300infoComplementares %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300infoComplementares %}            
 
                                     <!-- begin_form_s2300_infocomplementares --> 
                                     <div id="cadastrar" style="display:none">
@@ -1466,6 +1483,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
@@ -1482,9 +1500,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300mudancaCPF %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300mudancaCPF %}            
 
                                     <!-- begin_form_s2300_mudancacpf --> 
                                     <div id="cadastrar" style="display:none">
@@ -1574,6 +1593,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de afastamento do trabalhador</h3>   
@@ -1590,9 +1610,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300afastamento %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300afastamento %}            
 
                                     <!-- begin_form_s2300_afastamento --> 
                                     <div id="cadastrar" style="display:none">
@@ -1682,6 +1703,7 @@
 
                     <div class="row">
                         <div class="col-xs-12">
+                            {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de término do TSVE</h3>   
@@ -1698,9 +1720,10 @@
                                     {% endif %}
                                 </div>   
                             </div>
+                            {% endif %}
                             <div class="box-body" >
 
-                                {% if perms.s2300.add_s2300termino %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300termino %}            
 
                                     <!-- begin_form_s2300_termino --> 
                                     <div id="cadastrar" style="display:none">

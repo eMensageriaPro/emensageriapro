@@ -133,50 +133,50 @@
         </div>
     {% endif %}
     {% if r4020_infopgto_form.errors %}
-        <div class="row">
-            <div class="pad margin no-print">
-            {% for error in r4020_infopgto_form.non_field_errors %}
-                <div class="alert alert-error" style="margin-bottom: 0!important;">
-                    {{ error|escape }}
+        {% for error in r4020_infopgto_form.non_field_errors %}
+            <div class="row">
+                <div class="pad margin no-print">
+                    <div class="alert alert-error" style="margin-bottom: 0!important;">
+                        {{ error|escape }}
+                    </div>
                 </div>
-            {% endfor %}
             </div>
-        </div>
+        {% endfor %}
     {% endif %}
 
     {% if pk %}
-        {% if r4020_infopgto.ocorrencias %}
+        {% if evento_dados.ocorrencias %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
-                            <p>{% autoescape off %}{{ r4020_infopgto.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endif %}
-        {% if r4020_infopgto.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r4020_infopgto.status == STATUS_EVENTO_VALIDADO_ERRO %}
-            {% if not r4020_infopgto.validacao_precedencia %}
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="small-box bg-yellow">
-                            <div class="inner">
-                                <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
-                            </div>
+
+        {% if VERIFICAR_PREDECESSAO_ANTES_ENVIO and evento_dados.status == STATUS_EVENTO_AGUARD_PRECEDENCIA %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
-        {% if r4020_infopgto.validacoes %}
+
+        {% if evento_dados.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="small-box bg-red">
                         <div class="inner">
                             <strong>Erros de validação:</strong><br>
-                            <p>{% autoescape off %}{{ r4020_infopgto.validacoes }}{% endautoescape %}</p>
+                            <p>{% autoescape off %}{{ evento_dados.validacoes }}{% endautoescape %}</p>
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                     </div>
 
                     {% if perms.r4020.change_r4020infoPgto or perms.r4020.add_r4020infoPgto %}
-                        {% if r4020_infopgto_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <form action="#" id="id_form_r4020_infopgto" method="POST" content="text/html; charset=UTF-8">
                             {% csrf_token %}
                         {% endif %}
@@ -210,6 +210,7 @@
                     </div>
 
 
+                    <div class="box-body">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <div class="box-footer text-left">
@@ -255,7 +256,7 @@
                             </div>
                             {% endif %}
 
-                            {% if perms.r4020.change_r4020infoPgto %}
+                            {% if perms.r4020.change_r4020infoPgto and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -265,7 +266,7 @@
                             {% endif %}
 
 
-                            {% if perms.r4020.delete_r4020infoPgto %}
+                            {% if perms.r4020.delete_r4020infoPgto and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-2">
                                 <a href="{% url 'r4020_infopgto_apagar' pk=pk %}">
                                     <span class="btn btn-danger btn-block btn-lg">
@@ -285,7 +286,7 @@
 
                         {% else %}
 
-                            {% if perms.r4020.add_r4020infoPgto %}
+                            {% if perms.r4020.add_r4020infoPgto and evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" >
                                     <i class="fa fa-save"></i>&nbsp;
@@ -304,10 +305,11 @@
                         {% endif %}
 
                     </div>
+                    </div>
 
                     {% if perms.r4020.add_r4020infoPgto or perms.r4020.change_r4020infoPgto %}
 
-                        {% if r4020_infopgto_form.status.value == STATUS_EVENTO_CADASTRADO %}
+                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
 
@@ -406,6 +408,7 @@
                                     <h3 class="box-title">Informações relativas ao Imposto de Renda</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020IR or perms.r4020.can_see_list_r4020IR  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -414,12 +417,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020IR %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020IR %}            
 
                                     <!-- begin_form_r4020_ir --> 
                                     <div id="cadastrar" style="display:none">
@@ -515,6 +519,7 @@
                                     <h3 class="box-title">Informações relativas à CSLL</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020CSLL or perms.r4020.can_see_list_r4020CSLL  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -523,12 +528,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020CSLL %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020CSLL %}            
 
                                     <!-- begin_form_r4020_csll --> 
                                     <div id="cadastrar" style="display:none">
@@ -624,6 +630,7 @@
                                     <h3 class="box-title">Informações relativas à Cofins</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020Cofins or perms.r4020.can_see_list_r4020Cofins  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -632,12 +639,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020Cofins %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020Cofins %}            
 
                                     <!-- begin_form_r4020_cofins --> 
                                     <div id="cadastrar" style="display:none">
@@ -733,6 +741,7 @@
                                     <h3 class="box-title">Informações relativas ao PIS/PASEP</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020PP or perms.r4020.can_see_list_r4020PP  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -741,12 +750,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020PP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020PP %}            
 
                                     <!-- begin_form_r4020_pp --> 
                                     <div id="cadastrar" style="display:none">
@@ -842,6 +852,7 @@
                                     <h3 class="box-title">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020FCI or perms.r4020.can_see_list_r4020FCI  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -850,12 +861,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020FCI %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020FCI %}            
 
                                     <!-- begin_form_r4020_fci --> 
                                     <div id="cadastrar" style="display:none">
@@ -951,6 +963,7 @@
                                     <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020SCP or perms.r4020.can_see_list_r4020SCP  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -959,12 +972,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020SCP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020SCP %}            
 
                                     <!-- begin_form_r4020_scp --> 
                                     <div id="cadastrar" style="display:none">
@@ -1060,6 +1074,7 @@
                                     <h3 class="box-title">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020infoProcRet or perms.r4020.can_see_list_r4020infoProcRet  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -1068,12 +1083,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020infoProcRet %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020infoProcRet %}            
 
                                     <!-- begin_form_r4020_infoprocret --> 
                                     <div id="cadastrar" style="display:none">
@@ -1169,6 +1185,7 @@
                                     <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020infoProcJud or perms.r4020.can_see_list_r4020infoProcJud  %}
+                                        {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                         <div id="CadastrarBotao">
                                             <i class="fa fa-plus-circle"></i> Cadastrar
@@ -1177,12 +1194,13 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
+                                        {% endif %} 
                                     {% endif %}
-                                </div>   
+                                </div>  
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.r4020.add_r4020infoProcJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020infoProcJud %}            
 
                                     <!-- begin_form_r4020_infoprocjud --> 
                                     <div id="cadastrar" style="display:none">

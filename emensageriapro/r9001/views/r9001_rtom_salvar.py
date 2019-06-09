@@ -66,13 +66,13 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    dados_evento = {}
-    dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    evento_dados = {}
+    evento_dados['status'] = STATUS_EVENTO_CADASTRADO
     
     if pk:
     
         r9001_rtom = get_object_or_404(r9001RTom, id=pk)
-        dados_evento = r9001_rtom.evento()
+        evento_dados = r9001_rtom.evento()
 
     if request.user.has_perm('r9001.can_see_r9001RTom'):
         
@@ -150,12 +150,10 @@ def salvar(request, pk=None, tab='master', output=None):
         
         if pk:
         
-            if dados_evento['status'] != 0:
+            if evento_dados['status'] != STATUS_EVENTO_CADASTRADO:
             
                 r9001_rtom_form = disabled_form_fields(r9001_rtom_form, 0)
                 
-        #r9001_rtom_campos_multiple_passo3
-        
         if output:
         
             r9001_rtom_form = disabled_form_for_print(r9001_rtom_form)
@@ -179,9 +177,7 @@ def salvar(request, pk=None, tab='master', output=None):
         
             r9001_rtom = None
             
-        #r9001_rtom_salvar_custom_variaveis#
         tabelas_secundarias = []
-        #[FUNCOES_ESPECIAIS_SALVAR]
         
         if tab or 'r9001_rtom' in request.session['return_page']:
         
@@ -195,11 +191,7 @@ def salvar(request, pk=None, tab='master', output=None):
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'pk': pk,
             'output': output,
-            'ocorrencias': dados_evento['ocorrencias'], 
-            'dados_evento': dados_evento,
-            'validacao_precedencia': dados_evento['validacao_precedencia'], 
-            'validacoes': dados_evento['validacoes'],
-            'status': dados_evento['status'], 
+            'evento_dados': evento_dados,
             'controle_alteracoes': controle_alteracoes, 
             'r9001_rtom': r9001_rtom, 
             'r9001_rtom_form': r9001_rtom_form, 
