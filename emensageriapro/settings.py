@@ -81,7 +81,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_celery_beat',
+    # 'django_celery_beat',
     'constance',
     'constance.backends.database',
 
@@ -327,17 +327,17 @@ REST_FRAMEWORK = {
 }
 
 # https://medium.com/luizalabs/executando-processos-em-background-com-django-e-celery-5ade867e1bf3
-from kombu import Exchange, Queue
-
-task_default_queue = 'default' #1
-default_exchange = Exchange('media', type='direct') #2
-task_queues = (
-    Queue(
-        'media_queue', #3
-        exchange=default_exchange, #4
-        routing_key='video' #5
-    )
-)
+# from kombu import Exchange, Queue
+#
+# task_default_queue = 'default' #1
+# default_exchange = Exchange('media', type='direct') #2
+# task_queues = (
+#     Queue(
+#         'media_queue', #3
+#         exchange=default_exchange, #4
+#         routing_key='video' #5
+#     )
+# )
 
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

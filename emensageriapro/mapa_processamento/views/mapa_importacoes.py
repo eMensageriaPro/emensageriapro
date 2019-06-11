@@ -10,7 +10,7 @@ import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
@@ -48,7 +48,7 @@ STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE = 8
 
 
 @login_required
-def listar(request, tab='master'):
+def listar(request, tab='master', output=None):
 
     status_erros = [
         STATUS_IMPORT_ERRO_PROCESSAMENTO,
@@ -79,9 +79,52 @@ def listar(request, tab='master'):
             'quant_processando': len(lista_processando),
             'quant_processados': len(lista_processados),
             'data': datetime.datetime.now(),
+            'output': output,
         }
 
-        return render(request, 'mapa_importacoes.html', context)
+        if output == 'pdf':
+            from wkhtmltopdf.views import PDFTemplateResponse
+            response = PDFTemplateResponse(
+                request=request,
+                template='mapa_importacoes.html',
+                filename="mapa_importacoes.pdf",
+                context=context,
+                show_content_in_browser=True,
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 10,
+                             'zoom': 1,
+                             'dpi': 72,
+                             'orientation': 'Landscape',
+                             'viewport-size': "1366 x 513",
+                             'javascript-delay': 1000,
+                             'footer-center': '[page]/[topage]',
+                             "no-stop-slow-scripts": True},
+            )
+            return response
+
+        elif output == 'xls':
+            response = render_to_response('mapa_importacoes.html', context)
+            filename = "mapa_importacoes.xls"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
+            return response
+
+        elif output == 'csv':
+            response = render_to_response('csv/mapa_importacoes.csv', context)
+            filename = "mapa_importacoes.csv"
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            response['Content-Type'] = 'text/csv; charset=UTF-8'
+            return response
+
+        elif output == 'html':
+            return render(request, 'mapa_importacoes.html', context)
+
+        else:
+            return render(request, 'mapa_importacoes.html', context)
+
+
 
     else:
 

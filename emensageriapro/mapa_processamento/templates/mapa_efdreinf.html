@@ -1,6 +1,9 @@
 <!-- eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->
-{% extends 'base.html' %}{% load templatetags %}{% block content %}{% if not for_print %}
-    <meta http-equiv="refresh" content="10">
+{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+{% if not output %}
+{#    <meta http-equiv="refresh" content="10">#}
     <section class="content-header">
         <h1>EFD-Reinf
             <small>Mapa de Processamento</small>
@@ -21,77 +24,102 @@
             <div class="col-xs-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li {% if tab == 'master' %}class="active"{% endif %}><a
-                                href="{% url 'mapa_efdreinf' tab='master' %}">Visão
-                            Geral</a></li>
-                        <li {% if tab == 'erros' %}class="active"{% endif %}><a
-                                href="{% url 'mapa_efdreinf' tab='erros' %}">Erros</a>
+                        <li {% if tab == 'master' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='master' %}">
+                                Visão Geral
+                            </a>
                         </li>
-                        <li {% if tab == 'enviados' %}class="active"{% endif %}><a
-                                href="{% url 'mapa_efdreinf' tab='enviados' %}">Enviados</a>
+                        <li {% if tab == 'cadastrados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='cadastrados' %}">
+                                Cadastrados
+                            </a>
                         </li>
-                        <li {% if tab == 'processados' %}class="active"{% endif %}><a
-                                href="{% url 'mapa_efdreinf' tab='processados' %}">Processados</a>
+                        <li {% if tab == 'importados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='importados' %}">
+                                Importados
+                            </a>
+                        </li>
+                        <li {% if tab == 'erros_validacao' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='erros_validacao' %}">
+                                Erros de Validação
+                            </a>
+                        </li>
+                        <li {% if tab == 'validados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='validados' %}">
+                                Validados
+                            </a>
+                        </li>
+                        <li {% if tab == 'erros_envio' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='erros_envio' %}">
+                                Erros de Envio
+                            </a>
+                        </li>
+                        <li {% if tab == 'enviados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='enviados' %}">
+                                Enviados
+                            </a>
+                        </li>
+                        <li {% if tab == 'processados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_efdreinf' tab='processados' %}">
+                                Processados
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-2 col-xs-6"><!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner"><h3>{{ quant_cadastrados }}</h3>
-                        <p><strong>Eventos cadastrados</strong><br>Aguardando validação</p></div>
-                    <div class="icon"><i class="fa fa-edit"></i></div>
-                    <a href="{% url 'mapa_efdreinf' tab='master' %}"
-                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i></a></div>
-            </div><!-- ./col -->
-            <div class="col-lg-2 col-xs-6"><!-- small box -->
-                <div class="small-box bg-orange">
-                    <div class="inner"><h3>{{ quant_importados }}</h3>
-                        <p><strong>Eventos importados</strong><br>Aguardando validação</p></div>
-                    <div class="icon"><i class="fa fa-check"></i></div>
-                    <a href="{% url 'efdreinf_validar_api' tab='mapa' %}"
-                       class="small-box-footer">Validar<i class="fa fa-gear"></i></a></div>
-            </div><!-- ./col -->
-            <div class="col-lg-2 col-xs-6"><!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner"><h3>{{ quant_validados }}</h3>
-                        <p><strong>Eventos validados</strong><br>Aguardando envio</p></div>
-                    <div class="icon"><i class="fa fa-cloud-upload"></i></div>
-                    <a href="{% url 'efdreinf_enviar_api' tab='mapa' %}"
-                       class="small-box-footer">Enviar<i class="fa fa-gear"></i></a></div>
-            </div><!-- ./col -->
-            <div class="col-lg-2 col-xs-6"><!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner"><h3>{{ quant_erros }}</h3>
-                        <p><strong>Eventos com erros</strong><br>Aguardando correção</p></div>
-                    <div class="icon"><i class="fa fa-close"></i></div>
-                    <a href="{% url 'mapa_efdreinf' tab='erros' %}"
-                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i></a></div>
-            </div>
-            <div class="col-lg-2 col-xs-6"><!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner"><h3>{{ quant_enviados }}</h3>
-                        <p><strong>Eventos enviados</strong><br>Aguardando consulta</p></div>
-                    <div class="icon"><i class="fa fa-clock-o"></i></div>
-                    <a href="{% url 'efdreinf_consultar_api' tab='mapa' %}"
-                       class="small-box-footer">Consultar<i class="fa fa-gear"></i></a></div>
-            </div>
-            <div class="col-lg-2 col-xs-6"><!-- small box -->
-                <div class="small-box bg-primary">
-                    <div class="inner"><h3>{{ quant_processados }}</h3>
-                        <p><strong>Eventos processados</strong><br>Imprima o recibo</p></div>
-                    <div class="icon"><i class="fa fa-check"></i></div>
-                    <a href="{% url 'mapa_efdreinf' tab='processados' %}"
-                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i></a></div>
-            </div><!-- ./col --></div>
-        {% if tab == 'master' %}
+
+    {% include 'painel_efdreinf.html' %}
+
+
+
+        {% if tab == 'cadastrados' %}
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-success">
-                    <div class="box-header with-border"><h3 class="box-title">Validados</h3>(Listagem de eventos com
-                        status: Validado, Aguardando Precedência e Aguardando Envio)
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cadastrados</h3>
+                        (Listagem de eventos com status: Cadastrado, Duplicado, Gerado ou Assinado)
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Status</th>{% if not output %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </thead>
+                            <tbody>{% for a in efdreinf_cadastrados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_validar_api pk=a.id tab='mapa' %}">
+                                                <button class="btn btn-success">
+                                                    <i class="fa fa-fw fa-thumbs-o-up"></i>
+                                                    Validar
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if tab == 'importados' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Importados</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered table-striped">
@@ -102,84 +130,29 @@
                                 <th>Status</th>
                             </tr>
                             </thead>
-                            <tbody>{% for a in efdreinf_validados %}
+                            <tbody>
+                            {% for a in efdreinf_importados %}
                                 <tr>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
-                                </tr>{% endfor %}</tbody>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border"><h3 class="box-title">Importados</h3>(Listagem de eventos com
-                        status: Importado)
-                    </div>
-                    <div class="box-body">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th width="300px">Evento</th>
-                                <th>Identidade</th>
-                                <th>Status</th>{% if not for_print %}
-                                <th width="80px">Ações</th>{% endif %}</tr>
-                            </thead>
-                            <tbody>{% for a in efdreinf_importados %}
-                                <tr>
-                                    <td>{{ a.evento }}</td>
-                                    <td>{{ a.identidade }}</td>
-                                    <td>{{ a.get_status_display }}</td>
-                                    <td>
-                                        <div>
-                                            <a href="{% url a.tabela_validar_api pk=a.id tab='mapa' %}">
-                                                <button class="btn btn-success"><i class="fa fa-fw fa-thumbs-o-up"></i>Validar
-                                                </button>
-                                            </a></div>
-                                    </td>
-                                </tr>{% endfor %}</tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border"><h3 class="box-title">Cadastrados</h3>(Listagem de eventos com
-                        status: Cadastrado, Duplicado, Gerado ou Assinado)
-                    </div>
-                    <div class="box-body">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th width="300px">Evento</th>
-                                <th>Identidade</th>
-                                <th>Status</th>{% if not for_print %}
-                                <th width="80px">Ações</th>{% endif %}</tr>
-                            </thead>
-                            <tbody>{% for a in efdreinf_cadastrados %}
-                                <tr>
-                                    <td>{{ a.evento }}</td>
-                                    <td>{{ a.identidade }}</td>
-                                    <td>{{ a.get_status_display }}</td>
-                                    <td>
-                                        <div>
-                                            <a href="{% url a.tabela_validar pk=a.id output='pdf' %}">
-                                                <button class="btn btn-success"><i class="fa fa-fw fa-thumbs-o-up"></i>Validar
-                                                </button>
-                                            </a></div>
-                                    </td>
-                                </tr>{% endfor %}</tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>{% endif %}{% if tab == 'erros' %}<!-- erros_validacao -->
+        </div>
+        {% endif %}
+
+
+        {% if tab == 'validados' %}
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-warning">
-                    <div class="box-header with-border"><h3 class="box-title">Erros de validação</h3>(Listagem de
-                        eventos com status: Erro na Validação)
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Validados</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered table-striped">
@@ -187,10 +160,47 @@
                             <tr>
                                 <th width="300px">Evento</th>
                                 <th>Identidade</th>
-                                <th>Status</th>{% if not for_print %}
-                                <th width="80px">Ações</th>{% endif %}</tr>
+                                <th>Status</th>
+                            </tr>
                             </thead>
-                            <tbody>{% for a in efdreinf_erros_validacao %}
+                            <tbody>
+                            {% for a in efdreinf_validados %}
+                                <tr>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if tab == 'erros_validacao' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Erros de Validação</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th width="300px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Status</th>
+                                {% if not output %}
+                                <th width="80px">Ações</th>
+                                {% endif %}
+                            </tr>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in efdreinf_erros_validacao %}
                                 <tr>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
@@ -198,26 +208,37 @@
                                     <td>
                                         <div>
                                             <a href="{% url a.tabela_salvar pk=a.id tab='master' %}">
-                                                <button class="btn btn-warning"><i class="fa fa-fw fa-edit"></i>Corrigir
+                                                <button class="btn btn-warning">
+                                                    <i class="fa fa-fw fa-edit"></i>
+                                                    Corrigir
                                                 </button>
-                                            </a></div>
+                                            </a>
+                                        </div>
                                     </td>
-                                </tr>{% endfor %}</tbody>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+        {% endif %}
+
+
+        {% if tab == 'erros_envio' %}
+        <div class="row">
             <div class="col-md-12">
                 <div class="box box-danger">
-                    <div class="box-header with-border"><h3 class="box-title">Enviados com erro (Listagem de eventos com
-                        status: Erro no envio)</h3></div>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Erros reportados pelo EFD-Reinf</h3></div>
                     <div class="box-body">
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th width="300px">Evento</th>
                                 <th>Identidade</th>
-                                <th>Status</th>{% if not for_print %}
+                                <th>Status</th>{% if not output %}
                                 <th width="80px">Ações</th>{% endif %}</tr>
                             </thead>
                             <tbody>{% for a in efdreinf_erros_envio %}
@@ -228,16 +249,22 @@
                                     <td>
                                         <div>
                                             <a href="{% url a.tabela_salvar pk=a.id tab='master' %}">
-                                                <button class="btn btn-danger"><i class="fa fa-fw fa-check"></i>Corrigir
+                                                <button class="btn btn-warning">
+                                                    <i class="fa fa-fw fa-edit"></i>
+                                                    Corrigir
                                                 </button>
-                                            </a></div>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>{% endfor %}</tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </div>{% endif %}{% if tab == 'enviados' %}<!-- erros_validacao -->
+        </div>
+        {% endif %}
+
+        {% if tab == 'enviados' %}
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-success">
@@ -253,12 +280,15 @@
                                 <th>Status</th>
                             </tr>
                             </thead>
-                            <tbody>{% for a in efdreinf_enviados %}
+                            <tbody>
+                            {% for a in efdreinf_enviados %}
                                 <tr>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
-                                </tr>{% endfor %}</tbody>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -280,24 +310,31 @@
                                 <th width="300px">Recibo</th>
                             </tr>
                             </thead>
-                            <tbody>{% for a in efdreinf_processados %}
+                            <tbody>
+                            {% for a in efdreinf_processados %}
                                 <tr>
                                     <td>{{ a.evento }}</td>
                                     <td>{{ a.identidade }}</td>
                                     <td>{{ a.get_status_display }}</td>
                                     <td>
                                         <div>
-                                            <a href="{% url a.tabela_recibo pk=a.id output='pdf' %}"><span
-                                                    class="btn btn-primary" title="Imprimir Recibo"><i
-                                                    class="fa fa-fw fa-print"></i></span></a></div>
+                                            <a href="{% url a.tabela_recibo pk=a.id output='pdf' %}">
+                                                <span class="btn btn-primary" title="Imprimir Recibo">
+                                                    <i class="fa fa-fw fa-print"></i>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </td>
-                                </tr>{% endfor %}</tbody>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        {% endif %}</section>
+        {% endif %}
+    </section>
     <script>$(document).ready(function () {
         $('#btnVisualizar').click(function () {
             var formAction = '{% url 'mapa_efdreinf' tab='master' %}';
@@ -311,16 +348,164 @@
             $('#FormRelatorio').attr('target', '_blank');
             $('#FormRelatorio').submit();
         });
-    });</script>{% else %}
+    });</script>
+{% else %}
     <section class="invoice">
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="page-header">Mapa de Processamento
-                    <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}</small>
+                <h2 class="page-header">EFD-Reinf -
+                    {% if tab == 'cadastrados' %}Eventos cadastrados
+                    {% elif tab == 'importados' %}Eventos importados
+                    {% elif tab == 'validados' %}Eventos validados
+                    {% elif tab == 'erros_validacao' %}Eventos com erros na validação
+                    {% elif tab == 'enviados' %}Eventos enviados
+                    {% elif tab == 'erros_envio' %}Eventos com erros reportados pelo EFD-Reinf
+                    {% elif tab == 'processados' %}Eventos consultados
+                    {% endif %}
+                    <small class="pull-right">
+                        Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                        Data: {{ data }}</small>
                 </h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 table-responsive">{% include 'tables/mapa_processamento.html' %}</div>
+            <div class="col-xs-12 table-responsive">
+                {% if tab == 'cadastrados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_cadastrados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'importados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_importados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'erros_validacao' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_erros_validacao %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'validados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_validados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'erros_envio' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_erros_envio %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'enviados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_enviados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'processados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="300px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in efdreinf_processados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
         </div>
-    </section>{% endif %} {% endblock content %}
+    </section>
+    {% endif %}
+{% endblock content %}

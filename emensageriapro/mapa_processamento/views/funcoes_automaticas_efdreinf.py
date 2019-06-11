@@ -189,7 +189,7 @@ def validar(request, tab=None):
 
         for a in lista:
 
-            a.validar()
+            a.validar(request)
 
     if not tab:
 
@@ -200,6 +200,16 @@ def validar(request, tab=None):
 
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
+
+    elif tab == 'mapa':
+
+        messages.success(request, texto)
+        return redirect('mapa_efdreinf', tab='master')
+
+    elif tab == 'mapa_resumo':
+
+        messages.success(request, texto)
+        return redirect('visao_geral')
 
     else:
 

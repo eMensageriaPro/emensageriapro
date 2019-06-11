@@ -35,6 +35,21 @@ def listar(request):
         STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
         STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
 
+    from emensageriapro.mapa_processamento.views.mapa_importacoes import STATUS_IMPORT_AGUARDANDO, \
+        STATUS_IMPORT_PROCESSANDO, STATUS_IMPORT_PROCESSADO, \
+        STATUS_IMPORT_ERRO_PROCESSAMENTO, STATUS_IMPORT_ERRO_OUTROS, \
+        STATUS_IMPORT_ERRO_ARQUIVO_INVALIDO, STATUS_IMPORT_ERRO_IDENTIDADE_EXISTENTE, \
+        STATUS_IMPORT_ERRO_VERSAO_LEIAUTE, STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE \
+
+    status_erros = [
+        STATUS_IMPORT_ERRO_PROCESSAMENTO,
+        STATUS_IMPORT_ERRO_OUTROS,
+        STATUS_IMPORT_ERRO_ARQUIVO_INVALIDO,
+        STATUS_IMPORT_ERRO_IDENTIDADE_EXISTENTE,
+        STATUS_IMPORT_ERRO_VERSAO_LEIAUTE,
+        STATUS_IMPORT_ERRO_VALIDACAO_LEIAUTE,
+    ]
+
     if True:
 
         esocial_enviados = TransmissorEventosEsocial.objects.\
@@ -67,8 +82,8 @@ def listar(request):
         esocial_quant_cadastrados = len(esocial_cadastrados) or 0
         esocial_quant_importados = len(esocial_importados) or 0
         esocial_quant_validados = len(esocial_validados) or 0
-        esocial_quant_erros = len(esocial_erros_envio) or 0
-        esocial_quant_erros += len(esocial_erros_validacao) or 0
+        esocial_quant_erros_envio = len(esocial_erros_envio) or 0
+        esocial_quant_erros_validacao = len(esocial_erros_validacao) or 0
         esocial_quant_enviados = len(esocial_enviados) or 0
         esocial_quant_processados = len(esocial_processados) or 0
 
@@ -104,26 +119,39 @@ def listar(request):
         efdreinf_quant_cadastrados = len(efdreinf_cadastrados) or 0
         efdreinf_quant_importados = len(efdreinf_importados) or 0
         efdreinf_quant_validados = len(efdreinf_validados) or 0
-        efdreinf_quant_erros = len(efdreinf_erros_envio) or 0
-        efdreinf_quant_erros += len(efdreinf_erros_validacao) or 0
+        efdreinf_quant_erros_envio = len(efdreinf_erros_envio) or 0
+        efdreinf_quant_erros_validacao = len(efdreinf_erros_validacao) or 0
         efdreinf_quant_enviados = len(efdreinf_enviados) or 0
         efdreinf_quant_processados = len(efdreinf_processados) or 0
+
+        lista_aguardando = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_AGUARDANDO).exclude(id=0).all()
+        lista_erros = ImportacaoArquivosEventos.objects.filter(status__in=status_erros).exclude(id=0).all()
+        lista_processando = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_PROCESSANDO).all()
+        lista_processados = ImportacaoArquivosEventos.objects.filter(status=STATUS_IMPORT_PROCESSADO).all()
 
         context = {
             'usuario': Usuarios.objects.get(user_id=request.user.id),
             'esocial_quant_cadastrados': esocial_quant_cadastrados,
             'esocial_quant_importados': esocial_quant_importados,
             'esocial_quant_validados': esocial_quant_validados,
-            'esocial_quant_erros': esocial_quant_erros,
+            'esocial_quant_erros_envio': esocial_quant_erros_envio,
+            'esocial_quant_erros_validacao': esocial_quant_erros_validacao,
             'esocial_quant_enviados': esocial_quant_enviados,
             'esocial_quant_processados': esocial_quant_processados,
             'efdreinf_quant_cadastrados': efdreinf_quant_cadastrados,
             'efdreinf_quant_importados': efdreinf_quant_importados,
             'efdreinf_quant_validados': efdreinf_quant_validados,
-            'efdreinf_quant_erros': efdreinf_quant_erros,
+            'efdreinf_quant_erros_envio': efdreinf_quant_erros_envio,
+            'efdreinf_quant_erros_validacao': efdreinf_quant_erros_validacao,
             'efdreinf_quant_enviados': efdreinf_quant_enviados,
             'efdreinf_quant_processados': efdreinf_quant_processados,
+            'quant_aguardando': len(lista_aguardando),
+            'quant_erros': len(lista_erros),
+            'quant_processando': len(lista_processando),
+            'quant_processados': len(lista_processados),
             'data': datetime.datetime.now(),
+            'tab_return': 'mapa_resumo',
+            'tab': 'master',
         }
 
         return render(request, 'visao_geral.html', context)

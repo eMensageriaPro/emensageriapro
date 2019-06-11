@@ -127,7 +127,7 @@ def arquivos_reprocessar(request, pk):
     if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
 
         texto = ler_arquivo(arquivos.arquivo)
-        return redirect('arquivos', hash=request.session['retorno_hash'])
+        return redirect('mapa_importacoes', tab='master')
 
     a = arquivos.arquivo.split('/')
     b = a[len(a)-1].split('.')
@@ -164,7 +164,7 @@ def arquivos_reprocessar(request, pk):
         messages.error(request,
                        'Não foi possível reprocessar o arquivo!')
 
-    return redirect('arquivos', hash=request.session['retorno_hash'])
+    return redirect('mapa_importacoes', tab='master')
 
 
 
@@ -175,13 +175,9 @@ def arquivos_visualizacao(request, pk):
     import os
 
     arquivos = get_object_or_404(Arquivos,  id=pk)
-
-    if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
+    if not os.path.isfile(BASE_DIR + arquivos.arquivo):
         messages.error(request, 'Arquivo não encontrado!')
-        return redirect('arquivos', hash=request.session['retorno_hash'])
+        return redirect('mapa_importacoes', tab='master')
 
     xml = ler_arquivo(arquivos.arquivo)
-
-    # atualizar_versao()
-
     return HttpResponse(xml, content_type='text/xml')

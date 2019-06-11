@@ -1,1 +1,1 @@
-from .celery_emensageria import app
+# from .celery_emensageria import app

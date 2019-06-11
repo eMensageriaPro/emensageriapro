@@ -127,10 +127,10 @@ class r1000evtInfoContri(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r1000_evtinfocontri_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -238,10 +238,10 @@ class r1070evtTabProcesso(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r1070_evttabprocesso_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -372,10 +372,10 @@ class r2010evtServTom(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2010_evtservtom_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -514,10 +514,10 @@ class r2020evtServPrest(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2020_evtservprest_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -641,10 +641,10 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2030_evtassocdesprec_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -762,10 +762,10 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2040_evtassocdesprep_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -894,10 +894,10 @@ class r2050evtComProd(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2050_evtcomprod_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1024,10 +1024,10 @@ class r2060evtCPRB(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2060_evtcprb_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1149,10 +1149,10 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1263,10 +1263,10 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2098_evtreabreevper_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1388,10 +1388,10 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r2099_evtfechaevper_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1521,10 +1521,10 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r3010_evtespdesportivo_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1648,10 +1648,10 @@ class r4010evtRetPF(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r4010_evtretpf_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1773,10 +1773,10 @@ class r4020evtRetPJ(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r4020_evtretpj_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -1895,10 +1895,10 @@ class r4040evtBenefNId(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r4040_evtbenefnid_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2009,10 +2009,10 @@ class r4098evtReab(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r4098_evtreab_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2123,10 +2123,10 @@ class r4099evtFech(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r4099_evtfech_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2241,10 +2241,10 @@ class r5001evtTotal(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r5001_evttotal_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2363,10 +2363,10 @@ class r5011evtTotalContrib(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r5011_evttotalcontrib_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2482,10 +2482,10 @@ class r9000evtExclusao(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r9000_evtexclusao_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2602,10 +2602,10 @@ class r9001evtTotal(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r9001_evttotal_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2723,10 +2723,10 @@ class r9002evtRet(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r9002_evtret_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2845,10 +2845,10 @@ class r9011evtTotalContrib(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r9011_evttotalcontrib_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2968,10 +2968,10 @@ class r9012evtRetCons(SoftDeletionModel):
     
         return self.__dict__
         
-    def validar(self):
+    def validar(self, request):
     
         from emensageriapro.efdreinf.views.r9012_evtretcons_validar_evento import validar_evento_funcao
-        validar_evento_funcao(self.id)
+        validar_evento_funcao(request, self.id)
         
     class Meta:
     

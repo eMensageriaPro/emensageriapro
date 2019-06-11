@@ -53,14 +53,26 @@ urlpatterns = [
     url(r'^importacoes/(?P<tab>[\w-]+)/$',
         mapa_importacoes_views.listar,
         name='mapa_importacoes'),
+       
+    url(r'^importacoes/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        mapa_importacoes_views.listar,
+        name='mapa_importacoes_print'),
 
     url(r'^esocial/(?P<tab>[\w-]+)/$',
         mapa_esocial_views.listar,
         name='mapa_esocial'),
+       
+    url(r'^esocial/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        mapa_esocial_views.listar,
+        name='mapa_esocial_print'),
 
     url(r'^efdreinf/(?P<tab>[\w-]+)/$',
         mapa_efdreinf_views.listar,
         name='mapa_efdreinf'),
+       
+    url(r'^efdreinf/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$',
+        mapa_efdreinf_views.listar,
+        name='mapa_efdreinf_print'),
 
     url(r'^esocial-validar/$',
         funcoes_automaticas_esocial_views.validar,
