@@ -14,11 +14,16 @@
             <li class="active">eSocial</li>
         </ol>
     </section>
-    <section class="content">{% if messages %}
+    <section class="content">
+        {% if messages %}
         <div class="row">
-            <div class="pad margin no-print">{% for message in messages %}
+            <div class="pad margin no-print">
+                {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}"
-                     style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div>
+                     style="margin-bottom: 0!important;">{{ message }}
+                </div>
+             {% endfor %}
+            </div>
         </div>{% endif %}
         <div class="row">
             <div class="col-xs-12">
