@@ -45,6 +45,30 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 
+
+def update_user(user):
+    from emensageriapro.controle_de_acesso.models import UserGroups, ConfigPerfis, PerfilGroups, Usuarios
+    usuario = Usuarios.objects.get(user=user)
+    list = PerfilGroups.objects.filter(configperfis_id=usuario.config_perfis_id).all()
+    pgl = []
+    for l in list:
+        pgl.append(l.group_id)
+    UserGroups.objects.filter(user_id=user.id).exclude(group_id__in=pgl).delete()
+    for l in list:
+        a = UserGroups.objects.filter(user_id=user.id, group_id=l.group_id).all()
+        if not a:
+            UserGroups.objects.create(user_id=user.id, group_id=l.group_id)
+
+
+
+
+def update_auth_user_groups(modeladmin, request, queryset):
+    for user in queryset:
+        update_user(user)
+
+update_auth_user_groups.short_description = "Atualizar Grupos de Permissões"
+
+
 class UsuariosInline(admin.StackedInline):
 
     model = Usuarios
@@ -69,6 +93,7 @@ class CustomUserAdmin(UserAdmin):
     )
     list_display = UserAdmin.list_display
     list_filter = UserAdmin.list_filter
+    actions = [update_auth_user_groups]
 
 
 admin.site.unregister(User)

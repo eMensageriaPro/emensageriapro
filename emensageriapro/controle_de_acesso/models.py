@@ -250,3 +250,24 @@ class AuditoriaSerializer(ModelSerializer):
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
+
+
+
+class UserGroups(models.Model):
+
+    user_id = models.IntegerField()
+    group_id = models.IntegerField()
+
+    class Meta:
+        db_table = r'auth_user_groups'
+        managed = False
+
+
+class PerfilGroups(models.Model):
+
+    configperfis_id = models.IntegerField()
+    group_id = models.IntegerField()
+
+    class Meta:
+        db_table = r'config_perfis_grupos'
+        managed = False
