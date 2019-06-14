@@ -243,15 +243,8 @@ VERSAO_LAYOUT_EFDREINF = "v2_00_00"
 VERSOES_ESOCIAL = ["v02_04_02", "v02_05_00"]
 VERSOES_EFDREINF = ["v1_03_02", "v1_04_00", "v2_00_00"]
 
-# Configurações Gerais do Sistema
-
-def str2bool(v):
-    return v.lower() in ("yes", "true", "t", "1")
-
-VERIFICAR_PREDECESSAO_ANTES_ENVIO = str2bool( env('VERIFICAR_PREDECESSAO_ANTES_ENVIO') )
-
-
 # Hosts permitidos em Produção (obrigatório caso o DEBUG = False)
+
 ALLOWED_HOSTS = [
     'localhost',
     env('ALLOWED_HOSTS'),
@@ -279,24 +272,9 @@ ADMINS = [x.split(':') for x in env.list('DJANGO_ADMINS')]
 SEND_BROKEN_LINK_EMAILS = True
 MANAGERS = ADMINS
 
-# Configurações de Certificado
-
-# CERT_HOST = env('CERT_HOST')
-# CERT_PASS = env('CERT_PASS')
-# CERT_PEM_FILE = env('CERT_PEM_FILE')
-# KEY_PEM_FILE = env('KEY_PEM_FILE')
-CA_CERT_PEM_FILE = env('CA_CERT_PEM_FILE')
-
-LINK_WEBSITE = env('LINK_WEBSITE') or ''
-EMAIL_RECUPERACAO_SENHA = env('EMAIL_RECUPERACAO_SENHA')
-
-# Configurações Específicas do eSocial
-
-TP_AMB = env('TP_AMB')
-FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
-
 # Endereços login e logout
 
+LINK_WEBSITE = env('LINK_WEBSITE')
 LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mapa-processamento/visao-geral/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
@@ -326,37 +304,60 @@ REST_FRAMEWORK = {
     )
 }
 
-# https://medium.com/luizalabs/executando-processos-em-background-com-django-e-celery-5ade867e1bf3
-# from kombu import Exchange, Queue
-#
-# task_default_queue = 'default' #1
-# default_exchange = Exchange('media', type='direct') #2
-# task_queues = (
-#     Queue(
-#         'media_queue', #3
-#         exchange=default_exchange, #4
-#         routing_key='video' #5
-#     )
-# )
-
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'choices_tp_amb': ['django.forms.fields.ChoiceField', {
+        'widget': 'django.forms.Select',
+        'choices': (("1", u"Produção"), ("2", u"Produção Restrita"))
+    }],
+}
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
-    'ESOCIAL_SEND_RUN_EVERY_MINS': (10, 'Tempo de envio (em minutos)'
-                                        'dos eventos do eSocial', int),
-    'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10, 'Tempo de consulta (em minutos)'
-                                           'dos eventos do eSocial', int),
-    'EFDREINF_SEND_RUN_EVERY_MINS': (10, 'Tempo de envio (em minutos)'
-                                         'dos eventos do EFD-Reinf', int),
-    'EFDREINF_CONSULT_RUN_EVERY_MINS': (10, 'Tempo de consulta (em minutos)'
-                                            'dos eventos do EFD-Reinf', int),
-    'IMPORT_FILES_RUN_EVERY_MINS': (10, 'Tempo de leitura de arquivos importados'
-                                        '(em minutos)', int),
-    'BROKER_URL': ('redis://', 'Endereço do servidor '
-                               'do Redis', str),
-    'LEN_EVENTS_IMPORT': (10, 'Quantidade do lote de arquivos'
-                              'de eventos para importação', int),
-}
 
-broker_url='redis://'
+    'ESOCIAL_SEND_RUN_EVERY_MINS': (10,
+                                    u'Tempo de envio (em minutos) dos eventos do eSocial.',
+                                    int),
+
+    'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10,
+                                       u'Tempo de consulta (em minutos) dos eventos do eSocial.',
+                                       int),
+
+    'EFDREINF_SEND_RUN_EVERY_MINS': (10,
+                                     u'Tempo de envio (em minutos) dos eventos do EFD-Reinf.',
+                                     int),
+
+    'EFDREINF_CONSULT_RUN_EVERY_MINS': (10,
+                                        u'Tempo de consulta (em minutos) dos eventos do EFD-Reinf.',
+                                        int),
+
+    'IMPORT_FILES_RUN_EVERY_MINS': (10,
+                                    u'Tempo de leitura de arquivos importados (em minutos).',
+                                    int),
+
+    'LEN_EVENTS_IMPORT': (10,
+                          u'Quantidade do lote de arquivos de eventos para importação.',
+                          int),
+
+    'CA_CERT_PEM_FILE': ('certificados/acserproacfv5.crt',
+                         u'Caminho completo do Certificado do SERPRO',
+                         str),
+
+    'TP_AMB': (
+        '2',
+        u'Tipo de ambiente padrão do sistema.',
+        'choices_tp_amb'),
+
+    'FORCE_PRODUCAO_RESTRITA': (True,
+                                u'Força o sistema para envio pelo ambiente produção restrita.',
+                                bool),
+
+    'EMAIL_RECUPERACAO_SENHA': ('emensageria@emensageria.com.br',
+                                u'E-mail de recuperação de senha.',
+                                str),
+
+    'VERIFICAR_PREDECESSAO_ANTES_ENVIO': (False,
+          u'Ativa a função de verificar predecessão antes dos envios dos eventos.',
+          bool),
+
+}

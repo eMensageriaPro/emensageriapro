@@ -33,6 +33,7 @@
 
 """
 
+from constance import config
 import psycopg2
 import datetime
 import os
@@ -174,9 +175,10 @@ def create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file):
 def assinar_esocial(request, xml, transmissor_id):
 
     from lxml import etree
-    from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, BASE_DIR
+    from emensageriapro.settings import BASE_DIR
     from signxml import XMLSigner, methods
-    #from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
+
+    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
 
     tra = TransmissorLoteEsocial.objects. \
         get(id=transmissor_id)
@@ -278,7 +280,11 @@ def send_xml(request, transmissor_id, service):
 
     import os
     from datetime import datetime
-    from emensageriapro.settings import BASE_DIR, FORCE_PRODUCAO_RESTRITA, TP_AMB, CA_CERT_PEM_FILE
+    from emensageriapro.settings import BASE_DIR
+
+    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
+    TP_AMB = config.TP_AMB
+    CA_CERT_PEM_FILE = config.CA_CERT_PEM_FILE
 
     data_atual = str(datetime.now()).replace(':', '-').replace(' ', '-').replace('.', '-')
 

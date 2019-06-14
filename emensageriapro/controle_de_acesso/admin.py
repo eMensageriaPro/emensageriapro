@@ -45,7 +45,6 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 
-
 def update_user(user):
     from emensageriapro.controle_de_acesso.models import UserGroups, ConfigPerfis, PerfilGroups, Usuarios
     usuario = Usuarios.objects.get(user=user)
@@ -58,8 +57,6 @@ def update_user(user):
         a = UserGroups.objects.filter(user_id=user.id, group_id=l.group_id).all()
         if not a:
             UserGroups.objects.create(user_id=user.id, group_id=l.group_id)
-
-
 
 
 def update_auth_user_groups(modeladmin, request, queryset):

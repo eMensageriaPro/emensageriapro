@@ -33,6 +33,7 @@
 
 """
 
+from constance import config
 import datetime
 from django.contrib import messages
 from emensageriapro.mensageiro.models import *
@@ -150,8 +151,10 @@ def get_identidade_evento(xml):
 def assinar_efdreinf(request, xml, transmissor_id):
 
     from lxml import etree
-    from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, BASE_DIR
+    from emensageriapro.settings import BASE_DIR
     from signxml import XMLSigner, methods
+
+    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
     #from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
 
     tra = TransmissorLoteEfdreinf.objects. \
@@ -250,11 +253,9 @@ def send_xml(request, transmissor_id, service):
     from datetime import datetime
     from emensageriapro.settings import BASE_DIR
 
-    from emensageriapro.settings import CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB
-
-    # from emensageriapro.settings import CERT_PEM_FILE, KEY_PEM_FILE, \
-    #     CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB, CERT_HOST, CERT_PASS
-
+    CA_CERT_PEM_FILE = config.CA_CERT_PEM_FILE
+    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
+    TP_AMB = config.TP_AMB
 
     data_atual = str(datetime.now()).replace(':', '-').replace(' ', '-').replace('.', '-')
 

@@ -403,116 +403,116 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 #
 #     if update: executar_sql(update, False)
 
-
-def atualizar_status_efdreinf():
-    executar_sql("""
-
-
-      UPDATE public.r1000_evtinfocontri AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;
-  UPDATE public.r1000_evtinfocontri SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r1000_evtinfocontri SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r1000_evtinfocontri SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-
-
-
-UPDATE public.r1070_evttabprocesso AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r1070_evttabprocesso SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r1070_evttabprocesso SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r1070_evttabprocesso SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2010_evtservtom AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2010_evtservtom SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2010_evtservtom SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2010_evtservtom SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2020_evtservprest AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2020_evtservprest SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2020_evtservprest SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2020_evtservprest SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2030_evtassocdesprec AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2030_evtassocdesprec SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2030_evtassocdesprec SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2030_evtassocdesprec SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2040_evtassocdesprep AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2040_evtassocdesprep SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2040_evtassocdesprep SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2040_evtassocdesprep SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2050_evtcomprod AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2050_evtcomprod SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2050_evtcomprod SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2050_evtcomprod SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2060_evtcprb AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2060_evtcprb SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2060_evtcprb SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2060_evtcprb SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2070_evtpgtosdivs AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2070_evtpgtosdivs SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2070_evtpgtosdivs SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2070_evtpgtosdivs SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2098_evtreabreevper AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2098_evtreabreevper SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2098_evtreabreevper SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2098_evtreabreevper SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r2099_evtfechaevper AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2099_evtfechaevper SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r2099_evtfechaevper SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r2099_evtfechaevper SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-UPDATE public.r3010_evtespdesportivo AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r3010_evtespdesportivo SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r3010_evtespdesportivo SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r3010_evtespdesportivo SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
---
---
-UPDATE public.r9000_evtexclusao AS a
-   SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
-  FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r9000_evtexclusao SET status=5 WHERE cdretorno IN ('1');
-UPDATE public.r9000_evtexclusao SET status=14 WHERE cdretorno IN ('0','2');
-UPDATE public.r9000_evtexclusao SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
-
---
-UPDATE public.r5001_evttotal SET retornos_evttotal_id=id, retornos_evttotalcontrib_id=Null ;
-UPDATE public.r5011_evttotalcontrib SET retornos_evttotal_id=Null, retornos_evttotalcontrib_id=id;
-
-
-    """, False)
-
-    lista_ocorrencias = executar_sql("""SELECT DISTINCT r5001_evttotal_id FROM public.r5001_regocorrs 
-                                              WHERE r5001_evttotal_id IN (SELECT r5001_evttotal_id FROM transmissor_eventos_efdreinf);""",
-                                     True)
-    update = ''
-    import json
-    from django.forms.models import model_to_dict
-    for a in lista_ocorrencias:
-        r5001_evttotal_id = a[0]
-        from emensageriapro.r5001.models import r5001regOcorrs
-        ocorrencias = r5001regOcorrs.objects.using('default').filter(excluido=False,
-                                                                     r5001_evttotal_id=r5001_evttotal_id).all()
-        lista_ocor = []
-        for o in ocorrencias:
-            lista_ocor.append(json.dumps(model_to_dict(o), indent=4, sort_keys=True, default=str))
-        txt_str = '|'.join(lista_ocor)
-        txt_str = txt_str.replace("'", "''")
-        c = executar_sql("""
-                SELECT tabela
-                  FROM transmissor_eventos_efdreinf
-                 WHERE retornos_evttotal_id=%s;""" % r5001_evttotal_id, True)
-        if c:
-            update += """UPDATE public.%s SET ocorrencias = '%s' 
-                              WHERE retornos_evttotal_id='%s';""" % (c[0][0], str(txt_str).replace("'", "''"), a[0])
-
-    if update: executar_sql(update, False)
-
-
+#
+# def atualizar_status_efdreinf():
+#     executar_sql("""
+#
+#
+#       UPDATE public.r1000_evtinfocontri AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;
+#   UPDATE public.r1000_evtinfocontri SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r1000_evtinfocontri SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r1000_evtinfocontri SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+#
+#
+#
+# UPDATE public.r1070_evttabprocesso AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r1070_evttabprocesso SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r1070_evttabprocesso SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r1070_evttabprocesso SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2010_evtservtom AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2010_evtservtom SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2010_evtservtom SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2010_evtservtom SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2020_evtservprest AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2020_evtservprest SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2020_evtservprest SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2020_evtservprest SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2030_evtassocdesprec AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2030_evtassocdesprec SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2030_evtassocdesprec SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2030_evtassocdesprec SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2040_evtassocdesprep AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2040_evtassocdesprep SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2040_evtassocdesprep SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2040_evtassocdesprep SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2050_evtcomprod AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2050_evtcomprod SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2050_evtcomprod SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2050_evtcomprod SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2060_evtcprb AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2060_evtcprb SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2060_evtcprb SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2060_evtcprb SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2070_evtpgtosdivs AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2070_evtpgtosdivs SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2070_evtpgtosdivs SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2070_evtpgtosdivs SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2098_evtreabreevper AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2098_evtreabreevper SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2098_evtreabreevper SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2098_evtreabreevper SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r2099_evtfechaevper AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r2099_evtfechaevper SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r2099_evtfechaevper SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r2099_evtfechaevper SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# UPDATE public.r3010_evtespdesportivo AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r3010_evtespdesportivo SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r3010_evtespdesportivo SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r3010_evtespdesportivo SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+# --
+# --
+# UPDATE public.r9000_evtexclusao AS a
+#    SET cdretorno=b.cdretorno, descretorno=b.descretorno, dhprocess=b.dhprocess
+#   FROM public.r5001_evttotal AS b WHERE a.retornos_evttotal_id = b.id;UPDATE public.r9000_evtexclusao SET status=5 WHERE cdretorno IN ('1');
+# UPDATE public.r9000_evtexclusao SET status=14 WHERE cdretorno IN ('0','2');
+# UPDATE public.r9000_evtexclusao SET ocorrencias=Null WHERE retornos_evttotal_id NOT IN (SELECT r5001_evttotal_id FROM r5001_regocorrs);
+#
+# --
+# UPDATE public.r5001_evttotal SET retornos_evttotal_id=id, retornos_evttotalcontrib_id=Null ;
+# UPDATE public.r5011_evttotalcontrib SET retornos_evttotal_id=Null, retornos_evttotalcontrib_id=id;
+#
+#
+#     """, False)
+#
+#     lista_ocorrencias = executar_sql("""SELECT DISTINCT r5001_evttotal_id FROM public.r5001_regocorrs
+#                                               WHERE r5001_evttotal_id IN (SELECT r5001_evttotal_id FROM transmissor_eventos_efdreinf);""",
+#                                      True)
+#     update = ''
+#     import json
+#     from django.forms.models import model_to_dict
+#     for a in lista_ocorrencias:
+#         r5001_evttotal_id = a[0]
+#         from emensageriapro.r5001.models import r5001regOcorrs
+#         ocorrencias = r5001regOcorrs.objects.using('default').filter(excluido=False,
+#                                                                      r5001_evttotal_id=r5001_evttotal_id).all()
+#         lista_ocor = []
+#         for o in ocorrencias:
+#             lista_ocor.append(json.dumps(model_to_dict(o), indent=4, sort_keys=True, default=str))
+#         txt_str = '|'.join(lista_ocor)
+#         txt_str = txt_str.replace("'", "''")
+#         c = executar_sql("""
+#                 SELECT tabela
+#                   FROM transmissor_eventos_efdreinf
+#                  WHERE retornos_evttotal_id=%s;""" % r5001_evttotal_id, True)
+#         if c:
+#             update += """UPDATE public.%s SET ocorrencias = '%s'
+#                               WHERE retornos_evttotal_id='%s';""" % (c[0][0], str(txt_str).replace("'", "''"), a[0])
+#
+#     if update: executar_sql(update, False)
+#
+#
 
 
