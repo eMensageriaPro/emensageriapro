@@ -141,6 +141,7 @@ class Certificados(SoftDeletionModel):
     class Meta:
     
         verbose_name = u'Certificados'
+        verbose_name_plural = u'Certificados'
         db_table = r'certificados'       
         managed = True # certificados #
         

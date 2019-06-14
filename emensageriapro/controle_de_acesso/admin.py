@@ -62,6 +62,7 @@ def update_user(user):
 def update_auth_user_groups(modeladmin, request, queryset):
     for user in queryset:
         update_user(user)
+        
 
 update_auth_user_groups.short_description = "Atualizar Grupos de Permissões"
 

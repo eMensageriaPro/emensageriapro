@@ -87,6 +87,7 @@ class ConfigPerfis(SoftDeletionModel):
     class Meta:
     
         verbose_name = u'Perfis'
+        verbose_name_plural = u'Perfis'
         db_table = r'config_perfis'       
         managed = True # config_perfis #
         
@@ -250,21 +251,28 @@ class AuditoriaSerializer(ModelSerializer):
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-
-
-
+        
+        
 class UserGroups(models.Model):
 
     user_id = models.IntegerField()
     group_id = models.IntegerField()
 
+    def __unicode__(self):
+
+        return unicode(self.id) + unicode(self.user_id) + unicode(self.group_id)
+
     class Meta:
+
+        verbose_name = u'Grupos de Usuários'
         db_table = r'auth_user_groups'
         managed = False
 
 
-class PerfilGroups(models.Model):
 
+
+class PerfilGroups(models.Model):
+    
     configperfis_id = models.IntegerField()
     group_id = models.IntegerField()
 

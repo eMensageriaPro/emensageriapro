@@ -43,6 +43,7 @@ __maintainer__ = "Marcelo Medeiros de Vasconcellos"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
+from constance import config
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -78,8 +79,9 @@ def validar_evento_funcao(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
     from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
     from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR, VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    from emensageriapro.settings import BASE_DIR
     from emensageriapro.esocial.views.s2245_evttreicap_gerar_xml import gerar_xml_assinado
+    VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.VERIFICAR_PREDECESSAO_ANTES_ENVIO
     
     lista_validacoes = []
     s2245_evttreicap = get_object_or_404(s2245evtTreiCap, id=pk)
@@ -182,7 +184,8 @@ def validar_evento_funcao(request, pk):
 @login_required
 def validar_evento(request, pk, tab=None):
 
-    from emensageriapro.settings import VERSOES_ESOCIAL, VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    from emensageriapro.settings import VERSOES_ESOCIAL
+    VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.VERIFICAR_PREDECESSAO_ANTES_ENVIO
 
     STATUS_VALIDACAO = (
         STATUS_EVENTO_CADASTRADO,
