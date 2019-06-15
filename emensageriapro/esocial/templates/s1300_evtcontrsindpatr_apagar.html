@@ -40,44 +40,49 @@
                     <h3 class="box-title">Apagar Registro</h3>
                 </div>
                 <div class="box-body">
-                    <div class="row">
-                        {% if perms.esocial.delete_s1300evtContrSindPatr %}
-                        <form action="#" method="POST">
-                            {% csrf_token %}
+                    {% if perms.esocial.delete_s1300evtContrSindPatr %}
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
                             <div class="form-group col-md-8">
                                 Confirma a remoção do registro? Esta ação é irreversível e apagará todos os dados relacionados a este registro!
                             </div>
-                            <div class="form-group col-md-2 text-right">
-                                <button type="submit" class="btn btn-danger">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <button type="submit" class="btn btn-block btn-danger btn-lg">
                                     <i class="fa fa-remove"></i> Apagar
-                            </button>
+                                </button>
                             </div>
-                        </form>
-                        <div class="form-group col-md-2 text-right">
-                            <a href="javascript:history.back()">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-rotate-left"></i> Não Apagar
-                                </button>
-                            </a>
+                            <div class="form-group col-md-6">
+                                <a href="javascript:history.back()">
+                                    <span type="submit" class="btn btn-block btn-primary btn-lg">
+                                        <i class="fa fa-rotate-left"></i> Não Apagar
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        {% else %}
-                        <div class="form-group col-md-10">
-                            Você não possui permissão para apagar este registro, entre em contato com o administrador do sistema!
+                    </form>
+                    {% else %}
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                Você não possui permissão para apagar este registro, entre em contato com o administrador do sistema!
+                            </div>
                         </div>
-                        <div class="form-group col-md-2 text-right">
-                            <a href="javascript:history.back()">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-rotate-left"></i> Retornar
-                                </button>
-                            </a>
+                        <div class="row">
+                            <div class="form-group col-md-12 text-right">
+                                <a href="javascript:history.back()">
+                                    <span type="submit" class="btn btn-block btn-primary btn-lg">
+                                        <i class="fa fa-rotate-left"></i> Retornar
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        {% endif %}
+                    {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
 {% endblock content %}
