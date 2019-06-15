@@ -13,32 +13,32 @@
 {#                </div>#}
 {#            </div>#}
             <div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-orange">
+                <div class="small-box bg-primary">
                     <div class="inner"><h3>{{ efdreinf_quant_importados }}</h3>
                         <p><strong>Eventos importados</strong>
                             <br>Aguardando validação</p>
                     </div>
-                    <div class="icon"><i class="fa fa-check"></i></div>
+                    <div class="icon"><i class="fa fa-cloud-download"></i></div>
                     <a href="{% url 'mapa_efdreinf' tab='importados' %}"
                        class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-red">
+                <div class="small-box {% if efdreinf_quant_erros_validacao %}bg-red{% else %}bg-green{% endif %}">
                     <div class="inner"><h3>{{ efdreinf_quant_erros_validacao }}</h3>
                         <p><strong>Erros de validação</strong>
                             <br>Aguardando correção
                         </p>
                     </div>
-                    <div class="icon"><i class="fa fa-close"></i></div>
+                    <div class="icon"><i class="fa {% if efdreinf_quant_erros_validacao %}fa-close{% else %}fa-check{% endif %}"></i></div>
                     <a href="{% url 'mapa_efdreinf' tab='erros_validacao' %}"
                        class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-purple">
+                <div class="small-box bg-primary">
                     <div class="inner"><h3>{{ efdreinf_quant_validados }}</h3>
                         <p><strong>Eventos validados</strong>
                             <br>Aguardando envio</p>
@@ -50,20 +50,20 @@
                 </div>
             </div>
             <div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-red">
+                <div class="small-box {% if efdreinf_quant_erros_envio %}bg-red{% else %}bg-green{% endif %}">
                     <div class="inner"><h3>{{ efdreinf_quant_erros_envio }}</h3>
                         <p><strong>Erros de envio</strong>
                             <br>Aguardando correção
                         </p>
                     </div>
-                    <div class="icon"><i class="fa fa-close"></i></div>
+                    <div class="icon"><i class="fa {% if efdreinf_quant_erros_validacao %}fa-close{% else %}fa-check{% endif %}"></i></div>
                     <a href="{% url 'mapa_efdreinf' tab='erros_envio' %}"
                        class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-green">
+                <div class="small-box bg-orange">
                     <div class="inner"><h3>{{ efdreinf_quant_enviados }}</h3>
                         <p><strong>Eventos enviados</strong>
                             <br>Aguardando consulta</p>
@@ -89,7 +89,7 @@
         <div class="row">
             <div class="col-md-{% if tab == 'master' %}4{% else %}3{% endif %}">
                 <a href="{% url 'efdreinf_validar_api' tab=tab_return %}">
-                    <span class="btn btn-warning btn-block btn-lg">
+                    <span class="btn btn-primary btn-block btn-lg">
                         <i class="fa fa-gear"></i>&nbsp;
                         Validar
                     </span>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-md-{% if tab == 'master' %}4{% else %}3{% endif %}">
                 <a href="{% url 'efdreinf_enviar_api' tab=tab_return %}">
-                    <span class="btn btn-warning btn-block btn-lg">
+                    <span class="btn btn-primary btn-block btn-lg">
                         <i class="fa fa-gear"></i>&nbsp;
                         Enviar
                     </span>
@@ -105,7 +105,7 @@
             </div>
             <div class="col-md-{% if tab == 'master' %}4{% else %}3{% endif %}">
                 <a href="{% url 'efdreinf_consultar_api' tab=tab_return %}">
-                    <span class="btn btn-warning btn-block btn-lg">
+                    <span class="btn btn-primary btn-block btn-lg">
                         <i class="fa fa-gear"></i>&nbsp;
                         Consultar
                     </span>

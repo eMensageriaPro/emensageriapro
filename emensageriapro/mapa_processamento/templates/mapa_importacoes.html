@@ -39,54 +39,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-xs-6"><!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner"><h3>{{ quant_aguardando }}</h3>
-                        <p><strong>Eventos aguardando importação</strong></p></div>
-                    <div class="icon"><i class="fa fa-edit"></i></div>
-                    <a href="{% url 'mapa_importacoes' tab='master' %}" class="small-box-footer">
-                        Visualizar<i class="fa fa-eye"></i>
-                    </a>
-                </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6"><!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner"><h3>{{ quant_erros }}</h3>
-                        <p><strong>Eventos com erros na importação</strong></p></div>
-                    <div class="icon"><i class="fa fa-check"></i></div>
-                    <a href="{% url 'mapa_importacoes' tab='erros' %}" class="small-box-footer">
-                        Visualizar<i class="fa fa-eye"></i>
-                    </a>
-                </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6"><!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner"><h3>{{ quant_processando }}</h3>
-                        <p><strong>Eventos sendo processados</strong><br></p></div>
-                    <div class="icon"><i class="fa fa-cloud-upload"></i></div>
-                    <a href="{% url 'mapa_importacoes' tab='processando' %}" class="small-box-footer">
-                        Visualizar<i class="fa fa-eye"></i>
-                    </a>
-                </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6"><!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner"><h3>{{ quant_processados }}</h3>
-                        <p><strong>Eventos processados</strong><br></p></div>
-                    <div class="icon"><i class="fa fa-cloud-upload"></i></div>
-                    <a href="{% url 'mapa_importacoes' tab='processados' %}" class="small-box-footer">
-                        Visualizar<i class="fa fa-eye"></i>
-                    </a>
-                </div>
-            </div><!-- ./col -->
-        </div>
+
+        {% include 'painel_importacoes.html' %}
 
         <div class="row">
            <div class="col-md-4">
-                <button type="button" class="btn btn-success btn-block btn-lg" id="myBtn">
+                <button type="button" class="btn btn-primary btn-block btn-lg" id="myBtn">
                     <i class="fa fa-file-zip-o"></i>&nbsp;
-                    Importar arquivos compactado
+                    Importar XML em arquivo compactado
                 </button>
 
                <div class="modal fade" id="myModal" role="dialog">
@@ -123,7 +83,7 @@
             </div>
             <div class="col-md-4">
                 <a href="{% url 'scripts_processar_arquivos' tab='mapa' %}">
-                    <span class="btn btn-warning btn-block btn-lg">
+                    <span class="btn btn-primary btn-block btn-lg">
                         <i class="fa fa-gear"></i>&nbsp;
                             Processar Arquivos
                     </span>
