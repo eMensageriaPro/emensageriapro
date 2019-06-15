@@ -709,39 +709,19 @@ class TransmissorLote(SoftDeletionModel):
     transmissor_nrinsc = models.CharField(max_length=20, )
     nome_empresa = models.CharField(max_length=200, )
     data_abertura = models.DateField()
-    validar_eventos = models.IntegerField(choices=SIM_NAO, )
-    verificar_predecessao = models.IntegerField(choices=SIM_NAO, )
-    envio_automatico = models.IntegerField(choices=SIM_NAO, )
     logotipo = models.FileField(upload_to="logotipo", blank=True, null=True, )
     endereco_completo = models.TextField()
-    empregador_nrinsc = models.CharField(max_length=20, )
-    empregador_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
-    esocial_lote_min = models.IntegerField()
-    esocial_lote_max = models.IntegerField()
-    esocial_timeout = models.DecimalField(max_digits=15, decimal_places=2, )
-    esocial_intervalo = models.IntegerField()
-    esocial_tempo_prox_envio = models.IntegerField(blank=True, null=True, )
-    esocial_certificado = models.ForeignKey('mensageiro.Certificados',
-        related_name='%(class)s_esocial_certificado', blank=True, null=True, )
-    esocial_pasta = models.CharField(max_length=200, blank=True, null=True, )
-    contribuinte_nrinsc = models.CharField(max_length=20, )
-    contribuinte_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
-    efdreinf_lote_min = models.IntegerField()
-    efdreinf_lote_max = models.IntegerField()
-    efdreinf_timeout = models.DecimalField(max_digits=15, decimal_places=2, )
-    efdreinf_intervalo = models.IntegerField()
-    efdreinf_tempo_prox_envio = models.IntegerField(blank=True, null=True, )
-    efdreinf_certificado = models.ForeignKey('mensageiro.Certificados',
-        related_name='%(class)s_efdreinf_certificado', blank=True, null=True, )
-    efdreinf_pasta = models.CharField(max_length=200, blank=True, null=True, )
+    nrinsc = models.CharField(max_length=20, )
+    tpinsc = models.IntegerField(choices=TIPO_INSCRICAO, )
+    certificado = models.ForeignKey('mensageiro.Certificados',
+        related_name='%(class)s_certificado', blank=True, null=True, )
     
     def __unicode__(self):
         
         lista = [
             unicode(self.transmissor_nrinsc),
             unicode(self.nome_empresa),
-            unicode(self.empregador_nrinsc),
-            unicode(self.contribuinte_nrinsc),]
+            unicode(self.nrinsc),]
             
         if lista:
             return ' - '.join(lista)

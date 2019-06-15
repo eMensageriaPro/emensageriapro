@@ -72,7 +72,7 @@ def salvar(request, pk=None, tab='master', output=None):
 
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    TP_AMB = config.TP_AMB
+    TP_AMB = config.ESOCIAL_TP_AMB
     
     if pk:
     

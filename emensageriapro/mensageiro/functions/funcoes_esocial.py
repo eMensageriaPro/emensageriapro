@@ -178,17 +178,17 @@ def assinar_esocial(request, xml, transmissor_id):
     from emensageriapro.settings import BASE_DIR
     from signxml import XMLSigner, methods
 
-    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
+    FORCE_PRODUCAO_RESTRITA = config.ESOCIAL_FORCE_PRODUCAO_RESTRITA
 
     tra = TransmissorLoteEsocial.objects. \
         get(id=transmissor_id)
 
-    if tra.transmissor.esocial_certificado:
+    if tra.transmissor.certificado:
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.esocial_certificado.certificado)
-        cert_pass = tra.transmissor.esocial_certificado.senha
-        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.efdreinf_certificado.id
-        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.efdreinf_certificado.id
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
+        cert_pass = tra.transmissor.certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
 
     else:
 
@@ -314,12 +314,12 @@ def send_xml(request, transmissor_id, service):
     tle = TransmissorLoteEsocial.objects. \
         get(id=transmissor_id)
 
-    if tle.transmissor.esocial_certificado:
+    if tle.transmissor.certificado:
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tle.transmissor.esocial_certificado.certificado)
-        cert_pass = tle.transmissor.esocial_certificado.senha
-        cert_pem_file = 'certificado/cert_%s.pem' % tle.transmissor.efdreinf_certificado.id
-        key_pem_file = 'certificado/key_%s.pem' % tle.transmissor.efdreinf_certificado.id
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tle.transmissor.certificado.certificado)
+        cert_pass = tle.transmissor.certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tle.transmissor.certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tle.transmissor.certificado.id
 
     else:
 
@@ -333,9 +333,9 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados['empregador_nrinsc'] = tle.empregador_nrinsc
     transmissor_dados['transmissor_tpinsc'] = tle.transmissor.transmissor_tpinsc
     transmissor_dados['transmissor_nrinsc'] = tle.transmissor.transmissor_nrinsc
-    transmissor_dados['esocial_lote_min'] = tle.transmissor.esocial_lote_min
-    transmissor_dados['esocial_lote_max'] = tle.transmissor.esocial_lote_max
-    transmissor_dados['esocial_timeout'] = int(tle.transmissor.esocial_timeout)
+    transmissor_dados['esocial_lote_min'] = config.ESOCIAL_LOTE_MIN
+    transmissor_dados['esocial_lote_max'] = config.ESOCIAL_LOTE_MAX
+    transmissor_dados['esocial_timeout'] = int(config.ESOCIAL_TIMEOUT)
 
     create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
 
@@ -350,7 +350,7 @@ def send_xml(request, transmissor_id, service):
     dados['service'] = service
     dados['url'] = URL_WS
     dados['cert'] = cert_pem_file
-    dados['cacert'] = '%s/certificados/webservicesproducaorestritaesocialgovbr.crt' % BASE_DIR
+    dados['cacert'] = '%s/%s' % (BASE_DIR, config.CA_CERT_PEM_FILE)
     dados['key'] = key_pem_file
     dados['action'] = ACTION
     dados['timeout'] = transmissor_dados['esocial_timeout']

@@ -561,15 +561,11 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
 
 class form_transmissores(forms.ModelForm):
 
-    esocial_timeout = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=True, )
-    efdreinf_timeout = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=True, )
 
     def __init__(self, *args, **kwargs):
     
         super(form_transmissores, self).__init__(*args, **kwargs)
         
-        self.fields['esocial_tempo_prox_envio'].widget.attrs['readonly'] = True
-        self.fields['efdreinf_tempo_prox_envio'].widget.attrs['readonly'] = True
 
     def save(self, commit=True, *args, **kwargs):
     
@@ -600,9 +596,7 @@ class form_transmissores(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',
-            'esocial_pasta'
-            'efdreinf_pasta']
+            'modificado_por',]
 
 
 class form_transmissor_lote_efdreinf(forms.ModelForm):

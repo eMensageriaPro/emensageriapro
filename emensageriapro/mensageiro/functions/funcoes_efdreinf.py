@@ -154,18 +154,18 @@ def assinar_efdreinf(request, xml, transmissor_id):
     from emensageriapro.settings import BASE_DIR
     from signxml import XMLSigner, methods
 
-    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
+    FORCE_PRODUCAO_RESTRITA = config.EFDREINF_FORCE_PRODUCAO_RESTRITA
     #from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
 
     tra = TransmissorLoteEfdreinf.objects. \
         get(id=transmissor_id)
 
-    if tra.transmissor.efdreinf_certificado:
+    if tra.transmissor.certificado:
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.efdreinf_certificado.certificado)
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
         cert_pass = tra.transmissor.efdreinf_certificado.senha
-        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.efdreinf_certificado.id
-        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.efdreinf_certificado.id
+        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
 
     else:
 
@@ -289,12 +289,12 @@ def send_xml(request, transmissor_id, service):
     tra = TransmissorLoteEfdreinf.objects.\
             get(id=transmissor_id)
 
-    if tra.transmissor.efdreinf_certificado:
+    if tra.transmissor.certificado:
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.efdreinf_certificado.certificado)
-        cert_pass = tra.transmissor.efdreinf_certificado.senha
-        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.efdreinf_certificado.id
-        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.efdreinf_certificado.id
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
+        cert_pass = tra.transmissor.certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
 
     else:
 
@@ -306,9 +306,9 @@ def send_xml(request, transmissor_id, service):
     dados['contribuinte_tpinsc'] = tra.contribuinte_tpinsc
     dados['contribuinte_nrinsc'] = tra.contribuinte_nrinsc
     dados['transmissor_id'] = transmissor_id
-    dados['efdreinf_lote_min'] = tra.transmissor.efdreinf_lote_min
-    dados['efdreinf_lote_max'] = tra.transmissor.efdreinf_lote_max
-    dados['efdreinf_timeout'] = int(tra.transmissor.efdreinf_timeout)
+    dados['efdreinf_lote_min'] = config.EFDREINF_LOTE_MIN
+    dados['efdreinf_lote_max'] = config.EFDREINF_LOTE_MIN
+    dados['efdreinf_timeout'] = int(config.EFDREINF_TIMEOUT)
 
     if not os.path.isfile(cert_pem_file) and cert_host:
 
@@ -337,7 +337,7 @@ def send_xml(request, transmissor_id, service):
     dados['service'] = service
     dados['url'] = URL
     dados['cert'] = cert_pem_file
-    dados['cacert'] = '%s/%s' % (BASE_DIR, CA_CERT_PEM_FILE)
+    dados['cacert'] = '%s/%s' % (BASE_DIR, config.CA_CERT_PEM_FILE)
     dados['key'] = key_pem_file
     dados['action'] = ACTION
     dados['timeout'] = dados['efdreinf_timeout']

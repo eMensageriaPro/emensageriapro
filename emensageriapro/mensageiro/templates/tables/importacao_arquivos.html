@@ -40,7 +40,11 @@
             {% if not for_print %}
             <td>
                 <div>
-                    <a href="{% url 'processar_arquivos_imprimir' pk=a.id %}"><span class="btn btn-primary" title="Imprimir"><i class="fa fa-fw fa-print"></i></span></a>
+                    <a href="{% url 'processar_arquivos_imprimir' pk=a.id %}">
+    <span class="btn btn-primary" title="Imprimir">
+        <i class="fa fa-fw fa-print"></i>
+    </span>
+</a>
                         {% if perms.mensageiro.change_ImportacaoArquivos or perms.mensageiro.add_ImportacaoArquivos %}
                     
                         <a href="{% url 'importacao_arquivos_salvar' pk=a.id tab='master' %}">

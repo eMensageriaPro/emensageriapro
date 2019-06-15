@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 
 
+from constance import config
 import datetime
 from django.http import HttpResponseNotFound
 from django.contrib import messages
@@ -111,8 +112,8 @@ def criar_transmissor_esocial(request, grupo, nrinsc, tpinsc):
     if not transmissor_esocial_lista:
 
         transmissor = TransmissorLote.objects.filter(
-            empregador_nrinsc=nrinsc,
-            empregador_tpinsc=tpinsc).all()
+            nrinsc=nrinsc,
+            tpinsc=tpinsc).all()
 
         if not transmissor:
 
@@ -140,8 +141,8 @@ def criar_transmissor_esocial(request, grupo, nrinsc, tpinsc):
 
             dados = {}
             dados['transmissor_id'] = transmissor[0].id
-            dados['empregador_tpinsc'] = transmissor[0].empregador_tpinsc
-            dados['empregador_nrinsc'] = transmissor[0].empregador_nrinsc
+            dados['empregador_tpinsc'] = transmissor[0].tpinsc
+            dados['empregador_nrinsc'] = transmissor[0].nrinsc
             dados['grupo'] = grupo
             dados['status'] = 0
             transmissor_esocial = TransmissorLoteEsocial(**dados)
@@ -164,7 +165,7 @@ def vincular_transmissor_esocial(request, grupo, model, a):
         eventos_lista = TransmissorEventosEsocial.objects.filter(
             transmissor_lote_esocial=te.id).all()
 
-        if len(eventos_lista) < te.transmissor.esocial_lote_max:
+        if len(eventos_lista) < config.ESOCIAL_LOTE_MAX:
             model.objects.filter(id=a.id).update(transmissor_lote_esocial=te)
 
         txt = 'Evento vinculado com sucesso!'

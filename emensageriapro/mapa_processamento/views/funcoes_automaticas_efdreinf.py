@@ -39,6 +39,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 
 
+from constance import config
 import datetime
 from django.contrib import messages
 from django.http import HttpResponseNotFound
@@ -109,8 +110,8 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
     if not transmissor_efdreinf_lista:
 
         transmissor = TransmissorLote.objects.filter(
-            contribuinte_nrinsc=nrinsc,
-            contribuinte_tpinsc=tpinsc).all()
+            nrinsc=nrinsc,
+            tpinsc=tpinsc).all()
 
         if not transmissor:
 
@@ -137,8 +138,8 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
 
             dados = {}
             dados['transmissor_id'] = transmissor[0].id
-            dados['contribuinte_tpinsc'] = transmissor[0].contribuinte_tpinsc
-            dados['contribuinte_nrinsc'] = transmissor[0].contribuinte_nrinsc
+            dados['contribuinte_tpinsc'] = transmissor[0].tpinsc
+            dados['contribuinte_nrinsc'] = transmissor[0].nrinsc
             dados['grupo'] = grupo
             dados['status'] = 0
             transmissor_efdreinf = TransmissorLoteEfdreinf(**dados)
@@ -160,7 +161,7 @@ def vincular_transmissor_efdreinf(request, grupo, model, a):
         eventos_lista = TransmissorEventosEfdreinf.objects.filter(
             transmissor_lote_efdreinf=te.id).all()
 
-        if len(eventos_lista) < te.transmissor.efdreinf_lote_max:
+        if len(eventos_lista) < config.EFDREINF_LOTE_MAX:
             model.objects.filter(id=a.id).update(transmissor_lote_efdreinf=te)
 
         txt = 'Evento vinculado com sucesso!'

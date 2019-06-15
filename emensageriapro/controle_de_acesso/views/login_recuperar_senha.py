@@ -37,6 +37,7 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 
 """
 
+from constance import config
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse, Http404
 from django.shortcuts import render,redirect
@@ -110,17 +111,14 @@ def gera_senha(tamanho):
 def enviar_email_senha_recuperar(nome, email_usuario, senha):
     from django.utils.html import strip_tags
     from django.core.mail import send_mail
-    from emensageriapro.settings import LINK_WEBSITE, EMAIL_RECUPERACAO_SENHA
-    mensagem_html = u"""
-            <p>Prezado %s,<br>
-            Acesse o sistema pelo link
-            <a href="%s">eMensageriaPro</a><br>
-            Nova senha é <strong>%s</strong><br>
-            E-mail gerado automaticamente pelo sistema eMensageria</p>
-        """ % (LINK_WEBSITE, nome, senha)
+    from emensageriapro.settings import LINK_WEBSITE
+    EMAIL_RECUPERACAO_SENHA = config.EMAIL_RECUPERACAO_SENHA
+    EMAIL_RECUPERACAO_SENHA_ASSUNTO = config.EMAIL_RECUPERACAO_SENHA_ASSUNTO
+    EMAIL_RECUPERACAO_SENHA_MENSAGEM = config.EMAIL_RECUPERACAO_SENHA_MENSAGEM
+    mensagem_html = EMAIL_RECUPERACAO_SENHA_MENSAGEM % (LINK_WEBSITE, nome, senha)
 
     send_mail(
-        u'Criação/Recuperação de senha | eMensageriaPro',
+        EMAIL_RECUPERACAO_SENHA_ASSUNTO,
         strip_tags(mensagem_html),
         EMAIL_RECUPERACAO_SENHA,
         [ email_usuario, ],
@@ -130,30 +128,28 @@ def enviar_email_senha_recuperar(nome, email_usuario, senha):
 
 
 def recuperar_senha_funcao(email):
-    db_slug = 'default'
-    dados_usuario = User.objects.using(db_slug).get(email=email)
+    dados_usuario = User.objects.get(email=email)
     from django.contrib.auth.hashers import make_password
     nova_senha = gera_senha(10)
     hashed_password = make_password(nova_senha)
-    User.objects.using(db_slug).filter(email=email).update(password=hashed_password)
+    User.objects.filter(email=email).update(password=hashed_password)
     enviar_email_senha_recuperar(dados_usuario.first_name, email, nova_senha)
 
 
 
 
 def recuperar_senha(request):
-    db_slug = 'default'
     if request.method == 'POST':
         email = request.POST.get('email')
         try:
-            dados_usuario = User.objects.using(db_slug).get(email=email)
+            dados_usuario = User.objects.get(email=email)
         except:
             dados_usuario = None
         if dados_usuario:
             from django.contrib.auth.hashers import make_password
             nova_senha = gera_senha(10)
             hashed_password = make_password(nova_senha)
-            User.objects.using(db_slug).filter(email=email).update(password=hashed_password)
+            User.objects.filter(email=email).update(password=hashed_password)
             enviar_email_senha_recuperar(dados_usuario.first_name, email, nova_senha)
             messages.success(request, 'Senha criada/alterada com sucesso, a nova senha foi enviada para seu e-mail!')
             return redirect('login')

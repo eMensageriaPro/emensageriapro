@@ -81,7 +81,7 @@ def validar_evento_funcao(request, pk):
     from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.efdreinf.views.r4098_evtreab_gerar_xml import gerar_xml_assinado
-    VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO
     
     lista_validacoes = []
     r4098_evtreab = get_object_or_404(r4098evtReab, id=pk)
@@ -185,7 +185,7 @@ def validar_evento_funcao(request, pk):
 def validar_evento(request, pk, tab=None):
 
     from emensageriapro.settings import VERSOES_EFDREINF
-    VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.VERIFICAR_PREDECESSAO_ANTES_ENVIO
+    VERIFICAR_PREDECESSAO_ANTES_ENVIO = config.EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO
 
     STATUS_VALIDACAO = (
         STATUS_EVENTO_CADASTRADO,

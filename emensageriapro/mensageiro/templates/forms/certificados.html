@@ -5,7 +5,7 @@
 <!-- inicio__certificados__nome -->
 <div class="col-md-8" id="certificados__nome__div">
   <div class="form-group">
-    <label id="certificados__nome__label">Nome*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="certificados__nome__label">Nome*<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
       {% if certificados_form.nome.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ certificados_form.nome.errors }}
@@ -20,7 +20,7 @@
 <!-- inicio__certificados__certificado -->
 <div class="col-md-12" id="certificados__certificado__div">
     <div class="form-group">
-      <label id="certificados__certificado__label">Arquivo do Certificado*<a data-toggle="tooltip" title="-"><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="certificados__certificado__label">Arquivo do Certificado*<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
           {% if certificados_form.certificado.errors %}
             <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
                 {{ certificados_form.certificado.errors }}

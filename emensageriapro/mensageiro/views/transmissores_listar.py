@@ -73,31 +73,11 @@ def listar(request, output=None):
             'show_empregador_dados': 0,
             'show_nome_empresa': 1,
             'show_data_abertura': 0,
-            'show_validar_eventos': 0,
-            'show_verificar_predecessao': 0,
-            'show_envio_automatico': 0,
             'show_logotipo': 0,
             'show_endereco_completo': 0,
-            'show_eSocial': 0,
-            'show_empregador_nrinsc': 1,
-            'show_empregador_tpinsc': 1,
-            'show_esocial_lote_min': 0,
-            'show_esocial_lote_max': 0,
-            'show_esocial_timeout': 0,
-            'show_esocial_intervalo': 0,
-            'show_esocial_tempo_prox_envio': 0,
-            'show_esocial_certificado': 0,
-            'show_esocial_pasta': 0,
-            'show_efdreinf': 0,
-            'show_contribuinte_nrinsc': 1,
-            'show_contribuinte_tpinsc': 1,
-            'show_efdreinf_lote_min': 0,
-            'show_efdreinf_lote_max': 0,
-            'show_efdreinf_timeout': 0,
-            'show_efdreinf_intervalo': 0,
-            'show_efdreinf_tempo_prox_envio': 0,
-            'show_efdreinf_certificado': 0,
-            'show_efdreinf_pasta': 0, }
+            'show_nrinsc': 1,
+            'show_tpinsc': 1,
+            'show_certificado': 0, }
             
         post = False
         #ANTES-POST-LISTAGEM
@@ -112,10 +92,8 @@ def listar(request, output=None):
                 'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
                 'empregador_dados': 'empregador_dados',
                 'nome_empresa__icontains': 'nome_empresa__icontains',
-                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
-                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
-                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
-                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains', }
+                'nrinsc__icontains': 'nrinsc__icontains',
+                'tpinsc__icontains': 'tpinsc__icontains', }
                 
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
@@ -131,10 +109,8 @@ def listar(request, output=None):
                     'transmissor_nrinsc__icontains': 'transmissor_nrinsc__icontains',
                     'empregador_dados': 'empregador_dados',
                     'nome_empresa__icontains': 'nome_empresa__icontains',
-                    'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
-                    'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
-                    'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
-                    'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains', }
+                    'nrinsc__icontains': 'nrinsc__icontains',
+                    'tpinsc__icontains': 'tpinsc__icontains', }
                     
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)

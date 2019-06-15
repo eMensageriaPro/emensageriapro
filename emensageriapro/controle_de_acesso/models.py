@@ -84,6 +84,7 @@ class ConfigPerfis(SoftDeletionModel):
         else:
             return self.id
 
+
     class Meta:
     
         verbose_name = u'Perfis'
@@ -126,14 +127,6 @@ class Usuarios(SoftDeletionModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     config_perfis = models.ForeignKey('ConfigPerfis',
         related_name='%(class)s_config_perfis')
-        
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
     
     def __unicode__(self):
     
@@ -197,14 +190,6 @@ class Auditoria(SoftDeletionModel):
     data_hora = models.DateTimeField(blank=True, )
     tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -251,30 +236,30 @@ class AuditoriaSerializer(ModelSerializer):
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-        
-        
+
+
 class UserGroups(models.Model):
 
     user_id = models.IntegerField()
     group_id = models.IntegerField()
 
-    def __unicode__(self):
-
-        return unicode(self.id) + unicode(self.user_id) + unicode(self.group_id)
-
     class Meta:
-
-        verbose_name = u'Grupos de Usuários'
         db_table = r'auth_user_groups'
         managed = False
-
-
 
 
 class PerfilGroups(models.Model):
     
     configperfis_id = models.IntegerField()
     group_id = models.IntegerField()
+
+    def save(self, *args, **kwargs):
+        from emensageriapro.controle_de_acesso.admin import update_user
+        from emensageriapro.controle_de_acesso.models import Usuarios
+        users = Usuarios.objects.filter(configperfis_id=self.configperfis_id).all()
+        for u in users:
+            update_user(u.user)
+        super(PerfilGroups, self).save(*args, **kwargs)
 
     class Meta:
         db_table = r'config_perfis_grupos'

@@ -11,17 +11,11 @@
             {% if show_fields.show_nome_empresa or 1 %}
             <th>Nome da Empresa</th>
             {% endif %}
-            {% if show_fields.show_empregador_nrinsc or 1 %}
-            <th>CPF/CNPJ</th>
+            {% if show_fields.show_nrinsc or 1 %}
+            <th>CPF/CNPJ (Empregador/Contribuinte)</th>
             {% endif %}
-            {% if show_fields.show_empregador_tpinsc or 1 %}
-            <th>Tipo de Inscrição</th>
-            {% endif %}
-            {% if show_fields.show_contribuinte_nrinsc or 1 %}
-            <th>CPF/CNPJ</th>
-            {% endif %}
-            {% if show_fields.show_contribuinte_tpinsc or 1 %}
-            <th>Tipo de Inscrição</th>
+            {% if show_fields.show_tpinsc or 1 %}
+            <th>Tipo de Inscrição (Empregador/Contribuinte)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not for_print %}
@@ -41,17 +35,11 @@
             {% if show_fields.show_nome_empresa or 1 %}
             <td>{{ a.nome_empresa }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_nrinsc or 1 %}
-            <td>{{ a.empregador_nrinsc }}</td>
+            {% if show_fields.show_nrinsc or 1 %}
+            <td>{{ a.nrinsc }}</td>
             {% endif %}
-            {% if show_fields.show_empregador_tpinsc or 1 %}
-            <td>{{ a.get_empregador_tpinsc_display }}</td>
-            {% endif %}
-            {% if show_fields.show_contribuinte_nrinsc or 1 %}
-            <td>{{ a.contribuinte_nrinsc }}</td>
-            {% endif %}
-            {% if show_fields.show_contribuinte_tpinsc or 1 %}
-            <td>{{ a.get_contribuinte_tpinsc_display }}</td>
+            {% if show_fields.show_tpinsc or 1 %}
+            <td>{{ a.get_tpinsc_display }}</td>
             {% endif %}
             
             <!-- colunas especiais -->
