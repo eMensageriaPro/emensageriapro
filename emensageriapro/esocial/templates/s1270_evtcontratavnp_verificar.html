@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
 <!--
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -32,482 +32,131 @@
 
 -->
 {% if not output %}
-
-    <section class="content-header">
-      <h1>
+<section class="content-header">
+    <h1>
         S-1270 - Contratação de Trabalhadores Avulsos Não Portuários
         <small>Verificações</small>
-      </h1>
-      <ol class="breadcrumb">
+    </h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">S-1270 - Contratação de Trabalhadores Avulsos Não Portuários</a></li>
         <li class="active">Verificar</li>
-      </ol>
-    </section>
-    <section class="content">
+    </ol>
+</section>
+<section class="content">
 
-        {% if messages %}
-                <div class="pad margin no-print">
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-                        {{ message }}
-                    </div>
-            {% endfor %}
+    {% if messages %}
+            <div class="pad margin no-print">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
                 </div>
+        {% endfor %}
+            </div>
+    {% endif %}
+    {% if s1270_evtcontratavnp.ocorrencias %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <strong>Ocorrências reportadas:</strong><br>
+                        <p>{% autoescape off %}{{ s1270_evtcontratavnp.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        S-1270 - Contratação de Trabalhadores Avulsos Não Portuários<br>
+                        Identidade: {{ s1270_evtcontratavnp.identidade }}
+                    </h3>
+                    <div class="text-right">
+                        <a href="{% url 's1270_evtcontratavnp_verificar_output' pk=pk output='html' %}" target="_blank">
+                            <span type="button" class="btn btn-primary btn-lg">
+                                <i class="fa fa-print"></i>&nbsp;Imprimir
+                            </span>
+                        </a>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle btn-lg"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-download"></i>&nbsp;Exportar
+                                    <span class="sr-only">Exportar</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left">
+                                    <a href="{% url 's1270_evtcontratavnp_verificar_output' pk=pk output='html' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 's1270_evtcontratavnp_verificar_output' pk=pk output='pdf' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 's1270_evtcontratavnp_verificar_output' pk=pk output='xls' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>              
+                    </div>
+                    <div class="box-body">
+                        <h4>Layout</h4>
+                        {% include 'tables/s1270_evtcontratavnp_verificar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<style>
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border: 1px solid black;
+      padding: 5px
+    }
+</style>
+{% if output == 'html' %}
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12">
         {% endif %}
-
-      
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">S-1270 - Contratação de Trabalhadores Avulsos Não Portuários<br>Identidade: {{ s1270_evtcontratavnp.identidade }}</h3>
-              <div class="text-right">
-                <a href="{% url 's1270_evtcontratavnp_verificar' pk=pk %}" target="_blank">
-                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                </a>
-
-
-
-                  <div class="btn-group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
-                                </button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="text-left"><a
-                                            href="{% url 's1270_evtcontratavnp_verificar_output' pk=pk output='pdf' %}"
-                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                    <li class="text-left"><a
-                                            href="{% url 's1270_evtcontratavnp_verificar_output' pk=pk output='xls' %}"
-                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                </ul>
-                            </div>&nbsp;
-
-              </div>              
-            </div>
-            <div class="box-body">
-{% else %} 
-   <section class="invoice">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            S-1270 - Contratação de Trabalhadores Avulsos Não Portuários<br>Identidade: {{ s1270_evtcontratavnp.identidade }}
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
-          </h2>
+            <h2 class="page-header">
+                S-1270 - Contratação de Trabalhadores Avulsos Não Portuários<br>
+                Identidade: {{ s1270_evtcontratavnp.identidade }}
+                <small class="pull-right">
+                    Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                    Data: {{ data }}
+                </small>
+                {% if output == 'html' %}
+            </h2>
         </div>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-xs-12 table-responsive">
-{% endif %} 
-
-
-
-
-      <h4>Layout</h4>
-
-
-
-
-<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
-              
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">evtContratAvNP</td>
-            <td bgcolor="lightgray" colspan="3">Remuneração de Trabalhadores Avulsos Não Portuários. <regras_validacao> REGRA_EVENTOS_EXTEMP REGRA_EVE_FOPAG_INCOMPAT_ DECTERCEIRO REGRA_EVE_FOPAG_IND_RETIFICACAO REGRA_EVE_FOPAG_PERMITE_EXCLUSAO REGRA_EXISTE_INFO_EMPREGADOR</td>
-        </tr>
-    {% for s1270_evtcontratavnp in s1270_evtcontratavnp_lista %}
-    {% ifequal 1 1 %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento.</td>
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.indretif|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.indretif" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indRetif</td>
-            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.indretif or s1270_evtcontratavnp.indretif == 0 %}{{ s1270_evtcontratavnp.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.nrrecibo|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.nrrecibo or s1270_evtcontratavnp.nrrecibo == 0 %}{{ s1270_evtcontratavnp.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.indapuracao|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.indapuracao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indApuracao</td>
-            <td width="500px">Indicativo de período de apuração<opcoes>1 - Mensal. <valores_validos> 1.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.indapuracao or s1270_evtcontratavnp.indapuracao == 0 %}{{ s1270_evtcontratavnp.indapuracao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.perapur|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.perapur" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">perApur</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações. <validacao> Deve ser um mês/ano válido, igual ou posterior a implementação do eSocial.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.perapur or s1270_evtcontratavnp.perapur == 0 %}{{ s1270_evtcontratavnp.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.tpamb|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.tpamb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.tpamb or s1270_evtcontratavnp.tpamb == 0 %}{{ s1270_evtcontratavnp.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.procemi|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.procemi" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.procemi or s1270_evtcontratavnp.procemi == 0 %}{{ s1270_evtcontratavnp.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.verproc|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.verproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">verProc</td>
-            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.verproc or s1270_evtcontratavnp.verproc == 0 %}{{ s1270_evtcontratavnp.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.tpinsc|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.tpinsc or s1270_evtcontratavnp.tpinsc == 0 %}{{ s1270_evtcontratavnp.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_evtcontratavnp.nrinsc|validacoes_esocial_efdreinf:"s1270_evtcontratavnp.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
-            <td width="200px"><b>{% if s1270_evtcontratavnp.nrinsc or s1270_evtcontratavnp.nrinsc == 0 %}{{ s1270_evtcontratavnp.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270evtContratAvNP or perms.esocial.can_see_s1270evtContratAvNP %}
-                <a href="{% url 's1270_evtcontratavnp_salvar' pk=s1270_evtcontratavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">remunAvNP</td>
-            <td bgcolor="lightgray" colspan="3">Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</td>
-        </tr>
-    {% for s1270_remunavnp in s1270_remunavnp_lista %}
-    {% ifequal s1270_remunavnp.s1270_evtcontratavnp.id s1270_evtcontratavnp.id %}
-        <tr {% if s1270_remunavnp.tpinsc|validacoes_esocial_efdreinf:"s1270_remunavnp.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a CNPJ, CAEPF ou CNO. <valores_validos> 1, 3, 4.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.tpinsc or s1270_remunavnp.tpinsc == 0 %}{{ s1270_remunavnp.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.nrinsc|validacoes_esocial_efdreinf:"s1270_remunavnp.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Deve constar na tabela de Estabelecimentos e Obras de Construção Civil (S-1005).</td>
-            <td width="200px"><b>{% if s1270_remunavnp.nrinsc or s1270_remunavnp.nrinsc == 0 %}{{ s1270_remunavnp.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.codlotacao|validacoes_esocial_efdreinf:"s1270_remunavnp.codlotacao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> Deve ser um código existente na tabela de LOTACOES.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.codlotacao or s1270_remunavnp.codlotacao == 0 %}{{ s1270_remunavnp.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrbccp00|validacoes_esocial_efdreinf:"s1270_remunavnp.vrbccp00" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrBcCp00</td>
-            <td width="500px">Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrbccp00 or s1270_remunavnp.vrbccp00 == 0 %}{{ s1270_remunavnp.vrbccp00 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrbccp15|validacoes_esocial_efdreinf:"s1270_remunavnp.vrbccp15" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrBcCp15</td>
-            <td width="500px">Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrbccp15 or s1270_remunavnp.vrbccp15 == 0 %}{{ s1270_remunavnp.vrbccp15 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrbccp20|validacoes_esocial_efdreinf:"s1270_remunavnp.vrbccp20" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrBcCp20</td>
-            <td width="500px">Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrbccp20 or s1270_remunavnp.vrbccp20 == 0 %}{{ s1270_remunavnp.vrbccp20 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrbccp25|validacoes_esocial_efdreinf:"s1270_remunavnp.vrbccp25" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrBcCp25</td>
-            <td width="500px">Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrbccp25 or s1270_remunavnp.vrbccp25 == 0 %}{{ s1270_remunavnp.vrbccp25 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrbccp13|validacoes_esocial_efdreinf:"s1270_remunavnp.vrbccp13" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrBcCp13</td>
-            <td width="500px">Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrbccp13 or s1270_remunavnp.vrbccp13 == 0 %}{{ s1270_remunavnp.vrbccp13 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrbcfgts|validacoes_esocial_efdreinf:"s1270_remunavnp.vrbcfgts" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrBcFgts</td>
-            <td width="500px">Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrbcfgts or s1270_remunavnp.vrbcfgts == 0 %}{{ s1270_remunavnp.vrbcfgts }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1270_remunavnp.vrdesccp|validacoes_esocial_efdreinf:"s1270_remunavnp.vrdesccp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vrDescCP</td>
-            <td width="500px">Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários.</td>
-            <td width="200px"><b>{% if s1270_remunavnp.vrdesccp or s1270_remunavnp.vrdesccp == 0 %}{{ s1270_remunavnp.vrdesccp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1270.can_see_s1270remunAvNP or perms.esocial.can_see_s1270remunAvNP %}
-                <a href="{% url 's1270_remunavnp_salvar' pk=s1270_remunavnp.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
-</table>
-{% if not for_print %}
-            </div>
-          </div>
+        {% endif %}
+            <h4>Ocorrências reportadas:</h4>
+            <p>{% autoescape off %}{{ s1270_evtcontratavnp.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            <h4>Layout</h4>
+            {% include 'tables/s1270_evtcontratavnp_verificar.html' %}
+            {% if output == 'html' %}
         </div>
-      </div>
-    </section>
-{% else %} 
-
-        </div>
-      </div>
-    </section>
-{% endif %}  
-
+    </div>
+</section>
+{% endif %}
+{% endif %}
 {% endblock content %}

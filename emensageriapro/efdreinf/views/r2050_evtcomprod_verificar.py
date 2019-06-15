@@ -106,21 +106,22 @@ def verificar(request, pk, output=None):
                 filename="r2050_evtcomprod.pdf",
                 context=context,
                 show_content_in_browser=True,
-                cmd_options={'margin-top': 5,
-                            'margin-bottom': 5,
-                            'margin-right': 5,
-                            'margin-left': 5,
-                            "zoom": 3,
-                            "viewport-size": "1366 x 513",
-                            'javascript-delay': 1000,
-                            'footer-center': '[page]/[topage]',
-                            "no-stop-slow-scripts": True} )
+                cmd_options={'margin-top': 10,
+                             'margin-bottom': 10,
+                             'margin-right': 10,
+                             'margin-left': 20,
+                             'zoom': 1,
+                             'viewport-size': '1366 x 513',
+                             'javascript-delay': 1000,
+                             'footer-center': u'Página [page]/[topage]',
+                             'footer-font-size': 10,
+                             'no-stop-slow-scripts': True})
                             
             return response
 
         elif output == 'xls':
         
-            response =  render_to_response('r2050_evtcomprod_verificar.html', context)
+            response = render_to_response('r2050_evtcomprod_verificar.html', context)
             filename = "%s.xls" % r2050_evtcomprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
@@ -129,7 +130,7 @@ def verificar(request, pk, output=None):
 
         elif output == 'csv':
         
-            response =  render_to_response('r2050_evtcomprod_verificar.html', context)
+            response = render_to_response('r2050_evtcomprod_verificar.html', context)
             filename = "%s.csv" % r2050_evtcomprod.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'

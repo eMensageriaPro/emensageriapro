@@ -1,0 +1,508 @@
+{% load templatetags %}
+<table {% if not output %}
+    class="table table-bordered"{% else %} 
+    width="100%"{% endif %}>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtBasesTrab</td>
+            <td bgcolor="lightgray" colspan="3">Evento Bases por Trabalhador.</td>
+        </tr>
+    {% for s5001_evtbasestrab in s5001_evtbasestrab_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do evento de retorno.</td>
+        </tr>
+
+        <tr {% if s5001_evtbasestrab.nrrecarqbase|validacoes_esocial_efdreinf:"s5001_evtbasestrab.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecArqBase</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve corresponder ao recibo de um arquivo com informações de remuneração de trabalhador vinculado a RGPS (S-1200, S-2299 ou S-2399).</td>
+            <td width="200px"><b>{% if s5001_evtbasestrab.nrrecarqbase or s5001_evtbasestrab.nrrecarqbase == 0 %}{{ s5001_evtbasestrab.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001evtBasesTrab or perms.esocial.can_see_s5001evtBasesTrab %}
+                <a href="{% url 's5001_evtbasestrab_salvar' pk=s5001_evtbasestrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_evtbasestrab.indapuracao|validacoes_esocial_efdreinf:"s5001_evtbasestrab.indapuracao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indApuracao</td>
+            <td width="500px">Indicativo de período de apuração: 1 - Mensal; 2 - Anual (13° salário). Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s5001_evtbasestrab.indapuracao or s5001_evtbasestrab.indapuracao == 0 %}{{ s5001_evtbasestrab.indapuracao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001evtBasesTrab or perms.esocial.can_see_s5001evtBasesTrab %}
+                <a href="{% url 's5001_evtbasestrab_salvar' pk=s5001_evtbasestrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_evtbasestrab.perapur|validacoes_esocial_efdreinf:"s5001_evtbasestrab.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. Validação: Deve ser um mês/ano ou ano válido, posterior a implementação do eSocial.</td>
+            <td width="200px"><b>{% if s5001_evtbasestrab.perapur or s5001_evtbasestrab.perapur == 0 %}{{ s5001_evtbasestrab.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001evtBasesTrab or perms.esocial.can_see_s5001evtBasesTrab %}
+                <a href="{% url 's5001_evtbasestrab_salvar' pk=s5001_evtbasestrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s5001_evtbasestrab.tpinsc|validacoes_esocial_efdreinf:"s5001_evtbasestrab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s5001_evtbasestrab.tpinsc or s5001_evtbasestrab.tpinsc == 0 %}{{ s5001_evtbasestrab.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001evtBasesTrab or perms.esocial.can_see_s5001evtBasesTrab %}
+                <a href="{% url 's5001_evtbasestrab_salvar' pk=s5001_evtbasestrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_evtbasestrab.nrinsc|validacoes_esocial_efdreinf:"s5001_evtbasestrab.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s5001_evtbasestrab.nrinsc or s5001_evtbasestrab.nrinsc == 0 %}{{ s5001_evtbasestrab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001evtBasesTrab or perms.esocial.can_see_s5001evtBasesTrab %}
+                <a href="{% url 's5001_evtbasestrab_salvar' pk=s5001_evtbasestrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideTrabalhador</td>
+            <td bgcolor="lightgray" colspan="3">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</td>
+        </tr>
+
+        <tr {% if s5001_evtbasestrab.cpftrab|validacoes_esocial_efdreinf:"s5001_evtbasestrab.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s5001_evtbasestrab.cpftrab or s5001_evtbasestrab.cpftrab == 0 %}{{ s5001_evtbasestrab.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001evtBasesTrab or perms.esocial.can_see_s5001evtBasesTrab %}
+                <a href="{% url 's5001_evtbasestrab_salvar' pk=s5001_evtbasestrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">procJudTrab</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuição previdenciária.</td>
+        </tr>
+    {% for s5001_procjudtrab in s5001_procjudtrab_lista %}
+    {% ifequal s5001_procjudtrab.s5001_evtbasestrab.id s5001_evtbasestrab.id %}
+        <tr {% if s5001_procjudtrab.nrprocjud|validacoes_esocial_efdreinf:"s5001_procjudtrab.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProcJud</td>
+            <td width="500px">Informar o número do processo judicial. Validação: Origem: {nrProcJud} em S-1200, S-2299 e S-2399 se {tpTrib}= [2].</td>
+            <td width="200px"><b>{% if s5001_procjudtrab.nrprocjud or s5001_procjudtrab.nrprocjud == 0 %}{{ s5001_procjudtrab.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001procJudTrab or perms.esocial.can_see_s5001procJudTrab %}
+                <a href="{% url 's5001_procjudtrab_salvar' pk=s5001_procjudtrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_procjudtrab.codsusp|validacoes_esocial_efdreinf:"s5001_procjudtrab.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: Origem: {codSusp} em S-1200, S-2299 e S-2399 se {tpTrib} = [2].</td>
+            <td width="200px"><b>{% if s5001_procjudtrab.codsusp or s5001_procjudtrab.codsusp == 0 %}{{ s5001_procjudtrab.codsusp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001procJudTrab or perms.esocial.can_see_s5001procJudTrab %}
+                <a href="{% url 's5001_procjudtrab_salvar' pk=s5001_procjudtrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCpCalc</td>
+            <td bgcolor="lightgray" colspan="3">Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.</td>
+        </tr>
+    {% for s5001_infocpcalc in s5001_infocpcalc_lista %}
+    {% ifequal s5001_infocpcalc.s5001_evtbasestrab.id s5001_evtbasestrab.id %}
+        <tr {% if s5001_infocpcalc.tpcr|validacoes_esocial_efdreinf:"s5001_infocpcalc.tpcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCR</td>
+            <td width="500px">Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1082-01 - Contribuição previdenciária (CP) descontada do segurado empregado/avulso, alíquotas 8%, 9% ou 11%; 1082-02 - CP descontada do segurado empregado rural curto prazo, alíquota de 8%, lei 11718/2008; 1082-03 - CP descontada do segurado empregado doméstico ou segurado especial, alíquota de 8%, 9% ou 11%; 1082-04 - CP descontada do segurado especial curto prazo, alíquota de 8%, lei 11718/2008; 1082-21 - CP descontada do segurado empregado/avulso 13° salário, alíquotas 8%, 9% ou 11%. (codIncCP = [12, 16]); 1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16]); 1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário, alíquota de 8%, 9% ou 11% ;(codIncCP = [12, 16]); 1082-24 - CP descontada do segurado especial curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16]); 1099-01 - CP descontada do contribuinte individual, alíquota de 11%; 1099-02 - CP descontada do contribuinte individual, alíquota de 20%. Validação: Se indApuracao = [2], tpCR = 1082-21, 1082,22, 1082-23, 1082- 24.</td>
+            <td width="200px"><b>{% if s5001_infocpcalc.tpcr or s5001_infocpcalc.tpcr == 0 %}{{ s5001_infocpcalc.tpcr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoCpCalc or perms.esocial.can_see_s5001infoCpCalc %}
+                <a href="{% url 's5001_infocpcalc_salvar' pk=s5001_infocpcalc.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_infocpcalc.vrcpseg|validacoes_esocial_efdreinf:"s5001_infocpcalc.vrcpseg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCpSeg</td>
+            <td width="500px">Valor da contribuição do segurado, devida à Previdência Social, calculada segundo as regras da legislação em vigor, por CR. Validação: 1. Se {indMV} do S-1200/S-2299/S-2399 = [3], {vrCpSeg} = 0, portanto não há CR; 2. Se {indMV} do S-1200/S-2299/S-2399 = [1,2], efetuar o somatório das ocorrências do campo {vlrRemunOE} e o somatório de {valor} quando {tpValor} = [11,12,13,14,19] do grupo {infoBaseCS}, resultando em [TotalRemun]. Este procedimento visa a identificação da alíquota aplicável: 2.1. Se {indMV} do S-1200/S-2299/S-2399 = [1] aplicar a alíquota conforme a categoria do segurado sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor} = [11,12,13,14,19], do grupo {infoBaseCS}), observando o limite máximo do salário de contribuição. 2.2. Se {indMV} do S-1200/S-2299/S-2399 = [2]: a) se [TotalRemun] ultrapassar o limite máximo do Salário de Contribuição, aplicar a alíquota conforme a categoria do segurado sobre a diferença entre o referido limite máximo e o somatório das ocorrências do campo {vlrRemunOE}; b) se [TotalRemun] for inferior ao limite máximo do Salário de Contribuição: b1) Para as categorias empregado/avulso/agente público: somar {vlrRemunOE} destas mesmas categorias com o somatório de {valor} quando {tpValor}=[11, 12, 13, 14, 19] do grupo {infoBaseCS} e aplicar a alíquota conforme a categoria do segurado sobre a remuneração paga pelo declarante. b2) Para categoria contribuinte individual: aplicar a alíquota referente a [TotalRemun], conforme a categoria do segurado, sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS}). 3. Se não informado o grupo {infoMV} do S-1200/S-2299/S-2399: a) se o trabalhador presta serviço para a empresa declarante em apenas uma categoria {codCateg}, efetuar o somatório de {valor} qdo {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} e aplicar a alíquota conforme a categoria. b) se o trabalhador presta serviço para a empresa declarante em mais de uma categoria {codCateg}: I. efetuar o somatório de {valor} qdo {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias de segurado empregado/avulso/agente público e aplicar a alíquota correta conforme faixa salarial observado o limite máximo do salário de contribuição; II. Caso o somatório do item I não tenha atingido o limite máximo do salário de contribuição, efetuar o somatório de {valor} qdo {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias diferentes de segurado empregado e aplicar a alíquota correta conforme a categoria, observado o limite máximo do salário de contribuição. OBS.: a) No caso de {indapur}=[1], o cálculo deve ser efetuado separadamente para {ind13}= [0] e {ind13}=[1]. A soma de ambos cálculos deve correspondente ao valor {vrCpSeg}. b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias 731 ou 734, quando o Empregador for Cooperativa de Trabalho ({indCoop}=[1]), ou pertencente à categoria 'Contribuinte Individual', quando o Empregador tiver classificação tributária ({classTrib}) = [70,80]. Caso o trabalhador receba remuneração da empresa em outra categoria de contribuinte individual (7XX), primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias 731 ou 734, observando o teto do salário de contribuição. c) {vrCpSeg} deve ser igual a {vrDescSeg} nas seguintes situações: c1) se houver informações em {infoPerAnt} na composição de {infoBaseCS/valor}; c2) se houver informação de {procJudTrab} com {tpTrib} = [2] nos eventos que contenham informações de remuneração (S-1200, S-2299 e S-2399); c3) se houver processo do empregador informado em S-1010, contestando incidência de contribuição previdenciária em rubricas utilizadas na composição da remuneração do trabalhador; c4) se, no período de apuração mensal, houver remuneração referente a 13º salário ({codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]). Nesse caso, o campo {vrCpSeg} será igual ao valor calculado sobre a remuneração mensal acrescido do desconto sobre a remuneração relativa a 13° salário informado pelo empregador. d) No caso de trabalhador categoria = [102], utilizar somente a alíquota de 8%, observando o limite máximo do salário de contribuição; e) No caso de empregador com {classTrib} = [21,60], não calcular para a categoria contribuinte individual (grupo 700). O valor deve ser zerado; f) Não calcular quando a categoria do trabalhador for [741] (MEI). O valor deve ser zerado. g) Não calcular quando a lotação tributária for [91]. O valor deve ser zerado.</td>
+            <td width="200px"><b>{% if s5001_infocpcalc.vrcpseg or s5001_infocpcalc.vrcpseg == 0 %}{{ s5001_infocpcalc.vrcpseg }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoCpCalc or perms.esocial.can_see_s5001infoCpCalc %}
+                <a href="{% url 's5001_infocpcalc_salvar' pk=s5001_infocpcalc.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_infocpcalc.vrdescseg|validacoes_esocial_efdreinf:"s5001_infocpcalc.vrdescseg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDescSeg</td>
+            <td width="500px">Valor efetivamente descontado do segurado, correspondente a {tpValor} = [21], do correspondente {tpCR}.</td>
+            <td width="200px"><b>{% if s5001_infocpcalc.vrdescseg or s5001_infocpcalc.vrdescseg == 0 %}{{ s5001_infocpcalc.vrdescseg }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoCpCalc or perms.esocial.can_see_s5001infoCpCalc %}
+                <a href="{% url 's5001_infocpcalc_salvar' pk=s5001_infocpcalc.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCp</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos, referentes à Remuneração do Período de Apuração e de Períodos Anteriores informados nos eventos S-1200, S-2299 e S-2399.</td>
+        </tr>
+    {% for s5001_infocp in s5001_infocp_lista %}
+    {% ifequal s5001_infocp.s5001_evtbasestrab.id s5001_evtbasestrab.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstabLot</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do estabelecimento ou obra de construção civil e da lotação tributária. As informações desse grupo foram prestadas pelo contribuinte nos eventos S- 1200, S-2299 e S-2399.</td>
+        </tr>
+    {% for s5001_ideestablot in s5001_ideestablot_lista %}
+    {% ifequal s5001_ideestablot.s5001_infocp.id s5001_infocp.id %}
+        <tr {% if s5001_ideestablot.tpinsc|validacoes_esocial_efdreinf:"s5001_ideestablot.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Evento de origem (S-1200, S-2299 ou S-2399). Validação: Para empregador PJ, preencher com [1,4]. Para empregador PF, preencher com [3,4], exceto empregador doméstico que deve ser preenchido com [2]. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if s5001_ideestablot.tpinsc or s5001_ideestablot.tpinsc == 0 %}{{ s5001_ideestablot.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001ideEstabLot or perms.esocial.can_see_s5001ideEstabLot %}
+                <a href="{% url 's5001_ideestablot_salvar' pk=s5001_ideestablot.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_ideestablot.nrinsc|validacoes_esocial_efdreinf:"s5001_ideestablot.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Para o empregador doméstico, informar o CPF. Evento de origem (S-1200, S-2299 ou S-2399). Validação: Deve estar coerente com o indicado em {tpInsc} e constar no evento S-1200/S-2299/S-2399 correspondente.</td>
+            <td width="200px"><b>{% if s5001_ideestablot.nrinsc or s5001_ideestablot.nrinsc == 0 %}{{ s5001_ideestablot.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001ideEstabLot or perms.esocial.can_see_s5001ideEstabLot %}
+                <a href="{% url 's5001_ideestablot_salvar' pk=s5001_ideestablot.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_ideestablot.codlotacao|validacoes_esocial_efdreinf:"s5001_ideestablot.codlotacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codLotacao</td>
+            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Evento de origem (S-1200, S-2299, S-2399). Validação: Deve estar coerente com o informado pelo contribuinte nos eventos S-1200/S-2299/S-2399.</td>
+            <td width="200px"><b>{% if s5001_ideestablot.codlotacao or s5001_ideestablot.codlotacao == 0 %}{{ s5001_ideestablot.codlotacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001ideEstabLot or perms.esocial.can_see_s5001ideEstabLot %}
+                <a href="{% url 's5001_ideestablot_salvar' pk=s5001_ideestablot.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoCategIncid</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.</td>
+        </tr>
+    {% for s5001_infocategincid in s5001_infocategincid_lista %}
+    {% ifequal s5001_infocategincid.s5001_ideestablot.id s5001_ideestablot.id %}
+        <tr {% if s5001_infocategincid.matricula|validacoes_esocial_efdreinf:"s5001_infocategincid.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Evento de origem (S-1200/S-2299). Validação: Deve corresponder à matrícula constante no evento S-1200/S- 2299, caso tenha sido informada, sendo nesse caso, informação obrigatória. Não preencher nos demais casos.</td>
+            <td width="200px"><b>{% if s5001_infocategincid.matricula or s5001_infocategincid.matricula == 0 %}{{ s5001_infocategincid.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoCategIncid or perms.esocial.can_see_s5001infoCategIncid %}
+                <a href="{% url 's5001_infocategincid_salvar' pk=s5001_infocategincid.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_infocategincid.codcateg|validacoes_esocial_efdreinf:"s5001_infocategincid.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1. Evento de origem (S-1200/ S-2299/S-2399). Validação: Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399.</td>
+            <td width="200px"><b>{% if s5001_infocategincid.codcateg or s5001_infocategincid.codcateg == 0 %}{{ s5001_infocategincid.codcateg }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoCategIncid or perms.esocial.can_see_s5001infoCategIncid %}
+                <a href="{% url 's5001_infocategincid_salvar' pk=s5001_infocategincid.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_infocategincid.indsimples|validacoes_esocial_efdreinf:"s5001_infocategincid.indsimples" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSimples</td>
+            <td width="500px">Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Evento de origem (S-1200/ S-2299/S-2399). Validação: O preenchimento do campo é obrigatório apenas no caso das empresas enquadradas no regime de tributação Simples Nacional, com tributação previdenciária substituída e não substituída, ({classTrib} do evento S-1000 -Informações do Empregador = [03]). Para os demais empregadores, não deve ser informado. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s5001_infocategincid.indsimples or s5001_infocategincid.indsimples == 0 %}{{ s5001_infocategincid.indsimples }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoCategIncid or perms.esocial.can_see_s5001infoCategIncid %}
+                <a href="{% url 's5001_infocategincid_salvar' pk=s5001_infocategincid.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoBaseCS</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).</td>
+        </tr>
+    {% for s5001_infobasecs in s5001_infobasecs_lista %}
+    {% ifequal s5001_infobasecs.s5001_infocategincid.id s5001_infocategincid.id %}
+        <tr {% if s5001_infobasecs.ind13|validacoes_esocial_efdreinf:"s5001_infobasecs.ind13" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ind13</td>
+            <td width="500px">Indicativo de 13° salário: 0 - Mensal; 1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação: Se {indApuracao} = [2], preencher com [1].</td>
+            <td width="200px"><b>{% if s5001_infobasecs.ind13 or s5001_infobasecs.ind13 == 0 %}{{ s5001_infobasecs.ind13 }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoBaseCS or perms.esocial.can_see_s5001infoBaseCS %}
+                <a href="{% url 's5001_infobasecs_salvar' pk=s5001_infobasecs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_infobasecs.tpvalor|validacoes_esocial_efdreinf:"s5001_infobasecs.tpvalor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpValor</td>
+            <td width="500px">Tipo de valor que influi na apuração da contribuição devida: 11 - Base de cálculo da Contribuição Previdenciária normal; 12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição; 13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição; 14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição; 15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador; 16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador; 17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador; 18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador; 19 - Base de cálculo da contribuição previdenciária exclusiva do empregado; 21 - Valor total descontado do trabalhador para recolhimento à Previdência Social; 22 - Valor descontado do trabalhador para recolhimento ao Sest; 23 - Valor descontado do trabalhador para recolhimento ao Senat; 31 - Valor pago ao trabalhador a título de salário-família; 32 - Valor pago ao trabalhador a título de salário-maternidade; 91 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal; 92 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho; 93 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho; 94 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho; 95 - Incid. suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador. 96 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador; 97 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador; 98 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador. Validação: O preenchimento deve ser feito de acordo com as instruções acima.</td>
+            <td width="200px"><b>{% if s5001_infobasecs.tpvalor or s5001_infobasecs.tpvalor == 0 %}{{ s5001_infobasecs.tpvalor }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoBaseCS or perms.esocial.can_see_s5001infoBaseCS %}
+                <a href="{% url 's5001_infobasecs_salvar' pk=s5001_infobasecs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_infobasecs.valor|validacoes_esocial_efdreinf:"s5001_infobasecs.valor" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">valor</td>
+            <td width="500px">Valor da base de cálculo, dedução ou desconto da contribuição social devida à Previdência Social ou a Outras Entidades e Fundos, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200, nos grupos {remunPerApur} e {remunPerAnt}, e também em S- 2299 e S-2399, obedecendo o que segue: a) Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4], observando a tabela de relacionamento abaixo: {tpValor} = 11*, {codIncCP} = [11,12,21,22] e (([grauExp] = 1) ou (sem informação em [grauExp])); {tpValor} = 12*, {codIncCP} = [11,12,21,22] e [grauExp] = 2; {tpValor} = 13*, {codIncCP} = [11,12,21,22] e [grauExp] = 3; {tpValor} = 14*, {codIncCP} = [11,12,21,22] e [grauExp] = 4; {tpValor} = 15**, {codIncCP}= [13,14,25,26] e (([grauExp] = 1) ou (sem informação em [grauExp])); {tpValor} = 16**, {codIncCP} = [13, 14] e [grauExp] = 2; {tpValor} = 17**, {codIncCP} = [13, 14] e [grauExp] = 3; {tpValor} = 18**, {codIncCP} = [13, 14] e [grauExp] = 4; {tpValor} = 19, {codIncCP} = [15, 16]; {tpValor} = 31, {codIncCP} = [51]; {tpValor} = 32, {codIncCP} = [21, 22]; {tpValor} = 91 *, {codIncCP} = [91, 92, 93, 94] e (([grauExp] = 1) ou (sem informação em [grauExp])); {tpValor} = 92 *, {codIncCP} = [91, 92, 93, 94] e {grauExp}=[2]; {tpValor} = 93 *, {codIncCP} = [91, 92, 93, 94] e {grauExp}=[3]; {tpValor} = 94 *, {codIncCP} = [91, 92, 93, 94] e {grauExp}=[4]; {tp valor} = 95**, {codIncCP} = [95, 96, 97, 98] e (([grauExp} = [1]) ou (sem informação em [grauExp])); {tp valor} = 96**, {codIncCP} = [95, 96, 97, 98] e ([grauExp} = [2]); {tp valor} = 97**, {codIncCP} = [95, 96, 97, 98] e ([grauExp} = [3]); {tp valor} = 98**, {codIncCP} = [95, 96, 97, 98] e ([grauExp} = [4]). b) Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3], observando a tabela de relacionamento abaixo: {tpValor} = 21, {codIncCP} = [31, 32]; {tpValor} = 22, {codIncCP} = [34]; {tpValor} = 23, {codIncCP} = [35]. * Caso {codIncCP} da rubrica em S-1010 seja igual a [91, 92, 93, 94] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [11, 12, 13, 14]. ** Caso {codindCP} da rubrica em S-1010 seja igual a [95, 96, 97, 98] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [15, 16, 17, 18]. *** Caso {indSusp} do respectivo processo em S-1070 seja igual a [90] (decisão definitiva), o valor não deve ser computado.</td>
+            <td width="200px"><b>{% if s5001_infobasecs.valor or s5001_infobasecs.valor == 0 %}{{ s5001_infobasecs.valor }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001infoBaseCS or perms.esocial.can_see_s5001infoBaseCS %}
+                <a href="{% url 's5001_infobasecs_salvar' pk=s5001_infobasecs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">calcTerc</td>
+            <td bgcolor="lightgray" colspan="3">Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.</td>
+        </tr>
+    {% for s5001_calcterc in s5001_calcterc_lista %}
+    {% ifequal s5001_calcterc.s5001_infocategincid.id s5001_infocategincid.id %}
+        <tr {% if s5001_calcterc.tpcr|validacoes_esocial_efdreinf:"s5001_calcterc.tpcr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpCR</td>
+            <td width="500px">Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1218-02 - Contribuição ao SEST, descontada do transportador autônomo, à alíquota de 1,5%; 1221-02 - Contribuição ao SENAT, descontada do transportador autônomo, à alíquota de 1,0%. Validação: Deve ser um código indicado nas instruções de preenchimento.</td>
+            <td width="200px"><b>{% if s5001_calcterc.tpcr or s5001_calcterc.tpcr == 0 %}{{ s5001_calcterc.tpcr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001calcTerc or perms.esocial.can_see_s5001calcTerc %}
+                <a href="{% url 's5001_calcterc_salvar' pk=s5001_calcterc.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_calcterc.vrcssegterc|validacoes_esocial_efdreinf:"s5001_calcterc.vrcssegterc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrCsSegTerc</td>
+            <td width="500px">Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR. Validação: 1218-02 - Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,5%, se categoria {codCateg} = [711,712,734]-Transportador Autônomo; 1221-02. Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,0% se categoria {codCateg} = [711,712,734]-Transportador Autônomo.</td>
+            <td width="200px"><b>{% if s5001_calcterc.vrcssegterc or s5001_calcterc.vrcssegterc == 0 %}{{ s5001_calcterc.vrcssegterc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001calcTerc or perms.esocial.can_see_s5001calcTerc %}
+                <a href="{% url 's5001_calcterc_salvar' pk=s5001_calcterc.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s5001_calcterc.vrdescterc|validacoes_esocial_efdreinf:"s5001_calcterc.vrdescterc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrDescTerc</td>
+            <td width="500px">Valor efetivamente descontado do segurado, correspondente a {tpValor} = [22,23], do correspondente {tpCR}.</td>
+            <td width="200px"><b>{% if s5001_calcterc.vrdescterc or s5001_calcterc.vrdescterc == 0 %}{{ s5001_calcterc.vrdescterc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s5001.can_see_s5001calcTerc or perms.esocial.can_see_s5001calcTerc %}
+                <a href="{% url 's5001_calcterc_salvar' pk=s5001_calcterc.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}{% endifequal %}{% endfor %}
+
+</table>

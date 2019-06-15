@@ -194,6 +194,7 @@ def salvar(request, pk=None, tab='master', output=None):
             
                 #transmissor_lote_esocial_campos_multiple_passo1
                 
+                
                 obj = transmissor_lote_esocial_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #transmissor_lote_esocial_campos_multiple_passo2

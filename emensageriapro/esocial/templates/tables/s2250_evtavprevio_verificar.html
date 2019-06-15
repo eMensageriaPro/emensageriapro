@@ -1,0 +1,369 @@
+{% load templatetags %}
+<table {% if not output %}
+    class="table table-bordered"{% else %} 
+    width="100%"{% endif %}>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtAvPrevio</td>
+            <td bgcolor="lightgray" colspan="3">Evento Aviso Prévio. Regras de validação: REGRA_AVISO_PREVIO_DT_FUTURA REGRA_DUPLICIDADE_AVISO_PREVIO REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXCLUI_EVENTO_AVISO_PREVIO REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_VINCULO REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+        </tr>
+    {% for s2250_evtavprevio in s2250_evtavprevio_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+        </tr>
+
+        <tr {% if s2250_evtavprevio.indretif|validacoes_esocial_efdreinf:"s2250_evtavprevio.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.indretif or s2250_evtavprevio.indretif == 0 %}{{ s2250_evtavprevio.indretif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.nrrecibo|validacoes_esocial_efdreinf:"s2250_evtavprevio.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.nrrecibo or s2250_evtavprevio.nrrecibo == 0 %}{{ s2250_evtavprevio.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.tpamb|validacoes_esocial_efdreinf:"s2250_evtavprevio.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.tpamb or s2250_evtavprevio.tpamb == 0 %}{{ s2250_evtavprevio.tpamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.procemi|validacoes_esocial_efdreinf:"s2250_evtavprevio.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.procemi or s2250_evtavprevio.procemi == 0 %}{{ s2250_evtavprevio.procemi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.verproc|validacoes_esocial_efdreinf:"s2250_evtavprevio.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.verproc or s2250_evtavprevio.verproc == 0 %}{{ s2250_evtavprevio.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s2250_evtavprevio.tpinsc|validacoes_esocial_efdreinf:"s2250_evtavprevio.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.tpinsc or s2250_evtavprevio.tpinsc == 0 %}{{ s2250_evtavprevio.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.nrinsc|validacoes_esocial_efdreinf:"s2250_evtavprevio.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.nrinsc or s2250_evtavprevio.nrinsc == 0 %}{{ s2250_evtavprevio.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo.</td>
+        </tr>
+
+        <tr {% if s2250_evtavprevio.cpftrab|validacoes_esocial_efdreinf:"s2250_evtavprevio.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.cpftrab or s2250_evtavprevio.cpftrab == 0 %}{{ s2250_evtavprevio.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.nistrab|validacoes_esocial_efdreinf:"s2250_evtavprevio.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.nistrab or s2250_evtavprevio.nistrab == 0 %}{{ s2250_evtavprevio.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_evtavprevio.matricula|validacoes_esocial_efdreinf:"s2250_evtavprevio.matricula" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">matricula</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="200px"><b>{% if s2250_evtavprevio.matricula or s2250_evtavprevio.matricula == 0 %}{{ s2250_evtavprevio.matricula }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250evtAvPrevio or perms.esocial.can_see_s2250evtAvPrevio %}
+                <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_evtavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAvPrevio</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Aviso Prévio.</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detAvPrevio</td>
+            <td bgcolor="lightgray" colspan="3">Detalha as informações do evento trabalhista.</td>
+        </tr>
+    {% for s2250_detavprevio in s2250_detavprevio_lista %}
+    {% ifequal s2250_detavprevio.s2250_evtavprevio.id s2250_evtavprevio.id %}
+        <tr {% if s2250_detavprevio.dtavprv|validacoes_esocial_efdreinf:"s2250_detavprevio.dtavprv" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtAvPrv</td>
+            <td width="500px">Data em que o trabalhador ou o empregador recebeu o aviso de desligamento.</td>
+            <td width="200px"><b>{% if s2250_detavprevio.dtavprv or s2250_detavprevio.dtavprv == 0 %}{{ s2250_detavprevio.dtavprv|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250detAvPrevio or perms.esocial.can_see_s2250detAvPrevio %}
+                <a href="{% url 's2250_detavprevio_salvar' pk=s2250_detavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_detavprevio.dtprevdeslig|validacoes_esocial_efdreinf:"s2250_detavprevio.dtprevdeslig" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtPrevDeslig</td>
+            <td width="500px">Data prevista para o desligamento do trabalhador. Validação: Deve ser uma data igual ou superior a {dtAvPrv}.</td>
+            <td width="200px"><b>{% if s2250_detavprevio.dtprevdeslig or s2250_detavprevio.dtprevdeslig == 0 %}{{ s2250_detavprevio.dtprevdeslig|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250detAvPrevio or perms.esocial.can_see_s2250detAvPrevio %}
+                <a href="{% url 's2250_detavprevio_salvar' pk=s2250_detavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_detavprevio.tpavprevio|validacoes_esocial_efdreinf:"s2250_detavprevio.tpavprevio" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAvPrevio</td>
+            <td width="500px">Tipo de Aviso Prévio. Indica quem avisou o desligamento, conforme opções abaixo: 1 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de duas horas diárias [caput do art. 488 da CLT]; 2 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de dias corridos [parágrafo único do art. 488 da CLT]; 4 - Aviso prévio dado pelo empregado (pedido de demissão), não dispensado de seu cumprimento, sob pena de desconto, pelo empregador, dos salários correspondentes ao prazo respectivo (§2º do art. 487 da CLT); 5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73); 6 - Aviso prévio trabalhado decorrente de acordo entre empregado e empregador (art. 484-A, 'caput', da CLT). Valores Válidos: 1, 2, 4, 5, 6.</td>
+            <td width="200px"><b>{% if s2250_detavprevio.tpavprevio or s2250_detavprevio.tpavprevio == 0 %}{{ s2250_detavprevio.tpavprevio }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250detAvPrevio or perms.esocial.can_see_s2250detAvPrevio %}
+                <a href="{% url 's2250_detavprevio_salvar' pk=s2250_detavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_detavprevio.observacao|validacoes_esocial_efdreinf:"s2250_detavprevio.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observações.</td>
+            <td width="200px"><b>{% if s2250_detavprevio.observacao or s2250_detavprevio.observacao == 0 %}{{ s2250_detavprevio.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250detAvPrevio or perms.esocial.can_see_s2250detAvPrevio %}
+                <a href="{% url 's2250_detavprevio_salvar' pk=s2250_detavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">cancAvPrevio</td>
+            <td bgcolor="lightgray" colspan="3">Cancelamento do Aviso Prévio. Regra de validação: REGRA_EXISTE_EVENTO_AVISO_PREVIO</td>
+        </tr>
+    {% for s2250_cancavprevio in s2250_cancavprevio_lista %}
+    {% ifequal s2250_cancavprevio.s2250_evtavprevio.id s2250_evtavprevio.id %}
+        <tr {% if s2250_cancavprevio.dtcancavprv|validacoes_esocial_efdreinf:"s2250_cancavprevio.dtcancavprv" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtCancAvPrv</td>
+            <td width="500px">Preencher com a data do cancelamento do aviso prévio. Validação: Deve ser uma data posterior a data do aviso prévio que está sendo cancelado.</td>
+            <td width="200px"><b>{% if s2250_cancavprevio.dtcancavprv or s2250_cancavprevio.dtcancavprv == 0 %}{{ s2250_cancavprevio.dtcancavprv|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250cancAvPrevio or perms.esocial.can_see_s2250cancAvPrevio %}
+                <a href="{% url 's2250_cancavprevio_salvar' pk=s2250_cancavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_cancavprevio.observacao|validacoes_esocial_efdreinf:"s2250_cancavprevio.observacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">observacao</td>
+            <td width="500px">Observações.</td>
+            <td width="200px"><b>{% if s2250_cancavprevio.observacao or s2250_cancavprevio.observacao == 0 %}{{ s2250_cancavprevio.observacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250cancAvPrevio or perms.esocial.can_see_s2250cancAvPrevio %}
+                <a href="{% url 's2250_cancavprevio_salvar' pk=s2250_cancavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2250_cancavprevio.mtvcancavprevio|validacoes_esocial_efdreinf:"s2250_cancavprevio.mtvcancavprevio" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">mtvCancAvPrevio</td>
+            <td width="500px">Motivo do Cancelamento do Aviso Prévio: 1 - Reconsideração prevista no artigo 489 da CLT; 2 - Determinação Judicial; 3 - Cumprimento de norma legal; 9 - Outros. Valores Válidos: 1, 2, 3, 9.</td>
+            <td width="200px"><b>{% if s2250_cancavprevio.mtvcancavprevio or s2250_cancavprevio.mtvcancavprevio == 0 %}{{ s2250_cancavprevio.mtvcancavprevio }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2250.can_see_s2250cancAvPrevio or perms.esocial.can_see_s2250cancAvPrevio %}
+                <a href="{% url 's2250_cancavprevio_salvar' pk=s2250_cancavprevio.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+
+</table>

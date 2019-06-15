@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
 <!--
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -32,556 +32,131 @@
 
 -->
 {% if not output %}
-
-    <section class="content-header">
-      <h1>
+<section class="content-header">
+    <h1>
         R-2040 - Recursos Repassados para Associação Desportiva
         <small>Verificações</small>
-      </h1>
-      <ol class="breadcrumb">
+    </h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">R-2040 - Recursos Repassados para Associação Desportiva</a></li>
         <li class="active">Verificar</li>
-      </ol>
-    </section>
-    <section class="content">
+    </ol>
+</section>
+<section class="content">
 
-        {% if messages %}
-                <div class="pad margin no-print">
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-                        {{ message }}
-                    </div>
-            {% endfor %}
+    {% if messages %}
+            <div class="pad margin no-print">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
                 </div>
+        {% endfor %}
+            </div>
+    {% endif %}
+    {% if r2040_evtassocdesprep.ocorrencias %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <strong>Ocorrências reportadas:</strong><br>
+                        <p>{% autoescape off %}{{ r2040_evtassocdesprep.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        R-2040 - Recursos Repassados para Associação Desportiva<br>
+                        Identidade: {{ r2040_evtassocdesprep.identidade }}
+                    </h3>
+                    <div class="text-right">
+                        <a href="{% url 'r2040_evtassocdesprep_verificar_output' pk=pk output='html' %}" target="_blank">
+                            <span type="button" class="btn btn-primary btn-lg">
+                                <i class="fa fa-print"></i>&nbsp;Imprimir
+                            </span>
+                        </a>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle btn-lg"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-download"></i>&nbsp;Exportar
+                                    <span class="sr-only">Exportar</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left">
+                                    <a href="{% url 'r2040_evtassocdesprep_verificar_output' pk=pk output='html' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 'r2040_evtassocdesprep_verificar_output' pk=pk output='pdf' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 'r2040_evtassocdesprep_verificar_output' pk=pk output='xls' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>              
+                    </div>
+                    <div class="box-body">
+                        <h4>Layout</h4>
+                        {% include 'tables/r2040_evtassocdesprep_verificar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<style>
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border: 1px solid black;
+      padding: 5px
+    }
+</style>
+{% if output == 'html' %}
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12">
         {% endif %}
-
-      
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">R-2040 - Recursos Repassados para Associação Desportiva<br>Identidade: {{ r2040_evtassocdesprep.identidade }}</h3>
-              <div class="text-right">
-                <a href="{% url 'r2040_evtassocdesprep_verificar' pk=pk %}" target="_blank">
-                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                </a>
-
-
-
-                  <div class="btn-group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
-                                </button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="text-left"><a
-                                            href="{% url 'r2040_evtassocdesprep_verificar_output' pk=pk output='pdf' %}"
-                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                    <li class="text-left"><a
-                                            href="{% url 'r2040_evtassocdesprep_verificar_output' pk=pk output='xls' %}"
-                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                </ul>
-                            </div>&nbsp;
-
-              </div>              
-            </div>
-            <div class="box-body">
-{% else %} 
-   <section class="invoice">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            R-2040 - Recursos Repassados para Associação Desportiva<br>Identidade: {{ r2040_evtassocdesprep.identidade }}
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
-          </h2>
+            <h2 class="page-header">
+                R-2040 - Recursos Repassados para Associação Desportiva<br>
+                Identidade: {{ r2040_evtassocdesprep.identidade }}
+                <small class="pull-right">
+                    Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                    Data: {{ data }}
+                </small>
+                {% if output == 'html' %}
+            </h2>
         </div>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-xs-12 table-responsive">
-{% endif %} 
-
-
-
-
-      <h4>Layout</h4>
-
-
-
-
-<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
-              
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">evtAssocDespRep</td>
-            <td bgcolor="lightgray" colspan="3">Evento Recursos Repassados para Associação Desportiva de mantenha equipe de futebol profissional. <regras_validacao> REGRA_EVE_ ASSOCDESP_PER REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
-        </tr>
-    {% for r2040_evtassocdesprep in r2040_evtassocdesprep_lista %}
-    {% ifequal 1 1 %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.indretif|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.indretif" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indRetif</td>
-            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.indretif or r2040_evtassocdesprep.indretif == 0 %}{{ r2040_evtassocdesprep.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.nrrecibo|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.nrrecibo or r2040_evtassocdesprep.nrrecibo == 0 %}{{ r2040_evtassocdesprep.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.perapur|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.perapur" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">perApur</td>
-            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.perapur or r2040_evtassocdesprep.perapur == 0 %}{{ r2040_evtassocdesprep.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.tpamb|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.tpamb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.tpamb or r2040_evtassocdesprep.tpamb == 0 %}{{ r2040_evtassocdesprep.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.procemi|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.procemi" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.procemi or r2040_evtassocdesprep.procemi == 0 %}{{ r2040_evtassocdesprep.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.verproc|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.verproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">verProc</td>
-            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.verproc or r2040_evtassocdesprep.verproc == 0 %}{{ r2040_evtassocdesprep.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.tpinsc|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição do contribuinte. <validacao> Deve ser igual a [1] (CNPJ).</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.tpinsc or r2040_evtassocdesprep.tpinsc == 0 %}{{ r2040_evtassocdesprep.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.nrinsc|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.nrinsc or r2040_evtassocdesprep.nrinsc == 0 %}{{ r2040_evtassocdesprep.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
-            <td bgcolor="lightgray" colspan="3">Identificação do estabelecimento que efetou o repasse de recursos a Associação Desportiva que mantém equipe de futebol profissional.</td>
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.tpinscestab|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscEstab</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ).</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.tpinscestab or r2040_evtassocdesprep.tpinscestab == 0 %}{{ r2040_evtassocdesprep.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_evtassocdesprep.nrinscestab|validacoes_esocial_efdreinf:"r2040_evtassocdesprep.nrinscestab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscEstab</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. <validacao> Deve ser um número de CNPJ válido que representa um estabelecimento do contribuinte.</td>
-            <td width="200px"><b>{% if r2040_evtassocdesprep.nrinscestab or r2040_evtassocdesprep.nrinscestab == 0 %}{{ r2040_evtassocdesprep.nrinscestab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040evtAssocDespRep or perms.efdreinf.can_see_r2040evtAssocDespRep %}
-                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_evtassocdesprep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">recursosRep</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.</td>
-        </tr>
-    {% for r2040_recursosrep in r2040_recursosrep_lista %}
-    {% ifequal r2040_recursosrep.r2040_evtassocdesprep.id r2040_evtassocdesprep.id %}
-        <tr {% if r2040_recursosrep.cnpjassocdesp|validacoes_esocial_efdreinf:"r2040_recursosrep.cnpjassocdesp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">cnpjAssocDesp</td>
-            <td width="500px">Preencher com o CNPJ da associação desportiva que mantém clube de futebol para a qual foi efetuado o repasse. <validacao> Deve ser um CNPJ válido, diferente do CNPJ do declarante.</td>
-            <td width="200px"><b>{% if r2040_recursosrep.cnpjassocdesp or r2040_recursosrep.cnpjassocdesp == 0 %}{{ r2040_recursosrep.cnpjassocdesp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040recursosRep or perms.efdreinf.can_see_r2040recursosRep %}
-                <a href="{% url 'r2040_recursosrep_salvar' pk=r2040_recursosrep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_recursosrep.vlrtotalrep|validacoes_esocial_efdreinf:"r2040_recursosrep.vlrtotalrep" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalRep</td>
-            <td width="500px">Preencher com o valor bruto dos recursos repassados. <validacao> Deve corresponder a soma do campo {vlrBruto} do grupo {infoRecurso}.</td>
-            <td width="200px"><b>{% if r2040_recursosrep.vlrtotalrep or r2040_recursosrep.vlrtotalrep == 0 %}{{ r2040_recursosrep.vlrtotalrep }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040recursosRep or perms.efdreinf.can_see_r2040recursosRep %}
-                <a href="{% url 'r2040_recursosrep_salvar' pk=r2040_recursosrep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_recursosrep.vlrtotalret|validacoes_esocial_efdreinf:"r2040_recursosrep.vlrtotalret" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalRet</td>
-            <td width="500px">Soma do valor da retenção dos recursos recebidos. <validacao> Deve corresponder a soma do campo {vlrRetApur} do grupo {infoRecurso}.</td>
-            <td width="200px"><b>{% if r2040_recursosrep.vlrtotalret or r2040_recursosrep.vlrtotalret == 0 %}{{ r2040_recursosrep.vlrtotalret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040recursosRep or perms.efdreinf.can_see_r2040recursosRep %}
-                <a href="{% url 'r2040_recursosrep_salvar' pk=r2040_recursosrep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_recursosrep.vlrtotalnret|validacoes_esocial_efdreinf:"r2040_recursosrep.vlrtotalnret" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalNRet</td>
-            <td width="500px">Valor da retenção que deixou de ser feita pela entidade que efetuou o repasse ou que foi depositada em juízo em decorrência da decisão judicial/administrativa. <validacao> Deve corresponder a soma do campo {vlrNRet} dos registros vinculados, com exceção dos valores informados para {indSusp} = [92]. Não pode ser superior a 5% de {vlrTotalRep}.</td>
-            <td width="200px"><b>{% if r2040_recursosrep.vlrtotalnret or r2040_recursosrep.vlrtotalnret == 0 %}{{ r2040_recursosrep.vlrtotalnret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040recursosRep or perms.efdreinf.can_see_r2040recursosRep %}
-                <a href="{% url 'r2040_recursosrep_salvar' pk=r2040_recursosrep.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoRecurso</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento dos recursos repassados a associação desportiva que mantém equipe de futebol profissional.</td>
-        </tr>
-    {% for r2040_inforecurso in r2040_inforecurso_lista %}
-    {% ifequal r2040_inforecurso.r2040_recursosrep.id r2040_recursosrep.id %}
-        <tr {% if r2040_inforecurso.tprepasse|validacoes_esocial_efdreinf:"r2040_inforecurso.tprepasse" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpRepasse</td>
-            <td width="500px">Tipo de repasse, conforme tabela abaixo<opcoes>1 - Patrocínio; 2 - Licenciamento de marcas e símbolos; 3 - Publicidade; 4 - Propaganda; 5 - Transmissão de espetáculos. <valores_validos> 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if r2040_inforecurso.tprepasse or r2040_inforecurso.tprepasse == 0 %}{{ r2040_inforecurso.tprepasse }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoRecurso or perms.efdreinf.can_see_r2040infoRecurso %}
-                <a href="{% url 'r2040_inforecurso_salvar' pk=r2040_inforecurso.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_inforecurso.descrecurso|validacoes_esocial_efdreinf:"r2040_inforecurso.descrecurso" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">descRecurso</td>
-            <td width="500px">Descrição resumida do recurso repassado.</td>
-            <td width="200px"><b>{% if r2040_inforecurso.descrecurso or r2040_inforecurso.descrecurso == 0 %}{{ r2040_inforecurso.descrecurso }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoRecurso or perms.efdreinf.can_see_r2040infoRecurso %}
-                <a href="{% url 'r2040_inforecurso_salvar' pk=r2040_inforecurso.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_inforecurso.vlrbruto|validacoes_esocial_efdreinf:"r2040_inforecurso.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrBruto</td>
-            <td width="500px">Preencher com o valor bruto do repasse efetuado a título de patrocínio, publicidade, licenciamento, etc. <validacao> Deve ser maior que 0.</td>
-            <td width="200px"><b>{% if r2040_inforecurso.vlrbruto or r2040_inforecurso.vlrbruto == 0 %}{{ r2040_inforecurso.vlrbruto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoRecurso or perms.efdreinf.can_see_r2040infoRecurso %}
-                <a href="{% url 'r2040_inforecurso_salvar' pk=r2040_inforecurso.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_inforecurso.vlrretapur|validacoes_esocial_efdreinf:"r2040_inforecurso.vlrretapur" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrRetApur</td>
-            <td width="500px">Preencher com o valor da retenção de conribuição previdenciária efetuada pela empresa.</td>
-            <td width="200px"><b>{% if r2040_inforecurso.vlrretapur or r2040_inforecurso.vlrretapur == 0 %}{{ r2040_inforecurso.vlrretapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoRecurso or perms.efdreinf.can_see_r2040infoRecurso %}
-                <a href="{% url 'r2040_inforecurso_salvar' pk=r2040_inforecurso.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoProc</td>
-            <td bgcolor="lightgray" colspan="3">Informações de processos relacionados a não retenção de contribuição previdenciária.</td>
-        </tr>
-    {% for r2040_infoproc in r2040_infoproc_lista %}
-    {% ifequal r2040_infoproc.r2040_recursosrep.id r2040_recursosrep.id %}
-        <tr {% if r2040_infoproc.tpproc|validacoes_esocial_efdreinf:"r2040_infoproc.tpproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2040_infoproc.tpproc or r2040_infoproc.tpproc == 0 %}{{ r2040_infoproc.tpproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoProc or perms.efdreinf.can_see_r2040infoProc %}
-                <a href="{% url 'r2040_infoproc_salvar' pk=r2040_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_infoproc.nrproc|validacoes_esocial_efdreinf:"r2040_infoproc.nrproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrProc</td>
-            <td width="500px">Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de processos.</td>
-            <td width="200px"><b>{% if r2040_infoproc.nrproc or r2040_infoproc.nrproc == 0 %}{{ r2040_infoproc.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoProc or perms.efdreinf.can_see_r2040infoProc %}
-                <a href="{% url 'r2040_infoproc_salvar' pk=r2040_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_infoproc.codsusp|validacoes_esocial_efdreinf:"r2040_infoproc.codsusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProc}.</td>
-            <td width="200px"><b>{% if r2040_infoproc.codsusp or r2040_infoproc.codsusp == 0 %}{{ r2040_infoproc.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoProc or perms.efdreinf.can_see_r2040infoProc %}
-                <a href="{% url 'r2040_infoproc_salvar' pk=r2040_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2040_infoproc.vlrnret|validacoes_esocial_efdreinf:"r2040_infoproc.vlrnret" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrNRet</td>
-            <td width="500px">Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial.</td>
-            <td width="200px"><b>{% if r2040_infoproc.vlrnret or r2040_infoproc.vlrnret == 0 %}{{ r2040_infoproc.vlrnret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2040.can_see_r2040infoProc or perms.efdreinf.can_see_r2040infoProc %}
-                <a href="{% url 'r2040_infoproc_salvar' pk=r2040_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
-</table>
-{% if not for_print %}
-            </div>
-          </div>
+        {% endif %}
+            <h4>Ocorrências reportadas:</h4>
+            <p>{% autoescape off %}{{ r2040_evtassocdesprep.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            <h4>Layout</h4>
+            {% include 'tables/r2040_evtassocdesprep_verificar.html' %}
+            {% if output == 'html' %}
         </div>
-      </div>
-    </section>
-{% else %} 
-
-        </div>
-      </div>
-    </section>
-{% endif %}  
-
+    </div>
+</section>
+{% endif %}
+{% endif %}
 {% endblock content %}

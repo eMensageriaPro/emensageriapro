@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
 <!--
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -32,467 +32,131 @@
 
 -->
 {% if not output %}
-
-    <section class="content-header">
-      <h1>
+<section class="content-header">
+    <h1>
         S-2221 - Exame Toxicológico do Motorista Profissional
         <small>Verificações</small>
-      </h1>
-      <ol class="breadcrumb">
+    </h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">S-2221 - Exame Toxicológico do Motorista Profissional</a></li>
         <li class="active">Verificar</li>
-      </ol>
-    </section>
-    <section class="content">
+    </ol>
+</section>
+<section class="content">
 
-        {% if messages %}
-                <div class="pad margin no-print">
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-                        {{ message }}
-                    </div>
-            {% endfor %}
+    {% if messages %}
+            <div class="pad margin no-print">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
                 </div>
+        {% endfor %}
+            </div>
+    {% endif %}
+    {% if s2221_evttoxic.ocorrencias %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <strong>Ocorrências reportadas:</strong><br>
+                        <p>{% autoescape off %}{{ s2221_evttoxic.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        S-2221 - Exame Toxicológico do Motorista Profissional<br>
+                        Identidade: {{ s2221_evttoxic.identidade }}
+                    </h3>
+                    <div class="text-right">
+                        <a href="{% url 's2221_evttoxic_verificar_output' pk=pk output='html' %}" target="_blank">
+                            <span type="button" class="btn btn-primary btn-lg">
+                                <i class="fa fa-print"></i>&nbsp;Imprimir
+                            </span>
+                        </a>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle btn-lg"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-download"></i>&nbsp;Exportar
+                                    <span class="sr-only">Exportar</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left">
+                                    <a href="{% url 's2221_evttoxic_verificar_output' pk=pk output='html' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 's2221_evttoxic_verificar_output' pk=pk output='pdf' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 's2221_evttoxic_verificar_output' pk=pk output='xls' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>              
+                    </div>
+                    <div class="box-body">
+                        <h4>Layout</h4>
+                        {% include 'tables/s2221_evttoxic_verificar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<style>
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border: 1px solid black;
+      padding: 5px
+    }
+</style>
+{% if output == 'html' %}
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12">
         {% endif %}
-
-      
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">S-2221 - Exame Toxicológico do Motorista Profissional<br>Identidade: {{ s2221_evttoxic.identidade }}</h3>
-              <div class="text-right">
-                <a href="{% url 's2221_evttoxic_verificar' pk=pk %}" target="_blank">
-                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                </a>
-
-
-
-                  <div class="btn-group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
-                                </button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="text-left"><a
-                                            href="{% url 's2221_evttoxic_verificar_output' pk=pk output='pdf' %}"
-                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                    <li class="text-left"><a
-                                            href="{% url 's2221_evttoxic_verificar_output' pk=pk output='xls' %}"
-                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                </ul>
-                            </div>&nbsp;
-
-              </div>              
-            </div>
-            <div class="box-body">
-{% else %} 
-   <section class="invoice">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            S-2221 - Exame Toxicológico do Motorista Profissional<br>Identidade: {{ s2221_evttoxic.identidade }}
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
-          </h2>
+            <h2 class="page-header">
+                S-2221 - Exame Toxicológico do Motorista Profissional<br>
+                Identidade: {{ s2221_evttoxic.identidade }}
+                <small class="pull-right">
+                    Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                    Data: {{ data }}
+                </small>
+                {% if output == 'html' %}
+            </h2>
         </div>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-xs-12 table-responsive">
-{% endif %} 
-
-
-
-
-      <h4>Layout</h4>
-
-
-
-
-<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
-              
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">evtToxic</td>
-            <td bgcolor="lightgray" colspan="3">Evento Exame Toxicológico do Motorista Profissional. <regras_validacao> REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
-        </tr>
-    {% for s2221_evttoxic in s2221_evttoxic_lista %}
-    {% ifequal 1 1 %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
-        </tr>
-
-        <tr {% if s2221_evttoxic.indretif|validacoes_esocial_efdreinf:"s2221_evttoxic.indretif" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indRetif</td>
-            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.indretif or s2221_evttoxic.indretif == 0 %}{{ s2221_evttoxic.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.nrrecibo|validacoes_esocial_efdreinf:"s2221_evttoxic.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.nrrecibo or s2221_evttoxic.nrrecibo == 0 %}{{ s2221_evttoxic.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.tpamb|validacoes_esocial_efdreinf:"s2221_evttoxic.tpamb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.tpamb or s2221_evttoxic.tpamb == 0 %}{{ s2221_evttoxic.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.procemi|validacoes_esocial_efdreinf:"s2221_evttoxic.procemi" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.procemi or s2221_evttoxic.procemi == 0 %}{{ s2221_evttoxic.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.verproc|validacoes_esocial_efdreinf:"s2221_evttoxic.verproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">verProc</td>
-            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.verproc or s2221_evttoxic.verproc == 0 %}{{ s2221_evttoxic.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
-        </tr>
-
-        <tr {% if s2221_evttoxic.tpinsc|validacoes_esocial_efdreinf:"s2221_evttoxic.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s2221_evttoxic.tpinsc or s2221_evttoxic.tpinsc == 0 %}{{ s2221_evttoxic.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.nrinsc|validacoes_esocial_efdreinf:"s2221_evttoxic.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.nrinsc or s2221_evttoxic.nrinsc == 0 %}{{ s2221_evttoxic.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo.</td>
-        </tr>
-
-        <tr {% if s2221_evttoxic.cpftrab|validacoes_esocial_efdreinf:"s2221_evttoxic.cpftrab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">cpfTrab</td>
-            <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.cpftrab or s2221_evttoxic.cpftrab == 0 %}{{ s2221_evttoxic.cpftrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.nistrab|validacoes_esocial_efdreinf:"s2221_evttoxic.nistrab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nisTrab</td>
-            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
-            <td width="200px"><b>{% if s2221_evttoxic.nistrab or s2221_evttoxic.nistrab == 0 %}{{ s2221_evttoxic.nistrab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.matricula|validacoes_esocial_efdreinf:"s2221_evttoxic.matricula" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.matricula or s2221_evttoxic.matricula == 0 %}{{ s2221_evttoxic.matricula }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.codcateg|validacoes_esocial_efdreinf:"s2221_evttoxic.codcateg" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codCateg</td>
-            <td width="500px">Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na tabela de Categorias de Trabalhadores (tabela 1).</td>
-            <td width="200px"><b>{% if s2221_evttoxic.codcateg or s2221_evttoxic.codcateg == 0 %}{{ s2221_evttoxic.codcateg }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">toxicologico</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do exame toxicológico do motorista profissional.</td>
-        </tr>
-
-        <tr {% if s2221_evttoxic.dtexame|validacoes_esocial_efdreinf:"s2221_evttoxic.dtexame" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">dtExame</td>
-            <td width="500px">Data da realização do exame toxicológico. Se {indRecusa} = [S], informar a data do desligamento. <validacao> Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.dtexame or s2221_evttoxic.dtexame == 0 %}{{ s2221_evttoxic.dtexame|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.cnpjlab|validacoes_esocial_efdreinf:"s2221_evttoxic.cnpjlab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">cnpjLab</td>
-            <td width="500px">CNPJ do laboratório responsável pela realização do exame. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve ser um CNPJ válido.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.cnpjlab or s2221_evttoxic.cnpjlab == 0 %}{{ s2221_evttoxic.cnpjlab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.codseqexame|validacoes_esocial_efdreinf:"s2221_evttoxic.codseqexame" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSeqExame</td>
-            <td width="500px">Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve possuir 11 (onze) caracteres, composto por duas letras (dois primeiros caracteres) e nove algarismos (últimos nove caracteres).</td>
-            <td width="200px"><b>{% if s2221_evttoxic.codseqexame or s2221_evttoxic.codseqexame == 0 %}{{ s2221_evttoxic.codseqexame }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.nmmed|validacoes_esocial_efdreinf:"s2221_evttoxic.nmmed" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nmMed</td>
-            <td width="500px">Preencher com o nome do médico. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N].</td>
-            <td width="200px"><b>{% if s2221_evttoxic.nmmed or s2221_evttoxic.nmmed == 0 %}{{ s2221_evttoxic.nmmed }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.nrcrm|validacoes_esocial_efdreinf:"s2221_evttoxic.nrcrm" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrCRM</td>
-            <td width="500px">Número de inscrição do médico no CRM. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N].</td>
-            <td width="200px"><b>{% if s2221_evttoxic.nrcrm or s2221_evttoxic.nrcrm == 0 %}{{ s2221_evttoxic.nrcrm }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.ufcrm|validacoes_esocial_efdreinf:"s2221_evttoxic.ufcrm" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">ufCRM</td>
-            <td width="500px">Preencher com a sigla da UF de expedição do CRM. <validacao> Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informada, deve ser uma UF válida.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.ufcrm or s2221_evttoxic.ufcrm == 0 %}{{ s2221_evttoxic.ufcrm }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s2221_evttoxic.indrecusa|validacoes_esocial_efdreinf:"s2221_evttoxic.indrecusa" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indRecusa</td>
-            <td width="500px">Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
-            <td width="200px"><b>{% if s2221_evttoxic.indrecusa or s2221_evttoxic.indrecusa == 0 %}{{ s2221_evttoxic.indrecusa }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s2221.can_see_s2221evtToxic or perms.esocial.can_see_s2221evtToxic %}
-                <a href="{% url 's2221_evttoxic_salvar' pk=s2221_evttoxic.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- {% endifequal %}{% endfor %}
-</table>
-{% if not for_print %}
-            </div>
-          </div>
+        {% endif %}
+            <h4>Ocorrências reportadas:</h4>
+            <p>{% autoescape off %}{{ s2221_evttoxic.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            <h4>Layout</h4>
+            {% include 'tables/s2221_evttoxic_verificar.html' %}
+            {% if output == 'html' %}
         </div>
-      </div>
-    </section>
-{% else %} 
-
-        </div>
-      </div>
-    </section>
-{% endif %}  
-
+    </div>
+</section>
+{% endif %}
+{% endif %}
 {% endblock content %}

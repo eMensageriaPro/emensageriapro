@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
 <!--
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -32,952 +32,131 @@
 
 -->
 {% if not output %}
-
-    <section class="content-header">
-      <h1>
+<section class="content-header">
+    <h1>
         R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados
         <small>Verificações</small>
-      </h1>
-      <ol class="breadcrumb">
+    </h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</a></li>
         <li class="active">Verificar</li>
-      </ol>
-    </section>
-    <section class="content">
+    </ol>
+</section>
+<section class="content">
 
-        {% if messages %}
-                <div class="pad margin no-print">
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-                        {{ message }}
-                    </div>
-            {% endfor %}
+    {% if messages %}
+            <div class="pad margin no-print">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
                 </div>
+        {% endfor %}
+            </div>
+    {% endif %}
+    {% if r2020_evtservprest.ocorrencias %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <strong>Ocorrências reportadas:</strong><br>
+                        <p>{% autoescape off %}{{ r2020_evtservprest.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados<br>
+                        Identidade: {{ r2020_evtservprest.identidade }}
+                    </h3>
+                    <div class="text-right">
+                        <a href="{% url 'r2020_evtservprest_verificar_output' pk=pk output='html' %}" target="_blank">
+                            <span type="button" class="btn btn-primary btn-lg">
+                                <i class="fa fa-print"></i>&nbsp;Imprimir
+                            </span>
+                        </a>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle btn-lg"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-download"></i>&nbsp;Exportar
+                                    <span class="sr-only">Exportar</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left">
+                                    <a href="{% url 'r2020_evtservprest_verificar_output' pk=pk output='html' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 'r2020_evtservprest_verificar_output' pk=pk output='pdf' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 'r2020_evtservprest_verificar_output' pk=pk output='xls' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>              
+                    </div>
+                    <div class="box-body">
+                        <h4>Layout</h4>
+                        {% include 'tables/r2020_evtservprest_verificar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<style>
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border: 1px solid black;
+      padding: 5px
+    }
+</style>
+{% if output == 'html' %}
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12">
         {% endif %}
-
-      
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados<br>Identidade: {{ r2020_evtservprest.identidade }}</h3>
-              <div class="text-right">
-                <a href="{% url 'r2020_evtservprest_verificar' pk=pk %}" target="_blank">
-                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                </a>
-
-
-
-                  <div class="btn-group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
-                                </button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="text-left"><a
-                                            href="{% url 'r2020_evtservprest_verificar_output' pk=pk output='pdf' %}"
-                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                    <li class="text-left"><a
-                                            href="{% url 'r2020_evtservprest_verificar_output' pk=pk output='xls' %}"
-                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                </ul>
-                            </div>&nbsp;
-
-              </div>              
-            </div>
-            <div class="box-body">
-{% else %} 
-   <section class="invoice">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados<br>Identidade: {{ r2020_evtservprest.identidade }}
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
-          </h2>
+            <h2 class="page-header">
+                R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados<br>
+                Identidade: {{ r2020_evtservprest.identidade }}
+                <small class="pull-right">
+                    Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                    Data: {{ data }}
+                </small>
+                {% if output == 'html' %}
+            </h2>
         </div>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-xs-12 table-responsive">
-{% endif %} 
-
-
-
-
-      <h4>Layout</h4>
-
-
-
-
-<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
-              
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">evtServPrest</td>
-            <td bgcolor="lightgray" colspan="3">Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada. <regras_validacao> REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_TOMAD REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
-        </tr>
-    {% for r2020_evtservprest in r2020_evtservprest_lista %}
-    {% ifequal 1 1 %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
-        </tr>
-
-        <tr {% if r2020_evtservprest.indretif|validacoes_esocial_efdreinf:"r2020_evtservprest.indretif" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indRetif</td>
-            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.indretif or r2020_evtservprest.indretif == 0 %}{{ r2020_evtservprest.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.nrrecibo|validacoes_esocial_efdreinf:"r2020_evtservprest.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.nrrecibo or r2020_evtservprest.nrrecibo == 0 %}{{ r2020_evtservprest.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.perapur|validacoes_esocial_efdreinf:"r2020_evtservprest.perapur" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">perApur</td>
-            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.perapur or r2020_evtservprest.perapur == 0 %}{{ r2020_evtservprest.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.tpamb|validacoes_esocial_efdreinf:"r2020_evtservprest.tpamb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.tpamb or r2020_evtservprest.tpamb == 0 %}{{ r2020_evtservprest.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.procemi|validacoes_esocial_efdreinf:"r2020_evtservprest.procemi" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.procemi or r2020_evtservprest.procemi == 0 %}{{ r2020_evtservprest.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.verproc|validacoes_esocial_efdreinf:"r2020_evtservprest.verproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">verProc</td>
-            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.verproc or r2020_evtservprest.verproc == 0 %}{{ r2020_evtservprest.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
-        </tr>
-
-        <tr {% if r2020_evtservprest.tpinsc|validacoes_esocial_efdreinf:"r2020_evtservprest.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição do contribuinte. <validacao> Deve ser igual a [1] (CNPJ).</td>
-            <td width="200px"><b>{% if r2020_evtservprest.tpinsc or r2020_evtservprest.tpinsc == 0 %}{{ r2020_evtservprest.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.nrinsc|validacoes_esocial_efdreinf:"r2020_evtservprest.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.nrinsc or r2020_evtservprest.nrinsc == 0 %}{{ r2020_evtservprest.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoServPrest</td>
-            <td bgcolor="lightgray" colspan="3">Informação dos Serviços Prestados (Cessão de Mão de Obra ou Empreitada).</td>
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEstabPrest</td>
-            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento "prestador" de serviços mediante cessão de mão de obra.</td>
-        </tr>
-
-        <tr {% if r2020_evtservprest.tpinscestabprest|validacoes_esocial_efdreinf:"r2020_evtservprest.tpinscestabprest" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscEstabPrest</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ).</td>
-            <td width="200px"><b>{% if r2020_evtservprest.tpinscestabprest or r2020_evtservprest.tpinscestabprest == 0 %}{{ r2020_evtservprest.tpinscestabprest }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.nrinscestabprest|validacoes_esocial_efdreinf:"r2020_evtservprest.nrinscestabprest" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscEstabPrest</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}. <validacao> A inscrição informada deve ser compatível com o {tpInscEstabPrest}.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.nrinscestabprest or r2020_evtservprest.nrinscestabprest == 0 %}{{ r2020_evtservprest.nrinscestabprest }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideTomador</td>
-            <td bgcolor="lightgray" colspan="3">Identificação dos tomadores dos serviços.</td>
-        </tr>
-
-        <tr {% if r2020_evtservprest.tpinsctomador|validacoes_esocial_efdreinf:"r2020_evtservprest.tpinsctomador" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscTomador</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [4] CNO. <valores_validos> 1,4.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.tpinsctomador or r2020_evtservprest.tpinsctomador == 0 %}{{ r2020_evtservprest.tpinsctomador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.nrinsctomador|validacoes_esocial_efdreinf:"r2020_evtservprest.nrinsctomador" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscTomador</td>
-            <td width="500px">Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}. <validacao> A inscrição informada deve ser compatível com o {tpInscTomador}. Se {indObra} = [0], o número informado deve ser um CNPJ válido e não pertencer ao contribuinte declarante na base cadastral da RFB. Se {indObra} for igual a 1 (Empreitada Total), o {nrInscTomador} informado deve ser um CNO de propriedade do estabelecimento prestador {ideEstabPrest} na base da RFB. Se {indObra} for igual a 2 (Empreitada Parcial), o {nrInscTomador} informado deve ser um CNO e não pertencer ao contribuinte declarante na base cadastral da RFB.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.nrinsctomador or r2020_evtservprest.nrinsctomador == 0 %}{{ r2020_evtservprest.nrinsctomador }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.indobra|validacoes_esocial_efdreinf:"r2020_evtservprest.indobra" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indObra</td>
-            <td width="500px">Indicativo de Prestação de Serviços em Obra de Construção Civil<opcoes>0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. <valores_validos> 0, 1, 2.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.indobra or r2020_evtservprest.indobra == 0 %}{{ r2020_evtservprest.indobra }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.vlrtotalbruto|validacoes_esocial_efdreinf:"r2020_evtservprest.vlrtotalbruto" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalBruto</td>
-            <td width="500px">Preencher com o valor bruto da(s) nota(s) fiscal(is). <validacao> Deve corresponder a soma do campo {vlrBruto} dos registros vinculados.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.vlrtotalbruto or r2020_evtservprest.vlrtotalbruto == 0 %}{{ r2020_evtservprest.vlrtotalbruto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.vlrtotalbaseret|validacoes_esocial_efdreinf:"r2020_evtservprest.vlrtotalbaseret" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalBaseRet</td>
-            <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. <validacao> Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.vlrtotalbaseret or r2020_evtservprest.vlrtotalbaseret == 0 %}{{ r2020_evtservprest.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.vlrtotalretprinc|validacoes_esocial_efdreinf:"r2020_evtservprest.vlrtotalretprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalRetPrinc</td>
-            <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. <validacao> Deve corresponder a soma do campo {vlrRetencao} - a soma do campo {vlrRetSub} dos registros vinculados.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.vlrtotalretprinc or r2020_evtservprest.vlrtotalretprinc == 0 %}{{ r2020_evtservprest.vlrtotalretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.vlrtotalretadic|validacoes_esocial_efdreinf:"r2020_evtservprest.vlrtotalretadic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalRetAdic</td>
-            <td width="500px">Soma do valor do adicional de retenção das notas fiscais. <validacao> Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.vlrtotalretadic or r2020_evtservprest.vlrtotalretadic == 0 %}{{ r2020_evtservprest.vlrtotalretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.vlrtotalnretprinc|validacoes_esocial_efdreinf:"r2020_evtservprest.vlrtotalnretprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalNRetPrinc</td>
-            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. <validacao> Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados. Não pode ser maior que {vlrTotalRetPrinc}.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.vlrtotalnretprinc or r2020_evtservprest.vlrtotalnretprinc == 0 %}{{ r2020_evtservprest.vlrtotalnretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_evtservprest.vlrtotalnretadic|validacoes_esocial_efdreinf:"r2020_evtservprest.vlrtotalnretadic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrTotalNRetAdic</td>
-            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. <validacao> Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados. Não pode ser maior que {vlrTotalRetAdic}.</td>
-            <td width="200px"><b>{% if r2020_evtservprest.vlrtotalnretadic or r2020_evtservprest.vlrtotalnretadic == 0 %}{{ r2020_evtservprest.vlrtotalnretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020evtServPrest or perms.efdreinf.can_see_r2020evtServPrest %}
-                <a href="{% url 'r2020_evtservprest_salvar' pk=r2020_evtservprest.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">nfs</td>
-            <td bgcolor="lightgray" colspan="3">Notas Fiscais do Prestador de Serviços.</td>
-        </tr>
-    {% for r2020_nfs in r2020_nfs_lista %}
-    {% ifequal r2020_nfs.r2020_evtservprest.id r2020_evtservprest.id %}
-        <tr {% if r2020_nfs.serie|validacoes_esocial_efdreinf:"r2020_nfs.serie" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">serie</td>
-            <td width="500px">Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Preencher com 0 (zero) caso não exista número de série.</td>
-            <td width="200px"><b>{% if r2020_nfs.serie or r2020_nfs.serie == 0 %}{{ r2020_nfs.serie }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020nfs or perms.efdreinf.can_see_r2020nfs %}
-                <a href="{% url 'r2020_nfs_salvar' pk=r2020_nfs.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_nfs.numdocto|validacoes_esocial_efdreinf:"r2020_nfs.numdocto" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">numDocto</td>
-            <td width="500px">Número da Nota Fiscal/Fatura ou outros documentos fiscais válidos, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros.</td>
-            <td width="200px"><b>{% if r2020_nfs.numdocto or r2020_nfs.numdocto == 0 %}{{ r2020_nfs.numdocto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020nfs or perms.efdreinf.can_see_r2020nfs %}
-                <a href="{% url 'r2020_nfs_salvar' pk=r2020_nfs.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_nfs.dtemissaonf|validacoes_esocial_efdreinf:"r2020_nfs.dtemissaonf" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">dtEmissaoNF</td>
-            <td width="500px">Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço ou de outro documento fiscal válido. <validacao> O mês/ano informado deve ser igual ao mês/ano indicado no registro de abertura do arquivo.</td>
-            <td width="200px"><b>{% if r2020_nfs.dtemissaonf or r2020_nfs.dtemissaonf == 0 %}{{ r2020_nfs.dtemissaonf|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020nfs or perms.efdreinf.can_see_r2020nfs %}
-                <a href="{% url 'r2020_nfs_salvar' pk=r2020_nfs.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_nfs.vlrbruto|validacoes_esocial_efdreinf:"r2020_nfs.vlrbruto" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrBruto</td>
-            <td width="500px">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. <validacao> Deve ser maior que 0 (zero).</td>
-            <td width="200px"><b>{% if r2020_nfs.vlrbruto or r2020_nfs.vlrbruto == 0 %}{{ r2020_nfs.vlrbruto }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020nfs or perms.efdreinf.can_see_r2020nfs %}
-                <a href="{% url 'r2020_nfs_salvar' pk=r2020_nfs.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_nfs.obs|validacoes_esocial_efdreinf:"r2020_nfs.obs" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">obs</td>
-            <td width="500px">Observações.</td>
-            <td width="200px"><b>{% if r2020_nfs.obs or r2020_nfs.obs == 0 %}{{ r2020_nfs.obs }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020nfs or perms.efdreinf.can_see_r2020nfs %}
-                <a href="{% url 'r2020_nfs_salvar' pk=r2020_nfs.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoTpServ</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre os tipos de Serviços constantes da Nota Fiscal.</td>
-        </tr>
-    {% for r2020_infotpserv in r2020_infotpserv_lista %}
-    {% ifequal r2020_infotpserv.r2020_nfs.id r2020_nfs.id %}
-        <tr {% if r2020_infotpserv.tpservico|validacoes_esocial_efdreinf:"r2020_infotpserv.tpservico" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpServico</td>
-            <td width="500px">Informar o tipo de serviço, conforme tabela 6. <validacao> O código informado deve existir na tabela 6.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.tpservico or r2020_infotpserv.tpservico == 0 %}{{ r2020_infotpserv.tpservico }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrbaseret|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrbaseret" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrBaseRet</td>
-            <td width="500px">Valor da Base de cálculo da retenção da contribuição previdenciária.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrbaseret or r2020_infotpserv.vlrbaseret == 0 %}{{ r2020_infotpserv.vlrbaseret }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrretencao|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrretencao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrRetencao</td>
-            <td width="500px">Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura. <validacao> Não pode ser maior que 11% de {vlrBaseRet}.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrretencao or r2020_infotpserv.vlrretencao == 0 %}{{ r2020_infotpserv.vlrretencao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrretsub|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrretsub" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrRetSub</td>
-            <td width="500px">Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação. <validacao> Não pode ser superior ao {vlrRetencao}.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrretsub or r2020_infotpserv.vlrretsub == 0 %}{{ r2020_infotpserv.vlrretsub }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrnretprinc|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrnretprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrNRetPrinc</td>
-            <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. <validacao> Não pode ser maior que {vlrRetencao}.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrnretprinc or r2020_infotpserv.vlrnretprinc == 0 %}{{ r2020_infotpserv.vlrnretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrservicos15|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrservicos15" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrServicos15</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição. <validacao> O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrservicos15 or r2020_infotpserv.vlrservicos15 == 0 %}{{ r2020_infotpserv.vlrservicos15 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrservicos20|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrservicos20" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrServicos20</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição. <validacao> O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrservicos20 or r2020_infotpserv.vlrservicos20 == 0 %}{{ r2020_infotpserv.vlrservicos20 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrservicos25|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrservicos25" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrServicos25</td>
-            <td width="500px">Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição. <validacao> O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrservicos25 or r2020_infotpserv.vlrservicos25 == 0 %}{{ r2020_infotpserv.vlrservicos25 }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlradicional|validacoes_esocial_efdreinf:"r2020_infotpserv.vlradicional" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrAdicional</td>
-            <td width="500px">Adicional apurado de retenção da nota fiscal, caso os serviços tenham sido prestados sob condições especiais que ensejem aposentadoria especial aos trabalhadores após 15, 20, ou 25 anos de contribuição. Preencher com o valor correspondente ao somatório de 4% sobre o {vlrServicos15} mais 3% sobre {vlrServicos20} mais 2% sobre {vlrServicos25}.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlradicional or r2020_infotpserv.vlradicional == 0 %}{{ r2020_infotpserv.vlradicional }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infotpserv.vlrnretadic|validacoes_esocial_efdreinf:"r2020_infotpserv.vlrnretadic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrNRetAdic</td>
-            <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. <validacao> Não pode ser maior que {vlrAdicional}.</td>
-            <td width="200px"><b>{% if r2020_infotpserv.vlrnretadic or r2020_infotpserv.vlrnretadic == 0 %}{{ r2020_infotpserv.vlrnretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoTpServ or perms.efdreinf.can_see_r2020infoTpServ %}
-                <a href="{% url 'r2020_infotpserv_salvar' pk=r2020_infotpserv.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoProcRetPr</td>
-            <td bgcolor="lightgray" colspan="3">Informações de processos relacionados a não retenção de contribuição previdenciária. <validacao> A soma dos valores informados no campo {valorPrinc} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a {vlrTotalNRetPrinc}.</td>
-        </tr>
-    {% for r2020_infoprocretpr in r2020_infoprocretpr_lista %}
-    {% ifequal r2020_infoprocretpr.r2020_evtservprest.id r2020_evtservprest.id %}
-        <tr {% if r2020_infoprocretpr.tpprocretprinc|validacoes_esocial_efdreinf:"r2020_infoprocretpr.tpprocretprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpProcRetPrinc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2020_infoprocretpr.tpprocretprinc or r2020_infoprocretpr.tpprocretprinc == 0 %}{{ r2020_infoprocretpr.tpprocretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetPr or perms.efdreinf.can_see_r2020infoProcRetPr %}
-                <a href="{% url 'r2020_infoprocretpr_salvar' pk=r2020_infoprocretpr.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infoprocretpr.nrprocretprinc|validacoes_esocial_efdreinf:"r2020_infoprocretpr.nrprocretprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrProcRetPrinc</td>
-            <td width="500px">Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de PROCESSOS.</td>
-            <td width="200px"><b>{% if r2020_infoprocretpr.nrprocretprinc or r2020_infoprocretpr.nrprocretprinc == 0 %}{{ r2020_infoprocretpr.nrprocretprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetPr or perms.efdreinf.can_see_r2020infoProcRetPr %}
-                <a href="{% url 'r2020_infoprocretpr_salvar' pk=r2020_infoprocretpr.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infoprocretpr.codsuspprinc|validacoes_esocial_efdreinf:"r2020_infoprocretpr.codsuspprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSuspPrinc</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProcRetPrinc}.</td>
-            <td width="200px"><b>{% if r2020_infoprocretpr.codsuspprinc or r2020_infoprocretpr.codsuspprinc == 0 %}{{ r2020_infoprocretpr.codsuspprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetPr or perms.efdreinf.can_see_r2020infoProcRetPr %}
-                <a href="{% url 'r2020_infoprocretpr_salvar' pk=r2020_infoprocretpr.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infoprocretpr.valorprinc|validacoes_esocial_efdreinf:"r2020_infoprocretpr.valorprinc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">valorPrinc</td>
-            <td width="500px">Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial.</td>
-            <td width="200px"><b>{% if r2020_infoprocretpr.valorprinc or r2020_infoprocretpr.valorprinc == 0 %}{{ r2020_infoprocretpr.valorprinc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetPr or perms.efdreinf.can_see_r2020infoProcRetPr %}
-                <a href="{% url 'r2020_infoprocretpr_salvar' pk=r2020_infoprocretpr.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoProcRetAd</td>
-            <td bgcolor="lightgray" colspan="3">Informações de processos relacionados a não retenção de contribuição previdenciária adicional. <validacao> A soma dos valores informados no campo {valorAdic} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a {vlrTotalNRetAdic}.</td>
-        </tr>
-    {% for r2020_infoprocretad in r2020_infoprocretad_lista %}
-    {% ifequal r2020_infoprocretad.r2020_evtservprest.id r2020_evtservprest.id %}
-        <tr {% if r2020_infoprocretad.tpprocretadic|validacoes_esocial_efdreinf:"r2020_infoprocretad.tpprocretadic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpProcRetAdic</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2020_infoprocretad.tpprocretadic or r2020_infoprocretad.tpprocretadic == 0 %}{{ r2020_infoprocretad.tpprocretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetAd or perms.efdreinf.can_see_r2020infoProcRetAd %}
-                <a href="{% url 'r2020_infoprocretad_salvar' pk=r2020_infoprocretad.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infoprocretad.nrprocretadic|validacoes_esocial_efdreinf:"r2020_infoprocretad.nrprocretadic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrProcRetAdic</td>
-            <td width="500px">Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de PROCESSOS.</td>
-            <td width="200px"><b>{% if r2020_infoprocretad.nrprocretadic or r2020_infoprocretad.nrprocretadic == 0 %}{{ r2020_infoprocretad.nrprocretadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetAd or perms.efdreinf.can_see_r2020infoProcRetAd %}
-                <a href="{% url 'r2020_infoprocretad_salvar' pk=r2020_infoprocretad.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infoprocretad.codsuspadic|validacoes_esocial_efdreinf:"r2020_infoprocretad.codsuspadic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSuspAdic</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProcRetAdic}.</td>
-            <td width="200px"><b>{% if r2020_infoprocretad.codsuspadic or r2020_infoprocretad.codsuspadic == 0 %}{{ r2020_infoprocretad.codsuspadic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetAd or perms.efdreinf.can_see_r2020infoProcRetAd %}
-                <a href="{% url 'r2020_infoprocretad_salvar' pk=r2020_infoprocretad.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2020_infoprocretad.valoradic|validacoes_esocial_efdreinf:"r2020_infoprocretad.valoradic" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">valorAdic</td>
-            <td width="500px">Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial.</td>
-            <td width="200px"><b>{% if r2020_infoprocretad.valoradic or r2020_infoprocretad.valoradic == 0 %}{{ r2020_infoprocretad.valoradic }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2020.can_see_r2020infoProcRetAd or perms.efdreinf.can_see_r2020infoProcRetAd %}
-                <a href="{% url 'r2020_infoprocretad_salvar' pk=r2020_infoprocretad.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}   {% endifequal %}{% endfor %}
-</table>
-{% if not for_print %}
-            </div>
-          </div>
+        {% endif %}
+            <h4>Ocorrências reportadas:</h4>
+            <p>{% autoescape off %}{{ r2020_evtservprest.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            <h4>Layout</h4>
+            {% include 'tables/r2020_evtservprest_verificar.html' %}
+            {% if output == 'html' %}
         </div>
-      </div>
-    </section>
-{% else %} 
-
-        </div>
-      </div>
-    </section>
-{% endif %}  
-
+    </div>
+</section>
+{% endif %}
+{% endif %}
 {% endblock content %}

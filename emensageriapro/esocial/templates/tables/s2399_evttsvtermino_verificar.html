@@ -1,0 +1,973 @@
+{% load templatetags %}
+<table {% if not output %}
+    class="table table-bordered"{% else %} 
+    width="100%"{% endif %}>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtTSVTermino</td>
+            <td bgcolor="lightgray" colspan="3">Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EXISTE_EVENTO_TSV_INICIO REGRA_EXISTE_INFO_EMPREGADOR REGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_MUDANCA_CPF REGRA_REMUN_IND_RETIFICACAO REGRA_REMUN_PERMITE_EXCLUSAO REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_PERIODO_APURACAO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+        </tr>
+    {% for s2399_evttsvtermino in s2399_evttsvtermino_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.indretif|validacoes_esocial_efdreinf:"s2399_evttsvtermino.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.indretif or s2399_evttsvtermino.indretif == 0 %}{{ s2399_evttsvtermino.indretif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.nrrecibo|validacoes_esocial_efdreinf:"s2399_evttsvtermino.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.nrrecibo or s2399_evttsvtermino.nrrecibo == 0 %}{{ s2399_evttsvtermino.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.tpamb|validacoes_esocial_efdreinf:"s2399_evttsvtermino.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.tpamb or s2399_evttsvtermino.tpamb == 0 %}{{ s2399_evttsvtermino.tpamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.procemi|validacoes_esocial_efdreinf:"s2399_evttsvtermino.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.procemi or s2399_evttsvtermino.procemi == 0 %}{{ s2399_evttsvtermino.procemi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.verproc|validacoes_esocial_efdreinf:"s2399_evttsvtermino.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.verproc or s2399_evttsvtermino.verproc == 0 %}{{ s2399_evttsvtermino.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.tpinsc|validacoes_esocial_efdreinf:"s2399_evttsvtermino.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.tpinsc or s2399_evttsvtermino.tpinsc == 0 %}{{ s2399_evttsvtermino.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.nrinsc|validacoes_esocial_efdreinf:"s2399_evttsvtermino.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.nrinsc or s2399_evttsvtermino.nrinsc == 0 %}{{ s2399_evttsvtermino.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideTrabSemVinculo</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Trabalhador Sem Vínculo.</td>
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.cpftrab|validacoes_esocial_efdreinf:"s2399_evttsvtermino.cpftrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfTrab</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.cpftrab or s2399_evttsvtermino.cpftrab == 0 %}{{ s2399_evttsvtermino.cpftrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.nistrab|validacoes_esocial_efdreinf:"s2399_evttsvtermino.nistrab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nisTrab</td>
+            <td width="500px">Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904].</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.nistrab or s2399_evttsvtermino.nistrab == 0 %}{{ s2399_evttsvtermino.nistrab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.codcateg|validacoes_esocial_efdreinf:"s2399_evttsvtermino.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1).</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.codcateg or s2399_evttsvtermino.codcateg == 0 %}{{ s2399_evttsvtermino.codcateg }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoTSVTermino</td>
+            <td bgcolor="lightgray" colspan="3">Trabalhador Sem Vínculo de Emprego - Término.</td>
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.dtterm|validacoes_esocial_efdreinf:"s2399_evttsvtermino.dtterm" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtTerm</td>
+            <td width="500px">Data do Término. Validação: Deve ser igual ou posterior à data de início do contrato informada no evento de início respectivo.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.dtterm or s2399_evttsvtermino.dtterm == 0 %}{{ s2399_evttsvtermino.dtterm|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.mtvdesligtsv|validacoes_esocial_efdreinf:"s2399_evttsvtermino.mtvdesligtsv" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">mtvDesligTSV</td>
+            <td width="500px">Motivo do término, conforme opções abaixo: 01 - Exoneração do Diretor Não Empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente; 02 - Término de Mandato do Diretor Não Empregado que não tenha sido reconduzido ao cargo; 03 - Exoneração a pedido de Diretor Não Empregado 04 - Exoneração do Diretor Não Empregado por culpa recíproca ou força maior 05 - Morte do Diretor Não Empregado 06 - Exoneração do Diretor Não Empregado por falência, encerramento ou supressão de parte da empresa; 07 - Mudança de CPF; 99 - Outros. Validação: Informação obrigatória se {codCateg} = [721] ou se o grupo {mudancaCPF} estiver preenchido. Não preencher nas demais situações. Valores Válidos: 01, 02, 03, 04, 05, 06, 07, 99.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.mtvdesligtsv or s2399_evttsvtermino.mtvdesligtsv == 0 %}{{ s2399_evttsvtermino.mtvdesligtsv }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.pensalim|validacoes_esocial_efdreinf:"s2399_evttsvtermino.pensalim" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">pensAlim</td>
+            <td width="500px">Indicativo de pensão alimentícia para fins de retenção de FGTS: 0 - Não existe pensão alimentícia; 1 - Percentual de pensão alimentícia; 2 - Valor de pensão alimentícia; 3 - Percentual e valor de pensão alimentícia. Validação: Informação obrigatória se {codCateg} = [201, 202, 721]. Não preencher nas demais situações. Valores Válidos: 0, 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.pensalim or s2399_evttsvtermino.pensalim == 0 %}{{ s2399_evttsvtermino.pensalim }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.percaliment|validacoes_esocial_efdreinf:"s2399_evttsvtermino.percaliment" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">percAliment</td>
+            <td width="500px">Percentual a ser destinado a pensão alimentícia. Validação: Deve ser maior que 0 (zero) e menor ou igual a 100 (cem). Informação obrigatória se {pensAlim} = [1,3]. Não pode ser preenchido nos demais casos.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.percaliment or s2399_evttsvtermino.percaliment == 0 %}{{ s2399_evttsvtermino.percaliment }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_evttsvtermino.vralim|validacoes_esocial_efdreinf:"s2399_evttsvtermino.vralim" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrAlim</td>
+            <td width="500px">Valor da pensão alimentícia. Validação: Informação obrigatória se {pensAlim} = [2,3]. Não pode ser preenchido nos demais casos.</td>
+            <td width="200px"><b>{% if s2399_evttsvtermino.vralim or s2399_evttsvtermino.vralim == 0 %}{{ s2399_evttsvtermino.vralim }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399evtTSVTermino or perms.esocial.can_see_s2399evtTSVTermino %}
+                <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_evttsvtermino.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">mudancaCPF</td>
+            <td bgcolor="lightgray" colspan="3">Informação do novo CPF do trabalhador.</td>
+        </tr>
+    {% for s2399_mudancacpf in s2399_mudancacpf_lista %}
+    {% ifequal s2399_mudancacpf.s2399_evttsvtermino.id s2399_evttsvtermino.id %}
+        <tr {% if s2399_mudancacpf.novocpf|validacoes_esocial_efdreinf:"s2399_mudancacpf.novocpf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">novoCPF</td>
+            <td width="500px">Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.</td>
+            <td width="200px"><b>{% if s2399_mudancacpf.novocpf or s2399_mudancacpf.novocpf == 0 %}{{ s2399_mudancacpf.novocpf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399mudancaCPF or perms.esocial.can_see_s2399mudancaCPF %}
+                <a href="{% url 's2399_mudancacpf_salvar' pk=s2399_mudancacpf.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">verbasResc</td>
+            <td bgcolor="lightgray" colspan="3">Registro onde são prestadas as informações relativas às verbas rescisórias do trabalhador, se houver.</td>
+        </tr>
+    {% for s2399_verbasresc in s2399_verbasresc_lista %}
+    {% ifequal s2399_verbasresc.s2399_evttsvtermino.id s2399_evttsvtermino.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dmDev</td>
+            <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos. As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr}, {ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês da data do desligamento informada no campo {dtTerm}.</td>
+        </tr>
+    {% for s2399_dmdev in s2399_dmdev_lista %}
+    {% ifequal s2399_dmdev.s2399_verbasresc.id s2399_verbasresc.id %}
+        <tr {% if s2399_dmdev.idedmdev|validacoes_esocial_efdreinf:"s2399_dmdev.idedmdev" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideDmDev</td>
+            <td width="500px">Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias. Validação: Deve ser um identificador único dentro da mesma competência para cada um dos demonstrativos de pagamento gerados no presente arquivo de rescisão contratual.</td>
+            <td width="200px"><b>{% if s2399_dmdev.idedmdev or s2399_dmdev.idedmdev == 0 %}{{ s2399_dmdev.idedmdev }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399dmDev or perms.esocial.can_see_s2399dmDev %}
+                <a href="{% url 's2399_dmdev_salvar' pk=s2399_dmdev.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstabLot</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (própria) no CNO, ou o número do CAEPF (no caso de pessoa física obrigada a inscrição no cadastro de atividades específicas da pessoa física). No caso específico do trabalhador doméstico, o estabelecimento deve ser o próprio CPF do empregador.</td>
+        </tr>
+    {% for s2399_ideestablot in s2399_ideestablot_lista %}
+    {% ifequal s2399_ideestablot.s2399_dmdev.id s2399_dmdev.id %}
+        <tr {% if s2399_ideestablot.tpinsc|validacoes_esocial_efdreinf:"s2399_ideestablot.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Validação: Se {classTrib} igual a [21], deve ser igual a [3,4]. Se {classTrib} igual a [22], deve ser igual a [3] e o CAEPF deve ser de segurado especial. Nos demais casos ({classTrib} <> [21,22]) deve ser igual a [1,4]. Valores Válidos: 1, 3, 4.</td>
+            <td width="200px"><b>{% if s2399_ideestablot.tpinsc or s2399_ideestablot.tpinsc == 0 %}{{ s2399_ideestablot.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399ideEstabLot or perms.esocial.can_see_s2399ideEstabLot %}
+                <a href="{% url 's2399_ideestablot_salvar' pk=s2399_ideestablot.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_ideestablot.nrinsc|validacoes_esocial_efdreinf:"s2399_ideestablot.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: A inscrição informada deve ser compatível com {tpInsc}. Se {tpInsc} igual a [1, 3, 4] deve constar na tabela S-1005.</td>
+            <td width="200px"><b>{% if s2399_ideestablot.nrinsc or s2399_ideestablot.nrinsc == 0 %}{{ s2399_ideestablot.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399ideEstabLot or perms.esocial.can_see_s2399ideEstabLot %}
+                <a href="{% url 's2399_ideestablot_salvar' pk=s2399_ideestablot.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_ideestablot.codlotacao|validacoes_esocial_efdreinf:"s2399_ideestablot.codlotacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codLotacao</td>
+            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. Validação: Deve ser um código existente na Tabela de Lotações Tributárias (S-1020).</td>
+            <td width="200px"><b>{% if s2399_ideestablot.codlotacao or s2399_ideestablot.codlotacao == 0 %}{{ s2399_ideestablot.codlotacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399ideEstabLot or perms.esocial.can_see_s2399ideEstabLot %}
+                <a href="{% url 's2399_ideestablot_salvar' pk=s2399_ideestablot.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detVerbas</td>
+            <td bgcolor="lightgray" colspan="3">Registro onde são prestadas as informações relativas às verbas rescisórias do trabalhador, se houver.</td>
+        </tr>
+    {% for s2399_detverbas in s2399_detverbas_lista %}
+    {% ifequal s2399_detverbas.s2399_ideestablot.id s2399_ideestablot.id %}
+        <tr {% if s2399_detverbas.codrubr|validacoes_esocial_efdreinf:"s2399_detverbas.codrubr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codRubr</td>
+            <td width="500px">Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no mês da data do término, informada no campo {dtTerm}. Não pode ser utilizada rubrica: a) cujo {codIncCP} em S-1010 seja igual a [23, 24, 61]; b) cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]; c) cujo {codIncCp} em S-1010 seja igual a [25, 26, 51] se {codCateg} pertencer a um dos grupos 'contribuinte individual' ou 'bolsistas' da Tabela 01 (Categoria de Trabalhadores).</td>
+            <td width="200px"><b>{% if s2399_detverbas.codrubr or s2399_detverbas.codrubr == 0 %}{{ s2399_detverbas.codrubr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detVerbas or perms.esocial.can_see_s2399detVerbas %}
+                <a href="{% url 's2399_detverbas_salvar' pk=s2399_detverbas.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detverbas.idetabrubr|validacoes_esocial_efdreinf:"s2399_detverbas.idetabrubr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">ideTabRubr</td>
+            <td width="500px">Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perApur}.</td>
+            <td width="200px"><b>{% if s2399_detverbas.idetabrubr or s2399_detverbas.idetabrubr == 0 %}{{ s2399_detverbas.idetabrubr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detVerbas or perms.esocial.can_see_s2399detVerbas %}
+                <a href="{% url 's2399_detverbas_salvar' pk=s2399_detverbas.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detverbas.qtdrubr|validacoes_esocial_efdreinf:"s2399_detverbas.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdRubr</td>
+            <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
+            <td width="200px"><b>{% if s2399_detverbas.qtdrubr or s2399_detverbas.qtdrubr == 0 %}{{ s2399_detverbas.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detVerbas or perms.esocial.can_see_s2399detVerbas %}
+                <a href="{% url 's2399_detverbas_salvar' pk=s2399_detverbas.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detverbas.fatorrubr|validacoes_esocial_efdreinf:"s2399_detverbas.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fatorRubr</td>
+            <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
+            <td width="200px"><b>{% if s2399_detverbas.fatorrubr or s2399_detverbas.fatorrubr == 0 %}{{ s2399_detverbas.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detVerbas or perms.esocial.can_see_s2399detVerbas %}
+                <a href="{% url 's2399_detverbas_salvar' pk=s2399_detverbas.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detverbas.vrunit|validacoes_esocial_efdreinf:"s2399_detverbas.vrunit" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrUnit</td>
+            <td width="500px">Preencher com o valor unitário da rubrica.</td>
+            <td width="200px"><b>{% if s2399_detverbas.vrunit or s2399_detverbas.vrunit == 0 %}{{ s2399_detverbas.vrunit }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detVerbas or perms.esocial.can_see_s2399detVerbas %}
+                <a href="{% url 's2399_detverbas_salvar' pk=s2399_detverbas.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detverbas.vrrubr|validacoes_esocial_efdreinf:"s2399_detverbas.vrrubr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrRubr</td>
+            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s2399_detverbas.vrrubr or s2399_detverbas.vrrubr == 0 %}{{ s2399_detverbas.vrrubr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detVerbas or perms.esocial.can_see_s2399detVerbas %}
+                <a href="{% url 's2399_detverbas_salvar' pk=s2399_detverbas.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoSaudeColet</td>
+            <td bgcolor="lightgray" colspan="3">Informações de plano privado coletivo empresarial de assistência à saúde. Só preencher se houver {codRubr} em {itensRemun}, cuja natureza de rubrica {natRubr} indicada em S-1010 seja igual a [9219]. Não preencher nos demais casos.</td>
+        </tr>
+    {% for s2399_infosaudecolet in s2399_infosaudecolet_lista %}
+    {% ifequal s2399_infosaudecolet.s2399_ideestablot.id s2399_ideestablot.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detOper</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</td>
+        </tr>
+    {% for s2399_detoper in s2399_detoper_lista %}
+    {% ifequal s2399_detoper.s2399_infosaudecolet.id s2399_infosaudecolet.id %}
+        <tr {% if s2399_detoper.cnpjoper|validacoes_esocial_efdreinf:"s2399_detoper.cnpjoper" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOper</td>
+            <td width="500px">CNPJ de Operadora do Plano de Saúde. Validação: Deve ser um CNPJ válido.</td>
+            <td width="200px"><b>{% if s2399_detoper.cnpjoper or s2399_detoper.cnpjoper == 0 %}{{ s2399_detoper.cnpjoper }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detOper or perms.esocial.can_see_s2399detOper %}
+                <a href="{% url 's2399_detoper_salvar' pk=s2399_detoper.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detoper.regans|validacoes_esocial_efdreinf:"s2399_detoper.regans" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">regANS</td>
+            <td width="500px">Registro da operadora na Agência Nacional de Saúde.</td>
+            <td width="200px"><b>{% if s2399_detoper.regans or s2399_detoper.regans == 0 %}{{ s2399_detoper.regans }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detOper or perms.esocial.can_see_s2399detOper %}
+                <a href="{% url 's2399_detoper_salvar' pk=s2399_detoper.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detoper.vrpgtit|validacoes_esocial_efdreinf:"s2399_detoper.vrpgtit" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vrPgTit</td>
+            <td width="500px">Valor pago pelo Titular.</td>
+            <td width="200px"><b>{% if s2399_detoper.vrpgtit or s2399_detoper.vrpgtit == 0 %}{{ s2399_detoper.vrpgtit }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detOper or perms.esocial.can_see_s2399detOper %}
+                <a href="{% url 's2399_detoper_salvar' pk=s2399_detoper.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detPlano</td>
+            <td bgcolor="lightgray" colspan="3">Informações do dependente do plano privado de saúde.</td>
+        </tr>
+    {% for s2399_detplano in s2399_detplano_lista %}
+    {% ifequal s2399_detplano.s2399_detoper.id s2399_detoper.id %}
+        <tr {% if s2399_detplano.tpdep|validacoes_esocial_efdreinf:"s2399_detplano.tpdep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpDep</td>
+            <td width="500px">Tipo de dependente conforme tabela 07. Validação: Deve ser um código existente na tabela 07.</td>
+            <td width="200px"><b>{% if s2399_detplano.tpdep or s2399_detplano.tpdep == 0 %}{{ s2399_detplano.tpdep }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detPlano or perms.esocial.can_see_s2399detPlano %}
+                <a href="{% url 's2399_detplano_salvar' pk=s2399_detplano.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detplano.cpfdep|validacoes_esocial_efdreinf:"s2399_detplano.cpfdep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cpfDep</td>
+            <td width="500px">Número de Inscrição no CPF. Validação: Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF.</td>
+            <td width="200px"><b>{% if s2399_detplano.cpfdep or s2399_detplano.cpfdep == 0 %}{{ s2399_detplano.cpfdep }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detPlano or perms.esocial.can_see_s2399detPlano %}
+                <a href="{% url 's2399_detplano_salvar' pk=s2399_detplano.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detplano.nmdep|validacoes_esocial_efdreinf:"s2399_detplano.nmdep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmDep</td>
+            <td width="500px">Nome do dependente.</td>
+            <td width="200px"><b>{% if s2399_detplano.nmdep or s2399_detplano.nmdep == 0 %}{{ s2399_detplano.nmdep }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detPlano or perms.esocial.can_see_s2399detPlano %}
+                <a href="{% url 's2399_detplano_salvar' pk=s2399_detplano.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detplano.dtnascto|validacoes_esocial_efdreinf:"s2399_detplano.dtnascto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtNascto</td>
+            <td width="500px">Preencher com a data de nascimento.</td>
+            <td width="200px"><b>{% if s2399_detplano.dtnascto or s2399_detplano.dtnascto == 0 %}{{ s2399_detplano.dtnascto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detPlano or perms.esocial.can_see_s2399detPlano %}
+                <a href="{% url 's2399_detplano_salvar' pk=s2399_detplano.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_detplano.vlrpgdep|validacoes_esocial_efdreinf:"s2399_detplano.vlrpgdep" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrPgDep</td>
+            <td width="500px">Valor pago relativo ao plano de saúde do dependente.</td>
+            <td width="200px"><b>{% if s2399_detplano.vlrpgdep or s2399_detplano.vlrpgdep == 0 %}{{ s2399_detplano.vlrpgdep }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399detPlano or perms.esocial.can_see_s2399detPlano %}
+                <a href="{% url 's2399_detplano_salvar' pk=s2399_detplano.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoAgNocivo</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente em relação a remuneração de trabalhador de categoria Avulso e Cooperado filiado a cooperativa de produção ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa, permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</td>
+        </tr>
+    {% for s2399_infoagnocivo in s2399_infoagnocivo_lista %}
+    {% ifequal s2399_infoagnocivo.s2399_ideestablot.id s2399_ideestablot.id %}
+        <tr {% if s2399_infoagnocivo.grauexp|validacoes_esocial_efdreinf:"s2399_infoagnocivo.grauexp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">grauExp</td>
+            <td width="500px">Preencher com o código que representa o grau de exposição a agentes nocivos, conforme tabela 2. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if s2399_infoagnocivo.grauexp or s2399_infoagnocivo.grauexp == 0 %}{{ s2399_infoagnocivo.grauexp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399infoAgNocivo or perms.esocial.can_see_s2399infoAgNocivo %}
+                <a href="{% url 's2399_infoagnocivo_salvar' pk=s2399_infoagnocivo.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoSimples</td>
+            <td bgcolor="lightgray" colspan="3">Informação relativa a empresas enquadradas no Regime de Tributação Simples.</td>
+        </tr>
+    {% for s2399_infosimples in s2399_infosimples_lista %}
+    {% ifequal s2399_infosimples.s2399_ideestablot.id s2399_ideestablot.id %}
+        <tr {% if s2399_infosimples.indsimples|validacoes_esocial_efdreinf:"s2399_infosimples.indsimples" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSimples</td>
+            <td width="500px">Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2399_infosimples.indsimples or s2399_infosimples.indsimples == 0 %}{{ s2399_infosimples.indsimples }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399infoSimples or perms.esocial.can_see_s2399infoSimples %}
+                <a href="{% url 's2399_infosimples_salvar' pk=s2399_infosimples.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">procJudTrab</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência de contribuição previdenciária e/ou Imposto de Renda.</td>
+        </tr>
+    {% for s2399_procjudtrab in s2399_procjudtrab_lista %}
+    {% ifequal s2399_procjudtrab.s2399_verbasresc.id s2399_verbasresc.id %}
+        <tr {% if s2399_procjudtrab.tptrib|validacoes_esocial_efdreinf:"s2399_procjudtrab.tptrib" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpTrib</td>
+            <td width="500px">Abrangência da decisão: 1 - IRRF; 2 - Contribuições sociais do trabalhador; 3 - FGTS; 4 - Contribuição sindical. Valores Válidos: 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if s2399_procjudtrab.tptrib or s2399_procjudtrab.tptrib == 0 %}{{ s2399_procjudtrab.tptrib }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399procJudTrab or perms.esocial.can_see_s2399procJudTrab %}
+                <a href="{% url 's2399_procjudtrab_salvar' pk=s2399_procjudtrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_procjudtrab.nrprocjud|validacoes_esocial_efdreinf:"s2399_procjudtrab.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProcJud</td>
+            <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a: - [1] se {tpTrib} = [1, 2]; - [1, 7] se {tpTrib} = [3]; - [8] se {tpTrib} = [4]. Validação: O processo deve existir na tabela de processos (S-1070).</td>
+            <td width="200px"><b>{% if s2399_procjudtrab.nrprocjud or s2399_procjudtrab.nrprocjud == 0 %}{{ s2399_procjudtrab.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399procJudTrab or perms.esocial.can_see_s2399procJudTrab %}
+                <a href="{% url 's2399_procjudtrab_salvar' pk=s2399_procjudtrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_procjudtrab.codsusp|validacoes_esocial_efdreinf:"s2399_procjudtrab.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: Preenchimento obrigatório se {tpTrib} = [1, 2]. A informação prestada deve estar de acordo com o que foi informado em S- 1070.</td>
+            <td width="200px"><b>{% if s2399_procjudtrab.codsusp or s2399_procjudtrab.codsusp == 0 %}{{ s2399_procjudtrab.codsusp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399procJudTrab or perms.esocial.can_see_s2399procJudTrab %}
+                <a href="{% url 's2399_procjudtrab_salvar' pk=s2399_procjudtrab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoMV</td>
+            <td bgcolor="lightgray" colspan="3">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades nos quais já tenha ocorrido desconto de contribuição previdenciária.</td>
+        </tr>
+    {% for s2399_infomv in s2399_infomv_lista %}
+    {% ifequal s2399_infomv.s2399_verbasresc.id s2399_verbasresc.id %}
+        <tr {% if s2399_infomv.indmv|validacoes_esocial_efdreinf:"s2399_infomv.indmv" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indMV</td>
+            <td width="500px">Indicador de desconto da contribuição previdenciária do trabalhador, de acordo com as seguintes opções: 1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador); 2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto; 3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s). Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2399_infomv.indmv or s2399_infomv.indmv == 0 %}{{ s2399_infomv.indmv }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399infoMV or perms.esocial.can_see_s2399infoMV %}
+                <a href="{% url 's2399_infomv_salvar' pk=s2399_infomv.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">remunOutrEmpr</td>
+            <td bgcolor="lightgray" colspan="3">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual. As informações são necessárias para a conferência da contribuição descontada do segurado.</td>
+        </tr>
+    {% for s2399_remunoutrempr in s2399_remunoutrempr_lista %}
+    {% ifequal s2399_remunoutrempr.s2399_infomv.id s2399_infomv.id %}
+        <tr {% if s2399_remunoutrempr.tpinsc|validacoes_esocial_efdreinf:"s2399_remunoutrempr.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. Validação: Pode ser preenchido com [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2399_remunoutrempr.tpinsc or s2399_remunoutrempr.tpinsc == 0 %}{{ s2399_remunoutrempr.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399remunOutrEmpr or perms.esocial.can_see_s2399remunOutrEmpr %}
+                <a href="{% url 's2399_remunoutrempr_salvar' pk=s2399_remunoutrempr.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_remunoutrempr.nrinsc|validacoes_esocial_efdreinf:"s2399_remunoutrempr.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: a) Se {tpInsc} for igual a [1], deve ser um CNPJ válido, diferente do CNPJ base indicado no registro de Informações do Empregador (S-1000) e dos estabelecimentos informados através do evento S-1005. b) Se {tpInsc} for igual a [2], deve ser um CPF válido e diferente do CPF do trabalhador e ainda, caso o empregador seja pessoa física, diferente do CPF do empregador.</td>
+            <td width="200px"><b>{% if s2399_remunoutrempr.nrinsc or s2399_remunoutrempr.nrinsc == 0 %}{{ s2399_remunoutrempr.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399remunOutrEmpr or perms.esocial.can_see_s2399remunOutrEmpr %}
+                <a href="{% url 's2399_remunoutrempr_salvar' pk=s2399_remunoutrempr.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_remunoutrempr.codcateg|validacoes_esocial_efdreinf:"s2399_remunoutrempr.codcateg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codCateg</td>
+            <td width="500px">Preencher com o código da categoria do trabalhador na qual houve a remuneração, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1).</td>
+            <td width="200px"><b>{% if s2399_remunoutrempr.codcateg or s2399_remunoutrempr.codcateg == 0 %}{{ s2399_remunoutrempr.codcateg }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399remunOutrEmpr or perms.esocial.can_see_s2399remunOutrEmpr %}
+                <a href="{% url 's2399_remunoutrempr_salvar' pk=s2399_remunoutrempr.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s2399_remunoutrempr.vlrremunoe|validacoes_esocial_efdreinf:"s2399_remunoutrempr.vlrremunoe" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRemunOE</td>
+            <td width="500px">Preencher com o valor da remuneração recebida pelo trabalhador na outra empresa/atividade, sobre a qual houve desconto/recolhimento da contribuição do segurado. Validação: Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s2399_remunoutrempr.vlrremunoe or s2399_remunoutrempr.vlrremunoe == 0 %}{{ s2399_remunoutrempr.vlrremunoe }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399remunOutrEmpr or perms.esocial.can_see_s2399remunOutrEmpr %}
+                <a href="{% url 's2399_remunoutrempr_salvar' pk=s2399_remunoutrempr.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">quarentena</td>
+            <td bgcolor="lightgray" colspan="3">Informações sobre a 'quarentena' remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.</td>
+        </tr>
+    {% for s2399_quarentena in s2399_quarentena_lista %}
+    {% ifequal s2399_quarentena.s2399_evttsvtermino.id s2399_evttsvtermino.id %}
+        <tr {% if s2399_quarentena.dtfimquar|validacoes_esocial_efdreinf:"s2399_quarentena.dtfimquar" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtFimQuar</td>
+            <td width="500px">Preencher com a data final da quarentena a que está sujeito o trabalhador. Validação: Deve ser uma data posterior a data de término do contrato.</td>
+            <td width="200px"><b>{% if s2399_quarentena.dtfimquar or s2399_quarentena.dtfimquar == 0 %}{{ s2399_quarentena.dtfimquar|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s2399.can_see_s2399quarentena or perms.esocial.can_see_s2399quarentena %}
+                <a href="{% url 's2399_quarentena_salvar' pk=s2399_quarentena.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+
+</table>

@@ -1,0 +1,1645 @@
+{% load templatetags %}
+<table {% if not output %}
+    class="table table-bordered"{% else %} 
+    width="100%"{% endif %}>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtPgtosDivs</td>
+            <td bgcolor="lightgray" colspan="3">Evento Pagamentos ou Créditos Efetuados - Retenções na Fonte de IR, CSLL, Cofins e PIS/PASEP. Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_PAGTO_COMPATIB_CODPAGTO_BENEFIC REGRA_PAGTO_CONTROLE_DUPLICIDADE REGRA_PAGTO_IND_RETIFICACAO REGRA_VALIDA_ID_EVENTO</td>
+        </tr>
+    {% for r2070_evtpgtosdivs in r2070_evtpgtosdivs_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.indretif|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.indretif or r2070_evtpgtosdivs.indretif == 0 %}{{ r2070_evtpgtosdivs.indretif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.nrrecibo|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.nrrecibo or r2070_evtpgtosdivs.nrrecibo == 0 %}{{ r2070_evtpgtosdivs.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.perapur|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.perapur or r2070_evtpgtosdivs.perapur == 0 %}{{ r2070_evtpgtosdivs.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.tpamb|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpamb or r2070_evtpgtosdivs.tpamb == 0 %}{{ r2070_evtpgtosdivs.tpamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.procemi|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.procemi or r2070_evtpgtosdivs.procemi == 0 %}{{ r2070_evtpgtosdivs.procemi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.verproc|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.verproc or r2070_evtpgtosdivs.verproc == 0 %}{{ r2070_evtpgtosdivs.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.tpinsc|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpinsc or r2070_evtpgtosdivs.tpinsc == 0 %}{{ r2070_evtpgtosdivs.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.nrinsc|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.nrinsc or r2070_evtpgtosdivs.nrinsc == 0 %}{{ r2070_evtpgtosdivs.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideBenef</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Beneficiário e do Rendimento</td>
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.codpgto|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.codpgto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codPgto</td>
+            <td width="500px">Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos Validação: Deve ser um código válido, existente na tabela 01</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.codpgto or r2070_evtpgtosdivs.codpgto == 0 %}{{ r2070_evtpgtosdivs.codpgto }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.tpinscbenef|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.tpinscbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscBenef</td>
+            <td width="500px">Tipo de Beneficiário: 1 - Pessoa Jurídica; 2 - Pessoa Física. Validação: O preenchimento é obrigatório exceto nos casos em que {codPgto} seja relativo a rendimento pago a residente ou domiciliado no exterior. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpinscbenef or r2070_evtpgtosdivs.tpinscbenef == 0 %}{{ r2070_evtpgtosdivs.tpinscbenef }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.nrinscbenef|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nrinscbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscBenef</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Beneficiário do pagamento, de acordo com {tpInscBenef}. Validação: O preenchimento é obrigatório exceto nos casos em que o {codPgto} seja relativo a rendimento pago a residente ou domiciliado no exterior. Se informado, deve ser um CNPJ ou CPF válido, de acordo com{tpInscBenef}.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.nrinscbenef or r2070_evtpgtosdivs.nrinscbenef == 0 %}{{ r2070_evtpgtosdivs.nrinscbenef }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_evtpgtosdivs.nmrazaobenef|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nmrazaobenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nmRazaoBenef</td>
+            <td width="500px">Nome/Razão Social do Beneficiário</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.nmrazaobenef or r2070_evtpgtosdivs.nmrazaobenef == 0 %}{{ r2070_evtpgtosdivs.nmrazaobenef }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070evtPgtosDivs or perms.efdreinf.can_see_r2070evtPgtosDivs %}
+                <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_evtpgtosdivs.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoResidExt</td>
+            <td bgcolor="lightgray" colspan="3">Informações complementares de beneficiário residente ou domiciliado no exterior</td>
+        </tr>
+    {% for r2070_inforesidext in r2070_inforesidext_lista %}
+    {% ifequal r2070_inforesidext.r2070_evtpgtosdivs.id r2070_evtpgtosdivs.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoEnder</td>
+            <td bgcolor="lightgray" colspan="3">Endereço de beneficiário residente ou domiciliado no exterior</td>
+        </tr>
+
+        <tr {% if r2070_inforesidext.paisresid|validacoes_esocial_efdreinf:"r2070_inforesidext.paisresid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">paisResid</td>
+            <td width="500px">Preencher com o código do país de residência fiscal, conforme tabela 7. Validação: Deve ser um código existente na tabela</td>
+            <td width="200px"><b>{% if r2070_inforesidext.paisresid or r2070_inforesidext.paisresid == 0 %}{{ r2070_inforesidext.paisresid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.dsclograd|validacoes_esocial_efdreinf:"r2070_inforesidext.dsclograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dscLograd</td>
+            <td width="500px">Descrição do logradouro</td>
+            <td width="200px"><b>{% if r2070_inforesidext.dsclograd or r2070_inforesidext.dsclograd == 0 %}{{ r2070_inforesidext.dsclograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.nrlograd|validacoes_esocial_efdreinf:"r2070_inforesidext.nrlograd" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrLograd</td>
+            <td width="500px">Número do logradouro.</td>
+            <td width="200px"><b>{% if r2070_inforesidext.nrlograd or r2070_inforesidext.nrlograd == 0 %}{{ r2070_inforesidext.nrlograd }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.complem|validacoes_esocial_efdreinf:"r2070_inforesidext.complem" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">complem</td>
+            <td width="500px">Complemento do logradouro.</td>
+            <td width="200px"><b>{% if r2070_inforesidext.complem or r2070_inforesidext.complem == 0 %}{{ r2070_inforesidext.complem }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.bairro|validacoes_esocial_efdreinf:"r2070_inforesidext.bairro" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">bairro</td>
+            <td width="500px">Nome do bairro/distrito</td>
+            <td width="200px"><b>{% if r2070_inforesidext.bairro or r2070_inforesidext.bairro == 0 %}{{ r2070_inforesidext.bairro }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.cidade|validacoes_esocial_efdreinf:"r2070_inforesidext.cidade" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cidade</td>
+            <td width="500px">Nome da cidade</td>
+            <td width="200px"><b>{% if r2070_inforesidext.cidade or r2070_inforesidext.cidade == 0 %}{{ r2070_inforesidext.cidade }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.codpostal|validacoes_esocial_efdreinf:"r2070_inforesidext.codpostal" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codPostal</td>
+            <td width="500px">Código de Endereçamento Postal</td>
+            <td width="200px"><b>{% if r2070_inforesidext.codpostal or r2070_inforesidext.codpostal == 0 %}{{ r2070_inforesidext.codpostal }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoFiscal</td>
+            <td bgcolor="lightgray" colspan="3">Informações fiscais de beneficiário residente ou domiciliado no exterior</td>
+        </tr>
+
+        <tr {% if r2070_inforesidext.indnif|validacoes_esocial_efdreinf:"r2070_inforesidext.indnif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indNIF</td>
+            <td width="500px">Indicativo do Número de Identificação Fiscal: 1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. Valores Válidos: 1, 2, 3.</td>
+            <td width="200px"><b>{% if r2070_inforesidext.indnif or r2070_inforesidext.indnif == 0 %}{{ r2070_inforesidext.indnif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.nifbenef|validacoes_esocial_efdreinf:"r2070_inforesidext.nifbenef" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nifBenef</td>
+            <td width="500px">Número de Identificação Fiscal - NIF Validação: Obrigatório se {indNIF} = [1]</td>
+            <td width="200px"><b>{% if r2070_inforesidext.nifbenef or r2070_inforesidext.nifbenef == 0 %}{{ r2070_inforesidext.nifbenef }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforesidext.relfontepagad|validacoes_esocial_efdreinf:"r2070_inforesidext.relfontepagad" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">relFontePagad</td>
+            <td width="500px">Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme Tabela 05 - Informações sobre os Beneficiários dos Rendimentos Validação: Informação obrigatória se {ideBenef/tpInsc} = [1]. Não informar nos demais casos. O código informado deve existir na tabela 05.</td>
+            <td width="200px"><b>{% if r2070_inforesidext.relfontepagad or r2070_inforesidext.relfontepagad == 0 %}{{ r2070_inforesidext.relfontepagad }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoResidExt or perms.efdreinf.can_see_r2070infoResidExt %}
+                <a href="{% url 'r2070_inforesidext_salvar' pk=r2070_inforesidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoMolestia</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Beneficiário portador de moléstia grave</td>
+        </tr>
+    {% for r2070_infomolestia in r2070_infomolestia_lista %}
+    {% ifequal r2070_infomolestia.r2070_evtpgtosdivs.id r2070_evtpgtosdivs.id %}
+        <tr {% if r2070_infomolestia.dtlaudo|validacoes_esocial_efdreinf:"r2070_infomolestia.dtlaudo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtLaudo</td>
+            <td width="500px">Data atribuída pelo laudo da moléstia grave Validação: A data deve ser anterior ou igual ao período de apuração ao qual se refere o arquivo</td>
+            <td width="200px"><b>{% if r2070_infomolestia.dtlaudo or r2070_infomolestia.dtlaudo == 0 %}{{ r2070_infomolestia.dtlaudo|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoMolestia or perms.efdreinf.can_see_r2070infoMolestia %}
+                <a href="{% url 'r2070_infomolestia_salvar' pk=r2070_infomolestia.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoPgto</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Pagamento</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Estabelecimento</td>
+        </tr>
+    {% for r2070_ideestab in r2070_ideestab_lista %}
+    {% ifequal r2070_ideestab.r2070_evtpgtosdivs.id r2070_evtpgtosdivs.id %}
+        <tr {% if r2070_ideestab.tpinsc|validacoes_esocial_efdreinf:"r2070_ideestab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) , [2] (CPF) ou [4] (CNO)</td>
+            <td width="200px"><b>{% if r2070_ideestab.tpinsc or r2070_ideestab.tpinsc == 0 %}{{ r2070_ideestab.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070ideEstab or perms.efdreinf.can_see_r2070ideEstab %}
+                <a href="{% url 'r2070_ideestab_salvar' pk=r2070_ideestab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_ideestab.nrinsc|validacoes_esocial_efdreinf:"r2070_ideestab.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido. Se {tpInsc} for igual a [4], deve ser um número de CNO válido</td>
+            <td width="200px"><b>{% if r2070_ideestab.nrinsc or r2070_ideestab.nrinsc == 0 %}{{ r2070_ideestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070ideEstab or perms.efdreinf.can_see_r2070ideEstab %}
+                <a href="{% url 'r2070_ideestab_salvar' pk=r2070_ideestab.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">pgtoResidBR</td>
+            <td bgcolor="lightgray" colspan="3">Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil</td>
+        </tr>
+    {% for r2070_pgtoresidbr in r2070_pgtoresidbr_lista %}
+    {% ifequal r2070_pgtoresidbr.r2070_ideestab.id r2070_ideestab.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">pgtoPF</td>
+            <td bgcolor="lightgray" colspan="3">Beneficiário Pessoa Física - Residente no Brasil</td>
+        </tr>
+    {% for r2070_pgtopf in r2070_pgtopf_lista %}
+    {% ifequal r2070_pgtopf.r2070_pgtoresidbr.id r2070_pgtoresidbr.id %}
+        <tr {% if r2070_pgtopf.dtpgto|validacoes_esocial_efdreinf:"r2070_pgtopf.dtpgto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtPgto</td>
+            <td width="500px">Informar a data de pagamento ou crédito, base para retenção. Validação: Deve estar compreendida no período de apuração ao qual se refere o arquivo</td>
+            <td width="200px"><b>{% if r2070_pgtopf.dtpgto or r2070_pgtopf.dtpgto == 0 %}{{ r2070_pgtopf.dtpgto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPF or perms.efdreinf.can_see_r2070pgtoPF %}
+                <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_pgtopf.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopf.indsuspexig|validacoes_esocial_efdreinf:"r2070_pgtopf.indsuspexig" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indSuspExig</td>
+            <td width="500px">Indicativo de Exigibilidade Suspensa: S - Sim; N - Não. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Tributação com Exigibilidade Suspensa. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if r2070_pgtopf.indsuspexig or r2070_pgtopf.indsuspexig == 0 %}{{ r2070_pgtopf.indsuspexig }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPF or perms.efdreinf.can_see_r2070pgtoPF %}
+                <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_pgtopf.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopf.inddecterceiro|validacoes_esocial_efdreinf:"r2070_pgtopf.inddecterceiro" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indDecTerceiro</td>
+            <td width="500px">Indicativo de 13o Salário: S - Sim; N - Não. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna 13o Salário. Valores Válidos: S, N.</td>
+            <td width="200px"><b>{% if r2070_pgtopf.inddecterceiro or r2070_pgtopf.inddecterceiro == 0 %}{{ r2070_pgtopf.inddecterceiro }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPF or perms.efdreinf.can_see_r2070pgtoPF %}
+                <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_pgtopf.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopf.vlrrendtributavel|validacoes_esocial_efdreinf:"r2070_pgtopf.vlrrendtributavel" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRendTributavel</td>
+            <td width="500px">Valor do rendimento tributável</td>
+            <td width="200px"><b>{% if r2070_pgtopf.vlrrendtributavel or r2070_pgtopf.vlrrendtributavel == 0 %}{{ r2070_pgtopf.vlrrendtributavel }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPF or perms.efdreinf.can_see_r2070pgtoPF %}
+                <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_pgtopf.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopf.vlrirrf|validacoes_esocial_efdreinf:"r2070_pgtopf.vlrirrf" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrIRRF</td>
+            <td width="500px">Valor do Imposto Retido na Fonte.</td>
+            <td width="200px"><b>{% if r2070_pgtopf.vlrirrf or r2070_pgtopf.vlrirrf == 0 %}{{ r2070_pgtopf.vlrirrf }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPF or perms.efdreinf.can_see_r2070pgtoPF %}
+                <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_pgtopf.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detDeducao</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das Deduções</td>
+        </tr>
+    {% for r2070_detdeducao in r2070_detdeducao_lista %}
+    {% ifequal r2070_detdeducao.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_detdeducao.indtpdeducao|validacoes_esocial_efdreinf:"r2070_detdeducao.indtpdeducao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indTpDeducao</td>
+            <td width="500px">Indicativo do Tipo de Dedução: 1 - Previdência Oficial; 2 - Previdência Privada; 3 - Fapi; 4 - Funpresp; 5 - Pensão Alimentícia; 6 - Dependentes. Valores Válidos: 1, 2, 3, 4, 5, 6.</td>
+            <td width="200px"><b>{% if r2070_detdeducao.indtpdeducao or r2070_detdeducao.indtpdeducao == 0 %}{{ r2070_detdeducao.indtpdeducao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070detDeducao or perms.efdreinf.can_see_r2070detDeducao %}
+                <a href="{% url 'r2070_detdeducao_salvar' pk=r2070_detdeducao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_detdeducao.vlrdeducao|validacoes_esocial_efdreinf:"r2070_detdeducao.vlrdeducao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDeducao</td>
+            <td width="500px">Preencher com o Valor da dedução da base de cálculo.</td>
+            <td width="200px"><b>{% if r2070_detdeducao.vlrdeducao or r2070_detdeducao.vlrdeducao == 0 %}{{ r2070_detdeducao.vlrdeducao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070detDeducao or perms.efdreinf.can_see_r2070detDeducao %}
+                <a href="{% url 'r2070_detdeducao_salvar' pk=r2070_detdeducao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">rendIsento</td>
+            <td bgcolor="lightgray" colspan="3">Rendimentos Isentos/Não Tributáveis</td>
+        </tr>
+    {% for r2070_rendisento in r2070_rendisento_lista %}
+    {% ifequal r2070_rendisento.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_rendisento.tpisencao|validacoes_esocial_efdreinf:"r2070_rendisento.tpisencao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpIsencao</td>
+            <td width="500px">Tipo de Isenção: 1 - Parcela Isenta 65 anos; 2 - Diária e Ajuda de Custo; 3 - Indenização e rescisão de contrato, inclusive a título de PDV; 4 - Abono pecuniário; 5 - Outros (especificar); 6 - Lucros e dividendos pagos a partir de 1996; 7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço; 9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações; 10 - Bolsa de estudo recebida por médico-residente; 11 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Rendimentos Isentos. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11</td>
+            <td width="200px"><b>{% if r2070_rendisento.tpisencao or r2070_rendisento.tpisencao == 0 %}{{ r2070_rendisento.tpisencao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070rendIsento or perms.efdreinf.can_see_r2070rendIsento %}
+                <a href="{% url 'r2070_rendisento_salvar' pk=r2070_rendisento.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_rendisento.vlrisento|validacoes_esocial_efdreinf:"r2070_rendisento.vlrisento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrIsento</td>
+            <td width="500px">Valor da Parcela Isenta</td>
+            <td width="200px"><b>{% if r2070_rendisento.vlrisento or r2070_rendisento.vlrisento == 0 %}{{ r2070_rendisento.vlrisento }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070rendIsento or perms.efdreinf.can_see_r2070rendIsento %}
+                <a href="{% url 'r2070_rendisento_salvar' pk=r2070_rendisento.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_rendisento.descrendimento|validacoes_esocial_efdreinf:"r2070_rendisento.descrendimento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">descRendimento</td>
+            <td width="500px">Descrição do rendimento isento/Não tributável. Validação: O (se {tpIsencao} = [05]) N (nos demais casos).</td>
+            <td width="200px"><b>{% if r2070_rendisento.descrendimento or r2070_rendisento.descrendimento == 0 %}{{ r2070_rendisento.descrendimento }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070rendIsento or perms.efdreinf.can_see_r2070rendIsento %}
+                <a href="{% url 'r2070_rendisento_salvar' pk=r2070_rendisento.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">detCompet</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das Competências</td>
+        </tr>
+    {% for r2070_detcompet in r2070_detcompet_lista %}
+    {% ifequal r2070_detcompet.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_detcompet.indperreferencia|validacoes_esocial_efdreinf:"r2070_detcompet.indperreferencia" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indPerReferencia</td>
+            <td width="500px">Indicativo de período de referência: 1 - Folha de Pagamento Mensal 2 - Folha do Décimo Terceiro Salário Validação: Deve ser igual a [1] se {indDecTerceiro} = [N]. Deve ser igual a [2] se {indDecTerceiro} = [S]. Valores Válidos: 1,2</td>
+            <td width="200px"><b>{% if r2070_detcompet.indperreferencia or r2070_detcompet.indperreferencia == 0 %}{{ r2070_detcompet.indperreferencia }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070detCompet or perms.efdreinf.can_see_r2070detCompet %}
+                <a href="{% url 'r2070_detcompet_salvar' pk=r2070_detcompet.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_detcompet.perrefpagto|validacoes_esocial_efdreinf:"r2070_detcompet.perrefpagto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perRefPagto</td>
+            <td width="500px">Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário. Validação: Deve estar no formato AAAA-MM se {indPerReferencia} = [1], ou no formato AAAA se {indPerReferencia} = [2].</td>
+            <td width="200px"><b>{% if r2070_detcompet.perrefpagto or r2070_detcompet.perrefpagto == 0 %}{{ r2070_detcompet.perrefpagto }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070detCompet or perms.efdreinf.can_see_r2070detCompet %}
+                <a href="{% url 'r2070_detcompet_salvar' pk=r2070_detcompet.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_detcompet.vlrrendtributavel|validacoes_esocial_efdreinf:"r2070_detcompet.vlrrendtributavel" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRendTributavel</td>
+            <td width="500px">Valor do rendimento tributável relativo ao período de referência. Validação: A soma do campo nos registros deve ser igual ao {vlrRendTributavel} indicado no registro superior.</td>
+            <td width="200px"><b>{% if r2070_detcompet.vlrrendtributavel or r2070_detcompet.vlrrendtributavel == 0 %}{{ r2070_detcompet.vlrrendtributavel }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070detCompet or perms.efdreinf.can_see_r2070detCompet %}
+                <a href="{% url 'r2070_detcompet_salvar' pk=r2070_detcompet.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">compJud</td>
+            <td bgcolor="lightgray" colspan="3">Compensação Judicial</td>
+        </tr>
+    {% for r2070_compjud in r2070_compjud_lista %}
+    {% ifequal r2070_compjud.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_compjud.vlrcompanocalend|validacoes_esocial_efdreinf:"r2070_compjud.vlrcompanocalend" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCompAnoCalend</td>
+            <td width="500px">Compensação Judicial relativa ao ano calendário. Validação: Deve estar de acordo com a Tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial.</td>
+            <td width="200px"><b>{% if r2070_compjud.vlrcompanocalend or r2070_compjud.vlrcompanocalend == 0 %}{{ r2070_compjud.vlrcompanocalend }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070compJud or perms.efdreinf.can_see_r2070compJud %}
+                <a href="{% url 'r2070_compjud_salvar' pk=r2070_compjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_compjud.vlrcompanoant|validacoes_esocial_efdreinf:"r2070_compjud.vlrcompanoant" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrCompAnoAnt</td>
+            <td width="500px">Compensação Judicial relativa a anos anteriores ao ano calendário. Validação: Deve estar de acordo com a Tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial.</td>
+            <td width="200px"><b>{% if r2070_compjud.vlrcompanoant or r2070_compjud.vlrcompanoant == 0 %}{{ r2070_compjud.vlrcompanoant }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070compJud or perms.efdreinf.can_see_r2070compJud %}
+                <a href="{% url 'r2070_compjud_salvar' pk=r2070_compjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoRRA</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Rendimentos Recebidos Acumuladamente</td>
+        </tr>
+    {% for r2070_inforra in r2070_inforra_lista %}
+    {% ifequal r2070_inforra.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_inforra.tpprocrra|validacoes_esocial_efdreinf:"r2070_inforra.tpprocrra" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpProcRRA</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_inforra.tpprocrra or r2070_inforra.tpprocrra == 0 %}{{ r2070_inforra.tpprocrra }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRA or perms.efdreinf.can_see_r2070infoRRA %}
+                <a href="{% url 'r2070_inforra_salvar' pk=r2070_inforra.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra.nrprocrra|validacoes_esocial_efdreinf:"r2070_inforra.nrprocrra" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProcRRA</td>
+            <td width="500px">Informar o número do processo/requerimento administrativo/judicial Validação: Obrigatório se {tpProcRRA} = [1]. Deve existir na tabela de processos (R-1070).</td>
+            <td width="200px"><b>{% if r2070_inforra.nrprocrra or r2070_inforra.nrprocrra == 0 %}{{ r2070_inforra.nrprocrra }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRA or perms.efdreinf.can_see_r2070infoRRA %}
+                <a href="{% url 'r2070_inforra_salvar' pk=r2070_inforra.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra.codsusp|validacoes_esocial_efdreinf:"r2070_inforra.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcRRA}.</td>
+            <td width="200px"><b>{% if r2070_inforra.codsusp or r2070_inforra.codsusp == 0 %}{{ r2070_inforra.codsusp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRA or perms.efdreinf.can_see_r2070infoRRA %}
+                <a href="{% url 'r2070_inforra_salvar' pk=r2070_inforra.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra.natrra|validacoes_esocial_efdreinf:"r2070_inforra.natrra" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">natRRA</td>
+            <td width="500px">Informar a natureza do Rendimento Recebido Acumuladamente</td>
+            <td width="200px"><b>{% if r2070_inforra.natrra or r2070_inforra.natrra == 0 %}{{ r2070_inforra.natrra }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRA or perms.efdreinf.can_see_r2070infoRRA %}
+                <a href="{% url 'r2070_inforra_salvar' pk=r2070_inforra.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra.qtdmesesrra|validacoes_esocial_efdreinf:"r2070_inforra.qtdmesesrra" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">qtdMesesRRA</td>
+            <td width="500px">Quantidade de meses</td>
+            <td width="200px"><b>{% if r2070_inforra.qtdmesesrra or r2070_inforra.qtdmesesrra == 0 %}{{ r2070_inforra.qtdmesesrra }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRA or perms.efdreinf.can_see_r2070infoRRA %}
+                <a href="{% url 'r2070_inforra_salvar' pk=r2070_inforra.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">despProcJud</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das despesas de processo judicial</td>
+        </tr>
+    {% for r2070_inforra_despprocjud in r2070_inforra_despprocjud_lista %}
+    {% ifequal r2070_inforra_despprocjud.r2070_inforra.id r2070_inforra.id %}
+        <tr {% if r2070_inforra_despprocjud.vlrdespcustas|validacoes_esocial_efdreinf:"r2070_inforra_despprocjud.vlrdespcustas" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDespCustas</td>
+            <td width="500px">Preencher com o Valor da despesa com custas judiciais</td>
+            <td width="200px"><b>{% if r2070_inforra_despprocjud.vlrdespcustas or r2070_inforra_despprocjud.vlrdespcustas == 0 %}{{ r2070_inforra_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRAdespProcJud or perms.efdreinf.can_see_r2070infoRRAdespProcJud %}
+                <a href="{% url 'r2070_inforra_despprocjud_salvar' pk=r2070_inforra_despprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra_despprocjud.vlrdespadvogados|validacoes_esocial_efdreinf:"r2070_inforra_despprocjud.vlrdespadvogados" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDespAdvogados</td>
+            <td width="500px">Preencher com o Valor da despesa com advogado(s)</td>
+            <td width="200px"><b>{% if r2070_inforra_despprocjud.vlrdespadvogados or r2070_inforra_despprocjud.vlrdespadvogados == 0 %}{{ r2070_inforra_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRAdespProcJud or perms.efdreinf.can_see_r2070infoRRAdespProcJud %}
+                <a href="{% url 'r2070_inforra_despprocjud_salvar' pk=r2070_inforra_despprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideAdvogado</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Advogado</td>
+        </tr>
+    {% for r2070_inforra_ideadvogado in r2070_inforra_ideadvogado_lista %}
+    {% ifequal r2070_inforra_ideadvogado.r2070_inforra_despprocjud.id r2070_inforra_despprocjud.id %}
+        <tr {% if r2070_inforra_ideadvogado.tpinscadvogado|validacoes_esocial_efdreinf:"r2070_inforra_ideadvogado.tpinscadvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscAdvogado</td>
+            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2</td>
+            <td width="200px"><b>{% if r2070_inforra_ideadvogado.tpinscadvogado or r2070_inforra_ideadvogado.tpinscadvogado == 0 %}{{ r2070_inforra_ideadvogado.tpinscadvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRAideAdvogado or perms.efdreinf.can_see_r2070infoRRAideAdvogado %}
+                <a href="{% url 'r2070_inforra_ideadvogado_salvar' pk=r2070_inforra_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra_ideadvogado.nrinscadvogado|validacoes_esocial_efdreinf:"r2070_inforra_ideadvogado.nrinscadvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscAdvogado</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
+            <td width="200px"><b>{% if r2070_inforra_ideadvogado.nrinscadvogado or r2070_inforra_ideadvogado.nrinscadvogado == 0 %}{{ r2070_inforra_ideadvogado.nrinscadvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRAideAdvogado or perms.efdreinf.can_see_r2070infoRRAideAdvogado %}
+                <a href="{% url 'r2070_inforra_ideadvogado_salvar' pk=r2070_inforra_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_inforra_ideadvogado.vlradvogado|validacoes_esocial_efdreinf:"r2070_inforra_ideadvogado.vlradvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrAdvogado</td>
+            <td width="500px">Valor da despesa com o advogado</td>
+            <td width="200px"><b>{% if r2070_inforra_ideadvogado.vlradvogado or r2070_inforra_ideadvogado.vlradvogado == 0 %}{{ r2070_inforra_ideadvogado.vlradvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoRRAideAdvogado or perms.efdreinf.can_see_r2070infoRRAideAdvogado %}
+                <a href="{% url 'r2070_inforra_ideadvogado_salvar' pk=r2070_inforra_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoProcJud</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</td>
+        </tr>
+    {% for r2070_infoprocjud in r2070_infoprocjud_lista %}
+    {% ifequal r2070_infoprocjud.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_infoprocjud.nrprocjud|validacoes_esocial_efdreinf:"r2070_infoprocjud.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProcJud</td>
+            <td width="500px">Preencher com o número do processo judicial. Validação: Deve existir na tabela de processos.</td>
+            <td width="200px"><b>{% if r2070_infoprocjud.nrprocjud or r2070_infoprocjud.nrprocjud == 0 %}{{ r2070_infoprocjud.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJud or perms.efdreinf.can_see_r2070infoProcJud %}
+                <a href="{% url 'r2070_infoprocjud_salvar' pk=r2070_infoprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_infoprocjud.codsusp|validacoes_esocial_efdreinf:"r2070_infoprocjud.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}.</td>
+            <td width="200px"><b>{% if r2070_infoprocjud.codsusp or r2070_infoprocjud.codsusp == 0 %}{{ r2070_infoprocjud.codsusp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJud or perms.efdreinf.can_see_r2070infoProcJud %}
+                <a href="{% url 'r2070_infoprocjud_salvar' pk=r2070_infoprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_infoprocjud.indorigemrecursos|validacoes_esocial_efdreinf:"r2070_infoprocjud.indorigemrecursos" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indOrigemRecursos</td>
+            <td width="500px">Indicativo da origem dos recursos: 1 - Recursos do próprio declarante 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_infoprocjud.indorigemrecursos or r2070_infoprocjud.indorigemrecursos == 0 %}{{ r2070_infoprocjud.indorigemrecursos }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJud or perms.efdreinf.can_see_r2070infoProcJud %}
+                <a href="{% url 'r2070_infoprocjud_salvar' pk=r2070_infoprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">despProcJud</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das despesas de processo judicial</td>
+        </tr>
+    {% for r2070_infoprocjud_despprocjud in r2070_infoprocjud_despprocjud_lista %}
+    {% ifequal r2070_infoprocjud_despprocjud.r2070_infoprocjud.id r2070_infoprocjud.id %}
+        <tr {% if r2070_infoprocjud_despprocjud.vlrdespcustas|validacoes_esocial_efdreinf:"r2070_infoprocjud_despprocjud.vlrdespcustas" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDespCustas</td>
+            <td width="500px">Preencher com o Valor da despesa com custas judiciais</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_despprocjud.vlrdespcustas or r2070_infoprocjud_despprocjud.vlrdespcustas == 0 %}{{ r2070_infoprocjud_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJuddespProcJud or perms.efdreinf.can_see_r2070infoProcJuddespProcJud %}
+                <a href="{% url 'r2070_infoprocjud_despprocjud_salvar' pk=r2070_infoprocjud_despprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_infoprocjud_despprocjud.vlrdespadvogados|validacoes_esocial_efdreinf:"r2070_infoprocjud_despprocjud.vlrdespadvogados" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDespAdvogados</td>
+            <td width="500px">Preencher com o Valor da despesa com advogado(s) Validação: Deve corresponder a soma do {vlrAdvogado} informado nos registros vinculados</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_despprocjud.vlrdespadvogados or r2070_infoprocjud_despprocjud.vlrdespadvogados == 0 %}{{ r2070_infoprocjud_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJuddespProcJud or perms.efdreinf.can_see_r2070infoProcJuddespProcJud %}
+                <a href="{% url 'r2070_infoprocjud_despprocjud_salvar' pk=r2070_infoprocjud_despprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideAdvogado</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Advogado</td>
+        </tr>
+    {% for r2070_infoprocjud_ideadvogado in r2070_infoprocjud_ideadvogado_lista %}
+    {% ifequal r2070_infoprocjud_ideadvogado.r2070_infoprocjud_despprocjud.id r2070_infoprocjud_despprocjud.id %}
+        <tr {% if r2070_infoprocjud_ideadvogado.tpinscadvogado|validacoes_esocial_efdreinf:"r2070_infoprocjud_ideadvogado.tpinscadvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscAdvogado</td>
+            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.tpinscadvogado or r2070_infoprocjud_ideadvogado.tpinscadvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.tpinscadvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJudideAdvogado or perms.efdreinf.can_see_r2070infoProcJudideAdvogado %}
+                <a href="{% url 'r2070_infoprocjud_ideadvogado_salvar' pk=r2070_infoprocjud_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_infoprocjud_ideadvogado.nrinscadvogado|validacoes_esocial_efdreinf:"r2070_infoprocjud_ideadvogado.nrinscadvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscAdvogado</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.nrinscadvogado or r2070_infoprocjud_ideadvogado.nrinscadvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.nrinscadvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJudideAdvogado or perms.efdreinf.can_see_r2070infoProcJudideAdvogado %}
+                <a href="{% url 'r2070_infoprocjud_ideadvogado_salvar' pk=r2070_infoprocjud_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_infoprocjud_ideadvogado.vlradvogado|validacoes_esocial_efdreinf:"r2070_infoprocjud_ideadvogado.vlradvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrAdvogado</td>
+            <td width="500px">Valor da despesa com o advogado Validação: Deve ser maior que zero</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.vlradvogado or r2070_infoprocjud_ideadvogado.vlradvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.vlradvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJudideAdvogado or perms.efdreinf.can_see_r2070infoProcJudideAdvogado %}
+                <a href="{% url 'r2070_infoprocjud_ideadvogado_salvar' pk=r2070_infoprocjud_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">origemRecursos</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da origem dos recursos</td>
+        </tr>
+    {% for r2070_infoprocjud_origemrecursos in r2070_infoprocjud_origemrecursos_lista %}
+    {% ifequal r2070_infoprocjud_origemrecursos.r2070_infoprocjud.id r2070_infoprocjud.id %}
+        <tr {% if r2070_infoprocjud_origemrecursos.cnpjorigemrecursos|validacoes_esocial_efdreinf:"r2070_infoprocjud_origemrecursos.cnpjorigemrecursos" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOrigemRecursos</td>
+            <td width="500px">CNPJ da empresa de origem dos recursos</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_origemrecursos.cnpjorigemrecursos or r2070_infoprocjud_origemrecursos.cnpjorigemrecursos == 0 %}{{ r2070_infoprocjud_origemrecursos.cnpjorigemrecursos }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070infoProcJudorigemRecursos or perms.efdreinf.can_see_r2070infoProcJudorigemRecursos %}
+                <a href="{% url 'r2070_infoprocjud_origemrecursos_salvar' pk=r2070_infoprocjud_origemrecursos.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">depJudicial</td>
+            <td bgcolor="lightgray" colspan="3">Depósito Judicial</td>
+        </tr>
+    {% for r2070_depjudicial in r2070_depjudicial_lista %}
+    {% ifequal r2070_depjudicial.r2070_pgtopf.id r2070_pgtopf.id %}
+        <tr {% if r2070_depjudicial.vlrdepjudicial|validacoes_esocial_efdreinf:"r2070_depjudicial.vlrdepjudicial" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDepJudicial</td>
+            <td width="500px">Preencher com o Valor do Depósito Judicial Validação: Somente pode ser preenchido se {indSuspExig} = [S].</td>
+            <td width="200px"><b>{% if r2070_depjudicial.vlrdepjudicial or r2070_depjudicial.vlrdepjudicial == 0 %}{{ r2070_depjudicial.vlrdepjudicial }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070depJudicial or perms.efdreinf.can_see_r2070depJudicial %}
+                <a href="{% url 'r2070_depjudicial_salvar' pk=r2070_depjudicial.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">pgtoPJ</td>
+            <td bgcolor="lightgray" colspan="3">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</td>
+        </tr>
+    {% for r2070_pgtopj in r2070_pgtopj_lista %}
+    {% ifequal r2070_pgtopj.r2070_pgtoresidbr.id r2070_pgtoresidbr.id %}
+        <tr {% if r2070_pgtopj.dtpagto|validacoes_esocial_efdreinf:"r2070_pgtopj.dtpagto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtPagto</td>
+            <td width="500px">Informar a data de pagamento ou crédito, base para retenção. Validação: Deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
+            <td width="200px"><b>{% if r2070_pgtopj.dtpagto or r2070_pgtopj.dtpagto == 0 %}{{ r2070_pgtopj.dtpagto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJ or perms.efdreinf.can_see_r2070pgtoPJ %}
+                <a href="{% url 'r2070_pgtopj_salvar' pk=r2070_pgtopj.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj.vlrrendtributavel|validacoes_esocial_efdreinf:"r2070_pgtopj.vlrrendtributavel" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRendTributavel</td>
+            <td width="500px">Valor do rendimento tributável</td>
+            <td width="200px"><b>{% if r2070_pgtopj.vlrrendtributavel or r2070_pgtopj.vlrrendtributavel == 0 %}{{ r2070_pgtopj.vlrrendtributavel }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJ or perms.efdreinf.can_see_r2070pgtoPJ %}
+                <a href="{% url 'r2070_pgtopj_salvar' pk=r2070_pgtopj.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj.vlrret|validacoes_esocial_efdreinf:"r2070_pgtopj.vlrret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRet</td>
+            <td width="500px">Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</td>
+            <td width="200px"><b>{% if r2070_pgtopj.vlrret or r2070_pgtopj.vlrret == 0 %}{{ r2070_pgtopj.vlrret }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJ or perms.efdreinf.can_see_r2070pgtoPJ %}
+                <a href="{% url 'r2070_pgtopj_salvar' pk=r2070_pgtopj.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoProcJud</td>
+            <td bgcolor="lightgray" colspan="3">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</td>
+        </tr>
+    {% for r2070_pgtopj_infoprocjud in r2070_pgtopj_infoprocjud_lista %}
+    {% ifequal r2070_pgtopj_infoprocjud.r2070_pgtopj.id r2070_pgtopj.id %}
+        <tr {% if r2070_pgtopj_infoprocjud.nrprocjud|validacoes_esocial_efdreinf:"r2070_pgtopj_infoprocjud.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrProcJud</td>
+            <td width="500px">Preencher com o número do processo judicial</td>
+            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.nrprocjud or r2070_pgtopj_infoprocjud.nrprocjud == 0 %}{{ r2070_pgtopj_infoprocjud.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud or perms.efdreinf.can_see_r2070pgtoPJinfoProcJud %}
+                <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=r2070_pgtopj_infoprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj_infoprocjud.codsusp|validacoes_esocial_efdreinf:"r2070_pgtopj_infoprocjud.codsusp" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">codSusp</td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}.</td>
+            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.codsusp or r2070_pgtopj_infoprocjud.codsusp == 0 %}{{ r2070_pgtopj_infoprocjud.codsusp }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud or perms.efdreinf.can_see_r2070pgtoPJinfoProcJud %}
+                <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=r2070_pgtopj_infoprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj_infoprocjud.indorigemrecursos|validacoes_esocial_efdreinf:"r2070_pgtopj_infoprocjud.indorigemrecursos" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indOrigemRecursos</td>
+            <td width="500px">Indicativo da origem dos recursos: 1 - Recursos do próprio declarante 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.indorigemrecursos or r2070_pgtopj_infoprocjud.indorigemrecursos == 0 %}{{ r2070_pgtopj_infoprocjud.indorigemrecursos }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud or perms.efdreinf.can_see_r2070pgtoPJinfoProcJud %}
+                <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=r2070_pgtopj_infoprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">despProcJud</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das despesas de processo judicial</td>
+        </tr>
+    {% for r2070_pgtopj_despprocjud in r2070_pgtopj_despprocjud_lista %}
+    {% ifequal r2070_pgtopj_despprocjud.r2070_pgtopj_infoprocjud.id r2070_pgtopj_infoprocjud.id %}
+        <tr {% if r2070_pgtopj_despprocjud.vlrdespcustas|validacoes_esocial_efdreinf:"r2070_pgtopj_despprocjud.vlrdespcustas" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDespCustas</td>
+            <td width="500px">Preencher com o Valor da despesa com custas judiciais</td>
+            <td width="200px"><b>{% if r2070_pgtopj_despprocjud.vlrdespcustas or r2070_pgtopj_despprocjud.vlrdespcustas == 0 %}{{ r2070_pgtopj_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJdespProcJud or perms.efdreinf.can_see_r2070pgtoPJdespProcJud %}
+                <a href="{% url 'r2070_pgtopj_despprocjud_salvar' pk=r2070_pgtopj_despprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj_despprocjud.vlrdespadvogados|validacoes_esocial_efdreinf:"r2070_pgtopj_despprocjud.vlrdespadvogados" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrDespAdvogados</td>
+            <td width="500px">Preencher com o Valor da despesa com advogado(s)</td>
+            <td width="200px"><b>{% if r2070_pgtopj_despprocjud.vlrdespadvogados or r2070_pgtopj_despprocjud.vlrdespadvogados == 0 %}{{ r2070_pgtopj_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJdespProcJud or perms.efdreinf.can_see_r2070pgtoPJdespProcJud %}
+                <a href="{% url 'r2070_pgtopj_despprocjud_salvar' pk=r2070_pgtopj_despprocjud.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideAdvogado</td>
+            <td bgcolor="lightgray" colspan="3">Identificação do Advogado</td>
+        </tr>
+    {% for r2070_pgtopj_ideadvogado in r2070_pgtopj_ideadvogado_lista %}
+    {% ifequal r2070_pgtopj_ideadvogado.r2070_pgtopj_despprocjud.id r2070_pgtopj_despprocjud.id %}
+        <tr {% if r2070_pgtopj_ideadvogado.tpinscadvogado|validacoes_esocial_efdreinf:"r2070_pgtopj_ideadvogado.tpinscadvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscAdvogado</td>
+            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2</td>
+            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.tpinscadvogado or r2070_pgtopj_ideadvogado.tpinscadvogado == 0 %}{{ r2070_pgtopj_ideadvogado.tpinscadvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJideAdvogado or perms.efdreinf.can_see_r2070pgtoPJideAdvogado %}
+                <a href="{% url 'r2070_pgtopj_ideadvogado_salvar' pk=r2070_pgtopj_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj_ideadvogado.nrinscadvogado|validacoes_esocial_efdreinf:"r2070_pgtopj_ideadvogado.nrinscadvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscAdvogado</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
+            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.nrinscadvogado or r2070_pgtopj_ideadvogado.nrinscadvogado == 0 %}{{ r2070_pgtopj_ideadvogado.nrinscadvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJideAdvogado or perms.efdreinf.can_see_r2070pgtoPJideAdvogado %}
+                <a href="{% url 'r2070_pgtopj_ideadvogado_salvar' pk=r2070_pgtopj_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtopj_ideadvogado.vlradvogado|validacoes_esocial_efdreinf:"r2070_pgtopj_ideadvogado.vlradvogado" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrAdvogado</td>
+            <td width="500px">Valor da despesa com o advogado</td>
+            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.vlradvogado or r2070_pgtopj_ideadvogado.vlradvogado == 0 %}{{ r2070_pgtopj_ideadvogado.vlradvogado }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJideAdvogado or perms.efdreinf.can_see_r2070pgtoPJideAdvogado %}
+                <a href="{% url 'r2070_pgtopj_ideadvogado_salvar' pk=r2070_pgtopj_ideadvogado.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">origemRecursos</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da origem dos recurso</td>
+        </tr>
+    {% for r2070_pgtopj_origemrecursos in r2070_pgtopj_origemrecursos_lista %}
+    {% ifequal r2070_pgtopj_origemrecursos.r2070_pgtopj_infoprocjud.id r2070_pgtopj_infoprocjud.id %}
+        <tr {% if r2070_pgtopj_origemrecursos.cnpjorigemrecursos|validacoes_esocial_efdreinf:"r2070_pgtopj_origemrecursos.cnpjorigemrecursos" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOrigemRecursos</td>
+            <td width="500px">CNPJ da empresa de origem dos recursos</td>
+            <td width="200px"><b>{% if r2070_pgtopj_origemrecursos.cnpjorigemrecursos or r2070_pgtopj_origemrecursos.cnpjorigemrecursos == 0 %}{{ r2070_pgtopj_origemrecursos.cnpjorigemrecursos }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoPJorigemRecursos or perms.efdreinf.can_see_r2070pgtoPJorigemRecursos %}
+                <a href="{% url 'r2070_pgtopj_origemrecursos_salvar' pk=r2070_pgtopj_origemrecursos.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">pgtoResidExt</td>
+            <td bgcolor="lightgray" colspan="3">Pagamento a não residente ou domiciliado no exterior</td>
+        </tr>
+    {% for r2070_pgtoresidext in r2070_pgtoresidext_lista %}
+    {% ifequal r2070_pgtoresidext.r2070_ideestab.id r2070_ideestab.id %}
+        <tr {% if r2070_pgtoresidext.dtpagto|validacoes_esocial_efdreinf:"r2070_pgtoresidext.dtpagto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtPagto</td>
+            <td width="500px">Informar a data de pagamento. Validação: A data informada deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.dtpagto or r2070_pgtoresidext.dtpagto == 0 %}{{ r2070_pgtoresidext.dtpagto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoResidExt or perms.efdreinf.can_see_r2070pgtoResidExt %}
+                <a href="{% url 'r2070_pgtoresidext_salvar' pk=r2070_pgtoresidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtoresidext.tprendimento|validacoes_esocial_efdreinf:"r2070_pgtoresidext.tprendimento" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpRendimento</td>
+            <td width="500px">Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior Validação: Deve ser um código existente na tabela 03.</td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.tprendimento or r2070_pgtoresidext.tprendimento == 0 %}{{ r2070_pgtoresidext.tprendimento }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoResidExt or perms.efdreinf.can_see_r2070pgtoResidExt %}
+                <a href="{% url 'r2070_pgtoresidext_salvar' pk=r2070_pgtoresidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtoresidext.formatributacao|validacoes_esocial_efdreinf:"r2070_pgtoresidext.formatributacao" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">formaTributacao</td>
+            <td width="500px">Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior. Validação: Deve ser um código existente na tabela</td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.formatributacao or r2070_pgtoresidext.formatributacao == 0 %}{{ r2070_pgtoresidext.formatributacao }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoResidExt or perms.efdreinf.can_see_r2070pgtoResidExt %}
+                <a href="{% url 'r2070_pgtoresidext_salvar' pk=r2070_pgtoresidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtoresidext.vlrpgto|validacoes_esocial_efdreinf:"r2070_pgtoresidext.vlrpgto" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrPgto</td>
+            <td width="500px">Valor pago</td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.vlrpgto or r2070_pgtoresidext.vlrpgto == 0 %}{{ r2070_pgtoresidext.vlrpgto }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoResidExt or perms.efdreinf.can_see_r2070pgtoResidExt %}
+                <a href="{% url 'r2070_pgtoresidext_salvar' pk=r2070_pgtoresidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r2070_pgtoresidext.vlrret|validacoes_esocial_efdreinf:"r2070_pgtoresidext.vlrret" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrRet</td>
+            <td width="500px">Preencher com o Valor da retenção na Fonte.</td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.vlrret or r2070_pgtoresidext.vlrret == 0 %}{{ r2070_pgtoresidext.vlrret }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.r2070.can_see_r2070pgtoResidExt or perms.efdreinf.can_see_r2070pgtoResidExt %}
+                <a href="{% url 'r2070_pgtoresidext_salvar' pk=r2070_pgtoresidext.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
+
+</table>

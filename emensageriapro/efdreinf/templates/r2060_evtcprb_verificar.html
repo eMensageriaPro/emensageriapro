@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
 <!--
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -32,694 +32,131 @@
 
 -->
 {% if not output %}
-
-    <section class="content-header">
-      <h1>
+<section class="content-header">
+    <h1>
         R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB
         <small>Verificações</small>
-      </h1>
-      <ol class="breadcrumb">
+    </h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</a></li>
         <li class="active">Verificar</li>
-      </ol>
-    </section>
-    <section class="content">
+    </ol>
+</section>
+<section class="content">
 
-        {% if messages %}
-                <div class="pad margin no-print">
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-                        {{ message }}
-                    </div>
-            {% endfor %}
+    {% if messages %}
+            <div class="pad margin no-print">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
                 </div>
+        {% endfor %}
+            </div>
+    {% endif %}
+    {% if r2060_evtcprb.ocorrencias %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <strong>Ocorrências reportadas:</strong><br>
+                        <p>{% autoescape off %}{{ r2060_evtcprb.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB<br>
+                        Identidade: {{ r2060_evtcprb.identidade }}
+                    </h3>
+                    <div class="text-right">
+                        <a href="{% url 'r2060_evtcprb_verificar_output' pk=pk output='html' %}" target="_blank">
+                            <span type="button" class="btn btn-primary btn-lg">
+                                <i class="fa fa-print"></i>&nbsp;Imprimir
+                            </span>
+                        </a>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle btn-lg"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-download"></i>&nbsp;Exportar
+                                    <span class="sr-only">Exportar</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left">
+                                    <a href="{% url 'r2060_evtcprb_verificar_output' pk=pk output='html' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 'r2060_evtcprb_verificar_output' pk=pk output='pdf' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 'r2060_evtcprb_verificar_output' pk=pk output='xls' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>              
+                    </div>
+                    <div class="box-body">
+                        <h4>Layout</h4>
+                        {% include 'tables/r2060_evtcprb_verificar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<style>
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border: 1px solid black;
+      padding: 5px
+    }
+</style>
+{% if output == 'html' %}
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12">
         {% endif %}
-
-      
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB<br>Identidade: {{ r2060_evtcprb.identidade }}</h3>
-              <div class="text-right">
-                <a href="{% url 'r2060_evtcprb_verificar' pk=pk %}" target="_blank">
-                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                </a>
-
-
-
-                  <div class="btn-group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
-                                </button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="text-left"><a
-                                            href="{% url 'r2060_evtcprb_verificar_output' pk=pk output='pdf' %}"
-                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                    <li class="text-left"><a
-                                            href="{% url 'r2060_evtcprb_verificar_output' pk=pk output='xls' %}"
-                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                </ul>
-                            </div>&nbsp;
-
-              </div>              
-            </div>
-            <div class="box-body">
-{% else %} 
-   <section class="invoice">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB<br>Identidade: {{ r2060_evtcprb.identidade }}
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
-          </h2>
+            <h2 class="page-header">
+                R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB<br>
+                Identidade: {{ r2060_evtcprb.identidade }}
+                <small class="pull-right">
+                    Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                    Data: {{ data }}
+                </small>
+                {% if output == 'html' %}
+            </h2>
         </div>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-xs-12 table-responsive">
-{% endif %} 
-
-
-
-
-      <h4>Layout</h4>
-
-
-
-
-<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
-              
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">evtCPRB</td>
-            <td bgcolor="lightgray" colspan="3">Evento da contribuição previdenciária sobre a receita bruta - CPRB. <regras_validacao> REGRA_EVE_CPRB REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
-        </tr>
-    {% for r2060_evtcprb in r2060_evtcprb_lista %}
-    {% ifequal 1 1 %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
-        </tr>
-
-        <tr {% if r2060_evtcprb.indretif|validacoes_esocial_efdreinf:"r2060_evtcprb.indretif" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">indRetif</td>
-            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.indretif or r2060_evtcprb.indretif == 0 %}{{ r2060_evtcprb.indretif }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.nrrecibo|validacoes_esocial_efdreinf:"r2060_evtcprb.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.nrrecibo or r2060_evtcprb.nrrecibo == 0 %}{{ r2060_evtcprb.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.perapur|validacoes_esocial_efdreinf:"r2060_evtcprb.perapur" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">perApur</td>
-            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.perapur or r2060_evtcprb.perapur == 0 %}{{ r2060_evtcprb.perapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.tpamb|validacoes_esocial_efdreinf:"r2060_evtcprb.tpamb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.tpamb or r2060_evtcprb.tpamb == 0 %}{{ r2060_evtcprb.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.procemi|validacoes_esocial_efdreinf:"r2060_evtcprb.procemi" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.procemi or r2060_evtcprb.procemi == 0 %}{{ r2060_evtcprb.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.verproc|validacoes_esocial_efdreinf:"r2060_evtcprb.verproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">verProc</td>
-            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.verproc or r2060_evtcprb.verproc == 0 %}{{ r2060_evtcprb.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
-        </tr>
-
-        <tr {% if r2060_evtcprb.tpinsc|validacoes_esocial_efdreinf:"r2060_evtcprb.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição do contribuinte. <validacao> Deve ser igual a [1] (CNPJ).</td>
-            <td width="200px"><b>{% if r2060_evtcprb.tpinsc or r2060_evtcprb.tpinsc == 0 %}{{ r2060_evtcprb.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.nrinsc|validacoes_esocial_efdreinf:"r2060_evtcprb.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o CNPJ apenas com a Raiz/Base de oito posições, exceto se natureza jurídica do declarante for de administração pública direta federal ([101-5], [104-0], [107-4] e [116-3]), situação em que o campo deve ser preenchido com o CNPJ completo com 14 posições. <validacao> Deve ser um número de CNPJ válido.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.nrinsc or r2060_evtcprb.nrinsc == 0 %}{{ r2060_evtcprb.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoCPRB</td>
-            <td bgcolor="lightgray" colspan="3">Informação da contribuição previdenciária sobre a receita bruta.</td>
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
-            <td bgcolor="lightgray" colspan="3">Registro que identifica o estabelecimento que auferiu a receita bruta.</td>
-        </tr>
-
-        <tr {% if r2060_evtcprb.tpinscestab|validacoes_esocial_efdreinf:"r2060_evtcprb.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscEstab</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [4] CNO.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.tpinscestab or r2060_evtcprb.tpinscestab == 0 %}{{ r2060_evtcprb.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.nrinscestab|validacoes_esocial_efdreinf:"r2060_evtcprb.nrinscestab" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscEstab</td>
-            <td width="500px">Informar o número de inscrição do estabelecimento pertencente ao contribuinte declarante, de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. <validacao> A inscrição informada deve ser compatível com o {tpInscEstab}. O CNPJ ou CNO deve ser válido.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.nrinscestab or r2060_evtcprb.nrinscestab == 0 %}{{ r2060_evtcprb.nrinscestab }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.vlrrecbrutatotal|validacoes_esocial_efdreinf:"r2060_evtcprb.vlrrecbrutatotal" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrRecBrutaTotal</td>
-            <td width="500px">Valor da Receita Bruta Total do Estabelecimento no Período.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.vlrrecbrutatotal or r2060_evtcprb.vlrrecbrutatotal == 0 %}{{ r2060_evtcprb.vlrrecbrutatotal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.vlrcpapurtotal|validacoes_esocial_efdreinf:"r2060_evtcprb.vlrcpapurtotal" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrCPApurTotal</td>
-            <td width="500px">Valor total da Contribuição Previdenciária sobre Receita Bruta apurada pelo Estabelecimento no período. <validacao> Deve ser igual a totalização do campo {vlrCPRBapur} do grupo {tipoCod}.</td>
-            <td width="200px"><b>{% if r2060_evtcprb.vlrcpapurtotal or r2060_evtcprb.vlrcpapurtotal == 0 %}{{ r2060_evtcprb.vlrcpapurtotal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_evtcprb.vlrcprbsusptotal|validacoes_esocial_efdreinf:"r2060_evtcprb.vlrcprbsusptotal" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrCPRBSuspTotal</td>
-            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa. <validacao> Deve ser igual a totalização do campo {vlrCPRBSusp} do grupo {infoProc}, desconsiderando os processos cujo {indSusp} seja igual a [92].</td>
-            <td width="200px"><b>{% if r2060_evtcprb.vlrcprbsusptotal or r2060_evtcprb.vlrcprbsusptotal == 0 %}{{ r2060_evtcprb.vlrcprbsusptotal }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060evtCPRB or perms.efdreinf.can_see_r2060evtCPRB %}
-                <a href="{% url 'r2060_evtcprb_salvar' pk=r2060_evtcprb.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">tipoCod</td>
-            <td bgcolor="lightgray" colspan="3">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</td>
-        </tr>
-    {% for r2060_tipocod in r2060_tipocod_lista %}
-    {% ifequal r2060_tipocod.r2060_evtcprb.id r2060_evtcprb.id %}
-        <tr {% if r2060_tipocod.codativecon|validacoes_esocial_efdreinf:"r2060_tipocod.codativecon" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codAtivEcon</td>
-            <td width="500px">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme tabela 9. <validacao> Deve ser um código válido existente na tabela 9.</td>
-            <td width="200px"><b>{% if r2060_tipocod.codativecon or r2060_tipocod.codativecon == 0 %}{{ r2060_tipocod.codativecon }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipocod.vlrrecbrutaativ|validacoes_esocial_efdreinf:"r2060_tipocod.vlrrecbrutaativ" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrRecBrutaAtiv</td>
-            <td width="500px">Preencher com o valor total da receita da atividade. <validacao> Não pode ser maior que {vlrRecBrutaTotal}.</td>
-            <td width="200px"><b>{% if r2060_tipocod.vlrrecbrutaativ or r2060_tipocod.vlrrecbrutaativ == 0 %}{{ r2060_tipocod.vlrrecbrutaativ }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipocod.vlrexcrecbruta|validacoes_esocial_efdreinf:"r2060_tipocod.vlrexcrecbruta" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrExcRecBruta</td>
-            <td width="500px">Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei. <validacao> Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "0" - Ajuste de redução. Caso não haja ajuste de redução, preencher com 0 (zero). Não pode ser maior que {vlrRecBrutaAtiv}.</td>
-            <td width="200px"><b>{% if r2060_tipocod.vlrexcrecbruta or r2060_tipocod.vlrexcrecbruta == 0 %}{{ r2060_tipocod.vlrexcrecbruta }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipocod.vlradicrecbruta|validacoes_esocial_efdreinf:"r2060_tipocod.vlradicrecbruta" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrAdicRecBruta</td>
-            <td width="500px">Preencher com o Valor total das Adições da Receita Bruta previstas em lei. <validacao> Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "1" - Ajuste de adição. Caso não haja ajuste de adição, preencher com 0 (zero).</td>
-            <td width="200px"><b>{% if r2060_tipocod.vlradicrecbruta or r2060_tipocod.vlradicrecbruta == 0 %}{{ r2060_tipocod.vlradicrecbruta }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipocod.vlrbccprb|validacoes_esocial_efdreinf:"r2060_tipocod.vlrbccprb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrBcCPRB</td>
-            <td width="500px">Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta. <validacao> Deve ser igual a {vlrRecBrutaAtiv} + {vlrAdicRecBruta} - {vlrExcRecBruta}. O somatório dos valores informados no campo {vlrCPRBSusp} não pode ser superior ao valor informado neste campo ({vlrBcCPRB}) multiplicado pela alíquota definida na tabela 9 para o código da atividade informada em {codAtivEcon}.</td>
-            <td width="200px"><b>{% if r2060_tipocod.vlrbccprb or r2060_tipocod.vlrbccprb == 0 %}{{ r2060_tipocod.vlrbccprb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipocod.vlrcprbapur|validacoes_esocial_efdreinf:"r2060_tipocod.vlrcprbapur" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrCPRBapur</td>
-            <td width="500px">Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</td>
-            <td width="200px"><b>{% if r2060_tipocod.vlrcprbapur or r2060_tipocod.vlrcprbapur == 0 %}{{ r2060_tipocod.vlrcprbapur }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipocod.observ|validacoes_esocial_efdreinf:"r2060_tipocod.observ" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">observ</td>
-            <td width="500px">Observações.</td>
-            <td width="200px"><b>{% if r2060_tipocod.observ or r2060_tipocod.observ == 0 %}{{ r2060_tipocod.observ }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoCod or perms.efdreinf.can_see_r2060tipoCod %}
-                <a href="{% url 'r2060_tipocod_salvar' pk=r2060_tipocod.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">tipoAjuste</td>
-            <td bgcolor="lightgray" colspan="3">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</td>
-        </tr>
-    {% for r2060_tipoajuste in r2060_tipoajuste_lista %}
-    {% ifequal r2060_tipoajuste.r2060_tipocod.id r2060_tipocod.id %}
-        <tr {% if r2060_tipoajuste.tpajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.tpajuste" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAjuste</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de ajuste<opcoes> 0 - Ajuste de redução;1 - Ajuste de acréscimo. <valores_validos> 0,1.</td>
-            <td width="200px"><b>{% if r2060_tipoajuste.tpajuste or r2060_tipoajuste.tpajuste == 0 %}{{ r2060_tipoajuste.tpajuste }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoAjuste or perms.efdreinf.can_see_r2060tipoAjuste %}
-                <a href="{% url 'r2060_tipoajuste_salvar' pk=r2060_tipoajuste.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipoajuste.codajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.codajuste" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codAjuste</td>
-            <td width="500px">Preencher com o código de ajuste<opcoes>1 - Ajuste da CPRB: Adoção do Regime de Caixa; 2 - Ajuste da CPRB: Diferimento de Valores a recolher no período; 3 - Adição de valores Diferidos em Período(s) Anteriores(es); 4 - Exportações diretas; 5 - Transporte internacional de cargas; 6 - Vendas canceladas e os descontos incondicionais concedidos; 7 - IPI, se incluído na receita bruta; 8 - ICMS, quando cobrado pelo vendedor dos bens ou prestador dos serviços na condição de substituto tributário; 9 - Receita bruta reconhecida pela construção, recuperação, reforma, ampliação ou melhoramento da infraestrutura, cuja contrapartida seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos; 10 - O valor do aporte de recursos realizado nos termos do art 6 §3 inciso III da Lei 11.079/2004; 11 - Demais ajustes oriundos da Legislação Tributária, estorno ou outras situações. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11.</td>
-            <td width="200px"><b>{% if r2060_tipoajuste.codajuste or r2060_tipoajuste.codajuste == 0 %}{{ r2060_tipoajuste.codajuste }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoAjuste or perms.efdreinf.can_see_r2060tipoAjuste %}
-                <a href="{% url 'r2060_tipoajuste_salvar' pk=r2060_tipoajuste.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipoajuste.vlrajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.vlrajuste" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrAjuste</td>
-            <td width="500px">Valor do ajuste.</td>
-            <td width="200px"><b>{% if r2060_tipoajuste.vlrajuste or r2060_tipoajuste.vlrajuste == 0 %}{{ r2060_tipoajuste.vlrajuste }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoAjuste or perms.efdreinf.can_see_r2060tipoAjuste %}
-                <a href="{% url 'r2060_tipoajuste_salvar' pk=r2060_tipoajuste.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipoajuste.descajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.descajuste" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">descAjuste</td>
-            <td width="500px">Descrição resumida do ajuste.</td>
-            <td width="200px"><b>{% if r2060_tipoajuste.descajuste or r2060_tipoajuste.descajuste == 0 %}{{ r2060_tipoajuste.descajuste }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoAjuste or perms.efdreinf.can_see_r2060tipoAjuste %}
-                <a href="{% url 'r2060_tipoajuste_salvar' pk=r2060_tipoajuste.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_tipoajuste.dtajuste|validacoes_esocial_efdreinf:"r2060_tipoajuste.dtajuste" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">dtAjuste</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência do ajuste. <validacao> Deve ser um mês/ano válido.</td>
-            <td width="200px"><b>{% if r2060_tipoajuste.dtajuste or r2060_tipoajuste.dtajuste == 0 %}{{ r2060_tipoajuste.dtajuste }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060tipoAjuste or perms.efdreinf.can_see_r2060tipoAjuste %}
-                <a href="{% url 'r2060_tipoajuste_salvar' pk=r2060_tipoajuste.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoProc</td>
-            <td bgcolor="lightgray" colspan="3">Informações de processos relacionados a Suspensão da CPRB.</td>
-        </tr>
-    {% for r2060_infoproc in r2060_infoproc_lista %}
-    {% ifequal r2060_infoproc.r2060_tipocod.id r2060_tipocod.id %}
-        <tr {% if r2060_infoproc.tpproc|validacoes_esocial_efdreinf:"r2060_infoproc.tpproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpProc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if r2060_infoproc.tpproc or r2060_infoproc.tpproc == 0 %}{{ r2060_infoproc.tpproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060infoProc or perms.efdreinf.can_see_r2060infoProc %}
-                <a href="{% url 'r2060_infoproc_salvar' pk=r2060_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_infoproc.nrproc|validacoes_esocial_efdreinf:"r2060_infoproc.nrproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrProc</td>
-            <td width="500px">Informar o número do processo administrativo/judicial. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos.</td>
-            <td width="200px"><b>{% if r2060_infoproc.nrproc or r2060_infoproc.nrproc == 0 %}{{ r2060_infoproc.nrproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060infoProc or perms.efdreinf.can_see_r2060infoProc %}
-                <a href="{% url 'r2060_infoproc_salvar' pk=r2060_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_infoproc.codsusp|validacoes_esocial_efdreinf:"r2060_infoproc.codsusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProc}.</td>
-            <td width="200px"><b>{% if r2060_infoproc.codsusp or r2060_infoproc.codsusp == 0 %}{{ r2060_infoproc.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060infoProc or perms.efdreinf.can_see_r2060infoProc %}
-                <a href="{% url 'r2060_infoproc_salvar' pk=r2060_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if r2060_infoproc.vlrcprbsusp|validacoes_esocial_efdreinf:"r2060_infoproc.vlrcprbsusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">vlrCPRBSusp</td>
-            <td width="500px">Valor da Contribuição Previdenciária com exigibilidade suspensa.</td>
-            <td width="200px"><b>{% if r2060_infoproc.vlrcprbsusp or r2060_infoproc.vlrcprbsusp == 0 %}{{ r2060_infoproc.vlrcprbsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.r2060.can_see_r2060infoProc or perms.efdreinf.can_see_r2060infoProc %}
-                <a href="{% url 'r2060_infoproc_salvar' pk=r2060_infoproc.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
-</table>
-{% if not for_print %}
-            </div>
-          </div>
+        {% endif %}
+            <h4>Ocorrências reportadas:</h4>
+            <p>{% autoescape off %}{{ r2060_evtcprb.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            <h4>Layout</h4>
+            {% include 'tables/r2060_evtcprb_verificar.html' %}
+            {% if output == 'html' %}
         </div>
-      </div>
-    </section>
-{% else %} 
-
-        </div>
-      </div>
-    </section>
-{% endif %}  
-
+    </div>
+</section>
+{% endif %}
+{% endif %}
 {% endblock content %}

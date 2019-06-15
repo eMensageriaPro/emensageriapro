@@ -253,9 +253,9 @@ def send_xml(request, transmissor_id, service):
     from datetime import datetime
     from emensageriapro.settings import BASE_DIR
 
-    CA_CERT_PEM_FILE = config.CA_CERT_PEM_FILE
-    FORCE_PRODUCAO_RESTRITA = config.FORCE_PRODUCAO_RESTRITA
-    TP_AMB = config.TP_AMB
+    CA_CERT_PEM_FILE = config.EFDREINF_CA_CERT_PEM_FILE
+    FORCE_PRODUCAO_RESTRITA = config.EFDREINF_FORCE_PRODUCAO_RESTRITA
+    TP_AMB = config.EFDREINF_TP_AMB
 
     data_atual = str(datetime.now()).replace(':', '-').replace(' ', '-').replace('.', '-')
 
@@ -337,7 +337,7 @@ def send_xml(request, transmissor_id, service):
     dados['service'] = service
     dados['url'] = URL
     dados['cert'] = cert_pem_file
-    dados['cacert'] = '%s/%s' % (BASE_DIR, config.CA_CERT_PEM_FILE)
+    dados['cacert'] = '%s/%s' % (BASE_DIR, CA_CERT_PEM_FILE)
     dados['key'] = key_pem_file
     dados['action'] = ACTION
     dados['timeout'] = dados['efdreinf_timeout']
@@ -346,7 +346,7 @@ def send_xml(request, transmissor_id, service):
         filter(transmissor_lote_efdreinf_id=transmissor_id,
                status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
-    if tra.transmissor.efdreinf_certificado and (quant_eventos or service == 'ConsultasReinf'):
+    if tra.transmissor.certificado and (quant_eventos or service == 'ConsultasReinf'):
 
         if (quant_eventos >= dados['efdreinf_lote_min'] and \
                 quant_eventos <= dados['efdreinf_lote_max'] and \
@@ -396,7 +396,7 @@ def send_xml(request, transmissor_id, service):
 
             if 'HTTP/1.1 200 OK' not in ler_arquivo(dados['header']):
 
-                messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']) )
+                messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']))
 
             if service == 'RecepcaoLoteReinf':
 

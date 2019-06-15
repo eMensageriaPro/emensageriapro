@@ -1,0 +1,496 @@
+{% load templatetags %}
+<table {% if not output %}
+    class="table table-bordered"{% else %} 
+    width="100%"{% endif %}>
+
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtTabOperPort</td>
+            <td bgcolor="lightgray" colspan="3">Evento Tabela de Operadores Portuários. Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TABOPPORTUARIO_VALIDA_OGMO REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
+        </tr>
+    {% for s1080_evttaboperport in s1080_evttaboperport_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
+        </tr>
+
+        <tr {% if s1080_evttaboperport.tpamb|validacoes_esocial_efdreinf:"s1080_evttaboperport.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.tpamb or s1080_evttaboperport.tpamb == 0 %}{{ s1080_evttaboperport.tpamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_evttaboperport.procemi|validacoes_esocial_efdreinf:"s1080_evttaboperport.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.procemi or s1080_evttaboperport.procemi == 0 %}{{ s1080_evttaboperport.procemi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_evttaboperport.verproc|validacoes_esocial_efdreinf:"s1080_evttaboperport.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.verproc or s1080_evttaboperport.verproc == 0 %}{{ s1080_evttaboperport.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
+        </tr>
+
+        <tr {% if s1080_evttaboperport.tpinsc|validacoes_esocial_efdreinf:"s1080_evttaboperport.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.tpinsc or s1080_evttaboperport.tpinsc == 0 %}{{ s1080_evttaboperport.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_evttaboperport.nrinsc|validacoes_esocial_efdreinf:"s1080_evttaboperport.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.nrinsc or s1080_evttaboperport.nrinsc == 0 %}{{ s1080_evttaboperport.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080evtTabOperPort or perms.esocial.can_see_s1080evtTabOperPort %}
+                <a href="{% url 's1080_evttaboperport_salvar' pk=s1080_evttaboperport.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoOperPortuario</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Operador Portuário.</td>
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
+        </tr>
+    {% for s1080_inclusao in s1080_inclusao_lista %}
+    {% ifequal s1080_inclusao.s1080_evttaboperport.id s1080_evttaboperport.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideOperPortuario</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do Operador Portuário e validade das informações que estão sendo incluídas.</td>
+        </tr>
+
+        <tr {% if s1080_inclusao.cnpjopportuario|validacoes_esocial_efdreinf:"s1080_inclusao.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOpPortuario</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. Validação: Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="200px"><b>{% if s1080_inclusao.cnpjopportuario or s1080_inclusao.cnpjopportuario == 0 %}{{ s1080_inclusao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_inclusao.inivalid|validacoes_esocial_efdreinf:"s1080_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1080_inclusao.inivalid or s1080_inclusao.inivalid == 0 %}{{ s1080_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1080_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="200px"><b>{% if s1080_inclusao.fimvalid or s1080_inclusao.fimvalid == 0 %}{{ s1080_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosOperPortuario</td>
+            <td bgcolor="lightgray" colspan="3">Detalhamento das informações do Operador Portuário que está sendo incluído.</td>
+        </tr>
+
+        <tr {% if s1080_inclusao.aliqrat|validacoes_esocial_efdreinf:"s1080_inclusao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRat</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. Validação: Deve ser igual a 1, 2 ou 3.</td>
+            <td width="200px"><b>{% if s1080_inclusao.aliqrat or s1080_inclusao.aliqrat == 0 %}{{ s1080_inclusao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_inclusao.fap|validacoes_esocial_efdreinf:"s1080_inclusao.fap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fap</td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
+            <td width="200px"><b>{% if s1080_inclusao.fap or s1080_inclusao.fap == 0 %}{{ s1080_inclusao.fap }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_inclusao.aliqratajust|validacoes_esocial_efdreinf:"s1080_inclusao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRatAjust</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
+            <td width="200px"><b>{% if s1080_inclusao.aliqratajust or s1080_inclusao.aliqratajust == 0 %}{{ s1080_inclusao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080inclusao or perms.esocial.can_see_s1080inclusao %}
+                <a href="{% url 's1080_inclusao_salvar' pk=s1080_inclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
+            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes.</td>
+        </tr>
+    {% for s1080_alteracao in s1080_alteracao_lista %}
+    {% ifequal s1080_alteracao.s1080_evttaboperport.id s1080_evttaboperport.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideOperPortuario</td>
+            <td bgcolor="lightgray" colspan="3">Grupo de informações de identificação do operador portuário, apresentando cnpj e período de validade do registro cujas informações serão alteradas pelos dados constantes neste evento.</td>
+        </tr>
+
+        <tr {% if s1080_alteracao.cnpjopportuario|validacoes_esocial_efdreinf:"s1080_alteracao.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOpPortuario</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. Validação: Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="200px"><b>{% if s1080_alteracao.cnpjopportuario or s1080_alteracao.cnpjopportuario == 0 %}{{ s1080_alteracao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_alteracao.inivalid|validacoes_esocial_efdreinf:"s1080_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1080_alteracao.inivalid or s1080_alteracao.inivalid == 0 %}{{ s1080_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1080_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="200px"><b>{% if s1080_alteracao.fimvalid or s1080_alteracao.fimvalid == 0 %}{{ s1080_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">dadosOperPortuario</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Operador Portuário.</td>
+        </tr>
+
+        <tr {% if s1080_alteracao.aliqrat|validacoes_esocial_efdreinf:"s1080_alteracao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRat</td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. Validação: Deve ser igual a 1, 2 ou 3.</td>
+            <td width="200px"><b>{% if s1080_alteracao.aliqrat or s1080_alteracao.aliqrat == 0 %}{{ s1080_alteracao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_alteracao.fap|validacoes_esocial_efdreinf:"s1080_alteracao.fap" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fap</td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
+            <td width="200px"><b>{% if s1080_alteracao.fap or s1080_alteracao.fap == 0 %}{{ s1080_alteracao.fap }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_alteracao.aliqratajust|validacoes_esocial_efdreinf:"s1080_alteracao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">aliqRatAjust</td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
+            <td width="200px"><b>{% if s1080_alteracao.aliqratajust or s1080_alteracao.aliqratajust == 0 %}{{ s1080_alteracao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracao or perms.esocial.can_see_s1080alteracao %}
+                <a href="{% url 's1080_alteracao_salvar' pk=s1080_alteracao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
+            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</td>
+        </tr>
+    {% for s1080_alteracao_novavalidade in s1080_alteracao_novavalidade_lista %}
+    {% ifequal s1080_alteracao_novavalidade.s1080_alteracao.id s1080_alteracao.id %}
+        <tr {% if s1080_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1080_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1080_alteracao_novavalidade.inivalid or s1080_alteracao_novavalidade.inivalid == 0 %}{{ s1080_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracaonovaValidade or perms.esocial.can_see_s1080alteracaonovaValidade %}
+                <a href="{% url 's1080_alteracao_novavalidade_salvar' pk=s1080_alteracao_novavalidade.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1080_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="200px"><b>{% if s1080_alteracao_novavalidade.fimvalid or s1080_alteracao_novavalidade.fimvalid == 0 %}{{ s1080_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080alteracaonovaValidade or perms.esocial.can_see_s1080alteracaonovaValidade %}
+                <a href="{% url 's1080_alteracao_novavalidade_salvar' pk=s1080_alteracao_novavalidade.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão de informações.</td>
+        </tr>
+    {% for s1080_exclusao in s1080_exclusao_lista %}
+    {% ifequal s1080_exclusao.s1080_evttaboperport.id s1080_evttaboperport.id %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideOperPortuario</td>
+            <td bgcolor="lightgray" colspan="3">Grupo de informações que identifica o operador portuário que será excluído.</td>
+        </tr>
+
+        <tr {% if s1080_exclusao.cnpjopportuario|validacoes_esocial_efdreinf:"s1080_exclusao.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">cnpjOpPortuario</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. Validação: Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="200px"><b>{% if s1080_exclusao.cnpjopportuario or s1080_exclusao.cnpjopportuario == 0 %}{{ s1080_exclusao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080exclusao or perms.esocial.can_see_s1080exclusao %}
+                <a href="{% url 's1080_exclusao_salvar' pk=s1080_exclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_exclusao.inivalid|validacoes_esocial_efdreinf:"s1080_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">iniValid</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="200px"><b>{% if s1080_exclusao.inivalid or s1080_exclusao.inivalid == 0 %}{{ s1080_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080exclusao or perms.esocial.can_see_s1080exclusao %}
+                <a href="{% url 's1080_exclusao_salvar' pk=s1080_exclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if s1080_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1080_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">fimValid</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="200px"><b>{% if s1080_exclusao.fimvalid or s1080_exclusao.fimvalid == 0 %}{{ s1080_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
+            {% if not output %}
+            <td width="40px">
+              <div>
+                {% if perms.s1080.can_see_s1080exclusao or perms.esocial.can_see_s1080exclusao %}
+                <a href="{% url 's1080_exclusao_salvar' pk=s1080_exclusao.id tab='master' %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+     {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+
+</table>

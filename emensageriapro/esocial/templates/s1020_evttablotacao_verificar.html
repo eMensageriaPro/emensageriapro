@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load templatetags %}{% block content %}
 <!--
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -32,1013 +32,131 @@
 
 -->
 {% if not output %}
-
-    <section class="content-header">
-      <h1>
+<section class="content-header">
+    <h1>
         S-1020 - Tabela de Lotações Tributárias
         <small>Verificações</small>
-      </h1>
-      <ol class="breadcrumb">
+    </h1>
+    <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">S-1020 - Tabela de Lotações Tributárias</a></li>
         <li class="active">Verificar</li>
-      </ol>
-    </section>
-    <section class="content">
+    </ol>
+</section>
+<section class="content">
 
-        {% if messages %}
-                <div class="pad margin no-print">
-            {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
-                        {{ message }}
-                    </div>
-            {% endfor %}
+    {% if messages %}
+            <div class="pad margin no-print">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
                 </div>
+        {% endfor %}
+            </div>
+    {% endif %}
+    {% if s1020_evttablotacao.ocorrencias %}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <strong>Ocorrências reportadas:</strong><br>
+                        <p>{% autoescape off %}{{ s1020_evttablotacao.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        S-1020 - Tabela de Lotações Tributárias<br>
+                        Identidade: {{ s1020_evttablotacao.identidade }}
+                    </h3>
+                    <div class="text-right">
+                        <a href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='html' %}" target="_blank">
+                            <span type="button" class="btn btn-primary btn-lg">
+                                <i class="fa fa-print"></i>&nbsp;Imprimir
+                            </span>
+                        </a>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle btn-lg"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-download"></i>&nbsp;Exportar
+                                    <span class="sr-only">Exportar</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="text-left">
+                                    <a href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='html' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='pdf' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                                    </a>
+                                </li>
+                                <li class="text-left">
+                                    <a href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='xls' %}"
+                                        target="_blank">
+                                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>              
+                    </div>
+                    <div class="box-body">
+                        <h4>Layout</h4>
+                        {% include 'tables/s1020_evttablotacao_verificar.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<style>
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+      border: 1px solid black;
+      padding: 5px
+    }
+</style>
+{% if output == 'html' %}
+<section class="invoice">
+    <div class="row">
+        <div class="col-xs-12">
         {% endif %}
-
-      
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">S-1020 - Tabela de Lotações Tributárias<br>Identidade: {{ s1020_evttablotacao.identidade }}</h3>
-              <div class="text-right">
-                <a href="{% url 's1020_evttablotacao_verificar' pk=pk %}" target="_blank">
-                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
-                </a>
-
-
-
-                  <div class="btn-group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
-                                </button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="text-left"><a
-                                            href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='pdf' %}"
-                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
-                                    <li class="text-left"><a
-                                            href="{% url 's1020_evttablotacao_verificar_output' pk=pk output='xls' %}"
-                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
-                                </ul>
-                            </div>&nbsp;
-
-              </div>              
-            </div>
-            <div class="box-body">
-{% else %} 
-   <section class="invoice">
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            S-1020 - Tabela de Lotações Tributárias<br>Identidade: {{ s1020_evttablotacao.identidade }}
-            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
-          </h2>
+            <h2 class="page-header">
+                S-1020 - Tabela de Lotações Tributárias<br>
+                Identidade: {{ s1020_evttablotacao.identidade }}
+                <small class="pull-right">
+                    Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                    Data: {{ data }}
+                </small>
+                {% if output == 'html' %}
+            </h2>
         </div>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-xs-12 table-responsive">
-{% endif %} 
-
-
-
-
-      <h4>Layout</h4>
-
-
-
-
-<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
-              
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">evtTabLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Evento de tabela de lotações tributárias. <regras_validacao> REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TABLOTACAO_COMPATIB_TPLOTACAO_CLASSTRIB REGRA_TABLOTACAO_EXISTE_TABOPERPORTUARIO REGRA_TABLOTACAO_VALIDA_CNO_PARCIAL REGRA_TABLOTACAO_VALIDA_FPASTERCEIROS REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
-        </tr>
-    {% for s1020_evttablotacao in s1020_evttablotacao_lista %}
-    {% ifequal 1 1 %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
-        </tr>
-
-        <tr {% if s1020_evttablotacao.tpamb|validacoes_esocial_efdreinf:"s1020_evttablotacao.tpamb" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1020_evttablotacao.tpamb or s1020_evttablotacao.tpamb == 0 %}{{ s1020_evttablotacao.tpamb }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
-                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_evttablotacao.procemi|validacoes_esocial_efdreinf:"s1020_evttablotacao.procemi" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s1020_evttablotacao.procemi or s1020_evttablotacao.procemi == 0 %}{{ s1020_evttablotacao.procemi }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
-                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_evttablotacao.verproc|validacoes_esocial_efdreinf:"s1020_evttablotacao.verproc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">verProc</td>
-            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
-            <td width="200px"><b>{% if s1020_evttablotacao.verproc or s1020_evttablotacao.verproc == 0 %}{{ s1020_evttablotacao.verproc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
-                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
-        </tr>
-
-        <tr {% if s1020_evttablotacao.tpinsc|validacoes_esocial_efdreinf:"s1020_evttablotacao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s1020_evttablotacao.tpinsc or s1020_evttablotacao.tpinsc == 0 %}{{ s1020_evttablotacao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
-                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_evttablotacao.nrinsc|validacoes_esocial_efdreinf:"s1020_evttablotacao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
-            <td width="200px"><b>{% if s1020_evttablotacao.nrinsc or s1020_evttablotacao.nrinsc == 0 %}{{ s1020_evttablotacao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020evtTabLotacao or perms.esocial.can_see_s1020evtTabLotacao %}
-                <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_evttablotacao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Identificação da operação (inclusão, alteração ou exclusão) e das informações da lotação.</td>
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
-            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
-        </tr>
-    {% for s1020_inclusao in s1020_inclusao_lista %}
-    {% ifequal s1020_inclusao.s1020_evttablotacao.id s1020_evttablotacao.id %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação da lotação e validade das informações que estão sendo incluídas.</td>
-        </tr>
-
-        <tr {% if s1020_inclusao.codlotacao|validacoes_esocial_efdreinf:"s1020_inclusao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
-            <td width="200px"><b>{% if s1020_inclusao.codlotacao or s1020_inclusao.codlotacao == 0 %}{{ s1020_inclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao.inivalid|validacoes_esocial_efdreinf:"s1020_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
-            <td width="200px"><b>{% if s1020_inclusao.inivalid or s1020_inclusao.inivalid == 0 %}{{ s1020_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1020_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
-            <td width="200px"><b>{% if s1020_inclusao.fimvalid or s1020_inclusao.fimvalid == 0 %}{{ s1020_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">dadosLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Detalhamento das informações da lotação que está sendo incluída.</td>
-        </tr>
-
-        <tr {% if s1020_inclusao.tplotacao|validacoes_esocial_efdreinf:"s1020_inclusao.tplotacao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpLotacao</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de lotação, conforme tabela 10. <validacao> Deve ser um código válido, existente na tabela 10, e compatível com a Classificação Tributária indicada no evento de Informações Cadastrais do Empregador.</td>
-            <td width="200px"><b>{% if s1020_inclusao.tplotacao or s1020_inclusao.tplotacao == 0 %}{{ s1020_inclusao.tplotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao.tpinsc|validacoes_esocial_efdreinf:"s1020_inclusao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> O campo não deve ser preenchido se {tpLotacao} for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo {nrInsc}, conforme tabela 10 - Tipos de Lotação Tributária. <valores_validos> 1, 2, 4.</td>
-            <td width="200px"><b>{% if s1020_inclusao.tpinsc or s1020_inclusao.tpinsc == 0 %}{{ s1020_inclusao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao.nrinsc|validacoes_esocial_efdreinf:"s1020_inclusao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Preencher com o número de Inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária, conforme indicado na tabela 10 - Tipos de Lotação Tributária. <validacao> a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo {tpInsc} e na tabela de tipos de Lotação Tributária. b) Deve ser um identificador válido, constante das bases da RFB.</td>
-            <td width="200px"><b>{% if s1020_inclusao.nrinsc or s1020_inclusao.nrinsc == 0 %}{{ s1020_inclusao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">fpasLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Informações de FPAS e Terceiros relativas à lotação tributária.</td>
-        </tr>
-
-        <tr {% if s1020_inclusao.fpas|validacoes_esocial_efdreinf:"s1020_inclusao.fpas" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">fpas</td>
-            <td width="500px">Preencher com o código relativo ao FPAS. <validacao> Deve ser um código FPAS válido, conforme tabela 4.</td>
-            <td width="200px"><b>{% if s1020_inclusao.fpas or s1020_inclusao.fpas == 0 %}{{ s1020_inclusao.fpas }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao.codtercs|validacoes_esocial_efdreinf:"s1020_inclusao.codtercs" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codTercs</td>
-            <td width="500px">Preencher com o código de Terceiros, conforme tabela 4, já considerando a existência de eventuais convênios para recolhimento direto. Exemplo: Se o contribuinte está enquadrado com FPAS 507, cujo código cheio de Terceiros é 0079, se possuir convênio com Senai deve informar o código 0075. <validacao> Se a classificação tributária for igual a [01, 02, 03, 04], informar 0000. Nos demais casos, o código de terceiros informado deve ser compatível com o código de FPAS informado, conforme tabela 4.</td>
-            <td width="200px"><b>{% if s1020_inclusao.codtercs or s1020_inclusao.codtercs == 0 %}{{ s1020_inclusao.codtercs }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao.codtercssusp|validacoes_esocial_efdreinf:"s1020_inclusao.codtercssusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codTercsSusp</td>
-            <td width="500px">Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. <validacao> Deve ser um código consistente com a tabela 4. Deve haver um processo em {procJudTerceiro} para cada código de Terceiro cujo recolhimento esteja suspenso.</td>
-            <td width="200px"><b>{% if s1020_inclusao.codtercssusp or s1020_inclusao.codtercssusp == 0 %}{{ s1020_inclusao.codtercssusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusao or perms.esocial.can_see_s1020inclusao %}
-                <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoProcJudTerceiros</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</td>
-        </tr>
-    {% for s1020_inclusao_infoprocjudterceiros in s1020_inclusao_infoprocjudterceiros_lista %}
-    {% ifequal s1020_inclusao_infoprocjudterceiros.s1020_inclusao.id s1020_inclusao.id %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">procJudTerceiro</td>
-            <td bgcolor="lightgray" colspan="3">Identificação do Processo Judicial.</td>
-        </tr>
-    {% for s1020_inclusao_procjudterceiro in s1020_inclusao_procjudterceiro_lista %}
-    {% ifequal s1020_inclusao_procjudterceiro.s1020_inclusao_infoprocjudterceiros.id s1020_inclusao_infoprocjudterceiros.id %}
-        <tr {% if s1020_inclusao_procjudterceiro.codterc|validacoes_esocial_efdreinf:"s1020_inclusao_procjudterceiro.codterc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codTerc</td>
-            <td width="500px">Informar o Código de Terceiro. <validacao> Deve ser um código de terceiro válido e compatível com o FPAS/Terceiros informado no registro superior, conforme tabela 4.</td>
-            <td width="200px"><b>{% if s1020_inclusao_procjudterceiro.codterc or s1020_inclusao_procjudterceiro.codterc == 0 %}{{ s1020_inclusao_procjudterceiro.codterc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro or perms.esocial.can_see_s1020inclusaoprocJudTerceiro %}
-                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=s1020_inclusao_procjudterceiro.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao_procjudterceiro.nrprocjud|validacoes_esocial_efdreinf:"s1020_inclusao_procjudterceiro.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrProcJud</td>
-            <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo válido e deve existir na tabela de processos (S-1070).</td>
-            <td width="200px"><b>{% if s1020_inclusao_procjudterceiro.nrprocjud or s1020_inclusao_procjudterceiro.nrprocjud == 0 %}{{ s1020_inclusao_procjudterceiro.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro or perms.esocial.can_see_s1020inclusaoprocJudTerceiro %}
-                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=s1020_inclusao_procjudterceiro.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao_procjudterceiro.codsusp|validacoes_esocial_efdreinf:"s1020_inclusao_procjudterceiro.codsusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
-            <td width="200px"><b>{% if s1020_inclusao_procjudterceiro.codsusp or s1020_inclusao_procjudterceiro.codsusp == 0 %}{{ s1020_inclusao_procjudterceiro.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro or perms.esocial.can_see_s1020inclusaoprocJudTerceiro %}
-                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=s1020_inclusao_procjudterceiro.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoEmprParcial</td>
-            <td bgcolor="lightgray" colspan="3">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igual a [2].</td>
-        </tr>
-    {% for s1020_inclusao_infoemprparcial in s1020_inclusao_infoemprparcial_lista %}
-    {% ifequal s1020_inclusao_infoemprparcial.s1020_inclusao.id s1020_inclusao.id %}
-        <tr {% if s1020_inclusao_infoemprparcial.tpinsccontrat|validacoes_esocial_efdreinf:"s1020_inclusao_infoemprparcial.tpinsccontrat" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscContrat</td>
-            <td width="500px">Tipo de Inscrição do contratante<opcoes>1 - CNPJ; 2 - CPF. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.tpinsccontrat or s1020_inclusao_infoemprparcial.tpinsccontrat == 0 %}{{ s1020_inclusao_infoemprparcial.tpinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao_infoemprparcial.nrinsccontrat|validacoes_esocial_efdreinf:"s1020_inclusao_infoemprparcial.nrinsccontrat" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscContrat</td>
-            <td width="500px">Número de Inscrição (CNPJ/CPF) do contratante. <validacao> Deve ser um número de CNPJ ou CPF válido, conforme definido em {tpInscContrat}.</td>
-            <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.nrinsccontrat or s1020_inclusao_infoemprparcial.nrinsccontrat == 0 %}{{ s1020_inclusao_infoemprparcial.nrinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao_infoemprparcial.tpinscprop|validacoes_esocial_efdreinf:"s1020_inclusao_infoemprparcial.tpinscprop" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscProp</td>
-            <td width="500px">Tipo de Inscrição do proprietário do CNO. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.tpinscprop or s1020_inclusao_infoemprparcial.tpinscprop == 0 %}{{ s1020_inclusao_infoemprparcial.tpinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_inclusao_infoemprparcial.nrinscprop|validacoes_esocial_efdreinf:"s1020_inclusao_infoemprparcial.nrinscprop" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscProp</td>
-            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscProp}, e constar como responsável no cadastro do CNO.</td>
-            <td width="200px"><b>{% if s1020_inclusao_infoemprparcial.nrinscprop or s1020_inclusao_infoemprparcial.nrinscprop == 0 %}{{ s1020_inclusao_infoemprparcial.nrinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial or perms.esocial.can_see_s1020inclusaoinfoEmprParcial %}
-                <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=s1020_inclusao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
-            <td bgcolor="lightgray" colspan="3">Alteração de informações já existentes.</td>
-        </tr>
-    {% for s1020_alteracao in s1020_alteracao_lista %}
-    {% ifequal s1020_alteracao.s1020_evttablotacao.id s1020_evttablotacao.id %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Grupo de informações de identificação da lotação, apresentando código e período de validade da lotação cujas informações serão alteradas pelos dados constantes neste evento.</td>
-        </tr>
-
-        <tr {% if s1020_alteracao.codlotacao|validacoes_esocial_efdreinf:"s1020_alteracao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
-            <td width="200px"><b>{% if s1020_alteracao.codlotacao or s1020_alteracao.codlotacao == 0 %}{{ s1020_alteracao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao.inivalid|validacoes_esocial_efdreinf:"s1020_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
-            <td width="200px"><b>{% if s1020_alteracao.inivalid or s1020_alteracao.inivalid == 0 %}{{ s1020_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1020_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
-            <td width="200px"><b>{% if s1020_alteracao.fimvalid or s1020_alteracao.fimvalid == 0 %}{{ s1020_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
- 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">dadosLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Informações da lotação.</td>
-        </tr>
-
-        <tr {% if s1020_alteracao.tplotacao|validacoes_esocial_efdreinf:"s1020_alteracao.tplotacao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpLotacao</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de lotação, conforme tabela 10. <validacao> Deve ser um código válido, existente na tabela 10, e compatível com a Classificação Tributária indicada no evento de Informações Cadastrais do Empregador.</td>
-            <td width="200px"><b>{% if s1020_alteracao.tplotacao or s1020_alteracao.tplotacao == 0 %}{{ s1020_alteracao.tplotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao.tpinsc|validacoes_esocial_efdreinf:"s1020_alteracao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> O campo não deve ser preenchido se {tpLotacao} for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo {nrInsc}, conforme tabela 10 - Tipos de Lotação Tributária. <valores_validos> 1, 2, 4.</td>
-            <td width="200px"><b>{% if s1020_alteracao.tpinsc or s1020_alteracao.tpinsc == 0 %}{{ s1020_alteracao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao.nrinsc|validacoes_esocial_efdreinf:"s1020_alteracao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInsc</td>
-            <td width="500px">Preencher com o número de Inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária, conforme indicado na tabela 10 - Tipos de Lotação Tributária. <validacao> a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo {tpInsc} e na tabela de tipos de Lotação Tributária. b) Deve ser um identificador válido, constante das bases da RFB.</td>
-            <td width="200px"><b>{% if s1020_alteracao.nrinsc or s1020_alteracao.nrinsc == 0 %}{{ s1020_alteracao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">fpasLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Informações de FPAS e Terceiros relativas à lotação tributária.</td>
-        </tr>
-
-        <tr {% if s1020_alteracao.fpas|validacoes_esocial_efdreinf:"s1020_alteracao.fpas" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">fpas</td>
-            <td width="500px">Preencher com o código relativo ao FPAS. <validacao> Deve ser um código FPAS válido, conforme tabela 4.</td>
-            <td width="200px"><b>{% if s1020_alteracao.fpas or s1020_alteracao.fpas == 0 %}{{ s1020_alteracao.fpas }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao.codtercs|validacoes_esocial_efdreinf:"s1020_alteracao.codtercs" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codTercs</td>
-            <td width="500px">Preencher com o código de Terceiros, conforme tabela 4, já considerando a existência de eventuais convênios para recolhimento direto. Exemplo: Se o contribuinte está enquadrado com FPAS 507, cujo código cheio de Terceiros é 0079, se possuir convênio com Senai deve informar o código 0075. <validacao> Se a classificação tributária for igual a [01, 02, 03, 04], informar 0000. Nos demais casos, o código de terceiros informado deve ser compatível com o código de FPAS informado, conforme tabela 4.</td>
-            <td width="200px"><b>{% if s1020_alteracao.codtercs or s1020_alteracao.codtercs == 0 %}{{ s1020_alteracao.codtercs }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao.codtercssusp|validacoes_esocial_efdreinf:"s1020_alteracao.codtercssusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codTercsSusp</td>
-            <td width="500px">Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. <validacao> Deve ser um código consistente com a tabela 4. Deve haver um processo em {procJudTerceiro} para cada código de Terceiro cujo recolhimento esteja suspenso.</td>
-            <td width="200px"><b>{% if s1020_alteracao.codtercssusp or s1020_alteracao.codtercssusp == 0 %}{{ s1020_alteracao.codtercssusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracao or perms.esocial.can_see_s1020alteracao %}
-                <a href="{% url 's1020_alteracao_salvar' pk=s1020_alteracao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoProcJudTerceiros</td>
-            <td bgcolor="lightgray" colspan="3">Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</td>
-        </tr>
-    {% for s1020_alteracao_infoprocjudterceiros in s1020_alteracao_infoprocjudterceiros_lista %}
-    {% ifequal s1020_alteracao_infoprocjudterceiros.s1020_alteracao.id s1020_alteracao.id %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">procJudTerceiro</td>
-            <td bgcolor="lightgray" colspan="3">Identificação do Processo Judicial.</td>
-        </tr>
-    {% for s1020_alteracao_procjudterceiro in s1020_alteracao_procjudterceiro_lista %}
-    {% ifequal s1020_alteracao_procjudterceiro.s1020_alteracao_infoprocjudterceiros.id s1020_alteracao_infoprocjudterceiros.id %}
-        <tr {% if s1020_alteracao_procjudterceiro.codterc|validacoes_esocial_efdreinf:"s1020_alteracao_procjudterceiro.codterc" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codTerc</td>
-            <td width="500px">Informar o Código de Terceiro. <validacao> Deve ser um código de terceiro válido e compatível com o FPAS/Terceiros informado no registro superior, conforme tabela 4.</td>
-            <td width="200px"><b>{% if s1020_alteracao_procjudterceiro.codterc or s1020_alteracao_procjudterceiro.codterc == 0 %}{{ s1020_alteracao_procjudterceiro.codterc }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro or perms.esocial.can_see_s1020alteracaoprocJudTerceiro %}
-                <a href="{% url 's1020_alteracao_procjudterceiro_salvar' pk=s1020_alteracao_procjudterceiro.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao_procjudterceiro.nrprocjud|validacoes_esocial_efdreinf:"s1020_alteracao_procjudterceiro.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrProcJud</td>
-            <td width="500px">Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo válido e deve existir na tabela de processos (S-1070).</td>
-            <td width="200px"><b>{% if s1020_alteracao_procjudterceiro.nrprocjud or s1020_alteracao_procjudterceiro.nrprocjud == 0 %}{{ s1020_alteracao_procjudterceiro.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro or perms.esocial.can_see_s1020alteracaoprocJudTerceiro %}
-                <a href="{% url 's1020_alteracao_procjudterceiro_salvar' pk=s1020_alteracao_procjudterceiro.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao_procjudterceiro.codsusp|validacoes_esocial_efdreinf:"s1020_alteracao_procjudterceiro.codsusp" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070.</td>
-            <td width="200px"><b>{% if s1020_alteracao_procjudterceiro.codsusp or s1020_alteracao_procjudterceiro.codsusp == 0 %}{{ s1020_alteracao_procjudterceiro.codsusp }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro or perms.esocial.can_see_s1020alteracaoprocJudTerceiro %}
-                <a href="{% url 's1020_alteracao_procjudterceiro_salvar' pk=s1020_alteracao_procjudterceiro.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">infoEmprParcial</td>
-            <td bgcolor="lightgray" colspan="3">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igual a [2].</td>
-        </tr>
-    {% for s1020_alteracao_infoemprparcial in s1020_alteracao_infoemprparcial_lista %}
-    {% ifequal s1020_alteracao_infoemprparcial.s1020_alteracao.id s1020_alteracao.id %}
-        <tr {% if s1020_alteracao_infoemprparcial.tpinsccontrat|validacoes_esocial_efdreinf:"s1020_alteracao_infoemprparcial.tpinsccontrat" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscContrat</td>
-            <td width="500px">Tipo de Inscrição do contratante<opcoes>1 - CNPJ; 2 - CPF. <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.tpinsccontrat or s1020_alteracao_infoemprparcial.tpinsccontrat == 0 %}{{ s1020_alteracao_infoemprparcial.tpinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao_infoemprparcial.nrinsccontrat|validacoes_esocial_efdreinf:"s1020_alteracao_infoemprparcial.nrinsccontrat" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscContrat</td>
-            <td width="500px">Número de Inscrição (CNPJ/CPF) do contratante. <validacao> Deve ser um número de CNPJ ou CPF válido, conforme definido em {tpInscContrat}.</td>
-            <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.nrinsccontrat or s1020_alteracao_infoemprparcial.nrinsccontrat == 0 %}{{ s1020_alteracao_infoemprparcial.nrinsccontrat }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao_infoemprparcial.tpinscprop|validacoes_esocial_efdreinf:"s1020_alteracao_infoemprparcial.tpinscprop" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">tpInscProp</td>
-            <td width="500px">Tipo de Inscrição do proprietário do CNO. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
-            <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.tpinscprop or s1020_alteracao_infoemprparcial.tpinscprop == 0 %}{{ s1020_alteracao_infoemprparcial.tpinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao_infoemprparcial.nrinscprop|validacoes_esocial_efdreinf:"s1020_alteracao_infoemprparcial.nrinscprop" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">nrInscProp</td>
-            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscProp}, e constar como responsável no cadastro do CNO.</td>
-            <td width="200px"><b>{% if s1020_alteracao_infoemprparcial.nrinscprop or s1020_alteracao_infoemprparcial.nrinscprop == 0 %}{{ s1020_alteracao_infoemprparcial.nrinscprop }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial or perms.esocial.can_see_s1020alteracaoinfoEmprParcial %}
-                <a href="{% url 's1020_alteracao_infoemprparcial_salvar' pk=s1020_alteracao_infoemprparcial.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %} 
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
-            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações da lotação identificada em {ideLotacao}, apresentando o novo período de validade.</td>
-        </tr>
-    {% for s1020_alteracao_novavalidade in s1020_alteracao_novavalidade_lista %}
-    {% ifequal s1020_alteracao_novavalidade.s1020_alteracao.id s1020_alteracao.id %}
-        <tr {% if s1020_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1020_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
-            <td width="200px"><b>{% if s1020_alteracao_novavalidade.inivalid or s1020_alteracao_novavalidade.inivalid == 0 %}{{ s1020_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaonovaValidade or perms.esocial.can_see_s1020alteracaonovaValidade %}
-                <a href="{% url 's1020_alteracao_novavalidade_salvar' pk=s1020_alteracao_novavalidade.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1020_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
-            <td width="200px"><b>{% if s1020_alteracao_novavalidade.fimvalid or s1020_alteracao_novavalidade.fimvalid == 0 %}{{ s1020_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020alteracaonovaValidade or perms.esocial.can_see_s1020alteracaonovaValidade %}
-                <a href="{% url 's1020_alteracao_novavalidade_salvar' pk=s1020_alteracao_novavalidade.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
-            <td bgcolor="lightgray" colspan="3">Exclusão de informações.</td>
-        </tr>
-    {% for s1020_exclusao in s1020_exclusao_lista %}
-    {% ifequal s1020_exclusao.s1020_evttablotacao.id s1020_evttablotacao.id %}
-        <tr>
-            <td bgcolor="lightgray" colspan="1" width="130px">ideLotacao</td>
-            <td bgcolor="lightgray" colspan="3">Grupo de informações que identifica a lotação que será excluída.</td>
-        </tr>
-
-        <tr {% if s1020_exclusao.codlotacao|validacoes_esocial_efdreinf:"s1020_exclusao.codlotacao" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">codLotacao</td>
-            <td width="500px">Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições.</td>
-            <td width="200px"><b>{% if s1020_exclusao.codlotacao or s1020_exclusao.codlotacao == 0 %}{{ s1020_exclusao.codlotacao }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020exclusao or perms.esocial.can_see_s1020exclusao %}
-                <a href="{% url 's1020_exclusao_salvar' pk=s1020_exclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_exclusao.inivalid|validacoes_esocial_efdreinf:"s1020_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
-            <td width="200px"><b>{% if s1020_exclusao.inivalid or s1020_exclusao.inivalid == 0 %}{{ s1020_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020exclusao or perms.esocial.can_see_s1020exclusao %}
-                <a href="{% url 's1020_exclusao_salvar' pk=s1020_exclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-
-        <tr {% if s1020_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1020_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
-            <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
-            <td width="200px"><b>{% if s1020_exclusao.fimvalid or s1020_exclusao.fimvalid == 0 %}{{ s1020_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
-            {% if not output %}
-            <td width="40px">
-              <div>
-                {% if perms.s1020.can_see_s1020exclusao or perms.esocial.can_see_s1020exclusao %}
-                <a href="{% url 's1020_exclusao_salvar' pk=s1020_exclusao.id tab='master' %}">
-                    <span class="btn btn-primary">
-                        <i class="fa fa-fw fa-edit"></i>
-                    </span>
-                </a>
-                {% endif %}
-              </div>
-            </td>
-            {% endif %}
-        </tr>
-     {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
-</table>
-{% if not for_print %}
-            </div>
-          </div>
+        {% endif %}
+            <h4>Ocorrências reportadas:</h4>
+            <p>{% autoescape off %}{{ s1020_evttablotacao.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            <h4>Layout</h4>
+            {% include 'tables/s1020_evttablotacao_verificar.html' %}
+            {% if output == 'html' %}
         </div>
-      </div>
-    </section>
-{% else %} 
-
-        </div>
-      </div>
-    </section>
-{% endif %}  
-
+    </div>
+</section>
+{% endif %}
+{% endif %}
 {% endblock content %}

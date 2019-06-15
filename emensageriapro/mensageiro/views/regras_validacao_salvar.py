@@ -82,6 +82,7 @@ def salvar(request, pk=None, tab='master', output=None):
             
                 #regras_validacao_campos_multiple_passo1
                 
+                
                 obj = regras_validacao_form.save(request=request)
                 messages.success(request, 'Salvo com sucesso!')
                 #regras_validacao_campos_multiple_passo2
