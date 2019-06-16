@@ -138,6 +138,39 @@
                         <div class="row">
                         {% if pk %}
                         
+                        {% if pk %} 
+    {% if transmissor_lote_efdreinf.status == 0 or transmissor_lote_efdreinf.status == 2 %}
+    <div class="col-md-4">
+        <a href="{% url 'transmissor_lote_efdreinf_enviar' pk=pk %}">
+            <span class="btn btn-primary btn-block btn-lg">
+                <i class="fa fa-fw fa-feed"></i>&nbsp;
+                Enviar Lote
+            </span>
+        </a>
+    </div>
+    {% endif %}
+    {% if transmissor_lote_efdreinf.status == 1 or transmissor_lote_efdreinf.status == 3 or transmissor_lote_efdreinf.status == 4 %}
+    <div class="col-md-4">
+        <a href="{% url 'transmissor_lote_efdreinf_consultar' pk=pk %}">
+            <span class="btn btn-primary btn-block btn-lg">
+                <i class="fa fa-fw fa-search"></i>&nbsp;
+                Consultar Lote
+            </span>
+        </a>
+    </div>
+    {% endif %}
+    {% if transmissor_lote_efdreinf.status == 2 or transmissor_lote_efdreinf.status == 3 or transmissor_lote_efdreinf.status == 4 %}
+    <div class="col-md-4">
+        <a href="{% url 'transmissor_lote_efdreinf_recibo' pk=pk %}" target="_blank">
+            <span class="btn btn-primary btn-block btn-lg">
+                <i class="fa fa-fw fa-print"></i>&nbsp;
+                Imprimir Recibo
+            </span>
+        </a>
+    </div>
+    {% endif %}
+{% endif %}
+                        
                         
                             
 

@@ -61,7 +61,7 @@ def enviar(request, pk):
 
     a = send_xml(request, pk, 'RecepcaoLoteReinf')
 
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    return redirect('transmissor_lote_efdreinf')
 
 
 @login_required
@@ -70,7 +70,7 @@ def consultar(request, pk):
     transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=pk)
     a = send_xml(request, pk, 'ConsultasReinf')
 
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    return redirect('transmissor_lote_efdreinf')
 
 
 @login_required

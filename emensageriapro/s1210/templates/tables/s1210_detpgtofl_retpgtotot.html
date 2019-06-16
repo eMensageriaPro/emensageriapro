@@ -16,7 +16,7 @@
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="90px">Ações</th>
+            <th width="80px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -39,7 +39,7 @@
             <!-- colunas especiais -->
             {% if not output %}
             <td>
-                <div>
+                <div class="btn-group">
                     <!-- botões especiais -->
                     
                         {% if perms.s1210.change_s1210detPgtoFlretPgtoTot or perms.s1210.add_s1210detPgtoFlretPgtoTot %}

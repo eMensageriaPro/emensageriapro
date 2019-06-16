@@ -4,7 +4,7 @@
         <tr>
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="90px">Ações</th>
+            <th width="80px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -15,7 +15,7 @@
             <!-- colunas especiais -->
             {% if not output %}
             <td>
-                <div>
+                <div class="btn-group">
                     <!-- botões especiais -->
                     
                         {% if perms.mapa_processamento.change_MapaImportações or perms.mapa_processamento.add_MapaImportações %}

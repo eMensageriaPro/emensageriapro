@@ -22,7 +22,7 @@
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="90px">Ações</th>
+            <th width="80px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -51,7 +51,7 @@
             <!-- colunas especiais -->
             {% if not output %}
             <td>
-                <div>
+                <div class="btn-group">
                     <!-- botões especiais -->
                     
                         {% if perms.s1080.change_s1080inclusao or perms.s1080.add_s1080inclusao %}

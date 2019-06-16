@@ -22,7 +22,7 @@
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="90px">Ações</th>
+            <th width="170px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -51,8 +51,28 @@
             <!-- colunas especiais -->
             {% if not output %}
             <td>
-                <div>
-                    <!-- botões especiais -->
+                <div class="btn-group">
+                    {% if a.status == 0 or a.status == 2 %}
+    <a href="{% url 'transmissor_lote_efdreinf_enviar' pk=a.id %}">
+        <span class="btn btn-primary" title="Enviar Lote">
+            <i class="fa fa-fw fa-feed"></i>
+            </span>
+    </a>
+    {% endif %}
+    {% if a.status == 1 or a.status == 3 or a.status == 4 %}
+    <a href="{% url 'transmissor_lote_efdreinf_consultar' pk=a.id %}">
+        <span class="btn btn-primary" title="Consultar Lote">
+            <i class="fa fa-fw fa-search"></i>
+        </span>
+        </a>
+    {% endif %}
+    {% if a.status == 2 or a.status == 3 or a.status == 4 %}
+    <a href="{% url 'transmissor_lote_efdreinf_recibo' pk=a.id %}" target="_blank">
+        <span class="btn btn-primary" title="Imprimir Recibo do Lote">
+            <i class="fa fa-fw fa-print"></i>
+        </span>
+    </a>
+    {% endif %}
                     
                         {% if perms.mensageiro.change_TransmissorLoteEfdreinf or perms.mensageiro.add_TransmissorLoteEfdreinf %}
                     

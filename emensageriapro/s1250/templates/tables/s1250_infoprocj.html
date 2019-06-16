@@ -22,7 +22,7 @@
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="90px">Ações</th>
+            <th width="80px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -51,7 +51,7 @@
             <!-- colunas especiais -->
             {% if not output %}
             <td>
-                <div>
+                <div class="btn-group">
                     <!-- botões especiais -->
                     
                         {% if perms.s1250.change_s1250infoProcJ or perms.s1250.add_s1250infoProcJ %}

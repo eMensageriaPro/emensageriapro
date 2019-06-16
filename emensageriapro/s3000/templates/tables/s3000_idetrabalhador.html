@@ -10,7 +10,7 @@
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="90px">Ações</th>
+            <th width="80px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -27,7 +27,7 @@
             <!-- colunas especiais -->
             {% if not output %}
             <td>
-                <div>
+                <div class="btn-group">
                     <!-- botões especiais -->
                     
                         {% if perms.s3000.change_s3000ideTrabalhador or perms.s3000.add_s3000ideTrabalhador %}

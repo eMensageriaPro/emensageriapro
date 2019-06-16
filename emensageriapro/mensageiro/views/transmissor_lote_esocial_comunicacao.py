@@ -60,7 +60,7 @@ def enviar(request, pk):
     transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
     a = send_xml(request, pk, 'WsEnviarLoteEventos')
 
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    return redirect('transmissor_lote_esocial')
 
 
 @login_required
@@ -69,7 +69,7 @@ def consultar(request, pk):
     transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=pk)
     a = send_xml(request, pk, 'WsConsultarLoteEventos')
 
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    return redirect('transmissor_lote_esocial')
 
 
 @login_required
