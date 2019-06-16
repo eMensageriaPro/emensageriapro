@@ -184,8 +184,10 @@ MIDDLEWARE_CLASSES = (
 )
 
 CRON_CLASSES = [
+    'emensageriapro.cron.EsocialValidate',
     'emensageriapro.cron.EsocialSend',
     'emensageriapro.cron.EsocialConsult',
+    'emensageriapro.cron.EfdreinfValidate',
     'emensageriapro.cron.EfdreinfSend',
     'emensageriapro.cron.EfdreinfConsult',
     'emensageriapro.cron.ImportFiles',
@@ -316,12 +318,20 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
 
+    'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b',
+                         u'Token de autenticação do sistema para acesso aos webservices',
+                         str),
+
+    'ESOCIAL_VALIDATE_RUN_EVERY_MINS': (10,
+                                    u'Tempo entre validações (em minutos) dos eventos do eSocial.',
+                                    int),
+
     'ESOCIAL_SEND_RUN_EVERY_MINS': (10,
-                                    u'Tempo de envio (em minutos) dos eventos do eSocial.',
+                                    u'Tempo entre envios (em minutos) dos eventos do eSocial.',
                                     int),
 
     'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10,
-                                       u'Tempo de consulta (em minutos) dos eventos do eSocial.',
+                                       u'Tempo entre consultas (em minutos) dos eventos do eSocial.',
                                        int),
 
     'ESOCIAL_LOTE_MIN': (1,
@@ -336,7 +346,7 @@ CONSTANCE_CONFIG = {
                           u'Timeout do eSocial.',
                           int),
 
-    'ESOCIAL_ENVIO_AUTOMATICO': (False,
+    'ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED': (False,
           u'Envio automático do eSocial.',
           bool),
 
@@ -365,12 +375,20 @@ CONSTANCE_CONFIG = {
                           u'Quantidade do lote de arquivos de eventos para importação.',
                           int),
 
+    'IMPORT_AUTOMATIC_FUNCTIONS_ENABLED': (False,
+          u'Envio automático do eSocial.',
+          bool),
+
+    'EFDREINF_VALIDADE_RUN_EVERY_MINS': (10,
+                                     u'Tempo entre validações (em minutos) dos eventos do EFD-Reinf.',
+                                     int),
+
     'EFDREINF_SEND_RUN_EVERY_MINS': (10,
-                                     u'Tempo de envio (em minutos) dos eventos do EFD-Reinf.',
+                                     u'Tempo entre envios (em minutos) dos eventos do EFD-Reinf.',
                                      int),
 
     'EFDREINF_CONSULT_RUN_EVERY_MINS': (10,
-                                        u'Tempo de consulta (em minutos) dos eventos do EFD-Reinf.',
+                                        u'Tempo entre consultas (em minutos) dos eventos do EFD-Reinf.',
                                         int),
 
     'EFDREINF_CA_CERT_PEM_FILE': ('certificados/acserproacfv5.crt',
@@ -389,7 +407,7 @@ CONSTANCE_CONFIG = {
                           u'Timeout do EFD-Reinf.',
                           int),
 
-    'EFDREINF_ENVIO_AUTOMATICO': (False,
+    'EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED': (False,
           u'Envio automático do EFD-Reinf.',
           bool),
 

@@ -24,6 +24,30 @@ import datetime
 
 from django_cron import CronJobBase, Schedule
 from constance import config
+from django.urls import reverse
+from emensageriapro.settings import LINK_WEBSITE
+import requests
+
+
+class EsocialValidate(CronJobBase):
+
+    RUN_EVERY_MINS = config.ESOCIAL_SEND_RUN_EVERY_MINS
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = u'Validação - eSocial'
+
+
+    def do(self):
+
+        if config.ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('esocial_validar_api', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
 
 
 class EsocialSend(CronJobBase):
@@ -31,10 +55,19 @@ class EsocialSend(CronJobBase):
     RUN_EVERY_MINS = config.ESOCIAL_SEND_RUN_EVERY_MINS
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'emensageriapro.esocial_send'
+    code = u'Envio - eSocial'
 
     def do(self):
-        pass
+
+        if config.ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('esocial_enviar_api', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
 
 
 class EsocialConsult(CronJobBase):
@@ -42,10 +75,39 @@ class EsocialConsult(CronJobBase):
     RUN_EVERY_MINS = config.ESOCIAL_CONSULT_RUN_EVERY_MINS
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'emensageriapro.esocial_consult'
+    code = u'Consulta - eSocial'
 
     def do(self):
-        pass
+
+        if config.ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('esocial_consultar_api', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
+
+
+class EfdreinfValidate(CronJobBase):
+
+    RUN_EVERY_MINS = config.EFDREINF_SEND_RUN_EVERY_MINS
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = u'Validação - EFD-Reinf'
+
+    def do(self):
+
+        if config.EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('efdreinf_validar_api', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
 
 
 class EfdreinfSend(CronJobBase):
@@ -53,10 +115,19 @@ class EfdreinfSend(CronJobBase):
     RUN_EVERY_MINS = config.EFDREINF_SEND_RUN_EVERY_MINS
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'emensageriapro.efdfreinf_send'
+    code = u'Envio - EFD-Reinf'
 
     def do(self):
-        pass
+
+        if config.EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('efdreinf_enviar_api', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
 
 
 class EfdreinfConsult(CronJobBase):
@@ -64,10 +135,19 @@ class EfdreinfConsult(CronJobBase):
     RUN_EVERY_MINS = config.EFDREINF_CONSULT_RUN_EVERY_MINS
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'emensageriapro.efdreinf_consult'
+    code = u'Consulta - EFD-Reinf'
 
     def do(self):
-        pass
+
+        if config.EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('efdreinf_consultar_api', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
 
 
 class ImportFiles(CronJobBase):
@@ -75,7 +155,16 @@ class ImportFiles(CronJobBase):
     RUN_EVERY_MINS = config.IMPORT_FILES_RUN_EVERY_MINS
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'emensageriapro.import_files'
+    code = u'Importação de Arquivos'
 
     def do(self):
-        pass
+
+        if config.IMPORT_AUTOMATIC_FUNCTIONS_ENABLED:
+
+            token = config.SYSTEM_TOKEN_SCHEDULE
+            url = LINK_WEBSITE + reverse('scripts_processar_arquivos', kwargs={'tab': 'json'})[1:]
+            return requests.get(url, headers={'Authorization': 'Token %s' % token}).text
+
+        else:
+
+            return u'Envio automático desativado.'
