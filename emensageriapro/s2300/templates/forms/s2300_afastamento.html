@@ -5,7 +5,7 @@
 <!-- inicio__s2300_afastamento__s2300_evttsvinicio -->
 <div class="col-md-12" id="s2300_afastamento__s2300_evttsvinicio__div">
   <div class="form-group">
-    <label id="s2300_afastamento__s2300_evttsvinicio__label">Informações de afastamento do trabalhador*<a data-toggle="tooltip" title="Informações de afastamento do TSVE. Preenchimento exclusivo em caso de trabalhador que permaneça afastado na data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial ou na data de alteração do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_afastamento__s2300_evttsvinicio__label">Informações de afastamento do trabalhador*</label>
     {% if not for_print %}{% if s2300_afastamento_form.s2300_evttsvinicio.value %}
         <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_afastamento_form.s2300_evttsvinicio.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_afastamento__dtiniafast -->
 <div class="col-md-4" id="s2300_afastamento__dtiniafast__div">
   <div class="form-group">
-    <label id="s2300_afastamento__dtiniafast__label">Data de início do afastamento*<a data-toggle="tooltip" title="Data de início do afastamento. <validacao> Devem ser observadas as seguintes regras: a) Deve ser igual ou posterior à data de início do TSVE; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador; c) Se {cadIni} = [N], deve ser anterior à data de alteração do CPF do trabalhador ({mudancaCPF/dtAltCPF})."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_afastamento__dtiniafast__label">Data de início do afastamento*</label>
         {% if s2300_afastamento_form.dtiniafast.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_afastamento_form.dtiniafast.errors }}
@@ -48,7 +48,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-4" id="s2300_afastamento__codmotafast__div">
     <div class="form-group">
-      <label id="s2300_afastamento__codmotafast__label">Afastamento*<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário, conforme tabela 18. <validacao> Deve ser um código existente na tabela 18."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2300_afastamento__codmotafast__label">Afastamento*</label>
         {% if s2300_afastamento_form.codmotafast.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2300_afastamento_form.codmotafast.errors }}
@@ -102,7 +102,7 @@
   {% else %}
   <div class="col-md-4" id="s2300_afastamento__codmotafast__div">
     <div class="form-group">
-      <label id="s2300_afastamento__codmotafast__label">Afastamento*<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário, conforme tabela 18. <validacao> Deve ser um código existente na tabela 18."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2300_afastamento__codmotafast__label">Afastamento*</label>
         <input type="text" id="txt_codmotafast" name="txt_codmotafast" class="form-control" value="{% if s2300_afastamento.codmotafast %}{{ s2300_afastamento.codmotafast }}{% endif %}" disabled="disabled">
     </div>
   </div>

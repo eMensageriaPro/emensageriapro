@@ -6,7 +6,7 @@
             <th>Informações de plano privado coletivo empresarial de assistência à saúde</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -19,10 +19,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1202.change_s1202infoPerApurinfoSaudeColet or perms.s1202.add_s1202infoPerApurinfoSaudeColet %}
                     
                         <a href="{% url 's1202_infoperapur_infosaudecolet_salvar' pk=a.id tab='master' %}">
@@ -44,6 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

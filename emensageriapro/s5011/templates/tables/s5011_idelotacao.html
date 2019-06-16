@@ -15,7 +15,7 @@
             <th>Código de Terceiros</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -37,10 +37,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s5011.change_s5011ideLotacao or perms.s5011.add_s5011ideLotacao %}
                     
                         <a href="{% url 's5011_idelotacao_salvar' pk=a.id tab='master' %}">
@@ -62,6 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

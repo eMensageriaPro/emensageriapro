@@ -5,7 +5,7 @@
 <!-- inicio__s2230_fimafastamento__s2230_evtafasttemp -->
 <div class="col-md-12" id="s2230_fimafastamento__s2230_evtafasttemp__div">
   <div class="form-group">
-    <label id="s2230_fimafastamento__s2230_evtafasttemp__label">Informações do Término do Afastamento*<a data-toggle="tooltip" title="Informações do Término do Afastamento. <regras_validacao> REGRA_EXISTE_EVENTO_AFASTAMENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_fimafastamento__s2230_evtafasttemp__label">Informações do Término do Afastamento*</label>
     {% if not for_print %}{% if s2230_fimafastamento_form.s2230_evtafasttemp.value %}
         <a href="{% url 's2230_evtafasttemp_salvar' pk=s2230_fimafastamento_form.s2230_evtafasttemp.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2230_fimafastamento__dttermafast -->
 <div class="col-md-6" id="s2230_fimafastamento__dttermafast__div">
   <div class="form-group">
-    <label id="s2230_fimafastamento__dttermafast__label">Data de término no afastamento*<a data-toggle="tooltip" title="Preencher com a data do término do afastamento do trabalhador. <validacao> Deve-se obedecer às seguintes regras: a) Deve ser igual ou posterior à data de início do afastamento do trabalhador; b) Deve ser uma data não superior à data atual acrescida de 15 dias corridos, exceto se {codMotAfast} = [15] (férias), situação em que pode ser superior à data atual em até 60 dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_fimafastamento__dttermafast__label">Data de término no afastamento*</label>
         {% if s2230_fimafastamento_form.dttermafast.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2230_fimafastamento_form.dttermafast.errors }}

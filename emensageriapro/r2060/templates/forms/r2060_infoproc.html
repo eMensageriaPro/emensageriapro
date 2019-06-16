@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2060_infoproc__r2060_tipocod__div">
   <div class="form-group">
-    <label id="r2060_infoproc__r2060_tipocod__label">Informações de processos relacionados a não retenção de contribuição previdenciária*<a data-toggle="tooltip" title="Informações de processos relacionados a Suspensão da CPRB."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_infoproc__r2060_tipocod__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
     {% if not for_print %}
       {% if r2060_infoproc_form.r2060_tipocod.value %}
         <a id="r2060_infoproc__r2060_tipocod__div_acessar" href="{% url 'r2060_tipocod_salvar' pk=r2060_infoproc_form.r2060_tipocod.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2060_infoproc__tpproc -->
 <div class="col-md-6" id="r2060_infoproc__tpproc__div">
   <div class="form-group">
-    <label id="r2060_infoproc__tpproc__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_infoproc__tpproc__label">Preencher com o código correspondente ao tipo de processo*</label>
     {% if r2060_infoproc_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2060_infoproc_form.tpproc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2060_infoproc__nrproc -->
 <div class="col-md-6" id="r2060_infoproc__nrproc__div">
   <div class="form-group">
-    <label id="r2060_infoproc__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_infoproc__nrproc__label">Informar o número do processo administrativo/judicial*</label>
       {% if r2060_infoproc_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2060_infoproc_form.nrproc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2060_infoproc__codsusp -->
 <div class="col-md-6" id="r2060_infoproc__codsusp__div">
   <div class="form-group">
-    <label id="r2060_infoproc__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_infoproc__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
       {% if r2060_infoproc_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2060_infoproc_form.codsusp.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r2060_infoproc__vlrcprbsusp -->
 <div class="col-md-6" id="r2060_infoproc__vlrcprbsusp__div">
   <div class="form-group">
-    <label id="r2060_infoproc__vlrcprbsusp__label">Valor da Contribuição Previdenciária com exigibilidade suspensa.*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_infoproc__vlrcprbsusp__label">Valor da Contribuição Previdenciária com exigibilidade suspensa.*</label>
     {% if r2060_infoproc_form.vlrcprbsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2060_infoproc_form.vlrcprbsusp.errors }}

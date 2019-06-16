@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_benefpen__r4010_detded__div">
   <div class="form-group">
-    <label id="r4010_benefpen__r4010_detded__label">Informação dos beneficiários da pensão alimentícia*<a data-toggle="tooltip" title="Informação dos beneficiários da pensão alimentícia."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_benefpen__r4010_detded__label">Informação dos beneficiários da pensão alimentícia*</label>
     {% if not for_print %}
       {% if r4010_benefpen_form.r4010_detded.value %}
         <a id="r4010_benefpen__r4010_detded__div_acessar" href="{% url 'r4010_detded_salvar' pk=r4010_benefpen_form.r4010_detded.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_benefpen__cpf -->
 <div class="col-md-6" id="r4010_benefpen__cpf__div">
   <div class="form-group">
-    <label id="r4010_benefpen__cpf__label">Número do CPF do dependente<a data-toggle="tooltip" title="Número do CPF do dependente. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_benefpen__cpf__label">Número do CPF do dependente</label>
       {% if r4010_benefpen_form.cpf.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_benefpen_form.cpf.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4010_benefpen__dtnascto -->
 <div class="col-md-6" id="r4010_benefpen__dtnascto__div">
   <div class="form-group">
-    <label id="r4010_benefpen__dtnascto__label">Informar a data de nascimento do dependente<a data-toggle="tooltip" title="Informar a data de nascimento do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_benefpen__dtnascto__label">Informar a data de nascimento do dependente</label>
         {% if r4010_benefpen_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r4010_benefpen_form.dtnascto.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r4010_benefpen__nome -->
 <div class="col-md-6" id="r4010_benefpen__nome__div">
   <div class="form-group">
-    <label id="r4010_benefpen__nome__label">Nome do dependente*<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_benefpen__nome__label">Nome do dependente*</label>
       {% if r4010_benefpen_form.nome.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_benefpen_form.nome.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r4010_benefpen__reldep -->
 <div class="col-md-6" id="r4010_benefpen__reldep__div">
   <div class="form-group">
-    <label id="r4010_benefpen__reldep__label">Relação de dependência*<a data-toggle="tooltip" title="Relação de dependência, conforme opções a seguir<opcoes>1 - Neto, bisneto; 2 - Irmão; 3 - Cônjuge/companheiro; 4 - Filho; 5 - Pais, avós e bisavós; 6 - Enteado; 7 - Sogro; 99 - Agregado/Outros. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_benefpen__reldep__label">Relação de dependência*</label>
     {% if r4010_benefpen_form.reldep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_benefpen_form.reldep.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r4010_benefpen__descrdep -->
 <div class="col-md-6" id="r4010_benefpen__descrdep__div">
   <div class="form-group">
-    <label id="r4010_benefpen__descrdep__label">Informar a descrição da dependência<a data-toggle="tooltip" title="Informar a descrição da dependência."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_benefpen__descrdep__label">Informar a descrição da dependência</label>
       {% if r4010_benefpen_form.descrdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_benefpen_form.descrdep.errors }}

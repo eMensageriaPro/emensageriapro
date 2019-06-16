@@ -12,7 +12,7 @@
             <th>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -31,10 +31,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s5013.change_s5013dpsPerAntE or perms.s5013.add_s5013dpsPerAntE %}
                     
                         <a href="{% url 's5013_dpsperante_salvar' pk=a.id tab='master' %}">
@@ -56,6 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

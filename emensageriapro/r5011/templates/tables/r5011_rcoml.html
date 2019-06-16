@@ -12,7 +12,7 @@
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -31,10 +31,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r5011.change_r5011RComl or perms.r5011.add_r5011RComl %}
                     
                         <a href="{% url 'r5011_rcoml_salvar' pk=a.id tab='master' %}">
@@ -56,6 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

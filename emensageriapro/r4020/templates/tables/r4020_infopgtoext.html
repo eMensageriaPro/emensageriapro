@@ -18,7 +18,7 @@
             <th>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 02</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -43,10 +43,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r4020.change_r4020infoPgtoExt or perms.r4020.add_r4020infoPgtoExt %}
                     
                         <a href="{% url 'r4020_infopgtoext_salvar' pk=a.id tab='master' %}">
@@ -68,6 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

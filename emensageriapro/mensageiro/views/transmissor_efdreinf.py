@@ -26,10 +26,10 @@ def desvincular_eventos_efdreinf(request, pk):
         
     a = TransmissorEventosEfdreinf.objects.get(identidade=pk)
     cursor = connections['default'].cursor()
-    cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=Null WHERE id=%s" % (a.tabela, a.id) )
+    cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=Null WHERE id=%s" % (a.tabela, a.id))
     messages.success(request, 'Evento desvinculado com sucesso!')
 
-    return redirect('transmissor_lote_efdreinf_salvar', pk=request.session['return_pk'])
+    return redirect('transmissor_lote_efdreinf_salvar', pk=a.pk, tab='transmissor_eventos_efdreinf')
 
 
 @login_required
@@ -53,10 +53,10 @@ def vincular_eventos_efdreinf(request, pk):
     for a in transmissor_eventos_efdreinf_lista:
 
         cursor = connections['default'].cursor()
-        cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=%s WHERE id=%s" % (a.tabela, pk, a.id) )
+        cursor.execute("UPDATE %s SET transmissor_lote_efdreinf_id=%s WHERE id=%s" % (a.tabela, pk, a.id))
 
         n += 1
 
     messages.success(request, '%s eventos foram vinculados com sucesso a este transmissor!' % n)
 
-    return redirect('transmissor_lote_efdreinf_salvar', pk=request.session['return_pk'])
+    return redirect('transmissor_lote_efdreinf_salvar', pk=pk, tab='transmissor_eventos_efdreinf')

@@ -5,7 +5,7 @@
 <!-- inicio__s2240_fimexprisco__s2240_evtexprisco -->
 <div class="col-md-12" id="s2240_fimexprisco__s2240_evtexprisco__div">
   <div class="form-group">
-    <label id="s2240_fimexprisco__s2240_evtexprisco__label">Condições ambientais do trabalho - Fim*<a data-toggle="tooltip" title="Condições ambientais do trabalho - Fim <regras_validacao> REGRA_EXISTE_EVENTO_INICIO_CDT"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_fimexprisco__s2240_evtexprisco__label">Condições ambientais do trabalho - Fim*</label>
     {% if not for_print %}{% if s2240_fimexprisco_form.s2240_evtexprisco.value %}
         <a href="{% url 's2240_evtexprisco_salvar' pk=s2240_fimexprisco_form.s2240_evtexprisco.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2240_fimexprisco__dtfimcondicao -->
 <div class="col-md-6" id="s2240_fimexprisco__dtfimcondicao__div">
   <div class="form-group">
-    <label id="s2240_fimexprisco__dtfimcondicao__label">Data do termino da condição*<a data-toggle="tooltip" title="Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.<validacao> Deve ser uma data igual ou posterior a data de início da condição no evento Condições do Ambiente de Trabalho - Exposição a Fatores de Risco - Início a que se refere, ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_fimexprisco__dtfimcondicao__label">Data do termino da condição*</label>
         {% if s2240_fimexprisco_form.dtfimcondicao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2240_fimexprisco_form.dtfimcondicao.errors }}

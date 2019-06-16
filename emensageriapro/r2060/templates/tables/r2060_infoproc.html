@@ -15,7 +15,7 @@
             <th>Valor da Contribuição Previdenciária com exigibilidade suspensa.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -37,10 +37,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r2060.change_r2060infoProc or perms.r2060.add_r2060infoProc %}
                     
                         <a href="{% url 'r2060_infoproc_salvar' pk=a.id tab='master' %}">
@@ -62,6 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

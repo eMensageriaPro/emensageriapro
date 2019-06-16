@@ -30,7 +30,7 @@
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -67,10 +67,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.esocial.change_s2230evtAfastTemp or perms.esocial.add_s2230evtAfastTemp %}
                     
                         <a href="{% url 's2230_evtafasttemp_salvar' pk=a.id tab='master' %}">
@@ -92,6 +93,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1202_infoperant_ideadc__s1202_infoperant__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__s1202_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*<a data-toggle="tooltip" title="Identificação da lei que determinou remuneração em Períodos Anteriores (reajuste retroativo)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__s1202_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*</label>
     {% if not for_print %}
       {% if s1202_infoperant_ideadc_form.s1202_infoperant.value %}
         <a id="s1202_infoperant_ideadc__s1202_infoperant__div_acessar" href="{% url 's1202_infoperant_salvar' pk=s1202_infoperant_ideadc_form.s1202_infoperant.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1202_infoperant_ideadc__dtlei -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__dtlei__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__dtlei__label">Data da lei*<a data-toggle="tooltip" title="Data da Lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__dtlei__label">Data da lei*</label>
         {% if s1202_infoperant_ideadc_form.dtlei.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1202_infoperant_ideadc_form.dtlei.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1202_infoperant_ideadc__nrlei -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__nrlei__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__nrlei__label">Número da lei*<a data-toggle="tooltip" title="Número da Lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__nrlei__label">Número da lei*</label>
       {% if s1202_infoperant_ideadc_form.nrlei.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperant_ideadc_form.nrlei.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1202_infoperant_ideadc__dtef -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__dtef__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__dtef__label">Data de efetivação da alteração (lei)<a data-toggle="tooltip" title="Data a partir da qual a lei passa a produzir seus efeitos. <validacao> Deve ser uma data válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__dtef__label">Data de efetivação da alteração (lei)</label>
         {% if s1202_infoperant_ideadc_form.dtef.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1202_infoperant_ideadc_form.dtef.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s1202_infoperant_ideadc__dtacconv -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__dtacconv__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__dtacconv__label">Data do vencimento da obrigação<a data-toggle="tooltip" title="Data da lei ou da decisão judicial. <validacao> Deve ser uma data igual ou anterior ao período de apuração, informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__dtacconv__label">Data do vencimento da obrigação</label>
         {% if s1202_infoperant_ideadc_form.dtacconv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1202_infoperant_ideadc_form.dtacconv.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s1202_infoperant_ideadc__tpacconv -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__tpacconv__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__tpacconv__label">Tipo*<a data-toggle="tooltip" title="Tipo do instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores<opcoes> B - Legislação federal, estadual, municipal ou distrital; F - Outras verbas de natureza salarial ou não salarial devidas após o desligamento; G - Decisão administrativa; H - Decisão judicial. <valores_validos> B, F, G, H."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__tpacconv__label">Tipo*</label>
     {% if s1202_infoperant_ideadc_form.tpacconv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1202_infoperant_ideadc_form.tpacconv.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__s1202_infoperant_ideadc__compacconv -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__compacconv__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__compacconv__label">Competência<a data-toggle="tooltip" title="Competência (formato AAAA-MM) em que é devida a obrigação de pagar os efeitos remuneratórios de lei ou decisão judicial. <validacao> Deve ser maior ou igual ao período de apuração informado em {perApur}. Preenchimento obrigatório se {tpAcConv} = [B, H]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__compacconv__label">Competência</label>
       {% if s1202_infoperant_ideadc_form.compacconv.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperant_ideadc_form.compacconv.errors }}
@@ -140,7 +140,7 @@
 <!-- inicio__s1202_infoperant_ideadc__dtefacconv -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__dtefacconv__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__dtefacconv__label">Data do efeito<a data-toggle="tooltip" title="Data a partir da qual a lei passa a produzir seus efeitos. <validacao> Preenchimento obrigatório se {tpAcConv} = [B]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__dtefacconv__label">Data do efeito</label>
         {% if s1202_infoperant_ideadc_form.dtefacconv.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1202_infoperant_ideadc_form.dtefacconv.errors }}
@@ -155,7 +155,7 @@
 <!-- inicio__s1202_infoperant_ideadc__dsc -->
 <div class="col-md-6" id="s1202_infoperant_ideadc__dsc__div">
   <div class="form-group">
-    <label id="s1202_infoperant_ideadc__dsc__label">Descrição*<a data-toggle="tooltip" title="Descrição da lei, decisão ou situação que ensejou a remuneração relativa a períodos anteriores."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1202_infoperant_ideadc__dsc__label">Descrição*</label>
       {% if s1202_infoperant_ideadc_form.dsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1202_infoperant_ideadc_form.dsc.errors }}

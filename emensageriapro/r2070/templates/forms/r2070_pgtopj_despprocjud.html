@@ -5,7 +5,7 @@
 <!-- inicio__r2070_pgtopj_despprocjud__r2070_pgtopj_infoprocjud -->
 <div class="col-md-12" id="r2070_pgtopj_despprocjud__r2070_pgtopj_infoprocjud__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_despprocjud__r2070_pgtopj_infoprocjud__label">Detalhamento das despesas de processo judicial*<a data-toggle="tooltip" title="Detalhamento das despesas de processo judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_pgtopj_despprocjud__r2070_pgtopj_infoprocjud__label">Detalhamento das despesas de processo judicial*</label>
     {% if not for_print %}{% if r2070_pgtopj_despprocjud_form.r2070_pgtopj_infoprocjud.value %}
         <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=r2070_pgtopj_despprocjud_form.r2070_pgtopj_infoprocjud.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r2070_pgtopj_despprocjud__vlrdespcustas -->
 <div class="col-md-4" id="r2070_pgtopj_despprocjud__vlrdespcustas__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_despprocjud__vlrdespcustas__label">Preencher com o Valor da despesa com custas judiciais*<a data-toggle="tooltip" title="Preencher com o Valor da despesa com custas judiciais"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_pgtopj_despprocjud__vlrdespcustas__label">Preencher com o Valor da despesa com custas judiciais*</label>
     {% if r2070_pgtopj_despprocjud_form.vlrdespcustas.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_pgtopj_despprocjud_form.vlrdespcustas.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r2070_pgtopj_despprocjud__vlrdespadvogados -->
 <div class="col-md-4" id="r2070_pgtopj_despprocjud__vlrdespadvogados__div">
   <div class="form-group">
-    <label id="r2070_pgtopj_despprocjud__vlrdespadvogados__label">Preencher com o Valor da despesa com advogado(s)*<a data-toggle="tooltip" title="Preencher com o Valor da despesa com advogado(s)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_pgtopj_despprocjud__vlrdespadvogados__label">Preencher com o Valor da despesa com advogado(s)*</label>
     {% if r2070_pgtopj_despprocjud_form.vlrdespadvogados.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_pgtopj_despprocjud_form.vlrdespadvogados.errors }}

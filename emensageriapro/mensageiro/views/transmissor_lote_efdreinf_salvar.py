@@ -376,7 +376,12 @@ def salvar(request, pk=None, tab='master', output=None):
         
             transmissor_lote_efdreinf = None
             
-        #transmissor_lote_efdreinf_salvar_custom_variaveis#
+        if transmissor_lote_efdreinf:
+            transmissor_eventos_efdreinf_lista = TransmissorEventosEfdreinf.objects.filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
+            transmissor_eventos_efdreinf_totalizacoes_lista = TransmissorEventosEfdreinfTotalizacoes.objects.filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
+        else:
+            transmissor_eventos_efdreinf_lista = None
+            transmissor_eventos_efdreinf_totalizacoes_lista = None
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
         
@@ -447,7 +452,8 @@ def salvar(request, pk=None, tab='master', output=None):
             'paginas': ['transmissor_lote_efdreinf', ],
             'data': datetime.datetime.now(),
             'tabelas_secundarias': tabelas_secundarias,
-            #transmissor_lote_efdreinf_salvar_custom_variaveis_context#
+            'transmissor_eventos_efdreinf_lista': transmissor_eventos_efdreinf_lista,
+'transmissor_eventos_efdreinf_totalizacoes_lista': transmissor_eventos_efdreinf_totalizacoes_lista,
         }
             
         if output == 'pdf':

@@ -6,7 +6,7 @@
             <th>Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -19,10 +19,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1020.change_s1020alteracaoinfoProcJudTerceiros or perms.s1020.add_s1020alteracaoinfoProcJudTerceiros %}
                     
                         <a href="{% url 's1020_alteracao_infoprocjudterceiros_salvar' pk=a.id tab='master' %}">
@@ -44,6 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

@@ -18,7 +18,7 @@
             <th>Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -43,10 +43,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r9012.change_r9012totApurDia or perms.r9012.add_r9012totApurDia %}
                     
                         <a href="{% url 'r9012_totapurdia_salvar' pk=a.id tab='master' %}">
@@ -68,6 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

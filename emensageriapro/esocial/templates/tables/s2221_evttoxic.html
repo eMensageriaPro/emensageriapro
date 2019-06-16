@@ -36,7 +36,7 @@
             <th>Status</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -79,10 +79,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.esocial.change_s2221evtToxic or perms.esocial.add_s2221evtToxic %}
                     
                         <a href="{% url 's2221_evttoxic_salvar' pk=a.id tab='master' %}">
@@ -104,6 +105,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

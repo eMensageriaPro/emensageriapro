@@ -45,7 +45,7 @@
             <th>Código do Retorno</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -97,10 +97,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.efdreinf.change_r2060evtCPRB or perms.efdreinf.add_r2060evtCPRB %}
                     
                         <a href="{% url 'r2060_evtcprb_salvar' pk=a.id tab='master' %}">
@@ -122,6 +123,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

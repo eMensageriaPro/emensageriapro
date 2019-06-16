@@ -27,7 +27,7 @@
             <th>Informar se é dependente para fins previdenciários</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -61,10 +61,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2400.change_s2400dependente or perms.s2400.add_s2400dependente %}
                     
                         <a href="{% url 's2400_dependente_salvar' pk=a.id tab='master' %}">
@@ -86,6 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

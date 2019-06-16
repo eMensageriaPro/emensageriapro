@@ -6,7 +6,7 @@
             <th>Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -19,10 +19,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1200.change_s1200infoPerAntremunPerAnt or perms.s1200.add_s1200infoPerAntremunPerAnt %}
                     
                         <a href="{% url 's1200_infoperant_remunperant_salvar' pk=a.id tab='master' %}">
@@ -44,6 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

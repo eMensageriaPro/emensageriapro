@@ -227,11 +227,10 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por', ]
 
 
 class form_regras_validacao(forms.ModelForm):
-
 
     def __init__(self, *args, **kwargs):
     
@@ -328,71 +327,55 @@ class form_retornos_eventos(forms.ModelForm):
         super(form_retornos_eventos, self).__init__(*args, **kwargs)
         
         self.fields['identidade'].widget.attrs['readonly'] = True
-        self.fields['processamento'].widget.attrs['readonly'] = True
         self.fields['recepcao_tp_amb'].widget.attrs['readonly'] = True
         self.fields['recepcao_tp_amb'].widget.attrs['disabled'] = True
         self.fields['recepcao_data_hora'].widget.attrs['readonly'] = True
         self.fields['recepcao_versao_app'].widget.attrs['readonly'] = True
         self.fields['recepcao_protocolo_envio_lote'].widget.attrs['readonly'] = True
-        self.fields['processamento'].widget.attrs['readonly'] = True
         self.fields['processamento_codigo_resposta'].widget.attrs['readonly'] = True
         self.fields['processamento_descricao_resposta'].widget.attrs['readonly'] = True
         self.fields['processamento_versao_app_processamento'].widget.attrs['readonly'] = True
         self.fields['processamento_data_hora'].widget.attrs['readonly'] = True
-        self.fields['recibo'].widget.attrs['readonly'] = True
         self.fields['recibo_numero'].widget.attrs['readonly'] = True
         self.fields['recibo_hash'].widget.attrs['readonly'] = True
-        self.fields['empregador'].widget.attrs['readonly'] = True
         self.fields['tpinsc'].widget.attrs['readonly'] = True
         self.fields['tpinsc'].widget.attrs['disabled'] = True
         self.fields['empregador_tpinsc'].widget.attrs['readonly'] = True
         self.fields['empregador_tpinsc'].widget.attrs['disabled'] = True
         self.fields['nrinsc'].widget.attrs['readonly'] = True
         self.fields['empregador_nrinsc'].widget.attrs['readonly'] = True
-        self.fields['trabalhador'].widget.attrs['readonly'] = True
         self.fields['cpftrab'].widget.attrs['readonly'] = True
         self.fields['nistrab'].widget.attrs['readonly'] = True
         self.fields['nmtrab'].widget.attrs['readonly'] = True
-        self.fields['deficiencia'].widget.attrs['readonly'] = True
         self.fields['infocota'].widget.attrs['readonly'] = True
         self.fields['infocota'].widget.attrs['disabled'] = True
-        self.fields['vinculo'].widget.attrs['readonly'] = True
         self.fields['matricula'].widget.attrs['readonly'] = True
-        self.fields['celetista'].widget.attrs['readonly'] = True
         self.fields['dtadm'].widget.attrs['readonly'] = True
         self.fields['tpregjor'].widget.attrs['readonly'] = True
         self.fields['tpregjor'].widget.attrs['disabled'] = True
         self.fields['dtbase'].widget.attrs['readonly'] = True
         self.fields['cnpjsindcategprof'].widget.attrs['readonly'] = True
-        self.fields['estatutario'].widget.attrs['readonly'] = True
         self.fields['dtposse'].widget.attrs['readonly'] = True
         self.fields['dtexercicio'].widget.attrs['readonly'] = True
-        self.fields['cargo'].widget.attrs['readonly'] = True
         self.fields['codcargo'].widget.attrs['readonly'] = True
         self.fields['nmcargo'].widget.attrs['readonly'] = True
         self.fields['codcbocargo'].widget.attrs['readonly'] = True
-        self.fields['funcao'].widget.attrs['readonly'] = True
         self.fields['codfuncao'].widget.attrs['readonly'] = True
         self.fields['dscfuncao'].widget.attrs['readonly'] = True
         self.fields['codcbofuncao'].widget.attrs['readonly'] = True
-        self.fields['categoria'].widget.attrs['readonly'] = True
         self.fields['codcateg'].widget.attrs['readonly'] = True
-        self.fields['remuneracao'].widget.attrs['readonly'] = True
         self.fields['vrsalfx'].widget.attrs['readonly'] = True
         self.fields['undsalfixo'].widget.attrs['readonly'] = True
         self.fields['undsalfixo'].widget.attrs['disabled'] = True
         self.fields['dscsalvar'].widget.attrs['readonly'] = True
-        self.fields['duracao'].widget.attrs['readonly'] = True
         self.fields['tpcontr'].widget.attrs['readonly'] = True
         self.fields['tpcontr'].widget.attrs['disabled'] = True
         self.fields['dtterm'].widget.attrs['readonly'] = True
         self.fields['clauasseg'].widget.attrs['readonly'] = True
-        self.fields['local_trab'].widget.attrs['readonly'] = True
         self.fields['local_tpinsc'].widget.attrs['readonly'] = True
         self.fields['local_tpinsc'].widget.attrs['disabled'] = True
         self.fields['local_nrinsc'].widget.attrs['readonly'] = True
         self.fields['local_cnae'].widget.attrs['readonly'] = True
-        self.fields['horarios_contratuais'].widget.attrs['readonly'] = True
         self.fields['qtdhrssem'].widget.attrs['readonly'] = True
         self.fields['tpjornada'].widget.attrs['readonly'] = True
         self.fields['tpjornada'].widget.attrs['disabled'] = True

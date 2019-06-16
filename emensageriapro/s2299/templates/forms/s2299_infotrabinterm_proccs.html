@@ -5,7 +5,7 @@
 <!-- inicio__s2299_infotrabinterm_proccs__s2299_verbasresc -->
 <div class="col-md-12" id="s2299_infotrabinterm_proccs__s2299_verbasresc__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_proccs__s2299_verbasresc__label">Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória*<a data-toggle="tooltip" title="Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infotrabinterm_proccs__s2299_verbasresc__label">Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória*</label>
     {% if not for_print %}{% if s2299_infotrabinterm_proccs_form.s2299_verbasresc.value %}
         <a href="{% url 's2299_verbasresc_salvar' pk=s2299_infotrabinterm_proccs_form.s2299_verbasresc.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2299_infotrabinterm_proccs__nrprocjud -->
 <div class="col-md-6" id="s2299_infotrabinterm_proccs__nrprocjud__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_proccs__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a [1, 7]. <validacao> Deve ser um número de processo judicial válido e existente na tabela de Processos (S-1070), com {indMatProc} = [1, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infotrabinterm_proccs__nrprocjud__label">Número do Processo Judicial*</label>
       {% if s2299_infotrabinterm_proccs_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infotrabinterm_proccs_form.nrprocjud.errors }}

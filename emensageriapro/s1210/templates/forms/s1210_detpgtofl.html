@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_detpgtofl__s1210_infopgto__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl__s1210_infopgto__label">Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399*<a data-toggle="tooltip" title="Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399. O somatório de cada uma das rubricas cujo {codIncIRRF} = [31, 32, 33, 34, 35] não pode ser negativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl__s1210_infopgto__label">Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399*</label>
     {% if not for_print %}
       {% if s1210_detpgtofl_form.s1210_infopgto.value %}
         <a id="s1210_detpgtofl__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtofl_form.s1210_infopgto.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1210_detpgtofl__perref -->
 <div class="col-md-6" id="s1210_detpgtofl__perref__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl__perref__label">Período de Referência<a data-toggle="tooltip" title="Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM, se for relativa a folha de pagamento normal (mensal, quinzenal, etc.) ou AAAA, se for relativa a folha de 13° salário. <validacao> Informação obrigatória se {tpPgto} = [1,5]. Não pode haver informação nos demais casos. Deve estar no formato AAAA-MM ou AAAA"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl__perref__label">Período de Referência</label>
       {% if s1210_detpgtofl_form.perref.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_form.perref.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1210_detpgtofl__idedmdev -->
 <div class="col-md-6" id="s1210_detpgtofl__idedmdev__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl__idedmdev__label">Identificador dos demostrativos de pagamento*<a data-toggle="tooltip" title="Identificador atribuído pela fonte pagadora para o demonstrativo de valores devidos ao trabalhador conforme definido em S-1200, S-1202, S-2299 ou S- 2399. <validacao> Deve ser um valor atribuído pela fonte pagadora em S-1200, S- 1202, S-2299 ou S-2399 no campo {ideDmDev}, obedecendo a relação: Se {tpPgto} = [1], em S-1200; Se {tpPgto} = [2], em S-2299; Se {tpPgto} = [3], em S-2399; Se {tpPgto} = [5], em S-1202."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl__idedmdev__label">Identificador dos demostrativos de pagamento*</label>
       {% if s1210_detpgtofl_form.idedmdev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_form.idedmdev.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1210_detpgtofl__indpgtott -->
 <div class="col-md-6" id="s1210_detpgtofl__indpgtott__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl__indpgtott__label">Indicador de pagamento total ou parcial*<a data-toggle="tooltip" title="Indicativo de pagamento total ou parcial<opcoes>S - O valor que está sendo pago é exatamente o previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}; N - O valor que está sendo pago é inferior ao previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}, neste caso, significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl__indpgtott__label">Indicador de pagamento total ou parcial*</label>
     {% if s1210_detpgtofl_form.indpgtott.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1210_detpgtofl_form.indpgtott.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s1210_detpgtofl__vrliq -->
 <div class="col-md-6" id="s1210_detpgtofl__vrliq__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl__vrliq__label">Valor liquido*<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). <validacao> Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) nos eventos S-1200, S-1202, S-2299 e S-2399; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl__vrliq__label">Valor liquido*</label>
     {% if s1210_detpgtofl_form.vrliq.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_form.vrliq.errors }}
@@ -113,7 +113,7 @@
 <!-- inicio__s1210_detpgtofl__nrrecarq -->
 <div class="col-md-6" id="s1210_detpgtofl__nrrecarq__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl__nrrecarq__label">Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que contém as informações da rescisão contratual que originou o pagamento. <validacao> Informação obrigatória se {tpPgto} = [2,3]. Não pode ser informado nos demais casos. Se {tpPgto} = [2] deve ser um recibo de arquivo gerado no leiaute S-2299. Se {tpPgto} = [3], deve ser um recibo de arquivo gerado no leiaute S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl__nrrecarq__label">Número do recibo</label>
       {% if s1210_detpgtofl_form.nrrecarq.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_form.nrrecarq.errors }}

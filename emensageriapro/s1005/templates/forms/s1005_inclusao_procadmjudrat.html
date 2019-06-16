@@ -5,7 +5,7 @@
 <!-- inicio__s1005_inclusao_procadmjudrat__s1005_inclusao -->
 <div class="col-md-12" id="s1005_inclusao_procadmjudrat__s1005_inclusao__div">
   <div class="form-group">
-    <label id="s1005_inclusao_procadmjudrat__s1005_inclusao__label">Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.*<a data-toggle="tooltip" title="Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1005_inclusao_procadmjudrat__s1005_inclusao__label">Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.*</label>
     {% if not for_print %}{% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.value %}
         <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao_procadmjudrat_form.s1005_inclusao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1005_inclusao_procadmjudrat__tpproc -->
 <div class="col-md-3" id="s1005_inclusao_procadmjudrat__tpproc__div">
   <div class="form-group">
-    <label id="s1005_inclusao_procadmjudrat__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1005_inclusao_procadmjudrat__tpproc__label">Processo RAT*</label>
     {% if s1005_inclusao_procadmjudrat_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_inclusao_procadmjudrat_form.tpproc.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1005_inclusao_procadmjudrat__nrproc -->
 <div class="col-md-3" id="s1005_inclusao_procadmjudrat__nrproc__div">
   <div class="form-group">
-    <label id="s1005_inclusao_procadmjudrat__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo administrativo ou judicial válido e existente na tabela de Processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1005_inclusao_procadmjudrat__nrproc__label">Número do Processo*</label>
       {% if s1005_inclusao_procadmjudrat_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_inclusao_procadmjudrat_form.nrproc.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1005_inclusao_procadmjudrat__codsusp -->
 <div class="col-md-3" id="s1005_inclusao_procadmjudrat__codsusp__div">
   <div class="form-group">
-    <label id="s1005_inclusao_procadmjudrat__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1005_inclusao_procadmjudrat__codsusp__label">Código do Indicativo da Suspensão*</label>
       {% if s1005_inclusao_procadmjudrat_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1005_inclusao_procadmjudrat_form.codsusp.errors }}

@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -13,10 +13,11 @@
         <tr>
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.mapa_processamento.change_MapaEsocial or perms.mapa_processamento.add_MapaEsocial %}
                     
                         <a href="{% url 'mapa_esocial_salvar' pk=a.id tab='master' %}">
@@ -38,6 +39,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

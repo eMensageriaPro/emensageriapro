@@ -5,7 +5,7 @@
 <!-- inicio__s2299_infotrabinterm_infomv__s2299_verbasresc -->
 <div class="col-md-12" id="s2299_infotrabinterm_infomv__s2299_verbasresc__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_infomv__s2299_verbasresc__label">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.*<a data-toggle="tooltip" title="Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades nos quais já tenha ocorrido desconto de contribuição previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infotrabinterm_infomv__s2299_verbasresc__label">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.*</label>
     {% if not for_print %}{% if s2299_infotrabinterm_infomv_form.s2299_verbasresc.value %}
         <a href="{% url 's2299_verbasresc_salvar' pk=s2299_infotrabinterm_infomv_form.s2299_verbasresc.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2299_infotrabinterm_infomv__indmv -->
 <div class="col-md-6" id="s2299_infotrabinterm_infomv__indmv__div">
   <div class="form-group">
-    <label id="s2299_infotrabinterm_infomv__indmv__label">Desconto de Contribuição Previdenciária (Outros vinculos)*<a data-toggle="tooltip" title="Indicador de desconto da contribuição previdenciária do trabalhador, de acordo com as seguintes opções<opcoes>1 - O declarante aplica a alíquota de desconto do segurado sobre a remuneração por ele informada (o percentual da alíquota será obtido considerando a remuneração total do trabalhador); 2 - O declarante aplica a alíquota de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto; 3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s). <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infotrabinterm_infomv__indmv__label">Desconto de Contribuição Previdenciária (Outros vinculos)*</label>
     {% if s2299_infotrabinterm_infomv_form.indmv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2299_infotrabinterm_infomv_form.indmv.errors }}

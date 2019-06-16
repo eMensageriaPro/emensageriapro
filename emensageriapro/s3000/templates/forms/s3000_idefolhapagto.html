@@ -5,7 +5,7 @@
 <!-- inicio__s3000_idefolhapagto__s3000_evtexclusao -->
 <div class="col-md-12" id="s3000_idefolhapagto__s3000_evtexclusao__div">
   <div class="form-group">
-    <label id="s3000_idefolhapagto__s3000_evtexclusao__label">Registro que identifica a qual folha de pagamento pertence o evento que será excluído*<a data-toggle="tooltip" title="Registro que identifica a qual folha de pagamento pertence o evento que será excluído."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s3000_idefolhapagto__s3000_evtexclusao__label">Registro que identifica a qual folha de pagamento pertence o evento que será excluído*</label>
     {% if not for_print %}{% if s3000_idefolhapagto_form.s3000_evtexclusao.value %}
         <a href="{% url 's3000_evtexclusao_salvar' pk=s3000_idefolhapagto_form.s3000_evtexclusao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s3000_idefolhapagto__indapuracao -->
 <div class="col-md-4" id="s3000_idefolhapagto__indapuracao__div">
   <div class="form-group">
-    <label id="s3000_idefolhapagto__indapuracao__label">Indicativo do periodo de apuração*<a data-toggle="tooltip" title="Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual (13° salário). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s3000_idefolhapagto__indapuracao__label">Indicativo do periodo de apuração*</label>
     {% if s3000_idefolhapagto_form.indapuracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s3000_idefolhapagto_form.indapuracao.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s3000_idefolhapagto__perapur -->
 <div class="col-md-4" id="s3000_idefolhapagto__perapur__div">
   <div class="form-group">
-    <label id="s3000_idefolhapagto__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s3000_idefolhapagto__perapur__label">Período de Apuração*</label>
       {% if s3000_idefolhapagto_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s3000_idefolhapagto_form.perapur.errors }}

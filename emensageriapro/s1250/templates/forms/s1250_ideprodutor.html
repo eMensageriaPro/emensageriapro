@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1250_ideprodutor__s1250_tpaquis__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__s1250_tpaquis__label">Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.*<a data-toggle="tooltip" title="Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__s1250_tpaquis__label">Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.*</label>
     {% if not for_print %}
       {% if s1250_ideprodutor_form.s1250_tpaquis.value %}
         <a id="s1250_ideprodutor__s1250_tpaquis__div_acessar" href="{% url 's1250_tpaquis_salvar' pk=s1250_ideprodutor_form.s1250_tpaquis.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1250_ideprodutor__tpinscprod -->
 <div class="col-md-6" id="s1250_ideprodutor__tpinscprod__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__tpinscprod__label">Tipo de Inscrição Produtor*<a data-toggle="tooltip" title="Tipo de inscrição do produtor (CNPJ ou CPF). <validacao> Se {indAquis} for igual a [1, 2, 4, 5], deve ser igual a [2]. Se {indAquis} for igual a [3, 6], deve ser igual a [1]. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__tpinscprod__label">Tipo de Inscrição Produtor*</label>
       {% if s1250_ideprodutor_form.tpinscprod.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1250_ideprodutor_form.tpinscprod.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1250_ideprodutor__nrinscprod -->
 <div class="col-md-6" id="s1250_ideprodutor__nrinscprod__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__nrinscprod__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Número de inscrição do produtor no CPF ou no CNPJ, de acordo com o definido no campo {tpInscProd}. <validacao> Deve ser um CPF ou CNPJ válido, de acordo com o {tpInscProd}. Deve ser diferente da inscrição do declarante."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__nrinscprod__label">Número de inscrição (CPF/CNPJ)*</label>
       {% if s1250_ideprodutor_form.nrinscprod.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1250_ideprodutor_form.nrinscprod.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1250_ideprodutor__vlrbruto -->
 <div class="col-md-6" id="s1250_ideprodutor__vlrbruto__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__vlrbruto__label">Valor bruto*<a data-toggle="tooltip" title="Preencher com o valor bruto da aquisição da produção rural. <validacao> Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__vlrbruto__label">Valor bruto*</label>
     {% if s1250_ideprodutor_form.vlrbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_ideprodutor_form.vlrbruto.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__s1250_ideprodutor__vrcpdescpr -->
 <div class="col-md-6" id="s1250_ideprodutor__vrcpdescpr__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__vrcpdescpr__label">Valor da CP descontada PR*<a data-toggle="tooltip" title="Preencher com o valor da Contribuição Previdenciária descontada pelo adquirente de produção de produtor rural - sub-rogação. Se não houver valor a ser informado, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__vrcpdescpr__label">Valor da CP descontada PR*</label>
     {% if s1250_ideprodutor_form.vrcpdescpr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_ideprodutor_form.vrcpdescpr.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__s1250_ideprodutor__vrratdescpr -->
 <div class="col-md-6" id="s1250_ideprodutor__vrratdescpr__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__vrratdescpr__label">Valor RAT descontado do produtor rural*<a data-toggle="tooltip" title="Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a aquisição de produção rural de produtor rural. Se não houver informação, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__vrratdescpr__label">Valor RAT descontado do produtor rural*</label>
     {% if s1250_ideprodutor_form.vrratdescpr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_ideprodutor_form.vrratdescpr.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__s1250_ideprodutor__vrsenardesc -->
 <div class="col-md-6" id="s1250_ideprodutor__vrsenardesc__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__vrsenardesc__label">Valor descontado destinado ao SENAR*<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial. Se não houver valor a ser informado, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__vrsenardesc__label">Valor descontado destinado ao SENAR*</label>
     {% if s1250_ideprodutor_form.vrsenardesc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_ideprodutor_form.vrsenardesc.errors }}
@@ -143,7 +143,7 @@
 <!-- inicio__s1250_ideprodutor__indopccp -->
 <div class="col-md-6" id="s1250_ideprodutor__indopccp__div">
   <div class="form-group">
-    <label id="s1250_ideprodutor__indopccp__label">Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária*<a data-toggle="tooltip" title="Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária, nos termos do art. 25, §13, da Lei 8.212/1991 e do art. 25, §7°, da Lei 8.870/1994<opcoes>1 - Sobre a comercialização da sua produção; 2 - Sobre a folha de pagamento. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_ideprodutor__indopccp__label">Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária*</label>
     {% if s1250_ideprodutor_form.indopccp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1250_ideprodutor_form.indopccp.errors }}

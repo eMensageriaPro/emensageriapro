@@ -10,7 +10,7 @@
 <!-- inicio__s5011_evtcs__identidade -->
 <div class="col-md-6" id="s5011_evtcs__identidade__div">
   <div class="form-group">
-    <label id="s5011_evtcs__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__identidade__label">Identidade do Registro</label>
       {% if s5011_evtcs_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_evtcs_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s5011_evtcs__indapuracao -->
 <div class="col-md-6" id="s5011_evtcs__indapuracao__div">
   <div class="form-group">
-    <label id="s5011_evtcs__indapuracao__label">Indicativo do periodo de apuração*<a data-toggle="tooltip" title="Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual (13° salário). Evento de origem: S-1295 ou S-1299. <validacao> Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__indapuracao__label">Indicativo do periodo de apuração*</label>
     {% if s5011_evtcs_form.indapuracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_evtcs_form.indapuracao.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s5011_evtcs__perapur -->
 <div class="col-md-6" id="s5011_evtcs__perapur__div">
   <div class="form-group">
-    <label id="s5011_evtcs__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__perapur__label">Período de Apuração*</label>
       {% if s5011_evtcs_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_evtcs_form.perapur.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__s5011_evtcs__tpinsc -->
 <div class="col-md-6" id="s5011_evtcs__tpinsc__div">
   <div class="form-group">
-    <label id="s5011_evtcs__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__tpinsc__label">Tipo de inscrição*</label>
     {% if s5011_evtcs_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_evtcs_form.tpinsc.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__s5011_evtcs__nrinsc -->
 <div class="col-md-6" id="s5011_evtcs__nrinsc__div">
   <div class="form-group">
-    <label id="s5011_evtcs__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
       {% if s5011_evtcs_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_evtcs_form.nrinsc.errors }}
@@ -118,7 +118,7 @@
 <!-- inicio__s5011_evtcs__nrrecarqbase -->
 <div class="col-md-6" id="s5011_evtcs__nrrecarqbase__div">
   <div class="form-group">
-    <label id="s5011_evtcs__nrrecarqbase__label">Número do recibo do arquivo vase*<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__nrrecarqbase__label">Número do recibo do arquivo vase*</label>
       {% if s5011_evtcs_form.nrrecarqbase.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5011_evtcs_form.nrrecarqbase.errors }}
@@ -133,7 +133,7 @@
 <!-- inicio__s5011_evtcs__indexistinfo -->
 <div class="col-md-6" id="s5011_evtcs__indexistinfo__div">
   <div class="form-group">
-    <label id="s5011_evtcs__indexistinfo__label">Existência de valores base*<a data-toggle="tooltip" title="Indicativo de existência de valores de bases e de contribuições sociais, conforme opções a seguir<opcoes>1 - Há informações com apuração de contribuições sociais: 2 - Há movimento porém sem apuração de contribuições sociais; 3 - Não há movimento no período informado em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__indexistinfo__label">Existência de valores base*</label>
     {% if s5011_evtcs_form.indexistinfo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_evtcs_form.indexistinfo.errors }}
@@ -162,7 +162,7 @@
 <!-- inicio__s5011_evtcs__classtrib -->
 <div class="col-md-6" id="s5011_evtcs__classtrib__div">
   <div class="form-group">
-    <label id="s5011_evtcs__classtrib__label">Classificação tributária*<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. Evento de origem (S-1000)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__classtrib__label">Classificação tributária*</label>
     {% if s5011_evtcs_form.classtrib.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_evtcs_form.classtrib.errors }}
@@ -186,7 +186,7 @@
 <!-- inicio__s5011_evtcs__versao -->
 <div class="col-md-3" id="s5011_evtcs__versao__div">
   <div class="form-group">
-    <label id="s5011_evtcs__versao__label">Versão<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__versao__label">Versão</label>
     {% if s5011_evtcs_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_evtcs_form.versao.errors }}
@@ -209,6 +209,7 @@
 <!-- fim__s5011_evtcs__versao -->
 <!-- inicio__s5011_evtcs__transmissor_lote_esocial -->
 
+{% if s5011_evtcs_form.transmissor_lote_esocial.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_transmissor_lote_esocial').change(function(){
@@ -216,10 +217,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-3" id="s5011_evtcs__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s5011_evtcs__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="s5011_evtcs__transmissor_lote_esocial__label">Transmissor</label>
   
   {% if not output %}
     {% if s5011_evtcs_form.transmissor_lote_esocial.value %}
@@ -251,7 +253,7 @@
 <!-- inicio__s5011_evtcs__status -->
 <div class="col-md-3" id="s5011_evtcs__status__div">
   <div class="form-group">
-    <label id="s5011_evtcs__status__label">Status<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_evtcs__status__label">Status</label>
     {% if s5011_evtcs_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_evtcs_form.status.errors }}

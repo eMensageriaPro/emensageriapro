@@ -5,7 +5,7 @@
 <!-- inicio__s2230_infocessao__s2230_iniafastamento -->
 <div class="col-md-12" id="s2230_infocessao__s2230_iniafastamento__div">
   <div class="form-group">
-    <label id="s2230_infocessao__s2230_iniafastamento__label">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.*<a data-toggle="tooltip" title="Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_infocessao__s2230_iniafastamento__label">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.*</label>
     {% if not for_print %}{% if s2230_infocessao_form.s2230_iniafastamento.value %}
         <a href="{% url 's2230_iniafastamento_salvar' pk=s2230_infocessao_form.s2230_iniafastamento.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2230_infocessao__cnpjcess -->
 <div class="col-md-4" id="s2230_infocessao__cnpjcess__div">
   <div class="form-group">
-    <label id="s2230_infocessao__cnpjcess__label">CNPJ do Cessionário*<a data-toggle="tooltip" title="Preencher com o CNPJ do órgão/entidade para o qual o trabalhador foi cedido/requisitado. <validacao> Deve ser um CNPJ diferente do CNPJ do empregador e diferente dos estabelecimentos informados através do evento S-1005. <regras_validacao> REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_infocessao__cnpjcess__label">CNPJ do Cessionário*</label>
       {% if s2230_infocessao_form.cnpjcess.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_infocessao_form.cnpjcess.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2230_infocessao__infonus -->
 <div class="col-md-4" id="s2230_infocessao__infonus__div">
   <div class="form-group">
-    <label id="s2230_infocessao__infonus__label">Onus da cessão/requisição*<a data-toggle="tooltip" title="Ônus da cessão/requisição<opcoes>1 - Ônus do Cedente; 2 - Ônus do Cessionário; 3 - Ônus do Cedente e Cessionário. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_infocessao__infonus__label">Onus da cessão/requisição*</label>
     {% if s2230_infocessao_form.infonus.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_infocessao_form.infonus.errors }}

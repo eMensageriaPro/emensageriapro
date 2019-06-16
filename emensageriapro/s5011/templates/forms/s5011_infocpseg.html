@@ -5,7 +5,7 @@
 <!-- inicio__s5011_infocpseg__s5011_evtcs -->
 <div class="col-md-12" id="s5011_infocpseg__s5011_evtcs__div">
   <div class="form-group">
-    <label id="s5011_infocpseg__s5011_evtcs__label">Informações de contribuição previdenciária do Segurado*<a data-toggle="tooltip" title="Informações de contribuição previdenciária do Segurado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_infocpseg__s5011_evtcs__label">Informações de contribuição previdenciária do Segurado*</label>
     {% if not for_print %}{% if s5011_infocpseg_form.s5011_evtcs.value %}
         <a href="{% url 's5011_evtcs_salvar' pk=s5011_infocpseg_form.s5011_evtcs.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s5011_infocpseg__vrdesccp -->
 <div class="col-md-4" id="s5011_infocpseg__vrdesccp__div">
   <div class="form-group">
-    <label id="s5011_infocpseg__vrdesccp__label">Valor total descontada dos segurados*<a data-toggle="tooltip" title="Valor total da contribuição descontada dos segurados. Origem: campo {valor}, quando {tpValor} = [21] - Valor total descontado do trabalhador para recolhimento à Previdência Social, do grupo {infoBaseCS} no evento S-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_infocpseg__vrdesccp__label">Valor total descontada dos segurados*</label>
     {% if s5011_infocpseg_form.vrdesccp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infocpseg_form.vrdesccp.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__s5011_infocpseg__vrcpseg -->
 <div class="col-md-4" id="s5011_infocpseg__vrcpseg__div">
   <div class="form-group">
-    <label id="s5011_infocpseg__vrcpseg__label">Valor da contribuição do segurado*<a data-toggle="tooltip" title="Valor total calculado relativo à contribuição dos segurados. Origem: campo {vrCpSeg}, do grupo {infoCpCalc} no evento S-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_infocpseg__vrcpseg__label">Valor da contribuição do segurado*</label>
     {% if s5011_infocpseg_form.vrcpseg.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infocpseg_form.vrcpseg.errors }}

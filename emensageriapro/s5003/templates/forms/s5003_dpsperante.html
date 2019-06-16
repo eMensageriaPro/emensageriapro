@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5003_dpsperante__s5003_infodpsperante__div">
   <div class="form-group">
-    <label id="s5003_dpsperante__s5003_infodpsperante__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].*<a data-toggle="tooltip" title="Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_dpsperante__s5003_infodpsperante__label">Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].*</label>
     {% if not for_print %}
       {% if s5003_dpsperante_form.s5003_infodpsperante.value %}
         <a id="s5003_dpsperante__s5003_infodpsperante__div_acessar" href="{% url 's5003_infodpsperante_salvar' pk=s5003_dpsperante_form.s5003_infodpsperante.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5003_dpsperante__tpdpse -->
 <div class="col-md-4" id="s5003_dpsperante__tpdpse__div">
   <div class="form-group">
-    <label id="s5003_dpsperante__tpdpse__label">Tipo de depósito*<a data-toggle="tooltip" title="Tipo de depósito<opcoes>53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. <validacao> Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_dpsperante__tpdpse__label">Tipo de depósito*</label>
     {% if s5003_dpsperante_form.tpdpse.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5003_dpsperante_form.tpdpse.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5003_dpsperante__dpsfgtse -->
 <div class="col-md-4" id="s5003_dpsperante__dpsfgtse__div">
   <div class="form-group">
-    <label id="s5003_dpsperante__dpsfgtse__label">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}*<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTSE}. Em seguida, aplicar a alíquota indicada, conforme a tabela de relacionamento abaixo: {tpDpsE} = [53]: se {tpValorE} = [13], e aplicar a alíquota de 8%; {tpDpsE} = [54]: se {tpValorE} = [14], e aplicar a alíquota de 8%; {tpDpsE} = [57]: se {tpValorE} = [17], e aplicar a alíquota de 2%; {tpDpsE} = [58]: se {tpValorE} = [18], e aplicar a alíquota de 2%; {tpDpsE} = [64]: se {tpValorE} = [24], e aplicar a alíquota de 8%; {tpDpsE} = [65]: se {tpValorE} = [25], e aplicar a alíquota de 8%; {tpDpsE} = [66]: se {tpValorE} = [26], e aplicar a alíquota de 8%; {tpDpsE} = [70]: se {tpValorE} = [30], e aplicar a alíquota de 2%; {tpDpsE} = [71]: se {tpValorE} = [31], e aplicar a alíquota de 2%; {tpDpsE} = [72]: se {tpValorE} = [32], e aplicar a alíquota de 2%."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_dpsperante__dpsfgtse__label">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}*</label>
     {% if s5003_dpsperante_form.dpsfgtse.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5003_dpsperante_form.dpsfgtse.errors }}

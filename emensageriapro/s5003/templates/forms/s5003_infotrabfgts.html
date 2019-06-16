@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5003_infotrabfgts__s5003_ideestablot__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__s5003_ideestablot__label">Informações relativas à matrícula e categoria do trabalhador.*<a data-toggle="tooltip" title="Informações relativas à matrícula e categoria do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__s5003_ideestablot__label">Informações relativas à matrícula e categoria do trabalhador.*</label>
     {% if not for_print %}
       {% if s5003_infotrabfgts_form.s5003_ideestablot.value %}
         <a id="s5003_infotrabfgts__s5003_ideestablot__div_acessar" href="{% url 's5003_ideestablot_salvar' pk=s5003_infotrabfgts_form.s5003_ideestablot.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5003_infotrabfgts__matricula -->
 <div class="col-md-6" id="s5003_infotrabfgts__matricula__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__matricula__label">Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula constante no evento S-1200/S- 2299, caso tenha sido informada (sendo, nesse caso, informação obrigatória). Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__matricula__label">Matricula</label>
       {% if s5003_infotrabfgts_form.matricula.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_infotrabfgts_form.matricula.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s5003_infotrabfgts__codcateg__div">
     <div class="form-group">
-      <label id="s5003_infotrabfgts__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. Evento de origem: S-1200, S-2299 ou S-2399. <validacao> Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s5003_infotrabfgts__codcateg__label">Código da Categoria*</label>
         {% if s5003_infotrabfgts_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5003_infotrabfgts_form.codcateg.errors }}
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-6" id="s5003_infotrabfgts__codcateg__div">
     <div class="form-group">
-      <label id="s5003_infotrabfgts__codcateg__label">Código da Categoria*<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. Evento de origem: S-1200, S-2299 ou S-2399. <validacao> Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s5003_infotrabfgts__codcateg__label">Código da Categoria*</label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s5003_infotrabfgts.codcateg %}{{ s5003_infotrabfgts.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -120,7 +120,7 @@
 <!-- inicio__s5003_infotrabfgts__dtadm -->
 <div class="col-md-6" id="s5003_infotrabfgts__dtadm__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__dtadm__label">Data de admissão<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. <validacao> Deve corresponder à data de admissão constante no RET. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__dtadm__label">Data de admissão</label>
         {% if s5003_infotrabfgts_form.dtadm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s5003_infotrabfgts_form.dtadm.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s5003_infotrabfgts__dtdeslig -->
 <div class="col-md-6" id="s5003_infotrabfgts__dtdeslig__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__dtdeslig__label">Data de desligamento<a data-toggle="tooltip" title="Data do último dia trabalhado para o respectivo vínculo. Evento de origem: S-2299. <validacao> Deve corresponder à data do desligamento informada no evento S- 2299. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__dtdeslig__label">Data de desligamento</label>
         {% if s5003_infotrabfgts_form.dtdeslig.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s5003_infotrabfgts_form.dtdeslig.errors }}
@@ -150,7 +150,7 @@
 <!-- inicio__s5003_infotrabfgts__dtinicio -->
 <div class="col-md-6" id="s5003_infotrabfgts__dtinicio__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__dtinicio__label">Data de início<a data-toggle="tooltip" title="Preencher com a data de início do TSVE. <validacao> Deve corresponder à data de início constante no RET. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__dtinicio__label">Data de início</label>
         {% if s5003_infotrabfgts_form.dtinicio.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s5003_infotrabfgts_form.dtinicio.errors }}
@@ -166,7 +166,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s5003_infotrabfgts__mtvdeslig__div">
     <div class="form-group">
-      <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento<a data-toggle="tooltip" title="Código de Motivo do Desligamento, conforme tabela 19. <validacao> Deve corresponder ao motivo do desligamento informado no evento S-2299. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento</label>
         {% if s5003_infotrabfgts_form.mtvdeslig.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5003_infotrabfgts_form.mtvdeslig.errors }}
@@ -220,7 +220,7 @@
   {% else %}
   <div class="col-md-6" id="s5003_infotrabfgts__mtvdeslig__div">
     <div class="form-group">
-      <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento<a data-toggle="tooltip" title="Código de Motivo do Desligamento, conforme tabela 19. <validacao> Deve corresponder ao motivo do desligamento informado no evento S-2299. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento</label>
         <input type="text" id="txt_mtvdeslig" name="txt_mtvdeslig" class="form-control" value="{% if s5003_infotrabfgts.mtvdeslig %}{{ s5003_infotrabfgts.mtvdeslig }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -229,7 +229,7 @@
 <!-- inicio__s5003_infotrabfgts__dtterm -->
 <div class="col-md-6" id="s5003_infotrabfgts__dtterm__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__dtterm__label">Data de Término do contrato de trabalho<a data-toggle="tooltip" title="Data do término. Evento de origem: S-2399. <validacao> Deve corresponder à data do término informada no evento S-2399. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__dtterm__label">Data de Término do contrato de trabalho</label>
         {% if s5003_infotrabfgts_form.dtterm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s5003_infotrabfgts_form.dtterm.errors }}
@@ -244,7 +244,7 @@
 <!-- inicio__s5003_infotrabfgts__mtvdesligtsv -->
 <div class="col-md-6" id="s5003_infotrabfgts__mtvdesligtsv__div">
   <div class="form-group">
-    <label id="s5003_infotrabfgts__mtvdesligtsv__label">Motivo do término<a data-toggle="tooltip" title="Código de motivo do desligamento do diretor não empregado (Evento de origem: S-2399)<opcoes>01; 02; 03; 04; 05; 06; 07; 99 <validacao> Deve corresponder ao motivo do desligamento informado no evento S-2399. Não preencher nos demais casos. <valores_validos> 01, 02, 03, 04, 05, 06, 07, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_infotrabfgts__mtvdesligtsv__label">Motivo do término</label>
     {% if s5003_infotrabfgts_form.mtvdesligtsv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5003_infotrabfgts_form.mtvdesligtsv.errors }}

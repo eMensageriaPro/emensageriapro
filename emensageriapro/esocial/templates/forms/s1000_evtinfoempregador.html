@@ -10,7 +10,7 @@
 <!-- inicio__s1000_evtinfoempregador__identidade -->
 <div class="col-md-6" id="s1000_evtinfoempregador__identidade__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__identidade__label">Identidade do Registro</label>
       {% if s1000_evtinfoempregador_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_evtinfoempregador_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s1000_evtinfoempregador__tpamb -->
 <div class="col-md-6" id="s1000_evtinfoempregador__tpamb__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__tpamb__label">Identificação do ambiente*</label>
     {% if s1000_evtinfoempregador_form.tpamb.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_evtinfoempregador_form.tpamb.errors }}
@@ -54,7 +54,7 @@
 <!-- inicio__s1000_evtinfoempregador__procemi -->
 <div class="col-md-6" id="s1000_evtinfoempregador__procemi__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__procemi__label">Processo de emissão do evento*</label>
     {% if s1000_evtinfoempregador_form.procemi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_evtinfoempregador_form.procemi.errors }}
@@ -78,7 +78,7 @@
 <!-- inicio__s1000_evtinfoempregador__verproc -->
 <div class="col-md-6" id="s1000_evtinfoempregador__verproc__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__verproc__label">Versão do processo*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__verproc__label">Versão do processo*</label>
       {% if s1000_evtinfoempregador_form.verproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_evtinfoempregador_form.verproc.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__s1000_evtinfoempregador__tpinsc -->
 <div class="col-md-6" id="s1000_evtinfoempregador__tpinsc__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__tpinsc__label">Tipo de inscrição*</label>
     {% if s1000_evtinfoempregador_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_evtinfoempregador_form.tpinsc.errors }}
@@ -122,7 +122,7 @@
 <!-- inicio__s1000_evtinfoempregador__nrinsc -->
 <div class="col-md-6" id="s1000_evtinfoempregador__nrinsc__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
       {% if s1000_evtinfoempregador_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_evtinfoempregador_form.nrinsc.errors }}
@@ -142,7 +142,7 @@
 <!-- inicio__s1000_evtinfoempregador__versao -->
 <div class="col-md-3" id="s1000_evtinfoempregador__versao__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__versao__label">Versão<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__versao__label">Versão</label>
     {% if s1000_evtinfoempregador_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_evtinfoempregador_form.versao.errors }}
@@ -165,6 +165,7 @@
 <!-- fim__s1000_evtinfoempregador__versao -->
 <!-- inicio__s1000_evtinfoempregador__transmissor_lote_esocial -->
 
+{% if s1000_evtinfoempregador_form.transmissor_lote_esocial.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_transmissor_lote_esocial').change(function(){
@@ -172,10 +173,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-3" id="s1000_evtinfoempregador__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s1000_evtinfoempregador__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="s1000_evtinfoempregador__transmissor_lote_esocial__label">Transmissor</label>
   
   {% if not output %}
     {% if s1000_evtinfoempregador_form.transmissor_lote_esocial.value %}
@@ -207,7 +209,7 @@
 <!-- inicio__s1000_evtinfoempregador__status -->
 <div class="col-md-3" id="s1000_evtinfoempregador__status__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__status__label">Status<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__status__label">Status</label>
     {% if s1000_evtinfoempregador_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_evtinfoempregador_form.status.errors }}
@@ -231,7 +233,7 @@
 <!-- inicio__s1000_evtinfoempregador__operacao -->
 <div class="col-md-3" id="s1000_evtinfoempregador__operacao__div">
   <div class="form-group">
-    <label id="s1000_evtinfoempregador__operacao__label">Operação*<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_evtinfoempregador__operacao__label">Operação*</label>
     {% if s1000_evtinfoempregador_form.operacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_evtinfoempregador_form.operacao.errors }}

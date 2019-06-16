@@ -10,7 +10,7 @@
 <!-- inicio__s5003_evtbasesfgts__identidade -->
 <div class="col-md-6" id="s5003_evtbasesfgts__identidade__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__identidade__label">Identidade do Registro</label>
       {% if s5003_evtbasesfgts_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_evtbasesfgts_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s5003_evtbasesfgts__nrrecarqbase -->
 <div class="col-md-6" id="s5003_evtbasesfgts__nrrecarqbase__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__nrrecarqbase__label">Número do recibo do arquivo vase*<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1200, S-2299 ou S-2399)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__nrrecarqbase__label">Número do recibo do arquivo vase*</label>
       {% if s5003_evtbasesfgts_form.nrrecarqbase.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_evtbasesfgts_form.nrrecarqbase.errors }}
@@ -45,7 +45,7 @@
 <!-- inicio__s5003_evtbasesfgts__perapur -->
 <div class="col-md-6" id="s5003_evtbasesfgts__perapur__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__perapur__label">Período de Apuração*</label>
       {% if s5003_evtbasesfgts_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_evtbasesfgts_form.perapur.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5003_evtbasesfgts__tpinsc -->
 <div class="col-md-6" id="s5003_evtbasesfgts__tpinsc__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__tpinsc__label">Tipo de inscrição*</label>
     {% if s5003_evtbasesfgts_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5003_evtbasesfgts_form.tpinsc.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__s5003_evtbasesfgts__nrinsc -->
 <div class="col-md-6" id="s5003_evtbasesfgts__nrinsc__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
       {% if s5003_evtbasesfgts_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_evtbasesfgts_form.nrinsc.errors }}
@@ -109,7 +109,7 @@
 <!-- inicio__s5003_evtbasesfgts__cpftrab -->
 <div class="col-md-6" id="s5003_evtbasesfgts__cpftrab__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__cpftrab__label">CPF*</label>
       {% if s5003_evtbasesfgts_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_evtbasesfgts_form.cpftrab.errors }}
@@ -124,7 +124,7 @@
 <!-- inicio__s5003_evtbasesfgts__nistrab -->
 <div class="col-md-6" id="s5003_evtbasesfgts__nistrab__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__nistrab__label">NIS</label>
       {% if s5003_evtbasesfgts_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5003_evtbasesfgts_form.nistrab.errors }}
@@ -144,7 +144,7 @@
 <!-- inicio__s5003_evtbasesfgts__dtvenc -->
 <div class="col-md-6" id="s5003_evtbasesfgts__dtvenc__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__dtvenc__label">Data de vencimento do FGTS mensal<a data-toggle="tooltip" title="Data de vencimento do FGTS mensal. <validacao> Preencher somente em uma das situações abaixo: a) Caso tenha origem no evento S-2299 e {mtvDeslig} = [02, 03, 05, 06, 14, 17, 26, 27, 33]; ou b) Caso tenha origem no evento S-2399, {codCateg} = [721] e {mtvDesligTSV} = [01, 02, 04, 06]. Se informada, deve corresponder ao dia 7 (sete) do mês subsequente ao indicado em {perApur}, se esse dia for útil. Caso não seja, deve corresponder ao dia útil imediatamente anterior. Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__dtvenc__label">Data de vencimento do FGTS mensal</label>
         {% if s5003_evtbasesfgts_form.dtvenc.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s5003_evtbasesfgts_form.dtvenc.errors }}
@@ -159,7 +159,7 @@
 <!-- inicio__s5003_evtbasesfgts__versao -->
 <div class="col-md-3" id="s5003_evtbasesfgts__versao__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__versao__label">Versão<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__versao__label">Versão</label>
     {% if s5003_evtbasesfgts_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5003_evtbasesfgts_form.versao.errors }}
@@ -182,6 +182,7 @@
 <!-- fim__s5003_evtbasesfgts__versao -->
 <!-- inicio__s5003_evtbasesfgts__transmissor_lote_esocial -->
 
+{% if s5003_evtbasesfgts_form.transmissor_lote_esocial.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_transmissor_lote_esocial').change(function(){
@@ -189,10 +190,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-3" id="s5003_evtbasesfgts__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s5003_evtbasesfgts__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="s5003_evtbasesfgts__transmissor_lote_esocial__label">Transmissor</label>
   
   {% if not output %}
     {% if s5003_evtbasesfgts_form.transmissor_lote_esocial.value %}
@@ -224,7 +226,7 @@
 <!-- inicio__s5003_evtbasesfgts__status -->
 <div class="col-md-3" id="s5003_evtbasesfgts__status__div">
   <div class="form-group">
-    <label id="s5003_evtbasesfgts__status__label">Status<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5003_evtbasesfgts__status__label">Status</label>
     {% if s5003_evtbasesfgts_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5003_evtbasesfgts_form.status.errors }}

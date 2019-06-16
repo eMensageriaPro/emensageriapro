@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_rendisento__r2070_pgtopf__div">
   <div class="form-group">
-    <label id="r2070_rendisento__r2070_pgtopf__label">Rendimentos Isentos/Não Tributáveis*<a data-toggle="tooltip" title="Rendimentos Isentos/Não Tributáveis"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_rendisento__r2070_pgtopf__label">Rendimentos Isentos/Não Tributáveis*</label>
     {% if not for_print %}
       {% if r2070_rendisento_form.r2070_pgtopf.value %}
         <a id="r2070_rendisento__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_rendisento_form.r2070_pgtopf.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_rendisento__tpisencao -->
 <div class="col-md-3" id="r2070_rendisento__tpisencao__div">
   <div class="form-group">
-    <label id="r2070_rendisento__tpisencao__label">Tipo de Isenção*<a data-toggle="tooltip" title="Tipo de Isenção<opcoes>1 - Parcela Isenta 65 anos; 2 - Diária e Ajuda de Custo; 3 - Indenização e rescisão de contrato, inclusive a título de PDV; 4 - Abono pecuniário; 5 - Outros (especificar); 6 - Lucros e dividendos pagos a partir de 1996; 7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço; 9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações; 10 - Bolsa de estudo recebida por médico-residente; 11 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995. <validacao> Vide regras na tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Rendimentos Isentos. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_rendisento__tpisencao__label">Tipo de Isenção*</label>
     {% if r2070_rendisento_form.tpisencao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2070_rendisento_form.tpisencao.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2070_rendisento__vlrisento -->
 <div class="col-md-3" id="r2070_rendisento__vlrisento__div">
   <div class="form-group">
-    <label id="r2070_rendisento__vlrisento__label">Valor da Parcela Isenta*<a data-toggle="tooltip" title="Valor da Parcela Isenta"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_rendisento__vlrisento__label">Valor da Parcela Isenta*</label>
     {% if r2070_rendisento_form.vlrisento.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_rendisento_form.vlrisento.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__r2070_rendisento__descrendimento -->
 <div class="col-md-3" id="r2070_rendisento__descrendimento__div">
   <div class="form-group">
-    <label id="r2070_rendisento__descrendimento__label">Descrição do rendimento isento/Não tributável<a data-toggle="tooltip" title="Descrição do rendimento isento/Não tributável. <validacao> O (se {tpIsencao} = [05]) N (nos demais casos)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_rendisento__descrendimento__label">Descrição do rendimento isento/Não tributável</label>
       {% if r2070_rendisento_form.descrendimento.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_rendisento_form.descrendimento.errors }}

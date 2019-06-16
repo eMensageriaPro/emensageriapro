@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4040_infopgto__r4040_idenat__div">
   <div class="form-group">
-    <label id="r4040_infopgto__r4040_idenat__label">Informações do Pagamento*<a data-toggle="tooltip" title="Informações de pagamentos a beneficiários não indentificados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4040_infopgto__r4040_idenat__label">Informações do Pagamento*</label>
     {% if not for_print %}
       {% if r4040_infopgto_form.r4040_idenat.value %}
         <a id="r4040_infopgto__r4040_idenat__div_acessar" href="{% url 'r4040_idenat_salvar' pk=r4040_infopgto_form.r4040_idenat.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4040_infopgto__dtfg -->
 <div class="col-md-6" id="r4040_infopgto__dtfg__div">
   <div class="form-group">
-    <label id="r4040_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*<a data-toggle="tooltip" title="Informar a data do fato gerador ou pagamento/crédito. <validacao> A data informada deve estar compreendida no período de apuração ao qual se refere o arquivo, conforme informado em (perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4040_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*</label>
         {% if r4040_infopgto_form.dtfg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r4040_infopgto_form.dtfg.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4040_infopgto__vlrliq -->
 <div class="col-md-6" id="r4040_infopgto__vlrliq__div">
   <div class="form-group">
-    <label id="r4040_infopgto__vlrliq__label">Valor líquido do pagamento*<a data-toggle="tooltip" title="Valor líquido do pagamento. <validacao> Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4040_infopgto__vlrliq__label">Valor líquido do pagamento*</label>
     {% if r4040_infopgto_form.vlrliq.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4040_infopgto_form.vlrliq.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r4040_infopgto__vlrreaj -->
 <div class="col-md-6" id="r4040_infopgto__vlrreaj__div">
   <div class="form-group">
-    <label id="r4040_infopgto__vlrreaj__label">Valor reajustado, considerado como valor bruto da base de cálculo do IRRF*<a data-toggle="tooltip" title="Valor reajustado, considerado como valor bruto da base de cálculo do IRRF. <validacao> Deve corresponder a ({vlrLiq} / 0,65)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4040_infopgto__vlrreaj__label">Valor reajustado, considerado como valor bruto da base de cálculo do IRRF*</label>
     {% if r4040_infopgto_form.vlrreaj.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4040_infopgto_form.vlrreaj.errors }}
@@ -92,7 +92,7 @@
 <!-- inicio__r4040_infopgto__vlrir -->
 <div class="col-md-6" id="r4040_infopgto__vlrir__div">
   <div class="form-group">
-    <label id="r4040_infopgto__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação*<a data-toggle="tooltip" title="Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4040_infopgto__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação*</label>
     {% if r4040_infopgto_form.vlrir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4040_infopgto_form.vlrir.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r4040_infopgto__descr -->
 <div class="col-md-6" id="r4040_infopgto__descr__div">
   <div class="form-group">
-    <label id="r4040_infopgto__descr__label">Descrição do pagamento*<a data-toggle="tooltip" title="Descrição do pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4040_infopgto__descr__label">Descrição do pagamento*</label>
       {% if r4040_infopgto_form.descr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4040_infopgto_form.descr.errors }}

@@ -5,7 +5,7 @@
 <!-- inicio__r4020_pp__r4020_infopgto -->
 <div class="col-md-12" id="r4020_pp__r4020_infopgto__div">
   <div class="form-group">
-    <label id="r4020_pp__r4020_infopgto__label">Informações relativas ao PIS/PASEP*<a data-toggle="tooltip" title="Informações relativas ao PIS/PASEP."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_pp__r4020_infopgto__label">Informações relativas ao PIS/PASEP*</label>
     {% if not for_print %}{% if r4020_pp_form.r4020_infopgto.value %}
         <a href="{% url 'r4020_infopgto_salvar' pk=r4020_pp_form.r4020_infopgto.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4020_pp__vlrbasepp -->
 <div class="col-md-6" id="r4020_pp__vlrbasepp__div">
   <div class="form-group">
-    <label id="r4020_pp__vlrbasepp__label">Valor da base do PIS/PASEP, conforme previsto na legislação*<a data-toggle="tooltip" title="Valor da base do PIS/PASEP, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_pp__vlrbasepp__label">Valor da base do PIS/PASEP, conforme previsto na legislação*</label>
     {% if r4020_pp_form.vlrbasepp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_pp_form.vlrbasepp.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r4020_pp__vlrpp -->
 <div class="col-md-6" id="r4020_pp__vlrpp__div">
   <div class="form-group">
-    <label id="r4020_pp__vlrpp__label">Valor da retenção do PIS/PASEP, conforme previsto na legislação*<a data-toggle="tooltip" title="Valor da retenção do PIS/PASEP, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_pp__vlrpp__label">Valor da retenção do PIS/PASEP, conforme previsto na legislação*</label>
     {% if r4020_pp_form.vlrpp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_pp_form.vlrpp.errors }}
@@ -68,7 +68,7 @@
 <!-- inicio__r4020_pp__vlrbasenpp -->
 <div class="col-md-6" id="r4020_pp__vlrbasenpp__div">
   <div class="form-group">
-    <label id="r4020_pp__vlrbasenpp__label">Valor da base do PIS/PASEP com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do PIS/PASEP com exigibilidade suspensa. <validacao> Se informado, não pode ser maior que {vlrBasePP}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_pp__vlrbasenpp__label">Valor da base do PIS/PASEP com exigibilidade suspensa</label>
     {% if r4020_pp_form.vlrbasenpp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_pp_form.vlrbasenpp.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r4020_pp__vlrnpp -->
 <div class="col-md-6" id="r4020_pp__vlrnpp__div">
   <div class="form-group">
-    <label id="r4020_pp__vlrnpp__label">Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido<a data-toggle="tooltip" title="Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido. <validacao> Se informado, não pode ser maior que {vlrPP}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_pp__vlrnpp__label">Valor do PIS/PASEP com exigibilidade suspensa, que deixou de ser retido</label>
     {% if r4020_pp_form.vlrnpp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_pp_form.vlrnpp.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__r4020_pp__vlrdeppp -->
 <div class="col-md-6" id="r4020_pp__vlrdeppp__div">
   <div class="form-group">
-    <label id="r4020_pp__vlrdeppp__label">Valor depósito judicial de PIS/PASEP<a data-toggle="tooltip" title="Valor depósito judicial de PIS/PASEP. <validacao> Se informado, não pode ser maior que {vlrPP}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_pp__vlrdeppp__label">Valor depósito judicial de PIS/PASEP</label>
     {% if r4020_pp_form.vlrdeppp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_pp_form.vlrdeppp.errors }}

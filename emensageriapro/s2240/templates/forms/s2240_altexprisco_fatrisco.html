@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_altexprisco_fatrisco__s2240_altexprisco_infoamb__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_fatrisco__s2240_altexprisco_infoamb__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*<a data-toggle="tooltip" title="Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_altexprisco_fatrisco__s2240_altexprisco_infoamb__label">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente*</label>
     {% if not for_print %}
       {% if s2240_altexprisco_fatrisco_form.s2240_altexprisco_infoamb.value %}
         <a id="s2240_altexprisco_fatrisco__s2240_altexprisco_infoamb__div_acessar" href="{% url 's2240_altexprisco_infoamb_salvar' pk=s2240_altexprisco_fatrisco_form.s2240_altexprisco_infoamb.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2240_altexprisco_fatrisco__codfatris__div">
     <div class="form-group">
-      <label id="s2240_altexprisco_fatrisco__codfatris__label">Código do Fator de Risco*<a data-toggle="tooltip" title="Informar o código do fator de risco, conforme tabela 23. Caso não haja exposição, informar o código correspondente a 'Ausência de Fator de Risco' da tabela 23.<validacao> Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo{codAmb}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2240_altexprisco_fatrisco__codfatris__label">Código do Fator de Risco*</label>
         {% if s2240_altexprisco_fatrisco_form.codfatris.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2240_altexprisco_fatrisco_form.codfatris.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s2240_altexprisco_fatrisco__codfatris__div">
     <div class="form-group">
-      <label id="s2240_altexprisco_fatrisco__codfatris__label">Código do Fator de Risco*<a data-toggle="tooltip" title="Informar o código do fator de risco, conforme tabela 23. Caso não haja exposição, informar o código correspondente a 'Ausência de Fator de Risco' da tabela 23.<validacao> Deve ser um código existente na tabela 23.Deve existir na tabela S-1060 para o código de ambiente informado no campo{codAmb}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2240_altexprisco_fatrisco__codfatris__label">Código do Fator de Risco*</label>
         <input type="text" id="txt_codfatris" name="txt_codfatris" class="form-control" value="{% if s2240_altexprisco_fatrisco.codfatris %}{{ s2240_altexprisco_fatrisco.codfatris }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s2240_altexprisco_fatrisco__intconc -->
 <div class="col-md-6" id="s2240_altexprisco_fatrisco__intconc__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_fatrisco__intconc__label">Concentração<a data-toggle="tooltip" title="Intensidade ou concentração da exposição do trabalhador ao fator de risco cujo critério de avaliação seja quantitativo. Caso o fator de risco seja qualitativo, preencher com 'N/A' - (Não aplicável)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_altexprisco_fatrisco__intconc__label">Concentração</label>
       {% if s2240_altexprisco_fatrisco_form.intconc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_altexprisco_fatrisco_form.intconc.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s2240_altexprisco_fatrisco__tecmedicao -->
 <div class="col-md-6" id="s2240_altexprisco_fatrisco__tecmedicao__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_fatrisco__tecmedicao__label">Técnica de medição<a data-toggle="tooltip" title="Técnica utilizada para medição da intensidade ou concentração."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_altexprisco_fatrisco__tecmedicao__label">Técnica de medição</label>
       {% if s2240_altexprisco_fatrisco_form.tecmedicao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_altexprisco_fatrisco_form.tecmedicao.errors }}
@@ -140,7 +140,7 @@
 <!-- inicio__s2240_altexprisco_fatrisco__utilizepc -->
 <div class="col-md-6" id="s2240_altexprisco_fatrisco__utilizepc__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_fatrisco__utilizepc__label">Utiliza EPC*<a data-toggle="tooltip" title="Utilização de EPC<opcoes>0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado.<valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_altexprisco_fatrisco__utilizepc__label">Utiliza EPC*</label>
     {% if s2240_altexprisco_fatrisco_form.utilizepc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_fatrisco_form.utilizepc.errors }}
@@ -164,7 +164,7 @@
 <!-- inicio__s2240_altexprisco_fatrisco__utilizepi -->
 <div class="col-md-6" id="s2240_altexprisco_fatrisco__utilizepi__div">
   <div class="form-group">
-    <label id="s2240_altexprisco_fatrisco__utilizepi__label">Utiliza EPI*<a data-toggle="tooltip" title="Utilização de EPI<opcoes>0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado.<valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_altexprisco_fatrisco__utilizepi__label">Utiliza EPI*</label>
     {% if s2240_altexprisco_fatrisco_form.utilizepi.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2240_altexprisco_fatrisco_form.utilizepi.errors }}

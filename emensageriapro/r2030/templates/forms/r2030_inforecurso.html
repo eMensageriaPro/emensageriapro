@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2030_inforecurso__r2030_recursosrec__div">
   <div class="form-group">
-    <label id="r2030_inforecurso__r2030_recursosrec__label">Detalhamento dos recursos recebidos.*<a data-toggle="tooltip" title="Detalhamento dos recursos recebidos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2030_inforecurso__r2030_recursosrec__label">Detalhamento dos recursos recebidos.*</label>
     {% if not for_print %}
       {% if r2030_inforecurso_form.r2030_recursosrec.value %}
         <a id="r2030_inforecurso__r2030_recursosrec__div_acessar" href="{% url 'r2030_recursosrec_salvar' pk=r2030_inforecurso_form.r2030_recursosrec.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2030_inforecurso__tprepasse -->
 <div class="col-md-6" id="r2030_inforecurso__tprepasse__div">
   <div class="form-group">
-    <label id="r2030_inforecurso__tprepasse__label">Tipo de repasse, conforme tabela abaixo*<a data-toggle="tooltip" title="Tipo de repasse, conforme tabela abaixo<opcoes>1 - Patrocínio; 2 - Licenciamento de marcas e símbolos; 3 - Publicidade; 4 - Propaganda; 5 - Transmissão de espetáculos. <valores_validos> 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2030_inforecurso__tprepasse__label">Tipo de repasse, conforme tabela abaixo*</label>
     {% if r2030_inforecurso_form.tprepasse.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r2030_inforecurso_form.tprepasse.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r2030_inforecurso__descrecurso -->
 <div class="col-md-6" id="r2030_inforecurso__descrecurso__div">
   <div class="form-group">
-    <label id="r2030_inforecurso__descrecurso__label">Descrição resumida do recurso recebido*<a data-toggle="tooltip" title="Descrição resumida do recurso recebido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2030_inforecurso__descrecurso__label">Descrição resumida do recurso recebido*</label>
       {% if r2030_inforecurso_form.descrecurso.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2030_inforecurso_form.descrecurso.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r2030_inforecurso__vlrbruto -->
 <div class="col-md-6" id="r2030_inforecurso__vlrbruto__div">
   <div class="form-group">
-    <label id="r2030_inforecurso__vlrbruto__label">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS*<a data-toggle="tooltip" title="Preencher com o valor bruto do repasse recebido a título de patrocínio, publicidade, licenciamento, etc. <validacao> Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2030_inforecurso__vlrbruto__label">Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS*</label>
     {% if r2030_inforecurso_form.vlrbruto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2030_inforecurso_form.vlrbruto.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r2030_inforecurso__vlrretapur -->
 <div class="col-md-6" id="r2030_inforecurso__vlrretapur__div">
   <div class="form-group">
-    <label id="r2030_inforecurso__vlrretapur__label">Preencher com o valor da retenção de contribuição previdenciária.*<a data-toggle="tooltip" title="Preencher com o valor da retenção de contribuição previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2030_inforecurso__vlrretapur__label">Preencher com o valor da retenção de contribuição previdenciária.*</label>
     {% if r2030_inforecurso_form.vlrretapur.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2030_inforecurso_form.vlrretapur.errors }}

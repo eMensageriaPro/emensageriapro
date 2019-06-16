@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r5011_infocrtom__r5011_rtom__div">
   <div class="form-group">
-    <label id="r5011_infocrtom__r5011_rtom__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados*<a data-toggle="tooltip" title="Totalizador das retenções de contribuição previdenciária sobre serviços tomados"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5011_infocrtom__r5011_rtom__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados*</label>
     {% if not for_print %}
       {% if r5011_infocrtom_form.r5011_rtom.value %}
         <a id="r5011_infocrtom__r5011_rtom__div_acessar" href="{% url 'r5011_rtom_salvar' pk=r5011_infocrtom_form.r5011_rtom.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r5011_infocrtom__crtom -->
 <div class="col-md-3" id="r5011_infocrtom__crtom__div">
   <div class="form-group">
-    <label id="r5011_infocrtom__crtom__label">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. Origem: R-5001. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos <valores_validos> 1141-06, 1162-01"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5011_infocrtom__crtom__label">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados*</label>
       {% if r5011_infocrtom_form.crtom.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5011_infocrtom_form.crtom.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r5011_infocrtom__vlrcrtom -->
 <div class="col-md-3" id="r5011_infocrtom__vlrcrtom__div">
   <div class="form-group">
-    <label id="r5011_infocrtom__vlrcrtom__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}<a data-toggle="tooltip" title="Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. Origem: 5001. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5011_infocrtom__vlrcrtom__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}</label>
     {% if r5011_infocrtom_form.vlrcrtom.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_infocrtom_form.vlrcrtom.errors }}
@@ -74,7 +74,7 @@
 <!-- inicio__r5011_infocrtom__vlrcrtomsusp -->
 <div class="col-md-3" id="r5011_infocrtom__vlrcrtomsusp__div">
   <div class="form-group">
-    <label id="r5011_infocrtom__vlrcrtomsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}<a data-toggle="tooltip" title="Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. Origem: R-5001. <validacao> Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5011_infocrtom__vlrcrtomsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}</label>
     {% if r5011_infocrtom_form.vlrcrtomsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5011_infocrtom_form.vlrcrtomsusp.errors }}

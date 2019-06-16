@@ -14,73 +14,6 @@ import base64
 from emensageriapro.padrao import executar_sql
 
 
-#
-# def atualizar_versao():
-#
-#     executar_sql("""
-#     UPDATE s1000_evtinfoempregador SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1005_evttabestab SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1010_evttabrubrica SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1020_evttablotacao SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1030_evttabcargo SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1035_evttabcarreira SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1040_evttabfuncao SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1050_evttabhortur SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1060_evttabambiente SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1070_evttabprocesso SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1080_evttaboperport SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1200_evtremun SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1202_evtrmnrpps SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1207_evtbenprrp SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1210_evtpgtos SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1250_evtaqprod SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1260_evtcomprod SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1270_evtcontratavnp SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1280_evtinfocomplper SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1295_evttotconting SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1298_evtreabreevper SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1299_evtfechaevper SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s1300_evtcontrsindpatr SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2190_evtadmprelim SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2200_evtadmissao SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2205_evtaltcadastral SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2206_evtaltcontratual SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2210_evtcat SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2220_evtmonit SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2230_evtafasttemp SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2240_evtexprisco SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2241_evtinsapo SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2250_evtavprevio SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2260_evtconvinterm SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2298_evtreintegr SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2299_evtdeslig SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2300_evttsvinicio SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2306_evttsvaltcontr SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s2399_evttsvtermino SET versao='v02_04_02' WHERE status in (0,1,2);
-#     --UPDATE s2400_evtcdbenprrp SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s3000_evtexclusao SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s5001_evtbasestrab SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s5002_evtirrfbenef SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s5011_evtcs SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE s5012_evtirrf SET versao='v02_04_02' WHERE status in (0,1,2);
-#     UPDATE r1000_evtinfocontri SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r1070_evttabprocesso SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2010_evtservtom SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2020_evtservprest SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2030_evtassocdesprec SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2040_evtassocdesprep SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2050_evtcomprod SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2060_evtcprb SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2070_evtpgtosdivs SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2098_evtreabreevper SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r2099_evtfechaevper SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r3010_evtespdesportivo SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r5001_evttotal SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r5011_evttotalcontrib SET versao='v1_03_02' WHERE status in (0,1,2);
-#     UPDATE r9000_evtexclusao SET versao='v1_03_02' WHERE status in (0,1,2);
-#     """, False)
-
-
 
 @login_required
 def arquivos_recuperacao(request, pk):
@@ -175,7 +108,8 @@ def arquivos_visualizacao(request, pk):
     import os
 
     arquivos = get_object_or_404(Arquivos,  id=pk)
-    if not os.path.isfile(BASE_DIR + arquivos.arquivo):
+
+    if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
         messages.error(request, 'Arquivo não encontrado!')
         return redirect('mapa_importacoes', tab='master')
 

@@ -5,7 +5,7 @@
 <!-- inicio__s2306_infoestagiario__s2306_infocomplementares -->
 <div class="col-md-12" id="s2306_infoestagiario__s2306_infocomplementares__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__s2306_infocomplementares__label">Informações relativas ao estagiário*<a data-toggle="tooltip" title="Informações do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__s2306_infocomplementares__label">Informações relativas ao estagiário*</label>
     {% if not for_print %}{% if s2306_infoestagiario_form.s2306_infocomplementares.value %}
         <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_infoestagiario_form.s2306_infocomplementares.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2306_infoestagiario__natestagio -->
 <div class="col-md-6" id="s2306_infoestagiario__natestagio__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__natestagio__label">Natureza do estágio*<a data-toggle="tooltip" title="Natureza do Estágio<opcoes> O - Obrigatório; N - Não Obrigatório. <valores_validos> O, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__natestagio__label">Natureza do estágio*</label>
     {% if s2306_infoestagiario_form.natestagio.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2306_infoestagiario_form.natestagio.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2306_infoestagiario__nivestagio -->
 <div class="col-md-6" id="s2306_infoestagiario__nivestagio__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__nivestagio__label">Nível*<a data-toggle="tooltip" title="Informar o nível do estágio<opcoes>1 - Fundamental; 2 - Médio; 3 - Formação Profissional; 4 - Superior; 8 - Especial; 9 - Mãe social. (Lei 7644, de 1987). <valores_validos> 1, 2, 3, 4, 8, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__nivestagio__label">Nível*</label>
     {% if s2306_infoestagiario_form.nivestagio.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2306_infoestagiario_form.nivestagio.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2306_infoestagiario__areaatuacao -->
 <div class="col-md-6" id="s2306_infoestagiario__areaatuacao__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__areaatuacao__label">Área de Atuação<a data-toggle="tooltip" title="Área de atuação do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__areaatuacao__label">Área de Atuação</label>
       {% if s2306_infoestagiario_form.areaatuacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.areaatuacao.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2306_infoestagiario__nrapol -->
 <div class="col-md-6" id="s2306_infoestagiario__nrapol__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__nrapol__label">Número da Apolice de seguro<a data-toggle="tooltip" title="Nr. Apólice de Seguro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__nrapol__label">Número da Apolice de seguro</label>
       {% if s2306_infoestagiario_form.nrapol.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.nrapol.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2306_infoestagiario__vlrbolsa -->
 <div class="col-md-6" id="s2306_infoestagiario__vlrbolsa__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__vlrbolsa__label">Valor da Bolsa<a data-toggle="tooltip" title="Preencher com o valor da bolsa, se o estágio for remunerado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__vlrbolsa__label">Valor da Bolsa</label>
     {% if s2306_infoestagiario_form.vlrbolsa.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s2306_infoestagiario_form.vlrbolsa.errors }}
@@ -128,7 +128,7 @@
 <!-- inicio__s2306_infoestagiario__dtprevterm -->
 <div class="col-md-6" id="s2306_infoestagiario__dtprevterm__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__dtprevterm__label">Data prevista para o término*<a data-toggle="tooltip" title="Data prevista para o término do estágio. <validacao> Deve ser uma data posterior à data de início do estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__dtprevterm__label">Data prevista para o término*</label>
         {% if s2306_infoestagiario_form.dtprevterm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2306_infoestagiario_form.dtprevterm.errors }}
@@ -148,7 +148,7 @@
 <!-- inicio__s2306_infoestagiario__cnpjinstensino -->
 <div class="col-md-6" id="s2306_infoestagiario__cnpjinstensino__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__cnpjinstensino__label">CNPJ da instituição de ensino<a data-toggle="tooltip" title="Preencher com o cnpj da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__cnpjinstensino__label">CNPJ da instituição de ensino</label>
       {% if s2306_infoestagiario_form.cnpjinstensino.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.cnpjinstensino.errors }}
@@ -163,7 +163,7 @@
 <!-- inicio__s2306_infoestagiario__nmrazao -->
 <div class="col-md-6" id="s2306_infoestagiario__nmrazao__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__nmrazao__label">Razão Social*<a data-toggle="tooltip" title="Informar a razão social."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__nmrazao__label">Razão Social*</label>
       {% if s2306_infoestagiario_form.nmrazao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.nmrazao.errors }}
@@ -178,7 +178,7 @@
 <!-- inicio__s2306_infoestagiario__dsclograd -->
 <div class="col-md-6" id="s2306_infoestagiario__dsclograd__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__dsclograd__label">Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__dsclograd__label">Logradouro</label>
       {% if s2306_infoestagiario_form.dsclograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.dsclograd.errors }}
@@ -193,7 +193,7 @@
 <!-- inicio__s2306_infoestagiario__nrlograd -->
 <div class="col-md-6" id="s2306_infoestagiario__nrlograd__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__nrlograd__label">Número<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__nrlograd__label">Número</label>
       {% if s2306_infoestagiario_form.nrlograd.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.nrlograd.errors }}
@@ -208,7 +208,7 @@
 <!-- inicio__s2306_infoestagiario__bairro -->
 <div class="col-md-6" id="s2306_infoestagiario__bairro__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__bairro__label">Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__bairro__label">Bairro</label>
       {% if s2306_infoestagiario_form.bairro.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.bairro.errors }}
@@ -223,7 +223,7 @@
 <!-- inicio__s2306_infoestagiario__cep -->
 <div class="col-md-6" id="s2306_infoestagiario__cep__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__cep__label">CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. <validacao> Deve ser preenchido apenas com números. Deve ser um CEP válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__cep__label">CEP</label>
       {% if s2306_infoestagiario_form.cep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2306_infoestagiario_form.cep.errors }}
@@ -239,7 +239,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2306_infoestagiario__codmunic__div">
     <div class="form-group">
-      <label id="s2306_infoestagiario__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2306_infoestagiario__codmunic__label">Código do Município</label>
         {% if s2306_infoestagiario_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2306_infoestagiario_form.codmunic.errors }}
@@ -285,7 +285,7 @@
   {% else %}
   <div class="col-md-12" id="s2306_infoestagiario__codmunic__div">
     <div class="form-group">
-      <label id="s2306_infoestagiario__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2306_infoestagiario__codmunic__label">Código do Município</label>
         {% if not for_print %}{% if s2306_infoestagiario_form.codmunic.value %}
             <a id="s2306_infoestagiario__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2306_infoestagiario_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -299,7 +299,7 @@
 <!-- inicio__s2306_infoestagiario__uf -->
 <div class="col-md-6" id="s2306_infoestagiario__uf__div">
   <div class="form-group">
-    <label id="s2306_infoestagiario__uf__label">UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infoestagiario__uf__label">UF</label>
     {% if s2306_infoestagiario_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2306_infoestagiario_form.uf.errors }}

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_fimexprisco_infoamb__s2240_fimexprisco__div">
   <div class="form-group">
-    <label id="s2240_fimexprisco_infoamb__s2240_fimexprisco__label">Informações relativas ao ambiente de trabalho*<a data-toggle="tooltip" title="Informações relativas ao ambiente de trabalho"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_fimexprisco_infoamb__s2240_fimexprisco__label">Informações relativas ao ambiente de trabalho*</label>
     {% if not for_print %}
       {% if s2240_fimexprisco_infoamb_form.s2240_fimexprisco.value %}
         <a id="s2240_fimexprisco_infoamb__s2240_fimexprisco__div_acessar" href="{% url 's2240_fimexprisco_salvar' pk=s2240_fimexprisco_infoamb_form.s2240_fimexprisco.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2240_fimexprisco_infoamb__codamb -->
 <div class="col-md-6" id="s2240_fimexprisco_infoamb__codamb__div">
   <div class="form-group">
-    <label id="s2240_fimexprisco_infoamb__codamb__label">Código do Ambiente*<a data-toggle="tooltip" title="Informar o código do ambiente cadastrado para o trabalhador. <validacao> Deve ser um código de ambiente {codAmb} informado anteriormente, que definia a exposição do trabalhador ao fator de risco."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_fimexprisco_infoamb__codamb__label">Código do Ambiente*</label>
       {% if s2240_fimexprisco_infoamb_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2240_fimexprisco_infoamb_form.codamb.errors }}

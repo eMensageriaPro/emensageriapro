@@ -12,7 +12,7 @@
             <th>Período de Apuração</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -31,10 +31,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s3000.change_s3000ideFolhaPagto or perms.s3000.add_s3000ideFolhaPagto %}
                     
                         <a href="{% url 's3000_idefolhapagto_salvar' pk=a.id tab='master' %}">
@@ -56,6 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

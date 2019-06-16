@@ -27,7 +27,7 @@
             <th>Observada higienização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -61,10 +61,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2240.change_s2240iniExpRiscoepi or perms.s2240.add_s2240iniExpRiscoepi %}
                     
                         <a href="{% url 's2240_iniexprisco_epi_salvar' pk=a.id tab='master' %}">
@@ -86,6 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

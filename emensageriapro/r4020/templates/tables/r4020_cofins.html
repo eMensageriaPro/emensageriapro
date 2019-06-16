@@ -12,7 +12,7 @@
             <th>Valor da retenção relativa a Cofins</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -31,10 +31,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r4020.change_r4020Cofins or perms.r4020.add_r4020Cofins %}
                     
                         <a href="{% url 'r4020_cofins_salvar' pk=a.id tab='master' %}">
@@ -56,6 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

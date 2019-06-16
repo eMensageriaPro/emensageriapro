@@ -5,7 +5,7 @@
 <!-- inicio__r2070_compjud__r2070_pgtopf -->
 <div class="col-md-12" id="r2070_compjud__r2070_pgtopf__div">
   <div class="form-group">
-    <label id="r2070_compjud__r2070_pgtopf__label">Compensação Judicial*<a data-toggle="tooltip" title="Compensação Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_compjud__r2070_pgtopf__label">Compensação Judicial*</label>
     {% if not for_print %}{% if r2070_compjud_form.r2070_pgtopf.value %}
         <a href="{% url 'r2070_pgtopf_salvar' pk=r2070_compjud_form.r2070_pgtopf.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r2070_compjud__vlrcompanocalend -->
 <div class="col-md-4" id="r2070_compjud__vlrcompanocalend__div">
   <div class="form-group">
-    <label id="r2070_compjud__vlrcompanocalend__label">Compensação Judicial relativa ao ano calendário<a data-toggle="tooltip" title="Compensação Judicial relativa ao ano calendário. <validacao> Deve estar de acordo com a tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_compjud__vlrcompanocalend__label">Compensação Judicial relativa ao ano calendário</label>
     {% if r2070_compjud_form.vlrcompanocalend.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_compjud_form.vlrcompanocalend.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r2070_compjud__vlrcompanoant -->
 <div class="col-md-4" id="r2070_compjud__vlrcompanoant__div">
   <div class="form-group">
-    <label id="r2070_compjud__vlrcompanoant__label">Compensação Judicial relativa a anos anteriores ao ano calendário<a data-toggle="tooltip" title="Compensação Judicial relativa a anos anteriores ao ano calendário. <validacao> Deve estar de acordo com a tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_compjud__vlrcompanoant__label">Compensação Judicial relativa a anos anteriores ao ano calendário</label>
     {% if r2070_compjud_form.vlrcompanoant.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2070_compjud_form.vlrcompanoant.errors }}

@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2241_altinsalperic_infoamb__s2241_altinsalperic__div">
   <div class="form-group">
-    <label id="s2241_altinsalperic_infoamb__s2241_altinsalperic__label">Informações sobre as condições de trabalho insalubre/periculoso.*<a data-toggle="tooltip" title="Informações sobre as condições de trabalho insalubre/periculoso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2241_altinsalperic_infoamb__s2241_altinsalperic__label">Informações sobre as condições de trabalho insalubre/periculoso.*</label>
     {% if not for_print %}
       {% if s2241_altinsalperic_infoamb_form.s2241_altinsalperic.value %}
         <a id="s2241_altinsalperic_infoamb__s2241_altinsalperic__div_acessar" href="{% url 's2241_altinsalperic_salvar' pk=s2241_altinsalperic_infoamb_form.s2241_altinsalperic.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2241_altinsalperic_infoamb__codamb -->
 <div class="col-md-6" id="s2241_altinsalperic_infoamb__codamb__div">
   <div class="form-group">
-    <label id="s2241_altinsalperic_infoamb__codamb__label">Código do Ambiente*<a data-toggle="tooltip" title="Informar o código do ambiente de trabalho constante da tabela S-1060 no qual o trabalhador desempenha atividades com exposição aos fatores de risco. <validacao> Deve ser um código existente na tabela S-1060."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2241_altinsalperic_infoamb__codamb__label">Código do Ambiente*</label>
       {% if s2241_altinsalperic_infoamb_form.codamb.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2241_altinsalperic_infoamb_form.codamb.errors }}

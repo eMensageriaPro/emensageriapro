@@ -5,7 +5,7 @@
 <!-- inicio__s2200_infoestatutario__s2200_evtadmissao -->
 <div class="col-md-12" id="s2200_infoestatutario__s2200_evtadmissao__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__s2200_evtadmissao__label">Informações de Trabalhador Estatutário*<a data-toggle="tooltip" title="Informações de Trabalhador Estatutário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__s2200_evtadmissao__label">Informações de Trabalhador Estatutário*</label>
     {% if not for_print %}{% if s2200_infoestatutario_form.s2200_evtadmissao.value %}
         <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_infoestatutario_form.s2200_evtadmissao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_infoestatutario__indprovim -->
 <div class="col-md-6" id="s2200_infoestatutario__indprovim__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__indprovim__label">Indicador de Provimento*<a data-toggle="tooltip" title="Preencher de acordo com as opções<opcoes>1 - Normal; 2 - Decorrente de Decisão Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__indprovim__label">Indicador de Provimento*</label>
     {% if s2200_infoestatutario_form.indprovim.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoestatutario_form.indprovim.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2200_infoestatutario__tpprov -->
 <div class="col-md-6" id="s2200_infoestatutario__tpprov__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__tpprov__label">Tipo de Provimento*<a data-toggle="tooltip" title="Preencher com o tipo de provimento, de acordo com as opções a seguir<opcoes>1 - Nomeação em cargo efetivo; 2 - Nomeação em cargo em comissão; 3 - Incorporação (militar); 4 - Matrícula (militar); 5 - Reinclusão (militar); 6 - Diplomação; 99 - Outros não relacionados acima. <validacao> Os valores [3, 4, 5, 6] só são permitidos se natureza jurídica do declarante for da Administração Pública (grupo 1). <valores_validos> 1, 2, 3, 4, 5, 6, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__tpprov__label">Tipo de Provimento*</label>
     {% if s2200_infoestatutario_form.tpprov.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoestatutario_form.tpprov.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2200_infoestatutario__dtnomeacao -->
 <div class="col-md-6" id="s2200_infoestatutario__dtnomeacao__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__dtnomeacao__label">Data de nomeação*<a data-toggle="tooltip" title="Preencher com a data da nomeação do servidor. <validacao> Deve ser posterior à data de nascimento do trabalhador e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__dtnomeacao__label">Data de nomeação*</label>
         {% if s2200_infoestatutario_form.dtnomeacao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoestatutario_form.dtnomeacao.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2200_infoestatutario__dtposse -->
 <div class="col-md-6" id="s2200_infoestatutario__dtposse__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__dtposse__label">Data de posse*<a data-toggle="tooltip" title="Data da posse do servidor. <validacao> Deve ser igual ou posterior a data de nomeação do servidor."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__dtposse__label">Data de posse*</label>
         {% if s2200_infoestatutario_form.dtposse.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoestatutario_form.dtposse.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2200_infoestatutario__dtexercicio -->
 <div class="col-md-6" id="s2200_infoestatutario__dtexercicio__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__dtexercicio__label">Data de exercício*<a data-toggle="tooltip" title="Data da entrada em exercício pelo servidor. <validacao> Devem ser observadas as seguintes regras: a) Deve ser igual ou posterior a data da posse; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial; c) Se {cadIni} = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__dtexercicio__label">Data de exercício*</label>
         {% if s2200_infoestatutario_form.dtexercicio.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoestatutario_form.dtexercicio.errors }}
@@ -125,7 +125,7 @@
 <!-- inicio__s2200_infoestatutario__dtingsvpub -->
 <div class="col-md-6" id="s2200_infoestatutario__dtingsvpub__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__dtingsvpub__label">Data de ingresso no serviço público*<a data-toggle="tooltip" title="Data de ingresso no serviço público. <validacao> Deve ser uma data válida, igual ou anterior a {dtExercicio}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__dtingsvpub__label">Data de ingresso no serviço público*</label>
         {% if s2200_infoestatutario_form.dtingsvpub.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoestatutario_form.dtingsvpub.errors }}
@@ -140,7 +140,7 @@
 <!-- inicio__s2200_infoestatutario__tpplanrp -->
 <div class="col-md-6" id="s2200_infoestatutario__tpplanrp__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__tpplanrp__label">Tipo de plano de segregação de massa<a data-toggle="tooltip" title="Tipo de plano de segregação da massa<opcoes>1 - Plano previdenciário ou único; 2 - Plano financeiro. <validacao> Preenchimento obrigatório se {tpRegPrev} = [2]. Não preencher nos demais casos. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__tpplanrp__label">Tipo de plano de segregação de massa</label>
     {% if s2200_infoestatutario_form.tpplanrp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoestatutario_form.tpplanrp.errors }}
@@ -164,7 +164,7 @@
 <!-- inicio__s2200_infoestatutario__indtetorgps -->
 <div class="col-md-6" id="s2200_infoestatutario__indtetorgps__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__indtetorgps__label">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar<a data-toggle="tooltip" title="Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__indtetorgps__label">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</label>
     {% if s2200_infoestatutario_form.indtetorgps.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoestatutario_form.indtetorgps.errors }}
@@ -188,7 +188,7 @@
 <!-- inicio__s2200_infoestatutario__indabonoperm -->
 <div class="col-md-6" id="s2200_infoestatutario__indabonoperm__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__indabonoperm__label">Indicar se o servidor recebe abono permanência<a data-toggle="tooltip" title="Indicar se o servidor recebe abono permanência<opcoes>S - Sim; N - Não. <validacao> Preenchimento obrigatório se {tpRegPrev} = [2]. Não preencher nos demais casos. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__indabonoperm__label">Indicar se o servidor recebe abono permanência</label>
     {% if s2200_infoestatutario_form.indabonoperm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoestatutario_form.indabonoperm.errors }}
@@ -212,7 +212,7 @@
 <!-- inicio__s2200_infoestatutario__dtiniabono -->
 <div class="col-md-6" id="s2200_infoestatutario__dtiniabono__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__dtiniabono__label">Informar a data de inicio do abono permanência<a data-toggle="tooltip" title="Informar a data de inicio do abono permanência. <validacao> Não informar se {indAbonoPerm} = [N]. Se preenchida, devem ser observadas as seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de exercício do servidor; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos; c) Se {cadIni} = [N], deve ser igual ou anterior à data da transferência do servidor ({sucessaoVinc/dtTransf}). Não informar se {tpProv} = [1, 2, 3, 4, 6, 7, 9, 99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__dtiniabono__label">Informar a data de inicio do abono permanência</label>
         {% if s2200_infoestatutario_form.dtiniabono.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoestatutario_form.dtiniabono.errors }}
@@ -227,7 +227,7 @@
 <!-- inicio__s2200_infoestatutario__indparcremun -->
 <div class="col-md-6" id="s2200_infoestatutario__indparcremun__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__indparcremun__label">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004<a data-toggle="tooltip" title="Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__indparcremun__label">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</label>
     {% if s2200_infoestatutario_form.indparcremun.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2200_infoestatutario_form.indparcremun.errors }}
@@ -251,7 +251,7 @@
 <!-- inicio__s2200_infoestatutario__dtiniparc -->
 <div class="col-md-6" id="s2200_infoestatutario__dtiniparc__div">
   <div class="form-group">
-    <label id="s2200_infoestatutario__dtiniparc__label">Informar a data de inicio da opção do servidor pelas parcelas remuneratórias<a data-toggle="tooltip" title="Informar a data de inicio da opção do servidor pelas parcelas remuneratórias. <validacao> Não informar se {indParcRemun} = [N]. Se preenchida, devem ser observadas as seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de exercício do servidor; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para entes públicos; c) Se {cadIni} = [N], deve ser igual ou anterior à data da transferência do servidor ({sucessaoVinc/dtTransf}). Não informar se {tpProv} = [1, 2, 3, 4, 6, 7, 9, 99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infoestatutario__dtiniparc__label">Informar a data de inicio da opção do servidor pelas parcelas remuneratórias</label>
         {% if s2200_infoestatutario_form.dtiniparc.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2200_infoestatutario_form.dtiniparc.errors }}

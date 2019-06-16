@@ -5,7 +5,7 @@
 <!-- inicio__s2205_oc__s2205_documentos -->
 <div class="col-md-12" id="s2205_oc__s2205_documentos__div">
   <div class="form-group">
-    <label id="s2205_oc__s2205_documentos__label">Informações do número de registro em Órgão de Classe (OC)*<a data-toggle="tooltip" title="Informações do número de registro em Órgão de Classe (OC)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_oc__s2205_documentos__label">Informações do número de registro em Órgão de Classe (OC)*</label>
     {% if not for_print %}{% if s2205_oc_form.s2205_documentos.value %}
         <a href="{% url 's2205_documentos_salvar' pk=s2205_oc_form.s2205_documentos.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2205_oc__nroc -->
 <div class="col-md-6" id="s2205_oc__nroc__div">
   <div class="form-group">
-    <label id="s2205_oc__nroc__label">Número do OC*<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_oc__nroc__label">Número do OC*</label>
       {% if s2205_oc_form.nroc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_oc_form.nroc.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2205_oc__orgaoemissor -->
 <div class="col-md-6" id="s2205_oc__orgaoemissor__div">
   <div class="form-group">
-    <label id="s2205_oc__orgaoemissor__label">Órgão Emissor do RIC*<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_oc__orgaoemissor__label">Órgão Emissor do RIC*</label>
       {% if s2205_oc_form.orgaoemissor.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_oc_form.orgaoemissor.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2205_oc__dtexped -->
 <div class="col-md-6" id="s2205_oc__dtexped__div">
   <div class="form-group">
-    <label id="s2205_oc__dtexped__label">Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_oc__dtexped__label">Data de Expedição do RIC</label>
         {% if s2205_oc_form.dtexped.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2205_oc_form.dtexped.errors }}
@@ -77,7 +77,7 @@
 <!-- inicio__s2205_oc__dtvalid -->
 <div class="col-md-6" id="s2205_oc__dtvalid__div">
   <div class="form-group">
-    <label id="s2205_oc__dtvalid__label">Data de Validade do OC<a data-toggle="tooltip" title="Preencher com a data de validade. <validacao> Deve ser posterior a data de expedição ({dtExped}), se esta for informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_oc__dtvalid__label">Data de Validade do OC</label>
         {% if s2205_oc_form.dtvalid.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2205_oc_form.dtvalid.errors }}

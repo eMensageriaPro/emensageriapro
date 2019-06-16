@@ -5,7 +5,7 @@
 <!-- inicio__s2230_inforetif__s2230_evtafasttemp -->
 <div class="col-md-12" id="s2230_inforetif__s2230_evtafasttemp__div">
   <div class="form-group">
-    <label id="s2230_inforetif__s2230_evtafasttemp__label">Informações de retificação do Afastamento Temporário*<a data-toggle="tooltip" title="Informações de retificação do Afastamento Temporário. Preenchimento obrigatório caso {codMotAfast} seja retificado de [01] para [03] ou de [03] para [01]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_inforetif__s2230_evtafasttemp__label">Informações de retificação do Afastamento Temporário*</label>
     {% if not for_print %}{% if s2230_inforetif_form.s2230_evtafasttemp.value %}
         <a href="{% url 's2230_evtafasttemp_salvar' pk=s2230_inforetif_form.s2230_evtafasttemp.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2230_inforetif__origretif -->
 <div class="col-md-3" id="s2230_inforetif__origretif__div">
   <div class="form-group">
-    <label id="s2230_inforetif__origretif__label">Origem da retificação*<a data-toggle="tooltip" title="Origem da retificação, conforme opções<opcoes>1 - Por iniciativa do empregador; 2 - Revisão Administrativa; 3 - Determinação Judicial. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_inforetif__origretif__label">Origem da retificação*</label>
     {% if s2230_inforetif_form.origretif.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_inforetif_form.origretif.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s2230_inforetif__tpproc -->
 <div class="col-md-3" id="s2230_inforetif__tpproc__div">
   <div class="form-group">
-    <label id="s2230_inforetif__tpproc__label">Processo RAT<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial; 3 - Número de Benefício (NB) do INSS. <validacao> O preenchimento é obrigatório se {origRetif} = [2, 3]. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_inforetif__tpproc__label">Processo RAT</label>
     {% if s2230_inforetif_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_inforetif_form.tpproc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2230_inforetif__nrproc -->
 <div class="col-md-3" id="s2230_inforetif__nrproc__div">
   <div class="form-group">
-    <label id="s2230_inforetif__nrproc__label">Número do Processo<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}. <validacao> O preenchimento é obrigatório se {origRetif} = [2, 3]. Deve ser um processo existente na tabela de Processos S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_inforetif__nrproc__label">Número do Processo</label>
       {% if s2230_inforetif_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_inforetif_form.nrproc.errors }}

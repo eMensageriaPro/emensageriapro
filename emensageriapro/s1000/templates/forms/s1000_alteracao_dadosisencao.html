@@ -5,7 +5,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__s1000_alteracao -->
 <div class="col-md-12" id="s1000_alteracao_dadosisencao__s1000_alteracao__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__s1000_alteracao__label">Informações Complementares - Empresas Isentas - Dados da Isenção*<a data-toggle="tooltip" title="Informações Complementares - Empresas Isentas - Dados da Isenção."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__s1000_alteracao__label">Informações Complementares - Empresas Isentas - Dados da Isenção*</label>
     {% if not for_print %}{% if s1000_alteracao_dadosisencao_form.s1000_alteracao.value %}
         <a href="{% url 's1000_alteracao_salvar' pk=s1000_alteracao_dadosisencao_form.s1000_alteracao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__ideminlei -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__ideminlei__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__ideminlei__label">Lei que concedeu a isenção*<a data-toggle="tooltip" title="Sigla e nome do Ministério ou Lei que concedeu o Certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__ideminlei__label">Lei que concedeu a isenção*</label>
       {% if s1000_alteracao_dadosisencao_form.ideminlei.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_alteracao_dadosisencao_form.ideminlei.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__nrcertif -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__nrcertif__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__nrcertif__label">Número certificado*<a data-toggle="tooltip" title="Número do Certificado de Entidade Beneficente de Assistência Social, número da portaria de concessão do Certificado, ou, no caso de concessão através de Lei específica, o número da Lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__nrcertif__label">Número certificado*</label>
       {% if s1000_alteracao_dadosisencao_form.nrcertif.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_alteracao_dadosisencao_form.nrcertif.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__dtemiscertif -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__dtemiscertif__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__dtemiscertif__label">Data de emissao certificado*<a data-toggle="tooltip" title="Data de Emissão do Certificado/publicação da Lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__dtemiscertif__label">Data de emissao certificado*</label>
         {% if s1000_alteracao_dadosisencao_form.dtemiscertif.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1000_alteracao_dadosisencao_form.dtemiscertif.errors }}
@@ -77,7 +77,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__dtvenccertif -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__dtvenccertif__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__dtvenccertif__label">Data de vencimento certificado*<a data-toggle="tooltip" title="Data de vencimento do certificado. <validacao> Não pode ser anterior a {dtEmisCertif}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__dtvenccertif__label">Data de vencimento certificado*</label>
         {% if s1000_alteracao_dadosisencao_form.dtvenccertif.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1000_alteracao_dadosisencao_form.dtvenccertif.errors }}
@@ -92,7 +92,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__nrprotrenov -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__nrprotrenov__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__nrprotrenov__label">Número protocolo do pedido renovação<a data-toggle="tooltip" title="Número do protocolo do pedido de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__nrprotrenov__label">Número protocolo do pedido renovação</label>
       {% if s1000_alteracao_dadosisencao_form.nrprotrenov.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_alteracao_dadosisencao_form.nrprotrenov.errors }}
@@ -107,7 +107,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__dtprotrenov -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__dtprotrenov__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__dtprotrenov__label">Data do protocolo do pedido de renovação<a data-toggle="tooltip" title="Data do protocolo de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__dtprotrenov__label">Data do protocolo do pedido de renovação</label>
         {% if s1000_alteracao_dadosisencao_form.dtprotrenov.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1000_alteracao_dadosisencao_form.dtprotrenov.errors }}
@@ -122,7 +122,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__dtdou -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__dtdou__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__dtdou__label">Data de publicação DOU<a data-toggle="tooltip" title="Preencher com a data de publicação no Diário Oficial da União."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__dtdou__label">Data de publicação DOU</label>
         {% if s1000_alteracao_dadosisencao_form.dtdou.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1000_alteracao_dadosisencao_form.dtdou.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s1000_alteracao_dadosisencao__pagdou -->
 <div class="col-md-6" id="s1000_alteracao_dadosisencao__pagdou__div">
   <div class="form-group">
-    <label id="s1000_alteracao_dadosisencao__pagdou__label">Página de publicação DOU<a data-toggle="tooltip" title="Preencher com o número da página no DOU referente à publicação do documento de concessão do certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_dadosisencao__pagdou__label">Página de publicação DOU</label>
       {% if s1000_alteracao_dadosisencao_form.pagdou.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_alteracao_dadosisencao_form.pagdou.errors }}

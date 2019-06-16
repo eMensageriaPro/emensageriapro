@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2240_iniexprisco_ativpericinsal__s2240_evtexprisco__div">
   <div class="form-group">
-    <label id="s2240_iniexprisco_ativpericinsal__s2240_evtexprisco__label">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)*<a data-toggle="tooltip" title="Informação da(s) atividade(s) perigosa(s), insalubre(s) ou especial(is) desempenhada(s)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2240_iniexprisco_ativpericinsal__s2240_evtexprisco__label">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)*</label>
     {% if not for_print %}
       {% if s2240_iniexprisco_ativpericinsal_form.s2240_evtexprisco.value %}
         <a id="s2240_iniexprisco_ativpericinsal__s2240_evtexprisco__div_acessar" href="{% url 's2240_evtexprisco_salvar' pk=s2240_iniexprisco_ativpericinsal_form.s2240_evtexprisco.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2240_iniexprisco_ativpericinsal__codativ__div">
     <div class="form-group">
-      <label id="s2240_iniexprisco_ativpericinsal__codativ__label">Atividade desempenhada*<a data-toggle="tooltip" title="Identificar a atividade desempenhada dentre as descritas na tabela 28. Preencher com números e pontos. Caso não haja correspondência, informar o código [99.999] (Ausência de correspondência). <validacao> Deve ser um código existente na tabela 28 - Atividades perigosas, insalubres e/ou especiais."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2240_iniexprisco_ativpericinsal__codativ__label">Atividade desempenhada*</label>
         {% if s2240_iniexprisco_ativpericinsal_form.codativ.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2240_iniexprisco_ativpericinsal_form.codativ.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="s2240_iniexprisco_ativpericinsal__codativ__div">
     <div class="form-group">
-      <label id="s2240_iniexprisco_ativpericinsal__codativ__label">Atividade desempenhada*<a data-toggle="tooltip" title="Identificar a atividade desempenhada dentre as descritas na tabela 28. Preencher com números e pontos. Caso não haja correspondência, informar o código [99.999] (Ausência de correspondência). <validacao> Deve ser um código existente na tabela 28 - Atividades perigosas, insalubres e/ou especiais."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2240_iniexprisco_ativpericinsal__codativ__label">Atividade desempenhada*</label>
         <input type="text" id="txt_codativ" name="txt_codativ" class="form-control" value="{% if s2240_iniexprisco_ativpericinsal.codativ %}{{ s2240_iniexprisco_ativpericinsal.codativ }}{% endif %}" disabled="disabled">
     </div>
   </div>

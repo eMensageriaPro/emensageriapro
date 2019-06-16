@@ -5,7 +5,7 @@
 <!-- inicio__r4010_infoprocjud__r4010_infopgto -->
 <div class="col-md-12" id="r4010_infoprocjud__r4010_infopgto__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud__r4010_infopgto__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*<a data-toggle="tooltip" title="Informações complementares - Demais rendimentos decorrentes de Decisão Judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infoprocjud__r4010_infopgto__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*</label>
     {% if not for_print %}{% if r4010_infoprocjud_form.r4010_infopgto.value %}
         <a href="{% url 'r4010_infopgto_salvar' pk=r4010_infoprocjud_form.r4010_infopgto.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r4010_infoprocjud__nrproc -->
 <div class="col-md-3" id="r4010_infoprocjud__nrproc__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo judicial. <validacao> Deve ser número de processo válido de acordo com o tipo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infoprocjud__nrproc__label">Informar o número do processo administrativo/judicial*</label>
       {% if r4010_infoprocjud_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_infoprocjud_form.nrproc.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__r4010_infoprocjud__indorigrec -->
 <div class="col-md-3" id="r4010_infoprocjud__indorigrec__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud__indorigrec__label">Indicativo da origem dos recursos*<a data-toggle="tooltip" title="Indicativo da origem dos recursos<opcoes>1 - Recursos do próprio declarante; 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infoprocjud__indorigrec__label">Indicativo da origem dos recursos*</label>
     {% if r4010_infoprocjud_form.indorigrec.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_infoprocjud_form.indorigrec.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r4010_infoprocjud__desc -->
 <div class="col-md-3" id="r4010_infoprocjud__desc__div">
   <div class="form-group">
-    <label id="r4010_infoprocjud__desc__label">Descrição<a data-toggle="tooltip" title="Descrição."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infoprocjud__desc__label">Descrição</label>
       {% if r4010_infoprocjud_form.desc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_infoprocjud_form.desc.errors }}

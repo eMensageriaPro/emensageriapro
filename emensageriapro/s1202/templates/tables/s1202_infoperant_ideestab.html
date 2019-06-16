@@ -12,7 +12,7 @@
             <th>Número de inscrição (CPF/CNPJ)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -31,10 +31,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1202.change_s1202infoPerAntideEstab or perms.s1202.add_s1202infoPerAntideEstab %}
                     
                         <a href="{% url 's1202_infoperant_ideestab_salvar' pk=a.id tab='master' %}">
@@ -56,6 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

@@ -21,7 +21,7 @@
             <th>Indicativo da nacionalidade do profissional responsável pelo treinamento/capacitação/exercício simulado</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -49,10 +49,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2245.change_s2245ideProfResp or perms.s2245.add_s2245ideProfResp %}
                     
                         <a href="{% url 's2245_ideprofresp_salvar' pk=a.id tab='master' %}">
@@ -74,6 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

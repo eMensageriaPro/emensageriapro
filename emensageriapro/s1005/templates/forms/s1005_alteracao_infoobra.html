@@ -5,7 +5,7 @@
 <!-- inicio__s1005_alteracao_infoobra__s1005_alteracao -->
 <div class="col-md-12" id="s1005_alteracao_infoobra__s1005_alteracao__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infoobra__s1005_alteracao__label">Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.*<a data-toggle="tooltip" title="Registro preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1005_alteracao_infoobra__s1005_alteracao__label">Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.*</label>
     {% if not for_print %}{% if s1005_alteracao_infoobra_form.s1005_alteracao.value %}
         <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao_infoobra_form.s1005_alteracao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1005_alteracao_infoobra__indsubstpatrobra -->
 <div class="col-md-6" id="s1005_alteracao_infoobra__indsubstpatrobra__div">
   <div class="form-group">
-    <label id="s1005_alteracao_infoobra__indsubstpatrobra__label">Substituição de CP patronal de Obra*<a data-toggle="tooltip" title="Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil<opcoes>1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1005_alteracao_infoobra__indsubstpatrobra__label">Substituição de CP patronal de Obra*</label>
     {% if s1005_alteracao_infoobra_form.indsubstpatrobra.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1005_alteracao_infoobra_form.indsubstpatrobra.errors }}

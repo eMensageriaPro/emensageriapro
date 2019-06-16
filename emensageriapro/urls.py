@@ -138,6 +138,7 @@ urlpatterns = [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
+
 admin.site.site_header = _(u"Administração eMensageria")
 admin.site.site_title = _(u"Administração eMensageria")
 admin.site.index_title = _(u"Administração eMensageria")

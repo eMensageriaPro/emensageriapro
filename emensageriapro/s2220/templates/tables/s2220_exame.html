@@ -21,7 +21,7 @@
             <th>Data de início do monitoramento</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -49,10 +49,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2220.change_s2220exame or perms.s2220.add_s2220exame %}
                     
                         <a href="{% url 's2220_exame_salvar' pk=a.id tab='master' %}">
@@ -74,6 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

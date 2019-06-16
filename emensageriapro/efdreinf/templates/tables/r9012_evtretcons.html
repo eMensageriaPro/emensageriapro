@@ -42,7 +42,7 @@
             <th>Código do Retorno</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -91,10 +91,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.efdreinf.change_r9012evtRetCons or perms.efdreinf.add_r9012evtRetCons %}
                     
                         <a href="{% url 'r9012_evtretcons_salvar' pk=a.id tab='master' %}">
@@ -116,6 +117,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

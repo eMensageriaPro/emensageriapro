@@ -5,7 +5,7 @@
 <!-- inicio__s1035_alteracao__s1035_evttabcarreira -->
 <div class="col-md-12" id="s1035_alteracao__s1035_evttabcarreira__div">
   <div class="form-group">
-    <label id="s1035_alteracao__s1035_evttabcarreira__label">Alteração das informações*<a data-toggle="tooltip" title="Alteração de informações já existentes."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__s1035_evttabcarreira__label">Alteração das informações*</label>
     {% if not for_print %}{% if s1035_alteracao_form.s1035_evttabcarreira.value %}
         <a href="{% url 's1035_evttabcarreira_salvar' pk=s1035_alteracao_form.s1035_evttabcarreira.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1035_alteracao__codcarreira -->
 <div class="col-md-6" id="s1035_alteracao__codcarreira__div">
   <div class="form-group">
-    <label id="s1035_alteracao__codcarreira__label">Código da Carreira*<a data-toggle="tooltip" title="Preencher com o código da carreira pública. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__codcarreira__label">Código da Carreira*</label>
       {% if s1035_alteracao_form.codcarreira.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1035_alteracao_form.codcarreira.errors }}
@@ -52,7 +52,7 @@
 <!-- inicio__s1035_alteracao__inivalid -->
 <div class="col-md-6" id="s1035_alteracao__inivalid__div">
   <div class="form-group">
-    <label id="s1035_alteracao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__inivalid__label">Início da Validade*</label>
     {% if s1035_alteracao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1035_alteracao_form.inivalid.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1035_alteracao__fimvalid -->
 <div class="col-md-6" id="s1035_alteracao__fimvalid__div">
   <div class="form-group">
-    <label id="s1035_alteracao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__fimvalid__label">Fim da Validade</label>
     {% if s1035_alteracao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1035_alteracao_form.fimvalid.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1035_alteracao__dsccarreira -->
 <div class="col-md-6" id="s1035_alteracao__dsccarreira__div">
   <div class="form-group">
-    <label id="s1035_alteracao__dsccarreira__label">Descrição*<a data-toggle="tooltip" title="Descrição da Carreira Pública."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__dsccarreira__label">Descrição*</label>
       {% if s1035_alteracao_form.dsccarreira.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1035_alteracao_form.dsccarreira.errors }}
@@ -120,7 +120,7 @@
 <!-- inicio__s1035_alteracao__leicarr -->
 <div class="col-md-6" id="s1035_alteracao__leicarr__div">
   <div class="form-group">
-    <label id="s1035_alteracao__leicarr__label">Número da lei<a data-toggle="tooltip" title="Lei que criou a Carreira."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__leicarr__label">Número da lei</label>
       {% if s1035_alteracao_form.leicarr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1035_alteracao_form.leicarr.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s1035_alteracao__dtleicarr -->
 <div class="col-md-6" id="s1035_alteracao__dtleicarr__div">
   <div class="form-group">
-    <label id="s1035_alteracao__dtleicarr__label">Data da lei*<a data-toggle="tooltip" title="Data da Lei que criou a Carreira."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__dtleicarr__label">Data da lei*</label>
         {% if s1035_alteracao_form.dtleicarr.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1035_alteracao_form.dtleicarr.errors }}
@@ -150,7 +150,7 @@
 <!-- inicio__s1035_alteracao__sitcarr -->
 <div class="col-md-6" id="s1035_alteracao__sitcarr__div">
   <div class="form-group">
-    <label id="s1035_alteracao__sitcarr__label">Situação gerada pela lei*<a data-toggle="tooltip" title="Situação gerada pela Lei. Preencher com uma das opções<opcoes>1 - Criação; 2 - Extinção; 3 - Reestruturação. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1035_alteracao__sitcarr__label">Situação gerada pela lei*</label>
     {% if s1035_alteracao_form.sitcarr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1035_alteracao_form.sitcarr.errors }}

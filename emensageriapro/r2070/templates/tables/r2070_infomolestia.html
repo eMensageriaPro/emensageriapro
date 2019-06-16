@@ -9,7 +9,7 @@
             <th>Data atribuída pelo laudo da moléstia grave</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -25,10 +25,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r2070.change_r2070infoMolestia or perms.r2070.add_r2070infoMolestia %}
                     
                         <a href="{% url 'r2070_infomolestia_salvar' pk=a.id tab='master' %}">
@@ -50,6 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

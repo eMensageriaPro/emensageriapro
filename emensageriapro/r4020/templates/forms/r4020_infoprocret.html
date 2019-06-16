@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4020_infoprocret__r4020_infopgto__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__r4020_infopgto__label">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais*<a data-toggle="tooltip" title="Informações de processos relacionados a não retenção de tributos ou depósitos judiciais. <validacao> A soma dos valores informados no campos {NIR}{depIR} {NCSLL}{depCSLL} {NCOFINS}{depCOFINS} {NPP}{depPP} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a soma de {vlrNIR}{VlrDepIR} {vlrNCSLL}{VlrDepCSLL} {vlrNCOFINS}{VlrDepCOFINS} {vlrNPP}{VlrDepPP} , respectivamente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__r4020_infopgto__label">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais*</label>
     {% if not for_print %}
       {% if r4020_infoprocret_form.r4020_infopgto.value %}
         <a id="r4020_infoprocret__r4020_infopgto__div_acessar" href="{% url 'r4020_infopgto_salvar' pk=r4020_infoprocret_form.r4020_infopgto.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4020_infoprocret__tpprocret -->
 <div class="col-md-6" id="r4020_infoprocret__tpprocret__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__tpprocret__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__tpprocret__label">Preencher com o código correspondente ao tipo de processo*</label>
     {% if r4020_infoprocret_form.tpprocret.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4020_infoprocret_form.tpprocret.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r4020_infoprocret__nrprocret -->
 <div class="col-md-6" id="r4020_infoprocret__nrprocret__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__nrprocret__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. <validacao> O processo deve existir na tabela de processos (R-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__nrprocret__label">Informar o número do processo administrativo/judicial*</label>
       {% if r4020_infoprocret_form.nrprocret.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4020_infoprocret_form.nrprocret.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r4020_infoprocret__codsusp -->
 <div class="col-md-6" id="r4020_infoprocret__codsusp__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070), campo {codSusp}, vinculado ao número do processo informado em {nrProcRet}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
       {% if r4020_infoprocret_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4020_infoprocret_form.codsusp.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__r4020_infoprocret__nir -->
 <div class="col-md-6" id="r4020_infoprocret__nir__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__nir__label">Valor da retenção de IR que deixou de ser efetuada em função de processo informado em {nrProcRet}<a data-toggle="tooltip" title="Valor da retenção de IR que deixou de ser efetuada em função de processo informado em {nrProcRet}. <validacao> Informação permitida apenas se {indDeposito} do R-1070 = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__nir__label">Valor da retenção de IR que deixou de ser efetuada em função de processo informado em {nrProcRet}</label>
     {% if r4020_infoprocret_form.nir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.nir.errors }}
@@ -113,7 +113,7 @@
 <!-- inicio__r4020_infoprocret__depir -->
 <div class="col-md-6" id="r4020_infoprocret__depir__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__depir__label">Valor do depósito judicial do IR em função de processo administrativo ou judicial<a data-toggle="tooltip" title="Valor do depósito judicial do IR em função de processo administrativo ou judicial. <validacao> Informação permitida apenas se {indDeposito} do R-1070 = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__depir__label">Valor do depósito judicial do IR em função de processo administrativo ou judicial</label>
     {% if r4020_infoprocret_form.depir.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.depir.errors }}
@@ -131,7 +131,7 @@
 <!-- inicio__r4020_infoprocret__ncsll -->
 <div class="col-md-6" id="r4020_infoprocret__ncsll__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__ncsll__label">Valor da retenção de CSLL que deixou de ser efetuada em função de processo informado em {nrProcRet}<a data-toggle="tooltip" title="Valor da retenção de CSLL que deixou de ser efetuada em função de processo informado em {nrProcRet}. <validacao> Informação permitida apenas se {paisResid} = [105] e {indDeposito} do R-1070 = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__ncsll__label">Valor da retenção de CSLL que deixou de ser efetuada em função de processo informado em {nrProcRet}</label>
     {% if r4020_infoprocret_form.ncsll.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.ncsll.errors }}
@@ -149,7 +149,7 @@
 <!-- inicio__r4020_infoprocret__depcsll -->
 <div class="col-md-6" id="r4020_infoprocret__depcsll__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__depcsll__label">Valor do depósito judicial da CSLL em função de processo administrativo ou judicial<a data-toggle="tooltip" title="Valor do depósito judicial da CSLL em função de processo administrativo ou judicial. <validacao> Informação permitida apenas se {paisResid} = [105] e {indDeposito} do R-1070 = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__depcsll__label">Valor do depósito judicial da CSLL em função de processo administrativo ou judicial</label>
     {% if r4020_infoprocret_form.depcsll.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.depcsll.errors }}
@@ -167,7 +167,7 @@
 <!-- inicio__r4020_infoprocret__ncofins -->
 <div class="col-md-6" id="r4020_infoprocret__ncofins__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__ncofins__label">Valor da retenção de Cofins que deixou de ser efetuada em função de processo informado em {nrProcRet}<a data-toggle="tooltip" title="Valor da retenção de Cofins que deixou de ser efetuada em função de processo informado em {nrProcRet}. <validacao> Informação permitida apenas se {paisResid} = [105] e {indDeposito} do R-1070 = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__ncofins__label">Valor da retenção de Cofins que deixou de ser efetuada em função de processo informado em {nrProcRet}</label>
     {% if r4020_infoprocret_form.ncofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.ncofins.errors }}
@@ -185,7 +185,7 @@
 <!-- inicio__r4020_infoprocret__depcofins -->
 <div class="col-md-6" id="r4020_infoprocret__depcofins__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__depcofins__label">Valor do depósito judicial da Cofins em função de processo administrativo ou judicial<a data-toggle="tooltip" title="Valor do depósito judicial da Cofins em função de processo administrativo ou judicial. <validacao> Informação permitida apenas se {paisResid} = [105] e {indDeposito} do R-1070 = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__depcofins__label">Valor do depósito judicial da Cofins em função de processo administrativo ou judicial</label>
     {% if r4020_infoprocret_form.depcofins.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.depcofins.errors }}
@@ -203,7 +203,7 @@
 <!-- inicio__r4020_infoprocret__npp -->
 <div class="col-md-6" id="r4020_infoprocret__npp__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__npp__label">Valor da retenção de PIS/PASEP que deixou de ser efetuada em função de processo informado em {nrProcRet}<a data-toggle="tooltip" title="Valor da retenção de PIS/PASEP que deixou de ser efetuada em função de processo informado em {nrProcRet}. <validacao> Informação permitida apenas se {paisResid} = [105] e {indDeposito} do R-1070 = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__npp__label">Valor da retenção de PIS/PASEP que deixou de ser efetuada em função de processo informado em {nrProcRet}</label>
     {% if r4020_infoprocret_form.npp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.npp.errors }}
@@ -221,7 +221,7 @@
 <!-- inicio__r4020_infoprocret__deppp -->
 <div class="col-md-6" id="r4020_infoprocret__deppp__div">
   <div class="form-group">
-    <label id="r4020_infoprocret__deppp__label">Valor do depósito judicial do PIS/PASEP em função de processo administrativo ou judicial<a data-toggle="tooltip" title="Valor do depósito judicial do PIS/PASEP em função de processo administrativo ou judicial. <validacao> Informação permitida apenas se {paisResid} = [105] e {indDeposito} do R-1070 = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4020_infoprocret__deppp__label">Valor do depósito judicial do PIS/PASEP em função de processo administrativo ou judicial</label>
     {% if r4020_infoprocret_form.deppp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4020_infoprocret_form.deppp.errors }}

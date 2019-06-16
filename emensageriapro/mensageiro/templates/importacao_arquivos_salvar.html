@@ -60,13 +60,16 @@
                             Importação de Arquivos</a>
                         </li>
                         {% endif %}
+                        <!-- antes_tabs -->
                         
-                            {% if perms.mensageiro.can_see_ImportacaoArquivosEventos %}
-                                <li {% if tab == 'importacao_arquivos_eventos' %} class="active"{% endif %} >
-                                    <a href="{% url 'importacao_arquivos_salvar' pk=pk tab='importacao_arquivos_eventos' %}">
-                                    Eventos de Arquivos Importados</a>
-                                </li>
-                            {% endif %}
+                            
+                                {% if perms.mensageiro.can_see_ImportacaoArquivosEventos %}
+                                    <li {% if tab == 'importacao_arquivos_eventos' %} class="active"{% endif %} >
+                                        <a href="{% url 'importacao_arquivos_salvar' pk=pk tab='importacao_arquivos_eventos' %}">
+                                        Eventos de Arquivos Importados</a>
+                                    </li>
+                                {% endif %}
+                            
                         
                     {% endif %}
                 </ul>
@@ -233,6 +236,7 @@
     {% endif %}
 
     <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+    
     {% if pk %}
 
 
@@ -345,6 +349,7 @@
         
 
     {% endif %} 
+    
 
 </section>
 

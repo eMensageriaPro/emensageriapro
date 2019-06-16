@@ -36,7 +36,7 @@
             <th>Código Incidência SIND</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -79,10 +79,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1010.change_s1010alteracao or perms.s1010.add_s1010alteracao %}
                     
                         <a href="{% url 's1010_alteracao_salvar' pk=a.id tab='master' %}">
@@ -104,6 +105,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

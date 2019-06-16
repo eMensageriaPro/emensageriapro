@@ -10,7 +10,7 @@
 <!-- inicio__r9012_evtretcons__identidade -->
 <div class="col-md-6" id="r9012_evtretcons__identidade__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__identidade__label">Identificação única do evento</label>
       {% if r9012_evtretcons_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__r9012_evtretcons__perapur -->
 <div class="col-md-6" id="r9012_evtretcons__perapur__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês no formato AAAA-MM de referência das informações. <validacao> Deve ser um ano/mês, igual ou posterior a implementação da EFD-Reinf, no formato AAAA-MM. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
       {% if r9012_evtretcons_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.perapur.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__r9012_evtretcons__tpinsc -->
 <div class="col-md-6" id="r9012_evtretcons__tpinsc__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
       {% if r9012_evtretcons_form.tpinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.tpinsc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r9012_evtretcons__nrinsc -->
 <div class="col-md-6" id="r9012_evtretcons__nrinsc__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
       {% if r9012_evtretcons_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.nrinsc.errors }}
@@ -90,7 +90,7 @@
 <!-- inicio__r9012_evtretcons__cdretorno -->
 <div class="col-md-6" id="r9012_evtretcons__cdretorno__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__cdretorno__label">Código do Retorno*<a data-toggle="tooltip" title="Código do Retorno<opcoes>0 - Sucesso; 1 - Erro; 2 - Em processamento. <valores_validos> 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__cdretorno__label">Código do Retorno*</label>
     {% if r9012_evtretcons_form.cdretorno.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9012_evtretcons_form.cdretorno.errors }}
@@ -114,7 +114,7 @@
 <!-- inicio__r9012_evtretcons__descretorno -->
 <div class="col-md-6" id="r9012_evtretcons__descretorno__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__descretorno__label">Descrição do retorno*<a data-toggle="tooltip" title="Descrição do retorno."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__descretorno__label">Descrição do retorno*</label>
       {% if r9012_evtretcons_form.descretorno.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.descretorno.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__r9012_evtretcons__nrprotentr -->
 <div class="col-md-6" id="r9012_evtretcons__nrprotentr__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__nrprotentr__label">Número do protocolo de entrega do evento*<a data-toggle="tooltip" title="Número do protocolo de entrega do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__nrprotentr__label">Número do protocolo de entrega do evento*</label>
       {% if r9012_evtretcons_form.nrprotentr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.nrprotentr.errors }}
@@ -149,7 +149,7 @@
 <!-- inicio__r9012_evtretcons__dhprocess -->
 <div class="col-md-6" id="r9012_evtretcons__dhprocess__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__dhprocess__label">Data e hora do início do processamento da consulta*<a data-toggle="tooltip" title="Data e hora do início do processamento da consulta."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__dhprocess__label">Data e hora do início do processamento da consulta*</label>
         {% if r9012_evtretcons_form.dhprocess.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r9012_evtretcons_form.dhprocess.errors }}
@@ -164,7 +164,7 @@
 <!-- inicio__r9012_evtretcons__tpev -->
 <div class="col-md-6" id="r9012_evtretcons__tpev__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__tpev__label">Tipo do Evento*<a data-toggle="tooltip" title="Tipo do Evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__tpev__label">Tipo do Evento*</label>
       {% if r9012_evtretcons_form.tpev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.tpev.errors }}
@@ -179,7 +179,7 @@
 <!-- inicio__r9012_evtretcons__idev -->
 <div class="col-md-6" id="r9012_evtretcons__idev__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__idev__label">ID do Evento*<a data-toggle="tooltip" title="ID do Evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__idev__label">ID do Evento*</label>
       {% if r9012_evtretcons_form.idev.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.idev.errors }}
@@ -194,7 +194,7 @@
 <!-- inicio__r9012_evtretcons__hash -->
 <div class="col-md-6" id="r9012_evtretcons__hash__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__hash__label">Hash do arquivo processado*<a data-toggle="tooltip" title="Hash do arquivo processado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__hash__label">Hash do arquivo processado*</label>
       {% if r9012_evtretcons_form.hash.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9012_evtretcons_form.hash.errors }}
@@ -209,7 +209,7 @@
 <!-- inicio__r9012_evtretcons__versao -->
 <div class="col-md-3" id="r9012_evtretcons__versao__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__versao__label">Versão<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__versao__label">Versão</label>
     {% if r9012_evtretcons_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9012_evtretcons_form.versao.errors }}
@@ -232,6 +232,7 @@
 <!-- fim__r9012_evtretcons__versao -->
 <!-- inicio__r9012_evtretcons__transmissor_lote_efdreinf -->
 
+{% if r9012_evtretcons_form.transmissor_lote_efdreinf.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_transmissor_lote_efdreinf').change(function(){
@@ -239,10 +240,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-3" id="r9012_evtretcons__transmissor_lote_efdreinf__div">
 <div class="form-group">
-  <label id="r9012_evtretcons__transmissor_lote_efdreinf__label">Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="r9012_evtretcons__transmissor_lote_efdreinf__label">Transmissor</label>
   
   {% if not output %}
     {% if r9012_evtretcons_form.transmissor_lote_efdreinf.value %}
@@ -274,7 +276,7 @@
 <!-- inicio__r9012_evtretcons__status -->
 <div class="col-md-3" id="r9012_evtretcons__status__div">
   <div class="form-group">
-    <label id="r9012_evtretcons__status__label">Status<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9012_evtretcons__status__label">Status</label>
     {% if r9012_evtretcons_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9012_evtretcons_form.status.errors }}

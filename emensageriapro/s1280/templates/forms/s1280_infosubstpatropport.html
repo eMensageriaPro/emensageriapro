@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1280_infosubstpatropport__s1280_evtinfocomplper__div">
   <div class="form-group">
-    <label id="s1280_infosubstpatropport__s1280_evtinfocomplper__label">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.*<a data-toggle="tooltip" title="Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1280_infosubstpatropport__s1280_evtinfocomplper__label">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.*</label>
     {% if not for_print %}
       {% if s1280_infosubstpatropport_form.s1280_evtinfocomplper.value %}
         <a id="s1280_infosubstpatropport__s1280_evtinfocomplper__div_acessar" href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infosubstpatropport_form.s1280_evtinfocomplper.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1280_infosubstpatropport__cnpjopportuario -->
 <div class="col-md-6" id="s1280_infosubstpatropport__cnpjopportuario__div">
   <div class="form-group">
-    <label id="s1280_infosubstpatropport__cnpjopportuario__label">CNPJ do Operador Portuário*<a data-toggle="tooltip" title="Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, constante na tabela de operadores portuários (S-1080)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1280_infosubstpatropport__cnpjopportuario__label">CNPJ do Operador Portuário*</label>
       {% if s1280_infosubstpatropport_form.cnpjopportuario.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1280_infosubstpatropport_form.cnpjopportuario.errors }}

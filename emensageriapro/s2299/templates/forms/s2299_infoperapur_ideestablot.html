@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2299_infoperapur_ideestablot__s2299_infoperapur__div">
   <div class="form-group">
-    <label id="s2299_infoperapur_ideestablot__s2299_infoperapur__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*<a data-toggle="tooltip" title="Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (própria) no CNO, ou o número do CAEPF (no caso de pessoa física obrigada a inscrição no cadastro de atividades específicas da pessoa física). No caso específico do trabalhador doméstico, o estabelecimento deve ser o próprio CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperapur_ideestablot__s2299_infoperapur__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*</label>
     {% if not for_print %}
       {% if s2299_infoperapur_ideestablot_form.s2299_infoperapur.value %}
         <a id="s2299_infoperapur_ideestablot__s2299_infoperapur__div_acessar" href="{% url 's2299_infoperapur_salvar' pk=s2299_infoperapur_ideestablot_form.s2299_infoperapur.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2299_infoperapur_ideestablot__tpinsc -->
 <div class="col-md-3" id="s2299_infoperapur_ideestablot__tpinsc__div">
   <div class="form-group">
-    <label id="s2299_infoperapur_ideestablot__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da tabela 5. <validacao> Se {classTrib} igual a [21], deve ser igual a [3,4], exceto se empregador doméstico. Se {classTrib} igual a [22], caso não seja empregador doméstico, deve ser igual a [3,4] e, se [3], o CAEPF deve constar na tabela S-1005 como sendo de segurado especial. Se empregador doméstico (trabalhador com categoria = [104]) deve ser igual a [2]. Nos demais casos ({classTrib} <> [21,22]) deve ser igual a [1,4]. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperapur_ideestablot__tpinsc__label">Tipo de inscrição*</label>
     {% if s2299_infoperapur_ideestablot_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2299_infoperapur_ideestablot_form.tpinsc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s2299_infoperapur_ideestablot__nrinsc -->
 <div class="col-md-3" id="s2299_infoperapur_ideestablot__nrinsc__div">
   <div class="form-group">
-    <label id="s2299_infoperapur_ideestablot__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> A inscrição informada deve ser compatível com {tpInsc}. Se {tpInsc} igual a [1, 3, 4] deve constar na tabela S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperapur_ideestablot__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
       {% if s2299_infoperapur_ideestablot_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infoperapur_ideestablot_form.nrinsc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2299_infoperapur_ideestablot__codlotacao -->
 <div class="col-md-3" id="s2299_infoperapur_ideestablot__codlotacao__div">
   <div class="form-group">
-    <label id="s2299_infoperapur_ideestablot__codlotacao__label">Código da Lotação*<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. <validacao> Deve ser um código existente em S-1020 - tabela de Lotações Tributárias."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperapur_ideestablot__codlotacao__label">Código da Lotação*</label>
       {% if s2299_infoperapur_ideestablot_form.codlotacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2299_infoperapur_ideestablot_form.codlotacao.errors }}

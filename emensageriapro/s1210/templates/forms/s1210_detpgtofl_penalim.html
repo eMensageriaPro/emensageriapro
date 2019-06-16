@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1210_detpgtofl_penalim__s1210_detpgtofl_retpgtotot__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_penalim__s1210_detpgtofl_retpgtotot__label">Informações sobre beneficiários de pensão alimentícia.*<a data-toggle="tooltip" title="Informações sobre beneficiários de pensão alimentícia."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl_penalim__s1210_detpgtofl_retpgtotot__label">Informações sobre beneficiários de pensão alimentícia.*</label>
     {% if not for_print %}
       {% if s1210_detpgtofl_penalim_form.s1210_detpgtofl_retpgtotot.value %}
         <a id="s1210_detpgtofl_penalim__s1210_detpgtofl_retpgtotot__div_acessar" href="{% url 's1210_detpgtofl_retpgtotot_salvar' pk=s1210_detpgtofl_penalim_form.s1210_detpgtofl_retpgtotot.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1210_detpgtofl_penalim__cpfbenef -->
 <div class="col-md-6" id="s1210_detpgtofl_penalim__cpfbenef__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_penalim__cpfbenef__label">CPF*<a data-toggle="tooltip" title="Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl_penalim__cpfbenef__label">CPF*</label>
       {% if s1210_detpgtofl_penalim_form.cpfbenef.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_penalim_form.cpfbenef.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1210_detpgtofl_penalim__dtnasctobenef -->
 <div class="col-md-6" id="s1210_detpgtofl_penalim__dtnasctobenef__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_penalim__dtnasctobenef__label">Data de nascimento beneficiarios<a data-toggle="tooltip" title="Data de nascimento do beneficiário da pensão. <validacao> Deve ser maior ou igual que 01/01/1890 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl_penalim__dtnasctobenef__label">Data de nascimento beneficiarios</label>
         {% if s1210_detpgtofl_penalim_form.dtnasctobenef.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1210_detpgtofl_penalim_form.dtnasctobenef.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1210_detpgtofl_penalim__nmbenefic -->
 <div class="col-md-6" id="s1210_detpgtofl_penalim__nmbenefic__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_penalim__nmbenefic__label">Nome*<a data-toggle="tooltip" title="Nome do Beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl_penalim__nmbenefic__label">Nome*</label>
       {% if s1210_detpgtofl_penalim_form.nmbenefic.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1210_detpgtofl_penalim_form.nmbenefic.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s1210_detpgtofl_penalim__vlrpensao -->
 <div class="col-md-6" id="s1210_detpgtofl_penalim__vlrpensao__div">
   <div class="form-group">
-    <label id="s1210_detpgtofl_penalim__vlrpensao__label">Valor da Pensão alimentícia*<a data-toggle="tooltip" title="Valor da pensão alimentícia."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1210_detpgtofl_penalim__vlrpensao__label">Valor da Pensão alimentícia*</label>
     {% if s1210_detpgtofl_penalim_form.vlrpensao.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1210_detpgtofl_penalim_form.vlrpensao.errors }}

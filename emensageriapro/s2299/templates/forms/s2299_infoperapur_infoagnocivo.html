@@ -5,7 +5,7 @@
 <!-- inicio__s2299_infoperapur_infoagnocivo__s2299_infoperapur_ideestablot -->
 <div class="col-md-12" id="s2299_infoperapur_infoagnocivo__s2299_infoperapur_ideestablot__div">
   <div class="form-group">
-    <label id="s2299_infoperapur_infoagnocivo__s2299_infoperapur_ideestablot__label">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.*<a data-toggle="tooltip" title="Registro preenchido exclusivamente em relação a remuneração de trabalhador amparado pelo RGPS - Regime Geral de Previdência Social."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperapur_infoagnocivo__s2299_infoperapur_ideestablot__label">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.*</label>
     {% if not for_print %}{% if s2299_infoperapur_infoagnocivo_form.s2299_infoperapur_ideestablot.value %}
         <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=s2299_infoperapur_infoagnocivo_form.s2299_infoperapur_ideestablot.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2299_infoperapur_infoagnocivo__grauexp -->
 <div class="col-md-6" id="s2299_infoperapur_infoagnocivo__grauexp__div">
   <div class="form-group">
-    <label id="s2299_infoperapur_infoagnocivo__grauexp__label">Código*<a data-toggle="tooltip" title="Preencher com o código que representa o grau de exposição a agentes nocivos<opcoes>1 - Não ensejador de aposentadoria especial; 2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%); 3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%); 4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%). <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperapur_infoagnocivo__grauexp__label">Código*</label>
     {% if s2299_infoperapur_infoagnocivo_form.grauexp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2299_infoperapur_infoagnocivo_form.grauexp.errors }}

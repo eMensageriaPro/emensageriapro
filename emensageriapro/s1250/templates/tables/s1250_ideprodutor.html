@@ -27,7 +27,7 @@
             <th>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -61,10 +61,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1250.change_s1250ideProdutor or perms.s1250.add_s1250ideProdutor %}
                     
                         <a href="{% url 's1250_ideprodutor_salvar' pk=a.id tab='master' %}">
@@ -86,6 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

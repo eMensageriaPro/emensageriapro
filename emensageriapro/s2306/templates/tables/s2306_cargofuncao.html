@@ -9,7 +9,7 @@
             <th>Código do Cargo</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -25,10 +25,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2306.change_s2306cargoFuncao or perms.s2306.add_s2306cargoFuncao %}
                     
                         <a href="{% url 's2306_cargofuncao_salvar' pk=a.id tab='master' %}">
@@ -50,6 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

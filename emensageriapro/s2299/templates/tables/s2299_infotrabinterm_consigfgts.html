@@ -12,7 +12,7 @@
             <th>Número do contrato de empréstimo consignado existente na Instituição Consignatária</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -31,10 +31,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2299.change_s2299infoTrabIntermconsigFGTS or perms.s2299.add_s2299infoTrabIntermconsigFGTS %}
                     
                         <a href="{% url 's2299_infotrabinterm_consigfgts_salvar' pk=a.id tab='master' %}">
@@ -56,6 +57,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

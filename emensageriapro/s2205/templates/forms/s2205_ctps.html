@@ -5,7 +5,7 @@
 <!-- inicio__s2205_ctps__s2205_documentos -->
 <div class="col-md-12" id="s2205_ctps__s2205_documentos__div">
   <div class="form-group">
-    <label id="s2205_ctps__s2205_documentos__label">Informações da Carteira de Trabalho e Previdência Social*<a data-toggle="tooltip" title="Informações da Carteira de Trabalho e Previdência Social."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_ctps__s2205_documentos__label">Informações da Carteira de Trabalho e Previdência Social*</label>
     {% if not for_print %}{% if s2205_ctps_form.s2205_documentos.value %}
         <a href="{% url 's2205_documentos_salvar' pk=s2205_ctps_form.s2205_documentos.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2205_ctps__nrctps -->
 <div class="col-md-3" id="s2205_ctps__nrctps__div">
   <div class="form-group">
-    <label id="s2205_ctps__nrctps__label">Número da CTPS*<a data-toggle="tooltip" title="CTPS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_ctps__nrctps__label">Número da CTPS*</label>
       {% if s2205_ctps_form.nrctps.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_ctps_form.nrctps.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2205_ctps__seriectps -->
 <div class="col-md-3" id="s2205_ctps__seriectps__div">
   <div class="form-group">
-    <label id="s2205_ctps__seriectps__label">Série da CTPS*<a data-toggle="tooltip" title="Número de série da CTPS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_ctps__seriectps__label">Série da CTPS*</label>
       {% if s2205_ctps_form.seriectps.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2205_ctps_form.seriectps.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2205_ctps__ufctps -->
 <div class="col-md-3" id="s2205_ctps__ufctps__div">
   <div class="form-group">
-    <label id="s2205_ctps__ufctps__label">UF da CTPS*<a data-toggle="tooltip" title="UF da expedição da CTPS. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2205_ctps__ufctps__label">UF da CTPS*</label>
     {% if s2205_ctps_form.ufctps.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2205_ctps_form.ufctps.errors }}

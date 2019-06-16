@@ -18,7 +18,7 @@
             <th>Depósito do montante integral</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -43,10 +43,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1070.change_s1070alteracaoinfoSusp or perms.s1070.add_s1070alteracaoinfoSusp %}
                     
                         <a href="{% url 's1070_alteracao_infosusp_salvar' pk=a.id tab='master' %}">
@@ -68,6 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

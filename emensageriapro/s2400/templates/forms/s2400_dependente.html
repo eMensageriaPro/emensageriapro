@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2400_dependente__s2400_evtcdbenefin__div">
   <div class="form-group">
-    <label id="s2400_dependente__s2400_evtcdbenefin__label">Informações dos dependentes*<a data-toggle="tooltip" title="Informações dos dependentes"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__s2400_evtcdbenefin__label">Informações dos dependentes*</label>
     {% if not for_print %}
       {% if s2400_dependente_form.s2400_evtcdbenefin.value %}
         <a id="s2400_dependente__s2400_evtcdbenefin__div_acessar" href="{% url 's2400_evtcdbenefin_salvar' pk=s2400_dependente_form.s2400_evtcdbenefin.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2400_dependente__tpdep -->
 <div class="col-md-6" id="s2400_dependente__tpdep__div">
   <div class="form-group">
-    <label id="s2400_dependente__tpdep__label">Tipo*<a data-toggle="tooltip" title="Tipo de dependente conforme tabela 7. <validacao> Deve ser um código existente na tabela 7."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__tpdep__label">Tipo*</label>
     {% if s2400_dependente_form.tpdep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_dependente_form.tpdep.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s2400_dependente__nmdep -->
 <div class="col-md-6" id="s2400_dependente__nmdep__div">
   <div class="form-group">
-    <label id="s2400_dependente__nmdep__label">Nome*<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__nmdep__label">Nome*</label>
       {% if s2400_dependente_form.nmdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_dependente_form.nmdep.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s2400_dependente__dtnascto -->
 <div class="col-md-6" id="s2400_dependente__dtnascto__div">
   <div class="form-group">
-    <label id="s2400_dependente__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento. <validacao> Deve ser uma data válida, maior que 01/01/1900 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__dtnascto__label">Data de nascimento*</label>
         {% if s2400_dependente_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2400_dependente_form.dtnascto.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2400_dependente__cpfdep -->
 <div class="col-md-6" id="s2400_dependente__cpfdep__div">
   <div class="form-group">
-    <label id="s2400_dependente__cpfdep__label">CPF<a data-toggle="tooltip" title="Número de Inscrição no CPF. <validacao> Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório para maior ou igual a 12 (doze) anos e {depIRRF} = [S]; b) Não pode haver mais de um dependente com um mesmo número do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__cpfdep__label">CPF</label>
       {% if s2400_dependente_form.cpfdep.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2400_dependente_form.cpfdep.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2400_dependente__sexodep -->
 <div class="col-md-6" id="s2400_dependente__sexodep__div">
   <div class="form-group">
-    <label id="s2400_dependente__sexodep__label">Sexo do dependente*<a data-toggle="tooltip" title="Sexo do dependente<opcoes> M - Masculino; F - Feminino. <valores_validos> M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__sexodep__label">Sexo do dependente*</label>
     {% if s2400_dependente_form.sexodep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_dependente_form.sexodep.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__s2400_dependente__depirrf -->
 <div class="col-md-6" id="s2400_dependente__depirrf__div">
   <div class="form-group">
-    <label id="s2400_dependente__depirrf__label">Dependente de IRRF*<a data-toggle="tooltip" title="Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__depirrf__label">Dependente de IRRF*</label>
     {% if s2400_dependente_form.depirrf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_dependente_form.depirrf.errors }}
@@ -158,7 +158,7 @@
 <!-- inicio__s2400_dependente__incfismen -->
 <div class="col-md-6" id="s2400_dependente__incfismen__div">
   <div class="form-group">
-    <label id="s2400_dependente__incfismen__label">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei*<a data-toggle="tooltip" title="Informar se o dependente é pessoa com doença incapacitante, na forma da lei<opcoes>S - Sim; N - Não. <valores_validos> S, N"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__incfismen__label">Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei*</label>
     {% if s2400_dependente_form.incfismen.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_dependente_form.incfismen.errors }}
@@ -182,7 +182,7 @@
 <!-- inicio__s2400_dependente__depfinsprev -->
 <div class="col-md-6" id="s2400_dependente__depfinsprev__div">
   <div class="form-group">
-    <label id="s2400_dependente__depfinsprev__label">Informar se é dependente para fins previdenciários*<a data-toggle="tooltip" title="Informar se é dependente para fins previdenciários<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2400_dependente__depfinsprev__label">Informar se é dependente para fins previdenciários*</label>
     {% if s2400_dependente_form.depfinsprev.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2400_dependente_form.depfinsprev.errors }}

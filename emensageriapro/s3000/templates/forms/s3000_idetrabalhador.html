@@ -5,7 +5,7 @@
 <!-- inicio__s3000_idetrabalhador__s3000_evtexclusao -->
 <div class="col-md-12" id="s3000_idetrabalhador__s3000_evtexclusao__div">
   <div class="form-group">
-    <label id="s3000_idetrabalhador__s3000_evtexclusao__label">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.*<a data-toggle="tooltip" title="Registro que identifica a qual trabalhador refere-se o evento a ser excluído."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s3000_idetrabalhador__s3000_evtexclusao__label">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.*</label>
     {% if not for_print %}{% if s3000_idetrabalhador_form.s3000_evtexclusao.value %}
         <a href="{% url 's3000_evtexclusao_salvar' pk=s3000_idetrabalhador_form.s3000_evtexclusao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s3000_idetrabalhador__cpftrab -->
 <div class="col-md-4" id="s3000_idetrabalhador__cpftrab__div">
   <div class="form-group">
-    <label id="s3000_idetrabalhador__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> O CPF indicado deve existir na base de dados do RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s3000_idetrabalhador__cpftrab__label">CPF*</label>
       {% if s3000_idetrabalhador_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s3000_idetrabalhador_form.cpftrab.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s3000_idetrabalhador__nistrab -->
 <div class="col-md-4" id="s3000_idetrabalhador__nistrab__div">
   <div class="form-group">
-    <label id="s3000_idetrabalhador__nistrab__label">NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. <validacao> O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]. Não preencher no caso de exclusão de pagamento de rendimentos do trabalho (S-1210) ou de admissão preliminar (S-2190)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s3000_idetrabalhador__nistrab__label">NIS</label>
       {% if s3000_idetrabalhador_form.nistrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s3000_idetrabalhador_form.nistrab.errors }}

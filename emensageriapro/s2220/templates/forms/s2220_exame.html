@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s2220_exame__s2220_evtmonit__div">
   <div class="form-group">
-    <label id="s2220_exame__s2220_evtmonit__label">Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO*<a data-toggle="tooltip" title="Registro que detalha as avaliações clínicas e os exames complementares porventura realizados pelo trabalhador em virtude do determinado nos Quadros I e II da NR7 do MTb, além de outros solicitados pelo médico e os referentes ao ASO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__s2220_evtmonit__label">Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO*</label>
     {% if not for_print %}
       {% if s2220_exame_form.s2220_evtmonit.value %}
         <a id="s2220_exame__s2220_evtmonit__div_acessar" href="{% url 's2220_evtmonit_salvar' pk=s2220_exame_form.s2220_evtmonit.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s2220_exame__dtexm -->
 <div class="col-md-6" id="s2220_exame__dtexm__div">
   <div class="form-group">
-    <label id="s2220_exame__dtexm__label">Data do exame*<a data-toggle="tooltip" title="Data do exame realizado. <validacao> Deve ser uma data válida, igual ou anterior à data do ASO informada em {dtAso}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__dtexm__label">Data do exame*</label>
         {% if s2220_exame_form.dtexm.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2220_exame_form.dtexm.errors }}
@@ -57,7 +57,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2220_exame__procrealizado__div">
     <div class="form-group">
-      <label id="s2220_exame__procrealizado__label">Procedimento Médico*<a data-toggle="tooltip" title="Código do procedimento diagnóstico constante da tabela 27. <validacao> Deve ser um código existente na tabela 27 - Procedimentos Diagnósticos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2220_exame__procrealizado__label">Procedimento Médico*</label>
         {% if s2220_exame_form.procrealizado.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2220_exame_form.procrealizado.errors }}
@@ -111,7 +111,7 @@
   {% else %}
   <div class="col-md-6" id="s2220_exame__procrealizado__div">
     <div class="form-group">
-      <label id="s2220_exame__procrealizado__label">Procedimento Médico*<a data-toggle="tooltip" title="Código do procedimento diagnóstico constante da tabela 27. <validacao> Deve ser um código existente na tabela 27 - Procedimentos Diagnósticos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2220_exame__procrealizado__label">Procedimento Médico*</label>
         <input type="text" id="txt_procrealizado" name="txt_procrealizado" class="form-control" value="{% if s2220_exame.procrealizado %}{{ s2220_exame.procrealizado }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -120,7 +120,7 @@
 <!-- inicio__s2220_exame__obsproc -->
 <div class="col-md-6" id="s2220_exame__obsproc__div">
   <div class="form-group">
-    <label id="s2220_exame__obsproc__label">Observações sobre o procedimento médico<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__obsproc__label">Observações sobre o procedimento médico</label>
       {% if s2220_exame_form.obsproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2220_exame_form.obsproc.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s2220_exame__interprexm -->
 <div class="col-md-6" id="s2220_exame__interprexm__div">
   <div class="form-group">
-    <label id="s2220_exame__interprexm__label">Interpretador*<a data-toggle="tooltip" title="Preencher com o código, de acordo com quadro I da NR07, a saber<opcoes>1 - EE; 2 - SC; 3 - SC+. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__interprexm__label">Interpretador*</label>
     {% if s2220_exame_form.interprexm.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_exame_form.interprexm.errors }}
@@ -159,7 +159,7 @@
 <!-- inicio__s2220_exame__ordexame -->
 <div class="col-md-6" id="s2220_exame__ordexame__div">
   <div class="form-group">
-    <label id="s2220_exame__ordexame__label">Ordem*<a data-toggle="tooltip" title="Ordem do Exame<opcoes>1 - Inicial; 2 - Sequencial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__ordexame__label">Ordem*</label>
     {% if s2220_exame_form.ordexame.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_exame_form.ordexame.errors }}
@@ -183,7 +183,7 @@
 <!-- inicio__s2220_exame__dtinimonit -->
 <div class="col-md-6" id="s2220_exame__dtinimonit__div">
   <div class="form-group">
-    <label id="s2220_exame__dtinimonit__label">Data de início do monitoramento*<a data-toggle="tooltip" title="Data de início da monitoração<validacao> Deve ser uma data válida, posterior a data de admissão do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__dtinimonit__label">Data de início do monitoramento*</label>
         {% if s2220_exame_form.dtinimonit.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2220_exame_form.dtinimonit.errors }}
@@ -198,7 +198,7 @@
 <!-- inicio__s2220_exame__dtfimmonit -->
 <div class="col-md-6" id="s2220_exame__dtfimmonit__div">
   <div class="form-group">
-    <label id="s2220_exame__dtfimmonit__label">Data de término do monitoramento<a data-toggle="tooltip" title="Data final da monitoração.<validacao> Deve ser uma data posterior a data inicial da monitoração"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__dtfimmonit__label">Data de término do monitoramento</label>
         {% if s2220_exame_form.dtfimmonit.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2220_exame_form.dtfimmonit.errors }}
@@ -213,7 +213,7 @@
 <!-- inicio__s2220_exame__indresult -->
 <div class="col-md-6" id="s2220_exame__indresult__div">
   <div class="form-group">
-    <label id="s2220_exame__indresult__label">Indicador de resultados<a data-toggle="tooltip" title="Indicação dos Resultados<opcoes>1 - Normal; 2 - Alterado; 3 - Estável; 4 - Agravamento. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2220_exame__indresult__label">Indicador de resultados</label>
     {% if s2220_exame_form.indresult.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2220_exame_form.indresult.errors }}

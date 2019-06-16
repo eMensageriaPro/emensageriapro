@@ -4,6 +4,7 @@
 
 <!-- inicio__transmissor_lote_efdreinf__transmissor -->
 
+{% if transmissor_lote_efdreinf_form.transmissor.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_transmissor').change(function(){
@@ -11,10 +12,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-12" id="transmissor_lote_efdreinf__transmissor__div">
 <div class="form-group">
-  <label id="transmissor_lote_efdreinf__transmissor__label">Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="transmissor_lote_efdreinf__transmissor__label">Transmissor</label>
   
   {% if not output %}
     {% if transmissor_lote_efdreinf_form.transmissor.value %}
@@ -46,7 +48,7 @@
 <!-- inicio__transmissor_lote_efdreinf__contribuinte_tpinsc -->
 <div class="col-md-6" id="transmissor_lote_efdreinf__contribuinte_tpinsc__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__contribuinte_tpinsc__label">Tipo de Inscrição do Contribuinte*<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__contribuinte_tpinsc__label">Tipo de Inscrição do Contribuinte*</label>
     {% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc.errors }}
@@ -70,7 +72,7 @@
 <!-- inicio__transmissor_lote_efdreinf__contribuinte_nrinsc -->
 <div class="col-md-6" id="transmissor_lote_efdreinf__contribuinte_nrinsc__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__contribuinte_nrinsc__label">Número de Inscrição do Contribuinte*<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__contribuinte_nrinsc__label">Número de Inscrição do Contribuinte*</label>
       {% if transmissor_lote_efdreinf_form.contribuinte_nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.contribuinte_nrinsc.errors }}
@@ -85,7 +87,7 @@
 <!-- inicio__transmissor_lote_efdreinf__grupo -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__grupo__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__grupo__label">Grupo*<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__grupo__label">Grupo*</label>
     {% if transmissor_lote_efdreinf_form.grupo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ transmissor_lote_efdreinf_form.grupo.errors }}
@@ -109,7 +111,7 @@
 <!-- inicio__transmissor_lote_efdreinf__status -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__status__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__status__label">Status<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__status__label">Status</label>
     {% if transmissor_lote_efdreinf_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ transmissor_lote_efdreinf_form.status.errors }}
@@ -133,7 +135,7 @@
 <!-- inicio__transmissor_lote_efdreinf__identidade_transmissor -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__identidade_transmissor__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__identidade_transmissor__label">Identidade do Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__identidade_transmissor__label">Identidade do Transmissor</label>
       {% if transmissor_lote_efdreinf_form.identidade_transmissor.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.identidade_transmissor.errors }}
@@ -148,7 +150,7 @@
 <!-- inicio__transmissor_lote_efdreinf__codigo_status -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__codigo_status__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__codigo_status__label">Código da Resposta<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__codigo_status__label">Código da Resposta</label>
     {% if transmissor_lote_efdreinf_form.codigo_status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ transmissor_lote_efdreinf_form.codigo_status.errors }}
@@ -172,7 +174,7 @@
 <!-- inicio__transmissor_lote_efdreinf__recepcao_data_hora -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__recepcao_data_hora__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__recepcao_data_hora__label">Data/Hora de Recepção<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__recepcao_data_hora__label">Data/Hora de Recepção</label>
     {% if transmissor_lote_efdreinf_form.recepcao_data_hora.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ transmissor_lote_efdreinf_form.recepcao_data_hora.errors }}
@@ -187,7 +189,7 @@
 <!-- inicio__transmissor_lote_efdreinf__recepcao_versao_aplicativo -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__label">Versão do Aplicativo de Recepção<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__label">Versão do Aplicativo de Recepção</label>
       {% if transmissor_lote_efdreinf_form.recepcao_versao_aplicativo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.recepcao_versao_aplicativo.errors }}
@@ -202,7 +204,7 @@
 <!-- inicio__transmissor_lote_efdreinf__protocolo -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__protocolo__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__protocolo__label">Protocolo de Envio<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__protocolo__label">Protocolo de Envio</label>
       {% if transmissor_lote_efdreinf_form.protocolo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.protocolo.errors }}
@@ -217,7 +219,7 @@
 <!-- inicio__transmissor_lote_efdreinf__numero_protocolo_fechamento -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__numero_protocolo_fechamento__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__numero_protocolo_fechamento__label">Número do Protocolo de Fechamento<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__numero_protocolo_fechamento__label">Número do Protocolo de Fechamento</label>
       {% if transmissor_lote_efdreinf_form.numero_protocolo_fechamento.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.numero_protocolo_fechamento.errors }}
@@ -232,7 +234,7 @@
 <!-- inicio__transmissor_lote_efdreinf__processamento_versao_aplicativo -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__processamento_versao_aplicativo__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__processamento_versao_aplicativo__label">Versão do Aplicativo de Processamento<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__processamento_versao_aplicativo__label">Versão do Aplicativo de Processamento</label>
       {% if transmissor_lote_efdreinf_form.processamento_versao_aplicativo.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.processamento_versao_aplicativo.errors }}
@@ -247,7 +249,7 @@
 <!-- inicio__transmissor_lote_efdreinf__tempo_estimado_conclusao -->
 <div class="col-md-4" id="transmissor_lote_efdreinf__tempo_estimado_conclusao__div">
   <div class="form-group">
-    <label id="transmissor_lote_efdreinf__tempo_estimado_conclusao__label">Tempo Estimado de Conclusão<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="transmissor_lote_efdreinf__tempo_estimado_conclusao__label">Tempo Estimado de Conclusão</label>
       {% if transmissor_lote_efdreinf_form.tempo_estimado_conclusao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ transmissor_lote_efdreinf_form.tempo_estimado_conclusao.errors }}

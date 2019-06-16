@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2060_tipocod__r2060_evtcprb__div">
   <div class="form-group">
-    <label id="r2060_tipocod__r2060_evtcprb__label">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.*<a data-toggle="tooltip" title="Registro que apresenta o valor total da receita por tipo de código de atividade econômica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__r2060_evtcprb__label">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.*</label>
     {% if not for_print %}
       {% if r2060_tipocod_form.r2060_evtcprb.value %}
         <a id="r2060_tipocod__r2060_evtcprb__div_acessar" href="{% url 'r2060_evtcprb_salvar' pk=r2060_tipocod_form.r2060_evtcprb.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="r2060_tipocod__codativecon__div">
     <div class="form-group">
-      <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*<a data-toggle="tooltip" title="Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme tabela 9. <validacao> Deve ser um código válido existente na tabela 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*</label>
         {% if r2060_tipocod_form.codativecon.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ r2060_tipocod_form.codativecon.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-6" id="r2060_tipocod__codativecon__div">
     <div class="form-group">
-      <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*<a data-toggle="tooltip" title="Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme tabela 9. <validacao> Deve ser um código válido existente na tabela 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*</label>
         <input type="text" id="txt_codativecon" name="txt_codativecon" class="form-control" value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__r2060_tipocod__vlrrecbrutaativ -->
 <div class="col-md-6" id="r2060_tipocod__vlrrecbrutaativ__div">
   <div class="form-group">
-    <label id="r2060_tipocod__vlrrecbrutaativ__label">Preencher com o valor total da receita da atividade*<a data-toggle="tooltip" title="Preencher com o valor total da receita da atividade. <validacao> Não pode ser maior que {vlrRecBrutaTotal}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__vlrrecbrutaativ__label">Preencher com o valor total da receita da atividade*</label>
     {% if r2060_tipocod_form.vlrrecbrutaativ.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2060_tipocod_form.vlrrecbrutaativ.errors }}
@@ -123,7 +123,7 @@
 <!-- inicio__r2060_tipocod__vlrexcrecbruta -->
 <div class="col-md-6" id="r2060_tipocod__vlrexcrecbruta__div">
   <div class="form-group">
-    <label id="r2060_tipocod__vlrexcrecbruta__label">Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei*<a data-toggle="tooltip" title="Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei. <validacao> Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "0" - Ajuste de redução. Caso não haja ajuste de redução, preencher com 0 (zero). Não pode ser maior que {vlrRecBrutaAtiv}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__vlrexcrecbruta__label">Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei*</label>
     {% if r2060_tipocod_form.vlrexcrecbruta.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2060_tipocod_form.vlrexcrecbruta.errors }}
@@ -141,7 +141,7 @@
 <!-- inicio__r2060_tipocod__vlradicrecbruta -->
 <div class="col-md-6" id="r2060_tipocod__vlradicrecbruta__div">
   <div class="form-group">
-    <label id="r2060_tipocod__vlradicrecbruta__label">Preencher com o Valor total das Adições da Receita Bruta previstas em lei*<a data-toggle="tooltip" title="Preencher com o Valor total das Adições da Receita Bruta previstas em lei. <validacao> Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "1" - Ajuste de adição. Caso não haja ajuste de adição, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__vlradicrecbruta__label">Preencher com o Valor total das Adições da Receita Bruta previstas em lei*</label>
     {% if r2060_tipocod_form.vlradicrecbruta.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2060_tipocod_form.vlradicrecbruta.errors }}
@@ -159,7 +159,7 @@
 <!-- inicio__r2060_tipocod__vlrbccprb -->
 <div class="col-md-6" id="r2060_tipocod__vlrbccprb__div">
   <div class="form-group">
-    <label id="r2060_tipocod__vlrbccprb__label">Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta*<a data-toggle="tooltip" title="Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta. <validacao> Deve ser igual a {vlrRecBrutaAtiv} + {vlrAdicRecBruta} - {vlrExcRecBruta}. O somatório dos valores informados no campo {vlrCPRBSusp} não pode ser superior ao valor informado neste campo ({vlrBcCPRB}) multiplicado pela alíquota definida na tabela 9 para o código da atividade informada em {codAtivEcon}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__vlrbccprb__label">Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta*</label>
     {% if r2060_tipocod_form.vlrbccprb.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2060_tipocod_form.vlrbccprb.errors }}
@@ -177,7 +177,7 @@
 <!-- inicio__r2060_tipocod__vlrcprbapur -->
 <div class="col-md-6" id="r2060_tipocod__vlrcprbapur__div">
   <div class="form-group">
-    <label id="r2060_tipocod__vlrcprbapur__label">Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.<a data-toggle="tooltip" title="Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__vlrcprbapur__label">Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</label>
     {% if r2060_tipocod_form.vlrcprbapur.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r2060_tipocod_form.vlrcprbapur.errors }}
@@ -195,7 +195,7 @@
 <!-- inicio__r2060_tipocod__observ -->
 <div class="col-md-6" id="r2060_tipocod__observ__div">
   <div class="form-group">
-    <label id="r2060_tipocod__observ__label">Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2060_tipocod__observ__label">Observações</label>
       {% if r2060_tipocod_form.observ.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2060_tipocod_form.observ.errors }}

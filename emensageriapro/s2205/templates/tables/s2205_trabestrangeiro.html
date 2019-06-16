@@ -15,7 +15,7 @@
             <th>Possui filho(s) brasileiro(s)</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -37,10 +37,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2205.change_s2205trabEstrangeiro or perms.s2205.add_s2205trabEstrangeiro %}
                     
                         <a href="{% url 's2205_trabestrangeiro_salvar' pk=a.id tab='master' %}">
@@ -62,6 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

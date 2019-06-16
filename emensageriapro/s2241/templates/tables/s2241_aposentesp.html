@@ -6,7 +6,7 @@
             <th>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -19,10 +19,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2241.change_s2241aposentEsp or perms.s2241.add_s2241aposentEsp %}
                     
                         <a href="{% url 's2241_aposentesp_salvar' pk=a.id tab='master' %}">
@@ -44,6 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

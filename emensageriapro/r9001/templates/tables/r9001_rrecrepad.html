@@ -18,7 +18,7 @@
             <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -43,10 +43,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r9001.change_r9001RRecRepAD or perms.r9001.add_r9001RRecRepAD %}
                     
                         <a href="{% url 'r9001_rrecrepad_salvar' pk=a.id tab='master' %}">
@@ -68,6 +69,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

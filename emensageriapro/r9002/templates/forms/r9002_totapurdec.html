@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r9002_totapurdec__r9002_infototal__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial*<a data-toggle="tooltip" title="Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial*</label>
     {% if not for_print %}
       {% if r9002_totapurdec_form.r9002_infototal.value %}
         <a id="r9002_totapurdec__r9002_infototal__div_acessar" href="{% url 'r9002_infototal_salvar' pk=r9002_totapurdec_form.r9002_infototal.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r9002_totapurdec__perapurdec -->
 <div class="col-md-6" id="r9002_totapurdec__perapurdec__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__perapurdec__label">Período de apuração decenal do Código de Receita - CR*<a data-toggle="tooltip" title="Período de apuração decenal do Código de Receita - CR. Origem: R-4010 e R-4020. <opcoes>1 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 1 a 10; 2 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 11 a 20; 3 - O dia ("DD") da data informada em {dtFG} no evento de origem é de 21 a 31. <validacao> Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 1 a 10, deve ser igual a [1]. Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 11 a 20, deve ser igual a [2]; Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 21 a 31, deve ser igual a [3]. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__perapurdec__label">Período de apuração decenal do Código de Receita - CR*</label>
     {% if r9002_totapurdec_form.perapurdec.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r9002_totapurdec_form.perapurdec.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__r9002_totapurdec__crdec -->
 <div class="col-md-6" id="r9002_totapurdec__crdec__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__crdec__label">Código de Receita - CR relativo a tributo que possui período de apuração decendial*<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração decendial. <validacao> Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [5706, 3426, 8053, 6800, 6813, 0924, 5029, 5035, 5273, 8468, 5557, 0916, 8673, 9385, 0490, 9453, 5232, 5286]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__crdec__label">Código de Receita - CR relativo a tributo que possui período de apuração decendial*</label>
       {% if r9002_totapurdec_form.crdec.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r9002_totapurdec_form.crdec.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__r9002_totapurdec__vlrbasecrdec -->
 <div class="col-md-6" id="r9002_totapurdec__vlrbasecrdec__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__vlrbasecrdec__label">Valor da base do tributo com período de apuração decendial*<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração decendial. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__vlrbasecrdec__label">Valor da base do tributo com período de apuração decendial*</label>
     {% if r9002_totapurdec_form.vlrbasecrdec.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdec_form.vlrbasecrdec.errors }}
@@ -98,7 +98,7 @@
 <!-- inicio__r9002_totapurdec__vlrcrdec -->
 <div class="col-md-6" id="r9002_totapurdec__vlrcrdec__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__vlrcrdec__label">Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor*<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__vlrcrdec__label">Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor*</label>
     {% if r9002_totapurdec_form.vlrcrdec.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdec_form.vlrcrdec.errors }}
@@ -116,7 +116,7 @@
 <!-- inicio__r9002_totapurdec__vlrbasecrdecsusp -->
 <div class="col-md-6" id="r9002_totapurdec__vlrbasecrdecsusp__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__vlrbasecrdecsusp__label">Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__vlrbasecrdecsusp__label">Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa</label>
     {% if r9002_totapurdec_form.vlrbasecrdecsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdec_form.vlrbasecrdecsusp.errors }}
@@ -134,7 +134,7 @@
 <!-- inicio__r9002_totapurdec__vlrcrdecsusp -->
 <div class="col-md-6" id="r9002_totapurdec__vlrcrdecsusp__div">
   <div class="form-group">
-    <label id="r9002_totapurdec__vlrcrdecsusp__label">Valor do tributo com período de apuração decendial, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração decendial, que deixou de ser retido. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r9002_totapurdec__vlrcrdecsusp__label">Valor do tributo com período de apuração decendial, que deixou de ser retido</label>
     {% if r9002_totapurdec_form.vlrcrdecsusp.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r9002_totapurdec_form.vlrcrdecsusp.errors }}

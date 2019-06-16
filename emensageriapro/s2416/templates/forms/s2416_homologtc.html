@@ -5,7 +5,7 @@
 <!-- inicio__s2416_homologtc__s2416_evtcdbenalt -->
 <div class="col-md-12" id="s2416_homologtc__s2416_evtcdbenalt__div">
   <div class="form-group">
-    <label id="s2416_homologtc__s2416_evtcdbenalt__label">Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas*<a data-toggle="tooltip" title="Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2416_homologtc__s2416_evtcdbenalt__label">Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas*</label>
     {% if not for_print %}{% if s2416_homologtc_form.s2416_evtcdbenalt.value %}
         <a href="{% url 's2416_evtcdbenalt_salvar' pk=s2416_homologtc_form.s2416_evtcdbenalt.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2416_homologtc__nratolegal -->
 <div class="col-md-6" id="s2416_homologtc__nratolegal__div">
   <div class="form-group">
-    <label id="s2416_homologtc__nratolegal__label">Informar o número do ato legal de registro ou homologação do Tribunal de Contas.*<a data-toggle="tooltip" title="Informar o número do ato legal de registro ou homologação do Tribunal de Contas."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2416_homologtc__nratolegal__label">Informar o número do ato legal de registro ou homologação do Tribunal de Contas.*</label>
       {% if s2416_homologtc_form.nratolegal.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2416_homologtc_form.nratolegal.errors }}

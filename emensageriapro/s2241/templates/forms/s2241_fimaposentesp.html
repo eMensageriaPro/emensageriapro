@@ -5,7 +5,7 @@
 <!-- inicio__s2241_fimaposentesp__s2241_aposentesp -->
 <div class="col-md-12" id="s2241_fimaposentesp__s2241_aposentesp__div">
   <div class="form-group">
-    <label id="s2241_fimaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Término*<a data-toggle="tooltip" title="Condições do ambiente de trabalho que ensejam aposentadoria especial - Término<regras_validacao> REGRA_EXISTE_EVENTO_INICIO_INS"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2241_fimaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Término*</label>
     {% if not for_print %}{% if s2241_fimaposentesp_form.s2241_aposentesp.value %}
         <a href="{% url 's2241_aposentesp_salvar' pk=s2241_fimaposentesp_form.s2241_aposentesp.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2241_fimaposentesp__dtfimcondicao -->
 <div class="col-md-6" id="s2241_fimaposentesp__dtfimcondicao__div">
   <div class="form-group">
-    <label id="s2241_fimaposentesp__dtfimcondicao__label">Data do termino da condição*<a data-toggle="tooltip" title="Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.<validacao> Deve ser uma data igual ou posterior a data de início da condiçãode trabalho que enseja aposentadoria especial ao trabalhador ou, quando também existir evento de 'alteração' da condição, a data deve ser posterior a data de alteração indicada no último evento recebido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2241_fimaposentesp__dtfimcondicao__label">Data do termino da condição*</label>
         {% if s2241_fimaposentesp_form.dtfimcondicao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2241_fimaposentesp_form.dtfimcondicao.errors }}

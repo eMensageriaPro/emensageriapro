@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r2070_ideestab__r2070_evtpgtosdivs__div">
   <div class="form-group">
-    <label id="r2070_ideestab__r2070_evtpgtosdivs__label">Identificação dos estabelecimentos da associação desportiva que receberam os recursos*<a data-toggle="tooltip" title="Identificação do Estabelecimento"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_ideestab__r2070_evtpgtosdivs__label">Identificação dos estabelecimentos da associação desportiva que receberam os recursos*</label>
     {% if not for_print %}
       {% if r2070_ideestab_form.r2070_evtpgtosdivs.value %}
         <a id="r2070_ideestab__r2070_evtpgtosdivs__div_acessar" href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_ideestab_form.r2070_evtpgtosdivs.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r2070_ideestab__tpinsc -->
 <div class="col-md-4" id="r2070_ideestab__tpinsc__div">
   <div class="form-group">
-    <label id="r2070_ideestab__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição <validacao> Deve ser igual a [1] (CNPJ) , [2] (CPF) ou [4] (CNO)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_ideestab__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
       {% if r2070_ideestab_form.tpinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_ideestab_form.tpinsc.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r2070_ideestab__nrinsc -->
 <div class="col-md-4" id="r2070_ideestab__nrinsc__div">
   <div class="form-group">
-    <label id="r2070_ideestab__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido. Se {tpInsc} for igual a [4], deve ser um número de CNO válido"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r2070_ideestab__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
       {% if r2070_ideestab_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r2070_ideestab_form.nrinsc.errors }}

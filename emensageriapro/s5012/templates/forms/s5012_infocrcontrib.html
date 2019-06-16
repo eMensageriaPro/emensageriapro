@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5012_infocrcontrib__s5012_evtirrf__div">
   <div class="form-group">
-    <label id="s5012_infocrcontrib__s5012_evtirrf__label">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.*<a data-toggle="tooltip" title="Informações consolidadas do IRRF por código de Receita - CR. Origem S-5002."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5012_infocrcontrib__s5012_evtirrf__label">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.*</label>
     {% if not for_print %}
       {% if s5012_infocrcontrib_form.s5012_evtirrf.value %}
         <a id="s5012_infocrcontrib__s5012_evtirrf__div_acessar" href="{% url 's5012_evtirrf_salvar' pk=s5012_infocrcontrib_form.s5012_evtirrf.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5012_infocrcontrib__tpcr -->
 <div class="col-md-4" id="s5012_infocrcontrib__tpcr__div">
   <div class="form-group">
-    <label id="s5012_infocrcontrib__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte, conforme legislação em vigor na competência. <validacao> Deve ser um código válido, conforme as opções a seguir<opcoes>0473-01 - IRRF - Residentes Fiscais no Exterior 0561-07 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, exceto se contratado por Empregador Doméstico ou por Segurado Especial sujeito a recolhimento unificado; 0561-08 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, Empregado Doméstico ou Trabalhador contratado por Segurado Especial sujeito a recolhimento unificado; 0561-09 - IRRF 13° salário na rescisão de contrato de trabalho relativo a empregador sujeito a recolhimento unificado; 0561-10 - IRRF - Empregado doméstico - 13º salário; 0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial; 0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário. 0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário rescisório; 0588-06 - IRRF sobre Rendimento do trabalho sem vínculo empregatício; 0610- 01 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai; 3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública; 3562-01 - IRRF sobre Participação dos trabalhadores em Lucros ou Resultados (PLR)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5012_infocrcontrib__tpcr__label">Código da Receita (CR)*</label>
     {% if s5012_infocrcontrib_form.tpcr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5012_infocrcontrib_form.tpcr.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5012_infocrcontrib__vrcr -->
 <div class="col-md-4" id="s5012_infocrcontrib__vrcr__div">
   <div class="form-group">
-    <label id="s5012_infocrcontrib__vrcr__label">Valor do CR apurado*<a data-toggle="tooltip" title="Valor correspondente ao Código de Receita - CR apurado. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero). Origem: S-5002."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5012_infocrcontrib__vrcr__label">Valor do CR apurado*</label>
     {% if s5012_infocrcontrib_form.vrcr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5012_infocrcontrib_form.vrcr.errors }}

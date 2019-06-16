@@ -5,7 +5,7 @@
 <!-- inicio__r5001_rtom__r5001_infototal -->
 <div class="col-md-12" id="r5001_rtom__r5001_infototal__div">
   <div class="form-group">
-    <label id="r5001_rtom__r5001_infototal__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010*<a data-toggle="tooltip" title="Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5001_rtom__r5001_infototal__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010*</label>
     {% if not for_print %}{% if r5001_rtom_form.r5001_infototal.value %}
         <a href="{% url 'r5001_infototal_salvar' pk=r5001_rtom_form.r5001_infototal.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__r5001_rtom__cnpjprestador -->
 <div class="col-md-3" id="r5001_rtom__cnpjprestador__div">
   <div class="form-group">
-    <label id="r5001_rtom__cnpjprestador__label">Preencher com o CNPJ do Prestador de Serviços*<a data-toggle="tooltip" title="CNPJ do Prestador de Serviços. Origem: R-2010."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5001_rtom__cnpjprestador__label">Preencher com o CNPJ do Prestador de Serviços*</label>
       {% if r5001_rtom_form.cnpjprestador.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_rtom_form.cnpjprestador.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__r5001_rtom__cno -->
 <div class="col-md-3" id="r5001_rtom__cno__div">
   <div class="form-group">
-    <label id="r5001_rtom__cno__label">Número de inscrição no Cadastro Nacional de Obras - CNO<a data-toggle="tooltip" title="Número de inscrição no Cadastro Nacional de Obras - CNO. Origem: Preencher com a informação do campo {nrInscestab} do R-2010, apenas de {indObra} for igual a [1,2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5001_rtom__cno__label">Número de inscrição no Cadastro Nacional de Obras - CNO</label>
       {% if r5001_rtom_form.cno.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r5001_rtom_form.cno.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__r5001_rtom__vlrtotalbaseret -->
 <div class="col-md-3" id="r5001_rtom__vlrtotalbaseret__div">
   <div class="form-group">
-    <label id="r5001_rtom__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*<a data-toggle="tooltip" title="Base de cálculo da retenção da contribuição previdenciária. Origem: R-2010."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r5001_rtom__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*</label>
     {% if r5001_rtom_form.vlrtotalbaseret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r5001_rtom_form.vlrtotalbaseret.errors }}

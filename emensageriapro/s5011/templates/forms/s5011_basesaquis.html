@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5011_basesaquis__s5011_ideestab__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__s5011_ideestab__label">Informações de bases de cálculo relativas a aquisição de produção rural*<a data-toggle="tooltip" title="Informações de bases de cálculo relativas a aquisição de produção rural. Origem S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__s5011_ideestab__label">Informações de bases de cálculo relativas a aquisição de produção rural*</label>
     {% if not for_print %}
       {% if s5011_basesaquis_form.s5011_ideestab.value %}
         <a id="s5011_basesaquis__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' pk=s5011_basesaquis_form.s5011_ideestab.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s5011_basesaquis__indaquis -->
 <div class="col-md-6" id="s5011_basesaquis__indaquis__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__indaquis__label">Indicativo de aquisição*<a data-toggle="tooltip" title="Indicativo da Aquisição<opcoes>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral; 2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA; 3 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA; 4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção Isenta (Lei 13.606/2018); 5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA - Produção Isenta (Lei 13.606/2018); 6 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA - Produção Isenta (Lei 13.606/2018). Evento de origem (S-1250). <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__indaquis__label">Indicativo de aquisição*</label>
     {% if s5011_basesaquis_form.indaquis.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5011_basesaquis_form.indaquis.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s5011_basesaquis__vlraquis -->
 <div class="col-md-6" id="s5011_basesaquis__vlraquis__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vlraquis__label">Valor total da aquisição*<a data-toggle="tooltip" title="Valor total da aquisição de produção rural de produtor rural. Origem: {vlrTotAquis} do S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vlraquis__label">Valor total da aquisição*</label>
     {% if s5011_basesaquis_form.vlraquis.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vlraquis.errors }}
@@ -83,7 +83,7 @@
 <!-- inicio__s5011_basesaquis__vrcpdescpr -->
 <div class="col-md-6" id="s5011_basesaquis__vrcpdescpr__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrcpdescpr__label">Valor da CP descontada PR*<a data-toggle="tooltip" title="Preencher com o valor da Contribuição Previdenciária descontada pelo adquirente de produção de produtor rural - sub-rogação. Origem: Somatório {vrCpDescPR} do S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrcpdescpr__label">Valor da CP descontada PR*</label>
     {% if s5011_basesaquis_form.vrcpdescpr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrcpdescpr.errors }}
@@ -101,7 +101,7 @@
 <!-- inicio__s5011_basesaquis__vrcpnret -->
 <div class="col-md-6" id="s5011_basesaquis__vrcpnret__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrcpnret__label">Valor da CP não retida*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária que deixou de ser retida pelo declarante em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrcpnret__label">Valor da CP não retida*</label>
     {% if s5011_basesaquis_form.vrcpnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrcpnret.errors }}
@@ -119,7 +119,7 @@
 <!-- inicio__s5011_basesaquis__vrratnret -->
 <div class="col-md-6" id="s5011_basesaquis__vrratnret__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrratnret__label">Valor da GILRAT*<a data-toggle="tooltip" title="Valor da GILRAT, incidente sobre a aquisição de produção rural de produtor rural, cuja retenção deixou de ser efetuada em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrratnret__label">Valor da GILRAT*</label>
     {% if s5011_basesaquis_form.vrratnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrratnret.errors }}
@@ -137,7 +137,7 @@
 <!-- inicio__s5011_basesaquis__vrsenarnret -->
 <div class="col-md-6" id="s5011_basesaquis__vrsenarnret__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrsenarnret__label">Valor da CP destinada ao SENAR não retida*<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial, e que deixou de ser retida em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrsenarnret__label">Valor da CP destinada ao SENAR não retida*</label>
     {% if s5011_basesaquis_form.vrsenarnret.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrsenarnret.errors }}
@@ -155,7 +155,7 @@
 <!-- inicio__s5011_basesaquis__vrcpcalcpr -->
 <div class="col-md-6" id="s5011_basesaquis__vrcpcalcpr__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrcpcalcpr__label">Valor calculado da CP do produtor rural*<a data-toggle="tooltip" title="Valor calculado relativo à contribuição previdenciária do produtor rural, de acordo com {indAquis}, conforme segue: a) {indAquis} = [1,2]: {vlrAquis} x 1,2%; b) {indAquis} = [3]: {vlrAquis} x 1,7%; c) {indAquis} = [4, 5, 6]: Zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrcpcalcpr__label">Valor calculado da CP do produtor rural*</label>
     {% if s5011_basesaquis_form.vrcpcalcpr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrcpcalcpr.errors }}
@@ -173,7 +173,7 @@
 <!-- inicio__s5011_basesaquis__vrratdescpr -->
 <div class="col-md-6" id="s5011_basesaquis__vrratdescpr__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrratdescpr__label">Valor RAT descontado do produtor rural*<a data-toggle="tooltip" title="Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a aquisição de produção rural de produtor rural. Evento de origem (S-1250)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrratdescpr__label">Valor RAT descontado do produtor rural*</label>
     {% if s5011_basesaquis_form.vrratdescpr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrratdescpr.errors }}
@@ -191,7 +191,7 @@
 <!-- inicio__s5011_basesaquis__vrratcalcpr -->
 <div class="col-md-6" id="s5011_basesaquis__vrratcalcpr__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrratcalcpr__label">Valor RAT calculado do produtor rural*<a data-toggle="tooltip" title="Valor calculado relativo a contribuição Gilrat devida pelo Produtor Rural, de acordo com {indAquis}, conforme segue: a) {indAquis} = [1, 2, 3]: {vlrAquis} x 0,1%; b) {indAquis} = [4, 5, 6]: Zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrratcalcpr__label">Valor RAT calculado do produtor rural*</label>
     {% if s5011_basesaquis_form.vrratcalcpr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrratcalcpr.errors }}
@@ -209,7 +209,7 @@
 <!-- inicio__s5011_basesaquis__vrsenardesc -->
 <div class="col-md-6" id="s5011_basesaquis__vrsenardesc__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrsenardesc__label">Valor descontado destinado ao SENAR*<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial. Origem: {vrSenarDesc} do S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrsenardesc__label">Valor descontado destinado ao SENAR*</label>
     {% if s5011_basesaquis_form.vrsenardesc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrsenardesc.errors }}
@@ -227,7 +227,7 @@
 <!-- inicio__s5011_basesaquis__vrsenarcalc -->
 <div class="col-md-6" id="s5011_basesaquis__vrsenarcalc__div">
   <div class="form-group">
-    <label id="s5011_basesaquis__vrsenarcalc__label">Valor calculado destinado ao SENAR*<a data-toggle="tooltip" title="Valor calculado da contribuição devida pelo produtor rural ao Senar. Cálculo: a) Para {indAquis} = [1, 2, 4, 5]: {vlrAquis} x 0,2%; b) Para {indAquis} = [3, 6]: Zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_basesaquis__vrsenarcalc__label">Valor calculado destinado ao SENAR*</label>
     {% if s5011_basesaquis_form.vrsenarcalc.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_basesaquis_form.vrsenarcalc.errors }}

@@ -15,7 +15,7 @@
             <th>Localização</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -37,10 +37,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.mensageiro.change_TransmissorLoteEfdreinfOcorrencias or perms.mensageiro.add_TransmissorLoteEfdreinfOcorrencias %}
                     
                         <a href="{% url 'transmissor_lote_efdreinf_ocorrencias_salvar' pk=a.id tab='master' %}">
@@ -62,6 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

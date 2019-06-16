@@ -9,7 +9,7 @@
             <th>Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -25,10 +25,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2299.change_s2299mudancaCPF or perms.s2299.add_s2299mudancaCPF %}
                     
                         <a href="{% url 's2299_mudancacpf_salvar' pk=a.id tab='master' %}">
@@ -50,6 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

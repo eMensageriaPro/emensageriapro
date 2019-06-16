@@ -5,7 +5,7 @@
 <!-- inicio__auditoria__tabela -->
 <div class="col-md-6" id="auditoria__tabela__div">
   <div class="form-group">
-    <label id="auditoria__tabela__label">Tabela<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="auditoria__tabela__label">Tabela</label>
       {% if auditoria_form.tabela.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ auditoria_form.tabela.errors }}
@@ -20,7 +20,7 @@
 <!-- inicio__auditoria__identidade -->
 <div class="col-md-6" id="auditoria__identidade__div">
   <div class="form-group">
-    <label id="auditoria__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="auditoria__identidade__label">Identidade do Registro</label>
       {% if auditoria_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ auditoria_form.identidade.errors }}
@@ -35,7 +35,7 @@
 <!-- inicio__auditoria__situacao_anterior -->
 <div class="col-md-12" id="auditoria__situacao_anterior__div">
   <div class="form-group">
-    <label id="auditoria__situacao_anterior__label">Situação anterior a alteração<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="auditoria__situacao_anterior__label">Situação anterior a alteração</label>
         {% if auditoria_form.situacao_anterior.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ auditoria_form.situacao_anterior.errors }}
@@ -50,7 +50,7 @@
 <!-- inicio__auditoria__situacao_posterior -->
 <div class="col-md-12" id="auditoria__situacao_posterior__div">
   <div class="form-group">
-    <label id="auditoria__situacao_posterior__label">Situação posterior a alteração<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="auditoria__situacao_posterior__label">Situação posterior a alteração</label>
         {% if auditoria_form.situacao_posterior.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ auditoria_form.situacao_posterior.errors }}
@@ -64,6 +64,7 @@
 <!-- fim__auditoria__situacao_posterior -->
 <!-- inicio__auditoria__operador -->
 
+{% if auditoria_form.operador.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_operador').change(function(){
@@ -71,10 +72,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-12" id="auditoria__operador__div">
 <div class="form-group">
-  <label id="auditoria__operador__label">Operador<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="auditoria__operador__label">Operador</label>
   
   {% if not output %}
     {% if auditoria_form.operador.value %}
@@ -106,7 +108,7 @@
 <!-- inicio__auditoria__data_hora -->
 <div class="col-md-12" id="auditoria__data_hora__div">
   <div class="form-group">
-    <label id="auditoria__data_hora__label">Data de Hora da Operação<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="auditoria__data_hora__label">Data de Hora da Operação</label>
     {% if auditoria_form.data_hora.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ auditoria_form.data_hora.errors }}
@@ -121,7 +123,7 @@
 <!-- inicio__auditoria__tipo -->
 <div class="col-md-12" id="auditoria__tipo__div">
   <div class="form-group">
-    <label id="auditoria__tipo__label">Tipo<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="auditoria__tipo__label">Tipo</label>
     {% if auditoria_form.tipo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ auditoria_form.tipo.errors }}

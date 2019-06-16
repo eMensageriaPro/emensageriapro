@@ -5,7 +5,7 @@
 <!-- inicio__s2300_trabestrangeiro__s2300_evttsvinicio -->
 <div class="col-md-12" id="s2300_trabestrangeiro__s2300_evttsvinicio__div">
   <div class="form-group">
-    <label id="s2300_trabestrangeiro__s2300_evttsvinicio__label">Grupo de informações do Trabalhador Estrangeiro*<a data-toggle="tooltip" title="Grupo de informações do Trabalhador Estrangeiro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_trabestrangeiro__s2300_evttsvinicio__label">Grupo de informações do Trabalhador Estrangeiro*</label>
     {% if not for_print %}{% if s2300_trabestrangeiro_form.s2300_evttsvinicio.value %}
         <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_trabestrangeiro_form.s2300_evttsvinicio.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_trabestrangeiro__dtchegada -->
 <div class="col-md-6" id="s2300_trabestrangeiro__dtchegada__div">
   <div class="form-group">
-    <label id="s2300_trabestrangeiro__dtchegada__label">Data de chegada<a data-toggle="tooltip" title="Data de chegada do trabalhador ao Brasil, em caso de estrangeiro. <validacao> Preenchimento obrigatório se {classTrabEstrang} <> [6]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_trabestrangeiro__dtchegada__label">Data de chegada</label>
         {% if s2300_trabestrangeiro_form.dtchegada.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_trabestrangeiro_form.dtchegada.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2300_trabestrangeiro__classtrabestrang -->
 <div class="col-md-6" id="s2300_trabestrangeiro__classtrabestrang__div">
   <div class="form-group">
-    <label id="s2300_trabestrangeiro__classtrabestrang__label">Classificação da condição de trabalho*<a data-toggle="tooltip" title="Classificação da condição de ingresso do trabalhador estrangeiro no Brasil<opcoes>1 - Visto permanente; 2 - Visto temporário; 3 - Asilado; 4 - Refugiado; 5 - Solicitante de Refúgio; 6 - Residente fora do Brasil; 7 - Deficiente físico e com mais de 51 anos; 8 - Com residência provisória e anistiado, em situação irregular; 9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros; 10 - Beneficiado pelo acordo entre países do Mercosul; 11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil; 12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_trabestrangeiro__classtrabestrang__label">Classificação da condição de trabalho*</label>
     {% if s2300_trabestrangeiro_form.classtrabestrang.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2300_trabestrangeiro_form.classtrabestrang.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s2300_trabestrangeiro__casadobr -->
 <div class="col-md-6" id="s2300_trabestrangeiro__casadobr__div">
   <div class="form-group">
-    <label id="s2300_trabestrangeiro__casadobr__label">Casado com Brasileiro(a)*<a data-toggle="tooltip" title="Casado com brasileiro(a)<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_trabestrangeiro__casadobr__label">Casado com Brasileiro(a)*</label>
     {% if s2300_trabestrangeiro_form.casadobr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2300_trabestrangeiro_form.casadobr.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s2300_trabestrangeiro__filhosbr -->
 <div class="col-md-6" id="s2300_trabestrangeiro__filhosbr__div">
   <div class="form-group">
-    <label id="s2300_trabestrangeiro__filhosbr__label">Possui filho(s) brasileiro(s)*<a data-toggle="tooltip" title="Indicar se o trabalhador estrangeiro tem filhos brasileiros<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_trabestrangeiro__filhosbr__label">Possui filho(s) brasileiro(s)*</label>
     {% if s2300_trabestrangeiro_form.filhosbr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2300_trabestrangeiro_form.filhosbr.errors }}

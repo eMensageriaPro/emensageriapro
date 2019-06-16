@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s5002_infoirrf__s5002_evtirrfbenef__div">
   <div class="form-group">
-    <label id="s5002_infoirrf__s5002_evtirrfbenef__label">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo*<a data-toggle="tooltip" title="Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo. Origem S-1200, S-1202, S-1207, S-1210, S-2299, S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5002_infoirrf__s5002_evtirrfbenef__label">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo*</label>
     {% if not for_print %}
       {% if s5002_infoirrf_form.s5002_evtirrfbenef.value %}
         <a id="s5002_infoirrf__s5002_evtirrfbenef__div_acessar" href="{% url 's5002_evtirrfbenef_salvar' pk=s5002_infoirrf_form.s5002_evtirrfbenef.value tab='master' %}">
@@ -42,7 +42,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-4" id="s5002_infoirrf__codcateg__div">
     <div class="form-group">
-      <label id="s5002_infoirrf__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1). Preenchimento obrigatório se a informação de origem for dos eventos S-1200, S-1202, S-2299 e S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s5002_infoirrf__codcateg__label">Código da Categoria</label>
         {% if s5002_infoirrf_form.codcateg.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s5002_infoirrf_form.codcateg.errors }}
@@ -96,7 +96,7 @@
   {% else %}
   <div class="col-md-4" id="s5002_infoirrf__codcateg__div">
     <div class="form-group">
-      <label id="s5002_infoirrf__codcateg__label">Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1). Preenchimento obrigatório se a informação de origem for dos eventos S-1200, S-1202, S-2299 e S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s5002_infoirrf__codcateg__label">Código da Categoria</label>
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s5002_infoirrf.codcateg %}{{ s5002_infoirrf.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -105,7 +105,7 @@
 <!-- inicio__s5002_infoirrf__indresbr -->
 <div class="col-md-4" id="s5002_infoirrf__indresbr__div">
   <div class="form-group">
-    <label id="s5002_infoirrf__indresbr__label">Indicador de residência*<a data-toggle="tooltip" title="Indicar se o beneficiário do pagamento é residente fiscal no Brasil<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5002_infoirrf__indresbr__label">Indicador de residência*</label>
     {% if s5002_infoirrf_form.indresbr.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5002_infoirrf_form.indresbr.errors }}

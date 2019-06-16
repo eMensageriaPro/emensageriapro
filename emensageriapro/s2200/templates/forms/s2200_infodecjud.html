@@ -5,7 +5,7 @@
 <!-- inicio__s2200_infodecjud__s2200_infoestatutario -->
 <div class="col-md-12" id="s2200_infodecjud__s2200_infoestatutario__div">
   <div class="form-group">
-    <label id="s2200_infodecjud__s2200_infoestatutario__label">Informações sobre os dados da decisão judicial*<a data-toggle="tooltip" title="Informações sobre os dados da decisão judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infodecjud__s2200_infoestatutario__label">Informações sobre os dados da decisão judicial*</label>
     {% if not for_print %}{% if s2200_infodecjud_form.s2200_infoestatutario.value %}
         <a href="{% url 's2200_infoestatutario_salvar' pk=s2200_infodecjud_form.s2200_infoestatutario.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2200_infodecjud__nrprocjud -->
 <div class="col-md-6" id="s2200_infodecjud__nrprocjud__div">
   <div class="form-group">
-    <label id="s2200_infodecjud__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar o número do processo da decisão judicial. <validacao> Deve constar na tabela de processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2200_infodecjud__nrprocjud__label">Número do Processo Judicial*</label>
       {% if s2200_infodecjud_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2200_infodecjud_form.nrprocjud.errors }}

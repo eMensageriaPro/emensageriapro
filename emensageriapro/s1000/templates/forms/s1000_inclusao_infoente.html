@@ -5,7 +5,7 @@
 <!-- inicio__s1000_inclusao_infoente__s1000_inclusao_infoop -->
 <div class="col-md-12" id="s1000_inclusao_infoente__s1000_inclusao_infoop__div">
   <div class="form-group">
-    <label id="s1000_inclusao_infoente__s1000_inclusao_infoop__label">Informações relativas ao ente federativo estadual, distrital ou municipal*<a data-toggle="tooltip" title="Informações relativas ao ente federativo estadual, distrital ou municipal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_inclusao_infoente__s1000_inclusao_infoop__label">Informações relativas ao ente federativo estadual, distrital ou municipal*</label>
     {% if not for_print %}{% if s1000_inclusao_infoente_form.s1000_inclusao_infoop.value %}
         <a href="{% url 's1000_inclusao_infoop_salvar' pk=s1000_inclusao_infoente_form.s1000_inclusao_infoop.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1000_inclusao_infoente__nmente -->
 <div class="col-md-6" id="s1000_inclusao_infoente__nmente__div">
   <div class="form-group">
-    <label id="s1000_inclusao_infoente__nmente__label">Nome do EFR*<a data-toggle="tooltip" title="Nome do Ente Federativo ao qual o órgão está vinculado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_inclusao_infoente__nmente__label">Nome do EFR*</label>
       {% if s1000_inclusao_infoente_form.nmente.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1000_inclusao_infoente_form.nmente.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s1000_inclusao_infoente__uf -->
 <div class="col-md-6" id="s1000_inclusao_infoente__uf__div">
   <div class="form-group">
-    <label id="s1000_inclusao_infoente__uf__label">UF*<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. <validacao> Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_inclusao_infoente__uf__label">UF*</label>
     {% if s1000_inclusao_infoente_form.uf.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_inclusao_infoente_form.uf.errors }}
@@ -72,7 +72,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s1000_inclusao_infoente__codmunic__div">
     <div class="form-group">
-      <label id="s1000_inclusao_infoente__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1000_inclusao_infoente__codmunic__label">Código do Município</label>
         {% if s1000_inclusao_infoente_form.codmunic.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1000_inclusao_infoente_form.codmunic.errors }}
@@ -118,7 +118,7 @@
   {% else %}
   <div class="col-md-12" id="s1000_inclusao_infoente__codmunic__div">
     <div class="form-group">
-      <label id="s1000_inclusao_infoente__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. <validacao> Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1000_inclusao_infoente__codmunic__label">Código do Município</label>
         {% if not for_print %}{% if s1000_inclusao_infoente_form.codmunic.value %}
             <a id="s1000_inclusao_infoente__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s1000_inclusao_infoente_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
@@ -132,7 +132,7 @@
 <!-- inicio__s1000_inclusao_infoente__indrpps -->
 <div class="col-md-6" id="s1000_inclusao_infoente__indrpps__div">
   <div class="form-group">
-    <label id="s1000_inclusao_infoente__indrpps__label">Possui RPPS*<a data-toggle="tooltip" title="Informar se o ente público possui Regime Próprio de Previdência Social - RPPS<opcoes>S - Sim; N - Não. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_inclusao_infoente__indrpps__label">Possui RPPS*</label>
     {% if s1000_inclusao_infoente_form.indrpps.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_inclusao_infoente_form.indrpps.errors }}
@@ -156,7 +156,7 @@
 <!-- inicio__s1000_inclusao_infoente__subteto -->
 <div class="col-md-6" id="s1000_inclusao_infoente__subteto__div">
   <div class="form-group">
-    <label id="s1000_inclusao_infoente__subteto__label">Poder a que se refere o subteto*<a data-toggle="tooltip" title="Preencher com o poder a que se refere o subteto<opcoes>1 - Executivo; 2 - Judiciário; 3 - Legislativo; 9 - Todos os poderes. <valores_validos> 1, 2, 3, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_inclusao_infoente__subteto__label">Poder a que se refere o subteto*</label>
     {% if s1000_inclusao_infoente_form.subteto.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_inclusao_infoente_form.subteto.errors }}
@@ -180,7 +180,7 @@
 <!-- inicio__s1000_inclusao_infoente__vrsubteto -->
 <div class="col-md-6" id="s1000_inclusao_infoente__vrsubteto__div">
   <div class="form-group">
-    <label id="s1000_inclusao_infoente__vrsubteto__label">Valor do subteto*<a data-toggle="tooltip" title="Preencher com o valor do subteto do Ente Federativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_inclusao_infoente__vrsubteto__label">Valor do subteto*</label>
     {% if s1000_inclusao_infoente_form.vrsubteto.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1000_inclusao_infoente_form.vrsubteto.errors }}

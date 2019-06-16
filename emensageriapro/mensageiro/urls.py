@@ -125,7 +125,7 @@ urlpatterns = [
         transmissor_esocial_views.vincular_eventos_esocial,
         name='vincular_eventos_esocial'),
         
-    url(r'^transmissor-eventos-esocial/desvincular/(?P<pk>[0-9]+)/$',
+    url(r'^transmissor-eventos-esocial/desvincular/(?P<pk>[\w-]+)/$',
         transmissor_esocial_views.desvincular_eventos_esocial,
         name='desvincular_eventos_esocial'),
 
@@ -145,7 +145,7 @@ urlpatterns = [
         transmissor_efdreinf_views.vincular_eventos_efdreinf,
         name='vincular_eventos_efdreinf'),
         
-    url(r'^transmissor-eventos-efdreinf/desvincular/(?P<pk>[0-9]+)/$',
+    url(r'^transmissor-eventos-efdreinf/desvincular/(?P<pk>[\w-]+)/$',
         transmissor_efdreinf_views.desvincular_eventos_efdreinf,
         name='desvincular_eventos_efdreinf'),
 

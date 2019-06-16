@@ -5,7 +5,7 @@
 <!-- inicio__s2306_infotrabcedido__s2306_infocomplementares -->
 <div class="col-md-12" id="s2306_infotrabcedido__s2306_infocomplementares__div">
   <div class="form-group">
-    <label id="s2306_infotrabcedido__s2306_infocomplementares__label">Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.*<a data-toggle="tooltip" title="Informações relativas ao servidor público exercente de mandato eletivo, preenchidas exclusivamente pelo órgão de destino"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infotrabcedido__s2306_infocomplementares__label">Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.*</label>
     {% if not for_print %}{% if s2306_infotrabcedido_form.s2306_infocomplementares.value %}
         <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_infotrabcedido_form.s2306_infocomplementares.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2306_infotrabcedido__indremuncargo -->
 <div class="col-md-6" id="s2306_infotrabcedido__indremuncargo__div">
   <div class="form-group">
-    <label id="s2306_infotrabcedido__indremuncargo__label">Indicar se o servidor optou pela remuneração do cargo efetivo*<a data-toggle="tooltip" title="Indicar se o servidor optou pela remuneração do cargo efetivo<opcoes>S - Sim; N - Não. Valores válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2306_infotrabcedido__indremuncargo__label">Indicar se o servidor optou pela remuneração do cargo efetivo*</label>
     {% if s2306_infotrabcedido_form.indremuncargo.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2306_infotrabcedido_form.indremuncargo.errors }}

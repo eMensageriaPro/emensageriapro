@@ -15,7 +15,7 @@
             <th>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -37,10 +37,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r2070.change_r2070pgtoPJ or perms.r2070.add_r2070pgtoPJ %}
                     
                         <a href="{% url 'r2070_pgtopj_salvar' pk=a.id tab='master' %}">
@@ -62,6 +63,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

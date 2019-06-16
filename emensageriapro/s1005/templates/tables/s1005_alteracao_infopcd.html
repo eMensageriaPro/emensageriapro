@@ -9,7 +9,7 @@
             <th>Situação PCD</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -25,10 +25,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1005.change_s1005alteracaoinfoPCD or perms.s1005.add_s1005alteracaoinfoPCD %}
                     
                         <a href="{% url 's1005_alteracao_infopcd_salvar' pk=a.id tab='master' %}">
@@ -50,6 +51,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

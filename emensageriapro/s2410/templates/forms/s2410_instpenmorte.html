@@ -5,7 +5,7 @@
 <!-- inicio__s2410_instpenmorte__s2410_infopenmorte -->
 <div class="col-md-12" id="s2410_instpenmorte__s2410_infopenmorte__div">
   <div class="form-group">
-    <label id="s2410_instpenmorte__s2410_infopenmorte__label">Informações do instituidor da pensão por morte*<a data-toggle="tooltip" title="Informações do instituidor da pensão por morte"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2410_instpenmorte__s2410_infopenmorte__label">Informações do instituidor da pensão por morte*</label>
     {% if not for_print %}{% if s2410_instpenmorte_form.s2410_infopenmorte.value %}
         <a href="{% url 's2410_infopenmorte_salvar' pk=s2410_instpenmorte_form.s2410_infopenmorte.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2410_instpenmorte__cpfinst -->
 <div class="col-md-3" id="s2410_instpenmorte__cpfinst__div">
   <div class="form-group">
-    <label id="s2410_instpenmorte__cpfinst__label">CPF do instituidor*<a data-toggle="tooltip" title="Preencher com o CPF do instituidor da pensão por morte. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2410_instpenmorte__cpfinst__label">CPF do instituidor*</label>
       {% if s2410_instpenmorte_form.cpfinst.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2410_instpenmorte_form.cpfinst.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2410_instpenmorte__dtinst -->
 <div class="col-md-3" id="s2410_instpenmorte__dtinst__div">
   <div class="form-group">
-    <label id="s2410_instpenmorte__dtinst__label">Data de óbito do instituidor da pensão por morte.*<a data-toggle="tooltip" title="Data de óbito do instituidor da pensão por morte."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2410_instpenmorte__dtinst__label">Data de óbito do instituidor da pensão por morte.*</label>
         {% if s2410_instpenmorte_form.dtinst.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2410_instpenmorte_form.dtinst.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2410_instpenmorte__intaposentado -->
 <div class="col-md-3" id="s2410_instpenmorte__intaposentado__div">
   <div class="form-group">
-    <label id="s2410_instpenmorte__intaposentado__label">Informar se o instituidor da pensão por morte era aposentado*<a data-toggle="tooltip" title="Informar se o instituidor da pensão por morte era aposentado<opcoes>S - Sim; N - Não."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2410_instpenmorte__intaposentado__label">Informar se o instituidor da pensão por morte era aposentado*</label>
     {% if s2410_instpenmorte_form.intaposentado.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2410_instpenmorte_form.intaposentado.errors }}

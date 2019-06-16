@@ -21,7 +21,7 @@
             <th>Situação gerada pela lei</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -49,10 +49,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s1035.change_s1035inclusao or perms.s1035.add_s1035inclusao %}
                     
                         <a href="{% url 's1035_inclusao_salvar' pk=a.id tab='master' %}">
@@ -74,6 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

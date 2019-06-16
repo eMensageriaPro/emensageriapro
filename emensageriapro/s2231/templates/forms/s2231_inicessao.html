@@ -5,7 +5,7 @@
 <!-- inicio__s2231_inicessao__s2231_evtcessao -->
 <div class="col-md-12" id="s2231_inicessao__s2231_evtcessao__div">
   <div class="form-group">
-    <label id="s2231_inicessao__s2231_evtcessao__label">Informações de início da cessão/exercício em outro órgão*<a data-toggle="tooltip" title="Informações de início da cessão/exercício em outro órgão"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2231_inicessao__s2231_evtcessao__label">Informações de início da cessão/exercício em outro órgão*</label>
     {% if not for_print %}{% if s2231_inicessao_form.s2231_evtcessao.value %}
         <a href="{% url 's2231_evtcessao_salvar' pk=s2231_inicessao_form.s2231_evtcessao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2231_inicessao__dtinicessao -->
 <div class="col-md-6" id="s2231_inicessao__dtinicessao__div">
   <div class="form-group">
-    <label id="s2231_inicessao__dtinicessao__label">Data de início da cessão/exercício em outro órgão*<a data-toggle="tooltip" title="Data de início da cessão/exercício em outro órgão. <validacao> Deve-se obedecer às seguintes regras: a) Deve ser uma data válida, igual ou posterior a data de admissão/exercício do vínculo ao qual se refere o evento (no caso de sucessão, igual ou posterior à data da transferência); b) Não pode ser superior à data atual; c) É necessário que o trabalhador esteja, antes da data de início da cessão/exercício em outro órgão, em atividade no empregador/órgão público declarante, ou seja, não pode existir evento de cessão/exercício em outro órgão anterior a {dtIniCessao} sem que este tenha sido encerrado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2231_inicessao__dtinicessao__label">Data de início da cessão/exercício em outro órgão*</label>
         {% if s2231_inicessao_form.dtinicessao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2231_inicessao_form.dtinicessao.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2231_inicessao__cnpjcess -->
 <div class="col-md-6" id="s2231_inicessao__cnpjcess__div">
   <div class="form-group">
-    <label id="s2231_inicessao__cnpjcess__label">CNPJ do Cessionário*<a data-toggle="tooltip" title="Preencher com o CNPJ do empregador/órgão público cessionário/de destino. <validacao> Deve ser um CNPJ diferente do CNPJ do empregador/órgão público e diferente dos estabelecimentos informados através do evento S- 1005. <regras_validacao> REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2231_inicessao__cnpjcess__label">CNPJ do Cessionário*</label>
       {% if s2231_inicessao_form.cnpjcess.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2231_inicessao_form.cnpjcess.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2231_inicessao__infonus -->
 <div class="col-md-6" id="s2231_inicessao__infonus__div">
   <div class="form-group">
-    <label id="s2231_inicessao__infonus__label">Onus da cessão/requisição*<a data-toggle="tooltip" title="Responsabilidade pelos pagamentos<opcoes>1 - Pagamento exclusivamente pelo cedente/origem; 2 - Pagamento exclusivamente pelo cessionário/destino; 3 - Pagamento pelo cedente/origem e pelo cessionário/destino; 4 - Pagamento pelo cedente/origem com ressarcimento pelo cessionário/destino. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2231_inicessao__infonus__label">Onus da cessão/requisição*</label>
     {% if s2231_inicessao_form.infonus.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2231_inicessao_form.infonus.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__s2231_inicessao__indcessao -->
 <div class="col-md-6" id="s2231_inicessao__indcessao__div">
   <div class="form-group">
-    <label id="s2231_inicessao__indcessao__label">Indicativo de cessão/exercício em outro órgão*<a data-toggle="tooltip" title="Indicativo de cessão/exercício em outro órgão<opcoes>1 - Cessão; 2 - Agente público à disposição da Justiça Eleitoral; 3 - Exercício em outro órgão, em caso diferente de cessão. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2231_inicessao__indcessao__label">Indicativo de cessão/exercício em outro órgão*</label>
     {% if s2231_inicessao_form.indcessao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2231_inicessao_form.indcessao.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__s2231_inicessao__dscsituacao -->
 <div class="col-md-6" id="s2231_inicessao__dscsituacao__div">
   <div class="form-group">
-    <label id="s2231_inicessao__dscsituacao__label">Descrição da situação relativa a exercício em outro órgão, em caso diferente de cessão<a data-toggle="tooltip" title="Descrição da situação relativa a exercício em outro órgão, em caso diferente de cessão. <validacao> Preenchimento obrigatório se {indCessao} = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2231_inicessao__dscsituacao__label">Descrição da situação relativa a exercício em outro órgão, em caso diferente de cessão</label>
       {% if s2231_inicessao_form.dscsituacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2231_inicessao_form.dscsituacao.errors }}

@@ -6,7 +6,7 @@
             <th>Título</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -19,7 +19,7 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <a href="{% url 'relatorios_imprimir' pk=a.id output='html' %}">
@@ -42,6 +42,7 @@
         <i class="fa fa-file-text-o"></i>
     </span>
 </a>
+                    
                         {% if perms.mensageiro.change_Relatorios or perms.mensageiro.add_Relatorios %}
                     
                         <a href="{% url 'relatorios_salvar' pk=a.id tab='master' %}">
@@ -63,6 +64,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

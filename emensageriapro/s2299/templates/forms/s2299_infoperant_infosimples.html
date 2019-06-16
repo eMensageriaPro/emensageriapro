@@ -5,7 +5,7 @@
 <!-- inicio__s2299_infoperant_infosimples__s2299_infoperant_ideestablot -->
 <div class="col-md-12" id="s2299_infoperant_infosimples__s2299_infoperant_ideestablot__div">
   <div class="form-group">
-    <label id="s2299_infoperant_infosimples__s2299_infoperant_ideestablot__label">Informação relativa a empresas enquadradas no Regime de Tributação Simples*<a data-toggle="tooltip" title="Informação relativa a empresas enquadradas no Regime de Tributação Simples."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperant_infosimples__s2299_infoperant_ideestablot__label">Informação relativa a empresas enquadradas no Regime de Tributação Simples*</label>
     {% if not for_print %}{% if s2299_infoperant_infosimples_form.s2299_infoperant_ideestablot.value %}
         <a href="{% url 's2299_infoperant_ideestablot_salvar' pk=s2299_infoperant_infosimples_form.s2299_infoperant_ideestablot.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2299_infoperant_infosimples__indsimples -->
 <div class="col-md-6" id="s2299_infoperant_infosimples__indsimples__div">
   <div class="form-group">
-    <label id="s2299_infoperant_infosimples__indsimples__label">Contribuição Substituída*<a data-toggle="tooltip" title="Indicador de Contribuição Substituída<opcoes>1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2299_infoperant_infosimples__indsimples__label">Contribuição Substituída*</label>
     {% if s2299_infoperant_infosimples_form.indsimples.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2299_infoperant_infosimples_form.indsimples.errors }}

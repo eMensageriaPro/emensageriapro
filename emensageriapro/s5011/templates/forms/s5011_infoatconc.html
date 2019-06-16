@@ -5,7 +5,7 @@
 <!-- inicio__s5011_infoatconc__s5011_infopj -->
 <div class="col-md-12" id="s5011_infoatconc__s5011_infopj__div">
   <div class="form-group">
-    <label id="s5011_infoatconc__s5011_infopj__label">Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.*<a data-toggle="tooltip" title="Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_infoatconc__s5011_infopj__label">Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.*</label>
     {% if not for_print %}{% if s5011_infoatconc_form.s5011_infopj.value %}
         <a href="{% url 's5011_infopj_salvar' pk=s5011_infoatconc_form.s5011_infopj.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s5011_infoatconc__fatormes -->
 <div class="col-md-4" id="s5011_infoatconc__fatormes__div">
   <div class="form-group">
-    <label id="s5011_infoatconc__fatormes__label">Fator mês*<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006. Evento de origem (S-1280)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_infoatconc__fatormes__label">Fator mês*</label>
     {% if s5011_infoatconc_form.fatormes.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infoatconc_form.fatormes.errors }}
@@ -49,7 +49,7 @@
 <!-- inicio__s5011_infoatconc__fator13 -->
 <div class="col-md-4" id="s5011_infoatconc__fator13__div">
   <div class="form-group">
-    <label id="s5011_infoatconc__fator13__label">Fator decimo terceiro*<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006. Evento de origem (S-1280)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5011_infoatconc__fator13__label">Fator decimo terceiro*</label>
     {% if s5011_infoatconc_form.fator13.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s5011_infoatconc_form.fator13.errors }}

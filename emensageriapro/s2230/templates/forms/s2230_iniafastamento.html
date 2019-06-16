@@ -5,7 +5,7 @@
 <!-- inicio__s2230_iniafastamento__s2230_evtafasttemp -->
 <div class="col-md-12" id="s2230_iniafastamento__s2230_evtafasttemp__div">
   <div class="form-group">
-    <label id="s2230_iniafastamento__s2230_evtafasttemp__label">Informações do Afastamento Temporário - Início*<a data-toggle="tooltip" title="Informações do Afastamento Temporário - Início."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_iniafastamento__s2230_evtafasttemp__label">Informações do Afastamento Temporário - Início*</label>
     {% if not for_print %}{% if s2230_iniafastamento_form.s2230_evtafasttemp.value %}
         <a href="{% url 's2230_evtafasttemp_salvar' pk=s2230_iniafastamento_form.s2230_evtafasttemp.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2230_iniafastamento__dtiniafast -->
 <div class="col-md-6" id="s2230_iniafastamento__dtiniafast__div">
   <div class="form-group">
-    <label id="s2230_iniafastamento__dtiniafast__label">Data de início do afastamento*<a data-toggle="tooltip" title="Data de início do afastamento. <validacao> Deve-se obedecer às seguintes regras: a) A data deve ser igual ou posterior a data de admissão do vínculo ao qual se refere o evento (no caso de sucessão ou mudança de CPF, igual ou posterior à data da transferência ou à data de alteração do CPF, respectivamente); b) Não pode ser superior à data atual exceto se {codMotAfast} = [15] (férias), situação em que pode ser até 60 dias superior à data atual; c) É necessário que o trabalhador esteja, antes da data de início do afastamento, em atividade, ou seja, não pode existir evento de afastamento anterior a {dtIniAfast} sem que este tenha sido encerrado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_iniafastamento__dtiniafast__label">Data de início do afastamento*</label>
         {% if s2230_iniafastamento_form.dtiniafast.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2230_iniafastamento_form.dtiniafast.errors }}
@@ -48,7 +48,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2230_iniafastamento__codmotafast__div">
     <div class="form-group">
-      <label id="s2230_iniafastamento__codmotafast__label">Afastamento*<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário, conforme tabela 18. <validacao> Deve ser um código existente na tabela 18."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2230_iniafastamento__codmotafast__label">Afastamento*</label>
         {% if s2230_iniafastamento_form.codmotafast.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s2230_iniafastamento_form.codmotafast.errors }}
@@ -102,7 +102,7 @@
   {% else %}
   <div class="col-md-6" id="s2230_iniafastamento__codmotafast__div">
     <div class="form-group">
-      <label id="s2230_iniafastamento__codmotafast__label">Afastamento*<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário, conforme tabela 18. <validacao> Deve ser um código existente na tabela 18."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s2230_iniafastamento__codmotafast__label">Afastamento*</label>
         <input type="text" id="txt_codmotafast" name="txt_codmotafast" class="form-control" value="{% if s2230_iniafastamento.codmotafast %}{{ s2230_iniafastamento.codmotafast }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -111,7 +111,7 @@
 <!-- inicio__s2230_iniafastamento__infomesmomtv -->
 <div class="col-md-6" id="s2230_iniafastamento__infomesmomtv__div">
   <div class="form-group">
-    <label id="s2230_iniafastamento__infomesmomtv__label">Mesmo motivo do afastamento anterior<a data-toggle="tooltip" title="Informar se o afastamento decorre da mesma doença que gerou o afastamento anterior ({codMotAfast} = [01, 03]) dentro de 60 dias<opcoes>N - Não; S - Sim. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_iniafastamento__infomesmomtv__label">Mesmo motivo do afastamento anterior</label>
     {% if s2230_iniafastamento_form.infomesmomtv.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_iniafastamento_form.infomesmomtv.errors }}
@@ -135,7 +135,7 @@
 <!-- inicio__s2230_iniafastamento__tpacidtransito -->
 <div class="col-md-6" id="s2230_iniafastamento__tpacidtransito__div">
   <div class="form-group">
-    <label id="s2230_iniafastamento__tpacidtransito__label">Tipo de acidente de trânsito<a data-toggle="tooltip" title="Tipo de Acidente de Trânsito<opcoes>1 - Atropelamento; 2 - Colisão; 3 - Outros. <validacao> Somente pode ser preenchido se {codMotAfast} = [01,03]. <valores_validos> 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_iniafastamento__tpacidtransito__label">Tipo de acidente de trânsito</label>
     {% if s2230_iniafastamento_form.tpacidtransito.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s2230_iniafastamento_form.tpacidtransito.errors }}
@@ -159,7 +159,7 @@
 <!-- inicio__s2230_iniafastamento__observacao -->
 <div class="col-md-6" id="s2230_iniafastamento__observacao__div">
   <div class="form-group">
-    <label id="s2230_iniafastamento__observacao__label">Observações<a data-toggle="tooltip" title="Detalhar as informações sobre o afastamento do trabalhador, de maneira a explicitar os motivos do mesmo. <validacao> O preenchimento é obrigatório se {codMotAfast} = [21]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2230_iniafastamento__observacao__label">Observações</label>
       {% if s2230_iniafastamento_form.observacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2230_iniafastamento_form.observacao.errors }}

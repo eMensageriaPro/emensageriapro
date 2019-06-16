@@ -5,7 +5,7 @@
 <!-- inicio__s2300_infodirigentesindical__s2300_infocomplementares -->
 <div class="col-md-12" id="s2300_infodirigentesindical__s2300_infocomplementares__div">
   <div class="form-group">
-    <label id="s2300_infodirigentesindical__s2300_infocomplementares__label">Empresa de Origem do Dirigente Sindical*<a data-toggle="tooltip" title="Empresa de Origem do Dirigente Sindical."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_infodirigentesindical__s2300_infocomplementares__label">Empresa de Origem do Dirigente Sindical*</label>
     {% if not for_print %}{% if s2300_infodirigentesindical_form.s2300_infocomplementares.value %}
         <a href="{% url 's2300_infocomplementares_salvar' pk=s2300_infodirigentesindical_form.s2300_infocomplementares.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2300_infodirigentesindical__categorig -->
 <div class="col-md-6" id="s2300_infodirigentesindical__categorig__div">
   <div class="form-group">
-    <label id="s2300_infodirigentesindical__categorig__label">Categoria de origem do trabalhador*<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do dirigente sindical. <validacao> Deve ser uma categoria diferente de 'Dirigente Sindical'."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_infodirigentesindical__categorig__label">Categoria de origem do trabalhador*</label>
       {% if s2300_infodirigentesindical_form.categorig.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_infodirigentesindical_form.categorig.errors }}
@@ -47,7 +47,7 @@
 <!-- inicio__s2300_infodirigentesindical__cnpjorigem -->
 <div class="col-md-6" id="s2300_infodirigentesindical__cnpjorigem__div">
   <div class="form-group">
-    <label id="s2300_infodirigentesindical__cnpjorigem__label">CNPJ da empresa de origem do dirigente sindical<a data-toggle="tooltip" title="Preencher com o CNPJ da empresa de origem do dirigente sindical. <validacao> O preenchimento é obrigatório se a categoria de origem do trabalhador corresponder a 'empregado' ou 'avulso'."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_infodirigentesindical__cnpjorigem__label">CNPJ da empresa de origem do dirigente sindical</label>
       {% if s2300_infodirigentesindical_form.cnpjorigem.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_infodirigentesindical_form.cnpjorigem.errors }}
@@ -62,7 +62,7 @@
 <!-- inicio__s2300_infodirigentesindical__dtadmorig -->
 <div class="col-md-6" id="s2300_infodirigentesindical__dtadmorig__div">
   <div class="form-group">
-    <label id="s2300_infodirigentesindical__dtadmorig__label">Data de admissão do dirigente sindical<a data-toggle="tooltip" title="Preencher com a data de admissão ou data de início do dirigente sindical na empresa de origem. <validacao> O preenchimento é obrigatório se a categoria de origem do trabalhador corresponder a 'empregado' ou 'avulso'."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_infodirigentesindical__dtadmorig__label">Data de admissão do dirigente sindical</label>
         {% if s2300_infodirigentesindical_form.dtadmorig.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s2300_infodirigentesindical_form.dtadmorig.errors }}
@@ -77,7 +77,7 @@
 <!-- inicio__s2300_infodirigentesindical__matricorig -->
 <div class="col-md-6" id="s2300_infodirigentesindical__matricorig__div">
   <div class="form-group">
-    <label id="s2300_infodirigentesindical__matricorig__label">Matricula do trabalhador no empregador origem<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador na empresa de origem. <validacao> Preenchimento obrigatório se a categoria de origem do trabalhador corresponder a 'empregado'."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2300_infodirigentesindical__matricorig__label">Matricula do trabalhador no empregador origem</label>
       {% if s2300_infodirigentesindical_form.matricorig.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2300_infodirigentesindical_form.matricorig.errors }}

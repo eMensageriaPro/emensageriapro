@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_infodependpl__r4010_ideopsaude__div">
   <div class="form-group">
-    <label id="r4010_infodependpl__r4010_ideopsaude__label">Informações de dependente do plano de saúde coletivo empresarial*<a data-toggle="tooltip" title="Informações de dependente do plano de saúde coletivo empresarial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infodependpl__r4010_ideopsaude__label">Informações de dependente do plano de saúde coletivo empresarial*</label>
     {% if not for_print %}
       {% if r4010_infodependpl_form.r4010_ideopsaude.value %}
         <a id="r4010_infodependpl__r4010_ideopsaude__div_acessar" href="{% url 'r4010_ideopsaude_salvar' pk=r4010_infodependpl_form.r4010_ideopsaude.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_infodependpl__cpf -->
 <div class="col-md-6" id="r4010_infodependpl__cpf__div">
   <div class="form-group">
-    <label id="r4010_infodependpl__cpf__label">Número do CPF do dependente<a data-toggle="tooltip" title="Número do CPF do dependente. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infodependpl__cpf__label">Número do CPF do dependente</label>
       {% if r4010_infodependpl_form.cpf.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_infodependpl_form.cpf.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4010_infodependpl__dtnascto -->
 <div class="col-md-6" id="r4010_infodependpl__dtnascto__div">
   <div class="form-group">
-    <label id="r4010_infodependpl__dtnascto__label">Informar a data de nascimento do dependente<a data-toggle="tooltip" title="Informar a data de nascimento do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infodependpl__dtnascto__label">Informar a data de nascimento do dependente</label>
         {% if r4010_infodependpl_form.dtnascto.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ r4010_infodependpl_form.dtnascto.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r4010_infodependpl__nome -->
 <div class="col-md-6" id="r4010_infodependpl__nome__div">
   <div class="form-group">
-    <label id="r4010_infodependpl__nome__label">Nome do dependente*<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infodependpl__nome__label">Nome do dependente*</label>
       {% if r4010_infodependpl_form.nome.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_infodependpl_form.nome.errors }}
@@ -86,7 +86,7 @@
 <!-- inicio__r4010_infodependpl__reldep -->
 <div class="col-md-6" id="r4010_infodependpl__reldep__div">
   <div class="form-group">
-    <label id="r4010_infodependpl__reldep__label">Relação de dependência*<a data-toggle="tooltip" title="Relação de dependência, conforme opções a seguir<opcoes>1 - Neto, bisneto; 2 - Irmão; 3 - Cônjuge/companheiro; 4 - Filho; 5 - Pais, avós e bisavós; 6 - Enteado; 7 - Sogro; 99 - Agregado/Outros. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infodependpl__reldep__label">Relação de dependência*</label>
     {% if r4010_infodependpl_form.reldep.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ r4010_infodependpl_form.reldep.errors }}
@@ -110,7 +110,7 @@
 <!-- inicio__r4010_infodependpl__vlrsaude -->
 <div class="col-md-6" id="r4010_infodependpl__vlrsaude__div">
   <div class="form-group">
-    <label id="r4010_infodependpl__vlrsaude__label">Valor pago ao plano de saúde*<a data-toggle="tooltip" title="Valor pago ao plano de saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_infodependpl__vlrsaude__label">Valor pago ao plano de saúde*</label>
     {% if r4010_infodependpl_form.vlrsaude.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_infodependpl_form.vlrsaude.errors }}

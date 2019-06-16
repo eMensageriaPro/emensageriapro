@@ -6,7 +6,7 @@
             <th>Grupo de informações do endereço do Trabalhador</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -19,10 +19,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.s2405.change_s2405endereco or perms.s2405.add_s2405endereco %}
                     
                         <a href="{% url 's2405_endereco_salvar' pk=a.id tab='master' %}">
@@ -44,6 +45,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

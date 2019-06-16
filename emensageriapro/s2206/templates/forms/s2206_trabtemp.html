@@ -5,7 +5,7 @@
 <!-- inicio__s2206_trabtemp__s2206_infoceletista -->
 <div class="col-md-12" id="s2206_trabtemp__s2206_infoceletista__div">
   <div class="form-group">
-    <label id="s2206_trabtemp__s2206_infoceletista__label">Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário*<a data-toggle="tooltip" title="Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2206_trabtemp__s2206_infoceletista__label">Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário*</label>
     {% if not for_print %}{% if s2206_trabtemp_form.s2206_infoceletista.value %}
         <a href="{% url 's2206_infoceletista_salvar' pk=s2206_trabtemp_form.s2206_infoceletista.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s2206_trabtemp__justprorr -->
 <div class="col-md-6" id="s2206_trabtemp__justprorr__div">
   <div class="form-group">
-    <label id="s2206_trabtemp__justprorr__label">Justificativa para prorrogação do contrato temporário*<a data-toggle="tooltip" title="Descrever a justificativa para a prorrogação do contrato de trabalho temporário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s2206_trabtemp__justprorr__label">Justificativa para prorrogação do contrato temporário*</label>
       {% if s2206_trabtemp_form.justprorr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s2206_trabtemp_form.justprorr.errors }}

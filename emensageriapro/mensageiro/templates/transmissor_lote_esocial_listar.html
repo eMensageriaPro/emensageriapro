@@ -107,6 +107,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Transmissor do eSocial</h3>
                     <div class="text-right">
+                        
                         {% if perms.mensageiro.add_TransmissorLoteEsocial %}
                         <a href="{% url 'transmissor_lote_esocial_cadastrar' %}">           
                         <button class="btn btn-info">
@@ -114,6 +115,7 @@
                         </button>
                         </a>&nbsp;
                         {% endif %} 
+                        
                         <button id="btnImprimir" type="submit" class="btn btn-primary">
                             <i class="fa fa-print"></i>&nbsp;Imprimir
                         </button>&nbsp;

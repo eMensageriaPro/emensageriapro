@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1070_inclusao_infosusp__s1070_inclusao__div">
   <div class="form-group">
-    <label id="s1070_inclusao_infosusp__s1070_inclusao__label">Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.*<a data-toggle="tooltip" title="Informações de suspensão de exigibilidade de tributos em virtude de processo administrativo ou judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1070_inclusao_infosusp__s1070_inclusao__label">Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.*</label>
     {% if not for_print %}
       {% if s1070_inclusao_infosusp_form.s1070_inclusao.value %}
         <a id="s1070_inclusao_infosusp__s1070_inclusao__div_acessar" href="{% url 's1070_inclusao_salvar' pk=s1070_inclusao_infosusp_form.s1070_inclusao.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1070_inclusao_infosusp__codsusp -->
 <div class="col-md-6" id="s1070_inclusao_infosusp__codsusp__div">
   <div class="form-group">
-    <label id="s1070_inclusao_infosusp__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1070_inclusao_infosusp__codsusp__label">Código do Indicativo da Suspensão*</label>
       {% if s1070_inclusao_infosusp_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1070_inclusao_infosusp_form.codsusp.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1070_inclusao_infosusp__indsusp -->
 <div class="col-md-6" id="s1070_inclusao_infosusp__indsusp__div">
   <div class="form-group">
-    <label id="s1070_inclusao_infosusp__indsusp__label">Suspensão de exigibilidade*<a data-toggle="tooltip" title="Indicativo de suspensão da exigibilidade<opcoes> 01 - Liminar em Mandado de Segurança; 02 - Depósito Judicial do Montante Integral; 03 - Depósito Administrativo do Montante Integral; 04 - Antecipação de Tutela; 05 - Liminar em Medida Cautelar; 08 - Sentença em Mandado de Segurança Favorável ao Contribuinte; 09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF; 10 - Acórdão do TRF Favorável ao Contribuinte; 11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte; 12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte; 13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo; 14 - Contestação Administrativa FAP; 90 - Decisão Definitiva a favor do contribuinte; 92 - Sem suspensão da exigibilidade. <validacao> Se {tpProc} = [1], deve ser preenchido com [03, 14, 92]. Se {tpProc} = [2], deve ser preenchido com [01, 02, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92]. Se {tpProc} = [4], deve ser preenchido com [14]. <valores_validos> 01, 02, 03, 04, 05, 08, 09, 10, 11, 12, 13, 14, 90, 92."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1070_inclusao_infosusp__indsusp__label">Suspensão de exigibilidade*</label>
     {% if s1070_inclusao_infosusp_form.indsusp.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_inclusao_infosusp_form.indsusp.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1070_inclusao_infosusp__dtdecisao -->
 <div class="col-md-6" id="s1070_inclusao_infosusp__dtdecisao__div">
   <div class="form-group">
-    <label id="s1070_inclusao_infosusp__dtdecisao__label">Data da decisão*<a data-toggle="tooltip" title="Data da decisão, sentença ou despacho administrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1070_inclusao_infosusp__dtdecisao__label">Data da decisão*</label>
         {% if s1070_inclusao_infosusp_form.dtdecisao.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
               {{ s1070_inclusao_infosusp_form.dtdecisao.errors }}
@@ -95,7 +95,7 @@
 <!-- inicio__s1070_inclusao_infosusp__inddeposito -->
 <div class="col-md-6" id="s1070_inclusao_infosusp__inddeposito__div">
   <div class="form-group">
-    <label id="s1070_inclusao_infosusp__inddeposito__label">Depósito do montante integral*<a data-toggle="tooltip" title="Indicativo de Depósito do Montante Integral<opcoes>S - Sim; N - Não. <validacao> Se {indSusp} = [90], preencher obrigatoriamente com [N]. Se {indSusp} = [02, 03] preencher obrigatoriamente com [S]. <valores_validos> S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1070_inclusao_infosusp__inddeposito__label">Depósito do montante integral*</label>
     {% if s1070_inclusao_infosusp_form.inddeposito.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1070_inclusao_infosusp_form.inddeposito.errors }}

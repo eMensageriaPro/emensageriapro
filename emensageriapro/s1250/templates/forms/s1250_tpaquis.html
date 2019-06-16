@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1250_tpaquis__s1250_evtaqprod__div">
   <div class="form-group">
-    <label id="s1250_tpaquis__s1250_evtaqprod__label">Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física*<a data-toggle="tooltip" title="Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física. O registro também deve ser preenchido nas seguintes situações: - Por PF, quando a mesma adquire produção de produtor rural pessoa física ou segurado especial para venda no varejo a consumidor final pessoa física; - Por Entidade inscrita no Programa de Aquisição de Alimentos (PAA), quando a mesma efetuar a aquisição de produtos rurais no âmbito do PAA, de produtor rural pessoa física ou pessoa jurídica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_tpaquis__s1250_evtaqprod__label">Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física*</label>
     {% if not for_print %}
       {% if s1250_tpaquis_form.s1250_evtaqprod.value %}
         <a id="s1250_tpaquis__s1250_evtaqprod__div_acessar" href="{% url 's1250_evtaqprod_salvar' pk=s1250_tpaquis_form.s1250_evtaqprod.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1250_tpaquis__indaquis -->
 <div class="col-md-6" id="s1250_tpaquis__indaquis__div">
   <div class="form-group">
-    <label id="s1250_tpaquis__indaquis__label">Indicativo de aquisição*<a data-toggle="tooltip" title="Indicativo da Aquisição<opcoes>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral; 2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA; 3 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA; 4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção Isenta (Lei 13.606/2018); 5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por Entidade do PAA - Produção Isenta (Lei 13.606/2018); 6 - Aquisição da produção de produtor rural pessoa jurídica por Entidade do PAA - Produção Isenta (Lei 13.606/2018). <valores_validos> 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_tpaquis__indaquis__label">Indicativo de aquisição*</label>
     {% if s1250_tpaquis_form.indaquis.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1250_tpaquis_form.indaquis.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1250_tpaquis__vlrtotaquis -->
 <div class="col-md-6" id="s1250_tpaquis__vlrtotaquis__div">
   <div class="form-group">
-    <label id="s1250_tpaquis__vlrtotaquis__label">Valor total da aquisição*<a data-toggle="tooltip" title="Valor total da aquisição correspondente ao indicativo informado em {indAquis}. <validacao> Deve corresponder a soma de {vlrBruto} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1250_tpaquis__vlrtotaquis__label">Valor total da aquisição*</label>
     {% if s1250_tpaquis_form.vlrtotaquis.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1250_tpaquis_form.vlrtotaquis.errors }}

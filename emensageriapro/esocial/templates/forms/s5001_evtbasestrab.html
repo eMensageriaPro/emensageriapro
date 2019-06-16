@@ -10,7 +10,7 @@
 <!-- inicio__s5001_evtbasestrab__identidade -->
 <div class="col-md-6" id="s5001_evtbasestrab__identidade__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__identidade__label">Identidade do Registro<a data-toggle="tooltip" title="Identificação única do evento. <regras_validacao> REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__identidade__label">Identidade do Registro</label>
       {% if s5001_evtbasestrab_form.identidade.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_evtbasestrab_form.identidade.errors }}
@@ -30,7 +30,7 @@
 <!-- inicio__s5001_evtbasestrab__nrrecarqbase -->
 <div class="col-md-6" id="s5001_evtbasestrab__nrrecarqbase__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__nrrecarqbase__label">Número do recibo do arquivo vase*<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. <validacao> Deve corresponder ao recibo de um arquivo com informações de remuneração de trabalhador vinculado a RGPS (S-1200, S-2299 ou S-2399)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__nrrecarqbase__label">Número do recibo do arquivo vase*</label>
       {% if s5001_evtbasestrab_form.nrrecarqbase.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_evtbasestrab_form.nrrecarqbase.errors }}
@@ -45,7 +45,7 @@
 <!-- inicio__s5001_evtbasestrab__indapuracao -->
 <div class="col-md-6" id="s5001_evtbasestrab__indapuracao__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__indapuracao__label">Indicativo do periodo de apuração*<a data-toggle="tooltip" title="Indicativo de período de apuração<opcoes>1 - Mensal; 2 - Anual (13° salário). <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__indapuracao__label">Indicativo do periodo de apuração*</label>
     {% if s5001_evtbasestrab_form.indapuracao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5001_evtbasestrab_form.indapuracao.errors }}
@@ -69,7 +69,7 @@
 <!-- inicio__s5001_evtbasestrab__perapur -->
 <div class="col-md-6" id="s5001_evtbasestrab__perapur__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__perapur__label">Período de Apuração*<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. <validacao> Deve ser um mês/ano ou ano válido, posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__perapur__label">Período de Apuração*</label>
       {% if s5001_evtbasestrab_form.perapur.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_evtbasestrab_form.perapur.errors }}
@@ -89,7 +89,7 @@
 <!-- inicio__s5001_evtbasestrab__tpinsc -->
 <div class="col-md-6" id="s5001_evtbasestrab__tpinsc__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__tpinsc__label">Tipo de inscrição*</label>
     {% if s5001_evtbasestrab_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5001_evtbasestrab_form.tpinsc.errors }}
@@ -113,7 +113,7 @@
 <!-- inicio__s5001_evtbasestrab__nrinsc -->
 <div class="col-md-6" id="s5001_evtbasestrab__nrinsc__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
       {% if s5001_evtbasestrab_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_evtbasestrab_form.nrinsc.errors }}
@@ -133,7 +133,7 @@
 <!-- inicio__s5001_evtbasestrab__cpftrab -->
 <div class="col-md-6" id="s5001_evtbasestrab__cpftrab__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__cpftrab__label">CPF*<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__cpftrab__label">CPF*</label>
       {% if s5001_evtbasestrab_form.cpftrab.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s5001_evtbasestrab_form.cpftrab.errors }}
@@ -148,7 +148,7 @@
 <!-- inicio__s5001_evtbasestrab__versao -->
 <div class="col-md-3" id="s5001_evtbasestrab__versao__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__versao__label">Versão<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__versao__label">Versão</label>
     {% if s5001_evtbasestrab_form.versao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5001_evtbasestrab_form.versao.errors }}
@@ -171,6 +171,7 @@
 <!-- fim__s5001_evtbasestrab__versao -->
 <!-- inicio__s5001_evtbasestrab__transmissor_lote_esocial -->
 
+{% if s5001_evtbasestrab_form.transmissor_lote_esocial.value %}
 <script type="text/javascript">
     $(document).ready(function(){
         $('#id_transmissor_lote_esocial').change(function(){
@@ -178,10 +179,11 @@
         });
     });
 </script>
+{% endif %}
 
 <div class="col-md-3" id="s5001_evtbasestrab__transmissor_lote_esocial__div">
 <div class="form-group">
-  <label id="s5001_evtbasestrab__transmissor_lote_esocial__label">Transmissor<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+  <label id="s5001_evtbasestrab__transmissor_lote_esocial__label">Transmissor</label>
   
   {% if not output %}
     {% if s5001_evtbasestrab_form.transmissor_lote_esocial.value %}
@@ -213,7 +215,7 @@
 <!-- inicio__s5001_evtbasestrab__status -->
 <div class="col-md-3" id="s5001_evtbasestrab__status__div">
   <div class="form-group">
-    <label id="s5001_evtbasestrab__status__label">Status<a data-toggle="tooltip" title="None"><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s5001_evtbasestrab__status__label">Status</label>
     {% if s5001_evtbasestrab_form.status.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s5001_evtbasestrab_form.status.errors }}

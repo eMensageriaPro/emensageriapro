@@ -5,7 +5,7 @@
 <!-- inicio__s1020_inclusao__s1020_evttablotacao -->
 <div class="col-md-12" id="s1020_inclusao__s1020_evttablotacao__div">
   <div class="form-group">
-    <label id="s1020_inclusao__s1020_evttablotacao__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__s1020_evttablotacao__label">Inclusão de novas informações*</label>
     {% if not for_print %}{% if s1020_inclusao_form.s1020_evttablotacao.value %}
         <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_inclusao_form.s1020_evttablotacao.value tab='master' %}">
             [Acessar]
@@ -37,7 +37,7 @@
 <!-- inicio__s1020_inclusao__codlotacao -->
 <div class="col-md-6" id="s1020_inclusao__codlotacao__div">
   <div class="form-group">
-    <label id="s1020_inclusao__codlotacao__label">Código da Lotação*<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. <validacao> O código atribuído não pode conter a expressão 'eSocial' nas 7 primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__codlotacao__label">Código da Lotação*</label>
       {% if s1020_inclusao_form.codlotacao.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1020_inclusao_form.codlotacao.errors }}
@@ -52,7 +52,7 @@
 <!-- inicio__s1020_inclusao__inivalid -->
 <div class="col-md-6" id="s1020_inclusao__inivalid__div">
   <div class="form-group">
-    <label id="s1020_inclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__inivalid__label">Início da Validade*</label>
     {% if s1020_inclusao_form.inivalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1020_inclusao_form.inivalid.errors }}
@@ -76,7 +76,7 @@
 <!-- inicio__s1020_inclusao__fimvalid -->
 <div class="col-md-6" id="s1020_inclusao__fimvalid__div">
   <div class="form-group">
-    <label id="s1020_inclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__fimvalid__label">Fim da Validade</label>
     {% if s1020_inclusao_form.fimvalid.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1020_inclusao_form.fimvalid.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1020_inclusao__tplotacao -->
 <div class="col-md-6" id="s1020_inclusao__tplotacao__div">
   <div class="form-group">
-    <label id="s1020_inclusao__tplotacao__label">Tipo de Lotação*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de lotação, conforme tabela 10. <validacao> Deve ser um código válido, existente na tabela 10, e compatível com a Classificação Tributária indicada no evento de Informações Cadastrais do Empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__tplotacao__label">Tipo de Lotação*</label>
     {% if s1020_inclusao_form.tplotacao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1020_inclusao_form.tplotacao.errors }}
@@ -129,7 +129,7 @@
 <!-- inicio__s1020_inclusao__tpinsc -->
 <div class="col-md-6" id="s1020_inclusao__tpinsc__div">
   <div class="form-group">
-    <label id="s1020_inclusao__tpinsc__label">Tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> O campo não deve ser preenchido se {tpLotacao} for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo {nrInsc}, conforme tabela 10 - Tipos de Lotação Tributária. <valores_validos> 1, 2, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__tpinsc__label">Tipo de inscrição</label>
     {% if s1020_inclusao_form.tpinsc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1020_inclusao_form.tpinsc.errors }}
@@ -153,7 +153,7 @@
 <!-- inicio__s1020_inclusao__nrinsc -->
 <div class="col-md-6" id="s1020_inclusao__nrinsc__div">
   <div class="form-group">
-    <label id="s1020_inclusao__nrinsc__label">Número de inscrição (CPF/CNPJ)<a data-toggle="tooltip" title="Preencher com o número de Inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária, conforme indicado na tabela 10 - Tipos de Lotação Tributária. <validacao> a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo {tpInsc} e na tabela de tipos de Lotação Tributária. b) Deve ser um identificador válido, constante das bases da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1020_inclusao__nrinsc__label">Número de inscrição (CPF/CNPJ)</label>
       {% if s1020_inclusao_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1020_inclusao_form.nrinsc.errors }}
@@ -174,7 +174,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1020_inclusao__fpas__div">
     <div class="form-group">
-      <label id="s1020_inclusao__fpas__label">FPAS*<a data-toggle="tooltip" title="Preencher com o código relativo ao FPAS. <validacao> Deve ser um código FPAS válido, conforme tabela 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1020_inclusao__fpas__label">FPAS*</label>
         {% if s1020_inclusao_form.fpas.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1020_inclusao_form.fpas.errors }}
@@ -228,7 +228,7 @@
   {% else %}
   <div class="col-md-6" id="s1020_inclusao__fpas__div">
     <div class="form-group">
-      <label id="s1020_inclusao__fpas__label">FPAS*<a data-toggle="tooltip" title="Preencher com o código relativo ao FPAS. <validacao> Deve ser um código FPAS válido, conforme tabela 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1020_inclusao__fpas__label">FPAS*</label>
         <input type="text" id="txt_fpas" name="txt_fpas" class="form-control" value="{% if s1020_inclusao.fpas %}{{ s1020_inclusao.fpas }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -238,7 +238,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1020_inclusao__codtercs__div">
     <div class="form-group">
-      <label id="s1020_inclusao__codtercs__label">Código de Terceiros*<a data-toggle="tooltip" title="Preencher com o código de Terceiros, conforme tabela 4, já considerando a existência de eventuais convênios para recolhimento direto. Exemplo: Se o contribuinte está enquadrado com FPAS 507, cujo código cheio de Terceiros é 0079, se possuir convênio com Senai deve informar o código 0075. <validacao> Se a classificação tributária for igual a [01, 02, 03, 04], informar 0000. Nos demais casos, o código de terceiros informado deve ser compatível com o código de FPAS informado, conforme tabela 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1020_inclusao__codtercs__label">Código de Terceiros*</label>
         {% if s1020_inclusao_form.codtercs.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1020_inclusao_form.codtercs.errors }}
@@ -292,7 +292,7 @@
   {% else %}
   <div class="col-md-6" id="s1020_inclusao__codtercs__div">
     <div class="form-group">
-      <label id="s1020_inclusao__codtercs__label">Código de Terceiros*<a data-toggle="tooltip" title="Preencher com o código de Terceiros, conforme tabela 4, já considerando a existência de eventuais convênios para recolhimento direto. Exemplo: Se o contribuinte está enquadrado com FPAS 507, cujo código cheio de Terceiros é 0079, se possuir convênio com Senai deve informar o código 0075. <validacao> Se a classificação tributária for igual a [01, 02, 03, 04], informar 0000. Nos demais casos, o código de terceiros informado deve ser compatível com o código de FPAS informado, conforme tabela 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1020_inclusao__codtercs__label">Código de Terceiros*</label>
         <input type="text" id="txt_codtercs" name="txt_codtercs" class="form-control" value="{% if s1020_inclusao.codtercs %}{{ s1020_inclusao.codtercs }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -302,7 +302,7 @@
 {% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s1020_inclusao__codtercssusp__div">
     <div class="form-group">
-      <label id="s1020_inclusao__codtercssusp__label">Código de Terceiros (Suspensão)<a data-toggle="tooltip" title="Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. <validacao> Deve ser um código consistente com a tabela 4. Deve haver um processo em {procJudTerceiro} para cada código de Terceiro cujo recolhimento esteja suspenso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1020_inclusao__codtercssusp__label">Código de Terceiros (Suspensão)</label>
         {% if s1020_inclusao_form.codtercssusp.errors %}
           <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
             {{ s1020_inclusao_form.codtercssusp.errors }}
@@ -356,7 +356,7 @@
   {% else %}
   <div class="col-md-6" id="s1020_inclusao__codtercssusp__div">
     <div class="form-group">
-      <label id="s1020_inclusao__codtercssusp__label">Código de Terceiros (Suspensão)<a data-toggle="tooltip" title="Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos Judiciais. Exemplo: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao Sesi (0008) e ao Sebrae (0064), deve informar o código combinado das duas entidades, ou seja, 0072. <validacao> Deve ser um código consistente com a tabela 4. Deve haver um processo em {procJudTerceiro} para cada código de Terceiro cujo recolhimento esteja suspenso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+      <label id="s1020_inclusao__codtercssusp__label">Código de Terceiros (Suspensão)</label>
         <input type="text" id="txt_codtercssusp" name="txt_codtercssusp" class="form-control" value="{% if s1020_inclusao.codtercssusp %}{{ s1020_inclusao.codtercssusp }}{% endif %}" disabled="disabled">
     </div>
   </div>

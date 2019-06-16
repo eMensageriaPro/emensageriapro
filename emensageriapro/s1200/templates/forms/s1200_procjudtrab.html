@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1200_procjudtrab__s1200_evtremun__div">
   <div class="form-group">
-    <label id="s1200_procjudtrab__s1200_evtremun__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*<a data-toggle="tooltip" title="Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_procjudtrab__s1200_evtremun__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*</label>
     {% if not for_print %}
       {% if s1200_procjudtrab_form.s1200_evtremun.value %}
         <a id="s1200_procjudtrab__s1200_evtremun__div_acessar" href="{% url 's1200_evtremun_salvar' pk=s1200_procjudtrab_form.s1200_evtremun.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1200_procjudtrab__tptrib -->
 <div class="col-md-3" id="s1200_procjudtrab__tptrib__div">
   <div class="form-group">
-    <label id="s1200_procjudtrab__tptrib__label">Abrangência da Decisão*<a data-toggle="tooltip" title="Abrangência da decisão<opcoes>1 - IRRF; 2 - Contribuições sociais do trabalhador; 3 - FGTS; 4 - Contribuição sindical. <valores_validos> 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_procjudtrab__tptrib__label">Abrangência da Decisão*</label>
     {% if s1200_procjudtrab_form.tptrib.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1200_procjudtrab_form.tptrib.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1200_procjudtrab__nrprocjud -->
 <div class="col-md-3" id="s1200_procjudtrab__nrprocjud__div">
   <div class="form-group">
-    <label id="s1200_procjudtrab__nrprocjud__label">Número do Processo Judicial*<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S- 1070, cujo {indMatProc} seja igual a: - [1] se {tpTrib} = [1, 2]; - [1, 7] se {tpTrib} = [3]; - [8] se {tpTrib} = [4]. <validacao> O processo deve existir na tabela de processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_procjudtrab__nrprocjud__label">Número do Processo Judicial*</label>
       {% if s1200_procjudtrab_form.nrprocjud.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_procjudtrab_form.nrprocjud.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1200_procjudtrab__codsusp -->
 <div class="col-md-3" id="s1200_procjudtrab__codsusp__div">
   <div class="form-group">
-    <label id="s1200_procjudtrab__codsusp__label">Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> Preenchimento obrigatório se {tpTrib} = [1, 2]. A informação prestada deve estar de acordo com o que foi informado em S- 1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_procjudtrab__codsusp__label">Código do Indicativo da Suspensão</label>
       {% if s1200_procjudtrab_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_procjudtrab_form.codsusp.errors }}

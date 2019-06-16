@@ -27,7 +27,7 @@
             <th>Preencher com o número do CPF do contato.</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -61,10 +61,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.r1000.change_r1000inclusao or perms.r1000.add_r1000inclusao %}
                     
                         <a href="{% url 'r1000_inclusao_salvar' pk=a.id tab='master' %}">
@@ -86,6 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

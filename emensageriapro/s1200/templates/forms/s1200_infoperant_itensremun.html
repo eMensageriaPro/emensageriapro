@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1200_infoperant_itensremun__s1200_infoperant_remunperant__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__s1200_infoperant_remunperant__label">Registro que relaciona as rubricas que compõem a remuneração do trabalhador.*<a data-toggle="tooltip" title="Registro que relaciona as rubricas que compõem a remuneração do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__s1200_infoperant_remunperant__label">Registro que relaciona as rubricas que compõem a remuneração do trabalhador.*</label>
     {% if not for_print %}
       {% if s1200_infoperant_itensremun_form.s1200_infoperant_remunperant.value %}
         <a id="s1200_infoperant_itensremun__s1200_infoperant_remunperant__div_acessar" href="{% url 's1200_infoperant_remunperant_salvar' pk=s1200_infoperant_itensremun_form.s1200_infoperant_remunperant.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1200_infoperant_itensremun__codrubr -->
 <div class="col-md-6" id="s1200_infoperant_itensremun__codrubr__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}. Não pode ser utilizada rubrica: a) cujo {codIncCP} em S-1010 seja igual a [23, 24, 61]; b) cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]; c) cujo {codIncCp} em S-1010 seja igual a [25, 26, 51] se {codCateg} pertencer a um dos grupos 'contribuinte individual' ou 'bolsistas' da tabela 1 (Categoria de Trabalhadores)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__codrubr__label">Código da Rubrica*</label>
       {% if s1200_infoperant_itensremun_form.codrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_infoperant_itensremun_form.codrubr.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__s1200_infoperant_itensremun__idetabrubr -->
 <div class="col-md-6" id="s1200_infoperant_itensremun__idetabrubr__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__idetabrubr__label">Identificador tabela de rubricas*<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. <validacao> Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em: a) {perApur} se vinculado a {remunPerApur}; b) {perRef} se vinculado a {remunPerAnt}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__idetabrubr__label">Identificador tabela de rubricas*</label>
       {% if s1200_infoperant_itensremun_form.idetabrubr.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1200_infoperant_itensremun_form.idetabrubr.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__s1200_infoperant_itensremun__qtdrubr -->
 <div class="col-md-6" id="s1200_infoperant_itensremun__qtdrubr__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__qtdrubr__label">Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__qtdrubr__label">Quantidade</label>
     {% if s1200_infoperant_itensremun_form.qtdrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1200_infoperant_itensremun_form.qtdrubr.errors }}
@@ -88,7 +88,7 @@
 <!-- inicio__s1200_infoperant_itensremun__fatorrubr -->
 <div class="col-md-6" id="s1200_infoperant_itensremun__fatorrubr__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__fatorrubr__label">Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__fatorrubr__label">Fator</label>
     {% if s1200_infoperant_itensremun_form.fatorrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1200_infoperant_itensremun_form.fatorrubr.errors }}
@@ -105,7 +105,7 @@
 <!-- inicio__s1200_infoperant_itensremun__vrunit -->
 <div class="col-md-6" id="s1200_infoperant_itensremun__vrunit__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__vrunit__label">Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__vrunit__label">Valor Unitário</label>
     {% if s1200_infoperant_itensremun_form.vrunit.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1200_infoperant_itensremun_form.vrunit.errors }}
@@ -123,7 +123,7 @@
 <!-- inicio__s1200_infoperant_itensremun__vrrubr -->
 <div class="col-md-6" id="s1200_infoperant_itensremun__vrrubr__div">
   <div class="form-group">
-    <label id="s1200_infoperant_itensremun__vrrubr__label">Valor total*<a data-toggle="tooltip" title="Valor total da rubrica. <validacao> Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1200_infoperant_itensremun__vrrubr__label">Valor total*</label>
     {% if s1200_infoperant_itensremun_form.vrrubr.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ s1200_infoperant_itensremun_form.vrrubr.errors }}

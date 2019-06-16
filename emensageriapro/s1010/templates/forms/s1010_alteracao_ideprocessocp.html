@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="s1010_alteracao_ideprocessocp__s1010_alteracao__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocp__s1010_alteracao__label">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*<a data-toggle="tooltip" title="Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1010_alteracao_ideprocessocp__s1010_alteracao__label">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*</label>
     {% if not for_print %}
       {% if s1010_alteracao_ideprocessocp_form.s1010_alteracao.value %}
         <a id="s1010_alteracao_ideprocessocp__s1010_alteracao__div_acessar" href="{% url 's1010_alteracao_salvar' pk=s1010_alteracao_ideprocessocp_form.s1010_alteracao.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocp__tpproc -->
 <div class="col-md-6" id="s1010_alteracao_ideprocessocp__tpproc__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocp__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1010_alteracao_ideprocessocp__tpproc__label">Processo RAT*</label>
     {% if s1010_alteracao_ideprocessocp_form.tpproc.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1010_alteracao_ideprocessocp_form.tpproc.errors }}
@@ -65,7 +65,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocp__nrproc -->
 <div class="col-md-6" id="s1010_alteracao_ideprocessocp__nrproc__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocp__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. <validacao> Deve ser um número de processo válido e existente na tabela de Processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1010_alteracao_ideprocessocp__nrproc__label">Número do Processo*</label>
       {% if s1010_alteracao_ideprocessocp_form.nrproc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1010_alteracao_ideprocessocp_form.nrproc.errors }}
@@ -80,7 +80,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocp__extdecisao -->
 <div class="col-md-6" id="s1010_alteracao_ideprocessocp__extdecisao__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocp__extdecisao__label">Extensão da Decisão (caso favorável CP)*<a data-toggle="tooltip" title="Extensão da Decisão/Sentença<opcoes>1 - Contribuição Previdenciária Patronal; 2 - Contribuição Previdenciária Patronal + Descontada dos Segurados. <valores_validos> 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1010_alteracao_ideprocessocp__extdecisao__label">Extensão da Decisão (caso favorável CP)*</label>
     {% if s1010_alteracao_ideprocessocp_form.extdecisao.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1010_alteracao_ideprocessocp_form.extdecisao.errors }}
@@ -104,7 +104,7 @@
 <!-- inicio__s1010_alteracao_ideprocessocp__codsusp -->
 <div class="col-md-6" id="s1010_alteracao_ideprocessocp__codsusp__div">
   <div class="form-group">
-    <label id="s1010_alteracao_ideprocessocp__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. <validacao> A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1010_alteracao_ideprocessocp__codsusp__label">Código do Indicativo da Suspensão*</label>
       {% if s1010_alteracao_ideprocessocp_form.codsusp.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ s1010_alteracao_ideprocessocp_form.codsusp.errors }}

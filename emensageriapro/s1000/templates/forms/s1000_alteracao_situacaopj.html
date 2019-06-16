@@ -5,7 +5,7 @@
 <!-- inicio__s1000_alteracao_situacaopj__s1000_alteracao -->
 <div class="col-md-12" id="s1000_alteracao_situacaopj__s1000_alteracao__div">
   <div class="form-group">
-    <label id="s1000_alteracao_situacaopj__s1000_alteracao__label">Informações Complementares - Pessoa Jurídica*<a data-toggle="tooltip" title="Informações Complementares - Pessoa Jurídica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_situacaopj__s1000_alteracao__label">Informações Complementares - Pessoa Jurídica*</label>
     {% if not for_print %}{% if s1000_alteracao_situacaopj_form.s1000_alteracao.value %}
         <a href="{% url 's1000_alteracao_salvar' pk=s1000_alteracao_situacaopj_form.s1000_alteracao.value tab='master' %}">
             [Acessar]
@@ -32,7 +32,7 @@
 <!-- inicio__s1000_alteracao_situacaopj__indsitpj -->
 <div class="col-md-6" id="s1000_alteracao_situacaopj__indsitpj__div">
   <div class="form-group">
-    <label id="s1000_alteracao_situacaopj__indsitpj__label">Situação PJ*<a data-toggle="tooltip" title="Indicativo da Situação da Pessoa Jurídica<opcoes>0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. <valores_validos> 0, 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="s1000_alteracao_situacaopj__indsitpj__label">Situação PJ*</label>
     {% if s1000_alteracao_situacaopj_form.indsitpj.errors %}
       <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
         {{ s1000_alteracao_situacaopj_form.indsitpj.errors }}

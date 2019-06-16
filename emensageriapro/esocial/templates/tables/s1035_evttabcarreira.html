@@ -27,7 +27,7 @@
             <th>Operação</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -61,10 +61,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.esocial.change_s1035evtTabCarreira or perms.esocial.add_s1035evtTabCarreira %}
                     
                         <a href="{% url 's1035_evttabcarreira_salvar' pk=a.id tab='master' %}">
@@ -86,6 +87,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

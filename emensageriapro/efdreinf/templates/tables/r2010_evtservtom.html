@@ -57,7 +57,7 @@
             <th>Código do Retorno</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -121,10 +121,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.efdreinf.change_r2010evtServTom or perms.efdreinf.add_r2010evtServTom %}
                     
                         <a href="{% url 'r2010_evtservtom_salvar' pk=a.id tab='master' %}">
@@ -146,6 +147,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

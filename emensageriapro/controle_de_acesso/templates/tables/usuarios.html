@@ -21,7 +21,7 @@
             <th>Perfil</th>
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <th width="90px">Ações</th>
             {% endif %}
         </tr>
@@ -49,10 +49,11 @@
             {% endif %}
             
             <!-- colunas especiais -->
-            {% if not for_print %}
+            {% if not output %}
             <td>
                 <div>
                     <!-- botões especiais -->
+                    
                         {% if perms.controle_de_acesso.change_Usuarios or perms.controle_de_acesso.add_Usuarios %}
                     
                         <a href="{% url 'usuarios_salvar' pk=a.id tab='master' %}">
@@ -74,6 +75,7 @@
                             </span>
                         </a>
                         {% endif %}
+                    
                 </div>
             </td>
             {% endif %}

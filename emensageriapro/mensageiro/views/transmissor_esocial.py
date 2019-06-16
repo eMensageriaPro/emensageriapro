@@ -24,12 +24,12 @@ def desvincular_eventos_esocial(request, pk):
 
     from django.db import connections
 
-    a = TransmissorEventosEsocial.get(iddentidade=pk)
+    a = TransmissorEventosEsocial.objects.get(identidade=pk)
     cursor = connections['default'].cursor()
-    cursor.execute("UPDATE %s SET transmissor_lote_esocial_id=Null WHERE id=%s" % (a.tabela, a.id) )
+    cursor.execute("UPDATE %s SET transmissor_lote_esocial_id=Null WHERE id=%s" % (a.tabela, a.id))
     messages.success(request, 'Evento desvinculado com sucesso!')
 
-    return redirect('transmissor_lote_esocial_salvar', pk=request.session['return_pk'])
+    return redirect('transmissor_lote_esocial_salvar', pk=a.pk, tab='transmissor_eventos_esocial')
 
 
 @login_required
@@ -53,9 +53,9 @@ def vincular_eventos_esocial(request, pk):
     for a in transmissor_eventos_esocial_lista:
 
         cursor = connections['default'].cursor()
-        cursor.execute("UPDATE %s SET transmissor_lote_esocial_id=%s WHERE id=%s" % (a.tabela, pk, a.id) )
+        cursor.execute("UPDATE %s SET transmissor_lote_esocial_id=%s WHERE id=%s" % (a.tabela, pk, a.id))
         n += 1
 
     messages.success(request, '%s eventos foram vinculados com sucesso a este transmissor!' % n)
 
-    return redirect('transmissor_lote_esocial_salvar', hash=request.session['return_pk'])
+    return redirect('transmissor_lote_esocial_salvar', pk=pk, tab='transmissor_eventos_esocial')

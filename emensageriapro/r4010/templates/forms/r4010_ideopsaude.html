@@ -12,7 +12,7 @@
 </script>
 <div class="col-md-12" id="r4010_ideopsaude__r4010_evtretpf__div">
   <div class="form-group">
-    <label id="r4010_ideopsaude__r4010_evtretpf__label">Identificação da operadora do plano privado coletivo empresarial de assistência à saúde*<a data-toggle="tooltip" title="Identificação da operadora do plano privado coletivo empresarial de assistência à saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_ideopsaude__r4010_evtretpf__label">Identificação da operadora do plano privado coletivo empresarial de assistência à saúde*</label>
     {% if not for_print %}
       {% if r4010_ideopsaude_form.r4010_evtretpf.value %}
         <a id="r4010_ideopsaude__r4010_evtretpf__div_acessar" href="{% url 'r4010_evtretpf_salvar' pk=r4010_ideopsaude_form.r4010_evtretpf.value tab='master' %}">
@@ -41,7 +41,7 @@
 <!-- inicio__r4010_ideopsaude__nrinsc -->
 <div class="col-md-3" id="r4010_ideopsaude__nrinsc__div">
   <div class="form-group">
-    <label id="r4010_ideopsaude__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número do CNPJ da operadora de plano privado coletivo empresarial de assistência à saúde. <validacao> Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_ideopsaude__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
       {% if r4010_ideopsaude_form.nrinsc.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_ideopsaude_form.nrinsc.errors }}
@@ -56,7 +56,7 @@
 <!-- inicio__r4010_ideopsaude__regans -->
 <div class="col-md-3" id="r4010_ideopsaude__regans__div">
   <div class="form-group">
-    <label id="r4010_ideopsaude__regans__label">Registro na Agência Nacional de Saúde - ANS<a data-toggle="tooltip" title="Registro na Agência Nacional de Saúde - ANS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_ideopsaude__regans__label">Registro na Agência Nacional de Saúde - ANS</label>
       {% if r4010_ideopsaude_form.regans.errors %}
         <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
           {{ r4010_ideopsaude_form.regans.errors }}
@@ -71,7 +71,7 @@
 <!-- inicio__r4010_ideopsaude__vlrsaude -->
 <div class="col-md-3" id="r4010_ideopsaude__vlrsaude__div">
   <div class="form-group">
-    <label id="r4010_ideopsaude__vlrsaude__label">Valor pago ao plano de saúde*<a data-toggle="tooltip" title="Valor pago ao plano de saúde."><i class="fa fa-fw fa-question-circle"></i></a></label>
+    <label id="r4010_ideopsaude__vlrsaude__label">Valor pago ao plano de saúde*</label>
     {% if r4010_ideopsaude_form.vlrsaude.errors %}
     <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
       {{ r4010_ideopsaude_form.vlrsaude.errors }}
