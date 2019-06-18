@@ -292,6 +292,11 @@ def enviar(request, tab=None):
         messages.success(request, texto)
         return redirect(request.session['return_page'])
 
+    elif tab == 'mapa_resumo':
+
+        messages.success(request, texto)
+        return redirect('visao_geral')
+
     elif tab == 'mapa':
 
         messages.success(request, texto)
@@ -354,6 +359,11 @@ def consultar(request, tab=None):
 
         messages.success(request, texto)
         return redirect(request.session['return_page'])
+
+    elif tab == 'mapa_resumo':
+
+        messages.success(request, texto)
+        return redirect('visao_geral')
 
     elif tab == 'mapa':
 

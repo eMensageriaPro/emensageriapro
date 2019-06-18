@@ -180,42 +180,48 @@ def assinar_esocial(request, xml, transmissor_id):
 
     FORCE_PRODUCAO_RESTRITA = config.ESOCIAL_FORCE_PRODUCAO_RESTRITA
 
-    tra = TransmissorLoteEsocial.objects. \
-        get(id=transmissor_id)
+    if transmissor_id:
 
-    if tra.transmissor.certificado:
+        tra = TransmissorLoteEsocial.objects. \
+            get(id=transmissor_id)
 
-        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
-        cert_pass = tra.transmissor.certificado.senha
-        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
-        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
+        if tra.transmissor.certificado:
 
-    else:
+            cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
+            cert_pass = tra.transmissor.certificado.senha
+            cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
+            key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
 
-        messages.error(request,
-                       '''O certificado não está configurado, 
-                          configure pelo menos um transmissor para o respectivo empregador!''')
+        else:
 
-        return xml
+            messages.error(request,
+                           '''O certificado não está configurado, 
+                              configure pelo menos um transmissor para o respectivo empregador!''')
 
-    if FORCE_PRODUCAO_RESTRITA:
-        xml = xml.replace('<tpAmb>1</tpAmb>', '<tpAmb>2</tpAmb>')
+            return xml
 
-    if cert_host:
+        if FORCE_PRODUCAO_RESTRITA:
+            xml = xml.replace('<tpAmb>1</tpAmb>', '<tpAmb>2</tpAmb>')
 
-        create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
-        cert_str = ler_arquivo(cert_pem_file)
-        key_str = ler_arquivo(key_pem_file)
-        root = etree.fromstring(xml)
+        if cert_host:
 
-        signed_root = XMLSigner(
-            method=methods.enveloped,
-            signature_algorithm='rsa-sha256',
-            digest_algorithm='sha256',
-            c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315').\
-                sign(root, key=key_str, cert=cert_str)
+            create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
+            cert_str = ler_arquivo(cert_pem_file)
+            key_str = ler_arquivo(key_pem_file)
+            root = etree.fromstring(xml)
 
-        return etree.tostring(signed_root)
+            signed_root = XMLSigner(
+                method=methods.enveloped,
+                signature_algorithm='rsa-sha256',
+                digest_algorithm='sha256',
+                c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315').\
+                    sign(root, key=key_str, cert=cert_str)
+
+            return etree.tostring(signed_root)
+
+        else:
+
+            return xml
 
     else:
 

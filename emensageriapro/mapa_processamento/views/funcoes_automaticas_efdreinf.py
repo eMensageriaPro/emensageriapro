@@ -287,6 +287,11 @@ def enviar(request, tab=None):
         messages.success(request, texto)
         return redirect('mapa_efdreinf', tab='master')
 
+    elif tab == 'mapa_resumo':
+
+        messages.success(request, texto)
+        return redirect('visao_geral')
+
     elif tab == 'json':
 
         data = {'response': texto}
@@ -322,6 +327,11 @@ def consultar(request, tab=None):
 
         messages.success(request, texto)
         return redirect('mapa_esocial', tab='master')
+
+    elif tab == 'mapa_resumo':
+
+        messages.success(request, texto)
+        return redirect('visao_geral')
 
     elif tab == 'json':
 

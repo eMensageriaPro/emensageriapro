@@ -309,9 +309,10 @@
         });
     });</script>
     {% else %}
+    {%  if output == 'html' %}
     <section class="invoice">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12">{% endif %}
                 <h2 class="page-header">Mapa de Importação -
                     {% if tab == 'master' %}Arquivos aguardando importação
                     {% elif tab == 'erros' %}Arquivos com erro na importação
@@ -322,10 +323,11 @@
                         Usuário: {{ user.first_name }} {{ user.last_name }}<br>
                         Data: {{ data }}</small>
                 </h2>
+    {%  if output == 'html' %}
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 table-responsive">
+            <div class="col-xs-12 table-responsive">{% endif %}
                 {% if tab == 'master' %}
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -430,8 +432,9 @@
                         </tbody>
                     </table>
                 {% endif %}
+    {%  if output == 'html' %}
             </div>
         </div>
-    </section>
+    </section>{% endif %}
     {% endif %}
 {% endblock content %}
