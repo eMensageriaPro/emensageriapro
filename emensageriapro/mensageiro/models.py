@@ -76,8 +76,10 @@ class Arquivos(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -192,8 +194,10 @@ class ImportacaoArquivos(SoftDeletionModel):
             unicode(self.arquivo),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -259,8 +263,10 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
             unicode(self.identidade),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -336,8 +342,10 @@ class RegrasDeValidacao(SoftDeletionModel):
             unicode(self.registro_pai),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -389,8 +397,10 @@ class Relatorios(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -489,8 +499,10 @@ class RetornosEventos(SoftDeletionModel):
             unicode(self.identidade),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -549,8 +561,10 @@ class RetornosEventosHorarios(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -605,8 +619,10 @@ class RetornosEventosIntervalos(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -661,8 +677,10 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -724,8 +742,10 @@ class TransmissorLote(SoftDeletionModel):
             unicode(self.nrinsc),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -799,8 +819,10 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
             unicode(self.retorno_descricao),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -855,8 +877,10 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -926,8 +950,10 @@ class TransmissorLoteEsocial(SoftDeletionModel):
             unicode(self.resposta_descricao),]
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 
@@ -982,8 +1008,10 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
         lista = []
             
         if lista:
-            return ' - '.join(lista)
-            
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
         else:
             return self.id
 

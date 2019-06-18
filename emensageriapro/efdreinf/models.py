@@ -105,7 +105,7 @@ class r1000evtInfoContri(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -216,7 +216,7 @@ class r1070evtTabProcesso(SoftDeletionModel):
     cdretorno = models.CharField(max_length=6, blank=True, null=True, )
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         

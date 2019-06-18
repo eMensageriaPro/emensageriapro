@@ -84,7 +84,6 @@ class ConfigPerfis(SoftDeletionModel):
         else:
             return self.id
 
-
     class Meta:
     
         verbose_name = u'Perfis'

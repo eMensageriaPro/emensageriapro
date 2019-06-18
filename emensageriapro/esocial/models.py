@@ -99,7 +99,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -197,7 +197,7 @@ class s1005evtTabEstab(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -295,7 +295,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -393,7 +393,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -491,7 +491,7 @@ class s1030evtTabCargo(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -589,7 +589,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -687,7 +687,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -785,7 +785,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -883,7 +883,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -981,7 +981,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
@@ -1079,7 +1079,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
     arquivo_original = models.IntegerField(choices=SIM_NAO, blank=True, null=True, default=0, )
     arquivo = models.CharField(max_length=200, blank=True, null=True, )
     status = models.IntegerField(choices=EVENTO_STATUS, blank=True, default=0, )
-    operacao = models.IntegerField(choices=OPERACOES, )
+    operacao = models.IntegerField(choices=OPERACOES, null=True, )
     
     def __unicode__(self):
         
