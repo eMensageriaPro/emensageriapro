@@ -27,6 +27,7 @@ def update_auth_user_groups_profile(modeladmin, request, queryset):
 
 
 class ConfigPerfisAdmin(AuditoriaAdmin):
+
     actions = [update_auth_user_groups_profile]
 
     search_fields = (
@@ -55,7 +56,7 @@ from django.contrib.auth.models import User
 
 
 def update_user(user):
-    from emensageriapro.controle_de_acesso.models import UserGroups, PerfilGroups, Usuarios
+    from emensageriapro.controle_de_acesso.models import UserGroups, ConfigPerfis, PerfilGroups, Usuarios
     usuario = Usuarios.objects.get(user=user)
     list = PerfilGroups.objects.filter(configperfis_id=usuario.config_perfis_id).all()
     pgl = []

@@ -69,9 +69,6 @@ class ConfigPerfis(SoftDeletionModel):
 
     titulo = models.CharField(max_length=25, )
     grupos = models.ManyToManyField("auth.Group")
-    permissoes = models.TextField(blank=True, null=True, )
-    modulos_permitidos = models.TextField(blank=True, null=True, )
-    paginas_permitidas = models.TextField(blank=True, null=True, )
     
     def __unicode__(self):
         
