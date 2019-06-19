@@ -74,6 +74,7 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 @login_required
 def recibo(request, pk, output=None):
 
+    from datetime import datetime
     from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
         RetornosEventosIntervalos, RetornosEventosOcorrencias
 
@@ -103,6 +104,8 @@ def recibo(request, pk, output=None):
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
             'data': datetime.now(),
+            'output': output,
+            'user': request.user,
         }
 
         if output == 'xls':
@@ -123,9 +126,13 @@ def recibo(request, pk, output=None):
             
             return response
 
-        else:
+        elif output == 'pdf':
         
             return render_to_pdf('r9012_evtretcons_recibo_pdf.html', context)
+
+        else:
+        
+            return render(request, 'r9012_evtretcons_recibo_pdf.html', context)
 
     else:
 
