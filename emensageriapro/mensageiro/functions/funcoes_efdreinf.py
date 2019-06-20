@@ -164,7 +164,7 @@ def assinar_efdreinf(request, xml, transmissor_id):
         if tra.transmissor.certificado:
 
             cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.certificado.certificado)
-            cert_pass = tra.transmissor.efdreinf_certificado.senha
+            cert_pass = tra.transmissor.certificado.senha
             cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.certificado.id
             key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.certificado.id
 
