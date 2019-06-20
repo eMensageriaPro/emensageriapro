@@ -111,7 +111,7 @@ def get_ocorrencias(evento_slug, retornos_evttotal_id):
     return str(txt_str).replace("'", "''")
 
 
-def read_envioLoteEventos(arquivo, transmissor_lote_efdreinf_id):
+def read_envioLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
     from emensageriapro.mensageiro.functions.funcoes_efdreinf import ler_arquivo
     from emensageriapro.mensageiro.models import TransmissorLoteEfdreinfOcorrencias, TransmissorLoteEfdreinf, TransmissorEventosEfdreinf
@@ -166,7 +166,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_efdreinf_id):
                 from emensageriapro.efdreinf.views.r9001_evttotal_importar import read_r9001_evttotal_obj
                 from emensageriapro.efdreinf.models import r9001evtTotal
 
-                dados = read_r9001_evttotal_obj(evento, STATUS_EVENTO_PROCESSADO)
+                dados = read_r9001_evttotal_obj(request, evento, STATUS_EVENTO_PROCESSADO)
 
                 retornos_evttotal = r9001evtTotal.objects.using('default'). \
                     get(id=dados['id'])
@@ -204,7 +204,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_efdreinf_id):
                 from emensageriapro.efdreinf.views.r9011_evttotalcontrib_importar import read_r9011_evttotalcontrib_obj
                 from emensageriapro.efdreinf.models import r9011evtTotalContrib
 
-                dados = read_r9011_evttotalcontrib_obj(evento, STATUS_EVENTO_PROCESSADO)
+                dados = read_r9011_evttotalcontrib_obj(request, evento, STATUS_EVENTO_PROCESSADO)
 
                 retornos_evttotalcontrib = r9011evtTotalContrib.objects.get(id=dados['id'])
 
@@ -240,7 +240,7 @@ def read_envioLoteEventos(arquivo, transmissor_lote_efdreinf_id):
 
 
 
-def read_consultaLoteEventos(arquivo, transmissor_lote_efdreinf_id):
+def read_consultaLoteEventos(request, arquivo, transmissor_lote_efdreinf_id):
 
     from emensageriapro.efdreinf.views.r5011_evttotalcontrib_importar import read_r5011_evttotalcontrib_obj
     from emensageriapro.efdreinf.views.r9011_evttotalcontrib_importar import read_r9011_evttotalcontrib_obj
@@ -258,7 +258,7 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_efdreinf_id):
 
     if 'evtTotalContrib' in dir(child.Reinf):
 
-        dados = read_r9011_evttotalcontrib_obj(child, 9)
+        dados = read_r9011_evttotalcontrib_obj(request, child, 9)
         evento_identidade = dados['identidade_evento']
 
         evento_dados = executar_sql("""

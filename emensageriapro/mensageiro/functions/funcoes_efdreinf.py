@@ -385,14 +385,14 @@ def send_xml(request, transmissor_id, service):
 
                 from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos
 
-                read_envioLoteEventos(dados['response'], transmissor_id)
+                read_envioLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
 
             elif service == 'ConsultasReinf':
 
                 from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
 
-                read_consultaLoteEventos(dados['response'], transmissor_id)
+                read_consultaLoteEventos(request, dados['response'], transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
 
             gravar_nome_arquivo(dados['header'], 0)
