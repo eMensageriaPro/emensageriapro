@@ -63,7 +63,8 @@ class s2205RICList(generics.ListCreateAPIView):
     
     queryset = s2205RIC.objects.all()
     serializer_class = s2205RICSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2205RICDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205RIC.objects.all()
     serializer_class = s2205RICSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class r2040infoRecursoList(generics.ListCreateAPIView):
     
     queryset = r2040infoRecurso.objects.all()
     serializer_class = r2040infoRecursoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r2040infoRecursoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2040infoRecurso.objects.all()
     serializer_class = r2040infoRecursoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

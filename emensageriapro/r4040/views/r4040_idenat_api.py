@@ -63,7 +63,8 @@ class r4040ideNatList(generics.ListCreateAPIView):
     
     queryset = r4040ideNat.objects.all()
     serializer_class = r4040ideNatSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r4040ideNatDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4040ideNat.objects.all()
     serializer_class = r4040ideNatSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

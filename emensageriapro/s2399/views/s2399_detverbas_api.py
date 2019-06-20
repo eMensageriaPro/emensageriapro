@@ -63,7 +63,8 @@ class s2399detVerbasList(generics.ListCreateAPIView):
     
     queryset = s2399detVerbas.objects.all()
     serializer_class = s2399detVerbasSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2399detVerbasDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2399detVerbas.objects.all()
     serializer_class = s2399detVerbasSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -117,15 +117,8 @@ class s5003basePerAntESerializer(ModelSerializer):
     class Meta:
     
         model = s5003basePerAntE
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003basePerApur(SoftDeletionModel):
@@ -180,15 +173,8 @@ class s5003basePerApurSerializer(ModelSerializer):
     class Meta:
     
         model = s5003basePerApur
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003dpsPerAntE(SoftDeletionModel):
@@ -243,15 +229,8 @@ class s5003dpsPerAntESerializer(ModelSerializer):
     class Meta:
     
         model = s5003dpsPerAntE
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003dpsPerApur(SoftDeletionModel):
@@ -306,15 +285,8 @@ class s5003dpsPerApurSerializer(ModelSerializer):
     class Meta:
     
         model = s5003dpsPerApur
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003ideEstabLot(SoftDeletionModel):
@@ -372,15 +344,8 @@ class s5003ideEstabLotSerializer(ModelSerializer):
     class Meta:
     
         model = s5003ideEstabLot
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003infoBaseFGTS(SoftDeletionModel):
@@ -429,15 +394,8 @@ class s5003infoBaseFGTSSerializer(ModelSerializer):
     class Meta:
     
         model = s5003infoBaseFGTS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003infoBasePerAntE(SoftDeletionModel):
@@ -489,15 +447,8 @@ class s5003infoBasePerAntESerializer(ModelSerializer):
     class Meta:
     
         model = s5003infoBasePerAntE
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003infoDpsFGTS(SoftDeletionModel):
@@ -546,15 +497,8 @@ class s5003infoDpsFGTSSerializer(ModelSerializer):
     class Meta:
     
         model = s5003infoDpsFGTS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003infoDpsPerAntE(SoftDeletionModel):
@@ -606,15 +550,8 @@ class s5003infoDpsPerAntESerializer(ModelSerializer):
     class Meta:
     
         model = s5003infoDpsPerAntE
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003infoTrabDps(SoftDeletionModel):
@@ -667,15 +604,8 @@ class s5003infoTrabDpsSerializer(ModelSerializer):
     class Meta:
     
         model = s5003infoTrabDps
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s5003infoTrabFGTS(SoftDeletionModel):
@@ -734,12 +664,5 @@ class s5003infoTrabFGTSSerializer(ModelSerializer):
     class Meta:
     
         model = s5003infoTrabFGTS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')

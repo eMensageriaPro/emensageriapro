@@ -63,7 +63,8 @@ class s2300supervisorEstagioList(generics.ListCreateAPIView):
     
     queryset = s2300supervisorEstagio.objects.all()
     serializer_class = s2300supervisorEstagioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2300supervisorEstagioDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300supervisorEstagio.objects.all()
     serializer_class = s2300supervisorEstagioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

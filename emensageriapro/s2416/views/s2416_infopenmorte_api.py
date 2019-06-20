@@ -63,7 +63,8 @@ class s2416infoPenMorteList(generics.ListCreateAPIView):
     
     queryset = s2416infoPenMorte.objects.all()
     serializer_class = s2416infoPenMorteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2416infoPenMorteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2416infoPenMorte.objects.all()
     serializer_class = s2416infoPenMorteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

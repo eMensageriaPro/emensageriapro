@@ -63,11 +63,13 @@ class s2410evtCdBenInList(generics.ListCreateAPIView):
     
     queryset = s2410evtCdBenIn.objects.all()
     serializer_class = s2410evtCdBenInSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2410evtCdBenInDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2410evtCdBenIn.objects.all()
     serializer_class = s2410evtCdBenInSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

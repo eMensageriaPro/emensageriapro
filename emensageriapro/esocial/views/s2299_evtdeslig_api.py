@@ -63,11 +63,13 @@ class s2299evtDesligList(generics.ListCreateAPIView):
     
     queryset = s2299evtDeslig.objects.all()
     serializer_class = s2299evtDesligSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2299evtDesligDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2299evtDeslig.objects.all()
     serializer_class = s2299evtDesligSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

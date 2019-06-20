@@ -868,6 +868,7 @@ from emensageriapro.esocial.views import s5013_evtfgts_abrir_evento_para_edicao 
 from emensageriapro.esocial.views import s5013_evtfgts_alterar_identidade as s5013_evtfgts_alterar_identidade_views
 from emensageriapro.esocial.views import s5013_evtfgts_criar_exclusao as s5013_evtfgts_criar_exclusao_views
 from emensageriapro.esocial.views import s5013_evtfgts_duplicar as s5013_evtfgts_duplicar_views
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -913,10 +914,10 @@ urlpatterns = [
         name='s1000_evtinfoempregador_apagar'),
 
     url(r'^s1000-evtinfoempregador/api/$',
-        s1000_evtinfoempregador_api_views.s1000evtInfoEmpregadorList.as_view() ),
+        csrf_exempt(s1000_evtinfoempregador_api_views.s1000evtInfoEmpregadorList.as_view())),
 
     url(r'^s1000-evtinfoempregador/api/(?P<pk>[0-9]+)/$',
-        s1000_evtinfoempregador_api_views.s1000evtInfoEmpregadorDetail.as_view() ),
+        csrf_exempt(s1000_evtinfoempregador_api_views.s1000evtInfoEmpregadorDetail.as_view())),
 
     url(r'^s1000-evtinfoempregador/$', 
         s1000_evtinfoempregador_listar_views.listar, 

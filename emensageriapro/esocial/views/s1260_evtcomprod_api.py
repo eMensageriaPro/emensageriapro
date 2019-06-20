@@ -63,11 +63,13 @@ class s1260evtComProdList(generics.ListCreateAPIView):
     
     queryset = s1260evtComProd.objects.all()
     serializer_class = s1260evtComProdSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1260evtComProdDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1260evtComProd.objects.all()
     serializer_class = s1260evtComProdSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

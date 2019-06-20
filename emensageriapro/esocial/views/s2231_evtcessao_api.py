@@ -63,11 +63,13 @@ class s2231evtCessaoList(generics.ListCreateAPIView):
     
     queryset = s2231evtCessao.objects.all()
     serializer_class = s2231evtCessaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2231evtCessaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2231evtCessao.objects.all()
     serializer_class = s2231evtCessaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

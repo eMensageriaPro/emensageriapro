@@ -63,7 +63,8 @@ class s1035alteracaoList(generics.ListCreateAPIView):
     
     queryset = s1035alteracao.objects.all()
     serializer_class = s1035alteracaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1035alteracaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1035alteracao.objects.all()
     serializer_class = s1035alteracaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

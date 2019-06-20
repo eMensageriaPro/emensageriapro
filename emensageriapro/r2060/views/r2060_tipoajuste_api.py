@@ -63,7 +63,8 @@ class r2060tipoAjusteList(generics.ListCreateAPIView):
     
     queryset = r2060tipoAjuste.objects.all()
     serializer_class = r2060tipoAjusteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r2060tipoAjusteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2060tipoAjuste.objects.all()
     serializer_class = r2060tipoAjusteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

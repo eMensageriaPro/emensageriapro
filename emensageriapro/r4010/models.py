@@ -114,15 +114,8 @@ class r4010FCISerializer(ModelSerializer):
     class Meta:
     
         model = r4010FCI
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010SCP(SoftDeletionModel):
@@ -177,15 +170,8 @@ class r4010SCPSerializer(ModelSerializer):
     class Meta:
     
         model = r4010SCP
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010benefPen(SoftDeletionModel):
@@ -243,15 +229,8 @@ class r4010benefPenSerializer(ModelSerializer):
     class Meta:
     
         model = r4010benefPen
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010detDed(SoftDeletionModel):
@@ -308,15 +287,8 @@ class r4010detDedSerializer(ModelSerializer):
     class Meta:
     
         model = r4010detDed
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010ideOpSaude(SoftDeletionModel):
@@ -372,15 +344,8 @@ class r4010ideOpSaudeSerializer(ModelSerializer):
     class Meta:
     
         model = r4010ideOpSaude
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010idePgto(SoftDeletionModel):
@@ -436,15 +401,8 @@ class r4010idePgtoSerializer(ModelSerializer):
     class Meta:
     
         model = r4010idePgto
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoDependPl(SoftDeletionModel):
@@ -504,15 +462,8 @@ class r4010infoDependPlSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoDependPl
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoPgto(SoftDeletionModel):
@@ -577,15 +528,8 @@ class r4010infoPgtoSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoPgto
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoPgtoExt(SoftDeletionModel):
@@ -651,15 +595,8 @@ class r4010infoPgtoExtSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoPgtoExt
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoProcJud(SoftDeletionModel):
@@ -715,15 +652,8 @@ class r4010infoProcJudSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoProcJud
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoProcJuddespProcJud(SoftDeletionModel):
@@ -778,15 +708,8 @@ class r4010infoProcJuddespProcJudSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoProcJuddespProcJud
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoProcJudideAdv(SoftDeletionModel):
@@ -844,15 +767,8 @@ class r4010infoProcJudideAdvSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoProcJudideAdv
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoProcJudorigemRec(SoftDeletionModel):
@@ -904,15 +820,8 @@ class r4010infoProcJudorigemRecSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoProcJudorigemRec
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoProcRet(SoftDeletionModel):
@@ -970,15 +879,8 @@ class r4010infoProcRetSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoProcRet
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoRRA(SoftDeletionModel):
@@ -1040,15 +942,8 @@ class r4010infoRRASerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoRRA
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoRRAdespProcJud(SoftDeletionModel):
@@ -1103,15 +998,8 @@ class r4010infoRRAdespProcJudSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoRRAdespProcJud
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoRRAideAdv(SoftDeletionModel):
@@ -1169,15 +1057,8 @@ class r4010infoRRAideAdvSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoRRAideAdv
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoRRAorigemRec(SoftDeletionModel):
@@ -1229,15 +1110,8 @@ class r4010infoRRAorigemRecSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoRRAorigemRec
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoReemb(SoftDeletionModel):
@@ -1296,15 +1170,8 @@ class r4010infoReembSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoReemb
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010infoReembDep(SoftDeletionModel):
@@ -1363,15 +1230,8 @@ class r4010infoReembDepSerializer(ModelSerializer):
     class Meta:
     
         model = r4010infoReembDep
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class r4010rendIsento(SoftDeletionModel):
@@ -1428,12 +1288,5 @@ class r4010rendIsentoSerializer(ModelSerializer):
     class Meta:
     
         model = r4010rendIsento
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')

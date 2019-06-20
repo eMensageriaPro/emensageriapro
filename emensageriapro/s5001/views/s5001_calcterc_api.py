@@ -63,7 +63,8 @@ class s5001calcTercList(generics.ListCreateAPIView):
     
     queryset = s5001calcTerc.objects.all()
     serializer_class = s5001calcTercSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5001calcTercDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5001calcTerc.objects.all()
     serializer_class = s5001calcTercSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

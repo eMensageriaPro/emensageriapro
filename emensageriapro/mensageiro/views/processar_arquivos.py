@@ -327,6 +327,7 @@ def imprimir(request, pk):
             'importacao_arquivos_lista': importacao_arquivos_lista,
             'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
             'usuario': Usuarios.objects.get(user_id=request.user.id),
+            'user': request.user,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
             'show_fields': show_fields,

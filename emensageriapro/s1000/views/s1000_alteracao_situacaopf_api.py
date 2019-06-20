@@ -63,7 +63,8 @@ class s1000alteracaosituacaoPFList(generics.ListCreateAPIView):
     
     queryset = s1000alteracaosituacaoPF.objects.all()
     serializer_class = s1000alteracaosituacaoPFSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1000alteracaosituacaoPFDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1000alteracaosituacaoPF.objects.all()
     serializer_class = s1000alteracaosituacaoPFSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

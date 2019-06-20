@@ -63,7 +63,8 @@ class s2200trabTemporarioList(generics.ListCreateAPIView):
     
     queryset = s2200trabTemporario.objects.all()
     serializer_class = s2200trabTemporarioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2200trabTemporarioDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2200trabTemporario.objects.all()
     serializer_class = s2200trabTemporarioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

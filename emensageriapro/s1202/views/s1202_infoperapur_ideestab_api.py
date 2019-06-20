@@ -63,7 +63,8 @@ class s1202infoPerApurideEstabList(generics.ListCreateAPIView):
     
     queryset = s1202infoPerApurideEstab.objects.all()
     serializer_class = s1202infoPerApurideEstabSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1202infoPerApurideEstabDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202infoPerApurideEstab.objects.all()
     serializer_class = s1202infoPerApurideEstabSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

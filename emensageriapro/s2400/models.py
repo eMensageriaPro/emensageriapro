@@ -131,15 +131,8 @@ class s2400brasilSerializer(ModelSerializer):
     class Meta:
     
         model = s2400brasil
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2400dependente(SoftDeletionModel):
@@ -210,15 +203,8 @@ class s2400dependenteSerializer(ModelSerializer):
     class Meta:
     
         model = s2400dependente
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2400endereco(SoftDeletionModel):
@@ -267,15 +253,8 @@ class s2400enderecoSerializer(ModelSerializer):
     class Meta:
     
         model = s2400endereco
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2400exterior(SoftDeletionModel):
@@ -339,12 +318,5 @@ class s2400exteriorSerializer(ModelSerializer):
     class Meta:
     
         model = s2400exterior
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')

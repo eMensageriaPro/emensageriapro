@@ -63,7 +63,8 @@ class s5002basesIrrfList(generics.ListCreateAPIView):
     
     queryset = s5002basesIrrf.objects.all()
     serializer_class = s5002basesIrrfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5002basesIrrfDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5002basesIrrf.objects.all()
     serializer_class = s5002basesIrrfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

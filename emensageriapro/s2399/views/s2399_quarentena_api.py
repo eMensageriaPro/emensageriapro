@@ -63,7 +63,8 @@ class s2399quarentenaList(generics.ListCreateAPIView):
     
     queryset = s2399quarentena.objects.all()
     serializer_class = s2399quarentenaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2399quarentenaDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2399quarentena.objects.all()
     serializer_class = s2399quarentenaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

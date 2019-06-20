@@ -63,7 +63,8 @@ class r4020infoPgtoList(generics.ListCreateAPIView):
     
     queryset = r4020infoPgto.objects.all()
     serializer_class = r4020infoPgtoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r4020infoPgtoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4020infoPgto.objects.all()
     serializer_class = r4020infoPgtoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

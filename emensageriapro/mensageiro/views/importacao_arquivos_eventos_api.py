@@ -63,11 +63,13 @@ class ImportacaoArquivosEventosList(generics.ListCreateAPIView):
     
     queryset = ImportacaoArquivosEventos.objects.all()
     serializer_class = ImportacaoArquivosEventosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class ImportacaoArquivosEventosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = ImportacaoArquivosEventos.objects.all()
     serializer_class = ImportacaoArquivosEventosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

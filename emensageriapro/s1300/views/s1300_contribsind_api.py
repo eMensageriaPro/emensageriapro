@@ -63,7 +63,8 @@ class s1300contribSindList(generics.ListCreateAPIView):
     
     queryset = s1300contribSind.objects.all()
     serializer_class = s1300contribSindSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1300contribSindDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1300contribSind.objects.all()
     serializer_class = s1300contribSindSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

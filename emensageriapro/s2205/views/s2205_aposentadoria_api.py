@@ -63,7 +63,8 @@ class s2205aposentadoriaList(generics.ListCreateAPIView):
     
     queryset = s2205aposentadoria.objects.all()
     serializer_class = s2205aposentadoriaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2205aposentadoriaDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205aposentadoria.objects.all()
     serializer_class = s2205aposentadoriaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

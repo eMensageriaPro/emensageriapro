@@ -63,11 +63,13 @@ class s1060evtTabAmbienteList(generics.ListCreateAPIView):
     
     queryset = s1060evtTabAmbiente.objects.all()
     serializer_class = s1060evtTabAmbienteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1060evtTabAmbienteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1060evtTabAmbiente.objects.all()
     serializer_class = s1060evtTabAmbienteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

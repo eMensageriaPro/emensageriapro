@@ -63,7 +63,8 @@ class OpcoesList(generics.ListCreateAPIView):
     
     queryset = Opcoes.objects.all()
     serializer_class = OpcoesSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,7 +72,8 @@ class OpcoesDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Opcoes.objects.all()
     serializer_class = OpcoesSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
     
     
 

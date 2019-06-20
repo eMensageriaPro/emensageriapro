@@ -63,11 +63,13 @@ class r5011evtTotalContribList(generics.ListCreateAPIView):
     
     queryset = r5011evtTotalContrib.objects.all()
     serializer_class = r5011evtTotalContribSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r5011evtTotalContribDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5011evtTotalContrib.objects.all()
     serializer_class = r5011evtTotalContribSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

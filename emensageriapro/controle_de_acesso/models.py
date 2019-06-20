@@ -81,6 +81,15 @@ class ConfigPerfis(SoftDeletionModel):
         else:
             return self.id
 
+    def save(self, *args, **kwargs):
+        if self.id:
+            from emensageriapro.controle_de_acesso.admin import update_user
+            from emensageriapro.controle_de_acesso.models import Usuarios
+            users = Usuarios.objects.filter(configperfis_id=self.id).all()
+            for u in users:
+                update_user(u.user)
+        super(PerfilGroups, self).save(*args, **kwargs)
+
     class Meta:
     
         verbose_name = u'Perfis'
@@ -105,7 +114,8 @@ class ConfigPerfisSerializer(ModelSerializer):
     class Meta:
     
         model = ConfigPerfis
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
     

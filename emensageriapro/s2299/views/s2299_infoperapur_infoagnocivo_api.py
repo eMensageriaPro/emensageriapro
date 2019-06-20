@@ -63,7 +63,8 @@ class s2299infoPerApurinfoAgNocivoList(generics.ListCreateAPIView):
     
     queryset = s2299infoPerApurinfoAgNocivo.objects.all()
     serializer_class = s2299infoPerApurinfoAgNocivoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2299infoPerApurinfoAgNocivoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2299infoPerApurinfoAgNocivo.objects.all()
     serializer_class = s2299infoPerApurinfoAgNocivoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

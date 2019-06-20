@@ -63,7 +63,8 @@ class s2210agenteCausadorList(generics.ListCreateAPIView):
     
     queryset = s2210agenteCausador.objects.all()
     serializer_class = s2210agenteCausadorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2210agenteCausadorDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2210agenteCausador.objects.all()
     serializer_class = s2210agenteCausadorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

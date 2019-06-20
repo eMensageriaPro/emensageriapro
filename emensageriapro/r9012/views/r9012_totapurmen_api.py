@@ -63,7 +63,8 @@ class r9012totApurMenList(generics.ListCreateAPIView):
     
     queryset = r9012totApurMen.objects.all()
     serializer_class = r9012totApurMenSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r9012totApurMenDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9012totApurMen.objects.all()
     serializer_class = r9012totApurMenSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

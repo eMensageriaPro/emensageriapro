@@ -63,7 +63,8 @@ class s1200infoPerAntideADCList(generics.ListCreateAPIView):
     
     queryset = s1200infoPerAntideADC.objects.all()
     serializer_class = s1200infoPerAntideADCSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1200infoPerAntideADCDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1200infoPerAntideADC.objects.all()
     serializer_class = s1200infoPerAntideADCSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class s2206infoCeletistaList(generics.ListCreateAPIView):
     
     queryset = s2206infoCeletista.objects.all()
     serializer_class = s2206infoCeletistaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2206infoCeletistaDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2206infoCeletista.objects.all()
     serializer_class = s2206infoCeletistaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

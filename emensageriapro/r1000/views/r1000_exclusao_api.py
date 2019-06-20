@@ -63,7 +63,8 @@ class r1000exclusaoList(generics.ListCreateAPIView):
     
     queryset = r1000exclusao.objects.all()
     serializer_class = r1000exclusaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r1000exclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1000exclusao.objects.all()
     serializer_class = r1000exclusaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

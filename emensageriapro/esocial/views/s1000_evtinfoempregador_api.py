@@ -63,11 +63,13 @@ class s1000evtInfoEmpregadorList(generics.ListCreateAPIView):
     
     queryset = s1000evtInfoEmpregador.objects.all()
     serializer_class = s1000evtInfoEmpregadorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1000evtInfoEmpregadorDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1000evtInfoEmpregador.objects.all()
     serializer_class = s1000evtInfoEmpregadorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

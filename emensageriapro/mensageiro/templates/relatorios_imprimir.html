@@ -1,20 +1,31 @@
-{% extends 'base.html' %}{% load templatetags %}{% load static %}{% block content %}
+{% extends 'base.html' %}
+{% load templatetags %}
+{% load static %}
+{% block content %}
+{% if output == 'html' %}
     <section class="invoice">
         <div class="row">
             <div class="col-xs-12">
+{% endif %}
                 <h2 class="page-header">{{ relatorio.titulo }}
-                    <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br><br></small>
+                    <small class="pull-right">Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                        Data: {{ data }}<br><br></small>
                 </h2>
+{% if output == 'html' %}
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 table-responsive">
+{% endif %}
                 <table class="table table-striped">
                     <thead>
                     <tr>{% autoescape off %}{{ cabecalho }}{% endautoescape %}</tr>
                     </thead>
                     <tbody>
                     {% autoescape off %}{{ listagem }}{% endautoescape %}</table>
+{% if output == 'html' %}
             </div>
         </div>
-    </section>{% endblock content %}
+    </section>
+{% endif %}
+{% endblock content %}

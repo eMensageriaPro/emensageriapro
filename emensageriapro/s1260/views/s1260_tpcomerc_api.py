@@ -63,7 +63,8 @@ class s1260tpComercList(generics.ListCreateAPIView):
     
     queryset = s1260tpComerc.objects.all()
     serializer_class = s1260tpComercSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1260tpComercDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1260tpComerc.objects.all()
     serializer_class = s1260tpComercSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

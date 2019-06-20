@@ -63,7 +63,8 @@ class r3010outrasReceitasList(generics.ListCreateAPIView):
     
     queryset = r3010outrasReceitas.objects.all()
     serializer_class = r3010outrasReceitasSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r3010outrasReceitasDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r3010outrasReceitas.objects.all()
     serializer_class = r3010outrasReceitasSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,11 +63,13 @@ class s1030evtTabCargoList(generics.ListCreateAPIView):
     
     queryset = s1030evtTabCargo.objects.all()
     serializer_class = s1030evtTabCargoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1030evtTabCargoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1030evtTabCargo.objects.all()
     serializer_class = s1030evtTabCargoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

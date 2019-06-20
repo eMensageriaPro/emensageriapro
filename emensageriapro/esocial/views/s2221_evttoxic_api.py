@@ -63,11 +63,13 @@ class s2221evtToxicList(generics.ListCreateAPIView):
     
     queryset = s2221evtToxic.objects.all()
     serializer_class = s2221evtToxicSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2221evtToxicDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2221evtToxic.objects.all()
     serializer_class = s2221evtToxicSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -145,15 +145,8 @@ class s1000alteracaoSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaodadosIsencao(SoftDeletionModel):
@@ -218,15 +211,8 @@ class s1000alteracaodadosIsencaoSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaodadosIsencao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaoinfoEFR(SoftDeletionModel):
@@ -285,15 +271,8 @@ class s1000alteracaoinfoEFRSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaoinfoEFR
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaoinfoEnte(SoftDeletionModel):
@@ -358,15 +337,8 @@ class s1000alteracaoinfoEnteSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaoinfoEnte
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaoinfoOP(SoftDeletionModel):
@@ -432,15 +404,8 @@ class s1000alteracaoinfoOPSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaoinfoOP
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaoinfoOrgInternacional(SoftDeletionModel):
@@ -492,15 +457,8 @@ class s1000alteracaoinfoOrgInternacionalSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaoinfoOrgInternacional
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaonovaValidade(SoftDeletionModel):
@@ -553,15 +511,8 @@ class s1000alteracaonovaValidadeSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaonovaValidade
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaosituacaoPF(SoftDeletionModel):
@@ -613,15 +564,8 @@ class s1000alteracaosituacaoPFSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaosituacaoPF
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaosituacaoPJ(SoftDeletionModel):
@@ -673,15 +617,8 @@ class s1000alteracaosituacaoPJSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaosituacaoPJ
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000alteracaosoftwareHouse(SoftDeletionModel):
@@ -743,15 +680,8 @@ class s1000alteracaosoftwareHouseSerializer(ModelSerializer):
     class Meta:
     
         model = s1000alteracaosoftwareHouse
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000exclusao(SoftDeletionModel):
@@ -804,15 +734,8 @@ class s1000exclusaoSerializer(ModelSerializer):
     class Meta:
     
         model = s1000exclusao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusao(SoftDeletionModel):
@@ -895,15 +818,8 @@ class s1000inclusaoSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaodadosIsencao(SoftDeletionModel):
@@ -968,15 +884,8 @@ class s1000inclusaodadosIsencaoSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaodadosIsencao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaoinfoEFR(SoftDeletionModel):
@@ -1035,15 +944,8 @@ class s1000inclusaoinfoEFRSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaoinfoEFR
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaoinfoEnte(SoftDeletionModel):
@@ -1108,15 +1010,8 @@ class s1000inclusaoinfoEnteSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaoinfoEnte
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaoinfoOP(SoftDeletionModel):
@@ -1182,15 +1077,8 @@ class s1000inclusaoinfoOPSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaoinfoOP
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaoinfoOrgInternacional(SoftDeletionModel):
@@ -1242,15 +1130,8 @@ class s1000inclusaoinfoOrgInternacionalSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaoinfoOrgInternacional
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaosituacaoPF(SoftDeletionModel):
@@ -1302,15 +1183,8 @@ class s1000inclusaosituacaoPFSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaosituacaoPF
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaosituacaoPJ(SoftDeletionModel):
@@ -1362,15 +1236,8 @@ class s1000inclusaosituacaoPJSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaosituacaoPJ
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1000inclusaosoftwareHouse(SoftDeletionModel):
@@ -1432,12 +1299,5 @@ class s1000inclusaosoftwareHouseSerializer(ModelSerializer):
     class Meta:
     
         model = s1000inclusaosoftwareHouse
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')

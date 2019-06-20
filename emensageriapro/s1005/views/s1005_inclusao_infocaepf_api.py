@@ -63,7 +63,8 @@ class s1005inclusaoinfoCaepfList(generics.ListCreateAPIView):
     
     queryset = s1005inclusaoinfoCaepf.objects.all()
     serializer_class = s1005inclusaoinfoCaepfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1005inclusaoinfoCaepfDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1005inclusaoinfoCaepf.objects.all()
     serializer_class = s1005inclusaoinfoCaepfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class r4020infoProcRetList(generics.ListCreateAPIView):
     
     queryset = r4020infoProcRet.objects.all()
     serializer_class = r4020infoProcRetSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r4020infoProcRetDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4020infoProcRet.objects.all()
     serializer_class = r4020infoProcRetSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

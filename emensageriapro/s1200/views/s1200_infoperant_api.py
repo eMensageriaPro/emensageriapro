@@ -63,7 +63,8 @@ class s1200infoPerAntList(generics.ListCreateAPIView):
     
     queryset = s1200infoPerAnt.objects.all()
     serializer_class = s1200infoPerAntSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1200infoPerAntDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1200infoPerAnt.objects.all()
     serializer_class = s1200infoPerAntSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

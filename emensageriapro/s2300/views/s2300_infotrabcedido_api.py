@@ -63,7 +63,8 @@ class s2300infoTrabCedidoList(generics.ListCreateAPIView):
     
     queryset = s2300infoTrabCedido.objects.all()
     serializer_class = s2300infoTrabCedidoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2300infoTrabCedidoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300infoTrabCedido.objects.all()
     serializer_class = s2300infoTrabCedidoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

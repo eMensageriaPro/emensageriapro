@@ -63,11 +63,13 @@ class r2060evtCPRBList(generics.ListCreateAPIView):
     
     queryset = r2060evtCPRB.objects.all()
     serializer_class = r2060evtCPRBSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r2060evtCPRBDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2060evtCPRB.objects.all()
     serializer_class = r2060evtCPRBSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

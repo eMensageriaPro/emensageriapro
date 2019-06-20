@@ -63,11 +63,13 @@ class s2205evtAltCadastralList(generics.ListCreateAPIView):
     
     queryset = s2205evtAltCadastral.objects.all()
     serializer_class = s2205evtAltCadastralSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2205evtAltCadastralDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205evtAltCadastral.objects.all()
     serializer_class = s2205evtAltCadastralSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

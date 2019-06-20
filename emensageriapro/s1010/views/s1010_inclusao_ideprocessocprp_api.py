@@ -63,7 +63,8 @@ class s1010inclusaoideProcessoCPRPList(generics.ListCreateAPIView):
     
     queryset = s1010inclusaoideProcessoCPRP.objects.all()
     serializer_class = s1010inclusaoideProcessoCPRPSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1010inclusaoideProcessoCPRPDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1010inclusaoideProcessoCPRP.objects.all()
     serializer_class = s1010inclusaoideProcessoCPRPSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

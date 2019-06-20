@@ -63,7 +63,8 @@ class s2230emitenteList(generics.ListCreateAPIView):
     
     queryset = s2230emitente.objects.all()
     serializer_class = s2230emitenteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2230emitenteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2230emitente.objects.all()
     serializer_class = s2230emitenteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

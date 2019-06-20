@@ -63,7 +63,8 @@ class s5011ideLotacaoList(generics.ListCreateAPIView):
     
     queryset = s5011ideLotacao.objects.all()
     serializer_class = s5011ideLotacaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5011ideLotacaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011ideLotacao.objects.all()
     serializer_class = s5011ideLotacaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

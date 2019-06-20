@@ -63,11 +63,13 @@ class s2230evtAfastTempList(generics.ListCreateAPIView):
     
     queryset = s2230evtAfastTemp.objects.all()
     serializer_class = s2230evtAfastTempSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2230evtAfastTempDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2230evtAfastTemp.objects.all()
     serializer_class = s2230evtAfastTempSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

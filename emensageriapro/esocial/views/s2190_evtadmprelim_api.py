@@ -63,11 +63,13 @@ class s2190evtAdmPrelimList(generics.ListCreateAPIView):
     
     queryset = s2190evtAdmPrelim.objects.all()
     serializer_class = s2190evtAdmPrelimSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2190evtAdmPrelimDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2190evtAdmPrelim.objects.all()
     serializer_class = s2190evtAdmPrelimSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

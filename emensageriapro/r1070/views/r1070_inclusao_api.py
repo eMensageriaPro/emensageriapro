@@ -63,7 +63,8 @@ class r1070inclusaoList(generics.ListCreateAPIView):
     
     queryset = r1070inclusao.objects.all()
     serializer_class = r1070inclusaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r1070inclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1070inclusao.objects.all()
     serializer_class = r1070inclusaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

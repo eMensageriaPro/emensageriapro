@@ -63,7 +63,8 @@ class s1210detPgtoAntList(generics.ListCreateAPIView):
     
     queryset = s1210detPgtoAnt.objects.all()
     serializer_class = s1210detPgtoAntSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1210detPgtoAntDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1210detPgtoAnt.objects.all()
     serializer_class = s1210detPgtoAntSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

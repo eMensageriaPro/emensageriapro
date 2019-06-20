@@ -63,11 +63,13 @@ class r1070evtTabProcessoList(generics.ListCreateAPIView):
     
     queryset = r1070evtTabProcesso.objects.all()
     serializer_class = r1070evtTabProcessoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r1070evtTabProcessoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1070evtTabProcesso.objects.all()
     serializer_class = r1070evtTabProcessoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

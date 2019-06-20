@@ -63,7 +63,8 @@ class r1000inclusaoinfoEFRList(generics.ListCreateAPIView):
     
     queryset = r1000inclusaoinfoEFR.objects.all()
     serializer_class = r1000inclusaoinfoEFRSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r1000inclusaoinfoEFRDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1000inclusaoinfoEFR.objects.all()
     serializer_class = r1000inclusaoinfoEFRSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

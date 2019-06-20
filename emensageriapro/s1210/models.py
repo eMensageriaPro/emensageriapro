@@ -114,15 +114,8 @@ class s1210depsSerializer(ModelSerializer):
     class Meta:
     
         model = s1210deps
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoAnt(SoftDeletionModel):
@@ -174,15 +167,8 @@ class s1210detPgtoAntSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoAnt
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
@@ -237,15 +223,8 @@ class s1210detPgtoAntinfoPgtoAntSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoAntinfoPgtoAnt
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoBenPr(SoftDeletionModel):
@@ -306,15 +285,8 @@ class s1210detPgtoBenPrSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoBenPr
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
@@ -375,15 +347,8 @@ class s1210detPgtoBenPrinfoPgtoParcSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoBenPrinfoPgtoParc
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
@@ -444,15 +409,8 @@ class s1210detPgtoBenPrretPgtoTotSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoBenPrretPgtoTot
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFer(SoftDeletionModel):
@@ -514,15 +472,8 @@ class s1210detPgtoFerSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFer
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
@@ -583,15 +534,8 @@ class s1210detPgtoFerdetRubrFerSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFerdetRubrFer
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFerpenAlim(SoftDeletionModel):
@@ -650,15 +594,8 @@ class s1210detPgtoFerpenAlimSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFerpenAlim
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFl(SoftDeletionModel):
@@ -718,15 +655,8 @@ class s1210detPgtoFlSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFl
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
@@ -788,15 +718,8 @@ class s1210detPgtoFlinfoPgtoParcSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFlinfoPgtoParc
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFlpenAlim(SoftDeletionModel):
@@ -855,15 +778,8 @@ class s1210detPgtoFlpenAlimSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFlpenAlim
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
@@ -924,15 +840,8 @@ class s1210detPgtoFlretPgtoTotSerializer(ModelSerializer):
     class Meta:
     
         model = s1210detPgtoFlretPgtoTot
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210idePgtoExt(SoftDeletionModel):
@@ -998,15 +907,8 @@ class s1210idePgtoExtSerializer(ModelSerializer):
     class Meta:
     
         model = s1210idePgtoExt
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s1210infoPgto(SoftDeletionModel):
@@ -1064,12 +966,5 @@ class s1210infoPgtoSerializer(ModelSerializer):
     class Meta:
     
         model = s1210infoPgto
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')

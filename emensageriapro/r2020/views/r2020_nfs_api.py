@@ -63,7 +63,8 @@ class r2020nfsList(generics.ListCreateAPIView):
     
     queryset = r2020nfs.objects.all()
     serializer_class = r2020nfsSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r2020nfsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2020nfs.objects.all()
     serializer_class = r2020nfsSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

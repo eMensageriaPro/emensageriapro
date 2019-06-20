@@ -63,7 +63,8 @@ class r5011RRecRepADList(generics.ListCreateAPIView):
     
     queryset = r5011RRecRepAD.objects.all()
     serializer_class = r5011RRecRepADSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r5011RRecRepADDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5011RRecRepAD.objects.all()
     serializer_class = r5011RRecRepADSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

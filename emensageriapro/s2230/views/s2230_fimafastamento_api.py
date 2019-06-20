@@ -63,7 +63,8 @@ class s2230fimAfastamentoList(generics.ListCreateAPIView):
     
     queryset = s2230fimAfastamento.objects.all()
     serializer_class = s2230fimAfastamentoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2230fimAfastamentoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2230fimAfastamento.objects.all()
     serializer_class = s2230fimAfastamentoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

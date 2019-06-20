@@ -63,7 +63,8 @@ class r4010rendIsentoList(generics.ListCreateAPIView):
     
     queryset = r4010rendIsento.objects.all()
     serializer_class = r4010rendIsentoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r4010rendIsentoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4010rendIsento.objects.all()
     serializer_class = r4010rendIsentoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

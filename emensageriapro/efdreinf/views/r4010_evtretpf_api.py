@@ -63,11 +63,13 @@ class r4010evtRetPFList(generics.ListCreateAPIView):
     
     queryset = r4010evtRetPF.objects.all()
     serializer_class = r4010evtRetPFSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r4010evtRetPFDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4010evtRetPF.objects.all()
     serializer_class = r4010evtRetPFSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

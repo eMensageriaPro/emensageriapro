@@ -63,7 +63,8 @@ class s2200infoDeficienciaList(generics.ListCreateAPIView):
     
     queryset = s2200infoDeficiencia.objects.all()
     serializer_class = s2200infoDeficienciaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2200infoDeficienciaDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2200infoDeficiencia.objects.all()
     serializer_class = s2200infoDeficienciaSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

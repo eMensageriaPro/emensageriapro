@@ -63,11 +63,13 @@ class s1210evtPgtosList(generics.ListCreateAPIView):
     
     queryset = s1210evtPgtos.objects.all()
     serializer_class = s1210evtPgtosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1210evtPgtosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1210evtPgtos.objects.all()
     serializer_class = s1210evtPgtosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

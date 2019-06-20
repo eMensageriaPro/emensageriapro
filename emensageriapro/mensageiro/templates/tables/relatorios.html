@@ -7,7 +7,7 @@
             {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="80px">Ações</th>
+            <th width="240px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -22,26 +22,26 @@
             {% if not output %}
             <td>
                 <div class="btn-group">
-                    <a href="{% url 'relatorios_imprimir' pk=a.id output='html' %}">
-    <span class="btn btn-primary">
-        <i class="fa fa-fw fa-print"></i>
-    </span>
-</a>
-<a href="{% url 'relatorios_imprimir' pk=a.id output='pdf' %}">
-    <span class="btn btn-primary">
-        <i class="fa fa-file-pdf-o"></i>
-    </span>
-</a>
-<a href="{% url 'relatorios_imprimir' pk=a.id output='xls' %}">
-    <span class="btn btn-primary">
-        <i class="fa fa-file-excel-o"></i>
-    </span>
-</a>
-<a href="{% url 'relatorios_imprimir' pk=a.id output='txt' %}">
-    <span class="btn btn-primary">
-        <i class="fa fa-file-text-o"></i>
-    </span>
-</a>
+                    <a href="{% url 'relatorios_imprimir' pk=a.id output='html' %}" target="_blank">
+                        <span class="btn btn-primary" title="Imprimir">
+                            <i class="fa fa-fw fa-print"></i>
+                        </span>
+                    </a>
+                    <a href="{% url 'relatorios_imprimir' pk=a.id output='pdf' %}" target="_blank">
+                        <span class="btn btn-primary" title="Exportar para PDF">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </span>
+                    </a>
+                    <a href="{% url 'relatorios_imprimir' pk=a.id output='xls' %}" target="_blank">
+                        <span class="btn btn-primary" title="Exportar para Excel">
+                            <i class="fa fa-file-excel-o"></i>
+                        </span>
+                    </a>
+                    <a href="{% url 'relatorios_imprimir' pk=a.id output='csv' %}" target="_blank">
+                        <span class="btn btn-primary" title="Exportar em formato CSV">
+                            <i class="fa fa-file-text-o"></i>
+                        </span>
+                    </a>
                     
                         {% if perms.mensageiro.change_Relatorios or perms.mensageiro.add_Relatorios %}
                     

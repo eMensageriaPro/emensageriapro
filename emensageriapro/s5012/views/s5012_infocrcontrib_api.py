@@ -63,7 +63,8 @@ class s5012infoCRContribList(generics.ListCreateAPIView):
     
     queryset = s5012infoCRContrib.objects.all()
     serializer_class = s5012infoCRContribSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5012infoCRContribDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5012infoCRContrib.objects.all()
     serializer_class = s5012infoCRContribSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

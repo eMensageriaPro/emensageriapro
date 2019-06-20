@@ -63,7 +63,8 @@ class s2210ideLocalAcidList(generics.ListCreateAPIView):
     
     queryset = s2210ideLocalAcid.objects.all()
     serializer_class = s2210ideLocalAcidSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2210ideLocalAcidDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2210ideLocalAcid.objects.all()
     serializer_class = s2210ideLocalAcidSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

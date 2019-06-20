@@ -164,18 +164,31 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
 
 class s1000evtInfoEmpregadorSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1000evtInfoEmpregador
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1005evtTabEstab(SoftDeletionModel):
@@ -262,18 +275,31 @@ class s1005evtTabEstab(SoftDeletionModel):
 
 class s1005evtTabEstabSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1005evtTabEstab
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1010evtTabRubrica(SoftDeletionModel):
@@ -360,18 +386,31 @@ class s1010evtTabRubrica(SoftDeletionModel):
 
 class s1010evtTabRubricaSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1010evtTabRubrica
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1020evtTabLotacao(SoftDeletionModel):
@@ -458,18 +497,31 @@ class s1020evtTabLotacao(SoftDeletionModel):
 
 class s1020evtTabLotacaoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1020evtTabLotacao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1030evtTabCargo(SoftDeletionModel):
@@ -556,18 +608,31 @@ class s1030evtTabCargo(SoftDeletionModel):
 
 class s1030evtTabCargoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1030evtTabCargo
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1035evtTabCarreira(SoftDeletionModel):
@@ -654,18 +719,31 @@ class s1035evtTabCarreira(SoftDeletionModel):
 
 class s1035evtTabCarreiraSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1035evtTabCarreira
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1040evtTabFuncao(SoftDeletionModel):
@@ -752,18 +830,31 @@ class s1040evtTabFuncao(SoftDeletionModel):
 
 class s1040evtTabFuncaoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1040evtTabFuncao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1050evtTabHorTur(SoftDeletionModel):
@@ -850,18 +941,31 @@ class s1050evtTabHorTur(SoftDeletionModel):
 
 class s1050evtTabHorTurSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1050evtTabHorTur
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1060evtTabAmbiente(SoftDeletionModel):
@@ -948,18 +1052,31 @@ class s1060evtTabAmbiente(SoftDeletionModel):
 
 class s1060evtTabAmbienteSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1060evtTabAmbiente
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1070evtTabProcesso(SoftDeletionModel):
@@ -1046,18 +1163,31 @@ class s1070evtTabProcesso(SoftDeletionModel):
 
 class s1070evtTabProcessoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1070evtTabProcesso
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1080evtTabOperPort(SoftDeletionModel):
@@ -1144,18 +1274,31 @@ class s1080evtTabOperPort(SoftDeletionModel):
 
 class s1080evtTabOperPortSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1080evtTabOperPort
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1200evtRemun(SoftDeletionModel):
@@ -1253,18 +1396,31 @@ class s1200evtRemun(SoftDeletionModel):
 
 class s1200evtRemunSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1200evtRemun
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1202evtRmnRPPS(SoftDeletionModel):
@@ -1363,18 +1519,31 @@ class s1202evtRmnRPPS(SoftDeletionModel):
 
 class s1202evtRmnRPPSSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1202evtRmnRPPS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1207evtBenPrRP(SoftDeletionModel):
@@ -1471,18 +1640,31 @@ class s1207evtBenPrRP(SoftDeletionModel):
 
 class s1207evtBenPrRPSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1207evtBenPrRP
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1210evtPgtos(SoftDeletionModel):
@@ -1579,18 +1761,31 @@ class s1210evtPgtos(SoftDeletionModel):
 
 class s1210evtPgtosSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1210evtPgtos
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1250evtAqProd(SoftDeletionModel):
@@ -1690,18 +1885,31 @@ class s1250evtAqProd(SoftDeletionModel):
 
 class s1250evtAqProdSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1250evtAqProd
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1260evtComProd(SoftDeletionModel):
@@ -1798,18 +2006,31 @@ class s1260evtComProd(SoftDeletionModel):
 
 class s1260evtComProdSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1260evtComProd
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1270evtContratAvNP(SoftDeletionModel):
@@ -1903,18 +2124,31 @@ class s1270evtContratAvNP(SoftDeletionModel):
 
 class s1270evtContratAvNPSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1270evtContratAvNP
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1280evtInfoComplPer(SoftDeletionModel):
@@ -2008,18 +2242,31 @@ class s1280evtInfoComplPer(SoftDeletionModel):
 
 class s1280evtInfoComplPerSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1280evtInfoComplPer
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1295evtTotConting(SoftDeletionModel):
@@ -2109,18 +2356,31 @@ class s1295evtTotConting(SoftDeletionModel):
 
 class s1295evtTotContingSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1295evtTotConting
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1298evtReabreEvPer(SoftDeletionModel):
@@ -2210,18 +2470,31 @@ class s1298evtReabreEvPer(SoftDeletionModel):
 
 class s1298evtReabreEvPerSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1298evtReabreEvPer
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1299evtFechaEvPer(SoftDeletionModel):
@@ -2330,18 +2603,31 @@ class s1299evtFechaEvPer(SoftDeletionModel):
 
 class s1299evtFechaEvPerSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1299evtFechaEvPer
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s1300evtContrSindPatr(SoftDeletionModel):
@@ -2435,18 +2721,31 @@ class s1300evtContrSindPatr(SoftDeletionModel):
 
 class s1300evtContrSindPatrSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s1300evtContrSindPatr
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2190evtAdmPrelim(SoftDeletionModel):
@@ -2539,18 +2838,31 @@ class s2190evtAdmPrelim(SoftDeletionModel):
 
 class s2190evtAdmPrelimSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2190evtAdmPrelim
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2200evtAdmissao(SoftDeletionModel):
@@ -2706,18 +3018,31 @@ class s2200evtAdmissao(SoftDeletionModel):
 
 class s2200evtAdmissaoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2200evtAdmissao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2205evtAltCadastral(SoftDeletionModel):
@@ -2839,18 +3164,31 @@ class s2205evtAltCadastral(SoftDeletionModel):
 
 class s2205evtAltCadastralSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2205evtAltCadastral
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2206evtAltContratual(SoftDeletionModel):
@@ -2974,18 +3312,31 @@ class s2206evtAltContratual(SoftDeletionModel):
 
 class s2206evtAltContratualSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2206evtAltContratual
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2210evtCAT(SoftDeletionModel):
@@ -3128,18 +3479,31 @@ class s2210evtCAT(SoftDeletionModel):
 
 class s2210evtCATSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2210evtCAT
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2220evtMonit(SoftDeletionModel):
@@ -3273,18 +3637,31 @@ class s2220evtMonit(SoftDeletionModel):
 
 class s2220evtMonitSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2220evtMonit
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2221evtToxic(SoftDeletionModel):
@@ -3389,18 +3766,31 @@ class s2221evtToxic(SoftDeletionModel):
 
 class s2221evtToxicSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2221evtToxic
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2230evtAfastTemp(SoftDeletionModel):
@@ -3494,18 +3884,31 @@ class s2230evtAfastTemp(SoftDeletionModel):
 
 class s2230evtAfastTempSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2230evtAfastTemp
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2231evtCessao(SoftDeletionModel):
@@ -3602,18 +4005,31 @@ class s2231evtCessao(SoftDeletionModel):
 
 class s2231evtCessaoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2231evtCessao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2240evtExpRisco(SoftDeletionModel):
@@ -3713,18 +4129,31 @@ class s2240evtExpRisco(SoftDeletionModel):
 
 class s2240evtExpRiscoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2240evtExpRisco
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2241evtInsApo(SoftDeletionModel):
@@ -3817,18 +4246,31 @@ class s2241evtInsApo(SoftDeletionModel):
 
 class s2241evtInsApoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2241evtInsApo
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2245evtTreiCap(SoftDeletionModel):
@@ -3936,18 +4378,31 @@ class s2245evtTreiCap(SoftDeletionModel):
 
 class s2245evtTreiCapSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2245evtTreiCap
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2250evtAvPrevio(SoftDeletionModel):
@@ -4044,18 +4499,31 @@ class s2250evtAvPrevio(SoftDeletionModel):
 
 class s2250evtAvPrevioSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2250evtAvPrevio
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2260evtConvInterm(SoftDeletionModel):
@@ -4169,18 +4637,31 @@ class s2260evtConvInterm(SoftDeletionModel):
 
 class s2260evtConvIntermSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2260evtConvInterm
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2298evtReintegr(SoftDeletionModel):
@@ -4291,18 +4772,31 @@ class s2298evtReintegr(SoftDeletionModel):
 
 class s2298evtReintegrSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2298evtReintegr
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2299evtDeslig(SoftDeletionModel):
@@ -4420,18 +4914,31 @@ class s2299evtDeslig(SoftDeletionModel):
 
 class s2299evtDesligSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2299evtDeslig
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2300evtTSVInicio(SoftDeletionModel):
@@ -4560,18 +5067,31 @@ class s2300evtTSVInicio(SoftDeletionModel):
 
 class s2300evtTSVInicioSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2300evtTSVInicio
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2306evtTSVAltContr(SoftDeletionModel):
@@ -4670,18 +5190,31 @@ class s2306evtTSVAltContr(SoftDeletionModel):
 
 class s2306evtTSVAltContrSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2306evtTSVAltContr
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2399evtTSVTermino(SoftDeletionModel):
@@ -4783,18 +5316,31 @@ class s2399evtTSVTermino(SoftDeletionModel):
 
 class s2399evtTSVTerminoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2399evtTSVTermino
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2400evtCdBenefIn(SoftDeletionModel):
@@ -4914,18 +5460,31 @@ class s2400evtCdBenefIn(SoftDeletionModel):
 
 class s2400evtCdBenefInSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2400evtCdBenefIn
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2405evtCdBenefAlt(SoftDeletionModel):
@@ -5039,18 +5598,31 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
 
 class s2405evtCdBenefAltSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2405evtCdBenefAlt
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2410evtCdBenIn(SoftDeletionModel):
@@ -5168,18 +5740,31 @@ class s2410evtCdBenIn(SoftDeletionModel):
 
 class s2410evtCdBenInSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2410evtCdBenIn
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2416evtCdBenAlt(SoftDeletionModel):
@@ -5292,18 +5877,31 @@ class s2416evtCdBenAlt(SoftDeletionModel):
 
 class s2416evtCdBenAltSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2416evtCdBenAlt
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s2420evtCdBenTerm(SoftDeletionModel):
@@ -5403,18 +6001,31 @@ class s2420evtCdBenTerm(SoftDeletionModel):
 
 class s2420evtCdBenTermSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s2420evtCdBenTerm
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s3000evtExclusao(SoftDeletionModel):
@@ -5504,18 +6115,31 @@ class s3000evtExclusao(SoftDeletionModel):
 
 class s3000evtExclusaoSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s3000evtExclusao
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s5001evtBasesTrab(SoftDeletionModel):
@@ -5602,18 +6226,31 @@ class s5001evtBasesTrab(SoftDeletionModel):
 
 class s5001evtBasesTrabSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s5001evtBasesTrab
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s5002evtIrrfBenef(SoftDeletionModel):
@@ -5697,18 +6334,31 @@ class s5002evtIrrfBenef(SoftDeletionModel):
 
 class s5002evtIrrfBenefSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s5002evtIrrfBenef
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s5003evtBasesFGTS(SoftDeletionModel):
@@ -5794,18 +6444,31 @@ class s5003evtBasesFGTS(SoftDeletionModel):
 
 class s5003evtBasesFGTSSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s5003evtBasesFGTS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s5011evtCS(SoftDeletionModel):
@@ -5895,18 +6558,31 @@ class s5011evtCS(SoftDeletionModel):
 
 class s5011evtCSSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s5011evtCS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s5012evtIrrf(SoftDeletionModel):
@@ -5990,18 +6666,31 @@ class s5012evtIrrf(SoftDeletionModel):
 
 class s5012evtIrrfSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s5012evtIrrf
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')
 
 
 class s5013evtFGTS(SoftDeletionModel):
@@ -6085,15 +6774,28 @@ class s5013evtFGTS(SoftDeletionModel):
 
 class s5013evtFGTSSerializer(ModelSerializer):
 
+    from rest_framework import serializers
+    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
+    from constance import config
+
+    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
+    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
+    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
+    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
+    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
+    status = serializers.IntegerField(default=0, initial=0, read_only=True)
+
     class Meta:
     
         model = s5013evtFGTS
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'verproc',
+                            'tpamb', 'procemi',
+                            'versao', 'arquivo_original',
+                            'status', 'transmissor_lote_esocial',
+                            'retornos_eventos', 'ocorrencias',
+                            'validacao_precedencia', 'validacoes',
+                            'arquivo_original', 'arquivo',
+                            'criado_em', 'criado_por',
+                            'modificado_em', 'modificado_por',
+                            'excluido')

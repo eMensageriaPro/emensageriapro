@@ -63,11 +63,13 @@ class s5001evtBasesTrabList(generics.ListCreateAPIView):
     
     queryset = s5001evtBasesTrab.objects.all()
     serializer_class = s5001evtBasesTrabSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s5001evtBasesTrabDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5001evtBasesTrab.objects.all()
     serializer_class = s5001evtBasesTrabSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

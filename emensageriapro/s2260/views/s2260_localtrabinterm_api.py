@@ -63,7 +63,8 @@ class s2260localTrabIntermList(generics.ListCreateAPIView):
     
     queryset = s2260localTrabInterm.objects.all()
     serializer_class = s2260localTrabIntermSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2260localTrabIntermDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2260localTrabInterm.objects.all()
     serializer_class = s2260localTrabIntermSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

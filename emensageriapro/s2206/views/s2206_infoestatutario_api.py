@@ -63,7 +63,8 @@ class s2206infoEstatutarioList(generics.ListCreateAPIView):
     
     queryset = s2206infoEstatutario.objects.all()
     serializer_class = s2206infoEstatutarioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2206infoEstatutarioDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2206infoEstatutario.objects.all()
     serializer_class = s2206infoEstatutarioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

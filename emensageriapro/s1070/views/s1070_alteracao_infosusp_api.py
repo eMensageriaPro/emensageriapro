@@ -63,7 +63,8 @@ class s1070alteracaoinfoSuspList(generics.ListCreateAPIView):
     
     queryset = s1070alteracaoinfoSusp.objects.all()
     serializer_class = s1070alteracaoinfoSuspSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1070alteracaoinfoSuspDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1070alteracaoinfoSusp.objects.all()
     serializer_class = s1070alteracaoinfoSuspSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

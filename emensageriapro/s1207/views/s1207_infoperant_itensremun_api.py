@@ -63,7 +63,8 @@ class s1207infoPerAntitensRemunList(generics.ListCreateAPIView):
     
     queryset = s1207infoPerAntitensRemun.objects.all()
     serializer_class = s1207infoPerAntitensRemunSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1207infoPerAntitensRemunDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1207infoPerAntitensRemun.objects.all()
     serializer_class = s1207infoPerAntitensRemunSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

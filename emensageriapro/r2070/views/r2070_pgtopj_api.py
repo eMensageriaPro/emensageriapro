@@ -63,7 +63,8 @@ class r2070pgtoPJList(generics.ListCreateAPIView):
     
     queryset = r2070pgtoPJ.objects.all()
     serializer_class = r2070pgtoPJSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r2070pgtoPJDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2070pgtoPJ.objects.all()
     serializer_class = r2070pgtoPJSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

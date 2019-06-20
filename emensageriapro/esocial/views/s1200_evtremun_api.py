@@ -63,11 +63,13 @@ class s1200evtRemunList(generics.ListCreateAPIView):
     
     queryset = s1200evtRemun.objects.all()
     serializer_class = s1200evtRemunSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1200evtRemunDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1200evtRemun.objects.all()
     serializer_class = s1200evtRemunSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

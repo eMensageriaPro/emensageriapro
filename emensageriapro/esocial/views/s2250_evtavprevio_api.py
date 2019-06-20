@@ -63,11 +63,13 @@ class s2250evtAvPrevioList(generics.ListCreateAPIView):
     
     queryset = s2250evtAvPrevio.objects.all()
     serializer_class = s2250evtAvPrevioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2250evtAvPrevioDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2250evtAvPrevio.objects.all()
     serializer_class = s2250evtAvPrevioSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

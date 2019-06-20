@@ -63,11 +63,13 @@ class r4040evtBenefNIdList(generics.ListCreateAPIView):
     
     queryset = r4040evtBenefNId.objects.all()
     serializer_class = r4040evtBenefNIdSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r4040evtBenefNIdDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4040evtBenefNId.objects.all()
     serializer_class = r4040evtBenefNIdSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

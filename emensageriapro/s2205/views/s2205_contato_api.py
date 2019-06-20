@@ -63,7 +63,8 @@ class s2205contatoList(generics.ListCreateAPIView):
     
     queryset = s2205contato.objects.all()
     serializer_class = s2205contatoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2205contatoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205contato.objects.all()
     serializer_class = s2205contatoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

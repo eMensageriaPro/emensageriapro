@@ -63,11 +63,13 @@ class RetornosEventosHorariosList(generics.ListCreateAPIView):
     
     queryset = RetornosEventosHorarios.objects.all()
     serializer_class = RetornosEventosHorariosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class RetornosEventosHorariosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = RetornosEventosHorarios.objects.all()
     serializer_class = RetornosEventosHorariosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

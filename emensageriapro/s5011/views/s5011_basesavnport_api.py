@@ -63,7 +63,8 @@ class s5011basesAvNPortList(generics.ListCreateAPIView):
     
     queryset = s5011basesAvNPort.objects.all()
     serializer_class = s5011basesAvNPortSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5011basesAvNPortDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011basesAvNPort.objects.all()
     serializer_class = s5011basesAvNPortSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

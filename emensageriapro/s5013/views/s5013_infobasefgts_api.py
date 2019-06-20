@@ -63,7 +63,8 @@ class s5013infoBaseFGTSList(generics.ListCreateAPIView):
     
     queryset = s5013infoBaseFGTS.objects.all()
     serializer_class = s5013infoBaseFGTSSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5013infoBaseFGTSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5013infoBaseFGTS.objects.all()
     serializer_class = s5013infoBaseFGTSSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

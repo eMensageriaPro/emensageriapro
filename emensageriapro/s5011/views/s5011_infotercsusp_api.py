@@ -63,7 +63,8 @@ class s5011infoTercSuspList(generics.ListCreateAPIView):
     
     queryset = s5011infoTercSusp.objects.all()
     serializer_class = s5011infoTercSuspSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5011infoTercSuspDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011infoTercSusp.objects.all()
     serializer_class = s5011infoTercSuspSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

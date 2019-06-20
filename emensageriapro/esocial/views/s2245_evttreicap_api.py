@@ -63,11 +63,13 @@ class s2245evtTreiCapList(generics.ListCreateAPIView):
     
     queryset = s2245evtTreiCap.objects.all()
     serializer_class = s2245evtTreiCapSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2245evtTreiCapDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2245evtTreiCap.objects.all()
     serializer_class = s2245evtTreiCapSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

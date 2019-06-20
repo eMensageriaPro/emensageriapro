@@ -63,7 +63,8 @@ class s1202infoPerAntidePeriodoList(generics.ListCreateAPIView):
     
     queryset = s1202infoPerAntidePeriodo.objects.all()
     serializer_class = s1202infoPerAntidePeriodoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1202infoPerAntidePeriodoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202infoPerAntidePeriodo.objects.all()
     serializer_class = s1202infoPerAntidePeriodoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

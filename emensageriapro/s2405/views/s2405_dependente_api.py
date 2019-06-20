@@ -63,7 +63,8 @@ class s2405dependenteList(generics.ListCreateAPIView):
     
     queryset = s2405dependente.objects.all()
     serializer_class = s2405dependenteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2405dependenteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2405dependente.objects.all()
     serializer_class = s2405dependenteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

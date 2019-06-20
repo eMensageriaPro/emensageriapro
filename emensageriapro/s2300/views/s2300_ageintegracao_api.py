@@ -63,7 +63,8 @@ class s2300ageIntegracaoList(generics.ListCreateAPIView):
     
     queryset = s2300ageIntegracao.objects.all()
     serializer_class = s2300ageIntegracaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2300ageIntegracaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300ageIntegracao.objects.all()
     serializer_class = s2300ageIntegracaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

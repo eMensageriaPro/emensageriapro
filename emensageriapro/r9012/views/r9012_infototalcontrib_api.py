@@ -63,7 +63,8 @@ class r9012infoTotalContribList(generics.ListCreateAPIView):
     
     queryset = r9012infoTotalContrib.objects.all()
     serializer_class = r9012infoTotalContribSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r9012infoTotalContribDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9012infoTotalContrib.objects.all()
     serializer_class = r9012infoTotalContribSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

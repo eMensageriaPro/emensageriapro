@@ -63,7 +63,8 @@ class s1020alteracaoinfoProcJudTerceirosList(generics.ListCreateAPIView):
     
     queryset = s1020alteracaoinfoProcJudTerceiros.objects.all()
     serializer_class = s1020alteracaoinfoProcJudTerceirosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1020alteracaoinfoProcJudTerceirosDetail(generics.RetrieveUpdateDestroyAPI
     
     queryset = s1020alteracaoinfoProcJudTerceiros.objects.all()
     serializer_class = s1020alteracaoinfoProcJudTerceirosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class s3000ideTrabalhadorList(generics.ListCreateAPIView):
     
     queryset = s3000ideTrabalhador.objects.all()
     serializer_class = s3000ideTrabalhadorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s3000ideTrabalhadorDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s3000ideTrabalhador.objects.all()
     serializer_class = s3000ideTrabalhadorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

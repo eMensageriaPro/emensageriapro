@@ -63,11 +63,13 @@ class s5012evtIrrfList(generics.ListCreateAPIView):
     
     queryset = s5012evtIrrf.objects.all()
     serializer_class = s5012evtIrrfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s5012evtIrrfDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5012evtIrrf.objects.all()
     serializer_class = s5012evtIrrfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

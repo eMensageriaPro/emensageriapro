@@ -63,7 +63,8 @@ class s2230infoMandSindList(generics.ListCreateAPIView):
     
     queryset = s2230infoMandSind.objects.all()
     serializer_class = s2230infoMandSindSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2230infoMandSindDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2230infoMandSind.objects.all()
     serializer_class = s2230infoMandSindSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

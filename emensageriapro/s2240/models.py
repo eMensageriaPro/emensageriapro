@@ -114,15 +114,8 @@ class s2240altExpRiscoSerializer(ModelSerializer):
     class Meta:
     
         model = s2240altExpRisco
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240altExpRiscoepc(SoftDeletionModel):
@@ -175,15 +168,8 @@ class s2240altExpRiscoepcSerializer(ModelSerializer):
     class Meta:
     
         model = s2240altExpRiscoepc
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240altExpRiscoepi(SoftDeletionModel):
@@ -251,15 +237,8 @@ class s2240altExpRiscoepiSerializer(ModelSerializer):
     class Meta:
     
         model = s2240altExpRiscoepi
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240altExpRiscofatRisco(SoftDeletionModel):
@@ -319,15 +298,8 @@ class s2240altExpRiscofatRiscoSerializer(ModelSerializer):
     class Meta:
     
         model = s2240altExpRiscofatRisco
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240altExpRiscoinfoAmb(SoftDeletionModel):
@@ -382,15 +354,8 @@ class s2240altExpRiscoinfoAmbSerializer(ModelSerializer):
     class Meta:
     
         model = s2240altExpRiscoinfoAmb
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240fimExpRisco(SoftDeletionModel):
@@ -442,15 +407,8 @@ class s2240fimExpRiscoSerializer(ModelSerializer):
     class Meta:
     
         model = s2240fimExpRisco
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
@@ -502,15 +460,8 @@ class s2240fimExpRiscoinfoAmbSerializer(ModelSerializer):
     class Meta:
     
         model = s2240fimExpRiscoinfoAmb
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240fimExpRiscorespReg(SoftDeletionModel):
@@ -570,15 +521,8 @@ class s2240fimExpRiscorespRegSerializer(ModelSerializer):
     class Meta:
     
         model = s2240fimExpRiscorespReg
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
@@ -630,15 +574,8 @@ class s2240iniExpRiscoativPericInsalSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscoativPericInsal
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscoepc(SoftDeletionModel):
@@ -694,15 +631,8 @@ class s2240iniExpRiscoepcSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscoepc
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscoepi(SoftDeletionModel):
@@ -774,15 +704,8 @@ class s2240iniExpRiscoepiSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscoepi
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscofatRisco(SoftDeletionModel):
@@ -852,15 +775,8 @@ class s2240iniExpRiscofatRiscoSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscofatRisco
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
@@ -912,15 +828,8 @@ class s2240iniExpRiscoinfoAmbSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscoinfoAmb
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscoobs(SoftDeletionModel):
@@ -972,15 +881,8 @@ class s2240iniExpRiscoobsSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscoobs
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
 
 class s2240iniExpRiscorespReg(SoftDeletionModel):
@@ -1048,12 +950,5 @@ class s2240iniExpRiscorespRegSerializer(ModelSerializer):
     class Meta:
     
         model = s2240iniExpRiscorespReg
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')

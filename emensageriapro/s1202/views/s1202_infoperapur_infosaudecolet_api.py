@@ -63,7 +63,8 @@ class s1202infoPerApurinfoSaudeColetList(generics.ListCreateAPIView):
     
     queryset = s1202infoPerApurinfoSaudeColet.objects.all()
     serializer_class = s1202infoPerApurinfoSaudeColetSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1202infoPerApurinfoSaudeColetDetail(generics.RetrieveUpdateDestroyAPIView
     
     queryset = s1202infoPerApurinfoSaudeColet.objects.all()
     serializer_class = s1202infoPerApurinfoSaudeColetSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

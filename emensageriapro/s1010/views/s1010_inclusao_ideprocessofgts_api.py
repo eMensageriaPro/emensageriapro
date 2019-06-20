@@ -63,7 +63,8 @@ class s1010inclusaoideProcessoFGTSList(generics.ListCreateAPIView):
     
     queryset = s1010inclusaoideProcessoFGTS.objects.all()
     serializer_class = s1010inclusaoideProcessoFGTSSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1010inclusaoideProcessoFGTSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1010inclusaoideProcessoFGTS.objects.all()
     serializer_class = s1010inclusaoideProcessoFGTSSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class s5011infoSubstPatrOpPortList(generics.ListCreateAPIView):
     
     queryset = s5011infoSubstPatrOpPort.objects.all()
     serializer_class = s5011infoSubstPatrOpPortSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5011infoSubstPatrOpPortDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011infoSubstPatrOpPort.objects.all()
     serializer_class = s5011infoSubstPatrOpPortSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

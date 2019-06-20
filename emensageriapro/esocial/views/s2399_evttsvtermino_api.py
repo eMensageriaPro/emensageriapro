@@ -63,11 +63,13 @@ class s2399evtTSVTerminoList(generics.ListCreateAPIView):
     
     queryset = s2399evtTSVTermino.objects.all()
     serializer_class = s2399evtTSVTerminoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2399evtTSVTerminoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2399evtTSVTermino.objects.all()
     serializer_class = s2399evtTSVTerminoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class r9001RComlList(generics.ListCreateAPIView):
     
     queryset = r9001RComl.objects.all()
     serializer_class = r9001RComlSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r9001RComlDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9001RComl.objects.all()
     serializer_class = r9001RComlSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class s5001ideEstabLotList(generics.ListCreateAPIView):
     
     queryset = s5001ideEstabLot.objects.all()
     serializer_class = s5001ideEstabLotSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5001ideEstabLotDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5001ideEstabLot.objects.all()
     serializer_class = s5001ideEstabLotSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

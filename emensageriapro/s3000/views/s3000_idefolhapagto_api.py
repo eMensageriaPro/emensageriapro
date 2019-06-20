@@ -63,7 +63,8 @@ class s3000ideFolhaPagtoList(generics.ListCreateAPIView):
     
     queryset = s3000ideFolhaPagto.objects.all()
     serializer_class = s3000ideFolhaPagtoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s3000ideFolhaPagtoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s3000ideFolhaPagto.objects.all()
     serializer_class = s3000ideFolhaPagtoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

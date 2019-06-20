@@ -63,7 +63,8 @@ class s2241iniInsalPericfatRiscoList(generics.ListCreateAPIView):
     
     queryset = s2241iniInsalPericfatRisco.objects.all()
     serializer_class = s2241iniInsalPericfatRiscoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2241iniInsalPericfatRiscoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2241iniInsalPericfatRisco.objects.all()
     serializer_class = s2241iniInsalPericfatRiscoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

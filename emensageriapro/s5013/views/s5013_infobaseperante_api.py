@@ -63,7 +63,8 @@ class s5013infoBasePerAntEList(generics.ListCreateAPIView):
     
     queryset = s5013infoBasePerAntE.objects.all()
     serializer_class = s5013infoBasePerAntESerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5013infoBasePerAntEDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5013infoBasePerAntE.objects.all()
     serializer_class = s5013infoBasePerAntESerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

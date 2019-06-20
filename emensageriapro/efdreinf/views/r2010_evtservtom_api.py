@@ -63,11 +63,13 @@ class r2010evtServTomList(generics.ListCreateAPIView):
     
     queryset = r2010evtServTom.objects.all()
     serializer_class = r2010evtServTomSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r2010evtServTomDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2010evtServTom.objects.all()
     serializer_class = r2010evtServTomSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

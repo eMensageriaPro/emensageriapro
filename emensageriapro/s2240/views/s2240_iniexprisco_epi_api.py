@@ -63,7 +63,8 @@ class s2240iniExpRiscoepiList(generics.ListCreateAPIView):
     
     queryset = s2240iniExpRiscoepi.objects.all()
     serializer_class = s2240iniExpRiscoepiSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2240iniExpRiscoepiDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2240iniExpRiscoepi.objects.all()
     serializer_class = s2240iniExpRiscoepiSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

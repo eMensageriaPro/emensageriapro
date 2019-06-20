@@ -63,7 +63,8 @@ class s2399detOperList(generics.ListCreateAPIView):
     
     queryset = s2399detOper.objects.all()
     serializer_class = s2399detOperSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2399detOperDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2399detOper.objects.all()
     serializer_class = s2399detOperSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

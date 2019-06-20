@@ -63,7 +63,8 @@ class r4020FCIList(generics.ListCreateAPIView):
     
     queryset = r4020FCI.objects.all()
     serializer_class = r4020FCISerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r4020FCIDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4020FCI.objects.all()
     serializer_class = r4020FCISerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

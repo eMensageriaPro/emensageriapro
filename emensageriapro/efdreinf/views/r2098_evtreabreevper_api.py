@@ -63,11 +63,13 @@ class r2098evtReabreEvPerList(generics.ListCreateAPIView):
     
     queryset = r2098evtReabreEvPer.objects.all()
     serializer_class = r2098evtReabreEvPerSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class r2098evtReabreEvPerDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2098evtReabreEvPer.objects.all()
     serializer_class = r2098evtReabreEvPerSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

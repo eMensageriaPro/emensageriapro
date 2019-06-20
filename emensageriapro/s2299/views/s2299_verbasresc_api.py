@@ -63,7 +63,8 @@ class s2299verbasRescList(generics.ListCreateAPIView):
     
     queryset = s2299verbasResc.objects.all()
     serializer_class = s2299verbasRescSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2299verbasRescDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2299verbasResc.objects.all()
     serializer_class = s2299verbasRescSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

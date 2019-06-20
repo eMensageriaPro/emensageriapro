@@ -63,7 +63,8 @@ class s2231fimCessaoList(generics.ListCreateAPIView):
     
     queryset = s2231fimCessao.objects.all()
     serializer_class = s2231fimCessaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2231fimCessaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2231fimCessao.objects.all()
     serializer_class = s2231fimCessaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

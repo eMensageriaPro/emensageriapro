@@ -63,11 +63,13 @@ class RelatoriosList(generics.ListCreateAPIView):
     
     queryset = Relatorios.objects.all()
     serializer_class = RelatoriosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class RelatoriosDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = Relatorios.objects.all()
     serializer_class = RelatoriosSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

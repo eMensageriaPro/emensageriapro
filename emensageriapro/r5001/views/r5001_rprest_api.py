@@ -63,7 +63,8 @@ class r5001RPrestList(generics.ListCreateAPIView):
     
     queryset = r5001RPrest.objects.all()
     serializer_class = r5001RPrestSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r5001RPrestDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5001RPrest.objects.all()
     serializer_class = r5001RPrestSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

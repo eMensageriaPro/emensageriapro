@@ -63,7 +63,8 @@ class s1000alteracaodadosIsencaoList(generics.ListCreateAPIView):
     
     queryset = s1000alteracaodadosIsencao.objects.all()
     serializer_class = s1000alteracaodadosIsencaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1000alteracaodadosIsencaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1000alteracaodadosIsencao.objects.all()
     serializer_class = s1000alteracaodadosIsencaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

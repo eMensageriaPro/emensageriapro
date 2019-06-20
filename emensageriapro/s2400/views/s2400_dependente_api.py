@@ -63,7 +63,8 @@ class s2400dependenteList(generics.ListCreateAPIView):
     
     queryset = s2400dependente.objects.all()
     serializer_class = s2400dependenteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2400dependenteDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2400dependente.objects.all()
     serializer_class = s2400dependenteSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

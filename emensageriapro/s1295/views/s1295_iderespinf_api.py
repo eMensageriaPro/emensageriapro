@@ -63,7 +63,8 @@ class s1295ideRespInfList(generics.ListCreateAPIView):
     
     queryset = s1295ideRespInf.objects.all()
     serializer_class = s1295ideRespInfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1295ideRespInfDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1295ideRespInf.objects.all()
     serializer_class = s1295ideRespInfSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

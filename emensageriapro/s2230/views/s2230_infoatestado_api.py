@@ -63,7 +63,8 @@ class s2230infoAtestadoList(generics.ListCreateAPIView):
     
     queryset = s2230infoAtestado.objects.all()
     serializer_class = s2230infoAtestadoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2230infoAtestadoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2230infoAtestado.objects.all()
     serializer_class = s2230infoAtestadoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

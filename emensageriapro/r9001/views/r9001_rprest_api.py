@@ -63,7 +63,8 @@ class r9001RPrestList(generics.ListCreateAPIView):
     
     queryset = r9001RPrest.objects.all()
     serializer_class = r9001RPrestSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r9001RPrestDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9001RPrest.objects.all()
     serializer_class = r9001RPrestSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

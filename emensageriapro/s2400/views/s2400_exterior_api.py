@@ -63,7 +63,8 @@ class s2400exteriorList(generics.ListCreateAPIView):
     
     queryset = s2400exterior.objects.all()
     serializer_class = s2400exteriorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2400exteriorDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2400exterior.objects.all()
     serializer_class = s2400exteriorSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

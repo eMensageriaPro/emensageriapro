@@ -63,7 +63,8 @@ class s2300terminoList(generics.ListCreateAPIView):
     
     queryset = s2300termino.objects.all()
     serializer_class = s2300terminoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2300terminoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300termino.objects.all()
     serializer_class = s2300terminoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

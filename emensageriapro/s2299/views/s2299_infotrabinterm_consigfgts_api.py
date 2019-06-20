@@ -63,7 +63,8 @@ class s2299infoTrabIntermconsigFGTSList(generics.ListCreateAPIView):
     
     queryset = s2299infoTrabIntermconsigFGTS.objects.all()
     serializer_class = s2299infoTrabIntermconsigFGTSSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2299infoTrabIntermconsigFGTSDetail(generics.RetrieveUpdateDestroyAPIView)
     
     queryset = s2299infoTrabIntermconsigFGTS.objects.all()
     serializer_class = s2299infoTrabIntermconsigFGTSSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

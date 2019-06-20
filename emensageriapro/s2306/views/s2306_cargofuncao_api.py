@@ -63,7 +63,8 @@ class s2306cargoFuncaoList(generics.ListCreateAPIView):
     
     queryset = s2306cargoFuncao.objects.all()
     serializer_class = s2306cargoFuncaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2306cargoFuncaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2306cargoFuncao.objects.all()
     serializer_class = s2306cargoFuncaoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

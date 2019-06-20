@@ -63,7 +63,8 @@ class r1070alteracaodadosProcJudList(generics.ListCreateAPIView):
     
     queryset = r1070alteracaodadosProcJud.objects.all()
     serializer_class = r1070alteracaodadosProcJudSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r1070alteracaodadosProcJudDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1070alteracaodadosProcJud.objects.all()
     serializer_class = r1070alteracaodadosProcJudSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

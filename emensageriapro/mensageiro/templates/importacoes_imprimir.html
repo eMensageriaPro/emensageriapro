@@ -1,1 +1,144 @@
-{% load templatetags %}<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style>@page { size: A4 landscape; margin: 1cm; }</style></head><body><font size="20px">Importação de Arquivos</font><br>Geradoem<strong>{{ data|date:"SHORT_DATE_FORMAT" }}</strong>por<strong>{{ usuario.nome }}</strong><br><br>{% for arquivo in importacao_arquivos_lista %}<table border="0.5px" cellpadding="5px" width="100%"><tr><td colspan="12">Arquivo:<br><font size="11px"><strong>{{ arquivo.arquivo }}</strong></font></td></tr><tr><td colspan="4">Status:<br><font size="11px"><strong>{{ arquivo.get_status_display }}</strong></font></td><td colspan="4">Data/Hora de Importação:<br><font size="11px"><strong>{{ arquivo.data_hora }}</strong></font></td><td colspan="4">Importado por:<br><font size="11px"><strong>{{ arquivo.importado_por }}</strong></font></td></tr><tr><td colspan="3">Aguardando:<br><font size="11px"><strong>{{ arquivo.quant_aquardando }}</strong></font></td><td colspan="3">Processado:<br><font size="11px"><strong>{{ arquivo.quant_processado }}</strong></font></td><td colspan="3">Erros:<br><font size="11px"><strong>{{ arquivo.quant_error }}</strong></font></td><td colspan="3">Total:<br><font size="11px"><strong>{{ arquivo.quant_total }}</strong></font></td></tr></table><br><strong><font style="size:16px">DADOS DOS EVENTOS IMPORTADOS</font></strong>{% for evento in importacao_arquivos_eventos_lista %}{% ifequal arquivo.id evento.importacao_arquivos_id %}<br><table border="0.5px" cellpadding="5px" width="100%"><tr><td colspan="2">Evento:<br><font size="11px"><strong>{{ evento.evento }}</strong></font></td><td colspan="2">Versão:<br><font size="11px"><strong>{{ evento.versao }}</strong></font></td><td colspan="6">Identidade:<br><font size="11px"><strong>{{ evento.identidade_evento }}</strong></font></td><td colspan="2">Status:<br><font size="11px"><strong>{{ evento.get_status_display }}</strong></font></td></tr><tr><td colspan="12">Arquivo:<br><font size="11px"><strong>{{ evento.arquivo }}</strong></font></td></tr><tr><td colspan="12">Validações:<br><font size="8px"><strong>{% autoescape off %}{{ evento.validacoes }}{% endautoescape %}</strong></font></td></tr></table>{% endifequal %} {% endfor %}<br>{% endfor %}</body></html>
+{% load templatetags %}<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 1cm;
+        }
+        h1 {
+          display: block;
+          font-size: 2em;
+          margin-top: 0.67em;
+          margin-bottom: 0.67em;
+          margin-left: 0;
+          margin-right: 0;
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    Importação de Arquivos
+</h1>
+Gerado em <strong>{{ data|date:"SHORT_DATE_FORMAT" }}</strong>
+por <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+<br><br>
+{% for arquivo in importacao_arquivos_lista %}
+    <table border="0.5px" cellpadding="5px" width="100%">
+        <tr>
+            <td colspan="12">
+                Arquivo:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.arquivo }}</strong>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                Status:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.get_status_display }}</strong>
+                </font>
+            </td>
+            <td colspan="4">Data/Hora de Importação:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.data_hora }}</strong>
+                </font>
+            </td>
+            <td colspan="4">
+                Importado por:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.importado_por }}</strong>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                Aguardando:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.quant_aquardando }}</strong>
+                </font>
+            </td>
+            <td colspan="3">
+                Processado:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.quant_processado }}</strong>
+                </font>
+            </td>
+            <td colspan="3">
+                Erros:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.quant_error }}</strong>
+                </font>
+            </td>
+            <td colspan="3">
+                Total:<br>
+                <font size="11px">
+                    <strong>{{ arquivo.quant_total }}</strong>
+                </font>
+            </td>
+        </tr>
+    </table>
+
+
+    <br>
+    <strong>
+        <font style="size:16px">
+            DADOS DOS EVENTOS IMPORTADOS
+        </font>
+    </strong>
+    {% for evento in importacao_arquivos_eventos_lista %}{% ifequal arquivo.id evento.importacao_arquivos_id %}<br>
+        <table border="0.5px" cellpadding="5px" width="100%">
+            <tr>
+                <td colspan="2">
+                    Evento:<br>
+                    <font size="11px">
+                        <strong>{{ evento.evento }}</strong>
+                    </font>
+                </td>
+                <td colspan="2">
+                    Versão:<br>
+                    <font size="11px">
+                        <strong>{{ evento.versao }}</strong>
+                    </font>
+                </td>
+                <td colspan="6">
+                    Identidade:<br>
+                    <font size="11px">
+                        <strong>{{ evento.identidade_evento }}</strong>
+                    </font>
+                </td>
+                <td colspan="2">
+                    Status:<br>
+                    <font size="11px">
+                        <strong>{{ evento.get_status_display }}</strong>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    Arquivo:<br>
+                    <font size="11px">
+                        <strong>{{ evento.arquivo }}</strong>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    Validações:<br>
+                    <font size="8px">
+                        <strong>
+                            {% autoescape off %}{{ evento.validacoes }}{% endautoescape %}
+                        </strong>
+                    </font>
+                </td>
+            </tr>
+        </table>
+    {% endifequal %}
+    {% endfor %}
+    <br>
+{% endfor %}
+</body>
+</html>

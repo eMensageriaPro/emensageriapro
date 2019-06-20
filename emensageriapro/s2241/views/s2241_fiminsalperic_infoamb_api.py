@@ -63,7 +63,8 @@ class s2241fimInsalPericinfoAmbList(generics.ListCreateAPIView):
     
     queryset = s2241fimInsalPericinfoAmb.objects.all()
     serializer_class = s2241fimInsalPericinfoAmbSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2241fimInsalPericinfoAmbDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2241fimInsalPericinfoAmb.objects.all()
     serializer_class = s2241fimInsalPericinfoAmbSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

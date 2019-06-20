@@ -63,7 +63,8 @@ class s2299observacoesList(generics.ListCreateAPIView):
     
     queryset = s2299observacoes.objects.all()
     serializer_class = s2299observacoesSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2299observacoesDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2299observacoes.objects.all()
     serializer_class = s2299observacoesSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

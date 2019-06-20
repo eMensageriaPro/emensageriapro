@@ -63,7 +63,8 @@ class s1202infoPerApurremunPerApurList(generics.ListCreateAPIView):
     
     queryset = s1202infoPerApurremunPerApur.objects.all()
     serializer_class = s1202infoPerApurremunPerApurSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1202infoPerApurremunPerApurDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202infoPerApurremunPerApur.objects.all()
     serializer_class = s1202infoPerApurremunPerApurSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

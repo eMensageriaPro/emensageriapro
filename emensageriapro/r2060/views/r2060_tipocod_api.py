@@ -63,7 +63,8 @@ class r2060tipoCodList(generics.ListCreateAPIView):
     
     queryset = r2060tipoCod.objects.all()
     serializer_class = r2060tipoCodSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r2060tipoCodDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2060tipoCod.objects.all()
     serializer_class = r2060tipoCodSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

@@ -63,7 +63,8 @@ class s5002infoDepList(generics.ListCreateAPIView):
     
     queryset = s5002infoDep.objects.all()
     serializer_class = s5002infoDepSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5002infoDepDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5002infoDep.objects.all()
     serializer_class = s5002infoDepSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

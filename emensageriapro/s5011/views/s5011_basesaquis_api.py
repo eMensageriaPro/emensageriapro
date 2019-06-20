@@ -63,7 +63,8 @@ class s5011basesAquisList(generics.ListCreateAPIView):
     
     queryset = s5011basesAquis.objects.all()
     serializer_class = s5011basesAquisSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5011basesAquisDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011basesAquis.objects.all()
     serializer_class = s5011basesAquisSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

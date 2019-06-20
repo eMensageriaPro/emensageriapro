@@ -63,7 +63,8 @@ class s1030alteracaocargoPublicoList(generics.ListCreateAPIView):
     
     queryset = s1030alteracaocargoPublico.objects.all()
     serializer_class = s1030alteracaocargoPublicoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1030alteracaocargoPublicoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1030alteracaocargoPublico.objects.all()
     serializer_class = s1030alteracaocargoPublicoSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

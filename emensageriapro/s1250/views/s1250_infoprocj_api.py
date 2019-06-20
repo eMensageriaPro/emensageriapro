@@ -63,7 +63,8 @@ class s1250infoProcJList(generics.ListCreateAPIView):
     
     queryset = s1250infoProcJ.objects.all()
     serializer_class = s1250infoProcJSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1250infoProcJDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1250infoProcJ.objects.all()
     serializer_class = s1250infoProcJSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

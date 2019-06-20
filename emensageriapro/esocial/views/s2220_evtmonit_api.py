@@ -63,11 +63,13 @@ class s2220evtMonitList(generics.ListCreateAPIView):
     
     queryset = s2220evtMonit.objects.all()
     serializer_class = s2220evtMonitSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s2220evtMonitDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2220evtMonit.objects.all()
     serializer_class = s2220evtMonitSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

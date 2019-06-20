@@ -63,7 +63,8 @@ class s2299infoPerApurdetOperList(generics.ListCreateAPIView):
     
     queryset = s2299infoPerApurdetOper.objects.all()
     serializer_class = s2299infoPerApurdetOperSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2299infoPerApurdetOperDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2299infoPerApurdetOper.objects.all()
     serializer_class = s2299infoPerApurdetOperSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

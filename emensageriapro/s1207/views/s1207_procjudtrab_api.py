@@ -63,7 +63,8 @@ class s1207procJudTrabList(generics.ListCreateAPIView):
     
     queryset = s1207procJudTrab.objects.all()
     serializer_class = s1207procJudTrabSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s1207procJudTrabDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1207procJudTrab.objects.all()
     serializer_class = s1207procJudTrabSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

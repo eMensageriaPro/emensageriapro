@@ -63,7 +63,8 @@ class s2300infoDirigenteSindicalList(generics.ListCreateAPIView):
     
     queryset = s2300infoDirigenteSindical.objects.all()
     serializer_class = s2300infoDirigenteSindicalSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2300infoDirigenteSindicalDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300infoDirigenteSindical.objects.all()
     serializer_class = s2300infoDirigenteSindicalSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

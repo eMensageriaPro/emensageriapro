@@ -63,7 +63,8 @@ class r2030infoProcList(generics.ListCreateAPIView):
     
     queryset = r2030infoProc.objects.all()
     serializer_class = r2030infoProcSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r2030infoProcDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2030infoProc.objects.all()
     serializer_class = r2030infoProcSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

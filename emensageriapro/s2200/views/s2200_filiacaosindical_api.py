@@ -63,7 +63,8 @@ class s2200filiacaoSindicalList(generics.ListCreateAPIView):
     
     queryset = s2200filiacaoSindical.objects.all()
     serializer_class = s2200filiacaoSindicalSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s2200filiacaoSindicalDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2200filiacaoSindical.objects.all()
     serializer_class = s2200filiacaoSindicalSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

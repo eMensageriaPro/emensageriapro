@@ -63,7 +63,8 @@ class s5001infoCategIncidList(generics.ListCreateAPIView):
     
     queryset = s5001infoCategIncid.objects.all()
     serializer_class = s5001infoCategIncidSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class s5001infoCategIncidDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5001infoCategIncid.objects.all()
     serializer_class = s5001infoCategIncidSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

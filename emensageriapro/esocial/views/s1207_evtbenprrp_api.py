@@ -63,11 +63,13 @@ class s1207evtBenPrRPList(generics.ListCreateAPIView):
     
     queryset = s1207evtBenPrRP.objects.all()
     serializer_class = s1207evtBenPrRPSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 class s1207evtBenPrRPDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1207evtBenPrRP.objects.all()
     serializer_class = s1207evtBenPrRPSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)

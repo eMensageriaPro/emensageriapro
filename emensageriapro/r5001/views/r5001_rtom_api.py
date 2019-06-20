@@ -63,7 +63,8 @@ class r5001RTomList(generics.ListCreateAPIView):
     
     queryset = r5001RTom.objects.all()
     serializer_class = r5001RTomSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
 
 
 
@@ -71,4 +72,5 @@ class r5001RTomDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5001RTom.objects.all()
     serializer_class = r5001RTomSerializer
-    # permission_classes = (IsAdminUser,)
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
