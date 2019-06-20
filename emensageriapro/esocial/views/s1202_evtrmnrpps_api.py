@@ -63,13 +63,22 @@ class s1202evtRmnRPPSList(generics.ListCreateAPIView):
     
     queryset = s1202evtRmnRPPS.objects.all()
     serializer_class = s1202evtRmnRPPSSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s1202evtRmnRPPSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202evtRmnRPPS.objects.all()
     serializer_class = s1202evtRmnRPPSSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

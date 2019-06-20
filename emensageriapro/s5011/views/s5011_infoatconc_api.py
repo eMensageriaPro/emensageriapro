@@ -63,8 +63,13 @@ class s5011infoAtConcList(generics.ListCreateAPIView):
     
     queryset = s5011infoAtConc.objects.all()
     serializer_class = s5011infoAtConcSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s5011infoAtConcDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011infoAtConc.objects.all()
     serializer_class = s5011infoAtConcSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

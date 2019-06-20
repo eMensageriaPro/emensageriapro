@@ -63,8 +63,13 @@ class s2299infoTrabIntermremunOutrEmprList(generics.ListCreateAPIView):
     
     queryset = s2299infoTrabIntermremunOutrEmpr.objects.all()
     serializer_class = s2299infoTrabIntermremunOutrEmprSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2299infoTrabIntermremunOutrEmprDetail(generics.RetrieveUpdateDestroyAPIVi
     
     queryset = s2299infoTrabIntermremunOutrEmpr.objects.all()
     serializer_class = s2299infoTrabIntermremunOutrEmprSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

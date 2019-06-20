@@ -63,13 +63,22 @@ class TransmissorLoteEfdreinfList(generics.ListCreateAPIView):
     
     queryset = TransmissorLoteEfdreinf.objects.all()
     serializer_class = TransmissorLoteEfdreinfSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class TransmissorLoteEfdreinfDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = TransmissorLoteEfdreinf.objects.all()
     serializer_class = TransmissorLoteEfdreinfSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

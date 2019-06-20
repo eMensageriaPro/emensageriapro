@@ -176,7 +176,7 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5011_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata
+                        r5011_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -195,12 +195,12 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r5011_infocrtom_dados['vlrcrtom'] = infoCRTom.vlrCRTom.cdata
+                                r5011_infocrtom_dados['vlrcrtom'] = infoCRTom.vlrCRTom.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r5011_infocrtom_dados['vlrcrtomsusp'] = infoCRTom.vlrCRTomSusp.cdata
+                                r5011_infocrtom_dados['vlrcrtomsusp'] = infoCRTom.vlrCRTomSusp.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -224,27 +224,27 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5011_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata
+                        r5011_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rprest_dados['vlrtotalretprinc'] = RPrest.vlrTotalRetPrinc.cdata
+                        r5011_rprest_dados['vlrtotalretprinc'] = RPrest.vlrTotalRetPrinc.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rprest_dados['vlrtotalretadic'] = RPrest.vlrTotalRetAdic.cdata
+                        r5011_rprest_dados['vlrtotalretadic'] = RPrest.vlrTotalRetAdic.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rprest_dados['vlrtotalnretprinc'] = RPrest.vlrTotalNRetPrinc.cdata
+                        r5011_rprest_dados['vlrtotalnretprinc'] = RPrest.vlrTotalNRetPrinc.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rprest_dados['vlrtotalnretadic'] = RPrest.vlrTotalNRetAdic.cdata
+                        r5011_rprest_dados['vlrtotalnretadic'] = RPrest.vlrTotalNRetAdic.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -263,7 +263,7 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5011_rrecrepad_dados['vlrtotalrep'] = RRecRepAD.vlrTotalRep.cdata
+                        r5011_rrecrepad_dados['vlrtotalrep'] = RRecRepAD.vlrTotalRep.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
@@ -273,12 +273,12 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5011_rrecrepad_dados['vlrcrrecrepad'] = RRecRepAD.vlrCRRecRepAD.cdata
+                        r5011_rrecrepad_dados['vlrcrrecrepad'] = RRecRepAD.vlrCRRecRepAD.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rrecrepad_dados['vlrcrrecrepadsusp'] = RRecRepAD.vlrCRRecRepADSusp.cdata
+                        r5011_rrecrepad_dados['vlrcrrecrepadsusp'] = RRecRepAD.vlrCRRecRepADSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -297,12 +297,12 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5011_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata
+                        r5011_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata
+                        r5011_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -321,12 +321,12 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5011_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata
+                        r5011_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5011_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata
+                        r5011_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

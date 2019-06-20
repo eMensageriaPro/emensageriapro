@@ -119,32 +119,32 @@ def read_r2010_evtservtom_obj(request, doc, status, validar=False):
         pass
     
     try:
-        r2010_evtservtom_dados['vlrtotalbruto'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBruto.cdata
+        r2010_evtservtom_dados['vlrtotalbruto'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBruto.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2010_evtservtom_dados['vlrtotalbaseret'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBaseRet.cdata
+        r2010_evtservtom_dados['vlrtotalbaseret'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2010_evtservtom_dados['vlrtotalretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetPrinc.cdata
+        r2010_evtservtom_dados['vlrtotalretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetPrinc.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2010_evtservtom_dados['vlrtotalretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetAdic.cdata
+        r2010_evtservtom_dados['vlrtotalretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetAdic.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2010_evtservtom_dados['vlrtotalnretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetPrinc.cdata
+        r2010_evtservtom_dados['vlrtotalnretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetPrinc.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2010_evtservtom_dados['vlrtotalnretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetAdic.cdata
+        r2010_evtservtom_dados['vlrtotalnretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetAdic.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
@@ -178,7 +178,7 @@ def read_r2010_evtservtom_obj(request, doc, status, validar=False):
                 pass
             
             try:
-                r2010_nfs_dados['vlrbruto'] = nfs.vlrBruto.cdata
+                r2010_nfs_dados['vlrbruto'] = nfs.vlrBruto.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
@@ -202,47 +202,47 @@ def read_r2010_evtservtom_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrbaseret'] = infoTpServ.vlrBaseRet.cdata
+                        r2010_infotpserv_dados['vlrbaseret'] = infoTpServ.vlrBaseRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrretencao'] = infoTpServ.vlrRetencao.cdata
+                        r2010_infotpserv_dados['vlrretencao'] = infoTpServ.vlrRetencao.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrretsub'] = infoTpServ.vlrRetSub.cdata
+                        r2010_infotpserv_dados['vlrretsub'] = infoTpServ.vlrRetSub.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrnretprinc'] = infoTpServ.vlrNRetPrinc.cdata
+                        r2010_infotpserv_dados['vlrnretprinc'] = infoTpServ.vlrNRetPrinc.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrservicos15'] = infoTpServ.vlrServicos15.cdata
+                        r2010_infotpserv_dados['vlrservicos15'] = infoTpServ.vlrServicos15.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrservicos20'] = infoTpServ.vlrServicos20.cdata
+                        r2010_infotpserv_dados['vlrservicos20'] = infoTpServ.vlrServicos20.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrservicos25'] = infoTpServ.vlrServicos25.cdata
+                        r2010_infotpserv_dados['vlrservicos25'] = infoTpServ.vlrServicos25.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlradicional'] = infoTpServ.vlrAdicional.cdata
+                        r2010_infotpserv_dados['vlradicional'] = infoTpServ.vlrAdicional.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2010_infotpserv_dados['vlrnretadic'] = infoTpServ.vlrNRetAdic.cdata
+                        r2010_infotpserv_dados['vlrnretadic'] = infoTpServ.vlrNRetAdic.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

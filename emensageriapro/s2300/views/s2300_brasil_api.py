@@ -63,8 +63,13 @@ class s2300brasilList(generics.ListCreateAPIView):
     
     queryset = s2300brasil.objects.all()
     serializer_class = s2300brasilSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2300brasilDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2300brasil.objects.all()
     serializer_class = s2300brasilSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

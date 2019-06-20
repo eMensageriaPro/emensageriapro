@@ -63,8 +63,13 @@ class r2070pgtoPJideAdvogadoList(generics.ListCreateAPIView):
     
     queryset = r2070pgtoPJideAdvogado.objects.all()
     serializer_class = r2070pgtoPJideAdvogadoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r2070pgtoPJideAdvogadoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2070pgtoPJideAdvogado.objects.all()
     serializer_class = r2070pgtoPJideAdvogadoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

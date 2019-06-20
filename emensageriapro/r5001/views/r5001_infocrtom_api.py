@@ -63,8 +63,13 @@ class r5001infoCRTomList(generics.ListCreateAPIView):
     
     queryset = r5001infoCRTom.objects.all()
     serializer_class = r5001infoCRTomSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r5001infoCRTomDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5001infoCRTom.objects.all()
     serializer_class = r5001infoCRTomSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

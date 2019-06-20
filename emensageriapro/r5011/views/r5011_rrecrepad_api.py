@@ -63,8 +63,13 @@ class r5011RRecRepADList(generics.ListCreateAPIView):
     
     queryset = r5011RRecRepAD.objects.all()
     serializer_class = r5011RRecRepADSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r5011RRecRepADDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5011RRecRepAD.objects.all()
     serializer_class = r5011RRecRepADSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

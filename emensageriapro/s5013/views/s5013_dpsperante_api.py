@@ -63,8 +63,13 @@ class s5013dpsPerAntEList(generics.ListCreateAPIView):
     
     queryset = s5013dpsPerAntE.objects.all()
     serializer_class = s5013dpsPerAntESerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s5013dpsPerAntEDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5013dpsPerAntE.objects.all()
     serializer_class = s5013dpsPerAntESerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class r5011RTomList(generics.ListCreateAPIView):
     
     queryset = r5011RTom.objects.all()
     serializer_class = r5011RTomSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r5011RTomDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5011RTom.objects.all()
     serializer_class = r5011RTomSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

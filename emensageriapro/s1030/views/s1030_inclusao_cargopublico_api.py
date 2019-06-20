@@ -63,8 +63,13 @@ class s1030inclusaocargoPublicoList(generics.ListCreateAPIView):
     
     queryset = s1030inclusaocargoPublico.objects.all()
     serializer_class = s1030inclusaocargoPublicoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1030inclusaocargoPublicoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1030inclusaocargoPublico.objects.all()
     serializer_class = s1030inclusaocargoPublicoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

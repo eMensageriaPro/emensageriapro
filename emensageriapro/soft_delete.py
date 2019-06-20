@@ -16,7 +16,7 @@ class SoftDeletionManager(models.Manager):
 
     def get_queryset(self):
         if self.alive_only:
-            return SoftDeletionQuerySet(self.model).filter(excluido=False)
+            return SoftDeletionQuerySet(self.model).filter(ativo=True)
         return SoftDeletionQuerySet(self.model)
 
     def hard_delete(self):
@@ -28,9 +28,9 @@ class SoftDeletionQuerySet(QuerySet):
     def delete(self, **kwargs):
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-            self.modificado_por_id = request.user.id
-            self.modificado_em = timezone.now()
-            self.excluido = None
+            self.desativado_por_id = request.user.id
+            self.desativado_em = timezone.now()
+            self.ativo = None
         return super(SoftDeletionQuerySet, self).update()
 
     def hard_delete(self):
@@ -53,7 +53,12 @@ class SoftDeletionModel(models.Model):
     modificado_por = models.ForeignKey(User,
                                        related_name='%(class)s_modificado_por',
                                        blank=True, null=True)
+    desativado_em = models.DateTimeField(blank=True, null=True)
+    desativado_por = models.ForeignKey(User,
+                                       related_name='%(class)s_desativado_por',
+                                       blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, default=False)
+    ativo = models.NullBooleanField(blank=True, default=True)
 
     objects = SoftDeletionManager()
     all_objects = SoftDeletionManager(alive_only=False)
@@ -64,9 +69,9 @@ class SoftDeletionModel(models.Model):
     def delete(self, **kwargs):
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
-            self.modificado_por_id = request.user.id
-        self.modificado_em = timezone.now()
-        self.excluido = None
+            self.desativado_por_id = request.user.id
+        self.desativado_em = timezone.now()
+        self.ativo = None
         self.save()
 
     def hard_delete(self):

@@ -63,8 +63,13 @@ class s1200remunOutrEmprList(generics.ListCreateAPIView):
     
     queryset = s1200remunOutrEmpr.objects.all()
     serializer_class = s1200remunOutrEmprSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1200remunOutrEmprDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1200remunOutrEmpr.objects.all()
     serializer_class = s1200remunOutrEmprSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

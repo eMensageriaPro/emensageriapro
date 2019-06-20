@@ -63,13 +63,22 @@ class s2210evtCATList(generics.ListCreateAPIView):
     
     queryset = s2210evtCAT.objects.all()
     serializer_class = s2210evtCATSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s2210evtCATDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2210evtCAT.objects.all()
     serializer_class = s2210evtCATSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

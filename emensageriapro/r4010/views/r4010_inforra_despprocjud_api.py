@@ -63,8 +63,13 @@ class r4010infoRRAdespProcJudList(generics.ListCreateAPIView):
     
     queryset = r4010infoRRAdespProcJud.objects.all()
     serializer_class = r4010infoRRAdespProcJudSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r4010infoRRAdespProcJudDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4010infoRRAdespProcJud.objects.all()
     serializer_class = r4010infoRRAdespProcJudSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

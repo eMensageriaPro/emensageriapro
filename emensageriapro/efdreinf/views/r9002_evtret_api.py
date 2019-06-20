@@ -63,13 +63,22 @@ class r9002evtRetList(generics.ListCreateAPIView):
     
     queryset = r9002evtRet.objects.all()
     serializer_class = r9002evtRetSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class r9002evtRetDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9002evtRet.objects.all()
     serializer_class = r9002evtRetSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class s1005inclusaoinfoEntEducList(generics.ListCreateAPIView):
     
     queryset = s1005inclusaoinfoEntEduc.objects.all()
     serializer_class = s1005inclusaoinfoEntEducSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1005inclusaoinfoEntEducDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1005inclusaoinfoEntEduc.objects.all()
     serializer_class = s1005inclusaoinfoEntEducSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -244,12 +244,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r2070_pgtopf_dados['vlrrendtributavel'] = pgtoPF.vlrRendTributavel.cdata
+                                r2070_pgtopf_dados['vlrrendtributavel'] = pgtoPF.vlrRendTributavel.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r2070_pgtopf_dados['vlrirrf'] = pgtoPF.vlrIRRF.cdata
+                                r2070_pgtopf_dados['vlrirrf'] = pgtoPF.vlrIRRF.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -268,7 +268,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                         pass
                                     
                                     try:
-                                        r2070_detdeducao_dados['vlrdeducao'] = detDeducao.vlrDeducao.cdata
+                                        r2070_detdeducao_dados['vlrdeducao'] = detDeducao.vlrDeducao.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -287,7 +287,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                         pass
                                     
                                     try:
-                                        r2070_rendisento_dados['vlrisento'] = rendIsento.vlrIsento.cdata
+                                        r2070_rendisento_dados['vlrisento'] = rendIsento.vlrIsento.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                                     
@@ -316,7 +316,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                         pass
                                     
                                     try:
-                                        r2070_detcompet_dados['vlrrendtributavel'] = detCompet.vlrRendTributavel.cdata
+                                        r2070_detcompet_dados['vlrrendtributavel'] = detCompet.vlrRendTributavel.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -330,12 +330,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                     r2070_compjud_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                                     
                                     try:
-                                        r2070_compjud_dados['vlrcompanocalend'] = compJud.vlrCompAnoCalend.cdata
+                                        r2070_compjud_dados['vlrcompanocalend'] = compJud.vlrCompAnoCalend.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                                     
                                     try:
-                                        r2070_compjud_dados['vlrcompanoant'] = compJud.vlrCompAnoAnt.cdata
+                                        r2070_compjud_dados['vlrcompanoant'] = compJud.vlrCompAnoAnt.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -383,12 +383,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                             r2070_inforra_despprocjud_dados['r2070_inforra_id'] = r2070_inforra.id
                                             
                                             try:
-                                                r2070_inforra_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata
+                                                r2070_inforra_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                             
                                             try:
-                                                r2070_inforra_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata
+                                                r2070_inforra_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                     
@@ -412,7 +412,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                                         pass
                                                     
                                                     try:
-                                                        r2070_inforra_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata
+                                                        r2070_inforra_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata.replace('.', '').replace(',', '.')
                                                     except AttributeError: 
                                                         pass
                                             
@@ -450,12 +450,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                             r2070_infoprocjud_despprocjud_dados['r2070_infoprocjud_id'] = r2070_infoprocjud.id
                                             
                                             try:
-                                                r2070_infoprocjud_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata
+                                                r2070_infoprocjud_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                             
                                             try:
-                                                r2070_infoprocjud_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata
+                                                r2070_infoprocjud_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                     
@@ -479,7 +479,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                                         pass
                                                     
                                                     try:
-                                                        r2070_infoprocjud_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata
+                                                        r2070_infoprocjud_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata.replace('.', '').replace(',', '.')
                                                     except AttributeError: 
                                                         pass
                                             
@@ -507,7 +507,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                     r2070_depjudicial_dados['r2070_pgtopf_id'] = r2070_pgtopf.id
                                     
                                     try:
-                                        r2070_depjudicial_dados['vlrdepjudicial'] = depJudicial.vlrDepJudicial.cdata
+                                        r2070_depjudicial_dados['vlrdepjudicial'] = depJudicial.vlrDepJudicial.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -526,12 +526,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata
+                                r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata
+                                r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -569,12 +569,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                             r2070_pgtopj_despprocjud_dados['r2070_pgtopj_infoprocjud_id'] = r2070_pgtopj_infoprocjud.id
                                             
                                             try:
-                                                r2070_pgtopj_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata
+                                                r2070_pgtopj_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                             
                                             try:
-                                                r2070_pgtopj_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata
+                                                r2070_pgtopj_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                     
@@ -598,7 +598,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                                                         pass
                                                     
                                                     try:
-                                                        r2070_pgtopj_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata
+                                                        r2070_pgtopj_ideadvogado_dados['vlradvogado'] = ideAdvogado.vlrAdvogado.cdata.replace('.', '').replace(',', '.')
                                                     except AttributeError: 
                                                         pass
                                             
@@ -641,12 +641,12 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2070_pgtoresidext_dados['vlrpgto'] = pgtoResidExt.vlrPgto.cdata
+                        r2070_pgtoresidext_dados['vlrpgto'] = pgtoResidExt.vlrPgto.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2070_pgtoresidext_dados['vlrret'] = pgtoResidExt.vlrRet.cdata
+                        r2070_pgtoresidext_dados['vlrret'] = pgtoResidExt.vlrRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

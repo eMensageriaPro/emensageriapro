@@ -63,13 +63,22 @@ class s2241evtInsApoList(generics.ListCreateAPIView):
     
     queryset = s2241evtInsApo.objects.all()
     serializer_class = s2241evtInsApoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s2241evtInsApoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2241evtInsApo.objects.all()
     serializer_class = s2241evtInsApoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

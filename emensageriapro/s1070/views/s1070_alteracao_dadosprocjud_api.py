@@ -63,8 +63,13 @@ class s1070alteracaodadosProcJudList(generics.ListCreateAPIView):
     
     queryset = s1070alteracaodadosProcJud.objects.all()
     serializer_class = s1070alteracaodadosProcJudSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1070alteracaodadosProcJudDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1070alteracaodadosProcJud.objects.all()
     serializer_class = s1070alteracaodadosProcJudSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

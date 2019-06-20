@@ -109,27 +109,27 @@ def read_r3010_evtespdesportivo_obj(request, doc, status, validar=False):
         pass
     
     try:
-        r3010_evtespdesportivo_dados['vlrreceitatotal'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrReceitaTotal.cdata
+        r3010_evtespdesportivo_dados['vlrreceitatotal'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrReceitaTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r3010_evtespdesportivo_dados['vlrcp'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrCP.cdata
+        r3010_evtespdesportivo_dados['vlrcp'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrCP.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r3010_evtespdesportivo_dados['vlrcpsusptotal'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrCPSuspTotal.cdata
+        r3010_evtespdesportivo_dados['vlrcpsusptotal'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrCPSuspTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r3010_evtespdesportivo_dados['vlrreceitaclubes'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrReceitaClubes.cdata
+        r3010_evtespdesportivo_dados['vlrreceitaclubes'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrReceitaClubes.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r3010_evtespdesportivo_dados['vlrretparc'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrRetParc.cdata
+        r3010_evtespdesportivo_dados['vlrretparc'] = evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrRetParc.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
         
@@ -247,7 +247,7 @@ def read_r3010_evtespdesportivo_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r3010_receitaingressos_dados['vlrtotal'] = receitaIngressos.vlrTotal.cdata
+                        r3010_receitaingressos_dados['vlrtotal'] = receitaIngressos.vlrTotal.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -266,7 +266,7 @@ def read_r3010_evtespdesportivo_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r3010_outrasreceitas_dados['vlrreceita'] = outrasReceitas.vlrReceita.cdata
+                        r3010_outrasreceitas_dados['vlrreceita'] = outrasReceitas.vlrReceita.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
@@ -300,7 +300,7 @@ def read_r3010_evtespdesportivo_obj(request, doc, status, validar=False):
                 pass
             
             try:
-                r3010_infoproc_dados['vlrcpsusp'] = infoProc.vlrCPSusp.cdata
+                r3010_infoproc_dados['vlrcpsusp'] = infoProc.vlrCPSusp.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
     

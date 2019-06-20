@@ -63,8 +63,13 @@ class s1202infoPerApuritensRemunList(generics.ListCreateAPIView):
     
     queryset = s1202infoPerApuritensRemun.objects.all()
     serializer_class = s1202infoPerApuritensRemunSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1202infoPerApuritensRemunDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202infoPerApuritensRemun.objects.all()
     serializer_class = s1202infoPerApuritensRemunSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

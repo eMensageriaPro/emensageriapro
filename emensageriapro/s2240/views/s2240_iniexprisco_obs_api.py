@@ -63,8 +63,13 @@ class s2240iniExpRiscoobsList(generics.ListCreateAPIView):
     
     queryset = s2240iniExpRiscoobs.objects.all()
     serializer_class = s2240iniExpRiscoobsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2240iniExpRiscoobsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2240iniExpRiscoobs.objects.all()
     serializer_class = s2240iniExpRiscoobsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class r1000alteracaosoftHouseList(generics.ListCreateAPIView):
     
     queryset = r1000alteracaosoftHouse.objects.all()
     serializer_class = r1000alteracaosoftHouseSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r1000alteracaosoftHouseDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1000alteracaosoftHouse.objects.all()
     serializer_class = r1000alteracaosoftHouseSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class s2241fimAposentEspinfoAmbList(generics.ListCreateAPIView):
     
     queryset = s2241fimAposentEspinfoAmb.objects.all()
     serializer_class = s2241fimAposentEspinfoAmbSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2241fimAposentEspinfoAmbDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2241fimAposentEspinfoAmb.objects.all()
     serializer_class = s2241fimAposentEspinfoAmbSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

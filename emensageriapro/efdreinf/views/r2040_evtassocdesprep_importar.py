@@ -123,17 +123,17 @@ def read_r2040_evtassocdesprep_obj(request, doc, status, validar=False):
                 pass
             
             try:
-                r2040_recursosrep_dados['vlrtotalrep'] = recursosRep.vlrTotalRep.cdata
+                r2040_recursosrep_dados['vlrtotalrep'] = recursosRep.vlrTotalRep.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
             try:
-                r2040_recursosrep_dados['vlrtotalret'] = recursosRep.vlrTotalRet.cdata
+                r2040_recursosrep_dados['vlrtotalret'] = recursosRep.vlrTotalRet.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
             try:
-                r2040_recursosrep_dados['vlrtotalnret'] = recursosRep.vlrTotalNRet.cdata
+                r2040_recursosrep_dados['vlrtotalnret'] = recursosRep.vlrTotalNRet.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
     
@@ -157,12 +157,12 @@ def read_r2040_evtassocdesprep_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2040_inforecurso_dados['vlrbruto'] = infoRecurso.vlrBruto.cdata
+                        r2040_inforecurso_dados['vlrbruto'] = infoRecurso.vlrBruto.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2040_inforecurso_dados['vlrretapur'] = infoRecurso.vlrRetApur.cdata
+                        r2040_inforecurso_dados['vlrretapur'] = infoRecurso.vlrRetApur.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -191,7 +191,7 @@ def read_r2040_evtassocdesprep_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2040_infoproc_dados['vlrnret'] = infoProc.vlrNRet.cdata
+                        r2040_infoproc_dados['vlrnret'] = infoProc.vlrNRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

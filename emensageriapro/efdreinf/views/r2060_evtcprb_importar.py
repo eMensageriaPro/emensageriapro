@@ -109,17 +109,17 @@ def read_r2060_evtcprb_obj(request, doc, status, validar=False):
         pass
     
     try:
-        r2060_evtcprb_dados['vlrrecbrutatotal'] = evtCPRB.infoCPRB.ideEstab.vlrRecBrutaTotal.cdata
+        r2060_evtcprb_dados['vlrrecbrutatotal'] = evtCPRB.infoCPRB.ideEstab.vlrRecBrutaTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2060_evtcprb_dados['vlrcpapurtotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPApurTotal.cdata
+        r2060_evtcprb_dados['vlrcpapurtotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPApurTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2060_evtcprb_dados['vlrcprbsusptotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal.cdata
+        r2060_evtcprb_dados['vlrcprbsusptotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
         
@@ -138,27 +138,27 @@ def read_r2060_evtcprb_obj(request, doc, status, validar=False):
                 pass
             
             try:
-                r2060_tipocod_dados['vlrrecbrutaativ'] = tipoCod.vlrRecBrutaAtiv.cdata
+                r2060_tipocod_dados['vlrrecbrutaativ'] = tipoCod.vlrRecBrutaAtiv.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
             try:
-                r2060_tipocod_dados['vlrexcrecbruta'] = tipoCod.vlrExcRecBruta.cdata
+                r2060_tipocod_dados['vlrexcrecbruta'] = tipoCod.vlrExcRecBruta.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
             try:
-                r2060_tipocod_dados['vlradicrecbruta'] = tipoCod.vlrAdicRecBruta.cdata
+                r2060_tipocod_dados['vlradicrecbruta'] = tipoCod.vlrAdicRecBruta.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
             try:
-                r2060_tipocod_dados['vlrbccprb'] = tipoCod.vlrBcCPRB.cdata
+                r2060_tipocod_dados['vlrbccprb'] = tipoCod.vlrBcCPRB.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
             try:
-                r2060_tipocod_dados['vlrcprbapur'] = tipoCod.vlrCPRBapur.cdata
+                r2060_tipocod_dados['vlrcprbapur'] = tipoCod.vlrCPRBapur.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
             
@@ -187,7 +187,7 @@ def read_r2060_evtcprb_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2060_tipoajuste_dados['vlrajuste'] = tipoAjuste.vlrAjuste.cdata
+                        r2060_tipoajuste_dados['vlrajuste'] = tipoAjuste.vlrAjuste.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
@@ -226,7 +226,7 @@ def read_r2060_evtcprb_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2060_infoproc_dados['vlrcprbsusp'] = infoProc.vlrCPRBSusp.cdata
+                        r2060_infoproc_dados['vlrcprbsusp'] = infoProc.vlrCPRBSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

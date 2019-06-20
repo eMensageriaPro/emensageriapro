@@ -63,8 +63,13 @@ class r9002regOcorrsList(generics.ListCreateAPIView):
     
     queryset = r9002regOcorrs.objects.all()
     serializer_class = r9002regOcorrsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r9002regOcorrsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9002regOcorrs.objects.all()
     serializer_class = r9002regOcorrsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

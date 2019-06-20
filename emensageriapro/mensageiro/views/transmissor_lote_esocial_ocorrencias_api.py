@@ -63,13 +63,22 @@ class TransmissorLoteEsocialOcorrenciasList(generics.ListCreateAPIView):
     
     queryset = TransmissorLoteEsocialOcorrencias.objects.all()
     serializer_class = TransmissorLoteEsocialOcorrenciasSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class TransmissorLoteEsocialOcorrenciasDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = TransmissorLoteEsocialOcorrencias.objects.all()
     serializer_class = TransmissorLoteEsocialOcorrenciasSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

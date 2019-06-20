@@ -63,8 +63,13 @@ class r5011infoTotalContribList(generics.ListCreateAPIView):
     
     queryset = r5011infoTotalContrib.objects.all()
     serializer_class = r5011infoTotalContribSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r5011infoTotalContribDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5011infoTotalContrib.objects.all()
     serializer_class = r5011infoTotalContribSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

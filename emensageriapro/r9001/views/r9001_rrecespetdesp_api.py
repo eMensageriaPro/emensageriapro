@@ -63,8 +63,13 @@ class r9001RRecEspetDespList(generics.ListCreateAPIView):
     
     queryset = r9001RRecEspetDesp.objects.all()
     serializer_class = r9001RRecEspetDespSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r9001RRecEspetDespDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9001RRecEspetDesp.objects.all()
     serializer_class = r9001RRecEspetDespSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

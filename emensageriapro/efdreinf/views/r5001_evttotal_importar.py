@@ -181,7 +181,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata
+                        r5001_rtom_dados['vlrtotalbaseret'] = RTom.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -200,12 +200,12 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r5001_infocrtom_dados['vlrcrtom'] = infoCRTom.vlrCRTom.cdata
+                                r5001_infocrtom_dados['vlrcrtom'] = infoCRTom.vlrCRTom.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r5001_infocrtom_dados['vlrcrtomsusp'] = infoCRTom.vlrCRTomSusp.cdata
+                                r5001_infocrtom_dados['vlrcrtomsusp'] = infoCRTom.vlrCRTomSusp.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -229,27 +229,27 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata
+                        r5001_rprest_dados['vlrtotalbaseret'] = RPrest.vlrTotalBaseRet.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rprest_dados['vlrtotalretprinc'] = RPrest.vlrTotalRetPrinc.cdata
+                        r5001_rprest_dados['vlrtotalretprinc'] = RPrest.vlrTotalRetPrinc.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rprest_dados['vlrtotalretadic'] = RPrest.vlrTotalRetAdic.cdata
+                        r5001_rprest_dados['vlrtotalretadic'] = RPrest.vlrTotalRetAdic.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rprest_dados['vlrtotalnretprinc'] = RPrest.vlrTotalNRetPrinc.cdata
+                        r5001_rprest_dados['vlrtotalnretprinc'] = RPrest.vlrTotalNRetPrinc.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rprest_dados['vlrtotalnretadic'] = RPrest.vlrTotalNRetAdic.cdata
+                        r5001_rprest_dados['vlrtotalnretadic'] = RPrest.vlrTotalNRetAdic.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -268,7 +268,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rrecrepad_dados['vlrtotalrep'] = RRecRepAD.vlrTotalRep.cdata
+                        r5001_rrecrepad_dados['vlrtotalrep'] = RRecRepAD.vlrTotalRep.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
@@ -278,12 +278,12 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rrecrepad_dados['vlrcrrecrepad'] = RRecRepAD.vlrCRRecRepAD.cdata
+                        r5001_rrecrepad_dados['vlrcrrecrepad'] = RRecRepAD.vlrCRRecRepAD.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rrecrepad_dados['vlrcrrecrepadsusp'] = RRecRepAD.vlrCRRecRepADSusp.cdata
+                        r5001_rrecrepad_dados['vlrcrrecrepadsusp'] = RRecRepAD.vlrCRRecRepADSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -302,12 +302,12 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata
+                        r5001_rcoml_dados['vlrcrcoml'] = RComl.vlrCRComl.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata
+                        r5001_rcoml_dados['vlrcrcomlsusp'] = RComl.vlrCRComlSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -326,12 +326,12 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata
+                        r5001_rcprb_dados['vlrcrcprb'] = RCPRB.vlrCRCPRB.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata
+                        r5001_rcprb_dados['vlrcrcprbsusp'] = RCPRB.vlrCRCPRBSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -350,17 +350,17 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r5001_rrecespetdesp_dados['vlrreceitatotal'] = RRecEspetDesp.vlrReceitaTotal.cdata
+                        r5001_rrecespetdesp_dados['vlrreceitatotal'] = RRecEspetDesp.vlrReceitaTotal.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rrecespetdesp_dados['vlrcrrecespetdesp'] = RRecEspetDesp.vlrCRRecEspetDesp.cdata
+                        r5001_rrecespetdesp_dados['vlrcrrecespetdesp'] = RRecEspetDesp.vlrCRRecEspetDesp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r5001_rrecespetdesp_dados['vlrcrrecespetdespsusp'] = RRecEspetDesp.vlrCRRecEspetDespSusp.cdata
+                        r5001_rrecespetdesp_dados['vlrcrrecespetdespsusp'] = RRecEspetDesp.vlrCRRecEspetDespSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

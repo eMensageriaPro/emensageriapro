@@ -63,8 +63,13 @@ class s1080exclusaoList(generics.ListCreateAPIView):
     
     queryset = s1080exclusao.objects.all()
     serializer_class = s1080exclusaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1080exclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1080exclusao.objects.all()
     serializer_class = s1080exclusaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class s2205aposentadoriaList(generics.ListCreateAPIView):
     
     queryset = s2205aposentadoria.objects.all()
     serializer_class = s2205aposentadoriaSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2205aposentadoriaDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205aposentadoria.objects.all()
     serializer_class = s2205aposentadoriaSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

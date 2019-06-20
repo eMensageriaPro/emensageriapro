@@ -63,13 +63,22 @@ class s1270evtContratAvNPList(generics.ListCreateAPIView):
     
     queryset = s1270evtContratAvNP.objects.all()
     serializer_class = s1270evtContratAvNPSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s1270evtContratAvNPDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1270evtContratAvNP.objects.all()
     serializer_class = s1270evtContratAvNPSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

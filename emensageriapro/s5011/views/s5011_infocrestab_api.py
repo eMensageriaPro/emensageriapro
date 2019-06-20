@@ -63,8 +63,13 @@ class s5011infoCREstabList(generics.ListCreateAPIView):
     
     queryset = s5011infoCREstab.objects.all()
     serializer_class = s5011infoCREstabSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s5011infoCREstabDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011infoCREstab.objects.all()
     serializer_class = s5011infoCREstabSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

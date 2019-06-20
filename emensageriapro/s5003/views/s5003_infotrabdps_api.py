@@ -63,8 +63,13 @@ class s5003infoTrabDpsList(generics.ListCreateAPIView):
     
     queryset = s5003infoTrabDps.objects.all()
     serializer_class = s5003infoTrabDpsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s5003infoTrabDpsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5003infoTrabDps.objects.all()
     serializer_class = s5003infoTrabDpsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

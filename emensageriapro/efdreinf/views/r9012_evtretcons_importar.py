@@ -171,22 +171,22 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r9012_totapurmen_dados['vlrbasecrmen'] = totApurMen.vlrBaseCRMen.cdata
+                        r9012_totapurmen_dados['vlrbasecrmen'] = totApurMen.vlrBaseCRMen.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurmen_dados['vlrcrmen'] = totApurMen.vlrCRMen.cdata
+                        r9012_totapurmen_dados['vlrcrmen'] = totApurMen.vlrCRMen.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurmen_dados['vlrbasecrmensusp'] = totApurMen.vlrBaseCRMenSusp.cdata
+                        r9012_totapurmen_dados['vlrbasecrmensusp'] = totApurMen.vlrBaseCRMenSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurmen_dados['vlrcrmensusp'] = totApurMen.vlrCRMenSusp.cdata
+                        r9012_totapurmen_dados['vlrcrmensusp'] = totApurMen.vlrCRMenSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -210,22 +210,22 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r9012_totapurqui_dados['vlrbasecrqui'] = totApurQui.vlrBaseCRQui.cdata
+                        r9012_totapurqui_dados['vlrbasecrqui'] = totApurQui.vlrBaseCRQui.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurqui_dados['vlrcrqui'] = totApurQui.vlrCRQui.cdata
+                        r9012_totapurqui_dados['vlrcrqui'] = totApurQui.vlrCRQui.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurqui_dados['vlrbasecrquisusp'] = totApurQui.vlrBaseCRQuiSusp.cdata
+                        r9012_totapurqui_dados['vlrbasecrquisusp'] = totApurQui.vlrBaseCRQuiSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurqui_dados['vlrcrquisusp'] = totApurQui.vlrCRQuiSusp.cdata
+                        r9012_totapurqui_dados['vlrcrquisusp'] = totApurQui.vlrCRQuiSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -249,22 +249,22 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r9012_totapurdec_dados['vlrbasecrdec'] = totApurDec.vlrBaseCRDec.cdata
+                        r9012_totapurdec_dados['vlrbasecrdec'] = totApurDec.vlrBaseCRDec.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurdec_dados['vlrcrdec'] = totApurDec.vlrCRDec.cdata
+                        r9012_totapurdec_dados['vlrcrdec'] = totApurDec.vlrCRDec.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurdec_dados['vlrbasecrdecsusp'] = totApurDec.vlrBaseCRDecSusp.cdata
+                        r9012_totapurdec_dados['vlrbasecrdecsusp'] = totApurDec.vlrBaseCRDecSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurdec_dados['vlrcrdecsusp'] = totApurDec.vlrCRDecSusp.cdata
+                        r9012_totapurdec_dados['vlrcrdecsusp'] = totApurDec.vlrCRDecSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -288,22 +288,22 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r9012_totapursem_dados['vlrbasecrsem'] = totApurSem.vlrBaseCRSem.cdata
+                        r9012_totapursem_dados['vlrbasecrsem'] = totApurSem.vlrBaseCRSem.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapursem_dados['vlrcrsem'] = totApurSem.vlrCRSem.cdata
+                        r9012_totapursem_dados['vlrcrsem'] = totApurSem.vlrCRSem.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapursem_dados['vlrbasecrsemsusp'] = totApurSem.vlrBaseCRSemSusp.cdata
+                        r9012_totapursem_dados['vlrbasecrsemsusp'] = totApurSem.vlrBaseCRSemSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapursem_dados['vlrcrsemsusp'] = totApurSem.vlrCRSemSusp.cdata
+                        r9012_totapursem_dados['vlrcrsemsusp'] = totApurSem.vlrCRSemSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -327,22 +327,22 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r9012_totapurdia_dados['vlrbasecrdia'] = totApurDia.vlrBaseCRDia.cdata
+                        r9012_totapurdia_dados['vlrbasecrdia'] = totApurDia.vlrBaseCRDia.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurdia_dados['vlrcrdia'] = totApurDia.vlrCRDia.cdata
+                        r9012_totapurdia_dados['vlrcrdia'] = totApurDia.vlrCRDia.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurdia_dados['vlrbasecrdiasusp'] = totApurDia.vlrBaseCRDiaSusp.cdata
+                        r9012_totapurdia_dados['vlrbasecrdiasusp'] = totApurDia.vlrBaseCRDiaSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r9012_totapurdia_dados['vlrcrdiasusp'] = totApurDia.vlrCRDiaSusp.cdata
+                        r9012_totapurdia_dados['vlrcrdiasusp'] = totApurDia.vlrCRDiaSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             

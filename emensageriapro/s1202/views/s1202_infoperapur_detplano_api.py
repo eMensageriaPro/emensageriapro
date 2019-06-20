@@ -63,8 +63,13 @@ class s1202infoPerApurdetPlanoList(generics.ListCreateAPIView):
     
     queryset = s1202infoPerApurdetPlano.objects.all()
     serializer_class = s1202infoPerApurdetPlanoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1202infoPerApurdetPlanoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1202infoPerApurdetPlano.objects.all()
     serializer_class = s1202infoPerApurdetPlanoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

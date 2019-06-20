@@ -63,13 +63,22 @@ class r4040evtBenefNIdList(generics.ListCreateAPIView):
     
     queryset = r4040evtBenefNId.objects.all()
     serializer_class = r4040evtBenefNIdSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class r4040evtBenefNIdDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4040evtBenefNId.objects.all()
     serializer_class = r4040evtBenefNIdSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

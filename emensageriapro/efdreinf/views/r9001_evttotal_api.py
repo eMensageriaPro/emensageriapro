@@ -63,13 +63,22 @@ class r9001evtTotalList(generics.ListCreateAPIView):
     
     queryset = r9001evtTotal.objects.all()
     serializer_class = r9001evtTotalSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class r9001evtTotalDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9001evtTotal.objects.all()
     serializer_class = r9001evtTotalSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

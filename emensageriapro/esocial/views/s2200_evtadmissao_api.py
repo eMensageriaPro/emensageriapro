@@ -63,13 +63,22 @@ class s2200evtAdmissaoList(generics.ListCreateAPIView):
     
     queryset = s2200evtAdmissao.objects.all()
     serializer_class = s2200evtAdmissaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s2200evtAdmissaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2200evtAdmissao.objects.all()
     serializer_class = s2200evtAdmissaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

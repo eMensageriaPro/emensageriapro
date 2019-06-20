@@ -63,8 +63,13 @@ class r9002infoTotalList(generics.ListCreateAPIView):
     
     queryset = r9002infoTotal.objects.all()
     serializer_class = r9002infoTotalSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r9002infoTotalDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r9002infoTotal.objects.all()
     serializer_class = r9002infoTotalSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

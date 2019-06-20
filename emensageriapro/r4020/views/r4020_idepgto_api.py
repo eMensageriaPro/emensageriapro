@@ -63,8 +63,13 @@ class r4020idePgtoList(generics.ListCreateAPIView):
     
     queryset = r4020idePgto.objects.all()
     serializer_class = r4020idePgtoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r4020idePgtoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4020idePgto.objects.all()
     serializer_class = r4020idePgtoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

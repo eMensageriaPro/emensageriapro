@@ -63,8 +63,13 @@ class s2240iniExpRiscorespRegList(generics.ListCreateAPIView):
     
     queryset = s2240iniExpRiscorespReg.objects.all()
     serializer_class = s2240iniExpRiscorespRegSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2240iniExpRiscorespRegDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2240iniExpRiscorespReg.objects.all()
     serializer_class = s2240iniExpRiscorespRegSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class r2070infoProcJuddespProcJudList(generics.ListCreateAPIView):
     
     queryset = r2070infoProcJuddespProcJud.objects.all()
     serializer_class = r2070infoProcJuddespProcJudSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r2070infoProcJuddespProcJudDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2070infoProcJuddespProcJud.objects.all()
     serializer_class = r2070infoProcJuddespProcJudSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

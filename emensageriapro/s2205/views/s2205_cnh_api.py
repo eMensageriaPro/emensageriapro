@@ -63,8 +63,13 @@ class s2205CNHList(generics.ListCreateAPIView):
     
     queryset = s2205CNH.objects.all()
     serializer_class = s2205CNHSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2205CNHDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205CNH.objects.all()
     serializer_class = s2205CNHSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

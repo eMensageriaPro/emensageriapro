@@ -162,42 +162,42 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrrendbruto'] = infoPgto.vlrRendBruto.cdata
+                        r4010_infopgto_dados['vlrrendbruto'] = infoPgto.vlrRendBruto.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrrendtrib'] = infoPgto.vlrRendTrib.cdata
+                        r4010_infopgto_dados['vlrrendtrib'] = infoPgto.vlrRendTrib.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrir'] = infoPgto.vlrIR.cdata
+                        r4010_infopgto_dados['vlrir'] = infoPgto.vlrIR.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrrendsusp'] = infoPgto.vlrRendSusp.cdata
+                        r4010_infopgto_dados['vlrrendsusp'] = infoPgto.vlrRendSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrnir'] = infoPgto.vlrNIR.cdata
+                        r4010_infopgto_dados['vlrnir'] = infoPgto.vlrNIR.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrdeposito'] = infoPgto.vlrDeposito.cdata
+                        r4010_infopgto_dados['vlrdeposito'] = infoPgto.vlrDeposito.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrcompanocalend'] = infoPgto.vlrCompAnoCalend.cdata
+                        r4010_infopgto_dados['vlrcompanocalend'] = infoPgto.vlrCompAnoCalend.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_infopgto_dados['vlrcompanoant'] = infoPgto.vlrCompAnoAnt.cdata
+                        r4010_infopgto_dados['vlrcompanoant'] = infoPgto.vlrCompAnoAnt.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -249,12 +249,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r4010_detded_dados['vlrdeducao'] = detDed.vlrDeducao.cdata
+                                r4010_detded_dados['vlrdeducao'] = detDed.vlrDeducao.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4010_detded_dados['vlrdedsusp'] = detDed.vlrDedSusp.cdata
+                                r4010_detded_dados['vlrdedsusp'] = detDed.vlrDedSusp.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
@@ -312,7 +312,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r4010_rendisento_dados['vlrisento'] = rendIsento.vlrIsento.cdata
+                                r4010_rendisento_dados['vlrisento'] = rendIsento.vlrIsento.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
@@ -351,12 +351,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r4010_infoprocret_dados['vlrnretido'] = infoProcRet.vlrNRetido.cdata
+                                r4010_infoprocret_dados['vlrnretido'] = infoProcRet.vlrNRetido.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4010_infoprocret_dados['vlrdep'] = infoProcRet.vlrDep.cdata
+                                r4010_infoprocret_dados['vlrdep'] = infoProcRet.vlrDep.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -404,12 +404,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                     r4010_inforra_despprocjud_dados['r4010_inforra_id'] = r4010_inforra.id
                                     
                                     try:
-                                        r4010_inforra_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata
+                                        r4010_inforra_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                                     
                                     try:
-                                        r4010_inforra_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata
+                                        r4010_inforra_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -433,7 +433,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                                 pass
                                             
                                             try:
-                                                r4010_inforra_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata
+                                                r4010_inforra_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                     
@@ -485,12 +485,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                     r4010_infoprocjud_despprocjud_dados['r4010_infoprocjud_id'] = r4010_infoprocjud.id
                                     
                                     try:
-                                        r4010_infoprocjud_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata
+                                        r4010_infoprocjud_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                                     
                                     try:
-                                        r4010_infoprocjud_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata
+                                        r4010_infoprocjud_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -514,7 +514,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                                 pass
                                             
                                             try:
-                                                r4010_infoprocjud_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata
+                                                r4010_infoprocjud_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                     
@@ -616,7 +616,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                 pass
             
             try:
-                r4010_ideopsaude_dados['vlrsaude'] = ideOpSaude.vlrSaude.cdata
+                r4010_ideopsaude_dados['vlrsaude'] = ideOpSaude.vlrSaude.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
     
@@ -640,12 +640,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r4010_inforeemb_dados['vlrreemb'] = infoReemb.vlrReemb.cdata
+                        r4010_inforeemb_dados['vlrreemb'] = infoReemb.vlrReemb.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4010_inforeemb_dados['vlrreembant'] = infoReemb.vlrReembAnt.cdata
+                        r4010_inforeemb_dados['vlrreembant'] = infoReemb.vlrReembAnt.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -679,7 +679,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r4010_infodependpl_dados['vlrsaude'] = infoDependPl.vlrSaude.cdata
+                        r4010_infodependpl_dados['vlrsaude'] = infoDependPl.vlrSaude.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -703,12 +703,12 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
                                 pass
                             
                             try:
-                                r4010_inforeembdep_dados['vlrreemb'] = infoReembDep.vlrReemb.cdata
+                                r4010_inforeembdep_dados['vlrreemb'] = infoReembDep.vlrReemb.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4010_inforeembdep_dados['vlrreembant'] = infoReembDep.vlrReembAnt.cdata
+                                r4010_inforeembdep_dados['vlrreembant'] = infoReembDep.vlrReembAnt.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     

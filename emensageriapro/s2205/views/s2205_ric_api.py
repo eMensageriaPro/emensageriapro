@@ -63,8 +63,13 @@ class s2205RICList(generics.ListCreateAPIView):
     
     queryset = s2205RIC.objects.all()
     serializer_class = s2205RICSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2205RICDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2205RIC.objects.all()
     serializer_class = s2205RICSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

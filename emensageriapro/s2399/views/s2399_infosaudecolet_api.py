@@ -63,8 +63,13 @@ class s2399infoSaudeColetList(generics.ListCreateAPIView):
     
     queryset = s2399infoSaudeColet.objects.all()
     serializer_class = s2399infoSaudeColetSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2399infoSaudeColetDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2399infoSaudeColet.objects.all()
     serializer_class = s2399infoSaudeColetSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,8 +63,13 @@ class s1210depsList(generics.ListCreateAPIView):
     
     queryset = s1210deps.objects.all()
     serializer_class = s1210depsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1210depsDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1210deps.objects.all()
     serializer_class = s1210depsSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

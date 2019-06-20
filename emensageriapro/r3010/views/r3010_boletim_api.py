@@ -63,8 +63,13 @@ class r3010boletimList(generics.ListCreateAPIView):
     
     queryset = r3010boletim.objects.all()
     serializer_class = r3010boletimSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r3010boletimDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r3010boletim.objects.all()
     serializer_class = r3010boletimSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

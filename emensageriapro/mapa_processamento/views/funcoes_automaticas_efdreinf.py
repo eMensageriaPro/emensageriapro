@@ -119,7 +119,7 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
 
             if hash:
                 messages.error(request, txt)
-                return redirect('mapa_efdreinf', tab=request.session['retorno_hash'])
+                return redirect('mapa_efdreinf', tab='master')
             else:
                 data = {'response': txt}
                 return Response(data, status=HTTP_200_OK)
@@ -129,7 +129,7 @@ def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
 
             if hash:
                 messages.error(request, txt)
-                return redirect('mapa_efdreinf', tab=request.session['retorno_hash'])
+                return redirect('mapa_efdreinf', tab='master')
             else:
                 data = {'response': txt}
                 return Response(data, status=HTTP_200_OK)

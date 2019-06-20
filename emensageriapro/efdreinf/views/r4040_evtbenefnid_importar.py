@@ -137,17 +137,17 @@ def read_r4040_evtbenefnid_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r4040_infopgto_dados['vlrliq'] = infoPgto.vlrLiq.cdata
+                        r4040_infopgto_dados['vlrliq'] = infoPgto.vlrLiq.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4040_infopgto_dados['vlrreaj'] = infoPgto.vlrReaj.cdata
+                        r4040_infopgto_dados['vlrreaj'] = infoPgto.vlrReaj.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4040_infopgto_dados['vlrir'] = infoPgto.vlrIR.cdata
+                        r4040_infopgto_dados['vlrir'] = infoPgto.vlrIR.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     

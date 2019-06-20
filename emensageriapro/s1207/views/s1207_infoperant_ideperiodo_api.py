@@ -63,8 +63,13 @@ class s1207infoPerAntidePeriodoList(generics.ListCreateAPIView):
     
     queryset = s1207infoPerAntidePeriodo.objects.all()
     serializer_class = s1207infoPerAntidePeriodoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1207infoPerAntidePeriodoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1207infoPerAntidePeriodo.objects.all()
     serializer_class = s1207infoPerAntidePeriodoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

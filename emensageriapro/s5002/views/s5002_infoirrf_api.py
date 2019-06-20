@@ -63,8 +63,13 @@ class s5002infoIrrfList(generics.ListCreateAPIView):
     
     queryset = s5002infoIrrf.objects.all()
     serializer_class = s5002infoIrrfSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s5002infoIrrfDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5002infoIrrf.objects.all()
     serializer_class = s5002infoIrrfSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

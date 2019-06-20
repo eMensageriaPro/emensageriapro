@@ -162,12 +162,12 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r4020_infopgto_dados['vlrtotalpag'] = infoPgto.vlrTotalPag.cdata
+                        r4020_infopgto_dados['vlrtotalpag'] = infoPgto.vlrTotalPag.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r4020_infopgto_dados['vlrtotalcred'] = infoPgto.vlrTotalCred.cdata
+                        r4020_infopgto_dados['vlrtotalcred'] = infoPgto.vlrTotalCred.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
@@ -181,27 +181,27 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                             r4020_ir_dados['r4020_infopgto_id'] = r4020_infopgto.id
                             
                             try:
-                                r4020_ir_dados['vlrbaseir'] = IR.vlrBaseIR.cdata
+                                r4020_ir_dados['vlrbaseir'] = IR.vlrBaseIR.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_ir_dados['vlrir'] = IR.vlrIR.cdata
+                                r4020_ir_dados['vlrir'] = IR.vlrIR.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_ir_dados['vlrbasenir'] = IR.vlrBaseNIR.cdata
+                                r4020_ir_dados['vlrbasenir'] = IR.vlrBaseNIR.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_ir_dados['vlrnir'] = IR.vlrNIR.cdata
+                                r4020_ir_dados['vlrnir'] = IR.vlrNIR.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_ir_dados['vlrdepir'] = IR.vlrDepIR.cdata
+                                r4020_ir_dados['vlrdepir'] = IR.vlrDepIR.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -215,27 +215,27 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                             r4020_csll_dados['r4020_infopgto_id'] = r4020_infopgto.id
                             
                             try:
-                                r4020_csll_dados['vlrbasecsll'] = CSLL.vlrBaseCSLL.cdata
+                                r4020_csll_dados['vlrbasecsll'] = CSLL.vlrBaseCSLL.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_csll_dados['vlrcsll'] = CSLL.vlrCSLL.cdata
+                                r4020_csll_dados['vlrcsll'] = CSLL.vlrCSLL.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_csll_dados['vlrbasencsll'] = CSLL.vlrBaseNCSLL.cdata
+                                r4020_csll_dados['vlrbasencsll'] = CSLL.vlrBaseNCSLL.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_csll_dados['vlrncsll'] = CSLL.vlrNCSLL.cdata
+                                r4020_csll_dados['vlrncsll'] = CSLL.vlrNCSLL.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_csll_dados['vlrdepcsll'] = CSLL.vlrDepCSLL.cdata
+                                r4020_csll_dados['vlrdepcsll'] = CSLL.vlrDepCSLL.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -249,27 +249,27 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                             r4020_cofins_dados['r4020_infopgto_id'] = r4020_infopgto.id
                             
                             try:
-                                r4020_cofins_dados['vlrbasecofins'] = Cofins.vlrBaseCofins.cdata
+                                r4020_cofins_dados['vlrbasecofins'] = Cofins.vlrBaseCofins.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_cofins_dados['vlrcofins'] = Cofins.vlrCofins.cdata
+                                r4020_cofins_dados['vlrcofins'] = Cofins.vlrCofins.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_cofins_dados['vlrbasencofins'] = Cofins.vlrBaseNCofins.cdata
+                                r4020_cofins_dados['vlrbasencofins'] = Cofins.vlrBaseNCofins.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_cofins_dados['vlrncofins'] = Cofins.vlrNCofins.cdata
+                                r4020_cofins_dados['vlrncofins'] = Cofins.vlrNCofins.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_cofins_dados['vlrdepcofins'] = Cofins.vlrDepCofins.cdata
+                                r4020_cofins_dados['vlrdepcofins'] = Cofins.vlrDepCofins.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -283,27 +283,27 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                             r4020_pp_dados['r4020_infopgto_id'] = r4020_infopgto.id
                             
                             try:
-                                r4020_pp_dados['vlrbasepp'] = PP.vlrBasePP.cdata
+                                r4020_pp_dados['vlrbasepp'] = PP.vlrBasePP.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_pp_dados['vlrpp'] = PP.vlrPP.cdata
+                                r4020_pp_dados['vlrpp'] = PP.vlrPP.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_pp_dados['vlrbasenpp'] = PP.vlrBaseNPP.cdata
+                                r4020_pp_dados['vlrbasenpp'] = PP.vlrBaseNPP.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_pp_dados['vlrnpp'] = PP.vlrNPP.cdata
+                                r4020_pp_dados['vlrnpp'] = PP.vlrNPP.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                             
                             try:
-                                r4020_pp_dados['vlrdeppp'] = PP.vlrDepPP.cdata
+                                r4020_pp_dados['vlrdeppp'] = PP.vlrDepPP.cdata.replace('.', '').replace(',', '.')
                             except AttributeError: 
                                 pass
                     
@@ -438,12 +438,12 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                                     r4020_despprocjud_dados['r4020_infoprocjud_id'] = r4020_infoprocjud.id
                                     
                                     try:
-                                        r4020_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata
+                                        r4020_despprocjud_dados['vlrdespcustas'] = despProcJud.vlrDespCustas.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                                     
                                     try:
-                                        r4020_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata
+                                        r4020_despprocjud_dados['vlrdespadvogados'] = despProcJud.vlrDespAdvogados.cdata.replace('.', '').replace(',', '.')
                                     except AttributeError: 
                                         pass
                             
@@ -467,7 +467,7 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
                                                 pass
                                             
                                             try:
-                                                r4020_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata
+                                                r4020_ideadv_dados['vlradv'] = ideAdv.vlrAdv.cdata.replace('.', '').replace(',', '.')
                                             except AttributeError: 
                                                 pass
                                     

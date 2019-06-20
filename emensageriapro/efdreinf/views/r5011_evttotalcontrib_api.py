@@ -63,13 +63,22 @@ class r5011evtTotalContribList(generics.ListCreateAPIView):
     
     queryset = r5011evtTotalContrib.objects.all()
     serializer_class = r5011evtTotalContribSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class r5011evtTotalContribDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r5011evtTotalContrib.objects.all()
     serializer_class = r5011evtTotalContribSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

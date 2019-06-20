@@ -63,13 +63,22 @@ class r4099evtFechList(generics.ListCreateAPIView):
     
     queryset = r4099evtFech.objects.all()
     serializer_class = r4099evtFechSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class r4099evtFechDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r4099evtFech.objects.all()
     serializer_class = r4099evtFechSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

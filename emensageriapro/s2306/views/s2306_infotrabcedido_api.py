@@ -63,8 +63,13 @@ class s2306infoTrabCedidoList(generics.ListCreateAPIView):
     
     queryset = s2306infoTrabCedido.objects.all()
     serializer_class = s2306infoTrabCedidoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s2306infoTrabCedidoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2306infoTrabCedido.objects.all()
     serializer_class = s2306infoTrabCedidoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

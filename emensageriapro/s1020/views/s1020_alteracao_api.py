@@ -63,8 +63,13 @@ class s1020alteracaoList(generics.ListCreateAPIView):
     
     queryset = s1020alteracao.objects.all()
     serializer_class = s1020alteracaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1020alteracaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1020alteracao.objects.all()
     serializer_class = s1020alteracaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

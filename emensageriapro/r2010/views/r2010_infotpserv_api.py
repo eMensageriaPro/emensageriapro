@@ -63,8 +63,13 @@ class r2010infoTpServList(generics.ListCreateAPIView):
     
     queryset = r2010infoTpServ.objects.all()
     serializer_class = r2010infoTpServSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r2010infoTpServDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r2010infoTpServ.objects.all()
     serializer_class = r2010infoTpServSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

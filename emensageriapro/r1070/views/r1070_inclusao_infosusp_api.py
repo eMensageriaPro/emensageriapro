@@ -63,8 +63,13 @@ class r1070inclusaoinfoSuspList(generics.ListCreateAPIView):
     
     queryset = r1070inclusaoinfoSusp.objects.all()
     serializer_class = r1070inclusaoinfoSuspSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class r1070inclusaoinfoSuspDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = r1070inclusaoinfoSusp.objects.all()
     serializer_class = r1070inclusaoinfoSuspSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

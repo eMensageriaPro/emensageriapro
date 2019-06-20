@@ -63,13 +63,22 @@ class s5011evtCSList(generics.ListCreateAPIView):
     
     queryset = s5011evtCS.objects.all()
     serializer_class = s5011evtCSSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s5011evtCSDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s5011evtCS.objects.all()
     serializer_class = s5011evtCSSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

@@ -63,13 +63,22 @@ class s2206evtAltContratualList(generics.ListCreateAPIView):
     
     queryset = s2206evtAltContratual.objects.all()
     serializer_class = s2206evtAltContratualSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s2206evtAltContratualDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2206evtAltContratual.objects.all()
     serializer_class = s2206evtAltContratualSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

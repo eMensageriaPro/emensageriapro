@@ -63,8 +63,13 @@ class s1010inclusaoList(generics.ListCreateAPIView):
     
     queryset = s1010inclusao.objects.all()
     serializer_class = s1010inclusaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1010inclusaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1010inclusao.objects.all()
     serializer_class = s1010inclusaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

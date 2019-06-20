@@ -63,13 +63,22 @@ class s2190evtAdmPrelimList(generics.ListCreateAPIView):
     
     queryset = s2190evtAdmPrelim.objects.all()
     serializer_class = s2190evtAdmPrelimSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s2190evtAdmPrelimDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s2190evtAdmPrelim.objects.all()
     serializer_class = s2190evtAdmPrelimSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

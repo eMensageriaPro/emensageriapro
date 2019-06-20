@@ -63,8 +63,13 @@ class s1005inclusaoprocAdmJudRatList(generics.ListCreateAPIView):
     
     queryset = s1005inclusaoprocAdmJudRat.objects.all()
     serializer_class = s1005inclusaoprocAdmJudRatSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 
@@ -72,5 +77,9 @@ class s1005inclusaoprocAdmJudRatDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1005inclusaoprocAdmJudRat.objects.all()
     serializer_class = s1005inclusaoprocAdmJudRatSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

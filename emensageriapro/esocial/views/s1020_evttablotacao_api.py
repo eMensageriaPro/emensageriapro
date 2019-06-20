@@ -63,13 +63,22 @@ class s1020evtTabLotacaoList(generics.ListCreateAPIView):
     
     queryset = s1020evtTabLotacao.objects.all()
     serializer_class = s1020evtTabLotacaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)
+
 
 
 class s1020evtTabLotacaoDetail(generics.RetrieveUpdateDestroyAPIView):
     
     queryset = s1020evtTabLotacao.objects.all()
     serializer_class = s1020evtTabLotacaoSerializer
+    
     def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user, modificado_por=self.request.user)
+        serializer.save(criado_por=self.request.user)
+    
+    def perform_update(self, serializer):
+        serializer.save(modificado_por=self.request.user)

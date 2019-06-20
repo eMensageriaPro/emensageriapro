@@ -109,37 +109,37 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False):
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrrecbrutatotal'] = evtComProd.infoComProd.ideEstab.vlrRecBrutaTotal.cdata
+        r2050_evtcomprod_dados['vlrrecbrutatotal'] = evtComProd.infoComProd.ideEstab.vlrRecBrutaTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrcpapur'] = evtComProd.infoComProd.ideEstab.vlrCPApur.cdata
+        r2050_evtcomprod_dados['vlrcpapur'] = evtComProd.infoComProd.ideEstab.vlrCPApur.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrratapur'] = evtComProd.infoComProd.ideEstab.vlrRatApur.cdata
+        r2050_evtcomprod_dados['vlrratapur'] = evtComProd.infoComProd.ideEstab.vlrRatApur.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrsenarapur'] = evtComProd.infoComProd.ideEstab.vlrSenarApur.cdata
+        r2050_evtcomprod_dados['vlrsenarapur'] = evtComProd.infoComProd.ideEstab.vlrSenarApur.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrcpsusptotal'] = evtComProd.infoComProd.ideEstab.vlrCPSuspTotal.cdata
+        r2050_evtcomprod_dados['vlrcpsusptotal'] = evtComProd.infoComProd.ideEstab.vlrCPSuspTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrratsusptotal'] = evtComProd.infoComProd.ideEstab.vlrRatSuspTotal.cdata
+        r2050_evtcomprod_dados['vlrratsusptotal'] = evtComProd.infoComProd.ideEstab.vlrRatSuspTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
     
     try:
-        r2050_evtcomprod_dados['vlrsenarsusptotal'] = evtComProd.infoComProd.ideEstab.vlrSenarSuspTotal.cdata
+        r2050_evtcomprod_dados['vlrsenarsusptotal'] = evtComProd.infoComProd.ideEstab.vlrSenarSuspTotal.cdata.replace('.', '').replace(',', '.')
     except AttributeError: 
         pass
         
@@ -158,7 +158,7 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False):
                 pass
             
             try:
-                r2050_tipocom_dados['vlrrecbruta'] = tipoCom.vlrRecBruta.cdata
+                r2050_tipocom_dados['vlrrecbruta'] = tipoCom.vlrRecBruta.cdata.replace('.', '').replace(',', '.')
             except AttributeError: 
                 pass
     
@@ -187,17 +187,17 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False):
                         pass
                     
                     try:
-                        r2050_infoproc_dados['vlrcpsusp'] = infoProc.vlrCPSusp.cdata
+                        r2050_infoproc_dados['vlrcpsusp'] = infoProc.vlrCPSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2050_infoproc_dados['vlrratsusp'] = infoProc.vlrRatSusp.cdata
+                        r2050_infoproc_dados['vlrratsusp'] = infoProc.vlrRatSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
                     
                     try:
-                        r2050_infoproc_dados['vlrsenarsusp'] = infoProc.vlrSenarSusp.cdata
+                        r2050_infoproc_dados['vlrsenarsusp'] = infoProc.vlrSenarSusp.cdata.replace('.', '').replace(',', '.')
                     except AttributeError: 
                         pass
             
