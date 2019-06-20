@@ -86,9 +86,13 @@ urlpatterns = [
         s2230_iniafastamento_listar_views.listar, 
         name='s2230_iniafastamento'),
 
-    url(r'^s2230-iniafastamento/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-iniafastamento/salvar/(?P<pk>[0-9]+)/$', 
         s2230_iniafastamento_salvar_views.salvar, 
         name='s2230_iniafastamento_salvar'),
+
+    url(r'^s2230-iniafastamento/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_iniafastamento_salvar_views.salvar, 
+        name='s2230_iniafastamento_salvar_tab'),
         
     url(r'^s2230-iniafastamento/cadastrar/$', 
         s2230_iniafastamento_salvar_views.salvar, 
@@ -116,9 +120,13 @@ urlpatterns = [
         s2230_infoatestado_listar_views.listar, 
         name='s2230_infoatestado'),
 
-    url(r'^s2230-infoatestado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-infoatestado/salvar/(?P<pk>[0-9]+)/$', 
         s2230_infoatestado_salvar_views.salvar, 
         name='s2230_infoatestado_salvar'),
+
+    url(r'^s2230-infoatestado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_infoatestado_salvar_views.salvar, 
+        name='s2230_infoatestado_salvar_tab'),
         
     url(r'^s2230-infoatestado/cadastrar/$', 
         s2230_infoatestado_salvar_views.salvar, 
@@ -146,9 +154,13 @@ urlpatterns = [
         s2230_emitente_listar_views.listar, 
         name='s2230_emitente'),
 
-    url(r'^s2230-emitente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-emitente/salvar/(?P<pk>[0-9]+)/$', 
         s2230_emitente_salvar_views.salvar, 
         name='s2230_emitente_salvar'),
+
+    url(r'^s2230-emitente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_emitente_salvar_views.salvar, 
+        name='s2230_emitente_salvar_tab'),
         
     url(r'^s2230-emitente/cadastrar/$', 
         s2230_emitente_salvar_views.salvar, 
@@ -176,9 +188,13 @@ urlpatterns = [
         s2230_infocessao_listar_views.listar, 
         name='s2230_infocessao'),
 
-    url(r'^s2230-infocessao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-infocessao/salvar/(?P<pk>[0-9]+)/$', 
         s2230_infocessao_salvar_views.salvar, 
         name='s2230_infocessao_salvar'),
+
+    url(r'^s2230-infocessao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_infocessao_salvar_views.salvar, 
+        name='s2230_infocessao_salvar_tab'),
         
     url(r'^s2230-infocessao/cadastrar/$', 
         s2230_infocessao_salvar_views.salvar, 
@@ -206,9 +222,13 @@ urlpatterns = [
         s2230_infomandsind_listar_views.listar, 
         name='s2230_infomandsind'),
 
-    url(r'^s2230-infomandsind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-infomandsind/salvar/(?P<pk>[0-9]+)/$', 
         s2230_infomandsind_salvar_views.salvar, 
         name='s2230_infomandsind_salvar'),
+
+    url(r'^s2230-infomandsind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_infomandsind_salvar_views.salvar, 
+        name='s2230_infomandsind_salvar_tab'),
         
     url(r'^s2230-infomandsind/cadastrar/$', 
         s2230_infomandsind_salvar_views.salvar, 
@@ -236,9 +256,13 @@ urlpatterns = [
         s2230_inforetif_listar_views.listar, 
         name='s2230_inforetif'),
 
-    url(r'^s2230-inforetif/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-inforetif/salvar/(?P<pk>[0-9]+)/$', 
         s2230_inforetif_salvar_views.salvar, 
         name='s2230_inforetif_salvar'),
+
+    url(r'^s2230-inforetif/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_inforetif_salvar_views.salvar, 
+        name='s2230_inforetif_salvar_tab'),
         
     url(r'^s2230-inforetif/cadastrar/$', 
         s2230_inforetif_salvar_views.salvar, 
@@ -266,9 +290,13 @@ urlpatterns = [
         s2230_fimafastamento_listar_views.listar, 
         name='s2230_fimafastamento'),
 
-    url(r'^s2230-fimafastamento/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2230-fimafastamento/salvar/(?P<pk>[0-9]+)/$', 
         s2230_fimafastamento_salvar_views.salvar, 
         name='s2230_fimafastamento_salvar'),
+
+    url(r'^s2230-fimafastamento/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2230_fimafastamento_salvar_views.salvar, 
+        name='s2230_fimafastamento_salvar_tab'),
         
     url(r'^s2230-fimafastamento/cadastrar/$', 
         s2230_fimafastamento_salvar_views.salvar, 

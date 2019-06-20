@@ -74,9 +74,13 @@ urlpatterns = [
         s2400_endereco_listar_views.listar, 
         name='s2400_endereco'),
 
-    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/$', 
         s2400_endereco_salvar_views.salvar, 
         name='s2400_endereco_salvar'),
+
+    url(r'^s2400-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2400_endereco_salvar_views.salvar, 
+        name='s2400_endereco_salvar_tab'),
         
     url(r'^s2400-endereco/cadastrar/$', 
         s2400_endereco_salvar_views.salvar, 
@@ -104,9 +108,13 @@ urlpatterns = [
         s2400_brasil_listar_views.listar, 
         name='s2400_brasil'),
 
-    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/$', 
         s2400_brasil_salvar_views.salvar, 
         name='s2400_brasil_salvar'),
+
+    url(r'^s2400-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2400_brasil_salvar_views.salvar, 
+        name='s2400_brasil_salvar_tab'),
         
     url(r'^s2400-brasil/cadastrar/$', 
         s2400_brasil_salvar_views.salvar, 
@@ -134,9 +142,13 @@ urlpatterns = [
         s2400_exterior_listar_views.listar, 
         name='s2400_exterior'),
 
-    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/$', 
         s2400_exterior_salvar_views.salvar, 
         name='s2400_exterior_salvar'),
+
+    url(r'^s2400-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2400_exterior_salvar_views.salvar, 
+        name='s2400_exterior_salvar_tab'),
         
     url(r'^s2400-exterior/cadastrar/$', 
         s2400_exterior_salvar_views.salvar, 
@@ -164,9 +176,13 @@ urlpatterns = [
         s2400_dependente_listar_views.listar, 
         name='s2400_dependente'),
 
-    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/$', 
         s2400_dependente_salvar_views.salvar, 
         name='s2400_dependente_salvar'),
+
+    url(r'^s2400-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2400_dependente_salvar_views.salvar, 
+        name='s2400_dependente_salvar_tab'),
         
     url(r'^s2400-dependente/cadastrar/$', 
         s2400_dependente_salvar_views.salvar, 

@@ -38,7 +38,7 @@
                     
                         {% if perms.s1050.change_s1050alteracaohorarioIntervalo or perms.s1050.add_s1050alteracaohorarioIntervalo %}
                     
-                        <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=a.id %}">
                             {% if perms.s1050.change_s1050alteracaohorarioIntervalo %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

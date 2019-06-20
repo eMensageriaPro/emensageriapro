@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1020_inclusao_infoemprparcial__s1020_inclusao__label">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada*</label>
     {% if not for_print %}{% if s1020_inclusao_infoemprparcial_form.s1020_inclusao.value %}
-        <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao_infoemprparcial_form.s1020_inclusao.value tab='master' %}">
+        <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao_infoemprparcial_form.s1020_inclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

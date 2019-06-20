@@ -102,11 +102,11 @@ def criar_alteracao(request, pk):
         
         return_pk = dados['id']
         
-        return redirect('s5013_evtfgts_salvar', pk=return_pk, tab='master')
+        return redirect('s5013_evtfgts_salvar', pk=return_pk)
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
                                     
-        return redirect('s5013_evtfgts_salvar', pk=pk, tab='master')
+        return redirect('s5013_evtfgts_salvar', pk=pk)

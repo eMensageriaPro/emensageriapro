@@ -80,7 +80,7 @@
                     
                         {% if perms.esocial.change_s1300evtContrSindPatr or perms.esocial.add_s1300evtContrSindPatr %}
                     
-                        <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1300_evtcontrsindpatr_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1300evtContrSindPatr %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

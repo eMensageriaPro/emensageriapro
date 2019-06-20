@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2405_brasil__s2405_endereco__label">Preenchimento obrigatório para trabalhador residente no Brasil.*</label>
     {% if not for_print %}{% if s2405_brasil_form.s2405_endereco.value %}
-        <a href="{% url 's2405_endereco_salvar' pk=s2405_brasil_form.s2405_endereco.value tab='master' %}">
+        <a href="{% url 's2405_endereco_salvar' pk=s2405_brasil_form.s2405_endereco.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

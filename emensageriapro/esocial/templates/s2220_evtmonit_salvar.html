@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2220evtMonit %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2220_evtmonit_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2220_evtmonit_salvar_tab' pk=pk tab='master' %}">
                                 S-2220 - Monitoramento da Saúde do Trabalhador</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.s2220.can_see_s2220exame %}
                                     <li {% if tab == 's2220_exame' %} class="active"{% endif %} >
-                                        <a href="{% url 's2220_evtmonit_salvar' pk=pk tab='s2220_exame' %}">
+                                        <a href="{% url 's2220_evtmonit_salvar_tab' pk=pk tab='s2220_exame' %}">
                                         Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO</a>
                                     </li>
                                 {% endif %}

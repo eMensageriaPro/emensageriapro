@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1250evtAqProd %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1250_evtaqprod_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1250_evtaqprod_salvar_tab' pk=pk tab='master' %}">
                                 S-1250 - Aquisição de Produção Rural</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.s1250.can_see_s1250tpAquis %}
                                     <li {% if tab == 's1250_tpaquis' %} class="active"{% endif %} >
-                                        <a href="{% url 's1250_evtaqprod_salvar' pk=pk tab='s1250_tpaquis' %}">
+                                        <a href="{% url 's1250_evtaqprod_salvar_tab' pk=pk tab='s1250_tpaquis' %}">
                                         Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</a>
                                     </li>
                                 {% endif %}

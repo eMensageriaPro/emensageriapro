@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s5012evtIrrf %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5012_evtirrf_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5012_evtirrf_salvar_tab' pk=pk tab='master' %}">
                                 S-5012 - Informações do IRRF consolidadas por contribuinte</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.s5012.can_see_s5012infoCRContrib %}
                                     <li {% if tab == 's5012_infocrcontrib' %} class="active"{% endif %} >
-                                        <a href="{% url 's5012_evtirrf_salvar' pk=pk tab='s5012_infocrcontrib' %}">
+                                        <a href="{% url 's5012_evtirrf_salvar_tab' pk=pk tab='s5012_infocrcontrib' %}">
                                         Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</a>
                                     </li>
                                 {% endif %}

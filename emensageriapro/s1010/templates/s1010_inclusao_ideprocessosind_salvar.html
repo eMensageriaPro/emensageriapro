@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1010.can_see_s1010inclusaoideProcessoSIND %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1010_inclusao_ideprocessosind_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1010_inclusao_ideprocessosind_salvar_tab' pk=pk tab='master' %}">
                                 Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                             </li>
                         {% endif %}

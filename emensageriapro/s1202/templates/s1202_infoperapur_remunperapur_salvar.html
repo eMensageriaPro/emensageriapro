@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1202.can_see_s1202infoPerApurremunPerApur %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1202_infoperapur_remunperapur_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1202_infoperapur_remunperapur_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas a remuneração do trabalhador no período de apuração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1202.can_see_s1202infoPerApuritensRemun %}
                                 <li {% if tab == 's1202_infoperapur_itensremun' %} class="active"{% endif %} >
-                                    <a href="{% url 's1202_infoperapur_remunperapur_salvar' pk=pk tab='s1202_infoperapur_itensremun' %}">
+                                    <a href="{% url 's1202_infoperapur_remunperapur_salvar_tab' pk=pk tab='s1202_infoperapur_itensremun' %}">
                                     Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1202.can_see_s1202infoPerApurinfoSaudeColet %}
                                 <li {% if tab == 's1202_infoperapur_infosaudecolet' %} class="active"{% endif %} >
-                                    <a href="{% url 's1202_infoperapur_remunperapur_salvar' pk=pk tab='s1202_infoperapur_infosaudecolet' %}">
+                                    <a href="{% url 's1202_infoperapur_remunperapur_salvar_tab' pk=pk tab='s1202_infoperapur_infosaudecolet' %}">
                                     Informações de plano privado coletivo empresarial de assistência à saúde</a>
                                 </li>
                             {% endif %}

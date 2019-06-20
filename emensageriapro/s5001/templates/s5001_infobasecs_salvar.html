@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5001.can_see_s5001infoBaseCS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5001_infobasecs_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5001_infobasecs_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).</a>
                             </li>
                         {% endif %}

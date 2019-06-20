@@ -54,28 +54,28 @@
                     {% if pk %}
                         {% if perms.s1020.can_see_s1020alteracao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1020_alteracao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1020_alteracao_salvar_tab' pk=pk tab='master' %}">
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1020.can_see_s1020alteracaoinfoProcJudTerceiros %}
                                 <li {% if tab == 's1020_alteracao_infoprocjudterceiros' %} class="active"{% endif %} >
-                                    <a href="{% url 's1020_alteracao_salvar' pk=pk tab='s1020_alteracao_infoprocjudterceiros' %}">
+                                    <a href="{% url 's1020_alteracao_salvar_tab' pk=pk tab='s1020_alteracao_infoprocjudterceiros' %}">
                                     Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1020.can_see_s1020alteracaoinfoEmprParcial %}
                                 <li {% if tab == 's1020_alteracao_infoemprparcial' %} class="active"{% endif %} >
-                                    <a href="{% url 's1020_alteracao_salvar' pk=pk tab='s1020_alteracao_infoemprparcial' %}">
+                                    <a href="{% url 's1020_alteracao_salvar_tab' pk=pk tab='s1020_alteracao_infoemprparcial' %}">
                                     Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1020.can_see_s1020alteracaonovaValidade %}
                                 <li {% if tab == 's1020_alteracao_novavalidade' %} class="active"{% endif %} >
-                                    <a href="{% url 's1020_alteracao_salvar' pk=pk tab='s1020_alteracao_novavalidade' %}">
+                                    <a href="{% url 's1020_alteracao_salvar_tab' pk=pk tab='s1020_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}

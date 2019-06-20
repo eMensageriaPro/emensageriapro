@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1000_alteracao_infoop__s1000_alteracao__label">Informações relativas a Órgãos Públicos*</label>
     {% if not for_print %}{% if s1000_alteracao_infoop_form.s1000_alteracao.value %}
-        <a href="{% url 's1000_alteracao_salvar' pk=s1000_alteracao_infoop_form.s1000_alteracao.value tab='master' %}">
+        <a href="{% url 's1000_alteracao_salvar' pk=s1000_alteracao_infoop_form.s1000_alteracao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2299_transftit__s2299_evtdeslig__label">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar*</label>
     {% if not for_print %}{% if s2299_transftit_form.s2299_evtdeslig.value %}
-        <a href="{% url 's2299_evtdeslig_salvar' pk=s2299_transftit_form.s2299_evtdeslig.value tab='master' %}">
+        <a href="{% url 's2299_evtdeslig_salvar' pk=s2299_transftit_form.s2299_evtdeslig.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

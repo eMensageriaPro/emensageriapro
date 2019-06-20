@@ -77,7 +77,16 @@ class s1280infoAtivConcom(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1280_evtinfocomplper), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -126,7 +135,16 @@ class s1280infoSubstPatr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1280_evtinfocomplper), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -174,7 +192,16 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1280_evtinfocomplper), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     

@@ -38,7 +38,7 @@
                     
                         {% if perms.s1210.change_s1210detPgtoAntinfoPgtoAnt or perms.s1210.add_s1210detPgtoAntinfoPgtoAnt %}
                     
-                        <a href="{% url 's1210_detpgtoant_infopgtoant_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1210_detpgtoant_infopgtoant_salvar' pk=a.id %}">
                             {% if perms.s1210.change_s1210detPgtoAntinfoPgtoAnt %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -44,7 +44,7 @@
                     
                         {% if perms.mensageiro.change_TransmissorLoteEsocialOcorrencias or perms.mensageiro.add_TransmissorLoteEsocialOcorrencias %}
                     
-                        <a href="{% url 'transmissor_lote_esocial_ocorrencias_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'transmissor_lote_esocial_ocorrencias_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_TransmissorLoteEsocialOcorrencias %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

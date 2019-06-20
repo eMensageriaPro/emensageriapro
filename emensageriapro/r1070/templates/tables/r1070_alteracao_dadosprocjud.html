@@ -44,7 +44,7 @@
                     
                         {% if perms.r1070.change_r1070alteracaodadosProcJud or perms.r1070.add_r1070alteracaodadosProcJud %}
                     
-                        <a href="{% url 'r1070_alteracao_dadosprocjud_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r1070_alteracao_dadosprocjud_salvar' pk=a.id %}">
                             {% if perms.r1070.change_r1070alteracaodadosProcJud %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

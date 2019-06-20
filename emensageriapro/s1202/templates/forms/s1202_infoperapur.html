@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1202_infoperapur__s1202_dmdev__label">Remuneração no período de apuração*</label>
     {% if not for_print %}{% if s1202_infoperapur_form.s1202_dmdev.value %}
-        <a href="{% url 's1202_dmdev_salvar' pk=s1202_infoperapur_form.s1202_dmdev.value tab='master' %}">
+        <a href="{% url 's1202_dmdev_salvar' pk=s1202_infoperapur_form.s1202_dmdev.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

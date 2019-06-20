@@ -15,7 +15,7 @@
     <label id="s1200_infoperapur_remunperapur__s1200_infoperapur_ideestablot__label">Informações relativas a remuneração do trabalhador no período de apuração*</label>
     {% if not for_print %}
       {% if s1200_infoperapur_remunperapur_form.s1200_infoperapur_ideestablot.value %}
-        <a id="s1200_infoperapur_remunperapur__s1200_infoperapur_ideestablot__div_acessar" href="{% url 's1200_infoperapur_ideestablot_salvar' pk=s1200_infoperapur_remunperapur_form.s1200_infoperapur_ideestablot.value tab='master' %}">
+        <a id="s1200_infoperapur_remunperapur__s1200_infoperapur_ideestablot__div_acessar" href="{% url 's1200_infoperapur_ideestablot_salvar' pk=s1200_infoperapur_remunperapur_form.s1200_infoperapur_ideestablot.value %}">
           [Acessar]
         </a>
       {% endif %} 

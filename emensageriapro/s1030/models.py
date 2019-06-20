@@ -80,7 +80,16 @@ class s1030alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1030_evttabcargo), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -136,7 +145,16 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1030_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -189,7 +207,16 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1030_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -238,7 +265,16 @@ class s1030exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1030_evttabcargo), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -290,7 +326,16 @@ class s1030inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1030_evttabcargo), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -346,7 +391,16 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1030_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     

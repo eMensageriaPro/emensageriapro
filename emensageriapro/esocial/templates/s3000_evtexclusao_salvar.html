@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s3000evtExclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's3000_evtexclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's3000_evtexclusao_salvar_tab' pk=pk tab='master' %}">
                                 S-3000 - Exclusão de eventos</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s3000.can_see_s3000ideTrabalhador %}
                                     <li {% if tab == 's3000_idetrabalhador' %} class="active"{% endif %} >
-                                        <a href="{% url 's3000_evtexclusao_salvar' pk=pk tab='s3000_idetrabalhador' %}">
+                                        <a href="{% url 's3000_evtexclusao_salvar_tab' pk=pk tab='s3000_idetrabalhador' %}">
                                         Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s3000.can_see_s3000ideFolhaPagto %}
                                     <li {% if tab == 's3000_idefolhapagto' %} class="active"{% endif %} >
-                                        <a href="{% url 's3000_evtexclusao_salvar' pk=pk tab='s3000_idefolhapagto' %}">
+                                        <a href="{% url 's3000_evtexclusao_salvar_tab' pk=pk tab='s3000_idefolhapagto' %}">
                                         Registro que identifica a qual folha de pagamento pertence o evento que será excluído</a>
                                     </li>
                                 {% endif %}

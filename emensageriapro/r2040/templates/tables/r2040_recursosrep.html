@@ -44,7 +44,7 @@
                     
                         {% if perms.r2040.change_r2040recursosRep or perms.r2040.add_r2040recursosRep %}
                     
-                        <a href="{% url 'r2040_recursosrep_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2040_recursosrep_salvar' pk=a.id %}">
                             {% if perms.r2040.change_r2040recursosRep %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

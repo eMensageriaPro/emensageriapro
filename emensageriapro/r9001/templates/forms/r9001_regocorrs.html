@@ -15,7 +15,7 @@
     <label id="r9001_regocorrs__r9001_evttotal__label">Informações de ocorrências registradas*</label>
     {% if not for_print %}
       {% if r9001_regocorrs_form.r9001_evttotal.value %}
-        <a id="r9001_regocorrs__r9001_evttotal__div_acessar" href="{% url 'r9001_evttotal_salvar' pk=r9001_regocorrs_form.r9001_evttotal.value tab='master' %}">
+        <a id="r9001_regocorrs__r9001_evttotal__div_acessar" href="{% url 'r9001_evttotal_salvar' pk=r9001_regocorrs_form.r9001_evttotal.value %}">
           [Acessar]
         </a>
       {% endif %} 

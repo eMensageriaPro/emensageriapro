@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1030.can_see_s1030alteracao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1030_alteracao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1030_alteracao_salvar_tab' pk=pk tab='master' %}">
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1030.can_see_s1030alteracaocargoPublico %}
                                 <li {% if tab == 's1030_alteracao_cargopublico' %} class="active"{% endif %} >
-                                    <a href="{% url 's1030_alteracao_salvar' pk=pk tab='s1030_alteracao_cargopublico' %}">
+                                    <a href="{% url 's1030_alteracao_salvar_tab' pk=pk tab='s1030_alteracao_cargopublico' %}">
                                     Detalhamento de informações exclusivas para Cargos e Empregos Públicos</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1030.can_see_s1030alteracaonovaValidade %}
                                 <li {% if tab == 's1030_alteracao_novavalidade' %} class="active"{% endif %} >
-                                    <a href="{% url 's1030_alteracao_salvar' pk=pk tab='s1030_alteracao_novavalidade' %}">
+                                    <a href="{% url 's1030_alteracao_salvar_tab' pk=pk tab='s1030_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}

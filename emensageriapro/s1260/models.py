@@ -78,7 +78,16 @@ class s1260ideAdquir(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1260_tpcomerc), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -132,7 +141,16 @@ class s1260infoProcJud(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1260_tpcomerc), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -187,7 +205,16 @@ class s1260nfs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1260_ideadquir), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -240,7 +267,16 @@ class s1260tpComerc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1260_evtcomprod), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     

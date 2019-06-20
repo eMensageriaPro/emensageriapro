@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_TransmissorLoteEsocial %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'transmissor_lote_esocial_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'transmissor_lote_esocial_salvar_tab' pk=pk tab='master' %}">
                             Transmissor do eSocial</a>
                         </li>
                         {% endif %}

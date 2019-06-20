@@ -54,28 +54,28 @@
                     {% if pk %}
                         {% if perms.s1070.can_see_s1070alteracao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1070_alteracao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1070_alteracao_salvar_tab' pk=pk tab='master' %}">
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1070.can_see_s1070alteracaodadosProcJud %}
                                 <li {% if tab == 's1070_alteracao_dadosprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 's1070_alteracao_salvar' pk=pk tab='s1070_alteracao_dadosprocjud' %}">
+                                    <a href="{% url 's1070_alteracao_salvar_tab' pk=pk tab='s1070_alteracao_dadosprocjud' %}">
                                     Informações Complementares do Processo Judicial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1070.can_see_s1070alteracaoinfoSusp %}
                                 <li {% if tab == 's1070_alteracao_infosusp' %} class="active"{% endif %} >
-                                    <a href="{% url 's1070_alteracao_salvar' pk=pk tab='s1070_alteracao_infosusp' %}">
+                                    <a href="{% url 's1070_alteracao_salvar_tab' pk=pk tab='s1070_alteracao_infosusp' %}">
                                     Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1070.can_see_s1070alteracaonovaValidade %}
                                 <li {% if tab == 's1070_alteracao_novavalidade' %} class="active"{% endif %} >
-                                    <a href="{% url 's1070_alteracao_salvar' pk=pk tab='s1070_alteracao_novavalidade' %}">
+                                    <a href="{% url 's1070_alteracao_salvar_tab' pk=pk tab='s1070_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2231_inicessao__s2231_evtcessao__label">Informações de início da cessão/exercício em outro órgão*</label>
     {% if not for_print %}{% if s2231_inicessao_form.s2231_evtcessao.value %}
-        <a href="{% url 's2231_evtcessao_salvar' pk=s2231_inicessao_form.s2231_evtcessao.value tab='master' %}">
+        <a href="{% url 's2231_evtcessao_salvar' pk=s2231_inicessao_form.s2231_evtcessao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

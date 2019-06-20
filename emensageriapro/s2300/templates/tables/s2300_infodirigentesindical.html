@@ -32,7 +32,7 @@
                     
                         {% if perms.s2300.change_s2300infoDirigenteSindical or perms.s2300.add_s2300infoDirigenteSindical %}
                     
-                        <a href="{% url 's2300_infodirigentesindical_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2300_infodirigentesindical_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300infoDirigenteSindical %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r2070.can_see_r2070rendIsento %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2070_rendisento_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2070_rendisento_salvar_tab' pk=pk tab='master' %}">
                                 Rendimentos Isentos/Não Tributáveis</a>
                             </li>
                         {% endif %}

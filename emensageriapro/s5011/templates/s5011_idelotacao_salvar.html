@@ -54,49 +54,49 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011ideLotacao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='master' %}">
                                 Informações de identificação da lotação e validade das informações que estão sendo incluídas</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5011.can_see_s5011infoTercSusp %}
                                 <li {% if tab == 's5011_infotercsusp' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='s5011_infotercsusp' %}">
+                                    <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='s5011_infotercsusp' %}">
                                     Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5011.can_see_s5011infoEmprParcial %}
                                 <li {% if tab == 's5011_infoemprparcial' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='s5011_infoemprparcial' %}">
+                                    <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='s5011_infoemprparcial' %}">
                                     Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5011.can_see_s5011dadosOpPort %}
                                 <li {% if tab == 's5011_dadosopport' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='s5011_dadosopport' %}">
+                                    <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='s5011_dadosopport' %}">
                                     Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5011.can_see_s5011basesRemun %}
                                 <li {% if tab == 's5011_basesremun' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='s5011_basesremun' %}">
+                                    <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='s5011_basesremun' %}">
                                     Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5011.can_see_s5011basesAvNPort %}
                                 <li {% if tab == 's5011_basesavnport' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='s5011_basesavnport' %}">
+                                    <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='s5011_basesavnport' %}">
                                     Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5011.can_see_s5011infoSubstPatrOpPort %}
                                 <li {% if tab == 's5011_infosubstpatropport' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_idelotacao_salvar' pk=pk tab='s5011_infosubstpatropport' %}">
+                                    <a href="{% url 's5011_idelotacao_salvar_tab' pk=pk tab='s5011_infosubstpatropport' %}">
                                     Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
                                 </li>
                             {% endif %}

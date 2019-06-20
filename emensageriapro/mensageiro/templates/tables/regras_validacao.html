@@ -50,7 +50,7 @@
                     
                         {% if perms.mensageiro.change_RegrasDeValidacao or perms.mensageiro.add_RegrasDeValidacao %}
                     
-                        <a href="{% url 'regras_validacao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'regras_validacao_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RegrasDeValidacao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

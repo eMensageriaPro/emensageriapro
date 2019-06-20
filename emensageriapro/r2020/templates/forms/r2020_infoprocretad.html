@@ -15,7 +15,7 @@
     <label id="r2020_infoprocretad__r2020_evtservprest__label">Informações de processos relacionados a não retenção de contribuição previdenciária adicional*</label>
     {% if not for_print %}
       {% if r2020_infoprocretad_form.r2020_evtservprest.value %}
-        <a id="r2020_infoprocretad__r2020_evtservprest__div_acessar" href="{% url 'r2020_evtservprest_salvar' pk=r2020_infoprocretad_form.r2020_evtservprest.value tab='master' %}">
+        <a id="r2020_infoprocretad__r2020_evtservprest__div_acessar" href="{% url 'r2020_evtservprest_salvar' pk=r2020_infoprocretad_form.r2020_evtservprest.value %}">
           [Acessar]
         </a>
       {% endif %} 

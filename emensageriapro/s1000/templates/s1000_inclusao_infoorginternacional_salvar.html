@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1000.can_see_s1000inclusaoinfoOrgInternacional %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1000_inclusao_infoorginternacional_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1000_inclusao_infoorginternacional_salvar_tab' pk=pk tab='master' %}">
                                 Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</a>
                             </li>
                         {% endif %}

@@ -38,7 +38,7 @@
                     
                         {% if perms.s2200.change_s2200ideEstabVinc or perms.s2200.add_s2200ideEstabVinc %}
                     
-                        <a href="{% url 's2200_ideestabvinc_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2200_ideestabvinc_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200ideEstabVinc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

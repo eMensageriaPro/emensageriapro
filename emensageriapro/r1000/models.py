@@ -87,7 +87,16 @@ class r1000alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_evtinfocontri), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -141,7 +150,16 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -189,7 +207,16 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -240,7 +267,16 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -290,7 +326,16 @@ class r1000exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_evtinfocontri), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -348,7 +393,16 @@ class r1000inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_evtinfocontri), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -402,7 +456,16 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -453,7 +516,16 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.r1000_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     

@@ -15,7 +15,7 @@
     <label id="r4040_idenat__r4040_evtbenefnid__label">Identificação da natureza do rendimento*</label>
     {% if not for_print %}
       {% if r4040_idenat_form.r4040_evtbenefnid.value %}
-        <a id="r4040_idenat__r4040_evtbenefnid__div_acessar" href="{% url 'r4040_evtbenefnid_salvar' pk=r4040_idenat_form.r4040_evtbenefnid.value tab='master' %}">
+        <a id="r4040_idenat__r4040_evtbenefnid__div_acessar" href="{% url 'r4040_evtbenefnid_salvar' pk=r4040_idenat_form.r4040_evtbenefnid.value %}">
           [Acessar]
         </a>
       {% endif %} 

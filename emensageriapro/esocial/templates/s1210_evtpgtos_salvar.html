@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1210evtPgtos %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_evtpgtos_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_evtpgtos_salvar_tab' pk=pk tab='master' %}">
                                 S-1210 - Pagamentos de Rendimentos do Trabalho</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s1210.can_see_s1210deps %}
                                     <li {% if tab == 's1210_deps' %} class="active"{% endif %} >
-                                        <a href="{% url 's1210_evtpgtos_salvar' pk=pk tab='s1210_deps' %}">
+                                        <a href="{% url 's1210_evtpgtos_salvar_tab' pk=pk tab='s1210_deps' %}">
                                         Informações de dependentes do beneficiário do pagamento</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1210.can_see_s1210infoPgto %}
                                     <li {% if tab == 's1210_infopgto' %} class="active"{% endif %} >
-                                        <a href="{% url 's1210_evtpgtos_salvar' pk=pk tab='s1210_infopgto' %}">
+                                        <a href="{% url 's1210_evtpgtos_salvar_tab' pk=pk tab='s1210_infopgto' %}">
                                         Informações dos pagamentos efetuados</a>
                                     </li>
                                 {% endif %}

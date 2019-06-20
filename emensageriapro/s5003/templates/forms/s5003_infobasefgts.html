@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5003_infobasefgts__s5003_infotrabfgts__label">Informações referentes a bases de cálculo do FGTS.*</label>
     {% if not for_print %}{% if s5003_infobasefgts_form.s5003_infotrabfgts.value %}
-        <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infobasefgts_form.s5003_infotrabfgts.value tab='master' %}">
+        <a href="{% url 's5003_infotrabfgts_salvar' pk=s5003_infobasefgts_form.s5003_infotrabfgts.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

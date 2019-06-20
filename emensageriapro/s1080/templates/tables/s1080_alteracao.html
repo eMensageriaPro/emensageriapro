@@ -56,7 +56,7 @@
                     
                         {% if perms.s1080.change_s1080alteracao or perms.s1080.add_s1080alteracao %}
                     
-                        <a href="{% url 's1080_alteracao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1080_alteracao_salvar' pk=a.id %}">
                             {% if perms.s1080.change_s1080alteracao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1070evtTabProcesso %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1070_evttabprocesso_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1070_evttabprocesso_salvar_tab' pk=pk tab='master' %}">
                                 S-1070 - Tabela de Processos Administrativos/Judiciais</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             {% if s1070_evttabprocesso.operacao == 1 %}
                                 {% if perms.esocial.can_see_s1070inclusao %}
                                     <li {% if tab == 's1070_inclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 's1070_evttabprocesso_salvar' pk=pk tab='s1070_inclusao' %}">
+                                        <a href="{% url 's1070_evttabprocesso_salvar_tab' pk=pk tab='s1070_inclusao' %}">
                                         Inclusão de novas informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1070_evttabprocesso.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1070alteracao %}
                                     <li {% if tab == 's1070_alteracao' %}class="active"{% endif %}>
-                                        <a href="{% url 's1070_evttabprocesso_salvar' pk=pk tab='s1070_alteracao' %}">
+                                        <a href="{% url 's1070_evttabprocesso_salvar_tab' pk=pk tab='s1070_alteracao' %}">
                                         Alteração das informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1070_evttabprocesso.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1070exclusao %}
                                     <li {% if tab == 's1070_exclusao' %}class="active"{% endif %} >
-                                        <a href="{% url 's1070_evttabprocesso_salvar' pk=pk tab='s1070_exclusao' %}">
+                                        <a href="{% url 's1070_evttabprocesso_salvar_tab' pk=pk tab='s1070_exclusao' %}">
                                         Exclusão das informações</a>
                                     </li>
                                 {% endif %}

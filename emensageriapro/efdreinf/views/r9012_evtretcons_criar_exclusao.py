@@ -104,11 +104,11 @@ def criar_exclusao(request, pk):
         
         return_pk = dados['id']
         
-        return redirect('r9012_evtretcons_salvar', pk=return_pk, tab='master')
+        return redirect('r9012_evtretcons_salvar', pk=return_pk)
         
     else:
     
         messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
                                     Entre em contato com o administrador do sistema!''')
                                     
-        return redirect('r9012_evtretcons_salvar', pk=pk, tab='master')
+        return redirect('r9012_evtretcons_salvar', pk=pk)

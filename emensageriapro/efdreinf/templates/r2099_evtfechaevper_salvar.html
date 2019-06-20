@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2099evtFechaEvPer %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2099_evtfechaevper_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2099_evtfechaevper_salvar_tab' pk=pk tab='master' %}">
                                 R-2099 - Fechamento dos Eventos Periódicos</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r2099.can_see_r2099ideRespInf %}
                                     <li {% if tab == 'r2099_iderespinf' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2099_evtfechaevper_salvar' pk=pk tab='r2099_iderespinf' %}">
+                                        <a href="{% url 'r2099_evtfechaevper_salvar_tab' pk=pk tab='r2099_iderespinf' %}">
                                         Responsável pelas informações</a>
                                     </li>
                                 {% endif %}

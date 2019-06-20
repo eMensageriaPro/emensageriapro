@@ -62,7 +62,7 @@
                     
                         {% if perms.s2400.change_s2400brasil or perms.s2400.add_s2400brasil %}
                     
-                        <a href="{% url 's2400_brasil_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2400_brasil_salvar' pk=a.id %}">
                             {% if perms.s2400.change_s2400brasil %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

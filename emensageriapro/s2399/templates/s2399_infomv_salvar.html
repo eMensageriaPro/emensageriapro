@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2399.can_see_s2399infoMV %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2399_infomv_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2399_infomv_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2399.can_see_s2399remunOutrEmpr %}
                                 <li {% if tab == 's2399_remunoutrempr' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_infomv_salvar' pk=pk tab='s2399_remunoutrempr' %}">
+                                    <a href="{% url 's2399_infomv_salvar_tab' pk=pk tab='s2399_remunoutrempr' %}">
                                     Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual</a>
                                 </li>
                             {% endif %}

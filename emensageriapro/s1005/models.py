@@ -87,7 +87,16 @@ class s1005alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_evttabestab), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -140,7 +149,16 @@ class s1005alteracaoinfoCaepf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -187,7 +205,16 @@ class s1005alteracaoinfoEntEduc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -234,7 +261,16 @@ class s1005alteracaoinfoObra(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -282,7 +318,16 @@ class s1005alteracaoinfoPCD(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -330,7 +375,16 @@ class s1005alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -379,7 +433,16 @@ class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -430,7 +493,16 @@ class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_alteracao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -482,7 +554,16 @@ class s1005exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_evttabestab), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -542,7 +623,16 @@ class s1005inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_evttabestab), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -595,7 +685,16 @@ class s1005inclusaoinfoCaepf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -642,7 +741,16 @@ class s1005inclusaoinfoEntEduc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -689,7 +797,16 @@ class s1005inclusaoinfoObra(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -737,7 +854,16 @@ class s1005inclusaoinfoPCD(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -786,7 +912,16 @@ class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     
@@ -837,7 +972,16 @@ class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        lista = [
+            unicode(self.s1005_inclusao), ]
+            
+        if lista:
+            if len(lista) == 1:
+                return lista[0]
+            else:
+                return ' - '.join(lista)
+        else:
+            return self.id
         
     class Meta:
     

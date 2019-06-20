@@ -126,9 +126,13 @@ urlpatterns = [
         s5011_infocpseg_listar_views.listar, 
         name='s5011_infocpseg'),
 
-    url(r'^s5011-infocpseg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infocpseg/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infocpseg_salvar_views.salvar, 
         name='s5011_infocpseg_salvar'),
+
+    url(r'^s5011-infocpseg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infocpseg_salvar_views.salvar, 
+        name='s5011_infocpseg_salvar_tab'),
         
     url(r'^s5011-infocpseg/cadastrar/$', 
         s5011_infocpseg_salvar_views.salvar, 
@@ -156,9 +160,13 @@ urlpatterns = [
         s5011_infopj_listar_views.listar, 
         name='s5011_infopj'),
 
-    url(r'^s5011-infopj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infopj/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infopj_salvar_views.salvar, 
         name='s5011_infopj_salvar'),
+
+    url(r'^s5011-infopj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infopj_salvar_views.salvar, 
+        name='s5011_infopj_salvar_tab'),
         
     url(r'^s5011-infopj/cadastrar/$', 
         s5011_infopj_salvar_views.salvar, 
@@ -186,9 +194,13 @@ urlpatterns = [
         s5011_infoatconc_listar_views.listar, 
         name='s5011_infoatconc'),
 
-    url(r'^s5011-infoatconc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infoatconc/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infoatconc_salvar_views.salvar, 
         name='s5011_infoatconc_salvar'),
+
+    url(r'^s5011-infoatconc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infoatconc_salvar_views.salvar, 
+        name='s5011_infoatconc_salvar_tab'),
         
     url(r'^s5011-infoatconc/cadastrar/$', 
         s5011_infoatconc_salvar_views.salvar, 
@@ -216,9 +228,13 @@ urlpatterns = [
         s5011_ideestab_listar_views.listar, 
         name='s5011_ideestab'),
 
-    url(r'^s5011-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-ideestab/salvar/(?P<pk>[0-9]+)/$', 
         s5011_ideestab_salvar_views.salvar, 
         name='s5011_ideestab_salvar'),
+
+    url(r'^s5011-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_ideestab_salvar_views.salvar, 
+        name='s5011_ideestab_salvar_tab'),
         
     url(r'^s5011-ideestab/cadastrar/$', 
         s5011_ideestab_salvar_views.salvar, 
@@ -246,9 +262,13 @@ urlpatterns = [
         s5011_infoestab_listar_views.listar, 
         name='s5011_infoestab'),
 
-    url(r'^s5011-infoestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infoestab/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infoestab_salvar_views.salvar, 
         name='s5011_infoestab_salvar'),
+
+    url(r'^s5011-infoestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infoestab_salvar_views.salvar, 
+        name='s5011_infoestab_salvar_tab'),
         
     url(r'^s5011-infoestab/cadastrar/$', 
         s5011_infoestab_salvar_views.salvar, 
@@ -276,9 +296,13 @@ urlpatterns = [
         s5011_infocomplobra_listar_views.listar, 
         name='s5011_infocomplobra'),
 
-    url(r'^s5011-infocomplobra/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infocomplobra/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infocomplobra_salvar_views.salvar, 
         name='s5011_infocomplobra_salvar'),
+
+    url(r'^s5011-infocomplobra/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infocomplobra_salvar_views.salvar, 
+        name='s5011_infocomplobra_salvar_tab'),
         
     url(r'^s5011-infocomplobra/cadastrar/$', 
         s5011_infocomplobra_salvar_views.salvar, 
@@ -306,9 +330,13 @@ urlpatterns = [
         s5011_idelotacao_listar_views.listar, 
         name='s5011_idelotacao'),
 
-    url(r'^s5011-idelotacao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-idelotacao/salvar/(?P<pk>[0-9]+)/$', 
         s5011_idelotacao_salvar_views.salvar, 
         name='s5011_idelotacao_salvar'),
+
+    url(r'^s5011-idelotacao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_idelotacao_salvar_views.salvar, 
+        name='s5011_idelotacao_salvar_tab'),
         
     url(r'^s5011-idelotacao/cadastrar/$', 
         s5011_idelotacao_salvar_views.salvar, 
@@ -336,9 +364,13 @@ urlpatterns = [
         s5011_infotercsusp_listar_views.listar, 
         name='s5011_infotercsusp'),
 
-    url(r'^s5011-infotercsusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infotercsusp/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infotercsusp_salvar_views.salvar, 
         name='s5011_infotercsusp_salvar'),
+
+    url(r'^s5011-infotercsusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infotercsusp_salvar_views.salvar, 
+        name='s5011_infotercsusp_salvar_tab'),
         
     url(r'^s5011-infotercsusp/cadastrar/$', 
         s5011_infotercsusp_salvar_views.salvar, 
@@ -366,9 +398,13 @@ urlpatterns = [
         s5011_infoemprparcial_listar_views.listar, 
         name='s5011_infoemprparcial'),
 
-    url(r'^s5011-infoemprparcial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infoemprparcial/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infoemprparcial_salvar_views.salvar, 
         name='s5011_infoemprparcial_salvar'),
+
+    url(r'^s5011-infoemprparcial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infoemprparcial_salvar_views.salvar, 
+        name='s5011_infoemprparcial_salvar_tab'),
         
     url(r'^s5011-infoemprparcial/cadastrar/$', 
         s5011_infoemprparcial_salvar_views.salvar, 
@@ -396,9 +432,13 @@ urlpatterns = [
         s5011_dadosopport_listar_views.listar, 
         name='s5011_dadosopport'),
 
-    url(r'^s5011-dadosopport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-dadosopport/salvar/(?P<pk>[0-9]+)/$', 
         s5011_dadosopport_salvar_views.salvar, 
         name='s5011_dadosopport_salvar'),
+
+    url(r'^s5011-dadosopport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_dadosopport_salvar_views.salvar, 
+        name='s5011_dadosopport_salvar_tab'),
         
     url(r'^s5011-dadosopport/cadastrar/$', 
         s5011_dadosopport_salvar_views.salvar, 
@@ -426,9 +466,13 @@ urlpatterns = [
         s5011_basesremun_listar_views.listar, 
         name='s5011_basesremun'),
 
-    url(r'^s5011-basesremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-basesremun/salvar/(?P<pk>[0-9]+)/$', 
         s5011_basesremun_salvar_views.salvar, 
         name='s5011_basesremun_salvar'),
+
+    url(r'^s5011-basesremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_basesremun_salvar_views.salvar, 
+        name='s5011_basesremun_salvar_tab'),
         
     url(r'^s5011-basesremun/cadastrar/$', 
         s5011_basesremun_salvar_views.salvar, 
@@ -456,9 +500,13 @@ urlpatterns = [
         s5011_basesavnport_listar_views.listar, 
         name='s5011_basesavnport'),
 
-    url(r'^s5011-basesavnport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-basesavnport/salvar/(?P<pk>[0-9]+)/$', 
         s5011_basesavnport_salvar_views.salvar, 
         name='s5011_basesavnport_salvar'),
+
+    url(r'^s5011-basesavnport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_basesavnport_salvar_views.salvar, 
+        name='s5011_basesavnport_salvar_tab'),
         
     url(r'^s5011-basesavnport/cadastrar/$', 
         s5011_basesavnport_salvar_views.salvar, 
@@ -486,9 +534,13 @@ urlpatterns = [
         s5011_infosubstpatropport_listar_views.listar, 
         name='s5011_infosubstpatropport'),
 
-    url(r'^s5011-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infosubstpatropport/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infosubstpatropport_salvar_views.salvar, 
         name='s5011_infosubstpatropport_salvar'),
+
+    url(r'^s5011-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infosubstpatropport_salvar_views.salvar, 
+        name='s5011_infosubstpatropport_salvar_tab'),
         
     url(r'^s5011-infosubstpatropport/cadastrar/$', 
         s5011_infosubstpatropport_salvar_views.salvar, 
@@ -516,9 +568,13 @@ urlpatterns = [
         s5011_basesaquis_listar_views.listar, 
         name='s5011_basesaquis'),
 
-    url(r'^s5011-basesaquis/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-basesaquis/salvar/(?P<pk>[0-9]+)/$', 
         s5011_basesaquis_salvar_views.salvar, 
         name='s5011_basesaquis_salvar'),
+
+    url(r'^s5011-basesaquis/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_basesaquis_salvar_views.salvar, 
+        name='s5011_basesaquis_salvar_tab'),
         
     url(r'^s5011-basesaquis/cadastrar/$', 
         s5011_basesaquis_salvar_views.salvar, 
@@ -546,9 +602,13 @@ urlpatterns = [
         s5011_basescomerc_listar_views.listar, 
         name='s5011_basescomerc'),
 
-    url(r'^s5011-basescomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-basescomerc/salvar/(?P<pk>[0-9]+)/$', 
         s5011_basescomerc_salvar_views.salvar, 
         name='s5011_basescomerc_salvar'),
+
+    url(r'^s5011-basescomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_basescomerc_salvar_views.salvar, 
+        name='s5011_basescomerc_salvar_tab'),
         
     url(r'^s5011-basescomerc/cadastrar/$', 
         s5011_basescomerc_salvar_views.salvar, 
@@ -576,9 +636,13 @@ urlpatterns = [
         s5011_infocrestab_listar_views.listar, 
         name='s5011_infocrestab'),
 
-    url(r'^s5011-infocrestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infocrestab/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infocrestab_salvar_views.salvar, 
         name='s5011_infocrestab_salvar'),
+
+    url(r'^s5011-infocrestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infocrestab_salvar_views.salvar, 
+        name='s5011_infocrestab_salvar_tab'),
         
     url(r'^s5011-infocrestab/cadastrar/$', 
         s5011_infocrestab_salvar_views.salvar, 
@@ -606,9 +670,13 @@ urlpatterns = [
         s5011_infocrcontrib_listar_views.listar, 
         name='s5011_infocrcontrib'),
 
-    url(r'^s5011-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5011-infocrcontrib/salvar/(?P<pk>[0-9]+)/$', 
         s5011_infocrcontrib_salvar_views.salvar, 
         name='s5011_infocrcontrib_salvar'),
+
+    url(r'^s5011-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5011_infocrcontrib_salvar_views.salvar, 
+        name='s5011_infocrcontrib_salvar_tab'),
         
     url(r'^s5011-infocrcontrib/cadastrar/$', 
         s5011_infocrcontrib_salvar_views.salvar, 

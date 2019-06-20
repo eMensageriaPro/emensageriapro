@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_Arquivos %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'arquivos_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'arquivos_salvar_tab' pk=pk tab='master' %}">
                             Arquivos</a>
                         </li>
                         {% endif %}

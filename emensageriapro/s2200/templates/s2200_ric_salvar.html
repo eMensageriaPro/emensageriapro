@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200RIC %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_ric_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_ric_salvar_tab' pk=pk tab='master' %}">
                                 Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</a>
                             </li>
                         {% endif %}

@@ -128,7 +128,7 @@
                     
                         {% if perms.efdreinf.change_r2010evtServTom or perms.efdreinf.add_r2010evtServTom %}
                     
-                        <a href="{% url 'r2010_evtservtom_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2010_evtservtom_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2010evtServTom %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

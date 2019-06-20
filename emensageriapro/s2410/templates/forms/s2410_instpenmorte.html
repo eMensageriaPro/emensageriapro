@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2410_instpenmorte__s2410_infopenmorte__label">Informações do instituidor da pensão por morte*</label>
     {% if not for_print %}{% if s2410_instpenmorte_form.s2410_infopenmorte.value %}
-        <a href="{% url 's2410_infopenmorte_salvar' pk=s2410_instpenmorte_form.s2410_infopenmorte.value tab='master' %}">
+        <a href="{% url 's2410_infopenmorte_salvar' pk=s2410_instpenmorte_form.s2410_infopenmorte.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

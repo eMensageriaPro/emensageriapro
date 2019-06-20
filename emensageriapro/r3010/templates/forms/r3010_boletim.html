@@ -15,7 +15,7 @@
     <label id="r3010_boletim__r3010_evtespdesportivo__label">Boletim do Espetáculo Desportivo*</label>
     {% if not for_print %}
       {% if r3010_boletim_form.r3010_evtespdesportivo.value %}
-        <a id="r3010_boletim__r3010_evtespdesportivo__div_acessar" href="{% url 'r3010_evtespdesportivo_salvar' pk=r3010_boletim_form.r3010_evtespdesportivo.value tab='master' %}">
+        <a id="r3010_boletim__r3010_evtespdesportivo__div_acessar" href="{% url 'r3010_evtespdesportivo_salvar' pk=r3010_boletim_form.r3010_evtespdesportivo.value %}">
           [Acessar]
         </a>
       {% endif %} 

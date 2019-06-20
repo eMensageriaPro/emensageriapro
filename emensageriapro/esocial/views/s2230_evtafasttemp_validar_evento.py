@@ -224,4 +224,4 @@ def validar_evento(request, pk, tab=None):
         
     else:
     
-        return redirect('s2230_evtafasttemp_salvar', pk=pk, tab='master')
+        return redirect('s2230_evtafasttemp_salvar', pk=pk)

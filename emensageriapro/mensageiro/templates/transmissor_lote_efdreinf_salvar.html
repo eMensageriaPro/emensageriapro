@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_TransmissorLoteEfdreinf %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'transmissor_lote_efdreinf_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'transmissor_lote_efdreinf_salvar_tab' pk=pk tab='master' %}">
                             Transmissor do EFD-Reinf</a>
                         </li>
                         {% endif %}

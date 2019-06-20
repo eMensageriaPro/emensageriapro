@@ -68,7 +68,7 @@
                     
                         {% if perms.esocial.change_s1030evtTabCargo or perms.esocial.add_s1030evtTabCargo %}
                     
-                        <a href="{% url 's1030_evttabcargo_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1030_evttabcargo_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1030evtTabCargo %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

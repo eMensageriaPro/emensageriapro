@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r4099evtFech %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4099_evtfech_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4099_evtfech_salvar_tab' pk=pk tab='master' %}">
                                 R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r4099.can_see_r4099ideRespInf %}
                                     <li {% if tab == 'r4099_iderespinf' %} class="active"{% endif %} >
-                                        <a href="{% url 'r4099_evtfech_salvar' pk=pk tab='r4099_iderespinf' %}">
+                                        <a href="{% url 'r4099_evtfech_salvar_tab' pk=pk tab='r4099_iderespinf' %}">
                                         Responsável pelas informações</a>
                                     </li>
                                 {% endif %}

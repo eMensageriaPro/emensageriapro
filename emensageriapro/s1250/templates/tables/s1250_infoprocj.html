@@ -56,7 +56,7 @@
                     
                         {% if perms.s1250.change_s1250infoProcJ or perms.s1250.add_s1250infoProcJ %}
                     
-                        <a href="{% url 's1250_infoprocj_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1250_infoprocj_salvar' pk=a.id %}">
                             {% if perms.s1250.change_s1250infoProcJ %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

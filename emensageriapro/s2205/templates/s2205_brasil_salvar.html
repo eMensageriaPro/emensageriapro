@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2205.can_see_s2205brasil %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2205_brasil_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2205_brasil_salvar_tab' pk=pk tab='master' %}">
                                 Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                             </li>
                         {% endif %}

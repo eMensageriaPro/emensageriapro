@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r9011.can_see_r9011RRecRepAD %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9011_rrecrepad_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9011_rrecrepad_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</a>
                             </li>
                         {% endif %}

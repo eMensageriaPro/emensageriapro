@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1010_alteracao__s1010_evttabrubrica__label">Alteração das informações*</label>
     {% if not for_print %}{% if s1010_alteracao_form.s1010_evttabrubrica.value %}
-        <a href="{% url 's1010_evttabrubrica_salvar' pk=s1010_alteracao_form.s1010_evttabrubrica.value tab='master' %}">
+        <a href="{% url 's1010_evttabrubrica_salvar' pk=s1010_alteracao_form.s1010_evttabrubrica.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

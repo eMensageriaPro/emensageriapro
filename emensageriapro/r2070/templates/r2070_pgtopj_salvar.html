@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r2070.can_see_r2070pgtoPJ %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2070_pgtopj_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2070_pgtopj_salvar_tab' pk=pk tab='master' %}">
                                 Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud %}
                                 <li {% if tab == 'r2070_pgtopj_infoprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopj_salvar' pk=pk tab='r2070_pgtopj_infoprocjud' %}">
+                                    <a href="{% url 'r2070_pgtopj_salvar_tab' pk=pk tab='r2070_pgtopj_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}

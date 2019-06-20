@@ -15,7 +15,7 @@
     <label id="s5001_calcterc__s5001_infocategincid__label">Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.*</label>
     {% if not for_print %}
       {% if s5001_calcterc_form.s5001_infocategincid.value %}
-        <a id="s5001_calcterc__s5001_infocategincid__div_acessar" href="{% url 's5001_infocategincid_salvar' pk=s5001_calcterc_form.s5001_infocategincid.value tab='master' %}">
+        <a id="s5001_calcterc__s5001_infocategincid__div_acessar" href="{% url 's5001_infocategincid_salvar' pk=s5001_calcterc_form.s5001_infocategincid.value %}">
           [Acessar]
         </a>
       {% endif %} 

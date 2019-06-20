@@ -54,28 +54,28 @@
                     {% if pk %}
                         {% if perms.s2241.can_see_s2241aposentEsp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2241_aposentesp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2241_aposentesp_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2241.can_see_s2241iniAposentEsp %}
                                 <li {% if tab == 's2241_iniaposentesp' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_aposentesp_salvar' pk=pk tab='s2241_iniaposentesp' %}">
+                                    <a href="{% url 's2241_aposentesp_salvar_tab' pk=pk tab='s2241_iniaposentesp' %}">
                                     Condições do ambiente de trabalho que ensejam aposentadoria especial - Início</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2241.can_see_s2241altAposentEsp %}
                                 <li {% if tab == 's2241_altaposentesp' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_aposentesp_salvar' pk=pk tab='s2241_altaposentesp' %}">
+                                    <a href="{% url 's2241_aposentesp_salvar_tab' pk=pk tab='s2241_altaposentesp' %}">
                                     Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2241.can_see_s2241fimAposentEsp %}
                                 <li {% if tab == 's2241_fimaposentesp' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_aposentesp_salvar' pk=pk tab='s2241_fimaposentesp' %}">
+                                    <a href="{% url 's2241_aposentesp_salvar_tab' pk=pk tab='s2241_fimaposentesp' %}">
                                     Condições do ambiente de trabalho que ensejam aposentadoria especial - Término</a>
                                 </li>
                             {% endif %}

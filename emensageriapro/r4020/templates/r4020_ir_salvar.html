@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4020.can_see_r4020IR %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4020_ir_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4020_ir_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas ao Imposto de Renda</a>
                             </li>
                         {% endif %}

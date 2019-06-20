@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s2405.can_see_s2405endereco %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2405_endereco_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2405_endereco_salvar_tab' pk=pk tab='master' %}">
                                 Grupo de informações do endereço do Trabalhador</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2405.can_see_s2405brasil %}
                                 <li {% if tab == 's2405_brasil' %} class="active"{% endif %} >
-                                    <a href="{% url 's2405_endereco_salvar' pk=pk tab='s2405_brasil' %}">
+                                    <a href="{% url 's2405_endereco_salvar_tab' pk=pk tab='s2405_brasil' %}">
                                     Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2405.can_see_s2405exterior %}
                                 <li {% if tab == 's2405_exterior' %} class="active"{% endif %} >
-                                    <a href="{% url 's2405_endereco_salvar' pk=pk tab='s2405_exterior' %}">
+                                    <a href="{% url 's2405_endereco_salvar_tab' pk=pk tab='s2405_exterior' %}">
                                     Preenchido em caso de trabalhador residente no exterior.</a>
                                 </li>
                             {% endif %}

@@ -15,7 +15,7 @@
     <label id="r1070_inclusao_infosusp__r1070_inclusao__label">Informações de Suspensão de Exibilidade de tributos*</label>
     {% if not for_print %}
       {% if r1070_inclusao_infosusp_form.r1070_inclusao.value %}
-        <a id="r1070_inclusao_infosusp__r1070_inclusao__div_acessar" href="{% url 'r1070_inclusao_salvar' pk=r1070_inclusao_infosusp_form.r1070_inclusao.value tab='master' %}">
+        <a id="r1070_inclusao_infosusp__r1070_inclusao__div_acessar" href="{% url 'r1070_inclusao_salvar' pk=r1070_inclusao_infosusp_form.r1070_inclusao.value %}">
           [Acessar]
         </a>
       {% endif %} 

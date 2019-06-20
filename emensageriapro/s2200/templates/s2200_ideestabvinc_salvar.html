@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200ideEstabVinc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_ideestabvinc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_ideestabvinc_salvar_tab' pk=pk tab='master' %}">
                                 Identificação do estabelecimento ao qual o trabalhador temporário está vinculado</a>
                             </li>
                         {% endif %}

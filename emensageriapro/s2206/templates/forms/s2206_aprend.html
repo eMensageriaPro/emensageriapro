@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2206_aprend__s2206_infoceletista__label">Informações para identificação do empregador contratante de aprendiz*</label>
     {% if not for_print %}{% if s2206_aprend_form.s2206_infoceletista.value %}
-        <a href="{% url 's2206_infoceletista_salvar' pk=s2206_aprend_form.s2206_infoceletista.value tab='master' %}">
+        <a href="{% url 's2206_infoceletista_salvar' pk=s2206_aprend_form.s2206_infoceletista.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

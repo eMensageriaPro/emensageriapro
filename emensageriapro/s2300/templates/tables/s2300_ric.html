@@ -38,7 +38,7 @@
                     
                         {% if perms.s2300.change_s2300RIC or perms.s2300.add_s2300RIC %}
                     
-                        <a href="{% url 's2300_ric_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2300_ric_salvar' pk=a.id %}">
                             {% if perms.s2300.change_s2300RIC %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

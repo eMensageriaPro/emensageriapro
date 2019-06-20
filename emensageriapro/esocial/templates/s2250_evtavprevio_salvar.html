@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2250evtAvPrevio %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2250_evtavprevio_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='master' %}">
                                 S-2250 - Aviso Prévio</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s2250.can_see_s2250detAvPrevio %}
                                     <li {% if tab == 's2250_detavprevio' %} class="active"{% endif %} >
-                                        <a href="{% url 's2250_evtavprevio_salvar' pk=pk tab='s2250_detavprevio' %}">
+                                        <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='s2250_detavprevio' %}">
                                         Detalha as informações do evento trabalhista</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2250.can_see_s2250cancAvPrevio %}
                                     <li {% if tab == 's2250_cancavprevio' %} class="active"{% endif %} >
-                                        <a href="{% url 's2250_evtavprevio_salvar' pk=pk tab='s2250_cancavprevio' %}">
+                                        <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='s2250_cancavprevio' %}">
                                         Cancelamento do Aviso Prévio</a>
                                     </li>
                                 {% endif %}

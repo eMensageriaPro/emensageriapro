@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1295.can_see_s1295ideRespInf %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1295_iderespinf_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1295_iderespinf_salvar_tab' pk=pk tab='master' %}">
                                 Responsável pelas informações</a>
                             </li>
                         {% endif %}

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1005_inclusao_procadmjudfap__s1005_inclusao__label">Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.*</label>
     {% if not for_print %}{% if s1005_inclusao_procadmjudfap_form.s1005_inclusao.value %}
-        <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao_procadmjudfap_form.s1005_inclusao.value tab='master' %}">
+        <a href="{% url 's1005_inclusao_salvar' pk=s1005_inclusao_procadmjudfap_form.s1005_inclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

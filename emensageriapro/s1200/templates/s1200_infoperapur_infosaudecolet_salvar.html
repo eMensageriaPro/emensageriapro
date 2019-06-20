@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1200.can_see_s1200infoPerApurinfoSaudeColet %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1200_infoperapur_infosaudecolet_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1200_infoperapur_infosaudecolet_salvar_tab' pk=pk tab='master' %}">
                                 Informações de plano privado coletivo empresarial de assistência à saúde</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1200.can_see_s1200infoPerApurdetOper %}
                                 <li {% if tab == 's1200_infoperapur_detoper' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_infoperapur_infosaudecolet_salvar' pk=pk tab='s1200_infoperapur_detoper' %}">
+                                    <a href="{% url 's1200_infoperapur_infosaudecolet_salvar_tab' pk=pk tab='s1200_infoperapur_detoper' %}">
                                     Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</a>
                                 </li>
                             {% endif %}

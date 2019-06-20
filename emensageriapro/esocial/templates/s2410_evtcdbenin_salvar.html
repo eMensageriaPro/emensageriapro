@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2410evtCdBenIn %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2410_evtcdbenin_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2410_evtcdbenin_salvar_tab' pk=pk tab='master' %}">
                                 S-2410 - Cadastro de Benefícios - Entes Públicos - Início</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s2410.can_see_s2410infoPenMorte %}
                                     <li {% if tab == 's2410_infopenmorte' %} class="active"{% endif %} >
-                                        <a href="{% url 's2410_evtcdbenin_salvar' pk=pk tab='s2410_infopenmorte' %}">
+                                        <a href="{% url 's2410_evtcdbenin_salvar_tab' pk=pk tab='s2410_infopenmorte' %}">
                                         Informações relativas a pensão por morte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2410.can_see_s2410homologTC %}
                                     <li {% if tab == 's2410_homologtc' %} class="active"{% endif %} >
-                                        <a href="{% url 's2410_evtcdbenin_salvar' pk=pk tab='s2410_homologtc' %}">
+                                        <a href="{% url 's2410_evtcdbenin_salvar_tab' pk=pk tab='s2410_homologtc' %}">
                                         Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</a>
                                     </li>
                                 {% endif %}

@@ -15,7 +15,7 @@
     <label id="s5002_basesirrf__s5002_infoirrf__label">Bases, deduções, isenções e retenções do IRRF*</label>
     {% if not for_print %}
       {% if s5002_basesirrf_form.s5002_infoirrf.value %}
-        <a id="s5002_basesirrf__s5002_infoirrf__div_acessar" href="{% url 's5002_infoirrf_salvar' pk=s5002_basesirrf_form.s5002_infoirrf.value tab='master' %}">
+        <a id="s5002_basesirrf__s5002_infoirrf__div_acessar" href="{% url 's5002_infoirrf_salvar' pk=s5002_basesirrf_form.s5002_infoirrf.value %}">
           [Acessar]
         </a>
       {% endif %} 

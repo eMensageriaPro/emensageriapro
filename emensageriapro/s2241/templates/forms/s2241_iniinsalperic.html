@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2241_iniinsalperic__s2241_insalperic__label">Condições do ambiente de trabalho insalubre/periculoso - Início*</label>
     {% if not for_print %}{% if s2241_iniinsalperic_form.s2241_insalperic.value %}
-        <a href="{% url 's2241_insalperic_salvar' pk=s2241_iniinsalperic_form.s2241_insalperic.value tab='master' %}">
+        <a href="{% url 's2241_insalperic_salvar' pk=s2241_iniinsalperic_form.s2241_insalperic.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5002.can_see_s5002infoDep %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5002_infodep_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5002_infodep_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}</a>
                             </li>
                         {% endif %}

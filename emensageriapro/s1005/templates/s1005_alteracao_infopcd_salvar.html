@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1005.can_see_s1005alteracaoinfoPCD %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1005_alteracao_infopcd_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1005_alteracao_infopcd_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</a>
                             </li>
                         {% endif %}

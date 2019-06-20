@@ -32,7 +32,7 @@
                     
                         {% if perms.s5002.change_s5002infoIrrf or perms.s5002.add_s5002infoIrrf %}
                     
-                        <a href="{% url 's5002_infoirrf_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5002_infoirrf_salvar' pk=a.id %}">
                             {% if perms.s5002.change_s5002infoIrrf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

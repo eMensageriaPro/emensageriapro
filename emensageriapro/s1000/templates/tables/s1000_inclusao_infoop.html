@@ -56,7 +56,7 @@
                     
                         {% if perms.s1000.change_s1000inclusaoinfoOP or perms.s1000.add_s1000inclusaoinfoOP %}
                     
-                        <a href="{% url 's1000_inclusao_infoop_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1000_inclusao_infoop_salvar' pk=a.id %}">
                             {% if perms.s1000.change_s1000inclusaoinfoOP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

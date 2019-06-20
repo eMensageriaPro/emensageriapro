@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r5001_infototal__r5001_evttotal__label">Informações relativas a totalizadores de bases e tributos*</label>
     {% if not for_print %}{% if r5001_infototal_form.r5001_evttotal.value %}
-        <a href="{% url 'r5001_evttotal_salvar' pk=r5001_infototal_form.r5001_evttotal.value tab='master' %}">
+        <a href="{% url 'r5001_evttotal_salvar' pk=r5001_infototal_form.r5001_evttotal.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

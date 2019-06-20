@@ -62,9 +62,13 @@ urlpatterns = [
         s5012_infocrcontrib_listar_views.listar, 
         name='s5012_infocrcontrib'),
 
-    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/$', 
         s5012_infocrcontrib_salvar_views.salvar, 
         name='s5012_infocrcontrib_salvar'),
+
+    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5012_infocrcontrib_salvar_views.salvar, 
+        name='s5012_infocrcontrib_salvar_tab'),
         
     url(r'^s5012-infocrcontrib/cadastrar/$', 
         s5012_infocrcontrib_salvar_views.salvar, 

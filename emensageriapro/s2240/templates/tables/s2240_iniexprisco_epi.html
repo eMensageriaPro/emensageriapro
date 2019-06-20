@@ -68,7 +68,7 @@
                     
                         {% if perms.s2240.change_s2240iniExpRiscoepi or perms.s2240.add_s2240iniExpRiscoepi %}
                     
-                        <a href="{% url 's2240_iniexprisco_epi_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2240_iniexprisco_epi_salvar' pk=a.id %}">
                             {% if perms.s2240.change_s2240iniExpRiscoepi %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

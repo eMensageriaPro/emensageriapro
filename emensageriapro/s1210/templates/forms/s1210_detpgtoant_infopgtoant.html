@@ -15,7 +15,7 @@
     <label id="s1210_detpgtoant_infopgtoant__s1210_detpgtoant__label">Detalhamento do pagamento*</label>
     {% if not for_print %}
       {% if s1210_detpgtoant_infopgtoant_form.s1210_detpgtoant.value %}
-        <a id="s1210_detpgtoant_infopgtoant__s1210_detpgtoant__div_acessar" href="{% url 's1210_detpgtoant_salvar' pk=s1210_detpgtoant_infopgtoant_form.s1210_detpgtoant.value tab='master' %}">
+        <a id="s1210_detpgtoant_infopgtoant__s1210_detpgtoant__div_acessar" href="{% url 's1210_detpgtoant_salvar' pk=s1210_detpgtoant_infopgtoant_form.s1210_detpgtoant.value %}">
           [Acessar]
         </a>
       {% endif %} 

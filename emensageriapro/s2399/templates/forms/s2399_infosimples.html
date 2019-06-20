@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2399_infosimples__s2399_ideestablot__label">Informação relativa a empresas enquadradas no Regime de Tributação Simples*</label>
     {% if not for_print %}{% if s2399_infosimples_form.s2399_ideestablot.value %}
-        <a href="{% url 's2399_ideestablot_salvar' pk=s2399_infosimples_form.s2399_ideestablot.value tab='master' %}">
+        <a href="{% url 's2399_ideestablot_salvar' pk=s2399_infosimples_form.s2399_ideestablot.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

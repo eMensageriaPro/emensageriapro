@@ -15,7 +15,7 @@
     <label id="s1210_detpgtofer_penalim__s1210_detpgtofer_detrubrfer__label">Informações sobre beneficiários de pensão alimentícia.*</label>
     {% if not for_print %}
       {% if s1210_detpgtofer_penalim_form.s1210_detpgtofer_detrubrfer.value %}
-        <a id="s1210_detpgtofer_penalim__s1210_detpgtofer_detrubrfer__div_acessar" href="{% url 's1210_detpgtofer_detrubrfer_salvar' pk=s1210_detpgtofer_penalim_form.s1210_detpgtofer_detrubrfer.value tab='master' %}">
+        <a id="s1210_detpgtofer_penalim__s1210_detpgtofer_detrubrfer__div_acessar" href="{% url 's1210_detpgtofer_detrubrfer_salvar' pk=s1210_detpgtofer_penalim_form.s1210_detpgtofer_detrubrfer.value %}">
           [Acessar]
         </a>
       {% endif %} 

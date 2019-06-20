@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r9012.can_see_r9012totApurQui %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9012_totapurqui_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9012_totapurqui_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</a>
                             </li>
                         {% endif %}

@@ -38,7 +38,7 @@
                     
                         {% if perms.r9001.change_r9001RCPRB or perms.r9001.add_r9001RCPRB %}
                     
-                        <a href="{% url 'r9001_rcprb_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r9001_rcprb_salvar' pk=a.id %}">
                             {% if perms.r9001.change_r9001RCPRB %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

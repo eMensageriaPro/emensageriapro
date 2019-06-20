@@ -15,7 +15,7 @@
     <label id="s1202_dmdev__s1202_evtrmnrpps__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*</label>
     {% if not for_print %}
       {% if s1202_dmdev_form.s1202_evtrmnrpps.value %}
-        <a id="s1202_dmdev__s1202_evtrmnrpps__div_acessar" href="{% url 's1202_evtrmnrpps_salvar' pk=s1202_dmdev_form.s1202_evtrmnrpps.value tab='master' %}">
+        <a id="s1202_dmdev__s1202_evtrmnrpps__div_acessar" href="{% url 's1202_evtrmnrpps_salvar' pk=s1202_dmdev_form.s1202_evtrmnrpps.value %}">
           [Acessar]
         </a>
       {% endif %} 

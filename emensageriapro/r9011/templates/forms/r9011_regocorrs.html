@@ -15,7 +15,7 @@
     <label id="r9011_regocorrs__r9011_evttotalcontrib__label">Informações de ocorrências registradas*</label>
     {% if not for_print %}
       {% if r9011_regocorrs_form.r9011_evttotalcontrib.value %}
-        <a id="r9011_regocorrs__r9011_evttotalcontrib__div_acessar" href="{% url 'r9011_evttotalcontrib_salvar' pk=r9011_regocorrs_form.r9011_evttotalcontrib.value tab='master' %}">
+        <a id="r9011_regocorrs__r9011_evttotalcontrib__div_acessar" href="{% url 'r9011_evttotalcontrib_salvar' pk=r9011_regocorrs_form.r9011_evttotalcontrib.value %}">
           [Acessar]
         </a>
       {% endif %} 

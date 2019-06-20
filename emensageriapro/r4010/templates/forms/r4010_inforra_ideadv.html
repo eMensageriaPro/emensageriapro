@@ -15,7 +15,7 @@
     <label id="r4010_inforra_ideadv__r4010_inforra_despprocjud__label">Identificação do advogado*</label>
     {% if not for_print %}
       {% if r4010_inforra_ideadv_form.r4010_inforra_despprocjud.value %}
-        <a id="r4010_inforra_ideadv__r4010_inforra_despprocjud__div_acessar" href="{% url 'r4010_inforra_despprocjud_salvar' pk=r4010_inforra_ideadv_form.r4010_inforra_despprocjud.value tab='master' %}">
+        <a id="r4010_inforra_ideadv__r4010_inforra_despprocjud__div_acessar" href="{% url 'r4010_inforra_despprocjud_salvar' pk=r4010_inforra_ideadv_form.r4010_inforra_despprocjud.value %}">
           [Acessar]
         </a>
       {% endif %} 

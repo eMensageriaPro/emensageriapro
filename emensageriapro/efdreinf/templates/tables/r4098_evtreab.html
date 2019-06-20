@@ -74,7 +74,7 @@
                     
                         {% if perms.efdreinf.change_r4098evtReab or perms.efdreinf.add_r4098evtReab %}
                     
-                        <a href="{% url 'r4098_evtreab_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4098_evtreab_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r4098evtReab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011infoSubstPatrOpPort %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_infosubstpatropport_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_infosubstpatropport_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
                             </li>
                         {% endif %}

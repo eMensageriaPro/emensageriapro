@@ -15,7 +15,7 @@
     <label id="s5001_infocpcalc__s5001_evtbasestrab__label">Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.*</label>
     {% if not for_print %}
       {% if s5001_infocpcalc_form.s5001_evtbasestrab.value %}
-        <a id="s5001_infocpcalc__s5001_evtbasestrab__div_acessar" href="{% url 's5001_evtbasestrab_salvar' pk=s5001_infocpcalc_form.s5001_evtbasestrab.value tab='master' %}">
+        <a id="s5001_infocpcalc__s5001_evtbasestrab__div_acessar" href="{% url 's5001_evtbasestrab_salvar' pk=s5001_infocpcalc_form.s5001_evtbasestrab.value %}">
           [Acessar]
         </a>
       {% endif %} 

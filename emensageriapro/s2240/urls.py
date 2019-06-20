@@ -118,9 +118,13 @@ urlpatterns = [
         s2240_iniexprisco_infoamb_listar_views.listar, 
         name='s2240_iniexprisco_infoamb'),
 
-    url(r'^s2240-iniexprisco-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-infoamb/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_infoamb_salvar_views.salvar, 
         name='s2240_iniexprisco_infoamb_salvar'),
+
+    url(r'^s2240-iniexprisco-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_infoamb_salvar_views.salvar, 
+        name='s2240_iniexprisco_infoamb_salvar_tab'),
         
     url(r'^s2240-iniexprisco-infoamb/cadastrar/$', 
         s2240_iniexprisco_infoamb_salvar_views.salvar, 
@@ -148,9 +152,13 @@ urlpatterns = [
         s2240_iniexprisco_ativpericinsal_listar_views.listar, 
         name='s2240_iniexprisco_ativpericinsal'),
 
-    url(r'^s2240-iniexprisco-ativpericinsal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-ativpericinsal/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_ativpericinsal_salvar_views.salvar, 
         name='s2240_iniexprisco_ativpericinsal_salvar'),
+
+    url(r'^s2240-iniexprisco-ativpericinsal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_ativpericinsal_salvar_views.salvar, 
+        name='s2240_iniexprisco_ativpericinsal_salvar_tab'),
         
     url(r'^s2240-iniexprisco-ativpericinsal/cadastrar/$', 
         s2240_iniexprisco_ativpericinsal_salvar_views.salvar, 
@@ -178,9 +186,13 @@ urlpatterns = [
         s2240_iniexprisco_fatrisco_listar_views.listar, 
         name='s2240_iniexprisco_fatrisco'),
 
-    url(r'^s2240-iniexprisco-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-fatrisco/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_fatrisco_salvar_views.salvar, 
         name='s2240_iniexprisco_fatrisco_salvar'),
+
+    url(r'^s2240-iniexprisco-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_fatrisco_salvar_views.salvar, 
+        name='s2240_iniexprisco_fatrisco_salvar_tab'),
         
     url(r'^s2240-iniexprisco-fatrisco/cadastrar/$', 
         s2240_iniexprisco_fatrisco_salvar_views.salvar, 
@@ -208,9 +220,13 @@ urlpatterns = [
         s2240_iniexprisco_epc_listar_views.listar, 
         name='s2240_iniexprisco_epc'),
 
-    url(r'^s2240-iniexprisco-epc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-epc/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_epc_salvar_views.salvar, 
         name='s2240_iniexprisco_epc_salvar'),
+
+    url(r'^s2240-iniexprisco-epc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_epc_salvar_views.salvar, 
+        name='s2240_iniexprisco_epc_salvar_tab'),
         
     url(r'^s2240-iniexprisco-epc/cadastrar/$', 
         s2240_iniexprisco_epc_salvar_views.salvar, 
@@ -238,9 +254,13 @@ urlpatterns = [
         s2240_iniexprisco_epi_listar_views.listar, 
         name='s2240_iniexprisco_epi'),
 
-    url(r'^s2240-iniexprisco-epi/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-epi/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_epi_salvar_views.salvar, 
         name='s2240_iniexprisco_epi_salvar'),
+
+    url(r'^s2240-iniexprisco-epi/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_epi_salvar_views.salvar, 
+        name='s2240_iniexprisco_epi_salvar_tab'),
         
     url(r'^s2240-iniexprisco-epi/cadastrar/$', 
         s2240_iniexprisco_epi_salvar_views.salvar, 
@@ -268,9 +288,13 @@ urlpatterns = [
         s2240_iniexprisco_respreg_listar_views.listar, 
         name='s2240_iniexprisco_respreg'),
 
-    url(r'^s2240-iniexprisco-respreg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-respreg/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_respreg_salvar_views.salvar, 
         name='s2240_iniexprisco_respreg_salvar'),
+
+    url(r'^s2240-iniexprisco-respreg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_respreg_salvar_views.salvar, 
+        name='s2240_iniexprisco_respreg_salvar_tab'),
         
     url(r'^s2240-iniexprisco-respreg/cadastrar/$', 
         s2240_iniexprisco_respreg_salvar_views.salvar, 
@@ -298,9 +322,13 @@ urlpatterns = [
         s2240_iniexprisco_obs_listar_views.listar, 
         name='s2240_iniexprisco_obs'),
 
-    url(r'^s2240-iniexprisco-obs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-iniexprisco-obs/salvar/(?P<pk>[0-9]+)/$', 
         s2240_iniexprisco_obs_salvar_views.salvar, 
         name='s2240_iniexprisco_obs_salvar'),
+
+    url(r'^s2240-iniexprisco-obs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_iniexprisco_obs_salvar_views.salvar, 
+        name='s2240_iniexprisco_obs_salvar_tab'),
         
     url(r'^s2240-iniexprisco-obs/cadastrar/$', 
         s2240_iniexprisco_obs_salvar_views.salvar, 
@@ -328,9 +356,13 @@ urlpatterns = [
         s2240_altexprisco_listar_views.listar, 
         name='s2240_altexprisco'),
 
-    url(r'^s2240-altexprisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-altexprisco/salvar/(?P<pk>[0-9]+)/$', 
         s2240_altexprisco_salvar_views.salvar, 
         name='s2240_altexprisco_salvar'),
+
+    url(r'^s2240-altexprisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_altexprisco_salvar_views.salvar, 
+        name='s2240_altexprisco_salvar_tab'),
         
     url(r'^s2240-altexprisco/cadastrar/$', 
         s2240_altexprisco_salvar_views.salvar, 
@@ -358,9 +390,13 @@ urlpatterns = [
         s2240_altexprisco_infoamb_listar_views.listar, 
         name='s2240_altexprisco_infoamb'),
 
-    url(r'^s2240-altexprisco-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-altexprisco-infoamb/salvar/(?P<pk>[0-9]+)/$', 
         s2240_altexprisco_infoamb_salvar_views.salvar, 
         name='s2240_altexprisco_infoamb_salvar'),
+
+    url(r'^s2240-altexprisco-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_altexprisco_infoamb_salvar_views.salvar, 
+        name='s2240_altexprisco_infoamb_salvar_tab'),
         
     url(r'^s2240-altexprisco-infoamb/cadastrar/$', 
         s2240_altexprisco_infoamb_salvar_views.salvar, 
@@ -388,9 +424,13 @@ urlpatterns = [
         s2240_altexprisco_fatrisco_listar_views.listar, 
         name='s2240_altexprisco_fatrisco'),
 
-    url(r'^s2240-altexprisco-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-altexprisco-fatrisco/salvar/(?P<pk>[0-9]+)/$', 
         s2240_altexprisco_fatrisco_salvar_views.salvar, 
         name='s2240_altexprisco_fatrisco_salvar'),
+
+    url(r'^s2240-altexprisco-fatrisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_altexprisco_fatrisco_salvar_views.salvar, 
+        name='s2240_altexprisco_fatrisco_salvar_tab'),
         
     url(r'^s2240-altexprisco-fatrisco/cadastrar/$', 
         s2240_altexprisco_fatrisco_salvar_views.salvar, 
@@ -418,9 +458,13 @@ urlpatterns = [
         s2240_altexprisco_epc_listar_views.listar, 
         name='s2240_altexprisco_epc'),
 
-    url(r'^s2240-altexprisco-epc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-altexprisco-epc/salvar/(?P<pk>[0-9]+)/$', 
         s2240_altexprisco_epc_salvar_views.salvar, 
         name='s2240_altexprisco_epc_salvar'),
+
+    url(r'^s2240-altexprisco-epc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_altexprisco_epc_salvar_views.salvar, 
+        name='s2240_altexprisco_epc_salvar_tab'),
         
     url(r'^s2240-altexprisco-epc/cadastrar/$', 
         s2240_altexprisco_epc_salvar_views.salvar, 
@@ -448,9 +492,13 @@ urlpatterns = [
         s2240_altexprisco_epi_listar_views.listar, 
         name='s2240_altexprisco_epi'),
 
-    url(r'^s2240-altexprisco-epi/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-altexprisco-epi/salvar/(?P<pk>[0-9]+)/$', 
         s2240_altexprisco_epi_salvar_views.salvar, 
         name='s2240_altexprisco_epi_salvar'),
+
+    url(r'^s2240-altexprisco-epi/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_altexprisco_epi_salvar_views.salvar, 
+        name='s2240_altexprisco_epi_salvar_tab'),
         
     url(r'^s2240-altexprisco-epi/cadastrar/$', 
         s2240_altexprisco_epi_salvar_views.salvar, 
@@ -478,9 +526,13 @@ urlpatterns = [
         s2240_fimexprisco_listar_views.listar, 
         name='s2240_fimexprisco'),
 
-    url(r'^s2240-fimexprisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-fimexprisco/salvar/(?P<pk>[0-9]+)/$', 
         s2240_fimexprisco_salvar_views.salvar, 
         name='s2240_fimexprisco_salvar'),
+
+    url(r'^s2240-fimexprisco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_fimexprisco_salvar_views.salvar, 
+        name='s2240_fimexprisco_salvar_tab'),
         
     url(r'^s2240-fimexprisco/cadastrar/$', 
         s2240_fimexprisco_salvar_views.salvar, 
@@ -508,9 +560,13 @@ urlpatterns = [
         s2240_fimexprisco_infoamb_listar_views.listar, 
         name='s2240_fimexprisco_infoamb'),
 
-    url(r'^s2240-fimexprisco-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-fimexprisco-infoamb/salvar/(?P<pk>[0-9]+)/$', 
         s2240_fimexprisco_infoamb_salvar_views.salvar, 
         name='s2240_fimexprisco_infoamb_salvar'),
+
+    url(r'^s2240-fimexprisco-infoamb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_fimexprisco_infoamb_salvar_views.salvar, 
+        name='s2240_fimexprisco_infoamb_salvar_tab'),
         
     url(r'^s2240-fimexprisco-infoamb/cadastrar/$', 
         s2240_fimexprisco_infoamb_salvar_views.salvar, 
@@ -538,9 +594,13 @@ urlpatterns = [
         s2240_fimexprisco_respreg_listar_views.listar, 
         name='s2240_fimexprisco_respreg'),
 
-    url(r'^s2240-fimexprisco-respreg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2240-fimexprisco-respreg/salvar/(?P<pk>[0-9]+)/$', 
         s2240_fimexprisco_respreg_salvar_views.salvar, 
         name='s2240_fimexprisco_respreg_salvar'),
+
+    url(r'^s2240-fimexprisco-respreg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2240_fimexprisco_respreg_salvar_views.salvar, 
+        name='s2240_fimexprisco_respreg_salvar_tab'),
         
     url(r'^s2240-fimexprisco-respreg/cadastrar/$', 
         s2240_fimexprisco_respreg_salvar_views.salvar, 

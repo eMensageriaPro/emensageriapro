@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2416_homologtc__s2416_evtcdbenalt__label">Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas*</label>
     {% if not for_print %}{% if s2416_homologtc_form.s2416_evtcdbenalt.value %}
-        <a href="{% url 's2416_evtcdbenalt_salvar' pk=s2416_homologtc_form.s2416_evtcdbenalt.value tab='master' %}">
+        <a href="{% url 's2416_evtcdbenalt_salvar' pk=s2416_homologtc_form.s2416_evtcdbenalt.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

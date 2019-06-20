@@ -86,9 +86,13 @@ urlpatterns = [
         r9012_regocorrs_listar_views.listar, 
         name='r9012_regocorrs'),
 
-    url(r'^r9012-regocorrs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-regocorrs/salvar/(?P<pk>[0-9]+)/$', 
         r9012_regocorrs_salvar_views.salvar, 
         name='r9012_regocorrs_salvar'),
+
+    url(r'^r9012-regocorrs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_regocorrs_salvar_views.salvar, 
+        name='r9012_regocorrs_salvar_tab'),
         
     url(r'^r9012-regocorrs/cadastrar/$', 
         r9012_regocorrs_salvar_views.salvar, 
@@ -116,9 +120,13 @@ urlpatterns = [
         r9012_infototalcontrib_listar_views.listar, 
         name='r9012_infototalcontrib'),
 
-    url(r'^r9012-infototalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-infototalcontrib/salvar/(?P<pk>[0-9]+)/$', 
         r9012_infototalcontrib_salvar_views.salvar, 
         name='r9012_infototalcontrib_salvar'),
+
+    url(r'^r9012-infototalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_infototalcontrib_salvar_views.salvar, 
+        name='r9012_infototalcontrib_salvar_tab'),
         
     url(r'^r9012-infototalcontrib/cadastrar/$', 
         r9012_infototalcontrib_salvar_views.salvar, 
@@ -146,9 +154,13 @@ urlpatterns = [
         r9012_totapurmen_listar_views.listar, 
         name='r9012_totapurmen'),
 
-    url(r'^r9012-totapurmen/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-totapurmen/salvar/(?P<pk>[0-9]+)/$', 
         r9012_totapurmen_salvar_views.salvar, 
         name='r9012_totapurmen_salvar'),
+
+    url(r'^r9012-totapurmen/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_totapurmen_salvar_views.salvar, 
+        name='r9012_totapurmen_salvar_tab'),
         
     url(r'^r9012-totapurmen/cadastrar/$', 
         r9012_totapurmen_salvar_views.salvar, 
@@ -176,9 +188,13 @@ urlpatterns = [
         r9012_totapurqui_listar_views.listar, 
         name='r9012_totapurqui'),
 
-    url(r'^r9012-totapurqui/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-totapurqui/salvar/(?P<pk>[0-9]+)/$', 
         r9012_totapurqui_salvar_views.salvar, 
         name='r9012_totapurqui_salvar'),
+
+    url(r'^r9012-totapurqui/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_totapurqui_salvar_views.salvar, 
+        name='r9012_totapurqui_salvar_tab'),
         
     url(r'^r9012-totapurqui/cadastrar/$', 
         r9012_totapurqui_salvar_views.salvar, 
@@ -206,9 +222,13 @@ urlpatterns = [
         r9012_totapurdec_listar_views.listar, 
         name='r9012_totapurdec'),
 
-    url(r'^r9012-totapurdec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-totapurdec/salvar/(?P<pk>[0-9]+)/$', 
         r9012_totapurdec_salvar_views.salvar, 
         name='r9012_totapurdec_salvar'),
+
+    url(r'^r9012-totapurdec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_totapurdec_salvar_views.salvar, 
+        name='r9012_totapurdec_salvar_tab'),
         
     url(r'^r9012-totapurdec/cadastrar/$', 
         r9012_totapurdec_salvar_views.salvar, 
@@ -236,9 +256,13 @@ urlpatterns = [
         r9012_totapursem_listar_views.listar, 
         name='r9012_totapursem'),
 
-    url(r'^r9012-totapursem/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-totapursem/salvar/(?P<pk>[0-9]+)/$', 
         r9012_totapursem_salvar_views.salvar, 
         name='r9012_totapursem_salvar'),
+
+    url(r'^r9012-totapursem/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_totapursem_salvar_views.salvar, 
+        name='r9012_totapursem_salvar_tab'),
         
     url(r'^r9012-totapursem/cadastrar/$', 
         r9012_totapursem_salvar_views.salvar, 
@@ -266,9 +290,13 @@ urlpatterns = [
         r9012_totapurdia_listar_views.listar, 
         name='r9012_totapurdia'),
 
-    url(r'^r9012-totapurdia/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9012-totapurdia/salvar/(?P<pk>[0-9]+)/$', 
         r9012_totapurdia_salvar_views.salvar, 
         name='r9012_totapurdia_salvar'),
+
+    url(r'^r9012-totapurdia/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9012_totapurdia_salvar_views.salvar, 
+        name='r9012_totapurdia_salvar_tab'),
         
     url(r'^r9012-totapurdia/cadastrar/$', 
         r9012_totapurdia_salvar_views.salvar, 

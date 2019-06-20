@@ -26,7 +26,7 @@
                     
                         {% if perms.s2200.change_s2200documentos or perms.s2200.add_s2200documentos %}
                     
-                        <a href="{% url 's2200_documentos_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2200_documentos_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200documentos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

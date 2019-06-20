@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010detDed %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_detded_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_detded_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento das deduções</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4010.can_see_r4010benefPen %}
                                 <li {% if tab == 'r4010_benefpen' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_detded_salvar' pk=pk tab='r4010_benefpen' %}">
+                                    <a href="{% url 'r4010_detded_salvar_tab' pk=pk tab='r4010_benefpen' %}">
                                     Informação dos beneficiários da pensão alimentícia</a>
                                 </li>
                             {% endif %}

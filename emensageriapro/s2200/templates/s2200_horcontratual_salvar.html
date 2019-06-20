@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200horContratual %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_horcontratual_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_horcontratual_salvar_tab' pk=pk tab='master' %}">
                                 Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2200.can_see_s2200horario %}
                                 <li {% if tab == 's2200_horario' %} class="active"{% endif %} >
-                                    <a href="{% url 's2200_horcontratual_salvar' pk=pk tab='s2200_horario' %}">
+                                    <a href="{% url 's2200_horcontratual_salvar_tab' pk=pk tab='s2200_horario' %}">
                                     Informações diárias do horário contratual</a>
                                 </li>
                             {% endif %}

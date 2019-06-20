@@ -15,7 +15,7 @@
     <label id="s1210_detpgtofer_detrubrfer__s1210_detpgtofer__label">Detalhamento das rubricas do Recibo Antecipado de Férias*</label>
     {% if not for_print %}
       {% if s1210_detpgtofer_detrubrfer_form.s1210_detpgtofer.value %}
-        <a id="s1210_detpgtofer_detrubrfer__s1210_detpgtofer__div_acessar" href="{% url 's1210_detpgtofer_salvar' pk=s1210_detpgtofer_detrubrfer_form.s1210_detpgtofer.value tab='master' %}">
+        <a id="s1210_detpgtofer_detrubrfer__s1210_detpgtofer__div_acessar" href="{% url 's1210_detpgtofer_salvar' pk=s1210_detpgtofer_detrubrfer_form.s1210_detpgtofer.value %}">
           [Acessar]
         </a>
       {% endif %} 

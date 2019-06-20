@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2399.can_see_s2399remunOutrEmpr %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2399_remunoutrempr_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2399_remunoutrempr_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual</a>
                             </li>
                         {% endif %}

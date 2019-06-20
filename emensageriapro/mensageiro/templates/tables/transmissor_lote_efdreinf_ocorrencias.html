@@ -44,7 +44,7 @@
                     
                         {% if perms.mensageiro.change_TransmissorLoteEfdreinfOcorrencias or perms.mensageiro.add_TransmissorLoteEfdreinfOcorrencias %}
                     
-                        <a href="{% url 'transmissor_lote_efdreinf_ocorrencias_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'transmissor_lote_efdreinf_ocorrencias_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_TransmissorLoteEfdreinfOcorrencias %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

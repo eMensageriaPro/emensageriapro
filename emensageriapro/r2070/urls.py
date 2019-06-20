@@ -150,9 +150,13 @@ urlpatterns = [
         r2070_inforesidext_listar_views.listar, 
         name='r2070_inforesidext'),
 
-    url(r'^r2070-inforesidext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-inforesidext/salvar/(?P<pk>[0-9]+)/$', 
         r2070_inforesidext_salvar_views.salvar, 
         name='r2070_inforesidext_salvar'),
+
+    url(r'^r2070-inforesidext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_inforesidext_salvar_views.salvar, 
+        name='r2070_inforesidext_salvar_tab'),
         
     url(r'^r2070-inforesidext/cadastrar/$', 
         r2070_inforesidext_salvar_views.salvar, 
@@ -180,9 +184,13 @@ urlpatterns = [
         r2070_infomolestia_listar_views.listar, 
         name='r2070_infomolestia'),
 
-    url(r'^r2070-infomolestia/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-infomolestia/salvar/(?P<pk>[0-9]+)/$', 
         r2070_infomolestia_salvar_views.salvar, 
         name='r2070_infomolestia_salvar'),
+
+    url(r'^r2070-infomolestia/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_infomolestia_salvar_views.salvar, 
+        name='r2070_infomolestia_salvar_tab'),
         
     url(r'^r2070-infomolestia/cadastrar/$', 
         r2070_infomolestia_salvar_views.salvar, 
@@ -210,9 +218,13 @@ urlpatterns = [
         r2070_ideestab_listar_views.listar, 
         name='r2070_ideestab'),
 
-    url(r'^r2070-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-ideestab/salvar/(?P<pk>[0-9]+)/$', 
         r2070_ideestab_salvar_views.salvar, 
         name='r2070_ideestab_salvar'),
+
+    url(r'^r2070-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_ideestab_salvar_views.salvar, 
+        name='r2070_ideestab_salvar_tab'),
         
     url(r'^r2070-ideestab/cadastrar/$', 
         r2070_ideestab_salvar_views.salvar, 
@@ -240,9 +252,13 @@ urlpatterns = [
         r2070_pgtoresidbr_listar_views.listar, 
         name='r2070_pgtoresidbr'),
 
-    url(r'^r2070-pgtoresidbr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtoresidbr/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtoresidbr_salvar_views.salvar, 
         name='r2070_pgtoresidbr_salvar'),
+
+    url(r'^r2070-pgtoresidbr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtoresidbr_salvar_views.salvar, 
+        name='r2070_pgtoresidbr_salvar_tab'),
         
     url(r'^r2070-pgtoresidbr/cadastrar/$', 
         r2070_pgtoresidbr_salvar_views.salvar, 
@@ -270,9 +286,13 @@ urlpatterns = [
         r2070_pgtopf_listar_views.listar, 
         name='r2070_pgtopf'),
 
-    url(r'^r2070-pgtopf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtopf/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtopf_salvar_views.salvar, 
         name='r2070_pgtopf_salvar'),
+
+    url(r'^r2070-pgtopf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtopf_salvar_views.salvar, 
+        name='r2070_pgtopf_salvar_tab'),
         
     url(r'^r2070-pgtopf/cadastrar/$', 
         r2070_pgtopf_salvar_views.salvar, 
@@ -300,9 +320,13 @@ urlpatterns = [
         r2070_detdeducao_listar_views.listar, 
         name='r2070_detdeducao'),
 
-    url(r'^r2070-detdeducao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-detdeducao/salvar/(?P<pk>[0-9]+)/$', 
         r2070_detdeducao_salvar_views.salvar, 
         name='r2070_detdeducao_salvar'),
+
+    url(r'^r2070-detdeducao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_detdeducao_salvar_views.salvar, 
+        name='r2070_detdeducao_salvar_tab'),
         
     url(r'^r2070-detdeducao/cadastrar/$', 
         r2070_detdeducao_salvar_views.salvar, 
@@ -330,9 +354,13 @@ urlpatterns = [
         r2070_rendisento_listar_views.listar, 
         name='r2070_rendisento'),
 
-    url(r'^r2070-rendisento/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-rendisento/salvar/(?P<pk>[0-9]+)/$', 
         r2070_rendisento_salvar_views.salvar, 
         name='r2070_rendisento_salvar'),
+
+    url(r'^r2070-rendisento/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_rendisento_salvar_views.salvar, 
+        name='r2070_rendisento_salvar_tab'),
         
     url(r'^r2070-rendisento/cadastrar/$', 
         r2070_rendisento_salvar_views.salvar, 
@@ -360,9 +388,13 @@ urlpatterns = [
         r2070_detcompet_listar_views.listar, 
         name='r2070_detcompet'),
 
-    url(r'^r2070-detcompet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-detcompet/salvar/(?P<pk>[0-9]+)/$', 
         r2070_detcompet_salvar_views.salvar, 
         name='r2070_detcompet_salvar'),
+
+    url(r'^r2070-detcompet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_detcompet_salvar_views.salvar, 
+        name='r2070_detcompet_salvar_tab'),
         
     url(r'^r2070-detcompet/cadastrar/$', 
         r2070_detcompet_salvar_views.salvar, 
@@ -390,9 +422,13 @@ urlpatterns = [
         r2070_compjud_listar_views.listar, 
         name='r2070_compjud'),
 
-    url(r'^r2070-compjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-compjud/salvar/(?P<pk>[0-9]+)/$', 
         r2070_compjud_salvar_views.salvar, 
         name='r2070_compjud_salvar'),
+
+    url(r'^r2070-compjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_compjud_salvar_views.salvar, 
+        name='r2070_compjud_salvar_tab'),
         
     url(r'^r2070-compjud/cadastrar/$', 
         r2070_compjud_salvar_views.salvar, 
@@ -420,9 +456,13 @@ urlpatterns = [
         r2070_inforra_listar_views.listar, 
         name='r2070_inforra'),
 
-    url(r'^r2070-inforra/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-inforra/salvar/(?P<pk>[0-9]+)/$', 
         r2070_inforra_salvar_views.salvar, 
         name='r2070_inforra_salvar'),
+
+    url(r'^r2070-inforra/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_inforra_salvar_views.salvar, 
+        name='r2070_inforra_salvar_tab'),
         
     url(r'^r2070-inforra/cadastrar/$', 
         r2070_inforra_salvar_views.salvar, 
@@ -450,9 +490,13 @@ urlpatterns = [
         r2070_inforra_despprocjud_listar_views.listar, 
         name='r2070_inforra_despprocjud'),
 
-    url(r'^r2070-inforra-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-inforra-despprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r2070_inforra_despprocjud_salvar_views.salvar, 
         name='r2070_inforra_despprocjud_salvar'),
+
+    url(r'^r2070-inforra-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_inforra_despprocjud_salvar_views.salvar, 
+        name='r2070_inforra_despprocjud_salvar_tab'),
         
     url(r'^r2070-inforra-despprocjud/cadastrar/$', 
         r2070_inforra_despprocjud_salvar_views.salvar, 
@@ -480,9 +524,13 @@ urlpatterns = [
         r2070_inforra_ideadvogado_listar_views.listar, 
         name='r2070_inforra_ideadvogado'),
 
-    url(r'^r2070-inforra-ideadvogado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-inforra-ideadvogado/salvar/(?P<pk>[0-9]+)/$', 
         r2070_inforra_ideadvogado_salvar_views.salvar, 
         name='r2070_inforra_ideadvogado_salvar'),
+
+    url(r'^r2070-inforra-ideadvogado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_inforra_ideadvogado_salvar_views.salvar, 
+        name='r2070_inforra_ideadvogado_salvar_tab'),
         
     url(r'^r2070-inforra-ideadvogado/cadastrar/$', 
         r2070_inforra_ideadvogado_salvar_views.salvar, 
@@ -510,9 +558,13 @@ urlpatterns = [
         r2070_infoprocjud_listar_views.listar, 
         name='r2070_infoprocjud'),
 
-    url(r'^r2070-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-infoprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r2070_infoprocjud_salvar_views.salvar, 
         name='r2070_infoprocjud_salvar'),
+
+    url(r'^r2070-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_infoprocjud_salvar_views.salvar, 
+        name='r2070_infoprocjud_salvar_tab'),
         
     url(r'^r2070-infoprocjud/cadastrar/$', 
         r2070_infoprocjud_salvar_views.salvar, 
@@ -540,9 +592,13 @@ urlpatterns = [
         r2070_infoprocjud_despprocjud_listar_views.listar, 
         name='r2070_infoprocjud_despprocjud'),
 
-    url(r'^r2070-infoprocjud-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-infoprocjud-despprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r2070_infoprocjud_despprocjud_salvar_views.salvar, 
         name='r2070_infoprocjud_despprocjud_salvar'),
+
+    url(r'^r2070-infoprocjud-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_infoprocjud_despprocjud_salvar_views.salvar, 
+        name='r2070_infoprocjud_despprocjud_salvar_tab'),
         
     url(r'^r2070-infoprocjud-despprocjud/cadastrar/$', 
         r2070_infoprocjud_despprocjud_salvar_views.salvar, 
@@ -570,9 +626,13 @@ urlpatterns = [
         r2070_infoprocjud_ideadvogado_listar_views.listar, 
         name='r2070_infoprocjud_ideadvogado'),
 
-    url(r'^r2070-infoprocjud-ideadvogado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-infoprocjud-ideadvogado/salvar/(?P<pk>[0-9]+)/$', 
         r2070_infoprocjud_ideadvogado_salvar_views.salvar, 
         name='r2070_infoprocjud_ideadvogado_salvar'),
+
+    url(r'^r2070-infoprocjud-ideadvogado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_infoprocjud_ideadvogado_salvar_views.salvar, 
+        name='r2070_infoprocjud_ideadvogado_salvar_tab'),
         
     url(r'^r2070-infoprocjud-ideadvogado/cadastrar/$', 
         r2070_infoprocjud_ideadvogado_salvar_views.salvar, 
@@ -600,9 +660,13 @@ urlpatterns = [
         r2070_infoprocjud_origemrecursos_listar_views.listar, 
         name='r2070_infoprocjud_origemrecursos'),
 
-    url(r'^r2070-infoprocjud-origemrecursos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-infoprocjud-origemrecursos/salvar/(?P<pk>[0-9]+)/$', 
         r2070_infoprocjud_origemrecursos_salvar_views.salvar, 
         name='r2070_infoprocjud_origemrecursos_salvar'),
+
+    url(r'^r2070-infoprocjud-origemrecursos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_infoprocjud_origemrecursos_salvar_views.salvar, 
+        name='r2070_infoprocjud_origemrecursos_salvar_tab'),
         
     url(r'^r2070-infoprocjud-origemrecursos/cadastrar/$', 
         r2070_infoprocjud_origemrecursos_salvar_views.salvar, 
@@ -630,9 +694,13 @@ urlpatterns = [
         r2070_depjudicial_listar_views.listar, 
         name='r2070_depjudicial'),
 
-    url(r'^r2070-depjudicial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-depjudicial/salvar/(?P<pk>[0-9]+)/$', 
         r2070_depjudicial_salvar_views.salvar, 
         name='r2070_depjudicial_salvar'),
+
+    url(r'^r2070-depjudicial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_depjudicial_salvar_views.salvar, 
+        name='r2070_depjudicial_salvar_tab'),
         
     url(r'^r2070-depjudicial/cadastrar/$', 
         r2070_depjudicial_salvar_views.salvar, 
@@ -660,9 +728,13 @@ urlpatterns = [
         r2070_pgtopj_listar_views.listar, 
         name='r2070_pgtopj'),
 
-    url(r'^r2070-pgtopj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtopj/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtopj_salvar_views.salvar, 
         name='r2070_pgtopj_salvar'),
+
+    url(r'^r2070-pgtopj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtopj_salvar_views.salvar, 
+        name='r2070_pgtopj_salvar_tab'),
         
     url(r'^r2070-pgtopj/cadastrar/$', 
         r2070_pgtopj_salvar_views.salvar, 
@@ -690,9 +762,13 @@ urlpatterns = [
         r2070_pgtopj_infoprocjud_listar_views.listar, 
         name='r2070_pgtopj_infoprocjud'),
 
-    url(r'^r2070-pgtopj-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtopj-infoprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtopj_infoprocjud_salvar_views.salvar, 
         name='r2070_pgtopj_infoprocjud_salvar'),
+
+    url(r'^r2070-pgtopj-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtopj_infoprocjud_salvar_views.salvar, 
+        name='r2070_pgtopj_infoprocjud_salvar_tab'),
         
     url(r'^r2070-pgtopj-infoprocjud/cadastrar/$', 
         r2070_pgtopj_infoprocjud_salvar_views.salvar, 
@@ -720,9 +796,13 @@ urlpatterns = [
         r2070_pgtopj_despprocjud_listar_views.listar, 
         name='r2070_pgtopj_despprocjud'),
 
-    url(r'^r2070-pgtopj-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtopj-despprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtopj_despprocjud_salvar_views.salvar, 
         name='r2070_pgtopj_despprocjud_salvar'),
+
+    url(r'^r2070-pgtopj-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtopj_despprocjud_salvar_views.salvar, 
+        name='r2070_pgtopj_despprocjud_salvar_tab'),
         
     url(r'^r2070-pgtopj-despprocjud/cadastrar/$', 
         r2070_pgtopj_despprocjud_salvar_views.salvar, 
@@ -750,9 +830,13 @@ urlpatterns = [
         r2070_pgtopj_ideadvogado_listar_views.listar, 
         name='r2070_pgtopj_ideadvogado'),
 
-    url(r'^r2070-pgtopj-ideadvogado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtopj-ideadvogado/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtopj_ideadvogado_salvar_views.salvar, 
         name='r2070_pgtopj_ideadvogado_salvar'),
+
+    url(r'^r2070-pgtopj-ideadvogado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtopj_ideadvogado_salvar_views.salvar, 
+        name='r2070_pgtopj_ideadvogado_salvar_tab'),
         
     url(r'^r2070-pgtopj-ideadvogado/cadastrar/$', 
         r2070_pgtopj_ideadvogado_salvar_views.salvar, 
@@ -780,9 +864,13 @@ urlpatterns = [
         r2070_pgtopj_origemrecursos_listar_views.listar, 
         name='r2070_pgtopj_origemrecursos'),
 
-    url(r'^r2070-pgtopj-origemrecursos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtopj-origemrecursos/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtopj_origemrecursos_salvar_views.salvar, 
         name='r2070_pgtopj_origemrecursos_salvar'),
+
+    url(r'^r2070-pgtopj-origemrecursos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtopj_origemrecursos_salvar_views.salvar, 
+        name='r2070_pgtopj_origemrecursos_salvar_tab'),
         
     url(r'^r2070-pgtopj-origemrecursos/cadastrar/$', 
         r2070_pgtopj_origemrecursos_salvar_views.salvar, 
@@ -810,9 +898,13 @@ urlpatterns = [
         r2070_pgtoresidext_listar_views.listar, 
         name='r2070_pgtoresidext'),
 
-    url(r'^r2070-pgtoresidext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2070-pgtoresidext/salvar/(?P<pk>[0-9]+)/$', 
         r2070_pgtoresidext_salvar_views.salvar, 
         name='r2070_pgtoresidext_salvar'),
+
+    url(r'^r2070-pgtoresidext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2070_pgtoresidext_salvar_views.salvar, 
+        name='r2070_pgtoresidext_salvar_tab'),
         
     url(r'^r2070-pgtoresidext/cadastrar/$', 
         r2070_pgtoresidext_salvar_views.salvar, 

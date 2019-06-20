@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2399.can_see_s2399dmDev %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2399_dmdev_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2399_dmdev_salvar_tab' pk=pk tab='master' %}">
                                 Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2399.can_see_s2399ideEstabLot %}
                                 <li {% if tab == 's2399_ideestablot' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_dmdev_salvar' pk=pk tab='s2399_ideestablot' %}">
+                                    <a href="{% url 's2399_dmdev_salvar_tab' pk=pk tab='s2399_ideestablot' %}">
                                     Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                                 </li>
                             {% endif %}

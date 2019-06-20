@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2240.can_see_s2240altExpRisco %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2240_altexprisco_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2240_altexprisco_salvar_tab' pk=pk tab='master' %}">
                                 Condições ambientais do trabalho - Alteração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2240.can_see_s2240altExpRiscoinfoAmb %}
                                 <li {% if tab == 's2240_altexprisco_infoamb' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_altexprisco_salvar' pk=pk tab='s2240_altexprisco_infoamb' %}">
+                                    <a href="{% url 's2240_altexprisco_salvar_tab' pk=pk tab='s2240_altexprisco_infoamb' %}">
                                     Informações relativas ao ambiente de trabalho</a>
                                 </li>
                             {% endif %}

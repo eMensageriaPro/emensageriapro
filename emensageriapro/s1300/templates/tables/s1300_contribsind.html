@@ -44,7 +44,7 @@
                     
                         {% if perms.s1300.change_s1300contribSind or perms.s1300.add_s1300contribSind %}
                     
-                        <a href="{% url 's1300_contribsind_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1300_contribsind_salvar' pk=a.id %}">
                             {% if perms.s1300.change_s1300contribSind %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

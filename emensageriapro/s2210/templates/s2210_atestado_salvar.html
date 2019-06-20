@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2210.can_see_s2210atestado %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2210_atestado_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2210_atestado_salvar_tab' pk=pk tab='master' %}">
                                 Atestado Médico</a>
                             </li>
                         {% endif %}

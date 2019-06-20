@@ -54,28 +54,28 @@
                     {% if pk %}
                         {% if perms.r1000.can_see_r1000alteracao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r1000_alteracao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r1000_alteracao_salvar_tab' pk=pk tab='master' %}">
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r1000.can_see_r1000alteracaosoftHouse %}
                                 <li {% if tab == 'r1000_alteracao_softhouse' %} class="active"{% endif %} >
-                                    <a href="{% url 'r1000_alteracao_salvar' pk=pk tab='r1000_alteracao_softhouse' %}">
+                                    <a href="{% url 'r1000_alteracao_salvar_tab' pk=pk tab='r1000_alteracao_softhouse' %}">
                                     Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r1000.can_see_r1000alteracaoinfoEFR %}
                                 <li {% if tab == 'r1000_alteracao_infoefr' %} class="active"{% endif %} >
-                                    <a href="{% url 'r1000_alteracao_salvar' pk=pk tab='r1000_alteracao_infoefr' %}">
+                                    <a href="{% url 'r1000_alteracao_salvar_tab' pk=pk tab='r1000_alteracao_infoefr' %}">
                                     Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r1000.can_see_r1000alteracaonovaValidade %}
                                 <li {% if tab == 'r1000_alteracao_novavalidade' %} class="active"{% endif %} >
-                                    <a href="{% url 'r1000_alteracao_salvar' pk=pk tab='r1000_alteracao_novavalidade' %}">
+                                    <a href="{% url 'r1000_alteracao_salvar_tab' pk=pk tab='r1000_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade</a>
                                 </li>
                             {% endif %}

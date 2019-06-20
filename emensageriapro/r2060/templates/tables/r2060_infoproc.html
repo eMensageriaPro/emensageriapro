@@ -44,7 +44,7 @@
                     
                         {% if perms.r2060.change_r2060infoProc or perms.r2060.add_r2060infoProc %}
                     
-                        <a href="{% url 'r2060_infoproc_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2060_infoproc_salvar' pk=a.id %}">
                             {% if perms.r2060.change_r2060infoProc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

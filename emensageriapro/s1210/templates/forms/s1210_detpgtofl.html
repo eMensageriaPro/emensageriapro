@@ -15,7 +15,7 @@
     <label id="s1210_detpgtofl__s1210_infopgto__label">Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399*</label>
     {% if not for_print %}
       {% if s1210_detpgtofl_form.s1210_infopgto.value %}
-        <a id="s1210_detpgtofl__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtofl_form.s1210_infopgto.value tab='master' %}">
+        <a id="s1210_detpgtofl__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtofl_form.s1210_infopgto.value %}">
           [Acessar]
         </a>
       {% endif %} 

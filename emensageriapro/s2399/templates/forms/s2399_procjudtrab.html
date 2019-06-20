@@ -15,7 +15,7 @@
     <label id="s2399_procjudtrab__s2399_verbasresc__label">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.*</label>
     {% if not for_print %}
       {% if s2399_procjudtrab_form.s2399_verbasresc.value %}
-        <a id="s2399_procjudtrab__s2399_verbasresc__div_acessar" href="{% url 's2399_verbasresc_salvar' pk=s2399_procjudtrab_form.s2399_verbasresc.value tab='master' %}">
+        <a id="s2399_procjudtrab__s2399_verbasresc__div_acessar" href="{% url 's2399_verbasresc_salvar' pk=s2399_procjudtrab_form.s2399_verbasresc.value %}">
           [Acessar]
         </a>
       {% endif %} 

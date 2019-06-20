@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1202.can_see_s1202infoPerAntideEstab %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1202_infoperant_ideestab_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1202_infoperant_ideestab_salvar_tab' pk=pk tab='master' %}">
                                 Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1202.can_see_s1202infoPerAntremunPerAnt %}
                                 <li {% if tab == 's1202_infoperant_remunperant' %} class="active"{% endif %} >
-                                    <a href="{% url 's1202_infoperant_ideestab_salvar' pk=pk tab='s1202_infoperant_remunperant' %}">
+                                    <a href="{% url 's1202_infoperant_ideestab_salvar_tab' pk=pk tab='s1202_infoperant_remunperant' %}">
                                     Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</a>
                                 </li>
                             {% endif %}

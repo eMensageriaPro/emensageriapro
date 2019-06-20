@@ -15,7 +15,7 @@
     <label id="s1202_infoperant_itensremun__s1202_infoperant_remunperant__label">Registro que relaciona as rubricas que compõem a remuneração do trabalhador.*</label>
     {% if not for_print %}
       {% if s1202_infoperant_itensremun_form.s1202_infoperant_remunperant.value %}
-        <a id="s1202_infoperant_itensremun__s1202_infoperant_remunperant__div_acessar" href="{% url 's1202_infoperant_remunperant_salvar' pk=s1202_infoperant_itensremun_form.s1202_infoperant_remunperant.value tab='master' %}">
+        <a id="s1202_infoperant_itensremun__s1202_infoperant_remunperant__div_acessar" href="{% url 's1202_infoperant_remunperant_salvar' pk=s1202_infoperant_itensremun_form.s1202_infoperant_remunperant.value %}">
           [Acessar]
         </a>
       {% endif %} 

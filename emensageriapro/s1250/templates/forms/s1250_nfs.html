@@ -15,7 +15,7 @@
     <label id="s1250_nfs__s1250_ideprodutor__label">Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.*</label>
     {% if not for_print %}
       {% if s1250_nfs_form.s1250_ideprodutor.value %}
-        <a id="s1250_nfs__s1250_ideprodutor__div_acessar" href="{% url 's1250_ideprodutor_salvar' pk=s1250_nfs_form.s1250_ideprodutor.value tab='master' %}">
+        <a id="s1250_nfs__s1250_ideprodutor__div_acessar" href="{% url 's1250_ideprodutor_salvar' pk=s1250_nfs_form.s1250_ideprodutor.value %}">
           [Acessar]
         </a>
       {% endif %} 

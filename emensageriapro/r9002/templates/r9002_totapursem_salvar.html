@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r9002.can_see_r9002totApurSem %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9002_totapursem_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9002_totapursem_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</a>
                             </li>
                         {% endif %}

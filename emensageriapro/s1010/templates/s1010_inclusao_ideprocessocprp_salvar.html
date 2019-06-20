@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1010.can_see_s1010inclusaoideProcessoCPRP %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1010_inclusao_ideprocessocprp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1010_inclusao_ideprocessocprp_salvar_tab' pk=pk tab='master' %}">
                                 Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                             </li>
                         {% endif %}

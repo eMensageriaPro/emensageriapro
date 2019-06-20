@@ -54,49 +54,49 @@
                     {% if pk %}
                         {% if perms.s1000.can_see_s1000inclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1000_inclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='master' %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaodadosIsencao %}
                                 <li {% if tab == 's1000_inclusao_dadosisencao' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_salvar' pk=pk tab='s1000_inclusao_dadosisencao' %}">
+                                    <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='s1000_inclusao_dadosisencao' %}">
                                     Informações Complementares - Empresas Isentas - Dados da Isenção</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaoinfoOP %}
                                 <li {% if tab == 's1000_inclusao_infoop' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_salvar' pk=pk tab='s1000_inclusao_infoop' %}">
+                                    <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='s1000_inclusao_infoop' %}">
                                     Informações relativas a Órgãos Públicos</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaoinfoOrgInternacional %}
                                 <li {% if tab == 's1000_inclusao_infoorginternacional' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_salvar' pk=pk tab='s1000_inclusao_infoorginternacional' %}">
+                                    <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='s1000_inclusao_infoorginternacional' %}">
                                     Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaosoftwareHouse %}
                                 <li {% if tab == 's1000_inclusao_softwarehouse' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_salvar' pk=pk tab='s1000_inclusao_softwarehouse' %}">
+                                    <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='s1000_inclusao_softwarehouse' %}">
                                     Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaosituacaoPJ %}
                                 <li {% if tab == 's1000_inclusao_situacaopj' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_salvar' pk=pk tab='s1000_inclusao_situacaopj' %}">
+                                    <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='s1000_inclusao_situacaopj' %}">
                                     Informações Complementares - Pessoa Jurídica</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaosituacaoPF %}
                                 <li {% if tab == 's1000_inclusao_situacaopf' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_salvar' pk=pk tab='s1000_inclusao_situacaopf' %}">
+                                    <a href="{% url 's1000_inclusao_salvar_tab' pk=pk tab='s1000_inclusao_situacaopf' %}">
                                     Informações Complementares - Pessoa Física</a>
                                 </li>
                             {% endif %}

@@ -92,7 +92,7 @@
                     
                         {% if perms.efdreinf.change_r5001evtTotal or perms.efdreinf.add_r5001evtTotal %}
                     
-                        <a href="{% url 'r5001_evttotal_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r5001_evttotal_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r5001evtTotal %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

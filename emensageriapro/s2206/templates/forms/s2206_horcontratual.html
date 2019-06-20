@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2206_horcontratual__s2206_evtaltcontratual__label">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].*</label>
     {% if not for_print %}{% if s2206_horcontratual_form.s2206_evtaltcontratual.value %}
-        <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_horcontratual_form.s2206_evtaltcontratual.value tab='master' %}">
+        <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_horcontratual_form.s2206_evtaltcontratual.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

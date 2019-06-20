@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1200.can_see_s1200infoPerApuritensRemun %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1200_infoperapur_itensremun_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1200_infoperapur_itensremun_salvar_tab' pk=pk tab='master' %}">
                                 Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</a>
                             </li>
                         {% endif %}

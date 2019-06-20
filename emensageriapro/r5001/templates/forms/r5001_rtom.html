@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r5001_rtom__r5001_infototal__label">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010*</label>
     {% if not for_print %}{% if r5001_rtom_form.r5001_infototal.value %}
-        <a href="{% url 'r5001_infototal_salvar' pk=r5001_rtom_form.r5001_infototal.value tab='master' %}">
+        <a href="{% url 'r5001_infototal_salvar' pk=r5001_rtom_form.r5001_infototal.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

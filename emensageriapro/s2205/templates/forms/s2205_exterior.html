@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2205_exterior__s2205_evtaltcadastral__label">Preenchido em caso de trabalhador residente no exterior.*</label>
     {% if not for_print %}{% if s2205_exterior_form.s2205_evtaltcadastral.value %}
-        <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_exterior_form.s2205_evtaltcadastral.value tab='master' %}">
+        <a href="{% url 's2205_evtaltcadastral_salvar' pk=s2205_exterior_form.s2205_evtaltcadastral.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

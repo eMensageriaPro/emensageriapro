@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r2070_pgtopj_despprocjud__r2070_pgtopj_infoprocjud__label">Detalhamento das despesas de processo judicial*</label>
     {% if not for_print %}{% if r2070_pgtopj_despprocjud_form.r2070_pgtopj_infoprocjud.value %}
-        <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=r2070_pgtopj_despprocjud_form.r2070_pgtopj_infoprocjud.value tab='master' %}">
+        <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=r2070_pgtopj_despprocjud_form.r2070_pgtopj_infoprocjud.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

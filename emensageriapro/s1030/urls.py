@@ -82,9 +82,13 @@ urlpatterns = [
         s1030_inclusao_listar_views.listar, 
         name='s1030_inclusao'),
 
-    url(r'^s1030-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1030-inclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1030_inclusao_salvar_views.salvar, 
         name='s1030_inclusao_salvar'),
+
+    url(r'^s1030-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1030_inclusao_salvar_views.salvar, 
+        name='s1030_inclusao_salvar_tab'),
         
     url(r'^s1030-inclusao/cadastrar/$', 
         s1030_inclusao_salvar_views.salvar, 
@@ -112,9 +116,13 @@ urlpatterns = [
         s1030_inclusao_cargopublico_listar_views.listar, 
         name='s1030_inclusao_cargopublico'),
 
-    url(r'^s1030-inclusao-cargopublico/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1030-inclusao-cargopublico/salvar/(?P<pk>[0-9]+)/$', 
         s1030_inclusao_cargopublico_salvar_views.salvar, 
         name='s1030_inclusao_cargopublico_salvar'),
+
+    url(r'^s1030-inclusao-cargopublico/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1030_inclusao_cargopublico_salvar_views.salvar, 
+        name='s1030_inclusao_cargopublico_salvar_tab'),
         
     url(r'^s1030-inclusao-cargopublico/cadastrar/$', 
         s1030_inclusao_cargopublico_salvar_views.salvar, 
@@ -142,9 +150,13 @@ urlpatterns = [
         s1030_alteracao_listar_views.listar, 
         name='s1030_alteracao'),
 
-    url(r'^s1030-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1030-alteracao/salvar/(?P<pk>[0-9]+)/$', 
         s1030_alteracao_salvar_views.salvar, 
         name='s1030_alteracao_salvar'),
+
+    url(r'^s1030-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1030_alteracao_salvar_views.salvar, 
+        name='s1030_alteracao_salvar_tab'),
         
     url(r'^s1030-alteracao/cadastrar/$', 
         s1030_alteracao_salvar_views.salvar, 
@@ -172,9 +184,13 @@ urlpatterns = [
         s1030_alteracao_cargopublico_listar_views.listar, 
         name='s1030_alteracao_cargopublico'),
 
-    url(r'^s1030-alteracao-cargopublico/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1030-alteracao-cargopublico/salvar/(?P<pk>[0-9]+)/$', 
         s1030_alteracao_cargopublico_salvar_views.salvar, 
         name='s1030_alteracao_cargopublico_salvar'),
+
+    url(r'^s1030-alteracao-cargopublico/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1030_alteracao_cargopublico_salvar_views.salvar, 
+        name='s1030_alteracao_cargopublico_salvar_tab'),
         
     url(r'^s1030-alteracao-cargopublico/cadastrar/$', 
         s1030_alteracao_cargopublico_salvar_views.salvar, 
@@ -202,9 +218,13 @@ urlpatterns = [
         s1030_alteracao_novavalidade_listar_views.listar, 
         name='s1030_alteracao_novavalidade'),
 
-    url(r'^s1030-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1030-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
         s1030_alteracao_novavalidade_salvar_views.salvar, 
         name='s1030_alteracao_novavalidade_salvar'),
+
+    url(r'^s1030-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1030_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1030_alteracao_novavalidade_salvar_tab'),
         
     url(r'^s1030-alteracao-novavalidade/cadastrar/$', 
         s1030_alteracao_novavalidade_salvar_views.salvar, 
@@ -232,9 +252,13 @@ urlpatterns = [
         s1030_exclusao_listar_views.listar, 
         name='s1030_exclusao'),
 
-    url(r'^s1030-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1030-exclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1030_exclusao_salvar_views.salvar, 
         name='s1030_exclusao_salvar'),
+
+    url(r'^s1030-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1030_exclusao_salvar_views.salvar, 
+        name='s1030_exclusao_salvar_tab'),
         
     url(r'^s1030-exclusao/cadastrar/$', 
         s1030_exclusao_salvar_views.salvar, 

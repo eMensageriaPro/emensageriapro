@@ -54,35 +54,35 @@
                     {% if pk %}
                         {% if perms.s2299.can_see_s2299infoPerApurideEstabLot %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2299_infoperapur_ideestablot_salvar_tab' pk=pk tab='master' %}">
                                 Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoPerApurdetVerbas %}
                                 <li {% if tab == 's2299_infoperapur_detverbas' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=pk tab='s2299_infoperapur_detverbas' %}">
+                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar_tab' pk=pk tab='s2299_infoperapur_detverbas' %}">
                                     Detalhamento das verbas rescisórias devidas ao trabalhador</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoPerApurinfoSaudeColet %}
                                 <li {% if tab == 's2299_infoperapur_infosaudecolet' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=pk tab='s2299_infoperapur_infosaudecolet' %}">
+                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar_tab' pk=pk tab='s2299_infoperapur_infosaudecolet' %}">
                                     Informações de plano privado coletivo empresarial de assistência à saúde</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoPerApurinfoAgNocivo %}
                                 <li {% if tab == 's2299_infoperapur_infoagnocivo' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=pk tab='s2299_infoperapur_infoagnocivo' %}">
+                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar_tab' pk=pk tab='s2299_infoperapur_infoagnocivo' %}">
                                     Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoPerApurinfoSimples %}
                                 <li {% if tab == 's2299_infoperapur_infosimples' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=pk tab='s2299_infoperapur_infosimples' %}">
+                                    <a href="{% url 's2299_infoperapur_ideestablot_salvar_tab' pk=pk tab='s2299_infoperapur_infosimples' %}">
                                     Informação relativa a empresas enquadradas no Regime de Tributação Simples</a>
                                 </li>
                             {% endif %}

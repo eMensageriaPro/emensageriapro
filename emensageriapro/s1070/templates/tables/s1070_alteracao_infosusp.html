@@ -50,7 +50,7 @@
                     
                         {% if perms.s1070.change_s1070alteracaoinfoSusp or perms.s1070.add_s1070alteracaoinfoSusp %}
                     
-                        <a href="{% url 's1070_alteracao_infosusp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1070_alteracao_infosusp_salvar' pk=a.id %}">
                             {% if perms.s1070.change_s1070alteracaoinfoSusp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

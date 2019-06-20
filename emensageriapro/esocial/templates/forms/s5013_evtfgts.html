@@ -172,7 +172,7 @@
   
   {% if not output %}
     {% if s5013_evtfgts_form.transmissor_lote_esocial.value %}
-    <a id="s5013_evtfgts__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s5013_evtfgts_form.transmissor_lote_esocial.value tab='master' %}">
+    <a id="s5013_evtfgts__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s5013_evtfgts_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
     {% endif %} 

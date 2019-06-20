@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_ctps__s2300_documentos__label">Informações da Carteira de Trabalho e Previdência Social*</label>
     {% if not for_print %}{% if s2300_ctps_form.s2300_documentos.value %}
-        <a href="{% url 's2300_documentos_salvar' pk=s2300_ctps_form.s2300_documentos.value tab='master' %}">
+        <a href="{% url 's2300_documentos_salvar' pk=s2300_ctps_form.s2300_documentos.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

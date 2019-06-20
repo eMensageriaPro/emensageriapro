@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r5011.can_see_r5011regOcorrs %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r5011_regocorrs_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r5011_regocorrs_salvar_tab' pk=pk tab='master' %}">
                                 Informações de ocorrências registradas</a>
                             </li>
                         {% endif %}

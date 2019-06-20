@@ -50,7 +50,7 @@
                     
                         {% if perms.r9012.change_r9012totApurQui or perms.r9012.add_r9012totApurQui %}
                     
-                        <a href="{% url 'r9012_totapurqui_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r9012_totapurqui_salvar' pk=a.id %}">
                             {% if perms.r9012.change_r9012totApurQui %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

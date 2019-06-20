@@ -102,15 +102,15 @@ def duplicar(request, pk):
             messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
             return_pk = dados['id']
             
-            return redirect('s2298_evtreintegr_salvar', pk=return_pk, tab='master')
+            return redirect('s2298_evtreintegr_salvar', pk=return_pk)
     
         messages.error(request, 'Erro ao duplicar evento!')
         
-        return redirect('s2298_evtreintegr_salvar', pk=pk, tab='master')
+        return redirect('s2298_evtreintegr_salvar', pk=pk)
         
     else:
     
         messages.error(request, u'''Você não possui permissão para duplicar o evento. 
                                     Entre em contato com o administrador do sistema!''')
                                     
-        return redirect('s2298_evtreintegr_salvar', pk=pk, tab='master')
+        return redirect('s2298_evtreintegr_salvar', pk=pk)

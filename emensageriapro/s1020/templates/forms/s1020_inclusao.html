@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1020_inclusao__s1020_evttablotacao__label">Inclusão de novas informações*</label>
     {% if not for_print %}{% if s1020_inclusao_form.s1020_evttablotacao.value %}
-        <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_inclusao_form.s1020_evttablotacao.value tab='master' %}">
+        <a href="{% url 's1020_evttablotacao_salvar' pk=s1020_inclusao_form.s1020_evttablotacao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

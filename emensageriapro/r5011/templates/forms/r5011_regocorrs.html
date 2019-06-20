@@ -15,7 +15,7 @@
     <label id="r5011_regocorrs__r5011_evttotalcontrib__label">Informações de ocorrências registradas*</label>
     {% if not for_print %}
       {% if r5011_regocorrs_form.r5011_evttotalcontrib.value %}
-        <a id="r5011_regocorrs__r5011_evttotalcontrib__div_acessar" href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_regocorrs_form.r5011_evttotalcontrib.value tab='master' %}">
+        <a id="r5011_regocorrs__r5011_evttotalcontrib__div_acessar" href="{% url 'r5011_evttotalcontrib_salvar' pk=r5011_regocorrs_form.r5011_evttotalcontrib.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -98,9 +98,13 @@ urlpatterns = [
         s1020_inclusao_listar_views.listar, 
         name='s1020_inclusao'),
 
-    url(r'^s1020-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-inclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1020_inclusao_salvar_views.salvar, 
         name='s1020_inclusao_salvar'),
+
+    url(r'^s1020-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_inclusao_salvar_views.salvar, 
+        name='s1020_inclusao_salvar_tab'),
         
     url(r'^s1020-inclusao/cadastrar/$', 
         s1020_inclusao_salvar_views.salvar, 
@@ -128,9 +132,13 @@ urlpatterns = [
         s1020_inclusao_infoprocjudterceiros_listar_views.listar, 
         name='s1020_inclusao_infoprocjudterceiros'),
 
-    url(r'^s1020-inclusao-infoprocjudterceiros/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-inclusao-infoprocjudterceiros/salvar/(?P<pk>[0-9]+)/$', 
         s1020_inclusao_infoprocjudterceiros_salvar_views.salvar, 
         name='s1020_inclusao_infoprocjudterceiros_salvar'),
+
+    url(r'^s1020-inclusao-infoprocjudterceiros/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_inclusao_infoprocjudterceiros_salvar_views.salvar, 
+        name='s1020_inclusao_infoprocjudterceiros_salvar_tab'),
         
     url(r'^s1020-inclusao-infoprocjudterceiros/cadastrar/$', 
         s1020_inclusao_infoprocjudterceiros_salvar_views.salvar, 
@@ -158,9 +166,13 @@ urlpatterns = [
         s1020_inclusao_procjudterceiro_listar_views.listar, 
         name='s1020_inclusao_procjudterceiro'),
 
-    url(r'^s1020-inclusao-procjudterceiro/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-inclusao-procjudterceiro/salvar/(?P<pk>[0-9]+)/$', 
         s1020_inclusao_procjudterceiro_salvar_views.salvar, 
         name='s1020_inclusao_procjudterceiro_salvar'),
+
+    url(r'^s1020-inclusao-procjudterceiro/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_inclusao_procjudterceiro_salvar_views.salvar, 
+        name='s1020_inclusao_procjudterceiro_salvar_tab'),
         
     url(r'^s1020-inclusao-procjudterceiro/cadastrar/$', 
         s1020_inclusao_procjudterceiro_salvar_views.salvar, 
@@ -188,9 +200,13 @@ urlpatterns = [
         s1020_inclusao_infoemprparcial_listar_views.listar, 
         name='s1020_inclusao_infoemprparcial'),
 
-    url(r'^s1020-inclusao-infoemprparcial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-inclusao-infoemprparcial/salvar/(?P<pk>[0-9]+)/$', 
         s1020_inclusao_infoemprparcial_salvar_views.salvar, 
         name='s1020_inclusao_infoemprparcial_salvar'),
+
+    url(r'^s1020-inclusao-infoemprparcial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_inclusao_infoemprparcial_salvar_views.salvar, 
+        name='s1020_inclusao_infoemprparcial_salvar_tab'),
         
     url(r'^s1020-inclusao-infoemprparcial/cadastrar/$', 
         s1020_inclusao_infoemprparcial_salvar_views.salvar, 
@@ -218,9 +234,13 @@ urlpatterns = [
         s1020_alteracao_listar_views.listar, 
         name='s1020_alteracao'),
 
-    url(r'^s1020-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-alteracao/salvar/(?P<pk>[0-9]+)/$', 
         s1020_alteracao_salvar_views.salvar, 
         name='s1020_alteracao_salvar'),
+
+    url(r'^s1020-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_alteracao_salvar_views.salvar, 
+        name='s1020_alteracao_salvar_tab'),
         
     url(r'^s1020-alteracao/cadastrar/$', 
         s1020_alteracao_salvar_views.salvar, 
@@ -248,9 +268,13 @@ urlpatterns = [
         s1020_alteracao_infoprocjudterceiros_listar_views.listar, 
         name='s1020_alteracao_infoprocjudterceiros'),
 
-    url(r'^s1020-alteracao-infoprocjudterceiros/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-alteracao-infoprocjudterceiros/salvar/(?P<pk>[0-9]+)/$', 
         s1020_alteracao_infoprocjudterceiros_salvar_views.salvar, 
         name='s1020_alteracao_infoprocjudterceiros_salvar'),
+
+    url(r'^s1020-alteracao-infoprocjudterceiros/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_alteracao_infoprocjudterceiros_salvar_views.salvar, 
+        name='s1020_alteracao_infoprocjudterceiros_salvar_tab'),
         
     url(r'^s1020-alteracao-infoprocjudterceiros/cadastrar/$', 
         s1020_alteracao_infoprocjudterceiros_salvar_views.salvar, 
@@ -278,9 +302,13 @@ urlpatterns = [
         s1020_alteracao_procjudterceiro_listar_views.listar, 
         name='s1020_alteracao_procjudterceiro'),
 
-    url(r'^s1020-alteracao-procjudterceiro/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-alteracao-procjudterceiro/salvar/(?P<pk>[0-9]+)/$', 
         s1020_alteracao_procjudterceiro_salvar_views.salvar, 
         name='s1020_alteracao_procjudterceiro_salvar'),
+
+    url(r'^s1020-alteracao-procjudterceiro/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_alteracao_procjudterceiro_salvar_views.salvar, 
+        name='s1020_alteracao_procjudterceiro_salvar_tab'),
         
     url(r'^s1020-alteracao-procjudterceiro/cadastrar/$', 
         s1020_alteracao_procjudterceiro_salvar_views.salvar, 
@@ -308,9 +336,13 @@ urlpatterns = [
         s1020_alteracao_infoemprparcial_listar_views.listar, 
         name='s1020_alteracao_infoemprparcial'),
 
-    url(r'^s1020-alteracao-infoemprparcial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-alteracao-infoemprparcial/salvar/(?P<pk>[0-9]+)/$', 
         s1020_alteracao_infoemprparcial_salvar_views.salvar, 
         name='s1020_alteracao_infoemprparcial_salvar'),
+
+    url(r'^s1020-alteracao-infoemprparcial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_alteracao_infoemprparcial_salvar_views.salvar, 
+        name='s1020_alteracao_infoemprparcial_salvar_tab'),
         
     url(r'^s1020-alteracao-infoemprparcial/cadastrar/$', 
         s1020_alteracao_infoemprparcial_salvar_views.salvar, 
@@ -338,9 +370,13 @@ urlpatterns = [
         s1020_alteracao_novavalidade_listar_views.listar, 
         name='s1020_alteracao_novavalidade'),
 
-    url(r'^s1020-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
         s1020_alteracao_novavalidade_salvar_views.salvar, 
         name='s1020_alteracao_novavalidade_salvar'),
+
+    url(r'^s1020-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1020_alteracao_novavalidade_salvar_tab'),
         
     url(r'^s1020-alteracao-novavalidade/cadastrar/$', 
         s1020_alteracao_novavalidade_salvar_views.salvar, 
@@ -368,9 +404,13 @@ urlpatterns = [
         s1020_exclusao_listar_views.listar, 
         name='s1020_exclusao'),
 
-    url(r'^s1020-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1020-exclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1020_exclusao_salvar_views.salvar, 
         name='s1020_exclusao_salvar'),
+
+    url(r'^s1020-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1020_exclusao_salvar_views.salvar, 
+        name='s1020_exclusao_salvar_tab'),
         
     url(r'^s1020-exclusao/cadastrar/$', 
         s1020_exclusao_salvar_views.salvar, 

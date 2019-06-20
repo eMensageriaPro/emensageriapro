@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2399_verbasresc__s2399_evttsvtermino__label">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.*</label>
     {% if not for_print %}{% if s2399_verbasresc_form.s2399_evttsvtermino.value %}
-        <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_verbasresc_form.s2399_evttsvtermino.value tab='master' %}">
+        <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_verbasresc_form.s2399_evttsvtermino.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

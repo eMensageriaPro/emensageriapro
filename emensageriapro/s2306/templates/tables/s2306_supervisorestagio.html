@@ -38,7 +38,7 @@
                     
                         {% if perms.s2306.change_s2306supervisorEstagio or perms.s2306.add_s2306supervisorEstagio %}
                     
-                        <a href="{% url 's2306_supervisorestagio_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2306_supervisorestagio_salvar' pk=a.id %}">
                             {% if perms.s2306.change_s2306supervisorEstagio %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

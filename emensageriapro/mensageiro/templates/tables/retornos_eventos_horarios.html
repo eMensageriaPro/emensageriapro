@@ -32,7 +32,7 @@
                     
                         {% if perms.mensageiro.change_RetornosEventosHorarios or perms.mensageiro.add_RetornosEventosHorarios %}
                     
-                        <a href="{% url 'retornos_eventos_horarios_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'retornos_eventos_horarios_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RetornosEventosHorarios %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

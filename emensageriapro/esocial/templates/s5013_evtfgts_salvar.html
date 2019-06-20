@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s5013evtFGTS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5013_evtfgts_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5013_evtfgts_salvar_tab' pk=pk tab='master' %}">
                                 S-5013 - Informações do FGTS consolidadas por contribuinte</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s5013.can_see_s5013infoBaseFGTS %}
                                     <li {% if tab == 's5013_infobasefgts' %} class="active"{% endif %} >
-                                        <a href="{% url 's5013_evtfgts_salvar' pk=pk tab='s5013_infobasefgts' %}">
+                                        <a href="{% url 's5013_evtfgts_salvar_tab' pk=pk tab='s5013_infobasefgts' %}">
                                         Informações referentes a bases de cálculo do FGTS.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s5013.can_see_s5013infoDpsFGTS %}
                                     <li {% if tab == 's5013_infodpsfgts' %} class="active"{% endif %} >
-                                        <a href="{% url 's5013_evtfgts_salvar' pk=pk tab='s5013_infodpsfgts' %}">
+                                        <a href="{% url 's5013_evtfgts_salvar_tab' pk=pk tab='s5013_infodpsfgts' %}">
                                         Informações sobre valores de FGTS.</a>
                                     </li>
                                 {% endif %}

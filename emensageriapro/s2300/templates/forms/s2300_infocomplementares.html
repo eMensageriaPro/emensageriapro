@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_infocomplementares__s2300_evttsvinicio__label">Informações complementares sobre o declarante*</label>
     {% if not for_print %}{% if s2300_infocomplementares_form.s2300_evttsvinicio.value %}
-        <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_infocomplementares_form.s2300_evttsvinicio.value tab='master' %}">
+        <a href="{% url 's2300_evttsvinicio_salvar' pk=s2300_infocomplementares_form.s2300_evttsvinicio.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

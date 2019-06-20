@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1200evtRemun %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1200_evtremun_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='master' %}">
                                 S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a>
                             </li>
                         {% endif %}
@@ -62,35 +62,35 @@
                             
                                 {% if perms.s1200.can_see_s1200infoMV %}
                                     <li {% if tab == 's1200_infomv' %} class="active"{% endif %} >
-                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_infomv' %}">
+                                        <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infomv' %}">
                                         Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1200.can_see_s1200infoComplem %}
                                     <li {% if tab == 's1200_infocomplem' %} class="active"{% endif %} >
-                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_infocomplem' %}">
+                                        <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infocomplem' %}">
                                         Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1200.can_see_s1200procJudTrab %}
                                     <li {% if tab == 's1200_procjudtrab' %} class="active"{% endif %} >
-                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_procjudtrab' %}">
+                                        <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_procjudtrab' %}">
                                         Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1200.can_see_s1200infoInterm %}
                                     <li {% if tab == 's1200_infointerm' %} class="active"{% endif %} >
-                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_infointerm' %}">
+                                        <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infointerm' %}">
                                         Informações relativas ao trabalho intermitente</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1200.can_see_s1200dmDev %}
                                     <li {% if tab == 's1200_dmdev' %} class="active"{% endif %} >
-                                        <a href="{% url 's1200_evtremun_salvar' pk=pk tab='s1200_dmdev' %}">
+                                        <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_dmdev' %}">
                                         Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                                     </li>
                                 {% endif %}

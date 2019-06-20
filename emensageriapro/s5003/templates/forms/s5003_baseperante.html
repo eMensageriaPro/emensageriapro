@@ -15,7 +15,7 @@
     <label id="s5003_baseperante__s5003_infobaseperante__label">Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.*</label>
     {% if not for_print %}
       {% if s5003_baseperante_form.s5003_infobaseperante.value %}
-        <a id="s5003_baseperante__s5003_infobaseperante__div_acessar" href="{% url 's5003_infobaseperante_salvar' pk=s5003_baseperante_form.s5003_infobaseperante.value tab='master' %}">
+        <a id="s5003_baseperante__s5003_infobaseperante__div_acessar" href="{% url 's5003_infobaseperante_salvar' pk=s5003_baseperante_form.s5003_infobaseperante.value %}">
           [Acessar]
         </a>
       {% endif %} 

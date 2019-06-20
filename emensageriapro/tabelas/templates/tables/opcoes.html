@@ -62,7 +62,7 @@
                     
                         {% if perms.tabelas.change_Opcoes or perms.tabelas.add_Opcoes %}
                     
-                        <a href="{% url 'opcoes_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'opcoes_salvar' pk=a.id %}">
                             {% if perms.tabelas.change_Opcoes %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

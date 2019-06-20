@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r4040.can_see_r4040ideNat %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4040_idenat_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4040_idenat_salvar_tab' pk=pk tab='master' %}">
                                 Identificação da natureza do rendimento</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4040.can_see_r4040infoPgto %}
                                 <li {% if tab == 'r4040_infopgto' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4040_idenat_salvar' pk=pk tab='r4040_infopgto' %}">
+                                    <a href="{% url 'r4040_idenat_salvar_tab' pk=pk tab='r4040_infopgto' %}">
                                     Informações do Pagamento</a>
                                 </li>
                             {% endif %}

@@ -32,7 +32,7 @@
                     
                         {% if perms.s2299.change_s2299infoPerAntinfoSimples or perms.s2299.add_s2299infoPerAntinfoSimples %}
                     
-                        <a href="{% url 's2299_infoperant_infosimples_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2299_infoperant_infosimples_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerAntinfoSimples %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

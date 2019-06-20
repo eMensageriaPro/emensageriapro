@@ -122,7 +122,7 @@
                     
                         {% if perms.esocial.change_s2205evtAltCadastral or perms.esocial.add_s2205evtAltCadastral %}
                     
-                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2205evtAltCadastral %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1280evtInfoComplPer %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1280_evtinfocomplper_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='master' %}">
                                 S-1280 - Informações Complementares aos Eventos Periódicos</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             
                                 {% if perms.s1280.can_see_s1280infoSubstPatr %}
                                     <li {% if tab == 's1280_infosubstpatr' %} class="active"{% endif %} >
-                                        <a href="{% url 's1280_evtinfocomplper_salvar' pk=pk tab='s1280_infosubstpatr' %}">
+                                        <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infosubstpatr' %}">
                                         Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1280.can_see_s1280infoSubstPatrOpPort %}
                                     <li {% if tab == 's1280_infosubstpatropport' %} class="active"{% endif %} >
-                                        <a href="{% url 's1280_evtinfocomplper_salvar' pk=pk tab='s1280_infosubstpatropport' %}">
+                                        <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infosubstpatropport' %}">
                                         Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1280.can_see_s1280infoAtivConcom %}
                                     <li {% if tab == 's1280_infoativconcom' %} class="active"{% endif %} >
-                                        <a href="{% url 's1280_evtinfocomplper_salvar' pk=pk tab='s1280_infoativconcom' %}">
+                                        <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infoativconcom' %}">
                                         Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
                                     </li>
                                 {% endif %}

@@ -68,7 +68,7 @@
                     
                         {% if perms.esocial.change_s1060evtTabAmbiente or perms.esocial.add_s1060evtTabAmbiente %}
                     
-                        <a href="{% url 's1060_evttabambiente_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1060_evttabambiente_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1060evtTabAmbiente %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

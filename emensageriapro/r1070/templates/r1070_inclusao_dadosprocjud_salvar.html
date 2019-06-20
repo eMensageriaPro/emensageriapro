@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r1070.can_see_r1070inclusaodadosProcJud %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r1070_inclusao_dadosprocjud_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r1070_inclusao_dadosprocjud_salvar_tab' pk=pk tab='master' %}">
                                 Informações Complementares do Processo Judicial</a>
                             </li>
                         {% endif %}

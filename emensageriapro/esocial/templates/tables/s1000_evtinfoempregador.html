@@ -68,7 +68,7 @@
                     
                         {% if perms.esocial.change_s1000evtInfoEmpregador or perms.esocial.add_s1000evtInfoEmpregador %}
                     
-                        <a href="{% url 's1000_evtinfoempregador_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1000_evtinfoempregador_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1000evtInfoEmpregador %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

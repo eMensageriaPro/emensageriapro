@@ -62,7 +62,7 @@
                     
                         {% if perms.esocial.change_s5012evtIrrf or perms.esocial.add_s5012evtIrrf %}
                     
-                        <a href="{% url 's5012_evtirrf_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5012_evtirrf_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s5012evtIrrf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

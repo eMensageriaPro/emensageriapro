@@ -44,7 +44,7 @@
                     
                         {% if perms.r4020.change_r4020infoPgto or perms.r4020.add_r4020infoPgto %}
                     
-                        <a href="{% url 'r4020_infopgto_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4020_infopgto_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020infoPgto %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

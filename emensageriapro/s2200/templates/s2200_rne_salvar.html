@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200RNE %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_rne_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_rne_salvar_tab' pk=pk tab='master' %}">
                                 Informações do Registro Nacional de Estrangeiro</a>
                             </li>
                         {% endif %}

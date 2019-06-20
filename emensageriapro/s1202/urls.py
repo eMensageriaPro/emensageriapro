@@ -118,9 +118,13 @@ urlpatterns = [
         s1202_procjudtrab_listar_views.listar, 
         name='s1202_procjudtrab'),
 
-    url(r'^s1202-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-procjudtrab/salvar/(?P<pk>[0-9]+)/$', 
         s1202_procjudtrab_salvar_views.salvar, 
         name='s1202_procjudtrab_salvar'),
+
+    url(r'^s1202-procjudtrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_procjudtrab_salvar_views.salvar, 
+        name='s1202_procjudtrab_salvar_tab'),
         
     url(r'^s1202-procjudtrab/cadastrar/$', 
         s1202_procjudtrab_salvar_views.salvar, 
@@ -148,9 +152,13 @@ urlpatterns = [
         s1202_dmdev_listar_views.listar, 
         name='s1202_dmdev'),
 
-    url(r'^s1202-dmdev/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-dmdev/salvar/(?P<pk>[0-9]+)/$', 
         s1202_dmdev_salvar_views.salvar, 
         name='s1202_dmdev_salvar'),
+
+    url(r'^s1202-dmdev/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_dmdev_salvar_views.salvar, 
+        name='s1202_dmdev_salvar_tab'),
         
     url(r'^s1202-dmdev/cadastrar/$', 
         s1202_dmdev_salvar_views.salvar, 
@@ -178,9 +186,13 @@ urlpatterns = [
         s1202_infoperapur_listar_views.listar, 
         name='s1202_infoperapur'),
 
-    url(r'^s1202-infoperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_salvar_views.salvar, 
         name='s1202_infoperapur_salvar'),
+
+    url(r'^s1202-infoperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_salvar_views.salvar, 
+        name='s1202_infoperapur_salvar_tab'),
         
     url(r'^s1202-infoperapur/cadastrar/$', 
         s1202_infoperapur_salvar_views.salvar, 
@@ -208,9 +220,13 @@ urlpatterns = [
         s1202_infoperapur_ideestab_listar_views.listar, 
         name='s1202_infoperapur_ideestab'),
 
-    url(r'^s1202-infoperapur-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur-ideestab/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_ideestab_salvar_views.salvar, 
         name='s1202_infoperapur_ideestab_salvar'),
+
+    url(r'^s1202-infoperapur-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_ideestab_salvar_views.salvar, 
+        name='s1202_infoperapur_ideestab_salvar_tab'),
         
     url(r'^s1202-infoperapur-ideestab/cadastrar/$', 
         s1202_infoperapur_ideestab_salvar_views.salvar, 
@@ -238,9 +254,13 @@ urlpatterns = [
         s1202_infoperapur_remunperapur_listar_views.listar, 
         name='s1202_infoperapur_remunperapur'),
 
-    url(r'^s1202-infoperapur-remunperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur-remunperapur/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_remunperapur_salvar_views.salvar, 
         name='s1202_infoperapur_remunperapur_salvar'),
+
+    url(r'^s1202-infoperapur-remunperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_remunperapur_salvar_views.salvar, 
+        name='s1202_infoperapur_remunperapur_salvar_tab'),
         
     url(r'^s1202-infoperapur-remunperapur/cadastrar/$', 
         s1202_infoperapur_remunperapur_salvar_views.salvar, 
@@ -268,9 +288,13 @@ urlpatterns = [
         s1202_infoperapur_itensremun_listar_views.listar, 
         name='s1202_infoperapur_itensremun'),
 
-    url(r'^s1202-infoperapur-itensremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur-itensremun/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_itensremun_salvar_views.salvar, 
         name='s1202_infoperapur_itensremun_salvar'),
+
+    url(r'^s1202-infoperapur-itensremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_itensremun_salvar_views.salvar, 
+        name='s1202_infoperapur_itensremun_salvar_tab'),
         
     url(r'^s1202-infoperapur-itensremun/cadastrar/$', 
         s1202_infoperapur_itensremun_salvar_views.salvar, 
@@ -298,9 +322,13 @@ urlpatterns = [
         s1202_infoperapur_infosaudecolet_listar_views.listar, 
         name='s1202_infoperapur_infosaudecolet'),
 
-    url(r'^s1202-infoperapur-infosaudecolet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur-infosaudecolet/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_infosaudecolet_salvar_views.salvar, 
         name='s1202_infoperapur_infosaudecolet_salvar'),
+
+    url(r'^s1202-infoperapur-infosaudecolet/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_infosaudecolet_salvar_views.salvar, 
+        name='s1202_infoperapur_infosaudecolet_salvar_tab'),
         
     url(r'^s1202-infoperapur-infosaudecolet/cadastrar/$', 
         s1202_infoperapur_infosaudecolet_salvar_views.salvar, 
@@ -328,9 +356,13 @@ urlpatterns = [
         s1202_infoperapur_detoper_listar_views.listar, 
         name='s1202_infoperapur_detoper'),
 
-    url(r'^s1202-infoperapur-detoper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur-detoper/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_detoper_salvar_views.salvar, 
         name='s1202_infoperapur_detoper_salvar'),
+
+    url(r'^s1202-infoperapur-detoper/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_detoper_salvar_views.salvar, 
+        name='s1202_infoperapur_detoper_salvar_tab'),
         
     url(r'^s1202-infoperapur-detoper/cadastrar/$', 
         s1202_infoperapur_detoper_salvar_views.salvar, 
@@ -358,9 +390,13 @@ urlpatterns = [
         s1202_infoperapur_detplano_listar_views.listar, 
         name='s1202_infoperapur_detplano'),
 
-    url(r'^s1202-infoperapur-detplano/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperapur-detplano/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperapur_detplano_salvar_views.salvar, 
         name='s1202_infoperapur_detplano_salvar'),
+
+    url(r'^s1202-infoperapur-detplano/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperapur_detplano_salvar_views.salvar, 
+        name='s1202_infoperapur_detplano_salvar_tab'),
         
     url(r'^s1202-infoperapur-detplano/cadastrar/$', 
         s1202_infoperapur_detplano_salvar_views.salvar, 
@@ -388,9 +424,13 @@ urlpatterns = [
         s1202_infoperant_listar_views.listar, 
         name='s1202_infoperant'),
 
-    url(r'^s1202-infoperant/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperant/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperant_salvar_views.salvar, 
         name='s1202_infoperant_salvar'),
+
+    url(r'^s1202-infoperant/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperant_salvar_views.salvar, 
+        name='s1202_infoperant_salvar_tab'),
         
     url(r'^s1202-infoperant/cadastrar/$', 
         s1202_infoperant_salvar_views.salvar, 
@@ -418,9 +458,13 @@ urlpatterns = [
         s1202_infoperant_ideadc_listar_views.listar, 
         name='s1202_infoperant_ideadc'),
 
-    url(r'^s1202-infoperant-ideadc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperant-ideadc/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperant_ideadc_salvar_views.salvar, 
         name='s1202_infoperant_ideadc_salvar'),
+
+    url(r'^s1202-infoperant-ideadc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperant_ideadc_salvar_views.salvar, 
+        name='s1202_infoperant_ideadc_salvar_tab'),
         
     url(r'^s1202-infoperant-ideadc/cadastrar/$', 
         s1202_infoperant_ideadc_salvar_views.salvar, 
@@ -448,9 +492,13 @@ urlpatterns = [
         s1202_infoperant_ideperiodo_listar_views.listar, 
         name='s1202_infoperant_ideperiodo'),
 
-    url(r'^s1202-infoperant-ideperiodo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperant-ideperiodo/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperant_ideperiodo_salvar_views.salvar, 
         name='s1202_infoperant_ideperiodo_salvar'),
+
+    url(r'^s1202-infoperant-ideperiodo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperant_ideperiodo_salvar_views.salvar, 
+        name='s1202_infoperant_ideperiodo_salvar_tab'),
         
     url(r'^s1202-infoperant-ideperiodo/cadastrar/$', 
         s1202_infoperant_ideperiodo_salvar_views.salvar, 
@@ -478,9 +526,13 @@ urlpatterns = [
         s1202_infoperant_ideestab_listar_views.listar, 
         name='s1202_infoperant_ideestab'),
 
-    url(r'^s1202-infoperant-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperant-ideestab/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperant_ideestab_salvar_views.salvar, 
         name='s1202_infoperant_ideestab_salvar'),
+
+    url(r'^s1202-infoperant-ideestab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperant_ideestab_salvar_views.salvar, 
+        name='s1202_infoperant_ideestab_salvar_tab'),
         
     url(r'^s1202-infoperant-ideestab/cadastrar/$', 
         s1202_infoperant_ideestab_salvar_views.salvar, 
@@ -508,9 +560,13 @@ urlpatterns = [
         s1202_infoperant_remunperant_listar_views.listar, 
         name='s1202_infoperant_remunperant'),
 
-    url(r'^s1202-infoperant-remunperant/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperant-remunperant/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperant_remunperant_salvar_views.salvar, 
         name='s1202_infoperant_remunperant_salvar'),
+
+    url(r'^s1202-infoperant-remunperant/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperant_remunperant_salvar_views.salvar, 
+        name='s1202_infoperant_remunperant_salvar_tab'),
         
     url(r'^s1202-infoperant-remunperant/cadastrar/$', 
         s1202_infoperant_remunperant_salvar_views.salvar, 
@@ -538,9 +594,13 @@ urlpatterns = [
         s1202_infoperant_itensremun_listar_views.listar, 
         name='s1202_infoperant_itensremun'),
 
-    url(r'^s1202-infoperant-itensremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1202-infoperant-itensremun/salvar/(?P<pk>[0-9]+)/$', 
         s1202_infoperant_itensremun_salvar_views.salvar, 
         name='s1202_infoperant_itensremun_salvar'),
+
+    url(r'^s1202-infoperant-itensremun/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1202_infoperant_itensremun_salvar_views.salvar, 
+        name='s1202_infoperant_itensremun_salvar_tab'),
         
     url(r'^s1202-infoperant-itensremun/cadastrar/$', 
         s1202_infoperant_itensremun_salvar_views.salvar, 

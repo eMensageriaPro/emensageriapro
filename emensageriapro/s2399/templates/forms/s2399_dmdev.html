@@ -15,7 +15,7 @@
     <label id="s2399_dmdev__s2399_verbasresc__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*</label>
     {% if not for_print %}
       {% if s2399_dmdev_form.s2399_verbasresc.value %}
-        <a id="s2399_dmdev__s2399_verbasresc__div_acessar" href="{% url 's2399_verbasresc_salvar' pk=s2399_dmdev_form.s2399_verbasresc.value tab='master' %}">
+        <a id="s2399_dmdev__s2399_verbasresc__div_acessar" href="{% url 's2399_verbasresc_salvar' pk=s2399_dmdev_form.s2399_verbasresc.value %}">
           [Acessar]
         </a>
       {% endif %} 

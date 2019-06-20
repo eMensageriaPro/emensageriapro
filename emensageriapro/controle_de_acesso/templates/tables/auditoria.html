@@ -62,7 +62,7 @@
                     
                         {% if perms.controle_de_acesso.change_Auditoria or perms.controle_de_acesso.add_Auditoria %}
                     
-                        <a href="{% url 'auditoria_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'auditoria_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_Auditoria %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

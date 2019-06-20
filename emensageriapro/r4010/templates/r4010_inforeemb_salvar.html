@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010infoReemb %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_inforeemb_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_inforeemb_salvar_tab' pk=pk tab='master' %}">
                                 Informação de reembolso do titular do plano de saúde coletivo empresarial</a>
                             </li>
                         {% endif %}

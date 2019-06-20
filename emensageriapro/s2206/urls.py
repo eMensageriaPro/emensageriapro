@@ -106,9 +106,13 @@ urlpatterns = [
         s2206_infoceletista_listar_views.listar, 
         name='s2206_infoceletista'),
 
-    url(r'^s2206-infoceletista/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-infoceletista/salvar/(?P<pk>[0-9]+)/$', 
         s2206_infoceletista_salvar_views.salvar, 
         name='s2206_infoceletista_salvar'),
+
+    url(r'^s2206-infoceletista/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_infoceletista_salvar_views.salvar, 
+        name='s2206_infoceletista_salvar_tab'),
         
     url(r'^s2206-infoceletista/cadastrar/$', 
         s2206_infoceletista_salvar_views.salvar, 
@@ -136,9 +140,13 @@ urlpatterns = [
         s2206_trabtemp_listar_views.listar, 
         name='s2206_trabtemp'),
 
-    url(r'^s2206-trabtemp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-trabtemp/salvar/(?P<pk>[0-9]+)/$', 
         s2206_trabtemp_salvar_views.salvar, 
         name='s2206_trabtemp_salvar'),
+
+    url(r'^s2206-trabtemp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_trabtemp_salvar_views.salvar, 
+        name='s2206_trabtemp_salvar_tab'),
         
     url(r'^s2206-trabtemp/cadastrar/$', 
         s2206_trabtemp_salvar_views.salvar, 
@@ -166,9 +174,13 @@ urlpatterns = [
         s2206_aprend_listar_views.listar, 
         name='s2206_aprend'),
 
-    url(r'^s2206-aprend/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-aprend/salvar/(?P<pk>[0-9]+)/$', 
         s2206_aprend_salvar_views.salvar, 
         name='s2206_aprend_salvar'),
+
+    url(r'^s2206-aprend/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_aprend_salvar_views.salvar, 
+        name='s2206_aprend_salvar_tab'),
         
     url(r'^s2206-aprend/cadastrar/$', 
         s2206_aprend_salvar_views.salvar, 
@@ -196,9 +208,13 @@ urlpatterns = [
         s2206_infoestatutario_listar_views.listar, 
         name='s2206_infoestatutario'),
 
-    url(r'^s2206-infoestatutario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-infoestatutario/salvar/(?P<pk>[0-9]+)/$', 
         s2206_infoestatutario_salvar_views.salvar, 
         name='s2206_infoestatutario_salvar'),
+
+    url(r'^s2206-infoestatutario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_infoestatutario_salvar_views.salvar, 
+        name='s2206_infoestatutario_salvar_tab'),
         
     url(r'^s2206-infoestatutario/cadastrar/$', 
         s2206_infoestatutario_salvar_views.salvar, 
@@ -226,9 +242,13 @@ urlpatterns = [
         s2206_localtrabgeral_listar_views.listar, 
         name='s2206_localtrabgeral'),
 
-    url(r'^s2206-localtrabgeral/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-localtrabgeral/salvar/(?P<pk>[0-9]+)/$', 
         s2206_localtrabgeral_salvar_views.salvar, 
         name='s2206_localtrabgeral_salvar'),
+
+    url(r'^s2206-localtrabgeral/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_localtrabgeral_salvar_views.salvar, 
+        name='s2206_localtrabgeral_salvar_tab'),
         
     url(r'^s2206-localtrabgeral/cadastrar/$', 
         s2206_localtrabgeral_salvar_views.salvar, 
@@ -256,9 +276,13 @@ urlpatterns = [
         s2206_localtrabdom_listar_views.listar, 
         name='s2206_localtrabdom'),
 
-    url(r'^s2206-localtrabdom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-localtrabdom/salvar/(?P<pk>[0-9]+)/$', 
         s2206_localtrabdom_salvar_views.salvar, 
         name='s2206_localtrabdom_salvar'),
+
+    url(r'^s2206-localtrabdom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_localtrabdom_salvar_views.salvar, 
+        name='s2206_localtrabdom_salvar_tab'),
         
     url(r'^s2206-localtrabdom/cadastrar/$', 
         s2206_localtrabdom_salvar_views.salvar, 
@@ -286,9 +310,13 @@ urlpatterns = [
         s2206_horcontratual_listar_views.listar, 
         name='s2206_horcontratual'),
 
-    url(r'^s2206-horcontratual/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-horcontratual/salvar/(?P<pk>[0-9]+)/$', 
         s2206_horcontratual_salvar_views.salvar, 
         name='s2206_horcontratual_salvar'),
+
+    url(r'^s2206-horcontratual/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_horcontratual_salvar_views.salvar, 
+        name='s2206_horcontratual_salvar_tab'),
         
     url(r'^s2206-horcontratual/cadastrar/$', 
         s2206_horcontratual_salvar_views.salvar, 
@@ -316,9 +344,13 @@ urlpatterns = [
         s2206_horario_listar_views.listar, 
         name='s2206_horario'),
 
-    url(r'^s2206-horario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-horario/salvar/(?P<pk>[0-9]+)/$', 
         s2206_horario_salvar_views.salvar, 
         name='s2206_horario_salvar'),
+
+    url(r'^s2206-horario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_horario_salvar_views.salvar, 
+        name='s2206_horario_salvar_tab'),
         
     url(r'^s2206-horario/cadastrar/$', 
         s2206_horario_salvar_views.salvar, 
@@ -346,9 +378,13 @@ urlpatterns = [
         s2206_filiacaosindical_listar_views.listar, 
         name='s2206_filiacaosindical'),
 
-    url(r'^s2206-filiacaosindical/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-filiacaosindical/salvar/(?P<pk>[0-9]+)/$', 
         s2206_filiacaosindical_salvar_views.salvar, 
         name='s2206_filiacaosindical_salvar'),
+
+    url(r'^s2206-filiacaosindical/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_filiacaosindical_salvar_views.salvar, 
+        name='s2206_filiacaosindical_salvar_tab'),
         
     url(r'^s2206-filiacaosindical/cadastrar/$', 
         s2206_filiacaosindical_salvar_views.salvar, 
@@ -376,9 +412,13 @@ urlpatterns = [
         s2206_alvarajudicial_listar_views.listar, 
         name='s2206_alvarajudicial'),
 
-    url(r'^s2206-alvarajudicial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-alvarajudicial/salvar/(?P<pk>[0-9]+)/$', 
         s2206_alvarajudicial_salvar_views.salvar, 
         name='s2206_alvarajudicial_salvar'),
+
+    url(r'^s2206-alvarajudicial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_alvarajudicial_salvar_views.salvar, 
+        name='s2206_alvarajudicial_salvar_tab'),
         
     url(r'^s2206-alvarajudicial/cadastrar/$', 
         s2206_alvarajudicial_salvar_views.salvar, 
@@ -406,9 +446,13 @@ urlpatterns = [
         s2206_observacoes_listar_views.listar, 
         name='s2206_observacoes'),
 
-    url(r'^s2206-observacoes/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-observacoes/salvar/(?P<pk>[0-9]+)/$', 
         s2206_observacoes_salvar_views.salvar, 
         name='s2206_observacoes_salvar'),
+
+    url(r'^s2206-observacoes/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_observacoes_salvar_views.salvar, 
+        name='s2206_observacoes_salvar_tab'),
         
     url(r'^s2206-observacoes/cadastrar/$', 
         s2206_observacoes_salvar_views.salvar, 
@@ -436,9 +480,13 @@ urlpatterns = [
         s2206_servpubl_listar_views.listar, 
         name='s2206_servpubl'),
 
-    url(r'^s2206-servpubl/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2206-servpubl/salvar/(?P<pk>[0-9]+)/$', 
         s2206_servpubl_salvar_views.salvar, 
         name='s2206_servpubl_salvar'),
+
+    url(r'^s2206-servpubl/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2206_servpubl_salvar_views.salvar, 
+        name='s2206_servpubl_salvar_tab'),
         
     url(r'^s2206-servpubl/cadastrar/$', 
         s2206_servpubl_salvar_views.salvar, 

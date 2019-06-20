@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2399.can_see_s2399infoSimples %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2399_infosimples_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2399_infosimples_salvar_tab' pk=pk tab='master' %}">
                                 Informação relativa a empresas enquadradas no Regime de Tributação Simples</a>
                             </li>
                         {% endif %}

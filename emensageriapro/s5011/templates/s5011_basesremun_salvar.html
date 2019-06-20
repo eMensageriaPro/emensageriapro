@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011basesRemun %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_basesremun_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_basesremun_salvar_tab' pk=pk tab='master' %}">
                                 Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</a>
                             </li>
                         {% endif %}

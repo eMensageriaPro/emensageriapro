@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2400.can_see_s2400exterior %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2400_exterior_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2400_exterior_salvar_tab' pk=pk tab='master' %}">
                                 Preenchido em caso de trabalhador residente no exterior.</a>
                             </li>
                         {% endif %}

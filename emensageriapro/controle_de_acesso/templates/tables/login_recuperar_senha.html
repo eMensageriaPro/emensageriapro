@@ -20,7 +20,7 @@
                     
                         {% if perms.controle_de_acesso.change_RecuperarSenha or perms.controle_de_acesso.add_RecuperarSenha %}
                     
-                        <a href="{% url 'login_recuperar_senha_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'login_recuperar_senha_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_RecuperarSenha %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

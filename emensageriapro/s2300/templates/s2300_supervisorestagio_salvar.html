@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2300.can_see_s2300supervisorEstagio %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2300_supervisorestagio_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2300_supervisorestagio_salvar_tab' pk=pk tab='master' %}">
                                 Supervisor do Estágio</a>
                             </li>
                         {% endif %}

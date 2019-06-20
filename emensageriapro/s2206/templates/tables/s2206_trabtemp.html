@@ -32,7 +32,7 @@
                     
                         {% if perms.s2206.change_s2206trabTemp or perms.s2206.add_s2206trabTemp %}
                     
-                        <a href="{% url 's2206_trabtemp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2206_trabtemp_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206trabTemp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

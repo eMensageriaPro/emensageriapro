@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2210.can_see_s2210agenteCausador %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2210_agentecausador_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2210_agentecausador_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</a>
                             </li>
                         {% endif %}

@@ -54,49 +54,49 @@
                     {% if pk %}
                         {% if perms.s1010.can_see_s1010alteracao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1010_alteracao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='master' %}">
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1010.can_see_s1010alteracaoideProcessoCP %}
                                 <li {% if tab == 's1010_alteracao_ideprocessocp' %} class="active"{% endif %} >
-                                    <a href="{% url 's1010_alteracao_salvar' pk=pk tab='s1010_alteracao_ideprocessocp' %}">
+                                    <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='s1010_alteracao_ideprocessocp' %}">
                                     Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1010.can_see_s1010alteracaoideProcessoIRRF %}
                                 <li {% if tab == 's1010_alteracao_ideprocessoirrf' %} class="active"{% endif %} >
-                                    <a href="{% url 's1010_alteracao_salvar' pk=pk tab='s1010_alteracao_ideprocessoirrf' %}">
+                                    <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='s1010_alteracao_ideprocessoirrf' %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1010.can_see_s1010alteracaoideProcessoFGTS %}
                                 <li {% if tab == 's1010_alteracao_ideprocessofgts' %} class="active"{% endif %} >
-                                    <a href="{% url 's1010_alteracao_salvar' pk=pk tab='s1010_alteracao_ideprocessofgts' %}">
+                                    <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='s1010_alteracao_ideprocessofgts' %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1010.can_see_s1010alteracaoideProcessoSIND %}
                                 <li {% if tab == 's1010_alteracao_ideprocessosind' %} class="active"{% endif %} >
-                                    <a href="{% url 's1010_alteracao_salvar' pk=pk tab='s1010_alteracao_ideprocessosind' %}">
+                                    <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='s1010_alteracao_ideprocessosind' %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1010.can_see_s1010alteracaoideProcessoCPRP %}
                                 <li {% if tab == 's1010_alteracao_ideprocessocprp' %} class="active"{% endif %} >
-                                    <a href="{% url 's1010_alteracao_salvar' pk=pk tab='s1010_alteracao_ideprocessocprp' %}">
+                                    <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='s1010_alteracao_ideprocessocprp' %}">
                                     Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1010.can_see_s1010alteracaonovaValidade %}
                                 <li {% if tab == 's1010_alteracao_novavalidade' %} class="active"{% endif %} >
-                                    <a href="{% url 's1010_alteracao_salvar' pk=pk tab='s1010_alteracao_novavalidade' %}">
+                                    <a href="{% url 's1010_alteracao_salvar_tab' pk=pk tab='s1010_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}

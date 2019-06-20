@@ -50,7 +50,7 @@
                     
                         {% if perms.r5001.change_r5001RRecRepAD or perms.r5001.add_r5001RRecRepAD %}
                     
-                        <a href="{% url 'r5001_rrecrepad_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r5001_rrecrepad_salvar' pk=a.id %}">
                             {% if perms.r5001.change_r5001RRecRepAD %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

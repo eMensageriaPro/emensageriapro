@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s5001.can_see_s5001infoCp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5001_infocp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5001_infocp_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos, referentes à Remuneração do Período de Apuração e de Períodos Anteriores informados nos eventos S-1200, S-2299 e S-2399.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5001.can_see_s5001ideEstabLot %}
                                 <li {% if tab == 's5001_ideestablot' %} class="active"{% endif %} >
-                                    <a href="{% url 's5001_infocp_salvar' pk=pk tab='s5001_ideestablot' %}">
+                                    <a href="{% url 's5001_infocp_salvar_tab' pk=pk tab='s5001_ideestablot' %}">
                                     Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                                 </li>
                             {% endif %}

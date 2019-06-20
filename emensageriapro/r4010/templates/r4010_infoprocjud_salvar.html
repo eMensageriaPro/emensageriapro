@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010infoProcJud %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_infoprocjud_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_infoprocjud_salvar_tab' pk=pk tab='master' %}">
                                 Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4010.can_see_r4010infoProcJuddespProcJud %}
                                 <li {% if tab == 'r4010_infoprocjud_despprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infoprocjud_salvar' pk=pk tab='r4010_infoprocjud_despprocjud' %}">
+                                    <a href="{% url 'r4010_infoprocjud_salvar_tab' pk=pk tab='r4010_infoprocjud_despprocjud' %}">
                                     Detalhamento das despesas de processo judicial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r4010.can_see_r4010infoProcJudorigemRec %}
                                 <li {% if tab == 'r4010_infoprocjud_origemrec' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infoprocjud_salvar' pk=pk tab='r4010_infoprocjud_origemrec' %}">
+                                    <a href="{% url 'r4010_infoprocjud_salvar_tab' pk=pk tab='r4010_infoprocjud_origemrec' %}">
                                     Informações sobre a origem dos recursos</a>
                                 </li>
                             {% endif %}

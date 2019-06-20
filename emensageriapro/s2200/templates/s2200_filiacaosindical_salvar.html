@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200filiacaoSindical %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_filiacaosindical_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_filiacaosindical_salvar_tab' pk=pk tab='master' %}">
                                 Filiação Sindical do Trabalhador</a>
                             </li>
                         {% endif %}

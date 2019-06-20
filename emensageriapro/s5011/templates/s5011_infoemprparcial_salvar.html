@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011infoEmprParcial %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_infoemprparcial_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_infoemprparcial_salvar_tab' pk=pk tab='master' %}">
                                 Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
                             </li>
                         {% endif %}

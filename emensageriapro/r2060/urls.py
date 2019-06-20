@@ -70,9 +70,13 @@ urlpatterns = [
         r2060_tipocod_listar_views.listar, 
         name='r2060_tipocod'),
 
-    url(r'^r2060-tipocod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2060-tipocod/salvar/(?P<pk>[0-9]+)/$', 
         r2060_tipocod_salvar_views.salvar, 
         name='r2060_tipocod_salvar'),
+
+    url(r'^r2060-tipocod/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2060_tipocod_salvar_views.salvar, 
+        name='r2060_tipocod_salvar_tab'),
         
     url(r'^r2060-tipocod/cadastrar/$', 
         r2060_tipocod_salvar_views.salvar, 
@@ -100,9 +104,13 @@ urlpatterns = [
         r2060_tipoajuste_listar_views.listar, 
         name='r2060_tipoajuste'),
 
-    url(r'^r2060-tipoajuste/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2060-tipoajuste/salvar/(?P<pk>[0-9]+)/$', 
         r2060_tipoajuste_salvar_views.salvar, 
         name='r2060_tipoajuste_salvar'),
+
+    url(r'^r2060-tipoajuste/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2060_tipoajuste_salvar_views.salvar, 
+        name='r2060_tipoajuste_salvar_tab'),
         
     url(r'^r2060-tipoajuste/cadastrar/$', 
         r2060_tipoajuste_salvar_views.salvar, 
@@ -130,9 +138,13 @@ urlpatterns = [
         r2060_infoproc_listar_views.listar, 
         name='r2060_infoproc'),
 
-    url(r'^r2060-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2060-infoproc/salvar/(?P<pk>[0-9]+)/$', 
         r2060_infoproc_salvar_views.salvar, 
         name='r2060_infoproc_salvar'),
+
+    url(r'^r2060-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2060_infoproc_salvar_views.salvar, 
+        name='r2060_infoproc_salvar_tab'),
         
     url(r'^r2060-infoproc/cadastrar/$', 
         r2060_infoproc_salvar_views.salvar, 

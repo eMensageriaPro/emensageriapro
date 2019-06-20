@@ -116,7 +116,7 @@
                     
                         {% if perms.efdreinf.change_r3010evtEspDesportivo or perms.efdreinf.add_r3010evtEspDesportivo %}
                     
-                        <a href="{% url 'r3010_evtespdesportivo_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r3010_evtespdesportivo_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r3010evtEspDesportivo %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

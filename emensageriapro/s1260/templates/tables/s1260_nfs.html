@@ -62,7 +62,7 @@
                     
                         {% if perms.s1260.change_s1260nfs or perms.s1260.add_s1260nfs %}
                     
-                        <a href="{% url 's1260_nfs_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1260_nfs_salvar' pk=a.id %}">
                             {% if perms.s1260.change_s1260nfs %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

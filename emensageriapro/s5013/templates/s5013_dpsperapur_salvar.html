@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5013.can_see_s5013dpsPerApur %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5013_dpsperapur_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5013_dpsperapur_salvar_tab' pk=pk tab='master' %}">
                                 Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].</a>
                             </li>
                         {% endif %}

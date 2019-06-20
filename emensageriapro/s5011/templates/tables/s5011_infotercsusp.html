@@ -32,7 +32,7 @@
                     
                         {% if perms.s5011.change_s5011infoTercSusp or perms.s5011.add_s5011infoTercSusp %}
                     
-                        <a href="{% url 's5011_infotercsusp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5011_infotercsusp_salvar' pk=a.id %}">
                             {% if perms.s5011.change_s5011infoTercSusp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1200.can_see_s1200infoComplem %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1200_infocomplem_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1200_infocomplem_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1200.can_see_s1200sucessaoVinc %}
                                 <li {% if tab == 's1200_sucessaovinc' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_infocomplem_salvar' pk=pk tab='s1200_sucessaovinc' %}">
+                                    <a href="{% url 's1200_infocomplem_salvar_tab' pk=pk tab='s1200_sucessaovinc' %}">
                                     Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
                                 </li>
                             {% endif %}

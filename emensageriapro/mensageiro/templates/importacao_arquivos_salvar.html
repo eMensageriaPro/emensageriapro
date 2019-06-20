@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_ImportacaoArquivos %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'importacao_arquivos_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'importacao_arquivos_salvar_tab' pk=pk tab='master' %}">
                             Importação de Arquivos</a>
                         </li>
                         {% endif %}
@@ -65,7 +65,7 @@
                             
                                 {% if perms.mensageiro.can_see_ImportacaoArquivosEventos %}
                                     <li {% if tab == 'importacao_arquivos_eventos' %} class="active"{% endif %} >
-                                        <a href="{% url 'importacao_arquivos_salvar' pk=pk tab='importacao_arquivos_eventos' %}">
+                                        <a href="{% url 'importacao_arquivos_salvar_tab' pk=pk tab='importacao_arquivos_eventos' %}">
                                         Eventos de Arquivos Importados</a>
                                     </li>
                                 {% endif %}

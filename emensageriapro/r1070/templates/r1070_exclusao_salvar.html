@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r1070.can_see_r1070exclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r1070_exclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r1070_exclusao_salvar_tab' pk=pk tab='master' %}">
                                 Exclusão das informações</a>
                             </li>
                         {% endif %}

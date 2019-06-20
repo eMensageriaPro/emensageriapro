@@ -26,7 +26,7 @@
                     
                         {% if perms.s1202.change_s1202infoPerAnt or perms.s1202.add_s1202infoPerAnt %}
                     
-                        <a href="{% url 's1202_infoperant_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1202_infoperant_salvar' pk=a.id %}">
                             {% if perms.s1202.change_s1202infoPerAnt %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

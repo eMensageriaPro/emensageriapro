@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1030_inclusao_cargopublico__s1030_inclusao__label">Detalhamento de informações exclusivas para Cargos e Empregos Públicos*</label>
     {% if not for_print %}{% if s1030_inclusao_cargopublico_form.s1030_inclusao.value %}
-        <a href="{% url 's1030_inclusao_salvar' pk=s1030_inclusao_cargopublico_form.s1030_inclusao.value tab='master' %}">
+        <a href="{% url 's1030_inclusao_salvar' pk=s1030_inclusao_cargopublico_form.s1030_inclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

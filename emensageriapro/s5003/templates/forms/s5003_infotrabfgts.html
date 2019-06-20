@@ -15,7 +15,7 @@
     <label id="s5003_infotrabfgts__s5003_ideestablot__label">Informações relativas à matrícula e categoria do trabalhador.*</label>
     {% if not for_print %}
       {% if s5003_infotrabfgts_form.s5003_ideestablot.value %}
-        <a id="s5003_infotrabfgts__s5003_ideestablot__div_acessar" href="{% url 's5003_ideestablot_salvar' pk=s5003_infotrabfgts_form.s5003_ideestablot.value tab='master' %}">
+        <a id="s5003_infotrabfgts__s5003_ideestablot__div_acessar" href="{% url 's5003_ideestablot_salvar' pk=s5003_infotrabfgts_form.s5003_ideestablot.value %}">
           [Acessar]
         </a>
       {% endif %} 

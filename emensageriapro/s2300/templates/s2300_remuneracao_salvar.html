@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2300.can_see_s2300remuneracao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2300_remuneracao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2300_remuneracao_salvar_tab' pk=pk tab='master' %}">
                                 Informações da remuneração e periodicidade de pagamento</a>
                             </li>
                         {% endif %}

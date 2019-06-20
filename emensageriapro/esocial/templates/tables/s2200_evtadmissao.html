@@ -170,7 +170,7 @@
                     
                         {% if perms.esocial.change_s2200evtAdmissao or perms.esocial.add_s2200evtAdmissao %}
                     
-                        <a href="{% url 's2200_evtadmissao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2200_evtadmissao_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2200evtAdmissao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

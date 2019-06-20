@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5011_dadosopport__s5011_idelotacao__label">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).*</label>
     {% if not for_print %}{% if s5011_dadosopport_form.s5011_idelotacao.value %}
-        <a href="{% url 's5011_idelotacao_salvar' pk=s5011_dadosopport_form.s5011_idelotacao.value tab='master' %}">
+        <a href="{% url 's5011_idelotacao_salvar' pk=s5011_dadosopport_form.s5011_idelotacao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

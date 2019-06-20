@@ -32,7 +32,7 @@
                     
                         {% if perms.s1010.change_s1010alteracaoideProcessoSIND or perms.s1010.add_s1010alteracaoideProcessoSIND %}
                     
-                        <a href="{% url 's1010_alteracao_ideprocessosind_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1010_alteracao_ideprocessosind_salvar' pk=a.id %}">
                             {% if perms.s1010.change_s1010alteracaoideProcessoSIND %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

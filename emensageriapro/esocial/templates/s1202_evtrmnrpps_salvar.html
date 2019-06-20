@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1202evtRmnRPPS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1202_evtrmnrpps_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1202_evtrmnrpps_salvar_tab' pk=pk tab='master' %}">
                                 S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s1202.can_see_s1202procJudTrab %}
                                     <li {% if tab == 's1202_procjudtrab' %} class="active"{% endif %} >
-                                        <a href="{% url 's1202_evtrmnrpps_salvar' pk=pk tab='s1202_procjudtrab' %}">
+                                        <a href="{% url 's1202_evtrmnrpps_salvar_tab' pk=pk tab='s1202_procjudtrab' %}">
                                         Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s1202.can_see_s1202dmDev %}
                                     <li {% if tab == 's1202_dmdev' %} class="active"{% endif %} >
-                                        <a href="{% url 's1202_evtrmnrpps_salvar' pk=pk tab='s1202_dmdev' %}">
+                                        <a href="{% url 's1202_evtrmnrpps_salvar_tab' pk=pk tab='s1202_dmdev' %}">
                                         Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                                     </li>
                                 {% endif %}

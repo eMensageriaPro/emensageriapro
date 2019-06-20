@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r2060.can_see_r2060tipoCod %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2060_tipocod_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='master' %}">
                                 Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2060.can_see_r2060tipoAjuste %}
                                 <li {% if tab == 'r2060_tipoajuste' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2060_tipocod_salvar' pk=pk tab='r2060_tipoajuste' %}">
+                                    <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='r2060_tipoajuste' %}">
                                     Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r2060.can_see_r2060infoProc %}
                                 <li {% if tab == 'r2060_infoproc' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2060_tipocod_salvar' pk=pk tab='r2060_infoproc' %}">
+                                    <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='r2060_infoproc' %}">
                                     Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                 </li>
                             {% endif %}

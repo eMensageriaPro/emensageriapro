@@ -15,7 +15,7 @@
     <label id="r3010_outrasreceitas__r3010_boletim__label">Outras receitas do espetáculo*</label>
     {% if not for_print %}
       {% if r3010_outrasreceitas_form.r3010_boletim.value %}
-        <a id="r3010_outrasreceitas__r3010_boletim__div_acessar" href="{% url 'r3010_boletim_salvar' pk=r3010_outrasreceitas_form.r3010_boletim.value tab='master' %}">
+        <a id="r3010_outrasreceitas__r3010_boletim__div_acessar" href="{% url 'r3010_boletim_salvar' pk=r3010_outrasreceitas_form.r3010_boletim.value %}">
           [Acessar]
         </a>
       {% endif %} 

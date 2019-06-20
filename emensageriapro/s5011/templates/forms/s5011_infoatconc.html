@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5011_infoatconc__s5011_infopj__label">Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.*</label>
     {% if not for_print %}{% if s5011_infoatconc_form.s5011_infopj.value %}
-        <a href="{% url 's5011_infopj_salvar' pk=s5011_infoatconc_form.s5011_infopj.value tab='master' %}">
+        <a href="{% url 's5011_infopj_salvar' pk=s5011_infoatconc_form.s5011_infopj.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

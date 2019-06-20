@@ -15,7 +15,7 @@
     <label id="r4020_ideadv__r4020_despprocjud__label">Identificação do advogado*</label>
     {% if not for_print %}
       {% if r4020_ideadv_form.r4020_despprocjud.value %}
-        <a id="r4020_ideadv__r4020_despprocjud__div_acessar" href="{% url 'r4020_despprocjud_salvar' pk=r4020_ideadv_form.r4020_despprocjud.value tab='master' %}">
+        <a id="r4020_ideadv__r4020_despprocjud__div_acessar" href="{% url 'r4020_despprocjud_salvar' pk=r4020_ideadv_form.r4020_despprocjud.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r5001.can_see_r5001RRecEspetDesp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r5001_rrecespetdesp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r5001_rrecespetdesp_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</a>
                             </li>
                         {% endif %}

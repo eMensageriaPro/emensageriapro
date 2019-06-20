@@ -104,7 +104,7 @@
                     
                         {% if perms.efdreinf.change_r2060evtCPRB or perms.efdreinf.add_r2060evtCPRB %}
                     
-                        <a href="{% url 'r2060_evtcprb_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2060_evtcprb_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2060evtCPRB %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

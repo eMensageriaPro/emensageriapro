@@ -68,7 +68,7 @@
                     
                         {% if perms.s2200.change_s2200infoDeficiencia or perms.s2200.add_s2200infoDeficiencia %}
                     
-                        <a href="{% url 's2200_infodeficiencia_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2200_infodeficiencia_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200infoDeficiencia %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

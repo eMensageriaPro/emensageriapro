@@ -32,7 +32,7 @@
                     
                         {% if perms.s3000.change_s3000ideTrabalhador or perms.s3000.add_s3000ideTrabalhador %}
                     
-                        <a href="{% url 's3000_idetrabalhador_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's3000_idetrabalhador_salvar' pk=a.id %}">
                             {% if perms.s3000.change_s3000ideTrabalhador %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

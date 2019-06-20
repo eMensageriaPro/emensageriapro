@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011infoAtConc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_infoatconc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_infoatconc_salvar_tab' pk=pk tab='master' %}">
                                 Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
                             </li>
                         {% endif %}

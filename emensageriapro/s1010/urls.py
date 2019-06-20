@@ -114,9 +114,13 @@ urlpatterns = [
         s1010_inclusao_listar_views.listar, 
         name='s1010_inclusao'),
 
-    url(r'^s1010-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-inclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1010_inclusao_salvar_views.salvar, 
         name='s1010_inclusao_salvar'),
+
+    url(r'^s1010-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_inclusao_salvar_views.salvar, 
+        name='s1010_inclusao_salvar_tab'),
         
     url(r'^s1010-inclusao/cadastrar/$', 
         s1010_inclusao_salvar_views.salvar, 
@@ -144,9 +148,13 @@ urlpatterns = [
         s1010_inclusao_ideprocessocp_listar_views.listar, 
         name='s1010_inclusao_ideprocessocp'),
 
-    url(r'^s1010-inclusao-ideprocessocp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-inclusao-ideprocessocp/salvar/(?P<pk>[0-9]+)/$', 
         s1010_inclusao_ideprocessocp_salvar_views.salvar, 
         name='s1010_inclusao_ideprocessocp_salvar'),
+
+    url(r'^s1010-inclusao-ideprocessocp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_inclusao_ideprocessocp_salvar_views.salvar, 
+        name='s1010_inclusao_ideprocessocp_salvar_tab'),
         
     url(r'^s1010-inclusao-ideprocessocp/cadastrar/$', 
         s1010_inclusao_ideprocessocp_salvar_views.salvar, 
@@ -174,9 +182,13 @@ urlpatterns = [
         s1010_inclusao_ideprocessoirrf_listar_views.listar, 
         name='s1010_inclusao_ideprocessoirrf'),
 
-    url(r'^s1010-inclusao-ideprocessoirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-inclusao-ideprocessoirrf/salvar/(?P<pk>[0-9]+)/$', 
         s1010_inclusao_ideprocessoirrf_salvar_views.salvar, 
         name='s1010_inclusao_ideprocessoirrf_salvar'),
+
+    url(r'^s1010-inclusao-ideprocessoirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_inclusao_ideprocessoirrf_salvar_views.salvar, 
+        name='s1010_inclusao_ideprocessoirrf_salvar_tab'),
         
     url(r'^s1010-inclusao-ideprocessoirrf/cadastrar/$', 
         s1010_inclusao_ideprocessoirrf_salvar_views.salvar, 
@@ -204,9 +216,13 @@ urlpatterns = [
         s1010_inclusao_ideprocessofgts_listar_views.listar, 
         name='s1010_inclusao_ideprocessofgts'),
 
-    url(r'^s1010-inclusao-ideprocessofgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-inclusao-ideprocessofgts/salvar/(?P<pk>[0-9]+)/$', 
         s1010_inclusao_ideprocessofgts_salvar_views.salvar, 
         name='s1010_inclusao_ideprocessofgts_salvar'),
+
+    url(r'^s1010-inclusao-ideprocessofgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_inclusao_ideprocessofgts_salvar_views.salvar, 
+        name='s1010_inclusao_ideprocessofgts_salvar_tab'),
         
     url(r'^s1010-inclusao-ideprocessofgts/cadastrar/$', 
         s1010_inclusao_ideprocessofgts_salvar_views.salvar, 
@@ -234,9 +250,13 @@ urlpatterns = [
         s1010_inclusao_ideprocessosind_listar_views.listar, 
         name='s1010_inclusao_ideprocessosind'),
 
-    url(r'^s1010-inclusao-ideprocessosind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-inclusao-ideprocessosind/salvar/(?P<pk>[0-9]+)/$', 
         s1010_inclusao_ideprocessosind_salvar_views.salvar, 
         name='s1010_inclusao_ideprocessosind_salvar'),
+
+    url(r'^s1010-inclusao-ideprocessosind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_inclusao_ideprocessosind_salvar_views.salvar, 
+        name='s1010_inclusao_ideprocessosind_salvar_tab'),
         
     url(r'^s1010-inclusao-ideprocessosind/cadastrar/$', 
         s1010_inclusao_ideprocessosind_salvar_views.salvar, 
@@ -264,9 +284,13 @@ urlpatterns = [
         s1010_inclusao_ideprocessocprp_listar_views.listar, 
         name='s1010_inclusao_ideprocessocprp'),
 
-    url(r'^s1010-inclusao-ideprocessocprp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-inclusao-ideprocessocprp/salvar/(?P<pk>[0-9]+)/$', 
         s1010_inclusao_ideprocessocprp_salvar_views.salvar, 
         name='s1010_inclusao_ideprocessocprp_salvar'),
+
+    url(r'^s1010-inclusao-ideprocessocprp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_inclusao_ideprocessocprp_salvar_views.salvar, 
+        name='s1010_inclusao_ideprocessocprp_salvar_tab'),
         
     url(r'^s1010-inclusao-ideprocessocprp/cadastrar/$', 
         s1010_inclusao_ideprocessocprp_salvar_views.salvar, 
@@ -294,9 +318,13 @@ urlpatterns = [
         s1010_alteracao_listar_views.listar, 
         name='s1010_alteracao'),
 
-    url(r'^s1010-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_salvar_views.salvar, 
         name='s1010_alteracao_salvar'),
+
+    url(r'^s1010-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_salvar_views.salvar, 
+        name='s1010_alteracao_salvar_tab'),
         
     url(r'^s1010-alteracao/cadastrar/$', 
         s1010_alteracao_salvar_views.salvar, 
@@ -324,9 +352,13 @@ urlpatterns = [
         s1010_alteracao_ideprocessocp_listar_views.listar, 
         name='s1010_alteracao_ideprocessocp'),
 
-    url(r'^s1010-alteracao-ideprocessocp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao-ideprocessocp/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_ideprocessocp_salvar_views.salvar, 
         name='s1010_alteracao_ideprocessocp_salvar'),
+
+    url(r'^s1010-alteracao-ideprocessocp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_ideprocessocp_salvar_views.salvar, 
+        name='s1010_alteracao_ideprocessocp_salvar_tab'),
         
     url(r'^s1010-alteracao-ideprocessocp/cadastrar/$', 
         s1010_alteracao_ideprocessocp_salvar_views.salvar, 
@@ -354,9 +386,13 @@ urlpatterns = [
         s1010_alteracao_ideprocessoirrf_listar_views.listar, 
         name='s1010_alteracao_ideprocessoirrf'),
 
-    url(r'^s1010-alteracao-ideprocessoirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao-ideprocessoirrf/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_ideprocessoirrf_salvar_views.salvar, 
         name='s1010_alteracao_ideprocessoirrf_salvar'),
+
+    url(r'^s1010-alteracao-ideprocessoirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_ideprocessoirrf_salvar_views.salvar, 
+        name='s1010_alteracao_ideprocessoirrf_salvar_tab'),
         
     url(r'^s1010-alteracao-ideprocessoirrf/cadastrar/$', 
         s1010_alteracao_ideprocessoirrf_salvar_views.salvar, 
@@ -384,9 +420,13 @@ urlpatterns = [
         s1010_alteracao_ideprocessofgts_listar_views.listar, 
         name='s1010_alteracao_ideprocessofgts'),
 
-    url(r'^s1010-alteracao-ideprocessofgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao-ideprocessofgts/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_ideprocessofgts_salvar_views.salvar, 
         name='s1010_alteracao_ideprocessofgts_salvar'),
+
+    url(r'^s1010-alteracao-ideprocessofgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_ideprocessofgts_salvar_views.salvar, 
+        name='s1010_alteracao_ideprocessofgts_salvar_tab'),
         
     url(r'^s1010-alteracao-ideprocessofgts/cadastrar/$', 
         s1010_alteracao_ideprocessofgts_salvar_views.salvar, 
@@ -414,9 +454,13 @@ urlpatterns = [
         s1010_alteracao_ideprocessosind_listar_views.listar, 
         name='s1010_alteracao_ideprocessosind'),
 
-    url(r'^s1010-alteracao-ideprocessosind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao-ideprocessosind/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_ideprocessosind_salvar_views.salvar, 
         name='s1010_alteracao_ideprocessosind_salvar'),
+
+    url(r'^s1010-alteracao-ideprocessosind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_ideprocessosind_salvar_views.salvar, 
+        name='s1010_alteracao_ideprocessosind_salvar_tab'),
         
     url(r'^s1010-alteracao-ideprocessosind/cadastrar/$', 
         s1010_alteracao_ideprocessosind_salvar_views.salvar, 
@@ -444,9 +488,13 @@ urlpatterns = [
         s1010_alteracao_ideprocessocprp_listar_views.listar, 
         name='s1010_alteracao_ideprocessocprp'),
 
-    url(r'^s1010-alteracao-ideprocessocprp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao-ideprocessocprp/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_ideprocessocprp_salvar_views.salvar, 
         name='s1010_alteracao_ideprocessocprp_salvar'),
+
+    url(r'^s1010-alteracao-ideprocessocprp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_ideprocessocprp_salvar_views.salvar, 
+        name='s1010_alteracao_ideprocessocprp_salvar_tab'),
         
     url(r'^s1010-alteracao-ideprocessocprp/cadastrar/$', 
         s1010_alteracao_ideprocessocprp_salvar_views.salvar, 
@@ -474,9 +522,13 @@ urlpatterns = [
         s1010_alteracao_novavalidade_listar_views.listar, 
         name='s1010_alteracao_novavalidade'),
 
-    url(r'^s1010-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
         s1010_alteracao_novavalidade_salvar_views.salvar, 
         name='s1010_alteracao_novavalidade_salvar'),
+
+    url(r'^s1010-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1010_alteracao_novavalidade_salvar_tab'),
         
     url(r'^s1010-alteracao-novavalidade/cadastrar/$', 
         s1010_alteracao_novavalidade_salvar_views.salvar, 
@@ -504,9 +556,13 @@ urlpatterns = [
         s1010_exclusao_listar_views.listar, 
         name='s1010_exclusao'),
 
-    url(r'^s1010-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1010-exclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1010_exclusao_salvar_views.salvar, 
         name='s1010_exclusao_salvar'),
+
+    url(r'^s1010-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1010_exclusao_salvar_views.salvar, 
+        name='s1010_exclusao_salvar_tab'),
         
     url(r'^s1010-exclusao/cadastrar/$', 
         s1010_exclusao_salvar_views.salvar, 

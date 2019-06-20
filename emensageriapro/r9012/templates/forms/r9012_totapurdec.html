@@ -15,7 +15,7 @@
     <label id="r9012_totapurdec__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial*</label>
     {% if not for_print %}
       {% if r9012_totapurdec_form.r9012_infototalcontrib.value %}
-        <a id="r9012_totapurdec__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' pk=r9012_totapurdec_form.r9012_infototalcontrib.value tab='master' %}">
+        <a id="r9012_totapurdec__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' pk=r9012_totapurdec_form.r9012_infototalcontrib.value %}">
           [Acessar]
         </a>
       {% endif %} 

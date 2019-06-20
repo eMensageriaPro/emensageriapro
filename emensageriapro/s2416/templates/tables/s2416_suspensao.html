@@ -32,7 +32,7 @@
                     
                         {% if perms.s2416.change_s2416suspensao or perms.s2416.add_s2416suspensao %}
                     
-                        <a href="{% url 's2416_suspensao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2416_suspensao_salvar' pk=a.id %}">
                             {% if perms.s2416.change_s2416suspensao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

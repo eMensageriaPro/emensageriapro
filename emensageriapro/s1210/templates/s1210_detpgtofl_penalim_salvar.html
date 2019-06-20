@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1210.can_see_s1210detPgtoFlpenAlim %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_detpgtofl_penalim_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_detpgtofl_penalim_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre beneficiários de pensão alimentícia.</a>
                             </li>
                         {% endif %}

@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_TransmissorLoteEsocialOcorrencias %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'transmissor_lote_esocial_ocorrencias_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'transmissor_lote_esocial_ocorrencias_salvar_tab' pk=pk tab='master' %}">
                             Ocorrências do Transmissor de Lote do eSocial</a>
                         </li>
                         {% endif %}

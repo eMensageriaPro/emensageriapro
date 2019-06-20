@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1280.can_see_s1280infoSubstPatr %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1280_infosubstpatr_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1280_infosubstpatr_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</a>
                             </li>
                         {% endif %}

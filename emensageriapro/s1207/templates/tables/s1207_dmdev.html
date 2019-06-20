@@ -44,7 +44,7 @@
                     
                         {% if perms.s1207.change_s1207dmDev or perms.s1207.add_s1207dmDev %}
                     
-                        <a href="{% url 's1207_dmdev_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1207_dmdev_salvar' pk=a.id %}">
                             {% if perms.s1207.change_s1207dmDev %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

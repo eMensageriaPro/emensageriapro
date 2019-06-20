@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2250.can_see_s2250cancAvPrevio %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2250_cancavprevio_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2250_cancavprevio_salvar_tab' pk=pk tab='master' %}">
                                 Cancelamento do Aviso Prévio</a>
                             </li>
                         {% endif %}

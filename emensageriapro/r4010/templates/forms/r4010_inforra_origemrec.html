@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4010_inforra_origemrec__r4010_inforra__label">Informações sobre a origem dos recursos*</label>
     {% if not for_print %}{% if r4010_inforra_origemrec_form.r4010_inforra.value %}
-        <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra_origemrec_form.r4010_inforra.value tab='master' %}">
+        <a href="{% url 'r4010_inforra_salvar' pk=r4010_inforra_origemrec_form.r4010_inforra.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

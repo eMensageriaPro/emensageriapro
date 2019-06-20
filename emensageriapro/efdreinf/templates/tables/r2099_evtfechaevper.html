@@ -110,7 +110,7 @@
                     
                         {% if perms.efdreinf.change_r2099evtFechaEvPer or perms.efdreinf.add_r2099evtFechaEvPer %}
                     
-                        <a href="{% url 'r2099_evtfechaevper_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2099_evtfechaevper_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2099evtFechaEvPer %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

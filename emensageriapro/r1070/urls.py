@@ -90,9 +90,13 @@ urlpatterns = [
         r1070_inclusao_listar_views.listar, 
         name='r1070_inclusao'),
 
-    url(r'^r1070-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-inclusao/salvar/(?P<pk>[0-9]+)/$', 
         r1070_inclusao_salvar_views.salvar, 
         name='r1070_inclusao_salvar'),
+
+    url(r'^r1070-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_inclusao_salvar_views.salvar, 
+        name='r1070_inclusao_salvar_tab'),
         
     url(r'^r1070-inclusao/cadastrar/$', 
         r1070_inclusao_salvar_views.salvar, 
@@ -120,9 +124,13 @@ urlpatterns = [
         r1070_inclusao_infosusp_listar_views.listar, 
         name='r1070_inclusao_infosusp'),
 
-    url(r'^r1070-inclusao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-inclusao-infosusp/salvar/(?P<pk>[0-9]+)/$', 
         r1070_inclusao_infosusp_salvar_views.salvar, 
         name='r1070_inclusao_infosusp_salvar'),
+
+    url(r'^r1070-inclusao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_inclusao_infosusp_salvar_views.salvar, 
+        name='r1070_inclusao_infosusp_salvar_tab'),
         
     url(r'^r1070-inclusao-infosusp/cadastrar/$', 
         r1070_inclusao_infosusp_salvar_views.salvar, 
@@ -150,9 +158,13 @@ urlpatterns = [
         r1070_inclusao_dadosprocjud_listar_views.listar, 
         name='r1070_inclusao_dadosprocjud'),
 
-    url(r'^r1070-inclusao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-inclusao-dadosprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r1070_inclusao_dadosprocjud_salvar_views.salvar, 
         name='r1070_inclusao_dadosprocjud_salvar'),
+
+    url(r'^r1070-inclusao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_inclusao_dadosprocjud_salvar_views.salvar, 
+        name='r1070_inclusao_dadosprocjud_salvar_tab'),
         
     url(r'^r1070-inclusao-dadosprocjud/cadastrar/$', 
         r1070_inclusao_dadosprocjud_salvar_views.salvar, 
@@ -180,9 +192,13 @@ urlpatterns = [
         r1070_alteracao_listar_views.listar, 
         name='r1070_alteracao'),
 
-    url(r'^r1070-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-alteracao/salvar/(?P<pk>[0-9]+)/$', 
         r1070_alteracao_salvar_views.salvar, 
         name='r1070_alteracao_salvar'),
+
+    url(r'^r1070-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_alteracao_salvar_views.salvar, 
+        name='r1070_alteracao_salvar_tab'),
         
     url(r'^r1070-alteracao/cadastrar/$', 
         r1070_alteracao_salvar_views.salvar, 
@@ -210,9 +226,13 @@ urlpatterns = [
         r1070_alteracao_infosusp_listar_views.listar, 
         name='r1070_alteracao_infosusp'),
 
-    url(r'^r1070-alteracao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-alteracao-infosusp/salvar/(?P<pk>[0-9]+)/$', 
         r1070_alteracao_infosusp_salvar_views.salvar, 
         name='r1070_alteracao_infosusp_salvar'),
+
+    url(r'^r1070-alteracao-infosusp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_alteracao_infosusp_salvar_views.salvar, 
+        name='r1070_alteracao_infosusp_salvar_tab'),
         
     url(r'^r1070-alteracao-infosusp/cadastrar/$', 
         r1070_alteracao_infosusp_salvar_views.salvar, 
@@ -240,9 +260,13 @@ urlpatterns = [
         r1070_alteracao_dadosprocjud_listar_views.listar, 
         name='r1070_alteracao_dadosprocjud'),
 
-    url(r'^r1070-alteracao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-alteracao-dadosprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r1070_alteracao_dadosprocjud_salvar_views.salvar, 
         name='r1070_alteracao_dadosprocjud_salvar'),
+
+    url(r'^r1070-alteracao-dadosprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_alteracao_dadosprocjud_salvar_views.salvar, 
+        name='r1070_alteracao_dadosprocjud_salvar_tab'),
         
     url(r'^r1070-alteracao-dadosprocjud/cadastrar/$', 
         r1070_alteracao_dadosprocjud_salvar_views.salvar, 
@@ -270,9 +294,13 @@ urlpatterns = [
         r1070_alteracao_novavalidade_listar_views.listar, 
         name='r1070_alteracao_novavalidade'),
 
-    url(r'^r1070-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
         r1070_alteracao_novavalidade_salvar_views.salvar, 
         name='r1070_alteracao_novavalidade_salvar'),
+
+    url(r'^r1070-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_alteracao_novavalidade_salvar_views.salvar, 
+        name='r1070_alteracao_novavalidade_salvar_tab'),
         
     url(r'^r1070-alteracao-novavalidade/cadastrar/$', 
         r1070_alteracao_novavalidade_salvar_views.salvar, 
@@ -300,9 +328,13 @@ urlpatterns = [
         r1070_exclusao_listar_views.listar, 
         name='r1070_exclusao'),
 
-    url(r'^r1070-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r1070-exclusao/salvar/(?P<pk>[0-9]+)/$', 
         r1070_exclusao_salvar_views.salvar, 
         name='r1070_exclusao_salvar'),
+
+    url(r'^r1070-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r1070_exclusao_salvar_views.salvar, 
+        name='r1070_exclusao_salvar_tab'),
         
     url(r'^r1070-exclusao/cadastrar/$', 
         r1070_exclusao_salvar_views.salvar, 

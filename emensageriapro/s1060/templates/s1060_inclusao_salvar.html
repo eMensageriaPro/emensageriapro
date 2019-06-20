@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1060.can_see_s1060inclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1060_inclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1060_inclusao_salvar_tab' pk=pk tab='master' %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}

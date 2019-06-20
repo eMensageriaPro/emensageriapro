@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r5001.can_see_r5001RCPRB %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r5001_rcprb_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r5001_rcprb_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</a>
                             </li>
                         {% endif %}

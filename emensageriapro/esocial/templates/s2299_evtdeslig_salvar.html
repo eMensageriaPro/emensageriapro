@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2299evtDeslig %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='master' %}">
                                 S-2299 - Desligamento</a>
                             </li>
                         {% endif %}
@@ -62,49 +62,49 @@
                             
                                 {% if perms.s2299.can_see_s2299observacoes %}
                                     <li {% if tab == 's2299_observacoes' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_observacoes' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_observacoes' %}">
                                         Observações do contrato de trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2299.can_see_s2299sucessaoVinc %}
                                     <li {% if tab == 's2299_sucessaovinc' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_sucessaovinc' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_sucessaovinc' %}">
                                         Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2299.can_see_s2299transfTit %}
                                     <li {% if tab == 's2299_transftit' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_transftit' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_transftit' %}">
                                         Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2299.can_see_s2299mudancaCPF %}
                                     <li {% if tab == 's2299_mudancacpf' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_mudancacpf' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_mudancacpf' %}">
                                         Informações de mudança de CPF do trabalhador.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2299.can_see_s2299verbasResc %}
                                     <li {% if tab == 's2299_verbasresc' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_verbasresc' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_verbasresc' %}">
                                         Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2299.can_see_s2299infoTrabIntermquarentena %}
                                     <li {% if tab == 's2299_infotrabinterm_quarentena' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_infotrabinterm_quarentena' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_infotrabinterm_quarentena' %}">
                                         Informações sobre a 'quarentena' remunerada de trabalhador desligado</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2299.can_see_s2299infoTrabIntermconsigFGTS %}
                                     <li {% if tab == 's2299_infotrabinterm_consigfgts' %} class="active"{% endif %} >
-                                        <a href="{% url 's2299_evtdeslig_salvar' pk=pk tab='s2299_infotrabinterm_consigfgts' %}">
+                                        <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_infotrabinterm_consigfgts' %}">
                                         Informações sobre operação de crédito consignado com garantia de FGTS</a>
                                     </li>
                                 {% endif %}

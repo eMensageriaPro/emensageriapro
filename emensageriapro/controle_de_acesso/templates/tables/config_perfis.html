@@ -26,7 +26,7 @@
                     
                         {% if perms.controle_de_acesso.change_ConfigPerfis or perms.controle_de_acesso.add_ConfigPerfis %}
                     
-                        <a href="{% url 'config_perfis_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'config_perfis_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_ConfigPerfis %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

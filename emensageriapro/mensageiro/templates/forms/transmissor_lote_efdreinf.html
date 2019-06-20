@@ -20,7 +20,7 @@
   
   {% if not output %}
     {% if transmissor_lote_efdreinf_form.transmissor.value %}
-    <a id="transmissor_lote_efdreinf__transmissor__div_acessar" href="{% url 'transmissores_salvar' pk=transmissor_lote_efdreinf_form.transmissor.value tab='master' %}">
+    <a id="transmissor_lote_efdreinf__transmissor__div_acessar" href="{% url 'transmissores_salvar' pk=transmissor_lote_efdreinf_form.transmissor.value %}">
      [Acessar]
     </a>
     {% endif %} 

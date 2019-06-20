@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1280.can_see_s1280infoAtivConcom %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1280_infoativconcom_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1280_infoativconcom_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
                             </li>
                         {% endif %}

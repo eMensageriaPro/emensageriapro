@@ -74,9 +74,13 @@ urlpatterns = [
         s2405_endereco_listar_views.listar, 
         name='s2405_endereco'),
 
-    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/$', 
         s2405_endereco_salvar_views.salvar, 
         name='s2405_endereco_salvar'),
+
+    url(r'^s2405-endereco/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2405_endereco_salvar_views.salvar, 
+        name='s2405_endereco_salvar_tab'),
         
     url(r'^s2405-endereco/cadastrar/$', 
         s2405_endereco_salvar_views.salvar, 
@@ -104,9 +108,13 @@ urlpatterns = [
         s2405_brasil_listar_views.listar, 
         name='s2405_brasil'),
 
-    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/$', 
         s2405_brasil_salvar_views.salvar, 
         name='s2405_brasil_salvar'),
+
+    url(r'^s2405-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2405_brasil_salvar_views.salvar, 
+        name='s2405_brasil_salvar_tab'),
         
     url(r'^s2405-brasil/cadastrar/$', 
         s2405_brasil_salvar_views.salvar, 
@@ -134,9 +142,13 @@ urlpatterns = [
         s2405_exterior_listar_views.listar, 
         name='s2405_exterior'),
 
-    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/$', 
         s2405_exterior_salvar_views.salvar, 
         name='s2405_exterior_salvar'),
+
+    url(r'^s2405-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2405_exterior_salvar_views.salvar, 
+        name='s2405_exterior_salvar_tab'),
         
     url(r'^s2405-exterior/cadastrar/$', 
         s2405_exterior_salvar_views.salvar, 
@@ -164,9 +176,13 @@ urlpatterns = [
         s2405_dependente_listar_views.listar, 
         name='s2405_dependente'),
 
-    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/$', 
         s2405_dependente_salvar_views.salvar, 
         name='s2405_dependente_salvar'),
+
+    url(r'^s2405-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2405_dependente_salvar_views.salvar, 
+        name='s2405_dependente_salvar_tab'),
         
     url(r'^s2405-dependente/cadastrar/$', 
         s2405_dependente_salvar_views.salvar, 

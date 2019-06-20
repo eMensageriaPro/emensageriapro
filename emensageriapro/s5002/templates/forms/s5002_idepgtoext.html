@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5002_idepgtoext__s5002_infoirrf__label">Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.*</label>
     {% if not for_print %}{% if s5002_idepgtoext_form.s5002_infoirrf.value %}
-        <a href="{% url 's5002_infoirrf_salvar' pk=s5002_idepgtoext_form.s5002_infoirrf.value tab='master' %}">
+        <a href="{% url 's5002_infoirrf_salvar' pk=s5002_idepgtoext_form.s5002_infoirrf.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

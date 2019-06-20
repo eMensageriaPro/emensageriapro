@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2416.can_see_s2416homologTC %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2416_homologtc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2416_homologtc_salvar_tab' pk=pk tab='master' %}">
                                 Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</a>
                             </li>
                         {% endif %}

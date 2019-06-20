@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2231evtCessao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2231_evtcessao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='master' %}">
                                 S-2231 - Cessão/Exercício em Outro Órgão</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s2231.can_see_s2231iniCessao %}
                                     <li {% if tab == 's2231_inicessao' %} class="active"{% endif %} >
-                                        <a href="{% url 's2231_evtcessao_salvar' pk=pk tab='s2231_inicessao' %}">
+                                        <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='s2231_inicessao' %}">
                                         Informações de início da cessão/exercício em outro órgão</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2231.can_see_s2231fimCessao %}
                                     <li {% if tab == 's2231_fimcessao' %} class="active"{% endif %} >
-                                        <a href="{% url 's2231_evtcessao_salvar' pk=pk tab='s2231_fimcessao' %}">
+                                        <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='s2231_fimcessao' %}">
                                         Informações de término da cessão/exercício em outro órgão</a>
                                     </li>
                                 {% endif %}

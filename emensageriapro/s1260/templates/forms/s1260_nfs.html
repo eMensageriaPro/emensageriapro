@@ -15,7 +15,7 @@
     <label id="s1260_nfs__s1260_ideadquir__label">Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.*</label>
     {% if not for_print %}
       {% if s1260_nfs_form.s1260_ideadquir.value %}
-        <a id="s1260_nfs__s1260_ideadquir__div_acessar" href="{% url 's1260_ideadquir_salvar' pk=s1260_nfs_form.s1260_ideadquir.value tab='master' %}">
+        <a id="s1260_nfs__s1260_ideadquir__div_acessar" href="{% url 's1260_ideadquir_salvar' pk=s1260_nfs_form.s1260_ideadquir.value %}">
           [Acessar]
         </a>
       {% endif %} 

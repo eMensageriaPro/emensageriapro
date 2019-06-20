@@ -54,42 +54,42 @@
                     {% if pk %}
                         {% if perms.r9012.can_see_r9012infoTotalContrib %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9012_infototalcontrib_salvar_tab' pk=pk tab='master' %}">
                                 Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r9012.can_see_r9012totApurMen %}
                                 <li {% if tab == 'r9012_totapurmen' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurmen' %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar_tab' pk=pk tab='r9012_totapurmen' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9012.can_see_r9012totApurQui %}
                                 <li {% if tab == 'r9012_totapurqui' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurqui' %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar_tab' pk=pk tab='r9012_totapurqui' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9012.can_see_r9012totApurDec %}
                                 <li {% if tab == 'r9012_totapurdec' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurdec' %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar_tab' pk=pk tab='r9012_totapurdec' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9012.can_see_r9012totApurSem %}
                                 <li {% if tab == 'r9012_totapursem' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapursem' %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar_tab' pk=pk tab='r9012_totapursem' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9012.can_see_r9012totApurDia %}
                                 <li {% if tab == 'r9012_totapurdia' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9012_infototalcontrib_salvar' pk=pk tab='r9012_totapurdia' %}">
+                                    <a href="{% url 'r9012_infototalcontrib_salvar_tab' pk=pk tab='r9012_totapurdia' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</a>
                                 </li>
                             {% endif %}

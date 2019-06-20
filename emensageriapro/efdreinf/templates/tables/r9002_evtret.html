@@ -92,7 +92,7 @@
                     
                         {% if perms.efdreinf.change_r9002evtRet or perms.efdreinf.add_r9002evtRet %}
                     
-                        <a href="{% url 'r9002_evtret_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r9002_evtret_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r9002evtRet %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

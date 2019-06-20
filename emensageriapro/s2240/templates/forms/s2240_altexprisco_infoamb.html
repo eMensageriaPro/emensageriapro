@@ -15,7 +15,7 @@
     <label id="s2240_altexprisco_infoamb__s2240_altexprisco__label">Informações relativas ao ambiente de trabalho*</label>
     {% if not for_print %}
       {% if s2240_altexprisco_infoamb_form.s2240_altexprisco.value %}
-        <a id="s2240_altexprisco_infoamb__s2240_altexprisco__div_acessar" href="{% url 's2240_altexprisco_salvar' pk=s2240_altexprisco_infoamb_form.s2240_altexprisco.value tab='master' %}">
+        <a id="s2240_altexprisco_infoamb__s2240_altexprisco__div_acessar" href="{% url 's2240_altexprisco_salvar' pk=s2240_altexprisco_infoamb_form.s2240_altexprisco.value %}">
           [Acessar]
         </a>
       {% endif %} 

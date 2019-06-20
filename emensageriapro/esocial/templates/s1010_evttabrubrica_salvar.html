@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1010evtTabRubrica %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1010_evttabrubrica_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1010_evttabrubrica_salvar_tab' pk=pk tab='master' %}">
                                 S-1010 - Tabela de Rubricas</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             {% if s1010_evttabrubrica.operacao == 1 %}
                                 {% if perms.esocial.can_see_s1010inclusao %}
                                     <li {% if tab == 's1010_inclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 's1010_evttabrubrica_salvar' pk=pk tab='s1010_inclusao' %}">
+                                        <a href="{% url 's1010_evttabrubrica_salvar_tab' pk=pk tab='s1010_inclusao' %}">
                                         Inclusão de novas informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1010_evttabrubrica.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1010alteracao %}
                                     <li {% if tab == 's1010_alteracao' %}class="active"{% endif %}>
-                                        <a href="{% url 's1010_evttabrubrica_salvar' pk=pk tab='s1010_alteracao' %}">
+                                        <a href="{% url 's1010_evttabrubrica_salvar_tab' pk=pk tab='s1010_alteracao' %}">
                                         Alteração das informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1010_evttabrubrica.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1010exclusao %}
                                     <li {% if tab == 's1010_exclusao' %}class="active"{% endif %} >
-                                        <a href="{% url 's1010_evttabrubrica_salvar' pk=pk tab='s1010_exclusao' %}">
+                                        <a href="{% url 's1010_evttabrubrica_salvar_tab' pk=pk tab='s1010_exclusao' %}">
                                         Exclusão das informações</a>
                                     </li>
                                 {% endif %}

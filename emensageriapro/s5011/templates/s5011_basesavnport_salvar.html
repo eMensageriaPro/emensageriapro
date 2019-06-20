@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011basesAvNPort %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_basesavnport_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_basesavnport_salvar_tab' pk=pk tab='master' %}">
                                 Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</a>
                             </li>
                         {% endif %}

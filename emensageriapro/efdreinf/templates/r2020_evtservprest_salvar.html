@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2020evtServPrest %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2020_evtservprest_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='master' %}">
                                 R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             
                                 {% if perms.r2020.can_see_r2020nfs %}
                                     <li {% if tab == 'r2020_nfs' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2020_evtservprest_salvar' pk=pk tab='r2020_nfs' %}">
+                                        <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='r2020_nfs' %}">
                                         Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r2020.can_see_r2020infoProcRetPr %}
                                     <li {% if tab == 'r2020_infoprocretpr' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2020_evtservprest_salvar' pk=pk tab='r2020_infoprocretpr' %}">
+                                        <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='r2020_infoprocretpr' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r2020.can_see_r2020infoProcRetAd %}
                                     <li {% if tab == 'r2020_infoprocretad' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2020_evtservprest_salvar' pk=pk tab='r2020_infoprocretad' %}">
+                                        <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='r2020_infoprocretad' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária adicional</a>
                                     </li>
                                 {% endif %}

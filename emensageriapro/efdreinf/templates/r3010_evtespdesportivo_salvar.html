@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r3010evtEspDesportivo %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r3010_evtespdesportivo_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r3010_evtespdesportivo_salvar_tab' pk=pk tab='master' %}">
                                 R-3010 - Receita de Espetáculo Desportivo</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.r3010.can_see_r3010boletim %}
                                     <li {% if tab == 'r3010_boletim' %} class="active"{% endif %} >
-                                        <a href="{% url 'r3010_evtespdesportivo_salvar' pk=pk tab='r3010_boletim' %}">
+                                        <a href="{% url 'r3010_evtespdesportivo_salvar_tab' pk=pk tab='r3010_boletim' %}">
                                         Boletim do Espetáculo Desportivo</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r3010.can_see_r3010infoProc %}
                                     <li {% if tab == 'r3010_infoproc' %} class="active"{% endif %} >
-                                        <a href="{% url 'r3010_evtespdesportivo_salvar' pk=pk tab='r3010_infoproc' %}">
+                                        <a href="{% url 'r3010_evtespdesportivo_salvar_tab' pk=pk tab='r3010_infoproc' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                     </li>
                                 {% endif %}

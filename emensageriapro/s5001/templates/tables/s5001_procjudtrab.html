@@ -38,7 +38,7 @@
                     
                         {% if perms.s5001.change_s5001procJudTrab or perms.s5001.add_s5001procJudTrab %}
                     
-                        <a href="{% url 's5001_procjudtrab_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5001_procjudtrab_salvar' pk=a.id %}">
                             {% if perms.s5001.change_s5001procJudTrab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

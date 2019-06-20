@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r5001_rprest__r5001_infototal__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020*</label>
     {% if not for_print %}{% if r5001_rprest_form.r5001_infototal.value %}
-        <a href="{% url 'r5001_infototal_salvar' pk=r5001_rprest_form.r5001_infototal.value tab='master' %}">
+        <a href="{% url 'r5001_infototal_salvar' pk=r5001_rprest_form.r5001_infototal.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -38,7 +38,7 @@
                     
                         {% if perms.s1207.change_s1207procJudTrab or perms.s1207.add_s1207procJudTrab %}
                     
-                        <a href="{% url 's1207_procjudtrab_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1207_procjudtrab_salvar' pk=a.id %}">
                             {% if perms.s1207.change_s1207procJudTrab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

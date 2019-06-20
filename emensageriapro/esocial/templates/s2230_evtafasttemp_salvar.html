@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2230evtAfastTemp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2230_evtafasttemp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='master' %}">
                                 S-2230 - Afastamento Temporário</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             
                                 {% if perms.s2230.can_see_s2230iniAfastamento %}
                                     <li {% if tab == 's2230_iniafastamento' %} class="active"{% endif %} >
-                                        <a href="{% url 's2230_evtafasttemp_salvar' pk=pk tab='s2230_iniafastamento' %}">
+                                        <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_iniafastamento' %}">
                                         Informações do Afastamento Temporário - Início</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2230.can_see_s2230infoRetif %}
                                     <li {% if tab == 's2230_inforetif' %} class="active"{% endif %} >
-                                        <a href="{% url 's2230_evtafasttemp_salvar' pk=pk tab='s2230_inforetif' %}">
+                                        <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_inforetif' %}">
                                         Informações de retificação do Afastamento Temporário</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2230.can_see_s2230fimAfastamento %}
                                     <li {% if tab == 's2230_fimafastamento' %} class="active"{% endif %} >
-                                        <a href="{% url 's2230_evtafasttemp_salvar' pk=pk tab='s2230_fimafastamento' %}">
+                                        <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_fimafastamento' %}">
                                         Informações do Término do Afastamento</a>
                                     </li>
                                 {% endif %}

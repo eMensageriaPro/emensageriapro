@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4010_infoprocjud_origemrec__r4010_infoprocjud__label">Informações sobre a origem dos recursos*</label>
     {% if not for_print %}{% if r4010_infoprocjud_origemrec_form.r4010_infoprocjud.value %}
-        <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud_origemrec_form.r4010_infoprocjud.value tab='master' %}">
+        <a href="{% url 'r4010_infoprocjud_salvar' pk=r4010_infoprocjud_origemrec_form.r4010_infoprocjud.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

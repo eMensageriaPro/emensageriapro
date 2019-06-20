@@ -62,7 +62,7 @@
                     
                         {% if perms.s1030.change_s1030inclusaocargoPublico or perms.s1030.add_s1030inclusaocargoPublico %}
                     
-                        <a href="{% url 's1030_inclusao_cargopublico_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1030_inclusao_cargopublico_salvar' pk=a.id %}">
                             {% if perms.s1030.change_s1030inclusaocargoPublico %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

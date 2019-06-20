@@ -132,4 +132,4 @@ def abrir_evento_para_edicao(request, pk):
         messages.error(request, u'''Você não possui permissão para abrir evento para edição. 
                                     Entre em contato com o administrador do sistema!''')
                                     
-    return redirect('s1207_evtbenprrp_salvar', pk=pk, tab='master')
+    return redirect('s1207_evtbenprrp_salvar', pk=pk)

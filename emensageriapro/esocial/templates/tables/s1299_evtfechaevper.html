@@ -110,7 +110,7 @@
                     
                         {% if perms.esocial.change_s1299evtFechaEvPer or perms.esocial.add_s1299evtFechaEvPer %}
                     
-                        <a href="{% url 's1299_evtfechaevper_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1299_evtfechaevper_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1299evtFechaEvPer %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

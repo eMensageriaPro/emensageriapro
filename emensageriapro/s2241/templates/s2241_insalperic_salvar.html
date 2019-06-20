@@ -54,28 +54,28 @@
                     {% if pk %}
                         {% if perms.s2241.can_see_s2241insalPeric %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2241_insalperic_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre o ambiente de trabalho insalubre/periculoso.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2241.can_see_s2241iniInsalPeric %}
                                 <li {% if tab == 's2241_iniinsalperic' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_insalperic_salvar' pk=pk tab='s2241_iniinsalperic' %}">
+                                    <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_iniinsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Início</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2241.can_see_s2241altInsalPeric %}
                                 <li {% if tab == 's2241_altinsalperic' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_insalperic_salvar' pk=pk tab='s2241_altinsalperic' %}">
+                                    <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_altinsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Alteração</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2241.can_see_s2241fimInsalPeric %}
                                 <li {% if tab == 's2241_fiminsalperic' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_insalperic_salvar' pk=pk tab='s2241_fiminsalperic' %}">
+                                    <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_fiminsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Fim</a>
                                 </li>
                             {% endif %}

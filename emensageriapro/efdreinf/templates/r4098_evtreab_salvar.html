@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r4098evtReab %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4098_evtreab_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4098_evtreab_salvar_tab' pk=pk tab='master' %}">
                                 R-4098 - Reabertura dos Eventos Periódicos Série R-4000</a>
                             </li>
                         {% endif %}

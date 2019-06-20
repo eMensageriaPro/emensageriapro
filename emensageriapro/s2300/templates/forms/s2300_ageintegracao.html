@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_ageintegracao__s2300_infoestagiario__label">Agente de Integração*</label>
     {% if not for_print %}{% if s2300_ageintegracao_form.s2300_infoestagiario.value %}
-        <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_ageintegracao_form.s2300_infoestagiario.value tab='master' %}">
+        <a href="{% url 's2300_infoestagiario_salvar' pk=s2300_ageintegracao_form.s2300_infoestagiario.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

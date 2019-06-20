@@ -38,7 +38,7 @@
                     
                         {% if perms.s1060.change_s1060exclusao or perms.s1060.add_s1060exclusao %}
                     
-                        <a href="{% url 's1060_exclusao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1060_exclusao_salvar' pk=a.id %}">
                             {% if perms.s1060.change_s1060exclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

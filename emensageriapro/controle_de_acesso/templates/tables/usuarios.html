@@ -56,7 +56,7 @@
                     
                         {% if perms.controle_de_acesso.change_Usuarios or perms.controle_de_acesso.add_Usuarios %}
                     
-                        <a href="{% url 'usuarios_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'usuarios_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_Usuarios %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

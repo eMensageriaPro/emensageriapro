@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2030evtAssocDespRec %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2030_evtassocdesprec_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2030_evtassocdesprec_salvar_tab' pk=pk tab='master' %}">
                                 R-2030 - Recursos Recebidos por Associação Desportiva</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r2030.can_see_r2030recursosRec %}
                                     <li {% if tab == 'r2030_recursosrec' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2030_evtassocdesprec_salvar' pk=pk tab='r2030_recursosrec' %}">
+                                        <a href="{% url 'r2030_evtassocdesprec_salvar_tab' pk=pk tab='r2030_recursosrec' %}">
                                         Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc</a>
                                     </li>
                                 {% endif %}

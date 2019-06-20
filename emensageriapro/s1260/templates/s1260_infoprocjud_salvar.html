@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1260.can_see_s1260infoProcJud %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1260_infoprocjud_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1260_infoprocjud_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
                             </li>
                         {% endif %}

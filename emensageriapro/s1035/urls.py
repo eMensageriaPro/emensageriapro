@@ -74,9 +74,13 @@ urlpatterns = [
         s1035_inclusao_listar_views.listar, 
         name='s1035_inclusao'),
 
-    url(r'^s1035-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1035-inclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1035_inclusao_salvar_views.salvar, 
         name='s1035_inclusao_salvar'),
+
+    url(r'^s1035-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1035_inclusao_salvar_views.salvar, 
+        name='s1035_inclusao_salvar_tab'),
         
     url(r'^s1035-inclusao/cadastrar/$', 
         s1035_inclusao_salvar_views.salvar, 
@@ -104,9 +108,13 @@ urlpatterns = [
         s1035_alteracao_listar_views.listar, 
         name='s1035_alteracao'),
 
-    url(r'^s1035-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1035-alteracao/salvar/(?P<pk>[0-9]+)/$', 
         s1035_alteracao_salvar_views.salvar, 
         name='s1035_alteracao_salvar'),
+
+    url(r'^s1035-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1035_alteracao_salvar_views.salvar, 
+        name='s1035_alteracao_salvar_tab'),
         
     url(r'^s1035-alteracao/cadastrar/$', 
         s1035_alteracao_salvar_views.salvar, 
@@ -134,9 +142,13 @@ urlpatterns = [
         s1035_alteracao_novavalidade_listar_views.listar, 
         name='s1035_alteracao_novavalidade'),
 
-    url(r'^s1035-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1035-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
         s1035_alteracao_novavalidade_salvar_views.salvar, 
         name='s1035_alteracao_novavalidade_salvar'),
+
+    url(r'^s1035-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1035_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1035_alteracao_novavalidade_salvar_tab'),
         
     url(r'^s1035-alteracao-novavalidade/cadastrar/$', 
         s1035_alteracao_novavalidade_salvar_views.salvar, 
@@ -164,9 +176,13 @@ urlpatterns = [
         s1035_exclusao_listar_views.listar, 
         name='s1035_exclusao'),
 
-    url(r'^s1035-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1035-exclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1035_exclusao_salvar_views.salvar, 
         name='s1035_exclusao_salvar'),
+
+    url(r'^s1035-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1035_exclusao_salvar_views.salvar, 
+        name='s1035_exclusao_salvar_tab'),
         
     url(r'^s1035-exclusao/cadastrar/$', 
         s1035_exclusao_salvar_views.salvar, 

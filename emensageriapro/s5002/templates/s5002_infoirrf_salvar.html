@@ -54,28 +54,28 @@
                     {% if pk %}
                         {% if perms.s5002.can_see_s5002infoIrrf %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5002_infoirrf_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5002.can_see_s5002basesIrrf %}
                                 <li {% if tab == 's5002_basesirrf' %} class="active"{% endif %} >
-                                    <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='s5002_basesirrf' %}">
+                                    <a href="{% url 's5002_infoirrf_salvar_tab' pk=pk tab='s5002_basesirrf' %}">
                                     Bases, deduções, isenções e retenções do IRRF</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5002.can_see_s5002irrf %}
                                 <li {% if tab == 's5002_irrf' %} class="active"{% endif %} >
-                                    <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='s5002_irrf' %}">
+                                    <a href="{% url 's5002_infoirrf_salvar_tab' pk=pk tab='s5002_irrf' %}">
                                     Informações relativas ao Imposto de Renda Retido na Fonte</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5002.can_see_s5002idePgtoExt %}
                                 <li {% if tab == 's5002_idepgtoext' %} class="active"{% endif %} >
-                                    <a href="{% url 's5002_infoirrf_salvar' pk=pk tab='s5002_idepgtoext' %}">
+                                    <a href="{% url 's5002_infoirrf_salvar_tab' pk=pk tab='s5002_idepgtoext' %}">
                                     Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</a>
                                 </li>
                             {% endif %}

@@ -70,9 +70,13 @@ urlpatterns = [
         s2410_infopenmorte_listar_views.listar, 
         name='s2410_infopenmorte'),
 
-    url(r'^s2410-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2410-infopenmorte/salvar/(?P<pk>[0-9]+)/$', 
         s2410_infopenmorte_salvar_views.salvar, 
         name='s2410_infopenmorte_salvar'),
+
+    url(r'^s2410-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2410_infopenmorte_salvar_views.salvar, 
+        name='s2410_infopenmorte_salvar_tab'),
         
     url(r'^s2410-infopenmorte/cadastrar/$', 
         s2410_infopenmorte_salvar_views.salvar, 
@@ -100,9 +104,13 @@ urlpatterns = [
         s2410_instpenmorte_listar_views.listar, 
         name='s2410_instpenmorte'),
 
-    url(r'^s2410-instpenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2410-instpenmorte/salvar/(?P<pk>[0-9]+)/$', 
         s2410_instpenmorte_salvar_views.salvar, 
         name='s2410_instpenmorte_salvar'),
+
+    url(r'^s2410-instpenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2410_instpenmorte_salvar_views.salvar, 
+        name='s2410_instpenmorte_salvar_tab'),
         
     url(r'^s2410-instpenmorte/cadastrar/$', 
         s2410_instpenmorte_salvar_views.salvar, 
@@ -130,9 +138,13 @@ urlpatterns = [
         s2410_homologtc_listar_views.listar, 
         name='s2410_homologtc'),
 
-    url(r'^s2410-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2410-homologtc/salvar/(?P<pk>[0-9]+)/$', 
         s2410_homologtc_salvar_views.salvar, 
         name='s2410_homologtc_salvar'),
+
+    url(r'^s2410-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2410_homologtc_salvar_views.salvar, 
+        name='s2410_homologtc_salvar_tab'),
         
     url(r'^s2410-homologtc/cadastrar/$', 
         s2410_homologtc_salvar_views.salvar, 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s5003evtBasesFGTS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5003_evtbasesfgts_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5003_evtbasesfgts_salvar_tab' pk=pk tab='master' %}">
                                 S-5003 - Informações do FGTS por Trabalhador</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s5003.can_see_s5003ideEstabLot %}
                                     <li {% if tab == 's5003_ideestablot' %} class="active"{% endif %} >
-                                        <a href="{% url 's5003_evtbasesfgts_salvar' pk=pk tab='s5003_ideestablot' %}">
+                                        <a href="{% url 's5003_evtbasesfgts_salvar_tab' pk=pk tab='s5003_ideestablot' %}">
                                         Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s5003.can_see_s5003infoDpsFGTS %}
                                     <li {% if tab == 's5003_infodpsfgts' %} class="active"{% endif %} >
-                                        <a href="{% url 's5003_evtbasesfgts_salvar' pk=pk tab='s5003_infodpsfgts' %}">
+                                        <a href="{% url 's5003_evtbasesfgts_salvar_tab' pk=pk tab='s5003_infodpsfgts' %}">
                                         Informações sobre valores de FGTS.</a>
                                     </li>
                                 {% endif %}

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r4010_fci__r4010_infopgto__label">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante*</label>
     {% if not for_print %}{% if r4010_fci_form.r4010_infopgto.value %}
-        <a href="{% url 'r4010_infopgto_salvar' pk=r4010_fci_form.r4010_infopgto.value tab='master' %}">
+        <a href="{% url 'r4010_infopgto_salvar' pk=r4010_fci_form.r4010_infopgto.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

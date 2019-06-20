@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1202.can_see_s1202procJudTrab %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1202_procjudtrab_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1202_procjudtrab_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                             </li>
                         {% endif %}

@@ -15,7 +15,7 @@
     <label id="r4010_inforeemb__r4010_ideopsaude__label">Informação de reembolso do titular do plano de saúde coletivo empresarial*</label>
     {% if not for_print %}
       {% if r4010_inforeemb_form.r4010_ideopsaude.value %}
-        <a id="r4010_inforeemb__r4010_ideopsaude__div_acessar" href="{% url 'r4010_ideopsaude_salvar' pk=r4010_inforeemb_form.r4010_ideopsaude.value tab='master' %}">
+        <a id="r4010_inforeemb__r4010_ideopsaude__div_acessar" href="{% url 'r4010_ideopsaude_salvar' pk=r4010_inforeemb_form.r4010_ideopsaude.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -38,7 +38,7 @@
                     
                         {% if perms.r2070.change_r2070pgtoPJdespProcJud or perms.r2070.add_r2070pgtoPJdespProcJud %}
                     
-                        <a href="{% url 'r2070_pgtopj_despprocjud_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_pgtopj_despprocjud_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoPJdespProcJud %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

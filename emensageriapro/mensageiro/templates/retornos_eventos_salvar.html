@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_RetornosEventos %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'retornos_eventos_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='master' %}">
                             Retornos dos Eventos</a>
                         </li>
                         {% endif %}
@@ -65,378 +65,378 @@
                             
                                 {% if perms.esocial.can_see_s1000evtInfoEmpregador %}
                                     <li {% if tab == 's1000_evtinfoempregador' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1000_evtinfoempregador' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1000_evtinfoempregador' %}">
                                         S-1000 - Informações do Empregador/Contribuinte/Órgão Público</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1005evtTabEstab %}
                                     <li {% if tab == 's1005_evttabestab' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1005_evttabestab' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1005_evttabestab' %}">
                                         S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1010evtTabRubrica %}
                                     <li {% if tab == 's1010_evttabrubrica' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1010_evttabrubrica' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1010_evttabrubrica' %}">
                                         S-1010 - Tabela de Rubricas</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1020evtTabLotacao %}
                                     <li {% if tab == 's1020_evttablotacao' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1020_evttablotacao' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1020_evttablotacao' %}">
                                         S-1020 - Tabela de Lotações Tributárias</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1030evtTabCargo %}
                                     <li {% if tab == 's1030_evttabcargo' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1030_evttabcargo' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1030_evttabcargo' %}">
                                         S-1030 - Tabela de Cargos/Empregos Públicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1035evtTabCarreira %}
                                     <li {% if tab == 's1035_evttabcarreira' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1035_evttabcarreira' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1035_evttabcarreira' %}">
                                         S-1035 - Tabela de Carreiras Públicas</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1040evtTabFuncao %}
                                     <li {% if tab == 's1040_evttabfuncao' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1040_evttabfuncao' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1040_evttabfuncao' %}">
                                         S-1040 - Tabela de Funções/Cargos em Comissão</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1050evtTabHorTur %}
                                     <li {% if tab == 's1050_evttabhortur' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1050_evttabhortur' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1050_evttabhortur' %}">
                                         S-1050 - Tabela de Horários/Turnos de Trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1060evtTabAmbiente %}
                                     <li {% if tab == 's1060_evttabambiente' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1060_evttabambiente' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1060_evttabambiente' %}">
                                         S-1060 - Tabela de Ambientes de Trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1070evtTabProcesso %}
                                     <li {% if tab == 's1070_evttabprocesso' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1070_evttabprocesso' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1070_evttabprocesso' %}">
                                         S-1070 - Tabela de Processos Administrativos/Judiciais</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1080evtTabOperPort %}
                                     <li {% if tab == 's1080_evttaboperport' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1080_evttaboperport' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1080_evttaboperport' %}">
                                         S-1080 - Tabela de Operadores Portuários</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1200evtRemun %}
                                     <li {% if tab == 's1200_evtremun' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1200_evtremun' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1200_evtremun' %}">
                                         S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1202evtRmnRPPS %}
                                     <li {% if tab == 's1202_evtrmnrpps' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1202_evtrmnrpps' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1202_evtrmnrpps' %}">
                                         S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1207evtBenPrRP %}
                                     <li {% if tab == 's1207_evtbenprrp' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1207_evtbenprrp' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1207_evtbenprrp' %}">
                                         S-1207 - Benefícios previdenciários - RPPS</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1210evtPgtos %}
                                     <li {% if tab == 's1210_evtpgtos' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1210_evtpgtos' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1210_evtpgtos' %}">
                                         S-1210 - Pagamentos de Rendimentos do Trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1250evtAqProd %}
                                     <li {% if tab == 's1250_evtaqprod' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1250_evtaqprod' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1250_evtaqprod' %}">
                                         S-1250 - Aquisição de Produção Rural</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1260evtComProd %}
                                     <li {% if tab == 's1260_evtcomprod' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1260_evtcomprod' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1260_evtcomprod' %}">
                                         S-1260 - Comercialização da Produção Rural Pessoa Física</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1270evtContratAvNP %}
                                     <li {% if tab == 's1270_evtcontratavnp' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1270_evtcontratavnp' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1270_evtcontratavnp' %}">
                                         S-1270 - Contratação de Trabalhadores Avulsos Não Portuários</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1280evtInfoComplPer %}
                                     <li {% if tab == 's1280_evtinfocomplper' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1280_evtinfocomplper' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1280_evtinfocomplper' %}">
                                         S-1280 - Informações Complementares aos Eventos Periódicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1295evtTotConting %}
                                     <li {% if tab == 's1295_evttotconting' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1295_evttotconting' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1295_evttotconting' %}">
                                         S-1295 - Solicitação de Totalização para Pagamento em Contingência</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1298evtReabreEvPer %}
                                     <li {% if tab == 's1298_evtreabreevper' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1298_evtreabreevper' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1298_evtreabreevper' %}">
                                         S-1298 - Reabertura dos Eventos Periódicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1299evtFechaEvPer %}
                                     <li {% if tab == 's1299_evtfechaevper' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1299_evtfechaevper' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1299_evtfechaevper' %}">
                                         S-1299 - Fechamento dos Eventos Periódicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s1300evtContrSindPatr %}
                                     <li {% if tab == 's1300_evtcontrsindpatr' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s1300_evtcontrsindpatr' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s1300_evtcontrsindpatr' %}">
                                         S-1300 - Contribuição Sindical Patronal</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2190evtAdmPrelim %}
                                     <li {% if tab == 's2190_evtadmprelim' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2190_evtadmprelim' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2190_evtadmprelim' %}">
                                         S-2190 - Admissão de Trabalhador - Registro Preliminar</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2200evtAdmissao %}
                                     <li {% if tab == 's2200_evtadmissao' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2200_evtadmissao' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2200_evtadmissao' %}">
                                         S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2205evtAltCadastral %}
                                     <li {% if tab == 's2205_evtaltcadastral' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2205_evtaltcadastral' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2205_evtaltcadastral' %}">
                                         S-2205 - Alteração de Dados Cadastrais do Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2206evtAltContratual %}
                                     <li {% if tab == 's2206_evtaltcontratual' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2206_evtaltcontratual' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2206_evtaltcontratual' %}">
                                         S-2206 - Alteração de Contrato de Trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2210evtCAT %}
                                     <li {% if tab == 's2210_evtcat' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2210_evtcat' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2210_evtcat' %}">
                                         S-2210 - Comunicação de Acidente de Trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2220evtMonit %}
                                     <li {% if tab == 's2220_evtmonit' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2220_evtmonit' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2220_evtmonit' %}">
                                         S-2220 - Monitoramento da Saúde do Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2221evtToxic %}
                                     <li {% if tab == 's2221_evttoxic' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2221_evttoxic' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2221_evttoxic' %}">
                                         S-2221 - Exame Toxicológico do Motorista Profissional</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2230evtAfastTemp %}
                                     <li {% if tab == 's2230_evtafasttemp' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2230_evtafasttemp' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2230_evtafasttemp' %}">
                                         S-2230 - Afastamento Temporário</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2231evtCessao %}
                                     <li {% if tab == 's2231_evtcessao' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2231_evtcessao' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2231_evtcessao' %}">
                                         S-2231 - Cessão/Exercício em Outro Órgão</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2240evtExpRisco %}
                                     <li {% if tab == 's2240_evtexprisco' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2240_evtexprisco' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2240_evtexprisco' %}">
                                         S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2241evtInsApo %}
                                     <li {% if tab == 's2241_evtinsapo' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2241_evtinsapo' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2241_evtinsapo' %}">
                                         S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2245evtTreiCap %}
                                     <li {% if tab == 's2245_evttreicap' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2245_evttreicap' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2245_evttreicap' %}">
                                         S-2245 - Treinamentos, Capacitações e Exercícios Simulados</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2250evtAvPrevio %}
                                     <li {% if tab == 's2250_evtavprevio' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2250_evtavprevio' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2250_evtavprevio' %}">
                                         S-2250 - Aviso Prévio</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2260evtConvInterm %}
                                     <li {% if tab == 's2260_evtconvinterm' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2260_evtconvinterm' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2260_evtconvinterm' %}">
                                         S-2260 - Convocação para Trabalho Intermitente</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2298evtReintegr %}
                                     <li {% if tab == 's2298_evtreintegr' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2298_evtreintegr' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2298_evtreintegr' %}">
                                         S-2298 - Reintegração</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2299evtDeslig %}
                                     <li {% if tab == 's2299_evtdeslig' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2299_evtdeslig' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2299_evtdeslig' %}">
                                         S-2299 - Desligamento</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2300evtTSVInicio %}
                                     <li {% if tab == 's2300_evttsvinicio' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2300_evttsvinicio' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2300_evttsvinicio' %}">
                                         S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2306evtTSVAltContr %}
                                     <li {% if tab == 's2306_evttsvaltcontr' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2306_evttsvaltcontr' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2306_evttsvaltcontr' %}">
                                         S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2399evtTSVTermino %}
                                     <li {% if tab == 's2399_evttsvtermino' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2399_evttsvtermino' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2399_evttsvtermino' %}">
                                         S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2400evtCdBenefIn %}
                                     <li {% if tab == 's2400_evtcdbenefin' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2400_evtcdbenefin' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2400_evtcdbenefin' %}">
                                         S-2400 - Cadastro de Beneficiários - Entes Públicos - Início</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2405evtCdBenefAlt %}
                                     <li {% if tab == 's2405_evtcdbenefalt' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2405_evtcdbenefalt' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2405_evtcdbenefalt' %}">
                                         S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2410evtCdBenIn %}
                                     <li {% if tab == 's2410_evtcdbenin' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2410_evtcdbenin' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2410_evtcdbenin' %}">
                                         S-2410 - Cadastro de Benefícios - Entes Públicos - Início</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2416evtCdBenAlt %}
                                     <li {% if tab == 's2416_evtcdbenalt' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2416_evtcdbenalt' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2416_evtcdbenalt' %}">
                                         S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s2420evtCdBenTerm %}
                                     <li {% if tab == 's2420_evtcdbenterm' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s2420_evtcdbenterm' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s2420_evtcdbenterm' %}">
                                         S-2420 - Cadastro de Benefícios - Entes Públicos - Término</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s3000evtExclusao %}
                                     <li {% if tab == 's3000_evtexclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s3000_evtexclusao' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s3000_evtexclusao' %}">
                                         S-3000 - Exclusão de eventos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s5001evtBasesTrab %}
                                     <li {% if tab == 's5001_evtbasestrab' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s5001_evtbasestrab' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s5001_evtbasestrab' %}">
                                         S-5001 - Informações das contribuições sociais por trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s5002evtIrrfBenef %}
                                     <li {% if tab == 's5002_evtirrfbenef' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s5002_evtirrfbenef' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s5002_evtirrfbenef' %}">
                                         S-5002 - Imposto de Renda Retido na Fonte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s5003evtBasesFGTS %}
                                     <li {% if tab == 's5003_evtbasesfgts' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s5003_evtbasesfgts' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s5003_evtbasesfgts' %}">
                                         S-5003 - Informações do FGTS por Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s5011evtCS %}
                                     <li {% if tab == 's5011_evtcs' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s5011_evtcs' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s5011_evtcs' %}">
                                         S-5011 - Informações das contribuições sociais consolidadas por contribuinte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s5012evtIrrf %}
                                     <li {% if tab == 's5012_evtirrf' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s5012_evtirrf' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s5012_evtirrf' %}">
                                         S-5012 - Informações do IRRF consolidadas por contribuinte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.esocial.can_see_s5013evtFGTS %}
                                     <li {% if tab == 's5013_evtfgts' %} class="active"{% endif %} >
-                                        <a href="{% url 'retornos_eventos_salvar' pk=pk tab='s5013_evtfgts' %}">
+                                        <a href="{% url 'retornos_eventos_salvar_tab' pk=pk tab='s5013_evtfgts' %}">
                                         S-5013 - Informações do FGTS consolidadas por contribuinte</a>
                                     </li>
                                 {% endif %}

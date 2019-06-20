@@ -86,7 +86,7 @@
                     
                         {% if perms.esocial.change_s2306evtTSVAltContr or perms.esocial.add_s2306evtTSVAltContr %}
                     
-                        <a href="{% url 's2306_evttsvaltcontr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2306_evttsvaltcontr_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2306evtTSVAltContr %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

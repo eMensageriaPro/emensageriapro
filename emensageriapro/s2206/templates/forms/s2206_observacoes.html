@@ -15,7 +15,7 @@
     <label id="s2206_observacoes__s2206_evtaltcontratual__label">Observações do contrato de trabalho*</label>
     {% if not for_print %}
       {% if s2206_observacoes_form.s2206_evtaltcontratual.value %}
-        <a id="s2206_observacoes__s2206_evtaltcontratual__div_acessar" href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_observacoes_form.s2206_evtaltcontratual.value tab='master' %}">
+        <a id="s2206_observacoes__s2206_evtaltcontratual__div_acessar" href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_observacoes_form.s2206_evtaltcontratual.value %}">
           [Acessar]
         </a>
       {% endif %} 

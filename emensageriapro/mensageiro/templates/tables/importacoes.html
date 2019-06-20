@@ -4,7 +4,7 @@
         <tr>
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
-            <th width="120px">Ações</th>
+            <th width="80px">Ações</th>
             {% endif %}
         </tr>
     </thead>
@@ -20,7 +20,7 @@
                     
                         {% if perms.mensageiro.change_Importacoes or perms.mensageiro.add_Importacoes %}
                     
-                        <a href="{% url 'importacoes_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'importacoes_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_Importacoes %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

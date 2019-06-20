@@ -114,9 +114,13 @@ urlpatterns = [
         s2205_documentos_listar_views.listar, 
         name='s2205_documentos'),
 
-    url(r'^s2205-documentos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-documentos/salvar/(?P<pk>[0-9]+)/$', 
         s2205_documentos_salvar_views.salvar, 
         name='s2205_documentos_salvar'),
+
+    url(r'^s2205-documentos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_documentos_salvar_views.salvar, 
+        name='s2205_documentos_salvar_tab'),
         
     url(r'^s2205-documentos/cadastrar/$', 
         s2205_documentos_salvar_views.salvar, 
@@ -144,9 +148,13 @@ urlpatterns = [
         s2205_ctps_listar_views.listar, 
         name='s2205_ctps'),
 
-    url(r'^s2205-ctps/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-ctps/salvar/(?P<pk>[0-9]+)/$', 
         s2205_ctps_salvar_views.salvar, 
         name='s2205_ctps_salvar'),
+
+    url(r'^s2205-ctps/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_ctps_salvar_views.salvar, 
+        name='s2205_ctps_salvar_tab'),
         
     url(r'^s2205-ctps/cadastrar/$', 
         s2205_ctps_salvar_views.salvar, 
@@ -174,9 +182,13 @@ urlpatterns = [
         s2205_ric_listar_views.listar, 
         name='s2205_ric'),
 
-    url(r'^s2205-ric/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-ric/salvar/(?P<pk>[0-9]+)/$', 
         s2205_ric_salvar_views.salvar, 
         name='s2205_ric_salvar'),
+
+    url(r'^s2205-ric/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_ric_salvar_views.salvar, 
+        name='s2205_ric_salvar_tab'),
         
     url(r'^s2205-ric/cadastrar/$', 
         s2205_ric_salvar_views.salvar, 
@@ -204,9 +216,13 @@ urlpatterns = [
         s2205_rg_listar_views.listar, 
         name='s2205_rg'),
 
-    url(r'^s2205-rg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-rg/salvar/(?P<pk>[0-9]+)/$', 
         s2205_rg_salvar_views.salvar, 
         name='s2205_rg_salvar'),
+
+    url(r'^s2205-rg/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_rg_salvar_views.salvar, 
+        name='s2205_rg_salvar_tab'),
         
     url(r'^s2205-rg/cadastrar/$', 
         s2205_rg_salvar_views.salvar, 
@@ -234,9 +250,13 @@ urlpatterns = [
         s2205_rne_listar_views.listar, 
         name='s2205_rne'),
 
-    url(r'^s2205-rne/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-rne/salvar/(?P<pk>[0-9]+)/$', 
         s2205_rne_salvar_views.salvar, 
         name='s2205_rne_salvar'),
+
+    url(r'^s2205-rne/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_rne_salvar_views.salvar, 
+        name='s2205_rne_salvar_tab'),
         
     url(r'^s2205-rne/cadastrar/$', 
         s2205_rne_salvar_views.salvar, 
@@ -264,9 +284,13 @@ urlpatterns = [
         s2205_oc_listar_views.listar, 
         name='s2205_oc'),
 
-    url(r'^s2205-oc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-oc/salvar/(?P<pk>[0-9]+)/$', 
         s2205_oc_salvar_views.salvar, 
         name='s2205_oc_salvar'),
+
+    url(r'^s2205-oc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_oc_salvar_views.salvar, 
+        name='s2205_oc_salvar_tab'),
         
     url(r'^s2205-oc/cadastrar/$', 
         s2205_oc_salvar_views.salvar, 
@@ -294,9 +318,13 @@ urlpatterns = [
         s2205_cnh_listar_views.listar, 
         name='s2205_cnh'),
 
-    url(r'^s2205-cnh/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-cnh/salvar/(?P<pk>[0-9]+)/$', 
         s2205_cnh_salvar_views.salvar, 
         name='s2205_cnh_salvar'),
+
+    url(r'^s2205-cnh/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_cnh_salvar_views.salvar, 
+        name='s2205_cnh_salvar_tab'),
         
     url(r'^s2205-cnh/cadastrar/$', 
         s2205_cnh_salvar_views.salvar, 
@@ -324,9 +352,13 @@ urlpatterns = [
         s2205_brasil_listar_views.listar, 
         name='s2205_brasil'),
 
-    url(r'^s2205-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-brasil/salvar/(?P<pk>[0-9]+)/$', 
         s2205_brasil_salvar_views.salvar, 
         name='s2205_brasil_salvar'),
+
+    url(r'^s2205-brasil/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_brasil_salvar_views.salvar, 
+        name='s2205_brasil_salvar_tab'),
         
     url(r'^s2205-brasil/cadastrar/$', 
         s2205_brasil_salvar_views.salvar, 
@@ -354,9 +386,13 @@ urlpatterns = [
         s2205_exterior_listar_views.listar, 
         name='s2205_exterior'),
 
-    url(r'^s2205-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-exterior/salvar/(?P<pk>[0-9]+)/$', 
         s2205_exterior_salvar_views.salvar, 
         name='s2205_exterior_salvar'),
+
+    url(r'^s2205-exterior/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_exterior_salvar_views.salvar, 
+        name='s2205_exterior_salvar_tab'),
         
     url(r'^s2205-exterior/cadastrar/$', 
         s2205_exterior_salvar_views.salvar, 
@@ -384,9 +420,13 @@ urlpatterns = [
         s2205_trabestrangeiro_listar_views.listar, 
         name='s2205_trabestrangeiro'),
 
-    url(r'^s2205-trabestrangeiro/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-trabestrangeiro/salvar/(?P<pk>[0-9]+)/$', 
         s2205_trabestrangeiro_salvar_views.salvar, 
         name='s2205_trabestrangeiro_salvar'),
+
+    url(r'^s2205-trabestrangeiro/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_trabestrangeiro_salvar_views.salvar, 
+        name='s2205_trabestrangeiro_salvar_tab'),
         
     url(r'^s2205-trabestrangeiro/cadastrar/$', 
         s2205_trabestrangeiro_salvar_views.salvar, 
@@ -414,9 +454,13 @@ urlpatterns = [
         s2205_infodeficiencia_listar_views.listar, 
         name='s2205_infodeficiencia'),
 
-    url(r'^s2205-infodeficiencia/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-infodeficiencia/salvar/(?P<pk>[0-9]+)/$', 
         s2205_infodeficiencia_salvar_views.salvar, 
         name='s2205_infodeficiencia_salvar'),
+
+    url(r'^s2205-infodeficiencia/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_infodeficiencia_salvar_views.salvar, 
+        name='s2205_infodeficiencia_salvar_tab'),
         
     url(r'^s2205-infodeficiencia/cadastrar/$', 
         s2205_infodeficiencia_salvar_views.salvar, 
@@ -444,9 +488,13 @@ urlpatterns = [
         s2205_dependente_listar_views.listar, 
         name='s2205_dependente'),
 
-    url(r'^s2205-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-dependente/salvar/(?P<pk>[0-9]+)/$', 
         s2205_dependente_salvar_views.salvar, 
         name='s2205_dependente_salvar'),
+
+    url(r'^s2205-dependente/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_dependente_salvar_views.salvar, 
+        name='s2205_dependente_salvar_tab'),
         
     url(r'^s2205-dependente/cadastrar/$', 
         s2205_dependente_salvar_views.salvar, 
@@ -474,9 +522,13 @@ urlpatterns = [
         s2205_aposentadoria_listar_views.listar, 
         name='s2205_aposentadoria'),
 
-    url(r'^s2205-aposentadoria/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-aposentadoria/salvar/(?P<pk>[0-9]+)/$', 
         s2205_aposentadoria_salvar_views.salvar, 
         name='s2205_aposentadoria_salvar'),
+
+    url(r'^s2205-aposentadoria/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_aposentadoria_salvar_views.salvar, 
+        name='s2205_aposentadoria_salvar_tab'),
         
     url(r'^s2205-aposentadoria/cadastrar/$', 
         s2205_aposentadoria_salvar_views.salvar, 
@@ -504,9 +556,13 @@ urlpatterns = [
         s2205_contato_listar_views.listar, 
         name='s2205_contato'),
 
-    url(r'^s2205-contato/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2205-contato/salvar/(?P<pk>[0-9]+)/$', 
         s2205_contato_salvar_views.salvar, 
         name='s2205_contato_salvar'),
+
+    url(r'^s2205-contato/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2205_contato_salvar_views.salvar, 
+        name='s2205_contato_salvar_tab'),
         
     url(r'^s2205-contato/cadastrar/$', 
         s2205_contato_salvar_views.salvar, 

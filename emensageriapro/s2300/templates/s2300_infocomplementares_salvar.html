@@ -54,49 +54,49 @@
                     {% if pk %}
                         {% if perms.s2300.can_see_s2300infoComplementares %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='master' %}">
                                 Informações complementares sobre o declarante</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2300.can_see_s2300cargoFuncao %}
                                 <li {% if tab == 's2300_cargofuncao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_cargofuncao' %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='s2300_cargofuncao' %}">
                                     Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2300.can_see_s2300remuneracao %}
                                 <li {% if tab == 's2300_remuneracao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_remuneracao' %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='s2300_remuneracao' %}">
                                     Informações da remuneração e periodicidade de pagamento</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2300.can_see_s2300fgts %}
                                 <li {% if tab == 's2300_fgts' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_fgts' %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='s2300_fgts' %}">
                                     Informações relativas ao FGTS.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2300.can_see_s2300infoDirigenteSindical %}
                                 <li {% if tab == 's2300_infodirigentesindical' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_infodirigentesindical' %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='s2300_infodirigentesindical' %}">
                                     Empresa de Origem do Dirigente Sindical</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2300.can_see_s2300infoTrabCedido %}
                                 <li {% if tab == 's2300_infotrabcedido' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_infotrabcedido' %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='s2300_infotrabcedido' %}">
                                     Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2300.can_see_s2300infoEstagiario %}
                                 <li {% if tab == 's2300_infoestagiario' %} class="active"{% endif %} >
-                                    <a href="{% url 's2300_infocomplementares_salvar' pk=pk tab='s2300_infoestagiario' %}">
+                                    <a href="{% url 's2300_infocomplementares_salvar_tab' pk=pk tab='s2300_infoestagiario' %}">
                                     Informações relativas ao estagiário</a>
                                 </li>
                             {% endif %}

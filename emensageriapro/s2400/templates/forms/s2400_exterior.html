@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2400_exterior__s2400_endereco__label">Preenchido em caso de trabalhador residente no exterior.*</label>
     {% if not for_print %}{% if s2400_exterior_form.s2400_endereco.value %}
-        <a href="{% url 's2400_endereco_salvar' pk=s2400_exterior_form.s2400_endereco.value tab='master' %}">
+        <a href="{% url 's2400_endereco_salvar' pk=s2400_exterior_form.s2400_endereco.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -38,7 +38,7 @@
                     
                         {% if perms.s5012.change_s5012infoCRContrib or perms.s5012.add_s5012infoCRContrib %}
                     
-                        <a href="{% url 's5012_infocrcontrib_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5012_infocrcontrib_salvar' pk=a.id %}">
                             {% if perms.s5012.change_s5012infoCRContrib %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

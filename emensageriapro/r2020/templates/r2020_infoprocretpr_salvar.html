@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r2020.can_see_r2020infoProcRetPr %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2020_infoprocretpr_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2020_infoprocretpr_salvar_tab' pk=pk tab='master' %}">
                                 Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                             </li>
                         {% endif %}

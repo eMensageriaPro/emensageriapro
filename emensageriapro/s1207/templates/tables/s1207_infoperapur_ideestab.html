@@ -38,7 +38,7 @@
                     
                         {% if perms.s1207.change_s1207infoPerApurideEstab or perms.s1207.add_s1207infoPerApurideEstab %}
                     
-                        <a href="{% url 's1207_infoperapur_ideestab_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1207_infoperapur_ideestab_salvar' pk=a.id %}">
                             {% if perms.s1207.change_s1207infoPerApurideEstab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

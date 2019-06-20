@@ -62,9 +62,13 @@ urlpatterns = [
         s2245_ideprofresp_listar_views.listar, 
         name='s2245_ideprofresp'),
 
-    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/$', 
         s2245_ideprofresp_salvar_views.salvar, 
         name='s2245_ideprofresp_salvar'),
+
+    url(r'^s2245-ideprofresp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2245_ideprofresp_salvar_views.salvar, 
+        name='s2245_ideprofresp_salvar_tab'),
         
     url(r'^s2245-ideprofresp/cadastrar/$', 
         s2245_ideprofresp_salvar_views.salvar, 

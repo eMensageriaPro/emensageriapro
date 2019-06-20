@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2399.can_see_s2399detOper %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2399_detoper_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2399_detoper_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2399.can_see_s2399detPlano %}
                                 <li {% if tab == 's2399_detplano' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_detoper_salvar' pk=pk tab='s2399_detplano' %}">
+                                    <a href="{% url 's2399_detoper_salvar_tab' pk=pk tab='s2399_detplano' %}">
                                     Informações do dependente do plano privado de saúde.</a>
                                 </li>
                             {% endif %}

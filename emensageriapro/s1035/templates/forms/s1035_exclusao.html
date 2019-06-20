@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1035_exclusao__s1035_evttabcarreira__label">Exclusão das informações*</label>
     {% if not for_print %}{% if s1035_exclusao_form.s1035_evttabcarreira.value %}
-        <a href="{% url 's1035_evttabcarreira_salvar' pk=s1035_exclusao_form.s1035_evttabcarreira.value tab='master' %}">
+        <a href="{% url 's1035_evttabcarreira_salvar' pk=s1035_exclusao_form.s1035_evttabcarreira.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

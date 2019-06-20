@@ -15,7 +15,7 @@
     <label id="s1202_infoperapur_ideestab__s1202_infoperapur__label">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas*</label>
     {% if not for_print %}
       {% if s1202_infoperapur_ideestab_form.s1202_infoperapur.value %}
-        <a id="s1202_infoperapur_ideestab__s1202_infoperapur__div_acessar" href="{% url 's1202_infoperapur_salvar' pk=s1202_infoperapur_ideestab_form.s1202_infoperapur.value tab='master' %}">
+        <a id="s1202_infoperapur_ideestab__s1202_infoperapur__div_acessar" href="{% url 's1202_infoperapur_salvar' pk=s1202_infoperapur_ideestab_form.s1202_infoperapur.value %}">
           [Acessar]
         </a>
       {% endif %} 

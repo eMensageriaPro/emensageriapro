@@ -74,9 +74,13 @@ urlpatterns = [
         s1260_tpcomerc_listar_views.listar, 
         name='s1260_tpcomerc'),
 
-    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/$', 
         s1260_tpcomerc_salvar_views.salvar, 
         name='s1260_tpcomerc_salvar'),
+
+    url(r'^s1260-tpcomerc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1260_tpcomerc_salvar_views.salvar, 
+        name='s1260_tpcomerc_salvar_tab'),
         
     url(r'^s1260-tpcomerc/cadastrar/$', 
         s1260_tpcomerc_salvar_views.salvar, 
@@ -104,9 +108,13 @@ urlpatterns = [
         s1260_ideadquir_listar_views.listar, 
         name='s1260_ideadquir'),
 
-    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/$', 
         s1260_ideadquir_salvar_views.salvar, 
         name='s1260_ideadquir_salvar'),
+
+    url(r'^s1260-ideadquir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1260_ideadquir_salvar_views.salvar, 
+        name='s1260_ideadquir_salvar_tab'),
         
     url(r'^s1260-ideadquir/cadastrar/$', 
         s1260_ideadquir_salvar_views.salvar, 
@@ -134,9 +142,13 @@ urlpatterns = [
         s1260_nfs_listar_views.listar, 
         name='s1260_nfs'),
 
-    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/$', 
         s1260_nfs_salvar_views.salvar, 
         name='s1260_nfs_salvar'),
+
+    url(r'^s1260-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1260_nfs_salvar_views.salvar, 
+        name='s1260_nfs_salvar_tab'),
         
     url(r'^s1260-nfs/cadastrar/$', 
         s1260_nfs_salvar_views.salvar, 
@@ -164,9 +176,13 @@ urlpatterns = [
         s1260_infoprocjud_listar_views.listar, 
         name='s1260_infoprocjud'),
 
-    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/$', 
         s1260_infoprocjud_salvar_views.salvar, 
         name='s1260_infoprocjud_salvar'),
+
+    url(r'^s1260-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1260_infoprocjud_salvar_views.salvar, 
+        name='s1260_infoprocjud_salvar_tab'),
         
     url(r'^s1260-infoprocjud/cadastrar/$', 
         s1260_infoprocjud_salvar_views.salvar, 

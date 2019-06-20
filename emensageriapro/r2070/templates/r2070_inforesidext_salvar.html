@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r2070.can_see_r2070infoResidExt %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2070_inforesidext_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2070_inforesidext_salvar_tab' pk=pk tab='master' %}">
                                 Informações complementares de beneficiário residente ou domiciliado no exterior</a>
                             </li>
                         {% endif %}

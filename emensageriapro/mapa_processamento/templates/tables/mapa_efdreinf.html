@@ -20,7 +20,7 @@
                     
                         {% if perms.mapa_processamento.change_MapaEfdreinf or perms.mapa_processamento.add_MapaEfdreinf %}
                     
-                        <a href="{% url 'mapa_efdreinf_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'mapa_efdreinf_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_MapaEfdreinf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

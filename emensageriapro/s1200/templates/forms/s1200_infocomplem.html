@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1200_infocomplem__s1200_evtremun__label">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'*</label>
     {% if not for_print %}{% if s1200_infocomplem_form.s1200_evtremun.value %}
-        <a href="{% url 's1200_evtremun_salvar' pk=s1200_infocomplem_form.s1200_evtremun.value tab='master' %}">
+        <a href="{% url 's1200_evtremun_salvar' pk=s1200_infocomplem_form.s1200_evtremun.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

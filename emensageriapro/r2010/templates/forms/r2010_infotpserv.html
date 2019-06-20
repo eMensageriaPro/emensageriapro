@@ -15,7 +15,7 @@
     <label id="r2010_infotpserv__r2010_nfs__label">Informações sobre os tipos de Serviços constantes da Nota Fiscal*</label>
     {% if not for_print %}
       {% if r2010_infotpserv_form.r2010_nfs.value %}
-        <a id="r2010_infotpserv__r2010_nfs__div_acessar" href="{% url 'r2010_nfs_salvar' pk=r2010_infotpserv_form.r2010_nfs.value tab='master' %}">
+        <a id="r2010_infotpserv__r2010_nfs__div_acessar" href="{% url 'r2010_nfs_salvar' pk=r2010_infotpserv_form.r2010_nfs.value %}">
           [Acessar]
         </a>
       {% endif %} 

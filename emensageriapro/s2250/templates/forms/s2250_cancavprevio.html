@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2250_cancavprevio__s2250_evtavprevio__label">Cancelamento do Aviso Prévio*</label>
     {% if not for_print %}{% if s2250_cancavprevio_form.s2250_evtavprevio.value %}
-        <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_cancavprevio_form.s2250_evtavprevio.value tab='master' %}">
+        <a href="{% url 's2250_evtavprevio_salvar' pk=s2250_cancavprevio_form.s2250_evtavprevio.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

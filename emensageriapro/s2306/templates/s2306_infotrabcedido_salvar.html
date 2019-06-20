@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2306.can_see_s2306infoTrabCedido %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2306_infotrabcedido_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2306_infotrabcedido_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</a>
                             </li>
                         {% endif %}

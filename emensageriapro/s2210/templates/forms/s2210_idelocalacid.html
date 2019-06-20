@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2210_idelocalacid__s2210_evtcat__label">Identificação do local onde ocorreu o acidente*</label>
     {% if not for_print %}{% if s2210_idelocalacid_form.s2210_evtcat.value %}
-        <a href="{% url 's2210_evtcat_salvar' pk=s2210_idelocalacid_form.s2210_evtcat.value tab='master' %}">
+        <a href="{% url 's2210_evtcat_salvar' pk=s2210_idelocalacid_form.s2210_evtcat.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -80,7 +80,7 @@
   
   {% if not output %}
     {% if auditoria_form.operador.value %}
-    <a id="auditoria__operador__div_acessar" href="{% url 'usuarios_salvar' pk=auditoria_form.operador.value tab='master' %}">
+    <a id="auditoria__operador__div_acessar" href="{% url 'usuarios_salvar' pk=auditoria_form.operador.value %}">
      [Acessar]
     </a>
     {% endif %} 

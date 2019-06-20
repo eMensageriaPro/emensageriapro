@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r9011evtTotalContrib %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='master' %}">
                                 R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária</a>
                             </li>
                         {% endif %}
@@ -62,182 +62,182 @@
                             
                                 {% if perms.efdreinf.can_see_r1000evtInfoContri %}
                                     <li {% if tab == 'r1000_evtinfocontri' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r1000_evtinfocontri' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r1000_evtinfocontri' %}">
                                         R-1000 - Informações do Contribuinte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r1070evtTabProcesso %}
                                     <li {% if tab == 'r1070_evttabprocesso' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r1070_evttabprocesso' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r1070_evttabprocesso' %}">
                                         R-1070 - Tabela de Processos Administrativos/Judiciais</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2010evtServTom %}
                                     <li {% if tab == 'r2010_evtservtom' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2010_evtservtom' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2010_evtservtom' %}">
                                         R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2020evtServPrest %}
                                     <li {% if tab == 'r2020_evtservprest' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2020_evtservprest' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2020_evtservprest' %}">
                                         R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2030evtAssocDespRec %}
                                     <li {% if tab == 'r2030_evtassocdesprec' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2030_evtassocdesprec' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2030_evtassocdesprec' %}">
                                         R-2030 - Recursos Recebidos por Associação Desportiva</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2040evtAssocDespRep %}
                                     <li {% if tab == 'r2040_evtassocdesprep' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2040_evtassocdesprep' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2040_evtassocdesprep' %}">
                                         R-2040 - Recursos Repassados para Associação Desportiva</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2050evtComProd %}
                                     <li {% if tab == 'r2050_evtcomprod' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2050_evtcomprod' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2050_evtcomprod' %}">
                                         R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2060evtCPRB %}
                                     <li {% if tab == 'r2060_evtcprb' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2060_evtcprb' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2060_evtcprb' %}">
                                         R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2070evtPgtosDivs %}
                                     <li {% if tab == 'r2070_evtpgtosdivs' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2070_evtpgtosdivs' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2070_evtpgtosdivs' %}">
                                         R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2098evtReabreEvPer %}
                                     <li {% if tab == 'r2098_evtreabreevper' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2098_evtreabreevper' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2098_evtreabreevper' %}">
                                         R-2098 - Reabertura dos Eventos Periódicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r2099evtFechaEvPer %}
                                     <li {% if tab == 'r2099_evtfechaevper' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r2099_evtfechaevper' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r2099_evtfechaevper' %}">
                                         R-2099 - Fechamento dos Eventos Periódicos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r3010evtEspDesportivo %}
                                     <li {% if tab == 'r3010_evtespdesportivo' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r3010_evtespdesportivo' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r3010_evtespdesportivo' %}">
                                         R-3010 - Receita de Espetáculo Desportivo</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r4010evtRetPF %}
                                     <li {% if tab == 'r4010_evtretpf' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r4010_evtretpf' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r4010_evtretpf' %}">
                                         R-4010 - Retenções na Fonte - Pessoa Física</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r4020evtRetPJ %}
                                     <li {% if tab == 'r4020_evtretpj' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r4020_evtretpj' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r4020_evtretpj' %}">
                                         R-4020 - Retenções na Fonte - Pessoa Jurídica</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r4040evtBenefNId %}
                                     <li {% if tab == 'r4040_evtbenefnid' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r4040_evtbenefnid' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r4040_evtbenefnid' %}">
                                         R-4040 - Retenções na Fonte - Beneficiários não identificados</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r4098evtReab %}
                                     <li {% if tab == 'r4098_evtreab' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r4098_evtreab' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r4098_evtreab' %}">
                                         R-4098 - Reabertura dos Eventos Periódicos Série R-4000</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r4099evtFech %}
                                     <li {% if tab == 'r4099_evtfech' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r4099_evtfech' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r4099_evtfech' %}">
                                         R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r5001evtTotal %}
                                     <li {% if tab == 'r5001_evttotal' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r5001_evttotal' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r5001_evttotal' %}">
                                         R-5001 - Informações de bases e tributos por evento</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r5011evtTotalContrib %}
                                     <li {% if tab == 'r5011_evttotalcontrib' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r5011_evttotalcontrib' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r5011_evttotalcontrib' %}">
                                         R-5011 - Informações de bases e tributos consolidadas por período de apuração</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r9000evtExclusao %}
                                     <li {% if tab == 'r9000_evtexclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9000_evtexclusao' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9000_evtexclusao' %}">
                                         R-9000 - Exclusão de Eventos</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r9001evtTotal %}
                                     <li {% if tab == 'r9001_evttotal' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9001_evttotal' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9001_evttotal' %}">
                                         R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r9002evtRet %}
                                     <li {% if tab == 'r9002_evtret' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9002_evtret' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9002_evtret' %}">
                                         R-9002 - Informações de bases e tributos por evento - Retenções na fonte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r9011evtTotalContrib %}
                                     <li {% if tab == 'r9011_evttotalcontrib' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9011_evttotalcontrib' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9011_evttotalcontrib' %}">
                                         R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.efdreinf.can_see_r9012evtRetCons %}
                                     <li {% if tab == 'r9012_evtretcons' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9012_evtretcons' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9012_evtretcons' %}">
                                         R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r9011.can_see_r9011regOcorrs %}
                                     <li {% if tab == 'r9011_regocorrs' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9011_regocorrs' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9011_regocorrs' %}">
                                         Informações de ocorrências registradas</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r9011.can_see_r9011infoTotalContrib %}
                                     <li {% if tab == 'r9011_infototalcontrib' %} class="active"{% endif %} >
-                                        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=pk tab='r9011_infototalcontrib' %}">
+                                        <a href="{% url 'r9011_evttotalcontrib_salvar_tab' pk=pk tab='r9011_infototalcontrib' %}">
                                         Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</a>
                                     </li>
                                 {% endif %}

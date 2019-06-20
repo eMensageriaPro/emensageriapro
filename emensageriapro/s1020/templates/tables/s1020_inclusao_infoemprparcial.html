@@ -50,7 +50,7 @@
                     
                         {% if perms.s1020.change_s1020inclusaoinfoEmprParcial or perms.s1020.add_s1020inclusaoinfoEmprParcial %}
                     
-                        <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1020_inclusao_infoemprparcial_salvar' pk=a.id %}">
                             {% if perms.s1020.change_s1020inclusaoinfoEmprParcial %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

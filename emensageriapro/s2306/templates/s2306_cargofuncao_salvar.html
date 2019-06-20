@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2306.can_see_s2306cargoFuncao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2306_cargofuncao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2306_cargofuncao_salvar_tab' pk=pk tab='master' %}">
                                 Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</a>
                             </li>
                         {% endif %}

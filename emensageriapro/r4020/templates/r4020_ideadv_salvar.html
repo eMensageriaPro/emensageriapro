@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4020.can_see_r4020ideAdv %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4020_ideadv_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4020_ideadv_salvar_tab' pk=pk tab='master' %}">
                                 Identificação do advogado</a>
                             </li>
                         {% endif %}

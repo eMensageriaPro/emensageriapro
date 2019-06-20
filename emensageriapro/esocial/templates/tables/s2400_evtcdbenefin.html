@@ -116,7 +116,7 @@
                     
                         {% if perms.esocial.change_s2400evtCdBenefIn or perms.esocial.add_s2400evtCdBenefIn %}
                     
-                        <a href="{% url 's2400_evtcdbenefin_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2400_evtcdbenefin_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2400evtCdBenefIn %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

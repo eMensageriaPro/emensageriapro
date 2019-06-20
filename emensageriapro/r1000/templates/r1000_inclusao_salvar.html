@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r1000.can_see_r1000inclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r1000_inclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r1000_inclusao_salvar_tab' pk=pk tab='master' %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r1000.can_see_r1000inclusaosoftHouse %}
                                 <li {% if tab == 'r1000_inclusao_softhouse' %} class="active"{% endif %} >
-                                    <a href="{% url 'r1000_inclusao_salvar' pk=pk tab='r1000_inclusao_softhouse' %}">
+                                    <a href="{% url 'r1000_inclusao_salvar_tab' pk=pk tab='r1000_inclusao_softhouse' %}">
                                     Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r1000.can_see_r1000inclusaoinfoEFR %}
                                 <li {% if tab == 'r1000_inclusao_infoefr' %} class="active"{% endif %} >
-                                    <a href="{% url 'r1000_inclusao_salvar' pk=pk tab='r1000_inclusao_infoefr' %}">
+                                    <a href="{% url 'r1000_inclusao_salvar_tab' pk=pk tab='r1000_inclusao_infoefr' %}">
                                     Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</a>
                                 </li>
                             {% endif %}

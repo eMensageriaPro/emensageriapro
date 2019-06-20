@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1070.can_see_s1070inclusaoinfoSusp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1070_inclusao_infosusp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1070_inclusao_infosusp_salvar_tab' pk=pk tab='master' %}">
                                 Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.</a>
                             </li>
                         {% endif %}

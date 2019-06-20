@@ -86,7 +86,7 @@
                     
                         {% if perms.esocial.change_s2240evtExpRisco or perms.esocial.add_s2240evtExpRisco %}
                     
-                        <a href="{% url 's2240_evtexprisco_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2240_evtexprisco_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2240evtExpRisco %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

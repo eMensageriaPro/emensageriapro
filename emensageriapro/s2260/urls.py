@@ -62,9 +62,13 @@ urlpatterns = [
         s2260_localtrabinterm_listar_views.listar, 
         name='s2260_localtrabinterm'),
 
-    url(r'^s2260-localtrabinterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2260-localtrabinterm/salvar/(?P<pk>[0-9]+)/$', 
         s2260_localtrabinterm_salvar_views.salvar, 
         name='s2260_localtrabinterm_salvar'),
+
+    url(r'^s2260-localtrabinterm/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2260_localtrabinterm_salvar_views.salvar, 
+        name='s2260_localtrabinterm_salvar_tab'),
         
     url(r'^s2260-localtrabinterm/cadastrar/$', 
         s2260_localtrabinterm_salvar_views.salvar, 

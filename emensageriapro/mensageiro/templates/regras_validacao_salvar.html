@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_RegrasDeValidacao %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'regras_validacao_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'regras_validacao_salvar_tab' pk=pk tab='master' %}">
                             Regras de Validação</a>
                         </li>
                         {% endif %}

@@ -38,7 +38,7 @@
                     
                         {% if perms.r4020.change_r4020despProcJud or perms.r4020.add_r4020despProcJud %}
                     
-                        <a href="{% url 'r4020_despprocjud_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4020_despprocjud_salvar' pk=a.id %}">
                             {% if perms.r4020.change_r4020despProcJud %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

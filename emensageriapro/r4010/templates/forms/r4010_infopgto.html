@@ -15,7 +15,7 @@
     <label id="r4010_infopgto__r4010_idepgto__label">Informações do Pagamento*</label>
     {% if not for_print %}
       {% if r4010_infopgto_form.r4010_idepgto.value %}
-        <a id="r4010_infopgto__r4010_idepgto__div_acessar" href="{% url 'r4010_idepgto_salvar' pk=r4010_infopgto_form.r4010_idepgto.value tab='master' %}">
+        <a id="r4010_infopgto__r4010_idepgto__div_acessar" href="{% url 'r4010_idepgto_salvar' pk=r4010_infopgto_form.r4010_idepgto.value %}">
           [Acessar]
         </a>
       {% endif %} 

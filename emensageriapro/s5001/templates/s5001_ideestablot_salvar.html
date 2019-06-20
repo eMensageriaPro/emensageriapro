@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s5001.can_see_s5001ideEstabLot %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5001_ideestablot_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5001_ideestablot_salvar_tab' pk=pk tab='master' %}">
                                 Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5001.can_see_s5001infoCategIncid %}
                                 <li {% if tab == 's5001_infocategincid' %} class="active"{% endif %} >
-                                    <a href="{% url 's5001_ideestablot_salvar' pk=pk tab='s5001_infocategincid' %}">
+                                    <a href="{% url 's5001_ideestablot_salvar_tab' pk=pk tab='s5001_infocategincid' %}">
                                     Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.</a>
                                 </li>
                             {% endif %}

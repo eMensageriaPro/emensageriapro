@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2416evtCdBenAlt %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2416_evtcdbenalt_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='master' %}">
                                 S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             
                                 {% if perms.s2416.can_see_s2416infoPenMorte %}
                                     <li {% if tab == 's2416_infopenmorte' %} class="active"{% endif %} >
-                                        <a href="{% url 's2416_evtcdbenalt_salvar' pk=pk tab='s2416_infopenmorte' %}">
+                                        <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='s2416_infopenmorte' %}">
                                         Informações relativas a pensão por morte</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2416.can_see_s2416homologTC %}
                                     <li {% if tab == 's2416_homologtc' %} class="active"{% endif %} >
-                                        <a href="{% url 's2416_evtcdbenalt_salvar' pk=pk tab='s2416_homologtc' %}">
+                                        <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='s2416_homologtc' %}">
                                         Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2416.can_see_s2416suspensao %}
                                     <li {% if tab == 's2416_suspensao' %} class="active"{% endif %} >
-                                        <a href="{% url 's2416_evtcdbenalt_salvar' pk=pk tab='s2416_suspensao' %}">
+                                        <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='s2416_suspensao' %}">
                                         Informações referentes à suspensão do benefício</a>
                                     </li>
                                 {% endif %}

@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_RetornosEventosHorarios %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'retornos_eventos_horarios_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'retornos_eventos_horarios_salvar_tab' pk=pk tab='master' %}">
                             Retornos dos Eventos - Horários</a>
                         </li>
                         {% endif %}

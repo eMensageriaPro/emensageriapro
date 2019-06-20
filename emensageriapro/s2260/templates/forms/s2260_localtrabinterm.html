@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2260_localtrabinterm__s2260_evtconvinterm__label">Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206*</label>
     {% if not for_print %}{% if s2260_localtrabinterm_form.s2260_evtconvinterm.value %}
-        <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_localtrabinterm_form.s2260_evtconvinterm.value tab='master' %}">
+        <a href="{% url 's2260_evtconvinterm_salvar' pk=s2260_localtrabinterm_form.s2260_evtconvinterm.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

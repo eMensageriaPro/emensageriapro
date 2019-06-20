@@ -20,7 +20,7 @@
   
   {% if not output %}
     {% if importacao_arquivos_eventos_form.importacao_arquivos.value %}
-    <a id="importacao_arquivos_eventos__importacao_arquivos__div_acessar" href="{% url 'importacao_arquivos_salvar' pk=importacao_arquivos_eventos_form.importacao_arquivos.value tab='master' %}">
+    <a id="importacao_arquivos_eventos__importacao_arquivos__div_acessar" href="{% url 'importacao_arquivos_salvar' pk=importacao_arquivos_eventos_form.importacao_arquivos.value %}">
      [Acessar]
     </a>
     {% endif %} 

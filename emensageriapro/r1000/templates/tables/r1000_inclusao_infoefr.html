@@ -32,7 +32,7 @@
                     
                         {% if perms.r1000.change_r1000inclusaoinfoEFR or perms.r1000.add_r1000inclusaoinfoEFR %}
                     
-                        <a href="{% url 'r1000_inclusao_infoefr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r1000_inclusao_infoefr_salvar' pk=a.id %}">
                             {% if perms.r1000.change_r1000inclusaoinfoEFR %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

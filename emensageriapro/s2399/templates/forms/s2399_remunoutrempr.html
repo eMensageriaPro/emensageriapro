@@ -15,7 +15,7 @@
     <label id="s2399_remunoutrempr__s2399_infomv__label">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual*</label>
     {% if not for_print %}
       {% if s2399_remunoutrempr_form.s2399_infomv.value %}
-        <a id="s2399_remunoutrempr__s2399_infomv__div_acessar" href="{% url 's2399_infomv_salvar' pk=s2399_remunoutrempr_form.s2399_infomv.value tab='master' %}">
+        <a id="s2399_remunoutrempr__s2399_infomv__div_acessar" href="{% url 's2399_infomv_salvar' pk=s2399_remunoutrempr_form.s2399_infomv.value %}">
           [Acessar]
         </a>
       {% endif %} 

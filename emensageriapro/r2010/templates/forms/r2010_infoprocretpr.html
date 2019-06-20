@@ -15,7 +15,7 @@
     <label id="r2010_infoprocretpr__r2010_evtservtom__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
     {% if not for_print %}
       {% if r2010_infoprocretpr_form.r2010_evtservtom.value %}
-        <a id="r2010_infoprocretpr__r2010_evtservtom__div_acessar" href="{% url 'r2010_evtservtom_salvar' pk=r2010_infoprocretpr_form.r2010_evtservtom.value tab='master' %}">
+        <a id="r2010_infoprocretpr__r2010_evtservtom__div_acessar" href="{% url 'r2010_evtservtom_salvar' pk=r2010_infoprocretpr_form.r2010_evtservtom.value %}">
           [Acessar]
         </a>
       {% endif %} 

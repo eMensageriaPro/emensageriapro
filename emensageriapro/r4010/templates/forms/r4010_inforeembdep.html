@@ -15,7 +15,7 @@
     <label id="r4010_inforeembdep__r4010_infodependpl__label">Informação de reembolso do dependente do plano de saúde coletivo empresarial*</label>
     {% if not for_print %}
       {% if r4010_inforeembdep_form.r4010_infodependpl.value %}
-        <a id="r4010_inforeembdep__r4010_infodependpl__div_acessar" href="{% url 'r4010_infodependpl_salvar' pk=r4010_inforeembdep_form.r4010_infodependpl.value tab='master' %}">
+        <a id="r4010_inforeembdep__r4010_infodependpl__div_acessar" href="{% url 'r4010_infodependpl_salvar' pk=r4010_inforeembdep_form.r4010_infodependpl.value %}">
           [Acessar]
         </a>
       {% endif %} 

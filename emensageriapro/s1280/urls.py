@@ -70,9 +70,13 @@ urlpatterns = [
         s1280_infosubstpatr_listar_views.listar, 
         name='s1280_infosubstpatr'),
 
-    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/$', 
         s1280_infosubstpatr_salvar_views.salvar, 
         name='s1280_infosubstpatr_salvar'),
+
+    url(r'^s1280-infosubstpatr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1280_infosubstpatr_salvar_views.salvar, 
+        name='s1280_infosubstpatr_salvar_tab'),
         
     url(r'^s1280-infosubstpatr/cadastrar/$', 
         s1280_infosubstpatr_salvar_views.salvar, 
@@ -100,9 +104,13 @@ urlpatterns = [
         s1280_infosubstpatropport_listar_views.listar, 
         name='s1280_infosubstpatropport'),
 
-    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/$', 
         s1280_infosubstpatropport_salvar_views.salvar, 
         name='s1280_infosubstpatropport_salvar'),
+
+    url(r'^s1280-infosubstpatropport/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1280_infosubstpatropport_salvar_views.salvar, 
+        name='s1280_infosubstpatropport_salvar_tab'),
         
     url(r'^s1280-infosubstpatropport/cadastrar/$', 
         s1280_infosubstpatropport_salvar_views.salvar, 
@@ -130,9 +138,13 @@ urlpatterns = [
         s1280_infoativconcom_listar_views.listar, 
         name='s1280_infoativconcom'),
 
-    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/$', 
         s1280_infoativconcom_salvar_views.salvar, 
         name='s1280_infoativconcom_salvar'),
+
+    url(r'^s1280-infoativconcom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1280_infoativconcom_salvar_views.salvar, 
+        name='s1280_infoativconcom_salvar_tab'),
         
     url(r'^s1280-infoativconcom/cadastrar/$', 
         s1280_infoativconcom_salvar_views.salvar, 

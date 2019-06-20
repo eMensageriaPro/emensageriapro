@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1260.can_see_s1260ideAdquir %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1260_ideadquir_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1260_ideadquir_salvar_tab' pk=pk tab='master' %}">
                                 Identificação dos Adquirentes da Produção.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1260.can_see_s1260nfs %}
                                 <li {% if tab == 's1260_nfs' %} class="active"{% endif %} >
-                                    <a href="{% url 's1260_ideadquir_salvar' pk=pk tab='s1260_nfs' %}">
+                                    <a href="{% url 's1260_ideadquir_salvar_tab' pk=pk tab='s1260_nfs' %}">
                                     Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</a>
                                 </li>
                             {% endif %}

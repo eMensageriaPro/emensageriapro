@@ -62,9 +62,13 @@ urlpatterns = [
         s1270_remunavnp_listar_views.listar, 
         name='s1270_remunavnp'),
 
-    url(r'^s1270-remunavnp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1270-remunavnp/salvar/(?P<pk>[0-9]+)/$', 
         s1270_remunavnp_salvar_views.salvar, 
         name='s1270_remunavnp_salvar'),
+
+    url(r'^s1270-remunavnp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1270_remunavnp_salvar_views.salvar, 
+        name='s1270_remunavnp_salvar_tab'),
         
     url(r'^s1270-remunavnp/cadastrar/$', 
         s1270_remunavnp_salvar_views.salvar, 

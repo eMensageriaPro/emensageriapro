@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2200_localtrabdom__s2200_evtadmissao__label">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.*</label>
     {% if not for_print %}{% if s2200_localtrabdom_form.s2200_evtadmissao.value %}
-        <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_localtrabdom_form.s2200_evtadmissao.value tab='master' %}">
+        <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_localtrabdom_form.s2200_evtadmissao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

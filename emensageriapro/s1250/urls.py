@@ -78,9 +78,13 @@ urlpatterns = [
         s1250_tpaquis_listar_views.listar, 
         name='s1250_tpaquis'),
 
-    url(r'^s1250-tpaquis/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1250-tpaquis/salvar/(?P<pk>[0-9]+)/$', 
         s1250_tpaquis_salvar_views.salvar, 
         name='s1250_tpaquis_salvar'),
+
+    url(r'^s1250-tpaquis/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1250_tpaquis_salvar_views.salvar, 
+        name='s1250_tpaquis_salvar_tab'),
         
     url(r'^s1250-tpaquis/cadastrar/$', 
         s1250_tpaquis_salvar_views.salvar, 
@@ -108,9 +112,13 @@ urlpatterns = [
         s1250_ideprodutor_listar_views.listar, 
         name='s1250_ideprodutor'),
 
-    url(r'^s1250-ideprodutor/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1250-ideprodutor/salvar/(?P<pk>[0-9]+)/$', 
         s1250_ideprodutor_salvar_views.salvar, 
         name='s1250_ideprodutor_salvar'),
+
+    url(r'^s1250-ideprodutor/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1250_ideprodutor_salvar_views.salvar, 
+        name='s1250_ideprodutor_salvar_tab'),
         
     url(r'^s1250-ideprodutor/cadastrar/$', 
         s1250_ideprodutor_salvar_views.salvar, 
@@ -138,9 +146,13 @@ urlpatterns = [
         s1250_nfs_listar_views.listar, 
         name='s1250_nfs'),
 
-    url(r'^s1250-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1250-nfs/salvar/(?P<pk>[0-9]+)/$', 
         s1250_nfs_salvar_views.salvar, 
         name='s1250_nfs_salvar'),
+
+    url(r'^s1250-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1250_nfs_salvar_views.salvar, 
+        name='s1250_nfs_salvar_tab'),
         
     url(r'^s1250-nfs/cadastrar/$', 
         s1250_nfs_salvar_views.salvar, 
@@ -168,9 +180,13 @@ urlpatterns = [
         s1250_infoprocjud_listar_views.listar, 
         name='s1250_infoprocjud'),
 
-    url(r'^s1250-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1250-infoprocjud/salvar/(?P<pk>[0-9]+)/$', 
         s1250_infoprocjud_salvar_views.salvar, 
         name='s1250_infoprocjud_salvar'),
+
+    url(r'^s1250-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1250_infoprocjud_salvar_views.salvar, 
+        name='s1250_infoprocjud_salvar_tab'),
         
     url(r'^s1250-infoprocjud/cadastrar/$', 
         s1250_infoprocjud_salvar_views.salvar, 
@@ -198,9 +214,13 @@ urlpatterns = [
         s1250_infoprocj_listar_views.listar, 
         name='s1250_infoprocj'),
 
-    url(r'^s1250-infoprocj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1250-infoprocj/salvar/(?P<pk>[0-9]+)/$', 
         s1250_infoprocj_salvar_views.salvar, 
         name='s1250_infoprocj_salvar'),
+
+    url(r'^s1250-infoprocj/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1250_infoprocj_salvar_views.salvar, 
+        name='s1250_infoprocj_salvar_tab'),
         
     url(r'^s1250-infoprocj/cadastrar/$', 
         s1250_infoprocj_salvar_views.salvar, 

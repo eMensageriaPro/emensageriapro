@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2205.can_see_s2205infoDeficiencia %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2205_infodeficiencia_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2205_infodeficiencia_salvar_tab' pk=pk tab='master' %}">
                                 Pessoa com Deficiência</a>
                             </li>
                         {% endif %}

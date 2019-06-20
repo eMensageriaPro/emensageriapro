@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2299.can_see_s2299infoPerAntideADC %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2299_infoperant_ideadc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2299_infoperant_ideadc_salvar_tab' pk=pk tab='master' %}">
                                 Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoPerAntidePeriodo %}
                                 <li {% if tab == 's2299_infoperant_ideperiodo' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_infoperant_ideadc_salvar' pk=pk tab='s2299_infoperant_ideperiodo' %}">
+                                    <a href="{% url 's2299_infoperant_ideadc_salvar_tab' pk=pk tab='s2299_infoperant_ideperiodo' %}">
                                     Período de validade das informações incluídas</a>
                                 </li>
                             {% endif %}

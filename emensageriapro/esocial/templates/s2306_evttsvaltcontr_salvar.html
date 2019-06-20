@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2306evtTSVAltContr %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2306_evttsvaltcontr_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2306_evttsvaltcontr_salvar_tab' pk=pk tab='master' %}">
                                 S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.s2306.can_see_s2306infoComplementares %}
                                     <li {% if tab == 's2306_infocomplementares' %} class="active"{% endif %} >
-                                        <a href="{% url 's2306_evttsvaltcontr_salvar' pk=pk tab='s2306_infocomplementares' %}">
+                                        <a href="{% url 's2306_evttsvaltcontr_salvar_tab' pk=pk tab='s2306_infocomplementares' %}">
                                         Informações complementares sobre o declarante</a>
                                     </li>
                                 {% endif %}

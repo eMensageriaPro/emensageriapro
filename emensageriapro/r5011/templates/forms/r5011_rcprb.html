@@ -15,7 +15,7 @@
     <label id="r5011_rcprb__r5011_infototalcontrib__label">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060*</label>
     {% if not for_print %}
       {% if r5011_rcprb_form.r5011_infototalcontrib.value %}
-        <a id="r5011_rcprb__r5011_infototalcontrib__div_acessar" href="{% url 'r5011_infototalcontrib_salvar' pk=r5011_rcprb_form.r5011_infototalcontrib.value tab='master' %}">
+        <a id="r5011_rcprb__r5011_infototalcontrib__div_acessar" href="{% url 'r5011_infototalcontrib_salvar' pk=r5011_rcprb_form.r5011_infototalcontrib.value %}">
           [Acessar]
         </a>
       {% endif %} 

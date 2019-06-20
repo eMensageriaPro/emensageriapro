@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1210.can_see_s1210detPgtoFerdetRubrFer %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_detpgtofer_detrubrfer_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_detpgtofer_detrubrfer_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento das rubricas do Recibo Antecipado de Férias</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1210.can_see_s1210detPgtoFerpenAlim %}
                                 <li {% if tab == 's1210_detpgtofer_penalim' %} class="active"{% endif %} >
-                                    <a href="{% url 's1210_detpgtofer_detrubrfer_salvar' pk=pk tab='s1210_detpgtofer_penalim' %}">
+                                    <a href="{% url 's1210_detpgtofer_detrubrfer_salvar_tab' pk=pk tab='s1210_detpgtofer_penalim' %}">
                                     Informações sobre beneficiários de pensão alimentícia.</a>
                                 </li>
                             {% endif %}

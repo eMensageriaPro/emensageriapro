@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2400evtCdBenefIn %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2400_evtcdbenefin_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2400_evtcdbenefin_salvar_tab' pk=pk tab='master' %}">
                                 S-2400 - Cadastro de Beneficiários - Entes Públicos - Início</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s2400.can_see_s2400endereco %}
                                     <li {% if tab == 's2400_endereco' %} class="active"{% endif %} >
-                                        <a href="{% url 's2400_evtcdbenefin_salvar' pk=pk tab='s2400_endereco' %}">
+                                        <a href="{% url 's2400_evtcdbenefin_salvar_tab' pk=pk tab='s2400_endereco' %}">
                                         Grupo de informações do endereço do Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2400.can_see_s2400dependente %}
                                     <li {% if tab == 's2400_dependente' %} class="active"{% endif %} >
-                                        <a href="{% url 's2400_evtcdbenefin_salvar' pk=pk tab='s2400_dependente' %}">
+                                        <a href="{% url 's2400_evtcdbenefin_salvar_tab' pk=pk tab='s2400_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}

@@ -20,7 +20,7 @@
                     
                         {% if perms.mapa_processamento.change_MapaEsocial or perms.mapa_processamento.add_MapaEsocial %}
                     
-                        <a href="{% url 'mapa_esocial_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'mapa_esocial_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_MapaEsocial %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

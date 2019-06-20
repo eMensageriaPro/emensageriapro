@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5011_infoemprparcial__s5011_idelotacao__label">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada*</label>
     {% if not for_print %}{% if s5011_infoemprparcial_form.s5011_idelotacao.value %}
-        <a href="{% url 's5011_idelotacao_salvar' pk=s5011_infoemprparcial_form.s5011_idelotacao.value tab='master' %}">
+        <a href="{% url 's5011_idelotacao_salvar' pk=s5011_infoemprparcial_form.s5011_idelotacao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

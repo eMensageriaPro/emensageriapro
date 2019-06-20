@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2260evtConvInterm %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2260_evtconvinterm_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2260_evtconvinterm_salvar_tab' pk=pk tab='master' %}">
                                 S-2260 - Convocação para Trabalho Intermitente</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.s2260.can_see_s2260localTrabInterm %}
                                     <li {% if tab == 's2260_localtrabinterm' %} class="active"{% endif %} >
-                                        <a href="{% url 's2260_evtconvinterm_salvar' pk=pk tab='s2260_localtrabinterm' %}">
+                                        <a href="{% url 's2260_evtconvinterm_salvar_tab' pk=pk tab='s2260_localtrabinterm' %}">
                                         Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206</a>
                                     </li>
                                 {% endif %}

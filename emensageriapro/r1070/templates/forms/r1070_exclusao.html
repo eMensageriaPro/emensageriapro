@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r1070_exclusao__r1070_evttabprocesso__label">Exclusão das informações*</label>
     {% if not for_print %}{% if r1070_exclusao_form.r1070_evttabprocesso.value %}
-        <a href="{% url 'r1070_evttabprocesso_salvar' pk=r1070_exclusao_form.r1070_evttabprocesso.value tab='master' %}">
+        <a href="{% url 'r1070_evttabprocesso_salvar' pk=r1070_exclusao_form.r1070_evttabprocesso.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

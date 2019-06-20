@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1250.can_see_s1250tpAquis %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1250_tpaquis_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1250_tpaquis_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1250.can_see_s1250ideProdutor %}
                                 <li {% if tab == 's1250_ideprodutor' %} class="active"{% endif %} >
-                                    <a href="{% url 's1250_tpaquis_salvar' pk=pk tab='s1250_ideprodutor' %}">
+                                    <a href="{% url 's1250_tpaquis_salvar_tab' pk=pk tab='s1250_ideprodutor' %}">
                                     Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1250.can_see_s1250infoProcJ %}
                                 <li {% if tab == 's1250_infoprocj' %} class="active"{% endif %} >
-                                    <a href="{% url 's1250_tpaquis_salvar' pk=pk tab='s1250_infoprocj' %}">
+                                    <a href="{% url 's1250_tpaquis_salvar_tab' pk=pk tab='s1250_infoprocj' %}">
                                     Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
                                 </li>
                             {% endif %}

@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_Relatorios %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'relatorios_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'relatorios_salvar_tab' pk=pk tab='master' %}">
                             Relatórios</a>
                         </li>
                         {% endif %}

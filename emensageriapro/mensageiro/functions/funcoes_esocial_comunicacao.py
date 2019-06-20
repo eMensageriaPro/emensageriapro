@@ -452,7 +452,7 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
 
                 a = executar_sql("""
                 SELECT tabela, id
-                      FROM public.transmissor_eventos_esocial 
+                      FROM public.vw_transmissor_eventos_esocial 
                       WHERE identidade='%(identidade)s';
                 """ % dados, True)
 

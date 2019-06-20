@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s5003.can_see_s5003infoBaseFGTS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5003_infobasefgts_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5003_infobasefgts_salvar_tab' pk=pk tab='master' %}">
                                 Informações referentes a bases de cálculo do FGTS.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5003.can_see_s5003basePerApur %}
                                 <li {% if tab == 's5003_baseperapur' %} class="active"{% endif %} >
-                                    <a href="{% url 's5003_infobasefgts_salvar' pk=pk tab='s5003_baseperapur' %}">
+                                    <a href="{% url 's5003_infobasefgts_salvar_tab' pk=pk tab='s5003_baseperapur' %}">
                                     Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5003.can_see_s5003infoBasePerAntE %}
                                 <li {% if tab == 's5003_infobaseperante' %} class="active"{% endif %} >
-                                    <a href="{% url 's5003_infobasefgts_salvar' pk=pk tab='s5003_infobaseperante' %}">
+                                    <a href="{% url 's5003_infobasefgts_salvar_tab' pk=pk tab='s5003_infobaseperante' %}">
                                     Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].</a>
                                 </li>
                             {% endif %}

@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010infoDependPl %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_infodependpl_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_infodependpl_salvar_tab' pk=pk tab='master' %}">
                                 Informações de dependente do plano de saúde coletivo empresarial</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4010.can_see_r4010infoReembDep %}
                                 <li {% if tab == 'r4010_inforeembdep' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_infodependpl_salvar' pk=pk tab='r4010_inforeembdep' %}">
+                                    <a href="{% url 'r4010_infodependpl_salvar_tab' pk=pk tab='r4010_inforeembdep' %}">
                                     Informação de reembolso do dependente do plano de saúde coletivo empresarial</a>
                                 </li>
                             {% endif %}

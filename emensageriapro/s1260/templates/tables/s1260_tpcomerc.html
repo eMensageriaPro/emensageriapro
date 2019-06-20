@@ -38,7 +38,7 @@
                     
                         {% if perms.s1260.change_s1260tpComerc or perms.s1260.add_s1260tpComerc %}
                     
-                        <a href="{% url 's1260_tpcomerc_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1260_tpcomerc_salvar' pk=a.id %}">
                             {% if perms.s1260.change_s1260tpComerc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

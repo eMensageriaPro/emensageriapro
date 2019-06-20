@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1200_infomv__s1200_evtremun__label">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.*</label>
     {% if not for_print %}{% if s1200_infomv_form.s1200_evtremun.value %}
-        <a href="{% url 's1200_evtremun_salvar' pk=s1200_infomv_form.s1200_evtremun.value tab='master' %}">
+        <a href="{% url 's1200_evtremun_salvar' pk=s1200_infomv_form.s1200_evtremun.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1210.can_see_s1210detPgtoFl %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_detpgtofl_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_detpgtofl_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1210.can_see_s1210detPgtoFlretPgtoTot %}
                                 <li {% if tab == 's1210_detpgtofl_retpgtotot' %} class="active"{% endif %} >
-                                    <a href="{% url 's1210_detpgtofl_salvar' pk=pk tab='s1210_detpgtofl_retpgtotot' %}">
+                                    <a href="{% url 's1210_detpgtofl_salvar_tab' pk=pk tab='s1210_detpgtofl_retpgtotot' %}">
                                     Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1210.can_see_s1210detPgtoFlinfoPgtoParc %}
                                 <li {% if tab == 's1210_detpgtofl_infopgtoparc' %} class="active"{% endif %} >
-                                    <a href="{% url 's1210_detpgtofl_salvar' pk=pk tab='s1210_detpgtofl_infopgtoparc' %}">
+                                    <a href="{% url 's1210_detpgtofl_salvar_tab' pk=pk tab='s1210_detpgtofl_infopgtoparc' %}">
                                     Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.</a>
                                 </li>
                             {% endif %}

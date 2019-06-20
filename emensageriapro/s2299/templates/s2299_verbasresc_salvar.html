@@ -54,35 +54,35 @@
                     {% if pk %}
                         {% if perms.s2299.can_see_s2299verbasResc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2299_verbasresc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='master' %}">
                                 Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2299.can_see_s2299dmDev %}
                                 <li {% if tab == 's2299_dmdev' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_verbasresc_salvar' pk=pk tab='s2299_dmdev' %}">
+                                    <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_dmdev' %}">
                                     Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoTrabIntermprocJudTrab %}
                                 <li {% if tab == 's2299_infotrabinterm_procjudtrab' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_verbasresc_salvar' pk=pk tab='s2299_infotrabinterm_procjudtrab' %}">
+                                    <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_infotrabinterm_procjudtrab' %}">
                                     Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoTrabInterminfoMV %}
                                 <li {% if tab == 's2299_infotrabinterm_infomv' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_verbasresc_salvar' pk=pk tab='s2299_infotrabinterm_infomv' %}">
+                                    <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_infotrabinterm_infomv' %}">
                                     Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoTrabIntermprocCS %}
                                 <li {% if tab == 's2299_infotrabinterm_proccs' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_verbasresc_salvar' pk=pk tab='s2299_infotrabinterm_proccs' %}">
+                                    <a href="{% url 's2299_verbasresc_salvar_tab' pk=pk tab='s2299_infotrabinterm_proccs' %}">
                                     Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória</a>
                                 </li>
                             {% endif %}

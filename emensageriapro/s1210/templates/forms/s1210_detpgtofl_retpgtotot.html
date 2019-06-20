@@ -15,7 +15,7 @@
     <label id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__label">Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.*</label>
     {% if not for_print %}
       {% if s1210_detpgtofl_retpgtotot_form.s1210_detpgtofl.value %}
-        <a id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__div_acessar" href="{% url 's1210_detpgtofl_salvar' pk=s1210_detpgtofl_retpgtotot_form.s1210_detpgtofl.value tab='master' %}">
+        <a id="s1210_detpgtofl_retpgtotot__s1210_detpgtofl__div_acessar" href="{% url 's1210_detpgtofl_salvar' pk=s1210_detpgtofl_retpgtotot_form.s1210_detpgtofl.value %}">
           [Acessar]
         </a>
       {% endif %} 

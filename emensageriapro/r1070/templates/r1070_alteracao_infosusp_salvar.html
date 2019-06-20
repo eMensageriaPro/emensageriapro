@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r1070.can_see_r1070alteracaoinfoSusp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r1070_alteracao_infosusp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r1070_alteracao_infosusp_salvar_tab' pk=pk tab='master' %}">
                                 Informações de Suspensão de Exibilidade de tributos</a>
                             </li>
                         {% endif %}

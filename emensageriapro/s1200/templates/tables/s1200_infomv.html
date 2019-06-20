@@ -32,7 +32,7 @@
                     
                         {% if perms.s1200.change_s1200infoMV or perms.s1200.add_s1200infoMV %}
                     
-                        <a href="{% url 's1200_infomv_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1200_infomv_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoMV %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

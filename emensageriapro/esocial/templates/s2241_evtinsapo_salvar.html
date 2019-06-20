@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2241evtInsApo %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2241_evtinsapo_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='master' %}">
                                 S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s2241.can_see_s2241insalPeric %}
                                     <li {% if tab == 's2241_insalperic' %} class="active"{% endif %} >
-                                        <a href="{% url 's2241_evtinsapo_salvar' pk=pk tab='s2241_insalperic' %}">
+                                        <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='s2241_insalperic' %}">
                                         Informações sobre o ambiente de trabalho insalubre/periculoso.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2241.can_see_s2241aposentEsp %}
                                     <li {% if tab == 's2241_aposentesp' %} class="active"{% endif %} >
-                                        <a href="{% url 's2241_evtinsapo_salvar' pk=pk tab='s2241_aposentesp' %}">
+                                        <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='s2241_aposentesp' %}">
                                         Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</a>
                                     </li>
                                 {% endif %}

@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1070.can_see_s1070inclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1070_inclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1070_inclusao_salvar_tab' pk=pk tab='master' %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1070.can_see_s1070inclusaodadosProcJud %}
                                 <li {% if tab == 's1070_inclusao_dadosprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 's1070_inclusao_salvar' pk=pk tab='s1070_inclusao_dadosprocjud' %}">
+                                    <a href="{% url 's1070_inclusao_salvar_tab' pk=pk tab='s1070_inclusao_dadosprocjud' %}">
                                     Informações Complementares do Processo Judicial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1070.can_see_s1070inclusaoinfoSusp %}
                                 <li {% if tab == 's1070_inclusao_infosusp' %} class="active"{% endif %} >
-                                    <a href="{% url 's1070_inclusao_salvar' pk=pk tab='s1070_inclusao_infosusp' %}">
+                                    <a href="{% url 's1070_inclusao_salvar_tab' pk=pk tab='s1070_inclusao_infosusp' %}">
                                     Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.</a>
                                 </li>
                             {% endif %}

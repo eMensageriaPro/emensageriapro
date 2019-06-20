@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2240.can_see_s2240iniExpRiscoobs %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2240_iniexprisco_obs_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2240_iniexprisco_obs_salvar_tab' pk=pk tab='master' %}">
                                 Observações relativas a registros ambientais</a>
                             </li>
                         {% endif %}

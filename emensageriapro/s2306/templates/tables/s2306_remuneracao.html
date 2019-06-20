@@ -38,7 +38,7 @@
                     
                         {% if perms.s2306.change_s2306remuneracao or perms.s2306.add_s2306remuneracao %}
                     
-                        <a href="{% url 's2306_remuneracao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2306_remuneracao_salvar' pk=a.id %}">
                             {% if perms.s2306.change_s2306remuneracao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -74,7 +74,7 @@
                     
                         {% if perms.mensageiro.change_RetornosEventos or perms.mensageiro.add_RetornosEventos %}
                     
-                        <a href="{% url 'retornos_eventos_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'retornos_eventos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RetornosEventos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

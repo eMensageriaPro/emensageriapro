@@ -202,7 +202,7 @@ class s1005evtTabEstab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -301,7 +301,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -400,7 +400,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -499,7 +499,7 @@ class s1030evtTabCargo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -598,7 +598,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -697,7 +697,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -796,7 +796,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -895,7 +895,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -994,7 +994,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1093,7 +1093,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1197,7 +1197,7 @@ class s1200evtRemun(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1304,7 +1304,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1409,7 +1409,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1514,7 +1514,7 @@ class s1210evtPgtos(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1620,7 +1620,7 @@ class s1250evtAqProd(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1726,7 +1726,7 @@ class s1260evtComProd(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1830,7 +1830,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1933,7 +1933,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2034,7 +2034,7 @@ class s1295evtTotConting(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2134,7 +2134,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2241,7 +2241,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2349,7 +2349,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2451,7 +2451,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2586,7 +2586,7 @@ class s2200evtAdmissao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2718,7 +2718,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2844,7 +2844,7 @@ class s2206evtAltContratual(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2981,7 +2981,7 @@ class s2210evtCAT(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3113,7 +3113,7 @@ class s2220evtMonit(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3236,7 +3236,7 @@ class s2221evtToxic(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3342,7 +3342,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3445,7 +3445,7 @@ class s2231evtCessao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3553,7 +3553,7 @@ class s2240evtExpRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3658,7 +3658,7 @@ class s2241evtInsApo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3770,7 +3770,7 @@ class s2245evtTreiCap(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3876,7 +3876,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -3988,7 +3988,7 @@ class s2260evtConvInterm(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4104,7 +4104,7 @@ class s2298evtReintegr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4224,7 +4224,7 @@ class s2299evtDeslig(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4350,7 +4350,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4465,7 +4465,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4575,7 +4575,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4693,7 +4693,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4812,7 +4812,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -4930,7 +4930,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5047,7 +5047,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5158,7 +5158,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5261,7 +5261,7 @@ class s3000evtExclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5360,7 +5360,7 @@ class s5001evtBasesTrab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5457,7 +5457,7 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5555,7 +5555,7 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5653,7 +5653,7 @@ class s5011evtCS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5751,7 +5751,7 @@ class s5012evtIrrf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -5847,7 +5847,7 @@ class s5013evtFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     

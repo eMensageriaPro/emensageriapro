@@ -92,7 +92,7 @@
                     
                         {% if perms.efdreinf.change_r2070evtPgtosDivs or perms.efdreinf.add_r2070evtPgtosDivs %}
                     
-                        <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2070evtPgtosDivs %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

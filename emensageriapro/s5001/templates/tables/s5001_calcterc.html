@@ -44,7 +44,7 @@
                     
                         {% if perms.s5001.change_s5001calcTerc or perms.s5001.add_s5001calcTerc %}
                     
-                        <a href="{% url 's5001_calcterc_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5001_calcterc_salvar' pk=a.id %}">
                             {% if perms.s5001.change_s5001calcTerc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

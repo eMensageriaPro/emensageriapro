@@ -15,7 +15,7 @@
     <label id="s5001_infocategincid__s5001_ideestablot__label">Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.*</label>
     {% if not for_print %}
       {% if s5001_infocategincid_form.s5001_ideestablot.value %}
-        <a id="s5001_infocategincid__s5001_ideestablot__div_acessar" href="{% url 's5001_ideestablot_salvar' pk=s5001_infocategincid_form.s5001_ideestablot.value tab='master' %}">
+        <a id="s5001_infocategincid__s5001_ideestablot__div_acessar" href="{% url 's5001_ideestablot_salvar' pk=s5001_infocategincid_form.s5001_ideestablot.value %}">
           [Acessar]
         </a>
       {% endif %} 

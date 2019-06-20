@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5001.can_see_s5001calcTerc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5001_calcterc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5001_calcterc_salvar_tab' pk=pk tab='master' %}">
                                 Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.</a>
                             </li>
                         {% endif %}

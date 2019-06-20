@@ -56,7 +56,7 @@
                     
                         {% if perms.s1035.change_s1035inclusao or perms.s1035.add_s1035inclusao %}
                     
-                        <a href="{% url 's1035_inclusao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1035_inclusao_salvar' pk=a.id %}">
                             {% if perms.s1035.change_s1035inclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

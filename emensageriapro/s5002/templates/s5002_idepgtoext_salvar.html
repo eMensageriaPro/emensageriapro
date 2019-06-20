@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5002.can_see_s5002idePgtoExt %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5002_idepgtoext_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5002_idepgtoext_salvar_tab' pk=pk tab='master' %}">
                                 Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</a>
                             </li>
                         {% endif %}

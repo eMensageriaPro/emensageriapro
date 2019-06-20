@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r2070_infomolestia__r2070_evtpgtosdivs__label">Informações de Beneficiário portador de moléstia grave*</label>
     {% if not for_print %}{% if r2070_infomolestia_form.r2070_evtpgtosdivs.value %}
-        <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_infomolestia_form.r2070_evtpgtosdivs.value tab='master' %}">
+        <a href="{% url 'r2070_evtpgtosdivs_salvar' pk=r2070_infomolestia_form.r2070_evtpgtosdivs.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -70,9 +70,13 @@ urlpatterns = [
         r2040_recursosrep_listar_views.listar, 
         name='r2040_recursosrep'),
 
-    url(r'^r2040-recursosrep/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2040-recursosrep/salvar/(?P<pk>[0-9]+)/$', 
         r2040_recursosrep_salvar_views.salvar, 
         name='r2040_recursosrep_salvar'),
+
+    url(r'^r2040-recursosrep/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2040_recursosrep_salvar_views.salvar, 
+        name='r2040_recursosrep_salvar_tab'),
         
     url(r'^r2040-recursosrep/cadastrar/$', 
         r2040_recursosrep_salvar_views.salvar, 
@@ -100,9 +104,13 @@ urlpatterns = [
         r2040_inforecurso_listar_views.listar, 
         name='r2040_inforecurso'),
 
-    url(r'^r2040-inforecurso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2040-inforecurso/salvar/(?P<pk>[0-9]+)/$', 
         r2040_inforecurso_salvar_views.salvar, 
         name='r2040_inforecurso_salvar'),
+
+    url(r'^r2040-inforecurso/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2040_inforecurso_salvar_views.salvar, 
+        name='r2040_inforecurso_salvar_tab'),
         
     url(r'^r2040-inforecurso/cadastrar/$', 
         r2040_inforecurso_salvar_views.salvar, 
@@ -130,9 +138,13 @@ urlpatterns = [
         r2040_infoproc_listar_views.listar, 
         name='r2040_infoproc'),
 
-    url(r'^r2040-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2040-infoproc/salvar/(?P<pk>[0-9]+)/$', 
         r2040_infoproc_salvar_views.salvar, 
         name='r2040_infoproc_salvar'),
+
+    url(r'^r2040-infoproc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2040_infoproc_salvar_views.salvar, 
+        name='r2040_infoproc_salvar_tab'),
         
     url(r'^r2040-infoproc/cadastrar/$', 
         r2040_infoproc_salvar_views.salvar, 

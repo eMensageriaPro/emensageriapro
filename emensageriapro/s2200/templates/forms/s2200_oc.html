@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2200_oc__s2200_documentos__label">Informações do número de registro em Órgão de Classe (OC)*</label>
     {% if not for_print %}{% if s2200_oc_form.s2200_documentos.value %}
-        <a href="{% url 's2200_documentos_salvar' pk=s2200_oc_form.s2200_documentos.value tab='master' %}">
+        <a href="{% url 's2200_documentos_salvar' pk=s2200_oc_form.s2200_documentos.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

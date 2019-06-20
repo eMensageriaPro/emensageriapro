@@ -263,7 +263,7 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_efdreinf_id):
 
         evento_dados = executar_sql("""
             SELECT id, evento, identidade, tabela
-              FROM public.transmissor_eventos_efdreinf WHERE identidade='%s';
+              FROM public.vw_transmissor_eventos_efdreinf WHERE identidade='%s';
         """ % evento_identidade, True)
 
         if evento_dados:

@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1207.can_see_s1207infoPerApur %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1207_infoperapur_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1207_infoperapur_salvar_tab' pk=pk tab='master' %}">
                                 Remuneração no período de apuração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1207.can_see_s1207infoPerApurideEstab %}
                                 <li {% if tab == 's1207_infoperapur_ideestab' %} class="active"{% endif %} >
-                                    <a href="{% url 's1207_infoperapur_salvar' pk=pk tab='s1207_infoperapur_ideestab' %}">
+                                    <a href="{% url 's1207_infoperapur_salvar_tab' pk=pk tab='s1207_infoperapur_ideestab' %}">
                                     Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</a>
                                 </li>
                             {% endif %}

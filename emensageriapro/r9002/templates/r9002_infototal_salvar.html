@@ -54,42 +54,42 @@
                     {% if pk %}
                         {% if perms.r9002.can_see_r9002infoTotal %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9002_infototal_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9002_infototal_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas a totalizadores de bases e tributos</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r9002.can_see_r9002totApurMen %}
                                 <li {% if tab == 'r9002_totapurmen' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9002_infototal_salvar' pk=pk tab='r9002_totapurmen' %}">
+                                    <a href="{% url 'r9002_infototal_salvar_tab' pk=pk tab='r9002_totapurmen' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9002.can_see_r9002totApurQui %}
                                 <li {% if tab == 'r9002_totapurqui' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9002_infototal_salvar' pk=pk tab='r9002_totapurqui' %}">
+                                    <a href="{% url 'r9002_infototal_salvar_tab' pk=pk tab='r9002_totapurqui' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9002.can_see_r9002totApurDec %}
                                 <li {% if tab == 'r9002_totapurdec' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9002_infototal_salvar' pk=pk tab='r9002_totapurdec' %}">
+                                    <a href="{% url 'r9002_infototal_salvar_tab' pk=pk tab='r9002_totapurdec' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9002.can_see_r9002totApurSem %}
                                 <li {% if tab == 'r9002_totapursem' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9002_infototal_salvar' pk=pk tab='r9002_totapursem' %}">
+                                    <a href="{% url 'r9002_infototal_salvar_tab' pk=pk tab='r9002_totapursem' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9002.can_see_r9002totApurDia %}
                                 <li {% if tab == 'r9002_totapurdia' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9002_infototal_salvar' pk=pk tab='r9002_totapurdia' %}">
+                                    <a href="{% url 'r9002_infototal_salvar_tab' pk=pk tab='r9002_totapurdia' %}">
                                     Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</a>
                                 </li>
                             {% endif %}

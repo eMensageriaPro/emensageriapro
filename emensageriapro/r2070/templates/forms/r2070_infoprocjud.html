@@ -15,7 +15,7 @@
     <label id="r2070_infoprocjud__r2070_pgtopf__label">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial*</label>
     {% if not for_print %}
       {% if r2070_infoprocjud_form.r2070_pgtopf.value %}
-        <a id="r2070_infoprocjud__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_infoprocjud_form.r2070_pgtopf.value tab='master' %}">
+        <a id="r2070_infoprocjud__r2070_pgtopf__div_acessar" href="{% url 'r2070_pgtopf_salvar' pk=r2070_infoprocjud_form.r2070_pgtopf.value %}">
           [Acessar]
         </a>
       {% endif %} 

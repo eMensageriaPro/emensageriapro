@@ -82,9 +82,13 @@ urlpatterns = [
         s1050_inclusao_listar_views.listar, 
         name='s1050_inclusao'),
 
-    url(r'^s1050-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1050-inclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1050_inclusao_salvar_views.salvar, 
         name='s1050_inclusao_salvar'),
+
+    url(r'^s1050-inclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1050_inclusao_salvar_views.salvar, 
+        name='s1050_inclusao_salvar_tab'),
         
     url(r'^s1050-inclusao/cadastrar/$', 
         s1050_inclusao_salvar_views.salvar, 
@@ -112,9 +116,13 @@ urlpatterns = [
         s1050_inclusao_horariointervalo_listar_views.listar, 
         name='s1050_inclusao_horariointervalo'),
 
-    url(r'^s1050-inclusao-horariointervalo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1050-inclusao-horariointervalo/salvar/(?P<pk>[0-9]+)/$', 
         s1050_inclusao_horariointervalo_salvar_views.salvar, 
         name='s1050_inclusao_horariointervalo_salvar'),
+
+    url(r'^s1050-inclusao-horariointervalo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1050_inclusao_horariointervalo_salvar_views.salvar, 
+        name='s1050_inclusao_horariointervalo_salvar_tab'),
         
     url(r'^s1050-inclusao-horariointervalo/cadastrar/$', 
         s1050_inclusao_horariointervalo_salvar_views.salvar, 
@@ -142,9 +150,13 @@ urlpatterns = [
         s1050_alteracao_listar_views.listar, 
         name='s1050_alteracao'),
 
-    url(r'^s1050-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1050-alteracao/salvar/(?P<pk>[0-9]+)/$', 
         s1050_alteracao_salvar_views.salvar, 
         name='s1050_alteracao_salvar'),
+
+    url(r'^s1050-alteracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1050_alteracao_salvar_views.salvar, 
+        name='s1050_alteracao_salvar_tab'),
         
     url(r'^s1050-alteracao/cadastrar/$', 
         s1050_alteracao_salvar_views.salvar, 
@@ -172,9 +184,13 @@ urlpatterns = [
         s1050_alteracao_horariointervalo_listar_views.listar, 
         name='s1050_alteracao_horariointervalo'),
 
-    url(r'^s1050-alteracao-horariointervalo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1050-alteracao-horariointervalo/salvar/(?P<pk>[0-9]+)/$', 
         s1050_alteracao_horariointervalo_salvar_views.salvar, 
         name='s1050_alteracao_horariointervalo_salvar'),
+
+    url(r'^s1050-alteracao-horariointervalo/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1050_alteracao_horariointervalo_salvar_views.salvar, 
+        name='s1050_alteracao_horariointervalo_salvar_tab'),
         
     url(r'^s1050-alteracao-horariointervalo/cadastrar/$', 
         s1050_alteracao_horariointervalo_salvar_views.salvar, 
@@ -202,9 +218,13 @@ urlpatterns = [
         s1050_alteracao_novavalidade_listar_views.listar, 
         name='s1050_alteracao_novavalidade'),
 
-    url(r'^s1050-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1050-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/$', 
         s1050_alteracao_novavalidade_salvar_views.salvar, 
         name='s1050_alteracao_novavalidade_salvar'),
+
+    url(r'^s1050-alteracao-novavalidade/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1050_alteracao_novavalidade_salvar_views.salvar, 
+        name='s1050_alteracao_novavalidade_salvar_tab'),
         
     url(r'^s1050-alteracao-novavalidade/cadastrar/$', 
         s1050_alteracao_novavalidade_salvar_views.salvar, 
@@ -232,9 +252,13 @@ urlpatterns = [
         s1050_exclusao_listar_views.listar, 
         name='s1050_exclusao'),
 
-    url(r'^s1050-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1050-exclusao/salvar/(?P<pk>[0-9]+)/$', 
         s1050_exclusao_salvar_views.salvar, 
         name='s1050_exclusao_salvar'),
+
+    url(r'^s1050-exclusao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1050_exclusao_salvar_views.salvar, 
+        name='s1050_exclusao_salvar_tab'),
         
     url(r'^s1050-exclusao/cadastrar/$', 
         s1050_exclusao_salvar_views.salvar, 

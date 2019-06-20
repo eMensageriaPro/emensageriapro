@@ -15,7 +15,7 @@
     <label id="s1250_tpaquis__s1250_evtaqprod__label">Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física*</label>
     {% if not for_print %}
       {% if s1250_tpaquis_form.s1250_evtaqprod.value %}
-        <a id="s1250_tpaquis__s1250_evtaqprod__div_acessar" href="{% url 's1250_evtaqprod_salvar' pk=s1250_tpaquis_form.s1250_evtaqprod.value tab='master' %}">
+        <a id="s1250_tpaquis__s1250_evtaqprod__div_acessar" href="{% url 's1250_evtaqprod_salvar' pk=s1250_tpaquis_form.s1250_evtaqprod.value %}">
           [Acessar]
         </a>
       {% endif %} 

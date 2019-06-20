@@ -15,7 +15,7 @@
     <label id="s1260_ideadquir__s1260_tpcomerc__label">Identificação dos Adquirentes da Produção.*</label>
     {% if not for_print %}
       {% if s1260_ideadquir_form.s1260_tpcomerc.value %}
-        <a id="s1260_ideadquir__s1260_tpcomerc__div_acessar" href="{% url 's1260_tpcomerc_salvar' pk=s1260_ideadquir_form.s1260_tpcomerc.value tab='master' %}">
+        <a id="s1260_ideadquir__s1260_tpcomerc__div_acessar" href="{% url 's1260_tpcomerc_salvar' pk=s1260_ideadquir_form.s1260_tpcomerc.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -15,7 +15,7 @@
     <label id="r2030_inforecurso__r2030_recursosrec__label">Detalhamento dos recursos recebidos.*</label>
     {% if not for_print %}
       {% if r2030_inforecurso_form.r2030_recursosrec.value %}
-        <a id="r2030_inforecurso__r2030_recursosrec__div_acessar" href="{% url 'r2030_recursosrec_salvar' pk=r2030_inforecurso_form.r2030_recursosrec.value tab='master' %}">
+        <a id="r2030_inforecurso__r2030_recursosrec__div_acessar" href="{% url 'r2030_recursosrec_salvar' pk=r2030_inforecurso_form.r2030_recursosrec.value %}">
           [Acessar]
         </a>
       {% endif %} 

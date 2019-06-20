@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010infoPgtoExt %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_infopgtoext_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_infopgtoext_salvar_tab' pk=pk tab='master' %}">
                                 Informações complementares relativas a pagamentos a residente fiscal no Exterior</a>
                             </li>
                         {% endif %}

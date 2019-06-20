@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2405evtCdBenefAlt %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2405_evtcdbenefalt_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='master' %}">
                                 S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.s2405.can_see_s2405endereco %}
                                     <li {% if tab == 's2405_endereco' %} class="active"{% endif %} >
-                                        <a href="{% url 's2405_evtcdbenefalt_salvar' pk=pk tab='s2405_endereco' %}">
+                                        <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='s2405_endereco' %}">
                                         Grupo de informações do endereço do Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2405.can_see_s2405dependente %}
                                     <li {% if tab == 's2405_dependente' %} class="active"{% endif %} >
-                                        <a href="{% url 's2405_evtcdbenefalt_salvar' pk=pk tab='s2405_dependente' %}">
+                                        <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='s2405_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}

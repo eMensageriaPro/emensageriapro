@@ -32,7 +32,7 @@
                     
                         {% if perms.s1005.change_s1005inclusaoinfoCaepf or perms.s1005.add_s1005inclusaoinfoCaepf %}
                     
-                        <a href="{% url 's1005_inclusao_infocaepf_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1005_inclusao_infocaepf_salvar' pk=a.id %}">
                             {% if perms.s1005.change_s1005inclusaoinfoCaepf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r2020.can_see_r2020infoTpServ %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2020_infotpserv_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2020_infotpserv_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre os tipos de Serviços constantes da Nota Fiscal</a>
                             </li>
                         {% endif %}

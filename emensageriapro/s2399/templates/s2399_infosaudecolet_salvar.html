@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2399.can_see_s2399infoSaudeColet %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2399_infosaudecolet_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2399_infosaudecolet_salvar_tab' pk=pk tab='master' %}">
                                 Informações de plano privado coletivo empresarial de assistência à saúde</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2399.can_see_s2399detOper %}
                                 <li {% if tab == 's2399_detoper' %} class="active"{% endif %} >
-                                    <a href="{% url 's2399_infosaudecolet_salvar' pk=pk tab='s2399_detoper' %}">
+                                    <a href="{% url 's2399_infosaudecolet_salvar_tab' pk=pk tab='s2399_detoper' %}">
                                     Detalhamento dos valores pagos a Operadoras de Planos de Saúde.</a>
                                 </li>
                             {% endif %}

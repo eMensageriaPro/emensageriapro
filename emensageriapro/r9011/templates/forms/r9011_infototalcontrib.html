@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r9011_infototalcontrib__r9011_evttotalcontrib__label">Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos*</label>
     {% if not for_print %}{% if r9011_infototalcontrib_form.r9011_evttotalcontrib.value %}
-        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=r9011_infototalcontrib_form.r9011_evttotalcontrib.value tab='master' %}">
+        <a href="{% url 'r9011_evttotalcontrib_salvar' pk=r9011_infototalcontrib_form.r9011_evttotalcontrib.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

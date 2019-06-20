@@ -20,7 +20,7 @@
                     
                         {% if perms.mapa_processamento.change_MapaImportações or perms.mapa_processamento.add_MapaImportações %}
                     
-                        <a href="{% url 'mapa_importacoes_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'mapa_importacoes_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_MapaImportações %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

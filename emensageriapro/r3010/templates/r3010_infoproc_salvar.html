@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r3010.can_see_r3010infoProc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r3010_infoproc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r3010_infoproc_salvar_tab' pk=pk tab='master' %}">
                                 Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                             </li>
                         {% endif %}

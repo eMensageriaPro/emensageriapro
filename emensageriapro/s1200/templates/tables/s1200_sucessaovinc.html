@@ -44,7 +44,7 @@
                     
                         {% if perms.s1200.change_s1200sucessaoVinc or perms.s1200.add_s1200sucessaoVinc %}
                     
-                        <a href="{% url 's1200_sucessaovinc_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1200_sucessaovinc_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200sucessaoVinc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

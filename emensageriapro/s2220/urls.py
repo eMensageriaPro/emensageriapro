@@ -62,9 +62,13 @@ urlpatterns = [
         s2220_exame_listar_views.listar, 
         name='s2220_exame'),
 
-    url(r'^s2220-exame/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2220-exame/salvar/(?P<pk>[0-9]+)/$', 
         s2220_exame_salvar_views.salvar, 
         name='s2220_exame_salvar'),
+
+    url(r'^s2220-exame/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2220_exame_salvar_views.salvar, 
+        name='s2220_exame_salvar_tab'),
         
     url(r'^s2220-exame/cadastrar/$', 
         s2220_exame_salvar_views.salvar, 

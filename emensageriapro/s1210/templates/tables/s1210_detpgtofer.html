@@ -50,7 +50,7 @@
                     
                         {% if perms.s1210.change_s1210detPgtoFer or perms.s1210.add_s1210detPgtoFer %}
                     
-                        <a href="{% url 's1210_detpgtofer_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1210_detpgtofer_salvar' pk=a.id %}">
                             {% if perms.s1210.change_s1210detPgtoFer %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

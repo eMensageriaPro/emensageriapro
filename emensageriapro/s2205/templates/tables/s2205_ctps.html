@@ -44,7 +44,7 @@
                     
                         {% if perms.s2205.change_s2205CTPS or perms.s2205.add_s2205CTPS %}
                     
-                        <a href="{% url 's2205_ctps_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2205_ctps_salvar' pk=a.id %}">
                             {% if perms.s2205.change_s2205CTPS %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

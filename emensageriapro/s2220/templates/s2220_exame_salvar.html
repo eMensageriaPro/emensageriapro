@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2220.can_see_s2220exame %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2220_exame_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2220_exame_salvar_tab' pk=pk tab='master' %}">
                                 Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO</a>
                             </li>
                         {% endif %}

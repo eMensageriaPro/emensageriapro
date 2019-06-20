@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s3000_idetrabalhador__s3000_evtexclusao__label">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.*</label>
     {% if not for_print %}{% if s3000_idetrabalhador_form.s3000_evtexclusao.value %}
-        <a href="{% url 's3000_evtexclusao_salvar' pk=s3000_idetrabalhador_form.s3000_evtexclusao.value tab='master' %}">
+        <a href="{% url 's3000_evtexclusao_salvar' pk=s3000_idetrabalhador_form.s3000_evtexclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

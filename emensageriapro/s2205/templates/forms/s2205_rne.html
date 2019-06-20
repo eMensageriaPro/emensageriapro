@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2205_rne__s2205_documentos__label">Informações do Registro Nacional de Estrangeiro*</label>
     {% if not for_print %}{% if s2205_rne_form.s2205_documentos.value %}
-        <a href="{% url 's2205_documentos_salvar' pk=s2205_rne_form.s2205_documentos.value tab='master' %}">
+        <a href="{% url 's2205_documentos_salvar' pk=s2205_rne_form.s2205_documentos.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2205evtAltCadastral %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='master' %}">
                                 S-2205 - Alteração de Dados Cadastrais do Trabalhador</a>
                             </li>
                         {% endif %}
@@ -62,56 +62,56 @@
                             
                                 {% if perms.s2205.can_see_s2205documentos %}
                                     <li {% if tab == 's2205_documentos' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_documentos' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_documentos' %}">
                                         Informações dos documentos pessoais do trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205brasil %}
                                     <li {% if tab == 's2205_brasil' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_brasil' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_brasil' %}">
                                         Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205exterior %}
                                     <li {% if tab == 's2205_exterior' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_exterior' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_exterior' %}">
                                         Preenchido em caso de trabalhador residente no exterior.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205trabEstrangeiro %}
                                     <li {% if tab == 's2205_trabestrangeiro' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_trabestrangeiro' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_trabestrangeiro' %}">
                                         Grupo de informações do Trabalhador Estrangeiro</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205infoDeficiencia %}
                                     <li {% if tab == 's2205_infodeficiencia' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_infodeficiencia' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_infodeficiencia' %}">
                                         Pessoa com Deficiência</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205dependente %}
                                     <li {% if tab == 's2205_dependente' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_dependente' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205aposentadoria %}
                                     <li {% if tab == 's2205_aposentadoria' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_aposentadoria' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_aposentadoria' %}">
                                         Informação de aposentadoria do trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2205.can_see_s2205contato %}
                                     <li {% if tab == 's2205_contato' %} class="active"{% endif %} >
-                                        <a href="{% url 's2205_evtaltcadastral_salvar' pk=pk tab='s2205_contato' %}">
+                                        <a href="{% url 's2205_evtaltcadastral_salvar_tab' pk=pk tab='s2205_contato' %}">
                                         Informações de contato</a>
                                     </li>
                                 {% endif %}

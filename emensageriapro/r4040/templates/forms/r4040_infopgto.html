@@ -15,7 +15,7 @@
     <label id="r4040_infopgto__r4040_idenat__label">Informações do Pagamento*</label>
     {% if not for_print %}
       {% if r4040_infopgto_form.r4040_idenat.value %}
-        <a id="r4040_infopgto__r4040_idenat__div_acessar" href="{% url 'r4040_idenat_salvar' pk=r4040_infopgto_form.r4040_idenat.value tab='master' %}">
+        <a id="r4040_infopgto__r4040_idenat__div_acessar" href="{% url 'r4040_idenat_salvar' pk=r4040_infopgto_form.r4040_idenat.value %}">
           [Acessar]
         </a>
       {% endif %} 

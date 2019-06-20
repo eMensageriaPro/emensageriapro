@@ -74,7 +74,7 @@
                     
                         {% if perms.esocial.change_s3000evtExclusao or perms.esocial.add_s3000evtExclusao %}
                     
-                        <a href="{% url 's3000_evtexclusao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's3000_evtexclusao_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s3000evtExclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

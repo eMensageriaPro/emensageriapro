@@ -114,9 +114,13 @@ urlpatterns = [
         r4020_idepgto_listar_views.listar, 
         name='r4020_idepgto'),
 
-    url(r'^r4020-idepgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-idepgto/salvar/(?P<pk>[0-9]+)/$', 
         r4020_idepgto_salvar_views.salvar, 
         name='r4020_idepgto_salvar'),
+
+    url(r'^r4020-idepgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_idepgto_salvar_views.salvar, 
+        name='r4020_idepgto_salvar_tab'),
         
     url(r'^r4020-idepgto/cadastrar/$', 
         r4020_idepgto_salvar_views.salvar, 
@@ -144,9 +148,13 @@ urlpatterns = [
         r4020_infopgto_listar_views.listar, 
         name='r4020_infopgto'),
 
-    url(r'^r4020-infopgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-infopgto/salvar/(?P<pk>[0-9]+)/$', 
         r4020_infopgto_salvar_views.salvar, 
         name='r4020_infopgto_salvar'),
+
+    url(r'^r4020-infopgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_infopgto_salvar_views.salvar, 
+        name='r4020_infopgto_salvar_tab'),
         
     url(r'^r4020-infopgto/cadastrar/$', 
         r4020_infopgto_salvar_views.salvar, 
@@ -174,9 +182,13 @@ urlpatterns = [
         r4020_ir_listar_views.listar, 
         name='r4020_ir'),
 
-    url(r'^r4020-ir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-ir/salvar/(?P<pk>[0-9]+)/$', 
         r4020_ir_salvar_views.salvar, 
         name='r4020_ir_salvar'),
+
+    url(r'^r4020-ir/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_ir_salvar_views.salvar, 
+        name='r4020_ir_salvar_tab'),
         
     url(r'^r4020-ir/cadastrar/$', 
         r4020_ir_salvar_views.salvar, 
@@ -204,9 +216,13 @@ urlpatterns = [
         r4020_csll_listar_views.listar, 
         name='r4020_csll'),
 
-    url(r'^r4020-csll/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-csll/salvar/(?P<pk>[0-9]+)/$', 
         r4020_csll_salvar_views.salvar, 
         name='r4020_csll_salvar'),
+
+    url(r'^r4020-csll/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_csll_salvar_views.salvar, 
+        name='r4020_csll_salvar_tab'),
         
     url(r'^r4020-csll/cadastrar/$', 
         r4020_csll_salvar_views.salvar, 
@@ -234,9 +250,13 @@ urlpatterns = [
         r4020_cofins_listar_views.listar, 
         name='r4020_cofins'),
 
-    url(r'^r4020-cofins/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-cofins/salvar/(?P<pk>[0-9]+)/$', 
         r4020_cofins_salvar_views.salvar, 
         name='r4020_cofins_salvar'),
+
+    url(r'^r4020-cofins/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_cofins_salvar_views.salvar, 
+        name='r4020_cofins_salvar_tab'),
         
     url(r'^r4020-cofins/cadastrar/$', 
         r4020_cofins_salvar_views.salvar, 
@@ -264,9 +284,13 @@ urlpatterns = [
         r4020_pp_listar_views.listar, 
         name='r4020_pp'),
 
-    url(r'^r4020-pp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-pp/salvar/(?P<pk>[0-9]+)/$', 
         r4020_pp_salvar_views.salvar, 
         name='r4020_pp_salvar'),
+
+    url(r'^r4020-pp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_pp_salvar_views.salvar, 
+        name='r4020_pp_salvar_tab'),
         
     url(r'^r4020-pp/cadastrar/$', 
         r4020_pp_salvar_views.salvar, 
@@ -294,9 +318,13 @@ urlpatterns = [
         r4020_fci_listar_views.listar, 
         name='r4020_fci'),
 
-    url(r'^r4020-fci/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-fci/salvar/(?P<pk>[0-9]+)/$', 
         r4020_fci_salvar_views.salvar, 
         name='r4020_fci_salvar'),
+
+    url(r'^r4020-fci/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_fci_salvar_views.salvar, 
+        name='r4020_fci_salvar_tab'),
         
     url(r'^r4020-fci/cadastrar/$', 
         r4020_fci_salvar_views.salvar, 
@@ -324,9 +352,13 @@ urlpatterns = [
         r4020_scp_listar_views.listar, 
         name='r4020_scp'),
 
-    url(r'^r4020-scp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-scp/salvar/(?P<pk>[0-9]+)/$', 
         r4020_scp_salvar_views.salvar, 
         name='r4020_scp_salvar'),
+
+    url(r'^r4020-scp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_scp_salvar_views.salvar, 
+        name='r4020_scp_salvar_tab'),
         
     url(r'^r4020-scp/cadastrar/$', 
         r4020_scp_salvar_views.salvar, 
@@ -354,9 +386,13 @@ urlpatterns = [
         r4020_infoprocret_listar_views.listar, 
         name='r4020_infoprocret'),
 
-    url(r'^r4020-infoprocret/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-infoprocret/salvar/(?P<pk>[0-9]+)/$', 
         r4020_infoprocret_salvar_views.salvar, 
         name='r4020_infoprocret_salvar'),
+
+    url(r'^r4020-infoprocret/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_infoprocret_salvar_views.salvar, 
+        name='r4020_infoprocret_salvar_tab'),
         
     url(r'^r4020-infoprocret/cadastrar/$', 
         r4020_infoprocret_salvar_views.salvar, 
@@ -384,9 +420,13 @@ urlpatterns = [
         r4020_infoprocjud_listar_views.listar, 
         name='r4020_infoprocjud'),
 
-    url(r'^r4020-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-infoprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r4020_infoprocjud_salvar_views.salvar, 
         name='r4020_infoprocjud_salvar'),
+
+    url(r'^r4020-infoprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_infoprocjud_salvar_views.salvar, 
+        name='r4020_infoprocjud_salvar_tab'),
         
     url(r'^r4020-infoprocjud/cadastrar/$', 
         r4020_infoprocjud_salvar_views.salvar, 
@@ -414,9 +454,13 @@ urlpatterns = [
         r4020_despprocjud_listar_views.listar, 
         name='r4020_despprocjud'),
 
-    url(r'^r4020-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-despprocjud/salvar/(?P<pk>[0-9]+)/$', 
         r4020_despprocjud_salvar_views.salvar, 
         name='r4020_despprocjud_salvar'),
+
+    url(r'^r4020-despprocjud/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_despprocjud_salvar_views.salvar, 
+        name='r4020_despprocjud_salvar_tab'),
         
     url(r'^r4020-despprocjud/cadastrar/$', 
         r4020_despprocjud_salvar_views.salvar, 
@@ -444,9 +488,13 @@ urlpatterns = [
         r4020_ideadv_listar_views.listar, 
         name='r4020_ideadv'),
 
-    url(r'^r4020-ideadv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-ideadv/salvar/(?P<pk>[0-9]+)/$', 
         r4020_ideadv_salvar_views.salvar, 
         name='r4020_ideadv_salvar'),
+
+    url(r'^r4020-ideadv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_ideadv_salvar_views.salvar, 
+        name='r4020_ideadv_salvar_tab'),
         
     url(r'^r4020-ideadv/cadastrar/$', 
         r4020_ideadv_salvar_views.salvar, 
@@ -474,9 +522,13 @@ urlpatterns = [
         r4020_origemrec_listar_views.listar, 
         name='r4020_origemrec'),
 
-    url(r'^r4020-origemrec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-origemrec/salvar/(?P<pk>[0-9]+)/$', 
         r4020_origemrec_salvar_views.salvar, 
         name='r4020_origemrec_salvar'),
+
+    url(r'^r4020-origemrec/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_origemrec_salvar_views.salvar, 
+        name='r4020_origemrec_salvar_tab'),
         
     url(r'^r4020-origemrec/cadastrar/$', 
         r4020_origemrec_salvar_views.salvar, 
@@ -504,9 +556,13 @@ urlpatterns = [
         r4020_infopgtoext_listar_views.listar, 
         name='r4020_infopgtoext'),
 
-    url(r'^r4020-infopgtoext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4020-infopgtoext/salvar/(?P<pk>[0-9]+)/$', 
         r4020_infopgtoext_salvar_views.salvar, 
         name='r4020_infopgtoext_salvar'),
+
+    url(r'^r4020-infopgtoext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4020_infopgtoext_salvar_views.salvar, 
+        name='r4020_infopgtoext_salvar_tab'),
         
     url(r'^r4020-infopgtoext/cadastrar/$', 
         r4020_infopgtoext_salvar_views.salvar, 

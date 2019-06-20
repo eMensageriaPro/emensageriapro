@@ -38,7 +38,7 @@
                     
                         {% if perms.r2070.change_r2070infoProcJud or perms.r2070.add_r2070infoProcJud %}
                     
-                        <a href="{% url 'r2070_infoprocjud_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_infoprocjud_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070infoProcJud %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

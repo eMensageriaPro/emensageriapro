@@ -62,7 +62,7 @@
                     
                         {% if perms.s2260.change_s2260localTrabInterm or perms.s2260.add_s2260localTrabInterm %}
                     
-                        <a href="{% url 's2260_localtrabinterm_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2260_localtrabinterm_salvar' pk=a.id %}">
                             {% if perms.s2260.change_s2260localTrabInterm %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

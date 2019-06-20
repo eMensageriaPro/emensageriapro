@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2306_cargofuncao__s2306_infocomplementares__label">Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo*</label>
     {% if not for_print %}{% if s2306_cargofuncao_form.s2306_infocomplementares.value %}
-        <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_cargofuncao_form.s2306_infocomplementares.value tab='master' %}">
+        <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_cargofuncao_form.s2306_infocomplementares.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1280_infosubstpatr__s1280_evtinfocomplper__label">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.*</label>
     {% if not for_print %}{% if s1280_infosubstpatr_form.s1280_evtinfocomplper.value %}
-        <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infosubstpatr_form.s1280_evtinfocomplper.value tab='master' %}">
+        <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infosubstpatr_form.s1280_evtinfocomplper.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

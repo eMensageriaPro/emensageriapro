@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2098evtReabreEvPer %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2098_evtreabreevper_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2098_evtreabreevper_salvar_tab' pk=pk tab='master' %}">
                                 R-2098 - Reabertura dos Eventos Periódicos</a>
                             </li>
                         {% endif %}

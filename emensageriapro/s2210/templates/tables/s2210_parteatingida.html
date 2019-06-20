@@ -38,7 +38,7 @@
                     
                         {% if perms.s2210.change_s2210parteAtingida or perms.s2210.add_s2210parteAtingida %}
                     
-                        <a href="{% url 's2210_parteatingida_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2210_parteatingida_salvar' pk=a.id %}">
                             {% if perms.s2210.change_s2210parteAtingida %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

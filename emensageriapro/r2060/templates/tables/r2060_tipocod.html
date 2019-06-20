@@ -56,7 +56,7 @@
                     
                         {% if perms.r2060.change_r2060tipoCod or perms.r2060.add_r2060tipoCod %}
                     
-                        <a href="{% url 'r2060_tipocod_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2060_tipocod_salvar' pk=a.id %}">
                             {% if perms.r2060.change_r2060tipoCod %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -32,7 +32,7 @@
                     
                         {% if perms.r4040.change_r4040ideNat or perms.r4040.add_r4040ideNat %}
                     
-                        <a href="{% url 'r4040_idenat_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4040_idenat_salvar' pk=a.id %}">
                             {% if perms.r4040.change_r4040ideNat %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

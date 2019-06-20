@@ -44,7 +44,7 @@
                     
                         {% if perms.s1070.change_s1070exclusao or perms.s1070.add_s1070exclusao %}
                     
-                        <a href="{% url 's1070_exclusao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1070_exclusao_salvar' pk=a.id %}">
                             {% if perms.s1070.change_s1070exclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

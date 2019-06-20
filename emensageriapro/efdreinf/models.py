@@ -109,7 +109,7 @@ class r1000evtInfoContri(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -221,7 +221,7 @@ class r1070evtTabProcesso(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -346,7 +346,7 @@ class r2010evtServTom(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -479,7 +479,7 @@ class r2020evtServPrest(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -603,7 +603,7 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -721,7 +721,7 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -846,7 +846,7 @@ class r2050evtComProd(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -971,7 +971,7 @@ class r2060evtCPRB(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1093,7 +1093,7 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1207,7 +1207,7 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1326,7 +1326,7 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1452,7 +1452,7 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1576,7 +1576,7 @@ class r4010evtRetPF(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1697,7 +1697,7 @@ class r4020evtRetPJ(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1816,7 +1816,7 @@ class r4040evtBenefNId(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -1930,7 +1930,7 @@ class r4098evtReab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2044,7 +2044,7 @@ class r4099evtFech(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2159,7 +2159,7 @@ class r5001evtTotal(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2277,7 +2277,7 @@ class r5011evtTotalContrib(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2394,7 +2394,7 @@ class r9000evtExclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2511,7 +2511,7 @@ class r9001evtTotal(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2629,7 +2629,7 @@ class r9002evtRet(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2747,7 +2747,7 @@ class r9011evtTotalContrib(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     
@@ -2866,7 +2866,7 @@ class r9012evtRetCons(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     

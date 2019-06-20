@@ -15,7 +15,7 @@
     <label id="s1210_detpgtobenpr_infopgtoparc__s1210_detpgtobenpr__label">Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.*</label>
     {% if not for_print %}
       {% if s1210_detpgtobenpr_infopgtoparc_form.s1210_detpgtobenpr.value %}
-        <a id="s1210_detpgtobenpr_infopgtoparc__s1210_detpgtobenpr__div_acessar" href="{% url 's1210_detpgtobenpr_salvar' pk=s1210_detpgtobenpr_infopgtoparc_form.s1210_detpgtobenpr.value tab='master' %}">
+        <a id="s1210_detpgtobenpr_infopgtoparc__s1210_detpgtobenpr__div_acessar" href="{% url 's1210_detpgtobenpr_salvar' pk=s1210_detpgtobenpr_infopgtoparc_form.s1210_detpgtobenpr.value %}">
           [Acessar]
         </a>
       {% endif %} 

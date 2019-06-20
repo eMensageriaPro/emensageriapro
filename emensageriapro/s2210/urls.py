@@ -78,9 +78,13 @@ urlpatterns = [
         s2210_idelocalacid_listar_views.listar, 
         name='s2210_idelocalacid'),
 
-    url(r'^s2210-idelocalacid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2210-idelocalacid/salvar/(?P<pk>[0-9]+)/$', 
         s2210_idelocalacid_salvar_views.salvar, 
         name='s2210_idelocalacid_salvar'),
+
+    url(r'^s2210-idelocalacid/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2210_idelocalacid_salvar_views.salvar, 
+        name='s2210_idelocalacid_salvar_tab'),
         
     url(r'^s2210-idelocalacid/cadastrar/$', 
         s2210_idelocalacid_salvar_views.salvar, 
@@ -108,9 +112,13 @@ urlpatterns = [
         s2210_parteatingida_listar_views.listar, 
         name='s2210_parteatingida'),
 
-    url(r'^s2210-parteatingida/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2210-parteatingida/salvar/(?P<pk>[0-9]+)/$', 
         s2210_parteatingida_salvar_views.salvar, 
         name='s2210_parteatingida_salvar'),
+
+    url(r'^s2210-parteatingida/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2210_parteatingida_salvar_views.salvar, 
+        name='s2210_parteatingida_salvar_tab'),
         
     url(r'^s2210-parteatingida/cadastrar/$', 
         s2210_parteatingida_salvar_views.salvar, 
@@ -138,9 +146,13 @@ urlpatterns = [
         s2210_agentecausador_listar_views.listar, 
         name='s2210_agentecausador'),
 
-    url(r'^s2210-agentecausador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2210-agentecausador/salvar/(?P<pk>[0-9]+)/$', 
         s2210_agentecausador_salvar_views.salvar, 
         name='s2210_agentecausador_salvar'),
+
+    url(r'^s2210-agentecausador/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2210_agentecausador_salvar_views.salvar, 
+        name='s2210_agentecausador_salvar_tab'),
         
     url(r'^s2210-agentecausador/cadastrar/$', 
         s2210_agentecausador_salvar_views.salvar, 
@@ -168,9 +180,13 @@ urlpatterns = [
         s2210_atestado_listar_views.listar, 
         name='s2210_atestado'),
 
-    url(r'^s2210-atestado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2210-atestado/salvar/(?P<pk>[0-9]+)/$', 
         s2210_atestado_salvar_views.salvar, 
         name='s2210_atestado_salvar'),
+
+    url(r'^s2210-atestado/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2210_atestado_salvar_views.salvar, 
+        name='s2210_atestado_salvar_tab'),
         
     url(r'^s2210-atestado/cadastrar/$', 
         s2210_atestado_salvar_views.salvar, 
@@ -198,9 +214,13 @@ urlpatterns = [
         s2210_catorigem_listar_views.listar, 
         name='s2210_catorigem'),
 
-    url(r'^s2210-catorigem/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2210-catorigem/salvar/(?P<pk>[0-9]+)/$', 
         s2210_catorigem_salvar_views.salvar, 
         name='s2210_catorigem_salvar'),
+
+    url(r'^s2210-catorigem/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2210_catorigem_salvar_views.salvar, 
+        name='s2210_catorigem_salvar_tab'),
         
     url(r'^s2210-catorigem/cadastrar/$', 
         s2210_catorigem_salvar_views.salvar, 

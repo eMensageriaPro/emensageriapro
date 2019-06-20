@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1000.can_see_s1000inclusaosoftwareHouse %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1000_inclusao_softwarehouse_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1000_inclusao_softwarehouse_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</a>
                             </li>
                         {% endif %}

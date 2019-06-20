@@ -62,9 +62,13 @@ urlpatterns = [
         r2099_iderespinf_listar_views.listar, 
         name='r2099_iderespinf'),
 
-    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/$', 
         r2099_iderespinf_salvar_views.salvar, 
         name='r2099_iderespinf_salvar'),
+
+    url(r'^r2099-iderespinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2099_iderespinf_salvar_views.salvar, 
+        name='r2099_iderespinf_salvar_tab'),
         
     url(r'^r2099-iderespinf/cadastrar/$', 
         r2099_iderespinf_salvar_views.salvar, 

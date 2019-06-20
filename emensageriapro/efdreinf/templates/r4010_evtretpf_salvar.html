@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r4010evtRetPF %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_evtretpf_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_evtretpf_salvar_tab' pk=pk tab='master' %}">
                                 R-4010 - Retenções na Fonte - Pessoa Física</a>
                             </li>
                         {% endif %}
@@ -62,14 +62,14 @@
                             
                                 {% if perms.r4010.can_see_r4010idePgto %}
                                     <li {% if tab == 'r4010_idepgto' %} class="active"{% endif %} >
-                                        <a href="{% url 'r4010_evtretpf_salvar' pk=pk tab='r4010_idepgto' %}">
+                                        <a href="{% url 'r4010_evtretpf_salvar_tab' pk=pk tab='r4010_idepgto' %}">
                                         Identificação do rendimento</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r4010.can_see_r4010ideOpSaude %}
                                     <li {% if tab == 'r4010_ideopsaude' %} class="active"{% endif %} >
-                                        <a href="{% url 'r4010_evtretpf_salvar' pk=pk tab='r4010_ideopsaude' %}">
+                                        <a href="{% url 'r4010_evtretpf_salvar_tab' pk=pk tab='r4010_ideopsaude' %}">
                                         Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</a>
                                     </li>
                                 {% endif %}

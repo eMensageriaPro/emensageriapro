@@ -74,9 +74,13 @@ urlpatterns = [
         r2020_nfs_listar_views.listar, 
         name='r2020_nfs'),
 
-    url(r'^r2020-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2020-nfs/salvar/(?P<pk>[0-9]+)/$', 
         r2020_nfs_salvar_views.salvar, 
         name='r2020_nfs_salvar'),
+
+    url(r'^r2020-nfs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2020_nfs_salvar_views.salvar, 
+        name='r2020_nfs_salvar_tab'),
         
     url(r'^r2020-nfs/cadastrar/$', 
         r2020_nfs_salvar_views.salvar, 
@@ -104,9 +108,13 @@ urlpatterns = [
         r2020_infotpserv_listar_views.listar, 
         name='r2020_infotpserv'),
 
-    url(r'^r2020-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2020-infotpserv/salvar/(?P<pk>[0-9]+)/$', 
         r2020_infotpserv_salvar_views.salvar, 
         name='r2020_infotpserv_salvar'),
+
+    url(r'^r2020-infotpserv/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2020_infotpserv_salvar_views.salvar, 
+        name='r2020_infotpserv_salvar_tab'),
         
     url(r'^r2020-infotpserv/cadastrar/$', 
         r2020_infotpserv_salvar_views.salvar, 
@@ -134,9 +142,13 @@ urlpatterns = [
         r2020_infoprocretpr_listar_views.listar, 
         name='r2020_infoprocretpr'),
 
-    url(r'^r2020-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2020-infoprocretpr/salvar/(?P<pk>[0-9]+)/$', 
         r2020_infoprocretpr_salvar_views.salvar, 
         name='r2020_infoprocretpr_salvar'),
+
+    url(r'^r2020-infoprocretpr/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2020_infoprocretpr_salvar_views.salvar, 
+        name='r2020_infoprocretpr_salvar_tab'),
         
     url(r'^r2020-infoprocretpr/cadastrar/$', 
         r2020_infoprocretpr_salvar_views.salvar, 
@@ -164,9 +176,13 @@ urlpatterns = [
         r2020_infoprocretad_listar_views.listar, 
         name='r2020_infoprocretad'),
 
-    url(r'^r2020-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r2020-infoprocretad/salvar/(?P<pk>[0-9]+)/$', 
         r2020_infoprocretad_salvar_views.salvar, 
         name='r2020_infoprocretad_salvar'),
+
+    url(r'^r2020-infoprocretad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r2020_infoprocretad_salvar_views.salvar, 
+        name='r2020_infoprocretad_salvar_tab'),
         
     url(r'^r2020-infoprocretad/cadastrar/$', 
         r2020_infoprocretad_salvar_views.salvar, 

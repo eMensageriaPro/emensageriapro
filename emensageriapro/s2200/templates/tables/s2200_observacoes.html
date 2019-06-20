@@ -32,7 +32,7 @@
                     
                         {% if perms.s2200.change_s2200observacoes or perms.s2200.add_s2200observacoes %}
                     
-                        <a href="{% url 's2200_observacoes_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2200_observacoes_salvar' pk=a.id %}">
                             {% if perms.s2200.change_s2200observacoes %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -15,7 +15,7 @@
     <label id="r1000_alteracao_softhouse__r1000_alteracao__label">Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.*</label>
     {% if not for_print %}
       {% if r1000_alteracao_softhouse_form.r1000_alteracao.value %}
-        <a id="r1000_alteracao_softhouse__r1000_alteracao__div_acessar" href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao_softhouse_form.r1000_alteracao.value tab='master' %}">
+        <a id="r1000_alteracao_softhouse__r1000_alteracao__div_acessar" href="{% url 'r1000_alteracao_salvar' pk=r1000_alteracao_softhouse_form.r1000_alteracao.value %}">
           [Acessar]
         </a>
       {% endif %} 

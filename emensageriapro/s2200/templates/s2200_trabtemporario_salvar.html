@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200trabTemporario %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_trabtemporario_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_trabtemporario_salvar_tab' pk=pk tab='master' %}">
                                 Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2200.can_see_s2200ideEstabVinc %}
                                 <li {% if tab == 's2200_ideestabvinc' %} class="active"{% endif %} >
-                                    <a href="{% url 's2200_trabtemporario_salvar' pk=pk tab='s2200_ideestabvinc' %}">
+                                    <a href="{% url 's2200_trabtemporario_salvar_tab' pk=pk tab='s2200_ideestabvinc' %}">
                                     Identificação do estabelecimento ao qual o trabalhador temporário está vinculado</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2200.can_see_s2200ideTrabSubstituido %}
                                 <li {% if tab == 's2200_idetrabsubstituido' %} class="active"{% endif %} >
-                                    <a href="{% url 's2200_trabtemporario_salvar' pk=pk tab='s2200_idetrabsubstituido' %}">
+                                    <a href="{% url 's2200_trabtemporario_salvar_tab' pk=pk tab='s2200_idetrabsubstituido' %}">
                                     Identificação do(s) trabalhador(es) substituído(s)</a>
                                 </li>
                             {% endif %}

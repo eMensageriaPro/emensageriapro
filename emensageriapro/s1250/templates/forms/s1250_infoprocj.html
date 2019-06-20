@@ -15,7 +15,7 @@
     <label id="s1250_infoprocj__s1250_tpaquis__label">Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.*</label>
     {% if not for_print %}
       {% if s1250_infoprocj_form.s1250_tpaquis.value %}
-        <a id="s1250_infoprocj__s1250_tpaquis__div_acessar" href="{% url 's1250_tpaquis_salvar' pk=s1250_infoprocj_form.s1250_tpaquis.value tab='master' %}">
+        <a id="s1250_infoprocj__s1250_tpaquis__div_acessar" href="{% url 's1250_tpaquis_salvar' pk=s1250_infoprocj_form.s1250_tpaquis.value %}">
           [Acessar]
         </a>
       {% endif %} 

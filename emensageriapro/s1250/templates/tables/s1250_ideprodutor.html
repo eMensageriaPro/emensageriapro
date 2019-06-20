@@ -68,7 +68,7 @@
                     
                         {% if perms.s1250.change_s1250ideProdutor or perms.s1250.add_s1250ideProdutor %}
                     
-                        <a href="{% url 's1250_ideprodutor_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1250_ideprodutor_salvar' pk=a.id %}">
                             {% if perms.s1250.change_s1250ideProdutor %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -15,7 +15,7 @@
     <label id="s5001_ideestablot__s5001_infocp__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*</label>
     {% if not for_print %}
       {% if s5001_ideestablot_form.s5001_infocp.value %}
-        <a id="s5001_ideestablot__s5001_infocp__div_acessar" href="{% url 's5001_infocp_salvar' pk=s5001_ideestablot_form.s5001_infocp.value tab='master' %}">
+        <a id="s5001_ideestablot__s5001_infocp__div_acessar" href="{% url 's5001_infocp_salvar' pk=s5001_ideestablot_form.s5001_infocp.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1200.can_see_s1200infoPerAntinfoComplCont %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1200_infoperant_infocomplcont_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1200_infoperant_infocomplcont_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</a>
                             </li>
                         {% endif %}

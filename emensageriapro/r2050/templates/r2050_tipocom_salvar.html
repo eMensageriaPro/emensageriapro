@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r2050.can_see_r2050tipoCom %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2050_tipocom_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2050_tipocom_salvar_tab' pk=pk tab='master' %}">
                                 Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2050.can_see_r2050infoProc %}
                                 <li {% if tab == 'r2050_infoproc' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2050_tipocom_salvar' pk=pk tab='r2050_infoproc' %}">
+                                    <a href="{% url 'r2050_tipocom_salvar_tab' pk=pk tab='r2050_infoproc' %}">
                                     Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                 </li>
                             {% endif %}

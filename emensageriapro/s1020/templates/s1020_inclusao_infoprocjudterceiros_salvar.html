@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1020.can_see_s1020inclusaoinfoProcJudTerceiros %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1020_inclusao_infoprocjudterceiros_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1020_inclusao_infoprocjudterceiros_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro %}
                                 <li {% if tab == 's1020_inclusao_procjudterceiro' %} class="active"{% endif %} >
-                                    <a href="{% url 's1020_inclusao_infoprocjudterceiros_salvar' pk=pk tab='s1020_inclusao_procjudterceiro' %}">
+                                    <a href="{% url 's1020_inclusao_infoprocjudterceiros_salvar_tab' pk=pk tab='s1020_inclusao_procjudterceiro' %}">
                                     Identificação do Processo Judicial</a>
                                 </li>
                             {% endif %}

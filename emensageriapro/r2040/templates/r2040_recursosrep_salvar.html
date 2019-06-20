@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r2040.can_see_r2040recursosRep %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2040_recursosrep_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2040_recursosrep_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2040.can_see_r2040infoRecurso %}
                                 <li {% if tab == 'r2040_inforecurso' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2040_recursosrep_salvar' pk=pk tab='r2040_inforecurso' %}">
+                                    <a href="{% url 'r2040_recursosrep_salvar_tab' pk=pk tab='r2040_inforecurso' %}">
                                     Detalhamento dos recursos recebidos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r2040.can_see_r2040infoProc %}
                                 <li {% if tab == 'r2040_infoproc' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2040_recursosrep_salvar' pk=pk tab='r2040_infoproc' %}">
+                                    <a href="{% url 'r2040_recursosrep_salvar_tab' pk=pk tab='r2040_infoproc' %}">
                                     Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                 </li>
                             {% endif %}

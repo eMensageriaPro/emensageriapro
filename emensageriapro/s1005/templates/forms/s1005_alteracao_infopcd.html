@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1005_alteracao_infopcd__s1005_alteracao__label">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.*</label>
     {% if not for_print %}{% if s1005_alteracao_infopcd_form.s1005_alteracao.value %}
-        <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao_infopcd_form.s1005_alteracao.value tab='master' %}">
+        <a href="{% url 's1005_alteracao_salvar' pk=s1005_alteracao_infopcd_form.s1005_alteracao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

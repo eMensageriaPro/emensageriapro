@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1020.can_see_s1020inclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1020_inclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1020_inclusao_salvar_tab' pk=pk tab='master' %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1020.can_see_s1020inclusaoinfoProcJudTerceiros %}
                                 <li {% if tab == 's1020_inclusao_infoprocjudterceiros' %} class="active"{% endif %} >
-                                    <a href="{% url 's1020_inclusao_salvar' pk=pk tab='s1020_inclusao_infoprocjudterceiros' %}">
+                                    <a href="{% url 's1020_inclusao_salvar_tab' pk=pk tab='s1020_inclusao_infoprocjudterceiros' %}">
                                     Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1020.can_see_s1020inclusaoinfoEmprParcial %}
                                 <li {% if tab == 's1020_inclusao_infoemprparcial' %} class="active"{% endif %} >
-                                    <a href="{% url 's1020_inclusao_salvar' pk=pk tab='s1020_inclusao_infoemprparcial' %}">
+                                    <a href="{% url 's1020_inclusao_salvar_tab' pk=pk tab='s1020_inclusao_infoemprparcial' %}">
                                     Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
                                 </li>
                             {% endif %}

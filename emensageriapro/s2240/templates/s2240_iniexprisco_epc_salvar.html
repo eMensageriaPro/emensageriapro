@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2240.can_see_s2240iniExpRiscoepc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2240_iniexprisco_epc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2240_iniexprisco_epc_salvar_tab' pk=pk tab='master' %}">
                                 Equipamentos de Proteção Coletiva - EPC</a>
                             </li>
                         {% endif %}

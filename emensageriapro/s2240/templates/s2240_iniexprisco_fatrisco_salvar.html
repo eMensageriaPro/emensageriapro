@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2240_iniexprisco_fatrisco_salvar_tab' pk=pk tab='master' %}">
                                 Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2240.can_see_s2240iniExpRiscoepc %}
                                 <li {% if tab == 's2240_iniexprisco_epc' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=pk tab='s2240_iniexprisco_epc' %}">
+                                    <a href="{% url 's2240_iniexprisco_fatrisco_salvar_tab' pk=pk tab='s2240_iniexprisco_epc' %}">
                                     Equipamentos de Proteção Coletiva - EPC</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2240.can_see_s2240iniExpRiscoepi %}
                                 <li {% if tab == 's2240_iniexprisco_epi' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=pk tab='s2240_iniexprisco_epi' %}">
+                                    <a href="{% url 's2240_iniexprisco_fatrisco_salvar_tab' pk=pk tab='s2240_iniexprisco_epi' %}">
                                     Equipamentos de Proteção Individual - EPI</a>
                                 </li>
                             {% endif %}

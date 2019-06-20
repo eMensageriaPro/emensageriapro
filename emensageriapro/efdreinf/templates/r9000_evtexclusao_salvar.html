@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r9000evtExclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9000_evtexclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9000_evtexclusao_salvar_tab' pk=pk tab='master' %}">
                                 R-9000 - Exclusão de Eventos</a>
                             </li>
                         {% endif %}

@@ -44,7 +44,7 @@
                     
                         {% if perms.s2299.change_s2299infoPerApurideEstabLot or perms.s2299.add_s2299infoPerApurideEstabLot %}
                     
-                        <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2299_infoperapur_ideestablot_salvar' pk=a.id %}">
                             {% if perms.s2299.change_s2299infoPerApurideEstabLot %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

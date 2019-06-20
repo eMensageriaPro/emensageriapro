@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1060_exclusao__s1060_evttabambiente__label">Exclusão das informações*</label>
     {% if not for_print %}{% if s1060_exclusao_form.s1060_evttabambiente.value %}
-        <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_exclusao_form.s1060_evttabambiente.value tab='master' %}">
+        <a href="{% url 's1060_evttabambiente_salvar' pk=s1060_exclusao_form.s1060_evttabambiente.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

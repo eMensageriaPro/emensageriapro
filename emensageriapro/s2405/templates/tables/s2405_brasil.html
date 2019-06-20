@@ -62,7 +62,7 @@
                     
                         {% if perms.s2405.change_s2405brasil or perms.s2405.add_s2405brasil %}
                     
-                        <a href="{% url 's2405_brasil_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2405_brasil_salvar' pk=a.id %}">
                             {% if perms.s2405.change_s2405brasil %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

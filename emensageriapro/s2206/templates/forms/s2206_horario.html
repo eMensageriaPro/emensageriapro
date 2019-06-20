@@ -15,7 +15,7 @@
     <label id="s2206_horario__s2206_horcontratual__label">Informações diárias do horário contratual*</label>
     {% if not for_print %}
       {% if s2206_horario_form.s2206_horcontratual.value %}
-        <a id="s2206_horario__s2206_horcontratual__div_acessar" href="{% url 's2206_horcontratual_salvar' pk=s2206_horario_form.s2206_horcontratual.value tab='master' %}">
+        <a id="s2206_horario__s2206_horcontratual__div_acessar" href="{% url 's2206_horcontratual_salvar' pk=s2206_horario_form.s2206_horcontratual.value %}">
           [Acessar]
         </a>
       {% endif %} 

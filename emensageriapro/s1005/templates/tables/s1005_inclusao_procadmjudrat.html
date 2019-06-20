@@ -44,7 +44,7 @@
                     
                         {% if perms.s1005.change_s1005inclusaoprocAdmJudRat or perms.s1005.add_s1005inclusaoprocAdmJudRat %}
                     
-                        <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=a.id %}">
                             {% if perms.s1005.change_s1005inclusaoprocAdmJudRat %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

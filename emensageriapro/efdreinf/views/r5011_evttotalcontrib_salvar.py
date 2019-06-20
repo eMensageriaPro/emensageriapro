@@ -173,15 +173,13 @@ def salvar(request, pk=None, tab='master', output=None):
                     
                     return redirect(
                         request.session['return_page'], 
-                        pk=request.session['return_pk'], 
-                        tab=request.session['return_tab'])
+                        pk=request.session['return_pk'])
                     
                 if pk != obj.id:
                 
                     return redirect(
                         'r5011_evttotalcontrib_salvar', 
-                        pk=obj.id, 
-                        tab='master')
+                        pk=obj.id)
 
             else:
                 messages.error(request, u'Erro ao salvar!')

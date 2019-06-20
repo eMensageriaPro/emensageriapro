@@ -98,7 +98,7 @@
                     
                         {% if perms.efdreinf.change_r5011evtTotalContrib or perms.efdreinf.add_r5011evtTotalContrib %}
                     
-                        <a href="{% url 'r5011_evttotalcontrib_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r5011_evttotalcontrib_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r5011evtTotalContrib %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

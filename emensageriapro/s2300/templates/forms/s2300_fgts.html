@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2300_fgts__s2300_infocomplementares__label">Informações relativas ao FGTS.*</label>
     {% if not for_print %}{% if s2300_fgts_form.s2300_infocomplementares.value %}
-        <a href="{% url 's2300_infocomplementares_salvar' pk=s2300_fgts_form.s2300_infocomplementares.value tab='master' %}">
+        <a href="{% url 's2300_infocomplementares_salvar' pk=s2300_fgts_form.s2300_infocomplementares.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

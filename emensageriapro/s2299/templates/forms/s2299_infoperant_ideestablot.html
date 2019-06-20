@@ -15,7 +15,7 @@
     <label id="s2299_infoperant_ideestablot__s2299_infoperant_ideperiodo__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*</label>
     {% if not for_print %}
       {% if s2299_infoperant_ideestablot_form.s2299_infoperant_ideperiodo.value %}
-        <a id="s2299_infoperant_ideestablot__s2299_infoperant_ideperiodo__div_acessar" href="{% url 's2299_infoperant_ideperiodo_salvar' pk=s2299_infoperant_ideestablot_form.s2299_infoperant_ideperiodo.value tab='master' %}">
+        <a id="s2299_infoperant_ideestablot__s2299_infoperant_ideperiodo__div_acessar" href="{% url 's2299_infoperant_ideperiodo_salvar' pk=s2299_infoperant_ideestablot_form.s2299_infoperant_ideperiodo.value %}">
           [Acessar]
         </a>
       {% endif %} 

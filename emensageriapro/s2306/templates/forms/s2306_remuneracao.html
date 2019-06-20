@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2306_remuneracao__s2306_infocomplementares__label">Informações da remuneração e periodicidade de pagamento*</label>
     {% if not for_print %}{% if s2306_remuneracao_form.s2306_infocomplementares.value %}
-        <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_remuneracao_form.s2306_infocomplementares.value tab='master' %}">
+        <a href="{% url 's2306_infocomplementares_salvar' pk=s2306_remuneracao_form.s2306_infocomplementares.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

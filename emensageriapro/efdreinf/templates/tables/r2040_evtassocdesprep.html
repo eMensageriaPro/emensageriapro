@@ -92,7 +92,7 @@
                     
                         {% if perms.efdreinf.change_r2040evtAssocDespRep or perms.efdreinf.add_r2040evtAssocDespRep %}
                     
-                        <a href="{% url 'r2040_evtassocdesprep_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2040_evtassocdesprep_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2040evtAssocDespRep %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

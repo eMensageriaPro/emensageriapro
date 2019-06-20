@@ -44,7 +44,7 @@
                     
                         {% if perms.s2206.change_s2206infoCeletista or perms.s2206.add_s2206infoCeletista %}
                     
-                        <a href="{% url 's2206_infoceletista_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2206_infoceletista_salvar' pk=a.id %}">
                             {% if perms.s2206.change_s2206infoCeletista %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

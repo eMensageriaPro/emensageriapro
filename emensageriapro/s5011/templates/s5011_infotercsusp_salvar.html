@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011infoTercSusp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_infotercsusp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_infotercsusp_salvar_tab' pk=pk tab='master' %}">
                                 Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</a>
                             </li>
                         {% endif %}

@@ -15,7 +15,7 @@
     <label id="r4010_infoprocret__r4010_infopgto__label">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais*</label>
     {% if not for_print %}
       {% if r4010_infoprocret_form.r4010_infopgto.value %}
-        <a id="r4010_infoprocret__r4010_infopgto__div_acessar" href="{% url 'r4010_infopgto_salvar' pk=r4010_infoprocret_form.r4010_infopgto.value tab='master' %}">
+        <a id="r4010_infoprocret__r4010_infopgto__div_acessar" href="{% url 'r4010_infopgto_salvar' pk=r4010_infoprocret_form.r4010_infopgto.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2210.can_see_s2210parteAtingida %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2210_parteatingida_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2210_parteatingida_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</a>
                             </li>
                         {% endif %}

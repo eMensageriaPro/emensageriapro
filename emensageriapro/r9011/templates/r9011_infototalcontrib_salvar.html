@@ -54,42 +54,42 @@
                     {% if pk %}
                         {% if perms.r9011.can_see_r9011infoTotalContrib %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9011_infototalcontrib_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9011_infototalcontrib_salvar_tab' pk=pk tab='master' %}">
                                 Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r9011.can_see_r9011RTom %}
                                 <li {% if tab == 'r9011_rtom' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9011_infototalcontrib_salvar' pk=pk tab='r9011_rtom' %}">
+                                    <a href="{% url 'r9011_infototalcontrib_salvar_tab' pk=pk tab='r9011_rtom' %}">
                                     Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9011.can_see_r9011RPrest %}
                                 <li {% if tab == 'r9011_rprest' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9011_infototalcontrib_salvar' pk=pk tab='r9011_rprest' %}">
+                                    <a href="{% url 'r9011_infototalcontrib_salvar_tab' pk=pk tab='r9011_rprest' %}">
                                     Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9011.can_see_r9011RRecRepAD %}
                                 <li {% if tab == 'r9011_rrecrepad' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9011_infototalcontrib_salvar' pk=pk tab='r9011_rrecrepad' %}">
+                                    <a href="{% url 'r9011_infototalcontrib_salvar_tab' pk=pk tab='r9011_rrecrepad' %}">
                                     Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9011.can_see_r9011RComl %}
                                 <li {% if tab == 'r9011_rcoml' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9011_infototalcontrib_salvar' pk=pk tab='r9011_rcoml' %}">
+                                    <a href="{% url 'r9011_infototalcontrib_salvar_tab' pk=pk tab='r9011_rcoml' %}">
                                     Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r9011.can_see_r9011RCPRB %}
                                 <li {% if tab == 'r9011_rcprb' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9011_infototalcontrib_salvar' pk=pk tab='r9011_rcprb' %}">
+                                    <a href="{% url 'r9011_infototalcontrib_salvar_tab' pk=pk tab='r9011_rcprb' %}">
                                     Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</a>
                                 </li>
                             {% endif %}

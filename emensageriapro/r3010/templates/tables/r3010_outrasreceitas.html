@@ -44,7 +44,7 @@
                     
                         {% if perms.r3010.change_r3010outrasReceitas or perms.r3010.add_r3010outrasReceitas %}
                     
-                        <a href="{% url 'r3010_outrasreceitas_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r3010_outrasreceitas_salvar' pk=a.id %}">
                             {% if perms.r3010.change_r3010outrasReceitas %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

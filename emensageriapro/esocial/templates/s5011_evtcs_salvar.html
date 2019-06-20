@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s5011evtCS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_evtcs_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_evtcs_salvar_tab' pk=pk tab='master' %}">
                                 S-5011 - Informações das contribuições sociais consolidadas por contribuinte</a>
                             </li>
                         {% endif %}
@@ -62,28 +62,28 @@
                             
                                 {% if perms.s5011.can_see_s5011infoCPSeg %}
                                     <li {% if tab == 's5011_infocpseg' %} class="active"{% endif %} >
-                                        <a href="{% url 's5011_evtcs_salvar' pk=pk tab='s5011_infocpseg' %}">
+                                        <a href="{% url 's5011_evtcs_salvar_tab' pk=pk tab='s5011_infocpseg' %}">
                                         Informações de contribuição previdenciária do Segurado</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s5011.can_see_s5011infoPJ %}
                                     <li {% if tab == 's5011_infopj' %} class="active"{% endif %} >
-                                        <a href="{% url 's5011_evtcs_salvar' pk=pk tab='s5011_infopj' %}">
+                                        <a href="{% url 's5011_evtcs_salvar_tab' pk=pk tab='s5011_infopj' %}">
                                         Informações complementares, exclusivas da Pessoa Jurídica.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s5011.can_see_s5011ideEstab %}
                                     <li {% if tab == 's5011_ideestab' %} class="active"{% endif %} >
-                                        <a href="{% url 's5011_evtcs_salvar' pk=pk tab='s5011_ideestab' %}">
+                                        <a href="{% url 's5011_evtcs_salvar_tab' pk=pk tab='s5011_ideestab' %}">
                                         Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s5011.can_see_s5011infoCRContrib %}
                                     <li {% if tab == 's5011_infocrcontrib' %} class="active"{% endif %} >
-                                        <a href="{% url 's5011_evtcs_salvar' pk=pk tab='s5011_infocrcontrib' %}">
+                                        <a href="{% url 's5011_evtcs_salvar_tab' pk=pk tab='s5011_infocrcontrib' %}">
                                         Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</a>
                                     </li>
                                 {% endif %}

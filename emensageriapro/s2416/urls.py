@@ -70,9 +70,13 @@ urlpatterns = [
         s2416_infopenmorte_listar_views.listar, 
         name='s2416_infopenmorte'),
 
-    url(r'^s2416-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2416-infopenmorte/salvar/(?P<pk>[0-9]+)/$', 
         s2416_infopenmorte_salvar_views.salvar, 
         name='s2416_infopenmorte_salvar'),
+
+    url(r'^s2416-infopenmorte/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2416_infopenmorte_salvar_views.salvar, 
+        name='s2416_infopenmorte_salvar_tab'),
         
     url(r'^s2416-infopenmorte/cadastrar/$', 
         s2416_infopenmorte_salvar_views.salvar, 
@@ -100,9 +104,13 @@ urlpatterns = [
         s2416_homologtc_listar_views.listar, 
         name='s2416_homologtc'),
 
-    url(r'^s2416-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2416-homologtc/salvar/(?P<pk>[0-9]+)/$', 
         s2416_homologtc_salvar_views.salvar, 
         name='s2416_homologtc_salvar'),
+
+    url(r'^s2416-homologtc/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2416_homologtc_salvar_views.salvar, 
+        name='s2416_homologtc_salvar_tab'),
         
     url(r'^s2416-homologtc/cadastrar/$', 
         s2416_homologtc_salvar_views.salvar, 
@@ -130,9 +138,13 @@ urlpatterns = [
         s2416_suspensao_listar_views.listar, 
         name='s2416_suspensao'),
 
-    url(r'^s2416-suspensao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2416-suspensao/salvar/(?P<pk>[0-9]+)/$', 
         s2416_suspensao_salvar_views.salvar, 
         name='s2416_suspensao_salvar'),
+
+    url(r'^s2416-suspensao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2416_suspensao_salvar_views.salvar, 
+        name='s2416_suspensao_salvar_tab'),
         
     url(r'^s2416-suspensao/cadastrar/$', 
         s2416_suspensao_salvar_views.salvar, 

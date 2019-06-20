@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r4040evtBenefNId %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4040_evtbenefnid_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4040_evtbenefnid_salvar_tab' pk=pk tab='master' %}">
                                 R-4040 - Retenções na Fonte - Beneficiários não identificados</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r4040.can_see_r4040ideNat %}
                                     <li {% if tab == 'r4040_idenat' %} class="active"{% endif %} >
-                                        <a href="{% url 'r4040_evtbenefnid_salvar' pk=pk tab='r4040_idenat' %}">
+                                        <a href="{% url 'r4040_evtbenefnid_salvar_tab' pk=pk tab='r4040_idenat' %}">
                                         Identificação da natureza do rendimento</a>
                                     </li>
                                 {% endif %}

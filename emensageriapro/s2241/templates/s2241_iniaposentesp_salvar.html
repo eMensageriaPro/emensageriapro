@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2241.can_see_s2241iniAposentEsp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2241_iniaposentesp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2241_iniaposentesp_salvar_tab' pk=pk tab='master' %}">
                                 Condições do ambiente de trabalho que ensejam aposentadoria especial - Início</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2241.can_see_s2241iniAposentEspinfoAmb %}
                                 <li {% if tab == 's2241_iniaposentesp_infoamb' %} class="active"{% endif %} >
-                                    <a href="{% url 's2241_iniaposentesp_salvar' pk=pk tab='s2241_iniaposentesp_infoamb' %}">
+                                    <a href="{% url 's2241_iniaposentesp_salvar_tab' pk=pk tab='s2241_iniaposentesp_infoamb' %}">
                                     Informações relativas ao ambiente de trabalho</a>
                                 </li>
                             {% endif %}

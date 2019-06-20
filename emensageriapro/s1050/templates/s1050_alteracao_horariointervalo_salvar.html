@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1050.can_see_s1050alteracaohorarioIntervalo %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1050_alteracao_horariointervalo_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1050_alteracao_horariointervalo_salvar_tab' pk=pk tab='master' %}">
                                 Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.</a>
                             </li>
                         {% endif %}

@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s5003.can_see_s5003infoTrabFGTS %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5003_infotrabfgts_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5003_infotrabfgts_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas à matrícula e categoria do trabalhador.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5003.can_see_s5003infoBaseFGTS %}
                                 <li {% if tab == 's5003_infobasefgts' %} class="active"{% endif %} >
-                                    <a href="{% url 's5003_infotrabfgts_salvar' pk=pk tab='s5003_infobasefgts' %}">
+                                    <a href="{% url 's5003_infotrabfgts_salvar_tab' pk=pk tab='s5003_infobasefgts' %}">
                                     Informações referentes a bases de cálculo do FGTS.</a>
                                 </li>
                             {% endif %}

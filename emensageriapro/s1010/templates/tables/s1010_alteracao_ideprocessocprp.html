@@ -44,7 +44,7 @@
                     
                         {% if perms.s1010.change_s1010alteracaoideProcessoCPRP or perms.s1010.add_s1010alteracaoideProcessoCPRP %}
                     
-                        <a href="{% url 's1010_alteracao_ideprocessocprp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1010_alteracao_ideprocessocprp_salvar' pk=a.id %}">
                             {% if perms.s1010.change_s1010alteracaoideProcessoCPRP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

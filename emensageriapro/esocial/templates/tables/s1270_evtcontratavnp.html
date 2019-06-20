@@ -80,7 +80,7 @@
                     
                         {% if perms.esocial.change_s1270evtContratAvNP or perms.esocial.add_s1270evtContratAvNP %}
                     
-                        <a href="{% url 's1270_evtcontratavnp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1270_evtcontratavnp_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1270evtContratAvNP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -32,7 +32,7 @@
                     
                         {% if perms.r5011.change_r5011infoTotalContrib or perms.r5011.add_r5011infoTotalContrib %}
                     
-                        <a href="{% url 'r5011_infototalcontrib_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r5011_infototalcontrib_salvar' pk=a.id %}">
                             {% if perms.r5011.change_r5011infoTotalContrib %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

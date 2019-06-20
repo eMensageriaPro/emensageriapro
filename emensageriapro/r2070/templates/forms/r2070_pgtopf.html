@@ -15,7 +15,7 @@
     <label id="r2070_pgtopf__r2070_pgtoresidbr__label">Beneficiário Pessoa Física - Residente no Brasil*</label>
     {% if not for_print %}
       {% if r2070_pgtopf_form.r2070_pgtoresidbr.value %}
-        <a id="r2070_pgtopf__r2070_pgtoresidbr__div_acessar" href="{% url 'r2070_pgtoresidbr_salvar' pk=r2070_pgtopf_form.r2070_pgtoresidbr.value tab='master' %}">
+        <a id="r2070_pgtopf__r2070_pgtoresidbr__div_acessar" href="{% url 'r2070_pgtoresidbr_salvar' pk=r2070_pgtopf_form.r2070_pgtoresidbr.value %}">
           [Acessar]
         </a>
       {% endif %} 

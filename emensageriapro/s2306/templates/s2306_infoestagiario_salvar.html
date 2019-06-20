@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s2306.can_see_s2306infoEstagiario %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2306_infoestagiario_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2306_infoestagiario_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas ao estagiário</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2306.can_see_s2306ageIntegracao %}
                                 <li {% if tab == 's2306_ageintegracao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2306_infoestagiario_salvar' pk=pk tab='s2306_ageintegracao' %}">
+                                    <a href="{% url 's2306_infoestagiario_salvar_tab' pk=pk tab='s2306_ageintegracao' %}">
                                     Agente de Integração</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2306.can_see_s2306supervisorEstagio %}
                                 <li {% if tab == 's2306_supervisorestagio' %} class="active"{% endif %} >
-                                    <a href="{% url 's2306_infoestagiario_salvar' pk=pk tab='s2306_supervisorestagio' %}">
+                                    <a href="{% url 's2306_infoestagiario_salvar_tab' pk=pk tab='s2306_supervisorestagio' %}">
                                     Supervisor do Estágio</a>
                                 </li>
                             {% endif %}

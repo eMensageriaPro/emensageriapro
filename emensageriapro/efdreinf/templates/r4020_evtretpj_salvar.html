@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r4020evtRetPJ %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4020_evtretpj_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4020_evtretpj_salvar_tab' pk=pk tab='master' %}">
                                 R-4020 - Retenções na Fonte - Pessoa Jurídica</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r4020.can_see_r4020idePgto %}
                                     <li {% if tab == 'r4020_idepgto' %} class="active"{% endif %} >
-                                        <a href="{% url 'r4020_evtretpj_salvar' pk=pk tab='r4020_idepgto' %}">
+                                        <a href="{% url 'r4020_evtretpj_salvar_tab' pk=pk tab='r4020_idepgto' %}">
                                         Identificação do rendimento</a>
                                     </li>
                                 {% endif %}

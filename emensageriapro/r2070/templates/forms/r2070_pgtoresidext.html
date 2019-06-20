@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="r2070_pgtoresidext__r2070_ideestab__label">Pagamento a não residente ou domiciliado no exterior*</label>
     {% if not for_print %}{% if r2070_pgtoresidext_form.r2070_ideestab.value %}
-        <a href="{% url 'r2070_ideestab_salvar' pk=r2070_pgtoresidext_form.r2070_ideestab.value tab='master' %}">
+        <a href="{% url 'r2070_ideestab_salvar' pk=r2070_pgtoresidext_form.r2070_ideestab.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -78,9 +78,13 @@ urlpatterns = [
         s5002_infodep_listar_views.listar, 
         name='s5002_infodep'),
 
-    url(r'^s5002-infodep/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5002-infodep/salvar/(?P<pk>[0-9]+)/$', 
         s5002_infodep_salvar_views.salvar, 
         name='s5002_infodep_salvar'),
+
+    url(r'^s5002-infodep/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5002_infodep_salvar_views.salvar, 
+        name='s5002_infodep_salvar_tab'),
         
     url(r'^s5002-infodep/cadastrar/$', 
         s5002_infodep_salvar_views.salvar, 
@@ -108,9 +112,13 @@ urlpatterns = [
         s5002_infoirrf_listar_views.listar, 
         name='s5002_infoirrf'),
 
-    url(r'^s5002-infoirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5002-infoirrf/salvar/(?P<pk>[0-9]+)/$', 
         s5002_infoirrf_salvar_views.salvar, 
         name='s5002_infoirrf_salvar'),
+
+    url(r'^s5002-infoirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5002_infoirrf_salvar_views.salvar, 
+        name='s5002_infoirrf_salvar_tab'),
         
     url(r'^s5002-infoirrf/cadastrar/$', 
         s5002_infoirrf_salvar_views.salvar, 
@@ -138,9 +146,13 @@ urlpatterns = [
         s5002_basesirrf_listar_views.listar, 
         name='s5002_basesirrf'),
 
-    url(r'^s5002-basesirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5002-basesirrf/salvar/(?P<pk>[0-9]+)/$', 
         s5002_basesirrf_salvar_views.salvar, 
         name='s5002_basesirrf_salvar'),
+
+    url(r'^s5002-basesirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5002_basesirrf_salvar_views.salvar, 
+        name='s5002_basesirrf_salvar_tab'),
         
     url(r'^s5002-basesirrf/cadastrar/$', 
         s5002_basesirrf_salvar_views.salvar, 
@@ -168,9 +180,13 @@ urlpatterns = [
         s5002_irrf_listar_views.listar, 
         name='s5002_irrf'),
 
-    url(r'^s5002-irrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5002-irrf/salvar/(?P<pk>[0-9]+)/$', 
         s5002_irrf_salvar_views.salvar, 
         name='s5002_irrf_salvar'),
+
+    url(r'^s5002-irrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5002_irrf_salvar_views.salvar, 
+        name='s5002_irrf_salvar_tab'),
         
     url(r'^s5002-irrf/cadastrar/$', 
         s5002_irrf_salvar_views.salvar, 
@@ -198,9 +214,13 @@ urlpatterns = [
         s5002_idepgtoext_listar_views.listar, 
         name='s5002_idepgtoext'),
 
-    url(r'^s5002-idepgtoext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s5002-idepgtoext/salvar/(?P<pk>[0-9]+)/$', 
         s5002_idepgtoext_salvar_views.salvar, 
         name='s5002_idepgtoext_salvar'),
+
+    url(r'^s5002-idepgtoext/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s5002_idepgtoext_salvar_views.salvar, 
+        name='s5002_idepgtoext_salvar_tab'),
         
     url(r'^s5002-idepgtoext/cadastrar/$', 
         s5002_idepgtoext_salvar_views.salvar, 

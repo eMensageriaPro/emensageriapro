@@ -50,7 +50,7 @@
                     
                         {% if perms.r5011.change_r5011RPrest or perms.r5011.add_r5011RPrest %}
                     
-                        <a href="{% url 'r5011_rprest_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r5011_rprest_salvar' pk=a.id %}">
                             {% if perms.r5011.change_r5011RPrest %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

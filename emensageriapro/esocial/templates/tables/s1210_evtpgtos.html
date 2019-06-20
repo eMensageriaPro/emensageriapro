@@ -86,7 +86,7 @@
                     
                         {% if perms.esocial.change_s1210evtPgtos or perms.esocial.add_s1210evtPgtos %}
                     
-                        <a href="{% url 's1210_evtpgtos_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1210_evtpgtos_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1210evtPgtos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

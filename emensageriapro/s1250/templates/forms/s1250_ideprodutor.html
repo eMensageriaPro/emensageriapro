@@ -15,7 +15,7 @@
     <label id="s1250_ideprodutor__s1250_tpaquis__label">Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.*</label>
     {% if not for_print %}
       {% if s1250_ideprodutor_form.s1250_tpaquis.value %}
-        <a id="s1250_ideprodutor__s1250_tpaquis__div_acessar" href="{% url 's1250_tpaquis_salvar' pk=s1250_ideprodutor_form.s1250_tpaquis.value tab='master' %}">
+        <a id="s1250_ideprodutor__s1250_tpaquis__div_acessar" href="{% url 's1250_tpaquis_salvar' pk=s1250_ideprodutor_form.s1250_tpaquis.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -44,7 +44,7 @@
                     
                         {% if perms.r4010.change_r4010infoProcJudideAdv or perms.r4010.add_r4010infoProcJudideAdv %}
                     
-                        <a href="{% url 'r4010_infoprocjud_ideadv_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4010_infoprocjud_ideadv_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010infoProcJudideAdv %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

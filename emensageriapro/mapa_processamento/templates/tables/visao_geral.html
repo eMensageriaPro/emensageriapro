@@ -20,7 +20,7 @@
                     
                         {% if perms.mapa_processamento.change_VisaoGeral or perms.mapa_processamento.add_VisaoGeral %}
                     
-                        <a href="{% url 'visao_geral_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'visao_geral_salvar' pk=a.id %}">
                             {% if perms.mapa_processamento.change_VisaoGeral %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

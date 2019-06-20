@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2210_atestado__s2210_evtcat__label">Atestado Médico*</label>
     {% if not for_print %}{% if s2210_atestado_form.s2210_evtcat.value %}
-        <a href="{% url 's2210_evtcat_salvar' pk=s2210_atestado_form.s2210_evtcat.value tab='master' %}">
+        <a href="{% url 's2210_evtcat_salvar' pk=s2210_atestado_form.s2210_evtcat.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2299.can_see_s2299infoPerAntidePeriodo %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2299_infoperant_ideperiodo_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2299_infoperant_ideperiodo_salvar_tab' pk=pk tab='master' %}">
                                 Período de validade das informações incluídas</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2299.can_see_s2299infoPerAntideEstabLot %}
                                 <li {% if tab == 's2299_infoperant_ideestablot' %} class="active"{% endif %} >
-                                    <a href="{% url 's2299_infoperant_ideperiodo_salvar' pk=pk tab='s2299_infoperant_ideestablot' %}">
+                                    <a href="{% url 's2299_infoperant_ideperiodo_salvar_tab' pk=pk tab='s2299_infoperant_ideestablot' %}">
                                     Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                                 </li>
                             {% endif %}

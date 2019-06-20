@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200infoCeletista %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_infoceletista_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='master' %}">
                                 Informações de Trabalhador Celetista</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2200.can_see_s2200trabTemporario %}
                                 <li {% if tab == 's2200_trabtemporario' %} class="active"{% endif %} >
-                                    <a href="{% url 's2200_infoceletista_salvar' pk=pk tab='s2200_trabtemporario' %}">
+                                    <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='s2200_trabtemporario' %}">
                                     Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2200.can_see_s2200aprend %}
                                 <li {% if tab == 's2200_aprend' %} class="active"{% endif %} >
-                                    <a href="{% url 's2200_infoceletista_salvar' pk=pk tab='s2200_aprend' %}">
+                                    <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='s2200_aprend' %}">
                                     Informações para identificação do empregador contratante de aprendiz</a>
                                 </li>
                             {% endif %}

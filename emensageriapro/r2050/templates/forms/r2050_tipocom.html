@@ -15,7 +15,7 @@
     <label id="r2050_tipocom__r2050_evtcomprod__label">Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.*</label>
     {% if not for_print %}
       {% if r2050_tipocom_form.r2050_evtcomprod.value %}
-        <a id="r2050_tipocom__r2050_evtcomprod__div_acessar" href="{% url 'r2050_evtcomprod_salvar' pk=r2050_tipocom_form.r2050_evtcomprod.value tab='master' %}">
+        <a id="r2050_tipocom__r2050_evtcomprod__div_acessar" href="{% url 'r2050_evtcomprod_salvar' pk=r2050_tipocom_form.r2050_evtcomprod.value %}">
           [Acessar]
         </a>
       {% endif %} 

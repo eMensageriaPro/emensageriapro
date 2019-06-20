@@ -86,9 +86,13 @@ urlpatterns = [
         s2306_infocomplementares_listar_views.listar, 
         name='s2306_infocomplementares'),
 
-    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/$', 
         s2306_infocomplementares_salvar_views.salvar, 
         name='s2306_infocomplementares_salvar'),
+
+    url(r'^s2306-infocomplementares/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_infocomplementares_salvar_views.salvar, 
+        name='s2306_infocomplementares_salvar_tab'),
         
     url(r'^s2306-infocomplementares/cadastrar/$', 
         s2306_infocomplementares_salvar_views.salvar, 
@@ -116,9 +120,13 @@ urlpatterns = [
         s2306_cargofuncao_listar_views.listar, 
         name='s2306_cargofuncao'),
 
-    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/$', 
         s2306_cargofuncao_salvar_views.salvar, 
         name='s2306_cargofuncao_salvar'),
+
+    url(r'^s2306-cargofuncao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_cargofuncao_salvar_views.salvar, 
+        name='s2306_cargofuncao_salvar_tab'),
         
     url(r'^s2306-cargofuncao/cadastrar/$', 
         s2306_cargofuncao_salvar_views.salvar, 
@@ -146,9 +154,13 @@ urlpatterns = [
         s2306_remuneracao_listar_views.listar, 
         name='s2306_remuneracao'),
 
-    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/$', 
         s2306_remuneracao_salvar_views.salvar, 
         name='s2306_remuneracao_salvar'),
+
+    url(r'^s2306-remuneracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_remuneracao_salvar_views.salvar, 
+        name='s2306_remuneracao_salvar_tab'),
         
     url(r'^s2306-remuneracao/cadastrar/$', 
         s2306_remuneracao_salvar_views.salvar, 
@@ -176,9 +188,13 @@ urlpatterns = [
         s2306_infotrabcedido_listar_views.listar, 
         name='s2306_infotrabcedido'),
 
-    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/$', 
         s2306_infotrabcedido_salvar_views.salvar, 
         name='s2306_infotrabcedido_salvar'),
+
+    url(r'^s2306-infotrabcedido/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_infotrabcedido_salvar_views.salvar, 
+        name='s2306_infotrabcedido_salvar_tab'),
         
     url(r'^s2306-infotrabcedido/cadastrar/$', 
         s2306_infotrabcedido_salvar_views.salvar, 
@@ -206,9 +222,13 @@ urlpatterns = [
         s2306_infoestagiario_listar_views.listar, 
         name='s2306_infoestagiario'),
 
-    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/$', 
         s2306_infoestagiario_salvar_views.salvar, 
         name='s2306_infoestagiario_salvar'),
+
+    url(r'^s2306-infoestagiario/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_infoestagiario_salvar_views.salvar, 
+        name='s2306_infoestagiario_salvar_tab'),
         
     url(r'^s2306-infoestagiario/cadastrar/$', 
         s2306_infoestagiario_salvar_views.salvar, 
@@ -236,9 +256,13 @@ urlpatterns = [
         s2306_ageintegracao_listar_views.listar, 
         name='s2306_ageintegracao'),
 
-    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/$', 
         s2306_ageintegracao_salvar_views.salvar, 
         name='s2306_ageintegracao_salvar'),
+
+    url(r'^s2306-ageintegracao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_ageintegracao_salvar_views.salvar, 
+        name='s2306_ageintegracao_salvar_tab'),
         
     url(r'^s2306-ageintegracao/cadastrar/$', 
         s2306_ageintegracao_salvar_views.salvar, 
@@ -266,9 +290,13 @@ urlpatterns = [
         s2306_supervisorestagio_listar_views.listar, 
         name='s2306_supervisorestagio'),
 
-    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/$', 
         s2306_supervisorestagio_salvar_views.salvar, 
         name='s2306_supervisorestagio_salvar'),
+
+    url(r'^s2306-supervisorestagio/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s2306_supervisorestagio_salvar_views.salvar, 
+        name='s2306_supervisorestagio_salvar_tab'),
         
     url(r'^s2306-supervisorestagio/cadastrar/$', 
         s2306_supervisorestagio_salvar_views.salvar, 

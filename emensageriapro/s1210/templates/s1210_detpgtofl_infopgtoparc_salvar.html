@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1210.can_see_s1210detPgtoFlinfoPgtoParc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_detpgtofl_infopgtoparc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_detpgtofl_infopgtoparc_salvar_tab' pk=pk tab='master' %}">
                                 Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.</a>
                             </li>
                         {% endif %}

@@ -15,7 +15,7 @@
     <label id="r9011_rprest__r9011_infototalcontrib__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020*</label>
     {% if not for_print %}
       {% if r9011_rprest_form.r9011_infototalcontrib.value %}
-        <a id="r9011_rprest__r9011_infototalcontrib__div_acessar" href="{% url 'r9011_infototalcontrib_salvar' pk=r9011_rprest_form.r9011_infototalcontrib.value tab='master' %}">
+        <a id="r9011_rprest__r9011_infototalcontrib__div_acessar" href="{% url 'r9011_infototalcontrib_salvar' pk=r9011_rprest_form.r9011_infototalcontrib.value %}">
           [Acessar]
         </a>
       {% endif %} 

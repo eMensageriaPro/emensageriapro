@@ -26,7 +26,7 @@
                     
                         {% if perms.r2070.change_r2070pgtoResidBR or perms.r2070.add_r2070pgtoResidBR %}
                     
-                        <a href="{% url 'r2070_pgtoresidbr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_pgtoresidbr_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoResidBR %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

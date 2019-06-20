@@ -44,7 +44,7 @@
                     
                         {% if perms.r2030.change_r2030recursosRec or perms.r2030.add_r2030recursosRec %}
                     
-                        <a href="{% url 'r2030_recursosrec_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2030_recursosrec_salvar' pk=a.id %}">
                             {% if perms.r2030.change_r2030recursosRec %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -20,7 +20,7 @@
   
   {% if not output %}
     {% if retornos_eventos_form.transmissor_lote_esocial.value %}
-    <a id="retornos_eventos__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=retornos_eventos_form.transmissor_lote_esocial.value tab='master' %}">
+    <a id="retornos_eventos__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=retornos_eventos_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
     {% endif %} 

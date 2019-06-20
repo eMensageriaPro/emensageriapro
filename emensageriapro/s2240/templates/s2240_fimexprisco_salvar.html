@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s2240.can_see_s2240fimExpRisco %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2240_fimexprisco_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2240_fimexprisco_salvar_tab' pk=pk tab='master' %}">
                                 Condições ambientais do trabalho - Fim</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2240.can_see_s2240fimExpRiscoinfoAmb %}
                                 <li {% if tab == 's2240_fimexprisco_infoamb' %} class="active"{% endif %} >
-                                    <a href="{% url 's2240_fimexprisco_salvar' pk=pk tab='s2240_fimexprisco_infoamb' %}">
+                                    <a href="{% url 's2240_fimexprisco_salvar_tab' pk=pk tab='s2240_fimexprisco_infoamb' %}">
                                     Informações relativas ao ambiente de trabalho</a>
                                 </li>
                             {% endif %}

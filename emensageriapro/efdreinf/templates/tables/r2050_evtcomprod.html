@@ -116,7 +116,7 @@
                     
                         {% if perms.efdreinf.change_r2050evtComProd or perms.efdreinf.add_r2050evtComProd %}
                     
-                        <a href="{% url 'r2050_evtcomprod_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2050_evtcomprod_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2050evtComProd %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

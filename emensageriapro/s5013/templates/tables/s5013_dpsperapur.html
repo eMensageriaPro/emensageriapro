@@ -38,7 +38,7 @@
                     
                         {% if perms.s5013.change_s5013dpsPerApur or perms.s5013.add_s5013dpsPerApur %}
                     
-                        <a href="{% url 's5013_dpsperapur_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5013_dpsperapur_salvar' pk=a.id %}">
                             {% if perms.s5013.change_s5013dpsPerApur %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

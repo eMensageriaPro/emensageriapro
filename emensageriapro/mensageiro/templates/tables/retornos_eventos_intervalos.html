@@ -38,7 +38,7 @@
                     
                         {% if perms.mensageiro.change_RetornosEventosIntervalos or perms.mensageiro.add_RetornosEventosIntervalos %}
                     
-                        <a href="{% url 'retornos_eventos_intervalos_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'retornos_eventos_intervalos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_RetornosEventosIntervalos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -15,7 +15,7 @@
     <label id="s1280_infosubstpatropport__s1280_evtinfocomplper__label">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.*</label>
     {% if not for_print %}
       {% if s1280_infosubstpatropport_form.s1280_evtinfocomplper.value %}
-        <a id="s1280_infosubstpatropport__s1280_evtinfocomplper__div_acessar" href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infosubstpatropport_form.s1280_evtinfocomplper.value tab='master' %}">
+        <a id="s1280_infosubstpatropport__s1280_evtinfocomplper__div_acessar" href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infosubstpatropport_form.s1280_evtinfocomplper.value %}">
           [Acessar]
         </a>
       {% endif %} 

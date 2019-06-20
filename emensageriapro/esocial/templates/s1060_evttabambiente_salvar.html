@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1060evtTabAmbiente %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1060_evttabambiente_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1060_evttabambiente_salvar_tab' pk=pk tab='master' %}">
                                 S-1060 - Tabela de Ambientes de Trabalho</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             {% if s1060_evttabambiente.operacao == 1 %}
                                 {% if perms.esocial.can_see_s1060inclusao %}
                                     <li {% if tab == 's1060_inclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 's1060_evttabambiente_salvar' pk=pk tab='s1060_inclusao' %}">
+                                        <a href="{% url 's1060_evttabambiente_salvar_tab' pk=pk tab='s1060_inclusao' %}">
                                         Inclusão de novas informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1060_evttabambiente.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1060alteracao %}
                                     <li {% if tab == 's1060_alteracao' %}class="active"{% endif %}>
-                                        <a href="{% url 's1060_evttabambiente_salvar' pk=pk tab='s1060_alteracao' %}">
+                                        <a href="{% url 's1060_evttabambiente_salvar_tab' pk=pk tab='s1060_alteracao' %}">
                                         Alteração das informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1060_evttabambiente.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1060exclusao %}
                                     <li {% if tab == 's1060_exclusao' %}class="active"{% endif %} >
-                                        <a href="{% url 's1060_evttabambiente_salvar' pk=pk tab='s1060_exclusao' %}">
+                                        <a href="{% url 's1060_evttabambiente_salvar_tab' pk=pk tab='s1060_exclusao' %}">
                                         Exclusão das informações</a>
                                     </li>
                                 {% endif %}

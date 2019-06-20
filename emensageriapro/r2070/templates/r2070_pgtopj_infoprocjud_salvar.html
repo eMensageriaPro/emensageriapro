@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2070_pgtopj_infoprocjud_salvar_tab' pk=pk tab='master' %}">
                                 Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2070.can_see_r2070pgtoPJdespProcJud %}
                                 <li {% if tab == 'r2070_pgtopj_despprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=pk tab='r2070_pgtopj_despprocjud' %}">
+                                    <a href="{% url 'r2070_pgtopj_infoprocjud_salvar_tab' pk=pk tab='r2070_pgtopj_despprocjud' %}">
                                     Detalhamento das despesas de processo judicial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r2070.can_see_r2070pgtoPJorigemRecursos %}
                                 <li {% if tab == 'r2070_pgtopj_origemrecursos' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_pgtopj_infoprocjud_salvar' pk=pk tab='r2070_pgtopj_origemrecursos' %}">
+                                    <a href="{% url 'r2070_pgtopj_infoprocjud_salvar_tab' pk=pk tab='r2070_pgtopj_origemrecursos' %}">
                                     Identificação da origem dos recursos</a>
                                 </li>
                             {% endif %}

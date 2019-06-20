@@ -44,7 +44,7 @@
                     
                         {% if perms.r2070.change_r2070infoResidExt or perms.r2070.add_r2070infoResidExt %}
                     
-                        <a href="{% url 'r2070_inforesidext_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_inforesidext_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070infoResidExt %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

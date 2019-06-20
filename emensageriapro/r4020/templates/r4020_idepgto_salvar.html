@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r4020.can_see_r4020idePgto %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4020_idepgto_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4020_idepgto_salvar_tab' pk=pk tab='master' %}">
                                 Identificação do rendimento</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4020.can_see_r4020infoPgto %}
                                 <li {% if tab == 'r4020_infopgto' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4020_idepgto_salvar' pk=pk tab='r4020_infopgto' %}">
+                                    <a href="{% url 'r4020_idepgto_salvar_tab' pk=pk tab='r4020_infopgto' %}">
                                     Informações do Pagamento</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r4020.can_see_r4020infoPgtoExt %}
                                 <li {% if tab == 'r4020_infopgtoext' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4020_idepgto_salvar' pk=pk tab='r4020_infopgtoext' %}">
+                                    <a href="{% url 'r4020_idepgto_salvar_tab' pk=pk tab='r4020_infopgtoext' %}">
                                     Informações complementares relativas a pagamentos a residente fiscal no Exterior</a>
                                 </li>
                             {% endif %}

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2300.can_see_s2300OC %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2300_oc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2300_oc_salvar_tab' pk=pk tab='master' %}">
                                 Informações do número de registro em Órgão de Classe (OC)</a>
                             </li>
                         {% endif %}

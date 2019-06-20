@@ -38,7 +38,7 @@
                     
                         {% if perms.s2230.change_s2230infoMandSind or perms.s2230.add_s2230infoMandSind %}
                     
-                        <a href="{% url 's2230_infomandsind_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2230_infomandsind_salvar' pk=a.id %}">
                             {% if perms.s2230.change_s2230infoMandSind %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

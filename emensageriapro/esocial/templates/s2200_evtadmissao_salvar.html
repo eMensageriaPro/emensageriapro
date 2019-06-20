@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s2200evtAdmissao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='master' %}">
                                 S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador</a>
                             </li>
                         {% endif %}
@@ -62,154 +62,154 @@
                             
                                 {% if perms.s2200.can_see_s2200documentos %}
                                     <li {% if tab == 's2200_documentos' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_documentos' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_documentos' %}">
                                         Informações dos documentos pessoais do trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200brasil %}
                                     <li {% if tab == 's2200_brasil' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_brasil' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_brasil' %}">
                                         Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200exterior %}
                                     <li {% if tab == 's2200_exterior' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_exterior' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_exterior' %}">
                                         Preenchido em caso de trabalhador residente no exterior.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200trabEstrangeiro %}
                                     <li {% if tab == 's2200_trabestrangeiro' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_trabestrangeiro' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_trabestrangeiro' %}">
                                         Grupo de informações do Trabalhador Estrangeiro</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200infoDeficiencia %}
                                     <li {% if tab == 's2200_infodeficiencia' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_infodeficiencia' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_infodeficiencia' %}">
                                         Pessoa com Deficiência</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200dependente %}
                                     <li {% if tab == 's2200_dependente' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_dependente' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200aposentadoria %}
                                     <li {% if tab == 's2200_aposentadoria' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_aposentadoria' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_aposentadoria' %}">
                                         Informação de aposentadoria do trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200contato %}
                                     <li {% if tab == 's2200_contato' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_contato' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_contato' %}">
                                         Informações de contato</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200infoCeletista %}
                                     <li {% if tab == 's2200_infoceletista' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_infoceletista' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_infoceletista' %}">
                                         Informações de Trabalhador Celetista</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200infoEstatutario %}
                                     <li {% if tab == 's2200_infoestatutario' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_infoestatutario' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_infoestatutario' %}">
                                         Informações de Trabalhador Estatutário</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200localTrabGeral %}
                                     <li {% if tab == 's2200_localtrabgeral' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_localtrabgeral' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_localtrabgeral' %}">
                                         Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200localTrabDom %}
                                     <li {% if tab == 's2200_localtrabdom' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_localtrabdom' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_localtrabdom' %}">
                                         Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200horContratual %}
                                     <li {% if tab == 's2200_horcontratual' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_horcontratual' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_horcontratual' %}">
                                         Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200filiacaoSindical %}
                                     <li {% if tab == 's2200_filiacaosindical' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_filiacaosindical' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_filiacaosindical' %}">
                                         Filiação Sindical do Trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200alvaraJudicial %}
                                     <li {% if tab == 's2200_alvarajudicial' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_alvarajudicial' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_alvarajudicial' %}">
                                         Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200observacoes %}
                                     <li {% if tab == 's2200_observacoes' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_observacoes' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_observacoes' %}">
                                         Observações do contrato de trabalho</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200sucessaoVinc %}
                                     <li {% if tab == 's2200_sucessaovinc' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_sucessaovinc' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_sucessaovinc' %}">
                                         Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200transfDom %}
                                     <li {% if tab == 's2200_transfdom' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_transfdom' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_transfdom' %}">
                                         Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200mudancaCPF %}
                                     <li {% if tab == 's2200_mudancacpf' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_mudancacpf' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_mudancacpf' %}">
                                         Informações de mudança de CPF do trabalhador.</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200afastamento %}
                                     <li {% if tab == 's2200_afastamento' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_afastamento' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_afastamento' %}">
                                         Informações de afastamento do trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200desligamento %}
                                     <li {% if tab == 's2200_desligamento' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_desligamento' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_desligamento' %}">
                                         Informações do desligamento do trabalhador</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.s2200.can_see_s2200cessao %}
                                     <li {% if tab == 's2200_cessao' %} class="active"{% endif %} >
-                                        <a href="{% url 's2200_evtadmissao_salvar' pk=pk tab='s2200_cessao' %}">
+                                        <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_cessao' %}">
                                         Informações de cessão/exercício em outro órgão do trabalhador</a>
                                     </li>
                                 {% endif %}

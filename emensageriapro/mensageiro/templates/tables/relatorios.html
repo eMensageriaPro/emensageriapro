@@ -45,7 +45,7 @@
                     
                         {% if perms.mensageiro.change_Relatorios or perms.mensageiro.add_Relatorios %}
                     
-                        <a href="{% url 'relatorios_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'relatorios_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_Relatorios %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -32,7 +32,7 @@
                     
                         {% if perms.r4010.change_r4010FCI or perms.r4010.add_r4010FCI %}
                     
-                        <a href="{% url 'r4010_fci_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4010_fci_salvar' pk=a.id %}">
                             {% if perms.r4010.change_r4010FCI %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

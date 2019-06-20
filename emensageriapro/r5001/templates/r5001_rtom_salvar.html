@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r5001.can_see_r5001RTom %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r5001_rtom_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r5001_rtom_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r5001.can_see_r5001infoCRTom %}
                                 <li {% if tab == 'r5001_infocrtom' %} class="active"{% endif %} >
-                                    <a href="{% url 'r5001_rtom_salvar' pk=pk tab='r5001_infocrtom' %}">
+                                    <a href="{% url 'r5001_rtom_salvar_tab' pk=pk tab='r5001_infocrtom' %}">
                                     Totalizador das retenções de contribuição previdenciária sobre serviços tomados</a>
                                 </li>
                             {% endif %}

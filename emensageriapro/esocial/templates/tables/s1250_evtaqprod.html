@@ -92,7 +92,7 @@
                     
                         {% if perms.esocial.change_s1250evtAqProd or perms.esocial.add_s1250evtAqProd %}
                     
-                        <a href="{% url 's1250_evtaqprod_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1250_evtaqprod_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1250evtAqProd %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

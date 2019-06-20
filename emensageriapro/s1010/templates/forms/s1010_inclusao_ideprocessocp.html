@@ -15,7 +15,7 @@
     <label id="s1010_inclusao_ideprocessocp__s1010_inclusao__label">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.*</label>
     {% if not for_print %}
       {% if s1010_inclusao_ideprocessocp_form.s1010_inclusao.value %}
-        <a id="s1010_inclusao_ideprocessocp__s1010_inclusao__div_acessar" href="{% url 's1010_inclusao_salvar' pk=s1010_inclusao_ideprocessocp_form.s1010_inclusao.value tab='master' %}">
+        <a id="s1010_inclusao_ideprocessocp__s1010_inclusao__div_acessar" href="{% url 's1010_inclusao_salvar' pk=s1010_inclusao_ideprocessocp_form.s1010_inclusao.value %}">
           [Acessar]
         </a>
       {% endif %} 

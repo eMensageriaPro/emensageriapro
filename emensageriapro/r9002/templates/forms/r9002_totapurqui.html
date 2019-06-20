@@ -15,7 +15,7 @@
     <label id="r9002_totapurqui__r9002_infototal__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal*</label>
     {% if not for_print %}
       {% if r9002_totapurqui_form.r9002_infototal.value %}
-        <a id="r9002_totapurqui__r9002_infototal__div_acessar" href="{% url 'r9002_infototal_salvar' pk=r9002_totapurqui_form.r9002_infototal.value tab='master' %}">
+        <a id="r9002_totapurqui__r9002_infototal__div_acessar" href="{% url 'r9002_infototal_salvar' pk=r9002_totapurqui_form.r9002_infototal.value %}">
           [Acessar]
         </a>
       {% endif %} 

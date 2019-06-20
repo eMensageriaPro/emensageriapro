@@ -86,7 +86,7 @@
                     
                         {% if perms.s1270.change_s1270remunAvNP or perms.s1270.add_s1270remunAvNP %}
                     
-                        <a href="{% url 's1270_remunavnp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1270_remunavnp_salvar' pk=a.id %}">
                             {% if perms.s1270.change_s1270remunAvNP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

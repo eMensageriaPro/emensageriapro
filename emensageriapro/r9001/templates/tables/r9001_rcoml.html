@@ -38,7 +38,7 @@
                     
                         {% if perms.r9001.change_r9001RComl or perms.r9001.add_r9001RComl %}
                     
-                        <a href="{% url 'r9001_rcoml_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r9001_rcoml_salvar' pk=a.id %}">
                             {% if perms.r9001.change_r9001RComl %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

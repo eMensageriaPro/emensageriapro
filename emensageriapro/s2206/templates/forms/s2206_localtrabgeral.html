@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2206_localtrabgeral__s2206_evtaltcontratual__label">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades*</label>
     {% if not for_print %}{% if s2206_localtrabgeral_form.s2206_evtaltcontratual.value %}
-        <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_localtrabgeral_form.s2206_evtaltcontratual.value tab='master' %}">
+        <a href="{% url 's2206_evtaltcontratual_salvar' pk=s2206_localtrabgeral_form.s2206_evtaltcontratual.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

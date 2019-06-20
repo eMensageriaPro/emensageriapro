@@ -48,7 +48,7 @@
                     
                         {% if perms.mensageiro.change_ImportacaoArquivos or perms.mensageiro.add_ImportacaoArquivos %}
                     
-                        <a href="{% url 'importacao_arquivos_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'importacao_arquivos_salvar' pk=a.id %}">
                             {% if perms.mensageiro.change_ImportacaoArquivos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

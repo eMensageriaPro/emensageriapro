@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1005.can_see_s1005inclusaoprocAdmJudRat %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1005_inclusao_procadmjudrat_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1005_inclusao_procadmjudrat_salvar_tab' pk=pk tab='master' %}">
                                 Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</a>
                             </li>
                         {% endif %}

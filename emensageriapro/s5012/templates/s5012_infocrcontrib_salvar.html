@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5012.can_see_s5012infoCRContrib %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5012_infocrcontrib_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5012_infocrcontrib_salvar_tab' pk=pk tab='master' %}">
                                 Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</a>
                             </li>
                         {% endif %}

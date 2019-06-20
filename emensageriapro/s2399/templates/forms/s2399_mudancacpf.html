@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2399_mudancacpf__s2399_evttsvtermino__label">Informações de mudança de CPF do trabalhador.*</label>
     {% if not for_print %}{% if s2399_mudancacpf_form.s2399_evttsvtermino.value %}
-        <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_mudancacpf_form.s2399_evttsvtermino.value tab='master' %}">
+        <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_mudancacpf_form.s2399_evttsvtermino.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

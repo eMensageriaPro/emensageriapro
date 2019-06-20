@@ -44,7 +44,7 @@
                     
                         {% if perms.s1020.change_s1020inclusaoprocJudTerceiro or perms.s1020.add_s1020inclusaoprocJudTerceiro %}
                     
-                        <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=a.id %}">
                             {% if perms.s1020.change_s1020inclusaoprocJudTerceiro %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

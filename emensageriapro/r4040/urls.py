@@ -66,9 +66,13 @@ urlpatterns = [
         r4040_idenat_listar_views.listar, 
         name='r4040_idenat'),
 
-    url(r'^r4040-idenat/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4040-idenat/salvar/(?P<pk>[0-9]+)/$', 
         r4040_idenat_salvar_views.salvar, 
         name='r4040_idenat_salvar'),
+
+    url(r'^r4040-idenat/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4040_idenat_salvar_views.salvar, 
+        name='r4040_idenat_salvar_tab'),
         
     url(r'^r4040-idenat/cadastrar/$', 
         r4040_idenat_salvar_views.salvar, 
@@ -96,9 +100,13 @@ urlpatterns = [
         r4040_infopgto_listar_views.listar, 
         name='r4040_infopgto'),
 
-    url(r'^r4040-infopgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r4040-infopgto/salvar/(?P<pk>[0-9]+)/$', 
         r4040_infopgto_salvar_views.salvar, 
         name='r4040_infopgto_salvar'),
+
+    url(r'^r4040-infopgto/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r4040_infopgto_salvar_views.salvar, 
+        name='r4040_infopgto_salvar_tab'),
         
     url(r'^r4040-infopgto/cadastrar/$', 
         r4040_infopgto_salvar_views.salvar, 

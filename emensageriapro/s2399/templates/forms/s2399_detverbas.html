@@ -15,7 +15,7 @@
     <label id="s2399_detverbas__s2399_ideestablot__label">Detalhamento das verbas rescisórias devidas ao trabalhador*</label>
     {% if not for_print %}
       {% if s2399_detverbas_form.s2399_ideestablot.value %}
-        <a id="s2399_detverbas__s2399_ideestablot__div_acessar" href="{% url 's2399_ideestablot_salvar' pk=s2399_detverbas_form.s2399_ideestablot.value tab='master' %}">
+        <a id="s2399_detverbas__s2399_ideestablot__div_acessar" href="{% url 's2399_ideestablot_salvar' pk=s2399_detverbas_form.s2399_ideestablot.value %}">
           [Acessar]
         </a>
       {% endif %} 

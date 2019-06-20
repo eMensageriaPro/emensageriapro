@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010infoProcRet %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_infoprocret_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_infoprocret_salvar_tab' pk=pk tab='master' %}">
                                 Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</a>
                             </li>
                         {% endif %}

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1000_alteracao_infoente__s1000_alteracao_infoop__label">Informações relativas ao ente federativo estadual, distrital ou municipal*</label>
     {% if not for_print %}{% if s1000_alteracao_infoente_form.s1000_alteracao_infoop.value %}
-        <a href="{% url 's1000_alteracao_infoop_salvar' pk=s1000_alteracao_infoente_form.s1000_alteracao_infoop.value tab='master' %}">
+        <a href="{% url 's1000_alteracao_infoop_salvar' pk=s1000_alteracao_infoente_form.s1000_alteracao_infoop.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

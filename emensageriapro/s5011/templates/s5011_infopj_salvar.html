@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011infoPJ %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_infopj_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_infopj_salvar_tab' pk=pk tab='master' %}">
                                 Informações complementares, exclusivas da Pessoa Jurídica.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5011.can_see_s5011infoAtConc %}
                                 <li {% if tab == 's5011_infoatconc' %} class="active"{% endif %} >
-                                    <a href="{% url 's5011_infopj_salvar' pk=pk tab='s5011_infoatconc' %}">
+                                    <a href="{% url 's5011_infopj_salvar_tab' pk=pk tab='s5011_infoatconc' %}">
                                     Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
                                 </li>
                             {% endif %}

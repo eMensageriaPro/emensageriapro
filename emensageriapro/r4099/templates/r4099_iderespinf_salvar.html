@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4099.can_see_r4099ideRespInf %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4099_iderespinf_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4099_iderespinf_salvar_tab' pk=pk tab='master' %}">
                                 Responsável pelas informações</a>
                             </li>
                         {% endif %}

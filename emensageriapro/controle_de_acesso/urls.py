@@ -88,9 +88,13 @@ urlpatterns = [
         usuarios_listar_views.listar, 
         name='usuarios'),
 
-    url(r'^usuarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^usuarios/salvar/(?P<pk>[0-9]+)/$', 
         usuarios_salvar_views.salvar, 
         name='usuarios_salvar'),
+
+    url(r'^usuarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        usuarios_salvar_views.salvar, 
+        name='usuarios_salvar_tab'),
         
     url(r'^usuarios/cadastrar/$', 
         usuarios_salvar_views.salvar, 

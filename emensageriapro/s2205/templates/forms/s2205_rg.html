@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2205_rg__s2205_documentos__label">Informações do Registro Geral (RG)*</label>
     {% if not for_print %}{% if s2205_rg_form.s2205_documentos.value %}
-        <a href="{% url 's2205_documentos_salvar' pk=s2205_rg_form.s2205_documentos.value tab='master' %}">
+        <a href="{% url 's2205_documentos_salvar' pk=s2205_rg_form.s2205_documentos.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

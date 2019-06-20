@@ -68,7 +68,7 @@
                     
                         {% if perms.esocial.change_s5001evtBasesTrab or perms.esocial.add_s5001evtBasesTrab %}
                     
-                        <a href="{% url 's5001_evtbasestrab_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5001_evtbasestrab_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s5001evtBasesTrab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1210.can_see_s1210detPgtoBenPrretPgtoTot %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_detpgtobenpr_retpgtotot_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_detpgtobenpr_retpgtotot_salvar_tab' pk=pk tab='master' %}">
                                 Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</a>
                             </li>
                         {% endif %}

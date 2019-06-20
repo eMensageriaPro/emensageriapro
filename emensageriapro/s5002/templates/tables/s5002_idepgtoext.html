@@ -50,7 +50,7 @@
                     
                         {% if perms.s5002.change_s5002idePgtoExt or perms.s5002.add_s5002idePgtoExt %}
                     
-                        <a href="{% url 's5002_idepgtoext_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5002_idepgtoext_salvar' pk=a.id %}">
                             {% if perms.s5002.change_s5002idePgtoExt %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

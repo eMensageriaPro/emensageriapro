@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r9011.can_see_r9011RTom %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9011_rtom_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9011_rtom_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r9011.can_see_r9011infoCRTom %}
                                 <li {% if tab == 'r9011_infocrtom' %} class="active"{% endif %} >
-                                    <a href="{% url 'r9011_rtom_salvar' pk=pk tab='r9011_infocrtom' %}">
+                                    <a href="{% url 'r9011_rtom_salvar_tab' pk=pk tab='r9011_infocrtom' %}">
                                     Totalizador das retenções de contribuição previdenciária sobre serviços tomados</a>
                                 </li>
                             {% endif %}

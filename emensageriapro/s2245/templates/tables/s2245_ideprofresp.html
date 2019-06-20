@@ -56,7 +56,7 @@
                     
                         {% if perms.s2245.change_s2245ideProfResp or perms.s2245.add_s2245ideProfResp %}
                     
-                        <a href="{% url 's2245_ideprofresp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2245_ideprofresp_salvar' pk=a.id %}">
                             {% if perms.s2245.change_s2245ideProfResp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

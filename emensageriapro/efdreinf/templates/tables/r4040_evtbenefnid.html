@@ -92,7 +92,7 @@
                     
                         {% if perms.efdreinf.change_r4040evtBenefNId or perms.efdreinf.add_r4040evtBenefNId %}
                     
-                        <a href="{% url 'r4040_evtbenefnid_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r4040_evtbenefnid_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r4040evtBenefNId %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

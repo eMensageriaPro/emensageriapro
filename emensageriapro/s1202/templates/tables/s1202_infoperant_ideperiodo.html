@@ -32,7 +32,7 @@
                     
                         {% if perms.s1202.change_s1202infoPerAntidePeriodo or perms.s1202.add_s1202infoPerAntidePeriodo %}
                     
-                        <a href="{% url 's1202_infoperant_ideperiodo_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1202_infoperant_ideperiodo_salvar' pk=a.id %}">
                             {% if perms.s1202.change_s1202infoPerAntidePeriodo %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

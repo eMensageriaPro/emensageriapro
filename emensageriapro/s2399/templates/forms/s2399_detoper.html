@@ -15,7 +15,7 @@
     <label id="s2399_detoper__s2399_infosaudecolet__label">Detalhamento dos valores pagos a Operadoras de Planos de Saúde.*</label>
     {% if not for_print %}
       {% if s2399_detoper_form.s2399_infosaudecolet.value %}
-        <a id="s2399_detoper__s2399_infosaudecolet__div_acessar" href="{% url 's2399_infosaudecolet_salvar' pk=s2399_detoper_form.s2399_infosaudecolet.value tab='master' %}">
+        <a id="s2399_detoper__s2399_infosaudecolet__div_acessar" href="{% url 's2399_infosaudecolet_salvar' pk=s2399_detoper_form.s2399_infosaudecolet.value %}">
           [Acessar]
         </a>
       {% endif %} 

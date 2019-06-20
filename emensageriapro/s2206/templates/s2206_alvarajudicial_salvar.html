@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2206.can_see_s2206alvaraJudicial %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2206_alvarajudicial_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2206_alvarajudicial_salvar_tab' pk=pk tab='master' %}">
                                 Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
                             </li>
                         {% endif %}

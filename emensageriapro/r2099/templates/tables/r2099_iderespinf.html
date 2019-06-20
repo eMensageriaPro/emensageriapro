@@ -38,7 +38,7 @@
                     
                         {% if perms.r2099.change_r2099ideRespInf or perms.r2099.add_r2099ideRespInf %}
                     
-                        <a href="{% url 'r2099_iderespinf_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2099_iderespinf_salvar' pk=a.id %}">
                             {% if perms.r2099.change_r2099ideRespInf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

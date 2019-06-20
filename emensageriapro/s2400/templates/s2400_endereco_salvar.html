@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s2400.can_see_s2400endereco %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2400_endereco_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2400_endereco_salvar_tab' pk=pk tab='master' %}">
                                 Grupo de informações do endereço do Trabalhador</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2400.can_see_s2400brasil %}
                                 <li {% if tab == 's2400_brasil' %} class="active"{% endif %} >
-                                    <a href="{% url 's2400_endereco_salvar' pk=pk tab='s2400_brasil' %}">
+                                    <a href="{% url 's2400_endereco_salvar_tab' pk=pk tab='s2400_brasil' %}">
                                     Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2400.can_see_s2400exterior %}
                                 <li {% if tab == 's2400_exterior' %} class="active"{% endif %} >
-                                    <a href="{% url 's2400_endereco_salvar' pk=pk tab='s2400_exterior' %}">
+                                    <a href="{% url 's2400_endereco_salvar_tab' pk=pk tab='s2400_exterior' %}">
                                     Preenchido em caso de trabalhador residente no exterior.</a>
                                 </li>
                             {% endif %}

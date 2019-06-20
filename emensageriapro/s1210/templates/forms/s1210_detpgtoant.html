@@ -15,7 +15,7 @@
     <label id="s1210_detpgtoant__s1210_infopgto__label">Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial*</label>
     {% if not for_print %}
       {% if s1210_detpgtoant_form.s1210_infopgto.value %}
-        <a id="s1210_detpgtoant__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtoant_form.s1210_infopgto.value tab='master' %}">
+        <a id="s1210_detpgtoant__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtoant_form.s1210_infopgto.value %}">
           [Acessar]
         </a>
       {% endif %} 

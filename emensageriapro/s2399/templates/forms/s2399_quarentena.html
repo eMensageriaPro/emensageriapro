@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2399_quarentena__s2399_evttsvtermino__label">Informações sobre a 'quarentena' remunerada de trabalhador desligado*</label>
     {% if not for_print %}{% if s2399_quarentena_form.s2399_evttsvtermino.value %}
-        <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_quarentena_form.s2399_evttsvtermino.value tab='master' %}">
+        <a href="{% url 's2399_evttsvtermino_salvar' pk=s2399_quarentena_form.s2399_evttsvtermino.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

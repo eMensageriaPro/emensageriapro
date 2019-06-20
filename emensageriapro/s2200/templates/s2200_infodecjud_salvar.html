@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2200.can_see_s2200infoDecJud %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2200_infodecjud_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2200_infodecjud_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre os dados da decisão judicial</a>
                             </li>
                         {% endif %}

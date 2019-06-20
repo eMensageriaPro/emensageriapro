@@ -32,7 +32,7 @@
                     
                         {% if perms.s2241.change_s2241altAposentEsp or perms.s2241.add_s2241altAposentEsp %}
                     
-                        <a href="{% url 's2241_altaposentesp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2241_altaposentesp_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241altAposentEsp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

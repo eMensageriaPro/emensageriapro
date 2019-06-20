@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1299evtFechaEvPer %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1299_evtfechaevper_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1299_evtfechaevper_salvar_tab' pk=pk tab='master' %}">
                                 S-1299 - Fechamento dos Eventos Periódicos</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.s1299.can_see_s1299ideRespInf %}
                                     <li {% if tab == 's1299_iderespinf' %} class="active"{% endif %} >
-                                        <a href="{% url 's1299_evtfechaevper_salvar' pk=pk tab='s1299_iderespinf' %}">
+                                        <a href="{% url 's1299_evtfechaevper_salvar_tab' pk=pk tab='s1299_iderespinf' %}">
                                         Responsável pelas informações</a>
                                     </li>
                                 {% endif %}

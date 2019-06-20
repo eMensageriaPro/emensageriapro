@@ -15,7 +15,7 @@
     <label id="r4010_ideopsaude__r4010_evtretpf__label">Identificação da operadora do plano privado coletivo empresarial de assistência à saúde*</label>
     {% if not for_print %}
       {% if r4010_ideopsaude_form.r4010_evtretpf.value %}
-        <a id="r4010_ideopsaude__r4010_evtretpf__div_acessar" href="{% url 'r4010_evtretpf_salvar' pk=r4010_ideopsaude_form.r4010_evtretpf.value tab='master' %}">
+        <a id="r4010_ideopsaude__r4010_evtretpf__div_acessar" href="{% url 'r4010_evtretpf_salvar' pk=r4010_ideopsaude_form.r4010_evtretpf.value %}">
           [Acessar]
         </a>
       {% endif %} 

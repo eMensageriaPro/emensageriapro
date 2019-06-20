@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1020.can_see_s1020inclusaoprocJudTerceiro %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1020_inclusao_procjudterceiro_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1020_inclusao_procjudterceiro_salvar_tab' pk=pk tab='master' %}">
                                 Identificação do Processo Judicial</a>
                             </li>
                         {% endif %}

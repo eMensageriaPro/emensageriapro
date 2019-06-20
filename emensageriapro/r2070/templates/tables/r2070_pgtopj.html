@@ -44,7 +44,7 @@
                     
                         {% if perms.r2070.change_r2070pgtoPJ or perms.r2070.add_r2070pgtoPJ %}
                     
-                        <a href="{% url 'r2070_pgtopj_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_pgtopj_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070pgtoPJ %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

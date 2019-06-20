@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r2070.can_see_r2070ideEstab %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2070_ideestab_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2070_ideestab_salvar_tab' pk=pk tab='master' %}">
                                 Identificação dos estabelecimentos da associação desportiva que receberam os recursos</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2070.can_see_r2070pgtoResidBR %}
                                 <li {% if tab == 'r2070_pgtoresidbr' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_ideestab_salvar' pk=pk tab='r2070_pgtoresidbr' %}">
+                                    <a href="{% url 'r2070_ideestab_salvar_tab' pk=pk tab='r2070_pgtoresidbr' %}">
                                     Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r2070.can_see_r2070pgtoResidExt %}
                                 <li {% if tab == 'r2070_pgtoresidext' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2070_ideestab_salvar' pk=pk tab='r2070_pgtoresidext' %}">
+                                    <a href="{% url 'r2070_ideestab_salvar_tab' pk=pk tab='r2070_pgtoresidext' %}">
                                     Pagamento a não residente ou domiciliado no exterior</a>
                                 </li>
                             {% endif %}

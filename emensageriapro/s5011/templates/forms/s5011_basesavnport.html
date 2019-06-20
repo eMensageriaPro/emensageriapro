@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s5011_basesavnport__s5011_idelotacao__label">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários*</label>
     {% if not for_print %}{% if s5011_basesavnport_form.s5011_idelotacao.value %}
-        <a href="{% url 's5011_idelotacao_salvar' pk=s5011_basesavnport_form.s5011_idelotacao.value tab='master' %}">
+        <a href="{% url 's5011_idelotacao_salvar' pk=s5011_basesavnport_form.s5011_idelotacao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

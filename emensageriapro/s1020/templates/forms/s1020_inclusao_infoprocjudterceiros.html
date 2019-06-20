@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1020_inclusao_infoprocjudterceiros__s1020_inclusao__label">Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.*</label>
     {% if not for_print %}{% if s1020_inclusao_infoprocjudterceiros_form.s1020_inclusao.value %}
-        <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao_infoprocjudterceiros_form.s1020_inclusao.value tab='master' %}">
+        <a href="{% url 's1020_inclusao_salvar' pk=s1020_inclusao_infoprocjudterceiros_form.s1020_inclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

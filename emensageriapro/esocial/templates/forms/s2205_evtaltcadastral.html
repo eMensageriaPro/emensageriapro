@@ -669,7 +669,7 @@
   
   {% if not output %}
     {% if s2205_evtaltcadastral_form.transmissor_lote_esocial.value %}
-    <a id="s2205_evtaltcadastral__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s2205_evtaltcadastral_form.transmissor_lote_esocial.value tab='master' %}">
+    <a id="s2205_evtaltcadastral__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' pk=s2205_evtaltcadastral_form.transmissor_lote_esocial.value %}">
      [Acessar]
     </a>
     {% endif %} 

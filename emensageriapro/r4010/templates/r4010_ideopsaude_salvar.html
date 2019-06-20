@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010ideOpSaude %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_ideopsaude_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_ideopsaude_salvar_tab' pk=pk tab='master' %}">
                                 Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4010.can_see_r4010infoReemb %}
                                 <li {% if tab == 'r4010_inforeemb' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_ideopsaude_salvar' pk=pk tab='r4010_inforeemb' %}">
+                                    <a href="{% url 'r4010_ideopsaude_salvar_tab' pk=pk tab='r4010_inforeemb' %}">
                                     Informação de reembolso do titular do plano de saúde coletivo empresarial</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.r4010.can_see_r4010infoDependPl %}
                                 <li {% if tab == 'r4010_infodependpl' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_ideopsaude_salvar' pk=pk tab='r4010_infodependpl' %}">
+                                    <a href="{% url 'r4010_ideopsaude_salvar_tab' pk=pk tab='r4010_infodependpl' %}">
                                     Informações de dependente do plano de saúde coletivo empresarial</a>
                                 </li>
                             {% endif %}

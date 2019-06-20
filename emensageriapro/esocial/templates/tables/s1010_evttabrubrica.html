@@ -68,7 +68,7 @@
                     
                         {% if perms.esocial.change_s1010evtTabRubrica or perms.esocial.add_s1010evtTabRubrica %}
                     
-                        <a href="{% url 's1010_evttabrubrica_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1010_evttabrubrica_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1010evtTabRubrica %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

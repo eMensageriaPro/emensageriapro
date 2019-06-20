@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2050evtComProd %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2050_evtcomprod_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2050_evtcomprod_salvar_tab' pk=pk tab='master' %}">
                                 R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r2050.can_see_r2050tipoCom %}
                                     <li {% if tab == 'r2050_tipocom' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2050_evtcomprod_salvar' pk=pk tab='r2050_tipocom' %}">
+                                        <a href="{% url 'r2050_evtcomprod_salvar_tab' pk=pk tab='r2050_tipocom' %}">
                                         Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.</a>
                                     </li>
                                 {% endif %}

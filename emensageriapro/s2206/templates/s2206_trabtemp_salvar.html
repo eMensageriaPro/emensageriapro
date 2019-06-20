@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2206.can_see_s2206trabTemp %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2206_trabtemp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2206_trabtemp_salvar_tab' pk=pk tab='master' %}">
                                 Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário</a>
                             </li>
                         {% endif %}

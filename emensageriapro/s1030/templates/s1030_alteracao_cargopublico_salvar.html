@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1030.can_see_s1030alteracaocargoPublico %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1030_alteracao_cargopublico_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1030_alteracao_cargopublico_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento de informações exclusivas para Cargos e Empregos Públicos</a>
                             </li>
                         {% endif %}

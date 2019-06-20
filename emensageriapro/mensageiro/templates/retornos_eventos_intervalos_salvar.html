@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_RetornosEventosIntervalos %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'retornos_eventos_intervalos_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'retornos_eventos_intervalos_salvar_tab' pk=pk tab='master' %}">
                             Retornos dos Eventos - Intervalos</a>
                         </li>
                         {% endif %}

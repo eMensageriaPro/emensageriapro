@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2241.can_see_s2241iniAposentEspfatRisco %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2241_iniaposentesp_fatrisco_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2241_iniaposentesp_fatrisco_salvar_tab' pk=pk tab='master' %}">
                                 Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
                             </li>
                         {% endif %}

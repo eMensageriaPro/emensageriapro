@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1270.can_see_s1270remunAvNP %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1270_remunavnp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1270_remunavnp_salvar_tab' pk=pk tab='master' %}">
                                 Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</a>
                             </li>
                         {% endif %}

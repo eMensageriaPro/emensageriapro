@@ -15,7 +15,7 @@
     <label id="s2200_idetrabsubstituido__s2200_trabtemporario__label">Identificação do(s) trabalhador(es) substituído(s)*</label>
     {% if not for_print %}
       {% if s2200_idetrabsubstituido_form.s2200_trabtemporario.value %}
-        <a id="s2200_idetrabsubstituido__s2200_trabtemporario__div_acessar" href="{% url 's2200_trabtemporario_salvar' pk=s2200_idetrabsubstituido_form.s2200_trabtemporario.value tab='master' %}">
+        <a id="s2200_idetrabsubstituido__s2200_trabtemporario__div_acessar" href="{% url 's2200_trabtemporario_salvar' pk=s2200_idetrabsubstituido_form.s2200_trabtemporario.value %}">
           [Acessar]
         </a>
       {% endif %} 

@@ -68,7 +68,7 @@
                     
                         {% if perms.esocial.change_s1035evtTabCarreira or perms.esocial.add_s1035evtTabCarreira %}
                     
-                        <a href="{% url 's1035_evttabcarreira_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1035_evttabcarreira_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s1035evtTabCarreira %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

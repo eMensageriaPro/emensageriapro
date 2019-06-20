@@ -44,7 +44,7 @@
                     
                         {% if perms.s1295.change_s1295ideRespInf or perms.s1295.add_s1295ideRespInf %}
                     
-                        <a href="{% url 's1295_iderespinf_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1295_iderespinf_salvar' pk=a.id %}">
                             {% if perms.s1295.change_s1295ideRespInf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

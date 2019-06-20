@@ -94,9 +94,13 @@ urlpatterns = [
         r9001_regocorrs_listar_views.listar, 
         name='r9001_regocorrs'),
 
-    url(r'^r9001-regocorrs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-regocorrs/salvar/(?P<pk>[0-9]+)/$', 
         r9001_regocorrs_salvar_views.salvar, 
         name='r9001_regocorrs_salvar'),
+
+    url(r'^r9001-regocorrs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_regocorrs_salvar_views.salvar, 
+        name='r9001_regocorrs_salvar_tab'),
         
     url(r'^r9001-regocorrs/cadastrar/$', 
         r9001_regocorrs_salvar_views.salvar, 
@@ -124,9 +128,13 @@ urlpatterns = [
         r9001_infototal_listar_views.listar, 
         name='r9001_infototal'),
 
-    url(r'^r9001-infototal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-infototal/salvar/(?P<pk>[0-9]+)/$', 
         r9001_infototal_salvar_views.salvar, 
         name='r9001_infototal_salvar'),
+
+    url(r'^r9001-infototal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_infototal_salvar_views.salvar, 
+        name='r9001_infototal_salvar_tab'),
         
     url(r'^r9001-infototal/cadastrar/$', 
         r9001_infototal_salvar_views.salvar, 
@@ -154,9 +162,13 @@ urlpatterns = [
         r9001_rtom_listar_views.listar, 
         name='r9001_rtom'),
 
-    url(r'^r9001-rtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-rtom/salvar/(?P<pk>[0-9]+)/$', 
         r9001_rtom_salvar_views.salvar, 
         name='r9001_rtom_salvar'),
+
+    url(r'^r9001-rtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_rtom_salvar_views.salvar, 
+        name='r9001_rtom_salvar_tab'),
         
     url(r'^r9001-rtom/cadastrar/$', 
         r9001_rtom_salvar_views.salvar, 
@@ -184,9 +196,13 @@ urlpatterns = [
         r9001_infocrtom_listar_views.listar, 
         name='r9001_infocrtom'),
 
-    url(r'^r9001-infocrtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-infocrtom/salvar/(?P<pk>[0-9]+)/$', 
         r9001_infocrtom_salvar_views.salvar, 
         name='r9001_infocrtom_salvar'),
+
+    url(r'^r9001-infocrtom/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_infocrtom_salvar_views.salvar, 
+        name='r9001_infocrtom_salvar_tab'),
         
     url(r'^r9001-infocrtom/cadastrar/$', 
         r9001_infocrtom_salvar_views.salvar, 
@@ -214,9 +230,13 @@ urlpatterns = [
         r9001_rprest_listar_views.listar, 
         name='r9001_rprest'),
 
-    url(r'^r9001-rprest/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-rprest/salvar/(?P<pk>[0-9]+)/$', 
         r9001_rprest_salvar_views.salvar, 
         name='r9001_rprest_salvar'),
+
+    url(r'^r9001-rprest/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_rprest_salvar_views.salvar, 
+        name='r9001_rprest_salvar_tab'),
         
     url(r'^r9001-rprest/cadastrar/$', 
         r9001_rprest_salvar_views.salvar, 
@@ -244,9 +264,13 @@ urlpatterns = [
         r9001_rrecrepad_listar_views.listar, 
         name='r9001_rrecrepad'),
 
-    url(r'^r9001-rrecrepad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-rrecrepad/salvar/(?P<pk>[0-9]+)/$', 
         r9001_rrecrepad_salvar_views.salvar, 
         name='r9001_rrecrepad_salvar'),
+
+    url(r'^r9001-rrecrepad/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_rrecrepad_salvar_views.salvar, 
+        name='r9001_rrecrepad_salvar_tab'),
         
     url(r'^r9001-rrecrepad/cadastrar/$', 
         r9001_rrecrepad_salvar_views.salvar, 
@@ -274,9 +298,13 @@ urlpatterns = [
         r9001_rcoml_listar_views.listar, 
         name='r9001_rcoml'),
 
-    url(r'^r9001-rcoml/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-rcoml/salvar/(?P<pk>[0-9]+)/$', 
         r9001_rcoml_salvar_views.salvar, 
         name='r9001_rcoml_salvar'),
+
+    url(r'^r9001-rcoml/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_rcoml_salvar_views.salvar, 
+        name='r9001_rcoml_salvar_tab'),
         
     url(r'^r9001-rcoml/cadastrar/$', 
         r9001_rcoml_salvar_views.salvar, 
@@ -304,9 +332,13 @@ urlpatterns = [
         r9001_rcprb_listar_views.listar, 
         name='r9001_rcprb'),
 
-    url(r'^r9001-rcprb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-rcprb/salvar/(?P<pk>[0-9]+)/$', 
         r9001_rcprb_salvar_views.salvar, 
         name='r9001_rcprb_salvar'),
+
+    url(r'^r9001-rcprb/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_rcprb_salvar_views.salvar, 
+        name='r9001_rcprb_salvar_tab'),
         
     url(r'^r9001-rcprb/cadastrar/$', 
         r9001_rcprb_salvar_views.salvar, 
@@ -334,9 +366,13 @@ urlpatterns = [
         r9001_rrecespetdesp_listar_views.listar, 
         name='r9001_rrecespetdesp'),
 
-    url(r'^r9001-rrecespetdesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^r9001-rrecespetdesp/salvar/(?P<pk>[0-9]+)/$', 
         r9001_rrecespetdesp_salvar_views.salvar, 
         name='r9001_rrecespetdesp_salvar'),
+
+    url(r'^r9001-rrecespetdesp/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        r9001_rrecespetdesp_salvar_views.salvar, 
+        name='r9001_rrecespetdesp_salvar_tab'),
         
     url(r'^r9001-rrecespetdesp/cadastrar/$', 
         r9001_rrecespetdesp_salvar_views.salvar, 

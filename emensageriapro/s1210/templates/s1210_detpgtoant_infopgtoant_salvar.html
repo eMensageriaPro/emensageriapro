@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1210.can_see_s1210detPgtoAntinfoPgtoAnt %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1210_detpgtoant_infopgtoant_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1210_detpgtoant_infopgtoant_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento do pagamento</a>
                             </li>
                         {% endif %}

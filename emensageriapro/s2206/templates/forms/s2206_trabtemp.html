@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2206_trabtemp__s2206_infoceletista__label">Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário*</label>
     {% if not for_print %}{% if s2206_trabtemp_form.s2206_infoceletista.value %}
-        <a href="{% url 's2206_infoceletista_salvar' pk=s2206_trabtemp_form.s2206_infoceletista.value tab='master' %}">
+        <a href="{% url 's2206_infoceletista_salvar' pk=s2206_trabtemp_form.s2206_infoceletista.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r9001.can_see_r9001RPrest %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r9001_rprest_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r9001_rprest_salvar_tab' pk=pk tab='master' %}">
                                 Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</a>
                             </li>
                         {% endif %}

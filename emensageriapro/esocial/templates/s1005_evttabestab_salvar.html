@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1005evtTabEstab %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1005_evttabestab_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1005_evttabestab_salvar_tab' pk=pk tab='master' %}">
                                 S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             {% if s1005_evttabestab.operacao == 1 %}
                                 {% if perms.esocial.can_see_s1005inclusao %}
                                     <li {% if tab == 's1005_inclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 's1005_evttabestab_salvar' pk=pk tab='s1005_inclusao' %}">
+                                        <a href="{% url 's1005_evttabestab_salvar_tab' pk=pk tab='s1005_inclusao' %}">
                                         Inclusão de novas informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1005_evttabestab.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1005alteracao %}
                                     <li {% if tab == 's1005_alteracao' %}class="active"{% endif %}>
-                                        <a href="{% url 's1005_evttabestab_salvar' pk=pk tab='s1005_alteracao' %}">
+                                        <a href="{% url 's1005_evttabestab_salvar_tab' pk=pk tab='s1005_alteracao' %}">
                                         Alteração das informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1005_evttabestab.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1005exclusao %}
                                     <li {% if tab == 's1005_exclusao' %}class="active"{% endif %} >
-                                        <a href="{% url 's1005_evttabestab_salvar' pk=pk tab='s1005_exclusao' %}">
+                                        <a href="{% url 's1005_evttabestab_salvar_tab' pk=pk tab='s1005_exclusao' %}">
                                         Exclusão das informações</a>
                                     </li>
                                 {% endif %}

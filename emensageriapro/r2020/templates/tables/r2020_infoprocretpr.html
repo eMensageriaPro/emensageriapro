@@ -44,7 +44,7 @@
                     
                         {% if perms.r2020.change_r2020infoProcRetPr or perms.r2020.add_r2020infoProcRetPr %}
                     
-                        <a href="{% url 'r2020_infoprocretpr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2020_infoprocretpr_salvar' pk=a.id %}">
                             {% if perms.r2020.change_r2020infoProcRetPr %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

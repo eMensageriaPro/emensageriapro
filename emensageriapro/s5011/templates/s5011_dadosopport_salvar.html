@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5011.can_see_s5011dadosOpPort %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5011_dadosopport_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5011_dadosopport_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</a>
                             </li>
                         {% endif %}

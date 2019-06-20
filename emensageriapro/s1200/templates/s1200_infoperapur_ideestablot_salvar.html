@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s1200.can_see_s1200infoPerApurideEstabLot %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1200_infoperapur_ideestablot_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1200_infoperapur_ideestablot_salvar_tab' pk=pk tab='master' %}">
                                 Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1200.can_see_s1200infoPerApurremunPerApur %}
                                 <li {% if tab == 's1200_infoperapur_remunperapur' %} class="active"{% endif %} >
-                                    <a href="{% url 's1200_infoperapur_ideestablot_salvar' pk=pk tab='s1200_infoperapur_remunperapur' %}">
+                                    <a href="{% url 's1200_infoperapur_ideestablot_salvar_tab' pk=pk tab='s1200_infoperapur_remunperapur' %}">
                                     Informações relativas a remuneração do trabalhador no período de apuração</a>
                                 </li>
                             {% endif %}

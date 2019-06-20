@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s5013.can_see_s5013basePerAntE %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5013_baseperante_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5013_baseperante_salvar_tab' pk=pk tab='master' %}">
                                 Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.</a>
                             </li>
                         {% endif %}

@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.s5003.can_see_s5003ideEstabLot %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5003_ideestablot_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5003_ideestablot_salvar_tab' pk=pk tab='master' %}">
                                 Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5003.can_see_s5003infoTrabFGTS %}
                                 <li {% if tab == 's5003_infotrabfgts' %} class="active"{% endif %} >
-                                    <a href="{% url 's5003_ideestablot_salvar' pk=pk tab='s5003_infotrabfgts' %}">
+                                    <a href="{% url 's5003_ideestablot_salvar_tab' pk=pk tab='s5003_infotrabfgts' %}">
                                     Informações relativas à matrícula e categoria do trabalhador.</a>
                                 </li>
                             {% endif %}

@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_ImportacaoArquivosEventos %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'importacao_arquivos_eventos_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'importacao_arquivos_eventos_salvar_tab' pk=pk tab='master' %}">
                             Eventos de Arquivos Importados</a>
                         </li>
                         {% endif %}

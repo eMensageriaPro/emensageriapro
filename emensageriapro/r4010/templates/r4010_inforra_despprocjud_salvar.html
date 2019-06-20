@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010infoRRAdespProcJud %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_inforra_despprocjud_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_inforra_despprocjud_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento das despesas de processo judicial</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r4010.can_see_r4010infoRRAideAdv %}
                                 <li {% if tab == 'r4010_inforra_ideadv' %} class="active"{% endif %} >
-                                    <a href="{% url 'r4010_inforra_despprocjud_salvar' pk=pk tab='r4010_inforra_ideadv' %}">
+                                    <a href="{% url 'r4010_inforra_despprocjud_salvar_tab' pk=pk tab='r4010_inforra_ideadv' %}">
                                     Identificação do advogado</a>
                                 </li>
                             {% endif %}

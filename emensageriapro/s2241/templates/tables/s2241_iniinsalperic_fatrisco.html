@@ -32,7 +32,7 @@
                     
                         {% if perms.s2241.change_s2241iniInsalPericfatRisco or perms.s2241.add_s2241iniInsalPericfatRisco %}
                     
-                        <a href="{% url 's2241_iniinsalperic_fatrisco_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2241_iniinsalperic_fatrisco_salvar' pk=a.id %}">
                             {% if perms.s2241.change_s2241iniInsalPericfatRisco %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

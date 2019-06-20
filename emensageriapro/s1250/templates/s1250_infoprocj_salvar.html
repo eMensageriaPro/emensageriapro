@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1250.can_see_s1250infoProcJ %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1250_infoprocj_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1250_infoprocj_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
                             </li>
                         {% endif %}

@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1260.can_see_s1260tpComerc %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1260_tpcomerc_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1260_tpcomerc_salvar_tab' pk=pk tab='master' %}">
                                 Registro que apresenta o valor total da comercialização por 'tipo' de comercialização</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1260.can_see_s1260ideAdquir %}
                                 <li {% if tab == 's1260_ideadquir' %} class="active"{% endif %} >
-                                    <a href="{% url 's1260_tpcomerc_salvar' pk=pk tab='s1260_ideadquir' %}">
+                                    <a href="{% url 's1260_tpcomerc_salvar_tab' pk=pk tab='s1260_ideadquir' %}">
                                     Identificação dos Adquirentes da Produção.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1260.can_see_s1260infoProcJud %}
                                 <li {% if tab == 's1260_infoprocjud' %} class="active"{% endif %} >
-                                    <a href="{% url 's1260_tpcomerc_salvar' pk=pk tab='s1260_infoprocjud' %}">
+                                    <a href="{% url 's1260_tpcomerc_salvar_tab' pk=pk tab='s1260_infoprocjud' %}">
                                     Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
                                 </li>
                             {% endif %}

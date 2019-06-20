@@ -86,7 +86,7 @@
                     
                         {% if perms.efdreinf.change_r9000evtExclusao or perms.efdreinf.add_r9000evtExclusao %}
                     
-                        <a href="{% url 'r9000_evtexclusao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r9000_evtexclusao_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r9000evtExclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

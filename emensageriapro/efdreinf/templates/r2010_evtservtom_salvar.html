@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2010evtServTom %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2010_evtservtom_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='master' %}">
                                 R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             
                                 {% if perms.r2010.can_see_r2010nfs %}
                                     <li {% if tab == 'r2010_nfs' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2010_evtservtom_salvar' pk=pk tab='r2010_nfs' %}">
+                                        <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='r2010_nfs' %}">
                                         Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r2010.can_see_r2010infoProcRetPr %}
                                     <li {% if tab == 'r2010_infoprocretpr' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2010_evtservtom_salvar' pk=pk tab='r2010_infoprocretpr' %}">
+                                        <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='r2010_infoprocretpr' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.r2010.can_see_r2010infoProcRetAd %}
                                     <li {% if tab == 'r2010_infoprocretad' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2010_evtservtom_salvar' pk=pk tab='r2010_infoprocretad' %}">
+                                        <a href="{% url 'r2010_evtservtom_salvar_tab' pk=pk tab='r2010_infoprocretad' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária adicional</a>
                                     </li>
                                 {% endif %}

@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r4010.can_see_r4010SCP %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r4010_scp_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r4010_scp_salvar_tab' pk=pk tab='master' %}">
                                 Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</a>
                             </li>
                         {% endif %}

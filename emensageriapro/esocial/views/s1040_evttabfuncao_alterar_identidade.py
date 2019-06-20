@@ -103,4 +103,4 @@ def alterar_identidade(request, pk):
         messages.error(request, u'''Você não possui permissão para alterar a identidade do evento.
                                     Entre em contato com o administrador do sistema!''')
                                     
-    return redirect('s1040_evttabfuncao_salvar', pk=pk, tab='master')
+    return redirect('s1040_evttabfuncao_salvar', pk=pk)

@@ -32,7 +32,7 @@
                     
                         {% if perms.s2399.change_s2399quarentena or perms.s2399.add_s2399quarentena %}
                     
-                        <a href="{% url 's2399_quarentena_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2399_quarentena_salvar' pk=a.id %}">
                             {% if perms.s2399.change_s2399quarentena %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

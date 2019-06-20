@@ -56,7 +56,7 @@
                     {% if pk %}
                         {% if perms.mensageiro.can_see_TransmissorLote %}
                         <li {% if tab == 'master' %}class="active"{% endif %} >
-                            <a href="{% url 'transmissores_salvar' pk=pk tab='master' %}">
+                            <a href="{% url 'transmissores_salvar_tab' pk=pk tab='master' %}">
                             Transmissor</a>
                         </li>
                         {% endif %}
@@ -65,14 +65,14 @@
                             
                                 {% if perms.mensageiro.can_see_TransmissorLoteEsocial %}
                                     <li {% if tab == 'transmissor_lote_esocial' %} class="active"{% endif %} >
-                                        <a href="{% url 'transmissores_salvar' pk=pk tab='transmissor_lote_esocial' %}">
+                                        <a href="{% url 'transmissores_salvar_tab' pk=pk tab='transmissor_lote_esocial' %}">
                                         Transmissor do eSocial</a>
                                     </li>
                                 {% endif %}
                             
                                 {% if perms.mensageiro.can_see_TransmissorLoteEfdreinf %}
                                     <li {% if tab == 'transmissor_lote_efdreinf' %} class="active"{% endif %} >
-                                        <a href="{% url 'transmissores_salvar' pk=pk tab='transmissor_lote_efdreinf' %}">
+                                        <a href="{% url 'transmissores_salvar_tab' pk=pk tab='transmissor_lote_efdreinf' %}">
                                         Transmissor do EFD-Reinf</a>
                                     </li>
                                 {% endif %}

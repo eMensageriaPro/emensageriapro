@@ -20,7 +20,7 @@
                     
                         {% if perms.controle_de_acesso.change_AlterarSenha or perms.controle_de_acesso.add_AlterarSenha %}
                     
-                        <a href="{% url 'login_alteracao_senha_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'login_alteracao_senha_salvar' pk=a.id %}">
                             {% if perms.controle_de_acesso.change_AlterarSenha %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

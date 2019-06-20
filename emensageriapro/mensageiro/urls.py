@@ -207,9 +207,13 @@ urlpatterns = [
         relatorios_listar_views.listar, 
         name='relatorios'),
 
-    url(r'^relatorios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^relatorios/salvar/(?P<pk>[0-9]+)/$', 
         relatorios_salvar_views.salvar, 
         name='relatorios_salvar'),
+
+    url(r'^relatorios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        relatorios_salvar_views.salvar, 
+        name='relatorios_salvar_tab'),
         
     url(r'^relatorios/cadastrar/$', 
         relatorios_salvar_views.salvar, 
@@ -237,9 +241,13 @@ urlpatterns = [
         transmissores_listar_views.listar, 
         name='transmissores'),
 
-    url(r'^transmissores/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^transmissores/salvar/(?P<pk>[0-9]+)/$', 
         transmissores_salvar_views.salvar, 
         name='transmissores_salvar'),
+
+    url(r'^transmissores/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        transmissores_salvar_views.salvar, 
+        name='transmissores_salvar_tab'),
         
     url(r'^transmissores/cadastrar/$', 
         transmissores_salvar_views.salvar, 
@@ -267,9 +275,13 @@ urlpatterns = [
         regras_validacao_listar_views.listar, 
         name='regras_validacao'),
 
-    url(r'^regras-validacao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^regras-validacao/salvar/(?P<pk>[0-9]+)/$', 
         regras_validacao_salvar_views.salvar, 
         name='regras_validacao_salvar'),
+
+    url(r'^regras-validacao/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        regras_validacao_salvar_views.salvar, 
+        name='regras_validacao_salvar_tab'),
         
     url(r'^regras-validacao/cadastrar/$', 
         regras_validacao_salvar_views.salvar, 
@@ -297,9 +309,13 @@ urlpatterns = [
         importacao_arquivos_listar_views.listar, 
         name='importacao_arquivos'),
 
-    url(r'^importacao-arquivos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^importacao-arquivos/salvar/(?P<pk>[0-9]+)/$', 
         importacao_arquivos_salvar_views.salvar, 
         name='importacao_arquivos_salvar'),
+
+    url(r'^importacao-arquivos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        importacao_arquivos_salvar_views.salvar, 
+        name='importacao_arquivos_salvar_tab'),
         
     url(r'^importacao-arquivos/cadastrar/$', 
         importacao_arquivos_salvar_views.salvar, 
@@ -327,9 +343,13 @@ urlpatterns = [
         importacao_arquivos_eventos_listar_views.listar, 
         name='importacao_arquivos_eventos'),
 
-    url(r'^importacao-arquivos-eventos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^importacao-arquivos-eventos/salvar/(?P<pk>[0-9]+)/$', 
         importacao_arquivos_eventos_salvar_views.salvar, 
         name='importacao_arquivos_eventos_salvar'),
+
+    url(r'^importacao-arquivos-eventos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        importacao_arquivos_eventos_salvar_views.salvar, 
+        name='importacao_arquivos_eventos_salvar_tab'),
         
     url(r'^importacao-arquivos-eventos/cadastrar/$', 
         importacao_arquivos_eventos_salvar_views.salvar, 
@@ -357,9 +377,13 @@ urlpatterns = [
         transmissor_lote_esocial_listar_views.listar, 
         name='transmissor_lote_esocial'),
 
-    url(r'^transmissor-lote-esocial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^transmissor-lote-esocial/salvar/(?P<pk>[0-9]+)/$', 
         transmissor_lote_esocial_salvar_views.salvar, 
         name='transmissor_lote_esocial_salvar'),
+
+    url(r'^transmissor-lote-esocial/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        transmissor_lote_esocial_salvar_views.salvar, 
+        name='transmissor_lote_esocial_salvar_tab'),
         
     url(r'^transmissor-lote-esocial/cadastrar/$', 
         transmissor_lote_esocial_salvar_views.salvar, 
@@ -387,9 +411,13 @@ urlpatterns = [
         transmissor_lote_esocial_ocorrencias_listar_views.listar, 
         name='transmissor_lote_esocial_ocorrencias'),
 
-    url(r'^transmissor-lote-esocial-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^transmissor-lote-esocial-ocorrencias/salvar/(?P<pk>[0-9]+)/$', 
         transmissor_lote_esocial_ocorrencias_salvar_views.salvar, 
         name='transmissor_lote_esocial_ocorrencias_salvar'),
+
+    url(r'^transmissor-lote-esocial-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        transmissor_lote_esocial_ocorrencias_salvar_views.salvar, 
+        name='transmissor_lote_esocial_ocorrencias_salvar_tab'),
         
     url(r'^transmissor-lote-esocial-ocorrencias/cadastrar/$', 
         transmissor_lote_esocial_ocorrencias_salvar_views.salvar, 
@@ -417,9 +445,13 @@ urlpatterns = [
         transmissor_lote_efdreinf_listar_views.listar, 
         name='transmissor_lote_efdreinf'),
 
-    url(r'^transmissor-lote-efdreinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^transmissor-lote-efdreinf/salvar/(?P<pk>[0-9]+)/$', 
         transmissor_lote_efdreinf_salvar_views.salvar, 
         name='transmissor_lote_efdreinf_salvar'),
+
+    url(r'^transmissor-lote-efdreinf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        transmissor_lote_efdreinf_salvar_views.salvar, 
+        name='transmissor_lote_efdreinf_salvar_tab'),
         
     url(r'^transmissor-lote-efdreinf/cadastrar/$', 
         transmissor_lote_efdreinf_salvar_views.salvar, 
@@ -447,9 +479,13 @@ urlpatterns = [
         transmissor_lote_efdreinf_ocorrencias_listar_views.listar, 
         name='transmissor_lote_efdreinf_ocorrencias'),
 
-    url(r'^transmissor-lote-efdreinf-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^transmissor-lote-efdreinf-ocorrencias/salvar/(?P<pk>[0-9]+)/$', 
         transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar, 
         name='transmissor_lote_efdreinf_ocorrencias_salvar'),
+
+    url(r'^transmissor-lote-efdreinf-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar, 
+        name='transmissor_lote_efdreinf_ocorrencias_salvar_tab'),
         
     url(r'^transmissor-lote-efdreinf-ocorrencias/cadastrar/$', 
         transmissor_lote_efdreinf_ocorrencias_salvar_views.salvar, 
@@ -477,9 +513,13 @@ urlpatterns = [
         arquivos_listar_views.listar, 
         name='arquivos'),
 
-    url(r'^arquivos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^arquivos/salvar/(?P<pk>[0-9]+)/$', 
         arquivos_salvar_views.salvar, 
         name='arquivos_salvar'),
+
+    url(r'^arquivos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        arquivos_salvar_views.salvar, 
+        name='arquivos_salvar_tab'),
         
     url(r'^arquivos/cadastrar/$', 
         arquivos_salvar_views.salvar, 
@@ -507,9 +547,13 @@ urlpatterns = [
         retornos_eventos_listar_views.listar, 
         name='retornos_eventos'),
 
-    url(r'^retornos-eventos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^retornos-eventos/salvar/(?P<pk>[0-9]+)/$', 
         retornos_eventos_salvar_views.salvar, 
         name='retornos_eventos_salvar'),
+
+    url(r'^retornos-eventos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        retornos_eventos_salvar_views.salvar, 
+        name='retornos_eventos_salvar_tab'),
         
     url(r'^retornos-eventos/cadastrar/$', 
         retornos_eventos_salvar_views.salvar, 
@@ -537,9 +581,13 @@ urlpatterns = [
         retornos_eventos_ocorrencias_listar_views.listar, 
         name='retornos_eventos_ocorrencias'),
 
-    url(r'^retornos-eventos-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^retornos-eventos-ocorrencias/salvar/(?P<pk>[0-9]+)/$', 
         retornos_eventos_ocorrencias_salvar_views.salvar, 
         name='retornos_eventos_ocorrencias_salvar'),
+
+    url(r'^retornos-eventos-ocorrencias/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        retornos_eventos_ocorrencias_salvar_views.salvar, 
+        name='retornos_eventos_ocorrencias_salvar_tab'),
         
     url(r'^retornos-eventos-ocorrencias/cadastrar/$', 
         retornos_eventos_ocorrencias_salvar_views.salvar, 
@@ -567,9 +615,13 @@ urlpatterns = [
         retornos_eventos_horarios_listar_views.listar, 
         name='retornos_eventos_horarios'),
 
-    url(r'^retornos-eventos-horarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^retornos-eventos-horarios/salvar/(?P<pk>[0-9]+)/$', 
         retornos_eventos_horarios_salvar_views.salvar, 
         name='retornos_eventos_horarios_salvar'),
+
+    url(r'^retornos-eventos-horarios/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        retornos_eventos_horarios_salvar_views.salvar, 
+        name='retornos_eventos_horarios_salvar_tab'),
         
     url(r'^retornos-eventos-horarios/cadastrar/$', 
         retornos_eventos_horarios_salvar_views.salvar, 
@@ -597,9 +649,13 @@ urlpatterns = [
         retornos_eventos_intervalos_listar_views.listar, 
         name='retornos_eventos_intervalos'),
 
-    url(r'^retornos-eventos-intervalos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^retornos-eventos-intervalos/salvar/(?P<pk>[0-9]+)/$', 
         retornos_eventos_intervalos_salvar_views.salvar, 
         name='retornos_eventos_intervalos_salvar'),
+
+    url(r'^retornos-eventos-intervalos/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        retornos_eventos_intervalos_salvar_views.salvar, 
+        name='retornos_eventos_intervalos_salvar_tab'),
         
     url(r'^retornos-eventos-intervalos/cadastrar/$', 
         retornos_eventos_intervalos_salvar_views.salvar, 

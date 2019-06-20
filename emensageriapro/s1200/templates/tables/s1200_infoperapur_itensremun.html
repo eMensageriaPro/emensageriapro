@@ -44,7 +44,7 @@
                     
                         {% if perms.s1200.change_s1200infoPerApuritensRemun or perms.s1200.add_s1200infoPerApuritensRemun %}
                     
-                        <a href="{% url 's1200_infoperapur_itensremun_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1200_infoperapur_itensremun_salvar' pk=a.id %}">
                             {% if perms.s1200.change_s1200infoPerApuritensRemun %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

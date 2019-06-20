@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2299.can_see_s2299mudancaCPF %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2299_mudancacpf_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2299_mudancacpf_salvar_tab' pk=pk tab='master' %}">
                                 Informações de mudança de CPF do trabalhador.</a>
                             </li>
                         {% endif %}

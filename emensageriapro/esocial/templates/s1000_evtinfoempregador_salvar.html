@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.esocial.can_see_s1000evtInfoEmpregador %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1000_evtinfoempregador_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1000_evtinfoempregador_salvar_tab' pk=pk tab='master' %}">
                                 S-1000 - Informações do Empregador/Contribuinte/Órgão Público</a>
                             </li>
                         {% endif %}
@@ -62,21 +62,21 @@
                             {% if s1000_evtinfoempregador.operacao == 1 %}
                                 {% if perms.esocial.can_see_s1000inclusao %}
                                     <li {% if tab == 's1000_inclusao' %} class="active"{% endif %} >
-                                        <a href="{% url 's1000_evtinfoempregador_salvar' pk=pk tab='s1000_inclusao' %}">
+                                        <a href="{% url 's1000_evtinfoempregador_salvar_tab' pk=pk tab='s1000_inclusao' %}">
                                         Inclusão de novas informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1000_evtinfoempregador.operacao == 2 %}
                                 {% if perms.esocial.can_see_s1000alteracao %}
                                     <li {% if tab == 's1000_alteracao' %}class="active"{% endif %}>
-                                        <a href="{% url 's1000_evtinfoempregador_salvar' pk=pk tab='s1000_alteracao' %}">
+                                        <a href="{% url 's1000_evtinfoempregador_salvar_tab' pk=pk tab='s1000_alteracao' %}">
                                         Alteração das informações</a>
                                     </li>
                                 {% endif %}
                             {% elif s1000_evtinfoempregador.operacao == 3 %}
                                 {% if perms.esocial.can_see_s1000exclusao %}
                                     <li {% if tab == 's1000_exclusao' %}class="active"{% endif %} >
-                                        <a href="{% url 's1000_evtinfoempregador_salvar' pk=pk tab='s1000_exclusao' %}">
+                                        <a href="{% url 's1000_evtinfoempregador_salvar_tab' pk=pk tab='s1000_exclusao' %}">
                                         Exclusão das informações</a>
                                     </li>
                                 {% endif %}

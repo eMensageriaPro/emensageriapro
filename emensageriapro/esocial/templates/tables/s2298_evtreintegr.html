@@ -110,7 +110,7 @@
                     
                         {% if perms.esocial.change_s2298evtReintegr or perms.esocial.add_s2298evtReintegr %}
                     
-                        <a href="{% url 's2298_evtreintegr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2298_evtreintegr_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2298evtReintegr %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

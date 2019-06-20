@@ -50,7 +50,7 @@
                     
                         {% if perms.s1040.change_s1040alteracao or perms.s1040.add_s1040alteracao %}
                     
-                        <a href="{% url 's1040_alteracao_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1040_alteracao_salvar' pk=a.id %}">
                             {% if perms.s1040.change_s1040alteracao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

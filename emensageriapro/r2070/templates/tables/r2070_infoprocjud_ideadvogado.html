@@ -44,7 +44,7 @@
                     
                         {% if perms.r2070.change_r2070infoProcJudideAdvogado or perms.r2070.add_r2070infoProcJudideAdvogado %}
                     
-                        <a href="{% url 'r2070_infoprocjud_ideadvogado_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_infoprocjud_ideadvogado_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070infoProcJudideAdvogado %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

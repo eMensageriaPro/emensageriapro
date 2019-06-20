@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2416_suspensao__s2416_evtcdbenalt__label">Informações referentes à suspensão do benefício*</label>
     {% if not for_print %}{% if s2416_suspensao_form.s2416_evtcdbenalt.value %}
-        <a href="{% url 's2416_evtcdbenalt_salvar' pk=s2416_suspensao_form.s2416_evtcdbenalt.value tab='master' %}">
+        <a href="{% url 's2416_evtcdbenalt_salvar' pk=s2416_suspensao_form.s2416_evtcdbenalt.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

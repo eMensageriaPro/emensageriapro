@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1000_inclusao_dadosisencao__s1000_inclusao__label">Informações Complementares - Empresas Isentas - Dados da Isenção*</label>
     {% if not for_print %}{% if s1000_inclusao_dadosisencao_form.s1000_inclusao.value %}
-        <a href="{% url 's1000_inclusao_salvar' pk=s1000_inclusao_dadosisencao_form.s1000_inclusao.value tab='master' %}">
+        <a href="{% url 's1000_inclusao_salvar' pk=s1000_inclusao_dadosisencao_form.s1000_inclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -224,4 +224,4 @@ def validar_evento(request, pk, tab=None):
         
     else:
     
-        return redirect('r2040_evtassocdesprep_salvar', pk=pk, tab='master')
+        return redirect('r2040_evtassocdesprep_salvar', pk=pk)

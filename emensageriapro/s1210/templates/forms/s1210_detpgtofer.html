@@ -15,7 +15,7 @@
     <label id="s1210_detpgtofer__s1210_infopgto__label">Detalhamento dos pagamentos efetuados relativos a férias*</label>
     {% if not for_print %}
       {% if s1210_detpgtofer_form.s1210_infopgto.value %}
-        <a id="s1210_detpgtofer__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtofer_form.s1210_infopgto.value tab='master' %}">
+        <a id="s1210_detpgtofer__s1210_infopgto__div_acessar" href="{% url 's1210_infopgto_salvar' pk=s1210_detpgtofer_form.s1210_infopgto.value %}">
           [Acessar]
         </a>
       {% endif %} 

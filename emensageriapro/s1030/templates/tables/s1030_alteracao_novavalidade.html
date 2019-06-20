@@ -32,7 +32,7 @@
                     
                         {% if perms.s1030.change_s1030alteracaonovaValidade or perms.s1030.add_s1030alteracaonovaValidade %}
                     
-                        <a href="{% url 's1030_alteracao_novavalidade_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1030_alteracao_novavalidade_salvar' pk=a.id %}">
                             {% if perms.s1030.change_s1030alteracaonovaValidade %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

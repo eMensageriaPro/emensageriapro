@@ -15,7 +15,7 @@
     <label id="s1207_itens__s1207_dmdev__label">Detalhamento dos valores devidos ao beneficiário*</label>
     {% if not for_print %}
       {% if s1207_itens_form.s1207_dmdev.value %}
-        <a id="s1207_itens__s1207_dmdev__div_acessar" href="{% url 's1207_dmdev_salvar' pk=s1207_itens_form.s1207_dmdev.value tab='master' %}">
+        <a id="s1207_itens__s1207_dmdev__div_acessar" href="{% url 's1207_dmdev_salvar' pk=s1207_itens_form.s1207_dmdev.value %}">
           [Acessar]
         </a>
       {% endif %} 

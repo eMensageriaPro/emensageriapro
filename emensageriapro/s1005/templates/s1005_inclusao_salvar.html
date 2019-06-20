@@ -54,49 +54,49 @@
                     {% if pk %}
                         {% if perms.s1005.can_see_s1005inclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1005_inclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='master' %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1005.can_see_s1005inclusaoprocAdmJudRat %}
                                 <li {% if tab == 's1005_inclusao_procadmjudrat' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_inclusao_salvar' pk=pk tab='s1005_inclusao_procadmjudrat' %}">
+                                    <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='s1005_inclusao_procadmjudrat' %}">
                                     Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1005.can_see_s1005inclusaoprocAdmJudFap %}
                                 <li {% if tab == 's1005_inclusao_procadmjudfap' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_inclusao_salvar' pk=pk tab='s1005_inclusao_procadmjudfap' %}">
+                                    <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='s1005_inclusao_procadmjudfap' %}">
                                     Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1005.can_see_s1005inclusaoinfoCaepf %}
                                 <li {% if tab == 's1005_inclusao_infocaepf' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_inclusao_salvar' pk=pk tab='s1005_inclusao_infocaepf' %}">
+                                    <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='s1005_inclusao_infocaepf' %}">
                                     Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1005.can_see_s1005inclusaoinfoObra %}
                                 <li {% if tab == 's1005_inclusao_infoobra' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_inclusao_salvar' pk=pk tab='s1005_inclusao_infoobra' %}">
+                                    <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='s1005_inclusao_infoobra' %}">
                                     Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1005.can_see_s1005inclusaoinfoEntEduc %}
                                 <li {% if tab == 's1005_inclusao_infoenteduc' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_inclusao_salvar' pk=pk tab='s1005_inclusao_infoenteduc' %}">
+                                    <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='s1005_inclusao_infoenteduc' %}">
                                     Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1005.can_see_s1005inclusaoinfoPCD %}
                                 <li {% if tab == 's1005_inclusao_infopcd' %} class="active"{% endif %} >
-                                    <a href="{% url 's1005_inclusao_salvar' pk=pk tab='s1005_inclusao_infopcd' %}">
+                                    <a href="{% url 's1005_inclusao_salvar_tab' pk=pk tab='s1005_inclusao_infopcd' %}">
                                     Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</a>
                                 </li>
                             {% endif %}

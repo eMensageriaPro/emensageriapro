@@ -38,7 +38,7 @@
                     
                         {% if perms.r2050.change_r2050tipoCom or perms.r2050.add_r2050tipoCom %}
                     
-                        <a href="{% url 'r2050_tipocom_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2050_tipocom_salvar' pk=a.id %}">
                             {% if perms.r2050.change_r2050tipoCom %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

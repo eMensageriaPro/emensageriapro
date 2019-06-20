@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s3000_idefolhapagto__s3000_evtexclusao__label">Registro que identifica a qual folha de pagamento pertence o evento que será excluído*</label>
     {% if not for_print %}{% if s3000_idefolhapagto_form.s3000_evtexclusao.value %}
-        <a href="{% url 's3000_evtexclusao_salvar' pk=s3000_idefolhapagto_form.s3000_evtexclusao.value tab='master' %}">
+        <a href="{% url 's3000_evtexclusao_salvar' pk=s3000_idefolhapagto_form.s3000_evtexclusao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

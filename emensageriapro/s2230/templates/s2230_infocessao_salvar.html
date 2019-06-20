@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s2230.can_see_s2230infoCessao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2230_infocessao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2230_infocessao_salvar_tab' pk=pk tab='master' %}">
                                 Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</a>
                             </li>
                         {% endif %}

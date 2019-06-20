@@ -15,7 +15,7 @@
     <label id="r2040_recursosrep__r2040_evtassocdesprep__label">Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.*</label>
     {% if not for_print %}
       {% if r2040_recursosrep_form.r2040_evtassocdesprep.value %}
-        <a id="r2040_recursosrep__r2040_evtassocdesprep__div_acessar" href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_recursosrep_form.r2040_evtassocdesprep.value tab='master' %}">
+        <a id="r2040_recursosrep__r2040_evtassocdesprep__div_acessar" href="{% url 'r2040_evtassocdesprep_salvar' pk=r2040_recursosrep_form.r2040_evtassocdesprep.value %}">
           [Acessar]
         </a>
       {% endif %} 

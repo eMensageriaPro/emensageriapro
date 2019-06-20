@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s1000.can_see_s1000inclusaoinfoOP %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1000_inclusao_infoop_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1000_inclusao_infoop_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas a Órgãos Públicos</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaoinfoEFR %}
                                 <li {% if tab == 's1000_inclusao_infoefr' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_infoop_salvar' pk=pk tab='s1000_inclusao_infoefr' %}">
+                                    <a href="{% url 's1000_inclusao_infoop_salvar_tab' pk=pk tab='s1000_inclusao_infoefr' %}">
                                     Informações relativas a Ente Federativo Responsável - EFR</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s1000.can_see_s1000inclusaoinfoEnte %}
                                 <li {% if tab == 's1000_inclusao_infoente' %} class="active"{% endif %} >
-                                    <a href="{% url 's1000_inclusao_infoop_salvar' pk=pk tab='s1000_inclusao_infoente' %}">
+                                    <a href="{% url 's1000_inclusao_infoop_salvar_tab' pk=pk tab='s1000_inclusao_infoente' %}">
                                     Informações relativas ao ente federativo estadual, distrital ou municipal</a>
                                 </li>
                             {% endif %}

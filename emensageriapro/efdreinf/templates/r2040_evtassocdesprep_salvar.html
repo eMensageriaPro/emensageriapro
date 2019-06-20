@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.efdreinf.can_see_r2040evtAssocDespRep %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2040_evtassocdesprep_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2040_evtassocdesprep_salvar_tab' pk=pk tab='master' %}">
                                 R-2040 - Recursos Repassados para Associação Desportiva</a>
                             </li>
                         {% endif %}
@@ -62,7 +62,7 @@
                             
                                 {% if perms.r2040.can_see_r2040recursosRep %}
                                     <li {% if tab == 'r2040_recursosrep' %} class="active"{% endif %} >
-                                        <a href="{% url 'r2040_evtassocdesprep_salvar' pk=pk tab='r2040_recursosrep' %}">
+                                        <a href="{% url 'r2040_evtassocdesprep_salvar_tab' pk=pk tab='r2040_recursosrep' %}">
                                         Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.</a>
                                     </li>
                                 {% endif %}

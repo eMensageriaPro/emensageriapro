@@ -128,7 +128,7 @@
                     
                         {% if perms.efdreinf.change_r2020evtServPrest or perms.efdreinf.add_r2020evtServPrest %}
                     
-                        <a href="{% url 'r2020_evtservprest_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2020_evtservprest_salvar' pk=a.id %}">
                             {% if perms.efdreinf.change_r2020evtServPrest %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

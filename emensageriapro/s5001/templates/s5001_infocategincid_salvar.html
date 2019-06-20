@@ -54,21 +54,21 @@
                     {% if pk %}
                         {% if perms.s5001.can_see_s5001infoCategIncid %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's5001_infocategincid_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's5001_infocategincid_salvar_tab' pk=pk tab='master' %}">
                                 Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s5001.can_see_s5001infoBaseCS %}
                                 <li {% if tab == 's5001_infobasecs' %} class="active"{% endif %} >
-                                    <a href="{% url 's5001_infocategincid_salvar' pk=pk tab='s5001_infobasecs' %}">
+                                    <a href="{% url 's5001_infocategincid_salvar_tab' pk=pk tab='s5001_infobasecs' %}">
                                     Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s5001.can_see_s5001calcTerc %}
                                 <li {% if tab == 's5001_calcterc' %} class="active"{% endif %} >
-                                    <a href="{% url 's5001_infocategincid_salvar' pk=pk tab='s5001_calcterc' %}">
+                                    <a href="{% url 's5001_infocategincid_salvar_tab' pk=pk tab='s5001_calcterc' %}">
                                     Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.</a>
                                 </li>
                             {% endif %}

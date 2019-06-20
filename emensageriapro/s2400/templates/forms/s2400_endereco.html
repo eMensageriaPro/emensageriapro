@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2400_endereco__s2400_evtcdbenefin__label">Grupo de informações do endereço do Trabalhador*</label>
     {% if not for_print %}{% if s2400_endereco_form.s2400_evtcdbenefin.value %}
-        <a href="{% url 's2400_evtcdbenefin_salvar' pk=s2400_endereco_form.s2400_evtcdbenefin.value tab='master' %}">
+        <a href="{% url 's2400_evtcdbenefin_salvar' pk=s2400_endereco_form.s2400_evtcdbenefin.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s1280_infoativconcom__s1280_evtinfocomplper__label">Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.*</label>
     {% if not for_print %}{% if s1280_infoativconcom_form.s1280_evtinfocomplper.value %}
-        <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infoativconcom_form.s1280_evtinfocomplper.value tab='master' %}">
+        <a href="{% url 's1280_evtinfocomplper_salvar' pk=s1280_infoativconcom_form.s1280_evtinfocomplper.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

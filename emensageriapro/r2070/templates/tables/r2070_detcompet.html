@@ -44,7 +44,7 @@
                     
                         {% if perms.r2070.change_r2070detCompet or perms.r2070.add_r2070detCompet %}
                     
-                        <a href="{% url 'r2070_detcompet_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 'r2070_detcompet_salvar' pk=a.id %}">
                             {% if perms.r2070.change_r2070detCompet %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

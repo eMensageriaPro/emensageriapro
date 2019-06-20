@@ -15,7 +15,7 @@
     <label id="s2299_infoperant_ideadc__s2299_infoperant__label">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.*</label>
     {% if not for_print %}
       {% if s2299_infoperant_ideadc_form.s2299_infoperant.value %}
-        <a id="s2299_infoperant_ideadc__s2299_infoperant__div_acessar" href="{% url 's2299_infoperant_salvar' pk=s2299_infoperant_ideadc_form.s2299_infoperant.value tab='master' %}">
+        <a id="s2299_infoperant_ideadc__s2299_infoperant__div_acessar" href="{% url 's2299_infoperant_salvar' pk=s2299_infoperant_ideadc_form.s2299_infoperant.value %}">
           [Acessar]
         </a>
       {% endif %} 

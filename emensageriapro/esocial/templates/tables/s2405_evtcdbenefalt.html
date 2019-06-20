@@ -110,7 +110,7 @@
                     
                         {% if perms.esocial.change_s2405evtCdBenefAlt or perms.esocial.add_s2405evtCdBenefAlt %}
                     
-                        <a href="{% url 's2405_evtcdbenefalt_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's2405_evtcdbenefalt_salvar' pk=a.id %}">
                             {% if perms.esocial.change_s2405evtCdBenefAlt %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

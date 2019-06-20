@@ -38,7 +38,7 @@
                     
                         {% if perms.s1280.change_s1280infoSubstPatr or perms.s1280.add_s1280infoSubstPatr %}
                     
-                        <a href="{% url 's1280_infosubstpatr_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's1280_infosubstpatr_salvar' pk=a.id %}">
                             {% if perms.s1280.change_s1280infoSubstPatr %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

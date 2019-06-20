@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.r2030.can_see_r2030infoRecurso %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2030_inforecurso_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2030_inforecurso_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento dos recursos recebidos.</a>
                             </li>
                         {% endif %}

@@ -15,7 +15,7 @@
     <label id="r2050_infoproc__r2050_tipocom__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
     {% if not for_print %}
       {% if r2050_infoproc_form.r2050_tipocom.value %}
-        <a id="r2050_infoproc__r2050_tipocom__div_acessar" href="{% url 'r2050_tipocom_salvar' pk=r2050_infoproc_form.r2050_tipocom.value tab='master' %}">
+        <a id="r2050_infoproc__r2050_tipocom__div_acessar" href="{% url 'r2050_tipocom_salvar' pk=r2050_infoproc_form.r2050_tipocom.value %}">
           [Acessar]
         </a>
       {% endif %} 

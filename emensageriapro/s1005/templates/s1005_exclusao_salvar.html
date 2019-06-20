@@ -54,7 +54,7 @@
                     {% if pk %}
                         {% if perms.s1005.can_see_s1005exclusao %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's1005_exclusao_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's1005_exclusao_salvar_tab' pk=pk tab='master' %}">
                                 Exclusão das informações</a>
                             </li>
                         {% endif %}

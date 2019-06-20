@@ -62,9 +62,13 @@ urlpatterns = [
         s1300_contribsind_listar_views.listar, 
         name='s1300_contribsind'),
 
-    url(r'^s1300-contribsind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+    url(r'^s1300-contribsind/salvar/(?P<pk>[0-9]+)/$', 
         s1300_contribsind_salvar_views.salvar, 
         name='s1300_contribsind_salvar'),
+
+    url(r'^s1300-contribsind/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
+        s1300_contribsind_salvar_views.salvar, 
+        name='s1300_contribsind_salvar_tab'),
         
     url(r'^s1300-contribsind/cadastrar/$', 
         s1300_contribsind_salvar_views.salvar, 

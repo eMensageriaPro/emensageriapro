@@ -15,7 +15,7 @@
     <label id="s2240_iniexprisco_epc__s2240_iniexprisco_fatrisco__label">Equipamentos de Proteção Coletiva - EPC*</label>
     {% if not for_print %}
       {% if s2240_iniexprisco_epc_form.s2240_iniexprisco_fatrisco.value %}
-        <a id="s2240_iniexprisco_epc__s2240_iniexprisco_fatrisco__div_acessar" href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=s2240_iniexprisco_epc_form.s2240_iniexprisco_fatrisco.value tab='master' %}">
+        <a id="s2240_iniexprisco_epc__s2240_iniexprisco_fatrisco__div_acessar" href="{% url 's2240_iniexprisco_fatrisco_salvar' pk=s2240_iniexprisco_epc_form.s2240_iniexprisco_fatrisco.value %}">
           [Acessar]
         </a>
       {% endif %} 

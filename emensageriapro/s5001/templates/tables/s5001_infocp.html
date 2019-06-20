@@ -26,7 +26,7 @@
                     
                         {% if perms.s5001.change_s5001infoCp or perms.s5001.add_s5001infoCp %}
                     
-                        <a href="{% url 's5001_infocp_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5001_infocp_salvar' pk=a.id %}">
                             {% if perms.s5001.change_s5001infoCp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

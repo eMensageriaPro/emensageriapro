@@ -32,7 +32,7 @@
                     
                         {% if perms.s5003.change_s5003infoTrabFGTS or perms.s5003.add_s5003infoTrabFGTS %}
                     
-                        <a href="{% url 's5003_infotrabfgts_salvar' pk=a.id tab='master' %}">
+                        <a href="{% url 's5003_infotrabfgts_salvar' pk=a.id %}">
                             {% if perms.s5003.change_s5003infoTrabFGTS %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>

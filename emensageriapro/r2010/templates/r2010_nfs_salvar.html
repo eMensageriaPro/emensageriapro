@@ -54,14 +54,14 @@
                     {% if pk %}
                         {% if perms.r2010.can_see_r2010nfs %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 'r2010_nfs_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 'r2010_nfs_salvar_tab' pk=pk tab='master' %}">
                                 Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.r2010.can_see_r2010infoTpServ %}
                                 <li {% if tab == 'r2010_infotpserv' %} class="active"{% endif %} >
-                                    <a href="{% url 'r2010_nfs_salvar' pk=pk tab='r2010_infotpserv' %}">
+                                    <a href="{% url 'r2010_nfs_salvar_tab' pk=pk tab='r2010_infotpserv' %}">
                                     Informações sobre os tipos de Serviços constantes da Nota Fiscal</a>
                                 </li>
                             {% endif %}

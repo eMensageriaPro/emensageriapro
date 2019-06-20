@@ -7,7 +7,7 @@
   <div class="form-group">
     <label id="s2200_transfdom__s2200_evtadmissao__label">Informações do empregado doméstico transferido de outro representante da mesma unidade familiar*</label>
     {% if not for_print %}{% if s2200_transfdom_form.s2200_evtadmissao.value %}
-        <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_transfdom_form.s2200_evtadmissao.value tab='master' %}">
+        <a href="{% url 's2200_evtadmissao_salvar' pk=s2200_transfdom_form.s2200_evtadmissao.value %}">
             [Acessar]
         </a>
     {% endif %}{% endif %} 

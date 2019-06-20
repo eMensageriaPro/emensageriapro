@@ -54,35 +54,35 @@
                     {% if pk %}
                         {% if perms.s2306.can_see_s2306infoComplementares %}
                             <li {% if tab == 'master' %}class="active"{% endif %} >
-                                <a href="{% url 's2306_infocomplementares_salvar' pk=pk tab='master' %}">
+                                <a href="{% url 's2306_infocomplementares_salvar_tab' pk=pk tab='master' %}">
                                 Informações complementares sobre o declarante</a>
                             </li>
                         {% endif %}
                         
                             {% if perms.s2306.can_see_s2306cargoFuncao %}
                                 <li {% if tab == 's2306_cargofuncao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2306_infocomplementares_salvar' pk=pk tab='s2306_cargofuncao' %}">
+                                    <a href="{% url 's2306_infocomplementares_salvar_tab' pk=pk tab='s2306_cargofuncao' %}">
                                     Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2306.can_see_s2306remuneracao %}
                                 <li {% if tab == 's2306_remuneracao' %} class="active"{% endif %} >
-                                    <a href="{% url 's2306_infocomplementares_salvar' pk=pk tab='s2306_remuneracao' %}">
+                                    <a href="{% url 's2306_infocomplementares_salvar_tab' pk=pk tab='s2306_remuneracao' %}">
                                     Informações da remuneração e periodicidade de pagamento</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2306.can_see_s2306infoTrabCedido %}
                                 <li {% if tab == 's2306_infotrabcedido' %} class="active"{% endif %} >
-                                    <a href="{% url 's2306_infocomplementares_salvar' pk=pk tab='s2306_infotrabcedido' %}">
+                                    <a href="{% url 's2306_infocomplementares_salvar_tab' pk=pk tab='s2306_infotrabcedido' %}">
                                     Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.</a>
                                 </li>
                             {% endif %}
                         
                             {% if perms.s2306.can_see_s2306infoEstagiario %}
                                 <li {% if tab == 's2306_infoestagiario' %} class="active"{% endif %} >
-                                    <a href="{% url 's2306_infocomplementares_salvar' pk=pk tab='s2306_infoestagiario' %}">
+                                    <a href="{% url 's2306_infocomplementares_salvar_tab' pk=pk tab='s2306_infoestagiario' %}">
                                     Informações relativas ao estagiário</a>
                                 </li>
                             {% endif %}
