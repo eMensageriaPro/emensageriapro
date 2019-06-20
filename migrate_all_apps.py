@@ -113,27 +113,32 @@ def update_tables():
     arquivos = os.listdir('%s/database/sql' % BASE_DIR)
 
     for a in arquivos:
+        
         if '.sql' in a:
-            try:
-                TXT = ler_arquivo('database/sql/%s' % (a))
-                executar_sql(TXT, False)
-                print ('Arquivo %s executado com sucesso!' % a)
 
-            except:
-                print ('Erro ao executar o arquivo %s!' % a)
+            TXT = ler_arquivo('database/sql/%s' % (a))
+            executar_sql(TXT, False)
+            print ('Arquivo %s executado com sucesso!' % a)
+
+            # try:
+            #
+            # except:
+            #     print ('Erro ao executar o arquivo %s!' % a)
 
     arquivos = os.listdir('%s/database/views' % BASE_DIR)
 
     for a in arquivos:
-        if '.sql' in a:
-            
-            try:
-                TXT = ler_arquivo('database/views/%s' % (a))
-                executar_sql(TXT, False)
-                print ('Arquivo %s executado com sucesso!' % a)
 
-            except:
-                print ('Erro ao executar o arquivo %s!' % a)
+        if '.sql' in a:
+
+            TXT = ler_arquivo('database/views/%s' % (a))
+            executar_sql(TXT, False)
+            print ('Arquivo %s executado com sucesso!' % a)
+            
+            # try:
+            #
+            # except:
+            #     print ('Erro ao executar o arquivo %s!' % a)
 
 
 def collect_static():
@@ -147,8 +152,8 @@ def collect_static():
 if __name__ == "__main__":
 
     collect_static()
+    update_tables()
     migrates()
     reset_sequences()
-    update_tables()
     criar_diretorio_arquivos()
 
