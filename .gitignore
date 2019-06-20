@@ -28,3 +28,4 @@ make_and_migrate_all_apps.py
 teste_cron.txt
 delete_unused_migrations.py
 delete_unused_files.py
+get_last_migrations.py
