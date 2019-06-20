@@ -116,7 +116,7 @@ def gravar_nome_arquivo(arquivo, permite_recuperacao):
     dados['data_criacao'] = datetime.datetime.now()
     dados['permite_recuperacao'] = permite_recuperacao
     dados['criado_em'] = datetime.datetime.now()
-    dados['excluido'] = False
+    dados['ativo'] = True
     dados['criado_por_id'] = 1
 
     obj = Arquivos(**dados)

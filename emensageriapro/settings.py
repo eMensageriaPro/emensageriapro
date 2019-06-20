@@ -312,11 +312,14 @@ CONSTANCE_ADDITIONAL_FIELDS = {
         'widget': 'django.forms.Select',
         'choices': (("1", u"Produção"), ("2", u"Produção Restrita"))
     }],
+    'image_field': ['django.forms.ImageField', {}]
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
+
+    'LOGO_IMAGE': ('logo.png', 'Logotipo da empresa', 'image_field'),
 
     'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b',
                          u'Token de autenticação do sistema para acesso aos webservices',

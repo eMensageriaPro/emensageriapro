@@ -37,10 +37,10 @@ class SoftDeletionQuerySet(QuerySet):
         return super(SoftDeletionQuerySet, self).delete()
 
     def alive(self):
-        return self.filter(excluido=False)
+        return self.filter(ativo=True)
 
     def dead(self):
-        return self.exclude(excluido=True)
+        return self.exclude(ativo=None)
 
 
 class SoftDeletionModel(models.Model):

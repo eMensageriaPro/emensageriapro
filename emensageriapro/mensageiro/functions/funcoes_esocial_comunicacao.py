@@ -81,7 +81,7 @@ def get_ocorrencias(retornos_eventos_id):
     from emensageriapro.mensageiro.models import RetornosEventosOcorrencias
 
     ocorrencias = RetornosEventosOcorrencias.objects.using( 'default' ).\
-        filter(excluido = False, retornos_eventos_id=retornos_eventos_id).all()
+        filter(retornos_eventos_id=retornos_eventos_id).all()
 
     lista_ocor = []
     for o in ocorrencias:

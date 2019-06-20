@@ -111,7 +111,7 @@ def salvar(request, pk=None, tab='master', output=None):
                     dados['user_id'] = user_obj.pk
                     dados['criado_por_id'] = request.user.id
                     dados['criado_em'] = datetime.datetime.now()
-                    dados['excluido'] = False
+                    dados['ativo'] = True
                     obj = Usuarios(**dados)
                     obj.save()
                     

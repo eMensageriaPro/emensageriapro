@@ -55,7 +55,7 @@ def validacao_automatica_eventos():
     """ Validar Automaticamente os eventos com status 1 - Importado"""
     transmissor_lista = executar_sql("""
     SELECT id, evento, identidade, transmissor_lote_efdreinf_id, criado_em, 
-           criado_por_id, modificado_em, modificado_por_id, excluido, grupo, 
+           criado_por_id, modificado_em, modificado_por_id, ativo, grupo, 
            tabela, tabela_salvar, ordem, tpinsc, nrinsc, recibo_numero, 
            recibo_hash, url_recibo, processamento_codigo_resposta, processamento_descricao_resposta, 
            validacao_precedencia, validacoes, status
@@ -67,7 +67,7 @@ def validacao_automatica_eventos():
 
     transmissor_lista = executar_sql("""
     SELECT id, evento, identidade, transmissor_lote_esocial_id, criado_em, 
-           criado_por_id, modificado_em, modificado_por_id, excluido, grupo, 
+           criado_por_id, modificado_em, modificado_por_id, ativo, grupo, 
            tabela, tabela_salvar, ordem, tpinsc, nrinsc, recibo_numero, 
            recibo_hash, url_recibo, processamento_codigo_resposta, processamento_descricao_resposta, 
            validacao_precedencia, validacoes, status

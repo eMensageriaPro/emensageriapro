@@ -166,7 +166,7 @@ def scripts_processar_arquivos(request, tab):
         dados_eventos['validacoes'] = '<br>'.join(error_list)
         dados_eventos['criado_em'] = datetime.datetime.now()
         dados_eventos['criado_por_id'] = request.user.id
-        dados_eventos['excluido'] = False
+        dados_eventos['ativo'] = True
         ImportacaoArquivosEventos.objects.filter(id=arquivo.id).update(**dados_eventos)
 
     if tab == 'mapa':
@@ -204,7 +204,7 @@ def scripts_salvar_arquivos(request, tab='master'):
         dados_importacao['importado_por_id'] = request.user.id
         dados_importacao['criado_em'] = datetime.datetime.now()
         dados_importacao['criado_por_id'] = request.user.id
-        dados_importacao['excluido'] = False
+        dados_importacao['ativo'] = True
 
         obj = ImportacaoArquivos(**dados_importacao)
         obj.save()
@@ -247,7 +247,7 @@ def scripts_salvar_arquivos(request, tab='master'):
                     dados_eventos['validacoes'] = ''
                     dados_eventos['criado_em'] = datetime.datetime.now()
                     dados_eventos['criado_por_id'] = request.user.id
-                    dados_eventos['excluido'] = False
+                    dados_eventos['ativo'] = True
 
                     obj = ImportacaoArquivosEventos(**dados_eventos)
                     obj.save()
@@ -294,7 +294,7 @@ def imprimir(request, pk):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
+            'show_ativo': 0,
             'show_modificado_por': 0,
             'show_modificado_em': 0,
             'show_criado_por': 0,

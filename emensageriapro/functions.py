@@ -126,7 +126,6 @@ def identidade_evento(obj):
 
         lista_eventos = TransmissorEventosEsocial.objects.\
             filter(criado_em=obj.criado_em,
-                   excluido=False,
                    identidade = identidade_temp).all()
 
         if not lista_eventos:

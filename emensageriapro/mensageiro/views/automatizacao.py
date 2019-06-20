@@ -47,8 +47,8 @@ def scripts_validacao_automatica(request):
 
     executar_sql("""
     UPDATE public.importacao_arquivos_eventos
-       SET excluido=True
-     WHERE importacao_arquivos_id IN (SELECT id FROM importacao_arquivos WHERE excluido=True) ;
+       SET ativo=Null
+     WHERE importacao_arquivos_id IN (SELECT id FROM importacao_arquivos WHERE ativo=Null) ;
 
     """, False)
 
@@ -71,7 +71,7 @@ def scripts_validacao_automatica(request):
             dados_eventos['validacoes'] = 'Evento já existe em nossa base!'
             dados_eventos['criado_em'] = datetime.datetime.now()
             dados_eventos['criado_por_id'] = 1
-            dados_eventos['excluido'] = False
+            dados_eventos['ativo'] = True
 
             ImportacaoArquivosEventos.objects.\
                 filter(id=arquivo.id).update(**dados_eventos)
@@ -105,7 +105,7 @@ def scripts_validacao_automatica(request):
             dados_eventos['validacoes'] = '<br>'.join(error_list)
             dados_eventos['criado_em'] = datetime.datetime.now()
             dados_eventos['criado_por_id'] = 1
-            dados_eventos['excluido'] = False
+            dados_eventos['ativo'] = True
 
             ImportacaoArquivosEventos.objects.\
                 filter(id=arquivo.id).update(**dados_eventos)
@@ -168,8 +168,8 @@ def scripts_transmissao_automatica(request):
 
     executar_sql("""
     UPDATE public.importacao_arquivos_eventos
-       SET excluido=True
-     WHERE importacao_arquivos_id IN (SELECT id FROM importacao_arquivos WHERE excluido=True) ;
+       SET ativo=Null
+     WHERE importacao_arquivos_id IN (SELECT id FROM importacao_arquivos WHERE ativo=Null) ;
 
     """, False)
 
@@ -191,7 +191,7 @@ def scripts_transmissao_automatica(request):
             dados_eventos['validacoes'] = 'Evento já existe em nossa base!'
             dados_eventos['criado_em'] = datetime.datetime.now()
             dados_eventos['criado_por_id'] = 1
-            dados_eventos['excluido'] = False
+            dados_eventos['ativo'] = True
             ImportacaoArquivosEventos.objects.filter(id=arquivo.id).update(**dados_eventos)
             ia_id = arquivo.importacao_arquivos_id
 
@@ -220,7 +220,7 @@ def scripts_transmissao_automatica(request):
             dados_eventos['validacoes'] = '<br>'.join(error_list)
             dados_eventos['criado_em'] = datetime.datetime.now()
             dados_eventos['criado_por_id'] = 1
-            dados_eventos['excluido'] = False
+            dados_eventos['ativo'] = True
 
             ImportacaoArquivosEventos.objects.filter(id=arquivo.id).update(**dados_eventos)
             

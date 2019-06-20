@@ -30,7 +30,7 @@ def listar(request):
         filtrar = False
         dict_fields = {}
         show_fields = {
-            'show_excluido': 0,
+            'show_ativo': 0,
             'show_modificado_por': 0,
             'show_modificado_em': 0,
             'show_criado_por': 0,

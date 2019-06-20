@@ -103,7 +103,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.identidade
+        return unicode(self.identidade)
 
     def evento(self): 
     

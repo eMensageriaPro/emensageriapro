@@ -677,7 +677,7 @@ class s1000inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        return unicode(self.s1000_evtinfoempregador)
         
     class Meta:
     
@@ -1000,7 +1000,7 @@ class s1000inclusaosituacaoPF(SoftDeletionModel):
     
     def __unicode__(self):
         
-        return self.evento['identidade']
+        return unicode(self.s1000_inclusao)
         
     class Meta:
     

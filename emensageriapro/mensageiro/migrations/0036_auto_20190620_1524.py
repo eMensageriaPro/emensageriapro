@@ -69,12 +69,12 @@ class Migration(migrations.Migration):
             model_name='transmissorloteesocialocorrencias',
             name='excluido',
         ),
-        migrations.RemoveField(
-            model_name='transmissorlote',
-            name='excluido',
-        ),
         migrations.AlterUniqueTogether(
             name='transmissorlote',
             unique_together=set([('nome_empresa', 'ativo')]),
+        ),
+        migrations.RemoveField(
+            model_name='transmissorlote',
+            name='excluido',
         ),
     ]

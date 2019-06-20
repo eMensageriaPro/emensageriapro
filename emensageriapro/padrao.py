@@ -206,10 +206,10 @@ def gravar_auditoria(situacao_anterior, situacao_posterior, tabela, tabela_id, u
     executar_sql("""
     INSERT INTO public.auditoria(
             tabela, identidade, situacao_anterior, situacao_posterior, 
-            tipo, criado_em, criado_por_id, modificado_em, modificado_por_id, excluido,
+            tipo, criado_em, criado_por_id, modificado_em, modificado_por_id, ativo,
             data_hora, operador_id)
     VALUES ('%s', %s, '%s', '%s', 
-            %s, now(), %s, now(), %s, False,
+            %s, now(), %s, now(), %s, True,
             now(), %s);
     """ % (tabela, tabela_id, situacao_anterior, situacao_posterior, tipo, usuario_id, usuario_id, usuario_id), False)
 
@@ -234,6 +234,6 @@ def create_insert(tabela, dados):
                 valores += "'%s', " % dados[a]
         else:
             valores += "Null, "
-    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, excluido) VALUES (%s now(), 1, False) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
+    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, ativo) VALUES (%s now(), 1, True) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
     return texto
 

@@ -65,5 +65,5 @@ def create_insert(tabela, dados):
                 valores += "'%s', " % dados[a]
         else:
             valores += "Null, "
-    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, excluido) VALUES (%s now(), 1, False) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
+    texto = "INSERT INTO public.%s (%s, criado_em, criado_por_id, ativo) VALUES (%s now(), 1, True) RETURNING id;" % (tabela, ', '.join(variaveis), valores)
     return texto

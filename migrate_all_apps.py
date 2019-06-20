@@ -2,7 +2,7 @@
 import os
 from datetime import datetime
 from emensageriapro.padrao import ler_arquivo
-from emensageriapro.settings import INSTALLED_APPS
+from emensageriapro.settings import INSTALLED_APPS, BASE_DIR
 
 # Função para MAC OS X  não estrar em repouso
 # pmset noidle
@@ -29,69 +29,6 @@ def executar_sql(select, array):
     else:
         return None
 
-
-def cadastro_controle_acesso():
-    texto = ler_arquivo('paginas.txt')
-    texto = texto.replace('\n\n', '\n')
-    lista = texto.split('\n')
-    lista_paginas = []
-    for l in lista:
-        if len(l.strip()):
-            d = l.split('|')
-            dados = {}
-            dados['modulo'] = d[0]
-            dados['modulo_slug'] = d[1]
-            dados['pagina'] = d[2]
-            dados['pagina_slug'] = d[3]
-            verif_modulo = executar_sql("""
-            
-            SELECT id, titulo, slug, ordem, criado_em, modificado_em, excluido, 
-                   criado_por_id, modificado_por_id, modulo_pai_id
-              FROM public.config_modulos WHERE slug='%(modulo_slug)s';
-      
-            """ % dados, True)
-            if not verif_modulo:
-                verif_modulo = executar_sql("""
-
-                        INSERT INTO public.config_modulos(
-                                    titulo, slug, ordem, criado_em, modificado_em, excluido, 
-                                    criado_por_id, modificado_por_id, modulo_pai_id)
-                            VALUES ('%(modulo)s', '%(modulo_slug)s', 0, now(), now(), False, 
-                                    1, 1, Null) RETURNING id;
-
-                        """ % dados, True)
-            dados['modulo_id'] = verif_modulo[0][0]
-
-            verif_pagina = executar_sql("""
-            
-            SELECT id, titulo, endereco, exibe_menu, tipo, ordem, criado_em, modificado_em, 
-                   excluido, config_modulos_id, criado_por_id, modificado_por_id
-              FROM public.config_paginas WHERE endereco='%(pagina_slug)s';
-
-                    """ % dados, True)
-            if not verif_pagina:
-                verif_pagina = executar_sql("""
-
-                    INSERT INTO public.config_paginas(
-                                titulo, endereco, exibe_menu, tipo, ordem, criado_em, modificado_em, 
-                                excluido, config_modulos_id, criado_por_id, modificado_por_id)
-                        VALUES ('%(pagina)s', '%(pagina_slug)s', 0, 0, 0, now(), now(), 
-                                False, %(modulo_id)s, 1, 1);
-
-                                """ % dados, False)
-            lista_paginas.append("'"+dados['pagina_slug']+"'")
-
-    executar_sql("""
-    DELETE FROM config_permissoes 
-    WHERE config_paginas_id IN (
-    SELECT id FROM config_paginas WHERE endereco NOT IN (%s)
-        );""" % ','.join(lista_paginas), False)
-
-    executar_sql("""
-    DELETE FROM config_paginas WHERE endereco NOT IN (%s);
-        """ % ','.join(lista_paginas), False)
-
-    print "Controle de acesso atualizado com sucesso!"
 
 
 def reset_sequences():
@@ -173,12 +110,25 @@ def criar_diretorio_arquivos():
 
 def update_tables():
 
-    arquivos = os.listdir('database/sql')
+    arquivos = os.listdir('%s/database/sql' % BASE_DIR)
 
     for a in arquivos:
         if '.sql' in a:
             try:
-                TXT = ler_arquivo('database/sql/%s' % a)
+                TXT = ler_arquivo('database/sql/%s' % (a))
+                executar_sql(TXT, False)
+                print ('Arquivo %s executado com sucesso!' % a)
+
+            except:
+                print ('Erro ao executar o arquivo %s!' % a)
+
+    arquivos = os.listdir('%s/database/views' % BASE_DIR)
+
+    for a in arquivos:
+        if '.sql' in a:
+            
+            try:
+                TXT = ler_arquivo('database/views/%s' % (a))
                 executar_sql(TXT, False)
                 print ('Arquivo %s executado com sucesso!' % a)
 
@@ -199,7 +149,6 @@ if __name__ == "__main__":
     collect_static()
     migrates()
     reset_sequences()
-    cadastro_controle_acesso()
     update_tables()
     criar_diretorio_arquivos()
 

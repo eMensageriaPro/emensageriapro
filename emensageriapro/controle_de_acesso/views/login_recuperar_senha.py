@@ -61,44 +61,6 @@ def dict_to_json(dicionario):
     return json_string
 
 
-
-#
-# def salvar_modulos_paginas_permitidas(db_slug):
-#     perfis = ConfigPerfis.objects.using( db_slug ).filter(excluido = False).all()
-#     for perfil in perfis:
-#         dados = {}
-#         dicionario = {}
-#         permissoes = ConfigPermissoes.objects.using( db_slug ).filter(excluido = False, config_perfis=perfil.id).all()
-#         for a in permissoes:
-#             chave = a.config_paginas.endereco
-#             dicionario[chave+'_listar'] = a.permite_listar
-#             dicionario[chave+'_cadastrar'] = a.permite_cadastrar
-#             dicionario[chave+'_editar'] = a.permite_editar
-#             dicionario[chave+'_visualizar'] = a.permite_visualizar
-#             dicionario[chave+'_apagar'] = a.permite_apagar
-#         dados['permissoes'] = dict_to_json(dicionario)
-#         paginas_permitidas_id = []
-#         modulos_permitidos_id = []
-#         for p in permissoes:
-#             if p.permite_listar:
-#                 modulos_permitidos_id.append( '['+str(p.config_paginas.config_modulos.slug)+']')
-#                 if p.config_paginas.config_modulos.modulo_pai_id:
-#                     modulos_permitidos_id.append('['+str(p.config_paginas.config_modulos.modulo_pai.slug)+']')
-#                     if p.config_paginas.config_modulos.modulo_pai.modulo_pai_id:
-#                         modulos_permitidos_id.append('['+str(p.config_paginas.config_modulos.modulo_pai.modulo_pai.slug)+']')
-#                 paginas_permitidas_id.append('['+str(p.config_paginas.endereco+']'))
-#         dados['modulos_permitidos'] = ','.join(list(set(modulos_permitidos_id)))
-#         dados['paginas_permitidas'] = ','.join(list(set(paginas_permitidas_id)))
-#         obj = ConfigPerfis.objects.using( db_slug ).filter(id=perfil.id).update(**dados)
-#
-#
-# def ler_arquivo(arquivo):
-#     file = open(arquivo, 'r')
-#     texto = file.read()
-#     file.close()
-#     return texto
-
-
 def gera_senha(tamanho):
     from random import choice
     caracters = '0123456789abcdefghijlmnopqrstuwvxz!?@#$'
