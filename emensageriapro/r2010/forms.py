@@ -69,7 +69,7 @@ class form_r2010_infoprocretad(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -81,7 +81,9 @@ class form_r2010_infoprocretad(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r2010_infoprocretpr(forms.ModelForm):
@@ -108,7 +110,7 @@ class form_r2010_infoprocretpr(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -120,7 +122,9 @@ class form_r2010_infoprocretpr(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r2010_infotpserv(forms.ModelForm):
@@ -155,7 +159,7 @@ class form_r2010_infotpserv(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -167,7 +171,9 @@ class form_r2010_infotpserv(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r2010_nfs(forms.ModelForm):
@@ -194,7 +200,7 @@ class form_r2010_nfs(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -206,4 +212,6 @@ class form_r2010_nfs(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

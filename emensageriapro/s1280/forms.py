@@ -70,7 +70,7 @@ class form_s1280_infoativconcom(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -82,7 +82,9 @@ class form_s1280_infoativconcom(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1280_infosubstpatr(forms.ModelForm):
@@ -109,7 +111,7 @@ class form_s1280_infosubstpatr(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -121,7 +123,9 @@ class form_s1280_infosubstpatr(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1280_infosubstpatropport(forms.ModelForm):
@@ -147,7 +151,7 @@ class form_s1280_infosubstpatropport(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -159,4 +163,6 @@ class form_s1280_infosubstpatropport(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

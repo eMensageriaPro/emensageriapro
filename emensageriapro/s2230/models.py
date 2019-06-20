@@ -79,17 +79,7 @@ class s2230emitente(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_infoatestado),
-            unicode(self.nmemit),
-            unicode(self.ideoc),
-            unicode(self.nroc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -97,7 +87,7 @@ class s2230emitente(SoftDeletionModel):
         db_table = r's2230_emitente'       
         managed = True # s2230_emitente #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -122,7 +112,9 @@ class s2230emitenteSerializer(ModelSerializer):
     
         model = s2230emitente
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230fimAfastamento(SoftDeletionModel):
@@ -136,15 +128,7 @@ class s2230fimAfastamento(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_evtafasttemp),
-            unicode(self.dttermafast),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -152,7 +136,7 @@ class s2230fimAfastamento(SoftDeletionModel):
         db_table = r's2230_fimafastamento'       
         managed = True # s2230_fimafastamento #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -175,7 +159,9 @@ class s2230fimAfastamentoSerializer(ModelSerializer):
     
         model = s2230fimAfastamento
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoAtestado(SoftDeletionModel):
@@ -190,15 +176,7 @@ class s2230infoAtestado(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_iniafastamento),
-            unicode(self.qtddiasafast),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -206,7 +184,7 @@ class s2230infoAtestado(SoftDeletionModel):
         db_table = r's2230_infoatestado'       
         managed = True # s2230_infoatestado #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -229,7 +207,9 @@ class s2230infoAtestadoSerializer(ModelSerializer):
     
         model = s2230infoAtestado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoCessao(SoftDeletionModel):
@@ -244,16 +224,7 @@ class s2230infoCessao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_iniafastamento),
-            unicode(self.cnpjcess),
-            unicode(self.infonus),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -261,7 +232,7 @@ class s2230infoCessao(SoftDeletionModel):
         db_table = r's2230_infocessao'       
         managed = True # s2230_infocessao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -285,7 +256,9 @@ class s2230infoCessaoSerializer(ModelSerializer):
     
         model = s2230infoCessao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoMandSind(SoftDeletionModel):
@@ -300,16 +273,7 @@ class s2230infoMandSind(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_iniafastamento),
-            unicode(self.cnpjsind),
-            unicode(self.infonusremun),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -317,7 +281,7 @@ class s2230infoMandSind(SoftDeletionModel):
         db_table = r's2230_infomandsind'       
         managed = True # s2230_infomandsind #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -341,7 +305,9 @@ class s2230infoMandSindSerializer(ModelSerializer):
     
         model = s2230infoMandSind
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230infoRetif(SoftDeletionModel):
@@ -357,15 +323,7 @@ class s2230infoRetif(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_evtafasttemp),
-            unicode(self.origretif),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -373,7 +331,7 @@ class s2230infoRetif(SoftDeletionModel):
         db_table = r's2230_inforetif'       
         managed = True # s2230_inforetif #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -396,7 +354,9 @@ class s2230infoRetifSerializer(ModelSerializer):
     
         model = s2230infoRetif
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230iniAfastamento(SoftDeletionModel):
@@ -414,16 +374,7 @@ class s2230iniAfastamento(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2230_evtafasttemp),
-            unicode(self.dtiniafast),
-            unicode(self.codmotafast),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -431,7 +382,7 @@ class s2230iniAfastamento(SoftDeletionModel):
         db_table = r's2230_iniafastamento'       
         managed = True # s2230_iniafastamento #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -455,4 +406,6 @@ class s2230iniAfastamentoSerializer(ModelSerializer):
     
         model = s2230iniAfastamento
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -79,17 +79,7 @@ class s1299ideRespInf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1299_evtfechaevper),
-            unicode(self.nmresp),
-            unicode(self.cpfresp),
-            unicode(self.telefone),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -97,7 +87,7 @@ class s1299ideRespInf(SoftDeletionModel):
         db_table = r's1299_iderespinf'       
         managed = True # s1299_iderespinf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -122,4 +112,6 @@ class s1299ideRespInfSerializer(ModelSerializer):
     
         model = s1299ideRespInf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

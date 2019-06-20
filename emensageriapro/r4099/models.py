@@ -79,16 +79,7 @@ class r4099ideRespInf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4099_evtfech),
-            unicode(self.nmresp),
-            unicode(self.cpfresp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -96,7 +87,7 @@ class r4099ideRespInf(SoftDeletionModel):
         db_table = r'r4099_iderespinf'       
         managed = True # r4099_iderespinf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -120,4 +111,6 @@ class r4099ideRespInfSerializer(ModelSerializer):
     
         model = r4099ideRespInf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

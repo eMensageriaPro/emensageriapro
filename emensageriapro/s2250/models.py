@@ -78,16 +78,7 @@ class s2250cancAvPrevio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2250_evtavprevio),
-            unicode(self.dtcancavprv),
-            unicode(self.mtvcancavprevio),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -95,7 +86,7 @@ class s2250cancAvPrevio(SoftDeletionModel):
         db_table = r's2250_cancavprevio'       
         managed = True # s2250_cancavprevio #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -119,7 +110,9 @@ class s2250cancAvPrevioSerializer(ModelSerializer):
     
         model = s2250cancAvPrevio
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2250detAvPrevio(SoftDeletionModel):
@@ -136,17 +129,7 @@ class s2250detAvPrevio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2250_evtavprevio),
-            unicode(self.dtavprv),
-            unicode(self.dtprevdeslig),
-            unicode(self.tpavprevio),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -154,7 +137,7 @@ class s2250detAvPrevio(SoftDeletionModel):
         db_table = r's2250_detavprevio'       
         managed = True # s2250_detavprevio #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -179,4 +162,6 @@ class s2250detAvPrevioSerializer(ModelSerializer):
     
         model = s2250detAvPrevio
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

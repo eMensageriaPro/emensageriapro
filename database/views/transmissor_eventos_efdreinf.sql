@@ -1,8 +1,8 @@
--- View: public.transmissor_eventos_efdreinf
+-- View: public.vw_transmissor_eventos_efdreinf
 
--- DROP VIEW public.transmissor_eventos_efdreinf;
+-- DROP VIEW public.vw_transmissor_eventos_efdreinf;
 
-CREATE OR REPLACE VIEW public.transmissor_eventos_efdreinf AS 
+CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf AS 
  SELECT r1000_evtinfocontri.id,
     'r1000'::text AS evento,
     r1000_evtinfocontri.identidade,
@@ -26,7 +26,7 @@ CREATE OR REPLACE VIEW public.transmissor_eventos_efdreinf AS
     r1000_evtinfocontri.retornos_evttotalcontrib_id,
     r1000_evtinfocontri.ocorrencias
    FROM r1000_evtinfocontri
-  WHERE r1000_evtinfocontri.excluido = false
+  WHERE r1000_evtinfocontri.ativo = true
 UNION
  SELECT r1070_evttabprocesso.id,
     'r1070'::text AS evento,
@@ -51,7 +51,7 @@ UNION
     r1070_evttabprocesso.retornos_evttotalcontrib_id,
     r1070_evttabprocesso.ocorrencias
    FROM r1070_evttabprocesso
-  WHERE r1070_evttabprocesso.excluido = false
+  WHERE r1070_evttabprocesso.ativo = true
 UNION
  SELECT r2010_evtservtom.id,
     'r2010'::text AS evento,
@@ -76,7 +76,7 @@ UNION
     r2010_evtservtom.retornos_evttotalcontrib_id,
     r2010_evtservtom.ocorrencias
    FROM r2010_evtservtom
-  WHERE r2010_evtservtom.excluido = false
+  WHERE r2010_evtservtom.ativo = true
 UNION
  SELECT r2020_evtservprest.id,
     'r2020'::text AS evento,
@@ -101,7 +101,7 @@ UNION
     r2020_evtservprest.retornos_evttotalcontrib_id,
     r2020_evtservprest.ocorrencias
    FROM r2020_evtservprest
-  WHERE r2020_evtservprest.excluido = false
+  WHERE r2020_evtservprest.ativo = true
 UNION
  SELECT r2030_evtassocdesprec.id,
     'r2030'::text AS evento,
@@ -126,7 +126,7 @@ UNION
     r2030_evtassocdesprec.retornos_evttotalcontrib_id,
     r2030_evtassocdesprec.ocorrencias
    FROM r2030_evtassocdesprec
-  WHERE r2030_evtassocdesprec.excluido = false
+  WHERE r2030_evtassocdesprec.ativo = true
 UNION
  SELECT r2040_evtassocdesprep.id,
     'r2040'::text AS evento,
@@ -151,7 +151,7 @@ UNION
     r2040_evtassocdesprep.retornos_evttotalcontrib_id,
     r2040_evtassocdesprep.ocorrencias
    FROM r2040_evtassocdesprep
-  WHERE r2040_evtassocdesprep.excluido = false
+  WHERE r2040_evtassocdesprep.ativo = true
 UNION
  SELECT r2050_evtcomprod.id,
     'r2050'::text AS evento,
@@ -176,7 +176,7 @@ UNION
     r2050_evtcomprod.retornos_evttotalcontrib_id,
     r2050_evtcomprod.ocorrencias
    FROM r2050_evtcomprod
-  WHERE r2050_evtcomprod.excluido = false
+  WHERE r2050_evtcomprod.ativo = true
 UNION
  SELECT r2060_evtcprb.id,
     'r2060'::text AS evento,
@@ -201,7 +201,7 @@ UNION
     r2060_evtcprb.retornos_evttotalcontrib_id,
     r2060_evtcprb.ocorrencias
    FROM r2060_evtcprb
-  WHERE r2060_evtcprb.excluido = false
+  WHERE r2060_evtcprb.ativo = true
 UNION
  SELECT r2070_evtpgtosdivs.id,
     'r2070'::text AS evento,
@@ -226,7 +226,7 @@ UNION
     r2070_evtpgtosdivs.retornos_evttotalcontrib_id,
     r2070_evtpgtosdivs.ocorrencias
    FROM r2070_evtpgtosdivs
-  WHERE r2070_evtpgtosdivs.excluido = false
+  WHERE r2070_evtpgtosdivs.ativo = true
 UNION
  SELECT r2098_evtreabreevper.id,
     'r2098'::text AS evento,
@@ -251,7 +251,7 @@ UNION
     r2098_evtreabreevper.retornos_evttotalcontrib_id,
     r2098_evtreabreevper.ocorrencias
    FROM r2098_evtreabreevper
-  WHERE r2098_evtreabreevper.excluido = false
+  WHERE r2098_evtreabreevper.ativo = true
 UNION
  SELECT r2099_evtfechaevper.id,
     'r2099'::text AS evento,
@@ -276,7 +276,7 @@ UNION
     r2099_evtfechaevper.retornos_evttotalcontrib_id,
     r2099_evtfechaevper.ocorrencias
    FROM r2099_evtfechaevper
-  WHERE r2099_evtfechaevper.excluido = false
+  WHERE r2099_evtfechaevper.ativo = true
 UNION
  SELECT r3010_evtespdesportivo.id,
     'r3010'::text AS evento,
@@ -301,7 +301,7 @@ UNION
     r3010_evtespdesportivo.retornos_evttotalcontrib_id,
     r3010_evtespdesportivo.ocorrencias
    FROM r3010_evtespdesportivo
-  WHERE r3010_evtespdesportivo.excluido = false
+  WHERE r3010_evtespdesportivo.ativo = true
 UNION
  SELECT r9000_evtexclusao.id,
     'r9000'::text AS evento,
@@ -326,5 +326,5 @@ UNION
     r9000_evtexclusao.retornos_evttotalcontrib_id,
     r9000_evtexclusao.ocorrencias
    FROM r9000_evtexclusao
-  WHERE r9000_evtexclusao.excluido = false;
+  WHERE r9000_evtexclusao.ativo = true;
 

@@ -68,7 +68,7 @@ class form_r9002_infototal(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -80,7 +80,9 @@ class form_r9002_infototal(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r9002_regocorrs(forms.ModelForm):
@@ -106,7 +108,7 @@ class form_r9002_regocorrs(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -118,7 +120,9 @@ class form_r9002_regocorrs(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r9002_totapurdec(forms.ModelForm):
@@ -148,7 +152,7 @@ class form_r9002_totapurdec(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -160,7 +164,9 @@ class form_r9002_totapurdec(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r9002_totapurdia(forms.ModelForm):
@@ -190,7 +196,7 @@ class form_r9002_totapurdia(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -202,7 +208,9 @@ class form_r9002_totapurdia(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r9002_totapurmen(forms.ModelForm):
@@ -232,7 +240,7 @@ class form_r9002_totapurmen(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -244,7 +252,9 @@ class form_r9002_totapurmen(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r9002_totapurqui(forms.ModelForm):
@@ -274,7 +284,7 @@ class form_r9002_totapurqui(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -286,7 +296,9 @@ class form_r9002_totapurqui(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r9002_totapursem(forms.ModelForm):
@@ -316,7 +328,7 @@ class form_r9002_totapursem(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -328,4 +340,6 @@ class form_r9002_totapursem(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

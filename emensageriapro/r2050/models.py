@@ -81,16 +81,7 @@ class r2050infoProc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2050_tipocom),
-            unicode(self.tpproc),
-            unicode(self.nrproc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -98,7 +89,7 @@ class r2050infoProc(SoftDeletionModel):
         db_table = r'r2050_infoproc'       
         managed = True # r2050_infoproc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -122,7 +113,9 @@ class r2050infoProcSerializer(ModelSerializer):
     
         model = r2050infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2050tipoCom(SoftDeletionModel):
@@ -137,16 +130,7 @@ class r2050tipoCom(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2050_evtcomprod),
-            unicode(self.indcom),
-            unicode(self.vlrrecbruta),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -154,7 +138,7 @@ class r2050tipoCom(SoftDeletionModel):
         db_table = r'r2050_tipocom'       
         managed = True # r2050_tipocom #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -178,4 +162,6 @@ class r2050tipoComSerializer(ModelSerializer):
     
         model = r2050tipoCom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

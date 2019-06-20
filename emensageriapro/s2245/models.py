@@ -81,19 +81,7 @@ class s2245ideProfResp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2245_evttreicap),
-            unicode(self.nmprof),
-            unicode(self.tpprof),
-            unicode(self.formprof),
-            unicode(self.codcbo),
-            unicode(self.nacprof),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -101,7 +89,7 @@ class s2245ideProfResp(SoftDeletionModel):
         db_table = r's2245_ideprofresp'       
         managed = True # s2245_ideprofresp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -128,4 +116,6 @@ class s2245ideProfRespSerializer(ModelSerializer):
     
         model = s2245ideProfResp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

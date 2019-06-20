@@ -77,16 +77,7 @@ class s2410homologTC(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2410_evtcdbenin),
-            unicode(self.dthomol),
-            unicode(self.nratolegal),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s2410homologTC(SoftDeletionModel):
         db_table = r's2410_homologtc'       
         managed = True # s2410_homologtc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,7 +109,9 @@ class s2410homologTCSerializer(ModelSerializer):
     
         model = s2410homologTC
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2410infoPenMorte(SoftDeletionModel):
@@ -132,15 +125,7 @@ class s2410infoPenMorte(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2410_evtcdbenin),
-            unicode(self.tppenmorte),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -148,7 +133,7 @@ class s2410infoPenMorte(SoftDeletionModel):
         db_table = r's2410_infopenmorte'       
         managed = True # s2410_infopenmorte #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -171,7 +156,9 @@ class s2410infoPenMorteSerializer(ModelSerializer):
     
         model = s2410infoPenMorte
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2410instPenMorte(SoftDeletionModel):
@@ -187,17 +174,7 @@ class s2410instPenMorte(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2410_infopenmorte),
-            unicode(self.cpfinst),
-            unicode(self.dtinst),
-            unicode(self.intaposentado),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -205,7 +182,7 @@ class s2410instPenMorte(SoftDeletionModel):
         db_table = r's2410_instpenmorte'       
         managed = True # s2410_instpenmorte #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -230,4 +207,6 @@ class s2410instPenMorteSerializer(ModelSerializer):
     
         model = s2410instPenMorte
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

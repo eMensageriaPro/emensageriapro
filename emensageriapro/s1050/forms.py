@@ -68,7 +68,7 @@ class form_s1050_alteracao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -80,7 +80,9 @@ class form_s1050_alteracao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1050_alteracao_horariointervalo(forms.ModelForm):
@@ -106,7 +108,7 @@ class form_s1050_alteracao_horariointervalo(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -118,7 +120,9 @@ class form_s1050_alteracao_horariointervalo(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1050_alteracao_novavalidade(forms.ModelForm):
@@ -144,7 +148,7 @@ class form_s1050_alteracao_novavalidade(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -156,7 +160,9 @@ class form_s1050_alteracao_novavalidade(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1050_exclusao(forms.ModelForm):
@@ -182,7 +188,7 @@ class form_s1050_exclusao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -194,7 +200,9 @@ class form_s1050_exclusao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1050_inclusao(forms.ModelForm):
@@ -220,7 +228,7 @@ class form_s1050_inclusao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -232,7 +240,9 @@ class form_s1050_inclusao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1050_inclusao_horariointervalo(forms.ModelForm):
@@ -258,7 +268,7 @@ class form_s1050_inclusao_horariointervalo(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -270,4 +280,6 @@ class form_s1050_inclusao_horariointervalo(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

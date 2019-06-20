@@ -77,16 +77,7 @@ class s5012infoCRContrib(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5012_evtirrf),
-            unicode(self.tpcr),
-            unicode(self.vrcr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s5012infoCRContrib(SoftDeletionModel):
         db_table = r's5012_infocrcontrib'       
         managed = True # s5012_infocrcontrib #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,4 +109,6 @@ class s5012infoCRContribSerializer(ModelSerializer):
     
         model = s5012infoCRContrib
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

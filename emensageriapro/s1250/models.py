@@ -82,21 +82,7 @@ class s1250ideProdutor(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1250_tpaquis),
-            unicode(self.tpinscprod),
-            unicode(self.nrinscprod),
-            unicode(self.vlrbruto),
-            unicode(self.vrcpdescpr),
-            unicode(self.vrratdescpr),
-            unicode(self.vrsenardesc),
-            unicode(self.indopccp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -104,7 +90,7 @@ class s1250ideProdutor(SoftDeletionModel):
         db_table = r's1250_ideprodutor'       
         managed = True # s1250_ideprodutor #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -133,7 +119,9 @@ class s1250ideProdutorSerializer(ModelSerializer):
     
         model = s1250ideProdutor
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1250infoProcJ(SoftDeletionModel):
@@ -151,19 +139,7 @@ class s1250infoProcJ(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1250_tpaquis),
-            unicode(self.nrprocjud),
-            unicode(self.codsusp),
-            unicode(self.vrcpnret),
-            unicode(self.vrratnret),
-            unicode(self.vrsenarnret),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -171,7 +147,7 @@ class s1250infoProcJ(SoftDeletionModel):
         db_table = r's1250_infoprocj'       
         managed = True # s1250_infoprocj #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -198,7 +174,9 @@ class s1250infoProcJSerializer(ModelSerializer):
     
         model = s1250infoProcJ
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1250infoProcJud(SoftDeletionModel):
@@ -216,19 +194,7 @@ class s1250infoProcJud(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1250_ideprodutor),
-            unicode(self.nrprocjud),
-            unicode(self.codsusp),
-            unicode(self.vrcpnret),
-            unicode(self.vrratnret),
-            unicode(self.vrsenarnret),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -236,7 +202,7 @@ class s1250infoProcJud(SoftDeletionModel):
         db_table = r's1250_infoprocjud'       
         managed = True # s1250_infoprocjud #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -263,7 +229,9 @@ class s1250infoProcJudSerializer(ModelSerializer):
     
         model = s1250infoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1250nfs(SoftDeletionModel):
@@ -283,20 +251,7 @@ class s1250nfs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1250_ideprodutor),
-            unicode(self.nrdocto),
-            unicode(self.dtemisnf),
-            unicode(self.vlrbruto),
-            unicode(self.vrcpdescpr),
-            unicode(self.vrratdescpr),
-            unicode(self.vrsenardesc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -304,7 +259,7 @@ class s1250nfs(SoftDeletionModel):
         db_table = r's1250_nfs'       
         managed = True # s1250_nfs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -332,7 +287,9 @@ class s1250nfsSerializer(ModelSerializer):
     
         model = s1250nfs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1250tpAquis(SoftDeletionModel):
@@ -347,16 +304,7 @@ class s1250tpAquis(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1250_evtaqprod),
-            unicode(self.indaquis),
-            unicode(self.vlrtotaquis),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -364,7 +312,7 @@ class s1250tpAquis(SoftDeletionModel):
         db_table = r's1250_tpaquis'       
         managed = True # s1250_tpaquis #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -388,4 +336,6 @@ class s1250tpAquisSerializer(ModelSerializer):
     
         model = s1250tpAquis
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

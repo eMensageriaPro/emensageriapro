@@ -1,8 +1,8 @@
--- View: public.transmissor_eventos_esocial_totalizacoes
+-- View: public.vw_transmissor_eventos_esocial_totalizacoes
 
--- DROP VIEW public.transmissor_eventos_esocial_totalizacoes;
+-- DROP VIEW public.vw_transmissor_eventos_esocial_totalizacoes;
 
-CREATE OR REPLACE VIEW public.transmissor_eventos_esocial_totalizacoes AS 
+CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial_totalizacoes AS 
  SELECT s5001_evtbasestrab.id,
     's5001' AS evento,
     s5001_evtbasestrab.identidade,
@@ -27,5 +27,5 @@ CREATE OR REPLACE VIEW public.transmissor_eventos_esocial_totalizacoes AS
     s5001_evtbasestrab.validacoes,
     s5001_evtbasestrab.status
    FROM s5001_evtbasestrab
-  WHERE s5001_evtbasestrab.excluido = false;
+  WHERE s5001_evtbasestrab.ativo = true;
 

@@ -85,24 +85,7 @@ class s1270remunAvNP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1270_evtcontratavnp),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.codlotacao),
-            unicode(self.vrbccp00),
-            unicode(self.vrbccp15),
-            unicode(self.vrbccp20),
-            unicode(self.vrbccp25),
-            unicode(self.vrbccp13),
-            unicode(self.vrbcfgts),
-            unicode(self.vrdesccp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -110,7 +93,7 @@ class s1270remunAvNP(SoftDeletionModel):
         db_table = r's1270_remunavnp'       
         managed = True # s1270_remunavnp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -142,4 +125,6 @@ class s1270remunAvNPSerializer(ModelSerializer):
     
         model = s1270remunAvNP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

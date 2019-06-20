@@ -76,15 +76,7 @@ class r4040ideNat(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4040_evtbenefnid),
-            unicode(self.natrendim),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class r4040ideNat(SoftDeletionModel):
         db_table = r'r4040_idenat'       
         managed = True # r4040_idenat #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class r4040ideNatSerializer(ModelSerializer):
     
         model = r4040ideNat
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4040infoPgto(SoftDeletionModel):
@@ -133,19 +127,7 @@ class r4040infoPgto(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4040_idenat),
-            unicode(self.dtfg),
-            unicode(self.vlrliq),
-            unicode(self.vlrreaj),
-            unicode(self.vlrir),
-            unicode(self.descr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -153,7 +135,7 @@ class r4040infoPgto(SoftDeletionModel):
         db_table = r'r4040_infopgto'       
         managed = True # r4040_infopgto #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -180,4 +162,6 @@ class r4040infoPgtoSerializer(ModelSerializer):
     
         model = r4040infoPgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

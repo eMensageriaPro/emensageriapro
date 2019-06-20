@@ -73,7 +73,7 @@ class form_r4020_csll(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -85,7 +85,9 @@ class form_r4020_csll(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_cofins(forms.ModelForm):
@@ -116,7 +118,7 @@ class form_r4020_cofins(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -128,7 +130,9 @@ class form_r4020_cofins(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_fci(forms.ModelForm):
@@ -154,7 +158,7 @@ class form_r4020_fci(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -166,7 +170,9 @@ class form_r4020_fci(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_ir(forms.ModelForm):
@@ -197,7 +203,7 @@ class form_r4020_ir(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -209,7 +215,9 @@ class form_r4020_ir(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_pp(forms.ModelForm):
@@ -240,7 +248,7 @@ class form_r4020_pp(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -252,7 +260,9 @@ class form_r4020_pp(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_scp(forms.ModelForm):
@@ -279,7 +289,7 @@ class form_r4020_scp(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -291,7 +301,9 @@ class form_r4020_scp(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_despprocjud(forms.ModelForm):
@@ -319,7 +331,7 @@ class form_r4020_despprocjud(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -331,7 +343,9 @@ class form_r4020_despprocjud(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_ideadv(forms.ModelForm):
@@ -358,7 +372,7 @@ class form_r4020_ideadv(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -370,7 +384,9 @@ class form_r4020_ideadv(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_idepgto(forms.ModelForm):
@@ -396,7 +412,7 @@ class form_r4020_idepgto(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -408,7 +424,9 @@ class form_r4020_idepgto(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_infopgto(forms.ModelForm):
@@ -436,7 +454,7 @@ class form_r4020_infopgto(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -448,7 +466,9 @@ class form_r4020_infopgto(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_infopgtoext(forms.ModelForm):
@@ -474,7 +494,7 @@ class form_r4020_infopgtoext(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -486,7 +506,9 @@ class form_r4020_infopgtoext(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_infoprocjud(forms.ModelForm):
@@ -512,7 +534,7 @@ class form_r4020_infoprocjud(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -524,7 +546,9 @@ class form_r4020_infoprocjud(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_infoprocret(forms.ModelForm):
@@ -558,7 +582,7 @@ class form_r4020_infoprocret(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -570,7 +594,9 @@ class form_r4020_infoprocret(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_r4020_origemrec(forms.ModelForm):
@@ -596,7 +622,7 @@ class form_r4020_origemrec(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -608,4 +634,6 @@ class form_r4020_origemrec(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

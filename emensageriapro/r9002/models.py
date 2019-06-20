@@ -78,16 +78,7 @@ class r9002infoTotal(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_evtret),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -95,7 +86,7 @@ class r9002infoTotal(SoftDeletionModel):
         db_table = r'r9002_infototal'       
         managed = True # r9002_infototal #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -119,7 +110,9 @@ class r9002infoTotalSerializer(ModelSerializer):
     
         model = r9002infoTotal
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002regOcorrs(SoftDeletionModel):
@@ -136,18 +129,7 @@ class r9002regOcorrs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_evtret),
-            unicode(self.tpocorr),
-            unicode(self.localerroaviso),
-            unicode(self.codresp),
-            unicode(self.dscresp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -155,7 +137,7 @@ class r9002regOcorrs(SoftDeletionModel):
         db_table = r'r9002_regocorrs'       
         managed = True # r9002_regocorrs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -181,7 +163,9 @@ class r9002regOcorrsSerializer(ModelSerializer):
     
         model = r9002regOcorrs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurDec(SoftDeletionModel):
@@ -200,18 +184,7 @@ class r9002totApurDec(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_infototal),
-            unicode(self.perapurdec),
-            unicode(self.crdec),
-            unicode(self.vlrbasecrdec),
-            unicode(self.vlrcrdec),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -219,7 +192,7 @@ class r9002totApurDec(SoftDeletionModel):
         db_table = r'r9002_totapurdec'       
         managed = True # r9002_totapurdec #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -245,7 +218,9 @@ class r9002totApurDecSerializer(ModelSerializer):
     
         model = r9002totApurDec
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurDia(SoftDeletionModel):
@@ -264,18 +239,7 @@ class r9002totApurDia(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_infototal),
-            unicode(self.perapurdia),
-            unicode(self.crdia),
-            unicode(self.vlrbasecrdia),
-            unicode(self.vlrcrdia),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -283,7 +247,7 @@ class r9002totApurDia(SoftDeletionModel):
         db_table = r'r9002_totapurdia'       
         managed = True # r9002_totapurdia #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -309,7 +273,9 @@ class r9002totApurDiaSerializer(ModelSerializer):
     
         model = r9002totApurDia
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurMen(SoftDeletionModel):
@@ -327,17 +293,7 @@ class r9002totApurMen(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_infototal),
-            unicode(self.crmen),
-            unicode(self.vlrbasecrmen),
-            unicode(self.vlrcrmen),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -345,7 +301,7 @@ class r9002totApurMen(SoftDeletionModel):
         db_table = r'r9002_totapurmen'       
         managed = True # r9002_totapurmen #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -370,7 +326,9 @@ class r9002totApurMenSerializer(ModelSerializer):
     
         model = r9002totApurMen
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurQui(SoftDeletionModel):
@@ -389,18 +347,7 @@ class r9002totApurQui(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_infototal),
-            unicode(self.perapurqui),
-            unicode(self.crqui),
-            unicode(self.vlrbasecrqui),
-            unicode(self.vlrcrqui),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -408,7 +355,7 @@ class r9002totApurQui(SoftDeletionModel):
         db_table = r'r9002_totapurqui'       
         managed = True # r9002_totapurqui #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -434,7 +381,9 @@ class r9002totApurQuiSerializer(ModelSerializer):
     
         model = r9002totApurQui
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurSem(SoftDeletionModel):
@@ -453,18 +402,7 @@ class r9002totApurSem(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r9002_infototal),
-            unicode(self.perapursem),
-            unicode(self.crsem),
-            unicode(self.vlrbasecrsem),
-            unicode(self.vlrcrsem),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -472,7 +410,7 @@ class r9002totApurSem(SoftDeletionModel):
         db_table = r'r9002_totapursem'       
         managed = True # r9002_totapursem #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -498,4 +436,6 @@ class r9002totApurSemSerializer(ModelSerializer):
     
         model = r9002totApurSem
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

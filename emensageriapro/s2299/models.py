@@ -76,15 +76,7 @@ class s2299dmDev(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_verbasresc),
-            unicode(self.idedmdev),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class s2299dmDev(SoftDeletionModel):
         db_table = r's2299_dmdev'       
         managed = True # s2299_dmdev #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class s2299dmDevSerializer(ModelSerializer):
     
         model = s2299dmDev
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAnt(SoftDeletionModel):
@@ -128,14 +122,7 @@ class s2299infoPerAnt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_dmdev),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -143,7 +130,7 @@ class s2299infoPerAnt(SoftDeletionModel):
         db_table = r's2299_infoperant'       
         managed = True # s2299_infoperant #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -165,7 +152,9 @@ class s2299infoPerAntSerializer(ModelSerializer):
     
         model = s2299infoPerAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAntdetVerbas(SoftDeletionModel):
@@ -184,17 +173,7 @@ class s2299infoPerAntdetVerbas(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperant_ideestablot),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -202,7 +181,7 @@ class s2299infoPerAntdetVerbas(SoftDeletionModel):
         db_table = r's2299_infoperant_detverbas'       
         managed = True # s2299_infoperant_detverbas #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -227,7 +206,9 @@ class s2299infoPerAntdetVerbasSerializer(ModelSerializer):
     
         model = s2299infoPerAntdetVerbas
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAntideADC(SoftDeletionModel):
@@ -245,18 +226,7 @@ class s2299infoPerAntideADC(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperant),
-            unicode(self.dtacconv),
-            unicode(self.tpacconv),
-            unicode(self.dtefacconv),
-            unicode(self.dsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -264,7 +234,7 @@ class s2299infoPerAntideADC(SoftDeletionModel):
         db_table = r's2299_infoperant_ideadc'       
         managed = True # s2299_infoperant_ideadc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -290,7 +260,9 @@ class s2299infoPerAntideADCSerializer(ModelSerializer):
     
         model = s2299infoPerAntideADC
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAntideEstabLot(SoftDeletionModel):
@@ -306,17 +278,7 @@ class s2299infoPerAntideEstabLot(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperant_ideperiodo),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.codlotacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -324,7 +286,7 @@ class s2299infoPerAntideEstabLot(SoftDeletionModel):
         db_table = r's2299_infoperant_ideestablot'       
         managed = True # s2299_infoperant_ideestablot #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -349,7 +311,9 @@ class s2299infoPerAntideEstabLotSerializer(ModelSerializer):
     
         model = s2299infoPerAntideEstabLot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAntidePeriodo(SoftDeletionModel):
@@ -363,15 +327,7 @@ class s2299infoPerAntidePeriodo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperant_ideadc),
-            unicode(self.perref),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -379,7 +335,7 @@ class s2299infoPerAntidePeriodo(SoftDeletionModel):
         db_table = r's2299_infoperant_ideperiodo'       
         managed = True # s2299_infoperant_ideperiodo #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -402,7 +358,9 @@ class s2299infoPerAntidePeriodoSerializer(ModelSerializer):
     
         model = s2299infoPerAntidePeriodo
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAntinfoAgNocivo(SoftDeletionModel):
@@ -416,15 +374,7 @@ class s2299infoPerAntinfoAgNocivo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperant_ideestablot),
-            unicode(self.grauexp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -432,7 +382,7 @@ class s2299infoPerAntinfoAgNocivo(SoftDeletionModel):
         db_table = r's2299_infoperant_infoagnocivo'       
         managed = True # s2299_infoperant_infoagnocivo #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -455,7 +405,9 @@ class s2299infoPerAntinfoAgNocivoSerializer(ModelSerializer):
     
         model = s2299infoPerAntinfoAgNocivo
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerAntinfoSimples(SoftDeletionModel):
@@ -469,15 +421,7 @@ class s2299infoPerAntinfoSimples(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperant_ideestablot),
-            unicode(self.indsimples),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -485,7 +429,7 @@ class s2299infoPerAntinfoSimples(SoftDeletionModel):
         db_table = r's2299_infoperant_infosimples'       
         managed = True # s2299_infoperant_infosimples #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -508,7 +452,9 @@ class s2299infoPerAntinfoSimplesSerializer(ModelSerializer):
     
         model = s2299infoPerAntinfoSimples
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApur(SoftDeletionModel):
@@ -521,14 +467,7 @@ class s2299infoPerApur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_dmdev),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -536,7 +475,7 @@ class s2299infoPerApur(SoftDeletionModel):
         db_table = r's2299_infoperapur'       
         managed = True # s2299_infoperapur #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -558,7 +497,9 @@ class s2299infoPerApurSerializer(ModelSerializer):
     
         model = s2299infoPerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurdetOper(SoftDeletionModel):
@@ -574,17 +515,7 @@ class s2299infoPerApurdetOper(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur_infosaudecolet),
-            unicode(self.cnpjoper),
-            unicode(self.regans),
-            unicode(self.vrpgtit),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -592,7 +523,7 @@ class s2299infoPerApurdetOper(SoftDeletionModel):
         db_table = r's2299_infoperapur_detoper'       
         managed = True # s2299_infoperapur_detoper #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -617,7 +548,9 @@ class s2299infoPerApurdetOperSerializer(ModelSerializer):
     
         model = s2299infoPerApurdetOper
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurdetPlano(SoftDeletionModel):
@@ -635,18 +568,7 @@ class s2299infoPerApurdetPlano(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur_detoper),
-            unicode(self.tpdep),
-            unicode(self.nmdep),
-            unicode(self.dtnascto),
-            unicode(self.vlrpgdep),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -654,7 +576,7 @@ class s2299infoPerApurdetPlano(SoftDeletionModel):
         db_table = r's2299_infoperapur_detplano'       
         managed = True # s2299_infoperapur_detplano #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -680,7 +602,9 @@ class s2299infoPerApurdetPlanoSerializer(ModelSerializer):
     
         model = s2299infoPerApurdetPlano
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurdetVerbas(SoftDeletionModel):
@@ -699,17 +623,7 @@ class s2299infoPerApurdetVerbas(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur_ideestablot),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -717,7 +631,7 @@ class s2299infoPerApurdetVerbas(SoftDeletionModel):
         db_table = r's2299_infoperapur_detverbas'       
         managed = True # s2299_infoperapur_detverbas #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -742,7 +656,9 @@ class s2299infoPerApurdetVerbasSerializer(ModelSerializer):
     
         model = s2299infoPerApurdetVerbas
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurideEstabLot(SoftDeletionModel):
@@ -758,17 +674,7 @@ class s2299infoPerApurideEstabLot(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.codlotacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -776,7 +682,7 @@ class s2299infoPerApurideEstabLot(SoftDeletionModel):
         db_table = r's2299_infoperapur_ideestablot'       
         managed = True # s2299_infoperapur_ideestablot #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -801,7 +707,9 @@ class s2299infoPerApurideEstabLotSerializer(ModelSerializer):
     
         model = s2299infoPerApurideEstabLot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurinfoAgNocivo(SoftDeletionModel):
@@ -815,15 +723,7 @@ class s2299infoPerApurinfoAgNocivo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur_ideestablot),
-            unicode(self.grauexp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -831,7 +731,7 @@ class s2299infoPerApurinfoAgNocivo(SoftDeletionModel):
         db_table = r's2299_infoperapur_infoagnocivo'       
         managed = True # s2299_infoperapur_infoagnocivo #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -854,7 +754,9 @@ class s2299infoPerApurinfoAgNocivoSerializer(ModelSerializer):
     
         model = s2299infoPerApurinfoAgNocivo
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurinfoSaudeColet(SoftDeletionModel):
@@ -867,14 +769,7 @@ class s2299infoPerApurinfoSaudeColet(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur_ideestablot),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -882,7 +777,7 @@ class s2299infoPerApurinfoSaudeColet(SoftDeletionModel):
         db_table = r's2299_infoperapur_infosaudecolet'       
         managed = True # s2299_infoperapur_infosaudecolet #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -904,7 +799,9 @@ class s2299infoPerApurinfoSaudeColetSerializer(ModelSerializer):
     
         model = s2299infoPerApurinfoSaudeColet
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoPerApurinfoSimples(SoftDeletionModel):
@@ -918,15 +815,7 @@ class s2299infoPerApurinfoSimples(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infoperapur_ideestablot),
-            unicode(self.indsimples),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -934,7 +823,7 @@ class s2299infoPerApurinfoSimples(SoftDeletionModel):
         db_table = r's2299_infoperapur_infosimples'       
         managed = True # s2299_infoperapur_infosimples #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -957,7 +846,9 @@ class s2299infoPerApurinfoSimplesSerializer(ModelSerializer):
     
         model = s2299infoPerApurinfoSimples
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabInterm(SoftDeletionModel):
@@ -971,15 +862,7 @@ class s2299infoTrabInterm(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_dmdev),
-            unicode(self.codconv),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -987,7 +870,7 @@ class s2299infoTrabInterm(SoftDeletionModel):
         db_table = r's2299_infotrabinterm'       
         managed = True # s2299_infotrabinterm #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1010,7 +893,9 @@ class s2299infoTrabIntermSerializer(ModelSerializer):
     
         model = s2299infoTrabInterm
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabIntermconsigFGTS(SoftDeletionModel):
@@ -1025,16 +910,7 @@ class s2299infoTrabIntermconsigFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),
-            unicode(self.insconsig),
-            unicode(self.nrcontr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1042,7 +918,7 @@ class s2299infoTrabIntermconsigFGTS(SoftDeletionModel):
         db_table = r's2299_infotrabinterm_consigfgts'       
         managed = True # s2299_infotrabinterm_consigfgts #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1066,7 +942,9 @@ class s2299infoTrabIntermconsigFGTSSerializer(ModelSerializer):
     
         model = s2299infoTrabIntermconsigFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabInterminfoMV(SoftDeletionModel):
@@ -1080,15 +958,7 @@ class s2299infoTrabInterminfoMV(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_verbasresc),
-            unicode(self.indmv),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1096,7 +966,7 @@ class s2299infoTrabInterminfoMV(SoftDeletionModel):
         db_table = r's2299_infotrabinterm_infomv'       
         managed = True # s2299_infotrabinterm_infomv #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1119,7 +989,9 @@ class s2299infoTrabInterminfoMVSerializer(ModelSerializer):
     
         model = s2299infoTrabInterminfoMV
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabIntermprocCS(SoftDeletionModel):
@@ -1133,15 +1005,7 @@ class s2299infoTrabIntermprocCS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_verbasresc),
-            unicode(self.nrprocjud),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1149,7 +1013,7 @@ class s2299infoTrabIntermprocCS(SoftDeletionModel):
         db_table = r's2299_infotrabinterm_proccs'       
         managed = True # s2299_infotrabinterm_proccs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1172,7 +1036,9 @@ class s2299infoTrabIntermprocCSSerializer(ModelSerializer):
     
         model = s2299infoTrabIntermprocCS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabIntermprocJudTrab(SoftDeletionModel):
@@ -1188,16 +1054,7 @@ class s2299infoTrabIntermprocJudTrab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_verbasresc),
-            unicode(self.tptrib),
-            unicode(self.nrprocjud),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1205,7 +1062,7 @@ class s2299infoTrabIntermprocJudTrab(SoftDeletionModel):
         db_table = r's2299_infotrabinterm_procjudtrab'       
         managed = True # s2299_infotrabinterm_procjudtrab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1229,7 +1086,9 @@ class s2299infoTrabIntermprocJudTrabSerializer(ModelSerializer):
     
         model = s2299infoTrabIntermprocJudTrab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabIntermquarentena(SoftDeletionModel):
@@ -1243,15 +1102,7 @@ class s2299infoTrabIntermquarentena(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),
-            unicode(self.dtfimquar),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1259,7 +1110,7 @@ class s2299infoTrabIntermquarentena(SoftDeletionModel):
         db_table = r's2299_infotrabinterm_quarentena'       
         managed = True # s2299_infotrabinterm_quarentena #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1282,7 +1133,9 @@ class s2299infoTrabIntermquarentenaSerializer(ModelSerializer):
     
         model = s2299infoTrabIntermquarentena
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299infoTrabIntermremunOutrEmpr(SoftDeletionModel):
@@ -1299,18 +1152,7 @@ class s2299infoTrabIntermremunOutrEmpr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_infotrabinterm_infomv),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.codcateg),
-            unicode(self.vlrremunoe),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1318,7 +1160,7 @@ class s2299infoTrabIntermremunOutrEmpr(SoftDeletionModel):
         db_table = r's2299_infotrabinterm_remunoutrempr'       
         managed = True # s2299_infotrabinterm_remunoutrempr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1344,7 +1186,9 @@ class s2299infoTrabIntermremunOutrEmprSerializer(ModelSerializer):
     
         model = s2299infoTrabIntermremunOutrEmpr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299mudancaCPF(SoftDeletionModel):
@@ -1358,15 +1202,7 @@ class s2299mudancaCPF(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),
-            unicode(self.novocpf),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1374,7 +1210,7 @@ class s2299mudancaCPF(SoftDeletionModel):
         db_table = r's2299_mudancacpf'       
         managed = True # s2299_mudancacpf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1397,7 +1233,9 @@ class s2299mudancaCPFSerializer(ModelSerializer):
     
         model = s2299mudancaCPF
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299observacoes(SoftDeletionModel):
@@ -1411,15 +1249,7 @@ class s2299observacoes(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),
-            unicode(self.observacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1427,7 +1257,7 @@ class s2299observacoes(SoftDeletionModel):
         db_table = r's2299_observacoes'       
         managed = True # s2299_observacoes #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1450,7 +1280,9 @@ class s2299observacoesSerializer(ModelSerializer):
     
         model = s2299observacoes
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299sucessaoVinc(SoftDeletionModel):
@@ -1465,16 +1297,7 @@ class s2299sucessaoVinc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),
-            unicode(self.tpinscsuc),
-            unicode(self.cnpjsucessora),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1482,7 +1305,7 @@ class s2299sucessaoVinc(SoftDeletionModel):
         db_table = r's2299_sucessaovinc'       
         managed = True # s2299_sucessaovinc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1506,7 +1329,9 @@ class s2299sucessaoVincSerializer(ModelSerializer):
     
         model = s2299sucessaoVinc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299transfTit(SoftDeletionModel):
@@ -1521,16 +1346,7 @@ class s2299transfTit(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),
-            unicode(self.cpfsubstituto),
-            unicode(self.dtnascto),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1538,7 +1354,7 @@ class s2299transfTit(SoftDeletionModel):
         db_table = r's2299_transftit'       
         managed = True # s2299_transftit #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1562,7 +1378,9 @@ class s2299transfTitSerializer(ModelSerializer):
     
         model = s2299transfTit
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299verbasResc(SoftDeletionModel):
@@ -1575,14 +1393,7 @@ class s2299verbasResc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2299_evtdeslig),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -1590,7 +1401,7 @@ class s2299verbasResc(SoftDeletionModel):
         db_table = r's2299_verbasresc'       
         managed = True # s2299_verbasresc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1612,4 +1423,6 @@ class s2299verbasRescSerializer(ModelSerializer):
     
         model = s2299verbasResc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -77,16 +77,7 @@ class s1202dmDev(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_evtrmnrpps),
-            unicode(self.idedmdev),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s1202dmDev(SoftDeletionModel):
         db_table = r's1202_dmdev'       
         managed = True # s1202_dmdev #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,7 +109,9 @@ class s1202dmDevSerializer(ModelSerializer):
     
         model = s1202dmDev
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerAnt(SoftDeletionModel):
@@ -131,14 +124,7 @@ class s1202infoPerAnt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_dmdev),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -146,7 +132,7 @@ class s1202infoPerAnt(SoftDeletionModel):
         db_table = r's1202_infoperant'       
         managed = True # s1202_infoperant #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -168,7 +154,9 @@ class s1202infoPerAntSerializer(ModelSerializer):
     
         model = s1202infoPerAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerAntideADC(SoftDeletionModel):
@@ -189,18 +177,7 @@ class s1202infoPerAntideADC(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperant),
-            unicode(self.dtlei),
-            unicode(self.nrlei),
-            unicode(self.tpacconv),
-            unicode(self.dsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -208,7 +185,7 @@ class s1202infoPerAntideADC(SoftDeletionModel):
         db_table = r's1202_infoperant_ideadc'       
         managed = True # s1202_infoperant_ideadc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -234,7 +211,9 @@ class s1202infoPerAntideADCSerializer(ModelSerializer):
     
         model = s1202infoPerAntideADC
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerAntideEstab(SoftDeletionModel):
@@ -249,16 +228,7 @@ class s1202infoPerAntideEstab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperant_ideperiodo),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -266,7 +236,7 @@ class s1202infoPerAntideEstab(SoftDeletionModel):
         db_table = r's1202_infoperant_ideestab'       
         managed = True # s1202_infoperant_ideestab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -290,7 +260,9 @@ class s1202infoPerAntideEstabSerializer(ModelSerializer):
     
         model = s1202infoPerAntideEstab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerAntidePeriodo(SoftDeletionModel):
@@ -304,15 +276,7 @@ class s1202infoPerAntidePeriodo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperant_ideadc),
-            unicode(self.perref),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -320,7 +284,7 @@ class s1202infoPerAntidePeriodo(SoftDeletionModel):
         db_table = r's1202_infoperant_ideperiodo'       
         managed = True # s1202_infoperant_ideperiodo #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -343,7 +307,9 @@ class s1202infoPerAntidePeriodoSerializer(ModelSerializer):
     
         model = s1202infoPerAntidePeriodo
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerAntitensRemun(SoftDeletionModel):
@@ -362,17 +328,7 @@ class s1202infoPerAntitensRemun(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperant_remunperant),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -380,7 +336,7 @@ class s1202infoPerAntitensRemun(SoftDeletionModel):
         db_table = r's1202_infoperant_itensremun'       
         managed = True # s1202_infoperant_itensremun #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -405,7 +361,9 @@ class s1202infoPerAntitensRemunSerializer(ModelSerializer):
     
         model = s1202infoPerAntitensRemun
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerAntremunPerAnt(SoftDeletionModel):
@@ -420,15 +378,7 @@ class s1202infoPerAntremunPerAnt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperant_ideestab),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -436,7 +386,7 @@ class s1202infoPerAntremunPerAnt(SoftDeletionModel):
         db_table = r's1202_infoperant_remunperant'       
         managed = True # s1202_infoperant_remunperant #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -459,7 +409,9 @@ class s1202infoPerAntremunPerAntSerializer(ModelSerializer):
     
         model = s1202infoPerAntremunPerAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApur(SoftDeletionModel):
@@ -472,14 +424,7 @@ class s1202infoPerApur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_dmdev),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -487,7 +432,7 @@ class s1202infoPerApur(SoftDeletionModel):
         db_table = r's1202_infoperapur'       
         managed = True # s1202_infoperapur #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -509,7 +454,9 @@ class s1202infoPerApurSerializer(ModelSerializer):
     
         model = s1202infoPerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApurdetOper(SoftDeletionModel):
@@ -525,17 +472,7 @@ class s1202infoPerApurdetOper(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperapur_infosaudecolet),
-            unicode(self.cnpjoper),
-            unicode(self.regans),
-            unicode(self.vrpgtit),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -543,7 +480,7 @@ class s1202infoPerApurdetOper(SoftDeletionModel):
         db_table = r's1202_infoperapur_detoper'       
         managed = True # s1202_infoperapur_detoper #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -568,7 +505,9 @@ class s1202infoPerApurdetOperSerializer(ModelSerializer):
     
         model = s1202infoPerApurdetOper
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApurdetPlano(SoftDeletionModel):
@@ -586,18 +525,7 @@ class s1202infoPerApurdetPlano(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperapur_detoper),
-            unicode(self.tpdep),
-            unicode(self.nmdep),
-            unicode(self.dtnascto),
-            unicode(self.vlrpgdep),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -605,7 +533,7 @@ class s1202infoPerApurdetPlano(SoftDeletionModel):
         db_table = r's1202_infoperapur_detplano'       
         managed = True # s1202_infoperapur_detplano #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -631,7 +559,9 @@ class s1202infoPerApurdetPlanoSerializer(ModelSerializer):
     
         model = s1202infoPerApurdetPlano
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApurideEstab(SoftDeletionModel):
@@ -646,16 +576,7 @@ class s1202infoPerApurideEstab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -663,7 +584,7 @@ class s1202infoPerApurideEstab(SoftDeletionModel):
         db_table = r's1202_infoperapur_ideestab'       
         managed = True # s1202_infoperapur_ideestab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -687,7 +608,9 @@ class s1202infoPerApurideEstabSerializer(ModelSerializer):
     
         model = s1202infoPerApurideEstab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApurinfoSaudeColet(SoftDeletionModel):
@@ -700,14 +623,7 @@ class s1202infoPerApurinfoSaudeColet(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperapur_remunperapur),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -715,7 +631,7 @@ class s1202infoPerApurinfoSaudeColet(SoftDeletionModel):
         db_table = r's1202_infoperapur_infosaudecolet'       
         managed = True # s1202_infoperapur_infosaudecolet #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -737,7 +653,9 @@ class s1202infoPerApurinfoSaudeColetSerializer(ModelSerializer):
     
         model = s1202infoPerApurinfoSaudeColet
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApuritensRemun(SoftDeletionModel):
@@ -756,17 +674,7 @@ class s1202infoPerApuritensRemun(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperapur_remunperapur),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -774,7 +682,7 @@ class s1202infoPerApuritensRemun(SoftDeletionModel):
         db_table = r's1202_infoperapur_itensremun'       
         managed = True # s1202_infoperapur_itensremun #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -799,7 +707,9 @@ class s1202infoPerApuritensRemunSerializer(ModelSerializer):
     
         model = s1202infoPerApuritensRemun
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202infoPerApurremunPerApur(SoftDeletionModel):
@@ -814,15 +724,7 @@ class s1202infoPerApurremunPerApur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_infoperapur_ideestab),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -830,7 +732,7 @@ class s1202infoPerApurremunPerApur(SoftDeletionModel):
         db_table = r's1202_infoperapur_remunperapur'       
         managed = True # s1202_infoperapur_remunperapur #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -853,7 +755,9 @@ class s1202infoPerApurremunPerApurSerializer(ModelSerializer):
     
         model = s1202infoPerApurremunPerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202procJudTrab(SoftDeletionModel):
@@ -869,16 +773,7 @@ class s1202procJudTrab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1202_evtrmnrpps),
-            unicode(self.tptrib),
-            unicode(self.nrprocjud),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -886,7 +781,7 @@ class s1202procJudTrab(SoftDeletionModel):
         db_table = r's1202_procjudtrab'       
         managed = True # s1202_procjudtrab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -910,4 +805,6 @@ class s1202procJudTrabSerializer(ModelSerializer):
     
         model = s1202procJudTrab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

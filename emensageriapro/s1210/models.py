@@ -76,15 +76,7 @@ class s1210deps(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_evtpgtos),
-            unicode(self.vrdeddep),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class s1210deps(SoftDeletionModel):
         db_table = r's1210_deps'       
         managed = True # s1210_deps #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class s1210depsSerializer(ModelSerializer):
     
         model = s1210deps
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoAnt(SoftDeletionModel):
@@ -129,15 +123,7 @@ class s1210detPgtoAnt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_infopgto),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -145,7 +131,7 @@ class s1210detPgtoAnt(SoftDeletionModel):
         db_table = r's1210_detpgtoant'       
         managed = True # s1210_detpgtoant #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -168,7 +154,9 @@ class s1210detPgtoAntSerializer(ModelSerializer):
     
         model = s1210detPgtoAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
@@ -183,16 +171,7 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtoant),
-            unicode(self.tpbcirrf),
-            unicode(self.vrbcirrf),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -200,7 +179,7 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
         db_table = r's1210_detpgtoant_infopgtoant'       
         managed = True # s1210_detpgtoant_infopgtoant #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -224,7 +203,9 @@ class s1210detPgtoAntinfoPgtoAntSerializer(ModelSerializer):
     
         model = s1210detPgtoAntinfoPgtoAnt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoBenPr(SoftDeletionModel):
@@ -241,18 +222,7 @@ class s1210detPgtoBenPr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_infopgto),
-            unicode(self.perref),
-            unicode(self.idedmdev),
-            unicode(self.indpgtott),
-            unicode(self.vrliq),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -260,7 +230,7 @@ class s1210detPgtoBenPr(SoftDeletionModel):
         db_table = r's1210_detpgtobenpr'       
         managed = True # s1210_detpgtobenpr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -286,7 +256,9 @@ class s1210detPgtoBenPrSerializer(ModelSerializer):
     
         model = s1210detPgtoBenPr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
@@ -305,17 +277,7 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtobenpr),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -323,7 +285,7 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
         db_table = r's1210_detpgtobenpr_infopgtoparc'       
         managed = True # s1210_detpgtobenpr_infopgtoparc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -348,7 +310,9 @@ class s1210detPgtoBenPrinfoPgtoParcSerializer(ModelSerializer):
     
         model = s1210detPgtoBenPrinfoPgtoParc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
@@ -367,17 +331,7 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtobenpr),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -385,7 +339,7 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
         db_table = r's1210_detpgtobenpr_retpgtotot'       
         managed = True # s1210_detpgtobenpr_retpgtotot #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -410,7 +364,9 @@ class s1210detPgtoBenPrretPgtoTotSerializer(ModelSerializer):
     
         model = s1210detPgtoBenPrretPgtoTot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFer(SoftDeletionModel):
@@ -428,18 +384,7 @@ class s1210detPgtoFer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_infopgto),
-            unicode(self.codcateg),
-            unicode(self.dtinigoz),
-            unicode(self.qtdias),
-            unicode(self.vrliq),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -447,7 +392,7 @@ class s1210detPgtoFer(SoftDeletionModel):
         db_table = r's1210_detpgtofer'       
         managed = True # s1210_detpgtofer #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -473,7 +418,9 @@ class s1210detPgtoFerSerializer(ModelSerializer):
     
         model = s1210detPgtoFer
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
@@ -492,17 +439,7 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtofer),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -510,7 +447,7 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
         db_table = r's1210_detpgtofer_detrubrfer'       
         managed = True # s1210_detpgtofer_detrubrfer #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -535,7 +472,9 @@ class s1210detPgtoFerdetRubrFerSerializer(ModelSerializer):
     
         model = s1210detPgtoFerdetRubrFer
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFerpenAlim(SoftDeletionModel):
@@ -552,17 +491,7 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtofer_detrubrfer),
-            unicode(self.cpfbenef),
-            unicode(self.nmbenefic),
-            unicode(self.vlrpensao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -570,7 +499,7 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
         db_table = r's1210_detpgtofer_penalim'       
         managed = True # s1210_detpgtofer_penalim #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -595,7 +524,9 @@ class s1210detPgtoFerpenAlimSerializer(ModelSerializer):
     
         model = s1210detPgtoFerpenAlim
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFl(SoftDeletionModel):
@@ -613,17 +544,7 @@ class s1210detPgtoFl(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_infopgto),
-            unicode(self.idedmdev),
-            unicode(self.indpgtott),
-            unicode(self.vrliq),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -631,7 +552,7 @@ class s1210detPgtoFl(SoftDeletionModel):
         db_table = r's1210_detpgtofl'       
         managed = True # s1210_detpgtofl #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -656,7 +577,9 @@ class s1210detPgtoFlSerializer(ModelSerializer):
     
         model = s1210detPgtoFl
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
@@ -676,17 +599,7 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtofl),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -694,7 +607,7 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
         db_table = r's1210_detpgtofl_infopgtoparc'       
         managed = True # s1210_detpgtofl_infopgtoparc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -719,7 +632,9 @@ class s1210detPgtoFlinfoPgtoParcSerializer(ModelSerializer):
     
         model = s1210detPgtoFlinfoPgtoParc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFlpenAlim(SoftDeletionModel):
@@ -736,17 +651,7 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtofl_retpgtotot),
-            unicode(self.cpfbenef),
-            unicode(self.nmbenefic),
-            unicode(self.vlrpensao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -754,7 +659,7 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
         db_table = r's1210_detpgtofl_penalim'       
         managed = True # s1210_detpgtofl_penalim #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -779,7 +684,9 @@ class s1210detPgtoFlpenAlimSerializer(ModelSerializer):
     
         model = s1210detPgtoFlpenAlim
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
@@ -798,17 +705,7 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_detpgtofl),
-            unicode(self.codrubr),
-            unicode(self.idetabrubr),
-            unicode(self.vrrubr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -816,7 +713,7 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
         db_table = r's1210_detpgtofl_retpgtotot'       
         managed = True # s1210_detpgtofl_retpgtotot #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -841,7 +738,9 @@ class s1210detPgtoFlretPgtoTotSerializer(ModelSerializer):
     
         model = s1210detPgtoFlretPgtoTot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210idePgtoExt(SoftDeletionModel):
@@ -863,18 +762,7 @@ class s1210idePgtoExt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_infopgto),
-            unicode(self.codpais),
-            unicode(self.indnif),
-            unicode(self.dsclograd),
-            unicode(self.nmcid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -882,7 +770,7 @@ class s1210idePgtoExt(SoftDeletionModel):
         db_table = r's1210_idepgtoext'       
         managed = True # s1210_idepgtoext #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -908,7 +796,9 @@ class s1210idePgtoExtSerializer(ModelSerializer):
     
         model = s1210idePgtoExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210infoPgto(SoftDeletionModel):
@@ -924,17 +814,7 @@ class s1210infoPgto(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1210_evtpgtos),
-            unicode(self.dtpgto),
-            unicode(self.tppgto),
-            unicode(self.indresbr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -942,7 +822,7 @@ class s1210infoPgto(SoftDeletionModel):
         db_table = r's1210_infopgto'       
         managed = True # s1210_infopgto #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -967,4 +847,6 @@ class s1210infoPgtoSerializer(ModelSerializer):
     
         model = s1210infoPgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -81,19 +81,7 @@ class s1080alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1080_evttaboperport),
-            unicode(self.cnpjopportuario),
-            unicode(self.inivalid),
-            unicode(self.aliqrat),
-            unicode(self.fap),
-            unicode(self.aliqratajust),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -101,7 +89,7 @@ class s1080alteracao(SoftDeletionModel):
         db_table = r's1080_alteracao'       
         managed = True # s1080_alteracao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -128,7 +116,9 @@ class s1080alteracaoSerializer(ModelSerializer):
     
         model = s1080alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080alteracaonovaValidade(SoftDeletionModel):
@@ -143,15 +133,7 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1080_alteracao),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -159,7 +141,7 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
         db_table = r's1080_alteracao_novavalidade'       
         managed = True # s1080_alteracao_novavalidade #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -182,7 +164,9 @@ class s1080alteracaonovaValidadeSerializer(ModelSerializer):
     
         model = s1080alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080exclusao(SoftDeletionModel):
@@ -198,16 +182,7 @@ class s1080exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1080_evttaboperport),
-            unicode(self.cnpjopportuario),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -215,7 +190,7 @@ class s1080exclusao(SoftDeletionModel):
         db_table = r's1080_exclusao'       
         managed = True # s1080_exclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -239,7 +214,9 @@ class s1080exclusaoSerializer(ModelSerializer):
     
         model = s1080exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080inclusao(SoftDeletionModel):
@@ -258,19 +235,7 @@ class s1080inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1080_evttaboperport),
-            unicode(self.cnpjopportuario),
-            unicode(self.inivalid),
-            unicode(self.aliqrat),
-            unicode(self.fap),
-            unicode(self.aliqratajust),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -278,7 +243,7 @@ class s1080inclusao(SoftDeletionModel):
         db_table = r's1080_inclusao'       
         managed = True # s1080_inclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -305,4 +270,6 @@ class s1080inclusaoSerializer(ModelSerializer):
     
         model = s1080inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

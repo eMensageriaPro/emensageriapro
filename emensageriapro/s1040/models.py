@@ -80,18 +80,7 @@ class s1040alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1040_evttabfuncao),
-            unicode(self.codfuncao),
-            unicode(self.inivalid),
-            unicode(self.dscfuncao),
-            unicode(self.codcbo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -99,7 +88,7 @@ class s1040alteracao(SoftDeletionModel):
         db_table = r's1040_alteracao'       
         managed = True # s1040_alteracao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -125,7 +114,9 @@ class s1040alteracaoSerializer(ModelSerializer):
     
         model = s1040alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040alteracaonovaValidade(SoftDeletionModel):
@@ -140,15 +131,7 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1040_alteracao),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -156,7 +139,7 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
         db_table = r's1040_alteracao_novavalidade'       
         managed = True # s1040_alteracao_novavalidade #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -179,7 +162,9 @@ class s1040alteracaonovaValidadeSerializer(ModelSerializer):
     
         model = s1040alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040exclusao(SoftDeletionModel):
@@ -195,16 +180,7 @@ class s1040exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1040_evttabfuncao),
-            unicode(self.codfuncao),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -212,7 +188,7 @@ class s1040exclusao(SoftDeletionModel):
         db_table = r's1040_exclusao'       
         managed = True # s1040_exclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -236,7 +212,9 @@ class s1040exclusaoSerializer(ModelSerializer):
     
         model = s1040exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040inclusao(SoftDeletionModel):
@@ -254,18 +232,7 @@ class s1040inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1040_evttabfuncao),
-            unicode(self.codfuncao),
-            unicode(self.inivalid),
-            unicode(self.dscfuncao),
-            unicode(self.codcbo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -273,7 +240,7 @@ class s1040inclusao(SoftDeletionModel):
         db_table = r's1040_inclusao'       
         managed = True # s1040_inclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -299,4 +266,6 @@ class s1040inclusaoSerializer(ModelSerializer):
     
         model = s1040inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

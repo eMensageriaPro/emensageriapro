@@ -81,7 +81,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             s2190_evtadmprelim_form = form_s2190_evtadmprelim(request.POST or None, instance = s2190_evtadmprelim, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -91,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

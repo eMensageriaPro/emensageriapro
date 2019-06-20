@@ -83,7 +83,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             r2040_evtassocdesprep_form = form_r2040_evtassocdesprep(request.POST or None, instance = r2040_evtassocdesprep, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -93,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

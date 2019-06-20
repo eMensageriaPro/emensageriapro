@@ -77,16 +77,7 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s3000_evtexclusao),
-            unicode(self.indapuracao),
-            unicode(self.perapur),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s3000ideFolhaPagto(SoftDeletionModel):
         db_table = r's3000_idefolhapagto'       
         managed = True # s3000_idefolhapagto #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,7 +109,9 @@ class s3000ideFolhaPagtoSerializer(ModelSerializer):
     
         model = s3000ideFolhaPagto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s3000ideTrabalhador(SoftDeletionModel):
@@ -133,15 +126,7 @@ class s3000ideTrabalhador(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s3000_evtexclusao),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -149,7 +134,7 @@ class s3000ideTrabalhador(SoftDeletionModel):
         db_table = r's3000_idetrabalhador'       
         managed = True # s3000_idetrabalhador #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -172,4 +157,6 @@ class s3000ideTrabalhadorSerializer(ModelSerializer):
     
         model = s3000ideTrabalhador
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

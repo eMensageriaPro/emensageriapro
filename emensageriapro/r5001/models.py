@@ -78,16 +78,7 @@ class r5001RCPRB(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_infototal),
-            unicode(self.crcprb),
-            unicode(self.vlrcrcprb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -95,7 +86,7 @@ class r5001RCPRB(SoftDeletionModel):
         db_table = r'r5001_rcprb'       
         managed = True # r5001_rcprb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -119,7 +110,9 @@ class r5001RCPRBSerializer(ModelSerializer):
     
         model = r5001RCPRB
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001RComl(SoftDeletionModel):
@@ -135,16 +128,7 @@ class r5001RComl(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_infototal),
-            unicode(self.crcoml),
-            unicode(self.vlrcrcoml),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -152,7 +136,7 @@ class r5001RComl(SoftDeletionModel):
         db_table = r'r5001_rcoml'       
         managed = True # r5001_rcoml #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -176,7 +160,9 @@ class r5001RComlSerializer(ModelSerializer):
     
         model = r5001RComl
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001RPrest(SoftDeletionModel):
@@ -196,18 +182,7 @@ class r5001RPrest(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_infototal),
-            unicode(self.tpinsctomador),
-            unicode(self.nrinsctomador),
-            unicode(self.vlrtotalbaseret),
-            unicode(self.vlrtotalretprinc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -215,7 +190,7 @@ class r5001RPrest(SoftDeletionModel):
         db_table = r'r5001_rprest'       
         managed = True # r5001_rprest #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -241,7 +216,9 @@ class r5001RPrestSerializer(ModelSerializer):
     
         model = r5001RPrest
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001RRecEspetDesp(SoftDeletionModel):
@@ -258,17 +235,7 @@ class r5001RRecEspetDesp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_infototal),
-            unicode(self.crrecespetdesp),
-            unicode(self.vlrreceitatotal),
-            unicode(self.vlrcrrecespetdesp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -276,7 +243,7 @@ class r5001RRecEspetDesp(SoftDeletionModel):
         db_table = r'r5001_rrecespetdesp'       
         managed = True # r5001_rrecespetdesp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -301,7 +268,9 @@ class r5001RRecEspetDespSerializer(ModelSerializer):
     
         model = r5001RRecEspetDesp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001RRecRepAD(SoftDeletionModel):
@@ -319,18 +288,7 @@ class r5001RRecRepAD(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_infototal),
-            unicode(self.cnpjassocdesp),
-            unicode(self.vlrtotalrep),
-            unicode(self.crrecrepad),
-            unicode(self.vlrcrrecrepad),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -338,7 +296,7 @@ class r5001RRecRepAD(SoftDeletionModel):
         db_table = r'r5001_rrecrepad'       
         managed = True # r5001_rrecrepad #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -364,7 +322,9 @@ class r5001RRecRepADSerializer(ModelSerializer):
     
         model = r5001RRecRepAD
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001RTom(SoftDeletionModel):
@@ -380,16 +340,7 @@ class r5001RTom(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_infototal),
-            unicode(self.cnpjprestador),
-            unicode(self.vlrtotalbaseret),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -397,7 +348,7 @@ class r5001RTom(SoftDeletionModel):
         db_table = r'r5001_rtom'       
         managed = True # r5001_rtom #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -421,7 +372,9 @@ class r5001RTomSerializer(ModelSerializer):
     
         model = r5001RTom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001infoCRTom(SoftDeletionModel):
@@ -437,15 +390,7 @@ class r5001infoCRTom(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_rtom),
-            unicode(self.crtom),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -453,7 +398,7 @@ class r5001infoCRTom(SoftDeletionModel):
         db_table = r'r5001_infocrtom'       
         managed = True # r5001_infocrtom #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -476,7 +421,9 @@ class r5001infoCRTomSerializer(ModelSerializer):
     
         model = r5001infoCRTom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001infoTotal(SoftDeletionModel):
@@ -492,16 +439,7 @@ class r5001infoTotal(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_evttotal),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -509,7 +447,7 @@ class r5001infoTotal(SoftDeletionModel):
         db_table = r'r5001_infototal'       
         managed = True # r5001_infototal #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -533,7 +471,9 @@ class r5001infoTotalSerializer(ModelSerializer):
     
         model = r5001infoTotal
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5001regOcorrs(SoftDeletionModel):
@@ -550,18 +490,7 @@ class r5001regOcorrs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r5001_evttotal),
-            unicode(self.tpocorr),
-            unicode(self.localerroaviso),
-            unicode(self.codresp),
-            unicode(self.dscresp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -569,7 +498,7 @@ class r5001regOcorrs(SoftDeletionModel):
         db_table = r'r5001_regocorrs'       
         managed = True # r5001_regocorrs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -595,4 +524,6 @@ class r5001regOcorrsSerializer(ModelSerializer):
     
         model = r5001regOcorrs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

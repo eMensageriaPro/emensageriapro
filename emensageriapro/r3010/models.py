@@ -88,24 +88,7 @@ class r3010boletim(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r3010_evtespdesportivo),
-            unicode(self.nrboletim),
-            unicode(self.tpcompeticao),
-            unicode(self.categevento),
-            unicode(self.moddesportiva),
-            unicode(self.nomecompeticao),
-            unicode(self.cnpjmandante),
-            unicode(self.pracadesportiva),
-            unicode(self.uf),
-            unicode(self.qtdepagantes),
-            unicode(self.qtdenaopagantes),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -113,7 +96,7 @@ class r3010boletim(SoftDeletionModel):
         db_table = r'r3010_boletim'       
         managed = True # r3010_boletim #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -145,7 +128,9 @@ class r3010boletimSerializer(ModelSerializer):
     
         model = r3010boletim
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r3010infoProc(SoftDeletionModel):
@@ -162,17 +147,7 @@ class r3010infoProc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r3010_evtespdesportivo),
-            unicode(self.tpproc),
-            unicode(self.nrproc),
-            unicode(self.vlrcpsusp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -180,7 +155,7 @@ class r3010infoProc(SoftDeletionModel):
         db_table = r'r3010_infoproc'       
         managed = True # r3010_infoproc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -205,7 +180,9 @@ class r3010infoProcSerializer(ModelSerializer):
     
         model = r3010infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r3010outrasReceitas(SoftDeletionModel):
@@ -221,17 +198,7 @@ class r3010outrasReceitas(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r3010_boletim),
-            unicode(self.tpreceita),
-            unicode(self.vlrreceita),
-            unicode(self.descreceita),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -239,7 +206,7 @@ class r3010outrasReceitas(SoftDeletionModel):
         db_table = r'r3010_outrasreceitas'       
         managed = True # r3010_outrasreceitas #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -264,7 +231,9 @@ class r3010outrasReceitasSerializer(ModelSerializer):
     
         model = r3010outrasReceitas
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r3010receitaIngressos(SoftDeletionModel):
@@ -284,21 +253,7 @@ class r3010receitaIngressos(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r3010_boletim),
-            unicode(self.tpingresso),
-            unicode(self.descingr),
-            unicode(self.qtdeingrvenda),
-            unicode(self.qtdeingrvendidos),
-            unicode(self.qtdeingrdev),
-            unicode(self.precoindiv),
-            unicode(self.vlrtotal),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -306,7 +261,7 @@ class r3010receitaIngressos(SoftDeletionModel):
         db_table = r'r3010_receitaingressos'       
         managed = True # r3010_receitaingressos #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -335,4 +290,6 @@ class r3010receitaIngressosSerializer(ModelSerializer):
     
         model = r3010receitaIngressos
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

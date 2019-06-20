@@ -79,17 +79,7 @@ class r2040infoProc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2040_recursosrep),
-            unicode(self.tpproc),
-            unicode(self.nrproc),
-            unicode(self.vlrnret),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -97,7 +87,7 @@ class r2040infoProc(SoftDeletionModel):
         db_table = r'r2040_infoproc'       
         managed = True # r2040_infoproc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -122,7 +112,9 @@ class r2040infoProcSerializer(ModelSerializer):
     
         model = r2040infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2040infoRecurso(SoftDeletionModel):
@@ -139,18 +131,7 @@ class r2040infoRecurso(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2040_recursosrep),
-            unicode(self.tprepasse),
-            unicode(self.descrecurso),
-            unicode(self.vlrbruto),
-            unicode(self.vlrretapur),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -158,7 +139,7 @@ class r2040infoRecurso(SoftDeletionModel):
         db_table = r'r2040_inforecurso'       
         managed = True # r2040_inforecurso #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -184,7 +165,9 @@ class r2040infoRecursoSerializer(ModelSerializer):
     
         model = r2040infoRecurso
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2040recursosRep(SoftDeletionModel):
@@ -201,17 +184,7 @@ class r2040recursosRep(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2040_evtassocdesprep),
-            unicode(self.cnpjassocdesp),
-            unicode(self.vlrtotalrep),
-            unicode(self.vlrtotalret),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -219,7 +192,7 @@ class r2040recursosRep(SoftDeletionModel):
         db_table = r'r2040_recursosrep'       
         managed = True # r2040_recursosrep #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -244,4 +217,6 @@ class r2040recursosRepSerializer(ModelSerializer):
     
         model = r2040recursosRep
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

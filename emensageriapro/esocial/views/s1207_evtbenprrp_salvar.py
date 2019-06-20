@@ -85,7 +85,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             s1207_evtbenprrp_form = form_s1207_evtbenprrp(request.POST or None, instance = s1207_evtbenprrp, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -95,7 +95,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

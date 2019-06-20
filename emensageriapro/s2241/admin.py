@@ -13,7 +13,9 @@ class AuditoriaAdmin(admin.ModelAdmin):
         'criado_por',
         'modificado_em', 
         'modificado_por',
-        'excluido',
+        'desativado_em', 
+        'desativado_por',
+        'ativo',
     )
 
 

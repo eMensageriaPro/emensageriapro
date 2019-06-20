@@ -69,7 +69,7 @@ class form_s1210_deps(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -81,7 +81,9 @@ class form_s1210_deps(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtoant(forms.ModelForm):
@@ -107,7 +109,7 @@ class form_s1210_detpgtoant(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -119,7 +121,9 @@ class form_s1210_detpgtoant(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
@@ -146,7 +150,7 @@ class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -158,7 +162,9 @@ class form_s1210_detpgtoant_infopgtoant(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtobenpr(forms.ModelForm):
@@ -185,7 +191,7 @@ class form_s1210_detpgtobenpr(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -197,7 +203,9 @@ class form_s1210_detpgtobenpr(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
@@ -227,7 +235,7 @@ class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -239,7 +247,9 @@ class form_s1210_detpgtobenpr_infopgtoparc(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
@@ -269,7 +279,7 @@ class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -281,7 +291,9 @@ class form_s1210_detpgtobenpr_retpgtotot(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofer(forms.ModelForm):
@@ -308,7 +320,7 @@ class form_s1210_detpgtofer(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -320,7 +332,9 @@ class form_s1210_detpgtofer(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
@@ -350,7 +364,7 @@ class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -362,7 +376,9 @@ class form_s1210_detpgtofer_detrubrfer(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofer_penalim(forms.ModelForm):
@@ -389,7 +405,7 @@ class form_s1210_detpgtofer_penalim(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -401,7 +417,9 @@ class form_s1210_detpgtofer_penalim(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofl(forms.ModelForm):
@@ -428,7 +446,7 @@ class form_s1210_detpgtofl(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -440,7 +458,9 @@ class form_s1210_detpgtofl(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
@@ -470,7 +490,7 @@ class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -482,7 +502,9 @@ class form_s1210_detpgtofl_infopgtoparc(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofl_penalim(forms.ModelForm):
@@ -509,7 +531,7 @@ class form_s1210_detpgtofl_penalim(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -521,7 +543,9 @@ class form_s1210_detpgtofl_penalim(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
@@ -551,7 +575,7 @@ class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -563,7 +587,9 @@ class form_s1210_detpgtofl_retpgtotot(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_idepgtoext(forms.ModelForm):
@@ -589,7 +615,7 @@ class form_s1210_idepgtoext(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -601,7 +627,9 @@ class form_s1210_idepgtoext(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1210_infopgto(forms.ModelForm):
@@ -627,7 +655,7 @@ class form_s1210_infopgto(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -639,4 +667,6 @@ class form_s1210_infopgto(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

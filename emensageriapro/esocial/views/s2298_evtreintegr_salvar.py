@@ -81,7 +81,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             s2298_evtreintegr_form = form_s2298_evtreintegr(request.POST or None, instance = s2298_evtreintegr, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -91,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

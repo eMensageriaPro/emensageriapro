@@ -78,17 +78,7 @@ class s1260ideAdquir(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1260_tpcomerc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.vrcomerc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -96,7 +86,7 @@ class s1260ideAdquir(SoftDeletionModel):
         db_table = r's1260_ideadquir'       
         managed = True # s1260_ideadquir #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -121,7 +111,9 @@ class s1260ideAdquirSerializer(ModelSerializer):
     
         model = s1260ideAdquir
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260infoProcJud(SoftDeletionModel):
@@ -140,17 +132,7 @@ class s1260infoProcJud(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1260_tpcomerc),
-            unicode(self.tpproc),
-            unicode(self.nrproc),
-            unicode(self.codsusp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -158,7 +140,7 @@ class s1260infoProcJud(SoftDeletionModel):
         db_table = r's1260_infoprocjud'       
         managed = True # s1260_infoprocjud #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -183,7 +165,9 @@ class s1260infoProcJudSerializer(ModelSerializer):
     
         model = s1260infoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260nfs(SoftDeletionModel):
@@ -203,20 +187,7 @@ class s1260nfs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1260_ideadquir),
-            unicode(self.nrdocto),
-            unicode(self.dtemisnf),
-            unicode(self.vlrbruto),
-            unicode(self.vrcpdescpr),
-            unicode(self.vrratdescpr),
-            unicode(self.vrsenardesc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -224,7 +195,7 @@ class s1260nfs(SoftDeletionModel):
         db_table = r's1260_nfs'       
         managed = True # s1260_nfs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -252,7 +223,9 @@ class s1260nfsSerializer(ModelSerializer):
     
         model = s1260nfs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260tpComerc(SoftDeletionModel):
@@ -267,16 +240,7 @@ class s1260tpComerc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1260_evtcomprod),
-            unicode(self.indcomerc),
-            unicode(self.vrtotcom),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -284,7 +248,7 @@ class s1260tpComerc(SoftDeletionModel):
         db_table = r's1260_tpcomerc'       
         managed = True # s1260_tpcomerc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -308,4 +272,6 @@ class s1260tpComercSerializer(ModelSerializer):
     
         model = s1260tpComerc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

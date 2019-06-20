@@ -80,16 +80,7 @@ class r4020CSLL(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.vlrbasecsll),
-            unicode(self.vlrcsll),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -97,7 +88,7 @@ class r4020CSLL(SoftDeletionModel):
         db_table = r'r4020_csll'       
         managed = True # r4020_csll #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -121,7 +112,9 @@ class r4020CSLLSerializer(ModelSerializer):
     
         model = r4020CSLL
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020Cofins(SoftDeletionModel):
@@ -139,16 +132,7 @@ class r4020Cofins(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.vlrbasecofins),
-            unicode(self.vlrcofins),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -156,7 +140,7 @@ class r4020Cofins(SoftDeletionModel):
         db_table = r'r4020_cofins'       
         managed = True # r4020_cofins #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -180,7 +164,9 @@ class r4020CofinsSerializer(ModelSerializer):
     
         model = r4020Cofins
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020FCI(SoftDeletionModel):
@@ -194,15 +180,7 @@ class r4020FCI(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.nrinscfci),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -210,7 +188,7 @@ class r4020FCI(SoftDeletionModel):
         db_table = r'r4020_fci'       
         managed = True # r4020_fci #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -233,7 +211,9 @@ class r4020FCISerializer(ModelSerializer):
     
         model = r4020FCI
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020IR(SoftDeletionModel):
@@ -251,16 +231,7 @@ class r4020IR(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.vlrbaseir),
-            unicode(self.vlrir),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -268,7 +239,7 @@ class r4020IR(SoftDeletionModel):
         db_table = r'r4020_ir'       
         managed = True # r4020_ir #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -292,7 +263,9 @@ class r4020IRSerializer(ModelSerializer):
     
         model = r4020IR
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020PP(SoftDeletionModel):
@@ -310,16 +283,7 @@ class r4020PP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.vlrbasepp),
-            unicode(self.vlrpp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -327,7 +291,7 @@ class r4020PP(SoftDeletionModel):
         db_table = r'r4020_pp'       
         managed = True # r4020_pp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -351,7 +315,9 @@ class r4020PPSerializer(ModelSerializer):
     
         model = r4020PP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020SCP(SoftDeletionModel):
@@ -366,16 +332,7 @@ class r4020SCP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.nrinscscp),
-            unicode(self.percscp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -383,7 +340,7 @@ class r4020SCP(SoftDeletionModel):
         db_table = r'r4020_scp'       
         managed = True # r4020_scp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -407,7 +364,9 @@ class r4020SCPSerializer(ModelSerializer):
     
         model = r4020SCP
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020despProcJud(SoftDeletionModel):
@@ -422,16 +381,7 @@ class r4020despProcJud(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infoprocjud),
-            unicode(self.vlrdespcustas),
-            unicode(self.vlrdespadvogados),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -439,7 +389,7 @@ class r4020despProcJud(SoftDeletionModel):
         db_table = r'r4020_despprocjud'       
         managed = True # r4020_despprocjud #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -463,7 +413,9 @@ class r4020despProcJudSerializer(ModelSerializer):
     
         model = r4020despProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020ideAdv(SoftDeletionModel):
@@ -479,17 +431,7 @@ class r4020ideAdv(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_despprocjud),
-            unicode(self.tpinscadv),
-            unicode(self.nrinscadv),
-            unicode(self.vlradv),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -497,7 +439,7 @@ class r4020ideAdv(SoftDeletionModel):
         db_table = r'r4020_ideadv'       
         managed = True # r4020_ideadv #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -522,7 +464,9 @@ class r4020ideAdvSerializer(ModelSerializer):
     
         model = r4020ideAdv
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020idePgto(SoftDeletionModel):
@@ -538,16 +482,7 @@ class r4020idePgto(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_evtretpj),
-            unicode(self.natrend),
-            unicode(self.paisresid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -555,7 +490,7 @@ class r4020idePgto(SoftDeletionModel):
         db_table = r'r4020_idepgto'       
         managed = True # r4020_idepgto #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -579,7 +514,9 @@ class r4020idePgtoSerializer(ModelSerializer):
     
         model = r4020idePgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoPgto(SoftDeletionModel):
@@ -595,17 +532,7 @@ class r4020infoPgto(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_idepgto),
-            unicode(self.dtfg),
-            unicode(self.vlrtotalpag),
-            unicode(self.vlrtotalcred),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -613,7 +540,7 @@ class r4020infoPgto(SoftDeletionModel):
         db_table = r'r4020_infopgto'       
         managed = True # r4020_infopgto #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -638,7 +565,9 @@ class r4020infoPgtoSerializer(ModelSerializer):
     
         model = r4020infoPgto
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoPgtoExt(SoftDeletionModel):
@@ -663,18 +592,7 @@ class r4020infoPgtoExt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_idepgto),
-            unicode(self.dsclograd),
-            unicode(self.indnif),
-            unicode(self.relfontpg),
-            unicode(self.frmtribut),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -682,7 +600,7 @@ class r4020infoPgtoExt(SoftDeletionModel):
         db_table = r'r4020_infopgtoext'       
         managed = True # r4020_infopgtoext #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -708,7 +626,9 @@ class r4020infoPgtoExtSerializer(ModelSerializer):
     
         model = r4020infoPgtoExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoProcJud(SoftDeletionModel):
@@ -724,16 +644,7 @@ class r4020infoProcJud(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.nrproc),
-            unicode(self.indorigemrecursos),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -741,7 +652,7 @@ class r4020infoProcJud(SoftDeletionModel):
         db_table = r'r4020_infoprocjud'       
         managed = True # r4020_infoprocjud #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -765,7 +676,9 @@ class r4020infoProcJudSerializer(ModelSerializer):
     
         model = r4020infoProcJud
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020infoProcRet(SoftDeletionModel):
@@ -789,16 +702,7 @@ class r4020infoProcRet(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infopgto),
-            unicode(self.tpprocret),
-            unicode(self.nrprocret),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -806,7 +710,7 @@ class r4020infoProcRet(SoftDeletionModel):
         db_table = r'r4020_infoprocret'       
         managed = True # r4020_infoprocret #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -830,7 +734,9 @@ class r4020infoProcRetSerializer(ModelSerializer):
     
         model = r4020infoProcRet
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r4020origemRec(SoftDeletionModel):
@@ -844,15 +750,7 @@ class r4020origemRec(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r4020_infoprocjud),
-            unicode(self.cnpjorigrecurso),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -860,7 +758,7 @@ class r4020origemRec(SoftDeletionModel):
         db_table = r'r4020_origemrec'       
         managed = True # r4020_origemrec #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -883,4 +781,6 @@ class r4020origemRecSerializer(ModelSerializer):
     
         model = r4020origemRec
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

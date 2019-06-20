@@ -68,7 +68,7 @@ class form_s2240_altexprisco(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -80,7 +80,9 @@ class form_s2240_altexprisco(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_altexprisco_epc(forms.ModelForm):
@@ -106,7 +108,7 @@ class form_s2240_altexprisco_epc(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -118,7 +120,9 @@ class form_s2240_altexprisco_epc(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_altexprisco_epi(forms.ModelForm):
@@ -144,7 +148,7 @@ class form_s2240_altexprisco_epi(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -156,7 +160,9 @@ class form_s2240_altexprisco_epi(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_altexprisco_fatrisco(forms.ModelForm):
@@ -182,7 +188,7 @@ class form_s2240_altexprisco_fatrisco(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -194,7 +200,9 @@ class form_s2240_altexprisco_fatrisco(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_altexprisco_infoamb(forms.ModelForm):
@@ -220,7 +228,7 @@ class form_s2240_altexprisco_infoamb(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -232,7 +240,9 @@ class form_s2240_altexprisco_infoamb(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_fimexprisco(forms.ModelForm):
@@ -258,7 +268,7 @@ class form_s2240_fimexprisco(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -270,7 +280,9 @@ class form_s2240_fimexprisco(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_fimexprisco_infoamb(forms.ModelForm):
@@ -296,7 +308,7 @@ class form_s2240_fimexprisco_infoamb(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -308,7 +320,9 @@ class form_s2240_fimexprisco_infoamb(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_fimexprisco_respreg(forms.ModelForm):
@@ -334,7 +348,7 @@ class form_s2240_fimexprisco_respreg(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -346,7 +360,9 @@ class form_s2240_fimexprisco_respreg(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_ativpericinsal(forms.ModelForm):
@@ -372,7 +388,7 @@ class form_s2240_iniexprisco_ativpericinsal(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -384,7 +400,9 @@ class form_s2240_iniexprisco_ativpericinsal(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_epc(forms.ModelForm):
@@ -410,7 +428,7 @@ class form_s2240_iniexprisco_epc(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -422,7 +440,9 @@ class form_s2240_iniexprisco_epc(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_epi(forms.ModelForm):
@@ -448,7 +468,7 @@ class form_s2240_iniexprisco_epi(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -460,7 +480,9 @@ class form_s2240_iniexprisco_epi(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
@@ -488,7 +510,7 @@ class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -500,7 +522,9 @@ class form_s2240_iniexprisco_fatrisco(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_infoamb(forms.ModelForm):
@@ -526,7 +550,7 @@ class form_s2240_iniexprisco_infoamb(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -538,7 +562,9 @@ class form_s2240_iniexprisco_infoamb(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_obs(forms.ModelForm):
@@ -564,7 +590,7 @@ class form_s2240_iniexprisco_obs(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -576,7 +602,9 @@ class form_s2240_iniexprisco_obs(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s2240_iniexprisco_respreg(forms.ModelForm):
@@ -602,7 +630,7 @@ class form_s2240_iniexprisco_respreg(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -614,4 +642,6 @@ class form_s2240_iniexprisco_respreg(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

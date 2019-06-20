@@ -1,8 +1,8 @@
--- View: public.transmissor_eventos_efdreinf_totalizacoes
+-- View: public.vw_transmissor_eventos_efdreinf_totalizacoes
 
--- DROP VIEW public.transmissor_eventos_efdreinf_totalizacoes;
+-- DROP VIEW public.vw_transmissor_eventos_efdreinf_totalizacoes;
 
-CREATE OR REPLACE VIEW public.transmissor_eventos_efdreinf_totalizacoes AS 
+CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf_totalizacoes AS 
  SELECT r5001_evttotal.id,
     'r5001'::text AS evento,
     r5001_evttotal.identidade,
@@ -26,7 +26,7 @@ CREATE OR REPLACE VIEW public.transmissor_eventos_efdreinf_totalizacoes AS
     r5001_evttotal.retornos_evttotalcontrib_id,
     r5001_evttotal.ocorrencias
    FROM r5001_evttotal
-  WHERE r5001_evttotal.excluido = false
+  WHERE r5001_evttotal.ativo = true
 UNION
  SELECT r5011_evttotalcontrib.id,
     'r5011'::text AS evento,
@@ -51,5 +51,5 @@ UNION
     r5011_evttotalcontrib.retornos_evttotalcontrib_id,
     r5011_evttotalcontrib.ocorrencias
    FROM r5011_evttotalcontrib
-  WHERE r5011_evttotalcontrib.excluido = false;
+  WHERE r5011_evttotalcontrib.ativo = true;
 

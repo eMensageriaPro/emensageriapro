@@ -133,7 +133,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             r5011_evttotalcontrib_form = form_r5011_evttotalcontrib(request.POST or None, instance = r5011_evttotalcontrib, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -143,7 +143,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

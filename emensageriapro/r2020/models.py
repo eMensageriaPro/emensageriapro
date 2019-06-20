@@ -79,17 +79,7 @@ class r2020infoProcRetAd(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2020_evtservprest),
-            unicode(self.tpprocretadic),
-            unicode(self.nrprocretadic),
-            unicode(self.valoradic),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -97,7 +87,7 @@ class r2020infoProcRetAd(SoftDeletionModel):
         db_table = r'r2020_infoprocretad'       
         managed = True # r2020_infoprocretad #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -122,7 +112,9 @@ class r2020infoProcRetAdSerializer(ModelSerializer):
     
         model = r2020infoProcRetAd
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2020infoProcRetPr(SoftDeletionModel):
@@ -139,17 +131,7 @@ class r2020infoProcRetPr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2020_evtservprest),
-            unicode(self.tpprocretprinc),
-            unicode(self.nrprocretprinc),
-            unicode(self.valorprinc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -157,7 +139,7 @@ class r2020infoProcRetPr(SoftDeletionModel):
         db_table = r'r2020_infoprocretpr'       
         managed = True # r2020_infoprocretpr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -182,7 +164,9 @@ class r2020infoProcRetPrSerializer(ModelSerializer):
     
         model = r2020infoProcRetPr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2020infoTpServ(SoftDeletionModel):
@@ -205,17 +189,7 @@ class r2020infoTpServ(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2020_nfs),
-            unicode(self.tpservico),
-            unicode(self.vlrbaseret),
-            unicode(self.vlrretencao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -223,7 +197,7 @@ class r2020infoTpServ(SoftDeletionModel):
         db_table = r'r2020_infotpserv'       
         managed = True # r2020_infotpserv #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -248,7 +222,9 @@ class r2020infoTpServSerializer(ModelSerializer):
     
         model = r2020infoTpServ
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2020nfs(SoftDeletionModel):
@@ -266,18 +242,7 @@ class r2020nfs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2020_evtservprest),
-            unicode(self.serie),
-            unicode(self.numdocto),
-            unicode(self.dtemissaonf),
-            unicode(self.vlrbruto),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -285,7 +250,7 @@ class r2020nfs(SoftDeletionModel):
         db_table = r'r2020_nfs'       
         managed = True # r2020_nfs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -311,4 +276,6 @@ class r2020nfsSerializer(ModelSerializer):
     
         model = r2020nfs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

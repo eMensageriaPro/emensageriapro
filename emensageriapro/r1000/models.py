@@ -87,21 +87,7 @@ class r1000alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_evtinfocontri),
-            unicode(self.inivalid),
-            unicode(self.classtrib),
-            unicode(self.indescrituracao),
-            unicode(self.inddesoneracao),
-            unicode(self.indacordoisenmulta),
-            unicode(self.nmctt),
-            unicode(self.cpfctt),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -109,7 +95,7 @@ class r1000alteracao(SoftDeletionModel):
         db_table = r'r1000_alteracao'       
         managed = True # r1000_alteracao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -138,7 +124,9 @@ class r1000alteracaoSerializer(ModelSerializer):
     
         model = r1000alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000alteracaoinfoEFR(SoftDeletionModel):
@@ -153,15 +141,7 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_alteracao),
-            unicode(self.ideefr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -169,7 +149,7 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
         db_table = r'r1000_alteracao_infoefr'       
         managed = True # r1000_alteracao_infoefr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -192,7 +172,9 @@ class r1000alteracaoinfoEFRSerializer(ModelSerializer):
     
         model = r1000alteracaoinfoEFR
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000alteracaonovaValidade(SoftDeletionModel):
@@ -207,15 +189,7 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_alteracao),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -223,7 +197,7 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
         db_table = r'r1000_alteracao_novavalidade'       
         managed = True # r1000_alteracao_novavalidade #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -246,7 +220,9 @@ class r1000alteracaonovaValidadeSerializer(ModelSerializer):
     
         model = r1000alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000alteracaosoftHouse(SoftDeletionModel):
@@ -264,17 +240,7 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_alteracao),
-            unicode(self.cnpjsofthouse),
-            unicode(self.nmrazao),
-            unicode(self.nmcont),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -282,7 +248,7 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
         db_table = r'r1000_alteracao_softhouse'       
         managed = True # r1000_alteracao_softhouse #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -307,7 +273,9 @@ class r1000alteracaosoftHouseSerializer(ModelSerializer):
     
         model = r1000alteracaosoftHouse
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000exclusao(SoftDeletionModel):
@@ -322,15 +290,7 @@ class r1000exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_evtinfocontri),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -338,7 +298,7 @@ class r1000exclusao(SoftDeletionModel):
         db_table = r'r1000_exclusao'       
         managed = True # r1000_exclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -361,7 +321,9 @@ class r1000exclusaoSerializer(ModelSerializer):
     
         model = r1000exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000inclusao(SoftDeletionModel):
@@ -386,21 +348,7 @@ class r1000inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_evtinfocontri),
-            unicode(self.inivalid),
-            unicode(self.classtrib),
-            unicode(self.indescrituracao),
-            unicode(self.inddesoneracao),
-            unicode(self.indacordoisenmulta),
-            unicode(self.nmctt),
-            unicode(self.cpfctt),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -408,7 +356,7 @@ class r1000inclusao(SoftDeletionModel):
         db_table = r'r1000_inclusao'       
         managed = True # r1000_inclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -437,7 +385,9 @@ class r1000inclusaoSerializer(ModelSerializer):
     
         model = r1000inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000inclusaoinfoEFR(SoftDeletionModel):
@@ -452,15 +402,7 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_inclusao),
-            unicode(self.ideefr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -468,7 +410,7 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
         db_table = r'r1000_inclusao_infoefr'       
         managed = True # r1000_inclusao_infoefr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -491,7 +433,9 @@ class r1000inclusaoinfoEFRSerializer(ModelSerializer):
     
         model = r1000inclusaoinfoEFR
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r1000inclusaosoftHouse(SoftDeletionModel):
@@ -509,17 +453,7 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r1000_inclusao),
-            unicode(self.cnpjsofthouse),
-            unicode(self.nmrazao),
-            unicode(self.nmcont),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -527,7 +461,7 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
         db_table = r'r1000_inclusao_softhouse'       
         managed = True # r1000_inclusao_softhouse #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -552,4 +486,6 @@ class r1000inclusaosoftHouseSerializer(ModelSerializer):
     
         model = r1000inclusaosoftHouse
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

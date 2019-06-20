@@ -57,7 +57,6 @@ class SoftDeletionModel(models.Model):
     desativado_por = models.ForeignKey(User,
                                        related_name='%(class)s_desativado_por',
                                        blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, default=False)
     ativo = models.NullBooleanField(blank=True, default=True)
 
     objects = SoftDeletionManager()

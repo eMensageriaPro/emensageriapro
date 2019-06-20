@@ -14,7 +14,9 @@ class AuditoriaAdmin(admin.ModelAdmin):
         'criado_por',
         'modificado_em', 
         'modificado_por',
-        'excluido',
+        'desativado_em', 
+        'desativado_por',
+        'ativo',
     )
 
 
@@ -43,7 +45,7 @@ class ConfigPerfisAdmin(AuditoriaAdmin):
     )
     
     def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
+        return queryset.filter(ativo=False)
 
 
 
@@ -86,7 +88,9 @@ class UsuariosInline(admin.StackedInline):
         'criado_por',
         'modificado_em',
         'modificado_por',
-        'excluido',
+        'desativado_em',
+        'desativado_por',
+        'ativo',
     )
 
 
@@ -142,7 +146,9 @@ class AuditoriaAdmin(AuditoriaAdmin):
         'criado_por',
         'modificado_em',
         'modificado_por',
-        'excluido',
+        'desativado_em',
+        'desativado_por',
+        'ativo',
     )
 
     def has_add_permission(self, request):
@@ -152,6 +158,6 @@ class AuditoriaAdmin(AuditoriaAdmin):
         return False
     
     def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
+        return queryset.filter(ativo=True)
 
 admin.site.register(Auditoria, AuditoriaAdmin)

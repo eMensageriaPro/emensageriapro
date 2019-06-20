@@ -91,7 +91,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             s2210_evtcat_form = form_s2210_evtcat(request.POST or None, instance = s2210_evtcat, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -101,7 +101,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

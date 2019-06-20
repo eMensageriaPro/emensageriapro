@@ -76,15 +76,7 @@ class s2240altExpRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.dtaltcondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class s2240altExpRisco(SoftDeletionModel):
         db_table = r's2240_altexprisco'       
         managed = True # s2240_altexprisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class s2240altExpRiscoSerializer(ModelSerializer):
     
         model = s2240altExpRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240altExpRiscoepc(SoftDeletionModel):
@@ -130,15 +124,7 @@ class s2240altExpRiscoepc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_altexprisco_fatrisco),
-            unicode(self.dscepc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -146,7 +132,7 @@ class s2240altExpRiscoepc(SoftDeletionModel):
         db_table = r's2240_altexprisco_epc'       
         managed = True # s2240_altexprisco_epc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -169,7 +155,9 @@ class s2240altExpRiscoepcSerializer(ModelSerializer):
     
         model = s2240altExpRiscoepc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240altExpRiscoepi(SoftDeletionModel):
@@ -189,20 +177,7 @@ class s2240altExpRiscoepi(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_altexprisco_fatrisco),
-            unicode(self.eficepi),
-            unicode(self.medprotecao),
-            unicode(self.condfuncto),
-            unicode(self.przvalid),
-            unicode(self.periodictroca),
-            unicode(self.higienizacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -210,7 +185,7 @@ class s2240altExpRiscoepi(SoftDeletionModel):
         db_table = r's2240_altexprisco_epi'       
         managed = True # s2240_altexprisco_epi #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -238,7 +213,9 @@ class s2240altExpRiscoepiSerializer(ModelSerializer):
     
         model = s2240altExpRiscoepi
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240altExpRiscofatRisco(SoftDeletionModel):
@@ -256,17 +233,7 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_altexprisco_infoamb),
-            unicode(self.codfatris),
-            unicode(self.utilizepc),
-            unicode(self.utilizepi),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -274,7 +241,7 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
         db_table = r's2240_altexprisco_fatrisco'       
         managed = True # s2240_altexprisco_fatrisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -299,7 +266,9 @@ class s2240altExpRiscofatRiscoSerializer(ModelSerializer):
     
         model = s2240altExpRiscofatRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240altExpRiscoinfoAmb(SoftDeletionModel):
@@ -314,16 +283,7 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_altexprisco),
-            unicode(self.codamb),
-            unicode(self.dscativdes),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -331,7 +291,7 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
         db_table = r's2240_altexprisco_infoamb'       
         managed = True # s2240_altexprisco_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -355,7 +315,9 @@ class s2240altExpRiscoinfoAmbSerializer(ModelSerializer):
     
         model = s2240altExpRiscoinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240fimExpRisco(SoftDeletionModel):
@@ -369,15 +331,7 @@ class s2240fimExpRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.dtfimcondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -385,7 +339,7 @@ class s2240fimExpRisco(SoftDeletionModel):
         db_table = r's2240_fimexprisco'       
         managed = True # s2240_fimexprisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -408,7 +362,9 @@ class s2240fimExpRiscoSerializer(ModelSerializer):
     
         model = s2240fimExpRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
@@ -422,15 +378,7 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_fimexprisco),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -438,7 +386,7 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
         db_table = r's2240_fimexprisco_infoamb'       
         managed = True # s2240_fimexprisco_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -461,7 +409,9 @@ class s2240fimExpRiscoinfoAmbSerializer(ModelSerializer):
     
         model = s2240fimExpRiscoinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240fimExpRiscorespReg(SoftDeletionModel):
@@ -479,17 +429,7 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.dtini),
-            unicode(self.nisresp),
-            unicode(self.nroc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -497,7 +437,7 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
         db_table = r's2240_fimexprisco_respreg'       
         managed = True # s2240_fimexprisco_respreg #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -522,7 +462,9 @@ class s2240fimExpRiscorespRegSerializer(ModelSerializer):
     
         model = s2240fimExpRiscorespReg
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
@@ -536,15 +478,7 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.codativ),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -552,7 +486,7 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
         db_table = r's2240_iniexprisco_ativpericinsal'       
         managed = True # s2240_iniexprisco_ativpericinsal #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -575,7 +509,9 @@ class s2240iniExpRiscoativPericInsalSerializer(ModelSerializer):
     
         model = s2240iniExpRiscoativPericInsal
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscoepc(SoftDeletionModel):
@@ -591,16 +527,7 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_iniexprisco_fatrisco),
-            unicode(self.codep),
-            unicode(self.dscepc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -608,7 +535,7 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
         db_table = r's2240_iniexprisco_epc'       
         managed = True # s2240_iniexprisco_epc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -632,7 +559,9 @@ class s2240iniExpRiscoepcSerializer(ModelSerializer):
     
         model = s2240iniExpRiscoepc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscoepi(SoftDeletionModel):
@@ -654,21 +583,7 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_iniexprisco_fatrisco),
-            unicode(self.eficepi),
-            unicode(self.medprotecao),
-            unicode(self.condfuncto),
-            unicode(self.usoinint),
-            unicode(self.przvalid),
-            unicode(self.periodictroca),
-            unicode(self.higienizacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -676,7 +591,7 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
         db_table = r's2240_iniexprisco_epi'       
         managed = True # s2240_iniexprisco_epi #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -705,7 +620,9 @@ class s2240iniExpRiscoepiSerializer(ModelSerializer):
     
         model = s2240iniExpRiscoepi
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscofatRisco(SoftDeletionModel):
@@ -731,18 +648,7 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.codfatris),
-            unicode(self.tpaval),
-            unicode(self.utilizepc),
-            unicode(self.utilizepi),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -750,7 +656,7 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
         db_table = r's2240_iniexprisco_fatrisco'       
         managed = True # s2240_iniexprisco_fatrisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -776,7 +682,9 @@ class s2240iniExpRiscofatRiscoSerializer(ModelSerializer):
     
         model = s2240iniExpRiscofatRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
@@ -790,15 +698,7 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -806,7 +706,7 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
         db_table = r's2240_iniexprisco_infoamb'       
         managed = True # s2240_iniexprisco_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -829,7 +729,9 @@ class s2240iniExpRiscoinfoAmbSerializer(ModelSerializer):
     
         model = s2240iniExpRiscoinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscoobs(SoftDeletionModel):
@@ -845,14 +747,7 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -860,7 +755,7 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
         db_table = r's2240_iniexprisco_obs'       
         managed = True # s2240_iniexprisco_obs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -882,7 +777,9 @@ class s2240iniExpRiscoobsSerializer(ModelSerializer):
     
         model = s2240iniExpRiscoobs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240iniExpRiscorespReg(SoftDeletionModel):
@@ -902,20 +799,7 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2240_evtexprisco),
-            unicode(self.cpfresp),
-            unicode(self.nisresp),
-            unicode(self.nmresp),
-            unicode(self.ideoc),
-            unicode(self.nroc),
-            unicode(self.ufoc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -923,7 +807,7 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
         db_table = r's2240_iniexprisco_respreg'       
         managed = True # s2240_iniexprisco_respreg #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -951,4 +835,6 @@ class s2240iniExpRiscorespRegSerializer(ModelSerializer):
     
         model = s2240iniExpRiscorespReg
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -80,7 +80,7 @@ class form_r1000_evtinfocontri(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -92,6 +92,8 @@ class form_r1000_evtinfocontri(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -105,7 +107,7 @@ class form_r1000_evtinfocontri(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r1070_evttabprocesso(forms.ModelForm):
@@ -143,7 +145,7 @@ class form_r1070_evttabprocesso(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -155,6 +157,8 @@ class form_r1070_evttabprocesso(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -168,7 +172,7 @@ class form_r1070_evttabprocesso(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2010_evtservtom(forms.ModelForm):
@@ -212,7 +216,7 @@ class form_r2010_evtservtom(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -224,6 +228,8 @@ class form_r2010_evtservtom(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -237,7 +243,7 @@ class form_r2010_evtservtom(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2020_evtservprest(forms.ModelForm):
@@ -281,7 +287,7 @@ class form_r2020_evtservprest(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -293,6 +299,8 @@ class form_r2020_evtservprest(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -306,7 +314,7 @@ class form_r2020_evtservprest(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2030_evtassocdesprec(forms.ModelForm):
@@ -344,7 +352,7 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -356,6 +364,8 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -369,7 +379,7 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2040_evtassocdesprep(forms.ModelForm):
@@ -407,7 +417,7 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -419,6 +429,8 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -432,7 +444,7 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2050_evtcomprod(forms.ModelForm):
@@ -477,7 +489,7 @@ class form_r2050_evtcomprod(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -489,6 +501,8 @@ class form_r2050_evtcomprod(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -502,7 +516,7 @@ class form_r2050_evtcomprod(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2060_evtcprb(forms.ModelForm):
@@ -543,7 +557,7 @@ class form_r2060_evtcprb(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -555,6 +569,8 @@ class form_r2060_evtcprb(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -568,7 +584,7 @@ class form_r2060_evtcprb(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2070_evtpgtosdivs(forms.ModelForm):
@@ -606,7 +622,7 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -618,6 +634,8 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -631,7 +649,7 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2098_evtreabreevper(forms.ModelForm):
@@ -669,7 +687,7 @@ class form_r2098_evtreabreevper(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -681,6 +699,8 @@ class form_r2098_evtreabreevper(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -694,7 +714,7 @@ class form_r2098_evtreabreevper(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r2099_evtfechaevper(forms.ModelForm):
@@ -732,7 +752,7 @@ class form_r2099_evtfechaevper(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -744,6 +764,8 @@ class form_r2099_evtfechaevper(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -757,7 +779,7 @@ class form_r2099_evtfechaevper(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r3010_evtespdesportivo(forms.ModelForm):
@@ -800,7 +822,7 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -812,6 +834,8 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -825,7 +849,7 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r4010_evtretpf(forms.ModelForm):
@@ -863,7 +887,7 @@ class form_r4010_evtretpf(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -875,6 +899,8 @@ class form_r4010_evtretpf(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -888,7 +914,7 @@ class form_r4010_evtretpf(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r4020_evtretpj(forms.ModelForm):
@@ -926,7 +952,7 @@ class form_r4020_evtretpj(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -938,6 +964,8 @@ class form_r4020_evtretpj(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -951,7 +979,7 @@ class form_r4020_evtretpj(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r4040_evtbenefnid(forms.ModelForm):
@@ -989,7 +1017,7 @@ class form_r4040_evtbenefnid(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1001,6 +1029,8 @@ class form_r4040_evtbenefnid(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1014,7 +1044,7 @@ class form_r4040_evtbenefnid(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r4098_evtreab(forms.ModelForm):
@@ -1052,7 +1082,7 @@ class form_r4098_evtreab(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1064,6 +1094,8 @@ class form_r4098_evtreab(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1077,7 +1109,7 @@ class form_r4098_evtreab(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r4099_evtfech(forms.ModelForm):
@@ -1115,7 +1147,7 @@ class form_r4099_evtfech(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1127,6 +1159,8 @@ class form_r4099_evtfech(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1140,7 +1174,7 @@ class form_r4099_evtfech(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r5001_evttotal(forms.ModelForm):
@@ -1170,7 +1204,7 @@ class form_r5001_evttotal(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1182,6 +1216,8 @@ class form_r5001_evttotal(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1195,7 +1231,7 @@ class form_r5001_evttotal(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r5011_evttotalcontrib(forms.ModelForm):
@@ -1225,7 +1261,7 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1237,6 +1273,8 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1250,7 +1288,7 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r9000_evtexclusao(forms.ModelForm):
@@ -1288,7 +1326,7 @@ class form_r9000_evtexclusao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1300,6 +1338,8 @@ class form_r9000_evtexclusao(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1313,7 +1353,7 @@ class form_r9000_evtexclusao(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r9001_evttotal(forms.ModelForm):
@@ -1343,7 +1383,7 @@ class form_r9001_evttotal(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1355,6 +1395,8 @@ class form_r9001_evttotal(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1368,7 +1410,7 @@ class form_r9001_evttotal(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r9002_evtret(forms.ModelForm):
@@ -1398,7 +1440,7 @@ class form_r9002_evtret(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1410,6 +1452,8 @@ class form_r9002_evtret(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1423,7 +1467,7 @@ class form_r9002_evtret(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r9011_evttotalcontrib(forms.ModelForm):
@@ -1453,7 +1497,7 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1465,6 +1509,8 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1478,7 +1524,7 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]
 
 
 class form_r9012_evtretcons(forms.ModelForm):
@@ -1508,7 +1554,7 @@ class form_r9012_evtretcons(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -1520,6 +1566,8 @@ class form_r9012_evtretcons(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retornos_r5001'
             'retornos_r5011'
             'retornos_r9001'
@@ -1533,4 +1581,4 @@ class form_r9012_evtretcons(forms.ModelForm):
             'arquivo'
             'cdretorno'
             'descretorno'
-            'dhprocess']
+            'dhprocess' ]

@@ -70,7 +70,7 @@ class form_config_perfis(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -83,9 +83,8 @@ class form_config_perfis(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
-            'permissoes'
-            'modulos_permitidos'
-            'paginas_permitidas']
+            'desativado_em', 
+            'desativado_por',]
 
 
 from django.contrib.auth.models import User
@@ -112,8 +111,6 @@ class form_users(forms.ModelForm):
             'groups',
             'user_permissions',
         ]
-        #'is_staff',
-        #'is_active',
  
 
 class form_usuarios(forms.ModelForm):
@@ -129,5 +126,6 @@ class form_usuarios(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido', 'user',
+            'desativado_em', 'desativado_por',
+            'ativo', 'user',
         ]

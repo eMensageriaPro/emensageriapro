@@ -79,17 +79,7 @@ class r2060infoProc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2060_tipocod),
-            unicode(self.tpproc),
-            unicode(self.nrproc),
-            unicode(self.vlrcprbsusp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -97,7 +87,7 @@ class r2060infoProc(SoftDeletionModel):
         db_table = r'r2060_infoproc'       
         managed = True # r2060_infoproc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -122,7 +112,9 @@ class r2060infoProcSerializer(ModelSerializer):
     
         model = r2060infoProc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2060tipoAjuste(SoftDeletionModel):
@@ -140,19 +132,7 @@ class r2060tipoAjuste(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2060_tipocod),
-            unicode(self.tpajuste),
-            unicode(self.codajuste),
-            unicode(self.vlrajuste),
-            unicode(self.descajuste),
-            unicode(self.dtajuste),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -160,7 +140,7 @@ class r2060tipoAjuste(SoftDeletionModel):
         db_table = r'r2060_tipoajuste'       
         managed = True # r2060_tipoajuste #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -187,7 +167,9 @@ class r2060tipoAjusteSerializer(ModelSerializer):
     
         model = r2060tipoAjuste
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r2060tipoCod(SoftDeletionModel):
@@ -207,19 +189,7 @@ class r2060tipoCod(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.r2060_evtcprb),
-            unicode(self.codativecon),
-            unicode(self.vlrrecbrutaativ),
-            unicode(self.vlrexcrecbruta),
-            unicode(self.vlradicrecbruta),
-            unicode(self.vlrbccprb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -227,7 +197,7 @@ class r2060tipoCod(SoftDeletionModel):
         db_table = r'r2060_tipocod'       
         managed = True # r2060_tipocod #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -254,4 +224,6 @@ class r2060tipoCodSerializer(ModelSerializer):
     
         model = r2060tipoCod
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

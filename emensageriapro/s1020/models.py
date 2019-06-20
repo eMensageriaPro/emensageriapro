@@ -84,19 +84,7 @@ class s1020alteracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_evttablotacao),
-            unicode(self.codlotacao),
-            unicode(self.inivalid),
-            unicode(self.tplotacao),
-            unicode(self.fpas),
-            unicode(self.codtercs),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -104,7 +92,7 @@ class s1020alteracao(SoftDeletionModel):
         db_table = r's1020_alteracao'       
         managed = True # s1020_alteracao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -131,7 +119,9 @@ class s1020alteracaoSerializer(ModelSerializer):
     
         model = s1020alteracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
@@ -148,18 +138,7 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_alteracao),
-            unicode(self.tpinsccontrat),
-            unicode(self.nrinsccontrat),
-            unicode(self.tpinscprop),
-            unicode(self.nrinscprop),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -167,7 +146,7 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
         db_table = r's1020_alteracao_infoemprparcial'       
         managed = True # s1020_alteracao_infoemprparcial #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -193,7 +172,9 @@ class s1020alteracaoinfoEmprParcialSerializer(ModelSerializer):
     
         model = s1020alteracaoinfoEmprParcial
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020alteracaoinfoProcJudTerceiros(SoftDeletionModel):
@@ -206,14 +187,7 @@ class s1020alteracaoinfoProcJudTerceiros(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_alteracao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -221,7 +195,7 @@ class s1020alteracaoinfoProcJudTerceiros(SoftDeletionModel):
         db_table = r's1020_alteracao_infoprocjudterceiros'       
         managed = True # s1020_alteracao_infoprocjudterceiros #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -243,7 +217,9 @@ class s1020alteracaoinfoProcJudTerceirosSerializer(ModelSerializer):
     
         model = s1020alteracaoinfoProcJudTerceiros
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020alteracaonovaValidade(SoftDeletionModel):
@@ -258,15 +234,7 @@ class s1020alteracaonovaValidade(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_alteracao),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -274,7 +242,7 @@ class s1020alteracaonovaValidade(SoftDeletionModel):
         db_table = r's1020_alteracao_novavalidade'       
         managed = True # s1020_alteracao_novavalidade #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -297,7 +265,9 @@ class s1020alteracaonovaValidadeSerializer(ModelSerializer):
     
         model = s1020alteracaonovaValidade
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
@@ -313,17 +283,7 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_alteracao_infoprocjudterceiros),
-            unicode(self.codterc),
-            unicode(self.nrprocjud),
-            unicode(self.codsusp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -331,7 +291,7 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
         db_table = r's1020_alteracao_procjudterceiro'       
         managed = True # s1020_alteracao_procjudterceiro #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -356,7 +316,9 @@ class s1020alteracaoprocJudTerceiroSerializer(ModelSerializer):
     
         model = s1020alteracaoprocJudTerceiro
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020exclusao(SoftDeletionModel):
@@ -372,16 +334,7 @@ class s1020exclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_evttablotacao),
-            unicode(self.codlotacao),
-            unicode(self.inivalid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -389,7 +342,7 @@ class s1020exclusao(SoftDeletionModel):
         db_table = r's1020_exclusao'       
         managed = True # s1020_exclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -413,7 +366,9 @@ class s1020exclusaoSerializer(ModelSerializer):
     
         model = s1020exclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020inclusao(SoftDeletionModel):
@@ -435,19 +390,7 @@ class s1020inclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_evttablotacao),
-            unicode(self.codlotacao),
-            unicode(self.inivalid),
-            unicode(self.tplotacao),
-            unicode(self.fpas),
-            unicode(self.codtercs),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -455,7 +398,7 @@ class s1020inclusao(SoftDeletionModel):
         db_table = r's1020_inclusao'       
         managed = True # s1020_inclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -482,7 +425,9 @@ class s1020inclusaoSerializer(ModelSerializer):
     
         model = s1020inclusao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
@@ -499,18 +444,7 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_inclusao),
-            unicode(self.tpinsccontrat),
-            unicode(self.nrinsccontrat),
-            unicode(self.tpinscprop),
-            unicode(self.nrinscprop),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -518,7 +452,7 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
         db_table = r's1020_inclusao_infoemprparcial'       
         managed = True # s1020_inclusao_infoemprparcial #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -544,7 +478,9 @@ class s1020inclusaoinfoEmprParcialSerializer(ModelSerializer):
     
         model = s1020inclusaoinfoEmprParcial
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020inclusaoinfoProcJudTerceiros(SoftDeletionModel):
@@ -557,14 +493,7 @@ class s1020inclusaoinfoProcJudTerceiros(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_inclusao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -572,7 +501,7 @@ class s1020inclusaoinfoProcJudTerceiros(SoftDeletionModel):
         db_table = r's1020_inclusao_infoprocjudterceiros'       
         managed = True # s1020_inclusao_infoprocjudterceiros #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -594,7 +523,9 @@ class s1020inclusaoinfoProcJudTerceirosSerializer(ModelSerializer):
     
         model = s1020inclusaoinfoProcJudTerceiros
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
@@ -610,17 +541,7 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1020_inclusao_infoprocjudterceiros),
-            unicode(self.codterc),
-            unicode(self.nrprocjud),
-            unicode(self.codsusp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -628,7 +549,7 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
         db_table = r's1020_inclusao_procjudterceiro'       
         managed = True # s1020_inclusao_procjudterceiro #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -653,4 +574,6 @@ class s1020inclusaoprocJudTerceiroSerializer(ModelSerializer):
     
         model = s1020inclusaoprocJudTerceiro
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

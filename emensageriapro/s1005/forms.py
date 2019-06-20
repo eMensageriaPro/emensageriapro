@@ -70,7 +70,7 @@ class form_s1005_alteracao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -82,7 +82,9 @@ class form_s1005_alteracao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_infocaepf(forms.ModelForm):
@@ -108,7 +110,7 @@ class form_s1005_alteracao_infocaepf(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -120,7 +122,9 @@ class form_s1005_alteracao_infocaepf(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_infoenteduc(forms.ModelForm):
@@ -146,7 +150,7 @@ class form_s1005_alteracao_infoenteduc(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -158,7 +162,9 @@ class form_s1005_alteracao_infoenteduc(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_infoobra(forms.ModelForm):
@@ -184,7 +190,7 @@ class form_s1005_alteracao_infoobra(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -196,7 +202,9 @@ class form_s1005_alteracao_infoobra(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_infopcd(forms.ModelForm):
@@ -222,7 +230,7 @@ class form_s1005_alteracao_infopcd(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -234,7 +242,9 @@ class form_s1005_alteracao_infopcd(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_novavalidade(forms.ModelForm):
@@ -260,7 +270,7 @@ class form_s1005_alteracao_novavalidade(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -272,7 +282,9 @@ class form_s1005_alteracao_novavalidade(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
@@ -298,7 +310,7 @@ class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -310,7 +322,9 @@ class form_s1005_alteracao_procadmjudfap(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
@@ -336,7 +350,7 @@ class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -348,7 +362,9 @@ class form_s1005_alteracao_procadmjudrat(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_exclusao(forms.ModelForm):
@@ -374,7 +390,7 @@ class form_s1005_exclusao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -386,7 +402,9 @@ class form_s1005_exclusao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao(forms.ModelForm):
@@ -414,7 +432,7 @@ class form_s1005_inclusao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -426,7 +444,9 @@ class form_s1005_inclusao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao_infocaepf(forms.ModelForm):
@@ -452,7 +472,7 @@ class form_s1005_inclusao_infocaepf(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -464,7 +484,9 @@ class form_s1005_inclusao_infocaepf(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao_infoenteduc(forms.ModelForm):
@@ -490,7 +512,7 @@ class form_s1005_inclusao_infoenteduc(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -502,7 +524,9 @@ class form_s1005_inclusao_infoenteduc(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao_infoobra(forms.ModelForm):
@@ -528,7 +552,7 @@ class form_s1005_inclusao_infoobra(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -540,7 +564,9 @@ class form_s1005_inclusao_infoobra(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao_infopcd(forms.ModelForm):
@@ -566,7 +592,7 @@ class form_s1005_inclusao_infopcd(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -578,7 +604,9 @@ class form_s1005_inclusao_infopcd(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
@@ -604,7 +632,7 @@ class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -616,7 +644,9 @@ class form_s1005_inclusao_procadmjudfap(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]
 
 
 class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
@@ -642,7 +672,7 @@ class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -654,4 +684,6 @@ class form_s1005_inclusao_procadmjudrat(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'deativado_em', 
+            'deativado_por', ]

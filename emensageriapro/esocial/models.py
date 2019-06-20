@@ -103,19 +103,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -132,7 +120,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
         db_table = r's1000_evtinfoempregador'       
         managed = True  # s1000_evtinfoempregador #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -158,7 +146,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -186,9 +174,9 @@ class s1000evtInfoEmpregadorSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1005evtTabEstab(SoftDeletionModel):
@@ -214,19 +202,7 @@ class s1005evtTabEstab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -243,7 +219,7 @@ class s1005evtTabEstab(SoftDeletionModel):
         db_table = r's1005_evttabestab'       
         managed = True  # s1005_evttabestab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -269,7 +245,7 @@ class s1005evtTabEstab(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -297,9 +273,9 @@ class s1005evtTabEstabSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1010evtTabRubrica(SoftDeletionModel):
@@ -325,19 +301,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -354,7 +318,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
         db_table = r's1010_evttabrubrica'       
         managed = True  # s1010_evttabrubrica #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -380,7 +344,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -408,9 +372,9 @@ class s1010evtTabRubricaSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1020evtTabLotacao(SoftDeletionModel):
@@ -436,19 +400,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -465,7 +417,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
         db_table = r's1020_evttablotacao'       
         managed = True  # s1020_evttablotacao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -491,7 +443,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -519,9 +471,9 @@ class s1020evtTabLotacaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1030evtTabCargo(SoftDeletionModel):
@@ -547,19 +499,7 @@ class s1030evtTabCargo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -576,7 +516,7 @@ class s1030evtTabCargo(SoftDeletionModel):
         db_table = r's1030_evttabcargo'       
         managed = True  # s1030_evttabcargo #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -602,7 +542,7 @@ class s1030evtTabCargo(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -630,9 +570,9 @@ class s1030evtTabCargoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1035evtTabCarreira(SoftDeletionModel):
@@ -658,19 +598,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -687,7 +615,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
         db_table = r's1035_evttabcarreira'       
         managed = True  # s1035_evttabcarreira #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -713,7 +641,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -741,9 +669,9 @@ class s1035evtTabCarreiraSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1040evtTabFuncao(SoftDeletionModel):
@@ -769,19 +697,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -798,7 +714,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
         db_table = r's1040_evttabfuncao'       
         managed = True  # s1040_evttabfuncao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -824,7 +740,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -852,9 +768,9 @@ class s1040evtTabFuncaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1050evtTabHorTur(SoftDeletionModel):
@@ -880,19 +796,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -909,7 +813,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
         db_table = r's1050_evttabhortur'       
         managed = True  # s1050_evttabhortur #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -935,7 +839,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -963,9 +867,9 @@ class s1050evtTabHorTurSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1060evtTabAmbiente(SoftDeletionModel):
@@ -991,19 +895,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1020,7 +912,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
         db_table = r's1060_evttabambiente'       
         managed = True  # s1060_evttabambiente #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1046,7 +938,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -1074,9 +966,9 @@ class s1060evtTabAmbienteSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1070evtTabProcesso(SoftDeletionModel):
@@ -1102,19 +994,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1131,7 +1011,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
         db_table = r's1070_evttabprocesso'       
         managed = True  # s1070_evttabprocesso #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1157,7 +1037,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -1185,9 +1065,9 @@ class s1070evtTabProcessoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1080evtTabOperPort(SoftDeletionModel):
@@ -1213,19 +1093,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1242,7 +1110,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
         db_table = r's1080_evttaboperport'       
         managed = True  # s1080_evttaboperport #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1268,7 +1136,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -1296,9 +1164,9 @@ class s1080evtTabOperPortSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1200evtRemun(SoftDeletionModel):
@@ -1329,23 +1197,7 @@ class s1200evtRemun(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1362,7 +1214,7 @@ class s1200evtRemun(SoftDeletionModel):
         db_table = r's1200_evtremun'       
         managed = True  # s1200_evtremun #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1390,7 +1242,7 @@ class s1200evtRemun(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -1418,9 +1270,9 @@ class s1200evtRemunSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1202evtRmnRPPS(SoftDeletionModel):
@@ -1452,23 +1304,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1485,7 +1321,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
         db_table = r's1202_evtrmnrpps'       
         managed = True  # s1202_evtrmnrpps #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1513,7 +1349,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -1541,9 +1377,9 @@ class s1202evtRmnRPPSSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1207evtBenPrRP(SoftDeletionModel):
@@ -1573,23 +1409,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1606,7 +1426,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
         db_table = r's1207_evtbenprrp'       
         managed = True  # s1207_evtbenprrp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1634,7 +1454,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'cpfbenef',]
+            'cpfbenef', ]
 
 
 
@@ -1662,9 +1482,9 @@ class s1207evtBenPrRPSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1210evtPgtos(SoftDeletionModel):
@@ -1694,23 +1514,7 @@ class s1210evtPgtos(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1727,7 +1531,7 @@ class s1210evtPgtos(SoftDeletionModel):
         db_table = r's1210_evtpgtos'       
         managed = True  # s1210_evtpgtos #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1755,7 +1559,7 @@ class s1210evtPgtos(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'cpfbenef',]
+            'cpfbenef', ]
 
 
 
@@ -1783,9 +1587,9 @@ class s1210evtPgtosSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1250evtAqProd(SoftDeletionModel):
@@ -1816,24 +1620,7 @@ class s1250evtAqProd(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.tpinscadq),
-            unicode(self.nrinscadq),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1850,7 +1637,7 @@ class s1250evtAqProd(SoftDeletionModel):
         db_table = r's1250_evtaqprod'       
         managed = True  # s1250_evtaqprod #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1879,7 +1666,7 @@ class s1250evtAqProd(SoftDeletionModel):
             'tpinsc',
             'nrinsc',
             'tpinscadq',
-            'nrinscadq',]
+            'nrinscadq', ]
 
 
 
@@ -1907,9 +1694,9 @@ class s1250evtAqProdSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1260evtComProd(SoftDeletionModel):
@@ -1939,23 +1726,7 @@ class s1260evtComProd(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.nrinscestabrural),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -1972,7 +1743,7 @@ class s1260evtComProd(SoftDeletionModel):
         db_table = r's1260_evtcomprod'       
         managed = True  # s1260_evtcomprod #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2000,7 +1771,7 @@ class s1260evtComProd(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'nrinscestabrural',]
+            'nrinscestabrural', ]
 
 
 
@@ -2028,9 +1799,9 @@ class s1260evtComProdSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1270evtContratAvNP(SoftDeletionModel):
@@ -2059,22 +1830,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2091,7 +1847,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
         db_table = r's1270_evtcontratavnp'       
         managed = True  # s1270_evtcontratavnp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2118,7 +1874,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -2146,9 +1902,9 @@ class s1270evtContratAvNPSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1280evtInfoComplPer(SoftDeletionModel):
@@ -2177,22 +1933,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2209,7 +1950,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
         db_table = r's1280_evtinfocomplper'       
         managed = True  # s1280_evtinfocomplper #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2236,7 +1977,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -2264,9 +2005,9 @@ class s1280evtInfoComplPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1295evtTotConting(SoftDeletionModel):
@@ -2293,21 +2034,7 @@ class s1295evtTotConting(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2324,7 +2051,7 @@ class s1295evtTotConting(SoftDeletionModel):
         db_table = r's1295_evttotconting'       
         managed = True  # s1295_evttotconting #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2350,7 +2077,7 @@ class s1295evtTotConting(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -2378,9 +2105,9 @@ class s1295evtTotContingSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1298evtReabreEvPer(SoftDeletionModel):
@@ -2407,21 +2134,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2438,7 +2151,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
         db_table = r's1298_evtreabreevper'       
         managed = True  # s1298_evtreabreevper #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2464,7 +2177,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -2492,9 +2205,9 @@ class s1298evtReabreEvPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1299evtFechaEvPer(SoftDeletionModel):
@@ -2528,27 +2241,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.evtremun),
-            unicode(self.evtpgtos),
-            unicode(self.evtaqprod),
-            unicode(self.evtcomprod),
-            unicode(self.evtcontratavnp),
-            unicode(self.evtinfocomplper),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2565,7 +2258,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
         db_table = r's1299_evtfechaevper'       
         managed = True  # s1299_evtfechaevper #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2597,7 +2290,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
             'evtaqprod',
             'evtcomprod',
             'evtcontratavnp',
-            'evtinfocomplper',]
+            'evtinfocomplper', ]
 
 
 
@@ -2625,9 +2318,9 @@ class s1299evtFechaEvPerSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1300evtContrSindPatr(SoftDeletionModel):
@@ -2656,22 +2349,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2688,7 +2366,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
         db_table = r's1300_evtcontrsindpatr'       
         managed = True  # s1300_evtcontrsindpatr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2715,7 +2393,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
             'procemi',
             'verproc',
             'tpinsc',
-            'nrinsc',]
+            'nrinsc', ]
 
 
 
@@ -2743,9 +2421,9 @@ class s1300evtContrSindPatrSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2190evtAdmPrelim(SoftDeletionModel):
@@ -2773,22 +2451,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.dtnascto),
-            unicode(self.dtadm),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2805,7 +2468,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
         db_table = r's2190_evtadmprelim'       
         managed = True  # s2190_evtadmprelim #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -2832,7 +2495,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'dtnascto',
-            'dtadm',]
+            'dtadm', ]
 
 
 
@@ -2860,9 +2523,9 @@ class s2190evtAdmPrelimSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2200evtAdmissao(SoftDeletionModel):
@@ -2923,37 +2586,7 @@ class s2200evtAdmissao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.nmtrab),
-            unicode(self.sexo),
-            unicode(self.racacor),
-            unicode(self.grauinstr),
-            unicode(self.dtnascto),
-            unicode(self.paisnascto),
-            unicode(self.paisnac),
-            unicode(self.matricula),
-            unicode(self.tpregtrab),
-            unicode(self.tpregprev),
-            unicode(self.cadini),
-            unicode(self.codcateg),
-            unicode(self.vrsalfx),
-            unicode(self.undsalfixo),
-            unicode(self.tpcontr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -2970,7 +2603,7 @@ class s2200evtAdmissao(SoftDeletionModel):
         db_table = r's2200_evtadmissao'       
         managed = True  # s2200_evtadmissao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3012,7 +2645,7 @@ class s2200evtAdmissao(SoftDeletionModel):
             'codcateg',
             'vrsalfx',
             'undsalfixo',
-            'tpcontr',]
+            'tpcontr', ]
 
 
 
@@ -3040,9 +2673,9 @@ class s2200evtAdmissaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2205evtAltCadastral(SoftDeletionModel):
@@ -3085,29 +2718,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.dtalteracao),
-            unicode(self.nmtrab),
-            unicode(self.sexo),
-            unicode(self.racacor),
-            unicode(self.grauinstr),
-            unicode(self.dtnascto),
-            unicode(self.paisnascto),
-            unicode(self.paisnac),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3124,7 +2735,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
         db_table = r's2205_evtaltcadastral'       
         managed = True  # s2205_evtaltcadastral #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3158,7 +2769,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
             'grauinstr',
             'dtnascto',
             'paisnascto',
-            'paisnac',]
+            'paisnac', ]
 
 
 
@@ -3186,9 +2797,9 @@ class s2205evtAltCadastralSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2206evtAltContratual(SoftDeletionModel):
@@ -3233,29 +2844,7 @@ class s2206evtAltContratual(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.matricula),
-            unicode(self.dtalteracao),
-            unicode(self.tpregprev),
-            unicode(self.codcateg),
-            unicode(self.vrsalfx),
-            unicode(self.undsalfixo),
-            unicode(self.tpcontr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3272,7 +2861,7 @@ class s2206evtAltContratual(SoftDeletionModel):
         db_table = r's2206_evtaltcontratual'       
         managed = True  # s2206_evtaltcontratual #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3306,7 +2895,7 @@ class s2206evtAltContratual(SoftDeletionModel):
             'codcateg',
             'vrsalfx',
             'undsalfixo',
-            'tpcontr',]
+            'tpcontr', ]
 
 
 
@@ -3334,9 +2923,9 @@ class s2206evtAltContratualSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210evtCAT(SoftDeletionModel):
@@ -3392,33 +2981,7 @@ class s2210evtCAT(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.dtacid),
-            unicode(self.tpacid),
-            unicode(self.hrstrabantesacid),
-            unicode(self.tpcat),
-            unicode(self.indcatobito),
-            unicode(self.indcomunpolicia),
-            unicode(self.codsitgeradora),
-            unicode(self.iniciatcat),
-            unicode(self.tplocal),
-            unicode(self.tplograd),
-            unicode(self.dsclograd),
-            unicode(self.nrlograd),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3435,7 +2998,7 @@ class s2210evtCAT(SoftDeletionModel):
         db_table = r's2210_evtcat'       
         managed = True  # s2210_evtcat #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3473,7 +3036,7 @@ class s2210evtCAT(SoftDeletionModel):
             'tplocal',
             'tplograd',
             'dsclograd',
-            'nrlograd',]
+            'nrlograd', ]
 
 
 
@@ -3501,9 +3064,9 @@ class s2210evtCATSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2220evtMonit(SoftDeletionModel):
@@ -3550,33 +3113,7 @@ class s2220evtMonit(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.tpexameocup),
-            unicode(self.dtaso),
-            unicode(self.tpaso),
-            unicode(self.resaso),
-            unicode(self.nmmed),
-            unicode(self.nrcrm),
-            unicode(self.ufcrm),
-            unicode(self.nisresp),
-            unicode(self.nrconsclasse),
-            unicode(self.nmresp),
-            unicode(self.nrcrm),
-            unicode(self.ufcrm),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3593,7 +3130,7 @@ class s2220evtMonit(SoftDeletionModel):
         db_table = r's2220_evtmonit'       
         managed = True  # s2220_evtmonit #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3631,7 +3168,7 @@ class s2220evtMonit(SoftDeletionModel):
             'nrconsclasse',
             'nmresp',
             'nrcrm',
-            'ufcrm',]
+            'ufcrm', ]
 
 
 
@@ -3659,9 +3196,9 @@ class s2220evtMonitSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2221evtToxic(SoftDeletionModel):
@@ -3699,23 +3236,7 @@ class s2221evtToxic(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.dtexame),
-            unicode(self.indrecusa),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3732,7 +3253,7 @@ class s2221evtToxic(SoftDeletionModel):
         db_table = r's2221_evttoxic'       
         managed = True  # s2221_evttoxic #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3760,7 +3281,7 @@ class s2221evtToxic(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'dtexame',
-            'indrecusa',]
+            'indrecusa', ]
 
 
 
@@ -3788,9 +3309,9 @@ class s2221evtToxicSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2230evtAfastTemp(SoftDeletionModel):
@@ -3821,21 +3342,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3852,7 +3359,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
         db_table = r's2230_evtafasttemp'       
         managed = True  # s2230_evtafasttemp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3878,7 +3385,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -3906,9 +3413,9 @@ class s2230evtAfastTempSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2231evtCessao(SoftDeletionModel):
@@ -3938,23 +3445,7 @@ class s2231evtCessao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.matricula),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -3971,7 +3462,7 @@ class s2231evtCessao(SoftDeletionModel):
         db_table = r's2231_evtcessao'       
         managed = True  # s2231_evtcessao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -3999,7 +3490,7 @@ class s2231evtCessao(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'nistrab',
-            'matricula',]
+            'matricula', ]
 
 
 
@@ -4027,9 +3518,9 @@ class s2231evtCessaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2240evtExpRisco(SoftDeletionModel):
@@ -4062,23 +3553,7 @@ class s2240evtExpRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.dtinicondicao),
-            unicode(self.dscativdes),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4095,7 +3570,7 @@ class s2240evtExpRisco(SoftDeletionModel):
         db_table = r's2240_evtexprisco'       
         managed = True  # s2240_evtexprisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4123,7 +3598,7 @@ class s2240evtExpRisco(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'dtinicondicao',
-            'dscativdes',]
+            'dscativdes', ]
 
 
 
@@ -4151,9 +3626,9 @@ class s2240evtExpRiscoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241evtInsApo(SoftDeletionModel):
@@ -4183,21 +3658,7 @@ class s2241evtInsApo(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4214,7 +3675,7 @@ class s2241evtInsApo(SoftDeletionModel):
         db_table = r's2241_evtinsapo'       
         managed = True  # s2241_evtinsapo #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4240,7 +3701,7 @@ class s2241evtInsApo(SoftDeletionModel):
             'verproc',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -4268,9 +3729,9 @@ class s2241evtInsApoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2245evtTreiCap(SoftDeletionModel):
@@ -4309,24 +3770,7 @@ class s2245evtTreiCap(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.codtreicap),
-            unicode(self.dttreicap),
-            unicode(self.indtreinant),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4343,7 +3787,7 @@ class s2245evtTreiCap(SoftDeletionModel):
         db_table = r's2245_evttreicap'       
         managed = True  # s2245_evttreicap #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4372,7 +3816,7 @@ class s2245evtTreiCap(SoftDeletionModel):
             'cpftrab',
             'codtreicap',
             'dttreicap',
-            'indtreinant',]
+            'indtreinant', ]
 
 
 
@@ -4400,9 +3844,9 @@ class s2245evtTreiCapSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2250evtAvPrevio(SoftDeletionModel):
@@ -4432,23 +3876,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.matricula),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4465,7 +3893,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
         db_table = r's2250_evtavprevio'       
         managed = True  # s2250_evtavprevio #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4493,7 +3921,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'nistrab',
-            'matricula',]
+            'matricula', ]
 
 
 
@@ -4521,9 +3949,9 @@ class s2250evtAvPrevioSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2260evtConvInterm(SoftDeletionModel):
@@ -4560,28 +3988,7 @@ class s2260evtConvInterm(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.matricula),
-            unicode(self.codconv),
-            unicode(self.dtinicio),
-            unicode(self.dtfim),
-            unicode(self.dtprevpgto),
-            unicode(self.indlocal),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4598,7 +4005,7 @@ class s2260evtConvInterm(SoftDeletionModel):
         db_table = r's2260_evtconvinterm'       
         managed = True  # s2260_evtconvinterm #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4631,7 +4038,7 @@ class s2260evtConvInterm(SoftDeletionModel):
             'dtinicio',
             'dtfim',
             'dtprevpgto',
-            'indlocal',]
+            'indlocal', ]
 
 
 
@@ -4659,9 +4066,9 @@ class s2260evtConvIntermSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2298evtReintegr(SoftDeletionModel):
@@ -4697,27 +4104,7 @@ class s2298evtReintegr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.matricula),
-            unicode(self.tpreint),
-            unicode(self.dtefetretorno),
-            unicode(self.dtefeito),
-            unicode(self.indpagtojuizo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4734,7 +4121,7 @@ class s2298evtReintegr(SoftDeletionModel):
         db_table = r's2298_evtreintegr'       
         managed = True  # s2298_evtreintegr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4766,7 +4153,7 @@ class s2298evtReintegr(SoftDeletionModel):
             'tpreint',
             'dtefetretorno',
             'dtefeito',
-            'indpagtojuizo',]
+            'indpagtojuizo', ]
 
 
 
@@ -4794,9 +4181,9 @@ class s2298evtReintegrSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2299evtDeslig(SoftDeletionModel):
@@ -4837,28 +4224,7 @@ class s2299evtDeslig(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nistrab),
-            unicode(self.matricula),
-            unicode(self.mtvdeslig),
-            unicode(self.dtdeslig),
-            unicode(self.indpagtoapi),
-            unicode(self.pensalim),
-            unicode(self.indcumprparc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -4875,7 +4241,7 @@ class s2299evtDeslig(SoftDeletionModel):
         db_table = r's2299_evtdeslig'       
         managed = True  # s2299_evtdeslig #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -4908,7 +4274,7 @@ class s2299evtDeslig(SoftDeletionModel):
             'dtdeslig',
             'indpagtoapi',
             'pensalim',
-            'indcumprparc',]
+            'indcumprparc', ]
 
 
 
@@ -4936,9 +4302,9 @@ class s2299evtDesligSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2300evtTSVInicio(SoftDeletionModel):
@@ -4984,31 +4350,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.nmtrab),
-            unicode(self.sexo),
-            unicode(self.racacor),
-            unicode(self.grauinstr),
-            unicode(self.dtnascto),
-            unicode(self.paisnascto),
-            unicode(self.paisnac),
-            unicode(self.cadini),
-            unicode(self.codcateg),
-            unicode(self.dtinicio),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5025,7 +4367,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
         db_table = r's2300_evttsvinicio'       
         managed = True  # s2300_evttsvinicio #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5061,7 +4403,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
             'paisnac',
             'cadini',
             'codcateg',
-            'dtinicio',]
+            'dtinicio', ]
 
 
 
@@ -5089,9 +4431,9 @@ class s2300evtTSVInicioSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306evtTSVAltContr(SoftDeletionModel):
@@ -5123,23 +4465,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.codcateg),
-            unicode(self.dtalteracao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5156,7 +4482,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
         db_table = r's2306_evttsvaltcontr'       
         managed = True  # s2306_evttsvaltcontr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5184,7 +4510,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'codcateg',
-            'dtalteracao',]
+            'dtalteracao', ]
 
 
 
@@ -5212,9 +4538,9 @@ class s2306evtTSVAltContrSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2399evtTSVTermino(SoftDeletionModel):
@@ -5249,23 +4575,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),
-            unicode(self.codcateg),
-            unicode(self.dtterm),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5282,7 +4592,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
         db_table = r's2399_evttsvtermino'       
         managed = True  # s2399_evttsvtermino #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5310,7 +4620,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
             'nrinsc',
             'cpftrab',
             'codcateg',
-            'dtterm',]
+            'dtterm', ]
 
 
 
@@ -5338,9 +4648,9 @@ class s2399evtTSVTerminoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2400evtCdBenefIn(SoftDeletionModel):
@@ -5383,28 +4693,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),
-            unicode(self.nmbenefic),
-            unicode(self.dtinicio),
-            unicode(self.sexo),
-            unicode(self.racacor),
-            unicode(self.incfismen),
-            unicode(self.dtnascto),
-            unicode(self.paisnac),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5421,7 +4710,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
         db_table = r's2400_evtcdbenefin'       
         managed = True  # s2400_evtcdbenefin #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5454,7 +4743,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
             'racacor',
             'incfismen',
             'dtnascto',
-            'paisnac',]
+            'paisnac', ]
 
 
 
@@ -5482,9 +4771,9 @@ class s2400evtCdBenefInSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2405evtCdBenefAlt(SoftDeletionModel):
@@ -5523,27 +4812,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),
-            unicode(self.dtalteracao),
-            unicode(self.nmbenefic),
-            unicode(self.sexo),
-            unicode(self.racacor),
-            unicode(self.incfismen),
-            unicode(self.paisnac),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5560,7 +4829,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
         db_table = r's2405_evtcdbenefalt'       
         managed = True  # s2405_evtcdbenefalt #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5592,7 +4861,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
             'sexo',
             'racacor',
             'incfismen',
-            'paisnac',]
+            'paisnac', ]
 
 
 
@@ -5620,9 +4889,9 @@ class s2405evtCdBenefAltSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2410evtCdBenIn(SoftDeletionModel):
@@ -5661,29 +4930,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),
-            unicode(self.cadini),
-            unicode(self.nrbeneficio),
-            unicode(self.dtinibeneficio),
-            unicode(self.tpbeneficio),
-            unicode(self.vrbeneficio),
-            unicode(self.tpplanrp),
-            unicode(self.inddecjud),
-            unicode(self.indhomologtc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5700,7 +4947,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
         db_table = r's2410_evtcdbenin'       
         managed = True  # s2410_evtcdbenin #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5734,7 +4981,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
             'vrbeneficio',
             'tpplanrp',
             'inddecjud',
-            'indhomologtc',]
+            'indhomologtc', ]
 
 
 
@@ -5762,9 +5009,9 @@ class s2410evtCdBenInSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2416evtCdBenAlt(SoftDeletionModel):
@@ -5800,28 +5047,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),
-            unicode(self.nrbeneficio),
-            unicode(self.dtaltbeneficio),
-            unicode(self.tpbeneficio),
-            unicode(self.tpplanrp),
-            unicode(self.inddecjud),
-            unicode(self.indhomologtc),
-            unicode(self.indsuspensao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5838,7 +5064,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
         db_table = r's2416_evtcdbenalt'       
         managed = True  # s2416_evtcdbenalt #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5871,7 +5097,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
             'tpplanrp',
             'inddecjud',
             'indhomologtc',
-            'indsuspensao',]
+            'indsuspensao', ]
 
 
 
@@ -5899,9 +5125,9 @@ class s2416evtCdBenAltSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2420evtCdBenTerm(SoftDeletionModel):
@@ -5932,24 +5158,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indretif),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpfbenef),
-            unicode(self.nrbeneficio),
-            unicode(self.dttermbeneficio),
-            unicode(self.mtvtermino),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -5966,7 +5175,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
         db_table = r's2420_evtcdbenterm'       
         managed = True  # s2420_evtcdbenterm #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -5995,7 +5204,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
             'cpfbenef',
             'nrbeneficio',
             'dttermbeneficio',
-            'mtvtermino',]
+            'mtvtermino', ]
 
 
 
@@ -6023,9 +5232,9 @@ class s2420evtCdBenTermSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s3000evtExclusao(SoftDeletionModel):
@@ -6052,21 +5261,7 @@ class s3000evtExclusao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.tpamb),
-            unicode(self.procemi),
-            unicode(self.verproc),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.tpevento),
-            unicode(self.nrrecevt),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6083,7 +5278,7 @@ class s3000evtExclusao(SoftDeletionModel):
         db_table = r's3000_evtexclusao'       
         managed = True  # s3000_evtexclusao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6109,7 +5304,7 @@ class s3000evtExclusao(SoftDeletionModel):
             'tpinsc',
             'nrinsc',
             'tpevento',
-            'nrrecevt',]
+            'nrrecevt', ]
 
 
 
@@ -6137,9 +5332,9 @@ class s3000evtExclusaoSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001evtBasesTrab(SoftDeletionModel):
@@ -6165,20 +5360,7 @@ class s5001evtBasesTrab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.nrrecarqbase),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6195,7 +5377,7 @@ class s5001evtBasesTrab(SoftDeletionModel):
         db_table = r's5001_evtbasestrab'       
         managed = True  # s5001_evtbasestrab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6220,7 +5402,7 @@ class s5001evtBasesTrab(SoftDeletionModel):
             'perapur',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -6248,9 +5430,9 @@ class s5001evtBasesTrabSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002evtIrrfBenef(SoftDeletionModel):
@@ -6275,19 +5457,7 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.nrrecarqbase),
-            unicode(self.perapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6304,7 +5474,7 @@ class s5002evtIrrfBenef(SoftDeletionModel):
         db_table = r's5002_evtirrfbenef'       
         managed = True  # s5002_evtirrfbenef #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6328,7 +5498,7 @@ class s5002evtIrrfBenef(SoftDeletionModel):
             'perapur',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -6356,9 +5526,9 @@ class s5002evtIrrfBenefSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003evtBasesFGTS(SoftDeletionModel):
@@ -6385,19 +5555,7 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.nrrecarqbase),
-            unicode(self.perapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.cpftrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6414,7 +5572,7 @@ class s5003evtBasesFGTS(SoftDeletionModel):
         db_table = r's5003_evtbasesfgts'       
         managed = True  # s5003_evtbasesfgts #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6438,7 +5596,7 @@ class s5003evtBasesFGTS(SoftDeletionModel):
             'perapur',
             'tpinsc',
             'nrinsc',
-            'cpftrab',]
+            'cpftrab', ]
 
 
 
@@ -6466,9 +5624,9 @@ class s5003evtBasesFGTSSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011evtCS(SoftDeletionModel):
@@ -6495,21 +5653,7 @@ class s5011evtCS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.indapuracao),
-            unicode(self.perapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.nrrecarqbase),
-            unicode(self.indexistinfo),
-            unicode(self.classtrib),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6526,7 +5670,7 @@ class s5011evtCS(SoftDeletionModel):
         db_table = r's5011_evtcs'       
         managed = True  # s5011_evtcs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6552,7 +5696,7 @@ class s5011evtCS(SoftDeletionModel):
             'nrinsc',
             'nrrecarqbase',
             'indexistinfo',
-            'classtrib',]
+            'classtrib', ]
 
 
 
@@ -6580,9 +5724,9 @@ class s5011evtCSSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5012evtIrrf(SoftDeletionModel):
@@ -6607,19 +5751,7 @@ class s5012evtIrrf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.perapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.nrrecarqbase),
-            unicode(self.indexistinfo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6636,7 +5768,7 @@ class s5012evtIrrf(SoftDeletionModel):
         db_table = r's5012_evtirrf'       
         managed = True  # s5012_evtirrf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6660,7 +5792,7 @@ class s5012evtIrrf(SoftDeletionModel):
             'tpinsc',
             'nrinsc',
             'nrrecarqbase',
-            'indexistinfo',]
+            'indexistinfo', ]
 
 
 
@@ -6688,9 +5820,9 @@ class s5012evtIrrfSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013evtFGTS(SoftDeletionModel):
@@ -6715,19 +5847,7 @@ class s5013evtFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.identidade),
-            unicode(self.perapur),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.nrrecarqbase),
-            unicode(self.indexistinfo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.identidade
 
     def evento(self): 
     
@@ -6744,7 +5864,7 @@ class s5013evtFGTS(SoftDeletionModel):
         db_table = r's5013_evtfgts'       
         managed = True  # s5013_evtfgts #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -6768,7 +5888,7 @@ class s5013evtFGTS(SoftDeletionModel):
             'tpinsc',
             'nrinsc',
             'nrrecarqbase',
-            'indexistinfo',]
+            'indexistinfo', ]
 
 
 
@@ -6796,6 +5916,6 @@ class s5013evtFGTSSerializer(ModelSerializer):
                             'retornos_eventos', 'ocorrencias',
                             'validacao_precedencia', 'validacoes',
                             'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por',
+                            'criado_em', 'criado_por', 
                             'modificado_em', 'modificado_por',
-                            'excluido')
+                            'desativado_em', 'desativado_por', 'ativo')

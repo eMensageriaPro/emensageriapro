@@ -76,15 +76,7 @@ class s2210agenteCausador(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2210_evtcat),
-            unicode(self.codagntcausador),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class s2210agenteCausador(SoftDeletionModel):
         db_table = r's2210_agentecausador'       
         managed = True # s2210_agentecausador #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class s2210agenteCausadorSerializer(ModelSerializer):
     
         model = s2210agenteCausador
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210atestado(SoftDeletionModel):
@@ -143,24 +137,7 @@ class s2210atestado(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2210_evtcat),
-            unicode(self.dtatendimento),
-            unicode(self.hratendimento),
-            unicode(self.indinternacao),
-            unicode(self.durtrat),
-            unicode(self.indafast),
-            unicode(self.dsclesao),
-            unicode(self.codcid),
-            unicode(self.nmemit),
-            unicode(self.ideoc),
-            unicode(self.nroc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -168,7 +145,7 @@ class s2210atestado(SoftDeletionModel):
         db_table = r's2210_atestado'       
         managed = True # s2210_atestado #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -200,7 +177,9 @@ class s2210atestadoSerializer(ModelSerializer):
     
         model = s2210atestado
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210catOrigem(SoftDeletionModel):
@@ -215,16 +194,7 @@ class s2210catOrigem(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2210_evtcat),
-            unicode(self.dtcatorig),
-            unicode(self.nrreccatorig),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -232,7 +202,7 @@ class s2210catOrigem(SoftDeletionModel):
         db_table = r's2210_catorigem'       
         managed = True # s2210_catorigem #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -256,7 +226,9 @@ class s2210catOrigemSerializer(ModelSerializer):
     
         model = s2210catOrigem
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210ideLocalAcid(SoftDeletionModel):
@@ -271,16 +243,7 @@ class s2210ideLocalAcid(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2210_evtcat),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -288,7 +251,7 @@ class s2210ideLocalAcid(SoftDeletionModel):
         db_table = r's2210_idelocalacid'       
         managed = True # s2210_idelocalacid #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -312,7 +275,9 @@ class s2210ideLocalAcidSerializer(ModelSerializer):
     
         model = s2210ideLocalAcid
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2210parteAtingida(SoftDeletionModel):
@@ -327,16 +292,7 @@ class s2210parteAtingida(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2210_evtcat),
-            unicode(self.codparteating),
-            unicode(self.lateralidade),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -344,7 +300,7 @@ class s2210parteAtingida(SoftDeletionModel):
         db_table = r's2210_parteatingida'       
         managed = True # s2210_parteatingida #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -368,4 +324,6 @@ class s2210parteAtingidaSerializer(ModelSerializer):
     
         model = s2210parteAtingida
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -78,17 +78,7 @@ class s5001calcTerc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_infocategincid),
-            unicode(self.tpcr),
-            unicode(self.vrcssegterc),
-            unicode(self.vrdescterc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -96,7 +86,7 @@ class s5001calcTerc(SoftDeletionModel):
         db_table = r's5001_calcterc'       
         managed = True # s5001_calcterc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -121,7 +111,9 @@ class s5001calcTercSerializer(ModelSerializer):
     
         model = s5001calcTerc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001ideEstabLot(SoftDeletionModel):
@@ -137,17 +129,7 @@ class s5001ideEstabLot(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_infocp),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.codlotacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -155,7 +137,7 @@ class s5001ideEstabLot(SoftDeletionModel):
         db_table = r's5001_ideestablot'       
         managed = True # s5001_ideestablot #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -180,7 +162,9 @@ class s5001ideEstabLotSerializer(ModelSerializer):
     
         model = s5001ideEstabLot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoBaseCS(SoftDeletionModel):
@@ -196,17 +180,7 @@ class s5001infoBaseCS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_infocategincid),
-            unicode(self.ind13),
-            unicode(self.tpvalor),
-            unicode(self.valor),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -214,7 +188,7 @@ class s5001infoBaseCS(SoftDeletionModel):
         db_table = r's5001_infobasecs'       
         managed = True # s5001_infobasecs #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -239,7 +213,9 @@ class s5001infoBaseCSSerializer(ModelSerializer):
     
         model = s5001infoBaseCS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoCategIncid(SoftDeletionModel):
@@ -255,15 +231,7 @@ class s5001infoCategIncid(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_ideestablot),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -271,7 +239,7 @@ class s5001infoCategIncid(SoftDeletionModel):
         db_table = r's5001_infocategincid'       
         managed = True # s5001_infocategincid #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -294,7 +262,9 @@ class s5001infoCategIncidSerializer(ModelSerializer):
     
         model = s5001infoCategIncid
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoCp(SoftDeletionModel):
@@ -307,14 +277,7 @@ class s5001infoCp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_evtbasestrab),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -322,7 +285,7 @@ class s5001infoCp(SoftDeletionModel):
         db_table = r's5001_infocp'       
         managed = True # s5001_infocp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -344,7 +307,9 @@ class s5001infoCpSerializer(ModelSerializer):
     
         model = s5001infoCp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoCpCalc(SoftDeletionModel):
@@ -360,17 +325,7 @@ class s5001infoCpCalc(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_evtbasestrab),
-            unicode(self.tpcr),
-            unicode(self.vrcpseg),
-            unicode(self.vrdescseg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -378,7 +333,7 @@ class s5001infoCpCalc(SoftDeletionModel):
         db_table = r's5001_infocpcalc'       
         managed = True # s5001_infocpcalc #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -403,7 +358,9 @@ class s5001infoCpCalcSerializer(ModelSerializer):
     
         model = s5001infoCpCalc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001procJudTrab(SoftDeletionModel):
@@ -418,16 +375,7 @@ class s5001procJudTrab(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5001_evtbasestrab),
-            unicode(self.nrprocjud),
-            unicode(self.codsusp),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -435,7 +383,7 @@ class s5001procJudTrab(SoftDeletionModel):
         db_table = r's5001_procjudtrab'       
         managed = True # s5001_procjudtrab #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -459,4 +407,6 @@ class s5001procJudTrabSerializer(ModelSerializer):
     
         model = s5001procJudTrab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -87,7 +87,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             s1010_evttabrubrica_form = form_s1010_evttabrubrica(request.POST or None, instance = s1010_evttabrubrica, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -97,7 +97,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

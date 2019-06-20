@@ -76,15 +76,7 @@ class s2231fimCessao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2231_evtcessao),
-            unicode(self.dttermcessao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class s2231fimCessao(SoftDeletionModel):
         db_table = r's2231_fimcessao'       
         managed = True # s2231_fimcessao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class s2231fimCessaoSerializer(ModelSerializer):
     
         model = s2231fimCessao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2231iniCessao(SoftDeletionModel):
@@ -133,18 +127,7 @@ class s2231iniCessao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2231_evtcessao),
-            unicode(self.dtinicessao),
-            unicode(self.cnpjcess),
-            unicode(self.infonus),
-            unicode(self.indcessao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -152,7 +135,7 @@ class s2231iniCessao(SoftDeletionModel):
         db_table = r's2231_inicessao'       
         managed = True # s2231_inicessao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -178,4 +161,6 @@ class s2231iniCessaoSerializer(ModelSerializer):
     
         model = s2231iniCessao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

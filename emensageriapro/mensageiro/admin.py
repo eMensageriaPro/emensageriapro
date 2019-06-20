@@ -14,7 +14,9 @@ class AuditoriaAdmin(admin.ModelAdmin):
         'criado_por',
         'modificado_em', 
         'modificado_por',
-        'excluido',
+        'desativado_em', 
+        'desativado_por',
+        'ativo',
     )
 
 
@@ -33,13 +35,10 @@ class CertificadosAdmin(AuditoriaAdmin):
     )
     
     def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
+        return queryset.filter(ativo=False)
 
     def get_form(self, request, obj=None, **kwargs):
-        if obj:
-            self.exclude = ('certificado', 'senha')
-        else:
-            self.exclude = ()
+    
         form = super(CertificadosAdmin, self).get_form(request, obj, **kwargs)
         return form
 

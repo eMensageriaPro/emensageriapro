@@ -77,16 +77,7 @@ class s1280infoAtivConcom(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1280_evtinfocomplper),
-            unicode(self.fatormes),
-            unicode(self.fator13),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s1280infoAtivConcom(SoftDeletionModel):
         db_table = r's1280_infoativconcom'       
         managed = True # s1280_infoativconcom #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,7 +109,9 @@ class s1280infoAtivConcomSerializer(ModelSerializer):
     
         model = s1280infoAtivConcom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1280infoSubstPatr(SoftDeletionModel):
@@ -133,16 +126,7 @@ class s1280infoSubstPatr(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1280_evtinfocomplper),
-            unicode(self.indsubstpatr),
-            unicode(self.percredcontrib),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -150,7 +134,7 @@ class s1280infoSubstPatr(SoftDeletionModel):
         db_table = r's1280_infosubstpatr'       
         managed = True # s1280_infosubstpatr #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -174,7 +158,9 @@ class s1280infoSubstPatrSerializer(ModelSerializer):
     
         model = s1280infoSubstPatr
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s1280infoSubstPatrOpPort(SoftDeletionModel):
@@ -188,15 +174,7 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s1280_evtinfocomplper),
-            unicode(self.cnpjopportuario),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -204,7 +182,7 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
         db_table = r's1280_infosubstpatropport'       
         managed = True # s1280_infosubstpatropport #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -227,4 +205,6 @@ class s1280infoSubstPatrOpPortSerializer(ModelSerializer):
     
         model = s1280infoSubstPatrOpPort
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

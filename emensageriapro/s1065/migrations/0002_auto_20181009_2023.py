@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('s1065', '0001_initial'),
+        ('controle_de_acesso', '0026_auto_20190620_1505'),
     ]
 
     operations = [

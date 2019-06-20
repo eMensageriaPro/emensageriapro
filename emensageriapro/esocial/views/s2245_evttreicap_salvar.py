@@ -83,7 +83,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None, instance = s2245_evttreicap, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -93,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

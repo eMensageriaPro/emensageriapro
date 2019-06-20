@@ -87,7 +87,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             r2020_evtservprest_form = form_r2020_evtservprest(request.POST or None, instance = r2020_evtservprest, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -97,7 +97,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

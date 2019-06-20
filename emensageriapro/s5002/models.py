@@ -77,16 +77,7 @@ class s5002basesIrrf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5002_infoirrf),
-            unicode(self.tpvalor),
-            unicode(self.valor),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s5002basesIrrf(SoftDeletionModel):
         db_table = r's5002_basesirrf'       
         managed = True # s5002_basesirrf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,7 +109,9 @@ class s5002basesIrrfSerializer(ModelSerializer):
     
         model = s5002basesIrrf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002idePgtoExt(SoftDeletionModel):
@@ -140,18 +133,7 @@ class s5002idePgtoExt(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5002_infoirrf),
-            unicode(self.codpais),
-            unicode(self.indnif),
-            unicode(self.dsclograd),
-            unicode(self.nmcid),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -159,7 +141,7 @@ class s5002idePgtoExt(SoftDeletionModel):
         db_table = r's5002_idepgtoext'       
         managed = True # s5002_idepgtoext #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -185,7 +167,9 @@ class s5002idePgtoExtSerializer(ModelSerializer):
     
         model = s5002idePgtoExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002infoDep(SoftDeletionModel):
@@ -199,15 +183,7 @@ class s5002infoDep(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5002_evtirrfbenef),
-            unicode(self.vrdeddep),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -215,7 +191,7 @@ class s5002infoDep(SoftDeletionModel):
         db_table = r's5002_infodep'       
         managed = True # s5002_infodep #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -238,7 +214,9 @@ class s5002infoDepSerializer(ModelSerializer):
     
         model = s5002infoDep
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002infoIrrf(SoftDeletionModel):
@@ -253,15 +231,7 @@ class s5002infoIrrf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5002_evtirrfbenef),
-            unicode(self.indresbr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -269,7 +239,7 @@ class s5002infoIrrf(SoftDeletionModel):
         db_table = r's5002_infoirrf'       
         managed = True # s5002_infoirrf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -292,7 +262,9 @@ class s5002infoIrrfSerializer(ModelSerializer):
     
         model = s5002infoIrrf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002irrf(SoftDeletionModel):
@@ -307,16 +279,7 @@ class s5002irrf(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5002_infoirrf),
-            unicode(self.tpcr),
-            unicode(self.vrirrfdesc),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -324,7 +287,7 @@ class s5002irrf(SoftDeletionModel):
         db_table = r's5002_irrf'       
         managed = True # s5002_irrf #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -348,4 +311,6 @@ class s5002irrfSerializer(ModelSerializer):
     
         model = s5002irrf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

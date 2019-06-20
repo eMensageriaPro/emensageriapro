@@ -83,7 +83,7 @@ def salvar(request, pk=None, tab='master', output=None):
         if pk:
         
             r4020_evtretpj_form = form_r4020_evtretpj(request.POST or None, instance = r4020_evtretpj, 
-                                         initial={'excluido': False})
+                                         initial={'ativo': True})
                                          
         else:
         
@@ -93,7 +93,7 @@ def salvar(request, pk=None, tab='master', output=None):
                                                   'tpamb': TP_AMB, 
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
-                                                  'excluido': False})
+                                                  'ativo': True})
                                                   
         if request.method == 'POST':
         

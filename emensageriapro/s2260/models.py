@@ -83,20 +83,7 @@ class s2260localTrabInterm(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2260_evtconvinterm),
-            unicode(self.tplograd),
-            unicode(self.dsclograd),
-            unicode(self.nrlograd),
-            unicode(self.cep),
-            unicode(self.codmunic),
-            unicode(self.uf),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -104,7 +91,7 @@ class s2260localTrabInterm(SoftDeletionModel):
         db_table = r's2260_localtrabinterm'       
         managed = True # s2260_localtrabinterm #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -132,4 +119,6 @@ class s2260localTrabIntermSerializer(ModelSerializer):
     
         model = s2260localTrabInterm
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

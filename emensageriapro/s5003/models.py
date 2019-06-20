@@ -77,16 +77,7 @@ class s5003basePerAntE(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infobaseperante),
-            unicode(self.tpvalore),
-            unicode(self.remfgtse),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -94,7 +85,7 @@ class s5003basePerAntE(SoftDeletionModel):
         db_table = r's5003_baseperante'       
         managed = True # s5003_baseperante #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -118,7 +109,9 @@ class s5003basePerAntESerializer(ModelSerializer):
     
         model = s5003basePerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003basePerApur(SoftDeletionModel):
@@ -133,16 +126,7 @@ class s5003basePerApur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infobasefgts),
-            unicode(self.tpvalor),
-            unicode(self.remfgts),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -150,7 +134,7 @@ class s5003basePerApur(SoftDeletionModel):
         db_table = r's5003_baseperapur'       
         managed = True # s5003_baseperapur #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -174,7 +158,9 @@ class s5003basePerApurSerializer(ModelSerializer):
     
         model = s5003basePerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003dpsPerAntE(SoftDeletionModel):
@@ -189,16 +175,7 @@ class s5003dpsPerAntE(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infodpsperante),
-            unicode(self.tpdpse),
-            unicode(self.dpsfgtse),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -206,7 +183,7 @@ class s5003dpsPerAntE(SoftDeletionModel):
         db_table = r's5003_dpsperante'       
         managed = True # s5003_dpsperante #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -230,7 +207,9 @@ class s5003dpsPerAntESerializer(ModelSerializer):
     
         model = s5003dpsPerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003dpsPerApur(SoftDeletionModel):
@@ -245,16 +224,7 @@ class s5003dpsPerApur(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infotrabdps),
-            unicode(self.tpdps),
-            unicode(self.dpsfgts),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -262,7 +232,7 @@ class s5003dpsPerApur(SoftDeletionModel):
         db_table = r's5003_dpsperapur'       
         managed = True # s5003_dpsperapur #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -286,7 +256,9 @@ class s5003dpsPerApurSerializer(ModelSerializer):
     
         model = s5003dpsPerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003ideEstabLot(SoftDeletionModel):
@@ -302,17 +274,7 @@ class s5003ideEstabLot(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_evtbasesfgts),
-            unicode(self.tpinsc),
-            unicode(self.nrinsc),
-            unicode(self.codlotacao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -320,7 +282,7 @@ class s5003ideEstabLot(SoftDeletionModel):
         db_table = r's5003_ideestablot'       
         managed = True # s5003_ideestablot #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -345,7 +307,9 @@ class s5003ideEstabLotSerializer(ModelSerializer):
     
         model = s5003ideEstabLot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoBaseFGTS(SoftDeletionModel):
@@ -358,14 +322,7 @@ class s5003infoBaseFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infotrabfgts),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -373,7 +330,7 @@ class s5003infoBaseFGTS(SoftDeletionModel):
         db_table = r's5003_infobasefgts'       
         managed = True # s5003_infobasefgts #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -395,7 +352,9 @@ class s5003infoBaseFGTSSerializer(ModelSerializer):
     
         model = s5003infoBaseFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoBasePerAntE(SoftDeletionModel):
@@ -409,15 +368,7 @@ class s5003infoBasePerAntE(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infobasefgts),
-            unicode(self.perref),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -425,7 +376,7 @@ class s5003infoBasePerAntE(SoftDeletionModel):
         db_table = r's5003_infobaseperante'       
         managed = True # s5003_infobaseperante #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -448,7 +399,9 @@ class s5003infoBasePerAntESerializer(ModelSerializer):
     
         model = s5003infoBasePerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoDpsFGTS(SoftDeletionModel):
@@ -461,14 +414,7 @@ class s5003infoDpsFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_evtbasesfgts),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -476,7 +422,7 @@ class s5003infoDpsFGTS(SoftDeletionModel):
         db_table = r's5003_infodpsfgts'       
         managed = True # s5003_infodpsfgts #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -498,7 +444,9 @@ class s5003infoDpsFGTSSerializer(ModelSerializer):
     
         model = s5003infoDpsFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoDpsPerAntE(SoftDeletionModel):
@@ -512,15 +460,7 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infotrabdps),
-            unicode(self.perref),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -528,7 +468,7 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
         db_table = r's5003_infodpsperante'       
         managed = True # s5003_infodpsperante #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -551,7 +491,9 @@ class s5003infoDpsPerAntESerializer(ModelSerializer):
     
         model = s5003infoDpsPerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoTrabDps(SoftDeletionModel):
@@ -566,15 +508,7 @@ class s5003infoTrabDps(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_infodpsfgts),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -582,7 +516,7 @@ class s5003infoTrabDps(SoftDeletionModel):
         db_table = r's5003_infotrabdps'       
         managed = True # s5003_infotrabdps #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -605,7 +539,9 @@ class s5003infoTrabDpsSerializer(ModelSerializer):
     
         model = s5003infoTrabDps
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoTrabFGTS(SoftDeletionModel):
@@ -626,15 +562,7 @@ class s5003infoTrabFGTS(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s5003_ideestablot),
-            unicode(self.codcateg),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -642,7 +570,7 @@ class s5003infoTrabFGTS(SoftDeletionModel):
         db_table = r's5003_infotrabfgts'       
         managed = True # s5003_infotrabfgts #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -665,4 +593,6 @@ class s5003infoTrabFGTSSerializer(ModelSerializer):
     
         model = s5003infoTrabFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

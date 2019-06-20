@@ -83,20 +83,7 @@ class s2306ageIntegracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_infoestagiario),
-            unicode(self.cnpjagntinteg),
-            unicode(self.nmrazao),
-            unicode(self.dsclograd),
-            unicode(self.nrlograd),
-            unicode(self.cep),
-            unicode(self.uf),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -104,7 +91,7 @@ class s2306ageIntegracao(SoftDeletionModel):
         db_table = r's2306_ageintegracao'       
         managed = True # s2306_ageintegracao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -132,7 +119,9 @@ class s2306ageIntegracaoSerializer(ModelSerializer):
     
         model = s2306ageIntegracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306cargoFuncao(SoftDeletionModel):
@@ -147,15 +136,7 @@ class s2306cargoFuncao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_infocomplementares),
-            unicode(self.codcargo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -163,7 +144,7 @@ class s2306cargoFuncao(SoftDeletionModel):
         db_table = r's2306_cargofuncao'       
         managed = True # s2306_cargofuncao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -186,7 +167,9 @@ class s2306cargoFuncaoSerializer(ModelSerializer):
     
         model = s2306cargoFuncao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306infoComplementares(SoftDeletionModel):
@@ -199,14 +182,7 @@ class s2306infoComplementares(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_evttsvaltcontr),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -214,7 +190,7 @@ class s2306infoComplementares(SoftDeletionModel):
         db_table = r's2306_infocomplementares'       
         managed = True # s2306_infocomplementares #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -236,7 +212,9 @@ class s2306infoComplementaresSerializer(ModelSerializer):
     
         model = s2306infoComplementares
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306infoEstagiario(SoftDeletionModel):
@@ -263,18 +241,7 @@ class s2306infoEstagiario(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_infocomplementares),
-            unicode(self.natestagio),
-            unicode(self.nivestagio),
-            unicode(self.dtprevterm),
-            unicode(self.nmrazao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -282,7 +249,7 @@ class s2306infoEstagiario(SoftDeletionModel):
         db_table = r's2306_infoestagiario'       
         managed = True # s2306_infoestagiario #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -308,7 +275,9 @@ class s2306infoEstagiarioSerializer(ModelSerializer):
     
         model = s2306infoEstagiario
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306infoTrabCedido(SoftDeletionModel):
@@ -322,15 +291,7 @@ class s2306infoTrabCedido(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_infocomplementares),
-            unicode(self.indremuncargo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -338,7 +299,7 @@ class s2306infoTrabCedido(SoftDeletionModel):
         db_table = r's2306_infotrabcedido'       
         managed = True # s2306_infotrabcedido #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -361,7 +322,9 @@ class s2306infoTrabCedidoSerializer(ModelSerializer):
     
         model = s2306infoTrabCedido
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306remuneracao(SoftDeletionModel):
@@ -377,16 +340,7 @@ class s2306remuneracao(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_infocomplementares),
-            unicode(self.vrsalfx),
-            unicode(self.undsalfixo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -394,7 +348,7 @@ class s2306remuneracao(SoftDeletionModel):
         db_table = r's2306_remuneracao'       
         managed = True # s2306_remuneracao #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -418,7 +372,9 @@ class s2306remuneracaoSerializer(ModelSerializer):
     
         model = s2306remuneracao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2306supervisorEstagio(SoftDeletionModel):
@@ -433,16 +389,7 @@ class s2306supervisorEstagio(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2306_infoestagiario),
-            unicode(self.cpfsupervisor),
-            unicode(self.nmsuperv),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -450,7 +397,7 @@ class s2306supervisorEstagio(SoftDeletionModel):
         db_table = r's2306_supervisorestagio'       
         managed = True # s2306_supervisorestagio #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -474,4 +421,6 @@ class s2306supervisorEstagioSerializer(ModelSerializer):
     
         model = s2306supervisorEstagio
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

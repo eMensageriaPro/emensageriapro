@@ -1,8 +1,8 @@
--- View: public.transmissor_eventos_esocial
+-- View: public.vw_transmissor_eventos_esocial
 
--- DROP VIEW public.transmissor_eventos_esocial;
+-- DROP VIEW public.vw_transmissor_eventos_esocial;
 
-CREATE OR REPLACE VIEW public.transmissor_eventos_esocial AS 
+CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial AS 
  SELECT s1000_evtinfoempregador.id,
     's1000'::text AS evento,
     s1000_evtinfoempregador.identidade,
@@ -25,7 +25,7 @@ CREATE OR REPLACE VIEW public.transmissor_eventos_esocial AS
     s1000_evtinfoempregador.retornos_eventos_id,
     s1000_evtinfoempregador.ocorrencias
    FROM s1000_evtinfoempregador
-  WHERE s1000_evtinfoempregador.excluido = false
+  WHERE s1000_evtinfoempregador.ativo = true
 UNION
  SELECT s1005_evttabestab.id,
     's1005'::text AS evento,
@@ -49,7 +49,7 @@ UNION
     s1005_evttabestab.retornos_eventos_id,
     s1005_evttabestab.ocorrencias
    FROM s1005_evttabestab
-  WHERE s1005_evttabestab.excluido = false
+  WHERE s1005_evttabestab.ativo = true
 UNION
  SELECT s1010_evttabrubrica.id,
     's1010'::text AS evento,
@@ -73,7 +73,7 @@ UNION
     s1010_evttabrubrica.retornos_eventos_id,
     s1010_evttabrubrica.ocorrencias
    FROM s1010_evttabrubrica
-  WHERE s1010_evttabrubrica.excluido = false
+  WHERE s1010_evttabrubrica.ativo = true
 UNION
  SELECT s1020_evttablotacao.id,
     's1020'::text AS evento,
@@ -97,7 +97,7 @@ UNION
     s1020_evttablotacao.retornos_eventos_id,
     s1020_evttablotacao.ocorrencias
    FROM s1020_evttablotacao
-  WHERE s1020_evttablotacao.excluido = false
+  WHERE s1020_evttablotacao.ativo = true
 UNION
  SELECT s1030_evttabcargo.id,
     's1030'::text AS evento,
@@ -121,7 +121,7 @@ UNION
     s1030_evttabcargo.retornos_eventos_id,
     s1030_evttabcargo.ocorrencias
    FROM s1030_evttabcargo
-  WHERE s1030_evttabcargo.excluido = false
+  WHERE s1030_evttabcargo.ativo = true
 UNION
  SELECT s1035_evttabcarreira.id,
     's1035'::text AS evento,
@@ -145,7 +145,7 @@ UNION
     s1035_evttabcarreira.retornos_eventos_id,
     s1035_evttabcarreira.ocorrencias
    FROM s1035_evttabcarreira
-  WHERE s1035_evttabcarreira.excluido = false
+  WHERE s1035_evttabcarreira.ativo = true
 UNION
  SELECT s1040_evttabfuncao.id,
     's1040'::text AS evento,
@@ -169,7 +169,7 @@ UNION
     s1040_evttabfuncao.retornos_eventos_id,
     s1040_evttabfuncao.ocorrencias
    FROM s1040_evttabfuncao
-  WHERE s1040_evttabfuncao.excluido = false
+  WHERE s1040_evttabfuncao.ativo = true
 UNION
  SELECT s1050_evttabhortur.id,
     's1050'::text AS evento,
@@ -193,7 +193,7 @@ UNION
     s1050_evttabhortur.retornos_eventos_id,
     s1050_evttabhortur.ocorrencias
    FROM s1050_evttabhortur
-  WHERE s1050_evttabhortur.excluido = false
+  WHERE s1050_evttabhortur.ativo = true
 UNION
  SELECT s1060_evttabambiente.id,
     's1060'::text AS evento,
@@ -217,7 +217,7 @@ UNION
     s1060_evttabambiente.retornos_eventos_id,
     s1060_evttabambiente.ocorrencias
    FROM s1060_evttabambiente
-  WHERE s1060_evttabambiente.excluido = false
+  WHERE s1060_evttabambiente.ativo = true
 UNION
  SELECT s1070_evttabprocesso.id,
     's1070'::text AS evento,
@@ -241,7 +241,7 @@ UNION
     s1070_evttabprocesso.retornos_eventos_id,
     s1070_evttabprocesso.ocorrencias
    FROM s1070_evttabprocesso
-  WHERE s1070_evttabprocesso.excluido = false
+  WHERE s1070_evttabprocesso.ativo = true
 UNION
  SELECT s1080_evttaboperport.id,
     's1080'::text AS evento,
@@ -265,7 +265,7 @@ UNION
     s1080_evttaboperport.retornos_eventos_id,
     s1080_evttaboperport.ocorrencias
    FROM s1080_evttaboperport
-  WHERE s1080_evttaboperport.excluido = false
+  WHERE s1080_evttaboperport.ativo = true
 UNION
  SELECT s1200_evtremun.id,
     's1200'::text AS evento,
@@ -289,7 +289,7 @@ UNION
     s1200_evtremun.retornos_eventos_id,
     s1200_evtremun.ocorrencias
    FROM s1200_evtremun
-  WHERE s1200_evtremun.excluido = false
+  WHERE s1200_evtremun.ativo = true
 UNION
  SELECT s1202_evtrmnrpps.id,
     's1202'::text AS evento,
@@ -313,7 +313,7 @@ UNION
     s1202_evtrmnrpps.retornos_eventos_id,
     s1202_evtrmnrpps.ocorrencias
    FROM s1202_evtrmnrpps
-  WHERE s1202_evtrmnrpps.excluido = false
+  WHERE s1202_evtrmnrpps.ativo = true
 UNION
  SELECT s1207_evtbenprrp.id,
     's1207'::text AS evento,
@@ -337,7 +337,7 @@ UNION
     s1207_evtbenprrp.retornos_eventos_id,
     s1207_evtbenprrp.ocorrencias
    FROM s1207_evtbenprrp
-  WHERE s1207_evtbenprrp.excluido = false
+  WHERE s1207_evtbenprrp.ativo = true
 UNION
  SELECT s1210_evtpgtos.id,
     's1210'::text AS evento,
@@ -361,7 +361,7 @@ UNION
     s1210_evtpgtos.retornos_eventos_id,
     s1210_evtpgtos.ocorrencias
    FROM s1210_evtpgtos
-  WHERE s1210_evtpgtos.excluido = false
+  WHERE s1210_evtpgtos.ativo = true
 UNION
  SELECT s1250_evtaqprod.id,
     's1250'::text AS evento,
@@ -385,7 +385,7 @@ UNION
     s1250_evtaqprod.retornos_eventos_id,
     s1250_evtaqprod.ocorrencias
    FROM s1250_evtaqprod
-  WHERE s1250_evtaqprod.excluido = false
+  WHERE s1250_evtaqprod.ativo = true
 UNION
  SELECT s1260_evtcomprod.id,
     's1260'::text AS evento,
@@ -409,7 +409,7 @@ UNION
     s1260_evtcomprod.retornos_eventos_id,
     s1260_evtcomprod.ocorrencias
    FROM s1260_evtcomprod
-  WHERE s1260_evtcomprod.excluido = false
+  WHERE s1260_evtcomprod.ativo = true
 UNION
  SELECT s1270_evtcontratavnp.id,
     's1270'::text AS evento,
@@ -433,7 +433,7 @@ UNION
     s1270_evtcontratavnp.retornos_eventos_id,
     s1270_evtcontratavnp.ocorrencias
    FROM s1270_evtcontratavnp
-  WHERE s1270_evtcontratavnp.excluido = false
+  WHERE s1270_evtcontratavnp.ativo = true
 UNION
  SELECT s1280_evtinfocomplper.id,
     's1280'::text AS evento,
@@ -457,7 +457,7 @@ UNION
     s1280_evtinfocomplper.retornos_eventos_id,
     s1280_evtinfocomplper.ocorrencias
    FROM s1280_evtinfocomplper
-  WHERE s1280_evtinfocomplper.excluido = false
+  WHERE s1280_evtinfocomplper.ativo = true
 UNION
  SELECT s1295_evttotconting.id,
     's1295'::text AS evento,
@@ -481,7 +481,7 @@ UNION
     s1295_evttotconting.retornos_eventos_id,
     s1295_evttotconting.ocorrencias
    FROM s1295_evttotconting
-  WHERE s1295_evttotconting.excluido = false
+  WHERE s1295_evttotconting.ativo = true
 UNION
  SELECT s1298_evtreabreevper.id,
     's1298'::text AS evento,
@@ -505,7 +505,7 @@ UNION
     s1298_evtreabreevper.retornos_eventos_id,
     s1298_evtreabreevper.ocorrencias
    FROM s1298_evtreabreevper
-  WHERE s1298_evtreabreevper.excluido = false
+  WHERE s1298_evtreabreevper.ativo = true
 UNION
  SELECT s1299_evtfechaevper.id,
     's1299'::text AS evento,
@@ -529,7 +529,7 @@ UNION
     s1299_evtfechaevper.retornos_eventos_id,
     s1299_evtfechaevper.ocorrencias
    FROM s1299_evtfechaevper
-  WHERE s1299_evtfechaevper.excluido = false
+  WHERE s1299_evtfechaevper.ativo = true
 UNION
  SELECT s1300_evtcontrsindpatr.id,
     's1300'::text AS evento,
@@ -553,7 +553,7 @@ UNION
     s1300_evtcontrsindpatr.retornos_eventos_id,
     s1300_evtcontrsindpatr.ocorrencias
    FROM s1300_evtcontrsindpatr
-  WHERE s1300_evtcontrsindpatr.excluido = false
+  WHERE s1300_evtcontrsindpatr.ativo = true
 UNION
  SELECT s2190_evtadmprelim.id,
     's2190'::text AS evento,
@@ -577,7 +577,7 @@ UNION
     s2190_evtadmprelim.retornos_eventos_id,
     s2190_evtadmprelim.ocorrencias
    FROM s2190_evtadmprelim
-  WHERE s2190_evtadmprelim.excluido = false
+  WHERE s2190_evtadmprelim.ativo = true
 UNION
  SELECT s2200_evtadmissao.id,
     's2200'::text AS evento,
@@ -601,7 +601,7 @@ UNION
     s2200_evtadmissao.retornos_eventos_id,
     s2200_evtadmissao.ocorrencias
    FROM s2200_evtadmissao
-  WHERE s2200_evtadmissao.excluido = false
+  WHERE s2200_evtadmissao.ativo = true
 UNION
  SELECT s2205_evtaltcadastral.id,
     's2205'::text AS evento,
@@ -625,7 +625,7 @@ UNION
     s2205_evtaltcadastral.retornos_eventos_id,
     s2205_evtaltcadastral.ocorrencias
    FROM s2205_evtaltcadastral
-  WHERE s2205_evtaltcadastral.excluido = false
+  WHERE s2205_evtaltcadastral.ativo = true
 UNION
  SELECT s2206_evtaltcontratual.id,
     's2206'::text AS evento,
@@ -649,7 +649,7 @@ UNION
     s2206_evtaltcontratual.retornos_eventos_id,
     s2206_evtaltcontratual.ocorrencias
    FROM s2206_evtaltcontratual
-  WHERE s2206_evtaltcontratual.excluido = false
+  WHERE s2206_evtaltcontratual.ativo = true
 UNION
  SELECT s2210_evtcat.id,
     's2210'::text AS evento,
@@ -673,7 +673,7 @@ UNION
     s2210_evtcat.retornos_eventos_id,
     s2210_evtcat.ocorrencias
    FROM s2210_evtcat
-  WHERE s2210_evtcat.excluido = false
+  WHERE s2210_evtcat.ativo = true
 UNION
  SELECT s2220_evtmonit.id,
     's2220'::text AS evento,
@@ -697,7 +697,7 @@ UNION
     s2220_evtmonit.retornos_eventos_id,
     s2220_evtmonit.ocorrencias
    FROM s2220_evtmonit
-  WHERE s2220_evtmonit.excluido = false
+  WHERE s2220_evtmonit.ativo = true
 UNION
  SELECT s2230_evtafasttemp.id,
     's2230'::text AS evento,
@@ -721,7 +721,7 @@ UNION
     s2230_evtafasttemp.retornos_eventos_id,
     s2230_evtafasttemp.ocorrencias
    FROM s2230_evtafasttemp
-  WHERE s2230_evtafasttemp.excluido = false
+  WHERE s2230_evtafasttemp.ativo = true
 UNION
  SELECT s2231_evtcessao.id,
     's2231'::text AS evento,
@@ -745,7 +745,7 @@ UNION
     s2231_evtcessao.retornos_eventos_id,
     s2231_evtcessao.ocorrencias
    FROM s2231_evtcessao
-  WHERE s2231_evtcessao.excluido = false
+  WHERE s2231_evtcessao.ativo = true
 UNION
  SELECT s2240_evtexprisco.id,
     's2240'::text AS evento,
@@ -769,7 +769,7 @@ UNION
     s2240_evtexprisco.retornos_eventos_id,
     s2240_evtexprisco.ocorrencias
    FROM s2240_evtexprisco
-  WHERE s2240_evtexprisco.excluido = false
+  WHERE s2240_evtexprisco.ativo = true
 UNION
  SELECT s2241_evtinsapo.id,
     's2241'::text AS evento,
@@ -793,7 +793,7 @@ UNION
     s2241_evtinsapo.retornos_eventos_id,
     s2241_evtinsapo.ocorrencias
    FROM s2241_evtinsapo
-  WHERE s2241_evtinsapo.excluido = false
+  WHERE s2241_evtinsapo.ativo = true
 UNION
  SELECT s2250_evtavprevio.id,
     's2250'::text AS evento,
@@ -817,7 +817,7 @@ UNION
     s2250_evtavprevio.retornos_eventos_id,
     s2250_evtavprevio.ocorrencias
    FROM s2250_evtavprevio
-  WHERE s2250_evtavprevio.excluido = false
+  WHERE s2250_evtavprevio.ativo = true
 UNION
  SELECT s2260_evtconvinterm.id,
     's2260'::text AS evento,
@@ -841,7 +841,7 @@ UNION
     s2260_evtconvinterm.retornos_eventos_id,
     s2260_evtconvinterm.ocorrencias
    FROM s2260_evtconvinterm
-  WHERE s2260_evtconvinterm.excluido = false
+  WHERE s2260_evtconvinterm.ativo = true
 UNION
  SELECT s2298_evtreintegr.id,
     's2298'::text AS evento,
@@ -865,7 +865,7 @@ UNION
     s2298_evtreintegr.retornos_eventos_id,
     s2298_evtreintegr.ocorrencias
    FROM s2298_evtreintegr
-  WHERE s2298_evtreintegr.excluido = false
+  WHERE s2298_evtreintegr.ativo = true
 UNION
  SELECT s2299_evtdeslig.id,
     's2299'::text AS evento,
@@ -889,7 +889,7 @@ UNION
     s2299_evtdeslig.retornos_eventos_id,
     s2299_evtdeslig.ocorrencias
    FROM s2299_evtdeslig
-  WHERE s2299_evtdeslig.excluido = false
+  WHERE s2299_evtdeslig.ativo = true
 UNION
  SELECT s2300_evttsvinicio.id,
     's2300'::text AS evento,
@@ -913,7 +913,7 @@ UNION
     s2300_evttsvinicio.retornos_eventos_id,
     s2300_evttsvinicio.ocorrencias
    FROM s2300_evttsvinicio
-  WHERE s2300_evttsvinicio.excluido = false
+  WHERE s2300_evttsvinicio.ativo = true
 UNION
  SELECT s2306_evttsvaltcontr.id,
     's2306'::text AS evento,
@@ -937,7 +937,7 @@ UNION
     s2306_evttsvaltcontr.retornos_eventos_id,
     s2306_evttsvaltcontr.ocorrencias
    FROM s2306_evttsvaltcontr
-  WHERE s2306_evttsvaltcontr.excluido = false
+  WHERE s2306_evttsvaltcontr.ativo = true
 UNION
  SELECT s2399_evttsvtermino.id,
     's2399'::text AS evento,
@@ -961,7 +961,7 @@ UNION
     s2399_evttsvtermino.retornos_eventos_id,
     s2399_evttsvtermino.ocorrencias
    FROM s2399_evttsvtermino
-  WHERE s2399_evttsvtermino.excluido = false
+  WHERE s2399_evttsvtermino.ativo = true
 UNION
  SELECT s3000_evtexclusao.id,
     's3000'::text AS evento,
@@ -985,5 +985,5 @@ UNION
     s3000_evtexclusao.retornos_eventos_id,
     s3000_evtexclusao.ocorrencias
    FROM s3000_evtexclusao
-  WHERE s3000_evtexclusao.excluido = false;
+  WHERE s3000_evtexclusao.ativo = true;
 

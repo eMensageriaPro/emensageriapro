@@ -97,7 +97,7 @@ class ConfigPerfis(SoftDeletionModel):
         db_table = r'config_perfis'       
         managed = True # config_perfis #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -105,7 +105,7 @@ class ConfigPerfis(SoftDeletionModel):
             ("can_view_config_perfis", "Can view config_perfis"), )
         
         ordering = [
-            'titulo',]
+            'titulo', ]
             
             
  
@@ -115,15 +115,9 @@ class ConfigPerfisSerializer(ModelSerializer):
     
         model = ConfigPerfis
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class Usuarios(SoftDeletionModel):
@@ -165,24 +159,18 @@ class Usuarios(SoftDeletionModel):
         permissions = (
             ("can_view_usuarios", "Can view usuarios"),
             ("can_create_token_usuarios", "Pode criar Token"),)
-            
-        # ordering = [
-        #     'user.first_name', 
-        #     'user.last_name']
-
+       
 
 
 class UsuariosSerializer(ModelSerializer):
-    class Meta:
-        model = Usuarios
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
-    def save(self):
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+    class Meta:
+    
+        model = Usuarios
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por', 
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class Auditoria(SoftDeletionModel):
@@ -233,15 +221,10 @@ class AuditoriaSerializer(ModelSerializer):
     class Meta:
     
         model = Auditoria
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
+        fields = '__all__'
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por', 
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class UserGroups(models.Model):

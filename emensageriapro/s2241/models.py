@@ -76,15 +76,7 @@ class s2241altAposentEsp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_aposentesp),
-            unicode(self.dtaltcondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -92,7 +84,7 @@ class s2241altAposentEsp(SoftDeletionModel):
         db_table = r's2241_altaposentesp'       
         managed = True # s2241_altaposentesp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -115,7 +107,9 @@ class s2241altAposentEspSerializer(ModelSerializer):
     
         model = s2241altAposentEsp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241altAposentEspfatRisco(SoftDeletionModel):
@@ -129,15 +123,7 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_altaposentesp_infoamb),
-            unicode(self.codfatris),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -145,7 +131,7 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
         db_table = r's2241_altaposentesp_fatrisco'       
         managed = True # s2241_altaposentesp_fatrisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -168,7 +154,9 @@ class s2241altAposentEspfatRiscoSerializer(ModelSerializer):
     
         model = s2241altAposentEspfatRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241altAposentEspinfoamb(SoftDeletionModel):
@@ -182,15 +170,7 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_altaposentesp),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -198,7 +178,7 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
         db_table = r's2241_altaposentesp_infoamb'       
         managed = True # s2241_altaposentesp_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -221,7 +201,9 @@ class s2241altAposentEspinfoambSerializer(ModelSerializer):
     
         model = s2241altAposentEspinfoamb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241altInsalPeric(SoftDeletionModel):
@@ -235,15 +217,7 @@ class s2241altInsalPeric(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_insalperic),
-            unicode(self.dtaltcondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -251,7 +225,7 @@ class s2241altInsalPeric(SoftDeletionModel):
         db_table = r's2241_altinsalperic'       
         managed = True # s2241_altinsalperic #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -274,7 +248,9 @@ class s2241altInsalPericSerializer(ModelSerializer):
     
         model = s2241altInsalPeric
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241altInsalPericfatRisco(SoftDeletionModel):
@@ -288,15 +264,7 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_altinsalperic_infoamb),
-            unicode(self.codfatris),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -304,7 +272,7 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
         db_table = r's2241_altinsalperic_fatrisco'       
         managed = True # s2241_altinsalperic_fatrisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -327,7 +295,9 @@ class s2241altInsalPericfatRiscoSerializer(ModelSerializer):
     
         model = s2241altInsalPericfatRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241altInsalPericinfoamb(SoftDeletionModel):
@@ -341,15 +311,7 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_altinsalperic),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -357,7 +319,7 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
         db_table = r's2241_altinsalperic_infoamb'       
         managed = True # s2241_altinsalperic_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -380,7 +342,9 @@ class s2241altInsalPericinfoambSerializer(ModelSerializer):
     
         model = s2241altInsalPericinfoamb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241aposentEsp(SoftDeletionModel):
@@ -393,14 +357,7 @@ class s2241aposentEsp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_evtinsapo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -408,7 +365,7 @@ class s2241aposentEsp(SoftDeletionModel):
         db_table = r's2241_aposentesp'       
         managed = True # s2241_aposentesp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -430,7 +387,9 @@ class s2241aposentEspSerializer(ModelSerializer):
     
         model = s2241aposentEsp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241fimAposentEsp(SoftDeletionModel):
@@ -444,15 +403,7 @@ class s2241fimAposentEsp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_aposentesp),
-            unicode(self.dtfimcondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -460,7 +411,7 @@ class s2241fimAposentEsp(SoftDeletionModel):
         db_table = r's2241_fimaposentesp'       
         managed = True # s2241_fimaposentesp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -483,7 +434,9 @@ class s2241fimAposentEspSerializer(ModelSerializer):
     
         model = s2241fimAposentEsp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241fimAposentEspinfoAmb(SoftDeletionModel):
@@ -497,15 +450,7 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_fimaposentesp),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -513,7 +458,7 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
         db_table = r's2241_fimaposentesp_infoamb'       
         managed = True # s2241_fimaposentesp_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -536,7 +481,9 @@ class s2241fimAposentEspinfoAmbSerializer(ModelSerializer):
     
         model = s2241fimAposentEspinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241fimInsalPeric(SoftDeletionModel):
@@ -550,15 +497,7 @@ class s2241fimInsalPeric(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_insalperic),
-            unicode(self.dtfimcondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -566,7 +505,7 @@ class s2241fimInsalPeric(SoftDeletionModel):
         db_table = r's2241_fiminsalperic'       
         managed = True # s2241_fiminsalperic #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -589,7 +528,9 @@ class s2241fimInsalPericSerializer(ModelSerializer):
     
         model = s2241fimInsalPeric
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241fimInsalPericinfoAmb(SoftDeletionModel):
@@ -603,15 +544,7 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_fiminsalperic),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -619,7 +552,7 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
         db_table = r's2241_fiminsalperic_infoamb'       
         managed = True # s2241_fiminsalperic_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -642,7 +575,9 @@ class s2241fimInsalPericinfoAmbSerializer(ModelSerializer):
     
         model = s2241fimInsalPericinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241iniAposentEsp(SoftDeletionModel):
@@ -656,15 +591,7 @@ class s2241iniAposentEsp(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_aposentesp),
-            unicode(self.dtinicondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -672,7 +599,7 @@ class s2241iniAposentEsp(SoftDeletionModel):
         db_table = r's2241_iniaposentesp'       
         managed = True # s2241_iniaposentesp #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -695,7 +622,9 @@ class s2241iniAposentEspSerializer(ModelSerializer):
     
         model = s2241iniAposentEsp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241iniAposentEspfatRisco(SoftDeletionModel):
@@ -709,15 +638,7 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_iniaposentesp_infoamb),
-            unicode(self.codfatris),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -725,7 +646,7 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
         db_table = r's2241_iniaposentesp_fatrisco'       
         managed = True # s2241_iniaposentesp_fatrisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -748,7 +669,9 @@ class s2241iniAposentEspfatRiscoSerializer(ModelSerializer):
     
         model = s2241iniAposentEspfatRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241iniAposentEspinfoAmb(SoftDeletionModel):
@@ -762,15 +685,7 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_iniaposentesp),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -778,7 +693,7 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
         db_table = r's2241_iniaposentesp_infoamb'       
         managed = True # s2241_iniaposentesp_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -801,7 +716,9 @@ class s2241iniAposentEspinfoAmbSerializer(ModelSerializer):
     
         model = s2241iniAposentEspinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241iniInsalPeric(SoftDeletionModel):
@@ -815,15 +732,7 @@ class s2241iniInsalPeric(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_insalperic),
-            unicode(self.dtinicondicao),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -831,7 +740,7 @@ class s2241iniInsalPeric(SoftDeletionModel):
         db_table = r's2241_iniinsalperic'       
         managed = True # s2241_iniinsalperic #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -854,7 +763,9 @@ class s2241iniInsalPericSerializer(ModelSerializer):
     
         model = s2241iniInsalPeric
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241iniInsalPericfatRisco(SoftDeletionModel):
@@ -868,15 +779,7 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_iniinsalperic_infoamb),
-            unicode(self.codfatris),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -884,7 +787,7 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
         db_table = r's2241_iniinsalperic_fatrisco'       
         managed = True # s2241_iniinsalperic_fatrisco #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -907,7 +810,9 @@ class s2241iniInsalPericfatRiscoSerializer(ModelSerializer):
     
         model = s2241iniInsalPericfatRisco
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241iniInsalPericinfoAmb(SoftDeletionModel):
@@ -921,15 +826,7 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_iniinsalperic),
-            unicode(self.codamb),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -937,7 +834,7 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
         db_table = r's2241_iniinsalperic_infoamb'       
         managed = True # s2241_iniinsalperic_infoamb #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -960,7 +857,9 @@ class s2241iniInsalPericinfoAmbSerializer(ModelSerializer):
     
         model = s2241iniInsalPericinfoAmb
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s2241insalPeric(SoftDeletionModel):
@@ -973,14 +872,7 @@ class s2241insalPeric(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2241_evtinsapo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -988,7 +880,7 @@ class s2241insalPeric(SoftDeletionModel):
         db_table = r's2241_insalperic'       
         managed = True # s2241_insalperic #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -1010,4 +902,6 @@ class s2241insalPericSerializer(ModelSerializer):
     
         model = s2241insalPeric
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

@@ -83,19 +83,7 @@ class s2220exame(SoftDeletionModel):
     
     def __unicode__(self):
         
-        lista = [
-            unicode(self.s2220_evtmonit),
-            unicode(self.dtexm),
-            unicode(self.procrealizado),
-            unicode(self.interprexm),
-            unicode(self.ordexame),
-            unicode(self.dtinimonit),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
+        return self.evento['identidade']
         
     class Meta:
     
@@ -103,7 +91,7 @@ class s2220exame(SoftDeletionModel):
         db_table = r's2220_exame'       
         managed = True # s2220_exame #
         
-        unique_together = ()
+        unique_together = ( )
             
         index_together = ()
         
@@ -130,4 +118,6 @@ class s2220exameSerializer(ModelSerializer):
     
         model = s2220exame
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+        read_only_fields = ('id', 'criado_em', 'criado_por', 
+                            'modificado_em', 'modificado_por',
+                            'desativado_em', 'desativado_por', 'ativo')

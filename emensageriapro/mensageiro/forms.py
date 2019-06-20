@@ -70,7 +70,7 @@ class form_arquivos(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -82,7 +82,9 @@ class form_arquivos(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_certificados(forms.ModelForm):
@@ -112,7 +114,7 @@ class form_certificados(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -125,6 +127,8 @@ class form_certificados(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'senha']
 
 
@@ -163,7 +167,7 @@ class form_importacao_arquivos(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -176,6 +180,8 @@ class form_importacao_arquivos(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'quant_processado']
 
 
@@ -215,7 +221,7 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -227,10 +233,13 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por', ]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_regras_validacao(forms.ModelForm):
+
 
     def __init__(self, *args, **kwargs):
     
@@ -262,7 +271,7 @@ class form_regras_validacao(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -274,7 +283,9 @@ class form_regras_validacao(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_relatorios(forms.ModelForm):
@@ -302,7 +313,7 @@ class form_relatorios(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -314,7 +325,9 @@ class form_relatorios(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_retornos_eventos(forms.ModelForm):
@@ -400,7 +413,7 @@ class form_retornos_eventos(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -412,7 +425,9 @@ class form_retornos_eventos(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_retornos_eventos_horarios(forms.ModelForm):
@@ -440,7 +455,7 @@ class form_retornos_eventos_horarios(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -452,7 +467,9 @@ class form_retornos_eventos_horarios(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_retornos_eventos_intervalos(forms.ModelForm):
@@ -480,7 +497,7 @@ class form_retornos_eventos_intervalos(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -492,7 +509,9 @@ class form_retornos_eventos_intervalos(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_retornos_eventos_ocorrencias(forms.ModelForm):
@@ -526,7 +545,7 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -539,6 +558,8 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'descricao']
 
 
@@ -567,7 +588,7 @@ class form_transmissores(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -579,7 +600,9 @@ class form_transmissores(forms.ModelForm):
             'criado_em', 
             'criado_por',
             'modificado_em', 
-            'modificado_por',]
+            'modificado_por',
+            'desativado_em', 
+            'desativado_por',]
 
 
 class form_transmissor_lote_efdreinf(forms.ModelForm):
@@ -618,7 +641,7 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -631,6 +654,8 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'retorno_descricao'
             'arquivo_header'
             'arquivo_request'
@@ -672,7 +697,7 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -685,6 +710,8 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'descricao']
 
 
@@ -722,7 +749,7 @@ class form_transmissor_lote_esocial(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -735,6 +762,8 @@ class form_transmissor_lote_esocial(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'resposta_descricao'
             'arquivo_header'
             'arquivo_request'
@@ -776,7 +805,7 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
                 m.criado_em = timezone.now()
             m.modificado_por_id = request.user.id
             m.modificado_em = timezone.now()
-            m.excluido = False
+            m.ativo = True
             m.save()
         
         return m
@@ -789,4 +818,6 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
             'criado_por',
             'modificado_em', 
             'modificado_por',
+            'desativado_em', 
+            'desativado_por',
             'descricao']
