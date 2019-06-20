@@ -117,7 +117,7 @@ def criar_transmissor_esocial(request, grupo, nrinsc, tpinsc):
 
         if not transmissor:
 
-            txt = u'Cadastre um Transmissor para o empregador %s!' % nrinsc
+            txt = u'Cadastre um Transmissor para o empregador %s com o tipo de inscrição %s!' % (nrinsc, tpinsc)
 
             if hash:
                 messages.error(request, txt)
