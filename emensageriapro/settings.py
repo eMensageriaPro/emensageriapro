@@ -435,7 +435,7 @@ CONSTANCE_CONFIG = {
                                 u'Assunto padrão do e-mail de recuperação de senha.',
                                 unicode),
 
-    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': (u'<p>Prezado %s,<br>Acesse o sistema pelo link<a href="%s">eMensageriaPro</a><br>Nova senha é <strong>%s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
+    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': (u'<p>Prezado %s,<br>Acesse o sistema pelo link <a href="%s">eMensageriaPro</a><br>Utilizando o usuário: <strong>%s</strong><br>Senha: <strong>%s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
                                 u'Mensagem padrão do e-mail de recuperação de senha.',
                                 unicode),
 
