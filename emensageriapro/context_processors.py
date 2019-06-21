@@ -49,6 +49,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 def admin_media(request):
 
     return {
+        'MEDIA_URL': settings.MEDIA_URL,
         'LINK_WEBSITE': settings.LINK_WEBSITE,
         'VERSAO_EMENSAGERIA': settings.VERSAO_EMENSAGERIA,
         'ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO': config.ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO,
