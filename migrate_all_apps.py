@@ -113,7 +113,7 @@ def update_tables():
     arquivos = os.listdir('%s/database/sql' % BASE_DIR)
 
     for a in arquivos:
-        
+
         if '.sql' in a:
 
             TXT = ler_arquivo('database/sql/%s' % (a))

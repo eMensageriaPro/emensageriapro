@@ -1,6 +1,6 @@
 -- View: public.vw_transmissor_eventos_efdreinf
 
-DROP VIEW public.vw_transmissor_eventos_efdreinf;
+DROP VIEW IF EXISTS  public.vw_transmissor_eventos_efdreinf;
 
 CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf AS SELECT r1000_evtinfocontri.id,
     'r1000'::text AS evento,
