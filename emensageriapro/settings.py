@@ -319,9 +319,9 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
 
-    'LOGO_IMAGE': ('logo.png', 'Logotipo da empresa', 'image_field'),
+    'LOGO_IMAGE': ('', 'Logotipo da empresa', 'image_field'),
 
-    'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b',
+    'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0123e4bbdfc6ee4b',
          u'Token de autenticação do sistema para acesso aos webservices',
          str),
 
