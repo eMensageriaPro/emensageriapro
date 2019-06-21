@@ -85,7 +85,7 @@ class ConfigPerfis(SoftDeletionModel):
         if self.id:
             from emensageriapro.controle_de_acesso.admin import update_user
             from emensageriapro.controle_de_acesso.models import Usuarios
-            users = Usuarios.objects.filter(configperfis_id=self.id).all()
+            users = Usuarios.objects.filter(config_perfis_id=self.id).all()
             for u in users:
                 update_user(u.user)
         super(PerfilGroups, self).save(*args, **kwargs)
@@ -246,7 +246,7 @@ class PerfilGroups(models.Model):
     def save(self, *args, **kwargs):
         from emensageriapro.controle_de_acesso.admin import update_user
         from emensageriapro.controle_de_acesso.models import Usuarios
-        users = Usuarios.objects.filter(configperfis_id=self.configperfis_id).all()
+        users = Usuarios.objects.filter(config_perfis_id=self.configperfis_id).all()
         for u in users:
             update_user(u.user)
         super(PerfilGroups, self).save(*args, **kwargs)
