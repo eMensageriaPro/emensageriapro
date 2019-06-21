@@ -1,6 +1,6 @@
 -- View: public.vw_transmissor_eventos_esocial_totalizacoes
 
-DROP VIEW IF EXISTS public.vw_transmissor_eventos_esocial_totalizacoes;
+DROP VIEW public.vw_transmissor_eventos_esocial_totalizacoes;
 
 CREATE OR REPLACE VIEW public.vw_transmissor_eventos_esocial_totalizacoes AS SELECT s5001_evtbasestrab.id,
     's5001' AS evento,

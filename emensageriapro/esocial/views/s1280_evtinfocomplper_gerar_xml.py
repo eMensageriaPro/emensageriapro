@@ -74,6 +74,8 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 def gerar_xml_s1280(request, pk, versao=None):
 
+    from emensageriapro.settings import BASE_DIR
+
     if pk:
 
         s1280_evtinfocomplper = get_object_or_404(
@@ -88,7 +90,7 @@ def gerar_xml_s1280(request, pk, versao=None):
 
         import os.path
 
-        if os.path.isfile(arquivo):
+        if os.path.isfile(BASE_DIR + '/' + arquivo):
 
             xmlns = get_xmlns(arquivo)
 

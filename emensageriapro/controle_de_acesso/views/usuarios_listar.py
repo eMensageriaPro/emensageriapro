@@ -78,7 +78,8 @@ def listar(request, output=None):
             'show_is_active': 1,
             'show_last_login': 0,
             'show_date_joined': 0,
-            'show_config_perfis': 1, }
+            'show_config_perfis': 1,
+            'show_name': 1, }
             
         post = False
         #ANTES-POST-LISTAGEM
@@ -92,7 +93,8 @@ def listar(request, output=None):
                 'first_name__icontains': 'first_name__icontains',
                 'last_name__icontains': 'last_name__icontains',
                 'email__icontains': 'email__icontains',
-                'config_perfis__icontains': 'config_perfis__icontains', }
+                'config_perfis__icontains': 'config_perfis__icontains',
+                'name__icontains': 'name__icontains', }
                 
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
@@ -107,7 +109,8 @@ def listar(request, output=None):
                     'first_name__icontains': 'first_name__icontains',
                     'last_name__icontains': 'last_name__icontains',
                     'email__icontains': 'email__icontains',
-                    'config_perfis__icontains': 'config_perfis__icontains', }
+                    'config_perfis__icontains': 'config_perfis__icontains',
+                    'name__icontains': 'name__icontains', }
                     
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)

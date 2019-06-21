@@ -119,6 +119,7 @@ class form_usuarios(forms.ModelForm):
     
         super (form_usuarios, self ).__init__(*args, **kwargs)
         self.fields['config_perfis'].widget.attrs['required'] = True
+        self.fields['name'].widget.attrs['required'] = True
 
     class Meta:
     

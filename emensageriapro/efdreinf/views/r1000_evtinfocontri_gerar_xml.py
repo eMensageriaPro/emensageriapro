@@ -74,6 +74,8 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 def gerar_xml_r1000(request, pk, versao=None):
 
+    from emensageriapro.settings import BASE_DIR
+
     if pk:
 
         r1000_evtinfocontri = get_object_or_404(
@@ -88,7 +90,7 @@ def gerar_xml_r1000(request, pk, versao=None):
 
         import os.path
 
-        if os.path.isfile(arquivo):
+        if os.path.isfile(BASE_DIR + '/' + arquivo):
 
             xmlns = get_xmlns(arquivo)
 

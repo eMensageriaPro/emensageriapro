@@ -1,6 +1,6 @@
 -- View: public.vw_transmissor_eventos_efdreinf_totalizacoes
 
-DROP VIEW IF EXISTS  public.vw_transmissor_eventos_efdreinf_totalizacoes;
+DROP VIEW public.vw_transmissor_eventos_efdreinf_totalizacoes;
 
 CREATE OR REPLACE VIEW public.vw_transmissor_eventos_efdreinf_totalizacoes AS SELECT r5001_evttotal.id,
     'r5001'::text AS evento,

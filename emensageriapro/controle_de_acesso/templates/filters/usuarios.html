@@ -63,6 +63,17 @@
 </div>
 <!-- fim__usuarios__config_perfis -->
 
+<!-- inicio__usuarios__name -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Nome Completo</label>
+    <div name="name" class="input-group" style="width: 100%;">
+      <input type="text" name="name" class="form-control" value="{{ dict_fields|get_value_from_dict:'name' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__usuarios__name -->
+
 
 
 <div class="form-group col-md-12">
@@ -123,6 +134,12 @@
 <div class="col-md-3">
     <div class="form-group">
         <input type="checkbox" name="show_config_perfis" value="1" {% if show_fields|get_value_from_dict:'show_config_perfis' %}checked{% endif %} >Perfil
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_name" value="1" {% if show_fields|get_value_from_dict:'show_name' %}checked{% endif %} >Nome Completo
     </div>
 </div>
 

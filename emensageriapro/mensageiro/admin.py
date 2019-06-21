@@ -35,7 +35,7 @@ class CertificadosAdmin(AuditoriaAdmin):
     )
     
     def queryset(self, request, queryset):
-        return queryset.filter(ativo=False)
+        return queryset.filter(ativo=True)
 
     def get_form(self, request, obj=None, **kwargs):
     

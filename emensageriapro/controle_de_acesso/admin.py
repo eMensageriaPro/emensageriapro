@@ -45,7 +45,7 @@ class ConfigPerfisAdmin(AuditoriaAdmin):
     )
     
     def queryset(self, request, queryset):
-        return queryset.filter(ativo=False)
+        return queryset.filter(ativo=True)
 
 
 
@@ -99,6 +99,7 @@ class CustomUserAdmin(UserAdmin):
     inlines = [UsuariosInline]
     search_fields = (
         'username',
+        'name',
         'first_name',
         'last_name',
         'email',

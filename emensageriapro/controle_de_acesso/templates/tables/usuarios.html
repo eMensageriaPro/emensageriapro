@@ -20,6 +20,9 @@
             {% if show_fields.show_config_perfis or 1 %}
             <th>Perfil</th>
             {% endif %}
+            {% if show_fields.show_name or 1 %}
+            <th>Nome Completo</th>
+            {% endif %}
             <!-- cabeçalho de colunas especiais -->
             {% if not output %}
             <th width="80px">Ações</th>
@@ -46,6 +49,9 @@
             {% endif %}
             {% if show_fields.show_config_perfis or 1 %}
             <td>{{ a.config_perfis }}</td>
+            {% endif %}
+            {% if show_fields.show_name or 1 %}
+            <td>{{ a.name }}</td>
             {% endif %}
             
             <!-- colunas especiais -->
