@@ -42,7 +42,7 @@ def arquivos_recuperacao(request, pk):
 
     # atualizar_versao()
 
-    return redirect('arquivos', hash=request.session['retorno_hash'])
+    return redirect('arquivos')
 
 
 

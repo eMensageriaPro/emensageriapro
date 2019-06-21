@@ -102,9 +102,6 @@ def salvar(request, pk=None, tab='master', output=None):
                 else:
                 
                     users_dados['password'] = 'asdkl1231'
-                    users_dados['is_superuser'] = False
-                    users_dados['is_staff'] = False
-                    users_dados['is_active'] = True
                     user_obj = User(**users_dados)
                     user_obj.save()
                     

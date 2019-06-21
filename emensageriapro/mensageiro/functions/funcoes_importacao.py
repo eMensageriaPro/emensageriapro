@@ -99,7 +99,7 @@ def importar_arquivo(arquivo, request, validar=0):
     error_list = 0
     import os
     dados = {}
-    if not os.path.isfile(BASE_DIR+'/'+arquivo):
+    if not os.path.isfile(BASE_DIR + '/' + arquivo):
         messages.error(request, 'Arquivo não encontrado!')
         return dados
     xml = ler_arquivo(arquivo).replace("s:", "")

@@ -322,40 +322,40 @@ CONSTANCE_CONFIG = {
     'LOGO_IMAGE': ('logo.png', 'Logotipo da empresa', 'image_field'),
 
     'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b',
-                         u'Token de autenticação do sistema para acesso aos webservices',
-                         str),
+         u'Token de autenticação do sistema para acesso aos webservices',
+         str),
 
     'ESOCIAL_VALIDATE_RUN_EVERY_MINS': (10,
-                                    u'Tempo entre validações (em minutos) dos eventos do eSocial.',
-                                    int),
+        u'Tempo entre validações (em minutos) dos eventos do eSocial.',
+        int),
 
     'ESOCIAL_SEND_RUN_EVERY_MINS': (10,
-                                    u'Tempo entre envios (em minutos) dos eventos do eSocial.',
-                                    int),
+        u'Tempo entre envios (em minutos) dos eventos do eSocial.',
+        int),
 
     'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10,
-                                       u'Tempo entre consultas (em minutos) dos eventos do eSocial.',
-                                       int),
+        u'Tempo entre consultas (em minutos) dos eventos do eSocial.',
+        int),
 
     'ESOCIAL_LOTE_MIN': (1,
-                          u'Quantidade do mínima do lote do eSocial.',
-                          int),
+        u'Quantidade do mínima do lote do eSocial.',
+        int),
 
     'ESOCIAL_LOTE_MAX': (60,
-                          u'Quantidade do máxima do lote do eSocial.',
-                          int),
+        u'Quantidade do máxima do lote do eSocial.',
+        int),
 
     'ESOCIAL_TIMEOUT': (3600,
-                          u'Timeout do eSocial.',
-                          int),
+        u'Timeout do eSocial.',
+        int),
 
     'ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-          u'Envio automático do eSocial.',
-          bool),
+        u'Envio automático do eSocial.',
+        bool),
 
     'ESOCIAL_CA_CERT_PEM_FILE': ('certificado/webservicesproducaorestritaesocialgovbr.crt',
-                         u'Caminho completo do Certificado do SERPRO para o eSocial',
-                         str),
+        u'Caminho completo do Certificado do SERPRO para o eSocial',
+        str),
 
     'ESOCIAL_TP_AMB': (
         '2',
@@ -363,56 +363,56 @@ CONSTANCE_CONFIG = {
         'choices_tp_amb'),
 
     'ESOCIAL_FORCE_PRODUCAO_RESTRITA': (True,
-                                u'Força o sistema para envio pelo ambiente produção restrita do eSocial.',
-                                bool),
+        u'Força o sistema para envio pelo ambiente produção restrita do eSocial.',
+        bool),
 
     'ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO': (False,
-          u'Ativa a função de verificar predecessão antes dos envios dos eventos do eSocial.',
-          bool),
+        u'Ativa a função de verificar predecessão antes dos envios dos eventos do eSocial.',
+        bool),
 
     'IMPORT_FILES_RUN_EVERY_MINS': (10,
-                                    u'Tempo de leitura de arquivos importados (em minutos).',
-                                    int),
+        u'Tempo de leitura de arquivos importados (em minutos).',
+        int),
 
     'IMPORT_LEN_EVENTS': (10,
-                          u'Quantidade do lote de arquivos de eventos para importação.',
-                          int),
+        u'Quantidade do lote de arquivos de eventos para importação.',
+        int),
 
     'IMPORT_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-          u'Envio automático do eSocial.',
-          bool),
+        u'Envio automático do eSocial.',
+        bool),
 
     'EFDREINF_VALIDADE_RUN_EVERY_MINS': (10,
-                                     u'Tempo entre validações (em minutos) dos eventos do EFD-Reinf.',
-                                     int),
+        u'Tempo entre validações (em minutos) dos eventos do EFD-Reinf.',
+        int),
 
     'EFDREINF_SEND_RUN_EVERY_MINS': (10,
-                                     u'Tempo entre envios (em minutos) dos eventos do EFD-Reinf.',
-                                     int),
+        u'Tempo entre envios (em minutos) dos eventos do EFD-Reinf.',
+        int),
 
     'EFDREINF_CONSULT_RUN_EVERY_MINS': (10,
-                                        u'Tempo entre consultas (em minutos) dos eventos do EFD-Reinf.',
-                                        int),
+        u'Tempo entre consultas (em minutos) dos eventos do EFD-Reinf.',
+        int),
 
     'EFDREINF_CA_CERT_PEM_FILE': ('certificados/acserproacfv5.crt',
-                         u'Caminho completo do Certificado do SERPRO para o EFD-Reinf',
-                         str),
+        u'Caminho completo do Certificado do SERPRO para o EFD-Reinf',
+        str),
 
     'EFDREINF_LOTE_MIN': (1,
-                          u'Quantidade do mínima do lote do EFD-Reinf.',
-                          int),
+        u'Quantidade do mínima do lote do EFD-Reinf.',
+        int),
 
     'EFDREINF_LOTE_MAX': (60,
-                          u'Quantidade do máxima do lote do EFD-Reinf.',
-                          int),
+        u'Quantidade do máxima do lote do EFD-Reinf.',
+        int),
 
     'EFDREINF_TIMEOUT': (3600,
-                          u'Timeout do EFD-Reinf.',
-                          int),
+        u'Timeout do EFD-Reinf.',
+        int),
 
     'EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-          u'Envio automático do EFD-Reinf.',
-          bool),
+        u'Envio automático do EFD-Reinf.',
+        bool),
 
     'EFDREINF_TP_AMB': (
         '2',
@@ -420,23 +420,23 @@ CONSTANCE_CONFIG = {
         'choices_tp_amb'),
 
     'EFDREINF_FORCE_PRODUCAO_RESTRITA': (True,
-                                u'Força o sistema para envio pelo ambiente produção restrita do EFD-Reinf.',
-                                bool),
+        u'Força o sistema para envio pelo ambiente produção restrita do EFD-Reinf.',
+        bool),
 
     'EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO': (False,
-          u'Ativa a função de verificar predecessão antes dos envios dos eventos do EFD-Reinf.',
-          bool),
+        u'Ativa a função de verificar predecessão antes dos envios dos eventos do EFD-Reinf.',
+        bool),
 
     'EMAIL_RECUPERACAO_SENHA': ('emensageria@emensageria.com.br',
-                                u'E-mail de recuperação de senha.',
-                                str),
+        u'E-mail de recuperação de senha.',
+        str),
 
     'EMAIL_RECUPERACAO_SENHA_ASSUNTO': (u'Criação/Recuperação de senha | eMensageria',
-                                u'Assunto padrão do e-mail de recuperação de senha.',
-                                unicode),
+        u'Assunto padrão do e-mail de recuperação de senha.',
+        unicode),
 
-    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': (u'<p>Prezado %s,<br>Acesse o sistema pelo link <a href="%s">eMensageriaPro</a><br>Utilizando o usuário: <strong>%s</strong><br>Senha: <strong>%s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
-                                u'Mensagem padrão do e-mail de recuperação de senha.',
-                                unicode),
+    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': (u'<p>Prezado %(nome)s,<br>Acesse o sistema pelo link <a href="%(endereco)s">eMensageriaPro</a><br>Utilizando o usuário: <strong>%(usuario)s</strong><br>Senha: <strong>%(senha)s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
+        u'Mensagem padrão do e-mail de recuperação de senha.',
+        unicode),
 
 }

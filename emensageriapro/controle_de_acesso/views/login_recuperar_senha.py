@@ -79,7 +79,12 @@ def enviar_email_senha_recuperar(nome, email_usuario, senha):
     EMAIL_RECUPERACAO_SENHA_MENSAGEM = config.EMAIL_RECUPERACAO_SENHA_MENSAGEM
     user = User.objects.get(email=email_usuario)
     nome = '%s %s' % (user.first_name, user.last_name)
-    mensagem_html = EMAIL_RECUPERACAO_SENHA_MENSAGEM % (nome.upper(), LINK_WEBSITE, user.username, senha)
+    dados = {}
+    dados['nome'] = nome.upper()
+    dados['endereco'] = LINK_WEBSITE
+    dados['usuario'] = user.username
+    dados['senha'] = senha
+    mensagem_html = EMAIL_RECUPERACAO_SENHA_MENSAGEM % dados
 
     send_mail(
         EMAIL_RECUPERACAO_SENHA_ASSUNTO,
