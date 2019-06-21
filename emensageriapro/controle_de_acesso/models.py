@@ -88,7 +88,7 @@ class ConfigPerfis(SoftDeletionModel):
             users = Usuarios.objects.filter(config_perfis_id=self.id).all()
             for u in users:
                 update_user(u.user)
-        super(PerfilGroups, self).save(*args, **kwargs)
+        super(ConfigPerfis, self).save(*args, **kwargs)
 
     class Meta:
     
