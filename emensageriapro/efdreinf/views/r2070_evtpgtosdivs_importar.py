@@ -120,7 +120,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
         
     r2070_evtpgtosdivs = r2070evtPgtosDivs.objects.create(**r2070_evtpgtosdivs_dados)
     
-    if 'infoResidExt' in dir(evtPgtosDivs.ideBenef):
+    if 'ideBenef' in dir(evtPgtosDivs) and 'infoResidExt' in dir(evtPgtosDivs.ideBenef):
     
         for infoResidExt in evtPgtosDivs.ideBenef.infoResidExt:
     
@@ -179,7 +179,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
     
             r2070_inforesidext = r2070infoResidExt.objects.create(**r2070_inforesidext_dados)
     
-    if 'infoMolestia' in dir(evtPgtosDivs.ideBenef):
+    if 'ideBenef' in dir(evtPgtosDivs) and 'infoMolestia' in dir(evtPgtosDivs.ideBenef):
     
         for infoMolestia in evtPgtosDivs.ideBenef.infoMolestia:
     
@@ -193,7 +193,7 @@ def read_r2070_evtpgtosdivs_obj(request, doc, status, validar=False):
     
             r2070_infomolestia = r2070infoMolestia.objects.create(**r2070_infomolestia_dados)
     
-    if 'ideEstab' in dir(evtPgtosDivs.ideBenef.infoPgto):
+    if 'ideBenef' in dir(evtPgtosDivs) and 'infoPgto' in dir(evtPgtosDivs.ideBenef) and 'ideEstab' in dir(evtPgtosDivs.ideBenef.infoPgto):
     
         for ideEstab in evtPgtosDivs.ideBenef.infoPgto.ideEstab:
     

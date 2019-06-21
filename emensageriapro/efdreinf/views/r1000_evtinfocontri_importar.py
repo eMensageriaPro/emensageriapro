@@ -89,7 +89,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
         
     r1000_evtinfocontri = r1000evtInfoContri.objects.create(**r1000_evtinfocontri_dados)
     
-    if 'inclusao' in dir(evtInfoContri.infoContri):
+    if 'infoContri' in dir(evtInfoContri) and 'inclusao' in dir(evtInfoContri.infoContri):
     
         for inclusao in evtInfoContri.infoContri.inclusao:
     
@@ -158,7 +158,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
     
             r1000_inclusao = r1000inclusao.objects.create(**r1000_inclusao_dados)
             
-            if 'softHouse' in dir(inclusao.infoCadastro):
+            if 'infoCadastro' in dir(inclusao) and 'softHouse' in dir(inclusao.infoCadastro):
             
                 for softHouse in inclusao.infoCadastro.softHouse:
             
@@ -192,7 +192,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
             
                     r1000_inclusao_softhouse = r1000inclusaosoftHouse.objects.create(**r1000_inclusao_softhouse_dados)
             
-            if 'infoEFR' in dir(inclusao.infoCadastro):
+            if 'infoCadastro' in dir(inclusao) and 'infoEFR' in dir(inclusao.infoCadastro):
             
                 for infoEFR in inclusao.infoCadastro.infoEFR:
             
@@ -211,7 +211,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
             
                     r1000_inclusao_infoefr = r1000inclusaoinfoEFR.objects.create(**r1000_inclusao_infoefr_dados)
     
-    if 'alteracao' in dir(evtInfoContri.infoContri):
+    if 'infoContri' in dir(evtInfoContri) and 'alteracao' in dir(evtInfoContri.infoContri):
     
         for alteracao in evtInfoContri.infoContri.alteracao:
     
@@ -280,7 +280,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
     
             r1000_alteracao = r1000alteracao.objects.create(**r1000_alteracao_dados)
             
-            if 'softHouse' in dir(alteracao.infoCadastro):
+            if 'infoCadastro' in dir(alteracao) and 'softHouse' in dir(alteracao.infoCadastro):
             
                 for softHouse in alteracao.infoCadastro.softHouse:
             
@@ -314,7 +314,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
             
                     r1000_alteracao_softhouse = r1000alteracaosoftHouse.objects.create(**r1000_alteracao_softhouse_dados)
             
-            if 'infoEFR' in dir(alteracao.infoCadastro):
+            if 'infoCadastro' in dir(alteracao) and 'infoEFR' in dir(alteracao.infoCadastro):
             
                 for infoEFR in alteracao.infoCadastro.infoEFR:
             
@@ -352,7 +352,7 @@ def read_r1000_evtinfocontri_obj(request, doc, status, validar=False):
             
                     r1000_alteracao_novavalidade = r1000alteracaonovaValidade.objects.create(**r1000_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtInfoContri.infoContri):
+    if 'infoContri' in dir(evtInfoContri) and 'exclusao' in dir(evtInfoContri.infoContri):
     
         for exclusao in evtInfoContri.infoContri.exclusao:
     

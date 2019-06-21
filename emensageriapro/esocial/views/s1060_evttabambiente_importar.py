@@ -89,7 +89,7 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False):
         
     s1060_evttabambiente = s1060evtTabAmbiente.objects.create(**s1060_evttabambiente_dados)
     
-    if 'inclusao' in dir(evtTabAmbiente.infoAmbiente):
+    if 'infoAmbiente' in dir(evtTabAmbiente) and 'inclusao' in dir(evtTabAmbiente.infoAmbiente):
     
         for inclusao in evtTabAmbiente.infoAmbiente.inclusao:
     
@@ -143,7 +143,7 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False):
     
             s1060_inclusao = s1060inclusao.objects.create(**s1060_inclusao_dados)
     
-    if 'alteracao' in dir(evtTabAmbiente.infoAmbiente):
+    if 'infoAmbiente' in dir(evtTabAmbiente) and 'alteracao' in dir(evtTabAmbiente.infoAmbiente):
     
         for alteracao in evtTabAmbiente.infoAmbiente.alteracao:
     
@@ -216,7 +216,7 @@ def read_s1060_evttabambiente_obj(request, doc, status, validar=False):
             
                     s1060_alteracao_novavalidade = s1060alteracaonovaValidade.objects.create(**s1060_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabAmbiente.infoAmbiente):
+    if 'infoAmbiente' in dir(evtTabAmbiente) and 'exclusao' in dir(evtTabAmbiente.infoAmbiente):
     
         for exclusao in evtTabAmbiente.infoAmbiente.exclusao:
     

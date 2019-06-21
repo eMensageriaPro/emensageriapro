@@ -110,7 +110,7 @@ def read_r2040_evtassocdesprep_obj(request, doc, status, validar=False):
         
     r2040_evtassocdesprep = r2040evtAssocDespRep.objects.create(**r2040_evtassocdesprep_dados)
     
-    if 'recursosRep' in dir(evtAssocDespRep.ideContri.ideEstab):
+    if 'ideContri' in dir(evtAssocDespRep) and 'ideEstab' in dir(evtAssocDespRep.ideContri) and 'recursosRep' in dir(evtAssocDespRep.ideContri.ideEstab):
     
         for recursosRep in evtAssocDespRep.ideContri.ideEstab.recursosRep:
     

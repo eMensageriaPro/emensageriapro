@@ -155,7 +155,7 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False):
         
     r2020_evtservprest = r2020evtServPrest.objects.create(**r2020_evtservprest_dados)
     
-    if 'nfs' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
+    if 'infoServPrest' in dir(evtServPrest) and 'ideEstabPrest' in dir(evtServPrest.infoServPrest) and 'ideTomador' in dir(evtServPrest.infoServPrest.ideEstabPrest) and 'nfs' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
     
         for nfs in evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs:
     
@@ -248,7 +248,7 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False):
             
                     r2020_infotpserv = r2020infoTpServ.objects.create(**r2020_infotpserv_dados)
     
-    if 'infoProcRetPr' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
+    if 'infoServPrest' in dir(evtServPrest) and 'ideEstabPrest' in dir(evtServPrest.infoServPrest) and 'ideTomador' in dir(evtServPrest.infoServPrest.ideEstabPrest) and 'infoProcRetPr' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
     
         for infoProcRetPr in evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr:
     
@@ -277,7 +277,7 @@ def read_r2020_evtservprest_obj(request, doc, status, validar=False):
     
             r2020_infoprocretpr = r2020infoProcRetPr.objects.create(**r2020_infoprocretpr_dados)
     
-    if 'infoProcRetAd' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
+    if 'infoServPrest' in dir(evtServPrest) and 'ideEstabPrest' in dir(evtServPrest.infoServPrest) and 'ideTomador' in dir(evtServPrest.infoServPrest.ideEstabPrest) and 'infoProcRetAd' in dir(evtServPrest.infoServPrest.ideEstabPrest.ideTomador):
     
         for infoProcRetAd in evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd:
     

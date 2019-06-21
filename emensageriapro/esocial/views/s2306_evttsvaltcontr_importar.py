@@ -120,7 +120,7 @@ def read_s2306_evttsvaltcontr_obj(request, doc, status, validar=False):
         
     s2306_evttsvaltcontr = s2306evtTSVAltContr.objects.create(**s2306_evttsvaltcontr_dados)
     
-    if 'infoComplementares' in dir(evtTSVAltContr.infoTSVAlteracao):
+    if 'infoTSVAlteracao' in dir(evtTSVAltContr) and 'infoComplementares' in dir(evtTSVAltContr.infoTSVAlteracao):
     
         for infoComplementares in evtTSVAltContr.infoTSVAlteracao.infoComplementares:
     

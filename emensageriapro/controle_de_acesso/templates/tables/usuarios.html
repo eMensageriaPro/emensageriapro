@@ -45,7 +45,7 @@
             <td>{{ a.email }}</td>
             {% endif %}
             {% if show_fields.show_is_active or 1 %}
-            <td>{% if a.is_active %}Sim{% else %}Não{% endif %}</td>
+            <td>{% if a.is_active %}<span class="badge bg-green">Sim</span>{% else %}<span class="badge bg-red">Não</span>{% endif %}</td>
             {% endif %}
             {% if show_fields.show_config_perfis or 1 %}
             <td>{{ a.config_perfis }}</td>

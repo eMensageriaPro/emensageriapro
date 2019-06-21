@@ -110,7 +110,7 @@ def read_s1260_evtcomprod_obj(request, doc, status, validar=False):
         
     s1260_evtcomprod = s1260evtComProd.objects.create(**s1260_evtcomprod_dados)
     
-    if 'tpComerc' in dir(evtComProd.infoComProd.ideEstabel):
+    if 'infoComProd' in dir(evtComProd) and 'ideEstabel' in dir(evtComProd.infoComProd) and 'tpComerc' in dir(evtComProd.infoComProd.ideEstabel):
     
         for tpComerc in evtComProd.infoComProd.ideEstabel.tpComerc:
     

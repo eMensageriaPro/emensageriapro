@@ -89,7 +89,7 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False):
         
     s1030_evttabcargo = s1030evtTabCargo.objects.create(**s1030_evttabcargo_dados)
     
-    if 'inclusao' in dir(evtTabCargo.infoCargo):
+    if 'infoCargo' in dir(evtTabCargo) and 'inclusao' in dir(evtTabCargo.infoCargo):
     
         for inclusao in evtTabCargo.infoCargo.inclusao:
     
@@ -123,7 +123,7 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False):
     
             s1030_inclusao = s1030inclusao.objects.create(**s1030_inclusao_dados)
             
-            if 'cargoPublico' in dir(inclusao.dadosCargo):
+            if 'dadosCargo' in dir(inclusao) and 'cargoPublico' in dir(inclusao.dadosCargo):
             
                 for cargoPublico in inclusao.dadosCargo.cargoPublico:
             
@@ -167,7 +167,7 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False):
             
                     s1030_inclusao_cargopublico = s1030inclusaocargoPublico.objects.create(**s1030_inclusao_cargopublico_dados)
     
-    if 'alteracao' in dir(evtTabCargo.infoCargo):
+    if 'infoCargo' in dir(evtTabCargo) and 'alteracao' in dir(evtTabCargo.infoCargo):
     
         for alteracao in evtTabCargo.infoCargo.alteracao:
     
@@ -201,7 +201,7 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False):
     
             s1030_alteracao = s1030alteracao.objects.create(**s1030_alteracao_dados)
             
-            if 'cargoPublico' in dir(alteracao.dadosCargo):
+            if 'dadosCargo' in dir(alteracao) and 'cargoPublico' in dir(alteracao.dadosCargo):
             
                 for cargoPublico in alteracao.dadosCargo.cargoPublico:
             
@@ -264,7 +264,7 @@ def read_s1030_evttabcargo_obj(request, doc, status, validar=False):
             
                     s1030_alteracao_novavalidade = s1030alteracaonovaValidade.objects.create(**s1030_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabCargo.infoCargo):
+    if 'infoCargo' in dir(evtTabCargo) and 'exclusao' in dir(evtTabCargo.infoCargo):
     
         for exclusao in evtTabCargo.infoCargo.exclusao:
     

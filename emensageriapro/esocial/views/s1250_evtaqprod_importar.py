@@ -115,7 +115,7 @@ def read_s1250_evtaqprod_obj(request, doc, status, validar=False):
         
     s1250_evtaqprod = s1250evtAqProd.objects.create(**s1250_evtaqprod_dados)
     
-    if 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir):
+    if 'infoAquisProd' in dir(evtAqProd) and 'ideEstabAdquir' in dir(evtAqProd.infoAquisProd) and 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir):
     
         for tpAquis in evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis:
     

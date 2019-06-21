@@ -89,7 +89,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
         
     s1020_evttablotacao = s1020evtTabLotacao.objects.create(**s1020_evttablotacao_dados)
     
-    if 'inclusao' in dir(evtTabLotacao.infoLotacao):
+    if 'infoLotacao' in dir(evtTabLotacao) and 'inclusao' in dir(evtTabLotacao.infoLotacao):
     
         for inclusao in evtTabLotacao.infoLotacao.inclusao:
     
@@ -143,7 +143,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
     
             s1020_inclusao = s1020inclusao.objects.create(**s1020_inclusao_dados)
             
-            if 'infoProcJudTerceiros' in dir(inclusao.dadosLotacao.fpasLotacao):
+            if 'dadosLotacao' in dir(inclusao) and 'fpasLotacao' in dir(inclusao.dadosLotacao) and 'infoProcJudTerceiros' in dir(inclusao.dadosLotacao.fpasLotacao):
             
                 for infoProcJudTerceiros in inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros:
             
@@ -176,7 +176,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
                     
                             s1020_inclusao_procjudterceiro = s1020inclusaoprocJudTerceiro.objects.create(**s1020_inclusao_procjudterceiro_dados)
             
-            if 'infoEmprParcial' in dir(inclusao.dadosLotacao):
+            if 'dadosLotacao' in dir(inclusao) and 'infoEmprParcial' in dir(inclusao.dadosLotacao):
             
                 for infoEmprParcial in inclusao.dadosLotacao.infoEmprParcial:
             
@@ -205,7 +205,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
             
                     s1020_inclusao_infoemprparcial = s1020inclusaoinfoEmprParcial.objects.create(**s1020_inclusao_infoemprparcial_dados)
     
-    if 'alteracao' in dir(evtTabLotacao.infoLotacao):
+    if 'infoLotacao' in dir(evtTabLotacao) and 'alteracao' in dir(evtTabLotacao.infoLotacao):
     
         for alteracao in evtTabLotacao.infoLotacao.alteracao:
     
@@ -259,7 +259,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
     
             s1020_alteracao = s1020alteracao.objects.create(**s1020_alteracao_dados)
             
-            if 'infoProcJudTerceiros' in dir(alteracao.dadosLotacao.fpasLotacao):
+            if 'dadosLotacao' in dir(alteracao) and 'fpasLotacao' in dir(alteracao.dadosLotacao) and 'infoProcJudTerceiros' in dir(alteracao.dadosLotacao.fpasLotacao):
             
                 for infoProcJudTerceiros in alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros:
             
@@ -292,7 +292,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
                     
                             s1020_alteracao_procjudterceiro = s1020alteracaoprocJudTerceiro.objects.create(**s1020_alteracao_procjudterceiro_dados)
             
-            if 'infoEmprParcial' in dir(alteracao.dadosLotacao):
+            if 'dadosLotacao' in dir(alteracao) and 'infoEmprParcial' in dir(alteracao.dadosLotacao):
             
                 for infoEmprParcial in alteracao.dadosLotacao.infoEmprParcial:
             
@@ -340,7 +340,7 @@ def read_s1020_evttablotacao_obj(request, doc, status, validar=False):
             
                     s1020_alteracao_novavalidade = s1020alteracaonovaValidade.objects.create(**s1020_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabLotacao.infoLotacao):
+    if 'infoLotacao' in dir(evtTabLotacao) and 'exclusao' in dir(evtTabLotacao.infoLotacao):
     
         for exclusao in evtTabLotacao.infoLotacao.exclusao:
     

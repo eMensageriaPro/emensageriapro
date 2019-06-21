@@ -37,7 +37,7 @@
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">
-            {% if config.LOGO_IMAGE %}
+            {% if config.LOGO_IMAGE_IN_LOGIN and config.LOGO_IMAGE %}
                 <img src="{{ MEDIA_URL }}{{ config.LOGO_IMAGE }}" height="50px"><BR>
             {% endif %}
             Acesse o sistema

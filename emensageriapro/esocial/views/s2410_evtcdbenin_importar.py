@@ -155,7 +155,7 @@ def read_s2410_evtcdbenin_obj(request, doc, status, validar=False):
         
     s2410_evtcdbenin = s2410evtCdBenIn.objects.create(**s2410_evtcdbenin_dados)
     
-    if 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
+    if 'infoBenInicio' in dir(evtCdBenIn) and 'dadosBeneficio' in dir(evtCdBenIn.infoBenInicio) and 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
     
         for infoPenMorte in evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte:
     
@@ -193,7 +193,7 @@ def read_s2410_evtcdbenin_obj(request, doc, status, validar=False):
             
                     s2410_instpenmorte = s2410instPenMorte.objects.create(**s2410_instpenmorte_dados)
     
-    if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
+    if 'infoBenInicio' in dir(evtCdBenIn) and 'dadosBeneficio' in dir(evtCdBenIn.infoBenInicio) and 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
     
         for homologTC in evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC:
     

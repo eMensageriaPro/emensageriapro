@@ -120,7 +120,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
         
     r4010_evtretpf = r4010evtRetPF.objects.create(**r4010_evtretpf_dados)
     
-    if 'idePgto' in dir(evtRetPF.ideEstab.ideBenef):
+    if 'ideEstab' in dir(evtRetPF) and 'ideBenef' in dir(evtRetPF.ideEstab) and 'idePgto' in dir(evtRetPF.ideEstab.ideBenef):
     
         for idePgto in evtRetPF.ideEstab.ideBenef.idePgto:
     
@@ -598,7 +598,7 @@ def read_r4010_evtretpf_obj(request, doc, status, validar=False):
             
                     r4010_infopgtoext = r4010infoPgtoExt.objects.create(**r4010_infopgtoext_dados)
     
-    if 'ideOpSaude' in dir(evtRetPF.ideEstab.ideBenef):
+    if 'ideEstab' in dir(evtRetPF) and 'ideBenef' in dir(evtRetPF.ideEstab) and 'ideOpSaude' in dir(evtRetPF.ideEstab.ideBenef):
     
         for ideOpSaude in evtRetPF.ideEstab.ideBenef.ideOpSaude:
     

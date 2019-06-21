@@ -95,7 +95,7 @@ def read_s5011_evtcs_obj(request, doc, status, validar=False):
         
     s5011_evtcs = s5011evtCS.objects.create(**s5011_evtcs_dados)
     
-    if 'infoCPSeg' in dir(evtCS.infoCS):
+    if 'infoCS' in dir(evtCS) and 'infoCPSeg' in dir(evtCS.infoCS):
     
         for infoCPSeg in evtCS.infoCS.infoCPSeg:
     
@@ -114,7 +114,7 @@ def read_s5011_evtcs_obj(request, doc, status, validar=False):
     
             s5011_infocpseg = s5011infoCPSeg.objects.create(**s5011_infocpseg_dados)
     
-    if 'infoPJ' in dir(evtCS.infoCS.infoContrib):
+    if 'infoCS' in dir(evtCS) and 'infoContrib' in dir(evtCS.infoCS) and 'infoPJ' in dir(evtCS.infoCS.infoContrib):
     
         for infoPJ in evtCS.infoCS.infoContrib.infoPJ:
     
@@ -162,7 +162,7 @@ def read_s5011_evtcs_obj(request, doc, status, validar=False):
             
                     s5011_infoatconc = s5011infoAtConc.objects.create(**s5011_infoatconc_dados)
     
-    if 'ideEstab' in dir(evtCS.infoCS):
+    if 'infoCS' in dir(evtCS) and 'ideEstab' in dir(evtCS.infoCS):
     
         for ideEstab in evtCS.infoCS.ideEstab:
     
@@ -599,7 +599,7 @@ def read_s5011_evtcs_obj(request, doc, status, validar=False):
             
                     s5011_infocrestab = s5011infoCREstab.objects.create(**s5011_infocrestab_dados)
     
-    if 'infoCRContrib' in dir(evtCS.infoCS):
+    if 'infoCS' in dir(evtCS) and 'infoCRContrib' in dir(evtCS.infoCS):
     
         for infoCRContrib in evtCS.infoCS.infoCRContrib:
     

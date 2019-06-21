@@ -110,7 +110,7 @@ def read_r5011_evttotalcontrib_obj(request, doc, status, validar=False):
         
     r5011_evttotalcontrib = r5011evtTotalContrib.objects.create(**r5011_evttotalcontrib_dados)
     
-    if 'regOcorrs' in dir(evtTotalContrib.ideRecRetorno.ideStatus):
+    if 'ideRecRetorno' in dir(evtTotalContrib) and 'ideStatus' in dir(evtTotalContrib.ideRecRetorno) and 'regOcorrs' in dir(evtTotalContrib.ideRecRetorno.ideStatus):
     
         for regOcorrs in evtTotalContrib.ideRecRetorno.ideStatus.regOcorrs:
     

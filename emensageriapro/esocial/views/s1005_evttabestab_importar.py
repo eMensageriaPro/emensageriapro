@@ -89,7 +89,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
         
     s1005_evttabestab = s1005evtTabEstab.objects.create(**s1005_evttabestab_dados)
     
-    if 'inclusao' in dir(evtTabEstab.infoEstab):
+    if 'infoEstab' in dir(evtTabEstab) and 'inclusao' in dir(evtTabEstab.infoEstab):
     
         for inclusao in evtTabEstab.infoEstab.inclusao:
     
@@ -158,7 +158,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
     
             s1005_inclusao = s1005inclusao.objects.create(**s1005_inclusao_dados)
             
-            if 'procAdmJudRat' in dir(inclusao.dadosEstab.aliqGilrat):
+            if 'dadosEstab' in dir(inclusao) and 'aliqGilrat' in dir(inclusao.dadosEstab) and 'procAdmJudRat' in dir(inclusao.dadosEstab.aliqGilrat):
             
                 for procAdmJudRat in inclusao.dadosEstab.aliqGilrat.procAdmJudRat:
             
@@ -182,7 +182,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_inclusao_procadmjudrat = s1005inclusaoprocAdmJudRat.objects.create(**s1005_inclusao_procadmjudrat_dados)
             
-            if 'procAdmJudFap' in dir(inclusao.dadosEstab.aliqGilrat):
+            if 'dadosEstab' in dir(inclusao) and 'aliqGilrat' in dir(inclusao.dadosEstab) and 'procAdmJudFap' in dir(inclusao.dadosEstab.aliqGilrat):
             
                 for procAdmJudFap in inclusao.dadosEstab.aliqGilrat.procAdmJudFap:
             
@@ -206,7 +206,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_inclusao_procadmjudfap = s1005inclusaoprocAdmJudFap.objects.create(**s1005_inclusao_procadmjudfap_dados)
             
-            if 'infoCaepf' in dir(inclusao.dadosEstab):
+            if 'dadosEstab' in dir(inclusao) and 'infoCaepf' in dir(inclusao.dadosEstab):
             
                 for infoCaepf in inclusao.dadosEstab.infoCaepf:
             
@@ -220,7 +220,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_inclusao_infocaepf = s1005inclusaoinfoCaepf.objects.create(**s1005_inclusao_infocaepf_dados)
             
-            if 'infoObra' in dir(inclusao.dadosEstab):
+            if 'dadosEstab' in dir(inclusao) and 'infoObra' in dir(inclusao.dadosEstab):
             
                 for infoObra in inclusao.dadosEstab.infoObra:
             
@@ -234,7 +234,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_inclusao_infoobra = s1005inclusaoinfoObra.objects.create(**s1005_inclusao_infoobra_dados)
             
-            if 'infoEntEduc' in dir(inclusao.dadosEstab.infoTrab.infoApr):
+            if 'dadosEstab' in dir(inclusao) and 'infoTrab' in dir(inclusao.dadosEstab) and 'infoApr' in dir(inclusao.dadosEstab.infoTrab) and 'infoEntEduc' in dir(inclusao.dadosEstab.infoTrab.infoApr):
             
                 for infoEntEduc in inclusao.dadosEstab.infoTrab.infoApr.infoEntEduc:
             
@@ -248,7 +248,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_inclusao_infoenteduc = s1005inclusaoinfoEntEduc.objects.create(**s1005_inclusao_infoenteduc_dados)
             
-            if 'infoPCD' in dir(inclusao.dadosEstab.infoTrab):
+            if 'dadosEstab' in dir(inclusao) and 'infoTrab' in dir(inclusao.dadosEstab) and 'infoPCD' in dir(inclusao.dadosEstab.infoTrab):
             
                 for infoPCD in inclusao.dadosEstab.infoTrab.infoPCD:
             
@@ -267,7 +267,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_inclusao_infopcd = s1005inclusaoinfoPCD.objects.create(**s1005_inclusao_infopcd_dados)
     
-    if 'alteracao' in dir(evtTabEstab.infoEstab):
+    if 'infoEstab' in dir(evtTabEstab) and 'alteracao' in dir(evtTabEstab.infoEstab):
     
         for alteracao in evtTabEstab.infoEstab.alteracao:
     
@@ -336,7 +336,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
     
             s1005_alteracao = s1005alteracao.objects.create(**s1005_alteracao_dados)
             
-            if 'procAdmJudRat' in dir(alteracao.dadosEstab.aliqGilrat):
+            if 'dadosEstab' in dir(alteracao) and 'aliqGilrat' in dir(alteracao.dadosEstab) and 'procAdmJudRat' in dir(alteracao.dadosEstab.aliqGilrat):
             
                 for procAdmJudRat in alteracao.dadosEstab.aliqGilrat.procAdmJudRat:
             
@@ -360,7 +360,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_alteracao_procadmjudrat = s1005alteracaoprocAdmJudRat.objects.create(**s1005_alteracao_procadmjudrat_dados)
             
-            if 'procAdmJudFap' in dir(alteracao.dadosEstab.aliqGilrat):
+            if 'dadosEstab' in dir(alteracao) and 'aliqGilrat' in dir(alteracao.dadosEstab) and 'procAdmJudFap' in dir(alteracao.dadosEstab.aliqGilrat):
             
                 for procAdmJudFap in alteracao.dadosEstab.aliqGilrat.procAdmJudFap:
             
@@ -384,7 +384,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_alteracao_procadmjudfap = s1005alteracaoprocAdmJudFap.objects.create(**s1005_alteracao_procadmjudfap_dados)
             
-            if 'infoCaepf' in dir(alteracao.dadosEstab):
+            if 'dadosEstab' in dir(alteracao) and 'infoCaepf' in dir(alteracao.dadosEstab):
             
                 for infoCaepf in alteracao.dadosEstab.infoCaepf:
             
@@ -398,7 +398,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_alteracao_infocaepf = s1005alteracaoinfoCaepf.objects.create(**s1005_alteracao_infocaepf_dados)
             
-            if 'infoObra' in dir(alteracao.dadosEstab):
+            if 'dadosEstab' in dir(alteracao) and 'infoObra' in dir(alteracao.dadosEstab):
             
                 for infoObra in alteracao.dadosEstab.infoObra:
             
@@ -412,7 +412,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_alteracao_infoobra = s1005alteracaoinfoObra.objects.create(**s1005_alteracao_infoobra_dados)
             
-            if 'infoEntEduc' in dir(alteracao.dadosEstab.infoTrab.infoApr):
+            if 'dadosEstab' in dir(alteracao) and 'infoTrab' in dir(alteracao.dadosEstab) and 'infoApr' in dir(alteracao.dadosEstab.infoTrab) and 'infoEntEduc' in dir(alteracao.dadosEstab.infoTrab.infoApr):
             
                 for infoEntEduc in alteracao.dadosEstab.infoTrab.infoApr.infoEntEduc:
             
@@ -426,7 +426,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_alteracao_infoenteduc = s1005alteracaoinfoEntEduc.objects.create(**s1005_alteracao_infoenteduc_dados)
             
-            if 'infoPCD' in dir(alteracao.dadosEstab.infoTrab):
+            if 'dadosEstab' in dir(alteracao) and 'infoTrab' in dir(alteracao.dadosEstab) and 'infoPCD' in dir(alteracao.dadosEstab.infoTrab):
             
                 for infoPCD in alteracao.dadosEstab.infoTrab.infoPCD:
             
@@ -464,7 +464,7 @@ def read_s1005_evttabestab_obj(request, doc, status, validar=False):
             
                     s1005_alteracao_novavalidade = s1005alteracaonovaValidade.objects.create(**s1005_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabEstab.infoEstab):
+    if 'infoEstab' in dir(evtTabEstab) and 'exclusao' in dir(evtTabEstab.infoEstab):
     
         for exclusao in evtTabEstab.infoEstab.exclusao:
     

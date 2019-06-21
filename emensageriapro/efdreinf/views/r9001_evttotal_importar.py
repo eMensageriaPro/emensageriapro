@@ -110,7 +110,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
         
     r9001_evttotal = r9001evtTotal.objects.create(**r9001_evttotal_dados)
     
-    if 'regOcorrs' in dir(evtTotal.ideRecRetorno.ideStatus):
+    if 'ideRecRetorno' in dir(evtTotal) and 'ideStatus' in dir(evtTotal.ideRecRetorno) and 'regOcorrs' in dir(evtTotal.ideRecRetorno.ideStatus):
     
         for regOcorrs in evtTotal.ideRecRetorno.ideStatus.regOcorrs:
     
@@ -163,7 +163,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
     
             r9001_infototal = r9001infoTotal.objects.create(**r9001_infototal_dados)
             
-            if 'RTom' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RTom' in dir(infoTotal.ideEstab):
             
                 for RTom in infoTotal.ideEstab.RTom:
             
@@ -211,7 +211,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
                     
                             r9001_infocrtom = r9001infoCRTom.objects.create(**r9001_infocrtom_dados)
             
-            if 'RPrest' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RPrest' in dir(infoTotal.ideEstab):
             
                 for RPrest in infoTotal.ideEstab.RPrest:
             
@@ -255,7 +255,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
             
                     r9001_rprest = r9001RPrest.objects.create(**r9001_rprest_dados)
             
-            if 'RRecRepAD' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RRecRepAD' in dir(infoTotal.ideEstab):
             
                 for RRecRepAD in infoTotal.ideEstab.RRecRepAD:
             
@@ -289,7 +289,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
             
                     r9001_rrecrepad = r9001RRecRepAD.objects.create(**r9001_rrecrepad_dados)
             
-            if 'RComl' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RComl' in dir(infoTotal.ideEstab):
             
                 for RComl in infoTotal.ideEstab.RComl:
             
@@ -313,7 +313,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
             
                     r9001_rcoml = r9001RComl.objects.create(**r9001_rcoml_dados)
             
-            if 'RCPRB' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RCPRB' in dir(infoTotal.ideEstab):
             
                 for RCPRB in infoTotal.ideEstab.RCPRB:
             
@@ -337,7 +337,7 @@ def read_r9001_evttotal_obj(request, doc, status, validar=False):
             
                     r9001_rcprb = r9001RCPRB.objects.create(**r9001_rcprb_dados)
             
-            if 'RRecEspetDesp' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RRecEspetDesp' in dir(infoTotal.ideEstab):
             
                 for RRecEspetDesp in infoTotal.ideEstab.RRecEspetDesp:
             

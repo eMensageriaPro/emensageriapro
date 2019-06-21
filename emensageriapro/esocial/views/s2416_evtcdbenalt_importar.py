@@ -140,7 +140,7 @@ def read_s2416_evtcdbenalt_obj(request, doc, status, validar=False):
         
     s2416_evtcdbenalt = s2416evtCdBenAlt.objects.create(**s2416_evtcdbenalt_dados)
     
-    if 'infoPenMorte' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
+    if 'infoBenAlteracao' in dir(evtCdBenAlt) and 'dadosBeneficio' in dir(evtCdBenAlt.infoBenAlteracao) and 'infoPenMorte' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
     
         for infoPenMorte in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte:
     
@@ -154,7 +154,7 @@ def read_s2416_evtcdbenalt_obj(request, doc, status, validar=False):
     
             s2416_infopenmorte = s2416infoPenMorte.objects.create(**s2416_infopenmorte_dados)
     
-    if 'homologTC' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
+    if 'infoBenAlteracao' in dir(evtCdBenAlt) and 'dadosBeneficio' in dir(evtCdBenAlt.infoBenAlteracao) and 'homologTC' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
     
         for homologTC in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.homologTC:
     
@@ -168,7 +168,7 @@ def read_s2416_evtcdbenalt_obj(request, doc, status, validar=False):
     
             s2416_homologtc = s2416homologTC.objects.create(**s2416_homologtc_dados)
     
-    if 'suspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
+    if 'infoBenAlteracao' in dir(evtCdBenAlt) and 'dadosBeneficio' in dir(evtCdBenAlt.infoBenAlteracao) and 'suspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
     
         for suspensao in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao:
     

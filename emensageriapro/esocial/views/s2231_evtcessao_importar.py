@@ -110,7 +110,7 @@ def read_s2231_evtcessao_obj(request, doc, status, validar=False):
         
     s2231_evtcessao = s2231evtCessao.objects.create(**s2231_evtcessao_dados)
     
-    if 'iniCessao' in dir(evtCessao.infoCessao):
+    if 'infoCessao' in dir(evtCessao) and 'iniCessao' in dir(evtCessao.infoCessao):
     
         for iniCessao in evtCessao.infoCessao.iniCessao:
     
@@ -144,7 +144,7 @@ def read_s2231_evtcessao_obj(request, doc, status, validar=False):
     
             s2231_inicessao = s2231iniCessao.objects.create(**s2231_inicessao_dados)
     
-    if 'fimCessao' in dir(evtCessao.infoCessao):
+    if 'infoCessao' in dir(evtCessao) and 'fimCessao' in dir(evtCessao.infoCessao):
     
         for fimCessao in evtCessao.infoCessao.fimCessao:
     

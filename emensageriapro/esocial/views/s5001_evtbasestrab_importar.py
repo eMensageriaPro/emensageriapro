@@ -90,7 +90,7 @@ def read_s5001_evtbasestrab_obj(request, doc, status, validar=False):
         
     s5001_evtbasestrab = s5001evtBasesTrab.objects.create(**s5001_evtbasestrab_dados)
     
-    if 'procJudTrab' in dir(evtBasesTrab.ideTrabalhador):
+    if 'ideTrabalhador' in dir(evtBasesTrab) and 'procJudTrab' in dir(evtBasesTrab.ideTrabalhador):
     
         for procJudTrab in evtBasesTrab.ideTrabalhador.procJudTrab:
     

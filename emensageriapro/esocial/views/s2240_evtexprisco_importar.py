@@ -125,7 +125,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
         
     s2240_evtexprisco = s2240evtExpRisco.objects.create(**s2240_evtexprisco_dados)
     
-    if 'infoAmb' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'infoAmb' in dir(evtExpRisco.infoExpRisco):
     
         for infoAmb in evtExpRisco.infoExpRisco.infoAmb:
     
@@ -139,7 +139,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
     
             s2240_iniexprisco_infoamb = s2240iniExpRiscoinfoAmb.objects.create(**s2240_iniexprisco_infoamb_dados)
     
-    if 'ativPericInsal' in dir(evtExpRisco.infoExpRisco.infoAtiv):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'infoAtiv' in dir(evtExpRisco.infoExpRisco) and 'ativPericInsal' in dir(evtExpRisco.infoExpRisco.infoAtiv):
     
         for ativPericInsal in evtExpRisco.infoExpRisco.infoAtiv.ativPericInsal:
     
@@ -153,7 +153,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
     
             s2240_iniexprisco_ativpericinsal = s2240iniExpRiscoativPericInsal.objects.create(**s2240_iniexprisco_ativpericinsal_dados)
     
-    if 'fatRisco' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'fatRisco' in dir(evtExpRisco.infoExpRisco):
     
         for fatRisco in evtExpRisco.infoExpRisco.fatRisco:
     
@@ -227,7 +227,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
     
             s2240_iniexprisco_fatrisco = s2240iniExpRiscofatRisco.objects.create(**s2240_iniexprisco_fatrisco_dados)
             
-            if 'epc' in dir(fatRisco.epcEpi):
+            if 'epcEpi' in dir(fatRisco) and 'epc' in dir(fatRisco.epcEpi):
             
                 for epc in fatRisco.epcEpi.epc:
             
@@ -251,7 +251,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
             
                     s2240_iniexprisco_epc = s2240iniExpRiscoepc.objects.create(**s2240_iniexprisco_epc_dados)
             
-            if 'epi' in dir(fatRisco.epcEpi):
+            if 'epcEpi' in dir(fatRisco) and 'epi' in dir(fatRisco.epcEpi):
             
                 for epi in fatRisco.epcEpi.epi:
             
@@ -305,7 +305,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
             
                     s2240_iniexprisco_epi = s2240iniExpRiscoepi.objects.create(**s2240_iniexprisco_epi_dados)
     
-    if 'respReg' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'respReg' in dir(evtExpRisco.infoExpRisco):
     
         for respReg in evtExpRisco.infoExpRisco.respReg:
     
@@ -349,7 +349,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
     
             s2240_iniexprisco_respreg = s2240iniExpRiscorespReg.objects.create(**s2240_iniexprisco_respreg_dados)
     
-    if 'obs' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'obs' in dir(evtExpRisco.infoExpRisco):
     
         for obs in evtExpRisco.infoExpRisco.obs:
     
@@ -373,7 +373,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
     
             s2240_iniexprisco_obs = s2240iniExpRiscoobs.objects.create(**s2240_iniexprisco_obs_dados)
     
-    if 'altExpRisco' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'altExpRisco' in dir(evtExpRisco.infoExpRisco):
     
         for altExpRisco in evtExpRisco.infoExpRisco.altExpRisco:
     
@@ -440,7 +440,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
                     
                             s2240_altexprisco_fatrisco = s2240altExpRiscofatRisco.objects.create(**s2240_altexprisco_fatrisco_dados)
                             
-                            if 'epc' in dir(fatRisco.epcEpi):
+                            if 'epcEpi' in dir(fatRisco) and 'epc' in dir(fatRisco.epcEpi):
                             
                                 for epc in fatRisco.epcEpi.epc:
                             
@@ -459,7 +459,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
                             
                                     s2240_altexprisco_epc = s2240altExpRiscoepc.objects.create(**s2240_altexprisco_epc_dados)
                             
-                            if 'epi' in dir(fatRisco.epcEpi):
+                            if 'epcEpi' in dir(fatRisco) and 'epi' in dir(fatRisco.epcEpi):
                             
                                 for epi in fatRisco.epcEpi.epi:
                             
@@ -503,7 +503,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
                             
                                     s2240_altexprisco_epi = s2240altExpRiscoepi.objects.create(**s2240_altexprisco_epi_dados)
     
-    if 'fimExpRisco' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'fimExpRisco' in dir(evtExpRisco.infoExpRisco):
     
         for fimExpRisco in evtExpRisco.infoExpRisco.fimExpRisco:
     
@@ -531,7 +531,7 @@ def read_s2240_evtexprisco_obj(request, doc, status, validar=False):
             
                     s2240_fimexprisco_infoamb = s2240fimExpRiscoinfoAmb.objects.create(**s2240_fimexprisco_infoamb_dados)
     
-    if 'respReg' in dir(evtExpRisco.infoExpRisco):
+    if 'infoExpRisco' in dir(evtExpRisco) and 'respReg' in dir(evtExpRisco.infoExpRisco):
     
         for respReg in evtExpRisco.infoExpRisco.respReg:
     

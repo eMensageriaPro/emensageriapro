@@ -95,7 +95,7 @@ def read_s3000_evtexclusao_obj(request, doc, status, validar=False):
         
     s3000_evtexclusao = s3000evtExclusao.objects.create(**s3000_evtexclusao_dados)
     
-    if 'ideTrabalhador' in dir(evtExclusao.infoExclusao):
+    if 'infoExclusao' in dir(evtExclusao) and 'ideTrabalhador' in dir(evtExclusao.infoExclusao):
     
         for ideTrabalhador in evtExclusao.infoExclusao.ideTrabalhador:
     
@@ -114,7 +114,7 @@ def read_s3000_evtexclusao_obj(request, doc, status, validar=False):
     
             s3000_idetrabalhador = s3000ideTrabalhador.objects.create(**s3000_idetrabalhador_dados)
     
-    if 'ideFolhaPagto' in dir(evtExclusao.infoExclusao):
+    if 'infoExclusao' in dir(evtExclusao) and 'ideFolhaPagto' in dir(evtExclusao.infoExclusao):
     
         for ideFolhaPagto in evtExclusao.infoExclusao.ideFolhaPagto:
     

@@ -110,7 +110,7 @@ def read_r9002_evtret_obj(request, doc, status, validar=False):
         
     r9002_evtret = r9002evtRet.objects.create(**r9002_evtret_dados)
     
-    if 'regOcorrs' in dir(evtRet.ideRecRetorno.ideStatus):
+    if 'ideRecRetorno' in dir(evtRet) and 'ideStatus' in dir(evtRet.ideRecRetorno) and 'regOcorrs' in dir(evtRet.ideRecRetorno.ideStatus):
     
         for regOcorrs in evtRet.ideRecRetorno.ideStatus.regOcorrs:
     
@@ -163,7 +163,7 @@ def read_r9002_evtret_obj(request, doc, status, validar=False):
     
             r9002_infototal = r9002infoTotal.objects.create(**r9002_infototal_dados)
             
-            if 'totApurMen' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'totApurMen' in dir(infoTotal.ideEstab):
             
                 for totApurMen in infoTotal.ideEstab.totApurMen:
             
@@ -197,7 +197,7 @@ def read_r9002_evtret_obj(request, doc, status, validar=False):
             
                     r9002_totapurmen = r9002totApurMen.objects.create(**r9002_totapurmen_dados)
             
-            if 'totApurQui' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'totApurQui' in dir(infoTotal.ideEstab):
             
                 for totApurQui in infoTotal.ideEstab.totApurQui:
             
@@ -236,7 +236,7 @@ def read_r9002_evtret_obj(request, doc, status, validar=False):
             
                     r9002_totapurqui = r9002totApurQui.objects.create(**r9002_totapurqui_dados)
             
-            if 'totApurDec' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'totApurDec' in dir(infoTotal.ideEstab):
             
                 for totApurDec in infoTotal.ideEstab.totApurDec:
             
@@ -275,7 +275,7 @@ def read_r9002_evtret_obj(request, doc, status, validar=False):
             
                     r9002_totapurdec = r9002totApurDec.objects.create(**r9002_totapurdec_dados)
             
-            if 'totApurSem' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'totApurSem' in dir(infoTotal.ideEstab):
             
                 for totApurSem in infoTotal.ideEstab.totApurSem:
             
@@ -314,7 +314,7 @@ def read_r9002_evtret_obj(request, doc, status, validar=False):
             
                     r9002_totapursem = r9002totApurSem.objects.create(**r9002_totapursem_dados)
             
-            if 'totApurDia' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'totApurDia' in dir(infoTotal.ideEstab):
             
                 for totApurDia in infoTotal.ideEstab.totApurDia:
             

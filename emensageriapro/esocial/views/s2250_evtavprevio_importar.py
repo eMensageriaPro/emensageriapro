@@ -110,7 +110,7 @@ def read_s2250_evtavprevio_obj(request, doc, status, validar=False):
         
     s2250_evtavprevio = s2250evtAvPrevio.objects.create(**s2250_evtavprevio_dados)
     
-    if 'detAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
+    if 'infoAvPrevio' in dir(evtAvPrevio) and 'detAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
     
         for detAvPrevio in evtAvPrevio.infoAvPrevio.detAvPrevio:
     
@@ -139,7 +139,7 @@ def read_s2250_evtavprevio_obj(request, doc, status, validar=False):
     
             s2250_detavprevio = s2250detAvPrevio.objects.create(**s2250_detavprevio_dados)
     
-    if 'cancAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
+    if 'infoAvPrevio' in dir(evtAvPrevio) and 'cancAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
     
         for cancAvPrevio in evtAvPrevio.infoAvPrevio.cancAvPrevio:
     

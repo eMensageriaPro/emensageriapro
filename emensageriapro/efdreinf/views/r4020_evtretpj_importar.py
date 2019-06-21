@@ -125,7 +125,7 @@ def read_r4020_evtretpj_obj(request, doc, status, validar=False):
         
     r4020_evtretpj = r4020evtRetPJ.objects.create(**r4020_evtretpj_dados)
     
-    if 'idePgto' in dir(evtRetPJ.ideEstab.ideBenef):
+    if 'ideEstab' in dir(evtRetPJ) and 'ideBenef' in dir(evtRetPJ.ideEstab) and 'idePgto' in dir(evtRetPJ.ideEstab.ideBenef):
     
         for idePgto in evtRetPJ.ideEstab.ideBenef.idePgto:
     

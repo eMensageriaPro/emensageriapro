@@ -89,7 +89,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
         
     s1000_evtinfoempregador = s1000evtInfoEmpregador.objects.create(**s1000_evtinfoempregador_dados)
     
-    if 'inclusao' in dir(evtInfoEmpregador.infoEmpregador):
+    if 'infoEmpregador' in dir(evtInfoEmpregador) and 'inclusao' in dir(evtInfoEmpregador.infoEmpregador):
     
         for inclusao in evtInfoEmpregador.infoEmpregador.inclusao:
     
@@ -188,7 +188,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
     
             s1000_inclusao = s1000inclusao.objects.create(**s1000_inclusao_dados)
             
-            if 'dadosIsencao' in dir(inclusao.infoCadastro):
+            if 'infoCadastro' in dir(inclusao) and 'dadosIsencao' in dir(inclusao.infoCadastro):
             
                 for dadosIsencao in inclusao.infoCadastro.dadosIsencao:
             
@@ -237,7 +237,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_inclusao_dadosisencao = s1000inclusaodadosIsencao.objects.create(**s1000_inclusao_dadosisencao_dados)
             
-            if 'infoOP' in dir(inclusao.infoCadastro):
+            if 'infoCadastro' in dir(inclusao) and 'infoOP' in dir(inclusao.infoCadastro):
             
                 for infoOP in inclusao.infoCadastro.infoOP:
             
@@ -349,7 +349,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
                     
                             s1000_inclusao_infoente = s1000inclusaoinfoEnte.objects.create(**s1000_inclusao_infoente_dados)
             
-            if 'infoOrgInternacional' in dir(inclusao.infoCadastro):
+            if 'infoCadastro' in dir(inclusao) and 'infoOrgInternacional' in dir(inclusao.infoCadastro):
             
                 for infoOrgInternacional in inclusao.infoCadastro.infoOrgInternacional:
             
@@ -363,7 +363,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_inclusao_infoorginternacional = s1000inclusaoinfoOrgInternacional.objects.create(**s1000_inclusao_infoorginternacional_dados)
             
-            if 'softwareHouse' in dir(inclusao.infoCadastro):
+            if 'infoCadastro' in dir(inclusao) and 'softwareHouse' in dir(inclusao.infoCadastro):
             
                 for softwareHouse in inclusao.infoCadastro.softwareHouse:
             
@@ -397,7 +397,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_inclusao_softwarehouse = s1000inclusaosoftwareHouse.objects.create(**s1000_inclusao_softwarehouse_dados)
             
-            if 'situacaoPJ' in dir(inclusao.infoCadastro.infoComplementares):
+            if 'infoCadastro' in dir(inclusao) and 'infoComplementares' in dir(inclusao.infoCadastro) and 'situacaoPJ' in dir(inclusao.infoCadastro.infoComplementares):
             
                 for situacaoPJ in inclusao.infoCadastro.infoComplementares.situacaoPJ:
             
@@ -411,7 +411,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_inclusao_situacaopj = s1000inclusaosituacaoPJ.objects.create(**s1000_inclusao_situacaopj_dados)
             
-            if 'situacaoPF' in dir(inclusao.infoCadastro.infoComplementares):
+            if 'infoCadastro' in dir(inclusao) and 'infoComplementares' in dir(inclusao.infoCadastro) and 'situacaoPF' in dir(inclusao.infoCadastro.infoComplementares):
             
                 for situacaoPF in inclusao.infoCadastro.infoComplementares.situacaoPF:
             
@@ -425,7 +425,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_inclusao_situacaopf = s1000inclusaosituacaoPF.objects.create(**s1000_inclusao_situacaopf_dados)
     
-    if 'alteracao' in dir(evtInfoEmpregador.infoEmpregador):
+    if 'infoEmpregador' in dir(evtInfoEmpregador) and 'alteracao' in dir(evtInfoEmpregador.infoEmpregador):
     
         for alteracao in evtInfoEmpregador.infoEmpregador.alteracao:
     
@@ -524,7 +524,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
     
             s1000_alteracao = s1000alteracao.objects.create(**s1000_alteracao_dados)
             
-            if 'dadosIsencao' in dir(alteracao.infoCadastro):
+            if 'infoCadastro' in dir(alteracao) and 'dadosIsencao' in dir(alteracao.infoCadastro):
             
                 for dadosIsencao in alteracao.infoCadastro.dadosIsencao:
             
@@ -573,7 +573,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_alteracao_dadosisencao = s1000alteracaodadosIsencao.objects.create(**s1000_alteracao_dadosisencao_dados)
             
-            if 'infoOP' in dir(alteracao.infoCadastro):
+            if 'infoCadastro' in dir(alteracao) and 'infoOP' in dir(alteracao.infoCadastro):
             
                 for infoOP in alteracao.infoCadastro.infoOP:
             
@@ -685,7 +685,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
                     
                             s1000_alteracao_infoente = s1000alteracaoinfoEnte.objects.create(**s1000_alteracao_infoente_dados)
             
-            if 'infoOrgInternacional' in dir(alteracao.infoCadastro):
+            if 'infoCadastro' in dir(alteracao) and 'infoOrgInternacional' in dir(alteracao.infoCadastro):
             
                 for infoOrgInternacional in alteracao.infoCadastro.infoOrgInternacional:
             
@@ -699,7 +699,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_alteracao_infoorginternacional = s1000alteracaoinfoOrgInternacional.objects.create(**s1000_alteracao_infoorginternacional_dados)
             
-            if 'softwareHouse' in dir(alteracao.infoCadastro):
+            if 'infoCadastro' in dir(alteracao) and 'softwareHouse' in dir(alteracao.infoCadastro):
             
                 for softwareHouse in alteracao.infoCadastro.softwareHouse:
             
@@ -733,7 +733,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_alteracao_softwarehouse = s1000alteracaosoftwareHouse.objects.create(**s1000_alteracao_softwarehouse_dados)
             
-            if 'situacaoPJ' in dir(alteracao.infoCadastro.infoComplementares):
+            if 'infoCadastro' in dir(alteracao) and 'infoComplementares' in dir(alteracao.infoCadastro) and 'situacaoPJ' in dir(alteracao.infoCadastro.infoComplementares):
             
                 for situacaoPJ in alteracao.infoCadastro.infoComplementares.situacaoPJ:
             
@@ -747,7 +747,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_alteracao_situacaopj = s1000alteracaosituacaoPJ.objects.create(**s1000_alteracao_situacaopj_dados)
             
-            if 'situacaoPF' in dir(alteracao.infoCadastro.infoComplementares):
+            if 'infoCadastro' in dir(alteracao) and 'infoComplementares' in dir(alteracao.infoCadastro) and 'situacaoPF' in dir(alteracao.infoCadastro.infoComplementares):
             
                 for situacaoPF in alteracao.infoCadastro.infoComplementares.situacaoPF:
             
@@ -780,7 +780,7 @@ def read_s1000_evtinfoempregador_obj(request, doc, status, validar=False):
             
                     s1000_alteracao_novavalidade = s1000alteracaonovaValidade.objects.create(**s1000_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtInfoEmpregador.infoEmpregador):
+    if 'infoEmpregador' in dir(evtInfoEmpregador) and 'exclusao' in dir(evtInfoEmpregador.infoEmpregador):
     
         for exclusao in evtInfoEmpregador.infoEmpregador.exclusao:
     

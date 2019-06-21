@@ -120,7 +120,7 @@ def read_s1202_evtrmnrpps_obj(request, doc, status, validar=False):
         
     s1202_evtrmnrpps = s1202evtRmnRPPS.objects.create(**s1202_evtrmnrpps_dados)
     
-    if 'procJudTrab' in dir(evtRmnRPPS.ideTrabalhador):
+    if 'ideTrabalhador' in dir(evtRmnRPPS) and 'procJudTrab' in dir(evtRmnRPPS.ideTrabalhador):
     
         for procJudTrab in evtRmnRPPS.ideTrabalhador.procJudTrab:
     

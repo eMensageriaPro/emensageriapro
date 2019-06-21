@@ -135,7 +135,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False):
         
     s2399_evttsvtermino = s2399evtTSVTermino.objects.create(**s2399_evttsvtermino_dados)
     
-    if 'mudancaCPF' in dir(evtTSVTermino.infoTSVTermino):
+    if 'infoTSVTermino' in dir(evtTSVTermino) and 'mudancaCPF' in dir(evtTSVTermino.infoTSVTermino):
     
         for mudancaCPF in evtTSVTermino.infoTSVTermino.mudancaCPF:
     
@@ -149,7 +149,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False):
     
             s2399_mudancacpf = s2399mudancaCPF.objects.create(**s2399_mudancacpf_dados)
     
-    if 'verbasResc' in dir(evtTSVTermino.infoTSVTermino):
+    if 'infoTSVTermino' in dir(evtTSVTermino) and 'verbasResc' in dir(evtTSVTermino.infoTSVTermino):
     
         for verbasResc in evtTSVTermino.infoTSVTermino.verbasResc:
     
@@ -397,7 +397,7 @@ def read_s2399_evttsvtermino_obj(request, doc, status, validar=False):
                     
                             s2399_remunoutrempr = s2399remunOutrEmpr.objects.create(**s2399_remunoutrempr_dados)
     
-    if 'quarentena' in dir(evtTSVTermino.infoTSVTermino):
+    if 'infoTSVTermino' in dir(evtTSVTermino) and 'quarentena' in dir(evtTSVTermino.infoTSVTermino):
     
         for quarentena in evtTSVTermino.infoTSVTermino.quarentena:
     

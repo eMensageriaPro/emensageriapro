@@ -110,7 +110,7 @@ def read_s1207_evtbenprrp_obj(request, doc, status, validar=False):
         
     s1207_evtbenprrp = s1207evtBenPrRP.objects.create(**s1207_evtbenprrp_dados)
     
-    if 'procJudTrab' in dir(evtBenPrRP.ideBenef):
+    if 'ideBenef' in dir(evtBenPrRP) and 'procJudTrab' in dir(evtBenPrRP.ideBenef):
     
         for procJudTrab in evtBenPrRP.ideBenef.procJudTrab:
     

@@ -115,7 +115,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False):
         
     s1200_evtremun = s1200evtRemun.objects.create(**s1200_evtremun_dados)
     
-    if 'infoMV' in dir(evtRemun.ideTrabalhador):
+    if 'ideTrabalhador' in dir(evtRemun) and 'infoMV' in dir(evtRemun.ideTrabalhador):
     
         for infoMV in evtRemun.ideTrabalhador.infoMV:
     
@@ -158,7 +158,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False):
             
                     s1200_remunoutrempr = s1200remunOutrEmpr.objects.create(**s1200_remunoutrempr_dados)
     
-    if 'infoComplem' in dir(evtRemun.ideTrabalhador):
+    if 'ideTrabalhador' in dir(evtRemun) and 'infoComplem' in dir(evtRemun.ideTrabalhador):
     
         for infoComplem in evtRemun.ideTrabalhador.infoComplem:
     
@@ -211,7 +211,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False):
             
                     s1200_sucessaovinc = s1200sucessaoVinc.objects.create(**s1200_sucessaovinc_dados)
     
-    if 'procJudTrab' in dir(evtRemun.ideTrabalhador):
+    if 'ideTrabalhador' in dir(evtRemun) and 'procJudTrab' in dir(evtRemun.ideTrabalhador):
     
         for procJudTrab in evtRemun.ideTrabalhador.procJudTrab:
     
@@ -235,7 +235,7 @@ def read_s1200_evtremun_obj(request, doc, status, validar=False):
     
             s1200_procjudtrab = s1200procJudTrab.objects.create(**s1200_procjudtrab_dados)
     
-    if 'infoInterm' in dir(evtRemun.ideTrabalhador):
+    if 'ideTrabalhador' in dir(evtRemun) and 'infoInterm' in dir(evtRemun.ideTrabalhador):
     
         for infoInterm in evtRemun.ideTrabalhador.infoInterm:
     

@@ -89,7 +89,7 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False):
         
     s1035_evttabcarreira = s1035evtTabCarreira.objects.create(**s1035_evttabcarreira_dados)
     
-    if 'inclusao' in dir(evtTabCarreira.infoCarreira):
+    if 'infoCarreira' in dir(evtTabCarreira) and 'inclusao' in dir(evtTabCarreira.infoCarreira):
     
         for inclusao in evtTabCarreira.infoCarreira.inclusao:
     
@@ -133,7 +133,7 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False):
     
             s1035_inclusao = s1035inclusao.objects.create(**s1035_inclusao_dados)
     
-    if 'alteracao' in dir(evtTabCarreira.infoCarreira):
+    if 'infoCarreira' in dir(evtTabCarreira) and 'alteracao' in dir(evtTabCarreira.infoCarreira):
     
         for alteracao in evtTabCarreira.infoCarreira.alteracao:
     
@@ -196,7 +196,7 @@ def read_s1035_evttabcarreira_obj(request, doc, status, validar=False):
             
                     s1035_alteracao_novavalidade = s1035alteracaonovaValidade.objects.create(**s1035_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabCarreira.infoCarreira):
+    if 'infoCarreira' in dir(evtTabCarreira) and 'exclusao' in dir(evtTabCarreira.infoCarreira):
     
         for exclusao in evtTabCarreira.infoCarreira.exclusao:
     

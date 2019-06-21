@@ -175,7 +175,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
         
     s2205_evtaltcadastral = s2205evtAltCadastral.objects.create(**s2205_evtaltcadastral_dados)
     
-    if 'documentos' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'documentos' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
     
         for documentos in evtAltCadastral.alteracao.dadosTrabalhador.documentos:
     
@@ -348,7 +348,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
             
                     s2205_cnh = s2205CNH.objects.create(**s2205_cnh_dados)
     
-    if 'brasil' in dir(evtAltCadastral.alteracao.dadosTrabalhador.endereco):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'endereco' in dir(evtAltCadastral.alteracao.dadosTrabalhador) and 'brasil' in dir(evtAltCadastral.alteracao.dadosTrabalhador.endereco):
     
         for brasil in evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil:
     
@@ -397,7 +397,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
     
             s2205_brasil = s2205brasil.objects.create(**s2205_brasil_dados)
     
-    if 'exterior' in dir(evtAltCadastral.alteracao.dadosTrabalhador.endereco):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'endereco' in dir(evtAltCadastral.alteracao.dadosTrabalhador) and 'exterior' in dir(evtAltCadastral.alteracao.dadosTrabalhador.endereco):
     
         for exterior in evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior:
     
@@ -441,7 +441,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
     
             s2205_exterior = s2205exterior.objects.create(**s2205_exterior_dados)
     
-    if 'trabEstrangeiro' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'trabEstrangeiro' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
     
         for trabEstrangeiro in evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro:
     
@@ -470,7 +470,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
     
             s2205_trabestrangeiro = s2205trabEstrangeiro.objects.create(**s2205_trabestrangeiro_dados)
     
-    if 'infoDeficiencia' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'infoDeficiencia' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
     
         for infoDeficiencia in evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia:
     
@@ -519,7 +519,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
     
             s2205_infodeficiencia = s2205infoDeficiencia.objects.create(**s2205_infodeficiencia_dados)
     
-    if 'dependente' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'dependente' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
     
         for dependente in evtAltCadastral.alteracao.dadosTrabalhador.dependente:
     
@@ -573,7 +573,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
     
             s2205_dependente = s2205dependente.objects.create(**s2205_dependente_dados)
     
-    if 'aposentadoria' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'aposentadoria' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
     
         for aposentadoria in evtAltCadastral.alteracao.dadosTrabalhador.aposentadoria:
     
@@ -587,7 +587,7 @@ def read_s2205_evtaltcadastral_obj(request, doc, status, validar=False):
     
             s2205_aposentadoria = s2205aposentadoria.objects.create(**s2205_aposentadoria_dados)
     
-    if 'contato' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
+    if 'alteracao' in dir(evtAltCadastral) and 'dadosTrabalhador' in dir(evtAltCadastral.alteracao) and 'contato' in dir(evtAltCadastral.alteracao.dadosTrabalhador):
     
         for contato in evtAltCadastral.alteracao.dadosTrabalhador.contato:
     

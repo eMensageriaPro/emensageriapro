@@ -265,7 +265,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
         
     s2200_evtadmissao = s2200evtAdmissao.objects.create(**s2200_evtadmissao_dados)
     
-    if 'documentos' in dir(evtAdmissao.trabalhador):
+    if 'trabalhador' in dir(evtAdmissao) and 'documentos' in dir(evtAdmissao.trabalhador):
     
         for documentos in evtAdmissao.trabalhador.documentos:
     
@@ -438,7 +438,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
             
                     s2200_cnh = s2200CNH.objects.create(**s2200_cnh_dados)
     
-    if 'brasil' in dir(evtAdmissao.trabalhador.endereco):
+    if 'trabalhador' in dir(evtAdmissao) and 'endereco' in dir(evtAdmissao.trabalhador) and 'brasil' in dir(evtAdmissao.trabalhador.endereco):
     
         for brasil in evtAdmissao.trabalhador.endereco.brasil:
     
@@ -487,7 +487,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_brasil = s2200brasil.objects.create(**s2200_brasil_dados)
     
-    if 'exterior' in dir(evtAdmissao.trabalhador.endereco):
+    if 'trabalhador' in dir(evtAdmissao) and 'endereco' in dir(evtAdmissao.trabalhador) and 'exterior' in dir(evtAdmissao.trabalhador.endereco):
     
         for exterior in evtAdmissao.trabalhador.endereco.exterior:
     
@@ -531,7 +531,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_exterior = s2200exterior.objects.create(**s2200_exterior_dados)
     
-    if 'trabEstrangeiro' in dir(evtAdmissao.trabalhador):
+    if 'trabalhador' in dir(evtAdmissao) and 'trabEstrangeiro' in dir(evtAdmissao.trabalhador):
     
         for trabEstrangeiro in evtAdmissao.trabalhador.trabEstrangeiro:
     
@@ -560,7 +560,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_trabestrangeiro = s2200trabEstrangeiro.objects.create(**s2200_trabestrangeiro_dados)
     
-    if 'infoDeficiencia' in dir(evtAdmissao.trabalhador):
+    if 'trabalhador' in dir(evtAdmissao) and 'infoDeficiencia' in dir(evtAdmissao.trabalhador):
     
         for infoDeficiencia in evtAdmissao.trabalhador.infoDeficiencia:
     
@@ -609,7 +609,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_infodeficiencia = s2200infoDeficiencia.objects.create(**s2200_infodeficiencia_dados)
     
-    if 'dependente' in dir(evtAdmissao.trabalhador):
+    if 'trabalhador' in dir(evtAdmissao) and 'dependente' in dir(evtAdmissao.trabalhador):
     
         for dependente in evtAdmissao.trabalhador.dependente:
     
@@ -663,7 +663,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_dependente = s2200dependente.objects.create(**s2200_dependente_dados)
     
-    if 'aposentadoria' in dir(evtAdmissao.trabalhador):
+    if 'trabalhador' in dir(evtAdmissao) and 'aposentadoria' in dir(evtAdmissao.trabalhador):
     
         for aposentadoria in evtAdmissao.trabalhador.aposentadoria:
     
@@ -677,7 +677,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_aposentadoria = s2200aposentadoria.objects.create(**s2200_aposentadoria_dados)
     
-    if 'contato' in dir(evtAdmissao.trabalhador):
+    if 'trabalhador' in dir(evtAdmissao) and 'contato' in dir(evtAdmissao.trabalhador):
     
         for contato in evtAdmissao.trabalhador.contato:
     
@@ -706,7 +706,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_contato = s2200contato.objects.create(**s2200_contato_dados)
     
-    if 'infoCeletista' in dir(evtAdmissao.vinculo.infoRegimeTrab):
+    if 'vinculo' in dir(evtAdmissao) and 'infoRegimeTrab' in dir(evtAdmissao.vinculo) and 'infoCeletista' in dir(evtAdmissao.vinculo.infoRegimeTrab):
     
         for infoCeletista in evtAdmissao.vinculo.infoRegimeTrab.infoCeletista:
     
@@ -794,7 +794,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
             
                     s2200_trabtemporario = s2200trabTemporario.objects.create(**s2200_trabtemporario_dados)
                     
-                    if 'ideEstabVinc' in dir(trabTemporario.ideTomadorServ):
+                    if 'ideTomadorServ' in dir(trabTemporario) and 'ideEstabVinc' in dir(trabTemporario.ideTomadorServ):
                     
                         for ideEstabVinc in trabTemporario.ideTomadorServ.ideEstabVinc:
                     
@@ -846,7 +846,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
             
                     s2200_aprend = s2200aprend.objects.create(**s2200_aprend_dados)
     
-    if 'infoEstatutario' in dir(evtAdmissao.vinculo.infoRegimeTrab):
+    if 'vinculo' in dir(evtAdmissao) and 'infoRegimeTrab' in dir(evtAdmissao.vinculo) and 'infoEstatutario' in dir(evtAdmissao.vinculo.infoRegimeTrab):
     
         for infoEstatutario in evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario:
     
@@ -929,7 +929,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
             
                     s2200_infodecjud = s2200infoDecJud.objects.create(**s2200_infodecjud_dados)
     
-    if 'localTrabGeral' in dir(evtAdmissao.vinculo.infoContrato.localTrabalho):
+    if 'vinculo' in dir(evtAdmissao) and 'infoContrato' in dir(evtAdmissao.vinculo) and 'localTrabalho' in dir(evtAdmissao.vinculo.infoContrato) and 'localTrabGeral' in dir(evtAdmissao.vinculo.infoContrato.localTrabalho):
     
         for localTrabGeral in evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral:
     
@@ -953,7 +953,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_localtrabgeral = s2200localTrabGeral.objects.create(**s2200_localtrabgeral_dados)
     
-    if 'localTrabDom' in dir(evtAdmissao.vinculo.infoContrato.localTrabalho):
+    if 'vinculo' in dir(evtAdmissao) and 'infoContrato' in dir(evtAdmissao.vinculo) and 'localTrabalho' in dir(evtAdmissao.vinculo.infoContrato) and 'localTrabDom' in dir(evtAdmissao.vinculo.infoContrato.localTrabalho):
     
         for localTrabDom in evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabDom:
     
@@ -1002,7 +1002,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_localtrabdom = s2200localTrabDom.objects.create(**s2200_localtrabdom_dados)
     
-    if 'horContratual' in dir(evtAdmissao.vinculo.infoContrato):
+    if 'vinculo' in dir(evtAdmissao) and 'infoContrato' in dir(evtAdmissao.vinculo) and 'horContratual' in dir(evtAdmissao.vinculo.infoContrato):
     
         for horContratual in evtAdmissao.vinculo.infoContrato.horContratual:
     
@@ -1050,7 +1050,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
             
                     s2200_horario = s2200horario.objects.create(**s2200_horario_dados)
     
-    if 'filiacaoSindical' in dir(evtAdmissao.vinculo.infoContrato):
+    if 'vinculo' in dir(evtAdmissao) and 'infoContrato' in dir(evtAdmissao.vinculo) and 'filiacaoSindical' in dir(evtAdmissao.vinculo.infoContrato):
     
         for filiacaoSindical in evtAdmissao.vinculo.infoContrato.filiacaoSindical:
     
@@ -1064,7 +1064,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_filiacaosindical = s2200filiacaoSindical.objects.create(**s2200_filiacaosindical_dados)
     
-    if 'alvaraJudicial' in dir(evtAdmissao.vinculo.infoContrato):
+    if 'vinculo' in dir(evtAdmissao) and 'infoContrato' in dir(evtAdmissao.vinculo) and 'alvaraJudicial' in dir(evtAdmissao.vinculo.infoContrato):
     
         for alvaraJudicial in evtAdmissao.vinculo.infoContrato.alvaraJudicial:
     
@@ -1078,7 +1078,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_alvarajudicial = s2200alvaraJudicial.objects.create(**s2200_alvarajudicial_dados)
     
-    if 'observacoes' in dir(evtAdmissao.vinculo.infoContrato):
+    if 'vinculo' in dir(evtAdmissao) and 'infoContrato' in dir(evtAdmissao.vinculo) and 'observacoes' in dir(evtAdmissao.vinculo.infoContrato):
     
         for observacoes in evtAdmissao.vinculo.infoContrato.observacoes:
     
@@ -1092,7 +1092,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_observacoes = s2200observacoes.objects.create(**s2200_observacoes_dados)
     
-    if 'sucessaoVinc' in dir(evtAdmissao.vinculo):
+    if 'vinculo' in dir(evtAdmissao) and 'sucessaoVinc' in dir(evtAdmissao.vinculo):
     
         for sucessaoVinc in evtAdmissao.vinculo.sucessaoVinc:
     
@@ -1126,7 +1126,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_sucessaovinc = s2200sucessaoVinc.objects.create(**s2200_sucessaovinc_dados)
     
-    if 'transfDom' in dir(evtAdmissao.vinculo):
+    if 'vinculo' in dir(evtAdmissao) and 'transfDom' in dir(evtAdmissao.vinculo):
     
         for transfDom in evtAdmissao.vinculo.transfDom:
     
@@ -1150,7 +1150,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_transfdom = s2200transfDom.objects.create(**s2200_transfdom_dados)
     
-    if 'mudancaCPF' in dir(evtAdmissao.vinculo):
+    if 'vinculo' in dir(evtAdmissao) and 'mudancaCPF' in dir(evtAdmissao.vinculo):
     
         for mudancaCPF in evtAdmissao.vinculo.mudancaCPF:
     
@@ -1179,7 +1179,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_mudancacpf = s2200mudancaCPF.objects.create(**s2200_mudancacpf_dados)
     
-    if 'afastamento' in dir(evtAdmissao.vinculo):
+    if 'vinculo' in dir(evtAdmissao) and 'afastamento' in dir(evtAdmissao.vinculo):
     
         for afastamento in evtAdmissao.vinculo.afastamento:
     
@@ -1198,7 +1198,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_afastamento = s2200afastamento.objects.create(**s2200_afastamento_dados)
     
-    if 'desligamento' in dir(evtAdmissao.vinculo):
+    if 'vinculo' in dir(evtAdmissao) and 'desligamento' in dir(evtAdmissao.vinculo):
     
         for desligamento in evtAdmissao.vinculo.desligamento:
     
@@ -1212,7 +1212,7 @@ def read_s2200_evtadmissao_obj(request, doc, status, validar=False):
     
             s2200_desligamento = s2200desligamento.objects.create(**s2200_desligamento_dados)
     
-    if 'cessao' in dir(evtAdmissao.vinculo):
+    if 'vinculo' in dir(evtAdmissao) and 'cessao' in dir(evtAdmissao.vinculo):
     
         for cessao in evtAdmissao.vinculo.cessao:
     

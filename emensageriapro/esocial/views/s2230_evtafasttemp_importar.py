@@ -115,7 +115,7 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False):
         
     s2230_evtafasttemp = s2230evtAfastTemp.objects.create(**s2230_evtafasttemp_dados)
     
-    if 'iniAfastamento' in dir(evtAfastTemp.infoAfastamento):
+    if 'infoAfastamento' in dir(evtAfastTemp) and 'iniAfastamento' in dir(evtAfastTemp.infoAfastamento):
     
         for iniAfastamento in evtAfastTemp.infoAfastamento.iniAfastamento:
     
@@ -235,7 +235,7 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False):
             
                     s2230_infomandsind = s2230infoMandSind.objects.create(**s2230_infomandsind_dados)
     
-    if 'infoRetif' in dir(evtAfastTemp.infoAfastamento):
+    if 'infoAfastamento' in dir(evtAfastTemp) and 'infoRetif' in dir(evtAfastTemp.infoAfastamento):
     
         for infoRetif in evtAfastTemp.infoAfastamento.infoRetif:
     
@@ -259,7 +259,7 @@ def read_s2230_evtafasttemp_obj(request, doc, status, validar=False):
     
             s2230_inforetif = s2230infoRetif.objects.create(**s2230_inforetif_dados)
     
-    if 'fimAfastamento' in dir(evtAfastTemp.infoAfastamento):
+    if 'infoAfastamento' in dir(evtAfastTemp) and 'fimAfastamento' in dir(evtAfastTemp.infoAfastamento):
     
         for fimAfastamento in evtAfastTemp.infoAfastamento.fimAfastamento:
     

@@ -110,7 +110,7 @@ def read_r9012_evtretcons_obj(request, doc, status, validar=False):
         
     r9012_evtretcons = r9012evtRetCons.objects.create(**r9012_evtretcons_dados)
     
-    if 'regOcorrs' in dir(evtRetCons.ideRecRetorno.ideStatus):
+    if 'ideRecRetorno' in dir(evtRetCons) and 'ideStatus' in dir(evtRetCons.ideRecRetorno) and 'regOcorrs' in dir(evtRetCons.ideRecRetorno.ideStatus):
     
         for regOcorrs in evtRetCons.ideRecRetorno.ideStatus.regOcorrs:
     

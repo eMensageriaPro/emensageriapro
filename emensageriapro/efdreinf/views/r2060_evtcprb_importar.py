@@ -125,7 +125,7 @@ def read_r2060_evtcprb_obj(request, doc, status, validar=False):
         
     r2060_evtcprb = r2060evtCPRB.objects.create(**r2060_evtcprb_dados)
     
-    if 'tipoCod' in dir(evtCPRB.infoCPRB.ideEstab):
+    if 'infoCPRB' in dir(evtCPRB) and 'ideEstab' in dir(evtCPRB.infoCPRB) and 'tipoCod' in dir(evtCPRB.infoCPRB.ideEstab):
     
         for tipoCod in evtCPRB.infoCPRB.ideEstab.tipoCod:
     

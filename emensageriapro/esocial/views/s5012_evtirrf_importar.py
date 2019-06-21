@@ -85,7 +85,7 @@ def read_s5012_evtirrf_obj(request, doc, status, validar=False):
         
     s5012_evtirrf = s5012evtIrrf.objects.create(**s5012_evtirrf_dados)
     
-    if 'infoCRContrib' in dir(evtIrrf.infoIRRF):
+    if 'infoIRRF' in dir(evtIrrf) and 'infoCRContrib' in dir(evtIrrf.infoIRRF):
     
         for infoCRContrib in evtIrrf.infoIRRF.infoCRContrib:
     

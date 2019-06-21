@@ -185,7 +185,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
         
     s2206_evtaltcontratual = s2206evtAltContratual.objects.create(**s2206_evtaltcontratual_dados)
     
-    if 'infoCeletista' in dir(evtAltContratual.altContratual.infoRegimeTrab):
+    if 'altContratual' in dir(evtAltContratual) and 'infoRegimeTrab' in dir(evtAltContratual.altContratual) and 'infoCeletista' in dir(evtAltContratual.altContratual.infoRegimeTrab):
     
         for infoCeletista in evtAltContratual.altContratual.infoRegimeTrab.infoCeletista:
     
@@ -247,7 +247,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
             
                     s2206_aprend = s2206aprend.objects.create(**s2206_aprend_dados)
     
-    if 'infoEstatutario' in dir(evtAltContratual.altContratual.infoRegimeTrab):
+    if 'altContratual' in dir(evtAltContratual) and 'infoRegimeTrab' in dir(evtAltContratual.altContratual) and 'infoEstatutario' in dir(evtAltContratual.altContratual.infoRegimeTrab):
     
         for infoEstatutario in evtAltContratual.altContratual.infoRegimeTrab.infoEstatutario:
     
@@ -276,7 +276,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
     
             s2206_infoestatutario = s2206infoEstatutario.objects.create(**s2206_infoestatutario_dados)
     
-    if 'localTrabGeral' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'localTrabalho' in dir(evtAltContratual.altContratual.infoContrato) and 'localTrabGeral' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
     
         for localTrabGeral in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabGeral:
     
@@ -300,7 +300,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
     
             s2206_localtrabgeral = s2206localTrabGeral.objects.create(**s2206_localtrabgeral_dados)
     
-    if 'localTrabDom' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'localTrabalho' in dir(evtAltContratual.altContratual.infoContrato) and 'localTrabDom' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
     
         for localTrabDom in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabDom:
     
@@ -349,7 +349,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
     
             s2206_localtrabdom = s2206localTrabDom.objects.create(**s2206_localtrabdom_dados)
     
-    if 'horContratual' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'horContratual' in dir(evtAltContratual.altContratual.infoContrato):
     
         for horContratual in evtAltContratual.altContratual.infoContrato.horContratual:
     
@@ -397,7 +397,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
             
                     s2206_horario = s2206horario.objects.create(**s2206_horario_dados)
     
-    if 'filiacaoSindical' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'filiacaoSindical' in dir(evtAltContratual.altContratual.infoContrato):
     
         for filiacaoSindical in evtAltContratual.altContratual.infoContrato.filiacaoSindical:
     
@@ -411,7 +411,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
     
             s2206_filiacaosindical = s2206filiacaoSindical.objects.create(**s2206_filiacaosindical_dados)
     
-    if 'alvaraJudicial' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'alvaraJudicial' in dir(evtAltContratual.altContratual.infoContrato):
     
         for alvaraJudicial in evtAltContratual.altContratual.infoContrato.alvaraJudicial:
     
@@ -425,7 +425,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
     
             s2206_alvarajudicial = s2206alvaraJudicial.objects.create(**s2206_alvarajudicial_dados)
     
-    if 'observacoes' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'observacoes' in dir(evtAltContratual.altContratual.infoContrato):
     
         for observacoes in evtAltContratual.altContratual.infoContrato.observacoes:
     
@@ -439,7 +439,7 @@ def read_s2206_evtaltcontratual_obj(request, doc, status, validar=False):
     
             s2206_observacoes = s2206observacoes.objects.create(**s2206_observacoes_dados)
     
-    if 'servPubl' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'altContratual' in dir(evtAltContratual) and 'infoContrato' in dir(evtAltContratual.altContratual) and 'servPubl' in dir(evtAltContratual.altContratual.infoContrato):
     
         for servPubl in evtAltContratual.altContratual.infoContrato.servPubl:
     

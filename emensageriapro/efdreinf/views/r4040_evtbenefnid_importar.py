@@ -110,7 +110,7 @@ def read_r4040_evtbenefnid_obj(request, doc, status, validar=False):
         
     r4040_evtbenefnid = r4040evtBenefNId.objects.create(**r4040_evtbenefnid_dados)
     
-    if 'ideNat' in dir(evtBenefNId.ideEstab):
+    if 'ideEstab' in dir(evtBenefNId) and 'ideNat' in dir(evtBenefNId.ideEstab):
     
         for ideNat in evtBenefNId.ideEstab.ideNat:
     

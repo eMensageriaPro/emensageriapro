@@ -155,7 +155,7 @@ def read_s2245_evttreicap_obj(request, doc, status, validar=False):
         
     s2245_evttreicap = s2245evtTreiCap.objects.create(**s2245_evttreicap_dados)
     
-    if 'ideProfResp' in dir(evtTreiCap.treiCap.infoComplem):
+    if 'treiCap' in dir(evtTreiCap) and 'infoComplem' in dir(evtTreiCap.treiCap) and 'ideProfResp' in dir(evtTreiCap.treiCap.infoComplem):
     
         for ideProfResp in evtTreiCap.treiCap.infoComplem.ideProfResp:
     

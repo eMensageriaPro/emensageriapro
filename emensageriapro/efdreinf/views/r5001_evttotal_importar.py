@@ -110,7 +110,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
         
     r5001_evttotal = r5001evtTotal.objects.create(**r5001_evttotal_dados)
     
-    if 'regOcorrs' in dir(evtTotal.ideRecRetorno.ideStatus):
+    if 'ideRecRetorno' in dir(evtTotal) and 'ideStatus' in dir(evtTotal.ideRecRetorno) and 'regOcorrs' in dir(evtTotal.ideRecRetorno.ideStatus):
     
         for regOcorrs in evtTotal.ideRecRetorno.ideStatus.regOcorrs:
     
@@ -163,7 +163,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
     
             r5001_infototal = r5001infoTotal.objects.create(**r5001_infototal_dados)
             
-            if 'RTom' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RTom' in dir(infoTotal.ideEstab):
             
                 for RTom in infoTotal.ideEstab.RTom:
             
@@ -211,7 +211,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
                     
                             r5001_infocrtom = r5001infoCRTom.objects.create(**r5001_infocrtom_dados)
             
-            if 'RPrest' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RPrest' in dir(infoTotal.ideEstab):
             
                 for RPrest in infoTotal.ideEstab.RPrest:
             
@@ -255,7 +255,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
             
                     r5001_rprest = r5001RPrest.objects.create(**r5001_rprest_dados)
             
-            if 'RRecRepAD' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RRecRepAD' in dir(infoTotal.ideEstab):
             
                 for RRecRepAD in infoTotal.ideEstab.RRecRepAD:
             
@@ -289,7 +289,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
             
                     r5001_rrecrepad = r5001RRecRepAD.objects.create(**r5001_rrecrepad_dados)
             
-            if 'RComl' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RComl' in dir(infoTotal.ideEstab):
             
                 for RComl in infoTotal.ideEstab.RComl:
             
@@ -313,7 +313,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
             
                     r5001_rcoml = r5001RComl.objects.create(**r5001_rcoml_dados)
             
-            if 'RCPRB' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RCPRB' in dir(infoTotal.ideEstab):
             
                 for RCPRB in infoTotal.ideEstab.RCPRB:
             
@@ -337,7 +337,7 @@ def read_r5001_evttotal_obj(request, doc, status, validar=False):
             
                     r5001_rcprb = r5001RCPRB.objects.create(**r5001_rcprb_dados)
             
-            if 'RRecEspetDesp' in dir(infoTotal.ideEstab):
+            if 'ideEstab' in dir(infoTotal) and 'RRecEspetDesp' in dir(infoTotal.ideEstab):
             
                 for RRecEspetDesp in infoTotal.ideEstab.RRecEspetDesp:
             

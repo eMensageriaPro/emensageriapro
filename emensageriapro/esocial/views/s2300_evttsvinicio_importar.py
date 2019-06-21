@@ -190,7 +190,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
         
     s2300_evttsvinicio = s2300evtTSVInicio.objects.create(**s2300_evttsvinicio_dados)
     
-    if 'documentos' in dir(evtTSVInicio.trabalhador):
+    if 'trabalhador' in dir(evtTSVInicio) and 'documentos' in dir(evtTSVInicio.trabalhador):
     
         for documentos in evtTSVInicio.trabalhador.documentos:
     
@@ -363,7 +363,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
             
                     s2300_cnh = s2300CNH.objects.create(**s2300_cnh_dados)
     
-    if 'brasil' in dir(evtTSVInicio.trabalhador.endereco):
+    if 'trabalhador' in dir(evtTSVInicio) and 'endereco' in dir(evtTSVInicio.trabalhador) and 'brasil' in dir(evtTSVInicio.trabalhador.endereco):
     
         for brasil in evtTSVInicio.trabalhador.endereco.brasil:
     
@@ -412,7 +412,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_brasil = s2300brasil.objects.create(**s2300_brasil_dados)
     
-    if 'exterior' in dir(evtTSVInicio.trabalhador.endereco):
+    if 'trabalhador' in dir(evtTSVInicio) and 'endereco' in dir(evtTSVInicio.trabalhador) and 'exterior' in dir(evtTSVInicio.trabalhador.endereco):
     
         for exterior in evtTSVInicio.trabalhador.endereco.exterior:
     
@@ -456,7 +456,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_exterior = s2300exterior.objects.create(**s2300_exterior_dados)
     
-    if 'trabEstrangeiro' in dir(evtTSVInicio.trabalhador):
+    if 'trabalhador' in dir(evtTSVInicio) and 'trabEstrangeiro' in dir(evtTSVInicio.trabalhador):
     
         for trabEstrangeiro in evtTSVInicio.trabalhador.trabEstrangeiro:
     
@@ -485,7 +485,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_trabestrangeiro = s2300trabEstrangeiro.objects.create(**s2300_trabestrangeiro_dados)
     
-    if 'infoDeficiencia' in dir(evtTSVInicio.trabalhador):
+    if 'trabalhador' in dir(evtTSVInicio) and 'infoDeficiencia' in dir(evtTSVInicio.trabalhador):
     
         for infoDeficiencia in evtTSVInicio.trabalhador.infoDeficiencia:
     
@@ -529,7 +529,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_infodeficiencia = s2300infoDeficiencia.objects.create(**s2300_infodeficiencia_dados)
     
-    if 'dependente' in dir(evtTSVInicio.trabalhador):
+    if 'trabalhador' in dir(evtTSVInicio) and 'dependente' in dir(evtTSVInicio.trabalhador):
     
         for dependente in evtTSVInicio.trabalhador.dependente:
     
@@ -583,7 +583,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_dependente = s2300dependente.objects.create(**s2300_dependente_dados)
     
-    if 'contato' in dir(evtTSVInicio.trabalhador):
+    if 'trabalhador' in dir(evtTSVInicio) and 'contato' in dir(evtTSVInicio.trabalhador):
     
         for contato in evtTSVInicio.trabalhador.contato:
     
@@ -612,7 +612,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_contato = s2300contato.objects.create(**s2300_contato_dados)
     
-    if 'infoComplementares' in dir(evtTSVInicio.infoTSVInicio):
+    if 'infoTSVInicio' in dir(evtTSVInicio) and 'infoComplementares' in dir(evtTSVInicio.infoTSVInicio):
     
         for infoComplementares in evtTSVInicio.infoTSVInicio.infoComplementares:
     
@@ -908,7 +908,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
                     
                             s2300_supervisorestagio = s2300supervisorEstagio.objects.create(**s2300_supervisorestagio_dados)
     
-    if 'mudancaCPF' in dir(evtTSVInicio.infoTSVInicio):
+    if 'infoTSVInicio' in dir(evtTSVInicio) and 'mudancaCPF' in dir(evtTSVInicio.infoTSVInicio):
     
         for mudancaCPF in evtTSVInicio.infoTSVInicio.mudancaCPF:
     
@@ -932,7 +932,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_mudancacpf = s2300mudancaCPF.objects.create(**s2300_mudancacpf_dados)
     
-    if 'afastamento' in dir(evtTSVInicio.infoTSVInicio):
+    if 'infoTSVInicio' in dir(evtTSVInicio) and 'afastamento' in dir(evtTSVInicio.infoTSVInicio):
     
         for afastamento in evtTSVInicio.infoTSVInicio.afastamento:
     
@@ -951,7 +951,7 @@ def read_s2300_evttsvinicio_obj(request, doc, status, validar=False):
     
             s2300_afastamento = s2300afastamento.objects.create(**s2300_afastamento_dados)
     
-    if 'termino' in dir(evtTSVInicio.infoTSVInicio):
+    if 'infoTSVInicio' in dir(evtTSVInicio) and 'termino' in dir(evtTSVInicio.infoTSVInicio):
     
         for termino in evtTSVInicio.infoTSVInicio.termino:
     

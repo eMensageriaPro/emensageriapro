@@ -85,7 +85,7 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False):
         
     s5013_evtfgts = s5013evtFGTS.objects.create(**s5013_evtfgts_dados)
     
-    if 'infoBaseFGTS' in dir(evtFGTS.infoFGTS):
+    if 'infoFGTS' in dir(evtFGTS) and 'infoBaseFGTS' in dir(evtFGTS.infoFGTS):
     
         for infoBaseFGTS in evtFGTS.infoFGTS.infoBaseFGTS:
     
@@ -146,7 +146,7 @@ def read_s5013_evtfgts_obj(request, doc, status, validar=False):
                     
                             s5013_baseperante = s5013basePerAntE.objects.create(**s5013_baseperante_dados)
     
-    if 'infoDpsFGTS' in dir(evtFGTS.infoFGTS):
+    if 'infoFGTS' in dir(evtFGTS) and 'infoDpsFGTS' in dir(evtFGTS.infoFGTS):
     
         for infoDpsFGTS in evtFGTS.infoFGTS.infoDpsFGTS:
     

@@ -155,7 +155,7 @@ def read_s2405_evtcdbenefalt_obj(request, doc, status, validar=False):
         
     s2405_evtcdbenefalt = s2405evtCdBenefAlt.objects.create(**s2405_evtcdbenefalt_dados)
     
-    if 'endereco' in dir(evtCdBenefAlt.alteracao.dadosBenef):
+    if 'alteracao' in dir(evtCdBenefAlt) and 'dadosBenef' in dir(evtCdBenefAlt.alteracao) and 'endereco' in dir(evtCdBenefAlt.alteracao.dadosBenef):
     
         for endereco in evtCdBenefAlt.alteracao.dadosBenef.endereco:
     
@@ -257,7 +257,7 @@ def read_s2405_evtcdbenefalt_obj(request, doc, status, validar=False):
             
                     s2405_exterior = s2405exterior.objects.create(**s2405_exterior_dados)
     
-    if 'dependente' in dir(evtCdBenefAlt.alteracao.dadosBenef):
+    if 'alteracao' in dir(evtCdBenefAlt) and 'dadosBenef' in dir(evtCdBenefAlt.alteracao) and 'dependente' in dir(evtCdBenefAlt.alteracao.dadosBenef):
     
         for dependente in evtCdBenefAlt.alteracao.dadosBenef.dependente:
     

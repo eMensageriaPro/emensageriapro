@@ -130,25 +130,29 @@ class Usuarios(SoftDeletionModel):
         related_name='%(class)s_config_perfis')
     
     def __unicode__(self):
-    
         return unicode(self.user.first_name) + unicode(self.user.last_name)
 
     def username(self):
-    
         return self.user.username
 
     def first_name(self):
-    
         return self.user.first_name
 
     def last_name(self):
-    
         return self.user.last_name
 
     def email(self):
-    
         return self.user.email
 
+    def is_active(self):
+        return self.user.is_active
+
+    def is_staff(self):
+        return self.user.is_staff
+
+    def is_superuser(self):
+        return self.user.is_superuser
+        
     class Meta:
     
         verbose_name = u'Usuários'

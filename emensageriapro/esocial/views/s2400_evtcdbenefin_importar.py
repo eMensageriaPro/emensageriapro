@@ -175,7 +175,7 @@ def read_s2400_evtcdbenefin_obj(request, doc, status, validar=False):
         
     s2400_evtcdbenefin = s2400evtCdBenefIn.objects.create(**s2400_evtcdbenefin_dados)
     
-    if 'endereco' in dir(evtCdBenefIn.beneficiario):
+    if 'beneficiario' in dir(evtCdBenefIn) and 'endereco' in dir(evtCdBenefIn.beneficiario):
     
         for endereco in evtCdBenefIn.beneficiario.endereco:
     
@@ -277,7 +277,7 @@ def read_s2400_evtcdbenefin_obj(request, doc, status, validar=False):
             
                     s2400_exterior = s2400exterior.objects.create(**s2400_exterior_dados)
     
-    if 'dependente' in dir(evtCdBenefIn.beneficiario):
+    if 'beneficiario' in dir(evtCdBenefIn) and 'dependente' in dir(evtCdBenefIn.beneficiario):
     
         for dependente in evtCdBenefIn.beneficiario.dependente:
     

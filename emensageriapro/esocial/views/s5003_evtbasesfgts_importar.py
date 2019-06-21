@@ -95,7 +95,7 @@ def read_s5003_evtbasesfgts_obj(request, doc, status, validar=False):
         
     s5003_evtbasesfgts = s5003evtBasesFGTS.objects.create(**s5003_evtbasesfgts_dados)
     
-    if 'ideEstabLot' in dir(evtBasesFGTS.infoFGTS):
+    if 'infoFGTS' in dir(evtBasesFGTS) and 'ideEstabLot' in dir(evtBasesFGTS.infoFGTS):
     
         for ideEstabLot in evtBasesFGTS.infoFGTS.ideEstabLot:
     
@@ -229,7 +229,7 @@ def read_s5003_evtbasesfgts_obj(request, doc, status, validar=False):
                                     
                                             s5003_baseperante = s5003basePerAntE.objects.create(**s5003_baseperante_dados)
     
-    if 'infoDpsFGTS' in dir(evtBasesFGTS.infoFGTS):
+    if 'infoFGTS' in dir(evtBasesFGTS) and 'infoDpsFGTS' in dir(evtBasesFGTS.infoFGTS):
     
         for infoDpsFGTS in evtBasesFGTS.infoFGTS.infoDpsFGTS:
     

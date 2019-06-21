@@ -145,7 +145,7 @@ def read_s2260_evtconvinterm_obj(request, doc, status, validar=False):
         
     s2260_evtconvinterm = s2260evtConvInterm.objects.create(**s2260_evtconvinterm_dados)
     
-    if 'localTrabInterm' in dir(evtConvInterm.infoConvInterm.localTrab):
+    if 'infoConvInterm' in dir(evtConvInterm) and 'localTrab' in dir(evtConvInterm.infoConvInterm) and 'localTrabInterm' in dir(evtConvInterm.infoConvInterm.localTrab):
     
         for localTrabInterm in evtConvInterm.infoConvInterm.localTrab.localTrabInterm:
     

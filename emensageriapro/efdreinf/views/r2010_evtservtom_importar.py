@@ -155,7 +155,7 @@ def read_r2010_evtservtom_obj(request, doc, status, validar=False):
         
     r2010_evtservtom = r2010evtServTom.objects.create(**r2010_evtservtom_dados)
     
-    if 'nfs' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
+    if 'infoServTom' in dir(evtServTom) and 'ideEstabObra' in dir(evtServTom.infoServTom) and 'idePrestServ' in dir(evtServTom.infoServTom.ideEstabObra) and 'nfs' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
     
         for nfs in evtServTom.infoServTom.ideEstabObra.idePrestServ.nfs:
     
@@ -248,7 +248,7 @@ def read_r2010_evtservtom_obj(request, doc, status, validar=False):
             
                     r2010_infotpserv = r2010infoTpServ.objects.create(**r2010_infotpserv_dados)
     
-    if 'infoProcRetPr' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
+    if 'infoServTom' in dir(evtServTom) and 'ideEstabObra' in dir(evtServTom.infoServTom) and 'idePrestServ' in dir(evtServTom.infoServTom.ideEstabObra) and 'infoProcRetPr' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
     
         for infoProcRetPr in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetPr:
     
@@ -277,7 +277,7 @@ def read_r2010_evtservtom_obj(request, doc, status, validar=False):
     
             r2010_infoprocretpr = r2010infoProcRetPr.objects.create(**r2010_infoprocretpr_dados)
     
-    if 'infoProcRetAd' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
+    if 'infoServTom' in dir(evtServTom) and 'ideEstabObra' in dir(evtServTom.infoServTom) and 'idePrestServ' in dir(evtServTom.infoServTom.ideEstabObra) and 'infoProcRetAd' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
     
         for infoProcRetAd in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetAd:
     

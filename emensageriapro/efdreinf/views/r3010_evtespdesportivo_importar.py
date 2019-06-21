@@ -135,7 +135,7 @@ def read_r3010_evtespdesportivo_obj(request, doc, status, validar=False):
         
     r3010_evtespdesportivo = r3010evtEspDesportivo.objects.create(**r3010_evtespdesportivo_dados)
     
-    if 'boletim' in dir(evtEspDesportivo.ideContri.ideEstab):
+    if 'ideContri' in dir(evtEspDesportivo) and 'ideEstab' in dir(evtEspDesportivo.ideContri) and 'boletim' in dir(evtEspDesportivo.ideContri.ideEstab):
     
         for boletim in evtEspDesportivo.ideContri.ideEstab.boletim:
     
@@ -277,7 +277,7 @@ def read_r3010_evtespdesportivo_obj(request, doc, status, validar=False):
             
                     r3010_outrasreceitas = r3010outrasReceitas.objects.create(**r3010_outrasreceitas_dados)
     
-    if 'infoProc' in dir(evtEspDesportivo.ideContri.ideEstab.receitaTotal):
+    if 'ideContri' in dir(evtEspDesportivo) and 'ideEstab' in dir(evtEspDesportivo.ideContri) and 'receitaTotal' in dir(evtEspDesportivo.ideContri.ideEstab) and 'infoProc' in dir(evtEspDesportivo.ideContri.ideEstab.receitaTotal):
     
         for infoProc in evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc:
     

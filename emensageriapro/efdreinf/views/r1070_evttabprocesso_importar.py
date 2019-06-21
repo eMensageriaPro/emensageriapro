@@ -89,7 +89,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
         
     r1070_evttabprocesso = r1070evtTabProcesso.objects.create(**r1070_evttabprocesso_dados)
     
-    if 'inclusao' in dir(evtTabProcesso.infoProcesso):
+    if 'infoProcesso' in dir(evtTabProcesso) and 'inclusao' in dir(evtTabProcesso.infoProcesso):
     
         for inclusao in evtTabProcesso.infoProcesso.inclusao:
     
@@ -123,7 +123,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
     
             r1070_inclusao = r1070inclusao.objects.create(**r1070_inclusao_dados)
             
-            if 'infoSusp' in dir(inclusao.ideProcesso):
+            if 'ideProcesso' in dir(inclusao) and 'infoSusp' in dir(inclusao.ideProcesso):
             
                 for infoSusp in inclusao.ideProcesso.infoSusp:
             
@@ -152,7 +152,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
             
                     r1070_inclusao_infosusp = r1070inclusaoinfoSusp.objects.create(**r1070_inclusao_infosusp_dados)
             
-            if 'dadosProcJud' in dir(inclusao.ideProcesso):
+            if 'ideProcesso' in dir(inclusao) and 'dadosProcJud' in dir(inclusao.ideProcesso):
             
                 for dadosProcJud in inclusao.ideProcesso.dadosProcJud:
             
@@ -176,7 +176,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
             
                     r1070_inclusao_dadosprocjud = r1070inclusaodadosProcJud.objects.create(**r1070_inclusao_dadosprocjud_dados)
     
-    if 'alteracao' in dir(evtTabProcesso.infoProcesso):
+    if 'infoProcesso' in dir(evtTabProcesso) and 'alteracao' in dir(evtTabProcesso.infoProcesso):
     
         for alteracao in evtTabProcesso.infoProcesso.alteracao:
     
@@ -210,7 +210,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
     
             r1070_alteracao = r1070alteracao.objects.create(**r1070_alteracao_dados)
             
-            if 'infoSusp' in dir(alteracao.ideProcesso):
+            if 'ideProcesso' in dir(alteracao) and 'infoSusp' in dir(alteracao.ideProcesso):
             
                 for infoSusp in alteracao.ideProcesso.infoSusp:
             
@@ -239,7 +239,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
             
                     r1070_alteracao_infosusp = r1070alteracaoinfoSusp.objects.create(**r1070_alteracao_infosusp_dados)
             
-            if 'dadosProcJud' in dir(alteracao.ideProcesso):
+            if 'ideProcesso' in dir(alteracao) and 'dadosProcJud' in dir(alteracao.ideProcesso):
             
                 for dadosProcJud in alteracao.ideProcesso.dadosProcJud:
             
@@ -282,7 +282,7 @@ def read_r1070_evttabprocesso_obj(request, doc, status, validar=False):
             
                     r1070_alteracao_novavalidade = r1070alteracaonovaValidade.objects.create(**r1070_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabProcesso.infoProcesso):
+    if 'infoProcesso' in dir(evtTabProcesso) and 'exclusao' in dir(evtTabProcesso.infoProcesso):
     
         for exclusao in evtTabProcesso.infoProcesso.exclusao:
     

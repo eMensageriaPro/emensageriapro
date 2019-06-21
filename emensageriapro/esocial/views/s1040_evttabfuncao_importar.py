@@ -89,7 +89,7 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False):
         
     s1040_evttabfuncao = s1040evtTabFuncao.objects.create(**s1040_evttabfuncao_dados)
     
-    if 'inclusao' in dir(evtTabFuncao.infoFuncao):
+    if 'infoFuncao' in dir(evtTabFuncao) and 'inclusao' in dir(evtTabFuncao.infoFuncao):
     
         for inclusao in evtTabFuncao.infoFuncao.inclusao:
     
@@ -123,7 +123,7 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False):
     
             s1040_inclusao = s1040inclusao.objects.create(**s1040_inclusao_dados)
     
-    if 'alteracao' in dir(evtTabFuncao.infoFuncao):
+    if 'infoFuncao' in dir(evtTabFuncao) and 'alteracao' in dir(evtTabFuncao.infoFuncao):
     
         for alteracao in evtTabFuncao.infoFuncao.alteracao:
     
@@ -176,7 +176,7 @@ def read_s1040_evttabfuncao_obj(request, doc, status, validar=False):
             
                     s1040_alteracao_novavalidade = s1040alteracaonovaValidade.objects.create(**s1040_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabFuncao.infoFuncao):
+    if 'infoFuncao' in dir(evtTabFuncao) and 'exclusao' in dir(evtTabFuncao.infoFuncao):
     
         for exclusao in evtTabFuncao.infoFuncao.exclusao:
     

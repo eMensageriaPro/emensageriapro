@@ -89,7 +89,7 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False):
         
     s1080_evttaboperport = s1080evtTabOperPort.objects.create(**s1080_evttaboperport_dados)
     
-    if 'inclusao' in dir(evtTabOperPort.infoOperPortuario):
+    if 'infoOperPortuario' in dir(evtTabOperPort) and 'inclusao' in dir(evtTabOperPort.infoOperPortuario):
     
         for inclusao in evtTabOperPort.infoOperPortuario.inclusao:
     
@@ -128,7 +128,7 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False):
     
             s1080_inclusao = s1080inclusao.objects.create(**s1080_inclusao_dados)
     
-    if 'alteracao' in dir(evtTabOperPort.infoOperPortuario):
+    if 'infoOperPortuario' in dir(evtTabOperPort) and 'alteracao' in dir(evtTabOperPort.infoOperPortuario):
     
         for alteracao in evtTabOperPort.infoOperPortuario.alteracao:
     
@@ -186,7 +186,7 @@ def read_s1080_evttaboperport_obj(request, doc, status, validar=False):
             
                     s1080_alteracao_novavalidade = s1080alteracaonovaValidade.objects.create(**s1080_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabOperPort.infoOperPortuario):
+    if 'infoOperPortuario' in dir(evtTabOperPort) and 'exclusao' in dir(evtTabOperPort.infoOperPortuario):
     
         for exclusao in evtTabOperPort.infoOperPortuario.exclusao:
     

@@ -145,7 +145,7 @@ def read_r2050_evtcomprod_obj(request, doc, status, validar=False):
         
     r2050_evtcomprod = r2050evtComProd.objects.create(**r2050_evtcomprod_dados)
     
-    if 'tipoCom' in dir(evtComProd.infoComProd.ideEstab):
+    if 'infoComProd' in dir(evtComProd) and 'ideEstab' in dir(evtComProd.infoComProd) and 'tipoCom' in dir(evtComProd.infoComProd.ideEstab):
     
         for tipoCom in evtComProd.infoComProd.ideEstab.tipoCom:
     

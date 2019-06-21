@@ -110,7 +110,7 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False):
         
     s1210_evtpgtos = s1210evtPgtos.objects.create(**s1210_evtpgtos_dados)
     
-    if 'deps' in dir(evtPgtos.ideBenef):
+    if 'ideBenef' in dir(evtPgtos) and 'deps' in dir(evtPgtos.ideBenef):
     
         for deps in evtPgtos.ideBenef.deps:
     
@@ -124,7 +124,7 @@ def read_s1210_evtpgtos_obj(request, doc, status, validar=False):
     
             s1210_deps = s1210deps.objects.create(**s1210_deps_dados)
     
-    if 'infoPgto' in dir(evtPgtos.ideBenef):
+    if 'ideBenef' in dir(evtPgtos) and 'infoPgto' in dir(evtPgtos.ideBenef):
     
         for infoPgto in evtPgtos.ideBenef.infoPgto:
     

@@ -165,7 +165,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
         
     s2299_evtdeslig = s2299evtDeslig.objects.create(**s2299_evtdeslig_dados)
     
-    if 'observacoes' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'observacoes' in dir(evtDeslig.infoDeslig):
     
         for observacoes in evtDeslig.infoDeslig.observacoes:
     
@@ -179,7 +179,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
     
             s2299_observacoes = s2299observacoes.objects.create(**s2299_observacoes_dados)
     
-    if 'sucessaoVinc' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'sucessaoVinc' in dir(evtDeslig.infoDeslig):
     
         for sucessaoVinc in evtDeslig.infoDeslig.sucessaoVinc:
     
@@ -198,7 +198,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
     
             s2299_sucessaovinc = s2299sucessaoVinc.objects.create(**s2299_sucessaovinc_dados)
     
-    if 'transfTit' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'transfTit' in dir(evtDeslig.infoDeslig):
     
         for transfTit in evtDeslig.infoDeslig.transfTit:
     
@@ -217,7 +217,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
     
             s2299_transftit = s2299transfTit.objects.create(**s2299_transftit_dados)
     
-    if 'mudancaCPF' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'mudancaCPF' in dir(evtDeslig.infoDeslig):
     
         for mudancaCPF in evtDeslig.infoDeslig.mudancaCPF:
     
@@ -231,7 +231,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
     
             s2299_mudancacpf = s2299mudancaCPF.objects.create(**s2299_mudancacpf_dados)
     
-    if 'verbasResc' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'verbasResc' in dir(evtDeslig.infoDeslig):
     
         for verbasResc in evtDeslig.infoDeslig.verbasResc:
     
@@ -664,7 +664,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
             
                     s2299_infotrabinterm_proccs = s2299infoTrabIntermprocCS.objects.create(**s2299_infotrabinterm_proccs_dados)
     
-    if 'quarentena' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'quarentena' in dir(evtDeslig.infoDeslig):
     
         for quarentena in evtDeslig.infoDeslig.quarentena:
     
@@ -678,7 +678,7 @@ def read_s2299_evtdeslig_obj(request, doc, status, validar=False):
     
             s2299_infotrabinterm_quarentena = s2299infoTrabIntermquarentena.objects.create(**s2299_infotrabinterm_quarentena_dados)
     
-    if 'consigFGTS' in dir(evtDeslig.infoDeslig):
+    if 'infoDeslig' in dir(evtDeslig) and 'consigFGTS' in dir(evtDeslig.infoDeslig):
     
         for consigFGTS in evtDeslig.infoDeslig.consigFGTS:
     

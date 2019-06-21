@@ -89,7 +89,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
         
     s1010_evttabrubrica = s1010evtTabRubrica.objects.create(**s1010_evttabrubrica_dados)
     
-    if 'inclusao' in dir(evtTabRubrica.infoRubrica):
+    if 'infoRubrica' in dir(evtTabRubrica) and 'inclusao' in dir(evtTabRubrica.infoRubrica):
     
         for inclusao in evtTabRubrica.infoRubrica.inclusao:
     
@@ -168,7 +168,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
     
             s1010_inclusao = s1010inclusao.objects.create(**s1010_inclusao_dados)
             
-            if 'ideProcessoCP' in dir(inclusao.dadosRubrica):
+            if 'dadosRubrica' in dir(inclusao) and 'ideProcessoCP' in dir(inclusao.dadosRubrica):
             
                 for ideProcessoCP in inclusao.dadosRubrica.ideProcessoCP:
             
@@ -197,7 +197,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_inclusao_ideprocessocp = s1010inclusaoideProcessoCP.objects.create(**s1010_inclusao_ideprocessocp_dados)
             
-            if 'ideProcessoIRRF' in dir(inclusao.dadosRubrica):
+            if 'dadosRubrica' in dir(inclusao) and 'ideProcessoIRRF' in dir(inclusao.dadosRubrica):
             
                 for ideProcessoIRRF in inclusao.dadosRubrica.ideProcessoIRRF:
             
@@ -216,7 +216,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_inclusao_ideprocessoirrf = s1010inclusaoideProcessoIRRF.objects.create(**s1010_inclusao_ideprocessoirrf_dados)
             
-            if 'ideProcessoFGTS' in dir(inclusao.dadosRubrica):
+            if 'dadosRubrica' in dir(inclusao) and 'ideProcessoFGTS' in dir(inclusao.dadosRubrica):
             
                 for ideProcessoFGTS in inclusao.dadosRubrica.ideProcessoFGTS:
             
@@ -230,7 +230,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_inclusao_ideprocessofgts = s1010inclusaoideProcessoFGTS.objects.create(**s1010_inclusao_ideprocessofgts_dados)
             
-            if 'ideProcessoSIND' in dir(inclusao.dadosRubrica):
+            if 'dadosRubrica' in dir(inclusao) and 'ideProcessoSIND' in dir(inclusao.dadosRubrica):
             
                 for ideProcessoSIND in inclusao.dadosRubrica.ideProcessoSIND:
             
@@ -244,7 +244,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_inclusao_ideprocessosind = s1010inclusaoideProcessoSIND.objects.create(**s1010_inclusao_ideprocessosind_dados)
             
-            if 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
+            if 'dadosRubrica' in dir(inclusao) and 'ideProcessoCPRP' in dir(inclusao.dadosRubrica):
             
                 for ideProcessoCPRP in inclusao.dadosRubrica.ideProcessoCPRP:
             
@@ -268,7 +268,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_inclusao_ideprocessocprp = s1010inclusaoideProcessoCPRP.objects.create(**s1010_inclusao_ideprocessocprp_dados)
     
-    if 'alteracao' in dir(evtTabRubrica.infoRubrica):
+    if 'infoRubrica' in dir(evtTabRubrica) and 'alteracao' in dir(evtTabRubrica.infoRubrica):
     
         for alteracao in evtTabRubrica.infoRubrica.alteracao:
     
@@ -347,7 +347,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
     
             s1010_alteracao = s1010alteracao.objects.create(**s1010_alteracao_dados)
             
-            if 'ideProcessoCP' in dir(alteracao.dadosRubrica):
+            if 'dadosRubrica' in dir(alteracao) and 'ideProcessoCP' in dir(alteracao.dadosRubrica):
             
                 for ideProcessoCP in alteracao.dadosRubrica.ideProcessoCP:
             
@@ -376,7 +376,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_alteracao_ideprocessocp = s1010alteracaoideProcessoCP.objects.create(**s1010_alteracao_ideprocessocp_dados)
             
-            if 'ideProcessoIRRF' in dir(alteracao.dadosRubrica):
+            if 'dadosRubrica' in dir(alteracao) and 'ideProcessoIRRF' in dir(alteracao.dadosRubrica):
             
                 for ideProcessoIRRF in alteracao.dadosRubrica.ideProcessoIRRF:
             
@@ -395,7 +395,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_alteracao_ideprocessoirrf = s1010alteracaoideProcessoIRRF.objects.create(**s1010_alteracao_ideprocessoirrf_dados)
             
-            if 'ideProcessoFGTS' in dir(alteracao.dadosRubrica):
+            if 'dadosRubrica' in dir(alteracao) and 'ideProcessoFGTS' in dir(alteracao.dadosRubrica):
             
                 for ideProcessoFGTS in alteracao.dadosRubrica.ideProcessoFGTS:
             
@@ -409,7 +409,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_alteracao_ideprocessofgts = s1010alteracaoideProcessoFGTS.objects.create(**s1010_alteracao_ideprocessofgts_dados)
             
-            if 'ideProcessoSIND' in dir(alteracao.dadosRubrica):
+            if 'dadosRubrica' in dir(alteracao) and 'ideProcessoSIND' in dir(alteracao.dadosRubrica):
             
                 for ideProcessoSIND in alteracao.dadosRubrica.ideProcessoSIND:
             
@@ -423,7 +423,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_alteracao_ideprocessosind = s1010alteracaoideProcessoSIND.objects.create(**s1010_alteracao_ideprocessosind_dados)
             
-            if 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
+            if 'dadosRubrica' in dir(alteracao) and 'ideProcessoCPRP' in dir(alteracao.dadosRubrica):
             
                 for ideProcessoCPRP in alteracao.dadosRubrica.ideProcessoCPRP:
             
@@ -466,7 +466,7 @@ def read_s1010_evttabrubrica_obj(request, doc, status, validar=False):
             
                     s1010_alteracao_novavalidade = s1010alteracaonovaValidade.objects.create(**s1010_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabRubrica.infoRubrica):
+    if 'infoRubrica' in dir(evtTabRubrica) and 'exclusao' in dir(evtTabRubrica.infoRubrica):
     
         for exclusao in evtTabRubrica.infoRubrica.exclusao:
     

@@ -240,7 +240,7 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False):
         
     s2210_evtcat = s2210evtCAT.objects.create(**s2210_evtcat_dados)
     
-    if 'ideLocalAcid' in dir(evtCAT.cat.localAcidente):
+    if 'cat' in dir(evtCAT) and 'localAcidente' in dir(evtCAT.cat) and 'ideLocalAcid' in dir(evtCAT.cat.localAcidente):
     
         for ideLocalAcid in evtCAT.cat.localAcidente.ideLocalAcid:
     
@@ -259,7 +259,7 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False):
     
             s2210_idelocalacid = s2210ideLocalAcid.objects.create(**s2210_idelocalacid_dados)
     
-    if 'parteAtingida' in dir(evtCAT.cat):
+    if 'cat' in dir(evtCAT) and 'parteAtingida' in dir(evtCAT.cat):
     
         for parteAtingida in evtCAT.cat.parteAtingida:
     
@@ -278,7 +278,7 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False):
     
             s2210_parteatingida = s2210parteAtingida.objects.create(**s2210_parteatingida_dados)
     
-    if 'agenteCausador' in dir(evtCAT.cat):
+    if 'cat' in dir(evtCAT) and 'agenteCausador' in dir(evtCAT.cat):
     
         for agenteCausador in evtCAT.cat.agenteCausador:
     
@@ -292,7 +292,7 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False):
     
             s2210_agentecausador = s2210agenteCausador.objects.create(**s2210_agentecausador_dados)
     
-    if 'atestado' in dir(evtCAT.cat):
+    if 'cat' in dir(evtCAT) and 'atestado' in dir(evtCAT.cat):
     
         for atestado in evtCAT.cat.atestado:
     
@@ -376,7 +376,7 @@ def read_s2210_evtcat_obj(request, doc, status, validar=False):
     
             s2210_atestado = s2210atestado.objects.create(**s2210_atestado_dados)
     
-    if 'catOrigem' in dir(evtCAT.cat):
+    if 'cat' in dir(evtCAT) and 'catOrigem' in dir(evtCAT.cat):
     
         for catOrigem in evtCAT.cat.catOrigem:
     

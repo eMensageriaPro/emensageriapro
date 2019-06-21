@@ -89,7 +89,7 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False):
         
     s1050_evttabhortur = s1050evtTabHorTur.objects.create(**s1050_evttabhortur_dados)
     
-    if 'inclusao' in dir(evtTabHorTur.infoHorContratual):
+    if 'infoHorContratual' in dir(evtTabHorTur) and 'inclusao' in dir(evtTabHorTur.infoHorContratual):
     
         for inclusao in evtTabHorTur.infoHorContratual.inclusao:
     
@@ -133,7 +133,7 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False):
     
             s1050_inclusao = s1050inclusao.objects.create(**s1050_inclusao_dados)
             
-            if 'horarioIntervalo' in dir(inclusao.dadosHorContratual):
+            if 'dadosHorContratual' in dir(inclusao) and 'horarioIntervalo' in dir(inclusao.dadosHorContratual):
             
                 for horarioIntervalo in inclusao.dadosHorContratual.horarioIntervalo:
             
@@ -162,7 +162,7 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False):
             
                     s1050_inclusao_horariointervalo = s1050inclusaohorarioIntervalo.objects.create(**s1050_inclusao_horariointervalo_dados)
     
-    if 'alteracao' in dir(evtTabHorTur.infoHorContratual):
+    if 'infoHorContratual' in dir(evtTabHorTur) and 'alteracao' in dir(evtTabHorTur.infoHorContratual):
     
         for alteracao in evtTabHorTur.infoHorContratual.alteracao:
     
@@ -206,7 +206,7 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False):
     
             s1050_alteracao = s1050alteracao.objects.create(**s1050_alteracao_dados)
             
-            if 'horarioIntervalo' in dir(alteracao.dadosHorContratual):
+            if 'dadosHorContratual' in dir(alteracao) and 'horarioIntervalo' in dir(alteracao.dadosHorContratual):
             
                 for horarioIntervalo in alteracao.dadosHorContratual.horarioIntervalo:
             
@@ -254,7 +254,7 @@ def read_s1050_evttabhortur_obj(request, doc, status, validar=False):
             
                     s1050_alteracao_novavalidade = s1050alteracaonovaValidade.objects.create(**s1050_alteracao_novavalidade_dados)
     
-    if 'exclusao' in dir(evtTabHorTur.infoHorContratual):
+    if 'infoHorContratual' in dir(evtTabHorTur) and 'exclusao' in dir(evtTabHorTur.infoHorContratual):
     
         for exclusao in evtTabHorTur.infoHorContratual.exclusao:
     

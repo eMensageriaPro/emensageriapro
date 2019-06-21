@@ -195,7 +195,7 @@ def read_s2220_evtmonit_obj(request, doc, status, validar=False):
         
     s2220_evtmonit = s2220evtMonit.objects.create(**s2220_evtmonit_dados)
     
-    if 'exame' in dir(evtMonit.exMedOcup.aso):
+    if 'exMedOcup' in dir(evtMonit) and 'aso' in dir(evtMonit.exMedOcup) and 'exame' in dir(evtMonit.exMedOcup.aso):
     
         for exame in evtMonit.exMedOcup.aso.exame:
     
