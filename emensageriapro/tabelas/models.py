@@ -90,7 +90,8 @@ class Opcoes(SoftDeletionModel):
 
     class Meta:
     
-        verbose_name = u'Opções'
+        verbose_name = u'Opção'
+        verbose_name_plural = u'Opções'
         db_table = r'opcoes'       
         managed = True # opcoes #
         
