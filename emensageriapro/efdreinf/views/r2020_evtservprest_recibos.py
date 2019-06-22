@@ -75,34 +75,64 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 def recibo(request, pk, output=None):
 
     from datetime import datetime
-    from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
-        RetornosEventosIntervalos, RetornosEventosOcorrencias
+    from emensageriapro.efdreinf.models import r5001evtTotal
+    from emensageriapro.efdreinf.models import r5011evtTotalContrib
+    from emensageriapro.efdreinf.models import r9001evtTotal
+    from emensageriapro.efdreinf.models import r9002evtRet
+    from emensageriapro.efdreinf.models import r9011evtTotalContrib
+    from emensageriapro.efdreinf.models import r9012evtRetCons
 
     if request.user.has_perm('efdreinf.can_see_r2020evtServPrest'):
 
         r2020_evtservprest = get_object_or_404(
             r2020evtServPrest,
             id=pk)
-
-        retorno = get_object_or_404(RetornosEventos,
-            id=r2020_evtservprest.retornos_eventos_id)
-
-        retorno_horarios = RetornosEventosHorarios.objects.\
-            filter(retornos_eventos_id=retorno.id).all()
-
-        retorno_intervalos = RetornosEventosIntervalos.objects.\
-            filter(retornos_eventos_horarios_id__in=listar_ids(retorno_horarios)).all()
-
-        retorno_ocorrencias = RetornosEventosOcorrencias.objects.\
-            filter(retornos_eventos_id=retorno.id).all()
+            
+        if r2020_evtservprest.retornos_r5001_id:
+            r5001_evttotal = get_object_or_404(r5001evtTotal,
+                id=r2020_evtservprest.retornos_r5001_id)
+        else:
+            r5001_evttotal = None
+            
+        if r2020_evtservprest.retornos_r5011_id:
+            r5011_evttotalcontrib = get_object_or_404(r5011evtTotalContrib,
+                id=r2020_evtservprest.retornos_r5011_id)
+        else:
+            r5011_evttotalcontrib = None
+            
+        if r2020_evtservprest.retornos_r9001_id:
+            r9001_evttotal = get_object_or_404(r9001evtTotal,
+                id=r2020_evtservprest.retornos_r9001_id)
+        else:
+            r9001_evttotal = None
+            
+        if r2020_evtservprest.retornos_r9002_id:
+            r9002_evtret = get_object_or_404(r9002evtRet,
+                id=r2020_evtservprest.retornos_r9002_id)
+        else:
+            r9002_evtret = None
+            
+        if r2020_evtservprest.retornos_r9011_id:
+            r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib,
+                id=r2020_evtservprest.retornos_r9011_id)
+        else:
+            r9011_evttotalcontrib = None
+            
+        if r2020_evtservprest.retornos_r9012_id:
+            r9012_evtretcons = get_object_or_404(r9012evtRetCons,
+                id=r2020_evtservprest.retornos_r9012_id)
+        else:
+            r9012_evtretcons = None
 
         context = {
             'pk': pk,
             'r2020_evtservprest': r2020_evtservprest,
-            'retorno': retorno,
-            'retorno_horarios': retorno_horarios,
-            'retorno_intervalos': retorno_intervalos,
-            'retorno_ocorrencias': retorno_ocorrencias,
+            'r5001_evttotal': r5001_evttotal,
+            'r5011_evttotalcontrib': r5011_evttotalcontrib,
+            'r9001_evttotal': r9001_evttotal,
+            'r9002_evtret': r9002_evtret,
+            'r9011_evttotalcontrib': r9011_evttotalcontrib,
+            'r9012_evtretcons': r9012_evtretcons,
             'data': datetime.now(),
             'output': output,
             'user': request.user,
