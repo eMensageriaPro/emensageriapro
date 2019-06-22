@@ -8,6 +8,7 @@ certificado/*.pfx
 certificado/*.pem
 certificados/*.pfx
 certificados/*.pem
+umls_retorno/
 arquivos/
 arquivos_old/
 static/
