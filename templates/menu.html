@@ -780,3 +780,15 @@
             {% endif %}
         </ul>
     </li>
+{% if config.SYSTEM_MANUAL_SHOW_IN_MENU %}
+    <li id="modulo_controle_de_acesso" class="{% if 'controle_de_acesso' in modulos %}active {% endif %}treeview">
+        <a href="{{ config.SYSTEM_MANUAL_LINK }}" target="_blank">
+            <i class="fa fa-question-circle"></i>
+            <span>Manual</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        </ul>
+    </li>
+{% endif %}

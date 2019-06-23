@@ -331,7 +331,7 @@ CONSTANCE_CONFIG = {
         bool),
 
     'SYSTEM_MANUAL_LINK': ('http://',
-         u'Link do manual do sistema',
+         u'Link do manual do sistema.',
          str),
 
     'LOGO_IMAGE_IN_LOGIN': (False,
