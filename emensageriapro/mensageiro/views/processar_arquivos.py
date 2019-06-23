@@ -5,18 +5,14 @@ __copyright__ = "Copyright 2018"
 __email__ = "marcelomdevasconcellos@gmail.com"
 
 
-import datetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Count
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from emensageriapro.padrao import *
-from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
 from emensageriapro.controle_de_acesso.models import Usuarios
-import base64
-from emensageriapro.padrao import executar_sql
+from constance import config
 from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
 
 from emensageriapro.mapa_processamento.views.mapa_importacoes import STATUS_IMPORT_AGUARDANDO, \
@@ -252,7 +248,24 @@ def scripts_salvar_arquivos(request, tab='master'):
                     obj = ImportacaoArquivosEventos(**dados_eventos)
                     obj.save()
 
-            messages.success(request, 'Arquivo %s extraido com sucesso! Processando arquivos...' % arquivo)
+            if config.IMPORT_AUTOMATIC_FUNCTIONS_ENABLED:
+
+                messages.success(request,
+                    '''Arquivo %s extraido com sucesso! 
+                       Aguarde um momento que o arquivo 
+                       será processado em breve ou 
+                       clique em "Processar Arquivos" 
+                       para processar os arquivos''' % arquivo)
+                return redirect('mapa_importacoes', tab='master')
+
+            else:
+
+                messages.success(request,
+                    u'''Arquivo %s extraido com sucesso!
+                        Habilite a função de processamento automático 
+                        ou clique em "Processar Arquivos" 
+                        para processar os arquivos''' % arquivo)
+                return redirect('mapa_importacoes', tab='master')
 
     else:
 
