@@ -54,7 +54,7 @@
         {% endfor %}
             </div>
     {% endif %}
-    {% if s2245_evttreicap.ocorrencias %}
+    {% if s2245_evttreicap.ocorrencias|lista_json_table_esocial %}
         <div class="row">
             <div class="col-xs-12">
                 <div class="small-box bg-red">
@@ -149,8 +149,10 @@
     <div class="row">
         <div class="col-xs-12 table-responsive">
         {% endif %}
-            <h4>Ocorrências reportadas:</h4>
-            <p>{% autoescape off %}{{ s2245_evttreicap.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            {% if s2245_evttreicap.ocorrencias|lista_json_table_esocial %}
+                <h4>Ocorrências reportadas:</h4>
+                <p>{% autoescape off %}{{ s2245_evttreicap.ocorrencias|lista_json_table_esocial }}{% endautoescape %}
+            {% endif %}
             <h4>Layout</h4>
             {% include 'tables/s2245_evttreicap_verificar.html' %}
             {% if output == 'html' %}
