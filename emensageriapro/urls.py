@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+from emensageriapro.controle_de_acesso.views.custom_login import custom_login
 admin.autodiscover()
 
 """
@@ -44,8 +45,8 @@ admin.autodiscover()
 urlpatterns = [
 
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^$', 
-        auth_views.login,
+    url(r'^$',
+        custom_login,
         name='home'),
 
     url(r'^', include('emensageriapro.controle_de_acesso.urls')),
