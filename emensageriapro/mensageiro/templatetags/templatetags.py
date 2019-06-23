@@ -52,6 +52,33 @@ except:
 register = template.Library()
 
 
+@register.assignment_tag
+def query(qs, **kwargs):
+    """ template tag which allows queryset filtering. Usage:
+          {% query books author=author as mybooks %}
+          {% for book in mybooks %}
+            ...
+          {% endfor %}
+    """
+    return qs.filter(**kwargs)
+    
+
+@register.filter(name='to_xml')
+def to_xml(texto, esocial_efdreinf_tipo):
+    a = esocial_efdreinf_tipo.split('|')
+    esocial_efdreinf = a[0]
+    tipo = a[1]
+    texto = str(texto)
+    if esocial_efdreinf == 'efdreinf' and tipo == 'N':
+        texto = texto.replace(".", ',')
+    texto = texto.replace(">", '&gt;')
+    texto = texto.replace("<", '&lt;')
+    texto = texto.replace("&", '&amp;')
+    texto = texto.replace('"', '&quot;')
+    texto = texto.replace("'", '&apos;')
+    return texto
+    
+    
 @register.filter(name='multiply')
 def multiply(value, arg):
     return value*arg
@@ -142,31 +169,7 @@ def validacoes_esocial_efdreinf(var, tab_campo):
             quant_erros += 1
         if quant_erros:
             return '#FF0000'
-            
-
-@register.assignment_tag
-def query(qs, **kwargs):
-    """ template tag which allows queryset filtering. Usage:
-          {% query books author=author as mybooks %}
-          {% for book in mybooks %}
-            ...
-          {% endfor %}
-    """
-    return qs.filter(**kwargs)
-
-
-@register.filter(name='to_xml')
-def to_xml(texto):
-    try:
-        #texto = str(texto)
-        texto = texto.replace(">",'&gt;')
-        texto = texto.replace("<",'&lt;')
-        texto = texto.replace("&",'&amp;')
-        texto = texto.replace('"','&quot;')
-        texto = texto.replace("'",'&apos;')
-    except:
-        pass
-    return texto
+           
 
 
 @register.filter(name='auditoria_json')
@@ -188,7 +191,7 @@ def dec_to_int(var):
 
 @register.filter(name='valor')  
 def valor(var):
-    a = str(var).replace('.','')
+    a = str(var).replace('.', '')
     return a
 
 
