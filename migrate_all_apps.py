@@ -151,9 +151,16 @@ def collect_static():
 
 if __name__ == "__main__":
 
+    resp = raw_input(u"Deseja executar as migrações separadamente (S/N) ?")
+    
+    if resp == 'S':
+        migrates()
+    else:
+        os.system('python manage.py migrate')
+
     collect_static()
     update_tables()
-    migrates()
+
     reset_sequences()
     criar_diretorio_arquivos()
 
