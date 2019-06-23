@@ -397,8 +397,8 @@ def send_xml(request, transmissor_id, service):
                                             administrador do sistema para que aumente o tempo do 
                                             Timeout. Timeout atual %(timeout)s''' % dados)
 
-                TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
-                    update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
+                # TransmissorLoteEsocial.objects.using('default').filter(id=transmissor_id).\
+                #     update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
                 return None
 
             if service == 'WsEnviarLoteEventos':
