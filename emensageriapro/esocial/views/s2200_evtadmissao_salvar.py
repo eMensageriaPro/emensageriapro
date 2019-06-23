@@ -114,11 +114,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id=pk)
 
-        if s2200_evtadmissao.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s2200_evtadmissao_apagar'] = 0
-            dict_permissoes['s2200_evtadmissao_editar'] = 0
+        #if s2200_evtadmissao.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s2200_evtadmissao_apagar'] = 0
+        #    dict_permissoes['s2200_evtadmissao_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s2200evtAdmissao'):
     
@@ -149,14 +149,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2200_evtadmissao', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s2200_evtadmissao), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2200_evtadmissao', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's2200_evtadmissao', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s2200_evtadmissao), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's2200_evtadmissao', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's2200_evtadmissao_apagar', 

@@ -276,38 +276,14 @@ from emensageriapro.efdreinf.views import r4099_evtfech_abrir_evento_para_edicao
 from emensageriapro.efdreinf.views import r4099_evtfech_alterar_identidade as r4099_evtfech_alterar_identidade_views
 from emensageriapro.efdreinf.views import r4099_evtfech_criar_exclusao as r4099_evtfech_criar_exclusao_views
 from emensageriapro.efdreinf.views import r4099_evtfech_duplicar as r4099_evtfech_duplicar_views
-from emensageriapro.efdreinf.views import r5001_evttotal_apagar as r5001_evttotal_apagar_views
-from emensageriapro.efdreinf.views import r5001_evttotal_listar as r5001_evttotal_listar_views
-from emensageriapro.efdreinf.views import r5001_evttotal_salvar as r5001_evttotal_salvar_views
 from emensageriapro.efdreinf.views import r5001_evttotal_api as r5001_evttotal_api_views
-from emensageriapro.efdreinf.views import r5001_evttotal_gerar_identidade as r5001_evttotal_gerar_identidade_views
-from emensageriapro.efdreinf.views import r5001_evttotal_verificar as r5001_evttotal_verificar_views
-from emensageriapro.efdreinf.views import r5001_evttotal_importar as r5001_evttotal_importar_views
-from emensageriapro.efdreinf.views import r5001_evttotal_validar as r5001_evttotal_validar_views
+from emensageriapro.efdreinf.views import r5001_evttotal_listar as r5001_evttotal_listar_views
 from emensageriapro.efdreinf.views import r5001_evttotal_recibos as r5001_evttotal_recibos_views
-from emensageriapro.efdreinf.views import r5001_evttotal_gerar_xml as r5001_evttotal_gerar_xml_views
-from emensageriapro.efdreinf.views import r5001_evttotal_criar_alteracao as r5001_evttotal_criar_alteracao_views
-from emensageriapro.efdreinf.views import r5001_evttotal_validar_evento as r5001_evttotal_validar_evento_views
-from emensageriapro.efdreinf.views import r5001_evttotal_abrir_evento_para_edicao as r5001_evttotal_abrir_evento_para_edicao_views
-from emensageriapro.efdreinf.views import r5001_evttotal_alterar_identidade as r5001_evttotal_alterar_identidade_views
-from emensageriapro.efdreinf.views import r5001_evttotal_criar_exclusao as r5001_evttotal_criar_exclusao_views
-from emensageriapro.efdreinf.views import r5001_evttotal_duplicar as r5001_evttotal_duplicar_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_apagar as r5011_evttotalcontrib_apagar_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_listar as r5011_evttotalcontrib_listar_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_salvar as r5011_evttotalcontrib_salvar_views
+from emensageriapro.efdreinf.views import r5001_evttotal_importar as r5001_evttotal_importar_views
 from emensageriapro.efdreinf.views import r5011_evttotalcontrib_api as r5011_evttotalcontrib_api_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_gerar_identidade as r5011_evttotalcontrib_gerar_identidade_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_verificar as r5011_evttotalcontrib_verificar_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_importar as r5011_evttotalcontrib_importar_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_validar as r5011_evttotalcontrib_validar_views
+from emensageriapro.efdreinf.views import r5011_evttotalcontrib_listar as r5011_evttotalcontrib_listar_views
 from emensageriapro.efdreinf.views import r5011_evttotalcontrib_recibos as r5011_evttotalcontrib_recibos_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_gerar_xml as r5011_evttotalcontrib_gerar_xml_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_criar_alteracao as r5011_evttotalcontrib_criar_alteracao_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_validar_evento as r5011_evttotalcontrib_validar_evento_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_abrir_evento_para_edicao as r5011_evttotalcontrib_abrir_evento_para_edicao_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_alterar_identidade as r5011_evttotalcontrib_alterar_identidade_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_criar_exclusao as r5011_evttotalcontrib_criar_exclusao_views
-from emensageriapro.efdreinf.views import r5011_evttotalcontrib_duplicar as r5011_evttotalcontrib_duplicar_views
+from emensageriapro.efdreinf.views import r5011_evttotalcontrib_importar as r5011_evttotalcontrib_importar_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_apagar as r9000_evtexclusao_apagar_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_listar as r9000_evtexclusao_listar_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_salvar as r9000_evtexclusao_salvar_views
@@ -324,70 +300,22 @@ from emensageriapro.efdreinf.views import r9000_evtexclusao_abrir_evento_para_ed
 from emensageriapro.efdreinf.views import r9000_evtexclusao_alterar_identidade as r9000_evtexclusao_alterar_identidade_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_criar_exclusao as r9000_evtexclusao_criar_exclusao_views
 from emensageriapro.efdreinf.views import r9000_evtexclusao_duplicar as r9000_evtexclusao_duplicar_views
-from emensageriapro.efdreinf.views import r9001_evttotal_apagar as r9001_evttotal_apagar_views
-from emensageriapro.efdreinf.views import r9001_evttotal_listar as r9001_evttotal_listar_views
-from emensageriapro.efdreinf.views import r9001_evttotal_salvar as r9001_evttotal_salvar_views
 from emensageriapro.efdreinf.views import r9001_evttotal_api as r9001_evttotal_api_views
-from emensageriapro.efdreinf.views import r9001_evttotal_gerar_identidade as r9001_evttotal_gerar_identidade_views
-from emensageriapro.efdreinf.views import r9001_evttotal_verificar as r9001_evttotal_verificar_views
-from emensageriapro.efdreinf.views import r9001_evttotal_importar as r9001_evttotal_importar_views
-from emensageriapro.efdreinf.views import r9001_evttotal_validar as r9001_evttotal_validar_views
+from emensageriapro.efdreinf.views import r9001_evttotal_listar as r9001_evttotal_listar_views
 from emensageriapro.efdreinf.views import r9001_evttotal_recibos as r9001_evttotal_recibos_views
-from emensageriapro.efdreinf.views import r9001_evttotal_gerar_xml as r9001_evttotal_gerar_xml_views
-from emensageriapro.efdreinf.views import r9001_evttotal_criar_alteracao as r9001_evttotal_criar_alteracao_views
-from emensageriapro.efdreinf.views import r9001_evttotal_validar_evento as r9001_evttotal_validar_evento_views
-from emensageriapro.efdreinf.views import r9001_evttotal_abrir_evento_para_edicao as r9001_evttotal_abrir_evento_para_edicao_views
-from emensageriapro.efdreinf.views import r9001_evttotal_alterar_identidade as r9001_evttotal_alterar_identidade_views
-from emensageriapro.efdreinf.views import r9001_evttotal_criar_exclusao as r9001_evttotal_criar_exclusao_views
-from emensageriapro.efdreinf.views import r9001_evttotal_duplicar as r9001_evttotal_duplicar_views
-from emensageriapro.efdreinf.views import r9002_evtret_apagar as r9002_evtret_apagar_views
-from emensageriapro.efdreinf.views import r9002_evtret_listar as r9002_evtret_listar_views
-from emensageriapro.efdreinf.views import r9002_evtret_salvar as r9002_evtret_salvar_views
+from emensageriapro.efdreinf.views import r9001_evttotal_importar as r9001_evttotal_importar_views
 from emensageriapro.efdreinf.views import r9002_evtret_api as r9002_evtret_api_views
-from emensageriapro.efdreinf.views import r9002_evtret_gerar_identidade as r9002_evtret_gerar_identidade_views
-from emensageriapro.efdreinf.views import r9002_evtret_verificar as r9002_evtret_verificar_views
-from emensageriapro.efdreinf.views import r9002_evtret_importar as r9002_evtret_importar_views
-from emensageriapro.efdreinf.views import r9002_evtret_validar as r9002_evtret_validar_views
+from emensageriapro.efdreinf.views import r9002_evtret_listar as r9002_evtret_listar_views
 from emensageriapro.efdreinf.views import r9002_evtret_recibos as r9002_evtret_recibos_views
-from emensageriapro.efdreinf.views import r9002_evtret_gerar_xml as r9002_evtret_gerar_xml_views
-from emensageriapro.efdreinf.views import r9002_evtret_criar_alteracao as r9002_evtret_criar_alteracao_views
-from emensageriapro.efdreinf.views import r9002_evtret_validar_evento as r9002_evtret_validar_evento_views
-from emensageriapro.efdreinf.views import r9002_evtret_abrir_evento_para_edicao as r9002_evtret_abrir_evento_para_edicao_views
-from emensageriapro.efdreinf.views import r9002_evtret_alterar_identidade as r9002_evtret_alterar_identidade_views
-from emensageriapro.efdreinf.views import r9002_evtret_criar_exclusao as r9002_evtret_criar_exclusao_views
-from emensageriapro.efdreinf.views import r9002_evtret_duplicar as r9002_evtret_duplicar_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_apagar as r9011_evttotalcontrib_apagar_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_listar as r9011_evttotalcontrib_listar_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_salvar as r9011_evttotalcontrib_salvar_views
+from emensageriapro.efdreinf.views import r9002_evtret_importar as r9002_evtret_importar_views
 from emensageriapro.efdreinf.views import r9011_evttotalcontrib_api as r9011_evttotalcontrib_api_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_gerar_identidade as r9011_evttotalcontrib_gerar_identidade_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_verificar as r9011_evttotalcontrib_verificar_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_importar as r9011_evttotalcontrib_importar_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_validar as r9011_evttotalcontrib_validar_views
+from emensageriapro.efdreinf.views import r9011_evttotalcontrib_listar as r9011_evttotalcontrib_listar_views
 from emensageriapro.efdreinf.views import r9011_evttotalcontrib_recibos as r9011_evttotalcontrib_recibos_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_gerar_xml as r9011_evttotalcontrib_gerar_xml_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_criar_alteracao as r9011_evttotalcontrib_criar_alteracao_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_validar_evento as r9011_evttotalcontrib_validar_evento_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_abrir_evento_para_edicao as r9011_evttotalcontrib_abrir_evento_para_edicao_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_alterar_identidade as r9011_evttotalcontrib_alterar_identidade_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_criar_exclusao as r9011_evttotalcontrib_criar_exclusao_views
-from emensageriapro.efdreinf.views import r9011_evttotalcontrib_duplicar as r9011_evttotalcontrib_duplicar_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_apagar as r9012_evtretcons_apagar_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_listar as r9012_evtretcons_listar_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_salvar as r9012_evtretcons_salvar_views
+from emensageriapro.efdreinf.views import r9011_evttotalcontrib_importar as r9011_evttotalcontrib_importar_views
 from emensageriapro.efdreinf.views import r9012_evtretcons_api as r9012_evtretcons_api_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_gerar_identidade as r9012_evtretcons_gerar_identidade_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_verificar as r9012_evtretcons_verificar_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_importar as r9012_evtretcons_importar_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_validar as r9012_evtretcons_validar_views
+from emensageriapro.efdreinf.views import r9012_evtretcons_listar as r9012_evtretcons_listar_views
 from emensageriapro.efdreinf.views import r9012_evtretcons_recibos as r9012_evtretcons_recibos_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_gerar_xml as r9012_evtretcons_gerar_xml_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_criar_alteracao as r9012_evtretcons_criar_alteracao_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_validar_evento as r9012_evtretcons_validar_evento_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_abrir_evento_para_edicao as r9012_evtretcons_abrir_evento_para_edicao_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_alterar_identidade as r9012_evtretcons_alterar_identidade_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_criar_exclusao as r9012_evtretcons_criar_exclusao_views
-from emensageriapro.efdreinf.views import r9012_evtretcons_duplicar as r9012_evtretcons_duplicar_views
+from emensageriapro.efdreinf.views import r9012_evtretcons_importar as r9012_evtretcons_importar_views
 
 
 
@@ -1822,10 +1750,6 @@ urlpatterns = [
         r4099_evtfech_listar_views.listar, 
         name='r4099_evtfech_output'),
 
-    url(r'^r5001-evttotal/apagar/(?P<pk>[0-9]+)/$', 
-        r5001_evttotal_apagar_views.apagar, 
-        name='r5001_evttotal_apagar'),
-
     url(r'^r5001-evttotal/api/$',
         r5001_evttotal_api_views.r5001evtTotalList.as_view() ),
 
@@ -1836,77 +1760,13 @@ urlpatterns = [
         r5001_evttotal_listar_views.listar, 
         name='r5001_evttotal'),
         
-    url(r'^r5001-evttotal/verificar/(?P<pk>[0-9]+)/$', 
-        r5001_evttotal_verificar_views.verificar, 
-        name='r5001_evttotal_verificar'),
-        
-    url(r'^r5001-evttotal/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r5001_evttotal_verificar_views.verificar, 
-        name='r5001_evttotal_verificar_output'),
-            
-    url(r'^r5001-evttotal/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r5001_evttotal_recibos_views.recibo, 
-        name='r5001_evttotal_recibo'),
-            
-    url(r'^r5001-evttotal/duplicar/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_duplicar_views.duplicar,
-        name='r5001_evttotal_duplicar'),
-
-    url(r'^r5001-evttotal/criar-alteracao/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_criar_alteracao_views.criar_alteracao,
-        name='r5001_evttotal_criar_alteracao'),
-
-    url(r'^r5001-evttotal/criar-exclusao/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_criar_exclusao_views.criar_exclusao,
-        name='r5001_evttotal_criar_exclusao'),
-            
-    url(r'^r5001-evttotal/xml/(?P<pk>[0-9]+)/$', 
-        r5001_evttotal_gerar_xml_views.gerar_xml, 
-        name='r5001_evttotal_xml'),          
-
-    url(r'^r5001-evttotal/alterar-identidade/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_alterar_identidade_views.alterar_identidade,
-        name='r5001_evttotal_alterar_identidade'),
-
-    url(r'^r5001-evttotal/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='r5001_evttotal_abrir_evento_para_edicao'),
-
-    url(r'^r5001-evttotal/validar-evento/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_validar_evento_views.validar_evento,
-        name='r5001_evttotal_validar_evento'),
-
-    url(r'^r5001-evttotal/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        r5001_evttotal_validar_evento_views.validar_evento,
-        name='r5001_evttotal_validar_evento_api'),
-
-    url(r'^r5001-evttotal/salvar/(?P<pk>[0-9]+)/$', 
-        r5001_evttotal_salvar_views.salvar, 
-        name='r5001_evttotal_salvar'),
-
-    url(r'^r5001-evttotal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r5001_evttotal_salvar_views.salvar, 
-        name='r5001_evttotal_salvar_tab'),
-        
-    url(r'^r5001-evttotal/gerar-identidade/(?P<pk>[0-9]+)/$',
-        r5001_evttotal_gerar_identidade_views.gerar_identidade, 
-        name='r5001_evttotal_gerar_identidade'),
-        
-    url(r'^r5001-evttotal/cadastrar/$', 
-        r5001_evttotal_salvar_views.salvar, 
-        name='r5001_evttotal_cadastrar'),
-
-    url(r'^r5001-evttotal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r5001_evttotal_salvar_views.salvar, 
-        name='r5001_evttotal_salvar_output'),
-        
     url(r'^r5001-evttotal/(?P<output>[\w-]+)/$', 
         r5001_evttotal_listar_views.listar, 
         name='r5001_evttotal_output'),
-
-    url(r'^r5011-evttotalcontrib/apagar/(?P<pk>[0-9]+)/$', 
-        r5011_evttotalcontrib_apagar_views.apagar, 
-        name='r5011_evttotalcontrib_apagar'),
+        
+    url(r'^r5001-evttotal/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        r5001_evttotal_recibos_views.recibo, 
+        name='r5001_evttotal_recibo'),
 
     url(r'^r5011-evttotalcontrib/api/$',
         r5011_evttotalcontrib_api_views.r5011evtTotalContribList.as_view() ),
@@ -1918,73 +1778,13 @@ urlpatterns = [
         r5011_evttotalcontrib_listar_views.listar, 
         name='r5011_evttotalcontrib'),
         
-    url(r'^r5011-evttotalcontrib/verificar/(?P<pk>[0-9]+)/$', 
-        r5011_evttotalcontrib_verificar_views.verificar, 
-        name='r5011_evttotalcontrib_verificar'),
-        
-    url(r'^r5011-evttotalcontrib/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r5011_evttotalcontrib_verificar_views.verificar, 
-        name='r5011_evttotalcontrib_verificar_output'),
-            
-    url(r'^r5011-evttotalcontrib/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r5011_evttotalcontrib_recibos_views.recibo, 
-        name='r5011_evttotalcontrib_recibo'),
-            
-    url(r'^r5011-evttotalcontrib/duplicar/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_duplicar_views.duplicar,
-        name='r5011_evttotalcontrib_duplicar'),
-
-    url(r'^r5011-evttotalcontrib/criar-alteracao/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_criar_alteracao_views.criar_alteracao,
-        name='r5011_evttotalcontrib_criar_alteracao'),
-
-    url(r'^r5011-evttotalcontrib/criar-exclusao/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_criar_exclusao_views.criar_exclusao,
-        name='r5011_evttotalcontrib_criar_exclusao'),
-            
-    url(r'^r5011-evttotalcontrib/xml/(?P<pk>[0-9]+)/$', 
-        r5011_evttotalcontrib_gerar_xml_views.gerar_xml, 
-        name='r5011_evttotalcontrib_xml'),          
-
-    url(r'^r5011-evttotalcontrib/alterar-identidade/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_alterar_identidade_views.alterar_identidade,
-        name='r5011_evttotalcontrib_alterar_identidade'),
-
-    url(r'^r5011-evttotalcontrib/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='r5011_evttotalcontrib_abrir_evento_para_edicao'),
-
-    url(r'^r5011-evttotalcontrib/validar-evento/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_validar_evento_views.validar_evento,
-        name='r5011_evttotalcontrib_validar_evento'),
-
-    url(r'^r5011-evttotalcontrib/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        r5011_evttotalcontrib_validar_evento_views.validar_evento,
-        name='r5011_evttotalcontrib_validar_evento_api'),
-
-    url(r'^r5011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/$', 
-        r5011_evttotalcontrib_salvar_views.salvar, 
-        name='r5011_evttotalcontrib_salvar'),
-
-    url(r'^r5011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r5011_evttotalcontrib_salvar_views.salvar, 
-        name='r5011_evttotalcontrib_salvar_tab'),
-        
-    url(r'^r5011-evttotalcontrib/gerar-identidade/(?P<pk>[0-9]+)/$',
-        r5011_evttotalcontrib_gerar_identidade_views.gerar_identidade, 
-        name='r5011_evttotalcontrib_gerar_identidade'),
-        
-    url(r'^r5011-evttotalcontrib/cadastrar/$', 
-        r5011_evttotalcontrib_salvar_views.salvar, 
-        name='r5011_evttotalcontrib_cadastrar'),
-
-    url(r'^r5011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r5011_evttotalcontrib_salvar_views.salvar, 
-        name='r5011_evttotalcontrib_salvar_output'),
-        
     url(r'^r5011-evttotalcontrib/(?P<output>[\w-]+)/$', 
         r5011_evttotalcontrib_listar_views.listar, 
         name='r5011_evttotalcontrib_output'),
+        
+    url(r'^r5011-evttotalcontrib/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        r5011_evttotalcontrib_recibos_views.recibo, 
+        name='r5011_evttotalcontrib_recibo'),
 
     url(r'^r9000-evtexclusao/apagar/(?P<pk>[0-9]+)/$', 
         r9000_evtexclusao_apagar_views.apagar, 
@@ -2068,10 +1868,6 @@ urlpatterns = [
         r9000_evtexclusao_listar_views.listar, 
         name='r9000_evtexclusao_output'),
 
-    url(r'^r9001-evttotal/apagar/(?P<pk>[0-9]+)/$', 
-        r9001_evttotal_apagar_views.apagar, 
-        name='r9001_evttotal_apagar'),
-
     url(r'^r9001-evttotal/api/$',
         r9001_evttotal_api_views.r9001evtTotalList.as_view() ),
 
@@ -2082,77 +1878,13 @@ urlpatterns = [
         r9001_evttotal_listar_views.listar, 
         name='r9001_evttotal'),
         
-    url(r'^r9001-evttotal/verificar/(?P<pk>[0-9]+)/$', 
-        r9001_evttotal_verificar_views.verificar, 
-        name='r9001_evttotal_verificar'),
-        
-    url(r'^r9001-evttotal/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9001_evttotal_verificar_views.verificar, 
-        name='r9001_evttotal_verificar_output'),
-            
-    url(r'^r9001-evttotal/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9001_evttotal_recibos_views.recibo, 
-        name='r9001_evttotal_recibo'),
-            
-    url(r'^r9001-evttotal/duplicar/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_duplicar_views.duplicar,
-        name='r9001_evttotal_duplicar'),
-
-    url(r'^r9001-evttotal/criar-alteracao/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_criar_alteracao_views.criar_alteracao,
-        name='r9001_evttotal_criar_alteracao'),
-
-    url(r'^r9001-evttotal/criar-exclusao/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_criar_exclusao_views.criar_exclusao,
-        name='r9001_evttotal_criar_exclusao'),
-            
-    url(r'^r9001-evttotal/xml/(?P<pk>[0-9]+)/$', 
-        r9001_evttotal_gerar_xml_views.gerar_xml, 
-        name='r9001_evttotal_xml'),          
-
-    url(r'^r9001-evttotal/alterar-identidade/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_alterar_identidade_views.alterar_identidade,
-        name='r9001_evttotal_alterar_identidade'),
-
-    url(r'^r9001-evttotal/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='r9001_evttotal_abrir_evento_para_edicao'),
-
-    url(r'^r9001-evttotal/validar-evento/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_validar_evento_views.validar_evento,
-        name='r9001_evttotal_validar_evento'),
-
-    url(r'^r9001-evttotal/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        r9001_evttotal_validar_evento_views.validar_evento,
-        name='r9001_evttotal_validar_evento_api'),
-
-    url(r'^r9001-evttotal/salvar/(?P<pk>[0-9]+)/$', 
-        r9001_evttotal_salvar_views.salvar, 
-        name='r9001_evttotal_salvar'),
-
-    url(r'^r9001-evttotal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r9001_evttotal_salvar_views.salvar, 
-        name='r9001_evttotal_salvar_tab'),
-        
-    url(r'^r9001-evttotal/gerar-identidade/(?P<pk>[0-9]+)/$',
-        r9001_evttotal_gerar_identidade_views.gerar_identidade, 
-        name='r9001_evttotal_gerar_identidade'),
-        
-    url(r'^r9001-evttotal/cadastrar/$', 
-        r9001_evttotal_salvar_views.salvar, 
-        name='r9001_evttotal_cadastrar'),
-
-    url(r'^r9001-evttotal/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r9001_evttotal_salvar_views.salvar, 
-        name='r9001_evttotal_salvar_output'),
-        
     url(r'^r9001-evttotal/(?P<output>[\w-]+)/$', 
         r9001_evttotal_listar_views.listar, 
         name='r9001_evttotal_output'),
-
-    url(r'^r9002-evtret/apagar/(?P<pk>[0-9]+)/$', 
-        r9002_evtret_apagar_views.apagar, 
-        name='r9002_evtret_apagar'),
+        
+    url(r'^r9001-evttotal/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        r9001_evttotal_recibos_views.recibo, 
+        name='r9001_evttotal_recibo'),
 
     url(r'^r9002-evtret/api/$',
         r9002_evtret_api_views.r9002evtRetList.as_view() ),
@@ -2164,77 +1896,13 @@ urlpatterns = [
         r9002_evtret_listar_views.listar, 
         name='r9002_evtret'),
         
-    url(r'^r9002-evtret/verificar/(?P<pk>[0-9]+)/$', 
-        r9002_evtret_verificar_views.verificar, 
-        name='r9002_evtret_verificar'),
-        
-    url(r'^r9002-evtret/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9002_evtret_verificar_views.verificar, 
-        name='r9002_evtret_verificar_output'),
-            
-    url(r'^r9002-evtret/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9002_evtret_recibos_views.recibo, 
-        name='r9002_evtret_recibo'),
-            
-    url(r'^r9002-evtret/duplicar/(?P<pk>[0-9]+)/$',
-        r9002_evtret_duplicar_views.duplicar,
-        name='r9002_evtret_duplicar'),
-
-    url(r'^r9002-evtret/criar-alteracao/(?P<pk>[0-9]+)/$',
-        r9002_evtret_criar_alteracao_views.criar_alteracao,
-        name='r9002_evtret_criar_alteracao'),
-
-    url(r'^r9002-evtret/criar-exclusao/(?P<pk>[0-9]+)/$',
-        r9002_evtret_criar_exclusao_views.criar_exclusao,
-        name='r9002_evtret_criar_exclusao'),
-            
-    url(r'^r9002-evtret/xml/(?P<pk>[0-9]+)/$', 
-        r9002_evtret_gerar_xml_views.gerar_xml, 
-        name='r9002_evtret_xml'),          
-
-    url(r'^r9002-evtret/alterar-identidade/(?P<pk>[0-9]+)/$',
-        r9002_evtret_alterar_identidade_views.alterar_identidade,
-        name='r9002_evtret_alterar_identidade'),
-
-    url(r'^r9002-evtret/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        r9002_evtret_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='r9002_evtret_abrir_evento_para_edicao'),
-
-    url(r'^r9002-evtret/validar-evento/(?P<pk>[0-9]+)/$',
-        r9002_evtret_validar_evento_views.validar_evento,
-        name='r9002_evtret_validar_evento'),
-
-    url(r'^r9002-evtret/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        r9002_evtret_validar_evento_views.validar_evento,
-        name='r9002_evtret_validar_evento_api'),
-
-    url(r'^r9002-evtret/salvar/(?P<pk>[0-9]+)/$', 
-        r9002_evtret_salvar_views.salvar, 
-        name='r9002_evtret_salvar'),
-
-    url(r'^r9002-evtret/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r9002_evtret_salvar_views.salvar, 
-        name='r9002_evtret_salvar_tab'),
-        
-    url(r'^r9002-evtret/gerar-identidade/(?P<pk>[0-9]+)/$',
-        r9002_evtret_gerar_identidade_views.gerar_identidade, 
-        name='r9002_evtret_gerar_identidade'),
-        
-    url(r'^r9002-evtret/cadastrar/$', 
-        r9002_evtret_salvar_views.salvar, 
-        name='r9002_evtret_cadastrar'),
-
-    url(r'^r9002-evtret/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r9002_evtret_salvar_views.salvar, 
-        name='r9002_evtret_salvar_output'),
-        
     url(r'^r9002-evtret/(?P<output>[\w-]+)/$', 
         r9002_evtret_listar_views.listar, 
         name='r9002_evtret_output'),
-
-    url(r'^r9011-evttotalcontrib/apagar/(?P<pk>[0-9]+)/$', 
-        r9011_evttotalcontrib_apagar_views.apagar, 
-        name='r9011_evttotalcontrib_apagar'),
+        
+    url(r'^r9002-evtret/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        r9002_evtret_recibos_views.recibo, 
+        name='r9002_evtret_recibo'),
 
     url(r'^r9011-evttotalcontrib/api/$',
         r9011_evttotalcontrib_api_views.r9011evtTotalContribList.as_view() ),
@@ -2246,77 +1914,13 @@ urlpatterns = [
         r9011_evttotalcontrib_listar_views.listar, 
         name='r9011_evttotalcontrib'),
         
-    url(r'^r9011-evttotalcontrib/verificar/(?P<pk>[0-9]+)/$', 
-        r9011_evttotalcontrib_verificar_views.verificar, 
-        name='r9011_evttotalcontrib_verificar'),
-        
-    url(r'^r9011-evttotalcontrib/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9011_evttotalcontrib_verificar_views.verificar, 
-        name='r9011_evttotalcontrib_verificar_output'),
-            
-    url(r'^r9011-evttotalcontrib/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9011_evttotalcontrib_recibos_views.recibo, 
-        name='r9011_evttotalcontrib_recibo'),
-            
-    url(r'^r9011-evttotalcontrib/duplicar/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_duplicar_views.duplicar,
-        name='r9011_evttotalcontrib_duplicar'),
-
-    url(r'^r9011-evttotalcontrib/criar-alteracao/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_criar_alteracao_views.criar_alteracao,
-        name='r9011_evttotalcontrib_criar_alteracao'),
-
-    url(r'^r9011-evttotalcontrib/criar-exclusao/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_criar_exclusao_views.criar_exclusao,
-        name='r9011_evttotalcontrib_criar_exclusao'),
-            
-    url(r'^r9011-evttotalcontrib/xml/(?P<pk>[0-9]+)/$', 
-        r9011_evttotalcontrib_gerar_xml_views.gerar_xml, 
-        name='r9011_evttotalcontrib_xml'),          
-
-    url(r'^r9011-evttotalcontrib/alterar-identidade/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_alterar_identidade_views.alterar_identidade,
-        name='r9011_evttotalcontrib_alterar_identidade'),
-
-    url(r'^r9011-evttotalcontrib/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='r9011_evttotalcontrib_abrir_evento_para_edicao'),
-
-    url(r'^r9011-evttotalcontrib/validar-evento/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_validar_evento_views.validar_evento,
-        name='r9011_evttotalcontrib_validar_evento'),
-
-    url(r'^r9011-evttotalcontrib/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        r9011_evttotalcontrib_validar_evento_views.validar_evento,
-        name='r9011_evttotalcontrib_validar_evento_api'),
-
-    url(r'^r9011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/$', 
-        r9011_evttotalcontrib_salvar_views.salvar, 
-        name='r9011_evttotalcontrib_salvar'),
-
-    url(r'^r9011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r9011_evttotalcontrib_salvar_views.salvar, 
-        name='r9011_evttotalcontrib_salvar_tab'),
-        
-    url(r'^r9011-evttotalcontrib/gerar-identidade/(?P<pk>[0-9]+)/$',
-        r9011_evttotalcontrib_gerar_identidade_views.gerar_identidade, 
-        name='r9011_evttotalcontrib_gerar_identidade'),
-        
-    url(r'^r9011-evttotalcontrib/cadastrar/$', 
-        r9011_evttotalcontrib_salvar_views.salvar, 
-        name='r9011_evttotalcontrib_cadastrar'),
-
-    url(r'^r9011-evttotalcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r9011_evttotalcontrib_salvar_views.salvar, 
-        name='r9011_evttotalcontrib_salvar_output'),
-        
     url(r'^r9011-evttotalcontrib/(?P<output>[\w-]+)/$', 
         r9011_evttotalcontrib_listar_views.listar, 
         name='r9011_evttotalcontrib_output'),
-
-    url(r'^r9012-evtretcons/apagar/(?P<pk>[0-9]+)/$', 
-        r9012_evtretcons_apagar_views.apagar, 
-        name='r9012_evtretcons_apagar'),
+        
+    url(r'^r9011-evttotalcontrib/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        r9011_evttotalcontrib_recibos_views.recibo, 
+        name='r9011_evttotalcontrib_recibo'),
 
     url(r'^r9012-evtretcons/api/$',
         r9012_evtretcons_api_views.r9012evtRetConsList.as_view() ),
@@ -2328,73 +1932,13 @@ urlpatterns = [
         r9012_evtretcons_listar_views.listar, 
         name='r9012_evtretcons'),
         
-    url(r'^r9012-evtretcons/verificar/(?P<pk>[0-9]+)/$', 
-        r9012_evtretcons_verificar_views.verificar, 
-        name='r9012_evtretcons_verificar'),
-        
-    url(r'^r9012-evtretcons/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9012_evtretcons_verificar_views.verificar, 
-        name='r9012_evtretcons_verificar_output'),
-            
-    url(r'^r9012-evtretcons/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        r9012_evtretcons_recibos_views.recibo, 
-        name='r9012_evtretcons_recibo'),
-            
-    url(r'^r9012-evtretcons/duplicar/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_duplicar_views.duplicar,
-        name='r9012_evtretcons_duplicar'),
-
-    url(r'^r9012-evtretcons/criar-alteracao/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_criar_alteracao_views.criar_alteracao,
-        name='r9012_evtretcons_criar_alteracao'),
-
-    url(r'^r9012-evtretcons/criar-exclusao/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_criar_exclusao_views.criar_exclusao,
-        name='r9012_evtretcons_criar_exclusao'),
-            
-    url(r'^r9012-evtretcons/xml/(?P<pk>[0-9]+)/$', 
-        r9012_evtretcons_gerar_xml_views.gerar_xml, 
-        name='r9012_evtretcons_xml'),          
-
-    url(r'^r9012-evtretcons/alterar-identidade/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_alterar_identidade_views.alterar_identidade,
-        name='r9012_evtretcons_alterar_identidade'),
-
-    url(r'^r9012-evtretcons/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='r9012_evtretcons_abrir_evento_para_edicao'),
-
-    url(r'^r9012-evtretcons/validar-evento/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_validar_evento_views.validar_evento,
-        name='r9012_evtretcons_validar_evento'),
-
-    url(r'^r9012-evtretcons/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        r9012_evtretcons_validar_evento_views.validar_evento,
-        name='r9012_evtretcons_validar_evento_api'),
-
-    url(r'^r9012-evtretcons/salvar/(?P<pk>[0-9]+)/$', 
-        r9012_evtretcons_salvar_views.salvar, 
-        name='r9012_evtretcons_salvar'),
-
-    url(r'^r9012-evtretcons/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        r9012_evtretcons_salvar_views.salvar, 
-        name='r9012_evtretcons_salvar_tab'),
-        
-    url(r'^r9012-evtretcons/gerar-identidade/(?P<pk>[0-9]+)/$',
-        r9012_evtretcons_gerar_identidade_views.gerar_identidade, 
-        name='r9012_evtretcons_gerar_identidade'),
-        
-    url(r'^r9012-evtretcons/cadastrar/$', 
-        r9012_evtretcons_salvar_views.salvar, 
-        name='r9012_evtretcons_cadastrar'),
-
-    url(r'^r9012-evtretcons/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        r9012_evtretcons_salvar_views.salvar, 
-        name='r9012_evtretcons_salvar_output'),
-        
     url(r'^r9012-evtretcons/(?P<output>[\w-]+)/$', 
         r9012_evtretcons_listar_views.listar, 
         name='r9012_evtretcons_output'),
+        
+    url(r'^r9012-evtretcons/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        r9012_evtretcons_recibos_views.recibo, 
+        name='r9012_evtretcons_recibo'),
 
 
 ]

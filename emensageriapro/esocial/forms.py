@@ -185,7 +185,7 @@ class form_s1010_evttabrubrica(forms.ModelForm):
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
         
-        m =  super(form_s1010_evttabrubrica, self).save(commit=True, *args, **kwargs)
+        m = super(form_s1010_evttabrubrica, self).save(commit=True, *args, **kwargs)
 
         if request is not None:
 
@@ -2830,7 +2830,6 @@ class form_s5001_evtbasestrab(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_eventos'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -2879,7 +2878,6 @@ class form_s5002_evtirrfbenef(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_eventos'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -2928,7 +2926,6 @@ class form_s5003_evtbasesfgts(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_eventos'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -2977,7 +2974,6 @@ class form_s5011_evtcs(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_eventos'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -3026,7 +3022,6 @@ class form_s5012_evtirrf(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_eventos'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -3075,7 +3070,6 @@ class form_s5013_evtfgts(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_eventos'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'

@@ -79,7 +79,6 @@ def listar(request, output=None):
             'show_indexistinfo': 1,
             'show_versao': 0,
             'show_transmissor_lote_esocial': 0,
-            'show_retornos_eventos': 0,
             'show_ocorrencias': 0,
             'show_validacao_precedencia': 0,
             'show_validacoes': 0,

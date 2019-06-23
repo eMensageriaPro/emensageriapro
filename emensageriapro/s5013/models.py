@@ -118,9 +118,6 @@ class s5013basePerAntESerializer(ModelSerializer):
     
         model = s5013basePerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013basePerApur(SoftDeletionModel):
@@ -176,9 +173,6 @@ class s5013basePerApurSerializer(ModelSerializer):
     
         model = s5013basePerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013dpsPerAntE(SoftDeletionModel):
@@ -234,9 +228,6 @@ class s5013dpsPerAntESerializer(ModelSerializer):
     
         model = s5013dpsPerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013dpsPerApur(SoftDeletionModel):
@@ -292,9 +283,6 @@ class s5013dpsPerApurSerializer(ModelSerializer):
     
         model = s5013dpsPerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013infoBaseFGTS(SoftDeletionModel):
@@ -346,9 +334,6 @@ class s5013infoBaseFGTSSerializer(ModelSerializer):
     
         model = s5013infoBaseFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013infoBasePerAntE(SoftDeletionModel):
@@ -402,9 +387,6 @@ class s5013infoBasePerAntESerializer(ModelSerializer):
     
         model = s5013infoBasePerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013infoDpsFGTS(SoftDeletionModel):
@@ -456,9 +438,6 @@ class s5013infoDpsFGTSSerializer(ModelSerializer):
     
         model = s5013infoDpsFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013infoDpsPerAntE(SoftDeletionModel):
@@ -512,6 +491,3 @@ class s5013infoDpsPerAntESerializer(ModelSerializer):
     
         model = s5013infoDpsPerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

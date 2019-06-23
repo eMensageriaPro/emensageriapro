@@ -477,8 +477,9 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        <th>Situação Anterior</th>
-                                        <th>Situação Posterior</th>
+                                        
+                                        <th>Situação</th>
+                                        <th>Tipo</th>
                                         <th>Modificado por</th>
                                     </tr>
                                 </thead>
@@ -486,8 +487,9 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                        
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                        <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
                                     </tr>
                                 {% endfor %}

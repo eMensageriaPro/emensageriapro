@@ -120,7 +120,7 @@ def gravar_nome_arquivo(arquivo, permite_recuperacao):
     dados['criado_por_id'] = 1
 
     obj = Arquivos(**dados)
-    obj.save(using='default')
+    obj.save()
 
 
 def salvar_arquivo_esocial(arquivo, texto, permite_recuperacao):

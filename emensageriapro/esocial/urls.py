@@ -772,102 +772,30 @@ from emensageriapro.esocial.views import s3000_evtexclusao_abrir_evento_para_edi
 from emensageriapro.esocial.views import s3000_evtexclusao_alterar_identidade as s3000_evtexclusao_alterar_identidade_views
 from emensageriapro.esocial.views import s3000_evtexclusao_criar_exclusao as s3000_evtexclusao_criar_exclusao_views
 from emensageriapro.esocial.views import s3000_evtexclusao_duplicar as s3000_evtexclusao_duplicar_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_apagar as s5001_evtbasestrab_apagar_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_listar as s5001_evtbasestrab_listar_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_salvar as s5001_evtbasestrab_salvar_views
 from emensageriapro.esocial.views import s5001_evtbasestrab_api as s5001_evtbasestrab_api_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_gerar_identidade as s5001_evtbasestrab_gerar_identidade_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_verificar as s5001_evtbasestrab_verificar_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_importar as s5001_evtbasestrab_importar_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_validar as s5001_evtbasestrab_validar_views
+from emensageriapro.esocial.views import s5001_evtbasestrab_listar as s5001_evtbasestrab_listar_views
 from emensageriapro.esocial.views import s5001_evtbasestrab_recibos as s5001_evtbasestrab_recibos_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_gerar_xml as s5001_evtbasestrab_gerar_xml_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_criar_alteracao as s5001_evtbasestrab_criar_alteracao_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_validar_evento as s5001_evtbasestrab_validar_evento_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_abrir_evento_para_edicao as s5001_evtbasestrab_abrir_evento_para_edicao_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_alterar_identidade as s5001_evtbasestrab_alterar_identidade_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_criar_exclusao as s5001_evtbasestrab_criar_exclusao_views
-from emensageriapro.esocial.views import s5001_evtbasestrab_duplicar as s5001_evtbasestrab_duplicar_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_apagar as s5002_evtirrfbenef_apagar_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_listar as s5002_evtirrfbenef_listar_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_salvar as s5002_evtirrfbenef_salvar_views
+from emensageriapro.esocial.views import s5001_evtbasestrab_importar as s5001_evtbasestrab_importar_views
 from emensageriapro.esocial.views import s5002_evtirrfbenef_api as s5002_evtirrfbenef_api_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_gerar_identidade as s5002_evtirrfbenef_gerar_identidade_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_verificar as s5002_evtirrfbenef_verificar_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_importar as s5002_evtirrfbenef_importar_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_validar as s5002_evtirrfbenef_validar_views
+from emensageriapro.esocial.views import s5002_evtirrfbenef_listar as s5002_evtirrfbenef_listar_views
 from emensageriapro.esocial.views import s5002_evtirrfbenef_recibos as s5002_evtirrfbenef_recibos_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_gerar_xml as s5002_evtirrfbenef_gerar_xml_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_criar_alteracao as s5002_evtirrfbenef_criar_alteracao_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_validar_evento as s5002_evtirrfbenef_validar_evento_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_abrir_evento_para_edicao as s5002_evtirrfbenef_abrir_evento_para_edicao_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_alterar_identidade as s5002_evtirrfbenef_alterar_identidade_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_criar_exclusao as s5002_evtirrfbenef_criar_exclusao_views
-from emensageriapro.esocial.views import s5002_evtirrfbenef_duplicar as s5002_evtirrfbenef_duplicar_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_apagar as s5003_evtbasesfgts_apagar_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_listar as s5003_evtbasesfgts_listar_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_salvar as s5003_evtbasesfgts_salvar_views
+from emensageriapro.esocial.views import s5002_evtirrfbenef_importar as s5002_evtirrfbenef_importar_views
 from emensageriapro.esocial.views import s5003_evtbasesfgts_api as s5003_evtbasesfgts_api_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_gerar_identidade as s5003_evtbasesfgts_gerar_identidade_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_verificar as s5003_evtbasesfgts_verificar_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_importar as s5003_evtbasesfgts_importar_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_validar as s5003_evtbasesfgts_validar_views
+from emensageriapro.esocial.views import s5003_evtbasesfgts_listar as s5003_evtbasesfgts_listar_views
 from emensageriapro.esocial.views import s5003_evtbasesfgts_recibos as s5003_evtbasesfgts_recibos_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_gerar_xml as s5003_evtbasesfgts_gerar_xml_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_criar_alteracao as s5003_evtbasesfgts_criar_alteracao_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_validar_evento as s5003_evtbasesfgts_validar_evento_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_abrir_evento_para_edicao as s5003_evtbasesfgts_abrir_evento_para_edicao_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_alterar_identidade as s5003_evtbasesfgts_alterar_identidade_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_criar_exclusao as s5003_evtbasesfgts_criar_exclusao_views
-from emensageriapro.esocial.views import s5003_evtbasesfgts_duplicar as s5003_evtbasesfgts_duplicar_views
-from emensageriapro.esocial.views import s5011_evtcs_apagar as s5011_evtcs_apagar_views
-from emensageriapro.esocial.views import s5011_evtcs_listar as s5011_evtcs_listar_views
-from emensageriapro.esocial.views import s5011_evtcs_salvar as s5011_evtcs_salvar_views
+from emensageriapro.esocial.views import s5003_evtbasesfgts_importar as s5003_evtbasesfgts_importar_views
 from emensageriapro.esocial.views import s5011_evtcs_api as s5011_evtcs_api_views
-from emensageriapro.esocial.views import s5011_evtcs_gerar_identidade as s5011_evtcs_gerar_identidade_views
-from emensageriapro.esocial.views import s5011_evtcs_verificar as s5011_evtcs_verificar_views
-from emensageriapro.esocial.views import s5011_evtcs_importar as s5011_evtcs_importar_views
-from emensageriapro.esocial.views import s5011_evtcs_validar as s5011_evtcs_validar_views
+from emensageriapro.esocial.views import s5011_evtcs_listar as s5011_evtcs_listar_views
 from emensageriapro.esocial.views import s5011_evtcs_recibos as s5011_evtcs_recibos_views
-from emensageriapro.esocial.views import s5011_evtcs_gerar_xml as s5011_evtcs_gerar_xml_views
-from emensageriapro.esocial.views import s5011_evtcs_criar_alteracao as s5011_evtcs_criar_alteracao_views
-from emensageriapro.esocial.views import s5011_evtcs_validar_evento as s5011_evtcs_validar_evento_views
-from emensageriapro.esocial.views import s5011_evtcs_abrir_evento_para_edicao as s5011_evtcs_abrir_evento_para_edicao_views
-from emensageriapro.esocial.views import s5011_evtcs_alterar_identidade as s5011_evtcs_alterar_identidade_views
-from emensageriapro.esocial.views import s5011_evtcs_criar_exclusao as s5011_evtcs_criar_exclusao_views
-from emensageriapro.esocial.views import s5011_evtcs_duplicar as s5011_evtcs_duplicar_views
-from emensageriapro.esocial.views import s5012_evtirrf_apagar as s5012_evtirrf_apagar_views
-from emensageriapro.esocial.views import s5012_evtirrf_listar as s5012_evtirrf_listar_views
-from emensageriapro.esocial.views import s5012_evtirrf_salvar as s5012_evtirrf_salvar_views
+from emensageriapro.esocial.views import s5011_evtcs_importar as s5011_evtcs_importar_views
 from emensageriapro.esocial.views import s5012_evtirrf_api as s5012_evtirrf_api_views
-from emensageriapro.esocial.views import s5012_evtirrf_gerar_identidade as s5012_evtirrf_gerar_identidade_views
-from emensageriapro.esocial.views import s5012_evtirrf_verificar as s5012_evtirrf_verificar_views
-from emensageriapro.esocial.views import s5012_evtirrf_importar as s5012_evtirrf_importar_views
-from emensageriapro.esocial.views import s5012_evtirrf_validar as s5012_evtirrf_validar_views
+from emensageriapro.esocial.views import s5012_evtirrf_listar as s5012_evtirrf_listar_views
 from emensageriapro.esocial.views import s5012_evtirrf_recibos as s5012_evtirrf_recibos_views
-from emensageriapro.esocial.views import s5012_evtirrf_gerar_xml as s5012_evtirrf_gerar_xml_views
-from emensageriapro.esocial.views import s5012_evtirrf_criar_alteracao as s5012_evtirrf_criar_alteracao_views
-from emensageriapro.esocial.views import s5012_evtirrf_validar_evento as s5012_evtirrf_validar_evento_views
-from emensageriapro.esocial.views import s5012_evtirrf_abrir_evento_para_edicao as s5012_evtirrf_abrir_evento_para_edicao_views
-from emensageriapro.esocial.views import s5012_evtirrf_alterar_identidade as s5012_evtirrf_alterar_identidade_views
-from emensageriapro.esocial.views import s5012_evtirrf_criar_exclusao as s5012_evtirrf_criar_exclusao_views
-from emensageriapro.esocial.views import s5012_evtirrf_duplicar as s5012_evtirrf_duplicar_views
-from emensageriapro.esocial.views import s5013_evtfgts_apagar as s5013_evtfgts_apagar_views
-from emensageriapro.esocial.views import s5013_evtfgts_listar as s5013_evtfgts_listar_views
-from emensageriapro.esocial.views import s5013_evtfgts_salvar as s5013_evtfgts_salvar_views
+from emensageriapro.esocial.views import s5012_evtirrf_importar as s5012_evtirrf_importar_views
 from emensageriapro.esocial.views import s5013_evtfgts_api as s5013_evtfgts_api_views
-from emensageriapro.esocial.views import s5013_evtfgts_gerar_identidade as s5013_evtfgts_gerar_identidade_views
-from emensageriapro.esocial.views import s5013_evtfgts_verificar as s5013_evtfgts_verificar_views
-from emensageriapro.esocial.views import s5013_evtfgts_importar as s5013_evtfgts_importar_views
-from emensageriapro.esocial.views import s5013_evtfgts_validar as s5013_evtfgts_validar_views
+from emensageriapro.esocial.views import s5013_evtfgts_listar as s5013_evtfgts_listar_views
 from emensageriapro.esocial.views import s5013_evtfgts_recibos as s5013_evtfgts_recibos_views
-from emensageriapro.esocial.views import s5013_evtfgts_gerar_xml as s5013_evtfgts_gerar_xml_views
-from emensageriapro.esocial.views import s5013_evtfgts_criar_alteracao as s5013_evtfgts_criar_alteracao_views
-from emensageriapro.esocial.views import s5013_evtfgts_validar_evento as s5013_evtfgts_validar_evento_views
-from emensageriapro.esocial.views import s5013_evtfgts_abrir_evento_para_edicao as s5013_evtfgts_abrir_evento_para_edicao_views
-from emensageriapro.esocial.views import s5013_evtfgts_alterar_identidade as s5013_evtfgts_alterar_identidade_views
-from emensageriapro.esocial.views import s5013_evtfgts_criar_exclusao as s5013_evtfgts_criar_exclusao_views
-from emensageriapro.esocial.views import s5013_evtfgts_duplicar as s5013_evtfgts_duplicar_views
+from emensageriapro.esocial.views import s5013_evtfgts_importar as s5013_evtfgts_importar_views
 
 
 
@@ -4844,10 +4772,6 @@ urlpatterns = [
         s3000_evtexclusao_listar_views.listar, 
         name='s3000_evtexclusao_output'),
 
-    url(r'^s5001-evtbasestrab/apagar/(?P<pk>[0-9]+)/$', 
-        s5001_evtbasestrab_apagar_views.apagar, 
-        name='s5001_evtbasestrab_apagar'),
-
     url(r'^s5001-evtbasestrab/api/$',
         s5001_evtbasestrab_api_views.s5001evtBasesTrabList.as_view() ),
 
@@ -4858,77 +4782,13 @@ urlpatterns = [
         s5001_evtbasestrab_listar_views.listar, 
         name='s5001_evtbasestrab'),
         
-    url(r'^s5001-evtbasestrab/verificar/(?P<pk>[0-9]+)/$', 
-        s5001_evtbasestrab_verificar_views.verificar, 
-        name='s5001_evtbasestrab_verificar'),
-        
-    url(r'^s5001-evtbasestrab/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5001_evtbasestrab_verificar_views.verificar, 
-        name='s5001_evtbasestrab_verificar_output'),
-            
-    url(r'^s5001-evtbasestrab/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5001_evtbasestrab_recibos_views.recibo, 
-        name='s5001_evtbasestrab_recibo'),
-            
-    url(r'^s5001-evtbasestrab/duplicar/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_duplicar_views.duplicar,
-        name='s5001_evtbasestrab_duplicar'),
-
-    url(r'^s5001-evtbasestrab/criar-alteracao/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_criar_alteracao_views.criar_alteracao,
-        name='s5001_evtbasestrab_criar_alteracao'),
-
-    url(r'^s5001-evtbasestrab/criar-exclusao/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_criar_exclusao_views.criar_exclusao,
-        name='s5001_evtbasestrab_criar_exclusao'),
-            
-    url(r'^s5001-evtbasestrab/xml/(?P<pk>[0-9]+)/$', 
-        s5001_evtbasestrab_gerar_xml_views.gerar_xml, 
-        name='s5001_evtbasestrab_xml'),          
-
-    url(r'^s5001-evtbasestrab/alterar-identidade/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_alterar_identidade_views.alterar_identidade,
-        name='s5001_evtbasestrab_alterar_identidade'),
-
-    url(r'^s5001-evtbasestrab/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='s5001_evtbasestrab_abrir_evento_para_edicao'),
-
-    url(r'^s5001-evtbasestrab/validar-evento/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_validar_evento_views.validar_evento,
-        name='s5001_evtbasestrab_validar_evento'),
-
-    url(r'^s5001-evtbasestrab/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        s5001_evtbasestrab_validar_evento_views.validar_evento,
-        name='s5001_evtbasestrab_validar_evento_api'),
-
-    url(r'^s5001-evtbasestrab/salvar/(?P<pk>[0-9]+)/$', 
-        s5001_evtbasestrab_salvar_views.salvar, 
-        name='s5001_evtbasestrab_salvar'),
-
-    url(r'^s5001-evtbasestrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5001_evtbasestrab_salvar_views.salvar, 
-        name='s5001_evtbasestrab_salvar_tab'),
-        
-    url(r'^s5001-evtbasestrab/gerar-identidade/(?P<pk>[0-9]+)/$',
-        s5001_evtbasestrab_gerar_identidade_views.gerar_identidade, 
-        name='s5001_evtbasestrab_gerar_identidade'),
-        
-    url(r'^s5001-evtbasestrab/cadastrar/$', 
-        s5001_evtbasestrab_salvar_views.salvar, 
-        name='s5001_evtbasestrab_cadastrar'),
-
-    url(r'^s5001-evtbasestrab/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5001_evtbasestrab_salvar_views.salvar, 
-        name='s5001_evtbasestrab_salvar_output'),
-        
     url(r'^s5001-evtbasestrab/(?P<output>[\w-]+)/$', 
         s5001_evtbasestrab_listar_views.listar, 
         name='s5001_evtbasestrab_output'),
-
-    url(r'^s5002-evtirrfbenef/apagar/(?P<pk>[0-9]+)/$', 
-        s5002_evtirrfbenef_apagar_views.apagar, 
-        name='s5002_evtirrfbenef_apagar'),
+        
+    url(r'^s5001-evtbasestrab/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5001_evtbasestrab_recibos_views.recibo, 
+        name='s5001_evtbasestrab_recibo'),
 
     url(r'^s5002-evtirrfbenef/api/$',
         s5002_evtirrfbenef_api_views.s5002evtIrrfBenefList.as_view() ),
@@ -4940,77 +4800,13 @@ urlpatterns = [
         s5002_evtirrfbenef_listar_views.listar, 
         name='s5002_evtirrfbenef'),
         
-    url(r'^s5002-evtirrfbenef/verificar/(?P<pk>[0-9]+)/$', 
-        s5002_evtirrfbenef_verificar_views.verificar, 
-        name='s5002_evtirrfbenef_verificar'),
-        
-    url(r'^s5002-evtirrfbenef/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5002_evtirrfbenef_verificar_views.verificar, 
-        name='s5002_evtirrfbenef_verificar_output'),
-            
-    url(r'^s5002-evtirrfbenef/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5002_evtirrfbenef_recibos_views.recibo, 
-        name='s5002_evtirrfbenef_recibo'),
-            
-    url(r'^s5002-evtirrfbenef/duplicar/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_duplicar_views.duplicar,
-        name='s5002_evtirrfbenef_duplicar'),
-
-    url(r'^s5002-evtirrfbenef/criar-alteracao/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_criar_alteracao_views.criar_alteracao,
-        name='s5002_evtirrfbenef_criar_alteracao'),
-
-    url(r'^s5002-evtirrfbenef/criar-exclusao/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_criar_exclusao_views.criar_exclusao,
-        name='s5002_evtirrfbenef_criar_exclusao'),
-            
-    url(r'^s5002-evtirrfbenef/xml/(?P<pk>[0-9]+)/$', 
-        s5002_evtirrfbenef_gerar_xml_views.gerar_xml, 
-        name='s5002_evtirrfbenef_xml'),          
-
-    url(r'^s5002-evtirrfbenef/alterar-identidade/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_alterar_identidade_views.alterar_identidade,
-        name='s5002_evtirrfbenef_alterar_identidade'),
-
-    url(r'^s5002-evtirrfbenef/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='s5002_evtirrfbenef_abrir_evento_para_edicao'),
-
-    url(r'^s5002-evtirrfbenef/validar-evento/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_validar_evento_views.validar_evento,
-        name='s5002_evtirrfbenef_validar_evento'),
-
-    url(r'^s5002-evtirrfbenef/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        s5002_evtirrfbenef_validar_evento_views.validar_evento,
-        name='s5002_evtirrfbenef_validar_evento_api'),
-
-    url(r'^s5002-evtirrfbenef/salvar/(?P<pk>[0-9]+)/$', 
-        s5002_evtirrfbenef_salvar_views.salvar, 
-        name='s5002_evtirrfbenef_salvar'),
-
-    url(r'^s5002-evtirrfbenef/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5002_evtirrfbenef_salvar_views.salvar, 
-        name='s5002_evtirrfbenef_salvar_tab'),
-        
-    url(r'^s5002-evtirrfbenef/gerar-identidade/(?P<pk>[0-9]+)/$',
-        s5002_evtirrfbenef_gerar_identidade_views.gerar_identidade, 
-        name='s5002_evtirrfbenef_gerar_identidade'),
-        
-    url(r'^s5002-evtirrfbenef/cadastrar/$', 
-        s5002_evtirrfbenef_salvar_views.salvar, 
-        name='s5002_evtirrfbenef_cadastrar'),
-
-    url(r'^s5002-evtirrfbenef/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5002_evtirrfbenef_salvar_views.salvar, 
-        name='s5002_evtirrfbenef_salvar_output'),
-        
     url(r'^s5002-evtirrfbenef/(?P<output>[\w-]+)/$', 
         s5002_evtirrfbenef_listar_views.listar, 
         name='s5002_evtirrfbenef_output'),
-
-    url(r'^s5003-evtbasesfgts/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_evtbasesfgts_apagar_views.apagar, 
-        name='s5003_evtbasesfgts_apagar'),
+        
+    url(r'^s5002-evtirrfbenef/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5002_evtirrfbenef_recibos_views.recibo, 
+        name='s5002_evtirrfbenef_recibo'),
 
     url(r'^s5003-evtbasesfgts/api/$',
         s5003_evtbasesfgts_api_views.s5003evtBasesFGTSList.as_view() ),
@@ -5022,77 +4818,13 @@ urlpatterns = [
         s5003_evtbasesfgts_listar_views.listar, 
         name='s5003_evtbasesfgts'),
         
-    url(r'^s5003-evtbasesfgts/verificar/(?P<pk>[0-9]+)/$', 
-        s5003_evtbasesfgts_verificar_views.verificar, 
-        name='s5003_evtbasesfgts_verificar'),
-        
-    url(r'^s5003-evtbasesfgts/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5003_evtbasesfgts_verificar_views.verificar, 
-        name='s5003_evtbasesfgts_verificar_output'),
-            
-    url(r'^s5003-evtbasesfgts/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5003_evtbasesfgts_recibos_views.recibo, 
-        name='s5003_evtbasesfgts_recibo'),
-            
-    url(r'^s5003-evtbasesfgts/duplicar/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_duplicar_views.duplicar,
-        name='s5003_evtbasesfgts_duplicar'),
-
-    url(r'^s5003-evtbasesfgts/criar-alteracao/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_criar_alteracao_views.criar_alteracao,
-        name='s5003_evtbasesfgts_criar_alteracao'),
-
-    url(r'^s5003-evtbasesfgts/criar-exclusao/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_criar_exclusao_views.criar_exclusao,
-        name='s5003_evtbasesfgts_criar_exclusao'),
-            
-    url(r'^s5003-evtbasesfgts/xml/(?P<pk>[0-9]+)/$', 
-        s5003_evtbasesfgts_gerar_xml_views.gerar_xml, 
-        name='s5003_evtbasesfgts_xml'),          
-
-    url(r'^s5003-evtbasesfgts/alterar-identidade/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_alterar_identidade_views.alterar_identidade,
-        name='s5003_evtbasesfgts_alterar_identidade'),
-
-    url(r'^s5003-evtbasesfgts/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='s5003_evtbasesfgts_abrir_evento_para_edicao'),
-
-    url(r'^s5003-evtbasesfgts/validar-evento/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_validar_evento_views.validar_evento,
-        name='s5003_evtbasesfgts_validar_evento'),
-
-    url(r'^s5003-evtbasesfgts/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        s5003_evtbasesfgts_validar_evento_views.validar_evento,
-        name='s5003_evtbasesfgts_validar_evento_api'),
-
-    url(r'^s5003-evtbasesfgts/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_evtbasesfgts_salvar_views.salvar, 
-        name='s5003_evtbasesfgts_salvar'),
-
-    url(r'^s5003-evtbasesfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_evtbasesfgts_salvar_views.salvar, 
-        name='s5003_evtbasesfgts_salvar_tab'),
-        
-    url(r'^s5003-evtbasesfgts/gerar-identidade/(?P<pk>[0-9]+)/$',
-        s5003_evtbasesfgts_gerar_identidade_views.gerar_identidade, 
-        name='s5003_evtbasesfgts_gerar_identidade'),
-        
-    url(r'^s5003-evtbasesfgts/cadastrar/$', 
-        s5003_evtbasesfgts_salvar_views.salvar, 
-        name='s5003_evtbasesfgts_cadastrar'),
-
-    url(r'^s5003-evtbasesfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_evtbasesfgts_salvar_views.salvar, 
-        name='s5003_evtbasesfgts_salvar_output'),
-        
     url(r'^s5003-evtbasesfgts/(?P<output>[\w-]+)/$', 
         s5003_evtbasesfgts_listar_views.listar, 
         name='s5003_evtbasesfgts_output'),
-
-    url(r'^s5011-evtcs/apagar/(?P<pk>[0-9]+)/$', 
-        s5011_evtcs_apagar_views.apagar, 
-        name='s5011_evtcs_apagar'),
+        
+    url(r'^s5003-evtbasesfgts/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5003_evtbasesfgts_recibos_views.recibo, 
+        name='s5003_evtbasesfgts_recibo'),
 
     url(r'^s5011-evtcs/api/$',
         s5011_evtcs_api_views.s5011evtCSList.as_view() ),
@@ -5104,77 +4836,13 @@ urlpatterns = [
         s5011_evtcs_listar_views.listar, 
         name='s5011_evtcs'),
         
-    url(r'^s5011-evtcs/verificar/(?P<pk>[0-9]+)/$', 
-        s5011_evtcs_verificar_views.verificar, 
-        name='s5011_evtcs_verificar'),
-        
-    url(r'^s5011-evtcs/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5011_evtcs_verificar_views.verificar, 
-        name='s5011_evtcs_verificar_output'),
-            
-    url(r'^s5011-evtcs/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5011_evtcs_recibos_views.recibo, 
-        name='s5011_evtcs_recibo'),
-            
-    url(r'^s5011-evtcs/duplicar/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_duplicar_views.duplicar,
-        name='s5011_evtcs_duplicar'),
-
-    url(r'^s5011-evtcs/criar-alteracao/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_criar_alteracao_views.criar_alteracao,
-        name='s5011_evtcs_criar_alteracao'),
-
-    url(r'^s5011-evtcs/criar-exclusao/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_criar_exclusao_views.criar_exclusao,
-        name='s5011_evtcs_criar_exclusao'),
-            
-    url(r'^s5011-evtcs/xml/(?P<pk>[0-9]+)/$', 
-        s5011_evtcs_gerar_xml_views.gerar_xml, 
-        name='s5011_evtcs_xml'),          
-
-    url(r'^s5011-evtcs/alterar-identidade/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_alterar_identidade_views.alterar_identidade,
-        name='s5011_evtcs_alterar_identidade'),
-
-    url(r'^s5011-evtcs/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='s5011_evtcs_abrir_evento_para_edicao'),
-
-    url(r'^s5011-evtcs/validar-evento/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_validar_evento_views.validar_evento,
-        name='s5011_evtcs_validar_evento'),
-
-    url(r'^s5011-evtcs/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        s5011_evtcs_validar_evento_views.validar_evento,
-        name='s5011_evtcs_validar_evento_api'),
-
-    url(r'^s5011-evtcs/salvar/(?P<pk>[0-9]+)/$', 
-        s5011_evtcs_salvar_views.salvar, 
-        name='s5011_evtcs_salvar'),
-
-    url(r'^s5011-evtcs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5011_evtcs_salvar_views.salvar, 
-        name='s5011_evtcs_salvar_tab'),
-        
-    url(r'^s5011-evtcs/gerar-identidade/(?P<pk>[0-9]+)/$',
-        s5011_evtcs_gerar_identidade_views.gerar_identidade, 
-        name='s5011_evtcs_gerar_identidade'),
-        
-    url(r'^s5011-evtcs/cadastrar/$', 
-        s5011_evtcs_salvar_views.salvar, 
-        name='s5011_evtcs_cadastrar'),
-
-    url(r'^s5011-evtcs/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5011_evtcs_salvar_views.salvar, 
-        name='s5011_evtcs_salvar_output'),
-        
     url(r'^s5011-evtcs/(?P<output>[\w-]+)/$', 
         s5011_evtcs_listar_views.listar, 
         name='s5011_evtcs_output'),
-
-    url(r'^s5012-evtirrf/apagar/(?P<pk>[0-9]+)/$', 
-        s5012_evtirrf_apagar_views.apagar, 
-        name='s5012_evtirrf_apagar'),
+        
+    url(r'^s5011-evtcs/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5011_evtcs_recibos_views.recibo, 
+        name='s5011_evtcs_recibo'),
 
     url(r'^s5012-evtirrf/api/$',
         s5012_evtirrf_api_views.s5012evtIrrfList.as_view() ),
@@ -5186,77 +4854,13 @@ urlpatterns = [
         s5012_evtirrf_listar_views.listar, 
         name='s5012_evtirrf'),
         
-    url(r'^s5012-evtirrf/verificar/(?P<pk>[0-9]+)/$', 
-        s5012_evtirrf_verificar_views.verificar, 
-        name='s5012_evtirrf_verificar'),
-        
-    url(r'^s5012-evtirrf/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5012_evtirrf_verificar_views.verificar, 
-        name='s5012_evtirrf_verificar_output'),
-            
-    url(r'^s5012-evtirrf/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5012_evtirrf_recibos_views.recibo, 
-        name='s5012_evtirrf_recibo'),
-            
-    url(r'^s5012-evtirrf/duplicar/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_duplicar_views.duplicar,
-        name='s5012_evtirrf_duplicar'),
-
-    url(r'^s5012-evtirrf/criar-alteracao/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_criar_alteracao_views.criar_alteracao,
-        name='s5012_evtirrf_criar_alteracao'),
-
-    url(r'^s5012-evtirrf/criar-exclusao/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_criar_exclusao_views.criar_exclusao,
-        name='s5012_evtirrf_criar_exclusao'),
-            
-    url(r'^s5012-evtirrf/xml/(?P<pk>[0-9]+)/$', 
-        s5012_evtirrf_gerar_xml_views.gerar_xml, 
-        name='s5012_evtirrf_xml'),          
-
-    url(r'^s5012-evtirrf/alterar-identidade/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_alterar_identidade_views.alterar_identidade,
-        name='s5012_evtirrf_alterar_identidade'),
-
-    url(r'^s5012-evtirrf/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='s5012_evtirrf_abrir_evento_para_edicao'),
-
-    url(r'^s5012-evtirrf/validar-evento/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_validar_evento_views.validar_evento,
-        name='s5012_evtirrf_validar_evento'),
-
-    url(r'^s5012-evtirrf/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        s5012_evtirrf_validar_evento_views.validar_evento,
-        name='s5012_evtirrf_validar_evento_api'),
-
-    url(r'^s5012-evtirrf/salvar/(?P<pk>[0-9]+)/$', 
-        s5012_evtirrf_salvar_views.salvar, 
-        name='s5012_evtirrf_salvar'),
-
-    url(r'^s5012-evtirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5012_evtirrf_salvar_views.salvar, 
-        name='s5012_evtirrf_salvar_tab'),
-        
-    url(r'^s5012-evtirrf/gerar-identidade/(?P<pk>[0-9]+)/$',
-        s5012_evtirrf_gerar_identidade_views.gerar_identidade, 
-        name='s5012_evtirrf_gerar_identidade'),
-        
-    url(r'^s5012-evtirrf/cadastrar/$', 
-        s5012_evtirrf_salvar_views.salvar, 
-        name='s5012_evtirrf_cadastrar'),
-
-    url(r'^s5012-evtirrf/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5012_evtirrf_salvar_views.salvar, 
-        name='s5012_evtirrf_salvar_output'),
-        
     url(r'^s5012-evtirrf/(?P<output>[\w-]+)/$', 
         s5012_evtirrf_listar_views.listar, 
         name='s5012_evtirrf_output'),
-
-    url(r'^s5013-evtfgts/apagar/(?P<pk>[0-9]+)/$', 
-        s5013_evtfgts_apagar_views.apagar, 
-        name='s5013_evtfgts_apagar'),
+        
+    url(r'^s5012-evtirrf/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5012_evtirrf_recibos_views.recibo, 
+        name='s5012_evtirrf_recibo'),
 
     url(r'^s5013-evtfgts/api/$',
         s5013_evtfgts_api_views.s5013evtFGTSList.as_view() ),
@@ -5268,73 +4872,13 @@ urlpatterns = [
         s5013_evtfgts_listar_views.listar, 
         name='s5013_evtfgts'),
         
-    url(r'^s5013-evtfgts/verificar/(?P<pk>[0-9]+)/$', 
-        s5013_evtfgts_verificar_views.verificar, 
-        name='s5013_evtfgts_verificar'),
-        
-    url(r'^s5013-evtfgts/verificar/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5013_evtfgts_verificar_views.verificar, 
-        name='s5013_evtfgts_verificar_output'),
-            
-    url(r'^s5013-evtfgts/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
-        s5013_evtfgts_recibos_views.recibo, 
-        name='s5013_evtfgts_recibo'),
-            
-    url(r'^s5013-evtfgts/duplicar/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_duplicar_views.duplicar,
-        name='s5013_evtfgts_duplicar'),
-
-    url(r'^s5013-evtfgts/criar-alteracao/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_criar_alteracao_views.criar_alteracao,
-        name='s5013_evtfgts_criar_alteracao'),
-
-    url(r'^s5013-evtfgts/criar-exclusao/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_criar_exclusao_views.criar_exclusao,
-        name='s5013_evtfgts_criar_exclusao'),
-            
-    url(r'^s5013-evtfgts/xml/(?P<pk>[0-9]+)/$', 
-        s5013_evtfgts_gerar_xml_views.gerar_xml, 
-        name='s5013_evtfgts_xml'),          
-
-    url(r'^s5013-evtfgts/alterar-identidade/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_alterar_identidade_views.alterar_identidade,
-        name='s5013_evtfgts_alterar_identidade'),
-
-    url(r'^s5013-evtfgts/abrir-evento-para-edicao/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_abrir_evento_para_edicao_views.abrir_evento_para_edicao,
-        name='s5013_evtfgts_abrir_evento_para_edicao'),
-
-    url(r'^s5013-evtfgts/validar-evento/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_validar_evento_views.validar_evento,
-        name='s5013_evtfgts_validar_evento'),
-
-    url(r'^s5013-evtfgts/validar-evento/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$',
-        s5013_evtfgts_validar_evento_views.validar_evento,
-        name='s5013_evtfgts_validar_evento_api'),
-
-    url(r'^s5013-evtfgts/salvar/(?P<pk>[0-9]+)/$', 
-        s5013_evtfgts_salvar_views.salvar, 
-        name='s5013_evtfgts_salvar'),
-
-    url(r'^s5013-evtfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5013_evtfgts_salvar_views.salvar, 
-        name='s5013_evtfgts_salvar_tab'),
-        
-    url(r'^s5013-evtfgts/gerar-identidade/(?P<pk>[0-9]+)/$',
-        s5013_evtfgts_gerar_identidade_views.gerar_identidade, 
-        name='s5013_evtfgts_gerar_identidade'),
-        
-    url(r'^s5013-evtfgts/cadastrar/$', 
-        s5013_evtfgts_salvar_views.salvar, 
-        name='s5013_evtfgts_cadastrar'),
-
-    url(r'^s5013-evtfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5013_evtfgts_salvar_views.salvar, 
-        name='s5013_evtfgts_salvar_output'),
-        
     url(r'^s5013-evtfgts/(?P<output>[\w-]+)/$', 
         s5013_evtfgts_listar_views.listar, 
         name='s5013_evtfgts_output'),
+        
+    url(r'^s5013-evtfgts/recibo/(?P<pk>[0-9]+)/(?P<output>[\w-]+)/$', 
+        s5013_evtfgts_recibos_views.recibo, 
+        name='s5013_evtfgts_recibo'),
 
 
 ]

@@ -70,11 +70,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         r4098_evtreab = get_object_or_404(r4098evtReab, id=pk)
 
-        if r4098_evtreab.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['r4098_evtreab_apagar'] = 0
-            dict_permissoes['r4098_evtreab_editar'] = 0
+        #if r4098_evtreab.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['r4098_evtreab_apagar'] = 0
+        #    dict_permissoes['r4098_evtreab_editar'] = 0
             
     if request.user.has_perm('efdreinf.can_see_r4098evtReab'):
     
@@ -105,14 +105,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4098_evtreab', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(r4098_evtreab), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4098_evtreab', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 'r4098_evtreab', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(r4098_evtreab), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     'r4098_evtreab', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     'r4098_evtreab_apagar', 

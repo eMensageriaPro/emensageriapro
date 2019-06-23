@@ -181,6 +181,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'emensageriapro.get_username.RequestMiddleware',
 )
 
 CRON_CLASSES = [

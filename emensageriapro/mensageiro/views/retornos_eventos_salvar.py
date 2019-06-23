@@ -153,18 +153,6 @@ from emensageriapro.esocial.models import s2420evtCdBenTerm
 from emensageriapro.esocial.forms import form_s2420_evtcdbenterm
 from emensageriapro.esocial.models import s3000evtExclusao
 from emensageriapro.esocial.forms import form_s3000_evtexclusao
-from emensageriapro.esocial.models import s5001evtBasesTrab
-from emensageriapro.esocial.forms import form_s5001_evtbasestrab
-from emensageriapro.esocial.models import s5002evtIrrfBenef
-from emensageriapro.esocial.forms import form_s5002_evtirrfbenef
-from emensageriapro.esocial.models import s5003evtBasesFGTS
-from emensageriapro.esocial.forms import form_s5003_evtbasesfgts
-from emensageriapro.esocial.models import s5011evtCS
-from emensageriapro.esocial.forms import form_s5011_evtcs
-from emensageriapro.esocial.models import s5012evtIrrf
-from emensageriapro.esocial.forms import form_s5012_evtirrf
-from emensageriapro.esocial.models import s5013evtFGTS
-from emensageriapro.esocial.forms import form_s5013_evtfgts
 
 
 @login_required
@@ -318,18 +306,6 @@ def salvar(request, pk=None, tab='master', output=None):
         s2420_evtcdbenterm_form = None 
         s3000_evtexclusao_lista = None 
         s3000_evtexclusao_form = None 
-        s5001_evtbasestrab_lista = None 
-        s5001_evtbasestrab_form = None 
-        s5002_evtirrfbenef_lista = None 
-        s5002_evtirrfbenef_form = None 
-        s5003_evtbasesfgts_lista = None 
-        s5003_evtbasesfgts_form = None 
-        s5011_evtcs_lista = None 
-        s5011_evtcs_form = None 
-        s5012_evtirrf_lista = None 
-        s5012_evtirrf_form = None 
-        s5013_evtfgts_lista = None 
-        s5013_evtfgts_form = None 
         
         if pk:
         
@@ -623,42 +599,6 @@ def salvar(request, pk=None, tab='master', output=None):
             s3000_evtexclusao_lista = s3000evtExclusao.objects.\
                 filter(retornos_eventos_id=retornos_eventos.id).all()
                 
-            s5001_evtbasestrab_form = form_s5001_evtbasestrab(
-                initial={ 'retornos_eventos': retornos_eventos })
-            s5001_evtbasestrab_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            s5001_evtbasestrab_lista = s5001evtBasesTrab.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-                
-            s5002_evtirrfbenef_form = form_s5002_evtirrfbenef(
-                initial={ 'retornos_eventos': retornos_eventos })
-            s5002_evtirrfbenef_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            s5002_evtirrfbenef_lista = s5002evtIrrfBenef.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-                
-            s5003_evtbasesfgts_form = form_s5003_evtbasesfgts(
-                initial={ 'retornos_eventos': retornos_eventos })
-            s5003_evtbasesfgts_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            s5003_evtbasesfgts_lista = s5003evtBasesFGTS.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-                
-            s5011_evtcs_form = form_s5011_evtcs(
-                initial={ 'retornos_eventos': retornos_eventos })
-            s5011_evtcs_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            s5011_evtcs_lista = s5011evtCS.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-                
-            s5012_evtirrf_form = form_s5012_evtirrf(
-                initial={ 'retornos_eventos': retornos_eventos })
-            s5012_evtirrf_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            s5012_evtirrf_lista = s5012evtIrrf.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-                
-            s5013_evtfgts_form = form_s5013_evtfgts(
-                initial={ 'retornos_eventos': retornos_eventos })
-            s5013_evtfgts_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            s5013_evtfgts_lista = s5013evtFGTS.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-                
                 
         else:
         
@@ -777,18 +717,6 @@ def salvar(request, pk=None, tab='master', output=None):
             's2420_evtcdbenterm_lista': s2420_evtcdbenterm_lista,
             's3000_evtexclusao_form': s3000_evtexclusao_form,
             's3000_evtexclusao_lista': s3000_evtexclusao_lista,
-            's5001_evtbasestrab_form': s5001_evtbasestrab_form,
-            's5001_evtbasestrab_lista': s5001_evtbasestrab_lista,
-            's5002_evtirrfbenef_form': s5002_evtirrfbenef_form,
-            's5002_evtirrfbenef_lista': s5002_evtirrfbenef_lista,
-            's5003_evtbasesfgts_form': s5003_evtbasesfgts_form,
-            's5003_evtbasesfgts_lista': s5003_evtbasesfgts_lista,
-            's5011_evtcs_form': s5011_evtcs_form,
-            's5011_evtcs_lista': s5011_evtcs_lista,
-            's5012_evtirrf_form': s5012_evtirrf_form,
-            's5012_evtirrf_lista': s5012_evtirrf_lista,
-            's5013_evtfgts_form': s5013_evtfgts_form,
-            's5013_evtfgts_lista': s5013_evtfgts_lista,
             'modulos': ['mensageiro', ],
             'paginas': ['retornos_eventos', ],
             'data': datetime.datetime.now(),

@@ -4,9 +4,6 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.authtoken import views
-from emensageriapro.s5012.views import s5012_infocrcontrib_apagar as s5012_infocrcontrib_apagar_views
-from emensageriapro.s5012.views import s5012_infocrcontrib_listar as s5012_infocrcontrib_listar_views
-from emensageriapro.s5012.views import s5012_infocrcontrib_salvar as s5012_infocrcontrib_salvar_views
 from emensageriapro.s5012.views import s5012_infocrcontrib_api as s5012_infocrcontrib_api_views
 
 
@@ -48,39 +45,11 @@ from emensageriapro.s5012.views import s5012_infocrcontrib_api as s5012_infocrco
 urlpatterns = [
 
 
-    url(r'^s5012-infocrcontrib/apagar/(?P<pk>[0-9]+)/$', 
-        s5012_infocrcontrib_apagar_views.apagar, 
-        name='s5012_infocrcontrib_apagar'),
-
     url(r'^s5012-infocrcontrib/api/$',
         s5012_infocrcontrib_api_views.s5012infoCRContribList.as_view() ),
 
     url(r'^s5012-infocrcontrib/api/(?P<pk>[0-9]+)/$',
         s5012_infocrcontrib_api_views.s5012infoCRContribDetail.as_view() ),
-
-    url(r'^s5012-infocrcontrib/$', 
-        s5012_infocrcontrib_listar_views.listar, 
-        name='s5012_infocrcontrib'),
-
-    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/$', 
-        s5012_infocrcontrib_salvar_views.salvar, 
-        name='s5012_infocrcontrib_salvar'),
-
-    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5012_infocrcontrib_salvar_views.salvar, 
-        name='s5012_infocrcontrib_salvar_tab'),
-        
-    url(r'^s5012-infocrcontrib/cadastrar/$', 
-        s5012_infocrcontrib_salvar_views.salvar, 
-        name='s5012_infocrcontrib_cadastrar'),
-
-    url(r'^s5012-infocrcontrib/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5012_infocrcontrib_salvar_views.salvar, 
-        name='s5012_infocrcontrib_salvar_output'),
-        
-    url(r'^s5012-infocrcontrib/(?P<output>[\w-]+)/$', 
-        s5012_infocrcontrib_listar_views.listar, 
-        name='s5012_infocrcontrib_output'),
 
 
 ]

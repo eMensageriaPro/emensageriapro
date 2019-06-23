@@ -136,9 +136,6 @@ class s5011basesAquisSerializer(ModelSerializer):
     
         model = s5011basesAquis
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011basesAvNPort(SoftDeletionModel):
@@ -204,9 +201,6 @@ class s5011basesAvNPortSerializer(ModelSerializer):
     
         model = s5011basesAvNPort
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011basesComerc(SoftDeletionModel):
@@ -265,9 +259,6 @@ class s5011basesComercSerializer(ModelSerializer):
     
         model = s5011basesComerc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011basesRemun(SoftDeletionModel):
@@ -351,9 +342,6 @@ class s5011basesRemunSerializer(ModelSerializer):
     
         model = s5011basesRemun
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011dadosOpPort(SoftDeletionModel):
@@ -413,9 +401,6 @@ class s5011dadosOpPortSerializer(ModelSerializer):
     
         model = s5011dadosOpPort
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011ideEstab(SoftDeletionModel):
@@ -471,9 +456,6 @@ class s5011ideEstabSerializer(ModelSerializer):
     
         model = s5011ideEstab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011ideLotacao(SoftDeletionModel):
@@ -532,9 +514,6 @@ class s5011ideLotacaoSerializer(ModelSerializer):
     
         model = s5011ideLotacao
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoAtConc(SoftDeletionModel):
@@ -590,9 +569,6 @@ class s5011infoAtConcSerializer(ModelSerializer):
     
         model = s5011infoAtConc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoCPSeg(SoftDeletionModel):
@@ -648,9 +624,6 @@ class s5011infoCPSegSerializer(ModelSerializer):
     
         model = s5011infoCPSeg
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoCRContrib(SoftDeletionModel):
@@ -707,9 +680,6 @@ class s5011infoCRContribSerializer(ModelSerializer):
     
         model = s5011infoCRContrib
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoCREstab(SoftDeletionModel):
@@ -766,9 +736,6 @@ class s5011infoCREstabSerializer(ModelSerializer):
     
         model = s5011infoCREstab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoComplObra(SoftDeletionModel):
@@ -822,9 +789,6 @@ class s5011infoComplObraSerializer(ModelSerializer):
     
         model = s5011infoComplObra
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoEmprParcial(SoftDeletionModel):
@@ -886,9 +850,6 @@ class s5011infoEmprParcialSerializer(ModelSerializer):
     
         model = s5011infoEmprParcial
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoEstab(SoftDeletionModel):
@@ -948,9 +909,6 @@ class s5011infoEstabSerializer(ModelSerializer):
     
         model = s5011infoEstab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoPJ(SoftDeletionModel):
@@ -1007,9 +965,6 @@ class s5011infoPJSerializer(ModelSerializer):
     
         model = s5011infoPJ
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoSubstPatrOpPort(SoftDeletionModel):
@@ -1063,9 +1018,6 @@ class s5011infoSubstPatrOpPortSerializer(ModelSerializer):
     
         model = s5011infoSubstPatrOpPort
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011infoTercSusp(SoftDeletionModel):
@@ -1119,6 +1071,3 @@ class s5011infoTercSuspSerializer(ModelSerializer):
     
         model = s5011infoTercSusp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

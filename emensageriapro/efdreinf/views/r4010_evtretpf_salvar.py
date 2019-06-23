@@ -74,11 +74,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         r4010_evtretpf = get_object_or_404(r4010evtRetPF, id=pk)
 
-        if r4010_evtretpf.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['r4010_evtretpf_apagar'] = 0
-            dict_permissoes['r4010_evtretpf_editar'] = 0
+        #if r4010_evtretpf.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['r4010_evtretpf_apagar'] = 0
+        #    dict_permissoes['r4010_evtretpf_editar'] = 0
             
     if request.user.has_perm('efdreinf.can_see_r4010evtRetPF'):
     
@@ -109,14 +109,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r4010_evtretpf', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(r4010_evtretpf), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r4010_evtretpf', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 'r4010_evtretpf', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(r4010_evtretpf), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     'r4010_evtretpf', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     'r4010_evtretpf_apagar', 

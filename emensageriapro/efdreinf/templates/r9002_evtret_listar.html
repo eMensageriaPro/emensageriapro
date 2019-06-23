@@ -106,14 +106,7 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">R-9002 - Informações de bases e tributos por evento - Retenções na fonte</h3>
-                    <div class="text-right">
-                        {% if perms.efdreinf.add_r9002evtRet %}
-                        <a href="{% url 'r9002_evtret_cadastrar' %}">           
-                        <button class="btn btn-info">
-                            <i class="fa fa-plus-circle"></i>&nbsp;Cadastrar
-                        </button>
-                        </a>&nbsp;
-                        {% endif %} 
+                    <div class="text-right"> 
                         <button id="btnImprimir" type="submit" class="btn btn-primary">
                             <i class="fa fa-print"></i>&nbsp;Imprimir
                         </button>&nbsp;

@@ -45,7 +45,7 @@ def render_to_pdf(template_src, context_dict={}):
     from xhtml2pdf import pisa
 
     template = get_template(template_src)
-    html  = template.render(context_dict)
+    html = template.render(context_dict)
     result = BytesIO()
     pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
 
@@ -59,11 +59,11 @@ def render_to_pdf(template_src, context_dict={}):
 def txt_xml(texto):
 
     texto = str(texto)
-    texto = texto.replace(">",'&gt;')
-    texto = texto.replace("<",'&lt;')
-    texto = texto.replace("&",'&amp;')
-    texto = texto.replace('"','&quot;')
-    texto = texto.replace("'",'&apos;')
+    texto = texto.replace(">", '&gt;')
+    texto = texto.replace("<", '&lt;')
+    texto = texto.replace("&", '&amp;')
+    texto = texto.replace('"', '&quot;')
+    texto = texto.replace("'", '&apos;')
 
     return texto
 
@@ -84,31 +84,31 @@ def identidade_evento(obj):
     mes = str(obj.criado_em.month)
 
     if len(mes) == 1:
-        mes = '0'+mes
+        mes = '0' + mes
 
     identidade += mes
     dia = str(obj.criado_em.day)
 
     if len(dia) == 1:
-        dia = '0'+dia
+        dia = '0' + dia
 
     identidade += dia
     hora = str(obj.criado_em.hour)
 
     if len(hora) == 1:
-        hora = '0'+hora
+        hora = '0' + hora
 
     identidade += hora
     minuto = str(obj.criado_em.minute)
 
     if len(minuto) == 1:
-        minuto = '0'+minuto
+        minuto = '0' + minuto
 
     identidade += minuto
     segundo = str(obj.criado_em.second)
 
     if len(segundo) == 1:
-        segundo = '0'+segundo
+        segundo = '0' + segundo
 
     identidade += segundo
     existe = True
@@ -116,7 +116,7 @@ def identidade_evento(obj):
 
     while existe:
 
-        n+=1
+        n += 1
         sequencial = str(n)
 
         while len(sequencial) != 5:
@@ -126,10 +126,10 @@ def identidade_evento(obj):
 
         lista_eventos = TransmissorEventosEsocial.objects.\
             filter(criado_em=obj.criado_em,
-                   identidade = identidade_temp).all()
+                   identidade=identidade_temp).all()
 
         if not lista_eventos:
-            obj.identidade=identidade_temp
+            obj.identidade = identidade_temp
             obj.save()
             existe = False
 

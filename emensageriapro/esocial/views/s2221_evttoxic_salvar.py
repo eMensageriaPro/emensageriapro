@@ -70,11 +70,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s2221_evttoxic = get_object_or_404(s2221evtToxic, id=pk)
 
-        if s2221_evttoxic.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s2221_evttoxic_apagar'] = 0
-            dict_permissoes['s2221_evttoxic_editar'] = 0
+        #if s2221_evttoxic.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s2221_evttoxic_apagar'] = 0
+        #    dict_permissoes['s2221_evttoxic_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s2221evtToxic'):
     
@@ -105,14 +105,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2221_evttoxic', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s2221_evttoxic), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2221_evttoxic', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's2221_evttoxic', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s2221_evttoxic), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's2221_evttoxic', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's2221_evttoxic_apagar', 

@@ -91,35 +91,35 @@ def salvar(request, pk=None, tab='master', output=None):
                 obj = s2300_infotrabcedido_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not pk:
-                
-                    gravar_auditoria(
-                        '{}',
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        's2300_infotrabcedido', 
-                        obj.id, 
-                        request.user.id, 1)
-                                 
-                else:
-                
-                    gravar_auditoria(
-                        json.dumps(
-                            model_to_dict(s2300_infotrabcedido), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str),
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        's2300_infotrabcedido', 
-                        pk, 
-                        request.user.id, 2)
+                #if not pk:
+                #
+                #    gravar_auditoria(
+                #        '{}',
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        's2300_infotrabcedido', 
+                #        obj.id, 
+                #        request.user.id, 1)
+                #                 
+                #else:
+                #
+                #    gravar_auditoria(
+                #        json.dumps(
+                #            model_to_dict(s2300_infotrabcedido), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str),
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        's2300_infotrabcedido', 
+                #        pk, 
+                #        request.user.id, 2)
                                      
                 if request.session['return_page'] not in (
                     's2300_infotrabcedido_apagar', 

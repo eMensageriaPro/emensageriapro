@@ -39,47 +39,17 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
-from django.contrib import messages
-from django.forms.models import model_to_dict
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
-from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from emensageriapro.padrao import *
-from emensageriapro.r5011.forms import *
-from emensageriapro.r5011.models import *
-from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.r5011.models import r5011infoTotalContrib, r5011infoTotalContribSerializer
 
 
-
-class r5011infoTotalContribList(generics.ListCreateAPIView):
+class r5011infoTotalContribList(generics.ListAPIView):
     
     queryset = r5011infoTotalContrib.objects.all()
     serializer_class = r5011infoTotalContribSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
-    
-    def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)
 
 
-
-
-class r5011infoTotalContribDetail(generics.RetrieveUpdateDestroyAPIView):
+class r5011infoTotalContribDetail(generics.ListAPIView):
     
     queryset = r5011infoTotalContrib.objects.all()
     serializer_class = r5011infoTotalContribSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
-    
-    def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)

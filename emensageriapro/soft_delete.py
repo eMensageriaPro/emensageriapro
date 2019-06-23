@@ -5,7 +5,9 @@ from django.db.models.query import QuerySet
 from django.apps import apps
 from django.contrib.auth.models import User
 from datetime import datetime
-
+from get_username import get_username
+import json
+from emensageriapro.padrao import gravar_auditoria
 get_model = apps.get_model
 
 
@@ -26,11 +28,12 @@ class SoftDeletionManager(models.Manager):
 class SoftDeletionQuerySet(QuerySet):
 
     def delete(self, **kwargs):
-        if kwargs.has_key('request'):
-            request = kwargs.pop('request')
-            self.desativado_por_id = request.user.id
-            self.desativado_em = timezone.now()
-            self.ativo = None
+        req = get_username()
+        self.desativado_por_id = req.user.id
+        self.desativado_em = timezone.now()
+        self.ativo = None
+        gravar_auditoria('{}', json.dumps(self.__dict__, sort_keys=True, default=str),
+                         self._meta.db_table, self.pk, req.user.id, 3)
         return super(SoftDeletionQuerySet, self).update()
 
     def hard_delete(self):
@@ -66,26 +69,29 @@ class SoftDeletionModel(models.Model):
         abstract = True
 
     def delete(self, **kwargs):
-        if kwargs.has_key('request'):
-            request = kwargs.pop('request')
-            self.desativado_por_id = request.user.id
+        req = get_username()
+        self.desativado_por_id = req.user.id
         self.desativado_em = timezone.now()
         self.ativo = None
+        gravar_auditoria('{}', json.dumps(self.__dict__, sort_keys=True, default=str),
+                         self._meta.db_table, self.pk, req.user.id, 3)
         self.save()
 
     def hard_delete(self):
         super(SoftDeletionModel, self).delete()
 
     def save(self, **kwargs):
-        if kwargs.has_key('request'):
-            request = kwargs.pop('request')
-            if not self.criado_em:
-                self.criado_por_id = request.user.id
-            else:
-                self.modificado_por_id = request.user.id
+        req = get_username()
         if not self.criado_em:
             self.criado_em = timezone.now()
+            self.criado_por_id = req.user.id
+            TIPO = 1
         else:
             self.modificado_em = timezone.now()
+            self.modificado_por_id = req.user.id
+            TIPO = 2
         super(SoftDeletionModel, self).save(**kwargs)
+
+        gravar_auditoria('{}', json.dumps(self.__dict__, sort_keys=True, default=str),
+                         self._meta.db_table, self.pk, req.user.id, TIPO)
 

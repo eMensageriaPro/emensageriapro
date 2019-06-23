@@ -36,28 +36,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.s5003.change_s5003basePerApur or perms.s5003.add_s5003basePerApur %}
-                    
-                        <a href="{% url 's5003_baseperapur_salvar' pk=a.id %}">
-                            {% if perms.s5003.change_s5003basePerApur %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.s5003.can_see_data_s5003basePerApur %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.s5003.delete_s5003basePerApur %}
-                        <a href="{% url 's5003_baseperapur_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

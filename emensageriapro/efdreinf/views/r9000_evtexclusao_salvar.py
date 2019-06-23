@@ -70,11 +70,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         r9000_evtexclusao = get_object_or_404(r9000evtExclusao, id=pk)
 
-        if r9000_evtexclusao.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['r9000_evtexclusao_apagar'] = 0
-            dict_permissoes['r9000_evtexclusao_editar'] = 0
+        #if r9000_evtexclusao.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['r9000_evtexclusao_apagar'] = 0
+        #    dict_permissoes['r9000_evtexclusao_editar'] = 0
             
     if request.user.has_perm('efdreinf.can_see_r9000evtExclusao'):
     
@@ -105,14 +105,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r9000_evtexclusao', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(r9000_evtexclusao), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r9000_evtexclusao', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 'r9000_evtexclusao', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(r9000_evtexclusao), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     'r9000_evtexclusao', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     'r9000_evtexclusao_apagar', 

@@ -87,7 +87,6 @@ def verificar(request, pk, output=None):
         r5011_rrecrepad_lista = r5011RRecRepAD.objects.filter(r5011_infototalcontrib_id__in = listar_ids(r5011_infototalcontrib_lista) ).all()
         r5011_rcoml_lista = r5011RComl.objects.filter(r5011_infototalcontrib_id__in = listar_ids(r5011_infototalcontrib_lista) ).all()
         r5011_rcprb_lista = r5011RCPRB.objects.filter(r5011_infototalcontrib_id__in = listar_ids(r5011_infototalcontrib_lista) ).all()
-        r5011_evttotalcontrib_lista = r5011evtTotalContrib.objects.filter(retornos_r5011_id__in = listar_ids(r5011_evttotalcontrib_lista) ).all()
 
         request.session['return_pk'] = pk
         request.session['return_page'] = 'r5011_evttotalcontrib'
@@ -105,7 +104,6 @@ def verificar(request, pk, output=None):
             'r5011_rrecrepad_lista': r5011_rrecrepad_lista,
             'r5011_rcoml_lista': r5011_rcoml_lista,
             'r5011_rcprb_lista': r5011_rcprb_lista,
-            'r5011_evttotalcontrib_lista': r5011_evttotalcontrib_lista,
             'modulos': ['efdreinf', ],
             'paginas': ['r5011_evttotalcontrib', ],
             'data': datetime.now(),

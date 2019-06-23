@@ -39,46 +39,18 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
-from django.contrib import messages
-from django.forms.models import model_to_dict
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
-from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from emensageriapro.padrao import *
-from emensageriapro.efdreinf.forms import *
-from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.efdreinf.models import r9001evtTotal, r9001evtTotalSerializer
 
 
-
-class r9001evtTotalList(generics.ListCreateAPIView):
+class r9001evtTotalList(generics.ListAPIView):
     
     queryset = r9001evtTotal.objects.all()
     serializer_class = r9001evtTotalSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
-    
-    def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)
 
 
 
-class r9001evtTotalDetail(generics.RetrieveUpdateDestroyAPIView):
+class r9001evtTotalDetail(generics.ListAPIView):
     
     queryset = r9001evtTotal.objects.all()
     serializer_class = r9001evtTotalSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
-    
-    def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)

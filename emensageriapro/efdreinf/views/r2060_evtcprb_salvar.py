@@ -72,11 +72,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         r2060_evtcprb = get_object_or_404(r2060evtCPRB, id=pk)
 
-        if r2060_evtcprb.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['r2060_evtcprb_apagar'] = 0
-            dict_permissoes['r2060_evtcprb_editar'] = 0
+        #if r2060_evtcprb.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['r2060_evtcprb_apagar'] = 0
+        #    dict_permissoes['r2060_evtcprb_editar'] = 0
             
     if request.user.has_perm('efdreinf.can_see_r2060evtCPRB'):
     
@@ -107,14 +107,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r2060_evtcprb', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(r2060_evtcprb), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r2060_evtcprb', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 'r2060_evtcprb', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(r2060_evtcprb), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     'r2060_evtcprb', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     'r2060_evtcprb_apagar', 

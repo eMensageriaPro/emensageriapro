@@ -48,28 +48,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.s5002.change_s5002idePgtoExt or perms.s5002.add_s5002idePgtoExt %}
-                    
-                        <a href="{% url 's5002_idepgtoext_salvar' pk=a.id %}">
-                            {% if perms.s5002.change_s5002idePgtoExt %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.s5002.can_see_data_s5002idePgtoExt %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.s5002.delete_s5002idePgtoExt %}
-                        <a href="{% url 's5002_idepgtoext_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

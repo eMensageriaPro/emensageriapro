@@ -91,20 +91,8 @@ from emensageriapro.efdreinf.models import r4098evtReab
 from emensageriapro.efdreinf.forms import form_r4098_evtreab
 from emensageriapro.efdreinf.models import r4099evtFech
 from emensageriapro.efdreinf.forms import form_r4099_evtfech
-from emensageriapro.efdreinf.models import r5001evtTotal
-from emensageriapro.efdreinf.forms import form_r5001_evttotal
-from emensageriapro.efdreinf.models import r5011evtTotalContrib
-from emensageriapro.efdreinf.forms import form_r5011_evttotalcontrib
 from emensageriapro.efdreinf.models import r9000evtExclusao
 from emensageriapro.efdreinf.forms import form_r9000_evtexclusao
-from emensageriapro.efdreinf.models import r9001evtTotal
-from emensageriapro.efdreinf.forms import form_r9001_evttotal
-from emensageriapro.efdreinf.models import r9002evtRet
-from emensageriapro.efdreinf.forms import form_r9002_evtret
-from emensageriapro.efdreinf.models import r9011evtTotalContrib
-from emensageriapro.efdreinf.forms import form_r9011_evttotalcontrib
-from emensageriapro.efdreinf.models import r9012evtRetCons
-from emensageriapro.efdreinf.forms import form_r9012_evtretcons
 from emensageriapro.r5001.models import r5001regOcorrs
 from emensageriapro.r5001.forms import form_r5001_regocorrs
 from emensageriapro.r5001.models import r5001infoTotal
@@ -239,20 +227,8 @@ def salvar(request, pk=None, tab='master', output=None):
         r4098_evtreab_form = None 
         r4099_evtfech_lista = None 
         r4099_evtfech_form = None 
-        r5001_evttotal_lista = None 
-        r5001_evttotal_form = None 
-        r5011_evttotalcontrib_lista = None 
-        r5011_evttotalcontrib_form = None 
         r9000_evtexclusao_lista = None 
         r9000_evtexclusao_form = None 
-        r9001_evttotal_lista = None 
-        r9001_evttotal_form = None 
-        r9002_evtret_lista = None 
-        r9002_evtret_form = None 
-        r9011_evttotalcontrib_lista = None 
-        r9011_evttotalcontrib_form = None 
-        r9012_evtretcons_lista = None 
-        r9012_evtretcons_form = None 
         r5001_regocorrs_lista = None 
         r5001_regocorrs_form = None 
         r5001_infototal_lista = None 
@@ -357,40 +333,10 @@ def salvar(request, pk=None, tab='master', output=None):
             r4099_evtfech_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
             r4099_evtfech_lista = r4099evtFech.objects.\
                 filter(retornos_r5001_id=r5001_evttotal.id).all()
-            r5001_evttotal_form = form_r5001_evttotal(
-                initial={ 'retornos_r5001': r5001_evttotal })
-            r5001_evttotal_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
-            r5001_evttotal_lista = r5001evtTotal.objects.\
-                filter(retornos_r5001_id=r5001_evttotal.id).all()
-            r5011_evttotalcontrib_form = form_r5011_evttotalcontrib(
-                initial={ 'retornos_r5001': r5001_evttotal })
-            r5011_evttotalcontrib_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
-            r5011_evttotalcontrib_lista = r5011evtTotalContrib.objects.\
-                filter(retornos_r5001_id=r5001_evttotal.id).all()
             r9000_evtexclusao_form = form_r9000_evtexclusao(
                 initial={ 'retornos_r5001': r5001_evttotal })
             r9000_evtexclusao_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
             r9000_evtexclusao_lista = r9000evtExclusao.objects.\
-                filter(retornos_r5001_id=r5001_evttotal.id).all()
-            r9001_evttotal_form = form_r9001_evttotal(
-                initial={ 'retornos_r5001': r5001_evttotal })
-            r9001_evttotal_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
-            r9001_evttotal_lista = r9001evtTotal.objects.\
-                filter(retornos_r5001_id=r5001_evttotal.id).all()
-            r9002_evtret_form = form_r9002_evtret(
-                initial={ 'retornos_r5001': r5001_evttotal })
-            r9002_evtret_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
-            r9002_evtret_lista = r9002evtRet.objects.\
-                filter(retornos_r5001_id=r5001_evttotal.id).all()
-            r9011_evttotalcontrib_form = form_r9011_evttotalcontrib(
-                initial={ 'retornos_r5001': r5001_evttotal })
-            r9011_evttotalcontrib_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
-            r9011_evttotalcontrib_lista = r9011evtTotalContrib.objects.\
-                filter(retornos_r5001_id=r5001_evttotal.id).all()
-            r9012_evtretcons_form = form_r9012_evtretcons(
-                initial={ 'retornos_r5001': r5001_evttotal })
-            r9012_evtretcons_form.fields['retornos_r5001'].widget.attrs['readonly'] = True
-            r9012_evtretcons_lista = r9012evtRetCons.objects.\
                 filter(retornos_r5001_id=r5001_evttotal.id).all()
                 
         else:
@@ -458,20 +404,8 @@ def salvar(request, pk=None, tab='master', output=None):
             'r4098_evtreab_lista': r4098_evtreab_lista,
             'r4099_evtfech_form': r4099_evtfech_form,
             'r4099_evtfech_lista': r4099_evtfech_lista,
-            'r5001_evttotal_form': r5001_evttotal_form,
-            'r5001_evttotal_lista': r5001_evttotal_lista,
-            'r5011_evttotalcontrib_form': r5011_evttotalcontrib_form,
-            'r5011_evttotalcontrib_lista': r5011_evttotalcontrib_lista,
             'r9000_evtexclusao_form': r9000_evtexclusao_form,
             'r9000_evtexclusao_lista': r9000_evtexclusao_lista,
-            'r9001_evttotal_form': r9001_evttotal_form,
-            'r9001_evttotal_lista': r9001_evttotal_lista,
-            'r9002_evtret_form': r9002_evtret_form,
-            'r9002_evtret_lista': r9002_evtret_lista,
-            'r9011_evttotalcontrib_form': r9011_evttotalcontrib_form,
-            'r9011_evttotalcontrib_lista': r9011_evttotalcontrib_lista,
-            'r9012_evtretcons_form': r9012_evtretcons_form,
-            'r9012_evtretcons_lista': r9012_evtretcons_lista,
             'r5001_regocorrs_form': r5001_regocorrs_form,
             'r5001_regocorrs_lista': r5001_regocorrs_lista,
             'r5001_infototal_form': r5001_infototal_form,

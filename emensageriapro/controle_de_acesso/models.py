@@ -178,7 +178,7 @@ class UsuariosSerializer(ModelSerializer):
                             'desativado_em', 'desativado_por', 'ativo')
 
 
-class Auditoria(SoftDeletionModel):
+class Auditoria(models.Model):
 
     tabela = models.CharField(max_length=200, blank=True, )
     identidade = models.IntegerField(blank=True, )
@@ -188,6 +188,20 @@ class Auditoria(SoftDeletionModel):
         related_name='%(class)s_operador', blank=True, )
     data_hora = models.DateTimeField(blank=True, )
     tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True, )
+
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
+                                   related_name='%(class)s_criado_por',
+                                   blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
+                                       related_name='%(class)s_modificado_por',
+                                       blank=True, null=True)
+    desativado_em = models.DateTimeField(blank=True, null=True)
+    desativado_por = models.ForeignKey(User,
+                                       related_name='%(class)s_desativado_por',
+                                       blank=True, null=True)
+    ativo = models.NullBooleanField(blank=True, default=True)
     
     def __unicode__(self):
         
@@ -195,13 +209,36 @@ class Auditoria(SoftDeletionModel):
             unicode(self.tabela),
             unicode(self.identidade),
             unicode(self.data_hora),
-            unicode(self.tipo),]
+            unicode(self.tipo), ]
             
         if lista:
             return ' - '.join(lista)
             
         else:
             return self.id
+
+    def delete(self, **kwargs):
+
+        from emensageriapro.get_username import get_username
+
+        req = get_username()
+        self.desativado_por_id = req.user.id
+        self.desativado_em = timezone.now()
+        self.ativo = None
+        self.save()
+
+    def save(self, **kwargs):
+
+        from emensageriapro.get_username import get_username
+
+        req = get_username()
+        if not self.criado_em:
+            self.criado_em = timezone.now()
+            self.criado_por_id = req.user.id
+        else:
+            self.modificado_em = timezone.now()
+            self.modificado_por_id = req.user.id
+        super(Auditoria, self).save(**kwargs)
 
     class Meta:
     
@@ -217,7 +254,7 @@ class Auditoria(SoftDeletionModel):
             ("can_view_auditoria", "Can view auditoria"), )
         
         ordering = [
-            'identidade',]
+            'identidade', ]
             
             
  

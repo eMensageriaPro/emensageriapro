@@ -30,28 +30,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.r5011.change_r5011infoCRTom or perms.r5011.add_r5011infoCRTom %}
-                    
-                        <a href="{% url 'r5011_infocrtom_salvar' pk=a.id %}">
-                            {% if perms.r5011.change_r5011infoCRTom %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.r5011.can_see_data_r5011infoCRTom %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.r5011.delete_r5011infoCRTom %}
-                        <a href="{% url 'r5011_infocrtom_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

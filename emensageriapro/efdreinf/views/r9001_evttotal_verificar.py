@@ -88,7 +88,6 @@ def verificar(request, pk, output=None):
         r9001_rcoml_lista = r9001RComl.objects.filter(r9001_infototal_id__in = listar_ids(r9001_infototal_lista) ).all()
         r9001_rcprb_lista = r9001RCPRB.objects.filter(r9001_infototal_id__in = listar_ids(r9001_infototal_lista) ).all()
         r9001_rrecespetdesp_lista = r9001RRecEspetDesp.objects.filter(r9001_infototal_id__in = listar_ids(r9001_infototal_lista) ).all()
-        r9001_evttotal_lista = r9001evtTotal.objects.filter(retornos_r9001_id__in = listar_ids(r9001_evttotal_lista) ).all()
 
         request.session['return_pk'] = pk
         request.session['return_page'] = 'r9001_evttotal'
@@ -107,7 +106,6 @@ def verificar(request, pk, output=None):
             'r9001_rcoml_lista': r9001_rcoml_lista,
             'r9001_rcprb_lista': r9001_rcprb_lista,
             'r9001_rrecespetdesp_lista': r9001_rrecespetdesp_lista,
-            'r9001_evttotal_lista': r9001_evttotal_lista,
             'modulos': ['efdreinf', ],
             'paginas': ['r9001_evttotal', ],
             'data': datetime.now(),

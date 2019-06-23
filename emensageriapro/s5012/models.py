@@ -118,6 +118,3 @@ class s5012infoCRContribSerializer(ModelSerializer):
     
         model = s5012infoCRContrib
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

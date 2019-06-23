@@ -129,9 +129,6 @@ def gerar_xml_r9002(request, pk, versao=None):
         r9002_totapurdia_lista = r9002totApurDia.objects. \
             filter(r9002_infototal_id__in=listar_ids(r9002_infototal_lista)).all()
         
-        r9002_evtret_lista = r9002evtRet.objects. \
-            filter(retornos_r9002_id__in=listar_ids(r9002_evtret_lista)).all()
-        
 
         context = {
             'xmlns': xmlns,
@@ -147,7 +144,6 @@ def gerar_xml_r9002(request, pk, versao=None):
             'r9002_totapurdec_lista': r9002_totapurdec_lista,
             'r9002_totapursem_lista': r9002_totapursem_lista,
             'r9002_totapurdia_lista': r9002_totapurdia_lista,
-            'r9002_evtret_lista': r9002_evtret_lista,
         }
 
         t = get_template('r9002_evtret.xml')

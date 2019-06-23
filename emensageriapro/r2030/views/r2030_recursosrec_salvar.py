@@ -95,35 +95,35 @@ def salvar(request, pk=None, tab='master', output=None):
                 obj = r2030_recursosrec_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not pk:
-                
-                    gravar_auditoria(
-                        '{}',
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        'r2030_recursosrec', 
-                        obj.id, 
-                        request.user.id, 1)
-                                 
-                else:
-                
-                    gravar_auditoria(
-                        json.dumps(
-                            model_to_dict(r2030_recursosrec), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str),
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        'r2030_recursosrec', 
-                        pk, 
-                        request.user.id, 2)
+                #if not pk:
+                #
+                #    gravar_auditoria(
+                #        '{}',
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        'r2030_recursosrec', 
+                #        obj.id, 
+                #        request.user.id, 1)
+                #                 
+                #else:
+                #
+                #    gravar_auditoria(
+                #        json.dumps(
+                #            model_to_dict(r2030_recursosrec), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str),
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        'r2030_recursosrec', 
+                #        pk, 
+                #        request.user.id, 2)
                                      
                 if request.session['return_page'] not in (
                     'r2030_recursosrec_apagar', 

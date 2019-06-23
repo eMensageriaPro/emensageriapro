@@ -60,28 +60,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.esocial.change_s5003evtBasesFGTS or perms.esocial.add_s5003evtBasesFGTS %}
-                    
-                        <a href="{% url 's5003_evtbasesfgts_salvar' pk=a.id %}">
-                            {% if perms.esocial.change_s5003evtBasesFGTS %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.esocial.can_see_data_s5003evtBasesFGTS %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.esocial.delete_s5003evtBasesFGTS %}
-                        <a href="{% url 's5003_evtbasesfgts_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

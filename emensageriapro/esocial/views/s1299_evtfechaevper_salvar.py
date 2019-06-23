@@ -72,11 +72,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s1299_evtfechaevper = get_object_or_404(s1299evtFechaEvPer, id=pk)
 
-        if s1299_evtfechaevper.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s1299_evtfechaevper_apagar'] = 0
-            dict_permissoes['s1299_evtfechaevper_editar'] = 0
+        #if s1299_evtfechaevper.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s1299_evtfechaevper_apagar'] = 0
+        #    dict_permissoes['s1299_evtfechaevper_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s1299evtFechaEvPer'):
     
@@ -107,14 +107,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1299_evtfechaevper', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s1299_evtfechaevper), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1299_evtfechaevper', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's1299_evtfechaevper', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s1299_evtfechaevper), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's1299_evtfechaevper', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's1299_evtfechaevper_apagar', 

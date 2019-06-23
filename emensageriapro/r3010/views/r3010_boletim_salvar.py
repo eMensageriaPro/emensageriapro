@@ -95,35 +95,35 @@ def salvar(request, pk=None, tab='master', output=None):
                 obj = r3010_boletim_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not pk:
-                
-                    gravar_auditoria(
-                        '{}',
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        'r3010_boletim', 
-                        obj.id, 
-                        request.user.id, 1)
-                                 
-                else:
-                
-                    gravar_auditoria(
-                        json.dumps(
-                            model_to_dict(r3010_boletim), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str),
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        'r3010_boletim', 
-                        pk, 
-                        request.user.id, 2)
+                #if not pk:
+                #
+                #    gravar_auditoria(
+                #        '{}',
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        'r3010_boletim', 
+                #        obj.id, 
+                #        request.user.id, 1)
+                #                 
+                #else:
+                #
+                #    gravar_auditoria(
+                #        json.dumps(
+                #            model_to_dict(r3010_boletim), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str),
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        'r3010_boletim', 
+                #        pk, 
+                #        request.user.id, 2)
                                      
                 if request.session['return_page'] not in (
                     'r3010_boletim_apagar', 

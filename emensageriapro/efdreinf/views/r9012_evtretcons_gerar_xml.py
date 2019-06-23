@@ -129,9 +129,6 @@ def gerar_xml_r9012(request, pk, versao=None):
         r9012_totapurdia_lista = r9012totApurDia.objects. \
             filter(r9012_infototalcontrib_id__in=listar_ids(r9012_infototalcontrib_lista)).all()
         
-        r9012_evtretcons_lista = r9012evtRetCons.objects. \
-            filter(retornos_r9012_id__in=listar_ids(r9012_evtretcons_lista)).all()
-        
 
         context = {
             'xmlns': xmlns,
@@ -147,7 +144,6 @@ def gerar_xml_r9012(request, pk, versao=None):
             'r9012_totapurdec_lista': r9012_totapurdec_lista,
             'r9012_totapursem_lista': r9012_totapursem_lista,
             'r9012_totapurdia_lista': r9012_totapurdia_lista,
-            'r9012_evtretcons_lista': r9012_evtretcons_lista,
         }
 
         t = get_template('r9012_evtretcons.xml')

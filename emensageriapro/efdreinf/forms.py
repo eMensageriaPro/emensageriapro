@@ -1218,12 +1218,6 @@ class form_r5001_evttotal(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'retornos_r9001'
-            'retornos_r9002'
-            'retornos_r9011'
-            'retornos_r9012'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -1275,12 +1269,6 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'retornos_r9001'
-            'retornos_r9002'
-            'retornos_r9011'
-            'retornos_r9012'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -1397,12 +1385,6 @@ class form_r9001_evttotal(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'retornos_r9001'
-            'retornos_r9002'
-            'retornos_r9011'
-            'retornos_r9012'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -1454,12 +1436,6 @@ class form_r9002_evtret(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'retornos_r9001'
-            'retornos_r9002'
-            'retornos_r9011'
-            'retornos_r9012'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -1511,12 +1487,6 @@ class form_r9011_evttotalcontrib(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'retornos_r9001'
-            'retornos_r9002'
-            'retornos_r9011'
-            'retornos_r9012'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'
@@ -1568,12 +1538,6 @@ class form_r9012_evtretcons(forms.ModelForm):
             'modificado_por',
             'desativado_em', 
             'desativado_por',
-            'retornos_r5001'
-            'retornos_r5011'
-            'retornos_r9001'
-            'retornos_r9002'
-            'retornos_r9011'
-            'retornos_r9012'
             'ocorrencias'
             'validacao_precedencia'
             'validacoes'

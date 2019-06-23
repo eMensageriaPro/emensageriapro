@@ -135,9 +135,6 @@ def gerar_xml_r9001(request, pk, versao=None):
         r9001_rrecespetdesp_lista = r9001RRecEspetDesp.objects. \
             filter(r9001_infototal_id__in=listar_ids(r9001_infototal_lista)).all()
         
-        r9001_evttotal_lista = r9001evtTotal.objects. \
-            filter(retornos_r9001_id__in=listar_ids(r9001_evttotal_lista)).all()
-        
 
         context = {
             'xmlns': xmlns,
@@ -155,7 +152,6 @@ def gerar_xml_r9001(request, pk, versao=None):
             'r9001_rcoml_lista': r9001_rcoml_lista,
             'r9001_rcprb_lista': r9001_rcprb_lista,
             'r9001_rrecespetdesp_lista': r9001_rrecespetdesp_lista,
-            'r9001_evttotal_lista': r9001_evttotal_lista,
         }
 
         t = get_template('r9001_evttotal.xml')

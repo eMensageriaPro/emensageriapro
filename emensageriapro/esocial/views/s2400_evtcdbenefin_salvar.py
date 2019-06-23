@@ -74,11 +74,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s2400_evtcdbenefin = get_object_or_404(s2400evtCdBenefIn, id=pk)
 
-        if s2400_evtcdbenefin.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s2400_evtcdbenefin_apagar'] = 0
-            dict_permissoes['s2400_evtcdbenefin_editar'] = 0
+        #if s2400_evtcdbenefin.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s2400_evtcdbenefin_apagar'] = 0
+        #    dict_permissoes['s2400_evtcdbenefin_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s2400evtCdBenefIn'):
     
@@ -109,14 +109,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2400_evtcdbenefin', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s2400_evtcdbenefin), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2400_evtcdbenefin', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's2400_evtcdbenefin', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s2400_evtcdbenefin), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's2400_evtcdbenefin', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's2400_evtcdbenefin_apagar', 

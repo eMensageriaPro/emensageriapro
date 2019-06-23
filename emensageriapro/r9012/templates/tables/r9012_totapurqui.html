@@ -48,28 +48,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.r9012.change_r9012totApurQui or perms.r9012.add_r9012totApurQui %}
-                    
-                        <a href="{% url 'r9012_totapurqui_salvar' pk=a.id %}">
-                            {% if perms.r9012.change_r9012totApurQui %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.r9012.can_see_data_r9012totApurQui %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.r9012.delete_r9012totApurQui %}
-                        <a href="{% url 'r9012_totapurqui_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

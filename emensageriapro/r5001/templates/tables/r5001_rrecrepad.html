@@ -48,28 +48,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.r5001.change_r5001RRecRepAD or perms.r5001.add_r5001RRecRepAD %}
-                    
-                        <a href="{% url 'r5001_rrecrepad_salvar' pk=a.id %}">
-                            {% if perms.r5001.change_r5001RRecRepAD %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.r5001.can_see_data_r5001RRecRepAD %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.r5001.delete_r5001RRecRepAD %}
-                        <a href="{% url 'r5001_rrecrepad_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

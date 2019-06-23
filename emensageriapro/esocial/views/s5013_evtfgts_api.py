@@ -39,46 +39,18 @@ __email__ = "marcelomdevasconcellos@gmail.com"
 """
 
 
-import datetime
-import json
-import base64
-from django.contrib import messages
-from django.forms.models import model_to_dict
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.db.models import Count
-from django.forms.models import model_to_dict
-from wkhtmltopdf.views import PDFTemplateResponse
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from emensageriapro.padrao import *
-from emensageriapro.esocial.forms import *
-from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import *
+from emensageriapro.esocial.models import s5013evtFGTS, s5013evtFGTSSerializer
 
 
-
-class s5013evtFGTSList(generics.ListCreateAPIView):
+class s5013evtFGTSList(generics.ListAPIView):
     
     queryset = s5013evtFGTS.objects.all()
     serializer_class = s5013evtFGTSSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
-    
-    def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)
 
 
 
-class s5013evtFGTSDetail(generics.RetrieveUpdateDestroyAPIView):
+class s5013evtFGTSDetail(generics.ListAPIView):
     
     queryset = s5013evtFGTS.objects.all()
     serializer_class = s5013evtFGTSSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(criado_por=self.request.user)
-    
-    def perform_update(self, serializer):
-        serializer.save(modificado_por=self.request.user)

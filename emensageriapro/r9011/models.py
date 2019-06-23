@@ -119,9 +119,6 @@ class r9011RCPRBSerializer(ModelSerializer):
     
         model = r9011RCPRB
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011RComl(SoftDeletionModel):
@@ -178,9 +175,6 @@ class r9011RComlSerializer(ModelSerializer):
     
         model = r9011RComl
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011RPrest(SoftDeletionModel):
@@ -243,9 +237,6 @@ class r9011RPrestSerializer(ModelSerializer):
     
         model = r9011RPrest
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011RRecRepAD(SoftDeletionModel):
@@ -302,9 +293,6 @@ class r9011RRecRepADSerializer(ModelSerializer):
     
         model = r9011RRecRepAD
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011RTom(SoftDeletionModel):
@@ -361,9 +349,6 @@ class r9011RTomSerializer(ModelSerializer):
     
         model = r9011RTom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011infoCRTom(SoftDeletionModel):
@@ -419,9 +404,6 @@ class r9011infoCRTomSerializer(ModelSerializer):
     
         model = r9011infoCRTom
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011infoTotalContrib(SoftDeletionModel):
@@ -476,9 +458,6 @@ class r9011infoTotalContribSerializer(ModelSerializer):
     
         model = r9011infoTotalContrib
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011regOcorrs(SoftDeletionModel):
@@ -538,6 +517,3 @@ class r9011regOcorrsSerializer(ModelSerializer):
     
         model = r9011regOcorrs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

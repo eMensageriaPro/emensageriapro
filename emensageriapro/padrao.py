@@ -203,15 +203,36 @@ def executar_sql(select, array):
 
 
 def gravar_auditoria(situacao_anterior, situacao_posterior, tabela, tabela_id, usuario_id, tipo):
-    executar_sql("""
-    INSERT INTO public.auditoria(
-            tabela, identidade, situacao_anterior, situacao_posterior, 
-            tipo, criado_em, criado_por_id, modificado_em, modificado_por_id, ativo,
-            data_hora, operador_id)
-    VALUES ('%s', %s, '%s', '%s', 
-            %s, now(), %s, now(), %s, True,
-            now(), %s);
-    """ % (tabela, tabela_id, situacao_anterior, situacao_posterior, tipo, usuario_id, usuario_id, usuario_id), False)
+
+    from emensageriapro.controle_de_acesso.models import Auditoria
+    from django.utils import timezone
+    from get_username import get_username
+
+    req = get_username()
+    dados = {}
+    dados['tabela'] = tabela
+    dados['identidade'] = tabela_id
+    dados['situacao_anterior'] = situacao_anterior
+    dados['situacao_posterior'] = situacao_posterior
+    dados['tipo'] = tipo
+    dados['criado_em'] = timezone.now()
+    dados['criado_por_id'] = req.user.id
+    dados['modificado_em'] = timezone.now()
+    dados['modificado_por_id'] = req.user.id
+    dados['ativo'] = True
+    dados['data_hora'] = timezone.now()
+    dados['operador_id'] = req.user.id
+    obj = Auditoria(**dados)
+    obj.save()
+    # executar_sql("""
+    # INSERT INTO public.auditoria(
+    #         tabela, identidade, situacao_anterior, situacao_posterior,
+    #         tipo, criado_em, criado_por_id, modificado_em, modificado_por_id, ativo,
+    #         data_hora, operador_id)
+    # VALUES ('%s', %s, '%s', '%s',
+    #         %s, now(), %s, now(), %s, True,
+    #         now(), %s);
+    # """ % (tabela, tabela_id, situacao_anterior, situacao_posterior, tipo, usuario_id, usuario_id, usuario_id), False)
 
 
 

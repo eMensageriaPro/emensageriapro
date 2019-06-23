@@ -119,9 +119,6 @@ class r9002infoTotalSerializer(ModelSerializer):
     
         model = r9002infoTotal
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002regOcorrs(SoftDeletionModel):
@@ -181,9 +178,6 @@ class r9002regOcorrsSerializer(ModelSerializer):
     
         model = r9002regOcorrs
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurDec(SoftDeletionModel):
@@ -245,9 +239,6 @@ class r9002totApurDecSerializer(ModelSerializer):
     
         model = r9002totApurDec
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurDia(SoftDeletionModel):
@@ -309,9 +300,6 @@ class r9002totApurDiaSerializer(ModelSerializer):
     
         model = r9002totApurDia
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurMen(SoftDeletionModel):
@@ -371,9 +359,6 @@ class r9002totApurMenSerializer(ModelSerializer):
     
         model = r9002totApurMen
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurQui(SoftDeletionModel):
@@ -435,9 +420,6 @@ class r9002totApurQuiSerializer(ModelSerializer):
     
         model = r9002totApurQui
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002totApurSem(SoftDeletionModel):
@@ -499,6 +481,3 @@ class r9002totApurSemSerializer(ModelSerializer):
     
         model = r9002totApurSem
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

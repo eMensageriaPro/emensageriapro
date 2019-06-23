@@ -90,28 +90,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.efdreinf.change_r9001evtTotal or perms.efdreinf.add_r9001evtTotal %}
-                    
-                        <a href="{% url 'r9001_evttotal_salvar' pk=a.id %}">
-                            {% if perms.efdreinf.change_r9001evtTotal %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.efdreinf.can_see_data_r9001evtTotal %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.efdreinf.delete_r9001evtTotal %}
-                        <a href="{% url 'r9001_evttotal_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

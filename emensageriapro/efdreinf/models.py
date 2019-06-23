@@ -2135,18 +2135,6 @@ class r5001evtTotal(SoftDeletionModel):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2160,15 +2148,6 @@ class r5001evtTotal(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.efdreinf.views.r5001_evttotal_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2182,17 +2161,8 @@ class r5001evtTotal(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_r5001evtTotal", u"Pode ver listagem do modelo R5001EVTTOTAL"),
-            ("can_see_data_r5001evtTotal", u"Pode visualizar o conteúdo do modelo R5001EVTTOTAL"),
-            ("can_see_menu_r5001evtTotal", u"Pode visualizar no menu o modelo R5001EVTTOTAL"),
-            ("can_print_list_r5001evtTotal", u"Pode imprimir listagem do modelo R5001EVTTOTAL"),
-            ("can_print_data_r5001evtTotal", u"Pode imprimir o conteúdo do modelo R5001EVTTOTAL"),
-            ("can_open_r5001evtTotal", u"Pode abrir o evento R5001EVTTOTAL para edição"),
-            ("can_duplicate_r5001evtTotal", u"Pode duplicar o evento R5001EVTTOTAL"),
-            ("can_validate_r5001evtTotal", u"Pode validar o evento R5001EVTTOTAL"),
-            ("can_change_identity_r5001evtTotal", u"Pode alterar identidade do evento R5001EVTTOTAL"),
-            ("can_see_layout_r5001evtTotal", u"Pode ver layout do evento R5001EVTTOTAL"),
             ("can_see_receipt_r5001evtTotal", u"Pode ver recibo do evento R5001EVTTOTAL"),
-            ("can_see_xml_r5001evtTotal", u"Pode ver xml do evento R5001EVTTOTAL"),)
+        )
             
         ordering = [
             'identidade',
@@ -2210,31 +2180,10 @@ class r5001evtTotal(SoftDeletionModel):
 
 class r5001evtTotalSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = r5001evtTotal
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r5011evtTotalContrib(SoftDeletionModel):
@@ -2253,18 +2202,6 @@ class r5011evtTotalContrib(SoftDeletionModel):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2278,15 +2215,6 @@ class r5011evtTotalContrib(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.efdreinf.views.r5011_evttotalcontrib_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2300,17 +2228,8 @@ class r5011evtTotalContrib(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_r5011evtTotalContrib", u"Pode ver listagem do modelo R5011EVTTOTALCONTRIB"),
-            ("can_see_data_r5011evtTotalContrib", u"Pode visualizar o conteúdo do modelo R5011EVTTOTALCONTRIB"),
-            ("can_see_menu_r5011evtTotalContrib", u"Pode visualizar no menu o modelo R5011EVTTOTALCONTRIB"),
-            ("can_print_list_r5011evtTotalContrib", u"Pode imprimir listagem do modelo R5011EVTTOTALCONTRIB"),
-            ("can_print_data_r5011evtTotalContrib", u"Pode imprimir o conteúdo do modelo R5011EVTTOTALCONTRIB"),
-            ("can_open_r5011evtTotalContrib", u"Pode abrir o evento R5011EVTTOTALCONTRIB para edição"),
-            ("can_duplicate_r5011evtTotalContrib", u"Pode duplicar o evento R5011EVTTOTALCONTRIB"),
-            ("can_validate_r5011evtTotalContrib", u"Pode validar o evento R5011EVTTOTALCONTRIB"),
-            ("can_change_identity_r5011evtTotalContrib", u"Pode alterar identidade do evento R5011EVTTOTALCONTRIB"),
-            ("can_see_layout_r5011evtTotalContrib", u"Pode ver layout do evento R5011EVTTOTALCONTRIB"),
             ("can_see_receipt_r5011evtTotalContrib", u"Pode ver recibo do evento R5011EVTTOTALCONTRIB"),
-            ("can_see_xml_r5011evtTotalContrib", u"Pode ver xml do evento R5011EVTTOTALCONTRIB"),)
+        )
             
         ordering = [
             'identidade',
@@ -2329,31 +2248,10 @@ class r5011evtTotalContrib(SoftDeletionModel):
 
 class r5011evtTotalContribSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = r5011evtTotalContrib
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9000evtExclusao(SoftDeletionModel):
@@ -2487,18 +2385,6 @@ class r9001evtTotal(SoftDeletionModel):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2512,15 +2398,6 @@ class r9001evtTotal(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.efdreinf.views.r9001_evttotal_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2534,17 +2411,8 @@ class r9001evtTotal(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_r9001evtTotal", u"Pode ver listagem do modelo R9001EVTTOTAL"),
-            ("can_see_data_r9001evtTotal", u"Pode visualizar o conteúdo do modelo R9001EVTTOTAL"),
-            ("can_see_menu_r9001evtTotal", u"Pode visualizar no menu o modelo R9001EVTTOTAL"),
-            ("can_print_list_r9001evtTotal", u"Pode imprimir listagem do modelo R9001EVTTOTAL"),
-            ("can_print_data_r9001evtTotal", u"Pode imprimir o conteúdo do modelo R9001EVTTOTAL"),
-            ("can_open_r9001evtTotal", u"Pode abrir o evento R9001EVTTOTAL para edição"),
-            ("can_duplicate_r9001evtTotal", u"Pode duplicar o evento R9001EVTTOTAL"),
-            ("can_validate_r9001evtTotal", u"Pode validar o evento R9001EVTTOTAL"),
-            ("can_change_identity_r9001evtTotal", u"Pode alterar identidade do evento R9001EVTTOTAL"),
-            ("can_see_layout_r9001evtTotal", u"Pode ver layout do evento R9001EVTTOTAL"),
             ("can_see_receipt_r9001evtTotal", u"Pode ver recibo do evento R9001EVTTOTAL"),
-            ("can_see_xml_r9001evtTotal", u"Pode ver xml do evento R9001EVTTOTAL"),)
+        )
             
         ordering = [
             'identidade',
@@ -2562,31 +2430,10 @@ class r9001evtTotal(SoftDeletionModel):
 
 class r9001evtTotalSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = r9001evtTotal
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9002evtRet(SoftDeletionModel):
@@ -2605,18 +2452,6 @@ class r9002evtRet(SoftDeletionModel):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2630,15 +2465,6 @@ class r9002evtRet(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.efdreinf.views.r9002_evtret_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2652,17 +2478,8 @@ class r9002evtRet(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_r9002evtRet", u"Pode ver listagem do modelo R9002EVTRET"),
-            ("can_see_data_r9002evtRet", u"Pode visualizar o conteúdo do modelo R9002EVTRET"),
-            ("can_see_menu_r9002evtRet", u"Pode visualizar no menu o modelo R9002EVTRET"),
-            ("can_print_list_r9002evtRet", u"Pode imprimir listagem do modelo R9002EVTRET"),
-            ("can_print_data_r9002evtRet", u"Pode imprimir o conteúdo do modelo R9002EVTRET"),
-            ("can_open_r9002evtRet", u"Pode abrir o evento R9002EVTRET para edição"),
-            ("can_duplicate_r9002evtRet", u"Pode duplicar o evento R9002EVTRET"),
-            ("can_validate_r9002evtRet", u"Pode validar o evento R9002EVTRET"),
-            ("can_change_identity_r9002evtRet", u"Pode alterar identidade do evento R9002EVTRET"),
-            ("can_see_layout_r9002evtRet", u"Pode ver layout do evento R9002EVTRET"),
             ("can_see_receipt_r9002evtRet", u"Pode ver recibo do evento R9002EVTRET"),
-            ("can_see_xml_r9002evtRet", u"Pode ver xml do evento R9002EVTRET"),)
+        )
             
         ordering = [
             'identidade',
@@ -2680,31 +2497,10 @@ class r9002evtRet(SoftDeletionModel):
 
 class r9002evtRetSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = r9002evtRet
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9011evtTotalContrib(SoftDeletionModel):
@@ -2723,18 +2519,6 @@ class r9011evtTotalContrib(SoftDeletionModel):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2748,15 +2532,6 @@ class r9011evtTotalContrib(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.efdreinf.views.r9011_evttotalcontrib_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2770,17 +2545,8 @@ class r9011evtTotalContrib(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_r9011evtTotalContrib", u"Pode ver listagem do modelo R9011EVTTOTALCONTRIB"),
-            ("can_see_data_r9011evtTotalContrib", u"Pode visualizar o conteúdo do modelo R9011EVTTOTALCONTRIB"),
-            ("can_see_menu_r9011evtTotalContrib", u"Pode visualizar no menu o modelo R9011EVTTOTALCONTRIB"),
-            ("can_print_list_r9011evtTotalContrib", u"Pode imprimir listagem do modelo R9011EVTTOTALCONTRIB"),
-            ("can_print_data_r9011evtTotalContrib", u"Pode imprimir o conteúdo do modelo R9011EVTTOTALCONTRIB"),
-            ("can_open_r9011evtTotalContrib", u"Pode abrir o evento R9011EVTTOTALCONTRIB para edição"),
-            ("can_duplicate_r9011evtTotalContrib", u"Pode duplicar o evento R9011EVTTOTALCONTRIB"),
-            ("can_validate_r9011evtTotalContrib", u"Pode validar o evento R9011EVTTOTALCONTRIB"),
-            ("can_change_identity_r9011evtTotalContrib", u"Pode alterar identidade do evento R9011EVTTOTALCONTRIB"),
-            ("can_see_layout_r9011evtTotalContrib", u"Pode ver layout do evento R9011EVTTOTALCONTRIB"),
             ("can_see_receipt_r9011evtTotalContrib", u"Pode ver recibo do evento R9011EVTTOTALCONTRIB"),
-            ("can_see_xml_r9011evtTotalContrib", u"Pode ver xml do evento R9011EVTTOTALCONTRIB"),)
+        )
             
         ordering = [
             'identidade',
@@ -2799,31 +2565,10 @@ class r9011evtTotalContrib(SoftDeletionModel):
 
 class r9011evtTotalContribSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = r9011evtTotalContrib
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class r9012evtRetCons(SoftDeletionModel):
@@ -2842,18 +2587,6 @@ class r9012evtRetCons(SoftDeletionModel):
     versao = models.CharField(choices=EFDREINF_VERSOES, max_length=20, blank=True, default='v1_04_00', )
     transmissor_lote_efdreinf = models.ForeignKey('mensageiro.TransmissorLoteEfdreinf',
         related_name='%(class)s_transmissor_lote_efdreinf', blank=True, null=True, )
-    retornos_r5001 = models.ForeignKey('efdreinf.r5001evtTotal',
-        related_name='%(class)s_retornos_r5001', blank=True, null=True, )
-    retornos_r5011 = models.ForeignKey('efdreinf.r5011evtTotalContrib',
-        related_name='%(class)s_retornos_r5011', blank=True, null=True, )
-    retornos_r9001 = models.ForeignKey('efdreinf.r9001evtTotal',
-        related_name='%(class)s_retornos_r9001', blank=True, null=True, )
-    retornos_r9002 = models.ForeignKey('efdreinf.r9002evtRet',
-        related_name='%(class)s_retornos_r9002', blank=True, null=True, )
-    retornos_r9011 = models.ForeignKey('efdreinf.r9011evtTotalContrib',
-        related_name='%(class)s_retornos_r9011', blank=True, null=True, )
-    retornos_r9012 = models.ForeignKey('efdreinf.r9012evtRetCons',
-        related_name='%(class)s_retornos_r9012', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -2867,15 +2600,6 @@ class r9012evtRetCons(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.efdreinf.views.r9012_evtretcons_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -2889,17 +2613,8 @@ class r9012evtRetCons(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_r9012evtRetCons", u"Pode ver listagem do modelo R9012EVTRETCONS"),
-            ("can_see_data_r9012evtRetCons", u"Pode visualizar o conteúdo do modelo R9012EVTRETCONS"),
-            ("can_see_menu_r9012evtRetCons", u"Pode visualizar no menu o modelo R9012EVTRETCONS"),
-            ("can_print_list_r9012evtRetCons", u"Pode imprimir listagem do modelo R9012EVTRETCONS"),
-            ("can_print_data_r9012evtRetCons", u"Pode imprimir o conteúdo do modelo R9012EVTRETCONS"),
-            ("can_open_r9012evtRetCons", u"Pode abrir o evento R9012EVTRETCONS para edição"),
-            ("can_duplicate_r9012evtRetCons", u"Pode duplicar o evento R9012EVTRETCONS"),
-            ("can_validate_r9012evtRetCons", u"Pode validar o evento R9012EVTRETCONS"),
-            ("can_change_identity_r9012evtRetCons", u"Pode alterar identidade do evento R9012EVTRETCONS"),
-            ("can_see_layout_r9012evtRetCons", u"Pode ver layout do evento R9012EVTRETCONS"),
             ("can_see_receipt_r9012evtRetCons", u"Pode ver recibo do evento R9012EVTRETCONS"),
-            ("can_see_xml_r9012evtRetCons", u"Pode ver xml do evento R9012EVTRETCONS"),)
+        )
             
         ordering = [
             'identidade',
@@ -2918,28 +2633,7 @@ class r9012evtRetCons(SoftDeletionModel):
 
 class r9012evtRetConsSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = r9012evtRetCons
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

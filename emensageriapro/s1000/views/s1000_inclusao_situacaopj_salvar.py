@@ -91,35 +91,35 @@ def salvar(request, pk=None, tab='master', output=None):
                 obj = s1000_inclusao_situacaopj_form.save(request=request)
                 messages.success(request, u'Salvo com sucesso!')
                 
-                if not pk:
-                
-                    gravar_auditoria(
-                        '{}',
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        's1000_inclusao_situacaopj', 
-                        obj.id, 
-                        request.user.id, 1)
-                                 
-                else:
-                
-                    gravar_auditoria(
-                        json.dumps(
-                            model_to_dict(s1000_inclusao_situacaopj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str),
-                        json.dumps(
-                            model_to_dict(obj), 
-                            indent=4, 
-                            sort_keys=True, 
-                            default=str), 
-                        's1000_inclusao_situacaopj', 
-                        pk, 
-                        request.user.id, 2)
+                #if not pk:
+                #
+                #    gravar_auditoria(
+                #        '{}',
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        's1000_inclusao_situacaopj', 
+                #        obj.id, 
+                #        request.user.id, 1)
+                #                 
+                #else:
+                #
+                #    gravar_auditoria(
+                #        json.dumps(
+                #            model_to_dict(s1000_inclusao_situacaopj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str),
+                #        json.dumps(
+                #            model_to_dict(obj), 
+                #            indent=4, 
+                #            sort_keys=True, 
+                #            default=str), 
+                #        's1000_inclusao_situacaopj', 
+                #        pk, 
+                #        request.user.id, 2)
                                      
                 if request.session['return_page'] not in (
                     's1000_inclusao_situacaopj_apagar', 

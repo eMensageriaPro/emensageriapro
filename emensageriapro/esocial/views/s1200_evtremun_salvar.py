@@ -80,11 +80,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s1200_evtremun = get_object_or_404(s1200evtRemun, id=pk)
 
-        if s1200_evtremun.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s1200_evtremun_apagar'] = 0
-            dict_permissoes['s1200_evtremun_editar'] = 0
+        #if s1200_evtremun.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s1200_evtremun_apagar'] = 0
+        #    dict_permissoes['s1200_evtremun_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s1200evtRemun'):
     
@@ -115,14 +115,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1200_evtremun', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s1200_evtremun), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1200_evtremun', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's1200_evtremun', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s1200_evtremun), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's1200_evtremun', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's1200_evtremun_apagar', 

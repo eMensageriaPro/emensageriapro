@@ -74,11 +74,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=pk)
 
-        if r3010_evtespdesportivo.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
-            dict_permissoes['r3010_evtespdesportivo_editar'] = 0
+        #if r3010_evtespdesportivo.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
+        #    dict_permissoes['r3010_evtespdesportivo_editar'] = 0
             
     if request.user.has_perm('efdreinf.can_see_r3010evtEspDesportivo'):
     
@@ -109,14 +109,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 'r3010_evtespdesportivo', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     'r3010_evtespdesportivo', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 'r3010_evtespdesportivo', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(r3010_evtespdesportivo), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     'r3010_evtespdesportivo', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     'r3010_evtespdesportivo_apagar', 

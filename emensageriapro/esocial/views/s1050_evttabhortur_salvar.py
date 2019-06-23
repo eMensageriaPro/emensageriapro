@@ -76,11 +76,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s1050_evttabhortur = get_object_or_404(s1050evtTabHorTur, id=pk)
 
-        if s1050_evttabhortur.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s1050_evttabhortur_apagar'] = 0
-            dict_permissoes['s1050_evttabhortur_editar'] = 0
+        #if s1050_evttabhortur.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s1050_evttabhortur_apagar'] = 0
+        #    dict_permissoes['s1050_evttabhortur_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s1050evtTabHorTur'):
     
@@ -111,14 +111,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's1050_evttabhortur', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s1050_evttabhortur), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's1050_evttabhortur', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's1050_evttabhortur', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s1050_evttabhortur), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's1050_evttabhortur', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's1050_evttabhortur_apagar', 

@@ -66,28 +66,6 @@
                 <div class="btn-group">
                     <!-- botões especiais -->
                     
-                        {% if perms.esocial.change_s5001evtBasesTrab or perms.esocial.add_s5001evtBasesTrab %}
-                    
-                        <a href="{% url 's5001_evtbasestrab_salvar' pk=a.id %}">
-                            {% if perms.esocial.change_s5001evtBasesTrab %}
-                                <span class="btn btn-primary" title="Editar">
-                                    <i class="fa fa-fw fa-edit"></i>
-                                </span>
-                            {% elif perms.esocial.can_see_data_s5001evtBasesTrab %}
-                                <span class="btn btn-primary" title="Visualizar">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% if perms.esocial.delete_s5001evtBasesTrab %}
-                        <a href="{% url 's5001_evtbasestrab_apagar' pk=a.id %}">
-                            <span class="btn btn-danger" title="Apagar">
-                                <i class="fa fa-fw fa-times"></i>
-                            </span>
-                        </a>
-                        {% endif %}
-                    
                 </div>
             </td>
             {% endif %}

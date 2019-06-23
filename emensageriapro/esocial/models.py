@@ -5349,8 +5349,6 @@ class s5001evtBasesTrab(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -5361,15 +5359,6 @@ class s5001evtBasesTrab(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.esocial.views.s5001_evtbasestrab_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -5383,17 +5372,8 @@ class s5001evtBasesTrab(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_s5001evtBasesTrab", u"Pode ver listagem do modelo S5001EVTBASESTRAB"),
-            ("can_see_data_s5001evtBasesTrab", u"Pode visualizar o conteúdo do modelo S5001EVTBASESTRAB"),
-            ("can_see_menu_s5001evtBasesTrab", u"Pode visualizar no menu o modelo S5001EVTBASESTRAB"),
-            ("can_print_list_s5001evtBasesTrab", u"Pode imprimir listagem do modelo S5001EVTBASESTRAB"),
-            ("can_print_data_s5001evtBasesTrab", u"Pode imprimir o conteúdo do modelo S5001EVTBASESTRAB"),
-            ("can_open_s5001evtBasesTrab", u"Pode abrir o evento S5001EVTBASESTRAB para edição"),
-            ("can_duplicate_s5001evtBasesTrab", u"Pode duplicar o evento S5001EVTBASESTRAB"),
-            ("can_validate_s5001evtBasesTrab", u"Pode validar o evento S5001EVTBASESTRAB"),
-            ("can_change_identity_s5001evtBasesTrab", u"Pode alterar identidade do evento S5001EVTBASESTRAB"),
-            ("can_see_layout_s5001evtBasesTrab", u"Pode ver layout do evento S5001EVTBASESTRAB"),
             ("can_see_receipt_s5001evtBasesTrab", u"Pode ver recibo do evento S5001EVTBASESTRAB"),
-            ("can_see_xml_s5001evtBasesTrab", u"Pode ver xml do evento S5001EVTBASESTRAB"),)
+        )
             
         ordering = [
             'identidade',
@@ -5408,31 +5388,10 @@ class s5001evtBasesTrab(SoftDeletionModel):
 
 class s5001evtBasesTrabSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = s5001evtBasesTrab
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002evtIrrfBenef(SoftDeletionModel):
@@ -5446,8 +5405,6 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -5458,15 +5415,6 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.esocial.views.s5002_evtirrfbenef_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -5480,17 +5428,8 @@ class s5002evtIrrfBenef(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_s5002evtIrrfBenef", u"Pode ver listagem do modelo S5002EVTIRRFBENEF"),
-            ("can_see_data_s5002evtIrrfBenef", u"Pode visualizar o conteúdo do modelo S5002EVTIRRFBENEF"),
-            ("can_see_menu_s5002evtIrrfBenef", u"Pode visualizar no menu o modelo S5002EVTIRRFBENEF"),
-            ("can_print_list_s5002evtIrrfBenef", u"Pode imprimir listagem do modelo S5002EVTIRRFBENEF"),
-            ("can_print_data_s5002evtIrrfBenef", u"Pode imprimir o conteúdo do modelo S5002EVTIRRFBENEF"),
-            ("can_open_s5002evtIrrfBenef", u"Pode abrir o evento S5002EVTIRRFBENEF para edição"),
-            ("can_duplicate_s5002evtIrrfBenef", u"Pode duplicar o evento S5002EVTIRRFBENEF"),
-            ("can_validate_s5002evtIrrfBenef", u"Pode validar o evento S5002EVTIRRFBENEF"),
-            ("can_change_identity_s5002evtIrrfBenef", u"Pode alterar identidade do evento S5002EVTIRRFBENEF"),
-            ("can_see_layout_s5002evtIrrfBenef", u"Pode ver layout do evento S5002EVTIRRFBENEF"),
             ("can_see_receipt_s5002evtIrrfBenef", u"Pode ver recibo do evento S5002EVTIRRFBENEF"),
-            ("can_see_xml_s5002evtIrrfBenef", u"Pode ver xml do evento S5002EVTIRRFBENEF"),)
+        )
             
         ordering = [
             'identidade',
@@ -5504,31 +5443,10 @@ class s5002evtIrrfBenef(SoftDeletionModel):
 
 class s5002evtIrrfBenefSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = s5002evtIrrfBenef
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003evtBasesFGTS(SoftDeletionModel):
@@ -5544,8 +5462,6 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -5556,15 +5472,6 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.esocial.views.s5003_evtbasesfgts_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -5578,17 +5485,8 @@ class s5003evtBasesFGTS(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_s5003evtBasesFGTS", u"Pode ver listagem do modelo S5003EVTBASESFGTS"),
-            ("can_see_data_s5003evtBasesFGTS", u"Pode visualizar o conteúdo do modelo S5003EVTBASESFGTS"),
-            ("can_see_menu_s5003evtBasesFGTS", u"Pode visualizar no menu o modelo S5003EVTBASESFGTS"),
-            ("can_print_list_s5003evtBasesFGTS", u"Pode imprimir listagem do modelo S5003EVTBASESFGTS"),
-            ("can_print_data_s5003evtBasesFGTS", u"Pode imprimir o conteúdo do modelo S5003EVTBASESFGTS"),
-            ("can_open_s5003evtBasesFGTS", u"Pode abrir o evento S5003EVTBASESFGTS para edição"),
-            ("can_duplicate_s5003evtBasesFGTS", u"Pode duplicar o evento S5003EVTBASESFGTS"),
-            ("can_validate_s5003evtBasesFGTS", u"Pode validar o evento S5003EVTBASESFGTS"),
-            ("can_change_identity_s5003evtBasesFGTS", u"Pode alterar identidade do evento S5003EVTBASESFGTS"),
-            ("can_see_layout_s5003evtBasesFGTS", u"Pode ver layout do evento S5003EVTBASESFGTS"),
             ("can_see_receipt_s5003evtBasesFGTS", u"Pode ver recibo do evento S5003EVTBASESFGTS"),
-            ("can_see_xml_s5003evtBasesFGTS", u"Pode ver xml do evento S5003EVTBASESFGTS"),)
+        )
             
         ordering = [
             'identidade',
@@ -5602,31 +5500,10 @@ class s5003evtBasesFGTS(SoftDeletionModel):
 
 class s5003evtBasesFGTSSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = s5003evtBasesFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5011evtCS(SoftDeletionModel):
@@ -5642,8 +5519,6 @@ class s5011evtCS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -5654,15 +5529,6 @@ class s5011evtCS(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.esocial.views.s5011_evtcs_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -5676,17 +5542,8 @@ class s5011evtCS(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_s5011evtCS", u"Pode ver listagem do modelo S5011EVTCS"),
-            ("can_see_data_s5011evtCS", u"Pode visualizar o conteúdo do modelo S5011EVTCS"),
-            ("can_see_menu_s5011evtCS", u"Pode visualizar no menu o modelo S5011EVTCS"),
-            ("can_print_list_s5011evtCS", u"Pode imprimir listagem do modelo S5011EVTCS"),
-            ("can_print_data_s5011evtCS", u"Pode imprimir o conteúdo do modelo S5011EVTCS"),
-            ("can_open_s5011evtCS", u"Pode abrir o evento S5011EVTCS para edição"),
-            ("can_duplicate_s5011evtCS", u"Pode duplicar o evento S5011EVTCS"),
-            ("can_validate_s5011evtCS", u"Pode validar o evento S5011EVTCS"),
-            ("can_change_identity_s5011evtCS", u"Pode alterar identidade do evento S5011EVTCS"),
-            ("can_see_layout_s5011evtCS", u"Pode ver layout do evento S5011EVTCS"),
             ("can_see_receipt_s5011evtCS", u"Pode ver recibo do evento S5011EVTCS"),
-            ("can_see_xml_s5011evtCS", u"Pode ver xml do evento S5011EVTCS"),)
+        )
             
         ordering = [
             'identidade',
@@ -5702,31 +5559,10 @@ class s5011evtCS(SoftDeletionModel):
 
 class s5011evtCSSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = s5011evtCS
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5012evtIrrf(SoftDeletionModel):
@@ -5740,8 +5576,6 @@ class s5012evtIrrf(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -5752,15 +5586,6 @@ class s5012evtIrrf(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.esocial.views.s5012_evtirrf_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -5774,17 +5599,8 @@ class s5012evtIrrf(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_s5012evtIrrf", u"Pode ver listagem do modelo S5012EVTIRRF"),
-            ("can_see_data_s5012evtIrrf", u"Pode visualizar o conteúdo do modelo S5012EVTIRRF"),
-            ("can_see_menu_s5012evtIrrf", u"Pode visualizar no menu o modelo S5012EVTIRRF"),
-            ("can_print_list_s5012evtIrrf", u"Pode imprimir listagem do modelo S5012EVTIRRF"),
-            ("can_print_data_s5012evtIrrf", u"Pode imprimir o conteúdo do modelo S5012EVTIRRF"),
-            ("can_open_s5012evtIrrf", u"Pode abrir o evento S5012EVTIRRF para edição"),
-            ("can_duplicate_s5012evtIrrf", u"Pode duplicar o evento S5012EVTIRRF"),
-            ("can_validate_s5012evtIrrf", u"Pode validar o evento S5012EVTIRRF"),
-            ("can_change_identity_s5012evtIrrf", u"Pode alterar identidade do evento S5012EVTIRRF"),
-            ("can_see_layout_s5012evtIrrf", u"Pode ver layout do evento S5012EVTIRRF"),
             ("can_see_receipt_s5012evtIrrf", u"Pode ver recibo do evento S5012EVTIRRF"),
-            ("can_see_xml_s5012evtIrrf", u"Pode ver xml do evento S5012EVTIRRF"),)
+        )
             
         ordering = [
             'identidade',
@@ -5798,31 +5614,10 @@ class s5012evtIrrf(SoftDeletionModel):
 
 class s5012evtIrrfSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = s5012evtIrrf
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5013evtFGTS(SoftDeletionModel):
@@ -5836,8 +5631,6 @@ class s5013evtFGTS(SoftDeletionModel):
     versao = models.CharField(choices=ESOCIAL_VERSOES, max_length=20, blank=True, default='v02_05_00', )
     transmissor_lote_esocial = models.ForeignKey('mensageiro.TransmissorLoteEsocial',
         related_name='%(class)s_transmissor_lote_esocial', blank=True, null=True, )
-    retornos_eventos = models.ForeignKey('mensageiro.RetornosEventos',
-        related_name='%(class)s_retornos_eventos', blank=True, null=True, )
     ocorrencias = models.TextField(blank=True, null=True, )
     validacao_precedencia = models.IntegerField(choices=SIM_NAO, blank=True, null=True, )
     validacoes = models.TextField(blank=True, null=True, )
@@ -5848,15 +5641,6 @@ class s5013evtFGTS(SoftDeletionModel):
     def __unicode__(self):
         
         return unicode(self.identidade)
-
-    def evento(self): 
-    
-        return self.__dict__
-        
-    def validar(self, request):
-    
-        from emensageriapro.esocial.views.s5013_evtfgts_validar_evento import validar_evento_funcao
-        validar_evento_funcao(request, self.id)
         
     class Meta:
     
@@ -5870,17 +5654,8 @@ class s5013evtFGTS(SoftDeletionModel):
         
         permissions = (
             ("can_see_list_s5013evtFGTS", u"Pode ver listagem do modelo S5013EVTFGTS"),
-            ("can_see_data_s5013evtFGTS", u"Pode visualizar o conteúdo do modelo S5013EVTFGTS"),
-            ("can_see_menu_s5013evtFGTS", u"Pode visualizar no menu o modelo S5013EVTFGTS"),
-            ("can_print_list_s5013evtFGTS", u"Pode imprimir listagem do modelo S5013EVTFGTS"),
-            ("can_print_data_s5013evtFGTS", u"Pode imprimir o conteúdo do modelo S5013EVTFGTS"),
-            ("can_open_s5013evtFGTS", u"Pode abrir o evento S5013EVTFGTS para edição"),
-            ("can_duplicate_s5013evtFGTS", u"Pode duplicar o evento S5013EVTFGTS"),
-            ("can_validate_s5013evtFGTS", u"Pode validar o evento S5013EVTFGTS"),
-            ("can_change_identity_s5013evtFGTS", u"Pode alterar identidade do evento S5013EVTFGTS"),
-            ("can_see_layout_s5013evtFGTS", u"Pode ver layout do evento S5013EVTFGTS"),
             ("can_see_receipt_s5013evtFGTS", u"Pode ver recibo do evento S5013EVTFGTS"),
-            ("can_see_xml_s5013evtFGTS", u"Pode ver xml do evento S5013EVTFGTS"),)
+        )
             
         ordering = [
             'identidade',
@@ -5894,28 +5669,7 @@ class s5013evtFGTS(SoftDeletionModel):
 
 class s5013evtFGTSSerializer(ModelSerializer):
 
-    from rest_framework import serializers
-    from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-    from constance import config
-
-    tpamb = serializers.IntegerField(default=config.ESOCIAL_TP_AMB, initial=config.ESOCIAL_TP_AMB, read_only=True)
-    verproc = serializers.CharField(default=VERSAO_EMENSAGERIA, initial=VERSAO_EMENSAGERIA, read_only=True)
-    procemi = serializers.IntegerField(default=1, initial=1, read_only=True)
-    versao = serializers.CharField(default=VERSAO_LAYOUT_ESOCIAL, initial=VERSAO_LAYOUT_ESOCIAL, read_only=True)
-    arquivo_original = serializers.IntegerField(default=0, initial=0, read_only=True)
-    status = serializers.IntegerField(default=0, initial=0, read_only=True)
-
     class Meta:
     
         model = s5013evtFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'verproc',
-                            'tpamb', 'procemi',
-                            'versao', 'arquivo_original',
-                            'status', 'transmissor_lote_esocial',
-                            'retornos_eventos', 'ocorrencias',
-                            'validacao_precedencia', 'validacoes',
-                            'arquivo_original', 'arquivo',
-                            'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

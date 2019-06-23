@@ -118,9 +118,6 @@ class s5002basesIrrfSerializer(ModelSerializer):
     
         model = s5002basesIrrf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002idePgtoExt(SoftDeletionModel):
@@ -185,9 +182,6 @@ class s5002idePgtoExtSerializer(ModelSerializer):
     
         model = s5002idePgtoExt
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002infoDep(SoftDeletionModel):
@@ -241,9 +235,6 @@ class s5002infoDepSerializer(ModelSerializer):
     
         model = s5002infoDep
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002infoIrrf(SoftDeletionModel):
@@ -298,9 +289,6 @@ class s5002infoIrrfSerializer(ModelSerializer):
     
         model = s5002infoIrrf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5002irrf(SoftDeletionModel):
@@ -356,6 +344,3 @@ class s5002irrfSerializer(ModelSerializer):
     
         model = s5002irrf
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

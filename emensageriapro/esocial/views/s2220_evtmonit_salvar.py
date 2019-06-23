@@ -72,11 +72,11 @@ def salvar(request, pk=None, tab='master', output=None):
     
         s2220_evtmonit = get_object_or_404(s2220evtMonit, id=pk)
 
-        if s2220_evtmonit.status != STATUS_EVENTO_CADASTRADO:
-        
-            dict_permissoes = {}
-            dict_permissoes['s2220_evtmonit_apagar'] = 0
-            dict_permissoes['s2220_evtmonit_editar'] = 0
+        #if s2220_evtmonit.status != STATUS_EVENTO_CADASTRADO:
+        #
+        #    dict_permissoes = {}
+        #    dict_permissoes['s2220_evtmonit_apagar'] = 0
+        #    dict_permissoes['s2220_evtmonit_editar'] = 0
             
     if request.user.has_perm('esocial.can_see_s2220evtMonit'):
     
@@ -107,14 +107,14 @@ def salvar(request, pk=None, tab='master', output=None):
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
-                    gravar_auditoria('{}',
-                                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                 's2220_evtmonit', obj.id, request.user.id, 1)
-                else:
-                
-                    gravar_auditoria(json.dumps(model_to_dict(s2220_evtmonit), indent=4, sort_keys=True, default=str),
-                                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
-                                     's2220_evtmonit', pk, request.user.id, 2)
+                #    gravar_auditoria('{}',
+                #                 json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                 's2220_evtmonit', obj.id, request.user.id, 1)
+                #else:
+                # 
+                #    gravar_auditoria(json.dumps(model_to_dict(s2220_evtmonit), indent=4, sort_keys=True, default=str),
+                #                     json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
+                #                     's2220_evtmonit', pk, request.user.id, 2)
                                  
                 if request.session['return_page'] not in (
                     's2220_evtmonit_apagar', 

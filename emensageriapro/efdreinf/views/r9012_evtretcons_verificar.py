@@ -86,7 +86,6 @@ def verificar(request, pk, output=None):
         r9012_totapurdec_lista = r9012totApurDec.objects.filter(r9012_infototalcontrib_id__in = listar_ids(r9012_infototalcontrib_lista) ).all()
         r9012_totapursem_lista = r9012totApurSem.objects.filter(r9012_infototalcontrib_id__in = listar_ids(r9012_infototalcontrib_lista) ).all()
         r9012_totapurdia_lista = r9012totApurDia.objects.filter(r9012_infototalcontrib_id__in = listar_ids(r9012_infototalcontrib_lista) ).all()
-        r9012_evtretcons_lista = r9012evtRetCons.objects.filter(retornos_r9012_id__in = listar_ids(r9012_evtretcons_lista) ).all()
 
         request.session['return_pk'] = pk
         request.session['return_page'] = 'r9012_evtretcons'
@@ -103,7 +102,6 @@ def verificar(request, pk, output=None):
             'r9012_totapurdec_lista': r9012_totapurdec_lista,
             'r9012_totapursem_lista': r9012_totapursem_lista,
             'r9012_totapurdia_lista': r9012_totapurdia_lista,
-            'r9012_evtretcons_lista': r9012_evtretcons_lista,
             'modulos': ['efdreinf', ],
             'paginas': ['r9012_evtretcons', ],
             'data': datetime.now(),

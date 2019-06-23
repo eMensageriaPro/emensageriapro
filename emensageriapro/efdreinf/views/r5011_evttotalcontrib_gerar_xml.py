@@ -132,9 +132,6 @@ def gerar_xml_r5011(request, pk, versao=None):
         r5011_rcprb_lista = r5011RCPRB.objects. \
             filter(r5011_infototalcontrib_id__in=listar_ids(r5011_infototalcontrib_lista)).all()
         
-        r5011_evttotalcontrib_lista = r5011evtTotalContrib.objects. \
-            filter(retornos_r5011_id__in=listar_ids(r5011_evttotalcontrib_lista)).all()
-        
 
         context = {
             'xmlns': xmlns,
@@ -151,7 +148,6 @@ def gerar_xml_r5011(request, pk, versao=None):
             'r5011_rrecrepad_lista': r5011_rrecrepad_lista,
             'r5011_rcoml_lista': r5011_rcoml_lista,
             'r5011_rcprb_lista': r5011_rcprb_lista,
-            'r5011_evttotalcontrib_lista': r5011_evttotalcontrib_lista,
         }
 
         t = get_template('r5011_evttotalcontrib.xml')

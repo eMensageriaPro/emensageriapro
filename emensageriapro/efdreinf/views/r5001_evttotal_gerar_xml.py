@@ -135,9 +135,6 @@ def gerar_xml_r5001(request, pk, versao=None):
         r5001_rrecespetdesp_lista = r5001RRecEspetDesp.objects. \
             filter(r5001_infototal_id__in=listar_ids(r5001_infototal_lista)).all()
         
-        r5001_evttotal_lista = r5001evtTotal.objects. \
-            filter(retornos_r5001_id__in=listar_ids(r5001_evttotal_lista)).all()
-        
 
         context = {
             'xmlns': xmlns,
@@ -155,7 +152,6 @@ def gerar_xml_r5001(request, pk, versao=None):
             'r5001_rcoml_lista': r5001_rcoml_lista,
             'r5001_rcprb_lista': r5001_rcprb_lista,
             'r5001_rrecespetdesp_lista': r5001_rrecespetdesp_lista,
-            'r5001_evttotal_lista': r5001_evttotal_lista,
         }
 
         t = get_template('r5001_evttotal.xml')

@@ -50,4 +50,4 @@ def create_token(request, pk):
 
     messages.success(request, 'Token criado com sucesso! Token: %s' % token.key)
 
-    return redirect('usuarios_salvar', pk=pk, tab='master')
+    return redirect('usuarios_salvar', pk=pk)

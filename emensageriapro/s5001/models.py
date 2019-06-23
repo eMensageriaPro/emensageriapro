@@ -120,9 +120,6 @@ class s5001calcTercSerializer(ModelSerializer):
     
         model = s5001calcTerc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001ideEstabLot(SoftDeletionModel):
@@ -180,9 +177,6 @@ class s5001ideEstabLotSerializer(ModelSerializer):
     
         model = s5001ideEstabLot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoBaseCS(SoftDeletionModel):
@@ -240,9 +234,6 @@ class s5001infoBaseCSSerializer(ModelSerializer):
     
         model = s5001infoBaseCS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoCategIncid(SoftDeletionModel):
@@ -298,9 +289,6 @@ class s5001infoCategIncidSerializer(ModelSerializer):
     
         model = s5001infoCategIncid
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoCp(SoftDeletionModel):
@@ -352,9 +340,6 @@ class s5001infoCpSerializer(ModelSerializer):
     
         model = s5001infoCp
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001infoCpCalc(SoftDeletionModel):
@@ -412,9 +397,6 @@ class s5001infoCpCalcSerializer(ModelSerializer):
     
         model = s5001infoCpCalc
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5001procJudTrab(SoftDeletionModel):
@@ -470,6 +452,3 @@ class s5001procJudTrabSerializer(ModelSerializer):
     
         model = s5001procJudTrab
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')

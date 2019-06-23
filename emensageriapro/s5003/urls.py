@@ -4,49 +4,16 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.authtoken import views
-from emensageriapro.s5003.views import s5003_ideestablot_apagar as s5003_ideestablot_apagar_views
-from emensageriapro.s5003.views import s5003_ideestablot_listar as s5003_ideestablot_listar_views
-from emensageriapro.s5003.views import s5003_ideestablot_salvar as s5003_ideestablot_salvar_views
 from emensageriapro.s5003.views import s5003_ideestablot_api as s5003_ideestablot_api_views
-from emensageriapro.s5003.views import s5003_infotrabfgts_apagar as s5003_infotrabfgts_apagar_views
-from emensageriapro.s5003.views import s5003_infotrabfgts_listar as s5003_infotrabfgts_listar_views
-from emensageriapro.s5003.views import s5003_infotrabfgts_salvar as s5003_infotrabfgts_salvar_views
 from emensageriapro.s5003.views import s5003_infotrabfgts_api as s5003_infotrabfgts_api_views
-from emensageriapro.s5003.views import s5003_infobasefgts_apagar as s5003_infobasefgts_apagar_views
-from emensageriapro.s5003.views import s5003_infobasefgts_listar as s5003_infobasefgts_listar_views
-from emensageriapro.s5003.views import s5003_infobasefgts_salvar as s5003_infobasefgts_salvar_views
 from emensageriapro.s5003.views import s5003_infobasefgts_api as s5003_infobasefgts_api_views
-from emensageriapro.s5003.views import s5003_baseperapur_apagar as s5003_baseperapur_apagar_views
-from emensageriapro.s5003.views import s5003_baseperapur_listar as s5003_baseperapur_listar_views
-from emensageriapro.s5003.views import s5003_baseperapur_salvar as s5003_baseperapur_salvar_views
 from emensageriapro.s5003.views import s5003_baseperapur_api as s5003_baseperapur_api_views
-from emensageriapro.s5003.views import s5003_infobaseperante_apagar as s5003_infobaseperante_apagar_views
-from emensageriapro.s5003.views import s5003_infobaseperante_listar as s5003_infobaseperante_listar_views
-from emensageriapro.s5003.views import s5003_infobaseperante_salvar as s5003_infobaseperante_salvar_views
 from emensageriapro.s5003.views import s5003_infobaseperante_api as s5003_infobaseperante_api_views
-from emensageriapro.s5003.views import s5003_baseperante_apagar as s5003_baseperante_apagar_views
-from emensageriapro.s5003.views import s5003_baseperante_listar as s5003_baseperante_listar_views
-from emensageriapro.s5003.views import s5003_baseperante_salvar as s5003_baseperante_salvar_views
 from emensageriapro.s5003.views import s5003_baseperante_api as s5003_baseperante_api_views
-from emensageriapro.s5003.views import s5003_infodpsfgts_apagar as s5003_infodpsfgts_apagar_views
-from emensageriapro.s5003.views import s5003_infodpsfgts_listar as s5003_infodpsfgts_listar_views
-from emensageriapro.s5003.views import s5003_infodpsfgts_salvar as s5003_infodpsfgts_salvar_views
 from emensageriapro.s5003.views import s5003_infodpsfgts_api as s5003_infodpsfgts_api_views
-from emensageriapro.s5003.views import s5003_infotrabdps_apagar as s5003_infotrabdps_apagar_views
-from emensageriapro.s5003.views import s5003_infotrabdps_listar as s5003_infotrabdps_listar_views
-from emensageriapro.s5003.views import s5003_infotrabdps_salvar as s5003_infotrabdps_salvar_views
 from emensageriapro.s5003.views import s5003_infotrabdps_api as s5003_infotrabdps_api_views
-from emensageriapro.s5003.views import s5003_dpsperapur_apagar as s5003_dpsperapur_apagar_views
-from emensageriapro.s5003.views import s5003_dpsperapur_listar as s5003_dpsperapur_listar_views
-from emensageriapro.s5003.views import s5003_dpsperapur_salvar as s5003_dpsperapur_salvar_views
 from emensageriapro.s5003.views import s5003_dpsperapur_api as s5003_dpsperapur_api_views
-from emensageriapro.s5003.views import s5003_infodpsperante_apagar as s5003_infodpsperante_apagar_views
-from emensageriapro.s5003.views import s5003_infodpsperante_listar as s5003_infodpsperante_listar_views
-from emensageriapro.s5003.views import s5003_infodpsperante_salvar as s5003_infodpsperante_salvar_views
 from emensageriapro.s5003.views import s5003_infodpsperante_api as s5003_infodpsperante_api_views
-from emensageriapro.s5003.views import s5003_dpsperante_apagar as s5003_dpsperante_apagar_views
-from emensageriapro.s5003.views import s5003_dpsperante_listar as s5003_dpsperante_listar_views
-from emensageriapro.s5003.views import s5003_dpsperante_salvar as s5003_dpsperante_salvar_views
 from emensageriapro.s5003.views import s5003_dpsperante_api as s5003_dpsperante_api_views
 
 
@@ -88,43 +55,11 @@ from emensageriapro.s5003.views import s5003_dpsperante_api as s5003_dpsperante_
 urlpatterns = [
 
 
-    url(r'^s5003-ideestablot/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_ideestablot_apagar_views.apagar, 
-        name='s5003_ideestablot_apagar'),
-
     url(r'^s5003-ideestablot/api/$',
         s5003_ideestablot_api_views.s5003ideEstabLotList.as_view() ),
 
     url(r'^s5003-ideestablot/api/(?P<pk>[0-9]+)/$',
         s5003_ideestablot_api_views.s5003ideEstabLotDetail.as_view() ),
-
-    url(r'^s5003-ideestablot/$', 
-        s5003_ideestablot_listar_views.listar, 
-        name='s5003_ideestablot'),
-
-    url(r'^s5003-ideestablot/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_ideestablot_salvar_views.salvar, 
-        name='s5003_ideestablot_salvar'),
-
-    url(r'^s5003-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_ideestablot_salvar_views.salvar, 
-        name='s5003_ideestablot_salvar_tab'),
-        
-    url(r'^s5003-ideestablot/cadastrar/$', 
-        s5003_ideestablot_salvar_views.salvar, 
-        name='s5003_ideestablot_cadastrar'),
-
-    url(r'^s5003-ideestablot/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_ideestablot_salvar_views.salvar, 
-        name='s5003_ideestablot_salvar_output'),
-        
-    url(r'^s5003-ideestablot/(?P<output>[\w-]+)/$', 
-        s5003_ideestablot_listar_views.listar, 
-        name='s5003_ideestablot_output'),
-
-    url(r'^s5003-infotrabfgts/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_infotrabfgts_apagar_views.apagar, 
-        name='s5003_infotrabfgts_apagar'),
 
     url(r'^s5003-infotrabfgts/api/$',
         s5003_infotrabfgts_api_views.s5003infoTrabFGTSList.as_view() ),
@@ -132,67 +67,11 @@ urlpatterns = [
     url(r'^s5003-infotrabfgts/api/(?P<pk>[0-9]+)/$',
         s5003_infotrabfgts_api_views.s5003infoTrabFGTSDetail.as_view() ),
 
-    url(r'^s5003-infotrabfgts/$', 
-        s5003_infotrabfgts_listar_views.listar, 
-        name='s5003_infotrabfgts'),
-
-    url(r'^s5003-infotrabfgts/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_infotrabfgts_salvar_views.salvar, 
-        name='s5003_infotrabfgts_salvar'),
-
-    url(r'^s5003-infotrabfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_infotrabfgts_salvar_views.salvar, 
-        name='s5003_infotrabfgts_salvar_tab'),
-        
-    url(r'^s5003-infotrabfgts/cadastrar/$', 
-        s5003_infotrabfgts_salvar_views.salvar, 
-        name='s5003_infotrabfgts_cadastrar'),
-
-    url(r'^s5003-infotrabfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_infotrabfgts_salvar_views.salvar, 
-        name='s5003_infotrabfgts_salvar_output'),
-        
-    url(r'^s5003-infotrabfgts/(?P<output>[\w-]+)/$', 
-        s5003_infotrabfgts_listar_views.listar, 
-        name='s5003_infotrabfgts_output'),
-
-    url(r'^s5003-infobasefgts/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_infobasefgts_apagar_views.apagar, 
-        name='s5003_infobasefgts_apagar'),
-
     url(r'^s5003-infobasefgts/api/$',
         s5003_infobasefgts_api_views.s5003infoBaseFGTSList.as_view() ),
 
     url(r'^s5003-infobasefgts/api/(?P<pk>[0-9]+)/$',
         s5003_infobasefgts_api_views.s5003infoBaseFGTSDetail.as_view() ),
-
-    url(r'^s5003-infobasefgts/$', 
-        s5003_infobasefgts_listar_views.listar, 
-        name='s5003_infobasefgts'),
-
-    url(r'^s5003-infobasefgts/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_infobasefgts_salvar_views.salvar, 
-        name='s5003_infobasefgts_salvar'),
-
-    url(r'^s5003-infobasefgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_infobasefgts_salvar_views.salvar, 
-        name='s5003_infobasefgts_salvar_tab'),
-        
-    url(r'^s5003-infobasefgts/cadastrar/$', 
-        s5003_infobasefgts_salvar_views.salvar, 
-        name='s5003_infobasefgts_cadastrar'),
-
-    url(r'^s5003-infobasefgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_infobasefgts_salvar_views.salvar, 
-        name='s5003_infobasefgts_salvar_output'),
-        
-    url(r'^s5003-infobasefgts/(?P<output>[\w-]+)/$', 
-        s5003_infobasefgts_listar_views.listar, 
-        name='s5003_infobasefgts_output'),
-
-    url(r'^s5003-baseperapur/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_baseperapur_apagar_views.apagar, 
-        name='s5003_baseperapur_apagar'),
 
     url(r'^s5003-baseperapur/api/$',
         s5003_baseperapur_api_views.s5003basePerApurList.as_view() ),
@@ -200,67 +79,11 @@ urlpatterns = [
     url(r'^s5003-baseperapur/api/(?P<pk>[0-9]+)/$',
         s5003_baseperapur_api_views.s5003basePerApurDetail.as_view() ),
 
-    url(r'^s5003-baseperapur/$', 
-        s5003_baseperapur_listar_views.listar, 
-        name='s5003_baseperapur'),
-
-    url(r'^s5003-baseperapur/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_baseperapur_salvar_views.salvar, 
-        name='s5003_baseperapur_salvar'),
-
-    url(r'^s5003-baseperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_baseperapur_salvar_views.salvar, 
-        name='s5003_baseperapur_salvar_tab'),
-        
-    url(r'^s5003-baseperapur/cadastrar/$', 
-        s5003_baseperapur_salvar_views.salvar, 
-        name='s5003_baseperapur_cadastrar'),
-
-    url(r'^s5003-baseperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_baseperapur_salvar_views.salvar, 
-        name='s5003_baseperapur_salvar_output'),
-        
-    url(r'^s5003-baseperapur/(?P<output>[\w-]+)/$', 
-        s5003_baseperapur_listar_views.listar, 
-        name='s5003_baseperapur_output'),
-
-    url(r'^s5003-infobaseperante/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_infobaseperante_apagar_views.apagar, 
-        name='s5003_infobaseperante_apagar'),
-
     url(r'^s5003-infobaseperante/api/$',
         s5003_infobaseperante_api_views.s5003infoBasePerAntEList.as_view() ),
 
     url(r'^s5003-infobaseperante/api/(?P<pk>[0-9]+)/$',
         s5003_infobaseperante_api_views.s5003infoBasePerAntEDetail.as_view() ),
-
-    url(r'^s5003-infobaseperante/$', 
-        s5003_infobaseperante_listar_views.listar, 
-        name='s5003_infobaseperante'),
-
-    url(r'^s5003-infobaseperante/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_infobaseperante_salvar_views.salvar, 
-        name='s5003_infobaseperante_salvar'),
-
-    url(r'^s5003-infobaseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_infobaseperante_salvar_views.salvar, 
-        name='s5003_infobaseperante_salvar_tab'),
-        
-    url(r'^s5003-infobaseperante/cadastrar/$', 
-        s5003_infobaseperante_salvar_views.salvar, 
-        name='s5003_infobaseperante_cadastrar'),
-
-    url(r'^s5003-infobaseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_infobaseperante_salvar_views.salvar, 
-        name='s5003_infobaseperante_salvar_output'),
-        
-    url(r'^s5003-infobaseperante/(?P<output>[\w-]+)/$', 
-        s5003_infobaseperante_listar_views.listar, 
-        name='s5003_infobaseperante_output'),
-
-    url(r'^s5003-baseperante/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_baseperante_apagar_views.apagar, 
-        name='s5003_baseperante_apagar'),
 
     url(r'^s5003-baseperante/api/$',
         s5003_baseperante_api_views.s5003basePerAntEList.as_view() ),
@@ -268,67 +91,11 @@ urlpatterns = [
     url(r'^s5003-baseperante/api/(?P<pk>[0-9]+)/$',
         s5003_baseperante_api_views.s5003basePerAntEDetail.as_view() ),
 
-    url(r'^s5003-baseperante/$', 
-        s5003_baseperante_listar_views.listar, 
-        name='s5003_baseperante'),
-
-    url(r'^s5003-baseperante/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_baseperante_salvar_views.salvar, 
-        name='s5003_baseperante_salvar'),
-
-    url(r'^s5003-baseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_baseperante_salvar_views.salvar, 
-        name='s5003_baseperante_salvar_tab'),
-        
-    url(r'^s5003-baseperante/cadastrar/$', 
-        s5003_baseperante_salvar_views.salvar, 
-        name='s5003_baseperante_cadastrar'),
-
-    url(r'^s5003-baseperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_baseperante_salvar_views.salvar, 
-        name='s5003_baseperante_salvar_output'),
-        
-    url(r'^s5003-baseperante/(?P<output>[\w-]+)/$', 
-        s5003_baseperante_listar_views.listar, 
-        name='s5003_baseperante_output'),
-
-    url(r'^s5003-infodpsfgts/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_infodpsfgts_apagar_views.apagar, 
-        name='s5003_infodpsfgts_apagar'),
-
     url(r'^s5003-infodpsfgts/api/$',
         s5003_infodpsfgts_api_views.s5003infoDpsFGTSList.as_view() ),
 
     url(r'^s5003-infodpsfgts/api/(?P<pk>[0-9]+)/$',
         s5003_infodpsfgts_api_views.s5003infoDpsFGTSDetail.as_view() ),
-
-    url(r'^s5003-infodpsfgts/$', 
-        s5003_infodpsfgts_listar_views.listar, 
-        name='s5003_infodpsfgts'),
-
-    url(r'^s5003-infodpsfgts/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_infodpsfgts_salvar_views.salvar, 
-        name='s5003_infodpsfgts_salvar'),
-
-    url(r'^s5003-infodpsfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_infodpsfgts_salvar_views.salvar, 
-        name='s5003_infodpsfgts_salvar_tab'),
-        
-    url(r'^s5003-infodpsfgts/cadastrar/$', 
-        s5003_infodpsfgts_salvar_views.salvar, 
-        name='s5003_infodpsfgts_cadastrar'),
-
-    url(r'^s5003-infodpsfgts/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_infodpsfgts_salvar_views.salvar, 
-        name='s5003_infodpsfgts_salvar_output'),
-        
-    url(r'^s5003-infodpsfgts/(?P<output>[\w-]+)/$', 
-        s5003_infodpsfgts_listar_views.listar, 
-        name='s5003_infodpsfgts_output'),
-
-    url(r'^s5003-infotrabdps/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_infotrabdps_apagar_views.apagar, 
-        name='s5003_infotrabdps_apagar'),
 
     url(r'^s5003-infotrabdps/api/$',
         s5003_infotrabdps_api_views.s5003infoTrabDpsList.as_view() ),
@@ -336,67 +103,11 @@ urlpatterns = [
     url(r'^s5003-infotrabdps/api/(?P<pk>[0-9]+)/$',
         s5003_infotrabdps_api_views.s5003infoTrabDpsDetail.as_view() ),
 
-    url(r'^s5003-infotrabdps/$', 
-        s5003_infotrabdps_listar_views.listar, 
-        name='s5003_infotrabdps'),
-
-    url(r'^s5003-infotrabdps/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_infotrabdps_salvar_views.salvar, 
-        name='s5003_infotrabdps_salvar'),
-
-    url(r'^s5003-infotrabdps/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_infotrabdps_salvar_views.salvar, 
-        name='s5003_infotrabdps_salvar_tab'),
-        
-    url(r'^s5003-infotrabdps/cadastrar/$', 
-        s5003_infotrabdps_salvar_views.salvar, 
-        name='s5003_infotrabdps_cadastrar'),
-
-    url(r'^s5003-infotrabdps/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_infotrabdps_salvar_views.salvar, 
-        name='s5003_infotrabdps_salvar_output'),
-        
-    url(r'^s5003-infotrabdps/(?P<output>[\w-]+)/$', 
-        s5003_infotrabdps_listar_views.listar, 
-        name='s5003_infotrabdps_output'),
-
-    url(r'^s5003-dpsperapur/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_dpsperapur_apagar_views.apagar, 
-        name='s5003_dpsperapur_apagar'),
-
     url(r'^s5003-dpsperapur/api/$',
         s5003_dpsperapur_api_views.s5003dpsPerApurList.as_view() ),
 
     url(r'^s5003-dpsperapur/api/(?P<pk>[0-9]+)/$',
         s5003_dpsperapur_api_views.s5003dpsPerApurDetail.as_view() ),
-
-    url(r'^s5003-dpsperapur/$', 
-        s5003_dpsperapur_listar_views.listar, 
-        name='s5003_dpsperapur'),
-
-    url(r'^s5003-dpsperapur/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_dpsperapur_salvar_views.salvar, 
-        name='s5003_dpsperapur_salvar'),
-
-    url(r'^s5003-dpsperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_dpsperapur_salvar_views.salvar, 
-        name='s5003_dpsperapur_salvar_tab'),
-        
-    url(r'^s5003-dpsperapur/cadastrar/$', 
-        s5003_dpsperapur_salvar_views.salvar, 
-        name='s5003_dpsperapur_cadastrar'),
-
-    url(r'^s5003-dpsperapur/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_dpsperapur_salvar_views.salvar, 
-        name='s5003_dpsperapur_salvar_output'),
-        
-    url(r'^s5003-dpsperapur/(?P<output>[\w-]+)/$', 
-        s5003_dpsperapur_listar_views.listar, 
-        name='s5003_dpsperapur_output'),
-
-    url(r'^s5003-infodpsperante/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_infodpsperante_apagar_views.apagar, 
-        name='s5003_infodpsperante_apagar'),
 
     url(r'^s5003-infodpsperante/api/$',
         s5003_infodpsperante_api_views.s5003infoDpsPerAntEList.as_view() ),
@@ -404,63 +115,11 @@ urlpatterns = [
     url(r'^s5003-infodpsperante/api/(?P<pk>[0-9]+)/$',
         s5003_infodpsperante_api_views.s5003infoDpsPerAntEDetail.as_view() ),
 
-    url(r'^s5003-infodpsperante/$', 
-        s5003_infodpsperante_listar_views.listar, 
-        name='s5003_infodpsperante'),
-
-    url(r'^s5003-infodpsperante/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_infodpsperante_salvar_views.salvar, 
-        name='s5003_infodpsperante_salvar'),
-
-    url(r'^s5003-infodpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_infodpsperante_salvar_views.salvar, 
-        name='s5003_infodpsperante_salvar_tab'),
-        
-    url(r'^s5003-infodpsperante/cadastrar/$', 
-        s5003_infodpsperante_salvar_views.salvar, 
-        name='s5003_infodpsperante_cadastrar'),
-
-    url(r'^s5003-infodpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_infodpsperante_salvar_views.salvar, 
-        name='s5003_infodpsperante_salvar_output'),
-        
-    url(r'^s5003-infodpsperante/(?P<output>[\w-]+)/$', 
-        s5003_infodpsperante_listar_views.listar, 
-        name='s5003_infodpsperante_output'),
-
-    url(r'^s5003-dpsperante/apagar/(?P<pk>[0-9]+)/$', 
-        s5003_dpsperante_apagar_views.apagar, 
-        name='s5003_dpsperante_apagar'),
-
     url(r'^s5003-dpsperante/api/$',
         s5003_dpsperante_api_views.s5003dpsPerAntEList.as_view() ),
 
     url(r'^s5003-dpsperante/api/(?P<pk>[0-9]+)/$',
         s5003_dpsperante_api_views.s5003dpsPerAntEDetail.as_view() ),
-
-    url(r'^s5003-dpsperante/$', 
-        s5003_dpsperante_listar_views.listar, 
-        name='s5003_dpsperante'),
-
-    url(r'^s5003-dpsperante/salvar/(?P<pk>[0-9]+)/$', 
-        s5003_dpsperante_salvar_views.salvar, 
-        name='s5003_dpsperante_salvar'),
-
-    url(r'^s5003-dpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/$', 
-        s5003_dpsperante_salvar_views.salvar, 
-        name='s5003_dpsperante_salvar_tab'),
-        
-    url(r'^s5003-dpsperante/cadastrar/$', 
-        s5003_dpsperante_salvar_views.salvar, 
-        name='s5003_dpsperante_cadastrar'),
-
-    url(r'^s5003-dpsperante/salvar/(?P<pk>[0-9]+)/(?P<tab>[\w-]+)/(?P<output>[\w-]+)/$', 
-        s5003_dpsperante_salvar_views.salvar, 
-        name='s5003_dpsperante_salvar_output'),
-        
-    url(r'^s5003-dpsperante/(?P<output>[\w-]+)/$', 
-        s5003_dpsperante_listar_views.listar, 
-        name='s5003_dpsperante_output'),
 
 
 ]

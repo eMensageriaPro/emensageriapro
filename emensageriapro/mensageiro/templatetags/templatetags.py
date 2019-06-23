@@ -175,7 +175,7 @@ def auditoria_json(texto):
     if texto:
         dados = json_to_dict(texto)
         for a in dados.keys():
-            html += '<strong>%s:</strong> %s<br>' % (a, dados[a])
+            html += '<span class="label label-primary">%s</span> %s ' % (a, dados[a])
         return html
     else:
         return ''

@@ -118,9 +118,6 @@ class s5003basePerAntESerializer(ModelSerializer):
     
         model = s5003basePerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003basePerApur(SoftDeletionModel):
@@ -176,9 +173,6 @@ class s5003basePerApurSerializer(ModelSerializer):
     
         model = s5003basePerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003dpsPerAntE(SoftDeletionModel):
@@ -234,9 +228,6 @@ class s5003dpsPerAntESerializer(ModelSerializer):
     
         model = s5003dpsPerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003dpsPerApur(SoftDeletionModel):
@@ -292,9 +283,6 @@ class s5003dpsPerApurSerializer(ModelSerializer):
     
         model = s5003dpsPerApur
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003ideEstabLot(SoftDeletionModel):
@@ -352,9 +340,6 @@ class s5003ideEstabLotSerializer(ModelSerializer):
     
         model = s5003ideEstabLot
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoBaseFGTS(SoftDeletionModel):
@@ -406,9 +391,6 @@ class s5003infoBaseFGTSSerializer(ModelSerializer):
     
         model = s5003infoBaseFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoBasePerAntE(SoftDeletionModel):
@@ -462,9 +444,6 @@ class s5003infoBasePerAntESerializer(ModelSerializer):
     
         model = s5003infoBasePerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoDpsFGTS(SoftDeletionModel):
@@ -516,9 +495,6 @@ class s5003infoDpsFGTSSerializer(ModelSerializer):
     
         model = s5003infoDpsFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoDpsPerAntE(SoftDeletionModel):
@@ -572,9 +548,6 @@ class s5003infoDpsPerAntESerializer(ModelSerializer):
     
         model = s5003infoDpsPerAntE
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoTrabDps(SoftDeletionModel):
@@ -629,9 +602,6 @@ class s5003infoTrabDpsSerializer(ModelSerializer):
     
         model = s5003infoTrabDps
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
 
 
 class s5003infoTrabFGTS(SoftDeletionModel):
@@ -692,6 +662,3 @@ class s5003infoTrabFGTSSerializer(ModelSerializer):
     
         model = s5003infoTrabFGTS
         fields = '__all__'
-        read_only_fields = ('id', 'criado_em', 'criado_por', 
-                            'modificado_em', 'modificado_por',
-                            'desativado_em', 'desativado_por', 'ativo')
