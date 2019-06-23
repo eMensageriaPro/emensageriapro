@@ -355,9 +355,9 @@ def send_xml(request, transmissor_id, service):
     dados['response_completo'] = '%s/arquivos/Comunicacao/%s/response/%s_%s.xml' % (BASE_DIR, service, name, data_atual)
     dados['service'] = service
     dados['url'] = URL_WS
-    dados['cert'] = cert_pem_file
+    dados['cert'] = '%s/%s' % (BASE_DIR, cert_pem_file)
     dados['cacert'] = '%s/%s' % (BASE_DIR, CA_CERT_PEM_FILE)
-    dados['key'] = key_pem_file
+    dados['key'] = '%s/%s' % (BASE_DIR, key_pem_file)
     dados['action'] = ACTION
     dados['timeout'] = transmissor_dados['esocial_timeout']
 
