@@ -58,21 +58,21 @@
                                 Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210detPgtoFlretPgtoTot %}
                                 <li {% if tab == 's1210_detpgtofl_retpgtotot' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_detpgtofl_salvar_tab' pk=pk tab='s1210_detpgtofl_retpgtotot' %}">
                                     Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210detPgtoFlinfoPgtoParc %}
                                 <li {% if tab == 's1210_detpgtofl_infopgtoparc' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_detpgtofl_salvar_tab' pk=pk tab='s1210_detpgtofl_infopgtoparc' %}">
                                     Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1210_detpgtofl_retpgtotot -->
 
-            {% if tab == 's1210_detpgtofl_retpgtotot' %} 
+            {% if tab == 's1210_detpgtofl_retpgtotot' %}
 
                 {% if perms.s1210.can_see_data_s1210detPgtoFlretPgtoTot %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</h3>   
+                                    <h3 class="box-title">Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210detPgtoFlretPgtoTot or perms.s1210.can_see_list_s1210detPgtoFlretPgtoTot  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFlretPgtoTot %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFlretPgtoTot %}
 
-                                    <!-- begin_form_s1210_detpgtofl_retpgtotot --> 
+                                    <!-- begin_form_s1210_detpgtofl_retpgtotot -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_detpgtofl_retpgtotot" 
-                                              action="{% url 's1210_detpgtofl_retpgtotot_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_detpgtofl_retpgtotot"
+                                              action="{% url 's1210_detpgtofl_retpgtotot_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_s1210_detpgtofl_retpgtotot -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210detPgtoFlretPgtoTot %} 
+                                {% if perms.s1210.can_see_s1210detPgtoFlretPgtoTot %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_detpgtofl_retpgtotot --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_detpgtofl_retpgtotot -->
 
                                         {% include 'tables/s1210_detpgtofl_retpgtotot.html' %}
-                                        <!-- end_table_s1210_detpgtofl_retpgtotot --> 
-                
+                                        <!-- end_table_s1210_detpgtofl_retpgtotot -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1210_detpgtofl_infopgtoparc -->
 
-            {% if tab == 's1210_detpgtofl_infopgtoparc' %} 
+            {% if tab == 's1210_detpgtofl_infopgtoparc' %}
 
                 {% if perms.s1210.can_see_data_s1210detPgtoFlinfoPgtoParc %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.</h3>   
+                                    <h3 class="box-title">Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210detPgtoFlinfoPgtoParc or perms.s1210.can_see_list_s1210detPgtoFlinfoPgtoParc  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFlinfoPgtoParc %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFlinfoPgtoParc %}
 
-                                    <!-- begin_form_s1210_detpgtofl_infopgtoparc --> 
+                                    <!-- begin_form_s1210_detpgtofl_infopgtoparc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_detpgtofl_infopgtoparc" 
-                                              action="{% url 's1210_detpgtofl_infopgtoparc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_detpgtofl_infopgtoparc"
+                                              action="{% url 's1210_detpgtofl_infopgtoparc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_s1210_detpgtofl_infopgtoparc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210detPgtoFlinfoPgtoParc %} 
+                                {% if perms.s1210.can_see_s1210detPgtoFlinfoPgtoParc %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_detpgtofl_infopgtoparc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_detpgtofl_infopgtoparc -->
 
                                         {% include 'tables/s1210_detpgtofl_infopgtoparc.html' %}
-                                        <!-- end_table_s1210_detpgtofl_infopgtoparc --> 
-                
+                                        <!-- end_table_s1210_detpgtofl_infopgtoparc -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

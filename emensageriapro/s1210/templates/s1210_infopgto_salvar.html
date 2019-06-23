@@ -58,42 +58,42 @@
                                 Informações dos pagamentos efetuados</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210detPgtoFl %}
                                 <li {% if tab == 's1210_detpgtofl' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtofl' %}">
                                     Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210detPgtoBenPr %}
                                 <li {% if tab == 's1210_detpgtobenpr' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtobenpr' %}">
                                     Detalhamento de pagamentos relativos a benefícios previdenciários</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210detPgtoFer %}
                                 <li {% if tab == 's1210_detpgtofer' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtofer' %}">
                                     Detalhamento dos pagamentos efetuados relativos a férias</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210detPgtoAnt %}
                                 <li {% if tab == 's1210_detpgtoant' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_detpgtoant' %}">
                                     Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1210.can_see_s1210idePgtoExt %}
                                 <li {% if tab == 's1210_idepgtoext' %} class="active"{% endif %} >
                                     <a href="{% url 's1210_infopgto_salvar_tab' pk=pk tab='s1210_idepgtoext' %}">
                                     Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -319,7 +319,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -329,7 +329,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -344,7 +344,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -352,10 +352,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1210_detpgtofl -->
 
-            {% if tab == 's1210_detpgtofl' %} 
+            {% if tab == 's1210_detpgtofl' %}
 
                 {% if perms.s1210.can_see_data_s1210detPgtoFl %}
 
@@ -386,7 +386,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</h3>   
+                                    <h3 class="box-title">Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210detPgtoFl or perms.s1210.can_see_list_s1210detPgtoFl  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -398,20 +398,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFl %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFl %}
 
-                                    <!-- begin_form_s1210_detpgtofl --> 
+                                    <!-- begin_form_s1210_detpgtofl -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_detpgtofl" 
-                                              action="{% url 's1210_detpgtofl_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_detpgtofl"
+                                              action="{% url 's1210_detpgtofl_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -440,33 +440,33 @@
                                     </div>
 
                                 <!-- end_form_s1210_detpgtofl -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210detPgtoFl %} 
+                                {% if perms.s1210.can_see_s1210detPgtoFl %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_detpgtofl --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_detpgtofl -->
 
                                         {% include 'tables/s1210_detpgtofl.html' %}
-                                        <!-- end_table_s1210_detpgtofl --> 
-                
+                                        <!-- end_table_s1210_detpgtofl -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1210_detpgtobenpr -->
 
-            {% if tab == 's1210_detpgtobenpr' %} 
+            {% if tab == 's1210_detpgtobenpr' %}
 
                 {% if perms.s1210.can_see_data_s1210detPgtoBenPr %}
 
@@ -497,7 +497,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento de pagamentos relativos a benefícios previdenciários</h3>   
+                                    <h3 class="box-title">Detalhamento de pagamentos relativos a benefícios previdenciários</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210detPgtoBenPr or perms.s1210.can_see_list_s1210detPgtoBenPr  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -509,20 +509,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoBenPr %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoBenPr %}
 
-                                    <!-- begin_form_s1210_detpgtobenpr --> 
+                                    <!-- begin_form_s1210_detpgtobenpr -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_detpgtobenpr" 
-                                              action="{% url 's1210_detpgtobenpr_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_detpgtobenpr"
+                                              action="{% url 's1210_detpgtobenpr_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -551,33 +551,33 @@
                                     </div>
 
                                 <!-- end_form_s1210_detpgtobenpr -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210detPgtoBenPr %} 
+                                {% if perms.s1210.can_see_s1210detPgtoBenPr %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_detpgtobenpr --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_detpgtobenpr -->
 
                                         {% include 'tables/s1210_detpgtobenpr.html' %}
-                                        <!-- end_table_s1210_detpgtobenpr --> 
-                
+                                        <!-- end_table_s1210_detpgtobenpr -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1210_detpgtofer -->
 
-            {% if tab == 's1210_detpgtofer' %} 
+            {% if tab == 's1210_detpgtofer' %}
 
                 {% if perms.s1210.can_see_data_s1210detPgtoFer %}
 
@@ -608,7 +608,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento dos pagamentos efetuados relativos a férias</h3>   
+                                    <h3 class="box-title">Detalhamento dos pagamentos efetuados relativos a férias</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210detPgtoFer or perms.s1210.can_see_list_s1210detPgtoFer  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -620,20 +620,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFer %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoFer %}
 
-                                    <!-- begin_form_s1210_detpgtofer --> 
+                                    <!-- begin_form_s1210_detpgtofer -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_detpgtofer" 
-                                              action="{% url 's1210_detpgtofer_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_detpgtofer"
+                                              action="{% url 's1210_detpgtofer_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -662,33 +662,33 @@
                                     </div>
 
                                 <!-- end_form_s1210_detpgtofer -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210detPgtoFer %} 
+                                {% if perms.s1210.can_see_s1210detPgtoFer %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_detpgtofer --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_detpgtofer -->
 
                                         {% include 'tables/s1210_detpgtofer.html' %}
-                                        <!-- end_table_s1210_detpgtofer --> 
-                
+                                        <!-- end_table_s1210_detpgtofer -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1210_detpgtoant -->
 
-            {% if tab == 's1210_detpgtoant' %} 
+            {% if tab == 's1210_detpgtoant' %}
 
                 {% if perms.s1210.can_see_data_s1210detPgtoAnt %}
 
@@ -719,7 +719,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial</h3>   
+                                    <h3 class="box-title">Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210detPgtoAnt or perms.s1210.can_see_list_s1210detPgtoAnt  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -731,20 +731,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoAnt %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210detPgtoAnt %}
 
-                                    <!-- begin_form_s1210_detpgtoant --> 
+                                    <!-- begin_form_s1210_detpgtoant -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_detpgtoant" 
-                                              action="{% url 's1210_detpgtoant_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_detpgtoant"
+                                              action="{% url 's1210_detpgtoant_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -773,33 +773,33 @@
                                     </div>
 
                                 <!-- end_form_s1210_detpgtoant -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210detPgtoAnt %} 
+                                {% if perms.s1210.can_see_s1210detPgtoAnt %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_detpgtoant --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_detpgtoant -->
 
                                         {% include 'tables/s1210_detpgtoant.html' %}
-                                        <!-- end_table_s1210_detpgtoant --> 
-                
+                                        <!-- end_table_s1210_detpgtoant -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1210_idepgtoext -->
 
-            {% if tab == 's1210_idepgtoext' %} 
+            {% if tab == 's1210_idepgtoext' %}
 
                 {% if perms.s1210.can_see_data_s1210idePgtoExt %}
 
@@ -830,7 +830,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</h3>   
+                                    <h3 class="box-title">Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1210.add_s1210idePgtoExt or perms.s1210.can_see_list_s1210idePgtoExt  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -842,20 +842,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210idePgtoExt %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1210.add_s1210idePgtoExt %}
 
-                                    <!-- begin_form_s1210_idepgtoext --> 
+                                    <!-- begin_form_s1210_idepgtoext -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1210_idepgtoext" 
-                                              action="{% url 's1210_idepgtoext_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1210_idepgtoext"
+                                              action="{% url 's1210_idepgtoext_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -884,32 +884,32 @@
                                     </div>
 
                                 <!-- end_form_s1210_idepgtoext -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1210.can_see_s1210idePgtoExt %} 
+                                {% if perms.s1210.can_see_s1210idePgtoExt %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1210_idepgtoext --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1210_idepgtoext -->
 
                                         {% include 'tables/s1210_idepgtoext.html' %}
-                                        <!-- end_table_s1210_idepgtoext --> 
-                
+                                        <!-- end_table_s1210_idepgtoext -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

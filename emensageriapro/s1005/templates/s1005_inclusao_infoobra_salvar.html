@@ -58,7 +58,7 @@
                                 Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</a>
                             </li>
                         {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -284,7 +284,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -294,7 +294,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -309,7 +309,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -317,9 +317,9 @@
     {% if pk %}
 
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 </section>
 

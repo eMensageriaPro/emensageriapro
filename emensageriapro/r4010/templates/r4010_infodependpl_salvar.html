@@ -58,14 +58,14 @@
                                 Informações de dependente do plano de saúde coletivo empresarial</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoReembDep %}
                                 <li {% if tab == 'r4010_inforeembdep' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infodependpl_salvar_tab' pk=pk tab='r4010_inforeembdep' %}">
                                     Informação de reembolso do dependente do plano de saúde coletivo empresarial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4010_inforeembdep -->
 
-            {% if tab == 'r4010_inforeembdep' %} 
+            {% if tab == 'r4010_inforeembdep' %}
 
                 {% if perms.r4010.can_see_data_r4010infoReembDep %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação de reembolso do dependente do plano de saúde coletivo empresarial</h3>   
+                                    <h3 class="box-title">Informação de reembolso do dependente do plano de saúde coletivo empresarial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoReembDep or perms.r4010.can_see_list_r4010infoReembDep  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoReembDep %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoReembDep %}
 
-                                    <!-- begin_form_r4010_inforeembdep --> 
+                                    <!-- begin_form_r4010_inforeembdep -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_inforeembdep" 
-                                              action="{% url 'r4010_inforeembdep_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_inforeembdep"
+                                              action="{% url 'r4010_inforeembdep_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_r4010_inforeembdep -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoReembDep %} 
+                                {% if perms.r4010.can_see_r4010infoReembDep %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_inforeembdep --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_inforeembdep -->
 
                                         {% include 'tables/r4010_inforeembdep.html' %}
-                                        <!-- end_table_r4010_inforeembdep --> 
-                
+                                        <!-- end_table_r4010_inforeembdep -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -58,16 +58,16 @@
                                 R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.r4099.can_see_r4099ideRespInf %}
                                     <li {% if tab == 'r4099_iderespinf' %} class="active"{% endif %} >
                                         <a href="{% url 'r4099_evtfech_salvar_tab' pk=pk tab='r4099_iderespinf' %}">
                                         Responsável pelas informações</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -122,7 +122,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if r4099_evtfech.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -220,7 +220,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -249,7 +249,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.efdreinf.can_open_r4099evtFech %}
                             <div class="col-md-4">
@@ -282,9 +282,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.efdreinf.can_validate_r4099evtFech and r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -298,13 +298,13 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_see_receipt_r4099evtFech %}
+                            {% if perms.efdreinf.can_see_receipt_r4099evtFech and r4099_evtfech.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -374,7 +374,7 @@
 
 
                         {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.efdreinf.change_r4099evtFech %}
                             <div class="col-md-2">
@@ -431,18 +431,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.efdreinf.add_r4099evtFech or perms.efdreinf.change_r4099evtFech %}
-    
+
                         {% if r4099_evtfech_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -470,7 +470,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -480,7 +480,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -503,10 +503,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4099_iderespinf -->
 
-            {% if tab == 'r4099_iderespinf' %} 
+            {% if tab == 'r4099_iderespinf' %}
 
                 {% if perms.r4099.can_see_data_r4099ideRespInf %}
 
@@ -538,7 +538,7 @@
                             {% if r4099_evtfech.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Responsável pelas informações</h3>   
+                                    <h3 class="box-title">Responsável pelas informações</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4099.add_r4099ideRespInf or perms.r4099.can_see_list_r4099ideRespInf %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -550,19 +550,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r4099_evtfech.status == STATUS_EVENTO_CADASTRADO and perms.r4099.add_r4099ideRespInf %}            
+                                {% if r4099_evtfech.status == STATUS_EVENTO_CADASTRADO and perms.r4099.add_r4099ideRespInf %}
 
-                                    <!-- begin_form_r4099_iderespinf --> 
+                                    <!-- begin_form_r4099_iderespinf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4099_iderespinf" 
-                                              action="{% url 'r4099_iderespinf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4099_iderespinf"
+                                              action="{% url 'r4099_iderespinf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -591,31 +591,31 @@
                                     </div>
 
                                 <!-- end_form_r4099_iderespinf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4099.can_see_r4099ideRespInf %} 
+                                {% if perms.r4099.can_see_r4099ideRespInf %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4099_iderespinf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4099_iderespinf -->
 
                                         {% include 'tables/r4099_iderespinf.html' %}
-                                        <!-- end_table_r4099_iderespinf --> 
-                                    
+                                        <!-- end_table_r4099_iderespinf -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

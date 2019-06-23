@@ -58,72 +58,72 @@
                                 S-2206 - Alteração de Contrato de Trabalho</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2206.can_see_s2206infoCeletista %}
                                     <li {% if tab == 's2206_infoceletista' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_infoceletista' %}">
                                         Informações de Trabalhador Celetista</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206infoEstatutario %}
                                     <li {% if tab == 's2206_infoestatutario' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_infoestatutario' %}">
                                         Informações de Trabalhador Estatutário</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206localTrabGeral %}
                                     <li {% if tab == 's2206_localtrabgeral' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_localtrabgeral' %}">
                                         Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206localTrabDom %}
                                     <li {% if tab == 's2206_localtrabdom' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_localtrabdom' %}">
                                         Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206horContratual %}
                                     <li {% if tab == 's2206_horcontratual' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_horcontratual' %}">
                                         Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206filiacaoSindical %}
                                     <li {% if tab == 's2206_filiacaosindical' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_filiacaosindical' %}">
                                         Filiação Sindical do Trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206alvaraJudicial %}
                                     <li {% if tab == 's2206_alvarajudicial' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_alvarajudicial' %}">
                                         Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206observacoes %}
                                     <li {% if tab == 's2206_observacoes' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_observacoes' %}">
                                         Observações do contrato de trabalho</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2206.can_see_s2206servPubl %}
                                     <li {% if tab == 's2206_servpubl' %} class="active"{% endif %} >
                                         <a href="{% url 's2206_evtaltcontratual_salvar_tab' pk=pk tab='s2206_servpubl' %}">
                                         Alterações inerentes ao servidor público</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -178,7 +178,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2206_evtaltcontratual.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -276,7 +276,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -305,7 +305,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2206evtAltContratual %}
                             <div class="col-md-4">
@@ -338,9 +338,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2206evtAltContratual and s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -354,13 +354,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2206evtAltContratual %}
+                            {% if perms.esocial.can_see_receipt_s2206evtAltContratual and s2206_evtaltcontratual.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -430,7 +430,7 @@
 
 
                         {% if s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2206evtAltContratual %}
                             <div class="col-md-2">
@@ -487,18 +487,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2206evtAltContratual or perms.esocial.change_s2206evtAltContratual %}
-    
+
                         {% if s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -526,7 +526,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -536,7 +536,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -559,10 +559,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2206_infoceletista -->
 
-            {% if tab == 's2206_infoceletista' %} 
+            {% if tab == 's2206_infoceletista' %}
 
                 {% if perms.s2206.can_see_data_s2206infoCeletista %}
 
@@ -594,7 +594,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de Trabalhador Celetista</h3>   
+                                    <h3 class="box-title">Informações de Trabalhador Celetista</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206infoCeletista or perms.s2206.can_see_list_s2206infoCeletista %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -606,19 +606,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206infoCeletista %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206infoCeletista %}
 
-                                    <!-- begin_form_s2206_infoceletista --> 
+                                    <!-- begin_form_s2206_infoceletista -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_infoceletista" 
-                                              action="{% url 's2206_infoceletista_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_infoceletista"
+                                              action="{% url 's2206_infoceletista_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -647,32 +647,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_infoceletista -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206infoCeletista %} 
+                                {% if perms.s2206.can_see_s2206infoCeletista %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_infoceletista --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_infoceletista -->
 
                                         {% include 'tables/s2206_infoceletista.html' %}
-                                        <!-- end_table_s2206_infoceletista --> 
-                                    
+                                        <!-- end_table_s2206_infoceletista -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_infoestatutario -->
 
-            {% if tab == 's2206_infoestatutario' %} 
+            {% if tab == 's2206_infoestatutario' %}
 
                 {% if perms.s2206.can_see_data_s2206infoEstatutario %}
 
@@ -704,7 +704,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de Trabalhador Estatutário</h3>   
+                                    <h3 class="box-title">Informações de Trabalhador Estatutário</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206infoEstatutario or perms.s2206.can_see_list_s2206infoEstatutario %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -716,19 +716,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206infoEstatutario %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206infoEstatutario %}
 
-                                    <!-- begin_form_s2206_infoestatutario --> 
+                                    <!-- begin_form_s2206_infoestatutario -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_infoestatutario" 
-                                              action="{% url 's2206_infoestatutario_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_infoestatutario"
+                                              action="{% url 's2206_infoestatutario_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -757,32 +757,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_infoestatutario -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206infoEstatutario %} 
+                                {% if perms.s2206.can_see_s2206infoEstatutario %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_infoestatutario --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_infoestatutario -->
 
                                         {% include 'tables/s2206_infoestatutario.html' %}
-                                        <!-- end_table_s2206_infoestatutario --> 
-                                    
+                                        <!-- end_table_s2206_infoestatutario -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_localtrabgeral -->
 
-            {% if tab == 's2206_localtrabgeral' %} 
+            {% if tab == 's2206_localtrabgeral' %}
 
                 {% if perms.s2206.can_see_data_s2206localTrabGeral %}
 
@@ -814,7 +814,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>   
+                                    <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206localTrabGeral or perms.s2206.can_see_list_s2206localTrabGeral %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -826,19 +826,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206localTrabGeral %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206localTrabGeral %}
 
-                                    <!-- begin_form_s2206_localtrabgeral --> 
+                                    <!-- begin_form_s2206_localtrabgeral -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_localtrabgeral" 
-                                              action="{% url 's2206_localtrabgeral_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_localtrabgeral"
+                                              action="{% url 's2206_localtrabgeral_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -867,32 +867,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_localtrabgeral -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206localTrabGeral %} 
+                                {% if perms.s2206.can_see_s2206localTrabGeral %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_localtrabgeral --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_localtrabgeral -->
 
                                         {% include 'tables/s2206_localtrabgeral.html' %}
-                                        <!-- end_table_s2206_localtrabgeral --> 
-                                    
+                                        <!-- end_table_s2206_localtrabgeral -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_localtrabdom -->
 
-            {% if tab == 's2206_localtrabdom' %} 
+            {% if tab == 's2206_localtrabdom' %}
 
                 {% if perms.s2206.can_see_data_s2206localTrabDom %}
 
@@ -924,7 +924,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206localTrabDom or perms.s2206.can_see_list_s2206localTrabDom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -936,19 +936,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206localTrabDom %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206localTrabDom %}
 
-                                    <!-- begin_form_s2206_localtrabdom --> 
+                                    <!-- begin_form_s2206_localtrabdom -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_localtrabdom" 
-                                              action="{% url 's2206_localtrabdom_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_localtrabdom"
+                                              action="{% url 's2206_localtrabdom_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -977,32 +977,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_localtrabdom -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206localTrabDom %} 
+                                {% if perms.s2206.can_see_s2206localTrabDom %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_localtrabdom --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_localtrabdom -->
 
                                         {% include 'tables/s2206_localtrabdom.html' %}
-                                        <!-- end_table_s2206_localtrabdom --> 
-                                    
+                                        <!-- end_table_s2206_localtrabdom -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_horcontratual -->
 
-            {% if tab == 's2206_horcontratual' %} 
+            {% if tab == 's2206_horcontratual' %}
 
                 {% if perms.s2206.can_see_data_s2206horContratual %}
 
@@ -1034,7 +1034,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>   
+                                    <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206horContratual or perms.s2206.can_see_list_s2206horContratual %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1046,19 +1046,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206horContratual %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206horContratual %}
 
-                                    <!-- begin_form_s2206_horcontratual --> 
+                                    <!-- begin_form_s2206_horcontratual -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_horcontratual" 
-                                              action="{% url 's2206_horcontratual_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_horcontratual"
+                                              action="{% url 's2206_horcontratual_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1087,32 +1087,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_horcontratual -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206horContratual %} 
+                                {% if perms.s2206.can_see_s2206horContratual %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_horcontratual --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_horcontratual -->
 
                                         {% include 'tables/s2206_horcontratual.html' %}
-                                        <!-- end_table_s2206_horcontratual --> 
-                                    
+                                        <!-- end_table_s2206_horcontratual -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_filiacaosindical -->
 
-            {% if tab == 's2206_filiacaosindical' %} 
+            {% if tab == 's2206_filiacaosindical' %}
 
                 {% if perms.s2206.can_see_data_s2206filiacaoSindical %}
 
@@ -1144,7 +1144,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Filiação Sindical do Trabalhador</h3>   
+                                    <h3 class="box-title">Filiação Sindical do Trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206filiacaoSindical or perms.s2206.can_see_list_s2206filiacaoSindical %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1156,19 +1156,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206filiacaoSindical %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206filiacaoSindical %}
 
-                                    <!-- begin_form_s2206_filiacaosindical --> 
+                                    <!-- begin_form_s2206_filiacaosindical -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_filiacaosindical" 
-                                              action="{% url 's2206_filiacaosindical_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_filiacaosindical"
+                                              action="{% url 's2206_filiacaosindical_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1197,32 +1197,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_filiacaosindical -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206filiacaoSindical %} 
+                                {% if perms.s2206.can_see_s2206filiacaoSindical %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_filiacaosindical --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_filiacaosindical -->
 
                                         {% include 'tables/s2206_filiacaosindical.html' %}
-                                        <!-- end_table_s2206_filiacaosindical --> 
-                                    
+                                        <!-- end_table_s2206_filiacaosindical -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_alvarajudicial -->
 
-            {% if tab == 's2206_alvarajudicial' %} 
+            {% if tab == 's2206_alvarajudicial' %}
 
                 {% if perms.s2206.can_see_data_s2206alvaraJudicial %}
 
@@ -1254,7 +1254,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>   
+                                    <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206alvaraJudicial or perms.s2206.can_see_list_s2206alvaraJudicial %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1266,19 +1266,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206alvaraJudicial %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206alvaraJudicial %}
 
-                                    <!-- begin_form_s2206_alvarajudicial --> 
+                                    <!-- begin_form_s2206_alvarajudicial -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_alvarajudicial" 
-                                              action="{% url 's2206_alvarajudicial_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_alvarajudicial"
+                                              action="{% url 's2206_alvarajudicial_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1307,32 +1307,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_alvarajudicial -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206alvaraJudicial %} 
+                                {% if perms.s2206.can_see_s2206alvaraJudicial %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_alvarajudicial --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_alvarajudicial -->
 
                                         {% include 'tables/s2206_alvarajudicial.html' %}
-                                        <!-- end_table_s2206_alvarajudicial --> 
-                                    
+                                        <!-- end_table_s2206_alvarajudicial -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_observacoes -->
 
-            {% if tab == 's2206_observacoes' %} 
+            {% if tab == 's2206_observacoes' %}
 
                 {% if perms.s2206.can_see_data_s2206observacoes %}
 
@@ -1364,7 +1364,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Observações do contrato de trabalho</h3>   
+                                    <h3 class="box-title">Observações do contrato de trabalho</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206observacoes or perms.s2206.can_see_list_s2206observacoes %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1376,19 +1376,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206observacoes %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206observacoes %}
 
-                                    <!-- begin_form_s2206_observacoes --> 
+                                    <!-- begin_form_s2206_observacoes -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_observacoes" 
-                                              action="{% url 's2206_observacoes_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_observacoes"
+                                              action="{% url 's2206_observacoes_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1417,32 +1417,32 @@
                                     </div>
 
                                 <!-- end_form_s2206_observacoes -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206observacoes %} 
+                                {% if perms.s2206.can_see_s2206observacoes %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_observacoes --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_observacoes -->
 
                                         {% include 'tables/s2206_observacoes.html' %}
-                                        <!-- end_table_s2206_observacoes --> 
-                                    
+                                        <!-- end_table_s2206_observacoes -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2206_servpubl -->
 
-            {% if tab == 's2206_servpubl' %} 
+            {% if tab == 's2206_servpubl' %}
 
                 {% if perms.s2206.can_see_data_s2206servPubl %}
 
@@ -1474,7 +1474,7 @@
                             {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Alterações inerentes ao servidor público</h3>   
+                                    <h3 class="box-title">Alterações inerentes ao servidor público</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2206.add_s2206servPubl or perms.s2206.can_see_list_s2206servPubl %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1486,19 +1486,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206servPubl %}            
+                                {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO and perms.s2206.add_s2206servPubl %}
 
-                                    <!-- begin_form_s2206_servpubl --> 
+                                    <!-- begin_form_s2206_servpubl -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2206_servpubl" 
-                                              action="{% url 's2206_servpubl_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2206_servpubl"
+                                              action="{% url 's2206_servpubl_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1527,31 +1527,31 @@
                                     </div>
 
                                 <!-- end_form_s2206_servpubl -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2206.can_see_s2206servPubl %} 
+                                {% if perms.s2206.can_see_s2206servPubl %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2206_servpubl --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2206_servpubl -->
 
                                         {% include 'tables/s2206_servpubl.html' %}
-                                        <!-- end_table_s2206_servpubl --> 
-                                    
+                                        <!-- end_table_s2206_servpubl -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

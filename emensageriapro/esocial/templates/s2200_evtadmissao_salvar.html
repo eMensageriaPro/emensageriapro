@@ -58,163 +58,163 @@
                                 S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2200.can_see_s2200documentos %}
                                     <li {% if tab == 's2200_documentos' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_documentos' %}">
                                         Informações dos documentos pessoais do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200brasil %}
                                     <li {% if tab == 's2200_brasil' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_brasil' %}">
                                         Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200exterior %}
                                     <li {% if tab == 's2200_exterior' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_exterior' %}">
                                         Preenchido em caso de trabalhador residente no exterior.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200trabEstrangeiro %}
                                     <li {% if tab == 's2200_trabestrangeiro' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_trabestrangeiro' %}">
                                         Grupo de informações do Trabalhador Estrangeiro</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200infoDeficiencia %}
                                     <li {% if tab == 's2200_infodeficiencia' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_infodeficiencia' %}">
                                         Pessoa com Deficiência</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200dependente %}
                                     <li {% if tab == 's2200_dependente' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200aposentadoria %}
                                     <li {% if tab == 's2200_aposentadoria' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_aposentadoria' %}">
                                         Informação de aposentadoria do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200contato %}
                                     <li {% if tab == 's2200_contato' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_contato' %}">
                                         Informações de contato</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200infoCeletista %}
                                     <li {% if tab == 's2200_infoceletista' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_infoceletista' %}">
                                         Informações de Trabalhador Celetista</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200infoEstatutario %}
                                     <li {% if tab == 's2200_infoestatutario' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_infoestatutario' %}">
                                         Informações de Trabalhador Estatutário</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200localTrabGeral %}
                                     <li {% if tab == 's2200_localtrabgeral' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_localtrabgeral' %}">
                                         Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200localTrabDom %}
                                     <li {% if tab == 's2200_localtrabdom' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_localtrabdom' %}">
                                         Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200horContratual %}
                                     <li {% if tab == 's2200_horcontratual' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_horcontratual' %}">
                                         Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200filiacaoSindical %}
                                     <li {% if tab == 's2200_filiacaosindical' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_filiacaosindical' %}">
                                         Filiação Sindical do Trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200alvaraJudicial %}
                                     <li {% if tab == 's2200_alvarajudicial' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_alvarajudicial' %}">
                                         Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200observacoes %}
                                     <li {% if tab == 's2200_observacoes' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_observacoes' %}">
                                         Observações do contrato de trabalho</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200sucessaoVinc %}
                                     <li {% if tab == 's2200_sucessaovinc' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_sucessaovinc' %}">
                                         Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200transfDom %}
                                     <li {% if tab == 's2200_transfdom' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_transfdom' %}">
                                         Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200mudancaCPF %}
                                     <li {% if tab == 's2200_mudancacpf' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_mudancacpf' %}">
                                         Informações de mudança de CPF do trabalhador.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200afastamento %}
                                     <li {% if tab == 's2200_afastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_afastamento' %}">
                                         Informações de afastamento do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200desligamento %}
                                     <li {% if tab == 's2200_desligamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_desligamento' %}">
                                         Informações do desligamento do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2200.can_see_s2200cessao %}
                                     <li {% if tab == 's2200_cessao' %} class="active"{% endif %} >
                                         <a href="{% url 's2200_evtadmissao_salvar_tab' pk=pk tab='s2200_cessao' %}">
                                         Informações de cessão/exercício em outro órgão do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -269,7 +269,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2200_evtadmissao.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -367,7 +367,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -396,7 +396,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2200evtAdmissao %}
                             <div class="col-md-4">
@@ -429,9 +429,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2200evtAdmissao and s2200_evtadmissao_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -445,13 +445,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2200evtAdmissao %}
+                            {% if perms.esocial.can_see_receipt_s2200evtAdmissao and s2200_evtadmissao.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -521,7 +521,7 @@
 
 
                         {% if s2200_evtadmissao_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2200evtAdmissao %}
                             <div class="col-md-2">
@@ -578,18 +578,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2200evtAdmissao or perms.esocial.change_s2200evtAdmissao %}
-    
+
                         {% if s2200_evtadmissao_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -617,7 +617,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -627,7 +627,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -650,10 +650,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2200_documentos -->
 
-            {% if tab == 's2200_documentos' %} 
+            {% if tab == 's2200_documentos' %}
 
                 {% if perms.s2200.can_see_data_s2200documentos %}
 
@@ -685,7 +685,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>   
+                                    <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200documentos or perms.s2200.can_see_list_s2200documentos %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -697,19 +697,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200documentos %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200documentos %}
 
-                                    <!-- begin_form_s2200_documentos --> 
+                                    <!-- begin_form_s2200_documentos -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_documentos" 
-                                              action="{% url 's2200_documentos_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_documentos"
+                                              action="{% url 's2200_documentos_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -738,32 +738,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_documentos -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200documentos %} 
+                                {% if perms.s2200.can_see_s2200documentos %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_documentos --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_documentos -->
 
                                         {% include 'tables/s2200_documentos.html' %}
-                                        <!-- end_table_s2200_documentos --> 
-                                    
+                                        <!-- end_table_s2200_documentos -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_brasil -->
 
-            {% if tab == 's2200_brasil' %} 
+            {% if tab == 's2200_brasil' %}
 
                 {% if perms.s2200.can_see_data_s2200brasil %}
 
@@ -795,7 +795,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
+                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200brasil or perms.s2200.can_see_list_s2200brasil %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -807,19 +807,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200brasil %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200brasil %}
 
-                                    <!-- begin_form_s2200_brasil --> 
+                                    <!-- begin_form_s2200_brasil -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_brasil" 
-                                              action="{% url 's2200_brasil_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_brasil"
+                                              action="{% url 's2200_brasil_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -848,32 +848,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_brasil -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200brasil %} 
+                                {% if perms.s2200.can_see_s2200brasil %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_brasil --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_brasil -->
 
                                         {% include 'tables/s2200_brasil.html' %}
-                                        <!-- end_table_s2200_brasil --> 
-                                    
+                                        <!-- end_table_s2200_brasil -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_exterior -->
 
-            {% if tab == 's2200_exterior' %} 
+            {% if tab == 's2200_exterior' %}
 
                 {% if perms.s2200.can_see_data_s2200exterior %}
 
@@ -905,7 +905,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
+                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200exterior or perms.s2200.can_see_list_s2200exterior %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -917,19 +917,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200exterior %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200exterior %}
 
-                                    <!-- begin_form_s2200_exterior --> 
+                                    <!-- begin_form_s2200_exterior -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_exterior" 
-                                              action="{% url 's2200_exterior_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_exterior"
+                                              action="{% url 's2200_exterior_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -958,32 +958,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_exterior -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200exterior %} 
+                                {% if perms.s2200.can_see_s2200exterior %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_exterior --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_exterior -->
 
                                         {% include 'tables/s2200_exterior.html' %}
-                                        <!-- end_table_s2200_exterior --> 
-                                    
+                                        <!-- end_table_s2200_exterior -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_trabestrangeiro -->
 
-            {% if tab == 's2200_trabestrangeiro' %} 
+            {% if tab == 's2200_trabestrangeiro' %}
 
                 {% if perms.s2200.can_see_data_s2200trabEstrangeiro %}
 
@@ -1015,7 +1015,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>   
+                                    <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200trabEstrangeiro or perms.s2200.can_see_list_s2200trabEstrangeiro %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1027,19 +1027,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200trabEstrangeiro %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200trabEstrangeiro %}
 
-                                    <!-- begin_form_s2200_trabestrangeiro --> 
+                                    <!-- begin_form_s2200_trabestrangeiro -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_trabestrangeiro" 
-                                              action="{% url 's2200_trabestrangeiro_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_trabestrangeiro"
+                                              action="{% url 's2200_trabestrangeiro_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1068,32 +1068,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_trabestrangeiro -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200trabEstrangeiro %} 
+                                {% if perms.s2200.can_see_s2200trabEstrangeiro %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_trabestrangeiro --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_trabestrangeiro -->
 
                                         {% include 'tables/s2200_trabestrangeiro.html' %}
-                                        <!-- end_table_s2200_trabestrangeiro --> 
-                                    
+                                        <!-- end_table_s2200_trabestrangeiro -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_infodeficiencia -->
 
-            {% if tab == 's2200_infodeficiencia' %} 
+            {% if tab == 's2200_infodeficiencia' %}
 
                 {% if perms.s2200.can_see_data_s2200infoDeficiencia %}
 
@@ -1125,7 +1125,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Pessoa com Deficiência</h3>   
+                                    <h3 class="box-title">Pessoa com Deficiência</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200infoDeficiencia or perms.s2200.can_see_list_s2200infoDeficiencia %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1137,19 +1137,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200infoDeficiencia %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200infoDeficiencia %}
 
-                                    <!-- begin_form_s2200_infodeficiencia --> 
+                                    <!-- begin_form_s2200_infodeficiencia -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_infodeficiencia" 
-                                              action="{% url 's2200_infodeficiencia_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_infodeficiencia"
+                                              action="{% url 's2200_infodeficiencia_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1178,32 +1178,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_infodeficiencia -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200infoDeficiencia %} 
+                                {% if perms.s2200.can_see_s2200infoDeficiencia %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_infodeficiencia --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_infodeficiencia -->
 
                                         {% include 'tables/s2200_infodeficiencia.html' %}
-                                        <!-- end_table_s2200_infodeficiencia --> 
-                                    
+                                        <!-- end_table_s2200_infodeficiencia -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_dependente -->
 
-            {% if tab == 's2200_dependente' %} 
+            {% if tab == 's2200_dependente' %}
 
                 {% if perms.s2200.can_see_data_s2200dependente %}
 
@@ -1235,7 +1235,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações dos dependentes</h3>   
+                                    <h3 class="box-title">Informações dos dependentes</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200dependente or perms.s2200.can_see_list_s2200dependente %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1247,19 +1247,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200dependente %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200dependente %}
 
-                                    <!-- begin_form_s2200_dependente --> 
+                                    <!-- begin_form_s2200_dependente -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_dependente" 
-                                              action="{% url 's2200_dependente_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_dependente"
+                                              action="{% url 's2200_dependente_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1288,32 +1288,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_dependente -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200dependente %} 
+                                {% if perms.s2200.can_see_s2200dependente %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_dependente --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_dependente -->
 
                                         {% include 'tables/s2200_dependente.html' %}
-                                        <!-- end_table_s2200_dependente --> 
-                                    
+                                        <!-- end_table_s2200_dependente -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_aposentadoria -->
 
-            {% if tab == 's2200_aposentadoria' %} 
+            {% if tab == 's2200_aposentadoria' %}
 
                 {% if perms.s2200.can_see_data_s2200aposentadoria %}
 
@@ -1345,7 +1345,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação de aposentadoria do trabalhador</h3>   
+                                    <h3 class="box-title">Informação de aposentadoria do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200aposentadoria or perms.s2200.can_see_list_s2200aposentadoria %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1357,19 +1357,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200aposentadoria %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200aposentadoria %}
 
-                                    <!-- begin_form_s2200_aposentadoria --> 
+                                    <!-- begin_form_s2200_aposentadoria -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_aposentadoria" 
-                                              action="{% url 's2200_aposentadoria_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_aposentadoria"
+                                              action="{% url 's2200_aposentadoria_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1398,32 +1398,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_aposentadoria -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200aposentadoria %} 
+                                {% if perms.s2200.can_see_s2200aposentadoria %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_aposentadoria --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_aposentadoria -->
 
                                         {% include 'tables/s2200_aposentadoria.html' %}
-                                        <!-- end_table_s2200_aposentadoria --> 
-                                    
+                                        <!-- end_table_s2200_aposentadoria -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_contato -->
 
-            {% if tab == 's2200_contato' %} 
+            {% if tab == 's2200_contato' %}
 
                 {% if perms.s2200.can_see_data_s2200contato %}
 
@@ -1455,7 +1455,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de contato</h3>   
+                                    <h3 class="box-title">Informações de contato</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200contato or perms.s2200.can_see_list_s2200contato %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1467,19 +1467,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200contato %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200contato %}
 
-                                    <!-- begin_form_s2200_contato --> 
+                                    <!-- begin_form_s2200_contato -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_contato" 
-                                              action="{% url 's2200_contato_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_contato"
+                                              action="{% url 's2200_contato_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1508,32 +1508,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_contato -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200contato %} 
+                                {% if perms.s2200.can_see_s2200contato %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_contato --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_contato -->
 
                                         {% include 'tables/s2200_contato.html' %}
-                                        <!-- end_table_s2200_contato --> 
-                                    
+                                        <!-- end_table_s2200_contato -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_infoceletista -->
 
-            {% if tab == 's2200_infoceletista' %} 
+            {% if tab == 's2200_infoceletista' %}
 
                 {% if perms.s2200.can_see_data_s2200infoCeletista %}
 
@@ -1565,7 +1565,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de Trabalhador Celetista</h3>   
+                                    <h3 class="box-title">Informações de Trabalhador Celetista</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200infoCeletista or perms.s2200.can_see_list_s2200infoCeletista %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1577,19 +1577,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200infoCeletista %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200infoCeletista %}
 
-                                    <!-- begin_form_s2200_infoceletista --> 
+                                    <!-- begin_form_s2200_infoceletista -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_infoceletista" 
-                                              action="{% url 's2200_infoceletista_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_infoceletista"
+                                              action="{% url 's2200_infoceletista_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1618,32 +1618,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_infoceletista -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200infoCeletista %} 
+                                {% if perms.s2200.can_see_s2200infoCeletista %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_infoceletista --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_infoceletista -->
 
                                         {% include 'tables/s2200_infoceletista.html' %}
-                                        <!-- end_table_s2200_infoceletista --> 
-                                    
+                                        <!-- end_table_s2200_infoceletista -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_infoestatutario -->
 
-            {% if tab == 's2200_infoestatutario' %} 
+            {% if tab == 's2200_infoestatutario' %}
 
                 {% if perms.s2200.can_see_data_s2200infoEstatutario %}
 
@@ -1675,7 +1675,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de Trabalhador Estatutário</h3>   
+                                    <h3 class="box-title">Informações de Trabalhador Estatutário</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200infoEstatutario or perms.s2200.can_see_list_s2200infoEstatutario %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1687,19 +1687,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200infoEstatutario %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200infoEstatutario %}
 
-                                    <!-- begin_form_s2200_infoestatutario --> 
+                                    <!-- begin_form_s2200_infoestatutario -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_infoestatutario" 
-                                              action="{% url 's2200_infoestatutario_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_infoestatutario"
+                                              action="{% url 's2200_infoestatutario_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1728,32 +1728,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_infoestatutario -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200infoEstatutario %} 
+                                {% if perms.s2200.can_see_s2200infoEstatutario %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_infoestatutario --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_infoestatutario -->
 
                                         {% include 'tables/s2200_infoestatutario.html' %}
-                                        <!-- end_table_s2200_infoestatutario --> 
-                                    
+                                        <!-- end_table_s2200_infoestatutario -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_localtrabgeral -->
 
-            {% if tab == 's2200_localtrabgeral' %} 
+            {% if tab == 's2200_localtrabgeral' %}
 
                 {% if perms.s2200.can_see_data_s2200localTrabGeral %}
 
@@ -1785,7 +1785,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>   
+                                    <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200localTrabGeral or perms.s2200.can_see_list_s2200localTrabGeral %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1797,19 +1797,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200localTrabGeral %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200localTrabGeral %}
 
-                                    <!-- begin_form_s2200_localtrabgeral --> 
+                                    <!-- begin_form_s2200_localtrabgeral -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_localtrabgeral" 
-                                              action="{% url 's2200_localtrabgeral_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_localtrabgeral"
+                                              action="{% url 's2200_localtrabgeral_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1838,32 +1838,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_localtrabgeral -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200localTrabGeral %} 
+                                {% if perms.s2200.can_see_s2200localTrabGeral %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_localtrabgeral --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_localtrabgeral -->
 
                                         {% include 'tables/s2200_localtrabgeral.html' %}
-                                        <!-- end_table_s2200_localtrabgeral --> 
-                                    
+                                        <!-- end_table_s2200_localtrabgeral -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_localtrabdom -->
 
-            {% if tab == 's2200_localtrabdom' %} 
+            {% if tab == 's2200_localtrabdom' %}
 
                 {% if perms.s2200.can_see_data_s2200localTrabDom %}
 
@@ -1895,7 +1895,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200localTrabDom or perms.s2200.can_see_list_s2200localTrabDom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1907,19 +1907,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200localTrabDom %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200localTrabDom %}
 
-                                    <!-- begin_form_s2200_localtrabdom --> 
+                                    <!-- begin_form_s2200_localtrabdom -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_localtrabdom" 
-                                              action="{% url 's2200_localtrabdom_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_localtrabdom"
+                                              action="{% url 's2200_localtrabdom_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1948,32 +1948,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_localtrabdom -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200localTrabDom %} 
+                                {% if perms.s2200.can_see_s2200localTrabDom %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_localtrabdom --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_localtrabdom -->
 
                                         {% include 'tables/s2200_localtrabdom.html' %}
-                                        <!-- end_table_s2200_localtrabdom --> 
-                                    
+                                        <!-- end_table_s2200_localtrabdom -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_horcontratual -->
 
-            {% if tab == 's2200_horcontratual' %} 
+            {% if tab == 's2200_horcontratual' %}
 
                 {% if perms.s2200.can_see_data_s2200horContratual %}
 
@@ -2005,7 +2005,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>   
+                                    <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200horContratual or perms.s2200.can_see_list_s2200horContratual %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2017,19 +2017,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200horContratual %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200horContratual %}
 
-                                    <!-- begin_form_s2200_horcontratual --> 
+                                    <!-- begin_form_s2200_horcontratual -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_horcontratual" 
-                                              action="{% url 's2200_horcontratual_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_horcontratual"
+                                              action="{% url 's2200_horcontratual_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2058,32 +2058,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_horcontratual -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200horContratual %} 
+                                {% if perms.s2200.can_see_s2200horContratual %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_horcontratual --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_horcontratual -->
 
                                         {% include 'tables/s2200_horcontratual.html' %}
-                                        <!-- end_table_s2200_horcontratual --> 
-                                    
+                                        <!-- end_table_s2200_horcontratual -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_filiacaosindical -->
 
-            {% if tab == 's2200_filiacaosindical' %} 
+            {% if tab == 's2200_filiacaosindical' %}
 
                 {% if perms.s2200.can_see_data_s2200filiacaoSindical %}
 
@@ -2115,7 +2115,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Filiação Sindical do Trabalhador</h3>   
+                                    <h3 class="box-title">Filiação Sindical do Trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200filiacaoSindical or perms.s2200.can_see_list_s2200filiacaoSindical %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2127,19 +2127,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200filiacaoSindical %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200filiacaoSindical %}
 
-                                    <!-- begin_form_s2200_filiacaosindical --> 
+                                    <!-- begin_form_s2200_filiacaosindical -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_filiacaosindical" 
-                                              action="{% url 's2200_filiacaosindical_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_filiacaosindical"
+                                              action="{% url 's2200_filiacaosindical_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2168,32 +2168,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_filiacaosindical -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200filiacaoSindical %} 
+                                {% if perms.s2200.can_see_s2200filiacaoSindical %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_filiacaosindical --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_filiacaosindical -->
 
                                         {% include 'tables/s2200_filiacaosindical.html' %}
-                                        <!-- end_table_s2200_filiacaosindical --> 
-                                    
+                                        <!-- end_table_s2200_filiacaosindical -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_alvarajudicial -->
 
-            {% if tab == 's2200_alvarajudicial' %} 
+            {% if tab == 's2200_alvarajudicial' %}
 
                 {% if perms.s2200.can_see_data_s2200alvaraJudicial %}
 
@@ -2225,7 +2225,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>   
+                                    <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200alvaraJudicial or perms.s2200.can_see_list_s2200alvaraJudicial %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2237,19 +2237,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200alvaraJudicial %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200alvaraJudicial %}
 
-                                    <!-- begin_form_s2200_alvarajudicial --> 
+                                    <!-- begin_form_s2200_alvarajudicial -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_alvarajudicial" 
-                                              action="{% url 's2200_alvarajudicial_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_alvarajudicial"
+                                              action="{% url 's2200_alvarajudicial_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2278,32 +2278,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_alvarajudicial -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200alvaraJudicial %} 
+                                {% if perms.s2200.can_see_s2200alvaraJudicial %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_alvarajudicial --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_alvarajudicial -->
 
                                         {% include 'tables/s2200_alvarajudicial.html' %}
-                                        <!-- end_table_s2200_alvarajudicial --> 
-                                    
+                                        <!-- end_table_s2200_alvarajudicial -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_observacoes -->
 
-            {% if tab == 's2200_observacoes' %} 
+            {% if tab == 's2200_observacoes' %}
 
                 {% if perms.s2200.can_see_data_s2200observacoes %}
 
@@ -2335,7 +2335,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Observações do contrato de trabalho</h3>   
+                                    <h3 class="box-title">Observações do contrato de trabalho</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200observacoes or perms.s2200.can_see_list_s2200observacoes %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2347,19 +2347,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200observacoes %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200observacoes %}
 
-                                    <!-- begin_form_s2200_observacoes --> 
+                                    <!-- begin_form_s2200_observacoes -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_observacoes" 
-                                              action="{% url 's2200_observacoes_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_observacoes"
+                                              action="{% url 's2200_observacoes_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2388,32 +2388,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_observacoes -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200observacoes %} 
+                                {% if perms.s2200.can_see_s2200observacoes %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_observacoes --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_observacoes -->
 
                                         {% include 'tables/s2200_observacoes.html' %}
-                                        <!-- end_table_s2200_observacoes --> 
-                                    
+                                        <!-- end_table_s2200_observacoes -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_sucessaovinc -->
 
-            {% if tab == 's2200_sucessaovinc' %} 
+            {% if tab == 's2200_sucessaovinc' %}
 
                 {% if perms.s2200.can_see_data_s2200sucessaoVinc %}
 
@@ -2445,7 +2445,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>   
+                                    <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200sucessaoVinc or perms.s2200.can_see_list_s2200sucessaoVinc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2457,19 +2457,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200sucessaoVinc %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200sucessaoVinc %}
 
-                                    <!-- begin_form_s2200_sucessaovinc --> 
+                                    <!-- begin_form_s2200_sucessaovinc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_sucessaovinc" 
-                                              action="{% url 's2200_sucessaovinc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_sucessaovinc"
+                                              action="{% url 's2200_sucessaovinc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2498,32 +2498,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_sucessaovinc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200sucessaoVinc %} 
+                                {% if perms.s2200.can_see_s2200sucessaoVinc %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_sucessaovinc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_sucessaovinc -->
 
                                         {% include 'tables/s2200_sucessaovinc.html' %}
-                                        <!-- end_table_s2200_sucessaovinc --> 
-                                    
+                                        <!-- end_table_s2200_sucessaovinc -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_transfdom -->
 
-            {% if tab == 's2200_transfdom' %} 
+            {% if tab == 's2200_transfdom' %}
 
                 {% if perms.s2200.can_see_data_s2200transfDom %}
 
@@ -2555,7 +2555,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</h3>   
+                                    <h3 class="box-title">Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200transfDom or perms.s2200.can_see_list_s2200transfDom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2567,19 +2567,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200transfDom %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200transfDom %}
 
-                                    <!-- begin_form_s2200_transfdom --> 
+                                    <!-- begin_form_s2200_transfdom -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_transfdom" 
-                                              action="{% url 's2200_transfdom_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_transfdom"
+                                              action="{% url 's2200_transfdom_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2608,32 +2608,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_transfdom -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200transfDom %} 
+                                {% if perms.s2200.can_see_s2200transfDom %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_transfdom --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_transfdom -->
 
                                         {% include 'tables/s2200_transfdom.html' %}
-                                        <!-- end_table_s2200_transfdom --> 
-                                    
+                                        <!-- end_table_s2200_transfdom -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_mudancacpf -->
 
-            {% if tab == 's2200_mudancacpf' %} 
+            {% if tab == 's2200_mudancacpf' %}
 
                 {% if perms.s2200.can_see_data_s2200mudancaCPF %}
 
@@ -2665,7 +2665,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
+                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200mudancaCPF or perms.s2200.can_see_list_s2200mudancaCPF %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2677,19 +2677,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200mudancaCPF %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200mudancaCPF %}
 
-                                    <!-- begin_form_s2200_mudancacpf --> 
+                                    <!-- begin_form_s2200_mudancacpf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_mudancacpf" 
-                                              action="{% url 's2200_mudancacpf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_mudancacpf"
+                                              action="{% url 's2200_mudancacpf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2718,32 +2718,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_mudancacpf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200mudancaCPF %} 
+                                {% if perms.s2200.can_see_s2200mudancaCPF %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_mudancacpf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_mudancacpf -->
 
                                         {% include 'tables/s2200_mudancacpf.html' %}
-                                        <!-- end_table_s2200_mudancacpf --> 
-                                    
+                                        <!-- end_table_s2200_mudancacpf -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_afastamento -->
 
-            {% if tab == 's2200_afastamento' %} 
+            {% if tab == 's2200_afastamento' %}
 
                 {% if perms.s2200.can_see_data_s2200afastamento %}
 
@@ -2775,7 +2775,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de afastamento do trabalhador</h3>   
+                                    <h3 class="box-title">Informações de afastamento do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200afastamento or perms.s2200.can_see_list_s2200afastamento %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2787,19 +2787,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200afastamento %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200afastamento %}
 
-                                    <!-- begin_form_s2200_afastamento --> 
+                                    <!-- begin_form_s2200_afastamento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_afastamento" 
-                                              action="{% url 's2200_afastamento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_afastamento"
+                                              action="{% url 's2200_afastamento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2828,32 +2828,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_afastamento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200afastamento %} 
+                                {% if perms.s2200.can_see_s2200afastamento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_afastamento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_afastamento -->
 
                                         {% include 'tables/s2200_afastamento.html' %}
-                                        <!-- end_table_s2200_afastamento --> 
-                                    
+                                        <!-- end_table_s2200_afastamento -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_desligamento -->
 
-            {% if tab == 's2200_desligamento' %} 
+            {% if tab == 's2200_desligamento' %}
 
                 {% if perms.s2200.can_see_data_s2200desligamento %}
 
@@ -2885,7 +2885,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do desligamento do trabalhador</h3>   
+                                    <h3 class="box-title">Informações do desligamento do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200desligamento or perms.s2200.can_see_list_s2200desligamento %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -2897,19 +2897,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200desligamento %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200desligamento %}
 
-                                    <!-- begin_form_s2200_desligamento --> 
+                                    <!-- begin_form_s2200_desligamento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_desligamento" 
-                                              action="{% url 's2200_desligamento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_desligamento"
+                                              action="{% url 's2200_desligamento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -2938,32 +2938,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_desligamento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200desligamento %} 
+                                {% if perms.s2200.can_see_s2200desligamento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_desligamento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_desligamento -->
 
                                         {% include 'tables/s2200_desligamento.html' %}
-                                        <!-- end_table_s2200_desligamento --> 
-                                    
+                                        <!-- end_table_s2200_desligamento -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2200_cessao -->
 
-            {% if tab == 's2200_cessao' %} 
+            {% if tab == 's2200_cessao' %}
 
                 {% if perms.s2200.can_see_data_s2200cessao %}
 
@@ -2995,7 +2995,7 @@
                             {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de cessão/exercício em outro órgão do trabalhador</h3>   
+                                    <h3 class="box-title">Informações de cessão/exercício em outro órgão do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200cessao or perms.s2200.can_see_list_s2200cessao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -3007,19 +3007,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200cessao %}            
+                                {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200cessao %}
 
-                                    <!-- begin_form_s2200_cessao --> 
+                                    <!-- begin_form_s2200_cessao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_cessao" 
-                                              action="{% url 's2200_cessao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_cessao"
+                                              action="{% url 's2200_cessao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -3048,31 +3048,31 @@
                                     </div>
 
                                 <!-- end_form_s2200_cessao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200cessao %} 
+                                {% if perms.s2200.can_see_s2200cessao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_cessao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_cessao -->
 
                                         {% include 'tables/s2200_cessao.html' %}
-                                        <!-- end_table_s2200_cessao --> 
-                                    
+                                        <!-- end_table_s2200_cessao -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

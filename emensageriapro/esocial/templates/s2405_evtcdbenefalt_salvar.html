@@ -58,23 +58,23 @@
                                 S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2405.can_see_s2405endereco %}
                                     <li {% if tab == 's2405_endereco' %} class="active"{% endif %} >
                                         <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='s2405_endereco' %}">
                                         Grupo de informações do endereço do Trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2405.can_see_s2405dependente %}
                                     <li {% if tab == 's2405_dependente' %} class="active"{% endif %} >
                                         <a href="{% url 's2405_evtcdbenefalt_salvar_tab' pk=pk tab='s2405_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2405_evtcdbenefalt.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -227,7 +227,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -256,7 +256,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2405evtCdBenefAlt %}
                             <div class="col-md-4">
@@ -289,9 +289,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2405evtCdBenefAlt and s2405_evtcdbenefalt_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -305,13 +305,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2405evtCdBenefAlt %}
+                            {% if perms.esocial.can_see_receipt_s2405evtCdBenefAlt and s2405_evtcdbenefalt.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -381,7 +381,7 @@
 
 
                         {% if s2405_evtcdbenefalt_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2405evtCdBenefAlt %}
                             <div class="col-md-2">
@@ -438,18 +438,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2405evtCdBenefAlt or perms.esocial.change_s2405evtCdBenefAlt %}
-    
+
                         {% if s2405_evtcdbenefalt_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -477,7 +477,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -487,7 +487,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -510,10 +510,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2405_endereco -->
 
-            {% if tab == 's2405_endereco' %} 
+            {% if tab == 's2405_endereco' %}
 
                 {% if perms.s2405.can_see_data_s2405endereco %}
 
@@ -545,7 +545,7 @@
                             {% if s2405_evtcdbenefalt.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Grupo de informações do endereço do Trabalhador</h3>   
+                                    <h3 class="box-title">Grupo de informações do endereço do Trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2405.add_s2405endereco or perms.s2405.can_see_list_s2405endereco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -557,19 +557,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2405_evtcdbenefalt.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405endereco %}            
+                                {% if s2405_evtcdbenefalt.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405endereco %}
 
-                                    <!-- begin_form_s2405_endereco --> 
+                                    <!-- begin_form_s2405_endereco -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2405_endereco" 
-                                              action="{% url 's2405_endereco_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2405_endereco"
+                                              action="{% url 's2405_endereco_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -598,32 +598,32 @@
                                     </div>
 
                                 <!-- end_form_s2405_endereco -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2405.can_see_s2405endereco %} 
+                                {% if perms.s2405.can_see_s2405endereco %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2405_endereco --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2405_endereco -->
 
                                         {% include 'tables/s2405_endereco.html' %}
-                                        <!-- end_table_s2405_endereco --> 
-                                    
+                                        <!-- end_table_s2405_endereco -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2405_dependente -->
 
-            {% if tab == 's2405_dependente' %} 
+            {% if tab == 's2405_dependente' %}
 
                 {% if perms.s2405.can_see_data_s2405dependente %}
 
@@ -655,7 +655,7 @@
                             {% if s2405_evtcdbenefalt.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações dos dependentes</h3>   
+                                    <h3 class="box-title">Informações dos dependentes</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2405.add_s2405dependente or perms.s2405.can_see_list_s2405dependente %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -667,19 +667,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2405_evtcdbenefalt.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405dependente %}            
+                                {% if s2405_evtcdbenefalt.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405dependente %}
 
-                                    <!-- begin_form_s2405_dependente --> 
+                                    <!-- begin_form_s2405_dependente -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2405_dependente" 
-                                              action="{% url 's2405_dependente_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2405_dependente"
+                                              action="{% url 's2405_dependente_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -708,31 +708,31 @@
                                     </div>
 
                                 <!-- end_form_s2405_dependente -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2405.can_see_s2405dependente %} 
+                                {% if perms.s2405.can_see_s2405dependente %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2405_dependente --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2405_dependente -->
 
                                         {% include 'tables/s2405_dependente.html' %}
-                                        <!-- end_table_s2405_dependente --> 
-                                    
+                                        <!-- end_table_s2405_dependente -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

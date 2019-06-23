@@ -58,21 +58,21 @@
                                 Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoRRAdespProcJud %}
                                 <li {% if tab == 'r4010_inforra_despprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_inforra_salvar_tab' pk=pk tab='r4010_inforra_despprocjud' %}">
                                     Detalhamento das despesas de processo judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoRRAorigemRec %}
                                 <li {% if tab == 'r4010_inforra_origemrec' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_inforra_salvar_tab' pk=pk tab='r4010_inforra_origemrec' %}">
                                     Informações sobre a origem dos recursos</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4010_inforra_despprocjud -->
 
-            {% if tab == 'r4010_inforra_despprocjud' %} 
+            {% if tab == 'r4010_inforra_despprocjud' %}
 
                 {% if perms.r4010.can_see_data_r4010infoRRAdespProcJud %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das despesas de processo judicial</h3>   
+                                    <h3 class="box-title">Detalhamento das despesas de processo judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoRRAdespProcJud or perms.r4010.can_see_list_r4010infoRRAdespProcJud  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoRRAdespProcJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoRRAdespProcJud %}
 
-                                    <!-- begin_form_r4010_inforra_despprocjud --> 
+                                    <!-- begin_form_r4010_inforra_despprocjud -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_inforra_despprocjud" 
-                                              action="{% url 'r4010_inforra_despprocjud_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_inforra_despprocjud"
+                                              action="{% url 'r4010_inforra_despprocjud_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_inforra_despprocjud -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoRRAdespProcJud %} 
+                                {% if perms.r4010.can_see_r4010infoRRAdespProcJud %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_inforra_despprocjud --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_inforra_despprocjud -->
 
                                         {% include 'tables/r4010_inforra_despprocjud.html' %}
-                                        <!-- end_table_r4010_inforra_despprocjud --> 
-                
+                                        <!-- end_table_r4010_inforra_despprocjud -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_inforra_origemrec -->
 
-            {% if tab == 'r4010_inforra_origemrec' %} 
+            {% if tab == 'r4010_inforra_origemrec' %}
 
                 {% if perms.r4010.can_see_data_r4010infoRRAorigemRec %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre a origem dos recursos</h3>   
+                                    <h3 class="box-title">Informações sobre a origem dos recursos</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoRRAorigemRec or perms.r4010.can_see_list_r4010infoRRAorigemRec  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoRRAorigemRec %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoRRAorigemRec %}
 
-                                    <!-- begin_form_r4010_inforra_origemrec --> 
+                                    <!-- begin_form_r4010_inforra_origemrec -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_inforra_origemrec" 
-                                              action="{% url 'r4010_inforra_origemrec_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_inforra_origemrec"
+                                              action="{% url 'r4010_inforra_origemrec_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_r4010_inforra_origemrec -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoRRAorigemRec %} 
+                                {% if perms.r4010.can_see_r4010infoRRAorigemRec %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_inforra_origemrec --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_inforra_origemrec -->
 
                                         {% include 'tables/r4010_inforra_origemrec.html' %}
-                                        <!-- end_table_r4010_inforra_origemrec --> 
-                
+                                        <!-- end_table_r4010_inforra_origemrec -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

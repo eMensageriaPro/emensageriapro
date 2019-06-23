@@ -58,16 +58,16 @@
                                 S-2245 - Treinamentos, Capacitações e Exercícios Simulados</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2245.can_see_s2245ideProfResp %}
                                     <li {% if tab == 's2245_ideprofresp' %} class="active"{% endif %} >
                                         <a href="{% url 's2245_evttreicap_salvar_tab' pk=pk tab='s2245_ideprofresp' %}">
                                         Informações relativas ao profissional responsável pelo treinamento/capacitação</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -122,7 +122,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2245_evttreicap.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -220,7 +220,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -249,7 +249,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2245evtTreiCap %}
                             <div class="col-md-4">
@@ -282,9 +282,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2245evtTreiCap and s2245_evttreicap_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -298,13 +298,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2245evtTreiCap %}
+                            {% if perms.esocial.can_see_receipt_s2245evtTreiCap and s2245_evttreicap.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -374,7 +374,7 @@
 
 
                         {% if s2245_evttreicap_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2245evtTreiCap %}
                             <div class="col-md-2">
@@ -431,18 +431,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2245evtTreiCap or perms.esocial.change_s2245evtTreiCap %}
-    
+
                         {% if s2245_evttreicap_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -470,7 +470,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -480,7 +480,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -503,10 +503,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2245_ideprofresp -->
 
-            {% if tab == 's2245_ideprofresp' %} 
+            {% if tab == 's2245_ideprofresp' %}
 
                 {% if perms.s2245.can_see_data_s2245ideProfResp %}
 
@@ -538,7 +538,7 @@
                             {% if s2245_evttreicap.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao profissional responsável pelo treinamento/capacitação</h3>   
+                                    <h3 class="box-title">Informações relativas ao profissional responsável pelo treinamento/capacitação</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2245.add_s2245ideProfResp or perms.s2245.can_see_list_s2245ideProfResp %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -550,19 +550,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2245_evttreicap.status == STATUS_EVENTO_CADASTRADO and perms.s2245.add_s2245ideProfResp %}            
+                                {% if s2245_evttreicap.status == STATUS_EVENTO_CADASTRADO and perms.s2245.add_s2245ideProfResp %}
 
-                                    <!-- begin_form_s2245_ideprofresp --> 
+                                    <!-- begin_form_s2245_ideprofresp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2245_ideprofresp" 
-                                              action="{% url 's2245_ideprofresp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2245_ideprofresp"
+                                              action="{% url 's2245_ideprofresp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -591,31 +591,31 @@
                                     </div>
 
                                 <!-- end_form_s2245_ideprofresp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2245.can_see_s2245ideProfResp %} 
+                                {% if perms.s2245.can_see_s2245ideProfResp %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2245_ideprofresp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2245_ideprofresp -->
 
                                         {% include 'tables/s2245_ideprofresp.html' %}
-                                        <!-- end_table_s2245_ideprofresp --> 
-                                    
+                                        <!-- end_table_s2245_ideprofresp -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

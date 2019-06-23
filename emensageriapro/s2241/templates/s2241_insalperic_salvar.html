@@ -58,28 +58,28 @@
                                 Informações sobre o ambiente de trabalho insalubre/periculoso.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2241.can_see_s2241iniInsalPeric %}
                                 <li {% if tab == 's2241_iniinsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_iniinsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Início</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2241.can_see_s2241altInsalPeric %}
                                 <li {% if tab == 's2241_altinsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_altinsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Alteração</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2241.can_see_s2241fimInsalPeric %}
                                 <li {% if tab == 's2241_fiminsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar_tab' pk=pk tab='s2241_fiminsalperic' %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Fim</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -305,7 +305,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -315,7 +315,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -330,7 +330,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -338,10 +338,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2241_iniinsalperic -->
 
-            {% if tab == 's2241_iniinsalperic' %} 
+            {% if tab == 's2241_iniinsalperic' %}
 
                 {% if perms.s2241.can_see_data_s2241iniInsalPeric %}
 
@@ -372,7 +372,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Início</h3>   
+                                    <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Início</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241iniInsalPeric or perms.s2241.can_see_list_s2241iniInsalPeric  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -384,20 +384,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241iniInsalPeric %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241iniInsalPeric %}
 
-                                    <!-- begin_form_s2241_iniinsalperic --> 
+                                    <!-- begin_form_s2241_iniinsalperic -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_iniinsalperic" 
-                                              action="{% url 's2241_iniinsalperic_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_iniinsalperic"
+                                              action="{% url 's2241_iniinsalperic_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -426,33 +426,33 @@
                                     </div>
 
                                 <!-- end_form_s2241_iniinsalperic -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241iniInsalPeric %} 
+                                {% if perms.s2241.can_see_s2241iniInsalPeric %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_iniinsalperic --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_iniinsalperic -->
 
                                         {% include 'tables/s2241_iniinsalperic.html' %}
-                                        <!-- end_table_s2241_iniinsalperic --> 
-                
+                                        <!-- end_table_s2241_iniinsalperic -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2241_altinsalperic -->
 
-            {% if tab == 's2241_altinsalperic' %} 
+            {% if tab == 's2241_altinsalperic' %}
 
                 {% if perms.s2241.can_see_data_s2241altInsalPeric %}
 
@@ -483,7 +483,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Alteração</h3>   
+                                    <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Alteração</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241altInsalPeric or perms.s2241.can_see_list_s2241altInsalPeric  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -495,20 +495,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241altInsalPeric %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241altInsalPeric %}
 
-                                    <!-- begin_form_s2241_altinsalperic --> 
+                                    <!-- begin_form_s2241_altinsalperic -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_altinsalperic" 
-                                              action="{% url 's2241_altinsalperic_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_altinsalperic"
+                                              action="{% url 's2241_altinsalperic_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -537,33 +537,33 @@
                                     </div>
 
                                 <!-- end_form_s2241_altinsalperic -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241altInsalPeric %} 
+                                {% if perms.s2241.can_see_s2241altInsalPeric %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_altinsalperic --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_altinsalperic -->
 
                                         {% include 'tables/s2241_altinsalperic.html' %}
-                                        <!-- end_table_s2241_altinsalperic --> 
-                
+                                        <!-- end_table_s2241_altinsalperic -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2241_fiminsalperic -->
 
-            {% if tab == 's2241_fiminsalperic' %} 
+            {% if tab == 's2241_fiminsalperic' %}
 
                 {% if perms.s2241.can_see_data_s2241fimInsalPeric %}
 
@@ -594,7 +594,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Fim</h3>   
+                                    <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Fim</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241fimInsalPeric or perms.s2241.can_see_list_s2241fimInsalPeric  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -606,20 +606,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241fimInsalPeric %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241fimInsalPeric %}
 
-                                    <!-- begin_form_s2241_fiminsalperic --> 
+                                    <!-- begin_form_s2241_fiminsalperic -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_fiminsalperic" 
-                                              action="{% url 's2241_fiminsalperic_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_fiminsalperic"
+                                              action="{% url 's2241_fiminsalperic_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -648,32 +648,32 @@
                                     </div>
 
                                 <!-- end_form_s2241_fiminsalperic -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241fimInsalPeric %} 
+                                {% if perms.s2241.can_see_s2241fimInsalPeric %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_fiminsalperic --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_fiminsalperic -->
 
                                         {% include 'tables/s2241_fiminsalperic.html' %}
-                                        <!-- end_table_s2241_fiminsalperic --> 
-                
+                                        <!-- end_table_s2241_fiminsalperic -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

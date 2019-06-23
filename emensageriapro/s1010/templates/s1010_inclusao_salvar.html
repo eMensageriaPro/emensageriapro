@@ -58,42 +58,42 @@
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoCP %}
                                 <li {% if tab == 's1010_inclusao_ideprocessocp' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessocp' %}">
                                     Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoIRRF %}
                                 <li {% if tab == 's1010_inclusao_ideprocessoirrf' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessoirrf' %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoFGTS %}
                                 <li {% if tab == 's1010_inclusao_ideprocessofgts' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessofgts' %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoSIND %}
                                 <li {% if tab == 's1010_inclusao_ideprocessosind' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessosind' %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1010.can_see_s1010inclusaoideProcessoCPRP %}
                                 <li {% if tab == 's1010_inclusao_ideprocessocprp' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_inclusao_salvar_tab' pk=pk tab='s1010_inclusao_ideprocessocprp' %}">
                                     Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -319,7 +319,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -329,7 +329,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -344,7 +344,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -352,10 +352,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1010_inclusao_ideprocessocp -->
 
-            {% if tab == 's1010_inclusao_ideprocessocp' %} 
+            {% if tab == 's1010_inclusao_ideprocessocp' %}
 
                 {% if perms.s1010.can_see_data_s1010inclusaoideProcessoCP %}
 
@@ -386,7 +386,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <h3 class="box-title">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1010.add_s1010inclusaoideProcessoCP or perms.s1010.can_see_list_s1010inclusaoideProcessoCP  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -398,20 +398,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoCP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoCP %}
 
-                                    <!-- begin_form_s1010_inclusao_ideprocessocp --> 
+                                    <!-- begin_form_s1010_inclusao_ideprocessocp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1010_inclusao_ideprocessocp" 
-                                              action="{% url 's1010_inclusao_ideprocessocp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1010_inclusao_ideprocessocp"
+                                              action="{% url 's1010_inclusao_ideprocessocp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -440,33 +440,33 @@
                                     </div>
 
                                 <!-- end_form_s1010_inclusao_ideprocessocp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1010.can_see_s1010inclusaoideProcessoCP %} 
+                                {% if perms.s1010.can_see_s1010inclusaoideProcessoCP %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1010_inclusao_ideprocessocp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1010_inclusao_ideprocessocp -->
 
                                         {% include 'tables/s1010_inclusao_ideprocessocp.html' %}
-                                        <!-- end_table_s1010_inclusao_ideprocessocp --> 
-                
+                                        <!-- end_table_s1010_inclusao_ideprocessocp -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1010_inclusao_ideprocessoirrf -->
 
-            {% if tab == 's1010_inclusao_ideprocessoirrf' %} 
+            {% if tab == 's1010_inclusao_ideprocessoirrf' %}
 
                 {% if perms.s1010.can_see_data_s1010inclusaoideProcessoIRRF %}
 
@@ -497,7 +497,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1010.add_s1010inclusaoideProcessoIRRF or perms.s1010.can_see_list_s1010inclusaoideProcessoIRRF  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -509,20 +509,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoIRRF %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoIRRF %}
 
-                                    <!-- begin_form_s1010_inclusao_ideprocessoirrf --> 
+                                    <!-- begin_form_s1010_inclusao_ideprocessoirrf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1010_inclusao_ideprocessoirrf" 
-                                              action="{% url 's1010_inclusao_ideprocessoirrf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1010_inclusao_ideprocessoirrf"
+                                              action="{% url 's1010_inclusao_ideprocessoirrf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -551,33 +551,33 @@
                                     </div>
 
                                 <!-- end_form_s1010_inclusao_ideprocessoirrf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1010.can_see_s1010inclusaoideProcessoIRRF %} 
+                                {% if perms.s1010.can_see_s1010inclusaoideProcessoIRRF %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1010_inclusao_ideprocessoirrf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1010_inclusao_ideprocessoirrf -->
 
                                         {% include 'tables/s1010_inclusao_ideprocessoirrf.html' %}
-                                        <!-- end_table_s1010_inclusao_ideprocessoirrf --> 
-                
+                                        <!-- end_table_s1010_inclusao_ideprocessoirrf -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1010_inclusao_ideprocessofgts -->
 
-            {% if tab == 's1010_inclusao_ideprocessofgts' %} 
+            {% if tab == 's1010_inclusao_ideprocessofgts' %}
 
                 {% if perms.s1010.can_see_data_s1010inclusaoideProcessoFGTS %}
 
@@ -608,7 +608,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1010.add_s1010inclusaoideProcessoFGTS or perms.s1010.can_see_list_s1010inclusaoideProcessoFGTS  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -620,20 +620,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoFGTS %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoFGTS %}
 
-                                    <!-- begin_form_s1010_inclusao_ideprocessofgts --> 
+                                    <!-- begin_form_s1010_inclusao_ideprocessofgts -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1010_inclusao_ideprocessofgts" 
-                                              action="{% url 's1010_inclusao_ideprocessofgts_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1010_inclusao_ideprocessofgts"
+                                              action="{% url 's1010_inclusao_ideprocessofgts_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -662,33 +662,33 @@
                                     </div>
 
                                 <!-- end_form_s1010_inclusao_ideprocessofgts -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1010.can_see_s1010inclusaoideProcessoFGTS %} 
+                                {% if perms.s1010.can_see_s1010inclusaoideProcessoFGTS %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1010_inclusao_ideprocessofgts --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1010_inclusao_ideprocessofgts -->
 
                                         {% include 'tables/s1010_inclusao_ideprocessofgts.html' %}
-                                        <!-- end_table_s1010_inclusao_ideprocessofgts --> 
-                
+                                        <!-- end_table_s1010_inclusao_ideprocessofgts -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1010_inclusao_ideprocessosind -->
 
-            {% if tab == 's1010_inclusao_ideprocessosind' %} 
+            {% if tab == 's1010_inclusao_ideprocessosind' %}
 
                 {% if perms.s1010.can_see_data_s1010inclusaoideProcessoSIND %}
 
@@ -719,7 +719,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1010.add_s1010inclusaoideProcessoSIND or perms.s1010.can_see_list_s1010inclusaoideProcessoSIND  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -731,20 +731,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoSIND %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoSIND %}
 
-                                    <!-- begin_form_s1010_inclusao_ideprocessosind --> 
+                                    <!-- begin_form_s1010_inclusao_ideprocessosind -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1010_inclusao_ideprocessosind" 
-                                              action="{% url 's1010_inclusao_ideprocessosind_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1010_inclusao_ideprocessosind"
+                                              action="{% url 's1010_inclusao_ideprocessosind_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -773,33 +773,33 @@
                                     </div>
 
                                 <!-- end_form_s1010_inclusao_ideprocessosind -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1010.can_see_s1010inclusaoideProcessoSIND %} 
+                                {% if perms.s1010.can_see_s1010inclusaoideProcessoSIND %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1010_inclusao_ideprocessosind --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1010_inclusao_ideprocessosind -->
 
                                         {% include 'tables/s1010_inclusao_ideprocessosind.html' %}
-                                        <!-- end_table_s1010_inclusao_ideprocessosind --> 
-                
+                                        <!-- end_table_s1010_inclusao_ideprocessosind -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1010_inclusao_ideprocessocprp -->
 
-            {% if tab == 's1010_inclusao_ideprocessocprp' %} 
+            {% if tab == 's1010_inclusao_ideprocessocprp' %}
 
                 {% if perms.s1010.can_see_data_s1010inclusaoideProcessoCPRP %}
 
@@ -830,7 +830,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <h3 class="box-title">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1010.add_s1010inclusaoideProcessoCPRP or perms.s1010.can_see_list_s1010inclusaoideProcessoCPRP  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -842,20 +842,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoCPRP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1010.add_s1010inclusaoideProcessoCPRP %}
 
-                                    <!-- begin_form_s1010_inclusao_ideprocessocprp --> 
+                                    <!-- begin_form_s1010_inclusao_ideprocessocprp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1010_inclusao_ideprocessocprp" 
-                                              action="{% url 's1010_inclusao_ideprocessocprp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1010_inclusao_ideprocessocprp"
+                                              action="{% url 's1010_inclusao_ideprocessocprp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -884,32 +884,32 @@
                                     </div>
 
                                 <!-- end_form_s1010_inclusao_ideprocessocprp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1010.can_see_s1010inclusaoideProcessoCPRP %} 
+                                {% if perms.s1010.can_see_s1010inclusaoideProcessoCPRP %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1010_inclusao_ideprocessocprp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1010_inclusao_ideprocessocprp -->
 
                                         {% include 'tables/s1010_inclusao_ideprocessocprp.html' %}
-                                        <!-- end_table_s1010_inclusao_ideprocessocprp --> 
-                
+                                        <!-- end_table_s1010_inclusao_ideprocessocprp -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

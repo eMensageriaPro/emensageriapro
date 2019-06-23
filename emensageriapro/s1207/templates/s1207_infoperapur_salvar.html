@@ -58,14 +58,14 @@
                                 Remuneração no período de apuração</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1207.can_see_s1207infoPerApurideEstab %}
                                 <li {% if tab == 's1207_infoperapur_ideestab' %} class="active"{% endif %} >
                                     <a href="{% url 's1207_infoperapur_salvar_tab' pk=pk tab='s1207_infoperapur_ideestab' %}">
                                     Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1207_infoperapur_ideestab -->
 
-            {% if tab == 's1207_infoperapur_ideestab' %} 
+            {% if tab == 's1207_infoperapur_ideestab' %}
 
                 {% if perms.s1207.can_see_data_s1207infoPerApurideEstab %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</h3>   
+                                    <h3 class="box-title">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207infoPerApurideEstab or perms.s1207.can_see_list_s1207infoPerApurideEstab  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerApurideEstab %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerApurideEstab %}
 
-                                    <!-- begin_form_s1207_infoperapur_ideestab --> 
+                                    <!-- begin_form_s1207_infoperapur_ideestab -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_infoperapur_ideestab" 
-                                              action="{% url 's1207_infoperapur_ideestab_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_infoperapur_ideestab"
+                                              action="{% url 's1207_infoperapur_ideestab_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s1207_infoperapur_ideestab -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207infoPerApurideEstab %} 
+                                {% if perms.s1207.can_see_s1207infoPerApurideEstab %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_infoperapur_ideestab --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_infoperapur_ideestab -->
 
                                         {% include 'tables/s1207_infoperapur_ideestab.html' %}
-                                        <!-- end_table_s1207_infoperapur_ideestab --> 
-                
+                                        <!-- end_table_s1207_infoperapur_ideestab -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -58,21 +58,21 @@
                                 Informações relativas ao estagiário</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300ageIntegracao %}
                                 <li {% if tab == 's2300_ageintegracao' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_infoestagiario_salvar_tab' pk=pk tab='s2300_ageintegracao' %}">
                                     Agente de Integração</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300supervisorEstagio %}
                                 <li {% if tab == 's2300_supervisorestagio' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_infoestagiario_salvar_tab' pk=pk tab='s2300_supervisorestagio' %}">
                                     Supervisor do Estágio</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2300_ageintegracao -->
 
-            {% if tab == 's2300_ageintegracao' %} 
+            {% if tab == 's2300_ageintegracao' %}
 
                 {% if perms.s2300.can_see_data_s2300ageIntegracao %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Agente de Integração</h3>   
+                                    <h3 class="box-title">Agente de Integração</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300ageIntegracao or perms.s2300.can_see_list_s2300ageIntegracao  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300ageIntegracao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300ageIntegracao %}
 
-                                    <!-- begin_form_s2300_ageintegracao --> 
+                                    <!-- begin_form_s2300_ageintegracao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_ageintegracao" 
-                                              action="{% url 's2300_ageintegracao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_ageintegracao"
+                                              action="{% url 's2300_ageintegracao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_s2300_ageintegracao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300ageIntegracao %} 
+                                {% if perms.s2300.can_see_s2300ageIntegracao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_ageintegracao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_ageintegracao -->
 
                                         {% include 'tables/s2300_ageintegracao.html' %}
-                                        <!-- end_table_s2300_ageintegracao --> 
-                
+                                        <!-- end_table_s2300_ageintegracao -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2300_supervisorestagio -->
 
-            {% if tab == 's2300_supervisorestagio' %} 
+            {% if tab == 's2300_supervisorestagio' %}
 
                 {% if perms.s2300.can_see_data_s2300supervisorEstagio %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Supervisor do Estágio</h3>   
+                                    <h3 class="box-title">Supervisor do Estágio</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300supervisorEstagio or perms.s2300.can_see_list_s2300supervisorEstagio  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300supervisorEstagio %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300supervisorEstagio %}
 
-                                    <!-- begin_form_s2300_supervisorestagio --> 
+                                    <!-- begin_form_s2300_supervisorestagio -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_supervisorestagio" 
-                                              action="{% url 's2300_supervisorestagio_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_supervisorestagio"
+                                              action="{% url 's2300_supervisorestagio_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_supervisorestagio -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300supervisorEstagio %} 
+                                {% if perms.s2300.can_see_s2300supervisorEstagio %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_supervisorestagio --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_supervisorestagio -->
 
                                         {% include 'tables/s2300_supervisorestagio.html' %}
-                                        <!-- end_table_s2300_supervisorestagio --> 
-                
+                                        <!-- end_table_s2300_supervisorestagio -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

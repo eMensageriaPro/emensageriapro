@@ -58,30 +58,30 @@
                                 S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2416.can_see_s2416infoPenMorte %}
                                     <li {% if tab == 's2416_infopenmorte' %} class="active"{% endif %} >
                                         <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='s2416_infopenmorte' %}">
                                         Informações relativas a pensão por morte</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2416.can_see_s2416homologTC %}
                                     <li {% if tab == 's2416_homologtc' %} class="active"{% endif %} >
                                         <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='s2416_homologtc' %}">
                                         Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2416.can_see_s2416suspensao %}
                                     <li {% if tab == 's2416_suspensao' %} class="active"{% endif %} >
                                         <a href="{% url 's2416_evtcdbenalt_salvar_tab' pk=pk tab='s2416_suspensao' %}">
                                         Informações referentes à suspensão do benefício</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2416_evtcdbenalt.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -234,7 +234,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -263,7 +263,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2416evtCdBenAlt %}
                             <div class="col-md-4">
@@ -296,9 +296,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2416evtCdBenAlt and s2416_evtcdbenalt_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -312,13 +312,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2416evtCdBenAlt %}
+                            {% if perms.esocial.can_see_receipt_s2416evtCdBenAlt and s2416_evtcdbenalt.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -388,7 +388,7 @@
 
 
                         {% if s2416_evtcdbenalt_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2416evtCdBenAlt %}
                             <div class="col-md-2">
@@ -445,18 +445,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2416evtCdBenAlt or perms.esocial.change_s2416evtCdBenAlt %}
-    
+
                         {% if s2416_evtcdbenalt_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -484,7 +484,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -494,7 +494,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -517,10 +517,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2416_infopenmorte -->
 
-            {% if tab == 's2416_infopenmorte' %} 
+            {% if tab == 's2416_infopenmorte' %}
 
                 {% if perms.s2416.can_see_data_s2416infoPenMorte %}
 
@@ -552,7 +552,7 @@
                             {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas a pensão por morte</h3>   
+                                    <h3 class="box-title">Informações relativas a pensão por morte</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2416.add_s2416infoPenMorte or perms.s2416.can_see_list_s2416infoPenMorte %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -564,19 +564,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO and perms.s2416.add_s2416infoPenMorte %}            
+                                {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO and perms.s2416.add_s2416infoPenMorte %}
 
-                                    <!-- begin_form_s2416_infopenmorte --> 
+                                    <!-- begin_form_s2416_infopenmorte -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2416_infopenmorte" 
-                                              action="{% url 's2416_infopenmorte_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2416_infopenmorte"
+                                              action="{% url 's2416_infopenmorte_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -605,32 +605,32 @@
                                     </div>
 
                                 <!-- end_form_s2416_infopenmorte -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2416.can_see_s2416infoPenMorte %} 
+                                {% if perms.s2416.can_see_s2416infoPenMorte %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2416_infopenmorte --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2416_infopenmorte -->
 
                                         {% include 'tables/s2416_infopenmorte.html' %}
-                                        <!-- end_table_s2416_infopenmorte --> 
-                                    
+                                        <!-- end_table_s2416_infopenmorte -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2416_homologtc -->
 
-            {% if tab == 's2416_homologtc' %} 
+            {% if tab == 's2416_homologtc' %}
 
                 {% if perms.s2416.can_see_data_s2416homologTC %}
 
@@ -662,7 +662,7 @@
                             {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</h3>   
+                                    <h3 class="box-title">Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2416.add_s2416homologTC or perms.s2416.can_see_list_s2416homologTC %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -674,19 +674,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO and perms.s2416.add_s2416homologTC %}            
+                                {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO and perms.s2416.add_s2416homologTC %}
 
-                                    <!-- begin_form_s2416_homologtc --> 
+                                    <!-- begin_form_s2416_homologtc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2416_homologtc" 
-                                              action="{% url 's2416_homologtc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2416_homologtc"
+                                              action="{% url 's2416_homologtc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -715,32 +715,32 @@
                                     </div>
 
                                 <!-- end_form_s2416_homologtc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2416.can_see_s2416homologTC %} 
+                                {% if perms.s2416.can_see_s2416homologTC %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2416_homologtc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2416_homologtc -->
 
                                         {% include 'tables/s2416_homologtc.html' %}
-                                        <!-- end_table_s2416_homologtc --> 
-                                    
+                                        <!-- end_table_s2416_homologtc -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2416_suspensao -->
 
-            {% if tab == 's2416_suspensao' %} 
+            {% if tab == 's2416_suspensao' %}
 
                 {% if perms.s2416.can_see_data_s2416suspensao %}
 
@@ -772,7 +772,7 @@
                             {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações referentes à suspensão do benefício</h3>   
+                                    <h3 class="box-title">Informações referentes à suspensão do benefício</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2416.add_s2416suspensao or perms.s2416.can_see_list_s2416suspensao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -784,19 +784,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO and perms.s2416.add_s2416suspensao %}            
+                                {% if s2416_evtcdbenalt.status == STATUS_EVENTO_CADASTRADO and perms.s2416.add_s2416suspensao %}
 
-                                    <!-- begin_form_s2416_suspensao --> 
+                                    <!-- begin_form_s2416_suspensao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2416_suspensao" 
-                                              action="{% url 's2416_suspensao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2416_suspensao"
+                                              action="{% url 's2416_suspensao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -825,31 +825,31 @@
                                     </div>
 
                                 <!-- end_form_s2416_suspensao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2416.can_see_s2416suspensao %} 
+                                {% if perms.s2416.can_see_s2416suspensao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2416_suspensao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2416_suspensao -->
 
                                         {% include 'tables/s2416_suspensao.html' %}
-                                        <!-- end_table_s2416_suspensao --> 
-                                    
+                                        <!-- end_table_s2416_suspensao -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

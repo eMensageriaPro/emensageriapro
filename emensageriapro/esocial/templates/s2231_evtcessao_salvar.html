@@ -58,23 +58,23 @@
                                 S-2231 - Cessão/Exercício em Outro Órgão</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2231.can_see_s2231iniCessao %}
                                     <li {% if tab == 's2231_inicessao' %} class="active"{% endif %} >
                                         <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='s2231_inicessao' %}">
                                         Informações de início da cessão/exercício em outro órgão</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2231.can_see_s2231fimCessao %}
                                     <li {% if tab == 's2231_fimcessao' %} class="active"{% endif %} >
                                         <a href="{% url 's2231_evtcessao_salvar_tab' pk=pk tab='s2231_fimcessao' %}">
                                         Informações de término da cessão/exercício em outro órgão</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2231_evtcessao.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -227,7 +227,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -256,7 +256,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2231evtCessao %}
                             <div class="col-md-4">
@@ -289,9 +289,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2231evtCessao and s2231_evtcessao_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -305,13 +305,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2231evtCessao %}
+                            {% if perms.esocial.can_see_receipt_s2231evtCessao and s2231_evtcessao.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -381,7 +381,7 @@
 
 
                         {% if s2231_evtcessao_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2231evtCessao %}
                             <div class="col-md-2">
@@ -438,18 +438,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2231evtCessao or perms.esocial.change_s2231evtCessao %}
-    
+
                         {% if s2231_evtcessao_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -477,7 +477,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -487,7 +487,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -510,10 +510,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2231_inicessao -->
 
-            {% if tab == 's2231_inicessao' %} 
+            {% if tab == 's2231_inicessao' %}
 
                 {% if perms.s2231.can_see_data_s2231iniCessao %}
 
@@ -545,7 +545,7 @@
                             {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de início da cessão/exercício em outro órgão</h3>   
+                                    <h3 class="box-title">Informações de início da cessão/exercício em outro órgão</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2231.add_s2231iniCessao or perms.s2231.can_see_list_s2231iniCessao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -557,19 +557,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO and perms.s2231.add_s2231iniCessao %}            
+                                {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO and perms.s2231.add_s2231iniCessao %}
 
-                                    <!-- begin_form_s2231_inicessao --> 
+                                    <!-- begin_form_s2231_inicessao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2231_inicessao" 
-                                              action="{% url 's2231_inicessao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2231_inicessao"
+                                              action="{% url 's2231_inicessao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -598,32 +598,32 @@
                                     </div>
 
                                 <!-- end_form_s2231_inicessao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2231.can_see_s2231iniCessao %} 
+                                {% if perms.s2231.can_see_s2231iniCessao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2231_inicessao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2231_inicessao -->
 
                                         {% include 'tables/s2231_inicessao.html' %}
-                                        <!-- end_table_s2231_inicessao --> 
-                                    
+                                        <!-- end_table_s2231_inicessao -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2231_fimcessao -->
 
-            {% if tab == 's2231_fimcessao' %} 
+            {% if tab == 's2231_fimcessao' %}
 
                 {% if perms.s2231.can_see_data_s2231fimCessao %}
 
@@ -655,7 +655,7 @@
                             {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de término da cessão/exercício em outro órgão</h3>   
+                                    <h3 class="box-title">Informações de término da cessão/exercício em outro órgão</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2231.add_s2231fimCessao or perms.s2231.can_see_list_s2231fimCessao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -667,19 +667,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO and perms.s2231.add_s2231fimCessao %}            
+                                {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO and perms.s2231.add_s2231fimCessao %}
 
-                                    <!-- begin_form_s2231_fimcessao --> 
+                                    <!-- begin_form_s2231_fimcessao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2231_fimcessao" 
-                                              action="{% url 's2231_fimcessao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2231_fimcessao"
+                                              action="{% url 's2231_fimcessao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -708,31 +708,31 @@
                                     </div>
 
                                 <!-- end_form_s2231_fimcessao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2231.can_see_s2231fimCessao %} 
+                                {% if perms.s2231.can_see_s2231fimCessao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2231_fimcessao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2231_fimcessao -->
 
                                         {% include 'tables/s2231_fimcessao.html' %}
-                                        <!-- end_table_s2231_fimcessao --> 
-                                    
+                                        <!-- end_table_s2231_fimcessao -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

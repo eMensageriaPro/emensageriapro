@@ -58,14 +58,14 @@
                                 Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r2020.can_see_r2020infoTpServ %}
                                 <li {% if tab == 'r2020_infotpserv' %} class="active"{% endif %} >
                                     <a href="{% url 'r2020_nfs_salvar_tab' pk=pk tab='r2020_infotpserv' %}">
                                     Informações sobre os tipos de Serviços constantes da Nota Fiscal</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2020_infotpserv -->
 
-            {% if tab == 'r2020_infotpserv' %} 
+            {% if tab == 'r2020_infotpserv' %}
 
                 {% if perms.r2020.can_see_data_r2020infoTpServ %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre os tipos de Serviços constantes da Nota Fiscal</h3>   
+                                    <h3 class="box-title">Informações sobre os tipos de Serviços constantes da Nota Fiscal</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2020.add_r2020infoTpServ or perms.r2020.can_see_list_r2020infoTpServ  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020infoTpServ %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020infoTpServ %}
 
-                                    <!-- begin_form_r2020_infotpserv --> 
+                                    <!-- begin_form_r2020_infotpserv -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2020_infotpserv" 
-                                              action="{% url 'r2020_infotpserv_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2020_infotpserv"
+                                              action="{% url 'r2020_infotpserv_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_r2020_infotpserv -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2020.can_see_r2020infoTpServ %} 
+                                {% if perms.r2020.can_see_r2020infoTpServ %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2020_infotpserv --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2020_infotpserv -->
 
                                         {% include 'tables/r2020_infotpserv.html' %}
-                                        <!-- end_table_r2020_infotpserv --> 
-                
+                                        <!-- end_table_r2020_infotpserv -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

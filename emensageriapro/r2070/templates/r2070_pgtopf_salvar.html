@@ -58,56 +58,56 @@
                                 Beneficiário Pessoa Física - Residente no Brasil</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070detDeducao %}
                                 <li {% if tab == 'r2070_detdeducao' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_detdeducao' %}">
                                     Detalhamento das Deduções</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070rendIsento %}
                                 <li {% if tab == 'r2070_rendisento' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_rendisento' %}">
                                     Rendimentos Isentos/Não Tributáveis</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070detCompet %}
                                 <li {% if tab == 'r2070_detcompet' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_detcompet' %}">
                                     Detalhamento das Competências</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070compJud %}
                                 <li {% if tab == 'r2070_compjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_compjud' %}">
                                     Compensação Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070infoRRA %}
                                 <li {% if tab == 'r2070_inforra' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_inforra' %}">
                                     Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070infoProcJud %}
                                 <li {% if tab == 'r2070_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070depJudicial %}
                                 <li {% if tab == 'r2070_depjudicial' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopf_salvar_tab' pk=pk tab='r2070_depjudicial' %}">
                                     Depósito Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -333,7 +333,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -343,7 +343,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -358,7 +358,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -366,10 +366,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2070_detdeducao -->
 
-            {% if tab == 'r2070_detdeducao' %} 
+            {% if tab == 'r2070_detdeducao' %}
 
                 {% if perms.r2070.can_see_data_r2070detDeducao %}
 
@@ -400,7 +400,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das Deduções</h3>   
+                                    <h3 class="box-title">Detalhamento das Deduções</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070detDeducao or perms.r2070.can_see_list_r2070detDeducao  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -412,20 +412,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070detDeducao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070detDeducao %}
 
-                                    <!-- begin_form_r2070_detdeducao --> 
+                                    <!-- begin_form_r2070_detdeducao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_detdeducao" 
-                                              action="{% url 'r2070_detdeducao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_detdeducao"
+                                              action="{% url 'r2070_detdeducao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -454,33 +454,33 @@
                                     </div>
 
                                 <!-- end_form_r2070_detdeducao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070detDeducao %} 
+                                {% if perms.r2070.can_see_r2070detDeducao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_detdeducao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_detdeducao -->
 
                                         {% include 'tables/r2070_detdeducao.html' %}
-                                        <!-- end_table_r2070_detdeducao --> 
-                
+                                        <!-- end_table_r2070_detdeducao -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2070_rendisento -->
 
-            {% if tab == 'r2070_rendisento' %} 
+            {% if tab == 'r2070_rendisento' %}
 
                 {% if perms.r2070.can_see_data_r2070rendIsento %}
 
@@ -511,7 +511,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Rendimentos Isentos/Não Tributáveis</h3>   
+                                    <h3 class="box-title">Rendimentos Isentos/Não Tributáveis</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070rendIsento or perms.r2070.can_see_list_r2070rendIsento  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -523,20 +523,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070rendIsento %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070rendIsento %}
 
-                                    <!-- begin_form_r2070_rendisento --> 
+                                    <!-- begin_form_r2070_rendisento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_rendisento" 
-                                              action="{% url 'r2070_rendisento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_rendisento"
+                                              action="{% url 'r2070_rendisento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -565,33 +565,33 @@
                                     </div>
 
                                 <!-- end_form_r2070_rendisento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070rendIsento %} 
+                                {% if perms.r2070.can_see_r2070rendIsento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_rendisento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_rendisento -->
 
                                         {% include 'tables/r2070_rendisento.html' %}
-                                        <!-- end_table_r2070_rendisento --> 
-                
+                                        <!-- end_table_r2070_rendisento -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2070_detcompet -->
 
-            {% if tab == 'r2070_detcompet' %} 
+            {% if tab == 'r2070_detcompet' %}
 
                 {% if perms.r2070.can_see_data_r2070detCompet %}
 
@@ -622,7 +622,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das Competências</h3>   
+                                    <h3 class="box-title">Detalhamento das Competências</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070detCompet or perms.r2070.can_see_list_r2070detCompet  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -634,20 +634,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070detCompet %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070detCompet %}
 
-                                    <!-- begin_form_r2070_detcompet --> 
+                                    <!-- begin_form_r2070_detcompet -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_detcompet" 
-                                              action="{% url 'r2070_detcompet_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_detcompet"
+                                              action="{% url 'r2070_detcompet_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -676,33 +676,33 @@
                                     </div>
 
                                 <!-- end_form_r2070_detcompet -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070detCompet %} 
+                                {% if perms.r2070.can_see_r2070detCompet %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_detcompet --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_detcompet -->
 
                                         {% include 'tables/r2070_detcompet.html' %}
-                                        <!-- end_table_r2070_detcompet --> 
-                
+                                        <!-- end_table_r2070_detcompet -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2070_compjud -->
 
-            {% if tab == 'r2070_compjud' %} 
+            {% if tab == 'r2070_compjud' %}
 
                 {% if perms.r2070.can_see_data_r2070compJud %}
 
@@ -733,7 +733,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Compensação Judicial</h3>   
+                                    <h3 class="box-title">Compensação Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070compJud or perms.r2070.can_see_list_r2070compJud  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -745,20 +745,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070compJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070compJud %}
 
-                                    <!-- begin_form_r2070_compjud --> 
+                                    <!-- begin_form_r2070_compjud -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_compjud" 
-                                              action="{% url 'r2070_compjud_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_compjud"
+                                              action="{% url 'r2070_compjud_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -787,33 +787,33 @@
                                     </div>
 
                                 <!-- end_form_r2070_compjud -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070compJud %} 
+                                {% if perms.r2070.can_see_r2070compJud %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_compjud --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_compjud -->
 
                                         {% include 'tables/r2070_compjud.html' %}
-                                        <!-- end_table_r2070_compjud --> 
-                
+                                        <!-- end_table_r2070_compjud -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2070_inforra -->
 
-            {% if tab == 'r2070_inforra' %} 
+            {% if tab == 'r2070_inforra' %}
 
                 {% if perms.r2070.can_see_data_r2070infoRRA %}
 
@@ -844,7 +844,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Rendimentos Recebidos Acumuladamente</h3>   
+                                    <h3 class="box-title">Informações Complementares - Rendimentos Recebidos Acumuladamente</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070infoRRA or perms.r2070.can_see_list_r2070infoRRA  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -856,20 +856,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoRRA %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoRRA %}
 
-                                    <!-- begin_form_r2070_inforra --> 
+                                    <!-- begin_form_r2070_inforra -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_inforra" 
-                                              action="{% url 'r2070_inforra_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_inforra"
+                                              action="{% url 'r2070_inforra_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -898,33 +898,33 @@
                                     </div>
 
                                 <!-- end_form_r2070_inforra -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070infoRRA %} 
+                                {% if perms.r2070.can_see_r2070infoRRA %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_inforra --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_inforra -->
 
                                         {% include 'tables/r2070_inforra.html' %}
-                                        <!-- end_table_r2070_inforra --> 
-                
+                                        <!-- end_table_r2070_inforra -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2070_infoprocjud -->
 
-            {% if tab == 'r2070_infoprocjud' %} 
+            {% if tab == 'r2070_infoprocjud' %}
 
                 {% if perms.r2070.can_see_data_r2070infoProcJud %}
 
@@ -955,7 +955,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
+                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070infoProcJud or perms.r2070.can_see_list_r2070infoProcJud  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -967,20 +967,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoProcJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoProcJud %}
 
-                                    <!-- begin_form_r2070_infoprocjud --> 
+                                    <!-- begin_form_r2070_infoprocjud -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_infoprocjud" 
-                                              action="{% url 'r2070_infoprocjud_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_infoprocjud"
+                                              action="{% url 'r2070_infoprocjud_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1009,33 +1009,33 @@
                                     </div>
 
                                 <!-- end_form_r2070_infoprocjud -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070infoProcJud %} 
+                                {% if perms.r2070.can_see_r2070infoProcJud %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_infoprocjud --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_infoprocjud -->
 
                                         {% include 'tables/r2070_infoprocjud.html' %}
-                                        <!-- end_table_r2070_infoprocjud --> 
-                
+                                        <!-- end_table_r2070_infoprocjud -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2070_depjudicial -->
 
-            {% if tab == 'r2070_depjudicial' %} 
+            {% if tab == 'r2070_depjudicial' %}
 
                 {% if perms.r2070.can_see_data_r2070depJudicial %}
 
@@ -1066,7 +1066,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Depósito Judicial</h3>   
+                                    <h3 class="box-title">Depósito Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070depJudicial or perms.r2070.can_see_list_r2070depJudicial  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -1078,20 +1078,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070depJudicial %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070depJudicial %}
 
-                                    <!-- begin_form_r2070_depjudicial --> 
+                                    <!-- begin_form_r2070_depjudicial -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_depjudicial" 
-                                              action="{% url 'r2070_depjudicial_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_depjudicial"
+                                              action="{% url 'r2070_depjudicial_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1120,32 +1120,32 @@
                                     </div>
 
                                 <!-- end_form_r2070_depjudicial -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070depJudicial %} 
+                                {% if perms.r2070.can_see_r2070depJudicial %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_depjudicial --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_depjudicial -->
 
                                         {% include 'tables/r2070_depjudicial.html' %}
-                                        <!-- end_table_r2070_depjudicial --> 
-                
+                                        <!-- end_table_r2070_depjudicial -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

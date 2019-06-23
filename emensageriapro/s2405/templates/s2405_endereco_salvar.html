@@ -58,21 +58,21 @@
                                 Grupo de informações do endereço do Trabalhador</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2405.can_see_s2405brasil %}
                                 <li {% if tab == 's2405_brasil' %} class="active"{% endif %} >
                                     <a href="{% url 's2405_endereco_salvar_tab' pk=pk tab='s2405_brasil' %}">
                                     Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2405.can_see_s2405exterior %}
                                 <li {% if tab == 's2405_exterior' %} class="active"{% endif %} >
                                     <a href="{% url 's2405_endereco_salvar_tab' pk=pk tab='s2405_exterior' %}">
                                     Preenchido em caso de trabalhador residente no exterior.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2405_brasil -->
 
-            {% if tab == 's2405_brasil' %} 
+            {% if tab == 's2405_brasil' %}
 
                 {% if perms.s2405.can_see_data_s2405brasil %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
+                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2405.add_s2405brasil or perms.s2405.can_see_list_s2405brasil  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405brasil %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405brasil %}
 
-                                    <!-- begin_form_s2405_brasil --> 
+                                    <!-- begin_form_s2405_brasil -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2405_brasil" 
-                                              action="{% url 's2405_brasil_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2405_brasil"
+                                              action="{% url 's2405_brasil_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_s2405_brasil -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2405.can_see_s2405brasil %} 
+                                {% if perms.s2405.can_see_s2405brasil %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2405_brasil --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2405_brasil -->
 
                                         {% include 'tables/s2405_brasil.html' %}
-                                        <!-- end_table_s2405_brasil --> 
-                
+                                        <!-- end_table_s2405_brasil -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2405_exterior -->
 
-            {% if tab == 's2405_exterior' %} 
+            {% if tab == 's2405_exterior' %}
 
                 {% if perms.s2405.can_see_data_s2405exterior %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
+                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2405.add_s2405exterior or perms.s2405.can_see_list_s2405exterior  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405exterior %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2405.add_s2405exterior %}
 
-                                    <!-- begin_form_s2405_exterior --> 
+                                    <!-- begin_form_s2405_exterior -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2405_exterior" 
-                                              action="{% url 's2405_exterior_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2405_exterior"
+                                              action="{% url 's2405_exterior_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_s2405_exterior -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2405.can_see_s2405exterior %} 
+                                {% if perms.s2405.can_see_s2405exterior %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2405_exterior --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2405_exterior -->
 
                                         {% include 'tables/s2405_exterior.html' %}
-                                        <!-- end_table_s2405_exterior --> 
-                
+                                        <!-- end_table_s2405_exterior -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

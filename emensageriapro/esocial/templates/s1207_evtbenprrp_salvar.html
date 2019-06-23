@@ -58,23 +58,23 @@
                                 S-1207 - Benefícios previdenciários - RPPS</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s1207.can_see_s1207procJudTrab %}
                                     <li {% if tab == 's1207_procjudtrab' %} class="active"{% endif %} >
                                         <a href="{% url 's1207_evtbenprrp_salvar_tab' pk=pk tab='s1207_procjudtrab' %}">
                                         Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1207.can_see_s1207dmDev %}
                                     <li {% if tab == 's1207_dmdev' %} class="active"{% endif %} >
                                         <a href="{% url 's1207_evtbenprrp_salvar_tab' pk=pk tab='s1207_dmdev' %}">
                                         Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s1207_evtbenprrp.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -227,7 +227,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -256,7 +256,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s1207evtBenPrRP %}
                             <div class="col-md-4">
@@ -289,9 +289,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s1207evtBenPrRP and s1207_evtbenprrp_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -305,13 +305,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s1207evtBenPrRP %}
+                            {% if perms.esocial.can_see_receipt_s1207evtBenPrRP and s1207_evtbenprrp.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -381,7 +381,7 @@
 
 
                         {% if s1207_evtbenprrp_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s1207evtBenPrRP %}
                             <div class="col-md-2">
@@ -438,18 +438,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s1207evtBenPrRP or perms.esocial.change_s1207evtBenPrRP %}
-    
+
                         {% if s1207_evtbenprrp_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -477,7 +477,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -487,7 +487,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -510,10 +510,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1207_procjudtrab -->
 
-            {% if tab == 's1207_procjudtrab' %} 
+            {% if tab == 's1207_procjudtrab' %}
 
                 {% if perms.s1207.can_see_data_s1207procJudTrab %}
 
@@ -545,7 +545,7 @@
                             {% if s1207_evtbenprrp.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
+                                    <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207procJudTrab or perms.s1207.can_see_list_s1207procJudTrab %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -557,19 +557,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1207_evtbenprrp.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207procJudTrab %}            
+                                {% if s1207_evtbenprrp.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207procJudTrab %}
 
-                                    <!-- begin_form_s1207_procjudtrab --> 
+                                    <!-- begin_form_s1207_procjudtrab -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_procjudtrab" 
-                                              action="{% url 's1207_procjudtrab_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_procjudtrab"
+                                              action="{% url 's1207_procjudtrab_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -598,32 +598,32 @@
                                     </div>
 
                                 <!-- end_form_s1207_procjudtrab -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207procJudTrab %} 
+                                {% if perms.s1207.can_see_s1207procJudTrab %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_procjudtrab --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_procjudtrab -->
 
                                         {% include 'tables/s1207_procjudtrab.html' %}
-                                        <!-- end_table_s1207_procjudtrab --> 
-                                    
+                                        <!-- end_table_s1207_procjudtrab -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1207_dmdev -->
 
-            {% if tab == 's1207_dmdev' %} 
+            {% if tab == 's1207_dmdev' %}
 
                 {% if perms.s1207.can_see_data_s1207dmDev %}
 
@@ -655,7 +655,7 @@
                             {% if s1207_evtbenprrp.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
+                                    <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207dmDev or perms.s1207.can_see_list_s1207dmDev %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -667,19 +667,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1207_evtbenprrp.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207dmDev %}            
+                                {% if s1207_evtbenprrp.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207dmDev %}
 
-                                    <!-- begin_form_s1207_dmdev --> 
+                                    <!-- begin_form_s1207_dmdev -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_dmdev" 
-                                              action="{% url 's1207_dmdev_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_dmdev"
+                                              action="{% url 's1207_dmdev_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -708,31 +708,31 @@
                                     </div>
 
                                 <!-- end_form_s1207_dmdev -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207dmDev %} 
+                                {% if perms.s1207.can_see_s1207dmDev %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_dmdev --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_dmdev -->
 
                                         {% include 'tables/s1207_dmdev.html' %}
-                                        <!-- end_table_s1207_dmdev --> 
-                                    
+                                        <!-- end_table_s1207_dmdev -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

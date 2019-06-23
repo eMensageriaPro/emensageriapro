@@ -58,44 +58,44 @@
                                 S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s1200.can_see_s1200infoMV %}
                                     <li {% if tab == 's1200_infomv' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infomv' %}">
                                         Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1200.can_see_s1200infoComplem %}
                                     <li {% if tab == 's1200_infocomplem' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infocomplem' %}">
                                         Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1200.can_see_s1200procJudTrab %}
                                     <li {% if tab == 's1200_procjudtrab' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_procjudtrab' %}">
                                         Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1200.can_see_s1200infoInterm %}
                                     <li {% if tab == 's1200_infointerm' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_infointerm' %}">
                                         Informações relativas ao trabalho intermitente</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1200.can_see_s1200dmDev %}
                                     <li {% if tab == 's1200_dmdev' %} class="active"{% endif %} >
                                         <a href="{% url 's1200_evtremun_salvar_tab' pk=pk tab='s1200_dmdev' %}">
                                         Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -150,7 +150,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s1200_evtremun.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -248,7 +248,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -277,7 +277,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s1200evtRemun %}
                             <div class="col-md-4">
@@ -310,9 +310,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s1200evtRemun and s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -326,13 +326,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s1200evtRemun %}
+                            {% if perms.esocial.can_see_receipt_s1200evtRemun and s1200_evtremun.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -402,7 +402,7 @@
 
 
                         {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s1200evtRemun %}
                             <div class="col-md-2">
@@ -459,18 +459,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s1200evtRemun or perms.esocial.change_s1200evtRemun %}
-    
+
                         {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -498,7 +498,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -508,7 +508,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -531,10 +531,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1200_infomv -->
 
-            {% if tab == 's1200_infomv' %} 
+            {% if tab == 's1200_infomv' %}
 
                 {% if perms.s1200.can_see_data_s1200infoMV %}
 
@@ -566,7 +566,7 @@
                             {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoMV or perms.s1200.can_see_list_s1200infoMV %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -578,19 +578,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoMV %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoMV %}
 
-                                    <!-- begin_form_s1200_infomv --> 
+                                    <!-- begin_form_s1200_infomv -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infomv" 
-                                              action="{% url 's1200_infomv_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infomv"
+                                              action="{% url 's1200_infomv_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -619,32 +619,32 @@
                                     </div>
 
                                 <!-- end_form_s1200_infomv -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoMV %} 
+                                {% if perms.s1200.can_see_s1200infoMV %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infomv --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infomv -->
 
                                         {% include 'tables/s1200_infomv.html' %}
-                                        <!-- end_table_s1200_infomv --> 
-                                    
+                                        <!-- end_table_s1200_infomv -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1200_infocomplem -->
 
-            {% if tab == 's1200_infocomplem' %} 
+            {% if tab == 's1200_infocomplem' %}
 
                 {% if perms.s1200.can_see_data_s1200infoComplem %}
 
@@ -676,7 +676,7 @@
                             {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoComplem or perms.s1200.can_see_list_s1200infoComplem %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -688,19 +688,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoComplem %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoComplem %}
 
-                                    <!-- begin_form_s1200_infocomplem --> 
+                                    <!-- begin_form_s1200_infocomplem -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infocomplem" 
-                                              action="{% url 's1200_infocomplem_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infocomplem"
+                                              action="{% url 's1200_infocomplem_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -729,32 +729,32 @@
                                     </div>
 
                                 <!-- end_form_s1200_infocomplem -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoComplem %} 
+                                {% if perms.s1200.can_see_s1200infoComplem %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infocomplem --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infocomplem -->
 
                                         {% include 'tables/s1200_infocomplem.html' %}
-                                        <!-- end_table_s1200_infocomplem --> 
-                                    
+                                        <!-- end_table_s1200_infocomplem -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1200_procjudtrab -->
 
-            {% if tab == 's1200_procjudtrab' %} 
+            {% if tab == 's1200_procjudtrab' %}
 
                 {% if perms.s1200.can_see_data_s1200procJudTrab %}
 
@@ -786,7 +786,7 @@
                             {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
+                                    <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200procJudTrab or perms.s1200.can_see_list_s1200procJudTrab %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -798,19 +798,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200procJudTrab %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200procJudTrab %}
 
-                                    <!-- begin_form_s1200_procjudtrab --> 
+                                    <!-- begin_form_s1200_procjudtrab -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_procjudtrab" 
-                                              action="{% url 's1200_procjudtrab_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_procjudtrab"
+                                              action="{% url 's1200_procjudtrab_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -839,32 +839,32 @@
                                     </div>
 
                                 <!-- end_form_s1200_procjudtrab -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200procJudTrab %} 
+                                {% if perms.s1200.can_see_s1200procJudTrab %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_procjudtrab --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_procjudtrab -->
 
                                         {% include 'tables/s1200_procjudtrab.html' %}
-                                        <!-- end_table_s1200_procjudtrab --> 
-                                    
+                                        <!-- end_table_s1200_procjudtrab -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1200_infointerm -->
 
-            {% if tab == 's1200_infointerm' %} 
+            {% if tab == 's1200_infointerm' %}
 
                 {% if perms.s1200.can_see_data_s1200infoInterm %}
 
@@ -896,7 +896,7 @@
                             {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>   
+                                    <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoInterm or perms.s1200.can_see_list_s1200infoInterm %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -908,19 +908,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoInterm %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoInterm %}
 
-                                    <!-- begin_form_s1200_infointerm --> 
+                                    <!-- begin_form_s1200_infointerm -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infointerm" 
-                                              action="{% url 's1200_infointerm_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infointerm"
+                                              action="{% url 's1200_infointerm_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -949,32 +949,32 @@
                                     </div>
 
                                 <!-- end_form_s1200_infointerm -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoInterm %} 
+                                {% if perms.s1200.can_see_s1200infoInterm %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infointerm --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infointerm -->
 
                                         {% include 'tables/s1200_infointerm.html' %}
-                                        <!-- end_table_s1200_infointerm --> 
-                                    
+                                        <!-- end_table_s1200_infointerm -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1200_dmdev -->
 
-            {% if tab == 's1200_dmdev' %} 
+            {% if tab == 's1200_dmdev' %}
 
                 {% if perms.s1200.can_see_data_s1200dmDev %}
 
@@ -1006,7 +1006,7 @@
                             {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
+                                    <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200dmDev or perms.s1200.can_see_list_s1200dmDev %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1018,19 +1018,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200dmDev %}            
+                                {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200dmDev %}
 
-                                    <!-- begin_form_s1200_dmdev --> 
+                                    <!-- begin_form_s1200_dmdev -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_dmdev" 
-                                              action="{% url 's1200_dmdev_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_dmdev"
+                                              action="{% url 's1200_dmdev_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1059,31 +1059,31 @@
                                     </div>
 
                                 <!-- end_form_s1200_dmdev -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200dmDev %} 
+                                {% if perms.s1200.can_see_s1200dmDev %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_dmdev --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_dmdev -->
 
                                         {% include 'tables/s1200_dmdev.html' %}
-                                        <!-- end_table_s1200_dmdev --> 
-                                    
+                                        <!-- end_table_s1200_dmdev -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

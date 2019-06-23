@@ -1,6 +1,6 @@
 {% load templatetags %}
 <table {% if not output %}
-    class="table table-bordered"{% else %} 
+    class="table table-bordered"{% else %}
     width="100%"{% endif %}>
 
 
@@ -147,7 +147,7 @@
             </td>
             {% endif %}
         </tr>
- 
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
@@ -190,7 +190,7 @@
             </td>
             {% endif %}
         </tr>
- 
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideTrabalhador</td>
             <td bgcolor="lightgray" colspan="3">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</td>
@@ -573,7 +573,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %} 
+    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dmDev</td>
             <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). Para as rubricas cujo {codIncCP} = [31, 32, 34, 35], o somatório do valor das rubricas cujo ({tpRubr} = [2,4]) deverá ser maior ou igual ao somatório do valor das rubricas cujo ({tpRubr} = [1,3]), considerando cada um dos códigos {codIncCP} individualmente. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos. As informações dos campos {ideEstabLot/nrInsc}, {detVerbas/codRubr}, {ideEstabLot/codLotacao} vinculadas a este registro, devem constar nas respectivas tabelas S-1005, S-1010 e S-1020, no mês informado em: a) {perApur} se as informações pertencerem ao grupo {infoPerApur}; b) {perRef} se as informações pertencerem ao grupo {infoPerAnt}.</td>

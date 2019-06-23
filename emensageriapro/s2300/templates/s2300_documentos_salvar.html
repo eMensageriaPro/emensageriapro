@@ -58,49 +58,49 @@
                                 Informações dos documentos pessoais do trabalhador</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300CTPS %}
                                 <li {% if tab == 's2300_ctps' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_ctps' %}">
                                     Informações da Carteira de Trabalho e Previdência Social</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300RIC %}
                                 <li {% if tab == 's2300_ric' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_ric' %}">
                                     Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300RG %}
                                 <li {% if tab == 's2300_rg' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_rg' %}">
                                     Informações do Registro Geral (RG)</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300RNE %}
                                 <li {% if tab == 's2300_rne' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_rne' %}">
                                     Informações do Registro Nacional de Estrangeiro</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300OC %}
                                 <li {% if tab == 's2300_oc' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_oc' %}">
                                     Informações do número de registro em Órgão de Classe (OC)</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2300.can_see_s2300CNH %}
                                 <li {% if tab == 's2300_cnh' %} class="active"{% endif %} >
                                     <a href="{% url 's2300_documentos_salvar_tab' pk=pk tab='s2300_cnh' %}">
                                     Informações da Carteira Nacional de Habilitação (CNH)</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -326,7 +326,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -336,7 +336,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -351,7 +351,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -359,10 +359,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2300_ctps -->
 
-            {% if tab == 's2300_ctps' %} 
+            {% if tab == 's2300_ctps' %}
 
                 {% if perms.s2300.can_see_data_s2300CTPS %}
 
@@ -393,7 +393,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações da Carteira de Trabalho e Previdência Social</h3>   
+                                    <h3 class="box-title">Informações da Carteira de Trabalho e Previdência Social</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300CTPS or perms.s2300.can_see_list_s2300CTPS  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -405,20 +405,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300CTPS %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300CTPS %}
 
-                                    <!-- begin_form_s2300_ctps --> 
+                                    <!-- begin_form_s2300_ctps -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_ctps" 
-                                              action="{% url 's2300_ctps_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_ctps"
+                                              action="{% url 's2300_ctps_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -447,33 +447,33 @@
                                     </div>
 
                                 <!-- end_form_s2300_ctps -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300CTPS %} 
+                                {% if perms.s2300.can_see_s2300CTPS %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_ctps --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_ctps -->
 
                                         {% include 'tables/s2300_ctps.html' %}
-                                        <!-- end_table_s2300_ctps --> 
-                
+                                        <!-- end_table_s2300_ctps -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2300_ric -->
 
-            {% if tab == 's2300_ric' %} 
+            {% if tab == 's2300_ric' %}
 
                 {% if perms.s2300.can_see_data_s2300RIC %}
 
@@ -504,7 +504,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</h3>   
+                                    <h3 class="box-title">Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300RIC or perms.s2300.can_see_list_s2300RIC  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -516,20 +516,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300RIC %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300RIC %}
 
-                                    <!-- begin_form_s2300_ric --> 
+                                    <!-- begin_form_s2300_ric -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_ric" 
-                                              action="{% url 's2300_ric_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_ric"
+                                              action="{% url 's2300_ric_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -558,33 +558,33 @@
                                     </div>
 
                                 <!-- end_form_s2300_ric -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300RIC %} 
+                                {% if perms.s2300.can_see_s2300RIC %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_ric --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_ric -->
 
                                         {% include 'tables/s2300_ric.html' %}
-                                        <!-- end_table_s2300_ric --> 
-                
+                                        <!-- end_table_s2300_ric -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2300_rg -->
 
-            {% if tab == 's2300_rg' %} 
+            {% if tab == 's2300_rg' %}
 
                 {% if perms.s2300.can_see_data_s2300RG %}
 
@@ -615,7 +615,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Registro Geral (RG)</h3>   
+                                    <h3 class="box-title">Informações do Registro Geral (RG)</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300RG or perms.s2300.can_see_list_s2300RG  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -627,20 +627,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300RG %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300RG %}
 
-                                    <!-- begin_form_s2300_rg --> 
+                                    <!-- begin_form_s2300_rg -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_rg" 
-                                              action="{% url 's2300_rg_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_rg"
+                                              action="{% url 's2300_rg_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -669,33 +669,33 @@
                                     </div>
 
                                 <!-- end_form_s2300_rg -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300RG %} 
+                                {% if perms.s2300.can_see_s2300RG %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_rg --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_rg -->
 
                                         {% include 'tables/s2300_rg.html' %}
-                                        <!-- end_table_s2300_rg --> 
-                
+                                        <!-- end_table_s2300_rg -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2300_rne -->
 
-            {% if tab == 's2300_rne' %} 
+            {% if tab == 's2300_rne' %}
 
                 {% if perms.s2300.can_see_data_s2300RNE %}
 
@@ -726,7 +726,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Registro Nacional de Estrangeiro</h3>   
+                                    <h3 class="box-title">Informações do Registro Nacional de Estrangeiro</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300RNE or perms.s2300.can_see_list_s2300RNE  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -738,20 +738,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300RNE %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300RNE %}
 
-                                    <!-- begin_form_s2300_rne --> 
+                                    <!-- begin_form_s2300_rne -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_rne" 
-                                              action="{% url 's2300_rne_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_rne"
+                                              action="{% url 's2300_rne_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -780,33 +780,33 @@
                                     </div>
 
                                 <!-- end_form_s2300_rne -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300RNE %} 
+                                {% if perms.s2300.can_see_s2300RNE %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_rne --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_rne -->
 
                                         {% include 'tables/s2300_rne.html' %}
-                                        <!-- end_table_s2300_rne --> 
-                
+                                        <!-- end_table_s2300_rne -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2300_oc -->
 
-            {% if tab == 's2300_oc' %} 
+            {% if tab == 's2300_oc' %}
 
                 {% if perms.s2300.can_see_data_s2300OC %}
 
@@ -837,7 +837,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do número de registro em Órgão de Classe (OC)</h3>   
+                                    <h3 class="box-title">Informações do número de registro em Órgão de Classe (OC)</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300OC or perms.s2300.can_see_list_s2300OC  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -849,20 +849,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300OC %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300OC %}
 
-                                    <!-- begin_form_s2300_oc --> 
+                                    <!-- begin_form_s2300_oc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_oc" 
-                                              action="{% url 's2300_oc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_oc"
+                                              action="{% url 's2300_oc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -891,33 +891,33 @@
                                     </div>
 
                                 <!-- end_form_s2300_oc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300OC %} 
+                                {% if perms.s2300.can_see_s2300OC %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_oc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_oc -->
 
                                         {% include 'tables/s2300_oc.html' %}
-                                        <!-- end_table_s2300_oc --> 
-                
+                                        <!-- end_table_s2300_oc -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2300_cnh -->
 
-            {% if tab == 's2300_cnh' %} 
+            {% if tab == 's2300_cnh' %}
 
                 {% if perms.s2300.can_see_data_s2300CNH %}
 
@@ -948,7 +948,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações da Carteira Nacional de Habilitação (CNH)</h3>   
+                                    <h3 class="box-title">Informações da Carteira Nacional de Habilitação (CNH)</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300CNH or perms.s2300.can_see_list_s2300CNH  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -960,20 +960,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300CNH %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300CNH %}
 
-                                    <!-- begin_form_s2300_cnh --> 
+                                    <!-- begin_form_s2300_cnh -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_cnh" 
-                                              action="{% url 's2300_cnh_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_cnh"
+                                              action="{% url 's2300_cnh_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1002,32 +1002,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_cnh -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300CNH %} 
+                                {% if perms.s2300.can_see_s2300CNH %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_cnh --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_cnh -->
 
                                         {% include 'tables/s2300_cnh.html' %}
-                                        <!-- end_table_s2300_cnh --> 
-                
+                                        <!-- end_table_s2300_cnh -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

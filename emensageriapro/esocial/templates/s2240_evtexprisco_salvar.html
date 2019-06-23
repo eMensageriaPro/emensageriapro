@@ -58,65 +58,65 @@
                                 S-2240 - Condições Ambientais do Trabalho - Fatores de Risco</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2240.can_see_s2240iniExpRiscoinfoAmb %}
                                     <li {% if tab == 's2240_iniexprisco_infoamb' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_infoamb' %}">
                                         Informações relativas ao ambiente de trabalho</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240iniExpRiscoativPericInsal %}
                                     <li {% if tab == 's2240_iniexprisco_ativpericinsal' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_ativpericinsal' %}">
                                         Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %}
                                     <li {% if tab == 's2240_iniexprisco_fatrisco' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_fatrisco' %}">
                                         Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240iniExpRiscorespReg %}
                                     <li {% if tab == 's2240_iniexprisco_respreg' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_respreg' %}">
                                         Informações relativas ao responsável pelos registros ambientais</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240iniExpRiscoobs %}
                                     <li {% if tab == 's2240_iniexprisco_obs' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_iniexprisco_obs' %}">
                                         Observações relativas a registros ambientais</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240altExpRisco %}
                                     <li {% if tab == 's2240_altexprisco' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_altexprisco' %}">
                                         Condições ambientais do trabalho - Alteração</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240fimExpRisco %}
                                     <li {% if tab == 's2240_fimexprisco' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_fimexprisco' %}">
                                         Condições ambientais do trabalho - Fim</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2240.can_see_s2240fimExpRiscorespReg %}
                                     <li {% if tab == 's2240_fimexprisco_respreg' %} class="active"{% endif %} >
                                         <a href="{% url 's2240_evtexprisco_salvar_tab' pk=pk tab='s2240_fimexprisco_respreg' %}">
                                         Informações relativas ao responsável pelos registros ambientais</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -171,7 +171,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2240_evtexprisco.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -269,7 +269,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -298,7 +298,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2240evtExpRisco %}
                             <div class="col-md-4">
@@ -331,9 +331,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2240evtExpRisco and s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -347,13 +347,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2240evtExpRisco %}
+                            {% if perms.esocial.can_see_receipt_s2240evtExpRisco and s2240_evtexprisco.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -423,7 +423,7 @@
 
 
                         {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2240evtExpRisco %}
                             <div class="col-md-2">
@@ -480,18 +480,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2240evtExpRisco or perms.esocial.change_s2240evtExpRisco %}
-    
+
                         {% if s2240_evtexprisco_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -519,7 +519,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -529,7 +529,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -552,10 +552,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2240_iniexprisco_infoamb -->
 
-            {% if tab == 's2240_iniexprisco_infoamb' %} 
+            {% if tab == 's2240_iniexprisco_infoamb' %}
 
                 {% if perms.s2240.can_see_data_s2240iniExpRiscoinfoAmb %}
 
@@ -587,7 +587,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>   
+                                    <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240iniExpRiscoinfoAmb or perms.s2240.can_see_list_s2240iniExpRiscoinfoAmb %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -599,19 +599,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoinfoAmb %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoinfoAmb %}
 
-                                    <!-- begin_form_s2240_iniexprisco_infoamb --> 
+                                    <!-- begin_form_s2240_iniexprisco_infoamb -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_iniexprisco_infoamb" 
-                                              action="{% url 's2240_iniexprisco_infoamb_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_iniexprisco_infoamb"
+                                              action="{% url 's2240_iniexprisco_infoamb_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -640,32 +640,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_iniexprisco_infoamb -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240iniExpRiscoinfoAmb %} 
+                                {% if perms.s2240.can_see_s2240iniExpRiscoinfoAmb %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_iniexprisco_infoamb --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_iniexprisco_infoamb -->
 
                                         {% include 'tables/s2240_iniexprisco_infoamb.html' %}
-                                        <!-- end_table_s2240_iniexprisco_infoamb --> 
-                                    
+                                        <!-- end_table_s2240_iniexprisco_infoamb -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_iniexprisco_ativpericinsal -->
 
-            {% if tab == 's2240_iniexprisco_ativpericinsal' %} 
+            {% if tab == 's2240_iniexprisco_ativpericinsal' %}
 
                 {% if perms.s2240.can_see_data_s2240iniExpRiscoativPericInsal %}
 
@@ -697,7 +697,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</h3>   
+                                    <h3 class="box-title">Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240iniExpRiscoativPericInsal or perms.s2240.can_see_list_s2240iniExpRiscoativPericInsal %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -709,19 +709,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoativPericInsal %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoativPericInsal %}
 
-                                    <!-- begin_form_s2240_iniexprisco_ativpericinsal --> 
+                                    <!-- begin_form_s2240_iniexprisco_ativpericinsal -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_iniexprisco_ativpericinsal" 
-                                              action="{% url 's2240_iniexprisco_ativpericinsal_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_iniexprisco_ativpericinsal"
+                                              action="{% url 's2240_iniexprisco_ativpericinsal_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -750,32 +750,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_iniexprisco_ativpericinsal -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240iniExpRiscoativPericInsal %} 
+                                {% if perms.s2240.can_see_s2240iniExpRiscoativPericInsal %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_iniexprisco_ativpericinsal --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_iniexprisco_ativpericinsal -->
 
                                         {% include 'tables/s2240_iniexprisco_ativpericinsal.html' %}
-                                        <!-- end_table_s2240_iniexprisco_ativpericinsal --> 
-                                    
+                                        <!-- end_table_s2240_iniexprisco_ativpericinsal -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_iniexprisco_fatrisco -->
 
-            {% if tab == 's2240_iniexprisco_fatrisco' %} 
+            {% if tab == 's2240_iniexprisco_fatrisco' %}
 
                 {% if perms.s2240.can_see_data_s2240iniExpRiscofatRisco %}
 
@@ -807,7 +807,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>   
+                                    <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240iniExpRiscofatRisco or perms.s2240.can_see_list_s2240iniExpRiscofatRisco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -819,19 +819,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscofatRisco %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscofatRisco %}
 
-                                    <!-- begin_form_s2240_iniexprisco_fatrisco --> 
+                                    <!-- begin_form_s2240_iniexprisco_fatrisco -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_iniexprisco_fatrisco" 
-                                              action="{% url 's2240_iniexprisco_fatrisco_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_iniexprisco_fatrisco"
+                                              action="{% url 's2240_iniexprisco_fatrisco_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -860,32 +860,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_iniexprisco_fatrisco -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %} 
+                                {% if perms.s2240.can_see_s2240iniExpRiscofatRisco %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_iniexprisco_fatrisco --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_iniexprisco_fatrisco -->
 
                                         {% include 'tables/s2240_iniexprisco_fatrisco.html' %}
-                                        <!-- end_table_s2240_iniexprisco_fatrisco --> 
-                                    
+                                        <!-- end_table_s2240_iniexprisco_fatrisco -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_iniexprisco_respreg -->
 
-            {% if tab == 's2240_iniexprisco_respreg' %} 
+            {% if tab == 's2240_iniexprisco_respreg' %}
 
                 {% if perms.s2240.can_see_data_s2240iniExpRiscorespReg %}
 
@@ -917,7 +917,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>   
+                                    <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240iniExpRiscorespReg or perms.s2240.can_see_list_s2240iniExpRiscorespReg %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -929,19 +929,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscorespReg %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscorespReg %}
 
-                                    <!-- begin_form_s2240_iniexprisco_respreg --> 
+                                    <!-- begin_form_s2240_iniexprisco_respreg -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_iniexprisco_respreg" 
-                                              action="{% url 's2240_iniexprisco_respreg_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_iniexprisco_respreg"
+                                              action="{% url 's2240_iniexprisco_respreg_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -970,32 +970,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_iniexprisco_respreg -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240iniExpRiscorespReg %} 
+                                {% if perms.s2240.can_see_s2240iniExpRiscorespReg %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_iniexprisco_respreg --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_iniexprisco_respreg -->
 
                                         {% include 'tables/s2240_iniexprisco_respreg.html' %}
-                                        <!-- end_table_s2240_iniexprisco_respreg --> 
-                                    
+                                        <!-- end_table_s2240_iniexprisco_respreg -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_iniexprisco_obs -->
 
-            {% if tab == 's2240_iniexprisco_obs' %} 
+            {% if tab == 's2240_iniexprisco_obs' %}
 
                 {% if perms.s2240.can_see_data_s2240iniExpRiscoobs %}
 
@@ -1027,7 +1027,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Observações relativas a registros ambientais</h3>   
+                                    <h3 class="box-title">Observações relativas a registros ambientais</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240iniExpRiscoobs or perms.s2240.can_see_list_s2240iniExpRiscoobs %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1039,19 +1039,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoobs %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240iniExpRiscoobs %}
 
-                                    <!-- begin_form_s2240_iniexprisco_obs --> 
+                                    <!-- begin_form_s2240_iniexprisco_obs -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_iniexprisco_obs" 
-                                              action="{% url 's2240_iniexprisco_obs_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_iniexprisco_obs"
+                                              action="{% url 's2240_iniexprisco_obs_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1080,32 +1080,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_iniexprisco_obs -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240iniExpRiscoobs %} 
+                                {% if perms.s2240.can_see_s2240iniExpRiscoobs %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_iniexprisco_obs --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_iniexprisco_obs -->
 
                                         {% include 'tables/s2240_iniexprisco_obs.html' %}
-                                        <!-- end_table_s2240_iniexprisco_obs --> 
-                                    
+                                        <!-- end_table_s2240_iniexprisco_obs -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_altexprisco -->
 
-            {% if tab == 's2240_altexprisco' %} 
+            {% if tab == 's2240_altexprisco' %}
 
                 {% if perms.s2240.can_see_data_s2240altExpRisco %}
 
@@ -1137,7 +1137,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Condições ambientais do trabalho - Alteração</h3>   
+                                    <h3 class="box-title">Condições ambientais do trabalho - Alteração</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240altExpRisco or perms.s2240.can_see_list_s2240altExpRisco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1149,19 +1149,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240altExpRisco %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240altExpRisco %}
 
-                                    <!-- begin_form_s2240_altexprisco --> 
+                                    <!-- begin_form_s2240_altexprisco -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_altexprisco" 
-                                              action="{% url 's2240_altexprisco_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_altexprisco"
+                                              action="{% url 's2240_altexprisco_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1190,32 +1190,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_altexprisco -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240altExpRisco %} 
+                                {% if perms.s2240.can_see_s2240altExpRisco %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_altexprisco --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_altexprisco -->
 
                                         {% include 'tables/s2240_altexprisco.html' %}
-                                        <!-- end_table_s2240_altexprisco --> 
-                                    
+                                        <!-- end_table_s2240_altexprisco -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_fimexprisco -->
 
-            {% if tab == 's2240_fimexprisco' %} 
+            {% if tab == 's2240_fimexprisco' %}
 
                 {% if perms.s2240.can_see_data_s2240fimExpRisco %}
 
@@ -1247,7 +1247,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Condições ambientais do trabalho - Fim</h3>   
+                                    <h3 class="box-title">Condições ambientais do trabalho - Fim</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240fimExpRisco or perms.s2240.can_see_list_s2240fimExpRisco %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1259,19 +1259,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240fimExpRisco %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240fimExpRisco %}
 
-                                    <!-- begin_form_s2240_fimexprisco --> 
+                                    <!-- begin_form_s2240_fimexprisco -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_fimexprisco" 
-                                              action="{% url 's2240_fimexprisco_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_fimexprisco"
+                                              action="{% url 's2240_fimexprisco_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1300,32 +1300,32 @@
                                     </div>
 
                                 <!-- end_form_s2240_fimexprisco -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240fimExpRisco %} 
+                                {% if perms.s2240.can_see_s2240fimExpRisco %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_fimexprisco --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_fimexprisco -->
 
                                         {% include 'tables/s2240_fimexprisco.html' %}
-                                        <!-- end_table_s2240_fimexprisco --> 
-                                    
+                                        <!-- end_table_s2240_fimexprisco -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2240_fimexprisco_respreg -->
 
-            {% if tab == 's2240_fimexprisco_respreg' %} 
+            {% if tab == 's2240_fimexprisco_respreg' %}
 
                 {% if perms.s2240.can_see_data_s2240fimExpRiscorespReg %}
 
@@ -1357,7 +1357,7 @@
                             {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>   
+                                    <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2240.add_s2240fimExpRiscorespReg or perms.s2240.can_see_list_s2240fimExpRiscorespReg %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1369,19 +1369,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240fimExpRiscorespReg %}            
+                                {% if s2240_evtexprisco.status == STATUS_EVENTO_CADASTRADO and perms.s2240.add_s2240fimExpRiscorespReg %}
 
-                                    <!-- begin_form_s2240_fimexprisco_respreg --> 
+                                    <!-- begin_form_s2240_fimexprisco_respreg -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2240_fimexprisco_respreg" 
-                                              action="{% url 's2240_fimexprisco_respreg_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2240_fimexprisco_respreg"
+                                              action="{% url 's2240_fimexprisco_respreg_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1410,31 +1410,31 @@
                                     </div>
 
                                 <!-- end_form_s2240_fimexprisco_respreg -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2240.can_see_s2240fimExpRiscorespReg %} 
+                                {% if perms.s2240.can_see_s2240fimExpRiscorespReg %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2240_fimexprisco_respreg --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2240_fimexprisco_respreg -->
 
                                         {% include 'tables/s2240_fimexprisco_respreg.html' %}
-                                        <!-- end_table_s2240_fimexprisco_respreg --> 
-                                    
+                                        <!-- end_table_s2240_fimexprisco_respreg -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

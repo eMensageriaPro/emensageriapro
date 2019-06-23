@@ -58,58 +58,58 @@
                                 S-2299 - Desligamento</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2299.can_see_s2299observacoes %}
                                     <li {% if tab == 's2299_observacoes' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_observacoes' %}">
                                         Observações do contrato de trabalho</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2299.can_see_s2299sucessaoVinc %}
                                     <li {% if tab == 's2299_sucessaovinc' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_sucessaovinc' %}">
                                         Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2299.can_see_s2299transfTit %}
                                     <li {% if tab == 's2299_transftit' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_transftit' %}">
                                         Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2299.can_see_s2299mudancaCPF %}
                                     <li {% if tab == 's2299_mudancacpf' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_mudancacpf' %}">
                                         Informações de mudança de CPF do trabalhador.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2299.can_see_s2299verbasResc %}
                                     <li {% if tab == 's2299_verbasresc' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_verbasresc' %}">
                                         Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2299.can_see_s2299infoTrabIntermquarentena %}
                                     <li {% if tab == 's2299_infotrabinterm_quarentena' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_infotrabinterm_quarentena' %}">
                                         Informações sobre a 'quarentena' remunerada de trabalhador desligado</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2299.can_see_s2299infoTrabIntermconsigFGTS %}
                                     <li {% if tab == 's2299_infotrabinterm_consigfgts' %} class="active"{% endif %} >
                                         <a href="{% url 's2299_evtdeslig_salvar_tab' pk=pk tab='s2299_infotrabinterm_consigfgts' %}">
                                         Informações sobre operação de crédito consignado com garantia de FGTS</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -164,7 +164,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2299_evtdeslig.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -262,7 +262,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -291,7 +291,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2299evtDeslig %}
                             <div class="col-md-4">
@@ -324,9 +324,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2299evtDeslig and s2299_evtdeslig_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -340,13 +340,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2299evtDeslig %}
+                            {% if perms.esocial.can_see_receipt_s2299evtDeslig and s2299_evtdeslig.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -416,7 +416,7 @@
 
 
                         {% if s2299_evtdeslig_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2299evtDeslig %}
                             <div class="col-md-2">
@@ -473,18 +473,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2299evtDeslig or perms.esocial.change_s2299evtDeslig %}
-    
+
                         {% if s2299_evtdeslig_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -512,7 +512,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -522,7 +522,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -545,10 +545,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2299_observacoes -->
 
-            {% if tab == 's2299_observacoes' %} 
+            {% if tab == 's2299_observacoes' %}
 
                 {% if perms.s2299.can_see_data_s2299observacoes %}
 
@@ -580,7 +580,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Observações do contrato de trabalho</h3>   
+                                    <h3 class="box-title">Observações do contrato de trabalho</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299observacoes or perms.s2299.can_see_list_s2299observacoes %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -592,19 +592,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299observacoes %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299observacoes %}
 
-                                    <!-- begin_form_s2299_observacoes --> 
+                                    <!-- begin_form_s2299_observacoes -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_observacoes" 
-                                              action="{% url 's2299_observacoes_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_observacoes"
+                                              action="{% url 's2299_observacoes_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -633,32 +633,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_observacoes -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299observacoes %} 
+                                {% if perms.s2299.can_see_s2299observacoes %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_observacoes --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_observacoes -->
 
                                         {% include 'tables/s2299_observacoes.html' %}
-                                        <!-- end_table_s2299_observacoes --> 
-                                    
+                                        <!-- end_table_s2299_observacoes -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2299_sucessaovinc -->
 
-            {% if tab == 's2299_sucessaovinc' %} 
+            {% if tab == 's2299_sucessaovinc' %}
 
                 {% if perms.s2299.can_see_data_s2299sucessaoVinc %}
 
@@ -690,7 +690,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>   
+                                    <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299sucessaoVinc or perms.s2299.can_see_list_s2299sucessaoVinc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -702,19 +702,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299sucessaoVinc %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299sucessaoVinc %}
 
-                                    <!-- begin_form_s2299_sucessaovinc --> 
+                                    <!-- begin_form_s2299_sucessaovinc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_sucessaovinc" 
-                                              action="{% url 's2299_sucessaovinc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_sucessaovinc"
+                                              action="{% url 's2299_sucessaovinc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -743,32 +743,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_sucessaovinc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299sucessaoVinc %} 
+                                {% if perms.s2299.can_see_s2299sucessaoVinc %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_sucessaovinc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_sucessaovinc -->
 
                                         {% include 'tables/s2299_sucessaovinc.html' %}
-                                        <!-- end_table_s2299_sucessaovinc --> 
-                                    
+                                        <!-- end_table_s2299_sucessaovinc -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2299_transftit -->
 
-            {% if tab == 's2299_transftit' %} 
+            {% if tab == 's2299_transftit' %}
 
                 {% if perms.s2299.can_see_data_s2299transfTit %}
 
@@ -800,7 +800,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</h3>   
+                                    <h3 class="box-title">Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299transfTit or perms.s2299.can_see_list_s2299transfTit %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -812,19 +812,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299transfTit %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299transfTit %}
 
-                                    <!-- begin_form_s2299_transftit --> 
+                                    <!-- begin_form_s2299_transftit -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_transftit" 
-                                              action="{% url 's2299_transftit_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_transftit"
+                                              action="{% url 's2299_transftit_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -853,32 +853,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_transftit -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299transfTit %} 
+                                {% if perms.s2299.can_see_s2299transfTit %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_transftit --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_transftit -->
 
                                         {% include 'tables/s2299_transftit.html' %}
-                                        <!-- end_table_s2299_transftit --> 
-                                    
+                                        <!-- end_table_s2299_transftit -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2299_mudancacpf -->
 
-            {% if tab == 's2299_mudancacpf' %} 
+            {% if tab == 's2299_mudancacpf' %}
 
                 {% if perms.s2299.can_see_data_s2299mudancaCPF %}
 
@@ -910,7 +910,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
+                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299mudancaCPF or perms.s2299.can_see_list_s2299mudancaCPF %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -922,19 +922,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299mudancaCPF %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299mudancaCPF %}
 
-                                    <!-- begin_form_s2299_mudancacpf --> 
+                                    <!-- begin_form_s2299_mudancacpf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_mudancacpf" 
-                                              action="{% url 's2299_mudancacpf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_mudancacpf"
+                                              action="{% url 's2299_mudancacpf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -963,32 +963,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_mudancacpf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299mudancaCPF %} 
+                                {% if perms.s2299.can_see_s2299mudancaCPF %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_mudancacpf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_mudancacpf -->
 
                                         {% include 'tables/s2299_mudancacpf.html' %}
-                                        <!-- end_table_s2299_mudancacpf --> 
-                                    
+                                        <!-- end_table_s2299_mudancacpf -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2299_verbasresc -->
 
-            {% if tab == 's2299_verbasresc' %} 
+            {% if tab == 's2299_verbasresc' %}
 
                 {% if perms.s2299.can_see_data_s2299verbasResc %}
 
@@ -1020,7 +1020,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h3>   
+                                    <h3 class="box-title">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299verbasResc or perms.s2299.can_see_list_s2299verbasResc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1032,19 +1032,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299verbasResc %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299verbasResc %}
 
-                                    <!-- begin_form_s2299_verbasresc --> 
+                                    <!-- begin_form_s2299_verbasresc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_verbasresc" 
-                                              action="{% url 's2299_verbasresc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_verbasresc"
+                                              action="{% url 's2299_verbasresc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1073,32 +1073,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_verbasresc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299verbasResc %} 
+                                {% if perms.s2299.can_see_s2299verbasResc %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_verbasresc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_verbasresc -->
 
                                         {% include 'tables/s2299_verbasresc.html' %}
-                                        <!-- end_table_s2299_verbasresc --> 
-                                    
+                                        <!-- end_table_s2299_verbasresc -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2299_infotrabinterm_quarentena -->
 
-            {% if tab == 's2299_infotrabinterm_quarentena' %} 
+            {% if tab == 's2299_infotrabinterm_quarentena' %}
 
                 {% if perms.s2299.can_see_data_s2299infoTrabIntermquarentena %}
 
@@ -1130,7 +1130,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre a 'quarentena' remunerada de trabalhador desligado</h3>   
+                                    <h3 class="box-title">Informações sobre a 'quarentena' remunerada de trabalhador desligado</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoTrabIntermquarentena or perms.s2299.can_see_list_s2299infoTrabIntermquarentena %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1142,19 +1142,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermquarentena %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermquarentena %}
 
-                                    <!-- begin_form_s2299_infotrabinterm_quarentena --> 
+                                    <!-- begin_form_s2299_infotrabinterm_quarentena -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_infotrabinterm_quarentena" 
-                                              action="{% url 's2299_infotrabinterm_quarentena_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_infotrabinterm_quarentena"
+                                              action="{% url 's2299_infotrabinterm_quarentena_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1183,32 +1183,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_infotrabinterm_quarentena -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299infoTrabIntermquarentena %} 
+                                {% if perms.s2299.can_see_s2299infoTrabIntermquarentena %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_infotrabinterm_quarentena --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_infotrabinterm_quarentena -->
 
                                         {% include 'tables/s2299_infotrabinterm_quarentena.html' %}
-                                        <!-- end_table_s2299_infotrabinterm_quarentena --> 
-                                    
+                                        <!-- end_table_s2299_infotrabinterm_quarentena -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2299_infotrabinterm_consigfgts -->
 
-            {% if tab == 's2299_infotrabinterm_consigfgts' %} 
+            {% if tab == 's2299_infotrabinterm_consigfgts' %}
 
                 {% if perms.s2299.can_see_data_s2299infoTrabIntermconsigFGTS %}
 
@@ -1240,7 +1240,7 @@
                             {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre operação de crédito consignado com garantia de FGTS</h3>   
+                                    <h3 class="box-title">Informações sobre operação de crédito consignado com garantia de FGTS</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoTrabIntermconsigFGTS or perms.s2299.can_see_list_s2299infoTrabIntermconsigFGTS %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1252,19 +1252,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermconsigFGTS %}            
+                                {% if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoTrabIntermconsigFGTS %}
 
-                                    <!-- begin_form_s2299_infotrabinterm_consigfgts --> 
+                                    <!-- begin_form_s2299_infotrabinterm_consigfgts -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_infotrabinterm_consigfgts" 
-                                              action="{% url 's2299_infotrabinterm_consigfgts_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_infotrabinterm_consigfgts"
+                                              action="{% url 's2299_infotrabinterm_consigfgts_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1293,31 +1293,31 @@
                                     </div>
 
                                 <!-- end_form_s2299_infotrabinterm_consigfgts -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299infoTrabIntermconsigFGTS %} 
+                                {% if perms.s2299.can_see_s2299infoTrabIntermconsigFGTS %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_infotrabinterm_consigfgts --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_infotrabinterm_consigfgts -->
 
                                         {% include 'tables/s2299_infotrabinterm_consigfgts.html' %}
-                                        <!-- end_table_s2299_infotrabinterm_consigfgts --> 
-                                    
+                                        <!-- end_table_s2299_infotrabinterm_consigfgts -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

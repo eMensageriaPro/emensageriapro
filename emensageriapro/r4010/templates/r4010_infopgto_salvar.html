@@ -58,56 +58,56 @@
                                 Informações do Pagamento</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010FCI %}
                                 <li {% if tab == 'r4010_fci' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_fci' %}">
                                     Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010SCP %}
                                 <li {% if tab == 'r4010_scp' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_scp' %}">
                                     Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010detDed %}
                                 <li {% if tab == 'r4010_detded' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_detded' %}">
                                     Detalhamento das deduções</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010rendIsento %}
                                 <li {% if tab == 'r4010_rendisento' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_rendisento' %}">
                                     Rendimentos Isentos/Não Tributáveis</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoProcRet %}
                                 <li {% if tab == 'r4010_infoprocret' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_infoprocret' %}">
                                     Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoRRA %}
                                 <li {% if tab == 'r4010_inforra' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_inforra' %}">
                                     Informações Complementares - Rendimentos Recebidos Acumuladamente</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoProcJud %}
                                 <li {% if tab == 'r4010_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_infopgto_salvar_tab' pk=pk tab='r4010_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -333,7 +333,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -343,7 +343,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -358,7 +358,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -366,10 +366,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4010_fci -->
 
-            {% if tab == 'r4010_fci' %} 
+            {% if tab == 'r4010_fci' %}
 
                 {% if perms.r4010.can_see_data_r4010FCI %}
 
@@ -400,7 +400,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</h3>   
+                                    <h3 class="box-title">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010FCI or perms.r4010.can_see_list_r4010FCI  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -412,20 +412,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010FCI %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010FCI %}
 
-                                    <!-- begin_form_r4010_fci --> 
+                                    <!-- begin_form_r4010_fci -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_fci" 
-                                              action="{% url 'r4010_fci_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_fci"
+                                              action="{% url 'r4010_fci_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -454,33 +454,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_fci -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010FCI %} 
+                                {% if perms.r4010.can_see_r4010FCI %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_fci --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_fci -->
 
                                         {% include 'tables/r4010_fci.html' %}
-                                        <!-- end_table_r4010_fci --> 
-                
+                                        <!-- end_table_r4010_fci -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_scp -->
 
-            {% if tab == 'r4010_scp' %} 
+            {% if tab == 'r4010_scp' %}
 
                 {% if perms.r4010.can_see_data_r4010SCP %}
 
@@ -511,7 +511,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>   
+                                    <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010SCP or perms.r4010.can_see_list_r4010SCP  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -523,20 +523,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010SCP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010SCP %}
 
-                                    <!-- begin_form_r4010_scp --> 
+                                    <!-- begin_form_r4010_scp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_scp" 
-                                              action="{% url 'r4010_scp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_scp"
+                                              action="{% url 'r4010_scp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -565,33 +565,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_scp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010SCP %} 
+                                {% if perms.r4010.can_see_r4010SCP %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_scp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_scp -->
 
                                         {% include 'tables/r4010_scp.html' %}
-                                        <!-- end_table_r4010_scp --> 
-                
+                                        <!-- end_table_r4010_scp -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_detded -->
 
-            {% if tab == 'r4010_detded' %} 
+            {% if tab == 'r4010_detded' %}
 
                 {% if perms.r4010.can_see_data_r4010detDed %}
 
@@ -622,7 +622,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das deduções</h3>   
+                                    <h3 class="box-title">Detalhamento das deduções</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010detDed or perms.r4010.can_see_list_r4010detDed  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -634,20 +634,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010detDed %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010detDed %}
 
-                                    <!-- begin_form_r4010_detded --> 
+                                    <!-- begin_form_r4010_detded -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_detded" 
-                                              action="{% url 'r4010_detded_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_detded"
+                                              action="{% url 'r4010_detded_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -676,33 +676,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_detded -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010detDed %} 
+                                {% if perms.r4010.can_see_r4010detDed %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_detded --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_detded -->
 
                                         {% include 'tables/r4010_detded.html' %}
-                                        <!-- end_table_r4010_detded --> 
-                
+                                        <!-- end_table_r4010_detded -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_rendisento -->
 
-            {% if tab == 'r4010_rendisento' %} 
+            {% if tab == 'r4010_rendisento' %}
 
                 {% if perms.r4010.can_see_data_r4010rendIsento %}
 
@@ -733,7 +733,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Rendimentos Isentos/Não Tributáveis</h3>   
+                                    <h3 class="box-title">Rendimentos Isentos/Não Tributáveis</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010rendIsento or perms.r4010.can_see_list_r4010rendIsento  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -745,20 +745,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010rendIsento %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010rendIsento %}
 
-                                    <!-- begin_form_r4010_rendisento --> 
+                                    <!-- begin_form_r4010_rendisento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_rendisento" 
-                                              action="{% url 'r4010_rendisento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_rendisento"
+                                              action="{% url 'r4010_rendisento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -787,33 +787,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_rendisento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010rendIsento %} 
+                                {% if perms.r4010.can_see_r4010rendIsento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_rendisento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_rendisento -->
 
                                         {% include 'tables/r4010_rendisento.html' %}
-                                        <!-- end_table_r4010_rendisento --> 
-                
+                                        <!-- end_table_r4010_rendisento -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_infoprocret -->
 
-            {% if tab == 'r4010_infoprocret' %} 
+            {% if tab == 'r4010_infoprocret' %}
 
                 {% if perms.r4010.can_see_data_r4010infoProcRet %}
 
@@ -844,7 +844,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</h3>   
+                                    <h3 class="box-title">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoProcRet or perms.r4010.can_see_list_r4010infoProcRet  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -856,20 +856,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoProcRet %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoProcRet %}
 
-                                    <!-- begin_form_r4010_infoprocret --> 
+                                    <!-- begin_form_r4010_infoprocret -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_infoprocret" 
-                                              action="{% url 'r4010_infoprocret_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_infoprocret"
+                                              action="{% url 'r4010_infoprocret_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -898,33 +898,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_infoprocret -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoProcRet %} 
+                                {% if perms.r4010.can_see_r4010infoProcRet %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_infoprocret --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_infoprocret -->
 
                                         {% include 'tables/r4010_infoprocret.html' %}
-                                        <!-- end_table_r4010_infoprocret --> 
-                
+                                        <!-- end_table_r4010_infoprocret -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_inforra -->
 
-            {% if tab == 'r4010_inforra' %} 
+            {% if tab == 'r4010_inforra' %}
 
                 {% if perms.r4010.can_see_data_r4010infoRRA %}
 
@@ -955,7 +955,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Rendimentos Recebidos Acumuladamente</h3>   
+                                    <h3 class="box-title">Informações Complementares - Rendimentos Recebidos Acumuladamente</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoRRA or perms.r4010.can_see_list_r4010infoRRA  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -967,20 +967,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoRRA %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoRRA %}
 
-                                    <!-- begin_form_r4010_inforra --> 
+                                    <!-- begin_form_r4010_inforra -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_inforra" 
-                                              action="{% url 'r4010_inforra_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_inforra"
+                                              action="{% url 'r4010_inforra_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1009,33 +1009,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_inforra -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoRRA %} 
+                                {% if perms.r4010.can_see_r4010infoRRA %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_inforra --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_inforra -->
 
                                         {% include 'tables/r4010_inforra.html' %}
-                                        <!-- end_table_r4010_inforra --> 
-                
+                                        <!-- end_table_r4010_inforra -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_infoprocjud -->
 
-            {% if tab == 'r4010_infoprocjud' %} 
+            {% if tab == 'r4010_infoprocjud' %}
 
                 {% if perms.r4010.can_see_data_r4010infoProcJud %}
 
@@ -1066,7 +1066,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
+                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoProcJud or perms.r4010.can_see_list_r4010infoProcJud  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -1078,20 +1078,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoProcJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoProcJud %}
 
-                                    <!-- begin_form_r4010_infoprocjud --> 
+                                    <!-- begin_form_r4010_infoprocjud -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_infoprocjud" 
-                                              action="{% url 'r4010_infoprocjud_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_infoprocjud"
+                                              action="{% url 'r4010_infoprocjud_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1120,32 +1120,32 @@
                                     </div>
 
                                 <!-- end_form_r4010_infoprocjud -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoProcJud %} 
+                                {% if perms.r4010.can_see_r4010infoProcJud %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_infoprocjud --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_infoprocjud -->
 
                                         {% include 'tables/r4010_infoprocjud.html' %}
-                                        <!-- end_table_r4010_infoprocjud --> 
-                
+                                        <!-- end_table_r4010_infoprocjud -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

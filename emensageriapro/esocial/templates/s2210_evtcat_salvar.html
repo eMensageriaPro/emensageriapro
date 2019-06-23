@@ -58,44 +58,44 @@
                                 S-2210 - Comunicação de Acidente de Trabalho</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2210.can_see_s2210ideLocalAcid %}
                                     <li {% if tab == 's2210_idelocalacid' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_idelocalacid' %}">
                                         Identificação do local onde ocorreu o acidente</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2210.can_see_s2210parteAtingida %}
                                     <li {% if tab == 's2210_parteatingida' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_parteatingida' %}">
                                         Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2210.can_see_s2210agenteCausador %}
                                     <li {% if tab == 's2210_agentecausador' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_agentecausador' %}">
                                         Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2210.can_see_s2210atestado %}
                                     <li {% if tab == 's2210_atestado' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_atestado' %}">
                                         Atestado Médico</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2210.can_see_s2210catOrigem %}
                                     <li {% if tab == 's2210_catorigem' %} class="active"{% endif %} >
                                         <a href="{% url 's2210_evtcat_salvar_tab' pk=pk tab='s2210_catorigem' %}">
                                         Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -150,7 +150,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2210_evtcat.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -248,7 +248,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -277,7 +277,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2210evtCAT %}
                             <div class="col-md-4">
@@ -310,9 +310,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2210evtCAT and s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -326,13 +326,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2210evtCAT %}
+                            {% if perms.esocial.can_see_receipt_s2210evtCAT and s2210_evtcat.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -402,7 +402,7 @@
 
 
                         {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2210evtCAT %}
                             <div class="col-md-2">
@@ -459,18 +459,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2210evtCAT or perms.esocial.change_s2210evtCAT %}
-    
+
                         {% if s2210_evtcat_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -498,7 +498,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -508,7 +508,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -531,10 +531,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2210_idelocalacid -->
 
-            {% if tab == 's2210_idelocalacid' %} 
+            {% if tab == 's2210_idelocalacid' %}
 
                 {% if perms.s2210.can_see_data_s2210ideLocalAcid %}
 
@@ -566,7 +566,7 @@
                             {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação do local onde ocorreu o acidente</h3>   
+                                    <h3 class="box-title">Identificação do local onde ocorreu o acidente</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2210.add_s2210ideLocalAcid or perms.s2210.can_see_list_s2210ideLocalAcid %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -578,19 +578,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210ideLocalAcid %}            
+                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210ideLocalAcid %}
 
-                                    <!-- begin_form_s2210_idelocalacid --> 
+                                    <!-- begin_form_s2210_idelocalacid -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2210_idelocalacid" 
-                                              action="{% url 's2210_idelocalacid_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2210_idelocalacid"
+                                              action="{% url 's2210_idelocalacid_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -619,32 +619,32 @@
                                     </div>
 
                                 <!-- end_form_s2210_idelocalacid -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2210.can_see_s2210ideLocalAcid %} 
+                                {% if perms.s2210.can_see_s2210ideLocalAcid %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2210_idelocalacid --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2210_idelocalacid -->
 
                                         {% include 'tables/s2210_idelocalacid.html' %}
-                                        <!-- end_table_s2210_idelocalacid --> 
-                                    
+                                        <!-- end_table_s2210_idelocalacid -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2210_parteatingida -->
 
-            {% if tab == 's2210_parteatingida' %} 
+            {% if tab == 's2210_parteatingida' %}
 
                 {% if perms.s2210.can_see_data_s2210parteAtingida %}
 
@@ -676,7 +676,7 @@
                             {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</h3>   
+                                    <h3 class="box-title">Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2210.add_s2210parteAtingida or perms.s2210.can_see_list_s2210parteAtingida %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -688,19 +688,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210parteAtingida %}            
+                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210parteAtingida %}
 
-                                    <!-- begin_form_s2210_parteatingida --> 
+                                    <!-- begin_form_s2210_parteatingida -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2210_parteatingida" 
-                                              action="{% url 's2210_parteatingida_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2210_parteatingida"
+                                              action="{% url 's2210_parteatingida_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -729,32 +729,32 @@
                                     </div>
 
                                 <!-- end_form_s2210_parteatingida -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2210.can_see_s2210parteAtingida %} 
+                                {% if perms.s2210.can_see_s2210parteAtingida %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2210_parteatingida --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2210_parteatingida -->
 
                                         {% include 'tables/s2210_parteatingida.html' %}
-                                        <!-- end_table_s2210_parteatingida --> 
-                                    
+                                        <!-- end_table_s2210_parteatingida -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2210_agentecausador -->
 
-            {% if tab == 's2210_agentecausador' %} 
+            {% if tab == 's2210_agentecausador' %}
 
                 {% if perms.s2210.can_see_data_s2210agenteCausador %}
 
@@ -786,7 +786,7 @@
                             {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</h3>   
+                                    <h3 class="box-title">Detalhamento do(s) agente(s) causador(es) do acidente de trabalho</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2210.add_s2210agenteCausador or perms.s2210.can_see_list_s2210agenteCausador %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -798,19 +798,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210agenteCausador %}            
+                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210agenteCausador %}
 
-                                    <!-- begin_form_s2210_agentecausador --> 
+                                    <!-- begin_form_s2210_agentecausador -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2210_agentecausador" 
-                                              action="{% url 's2210_agentecausador_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2210_agentecausador"
+                                              action="{% url 's2210_agentecausador_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -839,32 +839,32 @@
                                     </div>
 
                                 <!-- end_form_s2210_agentecausador -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2210.can_see_s2210agenteCausador %} 
+                                {% if perms.s2210.can_see_s2210agenteCausador %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2210_agentecausador --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2210_agentecausador -->
 
                                         {% include 'tables/s2210_agentecausador.html' %}
-                                        <!-- end_table_s2210_agentecausador --> 
-                                    
+                                        <!-- end_table_s2210_agentecausador -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2210_atestado -->
 
-            {% if tab == 's2210_atestado' %} 
+            {% if tab == 's2210_atestado' %}
 
                 {% if perms.s2210.can_see_data_s2210atestado %}
 
@@ -896,7 +896,7 @@
                             {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Atestado Médico</h3>   
+                                    <h3 class="box-title">Atestado Médico</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2210.add_s2210atestado or perms.s2210.can_see_list_s2210atestado %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -908,19 +908,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210atestado %}            
+                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210atestado %}
 
-                                    <!-- begin_form_s2210_atestado --> 
+                                    <!-- begin_form_s2210_atestado -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2210_atestado" 
-                                              action="{% url 's2210_atestado_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2210_atestado"
+                                              action="{% url 's2210_atestado_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -949,32 +949,32 @@
                                     </div>
 
                                 <!-- end_form_s2210_atestado -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2210.can_see_s2210atestado %} 
+                                {% if perms.s2210.can_see_s2210atestado %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2210_atestado --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2210_atestado -->
 
                                         {% include 'tables/s2210_atestado.html' %}
-                                        <!-- end_table_s2210_atestado --> 
-                                    
+                                        <!-- end_table_s2210_atestado -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2210_catorigem -->
 
-            {% if tab == 's2210_catorigem' %} 
+            {% if tab == 's2210_catorigem' %}
 
                 {% if perms.s2210.can_see_data_s2210catOrigem %}
 
@@ -1006,7 +1006,7 @@
                             {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</h3>   
+                                    <h3 class="box-title">Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2210.add_s2210catOrigem or perms.s2210.can_see_list_s2210catOrigem %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1018,19 +1018,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210catOrigem %}            
+                                {% if s2210_evtcat.status == STATUS_EVENTO_CADASTRADO and perms.s2210.add_s2210catOrigem %}
 
-                                    <!-- begin_form_s2210_catorigem --> 
+                                    <!-- begin_form_s2210_catorigem -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2210_catorigem" 
-                                              action="{% url 's2210_catorigem_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2210_catorigem"
+                                              action="{% url 's2210_catorigem_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1059,31 +1059,31 @@
                                     </div>
 
                                 <!-- end_form_s2210_catorigem -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2210.can_see_s2210catOrigem %} 
+                                {% if perms.s2210.can_see_s2210catOrigem %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2210_catorigem --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2210_catorigem -->
 
                                         {% include 'tables/s2210_catorigem.html' %}
-                                        <!-- end_table_s2210_catorigem --> 
-                                    
+                                        <!-- end_table_s2210_catorigem -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

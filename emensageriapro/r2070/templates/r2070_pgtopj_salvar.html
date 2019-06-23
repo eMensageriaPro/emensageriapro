@@ -58,14 +58,14 @@
                                 Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud %}
                                 <li {% if tab == 'r2070_pgtopj_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_pgtopj_salvar_tab' pk=pk tab='r2070_pgtopj_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2070_pgtopj_infoprocjud -->
 
-            {% if tab == 'r2070_pgtopj_infoprocjud' %} 
+            {% if tab == 'r2070_pgtopj_infoprocjud' %}
 
                 {% if perms.r2070.can_see_data_r2070pgtoPJinfoProcJud %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
+                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070pgtoPJinfoProcJud or perms.r2070.can_see_list_r2070pgtoPJinfoProcJud  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070pgtoPJinfoProcJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070pgtoPJinfoProcJud %}
 
-                                    <!-- begin_form_r2070_pgtopj_infoprocjud --> 
+                                    <!-- begin_form_r2070_pgtopj_infoprocjud -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_pgtopj_infoprocjud" 
-                                              action="{% url 'r2070_pgtopj_infoprocjud_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_pgtopj_infoprocjud"
+                                              action="{% url 'r2070_pgtopj_infoprocjud_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_r2070_pgtopj_infoprocjud -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud %} 
+                                {% if perms.r2070.can_see_r2070pgtoPJinfoProcJud %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_pgtopj_infoprocjud --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_pgtopj_infoprocjud -->
 
                                         {% include 'tables/r2070_pgtopj_infoprocjud.html' %}
-                                        <!-- end_table_r2070_pgtopj_infoprocjud --> 
-                
+                                        <!-- end_table_r2070_pgtopj_infoprocjud -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -48,7 +48,7 @@
 
 <section class="content">
 
-    
+
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
@@ -61,29 +61,29 @@
                         </li>
                         {% endif %}
                         <!-- antes_tabs -->
-                        
-                            
+    
+        
                                 {% if perms.mensageiro.can_see_TransmissorLoteEsocial %}
                                     <li {% if tab == 'transmissor_lote_esocial' %} class="active"{% endif %} >
                                         <a href="{% url 'transmissores_salvar_tab' pk=pk tab='transmissor_lote_esocial' %}">
                                         Transmissor do eSocial</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.mensageiro.can_see_TransmissorLoteEfdreinf %}
                                     <li {% if tab == 'transmissor_lote_efdreinf' %} class="active"{% endif %} >
                                         <a href="{% url 'transmissores_salvar_tab' pk=pk tab='transmissor_lote_efdreinf' %}">
                                         Transmissor do EFD-Reinf</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
-    
+
     <!-- TABS -->
     {% if messages %}
         <div class="row">
@@ -119,10 +119,10 @@
                     </div>
 
                     {% if perms.mensageiro.change_TransmissorLote or perms.mensageiro.add_TransmissorLote %}
-                        
+    
                         <form action="#" id="id_form_transmissores" method="POST" content="text/html; charset=UTF-8" enctype="multipart/form-data">
                         {% csrf_token %}
-                        
+    
                     {% endif %}
 
 
@@ -144,11 +144,11 @@
                     <div class="box-body">
                         <div class="row">
                         {% if pk %}
-                        
+    
                         <!-- botões especiais -->
-                        
-                        
-                            
+    
+    
+        
 
 
                             {% if perms.mensageiro.add_TransmissorLote %}
@@ -245,14 +245,14 @@
     {% endif %}
 
     <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-    
+
     {% if pk %}
 
 
-        
+
         <!-- begin_transmissor_lote_esocial -->
 
-            {% if tab == 'transmissor_lote_esocial' %} 
+            {% if tab == 'transmissor_lote_esocial' %}
 
                 {% if perms.mensageiro.can_see_data_TransmissorLoteEsocial %}
 
@@ -283,7 +283,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Transmissor do eSocial</h3>   
+                                    <h3 class="box-title">Transmissor do eSocial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.mensageiro.add_TransmissorLoteEsocial or perms.mensageiro.can_see_list_TransmissorLoteEsocial %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -295,18 +295,18 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.mensageiro.add_TransmissorLoteEsocial %}            
+                                {% if perms.mensageiro.add_TransmissorLoteEsocial %}
 
-                                    <!-- begin_form_transmissor_lote_esocial --> 
+                                    <!-- begin_form_transmissor_lote_esocial -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_transmissor_lote_esocial" 
-                                              action="{% url 'transmissor_lote_esocial_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_transmissor_lote_esocial"
+                                              action="{% url 'transmissor_lote_esocial_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -333,32 +333,32 @@
                                     </div>
 
                                 <!-- end_form_transmissor_lote_esocial -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.mensageiro.can_see_TransmissorLoteEsocial %} 
+                                {% if perms.mensageiro.can_see_TransmissorLoteEsocial %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_transmissor_lote_esocial --> 
+                                    <div id="listar">
+                                    <!-- begin_table_transmissor_lote_esocial -->
 
                                         {% include 'tables/transmissor_lote_esocial.html' %}
-                                        <!-- end_table_transmissor_lote_esocial --> 
-                                    
+                                        <!-- end_table_transmissor_lote_esocial -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-            
-        
+            {% endif %}
+
+
         <!-- begin_transmissor_lote_efdreinf -->
 
-            {% if tab == 'transmissor_lote_efdreinf' %} 
+            {% if tab == 'transmissor_lote_efdreinf' %}
 
                 {% if perms.mensageiro.can_see_data_TransmissorLoteEfdreinf %}
 
@@ -389,7 +389,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Transmissor do EFD-Reinf</h3>   
+                                    <h3 class="box-title">Transmissor do EFD-Reinf</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.mensageiro.add_TransmissorLoteEfdreinf or perms.mensageiro.can_see_list_TransmissorLoteEfdreinf %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -401,18 +401,18 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.mensageiro.add_TransmissorLoteEfdreinf %}            
+                                {% if perms.mensageiro.add_TransmissorLoteEfdreinf %}
 
-                                    <!-- begin_form_transmissor_lote_efdreinf --> 
+                                    <!-- begin_form_transmissor_lote_efdreinf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_transmissor_lote_efdreinf" 
-                                              action="{% url 'transmissor_lote_efdreinf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_transmissor_lote_efdreinf"
+                                              action="{% url 'transmissor_lote_efdreinf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -439,32 +439,32 @@
                                     </div>
 
                                 <!-- end_form_transmissor_lote_efdreinf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.mensageiro.can_see_TransmissorLoteEfdreinf %} 
+                                {% if perms.mensageiro.can_see_TransmissorLoteEfdreinf %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_transmissor_lote_efdreinf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_transmissor_lote_efdreinf -->
 
                                         {% include 'tables/transmissor_lote_efdreinf.html' %}
-                                        <!-- end_table_transmissor_lote_efdreinf --> 
-                                    
+                                        <!-- end_table_transmissor_lote_efdreinf -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-            
-        
+            {% endif %}
 
-    {% endif %} 
-    
+
+
+    {% endif %}
+
 
 </section>
 

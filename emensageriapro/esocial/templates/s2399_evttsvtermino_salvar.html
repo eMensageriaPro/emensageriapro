@@ -58,30 +58,30 @@
                                 S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2399.can_see_s2399mudancaCPF %}
                                     <li {% if tab == 's2399_mudancacpf' %} class="active"{% endif %} >
                                         <a href="{% url 's2399_evttsvtermino_salvar_tab' pk=pk tab='s2399_mudancacpf' %}">
                                         Informações de mudança de CPF do trabalhador.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2399.can_see_s2399verbasResc %}
                                     <li {% if tab == 's2399_verbasresc' %} class="active"{% endif %} >
                                         <a href="{% url 's2399_evttsvtermino_salvar_tab' pk=pk tab='s2399_verbasresc' %}">
                                         Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2399.can_see_s2399quarentena %}
                                     <li {% if tab == 's2399_quarentena' %} class="active"{% endif %} >
                                         <a href="{% url 's2399_evttsvtermino_salvar_tab' pk=pk tab='s2399_quarentena' %}">
                                         Informações sobre a 'quarentena' remunerada de trabalhador desligado</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2399_evttsvtermino.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -234,7 +234,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -263,7 +263,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2399evtTSVTermino %}
                             <div class="col-md-4">
@@ -296,9 +296,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2399evtTSVTermino and s2399_evttsvtermino_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -312,13 +312,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2399evtTSVTermino %}
+                            {% if perms.esocial.can_see_receipt_s2399evtTSVTermino and s2399_evttsvtermino.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -388,7 +388,7 @@
 
 
                         {% if s2399_evttsvtermino_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2399evtTSVTermino %}
                             <div class="col-md-2">
@@ -445,18 +445,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2399evtTSVTermino or perms.esocial.change_s2399evtTSVTermino %}
-    
+
                         {% if s2399_evttsvtermino_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -484,7 +484,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -494,7 +494,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -517,10 +517,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2399_mudancacpf -->
 
-            {% if tab == 's2399_mudancacpf' %} 
+            {% if tab == 's2399_mudancacpf' %}
 
                 {% if perms.s2399.can_see_data_s2399mudancaCPF %}
 
@@ -552,7 +552,7 @@
                             {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
+                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2399.add_s2399mudancaCPF or perms.s2399.can_see_list_s2399mudancaCPF %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -564,19 +564,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399mudancaCPF %}            
+                                {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399mudancaCPF %}
 
-                                    <!-- begin_form_s2399_mudancacpf --> 
+                                    <!-- begin_form_s2399_mudancacpf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2399_mudancacpf" 
-                                              action="{% url 's2399_mudancacpf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2399_mudancacpf"
+                                              action="{% url 's2399_mudancacpf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -605,32 +605,32 @@
                                     </div>
 
                                 <!-- end_form_s2399_mudancacpf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2399.can_see_s2399mudancaCPF %} 
+                                {% if perms.s2399.can_see_s2399mudancaCPF %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2399_mudancacpf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2399_mudancacpf -->
 
                                         {% include 'tables/s2399_mudancacpf.html' %}
-                                        <!-- end_table_s2399_mudancacpf --> 
-                                    
+                                        <!-- end_table_s2399_mudancacpf -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2399_verbasresc -->
 
-            {% if tab == 's2399_verbasresc' %} 
+            {% if tab == 's2399_verbasresc' %}
 
                 {% if perms.s2399.can_see_data_s2399verbasResc %}
 
@@ -662,7 +662,7 @@
                             {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h3>   
+                                    <h3 class="box-title">Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2399.add_s2399verbasResc or perms.s2399.can_see_list_s2399verbasResc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -674,19 +674,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399verbasResc %}            
+                                {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399verbasResc %}
 
-                                    <!-- begin_form_s2399_verbasresc --> 
+                                    <!-- begin_form_s2399_verbasresc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2399_verbasresc" 
-                                              action="{% url 's2399_verbasresc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2399_verbasresc"
+                                              action="{% url 's2399_verbasresc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -715,32 +715,32 @@
                                     </div>
 
                                 <!-- end_form_s2399_verbasresc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2399.can_see_s2399verbasResc %} 
+                                {% if perms.s2399.can_see_s2399verbasResc %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2399_verbasresc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2399_verbasresc -->
 
                                         {% include 'tables/s2399_verbasresc.html' %}
-                                        <!-- end_table_s2399_verbasresc --> 
-                                    
+                                        <!-- end_table_s2399_verbasresc -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2399_quarentena -->
 
-            {% if tab == 's2399_quarentena' %} 
+            {% if tab == 's2399_quarentena' %}
 
                 {% if perms.s2399.can_see_data_s2399quarentena %}
 
@@ -772,7 +772,7 @@
                             {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre a 'quarentena' remunerada de trabalhador desligado</h3>   
+                                    <h3 class="box-title">Informações sobre a 'quarentena' remunerada de trabalhador desligado</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2399.add_s2399quarentena or perms.s2399.can_see_list_s2399quarentena %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -784,19 +784,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399quarentena %}            
+                                {% if s2399_evttsvtermino.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399quarentena %}
 
-                                    <!-- begin_form_s2399_quarentena --> 
+                                    <!-- begin_form_s2399_quarentena -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2399_quarentena" 
-                                              action="{% url 's2399_quarentena_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2399_quarentena"
+                                              action="{% url 's2399_quarentena_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -825,31 +825,31 @@
                                     </div>
 
                                 <!-- end_form_s2399_quarentena -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2399.can_see_s2399quarentena %} 
+                                {% if perms.s2399.can_see_s2399quarentena %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2399_quarentena --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2399_quarentena -->
 
                                         {% include 'tables/s2399_quarentena.html' %}
-                                        <!-- end_table_s2399_quarentena --> 
-                                    
+                                        <!-- end_table_s2399_quarentena -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

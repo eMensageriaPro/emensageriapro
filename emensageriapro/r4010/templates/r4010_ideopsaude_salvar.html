@@ -58,21 +58,21 @@
                                 Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoReemb %}
                                 <li {% if tab == 'r4010_inforeemb' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_ideopsaude_salvar_tab' pk=pk tab='r4010_inforeemb' %}">
                                     Informação de reembolso do titular do plano de saúde coletivo empresarial</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010infoDependPl %}
                                 <li {% if tab == 'r4010_infodependpl' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_ideopsaude_salvar_tab' pk=pk tab='r4010_infodependpl' %}">
                                     Informações de dependente do plano de saúde coletivo empresarial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4010_inforeemb -->
 
-            {% if tab == 'r4010_inforeemb' %} 
+            {% if tab == 'r4010_inforeemb' %}
 
                 {% if perms.r4010.can_see_data_r4010infoReemb %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação de reembolso do titular do plano de saúde coletivo empresarial</h3>   
+                                    <h3 class="box-title">Informação de reembolso do titular do plano de saúde coletivo empresarial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoReemb or perms.r4010.can_see_list_r4010infoReemb  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoReemb %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoReemb %}
 
-                                    <!-- begin_form_r4010_inforeemb --> 
+                                    <!-- begin_form_r4010_inforeemb -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_inforeemb" 
-                                              action="{% url 'r4010_inforeemb_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_inforeemb"
+                                              action="{% url 'r4010_inforeemb_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_r4010_inforeemb -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoReemb %} 
+                                {% if perms.r4010.can_see_r4010infoReemb %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_inforeemb --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_inforeemb -->
 
                                         {% include 'tables/r4010_inforeemb.html' %}
-                                        <!-- end_table_r4010_inforeemb --> 
-                
+                                        <!-- end_table_r4010_inforeemb -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4010_infodependpl -->
 
-            {% if tab == 'r4010_infodependpl' %} 
+            {% if tab == 'r4010_infodependpl' %}
 
                 {% if perms.r4010.can_see_data_r4010infoDependPl %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de dependente do plano de saúde coletivo empresarial</h3>   
+                                    <h3 class="box-title">Informações de dependente do plano de saúde coletivo empresarial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010infoDependPl or perms.r4010.can_see_list_r4010infoDependPl  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoDependPl %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010infoDependPl %}
 
-                                    <!-- begin_form_r4010_infodependpl --> 
+                                    <!-- begin_form_r4010_infodependpl -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_infodependpl" 
-                                              action="{% url 'r4010_infodependpl_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_infodependpl"
+                                              action="{% url 'r4010_infodependpl_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_r4010_infodependpl -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010infoDependPl %} 
+                                {% if perms.r4010.can_see_r4010infoDependPl %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_infodependpl --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_infodependpl -->
 
                                         {% include 'tables/r4010_infodependpl.html' %}
-                                        <!-- end_table_r4010_infodependpl --> 
-                
+                                        <!-- end_table_r4010_infodependpl -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

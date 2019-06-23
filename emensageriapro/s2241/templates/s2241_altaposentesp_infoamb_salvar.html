@@ -58,14 +58,14 @@
                                 Informações sobre as condições de trabalho insalubre/periculoso.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2241.can_see_s2241altAposentEspfatRisco %}
                                 <li {% if tab == 's2241_altaposentesp_fatrisco' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_altaposentesp_infoamb_salvar_tab' pk=pk tab='s2241_altaposentesp_fatrisco' %}">
                                     Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2241_altaposentesp_fatrisco -->
 
-            {% if tab == 's2241_altaposentesp_fatrisco' %} 
+            {% if tab == 's2241_altaposentesp_fatrisco' %}
 
                 {% if perms.s2241.can_see_data_s2241altAposentEspfatRisco %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>   
+                                    <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241altAposentEspfatRisco or perms.s2241.can_see_list_s2241altAposentEspfatRisco  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241altAposentEspfatRisco %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241altAposentEspfatRisco %}
 
-                                    <!-- begin_form_s2241_altaposentesp_fatrisco --> 
+                                    <!-- begin_form_s2241_altaposentesp_fatrisco -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_altaposentesp_fatrisco" 
-                                              action="{% url 's2241_altaposentesp_fatrisco_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_altaposentesp_fatrisco"
+                                              action="{% url 's2241_altaposentesp_fatrisco_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s2241_altaposentesp_fatrisco -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241altAposentEspfatRisco %} 
+                                {% if perms.s2241.can_see_s2241altAposentEspfatRisco %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_altaposentesp_fatrisco --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_altaposentesp_fatrisco -->
 
                                         {% include 'tables/s2241_altaposentesp_fatrisco.html' %}
-                                        <!-- end_table_s2241_altaposentesp_fatrisco --> 
-                
+                                        <!-- end_table_s2241_altaposentesp_fatrisco -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

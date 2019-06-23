@@ -58,86 +58,86 @@
                                 S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2300.can_see_s2300documentos %}
                                     <li {% if tab == 's2300_documentos' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_documentos' %}">
                                         Informações dos documentos pessoais do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300brasil %}
                                     <li {% if tab == 's2300_brasil' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_brasil' %}">
                                         Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300exterior %}
                                     <li {% if tab == 's2300_exterior' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_exterior' %}">
                                         Preenchido em caso de trabalhador residente no exterior.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300trabEstrangeiro %}
                                     <li {% if tab == 's2300_trabestrangeiro' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_trabestrangeiro' %}">
                                         Grupo de informações do Trabalhador Estrangeiro</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300infoDeficiencia %}
                                     <li {% if tab == 's2300_infodeficiencia' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_infodeficiencia' %}">
                                         Pessoa com Deficiência</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300dependente %}
                                     <li {% if tab == 's2300_dependente' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_dependente' %}">
                                         Informações dos dependentes</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300contato %}
                                     <li {% if tab == 's2300_contato' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_contato' %}">
                                         Informações de contato</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300infoComplementares %}
                                     <li {% if tab == 's2300_infocomplementares' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_infocomplementares' %}">
                                         Informações complementares sobre o declarante</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300mudancaCPF %}
                                     <li {% if tab == 's2300_mudancacpf' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_mudancacpf' %}">
                                         Informações de mudança de CPF do trabalhador.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300afastamento %}
                                     <li {% if tab == 's2300_afastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_afastamento' %}">
                                         Informações de afastamento do trabalhador</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2300.can_see_s2300termino %}
                                     <li {% if tab == 's2300_termino' %} class="active"{% endif %} >
                                         <a href="{% url 's2300_evttsvinicio_salvar_tab' pk=pk tab='s2300_termino' %}">
                                         Informações de término do TSVE</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2300_evttsvinicio.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -290,7 +290,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -319,7 +319,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2300evtTSVInicio %}
                             <div class="col-md-4">
@@ -352,9 +352,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2300evtTSVInicio and s2300_evttsvinicio_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -368,13 +368,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2300evtTSVInicio %}
+                            {% if perms.esocial.can_see_receipt_s2300evtTSVInicio and s2300_evttsvinicio.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -444,7 +444,7 @@
 
 
                         {% if s2300_evttsvinicio_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2300evtTSVInicio %}
                             <div class="col-md-2">
@@ -501,18 +501,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2300evtTSVInicio or perms.esocial.change_s2300evtTSVInicio %}
-    
+
                         {% if s2300_evttsvinicio_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -540,7 +540,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -550,7 +550,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -573,10 +573,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2300_documentos -->
 
-            {% if tab == 's2300_documentos' %} 
+            {% if tab == 's2300_documentos' %}
 
                 {% if perms.s2300.can_see_data_s2300documentos %}
 
@@ -608,7 +608,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>   
+                                    <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300documentos or perms.s2300.can_see_list_s2300documentos %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -620,19 +620,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300documentos %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300documentos %}
 
-                                    <!-- begin_form_s2300_documentos --> 
+                                    <!-- begin_form_s2300_documentos -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_documentos" 
-                                              action="{% url 's2300_documentos_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_documentos"
+                                              action="{% url 's2300_documentos_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -661,32 +661,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_documentos -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300documentos %} 
+                                {% if perms.s2300.can_see_s2300documentos %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_documentos --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_documentos -->
 
                                         {% include 'tables/s2300_documentos.html' %}
-                                        <!-- end_table_s2300_documentos --> 
-                                    
+                                        <!-- end_table_s2300_documentos -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_brasil -->
 
-            {% if tab == 's2300_brasil' %} 
+            {% if tab == 's2300_brasil' %}
 
                 {% if perms.s2300.can_see_data_s2300brasil %}
 
@@ -718,7 +718,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
+                                    <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300brasil or perms.s2300.can_see_list_s2300brasil %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -730,19 +730,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300brasil %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300brasil %}
 
-                                    <!-- begin_form_s2300_brasil --> 
+                                    <!-- begin_form_s2300_brasil -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_brasil" 
-                                              action="{% url 's2300_brasil_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_brasil"
+                                              action="{% url 's2300_brasil_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -771,32 +771,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_brasil -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300brasil %} 
+                                {% if perms.s2300.can_see_s2300brasil %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_brasil --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_brasil -->
 
                                         {% include 'tables/s2300_brasil.html' %}
-                                        <!-- end_table_s2300_brasil --> 
-                                    
+                                        <!-- end_table_s2300_brasil -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_exterior -->
 
-            {% if tab == 's2300_exterior' %} 
+            {% if tab == 's2300_exterior' %}
 
                 {% if perms.s2300.can_see_data_s2300exterior %}
 
@@ -828,7 +828,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
+                                    <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300exterior or perms.s2300.can_see_list_s2300exterior %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -840,19 +840,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300exterior %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300exterior %}
 
-                                    <!-- begin_form_s2300_exterior --> 
+                                    <!-- begin_form_s2300_exterior -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_exterior" 
-                                              action="{% url 's2300_exterior_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_exterior"
+                                              action="{% url 's2300_exterior_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -881,32 +881,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_exterior -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300exterior %} 
+                                {% if perms.s2300.can_see_s2300exterior %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_exterior --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_exterior -->
 
                                         {% include 'tables/s2300_exterior.html' %}
-                                        <!-- end_table_s2300_exterior --> 
-                                    
+                                        <!-- end_table_s2300_exterior -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_trabestrangeiro -->
 
-            {% if tab == 's2300_trabestrangeiro' %} 
+            {% if tab == 's2300_trabestrangeiro' %}
 
                 {% if perms.s2300.can_see_data_s2300trabEstrangeiro %}
 
@@ -938,7 +938,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>   
+                                    <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300trabEstrangeiro or perms.s2300.can_see_list_s2300trabEstrangeiro %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -950,19 +950,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300trabEstrangeiro %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300trabEstrangeiro %}
 
-                                    <!-- begin_form_s2300_trabestrangeiro --> 
+                                    <!-- begin_form_s2300_trabestrangeiro -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_trabestrangeiro" 
-                                              action="{% url 's2300_trabestrangeiro_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_trabestrangeiro"
+                                              action="{% url 's2300_trabestrangeiro_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -991,32 +991,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_trabestrangeiro -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300trabEstrangeiro %} 
+                                {% if perms.s2300.can_see_s2300trabEstrangeiro %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_trabestrangeiro --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_trabestrangeiro -->
 
                                         {% include 'tables/s2300_trabestrangeiro.html' %}
-                                        <!-- end_table_s2300_trabestrangeiro --> 
-                                    
+                                        <!-- end_table_s2300_trabestrangeiro -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_infodeficiencia -->
 
-            {% if tab == 's2300_infodeficiencia' %} 
+            {% if tab == 's2300_infodeficiencia' %}
 
                 {% if perms.s2300.can_see_data_s2300infoDeficiencia %}
 
@@ -1048,7 +1048,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Pessoa com Deficiência</h3>   
+                                    <h3 class="box-title">Pessoa com Deficiência</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300infoDeficiencia or perms.s2300.can_see_list_s2300infoDeficiencia %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1060,19 +1060,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300infoDeficiencia %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300infoDeficiencia %}
 
-                                    <!-- begin_form_s2300_infodeficiencia --> 
+                                    <!-- begin_form_s2300_infodeficiencia -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_infodeficiencia" 
-                                              action="{% url 's2300_infodeficiencia_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_infodeficiencia"
+                                              action="{% url 's2300_infodeficiencia_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1101,32 +1101,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_infodeficiencia -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300infoDeficiencia %} 
+                                {% if perms.s2300.can_see_s2300infoDeficiencia %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_infodeficiencia --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_infodeficiencia -->
 
                                         {% include 'tables/s2300_infodeficiencia.html' %}
-                                        <!-- end_table_s2300_infodeficiencia --> 
-                                    
+                                        <!-- end_table_s2300_infodeficiencia -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_dependente -->
 
-            {% if tab == 's2300_dependente' %} 
+            {% if tab == 's2300_dependente' %}
 
                 {% if perms.s2300.can_see_data_s2300dependente %}
 
@@ -1158,7 +1158,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações dos dependentes</h3>   
+                                    <h3 class="box-title">Informações dos dependentes</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300dependente or perms.s2300.can_see_list_s2300dependente %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1170,19 +1170,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300dependente %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300dependente %}
 
-                                    <!-- begin_form_s2300_dependente --> 
+                                    <!-- begin_form_s2300_dependente -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_dependente" 
-                                              action="{% url 's2300_dependente_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_dependente"
+                                              action="{% url 's2300_dependente_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1211,32 +1211,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_dependente -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300dependente %} 
+                                {% if perms.s2300.can_see_s2300dependente %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_dependente --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_dependente -->
 
                                         {% include 'tables/s2300_dependente.html' %}
-                                        <!-- end_table_s2300_dependente --> 
-                                    
+                                        <!-- end_table_s2300_dependente -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_contato -->
 
-            {% if tab == 's2300_contato' %} 
+            {% if tab == 's2300_contato' %}
 
                 {% if perms.s2300.can_see_data_s2300contato %}
 
@@ -1268,7 +1268,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de contato</h3>   
+                                    <h3 class="box-title">Informações de contato</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300contato or perms.s2300.can_see_list_s2300contato %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1280,19 +1280,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300contato %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300contato %}
 
-                                    <!-- begin_form_s2300_contato --> 
+                                    <!-- begin_form_s2300_contato -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_contato" 
-                                              action="{% url 's2300_contato_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_contato"
+                                              action="{% url 's2300_contato_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1321,32 +1321,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_contato -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300contato %} 
+                                {% if perms.s2300.can_see_s2300contato %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_contato --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_contato -->
 
                                         {% include 'tables/s2300_contato.html' %}
-                                        <!-- end_table_s2300_contato --> 
-                                    
+                                        <!-- end_table_s2300_contato -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_infocomplementares -->
 
-            {% if tab == 's2300_infocomplementares' %} 
+            {% if tab == 's2300_infocomplementares' %}
 
                 {% if perms.s2300.can_see_data_s2300infoComplementares %}
 
@@ -1378,7 +1378,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações complementares sobre o declarante</h3>   
+                                    <h3 class="box-title">Informações complementares sobre o declarante</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300infoComplementares or perms.s2300.can_see_list_s2300infoComplementares %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1390,19 +1390,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300infoComplementares %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300infoComplementares %}
 
-                                    <!-- begin_form_s2300_infocomplementares --> 
+                                    <!-- begin_form_s2300_infocomplementares -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_infocomplementares" 
-                                              action="{% url 's2300_infocomplementares_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_infocomplementares"
+                                              action="{% url 's2300_infocomplementares_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1431,32 +1431,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_infocomplementares -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300infoComplementares %} 
+                                {% if perms.s2300.can_see_s2300infoComplementares %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_infocomplementares --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_infocomplementares -->
 
                                         {% include 'tables/s2300_infocomplementares.html' %}
-                                        <!-- end_table_s2300_infocomplementares --> 
-                                    
+                                        <!-- end_table_s2300_infocomplementares -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_mudancacpf -->
 
-            {% if tab == 's2300_mudancacpf' %} 
+            {% if tab == 's2300_mudancacpf' %}
 
                 {% if perms.s2300.can_see_data_s2300mudancaCPF %}
 
@@ -1488,7 +1488,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
+                                    <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300mudancaCPF or perms.s2300.can_see_list_s2300mudancaCPF %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1500,19 +1500,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300mudancaCPF %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300mudancaCPF %}
 
-                                    <!-- begin_form_s2300_mudancacpf --> 
+                                    <!-- begin_form_s2300_mudancacpf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_mudancacpf" 
-                                              action="{% url 's2300_mudancacpf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_mudancacpf"
+                                              action="{% url 's2300_mudancacpf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1541,32 +1541,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_mudancacpf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300mudancaCPF %} 
+                                {% if perms.s2300.can_see_s2300mudancaCPF %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_mudancacpf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_mudancacpf -->
 
                                         {% include 'tables/s2300_mudancacpf.html' %}
-                                        <!-- end_table_s2300_mudancacpf --> 
-                                    
+                                        <!-- end_table_s2300_mudancacpf -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_afastamento -->
 
-            {% if tab == 's2300_afastamento' %} 
+            {% if tab == 's2300_afastamento' %}
 
                 {% if perms.s2300.can_see_data_s2300afastamento %}
 
@@ -1598,7 +1598,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de afastamento do trabalhador</h3>   
+                                    <h3 class="box-title">Informações de afastamento do trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300afastamento or perms.s2300.can_see_list_s2300afastamento %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1610,19 +1610,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300afastamento %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300afastamento %}
 
-                                    <!-- begin_form_s2300_afastamento --> 
+                                    <!-- begin_form_s2300_afastamento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_afastamento" 
-                                              action="{% url 's2300_afastamento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_afastamento"
+                                              action="{% url 's2300_afastamento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1651,32 +1651,32 @@
                                     </div>
 
                                 <!-- end_form_s2300_afastamento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300afastamento %} 
+                                {% if perms.s2300.can_see_s2300afastamento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_afastamento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_afastamento -->
 
                                         {% include 'tables/s2300_afastamento.html' %}
-                                        <!-- end_table_s2300_afastamento --> 
-                                    
+                                        <!-- end_table_s2300_afastamento -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2300_termino -->
 
-            {% if tab == 's2300_termino' %} 
+            {% if tab == 's2300_termino' %}
 
                 {% if perms.s2300.can_see_data_s2300termino %}
 
@@ -1708,7 +1708,7 @@
                             {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de término do TSVE</h3>   
+                                    <h3 class="box-title">Informações de término do TSVE</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2300.add_s2300termino or perms.s2300.can_see_list_s2300termino %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -1720,19 +1720,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300termino %}            
+                                {% if s2300_evttsvinicio.status == STATUS_EVENTO_CADASTRADO and perms.s2300.add_s2300termino %}
 
-                                    <!-- begin_form_s2300_termino --> 
+                                    <!-- begin_form_s2300_termino -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2300_termino" 
-                                              action="{% url 's2300_termino_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2300_termino"
+                                              action="{% url 's2300_termino_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1761,31 +1761,31 @@
                                     </div>
 
                                 <!-- end_form_s2300_termino -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2300.can_see_s2300termino %} 
+                                {% if perms.s2300.can_see_s2300termino %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2300_termino --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2300_termino -->
 
                                         {% include 'tables/s2300_termino.html' %}
-                                        <!-- end_table_s2300_termino --> 
-                                    
+                                        <!-- end_table_s2300_termino -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

@@ -58,7 +58,7 @@
                                 Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</a>
                             </li>
                         {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -284,7 +284,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -294,7 +294,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -309,7 +309,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -317,9 +317,9 @@
     {% if pk %}
 
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 </section>
 

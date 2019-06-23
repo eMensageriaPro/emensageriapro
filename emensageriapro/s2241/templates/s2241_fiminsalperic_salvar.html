@@ -58,14 +58,14 @@
                                 Condições do ambiente de trabalho insalubre/periculoso - Fim</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2241.can_see_s2241fimInsalPericinfoAmb %}
                                 <li {% if tab == 's2241_fiminsalperic_infoamb' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_fiminsalperic_salvar_tab' pk=pk tab='s2241_fiminsalperic_infoamb' %}">
                                     Informações relativas ao ambiente de trabalho</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2241_fiminsalperic_infoamb -->
 
-            {% if tab == 's2241_fiminsalperic_infoamb' %} 
+            {% if tab == 's2241_fiminsalperic_infoamb' %}
 
                 {% if perms.s2241.can_see_data_s2241fimInsalPericinfoAmb %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>   
+                                    <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241fimInsalPericinfoAmb or perms.s2241.can_see_list_s2241fimInsalPericinfoAmb  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241fimInsalPericinfoAmb %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241fimInsalPericinfoAmb %}
 
-                                    <!-- begin_form_s2241_fiminsalperic_infoamb --> 
+                                    <!-- begin_form_s2241_fiminsalperic_infoamb -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_fiminsalperic_infoamb" 
-                                              action="{% url 's2241_fiminsalperic_infoamb_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_fiminsalperic_infoamb"
+                                              action="{% url 's2241_fiminsalperic_infoamb_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s2241_fiminsalperic_infoamb -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241fimInsalPericinfoAmb %} 
+                                {% if perms.s2241.can_see_s2241fimInsalPericinfoAmb %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_fiminsalperic_infoamb --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_fiminsalperic_infoamb -->
 
                                         {% include 'tables/s2241_fiminsalperic_infoamb.html' %}
-                                        <!-- end_table_s2241_fiminsalperic_infoamb --> 
-                
+                                        <!-- end_table_s2241_fiminsalperic_infoamb -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -58,30 +58,30 @@
                                 S-2230 - Afastamento Temporário</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2230.can_see_s2230iniAfastamento %}
                                     <li {% if tab == 's2230_iniafastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_iniafastamento' %}">
                                         Informações do Afastamento Temporário - Início</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2230.can_see_s2230infoRetif %}
                                     <li {% if tab == 's2230_inforetif' %} class="active"{% endif %} >
                                         <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_inforetif' %}">
                                         Informações de retificação do Afastamento Temporário</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2230.can_see_s2230fimAfastamento %}
                                     <li {% if tab == 's2230_fimafastamento' %} class="active"{% endif %} >
                                         <a href="{% url 's2230_evtafasttemp_salvar_tab' pk=pk tab='s2230_fimafastamento' %}">
                                         Informações do Término do Afastamento</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2230_evtafasttemp.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -234,7 +234,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -263,7 +263,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2230evtAfastTemp %}
                             <div class="col-md-4">
@@ -296,9 +296,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2230evtAfastTemp and s2230_evtafasttemp_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -312,13 +312,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2230evtAfastTemp %}
+                            {% if perms.esocial.can_see_receipt_s2230evtAfastTemp and s2230_evtafasttemp.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -388,7 +388,7 @@
 
 
                         {% if s2230_evtafasttemp_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2230evtAfastTemp %}
                             <div class="col-md-2">
@@ -445,18 +445,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2230evtAfastTemp or perms.esocial.change_s2230evtAfastTemp %}
-    
+
                         {% if s2230_evtafasttemp_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -484,7 +484,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -494,7 +494,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -517,10 +517,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2230_iniafastamento -->
 
-            {% if tab == 's2230_iniafastamento' %} 
+            {% if tab == 's2230_iniafastamento' %}
 
                 {% if perms.s2230.can_see_data_s2230iniAfastamento %}
 
@@ -552,7 +552,7 @@
                             {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Afastamento Temporário - Início</h3>   
+                                    <h3 class="box-title">Informações do Afastamento Temporário - Início</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2230.add_s2230iniAfastamento or perms.s2230.can_see_list_s2230iniAfastamento %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -564,19 +564,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230iniAfastamento %}            
+                                {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230iniAfastamento %}
 
-                                    <!-- begin_form_s2230_iniafastamento --> 
+                                    <!-- begin_form_s2230_iniafastamento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2230_iniafastamento" 
-                                              action="{% url 's2230_iniafastamento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2230_iniafastamento"
+                                              action="{% url 's2230_iniafastamento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -605,32 +605,32 @@
                                     </div>
 
                                 <!-- end_form_s2230_iniafastamento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2230.can_see_s2230iniAfastamento %} 
+                                {% if perms.s2230.can_see_s2230iniAfastamento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2230_iniafastamento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2230_iniafastamento -->
 
                                         {% include 'tables/s2230_iniafastamento.html' %}
-                                        <!-- end_table_s2230_iniafastamento --> 
-                                    
+                                        <!-- end_table_s2230_iniafastamento -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2230_inforetif -->
 
-            {% if tab == 's2230_inforetif' %} 
+            {% if tab == 's2230_inforetif' %}
 
                 {% if perms.s2230.can_see_data_s2230infoRetif %}
 
@@ -662,7 +662,7 @@
                             {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de retificação do Afastamento Temporário</h3>   
+                                    <h3 class="box-title">Informações de retificação do Afastamento Temporário</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2230.add_s2230infoRetif or perms.s2230.can_see_list_s2230infoRetif %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -674,19 +674,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoRetif %}            
+                                {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoRetif %}
 
-                                    <!-- begin_form_s2230_inforetif --> 
+                                    <!-- begin_form_s2230_inforetif -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2230_inforetif" 
-                                              action="{% url 's2230_inforetif_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2230_inforetif"
+                                              action="{% url 's2230_inforetif_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -715,32 +715,32 @@
                                     </div>
 
                                 <!-- end_form_s2230_inforetif -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2230.can_see_s2230infoRetif %} 
+                                {% if perms.s2230.can_see_s2230infoRetif %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2230_inforetif --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2230_inforetif -->
 
                                         {% include 'tables/s2230_inforetif.html' %}
-                                        <!-- end_table_s2230_inforetif --> 
-                                    
+                                        <!-- end_table_s2230_inforetif -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2230_fimafastamento -->
 
-            {% if tab == 's2230_fimafastamento' %} 
+            {% if tab == 's2230_fimafastamento' %}
 
                 {% if perms.s2230.can_see_data_s2230fimAfastamento %}
 
@@ -772,7 +772,7 @@
                             {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações do Término do Afastamento</h3>   
+                                    <h3 class="box-title">Informações do Término do Afastamento</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2230.add_s2230fimAfastamento or perms.s2230.can_see_list_s2230fimAfastamento %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -784,19 +784,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230fimAfastamento %}            
+                                {% if s2230_evtafasttemp.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230fimAfastamento %}
 
-                                    <!-- begin_form_s2230_fimafastamento --> 
+                                    <!-- begin_form_s2230_fimafastamento -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2230_fimafastamento" 
-                                              action="{% url 's2230_fimafastamento_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2230_fimafastamento"
+                                              action="{% url 's2230_fimafastamento_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -825,31 +825,31 @@
                                     </div>
 
                                 <!-- end_form_s2230_fimafastamento -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2230.can_see_s2230fimAfastamento %} 
+                                {% if perms.s2230.can_see_s2230fimAfastamento %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2230_fimafastamento --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2230_fimafastamento -->
 
                                         {% include 'tables/s2230_fimafastamento.html' %}
-                                        <!-- end_table_s2230_fimafastamento --> 
-                                    
+                                        <!-- end_table_s2230_fimafastamento -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

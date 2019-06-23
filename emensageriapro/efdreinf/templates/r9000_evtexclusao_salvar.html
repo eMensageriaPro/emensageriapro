@@ -58,9 +58,9 @@
                                 R-9000 - Exclusão de Eventos</a>
                             </li>
                         {% endif %}
-                        
-                            
-                        
+    
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if r9000_evtexclusao.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -213,7 +213,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -242,7 +242,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.efdreinf.can_open_r9000evtExclusao %}
                             <div class="col-md-4">
@@ -275,9 +275,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.efdreinf.can_validate_r9000evtExclusao and r9000_evtexclusao_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -291,13 +291,13 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_see_receipt_r9000evtExclusao %}
+                            {% if perms.efdreinf.can_see_receipt_r9000evtExclusao and r9000_evtexclusao.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -367,7 +367,7 @@
 
 
                         {% if r9000_evtexclusao_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.efdreinf.change_r9000evtExclusao %}
                             <div class="col-md-2">
@@ -424,18 +424,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.efdreinf.add_r9000evtExclusao or perms.efdreinf.change_r9000evtExclusao %}
-    
+
                         {% if r9000_evtexclusao_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -463,7 +463,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -473,7 +473,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -496,9 +496,9 @@
     {% if pk %}
 
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

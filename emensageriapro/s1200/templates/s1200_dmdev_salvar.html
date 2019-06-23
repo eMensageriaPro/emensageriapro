@@ -58,28 +58,28 @@
                                 Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1200.can_see_s1200infoPerApur %}
                                 <li {% if tab == 's1200_infoperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_dmdev_salvar_tab' pk=pk tab='s1200_infoperapur' %}">
                                     Remuneração no período de apuração</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1200.can_see_s1200infoPerAnt %}
                                 <li {% if tab == 's1200_infoperant' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_dmdev_salvar_tab' pk=pk tab='s1200_infoperant' %}">
                                     Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1200.can_see_s1200infoPerAntinfoComplCont %}
                                 <li {% if tab == 's1200_infoperant_infocomplcont' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_dmdev_salvar_tab' pk=pk tab='s1200_infoperant_infocomplcont' %}">
                                     Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -305,7 +305,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -315,7 +315,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -330,7 +330,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -338,10 +338,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1200_infoperapur -->
 
-            {% if tab == 's1200_infoperapur' %} 
+            {% if tab == 's1200_infoperapur' %}
 
                 {% if perms.s1200.can_see_data_s1200infoPerApur %}
 
@@ -372,7 +372,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Remuneração no período de apuração</h3>   
+                                    <h3 class="box-title">Remuneração no período de apuração</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerApur or perms.s1200.can_see_list_s1200infoPerApur  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -384,20 +384,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerApur %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerApur %}
 
-                                    <!-- begin_form_s1200_infoperapur --> 
+                                    <!-- begin_form_s1200_infoperapur -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infoperapur" 
-                                              action="{% url 's1200_infoperapur_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infoperapur"
+                                              action="{% url 's1200_infoperapur_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -426,33 +426,33 @@
                                     </div>
 
                                 <!-- end_form_s1200_infoperapur -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoPerApur %} 
+                                {% if perms.s1200.can_see_s1200infoPerApur %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infoperapur --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infoperapur -->
 
                                         {% include 'tables/s1200_infoperapur.html' %}
-                                        <!-- end_table_s1200_infoperapur --> 
-                
+                                        <!-- end_table_s1200_infoperapur -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1200_infoperant -->
 
-            {% if tab == 's1200_infoperant' %} 
+            {% if tab == 's1200_infoperant' %}
 
                 {% if perms.s1200.can_see_data_s1200infoPerAnt %}
 
@@ -483,7 +483,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</h3>   
+                                    <h3 class="box-title">Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerAnt or perms.s1200.can_see_list_s1200infoPerAnt  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -495,20 +495,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerAnt %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerAnt %}
 
-                                    <!-- begin_form_s1200_infoperant --> 
+                                    <!-- begin_form_s1200_infoperant -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infoperant" 
-                                              action="{% url 's1200_infoperant_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infoperant"
+                                              action="{% url 's1200_infoperant_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -537,33 +537,33 @@
                                     </div>
 
                                 <!-- end_form_s1200_infoperant -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoPerAnt %} 
+                                {% if perms.s1200.can_see_s1200infoPerAnt %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infoperant --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infoperant -->
 
                                         {% include 'tables/s1200_infoperant.html' %}
-                                        <!-- end_table_s1200_infoperant --> 
-                
+                                        <!-- end_table_s1200_infoperant -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1200_infoperant_infocomplcont -->
 
-            {% if tab == 's1200_infoperant_infocomplcont' %} 
+            {% if tab == 's1200_infoperant_infocomplcont' %}
 
                 {% if perms.s1200.can_see_data_s1200infoPerAntinfoComplCont %}
 
@@ -594,7 +594,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerAntinfoComplCont or perms.s1200.can_see_list_s1200infoPerAntinfoComplCont  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -606,20 +606,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerAntinfoComplCont %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerAntinfoComplCont %}
 
-                                    <!-- begin_form_s1200_infoperant_infocomplcont --> 
+                                    <!-- begin_form_s1200_infoperant_infocomplcont -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infoperant_infocomplcont" 
-                                              action="{% url 's1200_infoperant_infocomplcont_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infoperant_infocomplcont"
+                                              action="{% url 's1200_infoperant_infocomplcont_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -648,32 +648,32 @@
                                     </div>
 
                                 <!-- end_form_s1200_infoperant_infocomplcont -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoPerAntinfoComplCont %} 
+                                {% if perms.s1200.can_see_s1200infoPerAntinfoComplCont %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infoperant_infocomplcont --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infoperant_infocomplcont -->
 
                                         {% include 'tables/s1200_infoperant_infocomplcont.html' %}
-                                        <!-- end_table_s1200_infoperant_infocomplcont --> 
-                
+                                        <!-- end_table_s1200_infoperant_infocomplcont -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

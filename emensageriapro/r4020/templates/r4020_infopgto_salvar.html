@@ -58,63 +58,63 @@
                                 Informações do Pagamento</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020IR %}
                                 <li {% if tab == 'r4020_ir' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_ir' %}">
                                     Informações relativas ao Imposto de Renda</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020CSLL %}
                                 <li {% if tab == 'r4020_csll' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_csll' %}">
                                     Informações relativas à CSLL</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020Cofins %}
                                 <li {% if tab == 'r4020_cofins' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_cofins' %}">
                                     Informações relativas à Cofins</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020PP %}
                                 <li {% if tab == 'r4020_pp' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_pp' %}">
                                     Informações relativas ao PIS/PASEP</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020FCI %}
                                 <li {% if tab == 'r4020_fci' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_fci' %}">
                                     Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020SCP %}
                                 <li {% if tab == 'r4020_scp' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_scp' %}">
                                     Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020infoProcRet %}
                                 <li {% if tab == 'r4020_infoprocret' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_infoprocret' %}">
                                     Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r4020.can_see_r4020infoProcJud %}
                                 <li {% if tab == 'r4020_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 'r4020_infopgto_salvar_tab' pk=pk tab='r4020_infoprocjud' %}">
                                     Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -340,7 +340,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -350,7 +350,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -365,7 +365,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -373,10 +373,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4020_ir -->
 
-            {% if tab == 'r4020_ir' %} 
+            {% if tab == 'r4020_ir' %}
 
                 {% if perms.r4020.can_see_data_r4020IR %}
 
@@ -407,7 +407,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao Imposto de Renda</h3>   
+                                    <h3 class="box-title">Informações relativas ao Imposto de Renda</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020IR or perms.r4020.can_see_list_r4020IR  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -419,20 +419,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020IR %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020IR %}
 
-                                    <!-- begin_form_r4020_ir --> 
+                                    <!-- begin_form_r4020_ir -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_ir" 
-                                              action="{% url 'r4020_ir_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_ir"
+                                              action="{% url 'r4020_ir_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -461,33 +461,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_ir -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020IR %} 
+                                {% if perms.r4020.can_see_r4020IR %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_ir --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_ir -->
 
                                         {% include 'tables/r4020_ir.html' %}
-                                        <!-- end_table_r4020_ir --> 
-                
+                                        <!-- end_table_r4020_ir -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_csll -->
 
-            {% if tab == 'r4020_csll' %} 
+            {% if tab == 'r4020_csll' %}
 
                 {% if perms.r4020.can_see_data_r4020CSLL %}
 
@@ -518,7 +518,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas à CSLL</h3>   
+                                    <h3 class="box-title">Informações relativas à CSLL</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020CSLL or perms.r4020.can_see_list_r4020CSLL  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -530,20 +530,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020CSLL %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020CSLL %}
 
-                                    <!-- begin_form_r4020_csll --> 
+                                    <!-- begin_form_r4020_csll -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_csll" 
-                                              action="{% url 'r4020_csll_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_csll"
+                                              action="{% url 'r4020_csll_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -572,33 +572,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_csll -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020CSLL %} 
+                                {% if perms.r4020.can_see_r4020CSLL %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_csll --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_csll -->
 
                                         {% include 'tables/r4020_csll.html' %}
-                                        <!-- end_table_r4020_csll --> 
-                
+                                        <!-- end_table_r4020_csll -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_cofins -->
 
-            {% if tab == 'r4020_cofins' %} 
+            {% if tab == 'r4020_cofins' %}
 
                 {% if perms.r4020.can_see_data_r4020Cofins %}
 
@@ -629,7 +629,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas à Cofins</h3>   
+                                    <h3 class="box-title">Informações relativas à Cofins</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020Cofins or perms.r4020.can_see_list_r4020Cofins  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -641,20 +641,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020Cofins %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020Cofins %}
 
-                                    <!-- begin_form_r4020_cofins --> 
+                                    <!-- begin_form_r4020_cofins -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_cofins" 
-                                              action="{% url 'r4020_cofins_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_cofins"
+                                              action="{% url 'r4020_cofins_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -683,33 +683,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_cofins -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020Cofins %} 
+                                {% if perms.r4020.can_see_r4020Cofins %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_cofins --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_cofins -->
 
                                         {% include 'tables/r4020_cofins.html' %}
-                                        <!-- end_table_r4020_cofins --> 
-                
+                                        <!-- end_table_r4020_cofins -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_pp -->
 
-            {% if tab == 'r4020_pp' %} 
+            {% if tab == 'r4020_pp' %}
 
                 {% if perms.r4020.can_see_data_r4020PP %}
 
@@ -740,7 +740,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao PIS/PASEP</h3>   
+                                    <h3 class="box-title">Informações relativas ao PIS/PASEP</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020PP or perms.r4020.can_see_list_r4020PP  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -752,20 +752,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020PP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020PP %}
 
-                                    <!-- begin_form_r4020_pp --> 
+                                    <!-- begin_form_r4020_pp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_pp" 
-                                              action="{% url 'r4020_pp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_pp"
+                                              action="{% url 'r4020_pp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -794,33 +794,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_pp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020PP %} 
+                                {% if perms.r4020.can_see_r4020PP %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_pp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_pp -->
 
                                         {% include 'tables/r4020_pp.html' %}
-                                        <!-- end_table_r4020_pp --> 
-                
+                                        <!-- end_table_r4020_pp -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_fci -->
 
-            {% if tab == 'r4020_fci' %} 
+            {% if tab == 'r4020_fci' %}
 
                 {% if perms.r4020.can_see_data_r4020FCI %}
 
@@ -851,7 +851,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</h3>   
+                                    <h3 class="box-title">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020FCI or perms.r4020.can_see_list_r4020FCI  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -863,20 +863,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020FCI %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020FCI %}
 
-                                    <!-- begin_form_r4020_fci --> 
+                                    <!-- begin_form_r4020_fci -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_fci" 
-                                              action="{% url 'r4020_fci_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_fci"
+                                              action="{% url 'r4020_fci_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -905,33 +905,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_fci -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020FCI %} 
+                                {% if perms.r4020.can_see_r4020FCI %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_fci --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_fci -->
 
                                         {% include 'tables/r4020_fci.html' %}
-                                        <!-- end_table_r4020_fci --> 
-                
+                                        <!-- end_table_r4020_fci -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_scp -->
 
-            {% if tab == 'r4020_scp' %} 
+            {% if tab == 'r4020_scp' %}
 
                 {% if perms.r4020.can_see_data_r4020SCP %}
 
@@ -962,7 +962,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>   
+                                    <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020SCP or perms.r4020.can_see_list_r4020SCP  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -974,20 +974,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020SCP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020SCP %}
 
-                                    <!-- begin_form_r4020_scp --> 
+                                    <!-- begin_form_r4020_scp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_scp" 
-                                              action="{% url 'r4020_scp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_scp"
+                                              action="{% url 'r4020_scp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1016,33 +1016,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_scp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020SCP %} 
+                                {% if perms.r4020.can_see_r4020SCP %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_scp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_scp -->
 
                                         {% include 'tables/r4020_scp.html' %}
-                                        <!-- end_table_r4020_scp --> 
-                
+                                        <!-- end_table_r4020_scp -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_infoprocret -->
 
-            {% if tab == 'r4020_infoprocret' %} 
+            {% if tab == 'r4020_infoprocret' %}
 
                 {% if perms.r4020.can_see_data_r4020infoProcRet %}
 
@@ -1073,7 +1073,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</h3>   
+                                    <h3 class="box-title">Informações de processos relacionados a não retenção de tributos ou depósitos judiciais</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020infoProcRet or perms.r4020.can_see_list_r4020infoProcRet  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -1085,20 +1085,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020infoProcRet %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020infoProcRet %}
 
-                                    <!-- begin_form_r4020_infoprocret --> 
+                                    <!-- begin_form_r4020_infoprocret -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_infoprocret" 
-                                              action="{% url 'r4020_infoprocret_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_infoprocret"
+                                              action="{% url 'r4020_infoprocret_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1127,33 +1127,33 @@
                                     </div>
 
                                 <!-- end_form_r4020_infoprocret -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020infoProcRet %} 
+                                {% if perms.r4020.can_see_r4020infoProcRet %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_infoprocret --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_infoprocret -->
 
                                         {% include 'tables/r4020_infoprocret.html' %}
-                                        <!-- end_table_r4020_infoprocret --> 
-                
+                                        <!-- end_table_r4020_infoprocret -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r4020_infoprocjud -->
 
-            {% if tab == 'r4020_infoprocjud' %} 
+            {% if tab == 'r4020_infoprocjud' %}
 
                 {% if perms.r4020.can_see_data_r4020infoProcJud %}
 
@@ -1184,7 +1184,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>   
+                                    <h3 class="box-title">Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4020.add_r4020infoProcJud or perms.r4020.can_see_list_r4020infoProcJud  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -1196,20 +1196,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020infoProcJud %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4020.add_r4020infoProcJud %}
 
-                                    <!-- begin_form_r4020_infoprocjud --> 
+                                    <!-- begin_form_r4020_infoprocjud -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4020_infoprocjud" 
-                                              action="{% url 'r4020_infoprocjud_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4020_infoprocjud"
+                                              action="{% url 'r4020_infoprocjud_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1238,32 +1238,32 @@
                                     </div>
 
                                 <!-- end_form_r4020_infoprocjud -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4020.can_see_r4020infoProcJud %} 
+                                {% if perms.r4020.can_see_r4020infoProcJud %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4020_infoprocjud --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4020_infoprocjud -->
 
                                         {% include 'tables/r4020_infoprocjud.html' %}
-                                        <!-- end_table_r4020_infoprocjud --> 
-                
+                                        <!-- end_table_r4020_infoprocjud -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

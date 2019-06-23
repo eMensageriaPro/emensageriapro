@@ -58,21 +58,21 @@
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1030.can_see_s1030alteracaocargoPublico %}
                                 <li {% if tab == 's1030_alteracao_cargopublico' %} class="active"{% endif %} >
                                     <a href="{% url 's1030_alteracao_salvar_tab' pk=pk tab='s1030_alteracao_cargopublico' %}">
                                     Detalhamento de informações exclusivas para Cargos e Empregos Públicos</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1030.can_see_s1030alteracaonovaValidade %}
                                 <li {% if tab == 's1030_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 's1030_alteracao_salvar_tab' pk=pk tab='s1030_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1030_alteracao_cargopublico -->
 
-            {% if tab == 's1030_alteracao_cargopublico' %} 
+            {% if tab == 's1030_alteracao_cargopublico' %}
 
                 {% if perms.s1030.can_see_data_s1030alteracaocargoPublico %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento de informações exclusivas para Cargos e Empregos Públicos</h3>   
+                                    <h3 class="box-title">Detalhamento de informações exclusivas para Cargos e Empregos Públicos</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1030.add_s1030alteracaocargoPublico or perms.s1030.can_see_list_s1030alteracaocargoPublico  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1030.add_s1030alteracaocargoPublico %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1030.add_s1030alteracaocargoPublico %}
 
-                                    <!-- begin_form_s1030_alteracao_cargopublico --> 
+                                    <!-- begin_form_s1030_alteracao_cargopublico -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1030_alteracao_cargopublico" 
-                                              action="{% url 's1030_alteracao_cargopublico_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1030_alteracao_cargopublico"
+                                              action="{% url 's1030_alteracao_cargopublico_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_s1030_alteracao_cargopublico -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1030.can_see_s1030alteracaocargoPublico %} 
+                                {% if perms.s1030.can_see_s1030alteracaocargoPublico %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1030_alteracao_cargopublico --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1030_alteracao_cargopublico -->
 
                                         {% include 'tables/s1030_alteracao_cargopublico.html' %}
-                                        <!-- end_table_s1030_alteracao_cargopublico --> 
-                
+                                        <!-- end_table_s1030_alteracao_cargopublico -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1030_alteracao_novavalidade -->
 
-            {% if tab == 's1030_alteracao_novavalidade' %} 
+            {% if tab == 's1030_alteracao_novavalidade' %}
 
                 {% if perms.s1030.can_see_data_s1030alteracaonovaValidade %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
+                                    <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1030.add_s1030alteracaonovaValidade or perms.s1030.can_see_list_s1030alteracaonovaValidade  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1030.add_s1030alteracaonovaValidade %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1030.add_s1030alteracaonovaValidade %}
 
-                                    <!-- begin_form_s1030_alteracao_novavalidade --> 
+                                    <!-- begin_form_s1030_alteracao_novavalidade -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1030_alteracao_novavalidade" 
-                                              action="{% url 's1030_alteracao_novavalidade_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1030_alteracao_novavalidade"
+                                              action="{% url 's1030_alteracao_novavalidade_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_s1030_alteracao_novavalidade -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1030.can_see_s1030alteracaonovaValidade %} 
+                                {% if perms.s1030.can_see_s1030alteracaonovaValidade %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1030_alteracao_novavalidade --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1030_alteracao_novavalidade -->
 
                                         {% include 'tables/s1030_alteracao_novavalidade.html' %}
-                                        <!-- end_table_s1030_alteracao_novavalidade --> 
-                
+                                        <!-- end_table_s1030_alteracao_novavalidade -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

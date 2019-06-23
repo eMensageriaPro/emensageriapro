@@ -48,7 +48,7 @@
 
 <section class="content">
 
-    
+
     <!-- TABS -->
     {% if messages %}
         <div class="row">
@@ -84,10 +84,10 @@
                     </div>
 
                     {% if perms.controle_de_acesso.change_Usuarios or perms.controle_de_acesso.add_Usuarios %}
-                        
+    
                         <form action="#" id="id_form_usuarios" method="POST" content="text/html; charset=UTF-8">
                         {% csrf_token %}
-                        
+    
                     {% endif %}
 
 
@@ -109,11 +109,11 @@
                     <div class="box-body">
                         <div class="row">
                         {% if pk %}
-                        
+    
                         <!-- botões especiais -->
-                        
-                        
-                            
+    
+    
+        
                             {% if perms.controle_de_acesso.can_create_token_usuarios %}
                             <div class="col-md-12">
                                 <a href="{% url 'usuarios_create_token' pk=pk %}">
@@ -124,7 +124,7 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
 
                             {% if perms.controle_de_acesso.add_Usuarios %}
@@ -221,14 +221,14 @@
     {% endif %}
 
     <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-    
+
     {% if pk %}
 
 
-        
+
         <!-- begin_importacao_arquivos -->
 
-            {% if tab == 'importacao_arquivos' %} 
+            {% if tab == 'importacao_arquivos' %}
 
                 {% if perms.mensageiro.can_see_data_ImportacaoArquivos %}
 
@@ -259,7 +259,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Importação de Arquivos</h3>   
+                                    <h3 class="box-title">Importação de Arquivos</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.mensageiro.add_ImportacaoArquivos or perms.mensageiro.can_see_list_ImportacaoArquivos %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -271,18 +271,18 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if perms.mensageiro.add_ImportacaoArquivos %}            
+                                {% if perms.mensageiro.add_ImportacaoArquivos %}
 
-                                    <!-- begin_form_importacao_arquivos --> 
+                                    <!-- begin_form_importacao_arquivos -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_importacao_arquivos" 
-                                              action="{% url 'importacao_arquivos_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_importacao_arquivos"
+                                              action="{% url 'importacao_arquivos_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -309,32 +309,32 @@
                                     </div>
 
                                 <!-- end_form_importacao_arquivos -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.mensageiro.can_see_ImportacaoArquivos %} 
+                                {% if perms.mensageiro.can_see_ImportacaoArquivos %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_importacao_arquivos --> 
+                                    <div id="listar">
+                                    <!-- begin_table_importacao_arquivos -->
 
                                         {% include 'tables/importacao_arquivos.html' %}
-                                        <!-- end_table_importacao_arquivos --> 
-                                    
+                                        <!-- end_table_importacao_arquivos -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-            
-        
+            {% endif %}
 
-    {% endif %} 
-    
+
+
+    {% endif %}
+
 
 </section>
 

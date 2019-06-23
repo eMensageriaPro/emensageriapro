@@ -58,14 +58,14 @@
                                 Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1200.can_see_s1200infoPerAntideADC %}
                                 <li {% if tab == 's1200_infoperant_ideadc' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_salvar_tab' pk=pk tab='s1200_infoperant_ideadc' %}">
                                     Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1200_infoperant_ideadc -->
 
-            {% if tab == 's1200_infoperant_ideadc' %} 
+            {% if tab == 's1200_infoperant_ideadc' %}
 
                 {% if perms.s1200.can_see_data_s1200infoPerAntideADC %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</h3>   
+                                    <h3 class="box-title">Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1200.add_s1200infoPerAntideADC or perms.s1200.can_see_list_s1200infoPerAntideADC  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerAntideADC %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1200.add_s1200infoPerAntideADC %}
 
-                                    <!-- begin_form_s1200_infoperant_ideadc --> 
+                                    <!-- begin_form_s1200_infoperant_ideadc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1200_infoperant_ideadc" 
-                                              action="{% url 's1200_infoperant_ideadc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1200_infoperant_ideadc"
+                                              action="{% url 's1200_infoperant_ideadc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s1200_infoperant_ideadc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1200.can_see_s1200infoPerAntideADC %} 
+                                {% if perms.s1200.can_see_s1200infoPerAntideADC %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1200_infoperant_ideadc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1200_infoperant_ideadc -->
 
                                         {% include 'tables/s1200_infoperant_ideadc.html' %}
-                                        <!-- end_table_s1200_infoperant_ideadc --> 
-                
+                                        <!-- end_table_s1200_infoperant_ideadc -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -48,7 +48,7 @@
 
 <section class="content">
 
-    
+
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
@@ -61,15 +61,15 @@
                         </li>
                         {% endif %}
                         <!-- antes_tabs -->
-                        
-                            
-                        
+    
+        
+    
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
-    
+
     <!-- TABS -->
     {% if messages %}
         <div class="row">
@@ -105,10 +105,10 @@
                     </div>
 
                     {% if perms.mensageiro.change_TransmissorLoteEfdreinfOcorrencias or perms.mensageiro.add_TransmissorLoteEfdreinfOcorrencias %}
-                        
+    
                         <form action="#" id="id_form_transmissor_lote_efdreinf_ocorrencias" method="POST" content="text/html; charset=UTF-8">
                         {% csrf_token %}
-                        
+    
                     {% endif %}
 
 
@@ -130,11 +130,11 @@
                     <div class="box-body">
                         <div class="row">
                         {% if pk %}
-                        
+    
                         <!-- botões especiais -->
-                        
-                        
-                            
+    
+    
+        
 
 
                             {% if perms.mensageiro.add_TransmissorLoteEfdreinfOcorrencias %}
@@ -231,14 +231,14 @@
     {% endif %}
 
     <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
-    
+
     {% if pk %}
 
 
-        
 
-    {% endif %} 
-    
+
+    {% endif %}
+
 
 </section>
 

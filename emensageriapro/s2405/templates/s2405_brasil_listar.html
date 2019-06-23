@@ -66,12 +66,12 @@
         <div class="col-md-12">
             <div class="box box-primary {% if not filtrar %}collapsed-box{% endif %}">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Filtrar</h3>   
+                    <h3 class="box-title">Filtrar</h3>
                     <div class="pull-right box-tools">
                         <button type="button" class="btn btn-default btn-sm" data-widget="collapse">
                             <i class="fa fa-minus"></i>
                         </button>
-                    </div> 
+                    </div>
                 </div>
                 <form action="#" method="POST" id="FormRelatorio" target="_self">
                 {% csrf_token %}
@@ -108,12 +108,12 @@
                     <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>
                     <div class="text-right">
                         {% if perms.s2405.add_s2405brasil %}
-                        <a href="{% url 's2405_brasil_cadastrar' %}">           
+                        <a href="{% url 's2405_brasil_cadastrar' %}">
                         <button class="btn btn-info">
                             <i class="fa fa-plus-circle"></i>&nbsp;Cadastrar
                         </button>
                         </a>&nbsp;
-                        {% endif %} 
+                        {% endif %}
                         <button id="btnImprimir" type="submit" class="btn btn-primary">
                             <i class="fa fa-print"></i>&nbsp;Imprimir
                         </button>&nbsp;
@@ -121,9 +121,9 @@
                             <button type="button" class="btn btn-primary">
                                 <i class="fa fa-download"></i>&nbsp;Exportar
                             </button>
-                            <button type="button" 
-                                    class="btn btn-primary dropdown-toggle" 
-                                    data-toggle="dropdown" 
+                            <button type="button"
+                                    class="btn btn-primary dropdown-toggle"
+                                    data-toggle="dropdown"
                                     aria-expanded="false">
                                 <span class="caret"></span>
                                 <span class="sr-only">Exportar</span>
@@ -146,7 +146,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>              
+                    </div>
                 </div>
                 <div class="box-body">
 
@@ -190,9 +190,9 @@ $(document).ready(function() {
         $('#FormRelatorio').submit();
     });
 });
-</script> 
+</script>
 
-{% else %} 
+{% else %}
 
 <section class="invoice">
     <div class="row">
@@ -213,5 +213,5 @@ $(document).ready(function() {
         </div>
     </div>
 </section>
-{% endif %}  
+{% endif %}
 {% endblock content %}

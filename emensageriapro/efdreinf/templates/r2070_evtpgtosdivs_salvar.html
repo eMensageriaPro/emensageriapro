@@ -58,30 +58,30 @@
                                 R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.r2070.can_see_r2070infoResidExt %}
                                     <li {% if tab == 'r2070_inforesidext' %} class="active"{% endif %} >
                                         <a href="{% url 'r2070_evtpgtosdivs_salvar_tab' pk=pk tab='r2070_inforesidext' %}">
                                         Informações complementares de beneficiário residente ou domiciliado no exterior</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.r2070.can_see_r2070infoMolestia %}
                                     <li {% if tab == 'r2070_infomolestia' %} class="active"{% endif %} >
                                         <a href="{% url 'r2070_evtpgtosdivs_salvar_tab' pk=pk tab='r2070_infomolestia' %}">
                                         Informações de Beneficiário portador de moléstia grave</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.r2070.can_see_r2070ideEstab %}
                                     <li {% if tab == 'r2070_ideestab' %} class="active"{% endif %} >
                                         <a href="{% url 'r2070_evtpgtosdivs_salvar_tab' pk=pk tab='r2070_ideestab' %}">
                                         Identificação dos estabelecimentos da associação desportiva que receberam os recursos</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if r2070_evtpgtosdivs.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -234,7 +234,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -263,7 +263,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.efdreinf.can_open_r2070evtPgtosDivs %}
                             <div class="col-md-4">
@@ -296,9 +296,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.efdreinf.can_validate_r2070evtPgtosDivs and r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -312,13 +312,13 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_see_receipt_r2070evtPgtosDivs %}
+                            {% if perms.efdreinf.can_see_receipt_r2070evtPgtosDivs and r2070_evtpgtosdivs.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -388,7 +388,7 @@
 
 
                         {% if r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.efdreinf.change_r2070evtPgtosDivs %}
                             <div class="col-md-2">
@@ -445,18 +445,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.efdreinf.add_r2070evtPgtosDivs or perms.efdreinf.change_r2070evtPgtosDivs %}
-    
+
                         {% if r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -484,7 +484,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -494,7 +494,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -517,10 +517,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2070_inforesidext -->
 
-            {% if tab == 'r2070_inforesidext' %} 
+            {% if tab == 'r2070_inforesidext' %}
 
                 {% if perms.r2070.can_see_data_r2070infoResidExt %}
 
@@ -552,7 +552,7 @@
                             {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações complementares de beneficiário residente ou domiciliado no exterior</h3>   
+                                    <h3 class="box-title">Informações complementares de beneficiário residente ou domiciliado no exterior</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070infoResidExt or perms.r2070.can_see_list_r2070infoResidExt %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -564,19 +564,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoResidExt %}            
+                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoResidExt %}
 
-                                    <!-- begin_form_r2070_inforesidext --> 
+                                    <!-- begin_form_r2070_inforesidext -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_inforesidext" 
-                                              action="{% url 'r2070_inforesidext_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_inforesidext"
+                                              action="{% url 'r2070_inforesidext_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -605,32 +605,32 @@
                                     </div>
 
                                 <!-- end_form_r2070_inforesidext -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070infoResidExt %} 
+                                {% if perms.r2070.can_see_r2070infoResidExt %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_inforesidext --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_inforesidext -->
 
                                         {% include 'tables/r2070_inforesidext.html' %}
-                                        <!-- end_table_r2070_inforesidext --> 
-                                    
+                                        <!-- end_table_r2070_inforesidext -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_r2070_infomolestia -->
 
-            {% if tab == 'r2070_infomolestia' %} 
+            {% if tab == 'r2070_infomolestia' %}
 
                 {% if perms.r2070.can_see_data_r2070infoMolestia %}
 
@@ -662,7 +662,7 @@
                             {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de Beneficiário portador de moléstia grave</h3>   
+                                    <h3 class="box-title">Informações de Beneficiário portador de moléstia grave</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070infoMolestia or perms.r2070.can_see_list_r2070infoMolestia %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -674,19 +674,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoMolestia %}            
+                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070infoMolestia %}
 
-                                    <!-- begin_form_r2070_infomolestia --> 
+                                    <!-- begin_form_r2070_infomolestia -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_infomolestia" 
-                                              action="{% url 'r2070_infomolestia_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_infomolestia"
+                                              action="{% url 'r2070_infomolestia_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -715,32 +715,32 @@
                                     </div>
 
                                 <!-- end_form_r2070_infomolestia -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070infoMolestia %} 
+                                {% if perms.r2070.can_see_r2070infoMolestia %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_infomolestia --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_infomolestia -->
 
                                         {% include 'tables/r2070_infomolestia.html' %}
-                                        <!-- end_table_r2070_infomolestia --> 
-                                    
+                                        <!-- end_table_r2070_infomolestia -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_r2070_ideestab -->
 
-            {% if tab == 'r2070_ideestab' %} 
+            {% if tab == 'r2070_ideestab' %}
 
                 {% if perms.r2070.can_see_data_r2070ideEstab %}
 
@@ -772,7 +772,7 @@
                             {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação dos estabelecimentos da associação desportiva que receberam os recursos</h3>   
+                                    <h3 class="box-title">Identificação dos estabelecimentos da associação desportiva que receberam os recursos</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2070.add_r2070ideEstab or perms.r2070.can_see_list_r2070ideEstab %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -784,19 +784,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070ideEstab %}            
+                                {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO and perms.r2070.add_r2070ideEstab %}
 
-                                    <!-- begin_form_r2070_ideestab --> 
+                                    <!-- begin_form_r2070_ideestab -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2070_ideestab" 
-                                              action="{% url 'r2070_ideestab_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2070_ideestab"
+                                              action="{% url 'r2070_ideestab_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -825,31 +825,31 @@
                                     </div>
 
                                 <!-- end_form_r2070_ideestab -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2070.can_see_r2070ideEstab %} 
+                                {% if perms.r2070.can_see_r2070ideEstab %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2070_ideestab --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2070_ideestab -->
 
                                         {% include 'tables/r2070_ideestab.html' %}
-                                        <!-- end_table_r2070_ideestab --> 
-                                    
+                                        <!-- end_table_r2070_ideestab -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

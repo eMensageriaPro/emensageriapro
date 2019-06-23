@@ -58,28 +58,28 @@
                                 Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1207.can_see_s1207itens %}
                                 <li {% if tab == 's1207_itens' %} class="active"{% endif %} >
                                     <a href="{% url 's1207_dmdev_salvar_tab' pk=pk tab='s1207_itens' %}">
                                     Detalhamento dos valores devidos ao beneficiário</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1207.can_see_s1207infoPerApur %}
                                 <li {% if tab == 's1207_infoperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's1207_dmdev_salvar_tab' pk=pk tab='s1207_infoperapur' %}">
                                     Remuneração no período de apuração</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1207.can_see_s1207infoPerAnt %}
                                 <li {% if tab == 's1207_infoperant' %} class="active"{% endif %} >
                                     <a href="{% url 's1207_dmdev_salvar_tab' pk=pk tab='s1207_infoperant' %}">
                                     Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -305,7 +305,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -315,7 +315,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -330,7 +330,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -338,10 +338,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1207_itens -->
 
-            {% if tab == 's1207_itens' %} 
+            {% if tab == 's1207_itens' %}
 
                 {% if perms.s1207.can_see_data_s1207itens %}
 
@@ -372,7 +372,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento dos valores devidos ao beneficiário</h3>   
+                                    <h3 class="box-title">Detalhamento dos valores devidos ao beneficiário</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207itens or perms.s1207.can_see_list_s1207itens  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -384,20 +384,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207itens %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207itens %}
 
-                                    <!-- begin_form_s1207_itens --> 
+                                    <!-- begin_form_s1207_itens -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_itens" 
-                                              action="{% url 's1207_itens_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_itens"
+                                              action="{% url 's1207_itens_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -426,33 +426,33 @@
                                     </div>
 
                                 <!-- end_form_s1207_itens -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207itens %} 
+                                {% if perms.s1207.can_see_s1207itens %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_itens --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_itens -->
 
                                         {% include 'tables/s1207_itens.html' %}
-                                        <!-- end_table_s1207_itens --> 
-                
+                                        <!-- end_table_s1207_itens -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1207_infoperapur -->
 
-            {% if tab == 's1207_infoperapur' %} 
+            {% if tab == 's1207_infoperapur' %}
 
                 {% if perms.s1207.can_see_data_s1207infoPerApur %}
 
@@ -483,7 +483,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Remuneração no período de apuração</h3>   
+                                    <h3 class="box-title">Remuneração no período de apuração</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207infoPerApur or perms.s1207.can_see_list_s1207infoPerApur  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -495,20 +495,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerApur %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerApur %}
 
-                                    <!-- begin_form_s1207_infoperapur --> 
+                                    <!-- begin_form_s1207_infoperapur -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_infoperapur" 
-                                              action="{% url 's1207_infoperapur_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_infoperapur"
+                                              action="{% url 's1207_infoperapur_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -537,33 +537,33 @@
                                     </div>
 
                                 <!-- end_form_s1207_infoperapur -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207infoPerApur %} 
+                                {% if perms.s1207.can_see_s1207infoPerApur %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_infoperapur --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_infoperapur -->
 
                                         {% include 'tables/s1207_infoperapur.html' %}
-                                        <!-- end_table_s1207_infoperapur --> 
-                
+                                        <!-- end_table_s1207_infoperapur -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1207_infoperant -->
 
-            {% if tab == 's1207_infoperant' %} 
+            {% if tab == 's1207_infoperant' %}
 
                 {% if perms.s1207.can_see_data_s1207infoPerAnt %}
 
@@ -594,7 +594,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</h3>   
+                                    <h3 class="box-title">Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207infoPerAnt or perms.s1207.can_see_list_s1207infoPerAnt  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -606,20 +606,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerAnt %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerAnt %}
 
-                                    <!-- begin_form_s1207_infoperant --> 
+                                    <!-- begin_form_s1207_infoperant -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_infoperant" 
-                                              action="{% url 's1207_infoperant_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_infoperant"
+                                              action="{% url 's1207_infoperant_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -648,32 +648,32 @@
                                     </div>
 
                                 <!-- end_form_s1207_infoperant -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207infoPerAnt %} 
+                                {% if perms.s1207.can_see_s1207infoPerAnt %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_infoperant --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_infoperant -->
 
                                         {% include 'tables/s1207_infoperant.html' %}
-                                        <!-- end_table_s1207_infoperant --> 
-                
+                                        <!-- end_table_s1207_infoperant -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

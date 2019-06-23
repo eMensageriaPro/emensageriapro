@@ -58,28 +58,28 @@
                                 Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2299.can_see_s2299infoPerAntdetVerbas %}
                                 <li {% if tab == 's2299_infoperant_detverbas' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperant_ideestablot_salvar_tab' pk=pk tab='s2299_infoperant_detverbas' %}">
                                     Detalhamento das verbas rescisórias devidas ao trabalhador</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2299.can_see_s2299infoPerAntinfoAgNocivo %}
                                 <li {% if tab == 's2299_infoperant_infoagnocivo' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperant_ideestablot_salvar_tab' pk=pk tab='s2299_infoperant_infoagnocivo' %}">
                                     Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2299.can_see_s2299infoPerAntinfoSimples %}
                                 <li {% if tab == 's2299_infoperant_infosimples' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperant_ideestablot_salvar_tab' pk=pk tab='s2299_infoperant_infosimples' %}">
                                     Informação relativa a empresas enquadradas no Regime de Tributação Simples</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -305,7 +305,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -315,7 +315,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -330,7 +330,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -338,10 +338,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2299_infoperant_detverbas -->
 
-            {% if tab == 's2299_infoperant_detverbas' %} 
+            {% if tab == 's2299_infoperant_detverbas' %}
 
                 {% if perms.s2299.can_see_data_s2299infoPerAntdetVerbas %}
 
@@ -372,7 +372,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das verbas rescisórias devidas ao trabalhador</h3>   
+                                    <h3 class="box-title">Detalhamento das verbas rescisórias devidas ao trabalhador</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerAntdetVerbas or perms.s2299.can_see_list_s2299infoPerAntdetVerbas  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -384,20 +384,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerAntdetVerbas %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerAntdetVerbas %}
 
-                                    <!-- begin_form_s2299_infoperant_detverbas --> 
+                                    <!-- begin_form_s2299_infoperant_detverbas -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_infoperant_detverbas" 
-                                              action="{% url 's2299_infoperant_detverbas_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_infoperant_detverbas"
+                                              action="{% url 's2299_infoperant_detverbas_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -426,33 +426,33 @@
                                     </div>
 
                                 <!-- end_form_s2299_infoperant_detverbas -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299infoPerAntdetVerbas %} 
+                                {% if perms.s2299.can_see_s2299infoPerAntdetVerbas %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_infoperant_detverbas --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_infoperant_detverbas -->
 
                                         {% include 'tables/s2299_infoperant_detverbas.html' %}
-                                        <!-- end_table_s2299_infoperant_detverbas --> 
-                
+                                        <!-- end_table_s2299_infoperant_detverbas -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2299_infoperant_infoagnocivo -->
 
-            {% if tab == 's2299_infoperant_infoagnocivo' %} 
+            {% if tab == 's2299_infoperant_infoagnocivo' %}
 
                 {% if perms.s2299.can_see_data_s2299infoPerAntinfoAgNocivo %}
 
@@ -483,7 +483,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerAntinfoAgNocivo or perms.s2299.can_see_list_s2299infoPerAntinfoAgNocivo  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -495,20 +495,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerAntinfoAgNocivo %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerAntinfoAgNocivo %}
 
-                                    <!-- begin_form_s2299_infoperant_infoagnocivo --> 
+                                    <!-- begin_form_s2299_infoperant_infoagnocivo -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_infoperant_infoagnocivo" 
-                                              action="{% url 's2299_infoperant_infoagnocivo_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_infoperant_infoagnocivo"
+                                              action="{% url 's2299_infoperant_infoagnocivo_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -537,33 +537,33 @@
                                     </div>
 
                                 <!-- end_form_s2299_infoperant_infoagnocivo -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299infoPerAntinfoAgNocivo %} 
+                                {% if perms.s2299.can_see_s2299infoPerAntinfoAgNocivo %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_infoperant_infoagnocivo --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_infoperant_infoagnocivo -->
 
                                         {% include 'tables/s2299_infoperant_infoagnocivo.html' %}
-                                        <!-- end_table_s2299_infoperant_infoagnocivo --> 
-                
+                                        <!-- end_table_s2299_infoperant_infoagnocivo -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2299_infoperant_infosimples -->
 
-            {% if tab == 's2299_infoperant_infosimples' %} 
+            {% if tab == 's2299_infoperant_infosimples' %}
 
                 {% if perms.s2299.can_see_data_s2299infoPerAntinfoSimples %}
 
@@ -594,7 +594,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação relativa a empresas enquadradas no Regime de Tributação Simples</h3>   
+                                    <h3 class="box-title">Informação relativa a empresas enquadradas no Regime de Tributação Simples</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerAntinfoSimples or perms.s2299.can_see_list_s2299infoPerAntinfoSimples  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -606,20 +606,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerAntinfoSimples %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerAntinfoSimples %}
 
-                                    <!-- begin_form_s2299_infoperant_infosimples --> 
+                                    <!-- begin_form_s2299_infoperant_infosimples -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_infoperant_infosimples" 
-                                              action="{% url 's2299_infoperant_infosimples_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_infoperant_infosimples"
+                                              action="{% url 's2299_infoperant_infosimples_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -648,32 +648,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_infoperant_infosimples -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299infoPerAntinfoSimples %} 
+                                {% if perms.s2299.can_see_s2299infoPerAntinfoSimples %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_infoperant_infosimples --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_infoperant_infosimples -->
 
                                         {% include 'tables/s2299_infoperant_infosimples.html' %}
-                                        <!-- end_table_s2299_infoperant_infosimples --> 
-                
+                                        <!-- end_table_s2299_infoperant_infosimples -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

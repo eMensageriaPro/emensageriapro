@@ -58,14 +58,14 @@
                                 Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2399.can_see_s2399remunOutrEmpr %}
                                 <li {% if tab == 's2399_remunoutrempr' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_infomv_salvar_tab' pk=pk tab='s2399_remunoutrempr' %}">
                                     Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2399_remunoutrempr -->
 
-            {% if tab == 's2399_remunoutrempr' %} 
+            {% if tab == 's2399_remunoutrempr' %}
 
                 {% if perms.s2399.can_see_data_s2399remunOutrEmpr %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual</h3>   
+                                    <h3 class="box-title">Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores recolhidos pelo próprio trabalhador como contribuinte individual</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2399.add_s2399remunOutrEmpr or perms.s2399.can_see_list_s2399remunOutrEmpr  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399remunOutrEmpr %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2399.add_s2399remunOutrEmpr %}
 
-                                    <!-- begin_form_s2399_remunoutrempr --> 
+                                    <!-- begin_form_s2399_remunoutrempr -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2399_remunoutrempr" 
-                                              action="{% url 's2399_remunoutrempr_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2399_remunoutrempr"
+                                              action="{% url 's2399_remunoutrempr_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s2399_remunoutrempr -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2399.can_see_s2399remunOutrEmpr %} 
+                                {% if perms.s2399.can_see_s2399remunOutrEmpr %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2399_remunoutrempr --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2399_remunoutrempr -->
 
                                         {% include 'tables/s2399_remunoutrempr.html' %}
-                                        <!-- end_table_s2399_remunoutrempr --> 
-                
+                                        <!-- end_table_s2399_remunoutrempr -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

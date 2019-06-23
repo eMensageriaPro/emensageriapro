@@ -58,16 +58,16 @@
                                 R-4040 - Retenções na Fonte - Beneficiários não identificados</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.r4040.can_see_r4040ideNat %}
                                     <li {% if tab == 'r4040_idenat' %} class="active"{% endif %} >
                                         <a href="{% url 'r4040_evtbenefnid_salvar_tab' pk=pk tab='r4040_idenat' %}">
                                         Identificação da natureza do rendimento</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -122,7 +122,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if r4040_evtbenefnid.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -220,7 +220,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -249,7 +249,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.efdreinf.can_open_r4040evtBenefNId %}
                             <div class="col-md-4">
@@ -282,9 +282,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.efdreinf.can_validate_r4040evtBenefNId and r4040_evtbenefnid_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -298,13 +298,13 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_see_receipt_r4040evtBenefNId %}
+                            {% if perms.efdreinf.can_see_receipt_r4040evtBenefNId and r4040_evtbenefnid.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -374,7 +374,7 @@
 
 
                         {% if r4040_evtbenefnid_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.efdreinf.change_r4040evtBenefNId %}
                             <div class="col-md-2">
@@ -431,18 +431,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.efdreinf.add_r4040evtBenefNId or perms.efdreinf.change_r4040evtBenefNId %}
-    
+
                         {% if r4040_evtbenefnid_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -470,7 +470,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -480,7 +480,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -503,10 +503,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4040_idenat -->
 
-            {% if tab == 'r4040_idenat' %} 
+            {% if tab == 'r4040_idenat' %}
 
                 {% if perms.r4040.can_see_data_r4040ideNat %}
 
@@ -538,7 +538,7 @@
                             {% if r4040_evtbenefnid.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação da natureza do rendimento</h3>   
+                                    <h3 class="box-title">Identificação da natureza do rendimento</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4040.add_r4040ideNat or perms.r4040.can_see_list_r4040ideNat %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -550,19 +550,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r4040_evtbenefnid.status == STATUS_EVENTO_CADASTRADO and perms.r4040.add_r4040ideNat %}            
+                                {% if r4040_evtbenefnid.status == STATUS_EVENTO_CADASTRADO and perms.r4040.add_r4040ideNat %}
 
-                                    <!-- begin_form_r4040_idenat --> 
+                                    <!-- begin_form_r4040_idenat -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4040_idenat" 
-                                              action="{% url 'r4040_idenat_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4040_idenat"
+                                              action="{% url 'r4040_idenat_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -591,31 +591,31 @@
                                     </div>
 
                                 <!-- end_form_r4040_idenat -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4040.can_see_r4040ideNat %} 
+                                {% if perms.r4040.can_see_r4040ideNat %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4040_idenat --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4040_idenat -->
 
                                         {% include 'tables/r4040_idenat.html' %}
-                                        <!-- end_table_r4040_idenat --> 
-                                    
+                                        <!-- end_table_r4040_idenat -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

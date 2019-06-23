@@ -58,14 +58,14 @@
                                 Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1207.can_see_s1207infoPerAntidePeriodo %}
                                 <li {% if tab == 's1207_infoperant_ideperiodo' %} class="active"{% endif %} >
                                     <a href="{% url 's1207_infoperant_ideadc_salvar_tab' pk=pk tab='s1207_infoperant_ideperiodo' %}">
                                     Período de validade das informações incluídas</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1207_infoperant_ideperiodo -->
 
-            {% if tab == 's1207_infoperant_ideperiodo' %} 
+            {% if tab == 's1207_infoperant_ideperiodo' %}
 
                 {% if perms.s1207.can_see_data_s1207infoPerAntidePeriodo %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Período de validade das informações incluídas</h3>   
+                                    <h3 class="box-title">Período de validade das informações incluídas</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1207.add_s1207infoPerAntidePeriodo or perms.s1207.can_see_list_s1207infoPerAntidePeriodo  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerAntidePeriodo %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1207.add_s1207infoPerAntidePeriodo %}
 
-                                    <!-- begin_form_s1207_infoperant_ideperiodo --> 
+                                    <!-- begin_form_s1207_infoperant_ideperiodo -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1207_infoperant_ideperiodo" 
-                                              action="{% url 's1207_infoperant_ideperiodo_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1207_infoperant_ideperiodo"
+                                              action="{% url 's1207_infoperant_ideperiodo_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s1207_infoperant_ideperiodo -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1207.can_see_s1207infoPerAntidePeriodo %} 
+                                {% if perms.s1207.can_see_s1207infoPerAntidePeriodo %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1207_infoperant_ideperiodo --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1207_infoperant_ideperiodo -->
 
                                         {% include 'tables/s1207_infoperant_ideperiodo.html' %}
-                                        <!-- end_table_s1207_infoperant_ideperiodo --> 
-                
+                                        <!-- end_table_s1207_infoperant_ideperiodo -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

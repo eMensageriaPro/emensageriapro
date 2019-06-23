@@ -58,23 +58,23 @@
                                 S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2241.can_see_s2241insalPeric %}
                                     <li {% if tab == 's2241_insalperic' %} class="active"{% endif %} >
                                         <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='s2241_insalperic' %}">
                                         Informações sobre o ambiente de trabalho insalubre/periculoso.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2241.can_see_s2241aposentEsp %}
                                     <li {% if tab == 's2241_aposentesp' %} class="active"{% endif %} >
                                         <a href="{% url 's2241_evtinsapo_salvar_tab' pk=pk tab='s2241_aposentesp' %}">
                                         Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2241_evtinsapo.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -227,7 +227,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -256,7 +256,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2241evtInsApo %}
                             <div class="col-md-4">
@@ -289,9 +289,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2241evtInsApo and s2241_evtinsapo_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -305,13 +305,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2241evtInsApo %}
+                            {% if perms.esocial.can_see_receipt_s2241evtInsApo and s2241_evtinsapo.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -381,7 +381,7 @@
 
 
                         {% if s2241_evtinsapo_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2241evtInsApo %}
                             <div class="col-md-2">
@@ -438,18 +438,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2241evtInsApo or perms.esocial.change_s2241evtInsApo %}
-    
+
                         {% if s2241_evtinsapo_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -477,7 +477,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -487,7 +487,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -510,10 +510,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2241_insalperic -->
 
-            {% if tab == 's2241_insalperic' %} 
+            {% if tab == 's2241_insalperic' %}
 
                 {% if perms.s2241.can_see_data_s2241insalPeric %}
 
@@ -545,7 +545,7 @@
                             {% if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre o ambiente de trabalho insalubre/periculoso.</h3>   
+                                    <h3 class="box-title">Informações sobre o ambiente de trabalho insalubre/periculoso.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241insalPeric or perms.s2241.can_see_list_s2241insalPeric %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -557,19 +557,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241insalPeric %}            
+                                {% if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241insalPeric %}
 
-                                    <!-- begin_form_s2241_insalperic --> 
+                                    <!-- begin_form_s2241_insalperic -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_insalperic" 
-                                              action="{% url 's2241_insalperic_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_insalperic"
+                                              action="{% url 's2241_insalperic_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -598,32 +598,32 @@
                                     </div>
 
                                 <!-- end_form_s2241_insalperic -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241insalPeric %} 
+                                {% if perms.s2241.can_see_s2241insalPeric %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_insalperic --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_insalperic -->
 
                                         {% include 'tables/s2241_insalperic.html' %}
-                                        <!-- end_table_s2241_insalperic --> 
-                                    
+                                        <!-- end_table_s2241_insalperic -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2241_aposentesp -->
 
-            {% if tab == 's2241_aposentesp' %} 
+            {% if tab == 's2241_aposentesp' %}
 
                 {% if perms.s2241.can_see_data_s2241aposentEsp %}
 
@@ -655,7 +655,7 @@
                             {% if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</h3>   
+                                    <h3 class="box-title">Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2241.add_s2241aposentEsp or perms.s2241.can_see_list_s2241aposentEsp %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -667,19 +667,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241aposentEsp %}            
+                                {% if s2241_evtinsapo.status == STATUS_EVENTO_CADASTRADO and perms.s2241.add_s2241aposentEsp %}
 
-                                    <!-- begin_form_s2241_aposentesp --> 
+                                    <!-- begin_form_s2241_aposentesp -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2241_aposentesp" 
-                                              action="{% url 's2241_aposentesp_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2241_aposentesp"
+                                              action="{% url 's2241_aposentesp_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -708,31 +708,31 @@
                                     </div>
 
                                 <!-- end_form_s2241_aposentesp -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2241.can_see_s2241aposentEsp %} 
+                                {% if perms.s2241.can_see_s2241aposentEsp %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2241_aposentesp --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2241_aposentesp -->
 
                                         {% include 'tables/s2241_aposentesp.html' %}
-                                        <!-- end_table_s2241_aposentesp --> 
-                                    
+                                        <!-- end_table_s2241_aposentesp -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

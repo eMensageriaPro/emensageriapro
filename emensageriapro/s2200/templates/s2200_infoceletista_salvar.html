@@ -58,21 +58,21 @@
                                 Informações de Trabalhador Celetista</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2200.can_see_s2200trabTemporario %}
                                 <li {% if tab == 's2200_trabtemporario' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='s2200_trabtemporario' %}">
                                     Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2200.can_see_s2200aprend %}
                                 <li {% if tab == 's2200_aprend' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_infoceletista_salvar_tab' pk=pk tab='s2200_aprend' %}">
                                     Informações para identificação do empregador contratante de aprendiz</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2200_trabtemporario -->
 
-            {% if tab == 's2200_trabtemporario' %} 
+            {% if tab == 's2200_trabtemporario' %}
 
                 {% if perms.s2200.can_see_data_s2200trabTemporario %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</h3>   
+                                    <h3 class="box-title">Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200trabTemporario or perms.s2200.can_see_list_s2200trabTemporario  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200trabTemporario %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200trabTemporario %}
 
-                                    <!-- begin_form_s2200_trabtemporario --> 
+                                    <!-- begin_form_s2200_trabtemporario -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_trabtemporario" 
-                                              action="{% url 's2200_trabtemporario_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_trabtemporario"
+                                              action="{% url 's2200_trabtemporario_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_s2200_trabtemporario -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200trabTemporario %} 
+                                {% if perms.s2200.can_see_s2200trabTemporario %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_trabtemporario --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_trabtemporario -->
 
                                         {% include 'tables/s2200_trabtemporario.html' %}
-                                        <!-- end_table_s2200_trabtemporario --> 
-                
+                                        <!-- end_table_s2200_trabtemporario -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2200_aprend -->
 
-            {% if tab == 's2200_aprend' %} 
+            {% if tab == 's2200_aprend' %}
 
                 {% if perms.s2200.can_see_data_s2200aprend %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações para identificação do empregador contratante de aprendiz</h3>   
+                                    <h3 class="box-title">Informações para identificação do empregador contratante de aprendiz</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2200.add_s2200aprend or perms.s2200.can_see_list_s2200aprend  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200aprend %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2200.add_s2200aprend %}
 
-                                    <!-- begin_form_s2200_aprend --> 
+                                    <!-- begin_form_s2200_aprend -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2200_aprend" 
-                                              action="{% url 's2200_aprend_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2200_aprend"
+                                              action="{% url 's2200_aprend_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_s2200_aprend -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2200.can_see_s2200aprend %} 
+                                {% if perms.s2200.can_see_s2200aprend %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2200_aprend --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2200_aprend -->
 
                                         {% include 'tables/s2200_aprend.html' %}
-                                        <!-- end_table_s2200_aprend --> 
-                
+                                        <!-- end_table_s2200_aprend -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

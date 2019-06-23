@@ -58,28 +58,28 @@
                                 Informações do Afastamento Temporário - Início</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2230.can_see_s2230infoAtestado %}
                                 <li {% if tab == 's2230_infoatestado' %} class="active"{% endif %} >
                                     <a href="{% url 's2230_iniafastamento_salvar_tab' pk=pk tab='s2230_infoatestado' %}">
                                     Informações complementares relativas ao atestado médico</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2230.can_see_s2230infoCessao %}
                                 <li {% if tab == 's2230_infocessao' %} class="active"{% endif %} >
                                     <a href="{% url 's2230_iniafastamento_salvar_tab' pk=pk tab='s2230_infocessao' %}">
                                     Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s2230.can_see_s2230infoMandSind %}
                                 <li {% if tab == 's2230_infomandsind' %} class="active"{% endif %} >
                                     <a href="{% url 's2230_iniafastamento_salvar_tab' pk=pk tab='s2230_infomandsind' %}">
                                     Informações Complementares - afastamento para exercício de mandato sindical</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -305,7 +305,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -315,7 +315,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -330,7 +330,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -338,10 +338,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2230_infoatestado -->
 
-            {% if tab == 's2230_infoatestado' %} 
+            {% if tab == 's2230_infoatestado' %}
 
                 {% if perms.s2230.can_see_data_s2230infoAtestado %}
 
@@ -372,7 +372,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações complementares relativas ao atestado médico</h3>   
+                                    <h3 class="box-title">Informações complementares relativas ao atestado médico</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2230.add_s2230infoAtestado or perms.s2230.can_see_list_s2230infoAtestado  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -384,20 +384,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoAtestado %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoAtestado %}
 
-                                    <!-- begin_form_s2230_infoatestado --> 
+                                    <!-- begin_form_s2230_infoatestado -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2230_infoatestado" 
-                                              action="{% url 's2230_infoatestado_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2230_infoatestado"
+                                              action="{% url 's2230_infoatestado_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -426,33 +426,33 @@
                                     </div>
 
                                 <!-- end_form_s2230_infoatestado -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2230.can_see_s2230infoAtestado %} 
+                                {% if perms.s2230.can_see_s2230infoAtestado %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2230_infoatestado --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2230_infoatestado -->
 
                                         {% include 'tables/s2230_infoatestado.html' %}
-                                        <!-- end_table_s2230_infoatestado --> 
-                
+                                        <!-- end_table_s2230_infoatestado -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2230_infocessao -->
 
-            {% if tab == 's2230_infocessao' %} 
+            {% if tab == 's2230_infocessao' %}
 
                 {% if perms.s2230.can_see_data_s2230infoCessao %}
 
@@ -483,7 +483,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</h3>   
+                                    <h3 class="box-title">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2230.add_s2230infoCessao or perms.s2230.can_see_list_s2230infoCessao  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -495,20 +495,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoCessao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoCessao %}
 
-                                    <!-- begin_form_s2230_infocessao --> 
+                                    <!-- begin_form_s2230_infocessao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2230_infocessao" 
-                                              action="{% url 's2230_infocessao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2230_infocessao"
+                                              action="{% url 's2230_infocessao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -537,33 +537,33 @@
                                     </div>
 
                                 <!-- end_form_s2230_infocessao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2230.can_see_s2230infoCessao %} 
+                                {% if perms.s2230.can_see_s2230infoCessao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2230_infocessao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2230_infocessao -->
 
                                         {% include 'tables/s2230_infocessao.html' %}
-                                        <!-- end_table_s2230_infocessao --> 
-                
+                                        <!-- end_table_s2230_infocessao -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s2230_infomandsind -->
 
-            {% if tab == 's2230_infomandsind' %} 
+            {% if tab == 's2230_infomandsind' %}
 
                 {% if perms.s2230.can_see_data_s2230infoMandSind %}
 
@@ -594,7 +594,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - afastamento para exercício de mandato sindical</h3>   
+                                    <h3 class="box-title">Informações Complementares - afastamento para exercício de mandato sindical</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2230.add_s2230infoMandSind or perms.s2230.can_see_list_s2230infoMandSind  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -606,20 +606,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoMandSind %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2230.add_s2230infoMandSind %}
 
-                                    <!-- begin_form_s2230_infomandsind --> 
+                                    <!-- begin_form_s2230_infomandsind -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2230_infomandsind" 
-                                              action="{% url 's2230_infomandsind_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2230_infomandsind"
+                                              action="{% url 's2230_infomandsind_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -648,32 +648,32 @@
                                     </div>
 
                                 <!-- end_form_s2230_infomandsind -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2230.can_see_s2230infoMandSind %} 
+                                {% if perms.s2230.can_see_s2230infoMandSind %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2230_infomandsind --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2230_infomandsind -->
 
                                         {% include 'tables/s2230_infomandsind.html' %}
-                                        <!-- end_table_s2230_infomandsind --> 
-                
+                                        <!-- end_table_s2230_infomandsind -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -58,56 +58,56 @@
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaodadosIsencao %}
                                 <li {% if tab == 's1000_alteracao_dadosisencao' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_dadosisencao' %}">
                                     Informações Complementares - Empresas Isentas - Dados da Isenção</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaoinfoOP %}
                                 <li {% if tab == 's1000_alteracao_infoop' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_infoop' %}">
                                     Informações relativas a Órgãos Públicos</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaoinfoOrgInternacional %}
                                 <li {% if tab == 's1000_alteracao_infoorginternacional' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_infoorginternacional' %}">
                                     Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaosoftwareHouse %}
                                 <li {% if tab == 's1000_alteracao_softwarehouse' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_softwarehouse' %}">
                                     Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaosituacaoPJ %}
                                 <li {% if tab == 's1000_alteracao_situacaopj' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_situacaopj' %}">
                                     Informações Complementares - Pessoa Jurídica</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaosituacaoPF %}
                                 <li {% if tab == 's1000_alteracao_situacaopf' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_situacaopf' %}">
                                     Informações Complementares - Pessoa Física</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.s1000.can_see_s1000alteracaonovaValidade %}
                                 <li {% if tab == 's1000_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 's1000_alteracao_salvar_tab' pk=pk tab='s1000_alteracao_novavalidade' %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -333,7 +333,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -343,7 +343,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -358,7 +358,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -366,10 +366,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1000_alteracao_dadosisencao -->
 
-            {% if tab == 's1000_alteracao_dadosisencao' %} 
+            {% if tab == 's1000_alteracao_dadosisencao' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaodadosIsencao %}
 
@@ -400,7 +400,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Empresas Isentas - Dados da Isenção</h3>   
+                                    <h3 class="box-title">Informações Complementares - Empresas Isentas - Dados da Isenção</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaodadosIsencao or perms.s1000.can_see_list_s1000alteracaodadosIsencao  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -412,20 +412,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaodadosIsencao %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaodadosIsencao %}
 
-                                    <!-- begin_form_s1000_alteracao_dadosisencao --> 
+                                    <!-- begin_form_s1000_alteracao_dadosisencao -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_dadosisencao" 
-                                              action="{% url 's1000_alteracao_dadosisencao_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_dadosisencao"
+                                              action="{% url 's1000_alteracao_dadosisencao_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -454,33 +454,33 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_dadosisencao -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaodadosIsencao %} 
+                                {% if perms.s1000.can_see_s1000alteracaodadosIsencao %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_dadosisencao --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_dadosisencao -->
 
                                         {% include 'tables/s1000_alteracao_dadosisencao.html' %}
-                                        <!-- end_table_s1000_alteracao_dadosisencao --> 
-                
+                                        <!-- end_table_s1000_alteracao_dadosisencao -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1000_alteracao_infoop -->
 
-            {% if tab == 's1000_alteracao_infoop' %} 
+            {% if tab == 's1000_alteracao_infoop' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaoinfoOP %}
 
@@ -511,7 +511,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas a Órgãos Públicos</h3>   
+                                    <h3 class="box-title">Informações relativas a Órgãos Públicos</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaoinfoOP or perms.s1000.can_see_list_s1000alteracaoinfoOP  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -523,20 +523,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaoinfoOP %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaoinfoOP %}
 
-                                    <!-- begin_form_s1000_alteracao_infoop --> 
+                                    <!-- begin_form_s1000_alteracao_infoop -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_infoop" 
-                                              action="{% url 's1000_alteracao_infoop_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_infoop"
+                                              action="{% url 's1000_alteracao_infoop_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -565,33 +565,33 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_infoop -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaoinfoOP %} 
+                                {% if perms.s1000.can_see_s1000alteracaoinfoOP %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_infoop --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_infoop -->
 
                                         {% include 'tables/s1000_alteracao_infoop.html' %}
-                                        <!-- end_table_s1000_alteracao_infoop --> 
-                
+                                        <!-- end_table_s1000_alteracao_infoop -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1000_alteracao_infoorginternacional -->
 
-            {% if tab == 's1000_alteracao_infoorginternacional' %} 
+            {% if tab == 's1000_alteracao_infoorginternacional' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaoinfoOrgInternacional %}
 
@@ -622,7 +622,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</h3>   
+                                    <h3 class="box-title">Informações exclusivas de organismos internacionais e outras instituições extraterritoriais</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaoinfoOrgInternacional or perms.s1000.can_see_list_s1000alteracaoinfoOrgInternacional  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -634,20 +634,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaoinfoOrgInternacional %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaoinfoOrgInternacional %}
 
-                                    <!-- begin_form_s1000_alteracao_infoorginternacional --> 
+                                    <!-- begin_form_s1000_alteracao_infoorginternacional -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_infoorginternacional" 
-                                              action="{% url 's1000_alteracao_infoorginternacional_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_infoorginternacional"
+                                              action="{% url 's1000_alteracao_infoorginternacional_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -676,33 +676,33 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_infoorginternacional -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaoinfoOrgInternacional %} 
+                                {% if perms.s1000.can_see_s1000alteracaoinfoOrgInternacional %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_infoorginternacional --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_infoorginternacional -->
 
                                         {% include 'tables/s1000_alteracao_infoorginternacional.html' %}
-                                        <!-- end_table_s1000_alteracao_infoorginternacional --> 
-                
+                                        <!-- end_table_s1000_alteracao_infoorginternacional -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1000_alteracao_softwarehouse -->
 
-            {% if tab == 's1000_alteracao_softwarehouse' %} 
+            {% if tab == 's1000_alteracao_softwarehouse' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaosoftwareHouse %}
 
@@ -733,7 +733,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</h3>   
+                                    <h3 class="box-title">Informações relativas ao desenvolvedor do software que gerou o arquivo xml.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaosoftwareHouse or perms.s1000.can_see_list_s1000alteracaosoftwareHouse  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -745,20 +745,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosoftwareHouse %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosoftwareHouse %}
 
-                                    <!-- begin_form_s1000_alteracao_softwarehouse --> 
+                                    <!-- begin_form_s1000_alteracao_softwarehouse -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_softwarehouse" 
-                                              action="{% url 's1000_alteracao_softwarehouse_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_softwarehouse"
+                                              action="{% url 's1000_alteracao_softwarehouse_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -787,33 +787,33 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_softwarehouse -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaosoftwareHouse %} 
+                                {% if perms.s1000.can_see_s1000alteracaosoftwareHouse %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_softwarehouse --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_softwarehouse -->
 
                                         {% include 'tables/s1000_alteracao_softwarehouse.html' %}
-                                        <!-- end_table_s1000_alteracao_softwarehouse --> 
-                
+                                        <!-- end_table_s1000_alteracao_softwarehouse -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1000_alteracao_situacaopj -->
 
-            {% if tab == 's1000_alteracao_situacaopj' %} 
+            {% if tab == 's1000_alteracao_situacaopj' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaosituacaoPJ %}
 
@@ -844,7 +844,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Pessoa Jurídica</h3>   
+                                    <h3 class="box-title">Informações Complementares - Pessoa Jurídica</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaosituacaoPJ or perms.s1000.can_see_list_s1000alteracaosituacaoPJ  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -856,20 +856,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosituacaoPJ %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosituacaoPJ %}
 
-                                    <!-- begin_form_s1000_alteracao_situacaopj --> 
+                                    <!-- begin_form_s1000_alteracao_situacaopj -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_situacaopj" 
-                                              action="{% url 's1000_alteracao_situacaopj_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_situacaopj"
+                                              action="{% url 's1000_alteracao_situacaopj_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -898,33 +898,33 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_situacaopj -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaosituacaoPJ %} 
+                                {% if perms.s1000.can_see_s1000alteracaosituacaoPJ %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_situacaopj --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_situacaopj -->
 
                                         {% include 'tables/s1000_alteracao_situacaopj.html' %}
-                                        <!-- end_table_s1000_alteracao_situacaopj --> 
-                
+                                        <!-- end_table_s1000_alteracao_situacaopj -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1000_alteracao_situacaopf -->
 
-            {% if tab == 's1000_alteracao_situacaopf' %} 
+            {% if tab == 's1000_alteracao_situacaopf' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaosituacaoPF %}
 
@@ -955,7 +955,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações Complementares - Pessoa Física</h3>   
+                                    <h3 class="box-title">Informações Complementares - Pessoa Física</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaosituacaoPF or perms.s1000.can_see_list_s1000alteracaosituacaoPF  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -967,20 +967,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosituacaoPF %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaosituacaoPF %}
 
-                                    <!-- begin_form_s1000_alteracao_situacaopf --> 
+                                    <!-- begin_form_s1000_alteracao_situacaopf -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_situacaopf" 
-                                              action="{% url 's1000_alteracao_situacaopf_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_situacaopf"
+                                              action="{% url 's1000_alteracao_situacaopf_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1009,33 +1009,33 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_situacaopf -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaosituacaoPF %} 
+                                {% if perms.s1000.can_see_s1000alteracaosituacaoPF %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_situacaopf --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_situacaopf -->
 
                                         {% include 'tables/s1000_alteracao_situacaopf.html' %}
-                                        <!-- end_table_s1000_alteracao_situacaopf --> 
-                
+                                        <!-- end_table_s1000_alteracao_situacaopf -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_s1000_alteracao_novavalidade -->
 
-            {% if tab == 's1000_alteracao_novavalidade' %} 
+            {% if tab == 's1000_alteracao_novavalidade' %}
 
                 {% if perms.s1000.can_see_data_s1000alteracaonovaValidade %}
 
@@ -1066,7 +1066,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
+                                    <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1000.add_s1000alteracaonovaValidade or perms.s1000.can_see_list_s1000alteracaonovaValidade  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -1078,20 +1078,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaonovaValidade %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1000.add_s1000alteracaonovaValidade %}
 
-                                    <!-- begin_form_s1000_alteracao_novavalidade --> 
+                                    <!-- begin_form_s1000_alteracao_novavalidade -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1000_alteracao_novavalidade" 
-                                              action="{% url 's1000_alteracao_novavalidade_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1000_alteracao_novavalidade"
+                                              action="{% url 's1000_alteracao_novavalidade_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -1120,32 +1120,32 @@
                                     </div>
 
                                 <!-- end_form_s1000_alteracao_novavalidade -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1000.can_see_s1000alteracaonovaValidade %} 
+                                {% if perms.s1000.can_see_s1000alteracaonovaValidade %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1000_alteracao_novavalidade --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1000_alteracao_novavalidade -->
 
                                         {% include 'tables/s1000_alteracao_novavalidade.html' %}
-                                        <!-- end_table_s1000_alteracao_novavalidade --> 
-                
+                                        <!-- end_table_s1000_alteracao_novavalidade -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

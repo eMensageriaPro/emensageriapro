@@ -58,14 +58,14 @@
                                 Identificação dos Adquirentes da Produção.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1260.can_see_s1260nfs %}
                                 <li {% if tab == 's1260_nfs' %} class="active"{% endif %} >
                                     <a href="{% url 's1260_ideadquir_salvar_tab' pk=pk tab='s1260_nfs' %}">
                                     Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1260_nfs -->
 
-            {% if tab == 's1260_nfs' %} 
+            {% if tab == 's1260_nfs' %}
 
                 {% if perms.s1260.can_see_data_s1260nfs %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</h3>   
+                                    <h3 class="box-title">Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1260.add_s1260nfs or perms.s1260.can_see_list_s1260nfs  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1260.add_s1260nfs %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1260.add_s1260nfs %}
 
-                                    <!-- begin_form_s1260_nfs --> 
+                                    <!-- begin_form_s1260_nfs -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1260_nfs" 
-                                              action="{% url 's1260_nfs_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1260_nfs"
+                                              action="{% url 's1260_nfs_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s1260_nfs -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1260.can_see_s1260nfs %} 
+                                {% if perms.s1260.can_see_s1260nfs %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1260_nfs --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1260_nfs -->
 
                                         {% include 'tables/s1260_nfs.html' %}
-                                        <!-- end_table_s1260_nfs --> 
-                
+                                        <!-- end_table_s1260_nfs -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

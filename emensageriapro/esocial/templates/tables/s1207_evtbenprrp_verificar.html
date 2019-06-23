@@ -1,6 +1,6 @@
 {% load templatetags %}
 <table {% if not output %}
-    class="table table-bordered"{% else %} 
+    class="table table-bordered"{% else %}
     width="100%"{% endif %}>
 
 
@@ -147,7 +147,7 @@
             </td>
             {% endif %}
         </tr>
- 
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEmpregador</td>
             <td bgcolor="lightgray" colspan="3">Informações de identificação do empregador.</td>
@@ -190,7 +190,7 @@
             </td>
             {% endif %}
         </tr>
- 
+
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideBenef</td>
             <td bgcolor="lightgray" colspan="3">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</td>
@@ -277,7 +277,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %} 
+    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dmDev</td>
             <td bgcolor="lightgray" colspan="3">Identificação de cada um dos demonstrativos de valores devidos ao beneficiário antes das retenções de pensão alimentícia e IRRF. (As retenções de pensão alimentícia e IRRF devem ser realizadas no ato do pagamento e, portanto, são informadas no evento S-1210). O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] não pode ser negativo. O somatório dos Vencimentos deve ser maior ou igual ao somatório dos Descontos.</td>

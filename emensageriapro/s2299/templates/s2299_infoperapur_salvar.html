@@ -58,14 +58,14 @@
                                 Remuneração no período de apuração</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s2299.can_see_s2299infoPerApurideEstabLot %}
                                 <li {% if tab == 's2299_infoperapur_ideestablot' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_infoperapur_salvar_tab' pk=pk tab='s2299_infoperapur_ideestablot' %}">
                                     Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2299_infoperapur_ideestablot -->
 
-            {% if tab == 's2299_infoperapur_ideestablot' %} 
+            {% if tab == 's2299_infoperapur_ideestablot' %}
 
                 {% if perms.s2299.can_see_data_s2299infoPerApurideEstabLot %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>   
+                                    <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2299.add_s2299infoPerApurideEstabLot or perms.s2299.can_see_list_s2299infoPerApurideEstabLot  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerApurideEstabLot %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s2299.add_s2299infoPerApurideEstabLot %}
 
-                                    <!-- begin_form_s2299_infoperapur_ideestablot --> 
+                                    <!-- begin_form_s2299_infoperapur_ideestablot -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2299_infoperapur_ideestablot" 
-                                              action="{% url 's2299_infoperapur_ideestablot_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2299_infoperapur_ideestablot"
+                                              action="{% url 's2299_infoperapur_ideestablot_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s2299_infoperapur_ideestablot -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2299.can_see_s2299infoPerApurideEstabLot %} 
+                                {% if perms.s2299.can_see_s2299infoPerApurideEstabLot %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2299_infoperapur_ideestablot --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2299_infoperapur_ideestablot -->
 
                                         {% include 'tables/s2299_infoperapur_ideestablot.html' %}
-                                        <!-- end_table_s2299_infoperapur_ideestablot --> 
-                
+                                        <!-- end_table_s2299_infoperapur_ideestablot -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

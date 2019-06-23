@@ -58,14 +58,14 @@
                                 Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro %}
                                 <li {% if tab == 's1020_alteracao_procjudterceiro' %} class="active"{% endif %} >
                                     <a href="{% url 's1020_alteracao_infoprocjudterceiros_salvar_tab' pk=pk tab='s1020_alteracao_procjudterceiro' %}">
                                     Identificação do Processo Judicial</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1020_alteracao_procjudterceiro -->
 
-            {% if tab == 's1020_alteracao_procjudterceiro' %} 
+            {% if tab == 's1020_alteracao_procjudterceiro' %}
 
                 {% if perms.s1020.can_see_data_s1020alteracaoprocJudTerceiro %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Identificação do Processo Judicial</h3>   
+                                    <h3 class="box-title">Identificação do Processo Judicial</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1020.add_s1020alteracaoprocJudTerceiro or perms.s1020.can_see_list_s1020alteracaoprocJudTerceiro  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1020.add_s1020alteracaoprocJudTerceiro %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.s1020.add_s1020alteracaoprocJudTerceiro %}
 
-                                    <!-- begin_form_s1020_alteracao_procjudterceiro --> 
+                                    <!-- begin_form_s1020_alteracao_procjudterceiro -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1020_alteracao_procjudterceiro" 
-                                              action="{% url 's1020_alteracao_procjudterceiro_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1020_alteracao_procjudterceiro"
+                                              action="{% url 's1020_alteracao_procjudterceiro_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_s1020_alteracao_procjudterceiro -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro %} 
+                                {% if perms.s1020.can_see_s1020alteracaoprocJudTerceiro %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1020_alteracao_procjudterceiro --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1020_alteracao_procjudterceiro -->
 
                                         {% include 'tables/s1020_alteracao_procjudterceiro.html' %}
-                                        <!-- end_table_s1020_alteracao_procjudterceiro --> 
-                
+                                        <!-- end_table_s1020_alteracao_procjudterceiro -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

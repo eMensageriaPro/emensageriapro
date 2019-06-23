@@ -58,23 +58,23 @@
                                 S-2250 - Aviso Prévio</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s2250.can_see_s2250detAvPrevio %}
                                     <li {% if tab == 's2250_detavprevio' %} class="active"{% endif %} >
                                         <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='s2250_detavprevio' %}">
                                         Detalha as informações do evento trabalhista</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s2250.can_see_s2250cancAvPrevio %}
                                     <li {% if tab == 's2250_cancavprevio' %} class="active"{% endif %} >
                                         <a href="{% url 's2250_evtavprevio_salvar_tab' pk=pk tab='s2250_cancavprevio' %}">
                                         Cancelamento do Aviso Prévio</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s2250_evtavprevio.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -227,7 +227,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -256,7 +256,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s2250evtAvPrevio %}
                             <div class="col-md-4">
@@ -289,9 +289,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s2250evtAvPrevio and s2250_evtavprevio_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -305,13 +305,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s2250evtAvPrevio %}
+                            {% if perms.esocial.can_see_receipt_s2250evtAvPrevio and s2250_evtavprevio.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -381,7 +381,7 @@
 
 
                         {% if s2250_evtavprevio_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s2250evtAvPrevio %}
                             <div class="col-md-2">
@@ -438,18 +438,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s2250evtAvPrevio or perms.esocial.change_s2250evtAvPrevio %}
-    
+
                         {% if s2250_evtavprevio_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -477,7 +477,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -487,7 +487,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -510,10 +510,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s2250_detavprevio -->
 
-            {% if tab == 's2250_detavprevio' %} 
+            {% if tab == 's2250_detavprevio' %}
 
                 {% if perms.s2250.can_see_data_s2250detAvPrevio %}
 
@@ -545,7 +545,7 @@
                             {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalha as informações do evento trabalhista</h3>   
+                                    <h3 class="box-title">Detalha as informações do evento trabalhista</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2250.add_s2250detAvPrevio or perms.s2250.can_see_list_s2250detAvPrevio %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -557,19 +557,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO and perms.s2250.add_s2250detAvPrevio %}            
+                                {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO and perms.s2250.add_s2250detAvPrevio %}
 
-                                    <!-- begin_form_s2250_detavprevio --> 
+                                    <!-- begin_form_s2250_detavprevio -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2250_detavprevio" 
-                                              action="{% url 's2250_detavprevio_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2250_detavprevio"
+                                              action="{% url 's2250_detavprevio_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -598,32 +598,32 @@
                                     </div>
 
                                 <!-- end_form_s2250_detavprevio -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2250.can_see_s2250detAvPrevio %} 
+                                {% if perms.s2250.can_see_s2250detAvPrevio %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2250_detavprevio --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2250_detavprevio -->
 
                                         {% include 'tables/s2250_detavprevio.html' %}
-                                        <!-- end_table_s2250_detavprevio --> 
-                                    
+                                        <!-- end_table_s2250_detavprevio -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s2250_cancavprevio -->
 
-            {% if tab == 's2250_cancavprevio' %} 
+            {% if tab == 's2250_cancavprevio' %}
 
                 {% if perms.s2250.can_see_data_s2250cancAvPrevio %}
 
@@ -655,7 +655,7 @@
                             {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Cancelamento do Aviso Prévio</h3>   
+                                    <h3 class="box-title">Cancelamento do Aviso Prévio</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s2250.add_s2250cancAvPrevio or perms.s2250.can_see_list_s2250cancAvPrevio %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -667,19 +667,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO and perms.s2250.add_s2250cancAvPrevio %}            
+                                {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO and perms.s2250.add_s2250cancAvPrevio %}
 
-                                    <!-- begin_form_s2250_cancavprevio --> 
+                                    <!-- begin_form_s2250_cancavprevio -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s2250_cancavprevio" 
-                                              action="{% url 's2250_cancavprevio_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s2250_cancavprevio"
+                                              action="{% url 's2250_cancavprevio_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -708,31 +708,31 @@
                                     </div>
 
                                 <!-- end_form_s2250_cancavprevio -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s2250.can_see_s2250cancAvPrevio %} 
+                                {% if perms.s2250.can_see_s2250cancAvPrevio %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s2250_cancavprevio --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s2250_cancavprevio -->
 
                                         {% include 'tables/s2250_cancavprevio.html' %}
-                                        <!-- end_table_s2250_cancavprevio --> 
-                                    
+                                        <!-- end_table_s2250_cancavprevio -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

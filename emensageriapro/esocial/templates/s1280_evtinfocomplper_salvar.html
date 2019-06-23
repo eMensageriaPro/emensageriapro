@@ -58,30 +58,30 @@
                                 S-1280 - Informações Complementares aos Eventos Periódicos</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.s1280.can_see_s1280infoSubstPatr %}
                                     <li {% if tab == 's1280_infosubstpatr' %} class="active"{% endif %} >
                                         <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infosubstpatr' %}">
                                         Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1280.can_see_s1280infoSubstPatrOpPort %}
                                     <li {% if tab == 's1280_infosubstpatropport' %} class="active"{% endif %} >
                                         <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infosubstpatropport' %}">
                                         Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.s1280.can_see_s1280infoAtivConcom %}
                                     <li {% if tab == 's1280_infoativconcom' %} class="active"{% endif %} >
                                         <a href="{% url 's1280_evtinfocomplper_salvar_tab' pk=pk tab='s1280_infoativconcom' %}">
                                         Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if s1280_evtinfocomplper.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -234,7 +234,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -263,7 +263,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.esocial.can_open_s1280evtInfoComplPer %}
                             <div class="col-md-4">
@@ -296,9 +296,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.esocial.can_validate_s1280evtInfoComplPer and s1280_evtinfocomplper_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -312,13 +312,13 @@
                             {% endif %}
 
 
-                            {% if perms.esocial.can_see_receipt_s1280evtInfoComplPer %}
+                            {% if perms.esocial.can_see_receipt_s1280evtInfoComplPer and s1280_evtinfocomplper.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -388,7 +388,7 @@
 
 
                         {% if s1280_evtinfocomplper_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.esocial.change_s1280evtInfoComplPer %}
                             <div class="col-md-2">
@@ -445,18 +445,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.esocial.add_s1280evtInfoComplPer or perms.esocial.change_s1280evtInfoComplPer %}
-    
+
                         {% if s1280_evtinfocomplper_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -484,7 +484,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -494,7 +494,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -517,10 +517,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_s1280_infosubstpatr -->
 
-            {% if tab == 's1280_infosubstpatr' %} 
+            {% if tab == 's1280_infosubstpatr' %}
 
                 {% if perms.s1280.can_see_data_s1280infoSubstPatr %}
 
@@ -552,7 +552,7 @@
                             {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1280.add_s1280infoSubstPatr or perms.s1280.can_see_list_s1280infoSubstPatr %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -564,19 +564,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoSubstPatr %}            
+                                {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoSubstPatr %}
 
-                                    <!-- begin_form_s1280_infosubstpatr --> 
+                                    <!-- begin_form_s1280_infosubstpatr -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1280_infosubstpatr" 
-                                              action="{% url 's1280_infosubstpatr_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1280_infosubstpatr"
+                                              action="{% url 's1280_infosubstpatr_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -605,32 +605,32 @@
                                     </div>
 
                                 <!-- end_form_s1280_infosubstpatr -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1280.can_see_s1280infoSubstPatr %} 
+                                {% if perms.s1280.can_see_s1280infoSubstPatr %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1280_infosubstpatr --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1280_infosubstpatr -->
 
                                         {% include 'tables/s1280_infosubstpatr.html' %}
-                                        <!-- end_table_s1280_infosubstpatr --> 
-                                    
+                                        <!-- end_table_s1280_infosubstpatr -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1280_infosubstpatropport -->
 
-            {% if tab == 's1280_infosubstpatropport' %} 
+            {% if tab == 's1280_infosubstpatropport' %}
 
                 {% if perms.s1280.can_see_data_s1280infoSubstPatrOpPort %}
 
@@ -662,7 +662,7 @@
                             {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3>   
+                                    <h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1280.add_s1280infoSubstPatrOpPort or perms.s1280.can_see_list_s1280infoSubstPatrOpPort %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -674,19 +674,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoSubstPatrOpPort %}            
+                                {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoSubstPatrOpPort %}
 
-                                    <!-- begin_form_s1280_infosubstpatropport --> 
+                                    <!-- begin_form_s1280_infosubstpatropport -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1280_infosubstpatropport" 
-                                              action="{% url 's1280_infosubstpatropport_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1280_infosubstpatropport"
+                                              action="{% url 's1280_infosubstpatropport_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -715,32 +715,32 @@
                                     </div>
 
                                 <!-- end_form_s1280_infosubstpatropport -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1280.can_see_s1280infoSubstPatrOpPort %} 
+                                {% if perms.s1280.can_see_s1280infoSubstPatrOpPort %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1280_infosubstpatropport --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1280_infosubstpatropport -->
 
                                         {% include 'tables/s1280_infosubstpatropport.html' %}
-                                        <!-- end_table_s1280_infosubstpatropport --> 
-                                    
+                                        <!-- end_table_s1280_infosubstpatropport -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_s1280_infoativconcom -->
 
-            {% if tab == 's1280_infoativconcom' %} 
+            {% if tab == 's1280_infoativconcom' %}
 
                 {% if perms.s1280.can_see_data_s1280infoAtivConcom %}
 
@@ -772,7 +772,7 @@
                             {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</h3>   
+                                    <h3 class="box-title">Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.s1280.add_s1280infoAtivConcom or perms.s1280.can_see_list_s1280infoAtivConcom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -784,19 +784,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoAtivConcom %}            
+                                {% if s1280_evtinfocomplper.status == STATUS_EVENTO_CADASTRADO and perms.s1280.add_s1280infoAtivConcom %}
 
-                                    <!-- begin_form_s1280_infoativconcom --> 
+                                    <!-- begin_form_s1280_infoativconcom -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_s1280_infoativconcom" 
-                                              action="{% url 's1280_infoativconcom_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_s1280_infoativconcom"
+                                              action="{% url 's1280_infoativconcom_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -825,31 +825,31 @@
                                     </div>
 
                                 <!-- end_form_s1280_infoativconcom -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.s1280.can_see_s1280infoAtivConcom %} 
+                                {% if perms.s1280.can_see_s1280infoAtivConcom %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_s1280_infoativconcom --> 
+                                    <div id="listar">
+                                    <!-- begin_table_s1280_infoativconcom -->
 
                                         {% include 'tables/s1280_infoativconcom.html' %}
-                                        <!-- end_table_s1280_infoativconcom --> 
-                                    
+                                        <!-- end_table_s1280_infoativconcom -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

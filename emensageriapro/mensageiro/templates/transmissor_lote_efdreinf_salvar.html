@@ -48,7 +48,7 @@
 
 <section class="content">
 
-    
+
     <div class="row">
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
@@ -70,13 +70,13 @@
         Totalizações
     </a>
 </li>
-                        
+    
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
-    
+
     <!-- TABS -->
     {% if messages %}
         <div class="row">
@@ -112,10 +112,10 @@
                     </div>
 
                     {% if perms.mensageiro.change_TransmissorLoteEfdreinf or perms.mensageiro.add_TransmissorLoteEfdreinf %}
-                        
+    
                         <form action="#" id="id_form_transmissor_lote_efdreinf" method="POST" content="text/html; charset=UTF-8">
                         {% csrf_token %}
-                        
+    
                     {% endif %}
 
 
@@ -137,8 +137,8 @@
                     <div class="box-body">
                         <div class="row">
                         {% if pk %}
-                        
-                        {% if pk %} 
+    
+                        {% if pk %}
     {% if transmissor_lote_efdreinf.status == 0 or transmissor_lote_efdreinf.status == 2 %}
     <div class="col-md-4">
         <a href="{% url 'transmissor_lote_efdreinf_enviar' pk=pk %}">
@@ -170,9 +170,9 @@
     </div>
     {% endif %}
 {% endif %}
-                        
-                        
-                            
+    
+    
+        
 
 
                             {% if perms.mensageiro.add_TransmissorLoteEfdreinf %}
@@ -289,7 +289,7 @@
                             <div class="pull-right box-tools">
                                 <a href="{% url 'vincular_eventos_efdreinf' pk=pk %}">
                                     <span class="btn btn-info pull-right">
-                                        <i class="fa fa-link"></i> 
+                                        <i class="fa fa-link"></i>
                                         Vincular Eventos
                                     </span>
                                 </a>
@@ -384,7 +384,7 @@
                                                 </td>
                                             {% endif %}
                                         </tr>
-                                    {% endfor %}                                 
+                                    {% endfor %}             
                                 </tbody>
                             </table>
                         </div>
@@ -394,7 +394,7 @@
         {% endif %}
     {% endif %}
 {% endif %}
-    
+
 
 </section>
 

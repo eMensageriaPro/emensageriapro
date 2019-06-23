@@ -58,14 +58,14 @@
                                 Detalhamento das deduções</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r4010.can_see_r4010benefPen %}
                                 <li {% if tab == 'r4010_benefpen' %} class="active"{% endif %} >
                                     <a href="{% url 'r4010_detded_salvar_tab' pk=pk tab='r4010_benefpen' %}">
                                     Informação dos beneficiários da pensão alimentícia</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -291,7 +291,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -301,7 +301,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -316,7 +316,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -324,10 +324,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r4010_benefpen -->
 
-            {% if tab == 'r4010_benefpen' %} 
+            {% if tab == 'r4010_benefpen' %}
 
                 {% if perms.r4010.can_see_data_r4010benefPen %}
 
@@ -358,7 +358,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informação dos beneficiários da pensão alimentícia</h3>   
+                                    <h3 class="box-title">Informação dos beneficiários da pensão alimentícia</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r4010.add_r4010benefPen or perms.r4010.can_see_list_r4010benefPen  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -370,20 +370,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010benefPen %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r4010.add_r4010benefPen %}
 
-                                    <!-- begin_form_r4010_benefpen --> 
+                                    <!-- begin_form_r4010_benefpen -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r4010_benefpen" 
-                                              action="{% url 'r4010_benefpen_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r4010_benefpen"
+                                              action="{% url 'r4010_benefpen_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -412,32 +412,32 @@
                                     </div>
 
                                 <!-- end_form_r4010_benefpen -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r4010.can_see_r4010benefPen %} 
+                                {% if perms.r4010.can_see_r4010benefPen %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r4010_benefpen --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r4010_benefpen -->
 
                                         {% include 'tables/r4010_benefpen.html' %}
-                                        <!-- end_table_r4010_benefpen --> 
-                
+                                        <!-- end_table_r4010_benefpen -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

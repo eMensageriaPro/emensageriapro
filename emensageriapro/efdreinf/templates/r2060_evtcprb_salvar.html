@@ -58,16 +58,16 @@
                                 R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.r2060.can_see_r2060tipoCod %}
                                     <li {% if tab == 'r2060_tipocod' %} class="active"{% endif %} >
                                         <a href="{% url 'r2060_evtcprb_salvar_tab' pk=pk tab='r2060_tipocod' %}">
                                         Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -122,7 +122,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if r2060_evtcprb.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -220,7 +220,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -249,7 +249,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.efdreinf.can_open_r2060evtCPRB %}
                             <div class="col-md-4">
@@ -282,9 +282,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.efdreinf.can_validate_r2060evtCPRB and r2060_evtcprb_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -298,13 +298,13 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_see_receipt_r2060evtCPRB %}
+                            {% if perms.efdreinf.can_see_receipt_r2060evtCPRB and r2060_evtcprb.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -374,7 +374,7 @@
 
 
                         {% if r2060_evtcprb_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.efdreinf.change_r2060evtCPRB %}
                             <div class="col-md-2">
@@ -431,18 +431,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.efdreinf.add_r2060evtCPRB or perms.efdreinf.change_r2060evtCPRB %}
-    
+
                         {% if r2060_evtcprb_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -470,7 +470,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -480,7 +480,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -503,10 +503,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2060_tipocod -->
 
-            {% if tab == 'r2060_tipocod' %} 
+            {% if tab == 'r2060_tipocod' %}
 
                 {% if perms.r2060.can_see_data_r2060tipoCod %}
 
@@ -538,7 +538,7 @@
                             {% if r2060_evtcprb.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</h3>   
+                                    <h3 class="box-title">Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2060.add_r2060tipoCod or perms.r2060.can_see_list_r2060tipoCod %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -550,19 +550,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2060_evtcprb.status == STATUS_EVENTO_CADASTRADO and perms.r2060.add_r2060tipoCod %}            
+                                {% if r2060_evtcprb.status == STATUS_EVENTO_CADASTRADO and perms.r2060.add_r2060tipoCod %}
 
-                                    <!-- begin_form_r2060_tipocod --> 
+                                    <!-- begin_form_r2060_tipocod -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2060_tipocod" 
-                                              action="{% url 'r2060_tipocod_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2060_tipocod"
+                                              action="{% url 'r2060_tipocod_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -591,31 +591,31 @@
                                     </div>
 
                                 <!-- end_form_r2060_tipocod -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2060.can_see_r2060tipoCod %} 
+                                {% if perms.r2060.can_see_r2060tipoCod %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2060_tipocod --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2060_tipocod -->
 
                                         {% include 'tables/r2060_tipocod.html' %}
-                                        <!-- end_table_r2060_tipocod --> 
-                                    
+                                        <!-- end_table_r2060_tipocod -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>

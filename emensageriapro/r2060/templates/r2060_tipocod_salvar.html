@@ -58,21 +58,21 @@
                                 Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</a>
                             </li>
                         {% endif %}
-                        
+    
                             {% if perms.r2060.can_see_r2060tipoAjuste %}
                                 <li {% if tab == 'r2060_tipoajuste' %} class="active"{% endif %} >
                                     <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='r2060_tipoajuste' %}">
                                     Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</a>
                                 </li>
                             {% endif %}
-                        
+    
                             {% if perms.r2060.can_see_r2060infoProc %}
                                 <li {% if tab == 'r2060_infoproc' %} class="active"{% endif %} >
                                     <a href="{% url 'r2060_tipocod_salvar_tab' pk=pk tab='r2060_infoproc' %}">
                                     Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                 </li>
                             {% endif %}
-                        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -298,7 +298,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -308,7 +308,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -323,7 +323,7 @@
 
         <!-- fim controle de alterações -->
         {% endif %}
-        
+
     {% endif %}
 
 
@@ -331,10 +331,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2060_tipoajuste -->
 
-            {% if tab == 'r2060_tipoajuste' %} 
+            {% if tab == 'r2060_tipoajuste' %}
 
                 {% if perms.r2060.can_see_data_r2060tipoAjuste %}
 
@@ -365,7 +365,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</h3>   
+                                    <h3 class="box-title">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2060.add_r2060tipoAjuste or perms.r2060.can_see_list_r2060tipoAjuste  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -377,20 +377,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2060.add_r2060tipoAjuste %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2060.add_r2060tipoAjuste %}
 
-                                    <!-- begin_form_r2060_tipoajuste --> 
+                                    <!-- begin_form_r2060_tipoajuste -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2060_tipoajuste" 
-                                              action="{% url 'r2060_tipoajuste_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2060_tipoajuste"
+                                              action="{% url 'r2060_tipoajuste_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -419,33 +419,33 @@
                                     </div>
 
                                 <!-- end_form_r2060_tipoajuste -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2060.can_see_r2060tipoAjuste %} 
+                                {% if perms.r2060.can_see_r2060tipoAjuste %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2060_tipoajuste --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2060_tipoajuste -->
 
                                         {% include 'tables/r2060_tipoajuste.html' %}
-                                        <!-- end_table_r2060_tipoajuste --> 
-                
+                                        <!-- end_table_r2060_tipoajuste -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
+
+
         <!-- begin_r2060_infoproc -->
 
-            {% if tab == 'r2060_infoproc' %} 
+            {% if tab == 'r2060_infoproc' %}
 
                 {% if perms.r2060.can_see_data_r2060infoProc %}
 
@@ -476,7 +476,7 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária</h3>   
+                                    <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2060.add_r2060infoProc or perms.r2060.can_see_list_r2060infoProc  %}
                                         {% if evento_dados.status == STATUS_EVENTO_CADASTRADO %}
@@ -488,20 +488,20 @@
                                             <i class="fa fa-table"></i> Listar
                                         </div>
                                         </button>
-                                        {% endif %} 
+                                        {% endif %}
                                     {% endif %}
-                                </div>  
+                                </div>
                             </div>
                             <div class="box-body" >
 
-                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2060.add_r2060infoProc %}            
+                                {% if evento_dados.status == STATUS_EVENTO_CADASTRADO and perms.r2060.add_r2060infoProc %}
 
-                                    <!-- begin_form_r2060_infoproc --> 
+                                    <!-- begin_form_r2060_infoproc -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2060_infoproc" 
-                                              action="{% url 'r2060_infoproc_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2060_infoproc"
+                                              action="{% url 'r2060_infoproc_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -530,32 +530,32 @@
                                     </div>
 
                                 <!-- end_form_r2060_infoproc -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2060.can_see_r2060infoProc %} 
+                                {% if perms.r2060.can_see_r2060infoProc %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2060_infoproc --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2060_infoproc -->
 
                                         {% include 'tables/r2060_infoproc.html' %}
-                                        <!-- end_table_r2060_infoproc --> 
-                
+                                        <!-- end_table_r2060_infoproc -->
+
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
-    
-        
+            {% endif %}
 
-    {% endif %} 
+
+
+    {% endif %}
 
 </section>
 

@@ -58,30 +58,30 @@
                                 R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</a>
                             </li>
                         {% endif %}
-                        
-                            
+    
+        
                                 {% if perms.r2020.can_see_r2020nfs %}
                                     <li {% if tab == 'r2020_nfs' %} class="active"{% endif %} >
                                         <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='r2020_nfs' %}">
                                         Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.r2020.can_see_r2020infoProcRetPr %}
                                     <li {% if tab == 'r2020_infoprocretpr' %} class="active"{% endif %} >
                                         <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='r2020_infoprocretpr' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária</a>
                                     </li>
                                 {% endif %}
-                            
+        
                                 {% if perms.r2020.can_see_r2020infoProcRetAd %}
                                     <li {% if tab == 'r2020_infoprocretad' %} class="active"{% endif %} >
                                         <a href="{% url 'r2020_evtservprest_salvar_tab' pk=pk tab='r2020_infoprocretad' %}">
                                         Informações de processos relacionados a não retenção de contribuição previdenciária adicional</a>
                                     </li>
                                 {% endif %}
-                            
-                        
+        
+    
                     {% endif %}
                 </ul>
             </div>
@@ -136,7 +136,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if r2020_evtservprest.validacoes %}
             <div class="row">
                 <div class="col-xs-12">
@@ -234,7 +234,7 @@
 
 
 
-                        
+    
 
                         {% if not evento_totalizador %}
 
@@ -263,7 +263,7 @@
                             {% endif %}
 
 
-                                
+            
 
                             {% if perms.efdreinf.can_open_r2020evtServPrest %}
                             <div class="col-md-4">
@@ -296,9 +296,9 @@
                                 </a>&nbsp;
                             </div>
                             {% endif %}
-                            
+        
 
-                        
+    
 
                             {% if perms.efdreinf.can_validate_r2020evtServPrest and r2020_evtservprest_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             <div class="col-md-3">
@@ -312,13 +312,13 @@
                             {% endif %}
 
 
-                            {% if perms.efdreinf.can_see_receipt_r2020evtServPrest %}
+                            {% if perms.efdreinf.can_see_receipt_r2020evtServPrest and r2020_evtservprest.retornos_eventos_id %}
                             <div class="col-md-3">
 
                                 <div class="btn-group btn-block">
-                                    <button type="button" 
+                                    <button type="button"
                                             class="btn btn-primary dropdown-toggle btn-block btn-lg"
-                                            data-toggle="dropdown" 
+                                            data-toggle="dropdown"
                                             aria-expanded="false">
                                         <i class="fa fa-download"></i>&nbsp;Recibo
                                         <span class="caret"></span>
@@ -388,7 +388,7 @@
 
 
                         {% if r2020_evtservprest_form.status.value == STATUS_EVENTO_CADASTRADO %}
-                        
+    
 
                             {% if perms.efdreinf.change_r2020evtServPrest %}
                             <div class="col-md-2">
@@ -445,18 +445,18 @@
 
 
                     {% endif %}
-                    
+
                         </div>
                     </div>
 
 
 
                     {% if perms.efdreinf.add_r2020evtServPrest or perms.efdreinf.change_r2020evtServPrest %}
-    
+
                         {% if r2020_evtservprest_form.status.value == STATUS_EVENTO_CADASTRADO %}
                             </form>
                         {% endif %}
-    
+
                     {% endif %}
 
 
@@ -484,7 +484,7 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        
+                    
                                         <th>Situação</th>
                                         <th>Tipo</th>
                                         <th>Modificado por</th>
@@ -494,7 +494,7 @@
                                 {% for c in controle_alteracoes %}
                                     <tr>
                                         <td>{{ c.criado_em }}</td>
-                                        
+                    
                                         <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
                                         <td>{{ c.get_tipo_display }}</td>
                                         <td>{{ c.modificado_por }}</td>
@@ -517,10 +517,10 @@
     {% if pk %}
 
 
-        
+
         <!-- begin_r2020_nfs -->
 
-            {% if tab == 'r2020_nfs' %} 
+            {% if tab == 'r2020_nfs' %}
 
                 {% if perms.r2020.can_see_data_r2020nfs %}
 
@@ -552,7 +552,7 @@
                             {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</h3>   
+                                    <h3 class="box-title">Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2020.add_r2020nfs or perms.r2020.can_see_list_r2020nfs %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -564,19 +564,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020nfs %}            
+                                {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020nfs %}
 
-                                    <!-- begin_form_r2020_nfs --> 
+                                    <!-- begin_form_r2020_nfs -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2020_nfs" 
-                                              action="{% url 'r2020_nfs_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2020_nfs"
+                                              action="{% url 'r2020_nfs_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -605,32 +605,32 @@
                                     </div>
 
                                 <!-- end_form_r2020_nfs -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2020.can_see_r2020nfs %} 
+                                {% if perms.r2020.can_see_r2020nfs %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2020_nfs --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2020_nfs -->
 
                                         {% include 'tables/r2020_nfs.html' %}
-                                        <!-- end_table_r2020_nfs --> 
-                                    
+                                        <!-- end_table_r2020_nfs -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_r2020_infoprocretpr -->
 
-            {% if tab == 'r2020_infoprocretpr' %} 
+            {% if tab == 'r2020_infoprocretpr' %}
 
                 {% if perms.r2020.can_see_data_r2020infoProcRetPr %}
 
@@ -662,7 +662,7 @@
                             {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária</h3>   
+                                    <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2020.add_r2020infoProcRetPr or perms.r2020.can_see_list_r2020infoProcRetPr %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -674,19 +674,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020infoProcRetPr %}            
+                                {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020infoProcRetPr %}
 
-                                    <!-- begin_form_r2020_infoprocretpr --> 
+                                    <!-- begin_form_r2020_infoprocretpr -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2020_infoprocretpr" 
-                                              action="{% url 'r2020_infoprocretpr_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2020_infoprocretpr"
+                                              action="{% url 'r2020_infoprocretpr_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -715,32 +715,32 @@
                                     </div>
 
                                 <!-- end_form_r2020_infoprocretpr -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2020.can_see_r2020infoProcRetPr %} 
+                                {% if perms.r2020.can_see_r2020infoProcRetPr %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2020_infoprocretpr --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2020_infoprocretpr -->
 
                                         {% include 'tables/r2020_infoprocretpr.html' %}
-                                        <!-- end_table_r2020_infoprocretpr --> 
-                                    
+                                        <!-- end_table_r2020_infoprocretpr -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
+
         <!-- begin_r2020_infoprocretad -->
 
-            {% if tab == 'r2020_infoprocretad' %} 
+            {% if tab == 'r2020_infoprocretad' %}
 
                 {% if perms.r2020.can_see_data_r2020infoProcRetAd %}
 
@@ -772,7 +772,7 @@
                             {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO %}
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária adicional</h3>   
+                                    <h3 class="box-title">Informações de processos relacionados a não retenção de contribuição previdenciária adicional</h3>
                                     <div class="pull-right box-tools">
                                     {% if perms.r2020.add_r2020infoProcRetAd or perms.r2020.can_see_list_r2020infoProcRetAd %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
@@ -784,19 +784,19 @@
                                         </div>
                                         </button>
                                     {% endif %}
-                                </div>   
+                                </div>
                             </div>
                             {% endif %}
                             <div class="box-body" >
 
-                                {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020infoProcRetAd %}            
+                                {% if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO and perms.r2020.add_r2020infoProcRetAd %}
 
-                                    <!-- begin_form_r2020_infoprocretad --> 
+                                    <!-- begin_form_r2020_infoprocretad -->
                                     <div id="cadastrar" style="display:none">
 
-                                        <form id="id_form_r2020_infoprocretad" 
-                                              action="{% url 'r2020_infoprocretad_cadastrar' %}" 
-                                              method="POST" 
+                                        <form id="id_form_r2020_infoprocretad"
+                                              action="{% url 'r2020_infoprocretad_cadastrar' %}"
+                                              method="POST"
                                               enctype="multipart/form-data">
 
                                             {% csrf_token %}
@@ -825,31 +825,31 @@
                                     </div>
 
                                 <!-- end_form_r2020_infoprocretad -->
-                                {% endif %} 
+                                {% endif %}
 
-                                {% if perms.r2020.can_see_r2020infoProcRetAd %} 
+                                {% if perms.r2020.can_see_r2020infoProcRetAd %}
 
-                                    <div id="listar"> 
-                                    <!-- begin_table_r2020_infoprocretad --> 
+                                    <div id="listar">
+                                    <!-- begin_table_r2020_infoprocretad -->
 
                                         {% include 'tables/r2020_infoprocretad.html' %}
-                                        <!-- end_table_r2020_infoprocretad --> 
-                                    
+                                        <!-- end_table_r2020_infoprocretad -->
+                
                                     </div>
 
-                                {% endif %} 
+                                {% endif %}
 
                             </div>
                         </div>
                     </div>
 
-                {% endif %} 
+                {% endif %}
 
-            {% endif %} 
+            {% endif %}
 
-        
 
-    {% endif %} 
+
+    {% endif %}
 
 
 </section>
