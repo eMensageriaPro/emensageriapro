@@ -151,8 +151,8 @@ def collect_static():
 
 if __name__ == "__main__":
 
-    resp = raw_input(u"Deseja executar as migrações separadamente (S/N) ?")
-    
+    resp = raw_input("Deseja executar as migrações separadamente (S/N) ?")
+
     if resp == 'S':
         migrates()
     else:
