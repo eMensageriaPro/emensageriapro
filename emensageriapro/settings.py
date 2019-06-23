@@ -326,6 +326,14 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
 
+    'SYSTEM_MANUAL_SHOW_IN_MENU': (False,
+        u'Visualiza manual do sistema no menu.',
+        bool),
+
+    'SYSTEM_MANUAL_LINK': ('http://',
+         u'Link do manual do sistema',
+         str),
+
     'LOGO_IMAGE_IN_LOGIN': (False,
         u'Visualiza imagem do logotipo na tela de Login.',
         bool),
