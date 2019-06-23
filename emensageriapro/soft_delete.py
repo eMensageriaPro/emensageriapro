@@ -32,8 +32,8 @@ class SoftDeletionQuerySet(QuerySet):
         self.desativado_por_id = req.user.id
         self.desativado_em = timezone.now()
         self.ativo = None
-        gravar_auditoria('{}', json.dumps(self.__dict__, sort_keys=True, default=str),
-                         self._meta.db_table, self.pk, req.user.id, 3)
+        # gravar_auditoria('{}', json.dumps(self.__dict__, sort_keys=True, default=str),
+        #                  self._meta.db_table, self.pk, req.user.id, 3)
         return super(SoftDeletionQuerySet, self).update()
 
     def hard_delete(self):
